@@ -11,7 +11,7 @@ import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiSuggest, EuiSuggestionProps } from './suggest';
-import { ALL_STATUS } from './types';
+import { ALL_STATUSES } from './types';
 
 const sampleItems: EuiSuggestionProps[] = [
   {
@@ -37,7 +37,7 @@ describe('EuiSuggest', () => {
 
   describe('props', () => {
     describe('status', () => {
-      ALL_STATUS.forEach((status) => {
+      ALL_STATUSES.forEach((status) => {
         test(`status: ${status} is rendered`, () => {
           const component = render(
             <EuiSuggest
@@ -65,7 +65,7 @@ describe('EuiSuggest', () => {
     });
 
     describe('tooltipContent', () => {
-      ALL_STATUS.forEach((status) => {
+      ALL_STATUSES.forEach((status) => {
         test(`tooltipContent for status: ${status} is rendered`, () => {
           const component = render(
             <EuiSuggest
@@ -81,51 +81,61 @@ describe('EuiSuggest', () => {
       });
     });
 
-    test('onSearchChange', () => {
-      const handler = jest.fn();
+    test('isVirtualized', () => {
       const component = mount(
         <EuiSuggest
           {...requiredProps}
           suggestions={sampleItems}
-          onSearchChange={handler}
+          isVirtualized
         />
       );
 
-      component.find('input').simulate('change', { value: 'a' });
-      expect(handler).toBeCalled();
+      expect(component).toMatchSnapshot();
     });
-  });
 
-  describe('options', () => {
-    test('standard', () => {
-      const _sampleItems: EuiSuggestionProps[] = sampleItems.map(
-        (item, idx) => ({
+    test('maxHeight', () => {
+      const component = mount(
+        <EuiSuggest
+          {...requiredProps}
+          suggestions={sampleItems}
+          maxHeight="50vh"
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    describe('options', () => {
+      test('standard', () => {
+        const _sampleItems: EuiSuggestionProps[] = sampleItems.map(
+          (item, idx) => ({
+            ...item,
+            labelDisplay: idx === 0 ? 'fixed' : 'expand',
+            descriptionDisplay: idx === 0 ? 'truncate' : 'wrap',
+            labelWidth: idx === 0 ? '70' : 80,
+          })
+        );
+        const component = render(
+          <EuiSuggest {...requiredProps} suggestions={_sampleItems} />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('common', () => {
+        const _sampleItems: EuiSuggestionProps[] = sampleItems.map((item) => ({
           ...item,
-          labelDisplay: idx === 0 ? 'fixed' : 'expand',
-          descriptionDisplay: idx === 0 ? 'truncate' : 'wrap',
-          labelWidth: idx === 0 ? '70' : 80,
-        })
-      );
-      const component = render(
-        <EuiSuggest {...requiredProps} suggestions={_sampleItems} />
-      );
+          'aria-label': 'sampleItem',
+          'data-test-subj': 'sampleItem',
+          className: 'sampleItem',
+          id: 'sampleItem',
+        }));
+        const component = render(
+          <EuiSuggest {...requiredProps} suggestions={_sampleItems} />
+        );
 
-      expect(component).toMatchSnapshot();
-    });
-
-    test('common', () => {
-      const _sampleItems: EuiSuggestionProps[] = sampleItems.map((item) => ({
-        ...item,
-        'aria-label': 'sampleItem',
-        'data-test-subj': 'sampleItem',
-        className: 'sampleItem',
-        id: 'sampleItem',
-      }));
-      const component = render(
-        <EuiSuggest {...requiredProps} suggestions={_sampleItems} />
-      );
-
-      expect(component).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
+      });
     });
   });
 });

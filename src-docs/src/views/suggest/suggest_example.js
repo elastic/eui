@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -84,6 +85,11 @@ export const SuggestExample = {
             <EuiCode>unsaved</EuiCode>, <EuiCode>saved</EuiCode>,
             <EuiCode>unchanged</EuiCode> and <EuiCode>isLoading</EuiCode>.
           </p>
+          <p>
+            Note that <strong>EuiSuggest</strong> does not maintain internal
+            selection state. Use the <EuiCode>onChange</EuiCode> callback to
+            update your application state with the desired selection changes.
+          </p>
         </>
       ),
       props: { EuiSuggest },
@@ -114,7 +120,11 @@ export const SuggestExample = {
               Set <EuiCode>truncate</EuiCode> to false to force line-wrapping of
               both the label and description. Note that wrapping text is not
               compatible with the virtualized setting on{' '}
-              <strong>EuiSuggest</strong>.
+              <strong>EuiSuggest</strong>. See{' '}
+              <Link to="forms/selectable#rendering-the-options">
+                EuiSelectable
+              </Link>{' '}
+              for more information on rendering items virtually.
             </p>
           </EuiText>
           <EuiSpacer />

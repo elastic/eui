@@ -124,3 +124,30 @@ exports[`props labelWidth is 30% is rendered 1`] = `
   </span>
 </span>
 `;
+
+exports[`props truncate is rendered 1`] = `
+<span
+  class="euiSuggestItem euiSuggestItem--truncate"
+>
+  <span
+    class="euiSuggestItem__type euiSuggestItem__type--tint2"
+  >
+    <span
+      color="inherit"
+      data-euiicon-type="kqlValue"
+    />
+  </span>
+  <span
+    class="euiSuggestItem__label euiSuggestItem__label--width50"
+    title="This is the description"
+  >
+    This is the description
+  </span>
+  <span
+    class="euiSuggestItem__description"
+    title="This is the description"
+  >
+    This is the description
+  </span>
+</span>
+`;

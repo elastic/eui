@@ -6,8 +6,13 @@
  * Side Public License, v 1.
  */
 
-export const ALL_STATUS = ['unsaved', 'saved', 'unchanged', 'loading'] as const;
-type StatusTuple = typeof ALL_STATUS;
+export const ALL_STATUSES = [
+  'unsaved',
+  'saved',
+  'unchanged',
+  'loading',
+] as const;
+type StatusTuple = typeof ALL_STATUSES;
 export type EuiSuggestStatus = StatusTuple[number];
 
 export interface _Status {

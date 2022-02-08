@@ -102,6 +102,7 @@ type _EuiSuggestProps = CommonProps &
      * Best used when there are a lot of items.
      */
     isVirtualized?: boolean;
+
     /**
      * Maximum height to set for the list.
      * Default is `60vh`
