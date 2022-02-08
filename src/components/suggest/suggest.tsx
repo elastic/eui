@@ -221,8 +221,21 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
       'euiSuggest.stateUnsaved',
       'euiSuggest.stateUnchanged',
     ],
-    ['State: loading', 'State: saved', 'State: unsaved', 'State: unchanged']
+    ['State: loading.', 'State: saved.', 'State: unsaved.', 'State: unchanged.']
   );
+
+  const stateMessage = (() => {
+    switch (status) {
+      case 'loading':
+        return stateLoading;
+      case 'saved':
+        return stateSaved;
+      case 'unsaved':
+        return stateUnsaved;
+      case 'unchanged':
+        return stateUnchanged;
+    }
+  })();
 
   /**
    * Options list
@@ -316,20 +329,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
         )}
       </EuiSelectable>
       <EuiScreenReaderOnly>
-        <p id={inputDescribedbyId}>
-          {`${(() => {
-            switch (status) {
-              case 'loading':
-                return stateLoading;
-              case 'saved':
-                return stateSaved;
-              case 'unsaved':
-                return stateUnsaved;
-              case 'unchanged':
-                return stateUnchanged;
-            }
-          })()}.`}
-        </p>
+        <p id={inputDescribedbyId}>{stateMessage}</p>
       </EuiScreenReaderOnly>
     </>
   );
