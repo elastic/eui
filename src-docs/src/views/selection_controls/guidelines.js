@@ -62,7 +62,7 @@ export default () => {
     },
     {
       id: 'easy_scan_do_three',
-      label: 'On Hold',
+      label: 'On hold',
     },
     {
       id: 'easy_scan_do_four',
