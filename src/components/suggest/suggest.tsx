@@ -224,18 +224,13 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
     ['State: loading.', 'State: saved.', 'State: unsaved.', 'State: unchanged.']
   );
 
-  const stateMessage = (() => {
-    switch (status) {
-      case 'loading':
-        return stateLoading;
-      case 'saved':
-        return stateSaved;
-      case 'unsaved':
-        return stateUnsaved;
-      case 'unchanged':
-        return stateUnchanged;
-    }
-  })();
+const stateMessageMap = {
+  loading: stateLoading,
+  saved: stateSaved,
+  unsaved: stateUnsaved,
+  unchanged: stateUnchanged,
+};
+const stateMessage = stateMessageMap[status];
 
   /**
    * Options list
