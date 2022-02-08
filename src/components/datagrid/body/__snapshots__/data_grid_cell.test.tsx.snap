@@ -191,7 +191,7 @@ Array [
     class="euiPopoverFooter"
   >
     <div
-      class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--directionRow euiFlexGroup--responsive"
+      class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--directionRow euiFlexGroup--wrap"
     >
       <div
         class="euiFlexItem"
