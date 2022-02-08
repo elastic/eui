@@ -116,7 +116,9 @@ export default () => {
     {
       field: 'enabled',
       name: 'Enabled',
-      render: (enabled) => <EuiSwitch checked={enabled} onChange={() => {}} />,
+      render: (enabled) => (
+        <EuiSwitch checked={enabled} onChange={() => {}} compressed />
+      ),
     },
     {
       field: 'name',
