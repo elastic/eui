@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+/// <reference types="../../../cypress/support"/>
+
 import React from 'react';
 import { EuiFocusTrap } from './focus_trap';
 import { EuiPortal } from '../portal';
