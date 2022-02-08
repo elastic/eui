@@ -64,11 +64,11 @@ describe('EuiDataGridCell', () => {
     );
     component.setState({ enableInteractions: true });
 
-    const getCellButtons = () => component.find('EuiDataGridCellButtons');
-    expect(getCellButtons()).toHaveLength(1);
+    const getCellActions = () => component.find('EuiDataGridCellActions');
+    expect(getCellActions()).toHaveLength(1);
 
     // Should handle opening the popover
-    (getCellButtons().prop('onExpandClick') as Function)();
+    (getCellActions().prop('onExpandClick') as Function)();
     expect(mockPopoverContext.openCellPopover).toHaveBeenCalled();
 
     // Should handle closing the popover
@@ -76,9 +76,9 @@ describe('EuiDataGridCell', () => {
       isExpandable: true,
       popoverContext: { ...mockPopoverContext, popoverIsOpen: true },
     });
-    (getCellButtons().prop('onExpandClick') as Function)();
+    (getCellActions().prop('onExpandClick') as Function)();
     expect(mockPopoverContext.closeCellPopover).toHaveBeenCalledTimes(1);
-    (getCellButtons().prop('closePopover') as Function)();
+    (getCellActions().prop('closePopover') as Function)();
     expect(mockPopoverContext.closeCellPopover).toHaveBeenCalledTimes(2);
   });
 
