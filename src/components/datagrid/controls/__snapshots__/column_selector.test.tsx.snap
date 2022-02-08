@@ -384,7 +384,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                 scrollLock={false}
                 sideCar={[Function]}
               >
-                <ForwardRef
+                <ForwardRef(FocusLockUI)
                   as={
                     Object {
                       "$$typeof": Symbol(react.forward_ref),
@@ -652,7 +652,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                                               droppableId="columnOrder"
                                               isDropDisabled={false}
                                             >
-                                              <ConnectFunction
+                                              <Connect(Droppable)
                                                 direction="vertical"
                                                 droppableId="columnOrder"
                                                 getContainerForClone={[Function]}
@@ -1036,7 +1036,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                                                     </div>
                                                   </div>
                                                 </Droppable>
-                                              </ConnectFunction>
+                                              </Connect(Droppable)>
                                             </EuiDroppable>
                                           </Provider>
                                         </App>
@@ -1178,7 +1178,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                     }
                     tabIndex={-1}
                   />
-                </ForwardRef>
+                </ForwardRef(FocusLockUI)>
               </ForwardRef>
             </ForwardRef>
           </EuiFocusTrap>

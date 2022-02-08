@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+/// <reference types="../../../cypress/support"/>
+
 import React, { ReactNode } from 'react';
 import { EuiDataGrid, EuiDataGridColumn, EuiDataGridProps } from './index';
 import { EuiLink } from '../link';

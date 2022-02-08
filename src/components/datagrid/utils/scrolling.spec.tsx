@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+/// <reference types="../../../../cypress/support"/>
+
 import React, { createRef } from 'react';
 import { EuiDataGrid, EuiDataGridProps } from '../';
 import { EuiDataGridRefProps } from '../data_grid_types';

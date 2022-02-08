@@ -81,6 +81,50 @@ contains `{component name}.tsx`.
 * DON'T depend upon class names or other implementation details for `find`ing nodes, if possible.
 * DON'T extend the `cy.` global namespace - instead prefer to import helper functions directly
 
+### Cypress Axe
+EUI components are tested for accessibility as part of the documentation build, but these do not test changes to the DOM such as accordions being opened, or modal dialogs being triggered. [cypress-axe](https://github.com/component-driven/cypress-axe) allows us to interact with components as users would, and run additional automatic axe scans.
+
+#### How to write cypress-axe tests
+
+```jsx
+describe('Automated accessibility check', () => {
+  it('has zero violations when expanded', () => {
+    cy.mount(
+      <EuiAccordion {...noArrowProps}>
+        <EuiPanel color="subdued">
+          Any content inside of <strong>EuiAccordion</strong> will appear
+          here. We will include <a href="#">a link</a> to confirm focus.
+        </EuiPanel>
+      </EuiAccordion>
+    );
+    cy.get('button.euiAccordion__button').click();
+    cy.checkAxe();
+  });
+});
+```
+
+#### Configuring the cy.checkAxe() helper method
+
+The `cy.checkAxe()` method has two optional parameters:
+ 
+ - `context` - This could be the document or a selector such as a class name, id, or element. The `context` default is `div#__cy_root`.
+ - `axeConfig` - The [axe.run API](https://www.deque.com/axe/core-documentation/api-documentation/#api-name-axerun) can be modified for elements to include or exclude, individual rules to exclude, and rulesets to include or exclude.
+ 
+ ```jsx
+import { defaultAxeConfig } from '../../cypress/support/a11y/axeCheck';
+
+const customAxeConfig = {
+  ...defaultAxeConfig,
+  runOnly: {
+    type: 'tag',
+    // Add best-practices to existing rulesets
+    values: [...defaultAxeConfig.runOnly.values, 'best-practices'],
+  },
+};
+
+cy.checkAxe(undefined, customAxeConfig);
+ ```
+
 ### Cypress Real Events
 
 > Cypress default events are simulated. That means that all events like `cy.click` or `cy.type` are fired from JavaScript. That's why these events will be untrusted (`event.isTrusted` will be `false`) and they can behave a little different from real native events. But for some cases, it can be impossible to use simulated events, for example, to fill a native alert or copy to the clipboard. This plugin solves this problem.
