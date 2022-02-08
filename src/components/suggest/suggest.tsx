@@ -294,6 +294,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
       >
         {(list, search) => (
           <EuiInputPopover
+            disableFocusTrap
             className={classes}
             input={<>{search}</>}
             isOpen={isPopoverOpen}
