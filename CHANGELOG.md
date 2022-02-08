@@ -1,6 +1,9 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `47.0.0`.
+**Bug fixes**
+
+- Fixed `EuiDataGrid` to correctly remove the cell expansion action button when a column sets both `cellActions` and `isExpandable` to false ([#5592](https://github.com/elastic/eui/pull/5592))
+- Fixed `EuiDataGrid` re-playing the cell actions animation when hovering over an already-focused cell ([#5592](https://github.com/elastic/eui/pull/5592))
 
 ## [`47.0.0`](https://github.com/elastic/eui/tree/v47.0.0)
 
