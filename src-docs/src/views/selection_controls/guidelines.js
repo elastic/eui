@@ -81,7 +81,7 @@ export default () => {
     },
     {
       id: 'easy_scan_dont_three',
-      label: 'Case is on Hold',
+      label: 'Case is on hold',
     },
     {
       id: 'easy_scan_dont_four',
