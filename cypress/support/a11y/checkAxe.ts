@@ -6,11 +6,10 @@
  * Side Public License, v 1.
  */
 
-type Result = import('axe-core').Result;
-
+import { Result } from 'axe-core';
 import { defaultContext, defaultAxeConfig } from './defaultAxeConfig';
 
-function logViolations(violations: Result) {
+function logViolations(violations: Result[]) {
   // Print any violations to the console using a custom callback
   // https://github.com/component-driven/cypress-axe#using-the-violationcallback-argument
   cy.task(

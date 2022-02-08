@@ -9,6 +9,10 @@ declare namespace Cypress {
      * specs so VSCode will recognize custom command types.
      */
 
+    // Cypress-axe methods that are used to create `checkAxe` custom command 
+    injectAxe(): void;
+    checkA11y(context?: ElementContext, config?: Object, callback?: Function): void;
+
     /**
      * Run the axe-core accessibility scanner
      * @param context Any valid node or CSS selector. Defaults to the Cypress containing `<div>`.
