@@ -83,8 +83,9 @@ export const SelectionControlsExample = {
   intro: (
     <EuiText>
       <p>
-        EUI provides three types of selection controls: checkboxes, toggle
-        switches and radio buttons. These controls allow users to select options
+        EUI provides three types of selection controls:{' '}
+        <strong>EuiCheckbox</strong>, <strong>EuiRadio</strong> and{' '}
+        <strong>EuiSwitch</strong>. These controls allow users to select options
         among a list or switch a setting on/off. They are ideal for small list
         of options.
       </p>
