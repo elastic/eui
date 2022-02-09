@@ -10,13 +10,12 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import {
-  EuiDataGridCellButtons,
-  EuiDataGridCellPopoverButtons,
-} from './data_grid_cell_buttons';
+  EuiDataGridCellActions,
+  EuiDataGridCellPopoverActions,
+} from './data_grid_cell_actions';
 
-describe('EuiDataGridCellButtons', () => {
+describe('EuiDataGridCellActions', () => {
   const requiredProps = {
-    popoverIsOpen: false,
     closePopover: jest.fn(),
     onExpandClick: jest.fn(),
     rowIndex: 0,
@@ -24,16 +23,18 @@ describe('EuiDataGridCellButtons', () => {
   };
 
   it('renders an expand button', () => {
-    const component = shallow(<EuiDataGridCellButtons {...requiredProps} />);
+    const component = shallow(
+      <EuiDataGridCellActions {...requiredProps} isExpandable={true} />
+    );
 
     expect(component).toMatchInlineSnapshot(`
       <div
-        className="euiDataGridRowCell__expandButton"
+        className="euiDataGridRowCell__expandActions"
       >
         <EuiI18n
           default="Click or hit enter to interact with cell content"
           key="expand"
-          token="euiDataGridCellButtons.expandButtonTitle"
+          token="euiDataGridCellActions.expandButtonTitle"
         >
           <Component />
         </EuiI18n>
@@ -44,7 +45,7 @@ describe('EuiDataGridCellButtons', () => {
     expect(button('expandButtonTitle')).toMatchInlineSnapshot(`
       <EuiButtonIcon
         aria-hidden={true}
-        className="euiDataGridRowCell__expandButtonIcon"
+        className="euiDataGridRowCell__actionButtonIcon"
         color="primary"
         display="fill"
         iconSize="s"
@@ -55,17 +56,18 @@ describe('EuiDataGridCellButtons', () => {
     `);
   });
 
-  it('renders column cell actions as `EuiButtonIcon`s', () => {
+  it('renders cell actions as `EuiButtonIcon`s', () => {
     const component = shallow(
-      <EuiDataGridCellButtons
+      <EuiDataGridCellActions
         {...requiredProps}
+        isExpandable={false}
         column={{ id: 'someId', cellActions: [() => <button />] }}
       />
     );
 
     expect(component).toMatchInlineSnapshot(`
       <div
-        className="euiDataGridRowCell__expandButton"
+        className="euiDataGridRowCell__expandActions"
       >
         <Component
           Component={[Function]}
@@ -76,13 +78,6 @@ describe('EuiDataGridCellButtons', () => {
           key="0"
           rowIndex={0}
         />
-        <EuiI18n
-          default="Click or hit enter to interact with cell content"
-          key="expand"
-          token="euiDataGridCellButtons.expandButtonTitle"
-        >
-          <Component />
-        </EuiI18n>
       </div>
     `);
 
@@ -96,12 +91,45 @@ describe('EuiDataGridCellButtons', () => {
       />
     `);
   });
+
+  it('renders both cell actions and expand button', () => {
+    const component = shallow(
+      <EuiDataGridCellActions
+        {...requiredProps}
+        isExpandable={true}
+        column={{ id: 'someId', cellActions: [() => <button />] }}
+      />
+    );
+
+    expect(component).toMatchInlineSnapshot(`
+      <div
+        className="euiDataGridRowCell__expandActions"
+      >
+        <Component
+          Component={[Function]}
+          closePopover={[MockFunction]}
+          colIndex={0}
+          columnId="someId"
+          isExpanded={false}
+          key="0"
+          rowIndex={0}
+        />
+        <EuiI18n
+          default="Click or hit enter to interact with cell content"
+          key="expand"
+          token="euiDataGridCellActions.expandButtonTitle"
+        >
+          <Component />
+        </EuiI18n>
+      </div>
+    `);
+  });
 });
 
-describe('EuiDataGridCellPopoverButtons', () => {
+describe('EuiDataGridCellPopoverActions', () => {
   it('renders column cell actions as `EuiButtonEmpty`s', () => {
     const component = shallow(
-      <EuiDataGridCellPopoverButtons
+      <EuiDataGridCellPopoverActions
         colIndex={0}
         rowIndex={0}
         column={{ id: 'someId', cellActions: [() => <button />] }}
@@ -112,6 +140,8 @@ describe('EuiDataGridCellPopoverButtons', () => {
       <EuiPopoverFooter>
         <EuiFlexGroup
           gutterSize="s"
+          responsive={false}
+          wrap={true}
         >
           <EuiFlexItem
             key="0"
@@ -143,7 +173,7 @@ describe('EuiDataGridCellPopoverButtons', () => {
 
   it('does not render anything if the column has no cell actions', () => {
     const component = shallow(
-      <EuiDataGridCellPopoverButtons
+      <EuiDataGridCellPopoverActions
         colIndex={0}
         rowIndex={0}
         column={{ id: 'noActions' }}

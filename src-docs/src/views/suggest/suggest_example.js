@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -7,7 +8,7 @@ import {
   EuiCode,
   EuiSpacer,
   EuiSuggest,
-  EuiSuggestItem,
+  EuiText,
 } from '../../../../src/components';
 
 import Suggest from './suggest';
@@ -16,8 +17,7 @@ const suggestSource = require('!!raw-loader!./suggest');
 import SavedQueries from './saved_queries';
 const savedQueriesSource = require('!!raw-loader!./saved_queries');
 
-import SuggestItem from './suggest_item';
-const suggestItemSource = require('!!raw-loader!./suggest_item');
+import SuggestItem from './suggest_item_example';
 const suggestItemSnippet = [
   `<EuiSuggestItem
   type={sampleItem.type}
@@ -77,7 +77,7 @@ export const SuggestExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             <strong>EuiSuggest</strong> is a text field component used to
             display suggestions. The status of the component is shown on its
@@ -85,7 +85,12 @@ export const SuggestExample = {
             <EuiCode>unsaved</EuiCode>, <EuiCode>saved</EuiCode>,
             <EuiCode>unchanged</EuiCode> and <EuiCode>isLoading</EuiCode>.
           </p>
-        </div>
+          <p>
+            Note that <strong>EuiSuggest</strong> does not maintain internal
+            selection state. Use the <EuiCode>onChange</EuiCode> callback to
+            update your application state with the desired selection changes.
+          </p>
+        </>
       ),
       props: { EuiSuggest },
       snippet: suggestSnippet,
@@ -93,29 +98,40 @@ export const SuggestExample = {
     },
     {
       title: 'Suggest item',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: suggestItemSource,
-        },
-      ],
+      wrapText: false,
       text: (
-        <div>
-          <p>
-            <strong>EuiSuggestItem</strong> is a list item component to display
-            suggestions when typing queries in <strong>EuiSuggest</strong>. Use{' '}
-            <EuiCode>labelDisplay</EuiCode> to set whether the{' '}
-            <EuiCode>label</EuiCode> has a fixed width or not. By default, fixed
-            labels will have a width of 50%, you can adjust this by setting{' '}
-            <EuiCode>labelWidth</EuiCode>. Use{' '}
-            <EuiCode>descriptionDisplay</EuiCode> to set whether the{' '}
-            <EuiCode>description</EuiCode> truncates or wraps.
-          </p>
-        </div>
+        <>
+          <EuiText>
+            <p>
+              <strong>EuiSuggestItem</strong> is a list item component to
+              display suggestions when typing queries into{' '}
+              <strong>EuiSuggest</strong>. Each item requires a{' '}
+              <EuiCode>label</EuiCode> and <EuiCode>type</EuiCode> and can
+              optionally display a <EuiCode>description</EuiCode>. By default,
+              labels will have a width of 50% which you can adjust by setting{' '}
+              <EuiCode>labelWidth</EuiCode> to a multiple of{' '}
+              <EuiCode>10</EuiCode>.
+            </p>
+            <p>
+              Suggest item types are an object that requires an{' '}
+              <EuiCode>iconType</EuiCode> and <EuiCode>color</EuiCode>.
+            </p>
+            <p>
+              Set <EuiCode>truncate</EuiCode> to false to force line-wrapping of
+              both the label and description. Note that wrapping text is not
+              compatible with the virtualized setting on{' '}
+              <strong>EuiSuggest</strong>. See{' '}
+              <Link to="forms/selectable#rendering-the-options">
+                EuiSelectable
+              </Link>{' '}
+              for more information on rendering items virtually.
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <SuggestItem />
+        </>
       ),
-      props: { EuiSuggestItem },
       snippet: suggestItemSnippet,
-      demo: <SuggestItem />,
     },
     {
       title: 'Saved queries and filters',
@@ -126,7 +142,7 @@ export const SuggestExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <EuiCallOut color="warning" title="Demo of visual pattern only">
             <p>
               This documents a <strong>visual</strong> pattern for Kibana&apos;s
@@ -135,8 +151,7 @@ export const SuggestExample = {
               logic is well-formed.
             </p>
           </EuiCallOut>
-          <EuiSpacer />
-        </div>
+        </>
       ),
       props: { EuiSuggest },
       demo: <SavedQueries />,
