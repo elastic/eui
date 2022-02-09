@@ -1,6 +1,7 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
 - Refactored `EuiSuggest` to use `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
+- Improved `EuiSelectable` keypress scenarios ([#5613](https://github.com/elastic/eui/pull/5613))
 
 **Bug fixes**
 
