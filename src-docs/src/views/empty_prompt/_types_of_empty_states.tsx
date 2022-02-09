@@ -135,17 +135,24 @@ export default () => {
 
   let icon;
 
-  if (
-    currentUseCaseExample.icon &&
-    isMultiple &&
-    radioUseCaseId === 'loading'
-  ) {
-    icon = { icon: <EuiLoadingSpinner size="l" /> };
+  if (currentUseCaseExample.iconLoading && radioUseCaseId === 'loading') {
+    // if is multiple just show a loading spinner
+    if (isMultiple) {
+      icon = { icon: <EuiLoadingSpinner size="l" /> };
+    } else {
+      icon = {
+        icon: currentUseCaseExample.iconLoading,
+      };
+    }
   } else if (currentUseCaseExample.iconType) {
     icon = { iconType: currentUseCaseExample.iconType };
   } else {
+    const iconImg: string = isDarkTheme
+      ? currentUseCaseExample.iconDark!
+      : currentUseCaseExample.iconLight!;
+
     icon = {
-      icon: currentUseCaseExample.icon,
+      icon: <EuiImage size="fullWidth" src={iconImg} alt="" />,
     };
   }
 

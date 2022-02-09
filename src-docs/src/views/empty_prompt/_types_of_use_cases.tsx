@@ -1,9 +1,8 @@
-import React, { useContext, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import {
   EuiButton,
   EuiButtonEmpty,
   EuiLoadingLogo,
-  EuiImage,
   EuiTitle,
   EuiLink,
   EuiFlexGroup,
@@ -13,37 +12,11 @@ import {
   EuiDescriptionListDescription,
   IconType,
 } from '../../../../src/components';
-import { ThemeContext } from '../../components/with_theme';
+
 import pageNotFoundLight from '../../images/empty-prompt/404_rainy_cloud_light.png';
 import pageNotFoundDark from '../../images/empty-prompt/404_rainy_cloud_dark.png';
 import noResultsLight from '../../images/empty-prompt/no-results--light.svg';
 import noResultsDark from '../../images/empty-prompt/no-results--dark.svg';
-
-const PageNotFoundImg = () => {
-  const themeContext = useContext(ThemeContext);
-  const isDarkTheme = themeContext.theme.includes('dark');
-
-  const pageNotFoundImg = isDarkTheme ? pageNotFoundDark : pageNotFoundLight;
-
-  return <EuiImage size="fullWidth" src={pageNotFoundImg} alt="" />;
-};
-
-// Forces webpack to show the display name.
-// Required to show the name of the component in the DemoJS tab instead of `<No Display Name />`.
-PageNotFoundImg.displayName = 'PageNotFoundImg';
-
-const NoResultsImg = () => {
-  const themeContext = useContext(ThemeContext);
-  const isDarkTheme = themeContext.theme.includes('dark');
-
-  const noResultsImg = isDarkTheme ? noResultsDark : noResultsLight;
-
-  return <EuiImage size="fullWidth" src={noResultsImg} alt="" />;
-};
-
-// Forces webpack to show the display name.
-// Required to show the name of the component in the DemoJS tab instead of `<No Display Name />`.
-NoResultsImg.displayName = 'NoResultsImg';
 
 export const typesOfUseCases: {
   [key: string]: {
@@ -55,7 +28,9 @@ export const typesOfUseCases: {
       action?: ReactNode;
     };
     example: {
-      icon?: ReactNode;
+      iconLoading?: ReactNode;
+      iconLight?: string;
+      iconDark?: string;
       iconType?: IconType;
       title: ReactNode;
       body?: ReactNode;
@@ -177,7 +152,8 @@ export const typesOfUseCases: {
       ),
     },
     example: {
-      icon: <NoResultsImg />,
+      iconLight: noResultsLight,
+      iconDark: noResultsDark,
       title: <h2>No results match your search criteria</h2>,
       layout: 'horizontal',
       body: (
@@ -234,8 +210,9 @@ export const typesOfUseCases: {
       action: <p>Go home or go back</p>,
     },
     example: {
+      iconLight: pageNotFoundLight,
+      iconDark: pageNotFoundDark,
       title: <h2>Page not found</h2>,
-      icon: <PageNotFoundImg />,
       body: (
         <p>
           Sorry, we can&apos;t seem to find the page you&apos;re looking for. It
@@ -300,7 +277,7 @@ export const typesOfUseCases: {
       goal: <p>Help users understand that the data is loading.</p>,
     },
     example: {
-      icon: <EuiLoadingLogo logo="logoKibana" size="xl" />,
+      iconLoading: <EuiLoadingLogo logo="logoKibana" size="xl" />,
       title: <h2>Loading Dashboards</h2>,
     },
   },
