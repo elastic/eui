@@ -6,8 +6,10 @@
  * Side Public License, v 1.
  */
 
-import { Result } from 'axe-core';
+/// <reference types="../"/>
+
 import { defaultContext, defaultAxeConfig } from './defaultAxeConfig';
+import { Result } from 'axe-core';
 
 function logViolations(violations: Result[]) {
   // Print any violations to the console using a custom callback
@@ -32,7 +34,7 @@ function logViolations(violations: Result[]) {
   cy.task('table', violationData);
 }
 
-Cypress.Commands.add('checkAxe', (context, axeConfig) => {
+Cypress.Commands.add('checkAxe', (context, axeConfig, callback) => {
   cy.injectAxe();
-  cy.checkA11y(context ?? defaultContext, axeConfig ?? defaultAxeConfig, logViolations);
+  cy.checkA11y(context ?? defaultContext, axeConfig ?? defaultAxeConfig, callback ?? logViolations);
 });
