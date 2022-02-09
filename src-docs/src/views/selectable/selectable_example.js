@@ -226,8 +226,11 @@ export const SelectableExample = {
           <p>
             The width has been made to always be 100% of its container,
             including stretching the search input. When used inside of
-            `EuiPopover`, we recommend setting a width (or min/max values) to
-            avoid expansion and contraction. By default, the height is capped at
+            <Link to="layout/popover">
+              <strong>EuiPopover</strong>
+            </Link>
+            , we recommend setting a width (or min/max values) via CSS to avoid
+            expansion and contraction. By default, the height is capped at
             showing up to 7.5 items. It shows half of the last one to help
             indicate that there are more options to scroll to. To stretch the
             box to fill its container, pass &apos;full&apos; to the{' '}
