@@ -57,7 +57,7 @@ export default () => (
           <strong>Icon or illustration (optional):</strong> Meaningful; should represent the solution or context.
         </li>
         <li>
-          <strong>Title:</strong> The title will answer the question
+          <strong>Title:</strong> Answers the question
           &quot;What&apos;s happening?&quot;. Is it an error? Is it loading?
         </li>
         <li>
