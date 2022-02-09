@@ -29,6 +29,11 @@ export const panelConfig = () => {
     },
   };
 
+  propsToUse.hasBorder = {
+    ...propsToUse.hasBorder,
+    type: PropTypes.Number,
+  };
+
   return {
     config: {
       componentName: 'EuiPanel',

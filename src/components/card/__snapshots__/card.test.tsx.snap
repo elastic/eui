@@ -507,6 +507,7 @@ exports[`EuiCard props href supports href as a link 1`] = `
     <div
       className="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--isClickable euiCard euiCard--centerAligned euiCard--isClickable"
       onClick={[Function]}
+      style={Object {}}
     >
       <div
         className="euiCard__content"

@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
+import { EuiPanel, EuiCode, EuiSpacer, LEGACY_NAME_KEY } from '../../../../src';
 
-import { EuiPanel, EuiCode, EuiSpacer } from '../../../../src/components';
 import { ThemeContext } from '../../components';
 
 export default () => {
   const themeContext = useContext(ThemeContext);
-  const isAmsterdamTheme = !themeContext.theme.includes('legacy');
+  const isLegacyTheme = themeContext.theme.includes(LEGACY_NAME_KEY);
 
   return (
     <div>
@@ -15,8 +15,8 @@ export default () => {
 
       <EuiSpacer />
 
-      {/* This example only works for the Amsterdam theme. The default theme has `hasBorder={true}` by default. */}
-      {isAmsterdamTheme && (
+      {/* This example only works for the default theme. The legacy theme has `hasBorder={true}` by default. */}
+      {!isLegacyTheme && (
         <>
           <EuiPanel hasBorder={true}>
             <EuiCode>{'hasBorder={true}'}</EuiCode>
@@ -25,9 +25,20 @@ export default () => {
         </>
       )}
 
-      <EuiPanel hasShadow={false} hasBorder={false}>
-        <EuiCode>{'hasShadow={false} hasBorder={false}'}</EuiCode>
+      <EuiPanel hasBorder={3}>
+        <EuiCode>{'hasBorder={3}'}</EuiCode>
       </EuiPanel>
+
+      {/* This example only matters for the legacy theme. The default theme has `hasBorder={false}` by default. */}
+      {isLegacyTheme && (
+        <>
+          <EuiSpacer />
+
+          <EuiPanel hasShadow={false} hasBorder={false}>
+            <EuiCode>{'hasShadow={false} hasBorder={false}'}</EuiCode>
+          </EuiPanel>
+        </>
+      )}
     </div>
   );
 };
