@@ -169,7 +169,7 @@
 
 // Row stripes
 @include euiDataGridStyles(stripes) {
-  .euiDataGridRow:nth-child(odd) {
+  .euiDataGridRow--striped {
     @include euiDataGridRowCellActions($definedHeight: true) {
       background-color: $euiColorLightestShade;
     }

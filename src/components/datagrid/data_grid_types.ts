@@ -832,5 +832,10 @@ export interface EuiDataGridRowHeightsOptions {
 }
 
 export interface EuiDataGridRowManager {
-  getRow(rowIndex: number, top: string, height: number): HTMLDivElement;
+  getRow(
+    rowIndex: number,
+    visibleRowIndex: number,
+    top: string,
+    height: number
+  ): HTMLDivElement;
 }

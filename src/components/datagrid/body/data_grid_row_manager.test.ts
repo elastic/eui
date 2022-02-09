@@ -24,15 +24,30 @@ describe('row manager', () => {
       });
 
       it('creates a row DOM element', () => {
-        const row = rowManager.getRow(0, mockTop, mockHeight);
+        const row = rowManager.getRow(0, 0, mockTop, mockHeight);
         expect(row).toMatchInlineSnapshot(`
           <div
             class="euiDataGridRow"
-            data-gridrow-index="0"
+            data-grid-row-index="0"
+            data-grid-visible-row-index="0"
             role="row"
             style="position: absolute; left: 0px; right: 0px; top: 15px; height: 30px;"
           />
         `);
+      });
+
+      it('adds a striped class if the visible row index is odd', () => {
+        const row = rowManager.getRow(1, 1, mockTop, mockHeight);
+        expect(row).toMatchInlineSnapshot(`
+          <div
+            class="euiDataGridRow euiDataGridRow--striped"
+            data-grid-row-index="1"
+            data-grid-visible-row-index="1"
+            role="row"
+            style="position: absolute; left: 0px; right: 0px; top: 15px; height: 30px;"
+          />
+        `);
+        mockContainerRef.current.removeChild(row);
       });
 
       it('sets the parent innerGrid container to position relative', () => {
@@ -46,16 +61,17 @@ describe('row manager', () => {
 
     describe('when the row DOM element already exists', () => {
       it('does not create a new DOM element but fetches the existing one', () => {
-        rowManager.getRow(0, mockTop, mockHeight);
+        rowManager.getRow(0, 0, mockTop, mockHeight);
         expect(mockContainerRef.current.children).toHaveLength(1);
       });
 
       it("updates the row's top and height values", () => {
-        const row = rowManager.getRow(0, '100px', 200);
+        const row = rowManager.getRow(0, 0, '100px', 200);
         expect(row).toMatchInlineSnapshot(`
           <div
             class="euiDataGridRow"
-            data-gridrow-index="0"
+            data-grid-row-index="0"
+            data-grid-visible-row-index="0"
             role="row"
             style="position: absolute; left: 0px; right: 0px; top: 100px; height: 200px;"
           />

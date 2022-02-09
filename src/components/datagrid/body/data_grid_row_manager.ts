@@ -15,14 +15,17 @@ export const makeRowManager = (
   const rowIdToElements = new Map<number, HTMLDivElement>();
 
   return {
-    getRow(rowIndex, top, height) {
+    getRow(rowIndex, visibleRowIndex, top, height) {
       let rowElement = rowIdToElements.get(rowIndex);
 
       if (rowElement == null) {
         rowElement = document.createElement('div');
         rowElement.setAttribute('role', 'row');
-        rowElement.setAttribute('data-gridrow-index', String(rowIndex));
+        rowElement.dataset.gridRowIndex = String(rowIndex); // Row index from data, affected by sorting/pagination
+        rowElement.dataset.gridVisibleRowIndex = String(visibleRowIndex); // Affected by sorting/pagination
         rowElement.classList.add('euiDataGridRow');
+        const isOddRow = visibleRowIndex % 2 !== 0;
+        if (isOddRow) rowElement.classList.add('euiDataGridRow--striped');
         rowElement.style.position = 'absolute';
         rowElement.style.left = '0';
         rowElement.style.right = '0';
