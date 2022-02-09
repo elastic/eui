@@ -2541,7 +2541,7 @@ import something from './somewhere.txt';
           }
         );
 
-        expect(result.code).toBe("export {};"); // code is empty as some plugin
+        expect(result.code).toBe("export {};");
       });
     });
   });
