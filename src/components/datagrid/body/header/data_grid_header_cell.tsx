@@ -21,6 +21,7 @@ import { EuiIcon } from '../../../icon';
 import { EuiListGroup } from '../../../list_group';
 import { EuiPopover } from '../../../popover';
 import { DataGridSortingContext } from '../../utils/sorting';
+import { DataGridFocusContext } from '../../utils/focus';
 import { EuiDataGridHeaderCellProps } from '../../data_grid_types';
 
 import { getColumnActions } from './column_actions';
@@ -58,6 +59,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
   } = {};
   const screenReaderId = useGeneratedHtmlId();
 
+  const { setFocusedCell, focusFirstVisibleInteractiveCell } = useContext(
+    DataGridFocusContext
+  );
+
   const { sorting } = useContext(DataGridSortingContext);
   let sortString;
   if (sorting) {
@@ -92,9 +97,11 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     schema,
     schemaDetectors,
     setVisibleColumns,
+    focusFirstVisibleInteractiveCell,
     setIsPopoverOpen,
     sorting,
     switchColumnPos,
+    setFocusedCell,
   });
 
   const showColumnActions = columnActions && columnActions.length > 0;
@@ -145,9 +152,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           button={
             <button
               className="euiDataGridHeaderCell__button"
-              onClick={() =>
-                setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen)
-              }
+              onClick={() => {
+                setFocusedCell([index, -1]);
+                setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
+              }}
             >
               {sortingArrow}
               <div className="euiDataGridHeaderCell__content">

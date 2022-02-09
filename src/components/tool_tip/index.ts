@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
-export { EuiToolTip, ToolTipPositions, EuiToolTipProps } from './tool_tip';
+export type { ToolTipPositions, EuiToolTipProps } from './tool_tip';
+export { EuiToolTip } from './tool_tip';
 
-export { EuiIconTip, EuiIconTipProps } from './icon_tip';
+export type { EuiIconTipProps } from './icon_tip';
+export { EuiIconTip } from './icon_tip';

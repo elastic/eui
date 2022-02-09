@@ -8,7 +8,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { mount, ReactWrapper, render } from 'enzyme';
-import { EuiDataGrid, EuiDataGridProps } from './';
+import { EuiDataGrid } from './';
+import { EuiDataGridProps } from './data_grid_types';
 import {
   findTestSubject,
   requiredProps,
@@ -17,6 +18,14 @@ import {
 import { EuiDataGridColumnResizer } from './body/header/data_grid_column_resizer';
 import { keys } from '../../services';
 import { act } from 'react-dom/test-utils';
+
+// Mock the cell popover (TODO: Move failing tests to Cypress and remove need for mock?)
+jest.mock('../popover', () => ({
+  ...jest.requireActual('../popover'),
+  EuiWrappingPopover: ({ children }: { children: React.ReactNode }) => (
+    <div data-test-subj="euiDataGridExpansionPopover">{children}</div>
+  ),
+}));
 
 function getFocusableCell(component: ReactWrapper) {
   return findTestSubject(component, 'dataGridRowCell').find('[tabIndex=0]');
@@ -529,7 +538,11 @@ describe('EuiDataGrid', () => {
         Array [
           Object {
             "className": "euiDataGridRowCell euiDataGridRowCell--firstColumn customClass",
+            "data-gridcell-column-id": "A",
+            "data-gridcell-column-index": 0,
             "data-gridcell-id": "0,0",
+            "data-gridcell-row-index": 0,
+            "data-gridcell-visible-row-index": 0,
             "data-test-subj": "dataGridRowCell",
             "onBlur": [Function],
             "onFocus": [Function],
@@ -543,6 +556,7 @@ describe('EuiDataGrid', () => {
               "left": 0,
               "lineHeight": undefined,
               "position": "absolute",
+              "right": undefined,
               "top": "100px",
               "width": 100,
             },
@@ -550,7 +564,11 @@ describe('EuiDataGrid', () => {
           },
           Object {
             "className": "euiDataGridRowCell euiDataGridRowCell--lastColumn customClass",
-            "data-gridcell-id": "0,1",
+            "data-gridcell-column-id": "B",
+            "data-gridcell-column-index": 1,
+            "data-gridcell-id": "1,0",
+            "data-gridcell-row-index": 0,
+            "data-gridcell-visible-row-index": 0,
             "data-test-subj": "dataGridRowCell",
             "onBlur": [Function],
             "onFocus": [Function],
@@ -564,6 +582,7 @@ describe('EuiDataGrid', () => {
               "left": 100,
               "lineHeight": undefined,
               "position": "absolute",
+              "right": undefined,
               "top": "100px",
               "width": 100,
             },
@@ -571,7 +590,11 @@ describe('EuiDataGrid', () => {
           },
           Object {
             "className": "euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn customClass",
-            "data-gridcell-id": "1,0",
+            "data-gridcell-column-id": "A",
+            "data-gridcell-column-index": 0,
+            "data-gridcell-id": "0,1",
+            "data-gridcell-row-index": 1,
+            "data-gridcell-visible-row-index": 1,
             "data-test-subj": "dataGridRowCell",
             "onBlur": [Function],
             "onFocus": [Function],
@@ -585,6 +608,7 @@ describe('EuiDataGrid', () => {
               "left": 0,
               "lineHeight": undefined,
               "position": "absolute",
+              "right": undefined,
               "top": "134px",
               "width": 100,
             },
@@ -592,7 +616,11 @@ describe('EuiDataGrid', () => {
           },
           Object {
             "className": "euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn customClass",
+            "data-gridcell-column-id": "B",
+            "data-gridcell-column-index": 1,
             "data-gridcell-id": "1,1",
+            "data-gridcell-row-index": 1,
+            "data-gridcell-visible-row-index": 1,
             "data-test-subj": "dataGridRowCell",
             "onBlur": [Function],
             "onFocus": [Function],
@@ -606,6 +634,7 @@ describe('EuiDataGrid', () => {
               "left": 100,
               "lineHeight": undefined,
               "position": "absolute",
+              "right": undefined,
               "top": "134px",
               "width": 100,
             },

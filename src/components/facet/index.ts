@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
-export { EuiFacetButton, EuiFacetButtonProps } from './facet_button';
+export type { EuiFacetButtonProps } from './facet_button';
+export { EuiFacetButton } from './facet_button';
 
-export { EuiFacetGroup, EuiFacetGroupProps } from './facet_group';
+export type { EuiFacetGroupProps } from './facet_group';
+export { EuiFacetGroup } from './facet_group';

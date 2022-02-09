@@ -18,11 +18,15 @@ import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiSelectableSearch } from './selectable_search';
 import { EuiSelectableMessage } from './selectable_message';
-import { EuiSelectableList } from './selectable_list';
+import {
+  EuiSelectableList,
+  EuiSelectableOptionsListVirtualizedProps,
+} from './selectable_list';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiSpacer } from '../spacer';
 import { getMatchingOptions } from './matching_options';
 import { keys, htmlIdGenerator } from '../../services';
+import { EuiScreenReaderLive, EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 import { EuiSelectableOption } from './selectable_option';
 import { EuiSelectableOptionsListProps } from './selectable_list/selectable_list';
@@ -40,6 +44,14 @@ type OptionalEuiSelectableOptionsListProps = Omit<
 type EuiSelectableOptionsListPropsWithDefaults = RequiredEuiSelectableOptionsListProps &
   Partial<OptionalEuiSelectableOptionsListProps>;
 
+// The `searchable` prop has significant implications for a11y.
+// When present, we effectively change from adhering
+// to the ARIA `listbox` spec (https://www.w3.org/TR/wai-aria-practices-1.2/#Listbox)
+// to the ARIA `combobox` spec (https://www.w3.org/TR/wai-aria-practices-1.2/#combobox)
+// and (re)implement all relevant attributes and keyboard interactions.
+// Take note of logic that relies on `searchable` to ensure that any
+// modifications remain in alignment.
+//
 // `searchProps` can only be specified when `searchable` is true
 type EuiSelectableSearchableProps<T> = ExclusiveUnion<
   {
@@ -137,6 +149,14 @@ export type EuiSelectableProps<T = {}> = CommonProps &
      */
     emptyMessage?: ReactElement | string;
     /**
+     * Add an error message.
+     * The message will be shown when the value is not `null` or `undefined`.
+     * Pass a string to simply change the text, or a node to replace the whole content.
+     *
+     * `errorMessage={hasErrors ? 'My error message' : null}`
+     */
+    errorMessage?: ReactElement | string | null;
+    /**
      * Control whether or not options get filtered internally or if consumer will filter
      * Default: false
      */
@@ -163,9 +183,18 @@ export class EuiSelectable<T = {}> extends Component<
   private containerRef = createRef<HTMLDivElement>();
   private optionsListRef = createRef<EuiSelectableList<T>>();
   private preventOnFocus = false;
-  rootId = htmlIdGenerator();
+  rootId: (suffix?: string) => string;
+  messageContentId: string;
+  listId: string;
   constructor(props: EuiSelectableProps<T>) {
     super(props);
+
+    this.rootId = props.id
+      ? (suffix) => `${props.id}${suffix ? `_${suffix}` : ''}`
+      : htmlIdGenerator();
+
+    this.listId = this.rootId();
+    this.messageContentId = this.rootId('messageContent');
 
     const { options, singleSelection, isPreFiltered } = props;
 
@@ -273,6 +302,16 @@ export class EuiSelectable<T = {}> extends Component<
         break;
 
       case keys.ENTER:
+      case keys.SPACE:
+        if (event.key === keys.SPACE && this.props.searchable) {
+          // For non-searchable instances, SPACE interaction should align with
+          // the user expectation of selection toggling (e.g., input[type=checkbox]).
+          // ENTER is also a valid selection mechanism in this case.
+          //
+          // For searchable instances, SPACE is reserved as a character for filtering
+          // via the input box, and as such only ENTER will toggle selection.
+          return;
+        }
         event.preventDefault();
         event.stopPropagation();
         if (this.state.activeOptionIndex != null && optionsList) {
@@ -354,8 +393,7 @@ export class EuiSelectable<T = {}> extends Component<
   onContainerBlur = (e: React.FocusEvent) => {
     // Ignore blur events when moving from search to option to avoid activeOptionIndex conflicts
     if (
-      ((e.relatedTarget as Node)?.firstChild as HTMLElement)?.id ===
-      this.rootId('listbox')
+      ((e.relatedTarget as Node)?.firstChild as HTMLElement)?.id === this.listId
     ) {
       return;
     }
@@ -390,6 +428,9 @@ export class EuiSelectable<T = {}> extends Component<
     this.optionsListRef.current?.listRef?.scrollToItem(index, align);
   };
 
+  makeOptionId = (index?: number) =>
+    index != null ? `${this.listId}_option-${index}` : '';
+
   render() {
     const {
       id,
@@ -410,6 +451,7 @@ export class EuiSelectable<T = {}> extends Component<
       loadingMessage,
       noMatchesMessage,
       emptyMessage,
+      errorMessage,
       isPreFiltered,
       ...rest
     } = this.props;
@@ -434,8 +476,23 @@ export class EuiSelectable<T = {}> extends Component<
     const {
       'aria-label': listAriaLabel,
       'aria-describedby': listAriaDescribedby,
+      isVirtualized,
+      rowHeight,
       ...cleanedListProps
-    } = listProps || unknownAccessibleName;
+    } = (listProps || unknownAccessibleName) as typeof listProps &
+      typeof unknownAccessibleName;
+
+    let virtualizedProps: EuiSelectableOptionsListVirtualizedProps;
+
+    if (isVirtualized === false) {
+      virtualizedProps = {
+        isVirtualized,
+      };
+    } else if (rowHeight != null) {
+      virtualizedProps = {
+        rowHeight,
+      };
+    }
 
     const classes = classNames(
       'euiSelectable',
@@ -445,20 +502,12 @@ export class EuiSelectable<T = {}> extends Component<
       className
     );
 
-    /** Create Id's */
-    let messageContentId = this.rootId('messageContent');
-    const listId = this.rootId('listbox');
-    const makeOptionId = (index: number | undefined) => {
-      if (typeof index === 'undefined') {
-        return '';
-      }
-
-      return `${listId}_option-${index}`;
-    };
-
     /** Create message content that replaces the list if no options are available (yet) */
     let messageContent: ReactNode | undefined;
-    if (isLoading) {
+    if (errorMessage != null) {
+      messageContent =
+        typeof errorMessage === 'string' ? <p>{errorMessage}</p> : errorMessage;
+    } else if (isLoading) {
       if (loadingMessage === undefined || typeof loadingMessage === 'string') {
         messageContent = (
           <>
@@ -476,7 +525,7 @@ export class EuiSelectable<T = {}> extends Component<
         );
       } else {
         messageContent = React.cloneElement(loadingMessage, {
-          id: messageContentId,
+          id: this.messageContentId,
           ...loadingMessage.props,
         });
       }
@@ -498,7 +547,7 @@ export class EuiSelectable<T = {}> extends Component<
         );
       } else {
         messageContent = React.cloneElement(noMatchesMessage, {
-          id: messageContentId,
+          id: this.messageContentId,
           ...noMatchesMessage.props,
         });
       }
@@ -516,12 +565,10 @@ export class EuiSelectable<T = {}> extends Component<
         );
       } else {
         messageContent = React.cloneElement(emptyMessage, {
-          id: messageContentId,
+          id: this.messageContentId,
           ...emptyMessage.props,
         });
       }
-    } else {
-      messageContentId = '';
     }
 
     /**
@@ -568,7 +615,7 @@ export class EuiSelectable<T = {}> extends Component<
 
     const searchAccessibleName = getAccessibleName(
       searchProps,
-      messageContentId
+      this.messageContentId
     );
     const searchHasAccessibleName = Boolean(
       Object.keys(searchAccessibleName).length
@@ -580,8 +627,8 @@ export class EuiSelectable<T = {}> extends Component<
             key="listSearch"
             options={options}
             onChange={this.onSearchChange}
-            listId={this.optionsListRef.current ? listId : undefined} // Only pass the listId if it exists on the page
-            aria-activedescendant={makeOptionId(activeOptionIndex)} // the current faux-focused option
+            listId={this.optionsListRef.current ? this.listId : undefined} // Only pass the listId if it exists on the page
+            aria-activedescendant={this.makeOptionId(activeOptionIndex)} // the current faux-focused option
             placeholder={placeholderName}
             isPreFiltered={isPreFiltered ?? false}
             {...(searchHasAccessibleName
@@ -593,43 +640,85 @@ export class EuiSelectable<T = {}> extends Component<
       </EuiI18n>
     ) : undefined;
 
-    const listAccessibleName = getAccessibleName(listProps);
+    const resultsLength = visibleOptions.filter((option) => !option.disabled)
+      .length;
+    const listScreenReaderStatus = searchable && (
+      <EuiI18n
+        token="euiSelectable.searchResults"
+        default={({ resultsLength }) =>
+          `${resultsLength} result${resultsLength === 1 ? '' : 's'} available`
+        }
+        values={{ resultsLength }}
+      />
+    );
+
+    const listAriaDescribedbyId = `${this.listId}-instructions`;
+    const listAccessibleName = getAccessibleName(
+      listProps,
+      listAriaDescribedbyId
+    );
     const listHasAccessibleName = Boolean(
       Object.keys(listAccessibleName).length
     );
-    const list = messageContent ? (
-      <EuiSelectableMessage
-        id={messageContentId}
-        bordered={listProps && listProps.bordered}
+    const list = (
+      <EuiI18n
+        tokens={[
+          'euiSelectable.screenReaderInstructions',
+          'euiSelectable.placeholderName',
+        ]}
+        defaults={[
+          'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.',
+          'Filter options',
+        ]}
       >
-        {messageContent}
-      </EuiSelectableMessage>
-    ) : (
-      <EuiI18n token="euiSelectable.placeholderName" default="Filter options">
-        {(placeholderName: string) => (
-          <EuiSelectableList<T>
-            key="list"
-            options={options}
-            visibleOptions={visibleOptions}
-            searchValue={searchValue}
-            activeOptionIndex={activeOptionIndex}
-            setActiveOptionIndex={(index, cb) => {
-              this.setState({ activeOptionIndex: index }, cb);
-            }}
-            onOptionClick={this.onOptionClick}
-            singleSelection={singleSelection}
-            ref={this.optionsListRef}
-            renderOption={renderOption}
-            height={height}
-            allowExclusions={allowExclusions}
-            searchable={searchable}
-            makeOptionId={makeOptionId}
-            listId={listId}
-            {...(listHasAccessibleName
-              ? listAccessibleName
-              : searchable && { 'aria-label': placeholderName })}
-            {...cleanedListProps}
-          />
+        {([placeholderName, screenReaderInstructions]: string[]) => (
+          <>
+            {searchable && (
+              <EuiScreenReaderLive
+                isActive={messageContent != null || activeOptionIndex != null}
+              >
+                {messageContent || listScreenReaderStatus}
+              </EuiScreenReaderLive>
+            )}
+
+            <EuiScreenReaderOnly>
+              <p id={listAriaDescribedbyId}>{screenReaderInstructions}</p>
+            </EuiScreenReaderOnly>
+
+            {messageContent ? (
+              <EuiSelectableMessage
+                id={this.messageContentId}
+                bordered={listProps && listProps.bordered}
+              >
+                {messageContent}
+              </EuiSelectableMessage>
+            ) : (
+              <EuiSelectableList<T>
+                key="list"
+                options={options}
+                visibleOptions={visibleOptions}
+                searchValue={searchValue}
+                activeOptionIndex={activeOptionIndex}
+                setActiveOptionIndex={(index, cb) => {
+                  this.setState({ activeOptionIndex: index }, cb);
+                }}
+                onOptionClick={this.onOptionClick}
+                singleSelection={singleSelection}
+                ref={this.optionsListRef}
+                renderOption={renderOption}
+                height={height}
+                allowExclusions={allowExclusions}
+                searchable={searchable}
+                makeOptionId={this.makeOptionId}
+                listId={this.listId}
+                {...(listHasAccessibleName
+                  ? listAccessibleName
+                  : searchable && { 'aria-label': placeholderName })}
+                {...cleanedListProps}
+                {...virtualizedProps}
+              />
+            )}
+          </>
         )}
       </EuiI18n>
     );

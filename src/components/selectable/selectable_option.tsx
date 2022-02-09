@@ -53,6 +53,11 @@ export type EuiSelectableOptionBase = CommonProps & {
    * Option item `id`s are coordinated at a higher level for a11y reasons.
    */
   id?: never;
+  /**
+   * Option data to pass through to the `renderOptions` element.
+   * Bypass `EuiSelectableItem` and avoid DOM attribute warnings.
+   */
+  data?: { [key: string]: any };
 };
 
 type _EuiSelectableGroupLabelOption = Omit<

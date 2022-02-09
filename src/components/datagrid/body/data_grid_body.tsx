@@ -28,6 +28,7 @@ import { EuiDataGridCell } from './data_grid_cell';
 import { EuiDataGridFooterRow } from './data_grid_footer_row';
 import { EuiDataGridHeaderRow } from './header';
 import { DefaultColumnFormatter } from './popover_utils';
+import { DataGridCellPopoverContext } from './data_grid_cell_popover';
 import {
   EuiDataGridBodyProps,
   EuiDataGridRowManager,
@@ -43,6 +44,7 @@ import {
 import { useDefaultColumnWidth, useColumnWidths } from '../utils/col_widths';
 import { useRowHeightUtils, useDefaultRowHeight } from '../utils/row_heights';
 import { useHeaderFocusWorkaround } from '../utils/focus';
+import { useScrollBars, useScroll } from '../utils/scrolling';
 import { DataGridSortingContext } from '../utils/sorting';
 import { IS_JEST_ENVIRONMENT } from '../../../test';
 
@@ -69,6 +71,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     rowHeightUtils,
     rowManager,
   } = data;
+  const popoverContext = useContext(DataGridCellPopoverContext);
   const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
   const { getCorrectRowIndex } = useContext(DataGridSortingContext);
 
@@ -117,7 +120,8 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     rowHeightsOptions,
     rowHeightUtils,
     setRowHeight: isFirstColumn ? setRowHeight : undefined,
-    rowManager: rowManager,
+    rowManager,
+    popoverContext,
   };
 
   if (isLeadingControlColumn) {
@@ -218,7 +222,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   props
 ) => {
   const {
-    isFullScreen,
     leadingControlColumns,
     trailingControlColumns,
     columns,
@@ -237,12 +240,13 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     setVisibleColumns,
     switchColumnPos,
     onColumnResize,
-    toolbarHeight,
     rowHeightsOptions,
     virtualizationOptions,
+    isFullScreen,
     gridStyles,
     gridWidth,
     gridRef,
+    gridItemsRendered,
     wrapperRef,
   } = props;
 
@@ -252,6 +256,16 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   const wrapperDimensions = useResizeObserver(wrapperRef.current);
   const outerGridRef = useRef<HTMLDivElement | null>(null); // container that becomes scrollable
   const innerGridRef = useRef<HTMLDivElement | null>(null); // container sized to fit all content
+
+  /**
+   * Scroll bars
+   */
+  const {
+    scrollBarHeight,
+    hasVerticalScroll,
+    hasHorizontalScroll,
+    scrollBorderOverlay,
+  } = useScrollBars(outerGridRef, gridStyles.border);
 
   /**
    * Widths
@@ -359,6 +373,19 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   ]);
 
   /**
+   * Handle scrolling cells fully into view
+   */
+  useScroll({
+    gridRef,
+    outerGridRef,
+    hasGridScrolling: hasVerticalScroll || hasHorizontalScroll,
+    headerRowHeight,
+    footerRowHeight,
+    visibleRowCount,
+    hasStickyFooter: !!(renderFooterCellValue && gridStyles.stickyFooter),
+  });
+
+  /**
    * Row manager
    */
   // useState instead of useMemo as React reserves the right to drop memoized
@@ -389,7 +416,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     defaultRowHeight,
     headerRowHeight,
     footerRowHeight,
-    outerGridRef,
+    scrollBarHeight,
     innerGridRef,
   });
 
@@ -401,11 +428,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     unconstrainedWidth: 0, // unable to determine this until the container's size is known
     wrapperDimensions,
     wrapperRef,
-    toolbarHeight,
-    headerRowHeight,
-    footerRowHeight,
-    rowCount,
     isFullScreen,
+    rowCount,
   });
 
   /**
@@ -442,6 +466,9 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       <Grid
         {...(virtualizationOptions ? virtualizationOptions : {})}
         ref={gridRef}
+        onItemsRendered={(itemsRendered) => {
+          gridItemsRendered.current = itemsRendered;
+        }}
         innerElementType={InnerElement}
         outerRef={outerGridRef}
         innerRef={innerGridRef}
@@ -474,6 +501,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       >
         {Cell}
       </Grid>
+      {scrollBorderOverlay}
     </DataGridWrapperRowsContext.Provider>
   ) : null;
 };

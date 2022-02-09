@@ -19,6 +19,10 @@ The [`src/test`](../src/test) module exports some functions and constants to hel
 * `requiredProps` is a list of all props almost all components should support.
 * `takeMountedSnapshot` generates a snapshot of a mounted component.
 
+### Test helper naming pattern
+
+If the test helper includes `enzyme` or other libraries included only in `devDependencies`, use the `*.test_helper.[ts, tsx]` naming pattern to exclude the component from production builds.
+
 ## Test design
 
 ### Do's and don'ts

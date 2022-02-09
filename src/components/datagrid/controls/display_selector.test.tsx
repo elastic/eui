@@ -9,6 +9,7 @@
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { shallow, mount, ShallowWrapper, ReactWrapper } from 'enzyme';
+import { testCustomHook } from '../../../test/test_custom_hook.test_helper';
 
 import {
   EuiDataGridToolBarVisibilityOptions,
@@ -121,7 +122,7 @@ describe('useDataGridDisplaySelector', () => {
         ).toHaveLength(0);
       });
 
-      describe('convertGridStylesToSelection (loading initial state from passed gridStyles', () => {
+      describe('convertGridStylesToSelection', () => {
         it('should set compact state if both fontSize and cellPadding are s', () => {
           const component = mount(
             <MockComponent gridStyles={{ fontSize: 's', cellPadding: 's' }} />
@@ -153,6 +154,18 @@ describe('useDataGridDisplaySelector', () => {
           openPopover(component);
           expect(getSelection(component)).toEqual('');
         });
+      });
+
+      it('updates grid density whenever new developer styles are passed in', () => {
+        const component = mount(
+          <MockComponent gridStyles={{ fontSize: 'l', cellPadding: 'l' }} />
+        );
+        openPopover(component);
+        expect(getSelection(component)).toEqual('expanded');
+
+        component.setProps({ gridStyles: { fontSize: 's', cellPadding: 's' } });
+        component.update();
+        expect(getSelection(component)).toEqual('compact');
       });
 
       it('correctly resets density to initial developer-passed state', () => {
@@ -216,7 +229,7 @@ describe('useDataGridDisplaySelector', () => {
         ).toHaveLength(0);
       });
 
-      describe('convertRowHeightsOptionsToSelection (loading initial state from passed rowHeightsOptions)', () => {
+      describe('convertRowHeightsOptionsToSelection', () => {
         test('auto', () => {
           const component = mount(
             <MockComponent rowHeightsOptions={{ defaultHeight: 'auto' }} />
@@ -258,6 +271,20 @@ describe('useDataGridDisplaySelector', () => {
           openPopover(component2);
           expect(getSelection(component2)).toEqual('');
         });
+      });
+
+      it('updates row height whenever new developer settings are passed in', () => {
+        const component = mount(
+          <MockComponent rowHeightsOptions={{ defaultHeight: 'auto' }} />
+        );
+        openPopover(component);
+        expect(getSelection(component)).toEqual('auto');
+
+        component.setProps({
+          rowHeightsOptions: { defaultHeight: { lineCount: 3 } },
+        });
+        component.update();
+        expect(getSelection(component)).toEqual('lineCount');
       });
 
       it('correctly resets row height to initial developer-passed state', () => {
@@ -380,9 +407,10 @@ describe('useDataGridDisplaySelector', () => {
         component.find('[data-test-subj="resetDisplaySelector"]').exists()
       ).toBe(true);
 
-      // Should hide the reset button again when changing back to the initial configuration
-      component.find('[data-test-subj="normal"]').simulate('change');
-      component.find('[data-test-subj="undefined"]').simulate('change');
+      // Should hide the reset button again after it's been clicked
+      component
+        .find('button[data-test-subj="resetDisplaySelector"]')
+        .simulate('click');
       expect(
         component.find('[data-test-subj="resetDisplaySelector"]').exists()
       ).toBe(false);
@@ -392,27 +420,23 @@ describe('useDataGridDisplaySelector', () => {
   describe('gridStyles', () => {
     it('returns an object of grid styles with user overrides', () => {
       const initialStyles = { ...startingStyles, stripes: true };
-      const MockComponent = () => {
-        const [, { onChange, ...gridStyles }] = useDataGridDisplaySelector(
-          true,
-          initialStyles,
-          {}
-        );
-        return <table {...gridStyles} />;
-      };
-      const component = shallow(<MockComponent />);
+      const {
+        return: [, gridStyles],
+      } = testCustomHook(() =>
+        useDataGridDisplaySelector(true, initialStyles, {})
+      );
 
-      expect(component).toMatchInlineSnapshot(`
-        <table
-          border="all"
-          cellPadding="m"
-          fontSize="m"
-          footer="overline"
-          header="shade"
-          rowHover="highlight"
-          stickyFooter={true}
-          stripes={true}
-        />
+      expect(gridStyles).toMatchInlineSnapshot(`
+        Object {
+          "border": "all",
+          "cellPadding": "m",
+          "fontSize": "m",
+          "footer": "overline",
+          "header": "shade",
+          "rowHover": "highlight",
+          "stickyFooter": true,
+          "stripes": true,
+        }
       `);
     });
   });
@@ -447,11 +471,6 @@ describe('useDataGridDisplaySelector', () => {
         .find('[data-test-subj="rowHeightButtonGroup"]')
         .simulate('change', selection);
     };
-    const setLineCount = (component: ShallowWrapper, lineCount = 1) => {
-      diveIntoEuiI18n(component)
-        .find('[data-test-subj="lineCountNumber"]')
-        .simulate('change', { target: { value: lineCount } });
-    };
     const getOutput = (component: ShallowWrapper) => {
       return JSON.parse(component.find('[data-test-subj="output"]').text());
     };
@@ -481,11 +500,10 @@ describe('useDataGridDisplaySelector', () => {
         );
 
         setRowHeight(component, 'lineCount');
-        setLineCount(component, 5);
 
         expect(getOutput(component)).toEqual({
           lineHeight: '2em',
-          defaultHeight: { lineCount: 5 },
+          defaultHeight: { lineCount: 2 },
           rowHeights: {},
         });
       });

@@ -76,6 +76,20 @@ describe('props', () => {
     });
   });
 
+  describe('truncate', () => {
+    test('is rendered', () => {
+      const component = render(
+        <EuiSuggestItem
+          type={sampleItem.type}
+          description={sampleItem.description}
+          label={sampleItem.description}
+          truncate
+        />
+      );
+      expect(component).toMatchSnapshot();
+    });
+  });
+
   describe('item with no description has expanded label', () => {
     test('is rendered', () => {
       const component = render(

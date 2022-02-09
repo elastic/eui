@@ -6,7 +6,4 @@
  * Side Public License, v 1.
  */
 
-declare module '@elastic/eui/dist/eui_theme_*.json' {
-  const value: any;
-  export default value;
-}
+export * from './reset/global_styles';

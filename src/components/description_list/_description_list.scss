@@ -173,11 +173,10 @@
     .euiDescriptionList__title {
       @include euiFontSizeS;
       display: inline;
-      border-radius: $euiBorderRadius;
-      font-weight: $euiFontWeightRegular;
-      background: $euiColorLightestShade;
-      border: $euiBorderThin;
-      padding:  0 $euiSizeXS;
+      border-radius: $euiBorderRadiusSmall;
+      font-weight: $euiFontWeightMedium;
+      background-color: tintOrShade($euiColorLightShade, 50%, 0%);
+      padding:  1px $euiSizeXS;
       margin: 0 $euiSizeXS;
 
       // Make sure the first <dt> doesn't get a margin.
@@ -189,7 +188,6 @@
     .euiDescriptionList__description {
       @include euiFontSizeS;
       display: inline;
-      word-break: break-all;
     }
 
     // Compressed when inline is even smaller.
@@ -197,6 +195,7 @@
 
       .euiDescriptionList__title {
         @include euiFontSizeXS;
+        padding:  0 $euiSizeXS;
       }
 
       .euiDescriptionList__description {

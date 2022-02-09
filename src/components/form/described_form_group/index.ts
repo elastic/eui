@@ -6,7 +6,5 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiDescribedFormGroup,
-  EuiDescribedFormGroupProps,
-} from './described_form_group';
+export type { EuiDescribedFormGroupProps } from './described_form_group';
+export { EuiDescribedFormGroup } from './described_form_group';

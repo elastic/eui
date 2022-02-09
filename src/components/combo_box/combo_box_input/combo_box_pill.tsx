@@ -74,7 +74,6 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
           {(removeSelection: string) => (
             <EuiBadge
               className={classes}
-              closeButtonProps={{ tabIndex: -1 }}
               color={color}
               iconOnClick={this.onCloseButtonClick}
               iconOnClickAriaLabel={removeSelection}

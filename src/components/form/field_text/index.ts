@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiFieldText, EuiFieldTextProps } from './field_text';
+export type { EuiFieldTextProps } from './field_text';
+export { EuiFieldText } from './field_text';

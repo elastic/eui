@@ -19,32 +19,32 @@ export const useFinalGridDimensions = ({
   unconstrainedWidth,
   wrapperDimensions,
   wrapperRef,
-  toolbarHeight,
-  headerRowHeight,
-  footerRowHeight,
-  rowCount,
   isFullScreen,
+  rowCount,
 }: {
   unconstrainedHeight: number;
   unconstrainedWidth: number;
   wrapperDimensions: { width: number; height: number };
   wrapperRef: MutableRefObject<HTMLDivElement | null>;
-  toolbarHeight: number;
-  headerRowHeight: number;
-  footerRowHeight: number;
-  rowCount: number;
   isFullScreen: boolean;
+  rowCount: number;
 }) => {
   // Used if the grid needs to scroll
   const [height, setHeight] = useState<number | undefined>(undefined);
   const [width, setWidth] = useState<number | undefined>(undefined);
+  // Tracking full screen height separately is necessary to correctly restore the grid back to non-full-screen height
+  const [fullScreenHeight, setFullScreenHeight] = useState(0);
 
   // Set the wrapper height on load, whenever the grid wrapper resizes, and whenever rowCount changes
   useEffect(() => {
     const boundingRect = wrapperRef.current!.getBoundingClientRect();
 
-    if (boundingRect.height !== unconstrainedHeight && !isFullScreen) {
-      setHeight(boundingRect.height);
+    if (isFullScreen) {
+      setFullScreenHeight(boundingRect.height);
+    } else {
+      if (boundingRect.height !== unconstrainedHeight) {
+        setHeight(boundingRect.height);
+      }
     }
     if (boundingRect.width !== unconstrainedWidth) {
       setWidth(boundingRect.width);
@@ -52,28 +52,25 @@ export const useFinalGridDimensions = ({
   }, [
     // Effects that should cause recalculations
     rowCount,
+    isFullScreen,
     wrapperDimensions,
     // Dependencies
     wrapperRef,
     unconstrainedHeight,
     unconstrainedWidth,
-    isFullScreen,
   ]);
 
-  let finalHeight = IS_JEST_ENVIRONMENT
-    ? Number.MAX_SAFE_INTEGER
+  const finalHeight = isFullScreen
+    ? fullScreenHeight
     : height || unconstrainedHeight;
-  let finalWidth = IS_JEST_ENVIRONMENT
-    ? Number.MAX_SAFE_INTEGER
-    : width || unconstrainedWidth;
+  const finalWidth = width || unconstrainedWidth;
 
-  if (isFullScreen) {
-    finalHeight =
-      window.innerHeight - toolbarHeight - headerRowHeight - footerRowHeight;
-    finalWidth = window.innerWidth;
-  }
-
-  return { finalHeight, finalWidth };
+  return IS_JEST_ENVIRONMENT
+    ? {
+        finalHeight: Number.MAX_SAFE_INTEGER,
+        finalWidth: Number.MAX_SAFE_INTEGER,
+      }
+    : { finalHeight, finalWidth };
 };
 
 /**
@@ -87,7 +84,7 @@ export const useUnconstrainedHeight = ({
   defaultRowHeight,
   headerRowHeight,
   footerRowHeight,
-  outerGridRef,
+  scrollBarHeight,
   innerGridRef,
 }: {
   rowHeightUtils: RowHeightUtils;
@@ -97,7 +94,7 @@ export const useUnconstrainedHeight = ({
   defaultRowHeight: number;
   headerRowHeight: number;
   footerRowHeight: number;
-  outerGridRef: React.MutableRefObject<HTMLDivElement | null>;
+  scrollBarHeight: number;
   innerGridRef: React.MutableRefObject<HTMLDivElement | null>;
 }) => {
   const { getCorrectRowIndex } = useContext(DataGridSortingContext);
@@ -142,21 +139,12 @@ export const useUnconstrainedHeight = ({
   );
   useUpdateEffect(forceRender, [innerWidth]);
 
-  // https://stackoverflow.com/a/5038256
-  const hasHorizontalScroll =
-    (outerGridRef.current?.scrollWidth ?? 0) >
-    (outerGridRef.current?.clientWidth ?? 0);
-  // https://stackoverflow.com/a/24797425
-  const scrollbarHeight = hasHorizontalScroll
-    ? outerGridRef.current!.offsetHeight - outerGridRef.current!.clientHeight
-    : 0;
-
   const unconstrainedHeight =
     defaultRowHeight * (rowCountToAffordFor - knownRowCount) + // guess how much space is required for unknown rows
     knownHeight + // computed pixel height of the known rows
     headerRowHeight + // account for header
     footerRowHeight + // account for footer
-    scrollbarHeight; // account for horizontal scrollbar
+    scrollBarHeight; // account for horizontal scrollbar
 
   return unconstrainedHeight;
 };

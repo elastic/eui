@@ -16,7 +16,9 @@ import {
   useState,
   HTMLAttributes,
   KeyboardEvent,
+  MutableRefObject,
 } from 'react';
+import { GridOnItemsRenderedProps } from 'react-window';
 import tabbable from 'tabbable';
 import { keys } from '../../../services';
 import {
@@ -28,7 +30,9 @@ import {
 export const DataGridFocusContext = createContext<DataGridFocusContextShape>({
   focusedCell: undefined,
   setFocusedCell: () => {},
+  setIsFocusedCellInView: () => {},
   onFocusUpdate: () => () => {},
+  focusFirstVisibleInteractiveCell: () => {},
 });
 
 type FocusProps = Pick<HTMLAttributes<HTMLDivElement>, 'tabIndex' | 'onFocus'>;
@@ -36,9 +40,13 @@ type FocusProps = Pick<HTMLAttributes<HTMLDivElement>, 'tabIndex' | 'onFocus'>;
 /**
  * Main focus context and overarching focus state management
  */
-export const useFocus = (
-  headerIsInteractive: boolean
-): DataGridFocusContextShape & { focusProps: FocusProps } => {
+export const useFocus = ({
+  headerIsInteractive,
+  gridItemsRendered,
+}: {
+  headerIsInteractive: boolean;
+  gridItemsRendered: MutableRefObject<GridOnItemsRenderedProps | null>;
+}): DataGridFocusContextShape & { focusProps: FocusProps } => {
   // Maintain a map of focus cell state callbacks
   const cellsUpdateFocus = useRef<Map<string, Function>>(new Map());
 
@@ -54,9 +62,15 @@ export const useFocus = (
   );
 
   // Current focused cell
-  const [focusedCell, setFocusedCell] = useState<
+  const [isFocusedCellInView, setIsFocusedCellInView] = useState(false);
+  const [focusedCell, _setFocusedCell] = useState<
     EuiDataGridFocusedCell | undefined
   >(undefined);
+
+  const setFocusedCell = useCallback((focusedCell: EuiDataGridFocusedCell) => {
+    _setFocusedCell(focusedCell);
+    setIsFocusedCellInView(true); // scrolling.ts ensures focused cells are fully in view
+  }, []);
 
   const previousCell = useRef<EuiDataGridFocusedCell | undefined>(undefined);
   useEffect(() => {
@@ -74,11 +88,26 @@ export const useFocus = (
     }
   }, [cellsUpdateFocus, focusedCell]);
 
-  const hasHadFocus = useMemo(() => focusedCell != null, [focusedCell]);
+  const focusFirstVisibleInteractiveCell = useCallback(() => {
+    if (headerIsInteractive) {
+      // The header (rowIndex -1) is sticky and will always be in view
+      setFocusedCell([0, -1]);
+    } else if (gridItemsRendered.current) {
+      const {
+        visibleColumnStartIndex,
+        visibleRowStartIndex,
+      } = gridItemsRendered.current;
+
+      setFocusedCell([visibleColumnStartIndex, visibleRowStartIndex]);
+    } else {
+      // If the header is non-interactive and there are no rendered cells,
+      // there's nothing to do - we might as well leave focus on the grid body wrapper
+    }
+  }, [setFocusedCell, headerIsInteractive, gridItemsRendered]);
 
   const focusProps = useMemo<FocusProps>(
     () =>
-      hasHadFocus
+      isFocusedCellInView
         ? {
             // FireFox allows tabbing to a div that is scrollable, while Chrome does not
             tabIndex: -1,
@@ -89,19 +118,21 @@ export const useFocus = (
               // if e.target (the source element of the `focus event`
               // matches e.currentTarget (always the div with this onFocus listener)
               // then the user has focused directly on the data grid wrapper (almost definitely by tabbing)
-              // so shift focus to the first interactive cell within the grid
+              // so shift focus to the first visible and interactive cell within the grid
               if (e.target === e.currentTarget) {
-                setFocusedCell(headerIsInteractive ? [0, -1] : [0, 0]);
+                focusFirstVisibleInteractiveCell();
               }
             },
           },
-    [hasHadFocus, setFocusedCell, headerIsInteractive]
+    [isFocusedCellInView, focusFirstVisibleInteractiveCell]
   );
 
   return {
     onFocusUpdate,
     focusedCell,
     setFocusedCell,
+    setIsFocusedCellInView,
+    focusFirstVisibleInteractiveCell,
     focusProps,
   };
 };
@@ -125,6 +156,7 @@ export const createKeyDownHandler = ({
   gridElement,
   visibleColCount,
   visibleRowCount,
+  visibleRowStartIndex,
   rowCount,
   pagination,
   hasFooter,
@@ -134,6 +166,7 @@ export const createKeyDownHandler = ({
   gridElement: HTMLDivElement | null;
   visibleColCount: number;
   visibleRowCount: number;
+  visibleRowStartIndex: number;
   rowCount: EuiDataGridProps['rowCount'];
   pagination: EuiDataGridProps['pagination'];
   hasFooter: boolean;
@@ -156,7 +189,14 @@ export const createKeyDownHandler = ({
     if (key === keys.ARROW_DOWN) {
       event.preventDefault();
       if (hasFooter ? y < visibleRowCount : y < visibleRowCount - 1) {
-        setFocusedCell([x, y + 1]);
+        if (y === -1) {
+          // The header is sticky, so on scrolling virtualized grids, row 0 will not
+          // always be rendered to navigate down to. We need to account for this by
+          // sending the down arrow to the first visible/virtualized row instead
+          setFocusedCell([x, visibleRowStartIndex]);
+        } else {
+          setFocusedCell([x, y + 1]);
+        }
       }
     } else if (key === keys.ARROW_LEFT) {
       event.preventDefault();

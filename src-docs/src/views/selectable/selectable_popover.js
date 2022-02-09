@@ -146,7 +146,10 @@ export default () => {
 
       <EuiTitle size="xxs">
         <h4>
-          Using <EuiCode language="js">listProps.bordered=true</EuiCode>
+          Using <EuiCode language="js">listProps.bordered=true</EuiCode> and{' '}
+          <EuiCode language="js">
+            listProps.paddingSize=&quot;none&quot;
+          </EuiCode>
         </h4>
       </EuiTitle>
 
@@ -157,7 +160,7 @@ export default () => {
         options={options}
         onChange={() => {}}
         style={{ width: 300 }}
-        listProps={{ bordered: true }}
+        listProps={{ bordered: true, paddingSize: 'none' }}
       >
         {(list) => list}
       </EuiSelectable>

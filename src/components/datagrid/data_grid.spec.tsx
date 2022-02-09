@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+/// <reference types="../../../cypress/support"/>
+
 import React, { ReactNode } from 'react';
 import { EuiDataGrid, EuiDataGridColumn, EuiDataGridProps } from './index';
 import { EuiLink } from '../link';
@@ -236,8 +238,12 @@ describe('EuiDataGrid', () => {
       // starts with body in focus
       cy.focused().should('not.exist');
 
-      cy.get('[data-gridcell-id="1,1"]').click();
-      cy.focused().should('have.attr', 'data-gridcell-id', '1,1');
+      cy.get(
+        '[data-gridcell-column-index="1"][data-gridcell-visible-row-index="1"]'
+      ).click();
+      cy.focused()
+        .should('have.attr', 'data-gridcell-column-index', '1')
+        .should('have.attr', 'data-gridcell-row-index', '1');
     });
 
     describe('cell keyboard interactions', () => {
@@ -269,7 +275,9 @@ describe('EuiDataGrid', () => {
 
         // tab into the grid, should focus first cell after a short delay
         cy.focused().tab();
-        cy.focused().should('have.attr', 'data-gridcell-id', '0,0');
+        cy.focused()
+          .should('have.attr', 'data-gridcell-column-index', '0')
+          .should('have.attr', 'data-gridcell-row-index', '0');
 
         cy.focused().tab().should('have.id', 'final-tabbable');
       });
@@ -282,15 +290,21 @@ describe('EuiDataGrid', () => {
         cy.get('[data-test-subj=euiDataGridBody]').focus();
 
         // first cell is non-interactive and non-expandable = focus cell
-        cy.focused().should('have.attr', 'data-gridcell-id', '0,0');
+        cy.focused()
+          .should('have.attr', 'data-gridcell-column-index', '0')
+          .should('have.attr', 'data-gridcell-row-index', '0');
 
         // already left-most, should be no-op
         cy.focused().type('{leftarrow}');
-        cy.focused().should('have.attr', 'data-gridcell-id', '0,0');
+        cy.focused()
+          .should('have.attr', 'data-gridcell-column-index', '0')
+          .should('have.attr', 'data-gridcell-row-index', '0');
 
         // arrow right, expandable cell with no interactive = focus cell
         cy.focused().type('{rightarrow}');
-        cy.focused().should('have.attr', 'data-gridcell-id', '0,1');
+        cy.focused()
+          .should('have.attr', 'data-gridcell-column-index', '1')
+          .should('have.attr', 'data-gridcell-row-index', '0');
 
         // arrow right, non-expandable cell with one interactive = focus interactive
         cy.focused().type('{rightarrow}');
@@ -298,11 +312,15 @@ describe('EuiDataGrid', () => {
 
         // arrow right, non-expandable cell with two interactives = focus cell
         cy.focused().type('{rightarrow}');
-        cy.focused().should('have.attr', 'data-gridcell-id', '0,3');
+        cy.focused()
+          .should('have.attr', 'data-gridcell-column-index', '3')
+          .should('have.attr', 'data-gridcell-row-index', '0');
 
         // arrow right, expandable cell with two interactives = focus cell
         cy.focused().type('{rightarrow}');
-        cy.focused().should('have.attr', 'data-gridcell-id', '0,4');
+        cy.focused()
+          .should('have.attr', 'data-gridcell-column-index', '4')
+          .should('have.attr', 'data-gridcell-row-index', '0');
       });
 
       it('cell expansion/interaction', () => {
@@ -314,10 +332,14 @@ describe('EuiDataGrid', () => {
 
         // first cell is non-interactive and non-expandable, enter should have no effect
         cy.focused().type('{enter}');
-        cy.focused().should('have.attr', 'data-gridcell-id', '0,0');
+        cy.focused()
+          .should('have.attr', 'data-gridcell-column-index', '0')
+          .should('have.attr', 'data-gridcell-row-index', '0');
 
         // second cell is expandable
-        cy.get('[data-gridcell-id="0,1"]').click();
+        cy.get(
+          '[data-gridcell-column-index="1"][data-gridcell-row-index="0"]'
+        ).click();
         cy.focused().type('{enter}');
         cy.focused().should(
           'have.attr',
@@ -325,23 +347,35 @@ describe('EuiDataGrid', () => {
           'euiDataGridExpansionPopover'
         );
         cy.focused().type('{esc}');
-        cy.focused().should('have.attr', 'data-gridcell-id', '0,1');
+        cy.focused()
+          .should('have.attr', 'data-gridcell-column-index', '1')
+          .should('have.attr', 'data-gridcell-row-index', '0');
 
         // third cell is non-expandable & interactive, click should focus on the link
-        cy.get('[data-gridcell-id="0,2"]').click();
+        cy.get(
+          '[data-gridcell-column-index="2"][data-gridcell-row-index="0"]'
+        ).click();
         cy.focused().type('{enter}');
         cy.focused().should('have.attr', 'data-test-subj', 'focusOnMe');
 
         // fourth cell is non-expandable with multiple interactives, click should focus on the cell
-        cy.get('[data-gridcell-id="0,3"]').click();
+        cy.get(
+          '[data-gridcell-column-index="3"][data-gridcell-row-index="0"]'
+        ).click();
         cy.focused().type('{enter}');
         cy.focused().should('have.attr', 'data-test-subj', 'focusOnMe'); // focus trap focuses the link
         cy.focused().type('{esc}');
-        cy.focused().should('have.attr', 'data-gridcell-id', '0,3');
+        cy.focused()
+          .should('have.attr', 'data-gridcell-column-index', '3')
+          .should('have.attr', 'data-gridcell-row-index', '0');
 
         // fifth cell is non-expandable & no-actions with multiple interactives, click should focus cell
-        cy.get('[data-gridcell-id="0,4"]').click('topLeft'); // top left to avoid clicking a button
-        cy.focused().should('have.attr', 'data-gridcell-id', '0,4');
+        cy.get(
+          '[data-gridcell-column-index="4"][data-gridcell-row-index="0"]'
+        ).click('topLeft'); // top left to avoid clicking a button
+        cy.focused()
+          .should('have.attr', 'data-gridcell-column-index', '4')
+          .should('have.attr', 'data-gridcell-row-index', '0');
         // enable interactives & focus trap
         cy.focused().type('{enter}');
         cy.focused().should('have.attr', 'data-test-subj', 'btn-yes');
@@ -350,11 +384,17 @@ describe('EuiDataGrid', () => {
         cy.focused().tab();
         cy.focused().should('have.attr', 'data-test-subj', 'btn-yes');
         cy.focused().type('{esc}');
-        cy.focused().should('have.attr', 'data-gridcell-id', '0,4');
+        cy.focused()
+          .should('have.attr', 'data-gridcell-column-index', '4')
+          .should('have.attr', 'data-gridcell-row-index', '0');
 
         // sixth cell is expandable cell with two interactives, click should focus on the cell
-        cy.get('[data-gridcell-id="0,5"]').click('topLeft', { force: true }); // top left to avoid clicking a button
-        cy.focused().should('have.attr', 'data-gridcell-id', '0,5');
+        cy.get(
+          '[data-gridcell-column-index="5"][data-gridcell-row-index="0"]'
+        ).click('topLeft', { force: true }); // top left to avoid clicking a button
+        cy.focused()
+          .should('have.attr', 'data-gridcell-column-index', '5')
+          .should('have.attr', 'data-gridcell-row-index', '0');
         cy.focused().type('{enter}'); // trigger expansion popover
         cy.focused().should('have.attr', 'data-test-subj', 'btn-yes'); // focus trap should move focus to the first button
         cy.focused().parentsUntil(
@@ -369,7 +409,9 @@ describe('EuiDataGrid', () => {
           'euiDataGridExpansionPopover'
         );
         cy.focused().type('{esc}');
-        cy.focused().should('have.attr', 'data-gridcell-id', '0,5');
+        cy.focused()
+          .should('have.attr', 'data-gridcell-column-index', '5')
+          .should('have.attr', 'data-gridcell-row-index', '0');
       });
     });
   });
@@ -377,7 +419,7 @@ describe('EuiDataGrid', () => {
 
 function getGridData() {
   // wait for the virtualized cells to render
-  cy.get('[data-gridcell-id="1,0"]');
+  cy.get('[data-gridcell-column-index="0"][data-gridcell-row-index="1"]');
   const rows = cy.get('[role=row]');
   return rows.then((rows) => {
     const headers: string[] = [];

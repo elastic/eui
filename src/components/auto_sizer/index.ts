@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiAutoSizer, EuiAutoSizerProps } from './auto_sizer';
+export type { EuiAutoSizerProps } from './auto_sizer';
+export { EuiAutoSizer } from './auto_sizer';

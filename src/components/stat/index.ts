@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiStat, EuiStatProps } from './stat';
+export type { EuiStatProps } from './stat';
+export { EuiStat } from './stat';
