@@ -379,7 +379,7 @@ export default () => {
       </EuiSplitPanel.Outer>
 
       <GuideSection
-        demo={<div className={'guideDemo__highlightLayout'}>{demo}</div>}
+        demo={<div className={'guideDemo__emptyPromptDemoPreview'}>{demo}</div>}
         source={[
           {
             type: GuideSectionTypes.STRING_JS,

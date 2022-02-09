@@ -22,3 +22,8 @@
     border-color: $euiColorPrimary;
   }
 }
+
+.guideDemo__emptyPromptDemoPreview {
+  border: 1px solid $guideDemoHighlightColor;
+  overflow: hidden;
+}
