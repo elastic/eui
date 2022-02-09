@@ -180,6 +180,7 @@ export class EuiSelectable<T = {}> extends Component<
     searchable: false,
     isPreFiltered: false,
   };
+  private inputRef: HTMLInputElement | null = null;
   private containerRef = createRef<HTMLDivElement>();
   private optionsListRef = createRef<EuiSelectableList<T>>();
   private preventOnFocus = false;
@@ -310,6 +311,12 @@ export class EuiSelectable<T = {}> extends Component<
           //
           // For searchable instances, SPACE is reserved as a character for filtering
           // via the input box, and as such only ENTER will toggle selection.
+          return;
+        }
+        if (event.target !== this.inputRef) {
+          // The captured event is not derived from the searchbox.
+          // The user is attempting to interact with an internal button,
+          // such as the clear button, and the event should not be altered.
           return;
         }
         event.preventDefault();
@@ -631,6 +638,7 @@ export class EuiSelectable<T = {}> extends Component<
             aria-activedescendant={this.makeOptionId(activeOptionIndex)} // the current faux-focused option
             placeholder={placeholderName}
             isPreFiltered={isPreFiltered ?? false}
+            inputRef={(node) => (this.inputRef = node)}
             {...(searchHasAccessibleName
               ? searchAccessibleName
               : { 'aria-label': placeholderName })}
