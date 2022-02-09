@@ -75,7 +75,7 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
 
       // 👀 Chrome respects :focus-visible and allows coloring the \`auto\` style
       &:focus-visible {
-        outline-style: solid;
+        outline-style: auto;
       }
 
       // 🙅‍♀️ But Chrome also needs to have the outline forcefully removed from regular \`:focus\` state
