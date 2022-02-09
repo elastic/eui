@@ -210,3 +210,4 @@ If you're working on a component that has both Cypress and Jest tests, we have a
   - Ensure you have already run `yarn test-cypress` to generate a Cypress report
 2. Run `yarn combine-test-coverage`
   - This should automatically open a browser window with `reports/combined-coverage/index.html`
+  

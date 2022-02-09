@@ -14,12 +14,12 @@ declare global {
       // Cypress-axe methods that are used to create `checkAxe` custom command 
       checkA11y(context?: ElementContext, config?: RunOptions, callback?: (violations: Result[]) => void): void;
       injectAxe(): void;
-
-      // Cypress-real-event methods that are used to create custom keyboard commands 
-      realPress(keyToPress: KeyOrShortcut, options?: RealPressOptions): void;
   
       /**
-       * Run the axe-core accessibility scanner
+       * Convenience method to run the axe-core accessibility scanner without having to establish 
+       * `cy.injectAxe()` in a `beforeEach` block. This method also reports axe violations in the 
+       * console output for debugging.
+       * 
        * @param context Any valid node or CSS selector. Defaults to the Cypress containing `<div>`.
        * @param axeRunConfig Add or change rules in the `axe.run` config object
        * @see https://www.deque.com/axe/core-documentation/api-documentation/#api-name-axerun

@@ -54,8 +54,7 @@
   },
   "include": [
     "./src/**/*",
-    "./src-docs/**/*",
-    "./cypress/support/index.d.ts"
+    "./src-docs/**/*"
   ],
   "exclude": ["node_modules", "**/*/*.spec.tsx"]
 }
