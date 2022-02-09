@@ -137,7 +137,7 @@ Cypress Real Events uses the [Chrome Devtools Protocol](https://chromedevtools.g
 
 #### How to write Cypress (real event) tests
 
-The [Cypress Real Events API](https://github.com/dmtrKovalenko/cypress-real-events#api) works seamlessly with existing `cy()` methods. If you want to press a button using Cypress Real Events, you could use `realPress('Tab')` as a replacement for the `cy.tab()` synthetic method. If you want to press multiple keys (also known as a **chord**), you should pass an array like `[{Shift}{Enter}]` to your helper method.
+The [Cypress Real Events API](https://github.com/dmtrKovalenko/cypress-real-events#api) works seamlessly with existing `cy()` methods. If you want to press a button using Cypress Real Events, you could use `realPress('Tab')` as a replacement for the `cy.tab()` synthetic method. If you want to press multiple keys (also known as a **chord**), you should pass an array like `['Shift', 'Tab']` to your helper method.
 
 All Cypress Real Events methods are prefixed with the string "real". Here's a small example test:
 
