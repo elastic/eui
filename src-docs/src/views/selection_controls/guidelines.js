@@ -1,13 +1,11 @@
 import React from 'react';
 import { GuideRule, GuideRuleExample } from '../../components';
 import {
-  EuiSpacer,
   EuiFormRow,
   EuiSwitch,
   EuiTitle,
   EuiCheckboxGroup,
   EuiRadioGroup,
-  EuiHorizontalRule,
   EuiBasicTable,
 } from '../../../../src/components';
 
@@ -129,7 +127,7 @@ export default () => {
   return (
     <>
       <EuiTitle>
-        <h2>Checkbox and radio labels</h2>
+        <h2>Labels</h2>
       </EuiTitle>
 
       <GuideRule
@@ -184,16 +182,8 @@ export default () => {
         </GuideRuleExample>
       </GuideRule>
 
-      <EuiHorizontalRule />
-
-      <EuiSpacer size="xl" />
-
-      <EuiTitle>
-        <h2>Switch labels</h2>
-      </EuiTitle>
-
       <GuideRule
-        heading="Always action-oriented"
+        heading="Switch labels"
         description={
           <p>
             The label should be static, action-oriented, and describe the

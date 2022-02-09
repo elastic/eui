@@ -86,22 +86,14 @@ export const SelectionControlsExample = {
         EUI provides three types of selection controls:{' '}
         <strong>EuiCheckbox</strong>, <strong>EuiRadio</strong> and{' '}
         <strong>EuiSwitch</strong>. These controls allow users to select options
-        among a list or switch a setting on/off. They are ideal for small list
+        among a list or switch settings on/off. They are ideal for a small list
         of options.
       </p>
       <p>
-        To deal with medium lists of options, consider using a{' '}
-        <Link to="/form-controls#select">EuiSelect</Link> or{' '}
-        <Link to="/forms/super-select">EuiSuperSelect</Link>. For longer lists
-        and to be able to search the options, consider using a{' '}
+        To deal with longer lists, consider using a{' '}
+        <Link to="/form-controls#select">EuiSelect</Link>,{' '}
+        <Link to="/forms/super-select">EuiSuperSelect</Link> or{' '}
         <Link to="/forms/combo-box">EuiComboBox</Link>.
-      </p>
-      <p>
-        Be sure to read the{' '}
-        <Link to="/forms/selection-controls/guidelines">
-          selection controls usage guidelines
-        </Link>
-        .
       </p>
     </EuiText>
   ),
@@ -120,7 +112,7 @@ export const SelectionControlsExample = {
           <p>
             This component renders a basic HTML{' '}
             <EuiCode>{'<input type="checkbox">'}</EuiCode> element. Use
-            checkboxes to allow users to select multiple options per group.
+            checkboxes to allow users to select multiple options from a list.
           </p>
           <p>
             Use the <EuiCode>checked</EuiCode> prop to handle the checked and
@@ -201,10 +193,15 @@ export const SelectionControlsExample = {
           <p>
             This component renders a basic HTML{' '}
             <EuiCode>{'<input type="radio">'}</EuiCode> element. Use radio
-            buttons when you want to allow users to select one option per group.
-            Each input should have the same name to ensure a group is
-            established. This way when you select a radio button in that group,
-            the previously selected button is automatically deselected.
+            buttons to allow users to choose one option out of a list. They are
+            ideal for a list of more than 2 options, and usually no more than
+            6-8 options.
+          </p>
+          <p>
+            When creating a list, each input should have the same name to ensure
+            a group is established. This way when you select a radio button in
+            that group, the previously selected button is automatically
+            deselected.
           </p>
           <p>
             Make sure to pass a label to ensure a larger clickable area and
