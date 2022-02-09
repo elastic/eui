@@ -28,6 +28,7 @@ describe('row manager', () => {
         expect(row).toMatchInlineSnapshot(`
           <div
             class="euiDataGridRow"
+            data-gridrow-index="0"
             role="row"
             style="position: absolute; left: 0px; right: 0px; top: 15px; height: 30px;"
           />
@@ -54,6 +55,7 @@ describe('row manager', () => {
         expect(row).toMatchInlineSnapshot(`
           <div
             class="euiDataGridRow"
+            data-gridrow-index="0"
             role="row"
             style="position: absolute; left: 0px; right: 0px; top: 100px; height: 200px;"
           />

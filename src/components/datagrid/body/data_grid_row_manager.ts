@@ -21,6 +21,7 @@ export const makeRowManager = (
       if (rowElement == null) {
         rowElement = document.createElement('div');
         rowElement.setAttribute('role', 'row');
+        rowElement.setAttribute('data-gridrow-index', String(rowIndex));
         rowElement.classList.add('euiDataGridRow');
         rowElement.style.position = 'absolute';
         rowElement.style.left = '0';
