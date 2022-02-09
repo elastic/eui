@@ -18,6 +18,7 @@ import './commands.js';
 require(THEME_IMPORT); // defined by DefinePlugin in the cypress webpack config
 require('cypress-plugin-tab'); // adds the `.tab()` command to cypress chains, see https://docs.cypress.io/api/commands/type#Typing-tab-key-does-not-work
 require('cypress-real-events/support'); // uses the Chrome Devtools Protocol to replace simulated events, see https://github.com/dmtrKovalenko/cypress-real-events#why 
+require('cypress-axe');
 
 // @see https://github.com/quasarframework/quasar/issues/2233#issuecomment-492975745
 Cypress.on('uncaught:exception', (err) => {
