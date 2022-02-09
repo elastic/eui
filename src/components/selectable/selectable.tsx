@@ -328,6 +328,12 @@ export class EuiSelectable<T = {}> extends Component<
         }
         break;
 
+      case keys.ALT:
+      case keys.SHIFT:
+      case keys.CTRL:
+      case keys.META:
+        break;
+
       default:
         this.setState({ activeOptionIndex: undefined }, this.onFocus);
         break;
