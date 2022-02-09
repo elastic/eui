@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-export { EuiMarkdownEditor, EuiMarkdownEditorProps } from './markdown_editor';
+export type { EuiMarkdownEditorProps } from './markdown_editor';
+export { EuiMarkdownEditor } from './markdown_editor';
 export {
   getDefaultEuiMarkdownParsingPlugins,
   getDefaultEuiMarkdownProcessingPlugins,
@@ -14,8 +15,9 @@ export {
   getDefaultEuiMarkdownPlugins,
 } from './plugins/markdown_default_plugins';
 export { EuiMarkdownContext } from './markdown_context';
-export { EuiMarkdownFormat, EuiMarkdownFormatProps } from './markdown_format';
-export {
+export type { EuiMarkdownFormatProps } from './markdown_format';
+export { EuiMarkdownFormat } from './markdown_format';
+export type {
   EuiMarkdownParseError,
   EuiMarkdownAstNode,
   EuiMarkdownAstNodePosition,

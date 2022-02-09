@@ -6,8 +6,18 @@
  * Side Public License, v 1.
  */
 
-import { useContext, useEffect, useCallback, MutableRefObject } from 'react';
+import React, {
+  useContext,
+  useEffect,
+  useCallback,
+  useMemo,
+  MutableRefObject,
+  ReactNode,
+} from 'react';
 import { VariableSizeGrid as Grid } from 'react-window';
+
+import { DataGridCellPopoverContext } from '../body/data_grid_cell_popover';
+import { EuiDataGridStyle } from '../data_grid_types';
 import { DataGridFocusContext } from './focus';
 
 interface ScrollCellIntoView {
@@ -17,7 +27,7 @@ interface ScrollCellIntoView {
 interface Dependencies {
   gridRef: MutableRefObject<Grid | null>;
   outerGridRef: MutableRefObject<HTMLDivElement | null>;
-  innerGridRef: MutableRefObject<HTMLDivElement | null>;
+  hasGridScrolling: boolean;
   headerRowHeight: number;
   footerRowHeight: number;
   visibleRowCount: number;
@@ -43,6 +53,18 @@ export const useScroll = (args: Dependencies) => {
     }
   }, [focusedCell, scrollCellIntoView]);
 
+  const { popoverIsOpen, cellLocation } = useContext(
+    DataGridCellPopoverContext
+  );
+  useEffect(() => {
+    if (popoverIsOpen) {
+      scrollCellIntoView({
+        rowIndex: cellLocation.rowIndex,
+        colIndex: cellLocation.colIndex,
+      });
+    }
+  }, [popoverIsOpen, cellLocation, scrollCellIntoView]);
+
   return { scrollCellIntoView };
 };
 
@@ -53,23 +75,22 @@ export const useScroll = (args: Dependencies) => {
 export const useScrollCellIntoView = ({
   gridRef,
   outerGridRef,
-  innerGridRef,
+  hasGridScrolling,
   headerRowHeight,
   footerRowHeight,
   visibleRowCount,
   hasStickyFooter,
 }: Dependencies) => {
   const scrollCellIntoView = useCallback(
+    // Note: in order for this UX to work correctly with react-window's APIs,
+    // the `rowIndex` arg expected is actually our internal `visibleRowIndex`,
+    // not the `rowIndex` from the raw unsorted/unpaginated user data
     async ({ rowIndex, colIndex }: ScrollCellIntoView) => {
-      if (!gridRef.current || !outerGridRef.current || !innerGridRef.current) {
+      if (!gridRef.current || !outerGridRef.current) {
         return; // Grid isn't rendered yet or is empty
       }
 
-      const gridDoesNotScroll =
-        innerGridRef.current.offsetHeight ===
-          outerGridRef.current.offsetHeight &&
-        innerGridRef.current.offsetWidth === outerGridRef.current.offsetWidth;
-      if (gridDoesNotScroll) {
+      if (!hasGridScrolling) {
         return; // If it doesn't scroll, there's nothing to do here
       }
 
@@ -160,7 +181,7 @@ export const useScrollCellIntoView = ({
     [
       gridRef,
       outerGridRef,
-      innerGridRef,
+      hasGridScrolling,
       headerRowHeight,
       footerRowHeight,
       visibleRowCount,
@@ -169,4 +190,77 @@ export const useScrollCellIntoView = ({
   );
 
   return { scrollCellIntoView };
+};
+
+/**
+ * Checks whether the current grid scrolls and/or has scrollbars
+ */
+export const useScrollBars = (
+  outerGridRef: MutableRefObject<HTMLDivElement | null>,
+  borderStyle: EuiDataGridStyle['border'] = 'all'
+): {
+  scrollBarHeight: number;
+  scrollBarWidth: number;
+  hasVerticalScroll: boolean;
+  hasHorizontalScroll: boolean;
+  scrollBorderOverlay: ReactNode;
+} => {
+  // https://stackoverflow.com/a/40568748/4294462
+  const scrollBarHeight = outerGridRef.current
+    ? outerGridRef.current.offsetHeight - outerGridRef.current.clientHeight
+    : 0;
+  const scrollBarWidth = outerGridRef.current
+    ? outerGridRef.current.offsetWidth - outerGridRef.current.clientWidth
+    : 0;
+
+  // https://stackoverflow.com/a/5038256
+  // Note that it is possible (MacOS) for a grid to scroll but not have scrollbar widths/heights
+  const hasHorizontalScroll = outerGridRef.current
+    ? outerGridRef.current.scrollWidth > outerGridRef.current.clientWidth
+    : false;
+  const hasVerticalScroll = outerGridRef.current
+    ? outerGridRef.current.scrollHeight > outerGridRef.current.clientHeight
+    : false;
+
+  // If the grid scrolls or has scrollbars, we add custom border overlays
+  // (since borders are normally set by cells) to ensure our grid body has
+  // ending borders regardless of scroll position
+  const scrollBorderOverlay = useMemo(() => {
+    if (!hasHorizontalScroll && !hasVerticalScroll) {
+      return null; // Nothing to render if the grid doesn't scroll
+    }
+    if (borderStyle === 'none') {
+      return null; // Nothing to render if the grid doesn't use borders
+    }
+    return (
+      <div className="euiDataGrid__scrollOverlay" role="presentation">
+        {scrollBarHeight > 0 && (
+          <div
+            className="euiDataGrid__scrollBarOverlayBottom"
+            style={{ bottom: scrollBarHeight, right: 0 }}
+          />
+        )}
+        {scrollBarWidth > 0 && (
+          <div
+            className="euiDataGrid__scrollBarOverlayRight"
+            style={{ bottom: scrollBarHeight, right: scrollBarWidth }}
+          />
+        )}
+      </div>
+    );
+  }, [
+    hasHorizontalScroll,
+    hasVerticalScroll,
+    scrollBarHeight,
+    scrollBarWidth,
+    borderStyle,
+  ]);
+
+  return {
+    scrollBarHeight,
+    scrollBarWidth,
+    hasVerticalScroll,
+    hasHorizontalScroll,
+    scrollBorderOverlay,
+  };
 };

@@ -6,5 +6,7 @@
  * Side Public License, v 1.
  */
 
-export { EuiI18n, EuiI18nProps, useEuiI18n } from './i18n';
-export { EuiI18nNumber, EuiI18nNumberProps } from './i18n_number';
+export type { EuiI18nProps } from './i18n';
+export { EuiI18n, useEuiI18n } from './i18n';
+export type { EuiI18nNumberProps } from './i18n_number';
+export { EuiI18nNumber } from './i18n_number';

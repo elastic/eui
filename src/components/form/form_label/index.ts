@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiFormLabel, EuiFormLabelProps } from './form_label';
+export type { EuiFormLabelProps } from './form_label';
+export { EuiFormLabel } from './form_label';

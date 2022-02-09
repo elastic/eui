@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiSpacer, EuiSpacerProps } from './spacer';
+export type { EuiSpacerProps } from './spacer';
+export { EuiSpacer } from './spacer';

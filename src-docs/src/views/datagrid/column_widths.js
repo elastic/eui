@@ -48,7 +48,7 @@ for (let i = 1; i < 5; i++) {
 export default () => {
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 5 });
 
-  const [visibleColumns, setVisibleColumns] = useState(() =>
+  const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
   );
 

@@ -821,11 +821,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 38,
+        "line": 45,
         "column": 4
       },
       "end": {
-        "line": 42,
+        "line": 49,
         "column": 5
       }
     },
@@ -837,11 +837,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 63,
+        "line": 65,
         "column": 25
       },
       "end": {
-        "line": 67,
+        "line": 69,
         "column": 5
       }
     },
@@ -1237,11 +1237,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 40,
+        "line": 39,
         "column": 53
       },
       "end": {
-        "line": 46,
+        "line": 45,
         "column": 3
       }
     },
@@ -1253,11 +1253,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 40,
+        "line": 39,
         "column": 53
       },
       "end": {
-        "line": 46,
+        "line": 45,
         "column": 3
       }
     },
@@ -1445,12 +1445,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 325,
-        "column": 20
+        "line": 356,
+        "column": 22
       },
       "end": {
-        "line": 333,
-        "column": 3
+        "line": 364,
+        "column": 5
       }
     },
     "filepath": "src/components/datagrid/data_grid.tsx"
@@ -1461,12 +1461,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 335,
-        "column": 25
+        "line": 366,
+        "column": 27
       },
       "end": {
-        "line": 342,
-        "column": 3
+        "line": 373,
+        "column": 5
       }
     },
     "filepath": "src/components/datagrid/data_grid.tsx"
@@ -1477,12 +1477,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 469,
-        "column": 14
+        "line": 498,
+        "column": 18
       },
       "end": {
-        "line": 472,
-        "column": 16
+        "line": 501,
+        "column": 20
       }
     },
     "filepath": "src/components/datagrid/data_grid.tsx"
@@ -2405,11 +2405,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 103,
+        "line": 102,
         "column": 4
       },
       "end": {
-        "line": 103,
+        "line": 102,
         "column": 75
       }
     },
@@ -2421,11 +2421,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 117,
+        "line": 116,
         "column": 4
       },
       "end": {
-        "line": 117,
+        "line": 116,
         "column": 69
       }
     },
@@ -3205,11 +3205,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 749,
+        "line": 756,
         "column": 14
       },
       "end": {
-        "line": 752,
+        "line": 759,
         "column": 16
       }
     },
@@ -3281,16 +3281,16 @@
   },
   {
     "token": "euiSelectableListItem.includedOption",
-    "defString": "Included option.",
+    "defString": "Selected option.",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 110,
-        "column": 12
+        "line": 135,
+        "column": 8
       },
       "end": {
-        "line": 113,
-        "column": 14
+        "line": 138,
+        "column": 10
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -3301,12 +3301,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 120,
-        "column": 12
+        "line": 141,
+        "column": 8
       },
       "end": {
-        "line": 123,
-        "column": 14
+        "line": 144,
+        "column": 10
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -3317,28 +3317,76 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 131,
-        "column": 12
+        "line": 148,
+        "column": 8
       },
       "end": {
-        "line": 134,
-        "column": 14
+        "line": 151,
+        "column": 10
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
   },
   {
     "token": "euiSelectableListItem.excludedOptionInstructions",
-    "defString": "To deselect this option, press enter.",
+    "defString": "To uncheck this option, press enter.",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 141,
-        "column": 12
+        "line": 154,
+        "column": 8
       },
       "end": {
-        "line": 144,
-        "column": 14
+        "line": 157,
+        "column": 10
+      }
+    },
+    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
+  },
+  {
+    "token": "euiSelectableListItem.unckeckedOptionInstructions",
+    "defString": "To select this option, press enter.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 161,
+        "column": 8
+      },
+      "end": {
+        "line": 164,
+        "column": 10
+      }
+    },
+    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
+  },
+  {
+    "token": "euiSelectableListItem.checkedOption",
+    "defString": "Checked option.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 171,
+        "column": 8
+      },
+      "end": {
+        "line": 174,
+        "column": 10
+      }
+    },
+    "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
+  },
+  {
+    "token": "euiSelectableListItem.checkedOptionInstructions",
+    "defString": "To uncheck this option, press enter.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 177,
+        "column": 8
+      },
+      "end": {
+        "line": 180,
+        "column": 10
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -3413,11 +3461,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 487,
+        "line": 518,
         "column": 16
       },
       "end": {
-        "line": 490,
+        "line": 521,
         "column": 18
       }
     },
@@ -3429,11 +3477,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 509,
+        "line": 540,
         "column": 14
       },
       "end": {
-        "line": 513,
+        "line": 544,
         "column": 16
       }
     },
@@ -3445,11 +3493,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 528,
+        "line": 559,
         "column": 14
       },
       "end": {
-        "line": 531,
+        "line": 562,
         "column": 16
       }
     },
@@ -3461,12 +3509,44 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 595,
+        "line": 624,
         "column": 6
       },
       "end": {
-        "line": 595,
+        "line": 624,
         "column": 78
+      }
+    },
+    "filepath": "src/components/selectable/selectable.tsx"
+  },
+  {
+    "token": "euiSelectable.searchResults",
+    "defString": "({\n  resultsLength\n}) => `${resultsLength} result${resultsLength === 1 ? '' : 's'} available`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 646,
+        "column": 6
+      },
+      "end": {
+        "line": 652,
+        "column": 8
+      }
+    },
+    "filepath": "src/components/selectable/selectable.tsx"
+  },
+  {
+    "token": "euiSelectable.screenReaderInstructions",
+    "defString": "Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 664,
+        "column": 6
+      },
+      "end": {
+        "line": 673,
+        "column": 7
       }
     },
     "filepath": "src/components/selectable/selectable.tsx"
@@ -3477,12 +3557,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 626,
+        "line": 664,
         "column": 6
       },
       "end": {
-        "line": 626,
-        "column": 78
+        "line": 673,
+        "column": 7
       }
     },
     "filepath": "src/components/selectable/selectable.tsx"

@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+/// <reference types="../../../cypress/support"/>
+
 import React from 'react';
 import { EuiAccordion, EuiAccordionProps } from './index';
 import { EuiPanel } from '../../components/panel';
@@ -115,6 +117,21 @@ describe('EuiAccordion', () => {
       cy.focused().invoke('attr', 'tabindex').should('not.exist');
       cy.realPress('Tab');
       cy.focused().contains('a link');
+    });
+  });
+
+  describe('Automated accessibility check', () => {
+    it('has zero violations when expanded', () => {
+      cy.mount(
+        <EuiAccordion {...noArrowProps}>
+          <EuiPanel color="subdued">
+            Any content inside of <strong>EuiAccordion</strong> will appear
+            here. We will include <a href="#">a link</a> to confirm focus.
+          </EuiPanel>
+        </EuiAccordion>
+      );
+      cy.get('button.euiAccordion__button').click();
+      cy.checkAxe();
     });
   });
 });

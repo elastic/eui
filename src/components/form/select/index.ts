@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiSelect, EuiSelectProps, EuiSelectOption } from './select';
+export type { EuiSelectProps, EuiSelectOption } from './select';
+export { EuiSelect } from './select';

@@ -6,17 +6,11 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiColorPaletteDisplay,
-  EuiColorPaletteDisplayProps,
-} from './color_palette_display';
+export type { EuiColorPaletteDisplayProps } from './color_palette_display';
+export { EuiColorPaletteDisplay } from './color_palette_display';
 
-export {
-  EuiColorPaletteDisplayFixed,
-  EuiColorPaletteDisplayFixedProps,
-} from './color_palette_display_fixed';
+export type { EuiColorPaletteDisplayFixedProps } from './color_palette_display_fixed';
+export { EuiColorPaletteDisplayFixed } from './color_palette_display_fixed';
 
-export {
-  EuiColorPaletteDisplayGradient,
-  EuiColorPaletteDisplayGradientProps,
-} from './color_palette_display_gradient';
+export type { EuiColorPaletteDisplayGradientProps } from './color_palette_display_gradient';
+export { EuiColorPaletteDisplayGradient } from './color_palette_display_gradient';

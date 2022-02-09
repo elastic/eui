@@ -252,4 +252,39 @@ describe('EuiSelectable', () => {
       expect(component).toMatchSnapshot();
     });
   });
+
+  describe('errorMessage prop', () => {
+    it('does not render the message when not defined', () => {
+      const component = render(
+        <EuiSelectable options={options} errorMessage={null}>
+          {(list) => list}
+        </EuiSelectable>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    it('does renders the message when defined', () => {
+      const component = render(
+        <EuiSelectable options={options} errorMessage="Error!">
+          {(list) => list}
+        </EuiSelectable>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    it('can render an element as the message', () => {
+      const component = render(
+        <EuiSelectable
+          options={options}
+          errorMessage={<span>Element error!</span>}
+        >
+          {(list) => list}
+        </EuiSelectable>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
 });
