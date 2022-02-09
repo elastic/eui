@@ -54,8 +54,7 @@ export default () => (
     <EuiText grow={false}>
       <ol>
         <li>
-          <strong>Icon or illustration (optional):</strong> A meaningful icon or
-          illustration representing the solution or context.
+          <strong>Icon or illustration (optional):</strong> Meaningful; should represent the solution or context.
         </li>
         <li>
           <strong>Title:</strong> The title will answer the question
