@@ -24,10 +24,17 @@ export const makeRowManager = (
         rowElement.classList.add('euiDataGridRow');
         rowElement.style.position = 'absolute';
         rowElement.style.left = '0';
-        rowIdToElements.set(rowIndex, rowElement);
+        rowElement.style.right = '0';
+
+        // In order for the rowElement's left and right position to correctly inherit
+        // from the innerGrid width, we need to make its position relative
+        containerRef.current!.style.position = 'relative';
 
         // add the element to the wrapping container
-        containerRef.current?.appendChild(rowElement);
+        containerRef.current!.appendChild(rowElement);
+
+        // add the element to the row map
+        rowIdToElements.set(rowIndex, rowElement);
 
         // watch the row's children, if they all disappear then remove this row
         const observer = new MutationObserver((records) => {
@@ -43,7 +50,6 @@ export const makeRowManager = (
       // Ensure that the row's dimensions are always correct by having each cell update position styles
       rowElement.style.top = top;
       rowElement.style.height = `${height}px`;
-      rowElement.style.width = containerRef.current!.style.width;
 
       return rowElement;
     },

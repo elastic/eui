@@ -29,9 +29,13 @@ describe('row manager', () => {
           <div
             class="euiDataGridRow"
             role="row"
-            style="position: absolute; left: 0px; top: 15px; height: 30px;"
+            style="position: absolute; left: 0px; right: 0px; top: 15px; height: 30px;"
           />
         `);
+      });
+
+      it('sets the parent innerGrid container to position relative', () => {
+        expect(mockContainerRef.current.style.position).toEqual('relative');
       });
 
       it('appends the row DOM element to the grid body container', () => {
@@ -51,7 +55,7 @@ describe('row manager', () => {
           <div
             class="euiDataGridRow"
             role="row"
-            style="position: absolute; left: 0px; top: 100px; height: 200px;"
+            style="position: absolute; left: 0px; right: 0px; top: 100px; height: 200px;"
           />
         `);
       });
