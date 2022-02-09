@@ -49,7 +49,7 @@ export const typesOfPanelColors: any = {
     text: (
       <>
         <p>
-          Set <EuiCode>{'color="plain” | hasBorder={true}'}</EuiCode> when you
+          Set <EuiCode>{'color="plain” and hasBorder={true}'}</EuiCode> when you
           have multiple panels on the page. The other panels should also have
           borders to ensure consistency.
         </p>
