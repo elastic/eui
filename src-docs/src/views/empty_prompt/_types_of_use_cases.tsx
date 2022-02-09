@@ -29,7 +29,7 @@ const PageNotFoundImg = () => {
 };
 
 // Forces webpack to show the display name.
-// Required o show the name of the component in the DemoJS tab instead of `<No Display Name />`.
+// Required to show the name of the component in the DemoJS tab instead of `<No Display Name />`.
 PageNotFoundImg.displayName = 'PageNotFoundImg';
 
 const NoResultsImg = () => {
@@ -42,7 +42,7 @@ const NoResultsImg = () => {
 };
 
 // Forces webpack to show the display name.
-// Required o show the name of the component in the DemoJS tab instead of `<No Display Name />`.
+// Required to show the name of the component in the DemoJS tab instead of `<No Display Name />`.
 NoResultsImg.displayName = 'NoResultsImg';
 
 export const typesOfUseCases: {
