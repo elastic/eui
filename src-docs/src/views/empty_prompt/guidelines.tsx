@@ -54,11 +54,12 @@ export default () => (
     <EuiText grow={false}>
       <ol>
         <li>
-          <strong>Icon or illustration (optional):</strong> Meaningful; should represent the solution or context.
+          <strong>Icon or illustration (optional):</strong> Meaningful; should
+          represent the solution or context.
         </li>
         <li>
-          <strong>Title:</strong> Answers the question
-          &quot;What&apos;s happening?&quot;. Is it an error? Is it loading?
+          <strong>Title:</strong> Answers the question &quot;What&apos;s
+          happening?&quot;. Is it an error? Is it loading?
         </li>
         <li>
           <strong>Description:</strong> Why is it happening? Explain why the
@@ -105,9 +106,9 @@ export default () => (
       description={
         <>
           <p>
-            The vertical layout is perfect when the content is small—a title and two
-            paragraphs at most. You can use this layout with just an icon, an
-            illustration, or no icons at all.
+            The vertical layout is perfect when the content is small—a title and
+            two paragraphs at most. You can use this layout with just an icon,
+            an illustration, or no icons at all.
           </p>
           <p>
             Use the horizontal layout when you have a long description, multiple
