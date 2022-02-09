@@ -28,6 +28,10 @@ const PageNotFoundImg = () => {
   return <EuiImage size="fullWidth" src={pageNotFoundImg} alt="" />;
 };
 
+// Forces webpack to show the display name.
+// Required o show the name of the component in the DemoJS tab instead of `<No Display Name />`.
+PageNotFoundImg.displayName = 'PageNotFoundImg';
+
 const NoResultsImg = () => {
   const themeContext = useContext(ThemeContext);
   const isDarkTheme = themeContext.theme.includes('dark');
@@ -36,6 +40,10 @@ const NoResultsImg = () => {
 
   return <EuiImage size="fullWidth" src={noResultsImg} alt="" />;
 };
+
+// Forces webpack to show the display name.
+// Required o show the name of the component in the DemoJS tab instead of `<No Display Name />`.
+NoResultsImg.displayName = 'NoResultsImg';
 
 export const typesOfUseCases: {
   [key: string]: {
