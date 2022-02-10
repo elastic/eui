@@ -15,16 +15,18 @@ describe('row manager', () => {
   beforeEach(() => jest.clearAllMocks());
 
   describe('getRow', () => {
-    const mockTop = '15px';
-    const mockHeight = 30;
-
     describe('when the row DOM element does not already exist', () => {
       beforeAll(() => {
         expect(mockContainerRef.current.children).toHaveLength(0);
       });
 
       it('creates a row DOM element', () => {
-        const row = rowManager.getRow(0, 0, mockTop, mockHeight);
+        const row = rowManager.getRow({
+          rowIndex: 0,
+          visibleRowIndex: 0,
+          top: '15px',
+          height: 30,
+        });
         expect(row).toMatchInlineSnapshot(`
           <div
             class="euiDataGridRow"
@@ -37,7 +39,12 @@ describe('row manager', () => {
       });
 
       it('adds a striped class if the visible row index is odd', () => {
-        const row = rowManager.getRow(1, 1, mockTop, mockHeight);
+        const row = rowManager.getRow({
+          rowIndex: 1,
+          visibleRowIndex: 1,
+          top: '15px',
+          height: 30,
+        });
         expect(row).toMatchInlineSnapshot(`
           <div
             class="euiDataGridRow euiDataGridRow--striped"
@@ -61,12 +68,22 @@ describe('row manager', () => {
 
     describe('when the row DOM element already exists', () => {
       it('does not create a new DOM element but fetches the existing one', () => {
-        rowManager.getRow(0, 0, mockTop, mockHeight);
+        rowManager.getRow({
+          rowIndex: 0,
+          visibleRowIndex: 0,
+          top: '15px',
+          height: 30,
+        });
         expect(mockContainerRef.current.children).toHaveLength(1);
       });
 
       it("updates the row's top and height values", () => {
-        const row = rowManager.getRow(0, 0, '100px', 200);
+        const row = rowManager.getRow({
+          rowIndex: 0,
+          visibleRowIndex: 0,
+          top: '100px',
+          height: 200,
+        });
         expect(row).toMatchInlineSnapshot(`
           <div
             class="euiDataGridRow"

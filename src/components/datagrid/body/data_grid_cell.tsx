@@ -693,12 +693,12 @@ export class EuiDataGridCell extends Component<
     return rowManager && !IS_JEST_ENVIRONMENT
       ? createPortal(
           content,
-          rowManager.getRow(
+          rowManager.getRow({
             rowIndex,
             visibleRowIndex,
-            style!.top as string, // comes in as a `{float}px` string from react-window
-            style!.height as number // comes in as an integer from react-window
-          )
+            top: style!.top as string, // comes in as a `{float}px` string from react-window
+            height: style!.height as number, // comes in as an integer from react-window
+          })
         )
       : content;
   }
