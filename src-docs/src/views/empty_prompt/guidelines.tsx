@@ -182,7 +182,7 @@ export default () => (
       }
     >
       <GuideRuleExample
-        text='Add the "learn more" link after the description when the empty prompt doesn&apos;t contain a call to action.'
+        text='Add the "Learn more" link after the description when the empty prompt doesn&apos;t contain a call to action.'
         minHeight={280}
       >
         <EuiImage alt="Inline link" url={inlineLink} height="252" />
