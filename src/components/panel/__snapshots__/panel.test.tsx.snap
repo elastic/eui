@@ -74,13 +74,6 @@ exports[`EuiPanel props grow can be false 1`] = `
 />
 `;
 
-exports[`EuiPanel props hasBorder can be a string value 1`] = `
-<div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--hasBorder"
-  style="border-width:1px 0 0 0"
-/>
-`;
-
 exports[`EuiPanel props hasBorder can be false 1`] = `
 <div
   class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--noBorder"

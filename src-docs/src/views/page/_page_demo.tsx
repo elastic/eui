@@ -168,7 +168,7 @@ export const PageDemo: FunctionComponent<{
           bottomBar={bottomBar}
         />
       </div>
-      <EuiPanel hasBorder="1px 0" borderRadius="none">
+      <EuiPanel style={{ borderWidth: '1px 0' }} hasBorder borderRadius="none">
         <EuiFlexGroup alignItems="center">
           {_showSideNav && (
             <EuiFlexItem grow={false}>

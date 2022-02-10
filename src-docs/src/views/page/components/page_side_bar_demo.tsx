@@ -40,7 +40,7 @@ export const PageSideBarDemo: FunctionComponent = () => {
           centeredContent={centeredContent}
         />
       </div>
-      <EuiPanel hasBorder="1px 0" borderRadius="none">
+      <EuiPanel style={{ borderWidth: '1px 0' }} hasBorder borderRadius="none">
         <EuiFlexGroup>
           <EuiFlexItem grow={false}>
             <EuiSwitch

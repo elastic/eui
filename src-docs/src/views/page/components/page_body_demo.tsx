@@ -30,7 +30,7 @@ export const PageBodyDemo: FunctionComponent = () => {
       <div className={classNames('guideDemo__highlightLayout')}>
         <PageBody content={content} sideBar={sideBar} />
       </div>
-      <EuiPanel hasBorder="1px 0" borderRadius="none">
+      <EuiPanel style={{ borderWidth: '1px 0' }} hasBorder borderRadius="none">
         <EuiFlexGroup>
           <EuiFlexItem grow={false}>
             <EuiSwitch
