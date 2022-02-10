@@ -222,7 +222,7 @@ export default () => (
 
       <GuideRuleExample
         type="dont"
-        text="Avoid mixing different types of empty states. Try to be consistent."
+        text="Avoid mixing different types of empty states. Be consistent."
         minHeight={280}
       >
         <EuiImage
