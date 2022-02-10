@@ -6,6 +6,7 @@
 
 - Fixed `EuiDataGrid` to correctly remove the cell expansion action button when a column sets both `cellActions` and `isExpandable` to false ([#5592](https://github.com/elastic/eui/pull/5592))
 - Fixed `EuiDataGrid` re-playing the cell actions animation when hovering over an already-focused cell ([#5592](https://github.com/elastic/eui/pull/5592))
+- Fixed `EuiDataGrid` auto row heights bugging out when cell popovers are opened ([#5618](https://github.com/elastic/eui/pull/5618))
 
 **Breaking changes**
 
