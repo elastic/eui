@@ -9,11 +9,8 @@
   padding: $euiDataGridCellPaddingM;
   border-right: $euiDataGridVerticalBorder;
   border-bottom: $euiBorderThin;
-  flex: 0 0 auto;
   background: $euiColorEmptyShade;
   position: relative;
-  align-items: center;
-  display: flex;
   overflow: hidden;
 
   // Hack to allow for all the focus guard stuff
