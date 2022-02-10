@@ -40,9 +40,9 @@ describe('EuiSelectable', () => {
 
       // Focus the second option
       cy.get('input')
-        .click()
-        .type('{downarrow}')
-        .type('{downarrow}')
+        .realClick()
+        .realPress('{downarrow}')
+        .realPress('{downarrow}')
         .then(() => {
           cy.get('li[role=option]')
             .eq(1)
@@ -51,10 +51,11 @@ describe('EuiSelectable', () => {
 
       // Focus remains on the second option
       cy.get('input')
-        .type('{alt}')
-        .type('{ctrl}')
-        .type('{meta}')
-        .type('{Shift}')
+        .realClick()
+        .realPress('Alt')
+        .realPress('Control')
+        .realPress('Meta')
+        .realPress('Shift')
         .then(() => {
           cy.get('li[role=option]')
             .eq(1)
@@ -63,7 +64,8 @@ describe('EuiSelectable', () => {
 
       // Filter the list
       cy.get('input')
-        .type('enc')
+        .realClick()
+        .realType('enc')
         .then(() => {
           cy.get('li[role=option]')
             .first()
@@ -72,7 +74,7 @@ describe('EuiSelectable', () => {
     });
 
     it('can clear the input', () => {
-      cy.mount(
+      cy.realMount(
         <EuiSelectable searchable options={options}>
           {(list, search) => (
             <>
@@ -84,15 +86,37 @@ describe('EuiSelectable', () => {
       );
 
       cy.get('input')
-        .type('enc')
+        .realClick()
+        .realType('enc')
         .then(() => {
           cy.get('li[role=option]')
             .first()
             .should('have.attr', 'title', 'Enceladus');
         });
 
+      // Using ENTER
       cy.get('[data-test-subj="clearSearchButton"]')
-        .type('{enter}')
+        .focus()
+        .realPress('{enter}')
+        .then(() => {
+          cy.get('li[role=option]')
+            .first()
+            .should('have.attr', 'title', 'Titan');
+        });
+
+      cy.get('input')
+        .realClick()
+        .realType('enc')
+        .then(() => {
+          cy.get('li[role=option]')
+            .first()
+            .should('have.attr', 'title', 'Enceladus');
+        });
+
+      // Using SPACE
+      cy.get('[data-test-subj="clearSearchButton"]')
+        .focus()
+        .realPress('Space')
         .then(() => {
           cy.get('li[role=option]')
             .first()
