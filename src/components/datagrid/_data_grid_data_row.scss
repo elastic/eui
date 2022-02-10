@@ -110,11 +110,6 @@
   z-index: $euiZDataGridCellPopover !important;
 }
 
-.euiDataGridRowCell__expand {
-  width: 100%;
-  max-width: 100%;
-}
-
 .euiDataGridRowCell__expandFlex {
   position: relative; // for positioning expand button
   display: flex;
