@@ -102,7 +102,7 @@ export default () => (
     <GuideRuleTitle>Design</GuideRuleTitle>
 
     <GuideRule
-      heading="Vertical vs. Horizontal"
+      heading="Vertical vs. horizontal"
       description={
         <>
           <p>
