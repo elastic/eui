@@ -1,6 +1,6 @@
 .euiDataGridRow {
-  // needed for footer cells to correctly position
-  display: flex;
+  display: flex; // Needed for footer cells to correctly position
+  background-color: $euiColorEmptyShade;
 }
 
 @include euiDataGridRowCell {
@@ -9,7 +9,6 @@
   padding: $euiDataGridCellPaddingM;
   border-right: $euiDataGridVerticalBorder;
   border-bottom: $euiBorderThin;
-  background: $euiColorEmptyShade;
   overflow: hidden;
 
   > * {
@@ -156,31 +155,23 @@
   border: none;
 }
 
-// Row highlights
-@include euiDataGridStyles(rowHoverHighlight) {
-  .euiDataGridRow:hover {
-    @include euiDataGridRowCell {
-      // sass-lint:disable-block no-important
-      // Needed to overtake striping
-      background-color: $euiColorHighlight !important;
-    }
+// Row stripes
+@include euiDataGridStyles(stripes) {
+  .euiDataGridRow--striped {
     @include euiDataGridRowCellActions($definedHeight: true) {
-      // sass-lint:disable-block no-important
-      // Needed to overtake striping
-      background-color: $euiColorHighlight !important;
+      background-color: $euiColorLightestShade;
     }
+    background-color: $euiColorLightestShade;
   }
 }
 
-// Stripes
-@include euiDataGridStyles(stripes) {
-  @include euiDataGridRowCell {
-    &.euiDataGridRowCell--stripe {
-      @include euiDataGridRowCellActions($definedHeight: true) {
-        background-color: $euiColorLightestShade;
-      }
-      background: $euiColorLightestShade;
+// Row highlights
+@include euiDataGridStyles(rowHoverHighlight) {
+  .euiDataGridRow:hover {
+    @include euiDataGridRowCellActions($definedHeight: true) {
+      background-color: $euiColorHighlight;
     }
+    background-color: $euiColorHighlight;
   }
 }
 

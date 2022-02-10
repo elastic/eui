@@ -107,7 +107,7 @@ exports[`EuiDataGridBody renders 1`] = `
       data-gridcell-visible-row-index="0"
       data-test-subj="dataGridRowCell"
       role="gridcell"
-      style="position:absolute;left:0;top:0px;height:34px;width:100px"
+      style="position:absolute;left:0;top:0;height:34px;width:100px"
       tabindex="-1"
     >
       <div
@@ -141,7 +141,7 @@ exports[`EuiDataGridBody renders 1`] = `
       data-gridcell-visible-row-index="0"
       data-test-subj="dataGridRowCell"
       role="gridcell"
-      style="position:absolute;left:100px;top:0px;height:34px;width:100px"
+      style="position:absolute;left:100px;top:0;height:34px;width:100px"
       tabindex="-1"
     >
       <div
