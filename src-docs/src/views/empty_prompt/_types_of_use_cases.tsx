@@ -95,7 +95,7 @@ export const typesOfUseCases: {
         </EuiFlexItem>
         <EuiFlexItem grow={false}>
           <EuiTitle size="xxs">
-            <h3>Pretty sure you have data?</h3>
+            <h3>Sure you have data?</h3>
           </EuiTitle>
           <span>
             <EuiButtonEmpty
