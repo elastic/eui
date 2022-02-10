@@ -11,9 +11,9 @@
   border-bottom: $euiBorderThin;
   overflow: hidden;
 
+  // Hack to allow focus trap to still stretch to full row height on defined heights
   > * {
-    height: 100%; // Hack to allow for focus trap to still stretch to full row height on defined heights
-    overflow: hidden; // Maintain cutting off content past the cell padding when popover is open
+    height: 100%;
   }
 
   &.euiDataGridRowCell--firstColumn {
