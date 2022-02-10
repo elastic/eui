@@ -107,7 +107,7 @@ export default () => (
         <>
           <p>
             The vertical layout is perfect when the content is small—a title and
-            two paragraphs at most. You can use this layout with just an icon,
+            two paragraphs at most. You can use this layout with an icon,
             an illustration, or no icons at all.
           </p>
           <p>
