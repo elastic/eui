@@ -81,7 +81,7 @@ export default () => (
 
     {/*  Types of empty states; goals and recommendations section */}
     <GuideRuleTitle>
-      Types of empty states; goals and recommendations
+      Empty state types, goals, and recommendations
     </GuideRuleTitle>
     <EuiSpacer size="xl" />
 
