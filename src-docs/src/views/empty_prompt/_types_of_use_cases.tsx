@@ -190,7 +190,7 @@ export const typesOfUseCases: {
       title: <h2>Unable to load your dashboards</h2>,
       body: (
         <p>
-          There was an error loading the Dashboard application. Contact your
+          There was a problem loading the Dashboard application. Contact your
           administrator for help.
         </p>
       ),
