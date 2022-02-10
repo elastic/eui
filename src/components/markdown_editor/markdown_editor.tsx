@@ -78,6 +78,11 @@ type CommonMarkdownEditorProps = Omit<
     onChange: (value: string) => void;
 
     /**
+     * Sets the current display mode to a disabled state
+     */
+    isDisabled?: ContextShape['isDisabled'];
+
+    /**
      * Sets the `height` in pixels of the editor/preview area or pass `full` to allow
      * the EuiMarkdownEditor to fill the height of its container.
      * When in `full` mode the vertical resize is not allowed.
@@ -209,6 +214,7 @@ export const EuiMarkdownEditor = forwardRef<
       dropHandlers = [],
       markdownFormatProps,
       placeholder,
+      isDisabled,
       ...rest
     },
     ref
@@ -275,8 +281,9 @@ export const EuiMarkdownEditor = forwardRef<
         openPluginEditor: (plugin: EuiMarkdownEditorUiPlugin) =>
           setPluginEditorPlugin(() => plugin),
         replaceNode,
+        isDisabled: isDisabled,
       }),
-      [replaceNode]
+      [replaceNode, isDisabled]
     );
 
     const [selectedNode, setSelectedNode] = useState<EuiMarkdownAstNode>();
@@ -354,6 +361,10 @@ export const EuiMarkdownEditor = forwardRef<
       className
     );
 
+    const classesPreview = classNames('euiMarkdownEditorPreview', {
+      'euiMarkdownEditorPreview-isDisabled': isDisabled,
+    });
+
     const onResize = () => {
       if (textarea && isEditing && height !== 'full') {
         const resizedTextareaHeight =
@@ -423,7 +434,7 @@ export const EuiMarkdownEditor = forwardRef<
           {isPreviewing && (
             <div
               ref={previewRef}
-              className="euiMarkdownEditorPreview"
+              className={classesPreview}
               style={{ height: previewHeight }}
             >
               <EuiMarkdownFormat
@@ -481,6 +492,7 @@ export const EuiMarkdownEditor = forwardRef<
                       value={value}
                       onFocus={() => setHasUnacceptedItems(false)}
                       placeholder={placeholder}
+                      isDisabled={isDisabled}
                       {...{
                         'aria-label': ariaLabel,
                         'aria-labelledby': ariaLabelledBy,

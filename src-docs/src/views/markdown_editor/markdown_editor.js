@@ -5,6 +5,9 @@ import {
   EuiSpacer,
   EuiCodeBlock,
   EuiButton,
+  EuiSwitch,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components';
 
 const initialContent = `## Hello world!
@@ -46,6 +49,13 @@ export default () => {
     setMessages(err ? [err] : messages);
     setAst(JSON.stringify(ast, null, 2));
   }, []);
+
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  const onChange = (e) => {
+    setIsDisabled(e.target.checked);
+  };
+
   return (
     <>
       <EuiMarkdownEditor
@@ -57,18 +67,32 @@ export default () => {
         onParse={onParse}
         errors={messages}
         dropHandlers={dropHandlers}
+        isDisabled={isDisabled}
+        initialViewMode="viewing"
       />
       <EuiSpacer size="s" />
-      <div className="eui-textRight">
-        <EuiButton
-          size="s"
-          iconType={isAstShowing ? 'eyeClosed' : 'eye'}
-          onClick={() => setIsAstShowing(!isAstShowing)}
-          fill={isAstShowing}
-        >
-          {isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
-        </EuiButton>
-      </div>
+      <EuiFlexGroup alignItems="center">
+        <EuiFlexItem grow={true}>
+          <EuiSwitch
+            label="Disable editor"
+            checked={isDisabled}
+            onChange={onChange}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton
+            size="s"
+            iconType={isAstShowing ? 'eyeClosed' : 'eye'}
+            onClick={() => setIsAstShowing(!isAstShowing)}
+            fill={isAstShowing}
+          >
+            {isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
+          </EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer size="s" />
+
       {isAstShowing && <EuiCodeBlock language="json">{ast}</EuiCodeBlock>}
     </>
   );

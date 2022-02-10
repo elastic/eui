@@ -31,6 +31,7 @@ export type EuiMarkdownEditorToolbarProps = HTMLAttributes<HTMLDivElement> &
     viewMode: MARKDOWN_MODE;
     onClickPreview: MouseEventHandler<HTMLButtonElement>;
     uiPlugins: EuiMarkdownEditorUiPlugin[];
+    isDisabled?: boolean;
   };
 
 const boldItalicButtons = [
@@ -98,7 +99,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
     { markdownActions, viewMode, onClickPreview, uiPlugins, selectedNode },
     ref: Ref<HTMLDivElement>
   ) => {
-    const { openPluginEditor } = useContext(EuiMarkdownContext);
+    const { openPluginEditor, isDisabled } = useContext(EuiMarkdownContext);
 
     const handleMdButtonClick = (mdButtonId: string) => {
       const actionResult = markdownActions.do(mdButtonId);
@@ -106,6 +107,8 @@ export const EuiMarkdownEditorToolbar = forwardRef<
     };
 
     const isPreviewing = viewMode === MODE_VIEWING;
+
+    const buttonIsDisabled = isPreviewing || isDisabled;
 
     return (
       <div ref={ref} className="euiMarkdownEditorToolbar">
@@ -117,7 +120,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
                 onClick={() => handleMdButtonClick(item.id)}
                 iconType={item.iconType}
                 aria-label={item.label}
-                isDisabled={isPreviewing}
+                isDisabled={buttonIsDisabled}
               />
             </EuiToolTip>
           ))}
@@ -129,7 +132,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
                 onClick={() => handleMdButtonClick(item.id)}
                 iconType={item.iconType}
                 aria-label={item.label}
-                isDisabled={isPreviewing}
+                isDisabled={buttonIsDisabled}
               />
             </EuiToolTip>
           ))}
@@ -141,7 +144,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
                 onClick={() => handleMdButtonClick(item.id)}
                 iconType={item.iconType}
                 aria-label={item.label}
-                isDisabled={isPreviewing}
+                isDisabled={buttonIsDisabled}
               />
             </EuiToolTip>
           ))}
@@ -164,7 +167,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
                       onClick={() => handleMdButtonClick(name)}
                       iconType={button.iconType}
                       aria-label={button.label}
-                      isDisabled={isPreviewing}
+                      isDisabled={buttonIsDisabled}
                     />
                   </EuiToolTip>
                 );
@@ -179,6 +182,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
             color="text"
             size="s"
             onClick={onClickPreview}
+            isDisabled={isDisabled}
           >
             <EuiI18n token="euiMarkdownEditorToolbar.editor" default="Editor" />
           </EuiButtonEmpty>
@@ -188,6 +192,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
             color="text"
             size="s"
             onClick={onClickPreview}
+            isDisabled={isDisabled}
           >
             <EuiI18n
               token="euiMarkdownEditorToolbar.previewMarkdown"

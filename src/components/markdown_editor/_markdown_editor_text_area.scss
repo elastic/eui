@@ -32,3 +32,9 @@
     background-size: 100% 100%;
   }
 }
+
+.euiMarkdownEditorTextArea-isDisabled {
+  @include euiFormControlDisabledStyle;
+  // overrides inset box-shadow that comes from the mixin euiFormControlDisabledStyle
+  box-shadow: none;
+}

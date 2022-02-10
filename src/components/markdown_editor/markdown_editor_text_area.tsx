@@ -7,7 +7,7 @@
  */
 
 import React, { TextareaHTMLAttributes, forwardRef } from 'react';
-
+import classNames from 'classnames';
 import { CommonProps } from '../common';
 
 export type EuiMarkdownEditorTextAreaProps = TextareaHTMLAttributes<
@@ -19,6 +19,7 @@ export type EuiMarkdownEditorTextAreaProps = TextareaHTMLAttributes<
     compressed?: boolean;
     height: string;
     maxHeight: string;
+    isDisabled?: boolean;
   };
 
 export const EuiMarkdownEditorTextArea = forwardRef<
@@ -36,20 +37,26 @@ export const EuiMarkdownEditorTextArea = forwardRef<
       rows,
       height,
       maxHeight,
+      isDisabled,
       ...rest
     },
     ref
   ) => {
+    const classes = classNames('euiMarkdownEditorTextArea', {
+      'euiMarkdownEditorTextArea-isDisabled': isDisabled,
+    });
+
     return (
       <textarea
         ref={ref}
         style={{ height, maxHeight }}
-        className="euiMarkdownEditorTextArea"
+        className={classes}
         {...rest}
         rows={6}
         name={name}
         id={id}
         placeholder={placeholder}
+        disabled={isDisabled}
       >
         {children}
       </textarea>
