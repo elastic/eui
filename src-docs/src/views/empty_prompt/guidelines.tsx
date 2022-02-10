@@ -188,7 +188,7 @@ export default () => (
         <EuiImage alt="Inline link" url={inlineLink} height="252" />
       </GuideRuleExample>
       <GuideRuleExample
-        text='Add the "learn more" link in the footer when the empty prompt contains a call to action.'
+        text='Add the "Learn more" link in the footer when the empty prompt contains a call to action.'
         minHeight={280}
       >
         <EuiImage alt="Footer link" url={footerLink} height="252" />
