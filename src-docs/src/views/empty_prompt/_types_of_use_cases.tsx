@@ -215,7 +215,7 @@ export const typesOfUseCases: {
       title: <h2>Page not found</h2>,
       body: (
         <p>
-          Sorry, we can&apos;t seem to find the page you&apos;re looking for. It
+          Sorry, we can&apos;t find the page you&apos;re looking for. It
           might have been removed or renamed, or maybe it never existed at all.
         </p>
       ),
