@@ -36,6 +36,7 @@ const EuiDataGridFooterRow = memo(
     ) => {
       const classes = classnames(
         'euiDataGridRow',
+        { 'euiDataGridRow--striped': visibleRowIndex % 2 !== 0 },
         'euiDataGridFooter',
         className
       );
