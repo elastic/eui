@@ -241,7 +241,7 @@ export const typesOfUseCases: {
           the license.
         </p>
       ),
-      action: <p>Start a trial or upgrade the license</p>,
+      action: <p>Start a trial or upgrade the license.</p>,
     },
     example: {
       iconType: 'logoKibana',
