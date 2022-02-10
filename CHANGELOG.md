@@ -1,6 +1,6 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `48.0.0`.
+- Improved `EuiSelectable` keypress scenarios ([#5613](https://github.com/elastic/eui/pull/5613))
 
 ## [`48.0.0`](https://github.com/elastic/eui/tree/v48.0.0)
 

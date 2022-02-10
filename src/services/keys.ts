@@ -13,6 +13,11 @@ export const TAB = 'Tab';
 export const BACKSPACE = 'Backspace';
 export const F2 = 'F2';
 
+export const ALT = 'Alt';
+export const SHIFT = 'Shift';
+export const CTRL = 'Control';
+export const META = 'Meta'; // Windows, Command, Option
+
 export const ARROW_DOWN = 'ArrowDown';
 export const ARROW_UP = 'ArrowUp';
 export const ARROW_LEFT = 'ArrowLeft';
@@ -30,6 +35,10 @@ export enum keys {
   TAB = 'Tab',
   BACKSPACE = 'Backspace',
   F2 = 'F2',
+  ALT = 'Alt',
+  SHIFT = 'Shift',
+  CTRL = 'Control',
+  META = 'Meta', // Windows, Command, Option
   ARROW_DOWN = 'ArrowDown',
   ARROW_UP = 'ArrowUp',
   ARROW_LEFT = 'ArrowLeft',

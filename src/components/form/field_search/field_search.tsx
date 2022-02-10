@@ -247,7 +247,7 @@ export class EuiFieldSearch extends Component<
         isLoading={isLoading}
         clear={
           isClearable && value && !rest.readOnly && !rest.disabled
-            ? { onClick: this.onClear }
+            ? { onClick: this.onClear, 'data-test-subj': 'clearSearchButton' }
             : undefined
         }
         compressed={compressed}
