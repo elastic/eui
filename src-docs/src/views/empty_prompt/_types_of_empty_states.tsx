@@ -374,7 +374,7 @@ export default () => {
             )}
 
             <EuiDescriptionListTitle>
-              Recommend panel color
+              Recommended panel color
             </EuiDescriptionListTitle>
             <EuiDescriptionListDescription>
               {visibleRecommendedPanelColorText}
