@@ -112,7 +112,7 @@ export default () => (
           </p>
           <p>
             Use the horizontal layout when you have a long description, multiple
-            calls to action, and possibly a footer. For this type of layout, an
+            calls to action, and a footer. For this type of layout, an
             illustration is required.
           </p>
         </>
