@@ -10,7 +10,7 @@ const docsPages = async (root, page) => {
     `${root}#/forms/combo-box`,
     `${root}#/forms/color-selection`,
     `${root}#/forms/date-picker`,
-    `${root}#/forms/super-date-picker`,
+    `${root}#/templates/super-date-picker`,
     `${root}#/tabular-content/data-grid-styling-and-control`,
     `${root}#/tabular-content/data-grid-virtualization`,
     `${root}#/tabular-content/data-grid-row-heights-options`,
