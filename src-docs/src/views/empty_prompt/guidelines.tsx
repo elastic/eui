@@ -170,7 +170,7 @@ export default () => (
       description={
         <>
           <p>
-            Use &quot;learn more&quot; links in your empty prompt to link to
+            Use &quot;Learn more&quot; links in your empty prompt to link to
             documentation where users can get more detailed help.
           </p>
           <p>
