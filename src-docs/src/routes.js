@@ -26,6 +26,12 @@ import {
   writingExamplesSections,
 } from './views/guidelines/writing_examples';
 
+// Templates
+
+import { PageTemplateExample } from './views/page/page_template_example';
+
+import { SitewideSearchExample } from './views/selectable/selectable_sitewide_template_example';
+
 // Services
 
 import { ColorPaletteExample } from './views/color_palette/color_palette_example';
@@ -443,6 +449,14 @@ const navigation = [
     ],
   },
   {
+    name: 'Templates',
+    items: [
+      PageTemplateExample,
+      SitewideSearchExample,
+      SuperDatePickerExample,
+    ].map((example) => createExample(example)),
+  },
+  {
     name: 'Layout',
     items: [
       AccordionExample,
@@ -539,7 +553,6 @@ const navigation = [
       SearchBarExample,
       SelectableExample,
       SuggestExample,
-      SuperDatePickerExample,
       SuperSelectExample,
     ].map((example) => createExample(example)),
   },

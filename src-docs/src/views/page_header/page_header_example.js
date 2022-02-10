@@ -30,7 +30,7 @@ export const PageHeaderExample = {
       <p>
         While the <strong>EuiPageHeader</strong> component can be placed
         anywhere within your page layout, we recommend using it within the{' '}
-        <Link to="/layout/page">
+        <Link to="/layout/page-template">
           <strong>EuiPageTemplate</strong>
         </Link>{' '}
         component by passing the configuration props as its{' '}
