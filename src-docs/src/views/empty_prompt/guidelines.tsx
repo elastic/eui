@@ -66,7 +66,7 @@ export default () => (
           space is empty and guide the users through the required actions.
         </li>
         <li>
-          <strong>Action(s):</strong> Your call to actions. Should answer the
+          <strong>Action(s):</strong> Your call to actions should answer the
           question &quot;What will solve the issue?&quot;. Lead the users to
           take action or guide them about the next steps.
         </li>
