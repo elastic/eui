@@ -279,7 +279,11 @@ export class EuiDataGridCell extends Component<
   }
 
   componentDidUpdate(prevProps: EuiDataGridCellProps) {
-    this.recalculateAutoHeight();
+    // Avoid recalculating auto height when the popover opens -
+    // the inserted EuiWrappingPopover DOM creates false miscalculations
+    if (!this.props.popoverContext.popoverIsOpen) {
+      this.recalculateAutoHeight();
+    }
 
     if (
       this.props.rowHeightsOptions?.defaultHeight !==

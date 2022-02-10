@@ -213,6 +213,20 @@ describe('EuiDataGridCell', () => {
       );
       expect(popoverContent).toMatchSnapshot();
     });
+
+    it('does not recalculate row auto height when the cell popover opens', () => {
+      const component = mount(
+        <EuiDataGridCell
+          {...requiredProps}
+          rowHeightsOptions={{ defaultHeight: 'auto' }}
+        />
+      );
+      component.setProps({
+        popoverContext: { ...mockPopoverContext, popoverIsOpen: true },
+      });
+      expect(mockRowHeightUtils.isAutoHeight).not.toHaveBeenCalled();
+      expect(mockRowHeightUtils.setRowHeight).not.toHaveBeenCalled();
+    });
   });
 
   describe('componentDidMount', () => {
