@@ -124,7 +124,7 @@ export const typesOfUseCases: {
           and what actions to take to get access.
         </p>
       ),
-      action: <p>Request permission</p>,
+      action: <p>Request permission.</p>,
     },
 
     example: {
