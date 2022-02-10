@@ -55,7 +55,7 @@ export default () => (
       <ol>
         <li>
           <strong>Icon or illustration (optional):</strong> A meaningful
-          represent the solution or context.
+          representation of the the solution or context.
         </li>
         <li>
           <strong>Title:</strong> Answers the question &quot;What&apos;s
