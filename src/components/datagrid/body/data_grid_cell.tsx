@@ -615,7 +615,6 @@ export class EuiDataGridCell extends Component<
         onDeactivation={() => {
           this.setState({ isEntered: false }, this.preventTabbing);
         }}
-        style={isDefinedHeight ? { height: '100%' } : {}}
         clickOutsideDisables={true}
       >
         <div className={anchorClass} ref={this.popoverAnchorRef}>

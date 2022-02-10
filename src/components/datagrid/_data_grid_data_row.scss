@@ -12,11 +12,9 @@
   background: $euiColorEmptyShade;
   overflow: hidden;
 
-  // Hack to allow for all the focus guard stuff
   > * {
-    max-width: 100%;
-    width: 100%;
-    height: 100%;
+    height: 100%; // Hack to allow for focus trap to still stretch to full row height on defined heights
+    overflow: hidden; // Maintain cutting off content past the cell padding when popover is open
   }
 
   &.euiDataGridRowCell--firstColumn {
