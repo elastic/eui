@@ -216,7 +216,7 @@ export const typesOfUseCases: {
       body: (
         <p>
           Sorry, we can&apos;t find the page you&apos;re looking for. It
-          might have been removed or renamed, or maybe it never existed at all.
+          might have been removed or renamed, or maybe it never existed.
         </p>
       ),
       actions: [
