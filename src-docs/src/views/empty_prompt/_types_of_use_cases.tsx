@@ -12,7 +12,6 @@ import {
   EuiDescriptionListDescription,
   IconType,
 } from '../../../../src/components';
-import { Link } from 'react-router-dom';
 
 import pageNotFoundLight from '../../images/empty-prompt/404_rainy_cloud_light.png';
 import pageNotFoundDark from '../../images/empty-prompt/404_rainy_cloud_dark.png';
@@ -52,10 +51,15 @@ export const typesOfUseCases: {
           <p>Help users understand how they can start using the product.</p>
           <p>
             For no data use cases, consider using a{' '}
-            <Link to="/display/card">EuiCard</Link>. In Kibana, you just need to
-            pass a no data configuration into your{' '}
-            <strong>KibanaPageTemplate</strong> to display a specific UI that
-            guides users to add data.
+            <EuiLink href="#/display/card">EuiCard</EuiLink>. In Kibana, you
+            just need to pass a no data configuration into your{' '}
+            <EuiLink
+              href="https://github.com/elastic/kibana/blob/main/dev_docs/tutorials/kibana_page_template.mdx"
+              target="_blank"
+            >
+              KibanaPageTemplate
+            </EuiLink>{' '}
+            to display a specific UI that guides users to add data.
           </p>
         </>
       ),
