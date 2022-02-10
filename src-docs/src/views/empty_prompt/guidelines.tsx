@@ -67,8 +67,8 @@ export default () => (
         </li>
         <li>
           <strong>Action(s):</strong> Your call to actions. Should answer the
-          question What will solve the issue? Lead the users to take action or
-          guide them about the next steps.
+          question &quot;What will solve the issue?&quot;. Lead the users to
+          take action or guide them about the next steps.
         </li>
         <li>
           <strong>Footer (optional):</strong> Use this section to reference
@@ -107,8 +107,8 @@ export default () => (
         <>
           <p>
             The vertical layout is perfect when the content is small—a title and
-            two paragraphs at most. You can use this layout with an icon,
-            an illustration, or no icons at all.
+            two paragraphs at most. You can use this layout with an icon, an
+            illustration, or no icons at all.
           </p>
           <p>
             Use the horizontal layout when you have a long description, multiple
@@ -119,7 +119,7 @@ export default () => (
       }
     >
       <GuideRuleExample
-        text="Use the vertical layout when the content is small."
+        text="Use the vertical layout when the text is 1 to 2 sentences."
         minHeight={280}
       >
         <EuiImage alt="Vertical layout" url={vertical} height="252" />
@@ -170,8 +170,9 @@ export default () => (
       description={
         <>
           <p>
-            Use &quot;Learn more&quot; links in your empty prompt to link to
-            documentation where users can get more detailed help.
+            &quot;Learn more&quot; links are optional. You can use them in your
+            empty prompt to link to documentation where users can get more
+            detailed help.
           </p>
           <p>
             Include the link after the description when the empty prompt

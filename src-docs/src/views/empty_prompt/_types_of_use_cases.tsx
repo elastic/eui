@@ -62,12 +62,7 @@ export const typesOfUseCases: {
     example: {
       iconType: 'logoSecurity',
       title: <h2>Start adding cases</h2>,
-      body: (
-        <p>
-          There are no cases to display. Add a new case or change your filter
-          settings.
-        </p>
-      ),
+      body: <p>Add a new case or change your filter settings.</p>,
       actions: [
         <EuiButton color="primary" fill>
           Add a case
@@ -215,8 +210,8 @@ export const typesOfUseCases: {
       title: <h2>Page not found</h2>,
       body: (
         <p>
-          Sorry, we can&apos;t find the page you&apos;re looking for. It
-          might have been removed or renamed, or maybe it never existed.
+          Sorry, we can&apos;t find the page you&apos;re looking for. It might
+          have been removed or renamed, or maybe it never existed.
         </p>
       ),
       actions: [
