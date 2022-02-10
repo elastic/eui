@@ -278,7 +278,7 @@ export const typesOfUseCases: {
     },
     example: {
       iconLoading: <EuiLoadingLogo logo="logoKibana" size="xl" />,
-      title: <h2>Loading Dashboards</h2>,
+      title: <h2>Loading dashboards</h2>,
     },
   },
 };
