@@ -194,7 +194,6 @@ export default () => {
             onChangeItemsPerPage: onChangeItemsPerPage,
             onChangePage: onChangePage,
           }}
-          gridStyle={{ stripes: true }}
         />
       </DataContext.Provider>
     </>
