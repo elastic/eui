@@ -1141,7 +1141,7 @@ Array [
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:0px;height:34px;width:100px"
+              style="position:absolute;left:0;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -1173,7 +1173,7 @@ Array [
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:100px;top:0px;height:34px;width:100px"
+              style="position:absolute;left:100px;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -1197,7 +1197,7 @@ Array [
               </div>
             </div>
             <div
-              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
               data-gridcell-id="0,1"
@@ -1205,7 +1205,7 @@ Array [
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:34px;height:34px;width:100px"
+              style="position:absolute;left:0;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -1229,7 +1229,7 @@ Array [
               </div>
             </div>
             <div
-              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
               data-gridcell-id="1,1"
@@ -1237,7 +1237,7 @@ Array [
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:100px;top:34px;height:34px;width:100px"
+              style="position:absolute;left:100px;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -1269,7 +1269,7 @@ Array [
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:68px;height:34px;width:100px"
+              style="position:absolute;left:0;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -1301,7 +1301,7 @@ Array [
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:100px;top:68px;height:34px;width:100px"
+              style="position:absolute;left:100px;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -1603,7 +1603,7 @@ Array [
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:0px;height:34px;width:50px"
+              style="position:absolute;left:0;top:0;height:34px;width:50px"
               tabindex="-1"
             >
               <div
@@ -1654,7 +1654,7 @@ Array [
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:50px;top:0px;height:34px;width:100px"
+              style="position:absolute;left:50px;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -1686,7 +1686,7 @@ Array [
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:150px;top:0px;height:34px;width:100px"
+              style="position:absolute;left:150px;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -1718,7 +1718,7 @@ Array [
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:250px;top:0px;height:34px;width:50px"
+              style="position:absolute;left:250px;top:0;height:34px;width:50px"
               tabindex="-1"
             >
               <div
@@ -1761,7 +1761,7 @@ Array [
               />
             </div>
             <div
-              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="leading"
               data-gridcell-column-index="0"
               data-gridcell-id="0,1"
@@ -1769,7 +1769,7 @@ Array [
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:34px;height:34px;width:50px"
+              style="position:absolute;left:0;top:0;height:34px;width:50px"
               tabindex="-1"
             >
               <div
@@ -1812,7 +1812,7 @@ Array [
               />
             </div>
             <div
-              class="euiDataGridRowCell euiDataGridRowCell--stripe"
+              class="euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="1"
               data-gridcell-id="1,1"
@@ -1820,7 +1820,7 @@ Array [
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:50px;top:34px;height:34px;width:100px"
+              style="position:absolute;left:50px;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -1844,7 +1844,7 @@ Array [
               </div>
             </div>
             <div
-              class="euiDataGridRowCell euiDataGridRowCell--stripe"
+              class="euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="2"
               data-gridcell-id="2,1"
@@ -1852,7 +1852,7 @@ Array [
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:150px;top:34px;height:34px;width:100px"
+              style="position:absolute;left:150px;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -1876,7 +1876,7 @@ Array [
               </div>
             </div>
             <div
-              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="trailing"
               data-gridcell-column-index="3"
               data-gridcell-id="3,1"
@@ -1884,7 +1884,7 @@ Array [
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:250px;top:34px;height:34px;width:50px"
+              style="position:absolute;left:250px;top:0;height:34px;width:50px"
               tabindex="-1"
             >
               <div
@@ -1935,7 +1935,7 @@ Array [
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:68px;height:34px;width:50px"
+              style="position:absolute;left:0;top:0;height:34px;width:50px"
               tabindex="-1"
             >
               <div
@@ -1986,7 +1986,7 @@ Array [
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:50px;top:68px;height:34px;width:100px"
+              style="position:absolute;left:50px;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -2018,7 +2018,7 @@ Array [
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:150px;top:68px;height:34px;width:100px"
+              style="position:absolute;left:150px;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -2050,7 +2050,7 @@ Array [
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:250px;top:68px;height:34px;width:50px"
+              style="position:absolute;left:250px;top:0;height:34px;width:50px"
               tabindex="-1"
             >
               <div
@@ -2332,7 +2332,7 @@ Array [
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:0px;height:34px;width:100px"
+              style="position:absolute;left:0;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -2364,7 +2364,7 @@ Array [
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:100px;top:0px;height:34px;width:100px"
+              style="position:absolute;left:100px;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -2388,7 +2388,7 @@ Array [
               </div>
             </div>
             <div
-              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
               data-gridcell-id="0,1"
@@ -2396,7 +2396,7 @@ Array [
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:34px;height:34px;width:100px"
+              style="position:absolute;left:0;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -2420,7 +2420,7 @@ Array [
               </div>
             </div>
             <div
-              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
               data-gridcell-id="1,1"
@@ -2428,7 +2428,7 @@ Array [
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:100px;top:34px;height:34px;width:100px"
+              style="position:absolute;left:100px;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -2460,7 +2460,7 @@ Array [
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:68px;height:34px;width:100px"
+              style="position:absolute;left:0;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -2492,7 +2492,7 @@ Array [
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:100px;top:68px;height:34px;width:100px"
+              style="position:absolute;left:100px;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -2753,7 +2753,7 @@ Array [
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:0px;height:34px;width:100px"
+              style="position:absolute;left:0;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -2785,7 +2785,7 @@ Array [
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:100px;top:0px;height:34px;width:100px"
+              style="position:absolute;left:100px;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -2809,7 +2809,7 @@ Array [
               </div>
             </div>
             <div
-              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
               data-gridcell-id="0,1"
@@ -2817,7 +2817,7 @@ Array [
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:34px;height:34px;width:100px"
+              style="position:absolute;left:0;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -2841,7 +2841,7 @@ Array [
               </div>
             </div>
             <div
-              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
               data-gridcell-id="1,1"
@@ -2849,7 +2849,7 @@ Array [
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:100px;top:34px;height:34px;width:100px"
+              style="position:absolute;left:100px;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -2881,7 +2881,7 @@ Array [
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:0;top:68px;height:34px;width:100px"
+              style="position:absolute;left:0;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
@@ -2913,7 +2913,7 @@ Array [
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
               role="gridcell"
-              style="position:absolute;left:100px;top:68px;height:34px;width:100px"
+              style="position:absolute;left:100px;top:0;height:34px;width:100px"
               tabindex="-1"
             >
               <div
