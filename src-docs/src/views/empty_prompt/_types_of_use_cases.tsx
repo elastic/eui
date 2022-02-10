@@ -49,7 +49,7 @@ export const typesOfUseCases: {
       goal: (
         <p>
           Help users understand how they can start using the product. For no
-          data use cases consider using another component.
+          data use cases, consider using another component.
         </p>
       ),
       action: (
