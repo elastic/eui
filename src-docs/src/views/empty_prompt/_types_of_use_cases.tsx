@@ -207,7 +207,7 @@ export const typesOfUseCases: {
         </p>
       ),
       goal: <p>Help users understand there is a client or server error.</p>,
-      action: <p>Go home or go back</p>,
+      action: <p>Go home or go back.</p>,
     },
     example: {
       iconLight: pageNotFoundLight,
