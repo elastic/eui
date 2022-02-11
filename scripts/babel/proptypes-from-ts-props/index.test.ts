@@ -2514,6 +2514,35 @@ let something: any;
 
         expect(result.code).toBe('let something;');
       });
+
+      it('skips non-typescript imports', () => {
+        const result = transform(
+          `
+import something from './somewhere.txt';
+`,
+          {
+            ...babelOptions,
+            plugins: [
+              [
+                './scripts/babel/proptypes-from-ts-props',
+                {
+                  fs: {
+                    existsSync: () => true,
+                    statSync: () => ({ isDirectory: () => false }),
+                    readFileSync: () => {
+                      return Buffer.from(`
+                        this is not valid javascript
+                      `);
+                    },
+                  },
+                },
+              ],
+            ],
+          }
+        );
+
+        expect(result.code).toBe("export {};");
+      });
     });
   });
 });
