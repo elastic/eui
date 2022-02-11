@@ -195,7 +195,7 @@ export const SelectionControlsExample = {
             <EuiCode>{'<input type="radio">'}</EuiCode> element. Use radio
             buttons to allow users to choose one option out of a list. They are
             ideal for a list of more than 2 options, and usually no more than
-            6-8 options.
+            6 options.
           </p>
           <p>
             When creating a list, each input should have the same name to ensure
