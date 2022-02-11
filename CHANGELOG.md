@@ -1,5 +1,9 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+No public interface changes since `46.1.1`.
+
+## [`46.1.1`](https://github.com/elastic/eui/tree/v46.1.1)
+
 **Note: this release is a backport containing changes originally made in `46.2.0`**
 
 **Bug fixes**
