@@ -122,7 +122,7 @@ export const SelectionControlsExample = {
             that only some of the checkbox&apos;s descendants are checked.
           </p>
           <p>
-            Make sure to pass a label to ensure a larger clickable area and
+            Make sure to pass a <EuiCode>label</EuiCode> to ensure a larger clickable area and
             ensure that screen readers will read out the label when the user is
             focused on the input. To learn more about labels usage, go to the{' '}
             <Link to="/forms/selection-controls/guidelines">
