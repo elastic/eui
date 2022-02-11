@@ -151,8 +151,8 @@ export const SelectionControlsExample = {
         <Fragment>
           <p>
             Use a <strong>EuiCheckboxGroup</strong> when you want to generate a
-            group of checkboxes by passing an array of objects with an ID and
-            label for each object. Use the <EuiCode>idToSelectedMap</EuiCode> to
+            group of checkboxes by passing an array of <EuiCode>options</EuiCode> with an <EuiCode>id</EuiCode> and
+            <EuiCode>label</EuiCode> for each object. Use the <EuiCode>idToSelectedMap</EuiCode> to
             indicate the IDs of the selected items.
           </p>
           <p>
