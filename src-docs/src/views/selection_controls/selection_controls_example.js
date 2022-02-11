@@ -235,7 +235,7 @@ export const SelectionControlsExample = {
             Use a <strong>EuiRadioGroup</strong> when you want to generate a
             group of radio buttons by passing an array of objects with an ID and
             label for each object. Use the name property to define a name to the
-            group. Each of the radio buttons will inherit the name.
+            group.
           </p>
           <p>
             Pass an array of objects to the options prop with an ID and label
