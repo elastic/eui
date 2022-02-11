@@ -1035,6 +1035,8 @@ function getPropTypesForNode(node, optional, state) {
   return propType;
 }
 
+const typescriptExtensions = new Set(['', '.ts', '.tsx']);
+
 // typeDefinitionExtractors is a mapping of [ast_node_type: func] which is used to find type definitions
 // these definitions come from four sources:
 //   - import statements
@@ -1054,9 +1056,11 @@ const typeDefinitionExtractors = {
     const { fs, sourceFilename, parse, state } = extractionOptions;
     const importPath = node.source.value;
     const isPathRelative = /^\.{1,2}\//.test(importPath);
+    const pathExtension = path.extname(importPath);
+    const isImportTypecript = typescriptExtensions.has(pathExtension);
 
     // only process relative imports for typescript definitions (avoid node_modules)
-    if (isPathRelative) {
+    if (isPathRelative && isImportTypecript) {
       // find the variable names being imported
       const importedTypeNames = node.specifiers.map(specifier => {
         switch (specifier.type) {

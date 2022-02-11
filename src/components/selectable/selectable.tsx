@@ -180,6 +180,7 @@ export class EuiSelectable<T = {}> extends Component<
     searchable: false,
     isPreFiltered: false,
   };
+  private inputRef: HTMLInputElement | null = null;
   private containerRef = createRef<HTMLDivElement>();
   private optionsListRef = createRef<EuiSelectableList<T>>();
   private preventOnFocus = false;
@@ -312,6 +313,12 @@ export class EuiSelectable<T = {}> extends Component<
           // via the input box, and as such only ENTER will toggle selection.
           return;
         }
+        if (event.target !== this.inputRef) {
+          // The captured event is not derived from the searchbox.
+          // The user is attempting to interact with an internal button,
+          // such as the clear button, and the event should not be altered.
+          return;
+        }
         event.preventDefault();
         event.stopPropagation();
         if (this.state.activeOptionIndex != null && optionsList) {
@@ -319,6 +326,12 @@ export class EuiSelectable<T = {}> extends Component<
             this.state.visibleOptions[this.state.activeOptionIndex]
           );
         }
+        break;
+
+      case keys.ALT:
+      case keys.SHIFT:
+      case keys.CTRL:
+      case keys.META:
         break;
 
       default:
@@ -631,6 +644,7 @@ export class EuiSelectable<T = {}> extends Component<
             aria-activedescendant={this.makeOptionId(activeOptionIndex)} // the current faux-focused option
             placeholder={placeholderName}
             isPreFiltered={isPreFiltered ?? false}
+            inputRef={(node) => (this.inputRef = node)}
             {...(searchHasAccessibleName
               ? searchAccessibleName
               : { 'aria-label': placeholderName })}
@@ -687,6 +701,7 @@ export class EuiSelectable<T = {}> extends Component<
 
             {messageContent ? (
               <EuiSelectableMessage
+                data-test-subj="euiSelectableMessage"
                 id={this.messageContentId}
                 bordered={listProps && listProps.bordered}
               >
@@ -694,6 +709,7 @@ export class EuiSelectable<T = {}> extends Component<
               </EuiSelectableMessage>
             ) : (
               <EuiSelectableList<T>
+                data-test-subj="euiSelectableList"
                 key="list"
                 options={options}
                 visibleOptions={visibleOptions}

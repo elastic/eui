@@ -1,5 +1,89 @@
 [
   {
+    "version": "48.0.0",
+    "changes": [
+      {
+        "token": "euiDataGridCellButtons.expandButtonTitle",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridCellActions.expandButtonTitle",
+        "changeType": "added",
+        "value": "Click or hit enter to interact with cell content"
+      },
+      {
+        "token": "euiSuggest.stateSavedTooltip",
+        "changeType": "added",
+        "value": "Saved."
+      },
+      {
+        "token": "euiSuggest.stateUnsavedTooltip",
+        "changeType": "added",
+        "value": "Changes have not been saved."
+      },
+      {
+        "token": "euiSuggest.stateLoading",
+        "changeType": "added",
+        "value": "State: loading."
+      },
+      {
+        "token": "euiSuggest.stateSaved",
+        "changeType": "added",
+        "value": "State: saved."
+      },
+      {
+        "token": "euiSuggest.stateUnsaved",
+        "changeType": "added",
+        "value": "State: unsaved."
+      },
+      {
+        "token": "euiSuggest.stateUnchanged",
+        "changeType": "added",
+        "value": "State: unchanged."
+      }
+    ]
+  },
+  {
+    "version": "47.0.0",
+    "changes": [
+      {
+        "token": "euiSelectableListItem.includedOption",
+        "changeType": "modified",
+        "value": "Selected option."
+      },
+      {
+        "token": "euiSelectableListItem.excludedOptionInstructions",
+        "changeType": "modified",
+        "value": "To uncheck this option, press enter."
+      },
+      {
+        "token": "euiSelectableListItem.unckeckedOptionInstructions",
+        "changeType": "added",
+        "value": "To select this option, press enter."
+      },
+      {
+        "token": "euiSelectableListItem.checkedOption",
+        "changeType": "added",
+        "value": "Checked option."
+      },
+      {
+        "token": "euiSelectableListItem.checkedOptionInstructions",
+        "changeType": "added",
+        "value": "To uncheck this option, press enter."
+      },
+      {
+        "token": "euiSelectable.searchResults",
+        "changeType": "added",
+        "value": "({\n  resultsLength\n}) => `${resultsLength} result${resultsLength === 1 ? '' : 's'} available`;"
+      },
+      {
+        "token": "euiSelectable.screenReaderInstructions",
+        "changeType": "added",
+        "value": "Use up and down arrows to move focus over options. Enter to select. Escape to collapse options."
+      }
+    ]
+  },
+  {
     "version": "43.0.0",
     "changes": [
       {

@@ -1,12 +1,16 @@
 import React from 'react';
 
 import { EuiEmptyPrompt } from '../../../../../src/components';
+// @ts-ignore Importing from JS file
+import { typesOfUseCases } from '../_types_of_use_cases';
+
+const example: any = typesOfUseCases.noPrivileges.example;
 
 export default () => (
   <EuiEmptyPrompt
-    iconType="lock"
+    iconType={example.iconType}
     color="subdued"
-    title={<h2>Contact your administrator for access</h2>}
-    body={<p>To view cases in this space, you need additional privileges.</p>}
+    title={example.title}
+    body={example.body}
   />
 );
