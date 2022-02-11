@@ -16,7 +16,7 @@ import { EuiPopover } from '../../popover';
 import { EuiI18n } from '../../i18n';
 
 export type PageChangeHandler = EuiPaginationProps['onPageClick'];
-export type ItemsPerPageChangeHandler = (pageSize: number) => void;
+export type ItemsPerPageChangeHandler = (pageSize: number | 'all') => void;
 
 export interface EuiTablePaginationProps
   extends Omit<EuiPaginationProps, 'onPageClick'> {
@@ -26,14 +26,14 @@ export interface EuiTablePaginationProps
   showPerPageOptions?: boolean;
   /**
    * Current selection for "Rows per page".
-   * Pass `0` as to display the selected "Show all" option and hide the pagination.
+   * Pass `'all'` to display the selected "Show all" option and hide the pagination.
    */
-  itemsPerPage?: number;
+  itemsPerPage?: number | 'all';
   /**
    * Custom array of options for "Rows per page".
-   * Pass `0` as one of option to create a "Show all" option.
+   * Pass `'all'` as one of the options to create a "Show all" option.
    */
-  itemsPerPageOptions?: number[];
+  itemsPerPageOptions?: Array<number | 'all'>;
   /**
    * Click handler that passes back selected `pageSize` number
    */
@@ -75,7 +75,7 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
       data-test-subj="tablePaginationPopoverButton"
       onClick={onButtonClick}
     >
-      {itemsPerPage === 0 ? (
+      {itemsPerPage === 'all' ? (
         <EuiI18n token="euiTablePagination.showingAll" default="Showing all" />
       ) : (
         <>
@@ -90,22 +90,7 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
   );
 
   const items = itemsPerPageOptions.map((itemsPerPageOption) => {
-    return itemsPerPageOption === 0 ? (
-      <EuiContextMenuItem
-        key={itemsPerPageOption}
-        icon={itemsPerPageOption === itemsPerPage ? 'check' : 'empty'}
-        onClick={() => {
-          closePopover();
-          onChangeItemsPerPage(itemsPerPageOption);
-        }}
-        data-test-subj={`tablePagination-${'all'}-rows`}
-      >
-        <EuiI18n
-          token="euiTablePagination.rowsPerPageOptionShowAll"
-          default="Show all"
-        />
-      </EuiContextMenuItem>
-    ) : (
+    return (
       <EuiContextMenuItem
         key={itemsPerPageOption}
         icon={itemsPerPageOption === itemsPerPage ? 'check' : 'empty'}
@@ -115,11 +100,18 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
         }}
         data-test-subj={`tablePagination-${itemsPerPageOption}-rows`}
       >
-        <EuiI18n
-          token="euiTablePagination.rowsPerPageOption"
-          values={{ rowsPerPage: itemsPerPageOption }}
-          default="{rowsPerPage} rows"
-        />
+        {itemsPerPageOption === 'all' ? (
+          <EuiI18n
+            token="euiTablePagination.rowsPerPageOptionShowAll"
+            default="Show all"
+          />
+        ) : (
+          <EuiI18n
+            token="euiTablePagination.rowsPerPageOption"
+            values={{ rowsPerPage: itemsPerPageOption }}
+            default="{rowsPerPage} rows"
+          />
+        )}
       </EuiContextMenuItem>
     );
   });
@@ -149,7 +141,7 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        {itemsPerPage > 0 && (
+        {itemsPerPage !== 'all' && (
           <EuiPagination
             pageCount={pageCount}
             activePage={activePage}
