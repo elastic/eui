@@ -403,7 +403,7 @@ export const PageTemplateExample = {
           <p>
             Similar to the previous example, you can create a centered panel to
             emphasize incompleteness even with a page header. For this setup, we
-            recommend using setting <strong>EuiPageContent</strong> to use the{' '}
+            recommend setting <strong>EuiPageContent</strong> to use the{' '}
             <EuiCode>subdued</EuiCode> color as to not have nested shadows.
           </p>
           <EuiCallOut
@@ -508,7 +508,7 @@ export const PageTemplateExample = {
       text: (
         <>
           <p>
-            Though it is not recomended for most layouts, some require the
+            Though it is not recommended for most layouts, some require the
             control of scrolling to be handled through child components. You can
             achieve this through nested flex groups and overflow properties;
             adding certain combinations of{' '}
@@ -646,7 +646,7 @@ export const PageTemplateExample = {
       text: (
         <p>
           Also similar to the previous examples, you can create a centered panel
-          to emphasis incompleteness even with a page header. For this setup,
+          to emphasize incompleteness even with a page header. For this setup,
           You will need to use nested <strong>EuiPageContent</strong> components
           in order for the centering to work.
         </p>
