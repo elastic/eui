@@ -287,7 +287,7 @@ export const SelectionControlsExample = {
       text: (
         <>
           <p>
-            Make sure to pass a label to ensure a larger clickable area and
+            Make sure to pass a <EuiCode>label</EuiCode> to ensure a larger clickable area and
             ensure that screen readers will read out the label when the user is
             focused on the input. You can find more about labels usage in the{' '}
             <Link to="/forms/selection-controls/guidelines">
