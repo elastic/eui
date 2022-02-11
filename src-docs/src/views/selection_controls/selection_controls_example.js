@@ -99,7 +99,7 @@ export const SelectionControlsExample = {
       </p>
       <p>
         To deal with longer lists, consider using a{' '}
-        <Link to="/form-controls#select">EuiSelect</Link>,{' '}
+        <Link to="/forms/form-controls#select">EuiSelect</Link>,{' '}
         <Link to="/forms/super-select">EuiSuperSelect</Link> or{' '}
         <Link to="/forms/combo-box">EuiComboBox</Link>.
       </p>
