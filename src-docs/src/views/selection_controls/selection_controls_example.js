@@ -198,7 +198,7 @@ export const SelectionControlsExample = {
             6 options.
           </p>
           <p>
-            When creating a list, each input should have the same name to ensure
+            When creating a list, each input should have the same <EuiCode>name</EuiCode> to ensure
             a group is established. This way when you select a radio button in
             that group, the previously selected button is automatically
             deselected.
