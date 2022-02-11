@@ -257,7 +257,7 @@ export default () => {
 
         <GuideRuleExample
           type="dont"
-          text="Use the past tense in a single form."
+          text="Change the label to represent the current state of the switch."
           minHeight={234}
         >
           <EuiSwitch checked={false} onChange={() => {}} label="Log enabled" />
