@@ -38,7 +38,7 @@ export const PageExample = {
           Page layouts are modular and fit together in a precise manner, though
           certain parts can also be added or removed as needed. EUI provides
           both the <strong>individual page components</strong> and an{' '}
-          <Link to="/templates/page-templates">over-arching template</Link> for
+          <Link to="/templates/page-template">over-arching template</Link> for
           easily creating some pre-defined layouts.
         </p>
       </EuiText>
@@ -49,7 +49,7 @@ export const PageExample = {
       >
         <p>
           If you&apos;re looking for full page layout examples, we recommend
-          using the <Link to="/templates/page-templates">EuiPageTemplate</Link>{' '}
+          using the <Link to="/templates/page-template">EuiPageTemplate</Link>{' '}
           and use this page to modify the props of each part of the template.
         </p>
       </EuiCallOut>

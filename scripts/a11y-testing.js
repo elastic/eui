@@ -4,13 +4,13 @@ const { AxePuppeteer } = require('@axe-core/puppeteer');
 
 const docsPages = async (root, page) => {
   const pagesToSkip = [
-    `${root}#/layout/page`, // Has duplicate `<main>` element
+    `${root}#/templates/page-template`, // Has duplicate `<main>` element
     `${root}#/layout/page-header`, // Has duplicate `<header>` element
     `${root}#/display/aspect-ratio`,
     `${root}#/forms/combo-box`,
     `${root}#/forms/color-selection`,
     `${root}#/forms/date-picker`,
-    `${root}#/forms/super-date-picker`,
+    `${root}#/templates/super-date-picker`,
     `${root}#/tabular-content/data-grid-styling-and-control`,
     `${root}#/tabular-content/data-grid-virtualization`,
     `${root}#/tabular-content/data-grid-row-heights-options`,
