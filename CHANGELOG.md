@@ -4,7 +4,7 @@
 
 **Bug fixes**
 
-- Fixed `EuiCode` display to be `inline-block` so it can have padding ([#5629](https://github.com/elastic/eui/pull/5629))
+- Fixed `EuiCode` bug where padding was not being contained in the inline box ([#5629](https://github.com/elastic/eui/pull/5629))
 
 ## [`48.0.0`](https://github.com/elastic/eui/tree/v48.0.0)
 

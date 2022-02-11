@@ -3,9 +3,9 @@
 */
 .euiCode {
   @include euiCodeFont;
-  display: inline-block;
   font-size: .9em; /* 1 */
   padding: .2em .5em; /* 1 */
+  line-height: 1.72; // Adds a line height so that the padding is contained in the inline box 
   background: $euiCodeBlockBackgroundColor;
 
   &.euiCode--transparentBackground {
