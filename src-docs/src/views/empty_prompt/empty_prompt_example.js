@@ -317,7 +317,7 @@ export const EmptyPromptExample = {
         <>
           <p>
             When using a <strong>EuiEmptyPrompt</strong> in a{' '}
-            <Link to="/layout/page-template">EuiPageTemplate</Link>, pay
+            <Link to="/templates/page-template">EuiPageTemplate</Link>, pay
             attention to the template you’re passing. The template will
             determine which <EuiCode>color</EuiCode> and{' '}
             <EuiCode>hasBorder</EuiCode> prop you should use to ensure
@@ -349,7 +349,7 @@ export const EmptyPromptExample = {
             You can then tie multiple types of empty states together to create a
             seamless loading to empty or loading to error experience. The
             following example shows how to encorprate these states with{' '}
-            <Link to="/layout/page-template#simple-layout-with-centered-content">
+            <Link to="/templates/page-template#simple-layout-with-centered-content">
               <strong>EuiPageTemplate</strong>
             </Link>{' '}
             using <EuiCode>{'template="centeredContent"'}</EuiCode>.

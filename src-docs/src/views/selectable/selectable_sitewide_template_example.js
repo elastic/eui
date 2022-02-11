@@ -44,9 +44,12 @@ export const SitewideSearchExample = {
         <Fragment>
           <h3>Search input</h3>
           <p>
-            The search ability of EuiSelectable is still hooked up to the
-            options provided. It will highlight the portion of the label that
-            matches the search string.
+            The search ability of{' '}
+            <Link to="/forms/selectable">
+              <strong>EuiSelectable</strong>
+            </Link>{' '}
+            is still hooked up to the options provided. It will highlight the
+            portion of the label that matches the search string.
           </p>
           <EuiCallOut
             size="s"
