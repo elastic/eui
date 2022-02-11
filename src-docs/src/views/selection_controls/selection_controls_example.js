@@ -238,9 +238,8 @@ export const SelectionControlsExample = {
             group.
           </p>
           <p>
-            Pass an array of objects to the options prop with an ID and label
-            for each radio. When the individual labels for each radio do not
-            provide a sufficient description, pass a legend to the group.
+            When the individual labels for each radio do not
+            provide a sufficient description, pass a <EuiCode>legend</EuiCode> to the group.
           </p>
         </Fragment>
       ),
