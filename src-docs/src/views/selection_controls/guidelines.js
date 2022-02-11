@@ -7,7 +7,9 @@ import {
   EuiCheckboxGroup,
   EuiRadioGroup,
   EuiBasicTable,
+  EuiImage,
 } from '../../../../src/components';
+import singleSvg from '../../images/single.svg';
 
 export default () => {
   const accessDo = [
@@ -90,22 +92,18 @@ export default () => {
   const items = [
     {
       id: '1',
-      name: 'Log created',
       enabled: true,
     },
     {
       id: '2',
-      name: 'Log deleted',
       enabled: false,
     },
     {
       id: '3',
-      name: 'Log suspended',
       enabled: true,
     },
     {
       id: '4',
-      name: 'Log updated',
       enabled: false,
     },
   ];
@@ -121,6 +119,23 @@ export default () => {
     {
       field: 'name',
       name: 'Name',
+      render: () => (
+        <EuiImage size="fullWidth" alt="Fake table text" url={singleSvg} />
+      ),
+    },
+    {
+      field: 'version',
+      name: 'Version',
+      render: () => (
+        <EuiImage size="fullWidth" alt="Fake table text" url={singleSvg} />
+      ),
+    },
+    {
+      field: 'description',
+      name: 'Description',
+      render: () => (
+        <EuiImage size="fullWidth" alt="Fake table text" url={singleSvg} />
+      ),
     },
   ];
 

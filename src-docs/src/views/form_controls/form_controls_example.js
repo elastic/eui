@@ -13,14 +13,11 @@ import {
   EuiFieldSearch,
   EuiFieldText,
   EuiFilePicker,
-  EuiFormFieldset,
-  EuiFormLegend,
   EuiFormControlLayout,
   EuiFormControlLayoutDelimited,
   EuiLink,
   EuiSelect,
   EuiTextArea,
-  EuiSpacer,
 } from '../../../../src/components';
 
 import {
@@ -123,9 +120,6 @@ const selectSnippet = [
 
 import PrependAppend from './prepend_append';
 const PrependAppendSource = require('!!raw-loader!./prepend_append');
-
-import Fieldset from './fieldset';
-const fieldsetSource = require('!!raw-loader!./fieldset');
 
 import FormControlLayout from './form_control_layout';
 const formControlLayoutSource = require('!!raw-loader!./form_control_layout');
@@ -292,57 +286,6 @@ export const FormControlsExample = {
       snippet: filePickerRemoveSnippet,
       demo: <FilePickerRemove />,
       props: { EuiFilePicker },
-    },
-    {
-      title: 'Fieldset and legend',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: fieldsetSource,
-        },
-      ],
-      text: (
-        <Fragment>
-          <EuiCallOut
-            color="warning"
-            iconType="accessibility"
-            title={
-              <span>
-                &quot;[Use a fieldset and legend] for groups of related controls
-                where the individual labels for each control do not provide a
-                sufficient description, and an additional group level
-                description is needed.&quot;{' '}
-                <EuiLink
-                  external
-                  href="https://www.w3.org/WAI/WCAG21/Techniques/html/H71"
-                >
-                  WCAG Spec
-                </EuiLink>
-              </span>
-            }
-          />
-          <EuiSpacer />
-          <p>
-            <strong>EuiFormFieldset</strong> simply wraps its children in a{' '}
-            <EuiCode language="html">&lt;fieldset&gt;</EuiCode> with the option
-            to add a <EuiCode language="html">&lt;legend&gt;</EuiCode> via the{' '}
-            <EuiCode>legend</EuiCode> object prop.
-          </p>
-        </Fragment>
-      ),
-      props: {
-        EuiFormFieldset,
-        EuiFormLegend,
-      },
-      demo: <Fieldset />,
-      snippet: [
-        `<EuiFormFieldset legend={{ children: 'Legend' }}>
-  <!-- Controls -->
-</EuiFormFieldset>`,
-        `<EuiFormFieldset legend={{ children: 'Hidden legend', display: 'hidden' }}>
-  <!-- Controls -->
-</EuiFormFieldset>`,
-      ],
     },
     {
       title: 'Prepend and Append',

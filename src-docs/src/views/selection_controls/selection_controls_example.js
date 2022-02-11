@@ -15,6 +15,10 @@ import {
   EuiRadioGroup,
   EuiSwitch,
   EuiText,
+  EuiFormFieldset,
+  EuiFormLegend,
+  EuiSpacer,
+  EuiLink,
 } from '../../../../src/components';
 
 import { CheckboxConfig, RadioConfig, SwitchConfig } from './playground';
@@ -78,8 +82,12 @@ const switchLabelSnippet = [
 />`,
 ];
 
+import Fieldset from './fieldset';
+const fieldsetSource = require('!!raw-loader!./fieldset');
+
 export const SelectionControlsExample = {
   title: 'Selection controls',
+  guidelines: <Guidelines />,
   intro: (
     <EuiText>
       <p>
@@ -331,6 +339,56 @@ export const SelectionControlsExample = {
       },
       demo: <SwitchLabel />,
     },
+    {
+      title: 'Fieldset and legend',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: fieldsetSource,
+        },
+      ],
+      text: (
+        <Fragment>
+          <EuiCallOut
+            color="warning"
+            iconType="accessibility"
+            title={
+              <span>
+                &quot;[Use a fieldset and legend] for groups of related controls
+                where the individual labels for each control do not provide a
+                sufficient description, and an additional group level
+                description is needed.&quot;{' '}
+                <EuiLink
+                  external
+                  href="https://www.w3.org/WAI/WCAG21/Techniques/html/H71"
+                >
+                  WCAG Spec
+                </EuiLink>
+              </span>
+            }
+          />
+          <EuiSpacer />
+          <p>
+            <strong>EuiFormFieldset</strong> simply wraps its children in a{' '}
+            <EuiCode language="html">&lt;fieldset&gt;</EuiCode> with the option
+            to add a <EuiCode language="html">&lt;legend&gt;</EuiCode> via the{' '}
+            <EuiCode>legend</EuiCode> object prop.
+          </p>
+        </Fragment>
+      ),
+      props: {
+        EuiFormFieldset,
+        EuiFormLegend,
+      },
+      demo: <Fieldset />,
+      snippet: [
+        `<EuiFormFieldset legend={{ children: 'Legend' }}>
+  <!-- Controls -->
+</EuiFormFieldset>`,
+        `<EuiFormFieldset legend={{ children: 'Hidden legend', display: 'hidden' }}>
+  <!-- Controls -->
+</EuiFormFieldset>`,
+      ],
+    },
   ],
-  guidelines: <Guidelines />,
 };
