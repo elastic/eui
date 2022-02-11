@@ -287,7 +287,7 @@ export default () => {
           text="Change the label to represent the current state of the switch."
           minHeight={234}
         >
-          <EuiSwitch checked={false} onChange={() => {}} label="Log enabled" />
+          <EuiSwitch checked={true} onChange={() => {}} label="Log enabled" />
         </GuideRuleExample>
       </GuideRule>
     </>
