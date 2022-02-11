@@ -76,6 +76,7 @@ exports[`EuiSelectableSearch props defaultValue 1`] = `
       <button
         aria-label="Clear input"
         class="euiFormControlLayoutClearButton"
+        data-test-subj="clearSearchButton"
         type="button"
       >
         <span

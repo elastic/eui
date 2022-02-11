@@ -95,7 +95,6 @@ describe('useCellPopover', () => {
       populateCellPopover(cellPopoverContext);
       expect(getUpdatedState().cellPopover).toMatchInlineSnapshot(`
         <EuiWrappingPopover
-          anchorClassName="euiDataGridRowCell__expand"
           button={<div />}
           closePopover={[Function]}
           display="block"

@@ -816,20 +816,20 @@
     "filepath": "src/components/control_bar/control_bar.tsx"
   },
   {
-    "token": "euiDataGridCellButtons.expandButtonTitle",
+    "token": "euiDataGridCellActions.expandButtonTitle",
     "defString": "Click or hit enter to interact with cell content",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 45,
+        "line": 38,
         "column": 4
       },
       "end": {
-        "line": 49,
+        "line": 42,
         "column": 5
       }
     },
-    "filepath": "src/components/datagrid/body/data_grid_cell_buttons.tsx"
+    "filepath": "src/components/datagrid/body/data_grid_cell_actions.tsx"
   },
   {
     "token": "euiDataGridCell.position",
@@ -3838,6 +3838,102 @@
       }
     },
     "filepath": "src/components/steps/step_strings.tsx"
+  },
+  {
+    "token": "euiSuggest.stateSavedTooltip",
+    "defString": "Saved.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 191,
+        "column": 39
+      },
+      "end": {
+        "line": 194,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/suggest/suggest.tsx"
+  },
+  {
+    "token": "euiSuggest.stateUnsavedTooltip",
+    "defString": "Changes have not been saved.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 191,
+        "column": 39
+      },
+      "end": {
+        "line": 194,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/suggest/suggest.tsx"
+  },
+  {
+    "token": "euiSuggest.stateLoading",
+    "defString": "State: loading.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 217,
+        "column": 67
+      },
+      "end": {
+        "line": 225,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/suggest/suggest.tsx"
+  },
+  {
+    "token": "euiSuggest.stateSaved",
+    "defString": "State: saved.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 217,
+        "column": 67
+      },
+      "end": {
+        "line": 225,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/suggest/suggest.tsx"
+  },
+  {
+    "token": "euiSuggest.stateUnsaved",
+    "defString": "State: unsaved.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 217,
+        "column": 67
+      },
+      "end": {
+        "line": 225,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/suggest/suggest.tsx"
+  },
+  {
+    "token": "euiSuggest.stateUnchanged",
+    "defString": "State: unchanged.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 217,
+        "column": 67
+      },
+      "end": {
+        "line": 225,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/suggest/suggest.tsx"
   },
   {
     "token": "euiTableSortMobile.sorting",
