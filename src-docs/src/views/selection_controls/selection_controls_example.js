@@ -122,9 +122,10 @@ export const SelectionControlsExample = {
             that only some of the checkbox&apos;s descendants are checked.
           </p>
           <p>
-            Make sure to pass a <EuiCode>label</EuiCode> to ensure a larger clickable area and
-            ensure that screen readers will read out the label when the user is
-            focused on the input. To learn more about labels usage, go to the{' '}
+            Make sure to pass a <EuiCode>label</EuiCode> to ensure a larger
+            clickable area and ensure that screen readers will read out the
+            label when the user is focused on the input. To learn more about
+            labels usage, go to the{' '}
             <Link to="/forms/selection-controls/guidelines">
               guidelines tab
             </Link>
@@ -151,13 +152,16 @@ export const SelectionControlsExample = {
         <Fragment>
           <p>
             Use a <strong>EuiCheckboxGroup</strong> when you want to generate a
-            group of checkboxes by passing an array of <EuiCode>options</EuiCode> with an <EuiCode>id</EuiCode> and
-            <EuiCode>label</EuiCode> for each object. Use the <EuiCode>idToSelectedMap</EuiCode> to
-            indicate the IDs of the selected items.
+            group of checkboxes by passing an array of{' '}
+            <EuiCode>options</EuiCode> with an <EuiCode>id</EuiCode> and
+            <EuiCode>label</EuiCode> for each object. Use the{' '}
+            <EuiCode>idToSelectedMap</EuiCode> to indicate the IDs of the
+            selected items.
           </p>
           <p>
             When the individual labels for each radio do not provide a
-            sufficient description, pass a <EuiCode>legend</EuiCode> to the group.
+            sufficient description, pass a <EuiCode>legend</EuiCode> to the
+            group.
           </p>
           <p>
             Use the <EuiCode>compressed</EuiCode> prop to tighten up the spacing
@@ -194,19 +198,20 @@ export const SelectionControlsExample = {
             This component renders a basic HTML{' '}
             <EuiCode>{'<input type="radio">'}</EuiCode> element. Use radio
             buttons to allow users to choose one option out of a list. They are
-            ideal for a list of more than 2 options, and usually no more than
-            6 options.
+            ideal for a list of more than 2 options, and usually no more than 6
+            options.
           </p>
           <p>
-            When creating a list, each input should have the same <EuiCode>name</EuiCode> to ensure
-            a group is established. This way when you select a radio button in
-            that group, the other options are automatically
-            deselected.
+            When creating a list, each input should have the same{' '}
+            <EuiCode>name</EuiCode> to ensure a group is established. This way
+            when you select a radio button in that group, the other options are
+            automatically deselected.
           </p>
           <p>
-            Make sure to pass a <EuiCode>label</EuiCode> to ensure a larger clickable area and
-            ensure that screen readers will read out the label when the user is
-            focused on the input. To learn more about labels usage, go to the{' '}
+            Make sure to pass a <EuiCode>label</EuiCode> to ensure a larger
+            clickable area and ensure that screen readers will read out the
+            label when the user is focused on the input. To learn more about
+            labels usage, go to the{' '}
             <Link to="/forms/selection-controls/guidelines">
               guidelines tab
             </Link>
@@ -233,13 +238,15 @@ export const SelectionControlsExample = {
         <Fragment>
           <p>
             Use a <strong>EuiRadioGroup</strong> when you want to generate a
-            group of radio buttons by passing an array of <EuiCode>options</EuiCode> with an <EuiCode>id</EuiCode> and
-            <EuiCode>label</EuiCode> for each object. Pass a single <EuiCode>name</EuiCode> property to define the
-            group.
+            group of radio buttons by passing an array of{' '}
+            <EuiCode>options</EuiCode> with an <EuiCode>id</EuiCode> and
+            <EuiCode>label</EuiCode> for each object. Pass a single{' '}
+            <EuiCode>name</EuiCode> property to define the group.
           </p>
           <p>
-            When the individual labels for each radio do not
-            provide a sufficient description, pass a <EuiCode>legend</EuiCode> to the group.
+            When the individual labels for each radio do not provide a
+            sufficient description, pass a <EuiCode>legend</EuiCode> to the
+            group.
           </p>
         </Fragment>
       ),
@@ -287,9 +294,10 @@ export const SelectionControlsExample = {
       text: (
         <>
           <p>
-            Make sure to pass a <EuiCode>label</EuiCode> to ensure a larger clickable area and
-            ensure that screen readers will read out the label when the user is
-            focused on the input. You can find more about labels usage in the{' '}
+            Make sure to pass a <EuiCode>label</EuiCode> to ensure a larger
+            clickable area and ensure that screen readers will read out the
+            label when the user is focused on the input. You can find more about
+            labels usage in the{' '}
             <Link to="/forms/selection-controls/guidelines">
               guidelines tab
             </Link>
