@@ -34,6 +34,7 @@ export const SitewideSearchExample = {
   ),
   sections: [
     {
+      title: 'Basic setup',
       source: [
         {
           type: GuideSectionTypes.JS,
