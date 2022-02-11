@@ -1,5 +1,49 @@
 [
   {
+    "version": "48.0.0",
+    "changes": [
+      {
+        "token": "euiDataGridCellButtons.expandButtonTitle",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridCellActions.expandButtonTitle",
+        "changeType": "added",
+        "value": "Click or hit enter to interact with cell content"
+      },
+      {
+        "token": "euiSuggest.stateSavedTooltip",
+        "changeType": "added",
+        "value": "Saved."
+      },
+      {
+        "token": "euiSuggest.stateUnsavedTooltip",
+        "changeType": "added",
+        "value": "Changes have not been saved."
+      },
+      {
+        "token": "euiSuggest.stateLoading",
+        "changeType": "added",
+        "value": "State: loading."
+      },
+      {
+        "token": "euiSuggest.stateSaved",
+        "changeType": "added",
+        "value": "State: saved."
+      },
+      {
+        "token": "euiSuggest.stateUnsaved",
+        "changeType": "added",
+        "value": "State: unsaved."
+      },
+      {
+        "token": "euiSuggest.stateUnchanged",
+        "changeType": "added",
+        "value": "State: unchanged."
+      }
+    ]
+  },
+  {
     "version": "47.0.0",
     "changes": [
       {

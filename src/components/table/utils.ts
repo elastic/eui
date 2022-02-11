@@ -14,7 +14,7 @@ export const WARNING_MESSAGE =
 export const resolveWidthAsStyle = (
   style: CSSProperties = {},
   width?: string | number
-) => {
+): CSSProperties => {
   const { width: styleWidth, ...styleRest } = style;
   let attrWidth = width;
   if (

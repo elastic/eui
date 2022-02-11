@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "47.0.0",
+  "version": "48.0.0",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
@@ -75,6 +75,7 @@
     "prop-types": "^15.6.0",
     "react-beautiful-dnd": "^13.1.0",
     "react-dropzone": "^11.5.3",
+    "react-element-to-jsx-string": "^14.3.4",
     "react-focus-on": "^3.5.4",
     "react-input-autosize": "^3.0.0",
     "react-is": "^17.0.2",
