@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -74,11 +75,16 @@ export const FilterGroupExample = {
       text: (
         <Fragment>
           <p>
-            To provide a long list of grouped filter, use a popover for
-            filtering an array of passed items. This mostly uses standard
-            popover mechanics, but the component{' '}
-            <strong>EuiFilterSelectItem</strong> is used for the items
-            themselves.
+            To provide a long list of grouped filters, we recommend wrapping the
+            filter button within an{' '}
+            <Link to="/layout/popover">
+              <strong>EuiPopover</strong>
+            </Link>{' '}
+            and passing the items to a searchable{' '}
+            <Link to="/forms/selectable">
+              <strong>EuiSelectable</strong>
+            </Link>
+            .
           </p>
           <h3>Indicating number of filters</h3>
           <p>

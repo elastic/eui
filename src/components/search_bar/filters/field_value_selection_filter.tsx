@@ -6,15 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ReactElement, ReactNode } from 'react';
+import React, { Component, ReactNode } from 'react';
 import { isArray, isNil } from '../../../services/predicate';
-import { keys } from '../../../services';
+import { ExclusiveUnion } from '../../common';
 import { EuiPopover, EuiPopoverTitle } from '../../popover';
-import { EuiFieldSearch } from '../../form/field_search';
-import { EuiFilterButton, EuiFilterSelectItem } from '../../filter_group';
-import { EuiLoadingChart } from '../../loading';
-import { EuiSpacer } from '../../spacer';
-import { EuiIcon } from '../../icon';
+import { EuiFilterButton } from '../../filter_group';
+import { EuiSelectable, EuiSelectableProps } from '../../selectable';
 import { Query } from '../query';
 import { Clause, Operator, OperatorType, Value } from '../query/ast';
 
@@ -86,9 +83,6 @@ export class FieldValueSelectionFilter extends Component<
   FieldValueSelectionFilterProps,
   State
 > {
-  private readonly selectItems: EuiFilterSelectItem[];
-  private searchInput: HTMLInputElement | null = null;
-
   constructor(props: FieldValueSelectionFilterProps) {
     super(props);
     const { options } = props.config;
@@ -99,8 +93,6 @@ export class FieldValueSelectionFilter extends Component<
           shown: options,
         }
       : null;
-
-    this.selectItems = [];
     this.state = {
       popoverOpen: false,
       error: null,
@@ -290,34 +282,6 @@ export class FieldValueSelectionFilter extends Component<
     }
   }
 
-  onKeyDown(
-    index: number,
-    event:
-      | React.KeyboardEvent<HTMLInputElement>
-      | React.KeyboardEvent<HTMLButtonElement>
-  ) {
-    switch (event.key) {
-      case keys.ARROW_DOWN:
-        if (index < this.selectItems.length - 1) {
-          event.preventDefault();
-          this.selectItems[index + 1].focus();
-        }
-        break;
-
-      case keys.ARROW_UP:
-        if (index < 0) {
-          return; // it's coming from the search box... nothing to do... nowhere to go
-        }
-        if (index === 0 && this.searchInput) {
-          event.preventDefault();
-          this.searchInput.focus();
-        } else if (index > 0) {
-          event.preventDefault();
-          this.selectItems[index - 1].focus();
-        }
-    }
-  }
-
   resolveMultiSelect(): MultiSelect {
     const { config } = this.props;
     return !isNil(config.multiSelect)
@@ -358,13 +322,59 @@ export class FieldValueSelectionFilter extends Component<
       </EuiFilterButton>
     );
 
-    const searchBox = this.renderSearchBox();
-    const content = this.renderContent(
-      config.field,
-      query,
-      config,
-      multiSelect
-    );
+    const items = this.state.options
+      ? this.state.options.shown.map((option) => {
+          const optionField = option.field || config.field;
+
+          if (optionField == null) {
+            throw new Error(
+              'option.field or field should be provided in <FieldValueSelectionFilter/>'
+            );
+          }
+
+          const clause =
+            multiSelect === 'or'
+              ? query.getOrFieldClause(optionField, option.value)
+              : query.getSimpleFieldClause(optionField, option.value);
+
+          const label = this.resolveOptionName(option);
+
+          const checked = this.resolveChecked(clause);
+          return {
+            label,
+            checked,
+            data: {
+              view: option.view ?? label,
+              value: option.value,
+              optionField,
+            },
+          };
+        })
+      : [];
+
+    const threshold = config.searchThreshold || defaults.config.searchThreshold;
+    const isOverSearchThreshold =
+      this.state.options && this.state.options.all.length >= threshold;
+
+    let searchProps: ExclusiveUnion<
+      { searchable: false },
+      {
+        searchable: true;
+        searchProps: EuiSelectableProps['searchProps'];
+      }
+    > = {
+      searchable: false,
+    };
+
+    if (isOverSearchThreshold) {
+      searchProps = {
+        searchable: true,
+        searchProps: {
+          compressed: true,
+          disabled: this.state.error != null,
+        },
+      };
+    }
 
     return (
       <EuiPopover
@@ -375,136 +385,56 @@ export class FieldValueSelectionFilter extends Component<
         anchorPosition="downCenter"
         panelClassName="euiFilterGroup__popoverPanel"
       >
-        {searchBox}
-        {content}
+        <EuiSelectable<Partial<typeof items[number]['data']>>
+          singleSelection={!multiSelect}
+          aria-label={config.name}
+          options={items}
+          renderOption={(option) => option.view}
+          isLoading={isNil(this.state.options)}
+          loadingMessage={
+            config.loadingMessage || defaults.config.loadingMessage
+          }
+          emptyMessage={
+            config.noOptionsMessage || defaults.config.noOptionsMessage
+          }
+          errorMessage={this.state.error}
+          noMatchesMessage={
+            config.noOptionsMessage || defaults.config.noOptionsMessage
+          }
+          listProps={{
+            isVirtualized: isOverSearchThreshold || false,
+          }}
+          onChange={(options) => {
+            const diff = items.find(
+              (item, index) => item.checked !== options[index].checked
+            );
+            if (diff) {
+              this.onOptionClick(
+                diff.data.optionField,
+                diff.data.value,
+                diff.checked
+              );
+            }
+          }}
+          {...searchProps}
+        >
+          {(list, search) => (
+            <>
+              {isOverSearchThreshold && (
+                <EuiPopoverTitle paddingSize="s">{search}</EuiPopoverTitle>
+              )}
+              {list}
+            </>
+          )}
+        </EuiSelectable>
       </EuiPopover>
     );
-  }
-
-  renderSearchBox() {
-    const threshold =
-      this.props.config.searchThreshold || defaults.config.searchThreshold;
-    if (this.state.options && this.state.options.all.length >= threshold) {
-      const disabled = this.state.error != null;
-      return (
-        <EuiPopoverTitle paddingSize="s">
-          <EuiFieldSearch
-            inputRef={(ref) => (this.searchInput = ref)}
-            disabled={disabled}
-            incremental={true}
-            onSearch={(query) => this.filterOptions(query)}
-            onKeyDown={this.onKeyDown.bind(this, -1)}
-            compressed
-          />
-        </EuiPopoverTitle>
-      );
-    }
-  }
-
-  renderContent(
-    field: string | undefined,
-    query: Query,
-    config: FieldValueSelectionFilterConfigType,
-    multiSelect: MultiSelect
-  ) {
-    if (this.state.error) {
-      return this.renderError(this.state.error);
-    }
-    if (isNil(this.state.options)) {
-      return this.renderLoader();
-    }
-    if (this.state.options.shown.length === 0) {
-      return this.renderNoOptions();
-    }
-
-    if (this.state.options == null) {
-      return;
-    }
-
-    const items: ReactElement[] = [];
-
-    this.state.options.shown.forEach((option, index) => {
-      const optionField = option.field || field;
-
-      if (optionField == null) {
-        throw new Error(
-          'option.field or field should be provided in <FieldValueSelectionFilter/>'
-        );
-      }
-
-      const clause =
-        multiSelect === 'or'
-          ? query.getOrFieldClause(optionField, option.value)
-          : query.getSimpleFieldClause(optionField, option.value);
-
-      const checked = this.resolveChecked(clause);
-      const onClick = () => {
-        // clicking a checked item will uncheck it and effective remove the filter (value = undefined)
-        this.onOptionClick(optionField, option.value, checked);
-      };
-
-      const item = (
-        <EuiFilterSelectItem
-          key={index}
-          checked={checked}
-          onClick={onClick}
-          ref={(ref) => (this.selectItems[index] = ref!)}
-          onKeyDown={this.onKeyDown.bind(this, index)}
-        >
-          {option.view ? option.view : this.resolveOptionName(option)}
-        </EuiFilterSelectItem>
-      );
-
-      items.push(item);
-    });
-
-    return <div className="euiFilterSelect__items">{items}</div>;
   }
 
   resolveChecked(clause: Clause | undefined): 'on' | 'off' | undefined {
     if (clause) {
       return Query.isMust(clause) ? 'on' : 'off';
     }
-  }
-
-  renderLoader() {
-    const message =
-      this.props.config.loadingMessage || defaults.config.loadingMessage;
-    return (
-      <div className="euiFilterSelect__note">
-        <div className="euiFilterSelect__noteContent">
-          <EuiLoadingChart size="m" />
-          <EuiSpacer size="xs" />
-          <p>{message}</p>
-        </div>
-      </div>
-    );
-  }
-
-  renderError(message: string) {
-    return (
-      <div className="euiFilterSelect__note">
-        <div className="euiFilterSelect__noteContent">
-          <EuiIcon size="m" type="faceSad" color="danger" />
-          <EuiSpacer size="xs" />
-          <p>{message}</p>
-        </div>
-      </div>
-    );
-  }
-
-  renderNoOptions() {
-    const message =
-      this.props.config.noOptionsMessage || defaults.config.noOptionsMessage;
-    return (
-      <div className="euiFilterSelect__note">
-        <div className="euiFilterSelect__noteContent">
-          <EuiIcon type="minusInCircle" />
-          <EuiSpacer size="xs" />
-          <p>{message}</p>
-        </div>
-      </div>
-    );
   }
 
   isActiveField(field: string | undefined): boolean {
