@@ -1,13 +1,13 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
 - Improved `EuiSelectable` keypress scenarios ([#5613](https://github.com/elastic/eui/pull/5613))
+- Added `isDisabled` prop to `EuiMarkdownEditor` ([#5627](https://github.com/elastic/eui/pull/5627))
 
 ## [`48.0.0`](https://github.com/elastic/eui/tree/v48.0.0)
 
 - Refactored `EuiSuggest` to use `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
 - Added a return type to `EuiTable` `resolveWidthAsStyle` util ([#5615](https://github.com/elastic/eui/pull/5615))
 - Added a return type to `euiSelectableTemplateSitewideFormatOptions` util ([#5620](https://github.com/elastic/eui/pull/5620))
-- Added `isDisabled` prop to `EuiMarkdownEditor` ([#0000](https://github.com/elastic/eui/pull/0000))
 
 **Bug fixes**
 
