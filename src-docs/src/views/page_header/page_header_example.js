@@ -81,14 +81,6 @@ export const PageHeaderExample = {
       ),
       demo: <PageHeader />,
       props: { EuiPageHeader },
-      snippet: `<EuiPageHeader
-  pageTitle="Page title"
-  description="Example of a description."
-  rightSideItems={[
-    <EuiButton fill>Button 1</EuiButton>,
-    <EuiButton>Button 2</EuiButton>
-  ]}
-/>`,
     },
     {
       title: 'Tabs in the page header',
@@ -140,14 +132,6 @@ export const PageHeaderExample = {
       ),
       demo: <PageHeaderTabs />,
       props: { EuiPageHeader },
-      snippet: `<EuiPageHeader
-  tabs={[
-    { label:"Tab 1", isSelected: true },
-    { label:"Tab 2" }
-  ]}
-  bottomBorder
-  description="Example of a description."
-/>`,
     },
     {
       title: 'Breadcrumbs in the page header',
@@ -157,13 +141,20 @@ export const PageHeaderExample = {
           code: pageBreadcrumbsSource,
         },
       ],
-      text: <></>,
+      text: (
+        <>
+          <p>
+            <Link to="/navigation/breadcrumbs">Breadcrumbs</Link> are useful for
+            tracking in-page flows that{' '}
+            <strong>are not part of the entire application architecture</strong>
+            . To make this easy <strong>EuiPageHeader</strong> provides a{' '}
+            <EuiCode>breadcrumbs</EuiCode> prop that accepts the same
+            configuration as <EuiCode>EuiBreadrumbs.breadcrumbs</EuiCode>.
+          </p>
+        </>
+      ),
       demo: <PageBreadcrumbs />,
       props: { EuiPageHeader },
-      snippet: `<EuiPageHeader
-  pageTitle="Page title"
-  description="Example of a description."
-/>`,
     },
     {
       source: [
@@ -180,10 +171,6 @@ export const PageHeaderExample = {
       ),
       demo: <PageBreadcrumbsReturn />,
       props: { EuiPageHeader },
-      snippet: `<EuiPageHeader
-  pageTitle="Page title"
-  description="Example of a description."
-/>`,
     },
     {
       title: 'Customizing the page header',

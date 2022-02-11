@@ -4,6 +4,7 @@ import { EuiPageHeader, EuiButton, EuiIcon } from '../../../../src/components';
 
 export default () => (
   <EuiPageHeader
+    bottomBorder
     pageTitle="Page title"
     description="Example of a description."
     breadcrumbs={[
