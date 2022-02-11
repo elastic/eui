@@ -3,6 +3,7 @@
 */
 .euiCode {
   @include euiCodeFont;
+  display: inline-block;
   font-size: .9em; /* 1 */
   padding: .2em .5em; /* 1 */
   background: $euiCodeBlockBackgroundColor;

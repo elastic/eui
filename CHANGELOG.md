@@ -2,6 +2,10 @@
 
 - Improved `EuiSelectable` keypress scenarios ([#5613](https://github.com/elastic/eui/pull/5613))
 
+**Bug fixes**
+
+- Fixed `EuiCode` display to be `inline-block` so it can have padding ([#0000](https://github.com/elastic/eui/pull/0000))
+
 ## [`48.0.0`](https://github.com/elastic/eui/tree/v48.0.0)
 
 - Refactored `EuiSuggest` to use `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
