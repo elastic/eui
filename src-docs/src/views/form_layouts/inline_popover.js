@@ -101,7 +101,7 @@ export default () => {
         <EuiSwitch
           id={verticalFormSwitchId}
           name="popswitch"
-          label="Cool popover form"
+          label="Setting name"
           checked={isSwitchChecked}
           onChange={onSwitchChange}
         />
