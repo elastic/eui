@@ -200,7 +200,7 @@ export const SelectionControlsExample = {
           <p>
             When creating a list, each input should have the same <EuiCode>name</EuiCode> to ensure
             a group is established. This way when you select a radio button in
-            that group, the previously selected button is automatically
+            that group, the other options are automatically
             deselected.
           </p>
           <p>
