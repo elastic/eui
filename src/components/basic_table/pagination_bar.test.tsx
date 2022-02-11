@@ -64,4 +64,22 @@ describe('PaginationBar', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('render - show all pageSize', () => {
+    const props = {
+      ...requiredProps,
+      pagination: {
+        pageIndex: 0,
+        pageSize: 'all' as const,
+        pageSizeOptions: [1, 5, 'all' as const],
+        totalItemCount: 5,
+      },
+      onPageSizeChange: () => {},
+      onPageChange: () => {},
+    };
+
+    const component = shallow(<PaginationBar {...props} />);
+
+    expect(component).toMatchSnapshot();
+  });
 });

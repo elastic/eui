@@ -48,11 +48,11 @@ function isEuiSearchBarProps<T>(
 export type Search = boolean | EuiSearchBarProps;
 
 interface PaginationOptions extends EuiTablePaginationProps {
-  pageSizeOptions?: number[];
+  pageSizeOptions?: Array<number | 'all'>;
   initialPageIndex?: number;
-  initialPageSize?: number;
+  initialPageSize?: number | 'all';
   pageIndex?: number;
-  pageSize?: number;
+  pageSize?: number | 'all';
 }
 
 type Pagination = boolean | PaginationOptions;
@@ -114,8 +114,8 @@ interface State<T> {
   search?: Search;
   query: Query | null;
   pageIndex: number;
-  pageSize?: number;
-  pageSizeOptions?: number[];
+  pageSize?: number | 'all';
+  pageSizeOptions?: Array<number | 'all'>;
   sortName: ReactNode;
   sortDirection?: Direction;
   allowNeutralSort: boolean;
@@ -389,7 +389,7 @@ export class EuiInMemoryTable<T> extends Component<
   onTableChange = ({ page, sort }: Criteria<T>) => {
     let { index: pageIndex, size: pageSize } = (page || {}) as {
       index: number;
-      size: number;
+      size: number | 'all';
     };
 
     // don't apply pagination changes that are otherwise controlled
@@ -583,7 +583,7 @@ export class EuiInMemoryTable<T> extends Component<
       : matchingItems;
 
     const visibleItems =
-      pageSize && this.props.pagination
+      typeof pageSize === 'number' && this.props.pagination
         ? (() => {
             const startIndex = pageIndex * pageSize;
             return sortedItems.slice(
