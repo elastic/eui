@@ -233,8 +233,8 @@ export const SelectionControlsExample = {
         <Fragment>
           <p>
             Use a <strong>EuiRadioGroup</strong> when you want to generate a
-            group of radio buttons by passing an array of objects with an ID and
-            label for each object. Use the name property to define a name to the
+            group of radio buttons by passing an array of <EuiCode>options</EuiCode> with an <EuiCode>id</EuiCode> and
+            <EuiCode>label</EuiCode> for each object. Pass a single <EuiCode>name</EuiCode> property to define the
             group.
           </p>
           <p>
