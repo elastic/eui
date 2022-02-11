@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const babelConfig = require('./.babelrc.js');
 
 const getPort = require('get-port');
@@ -148,6 +149,20 @@ const webpackConfig = {
     : undefined,
   node: {
     fs: 'empty',
+  },
+
+  optimization: {
+    minimize: isProduction,
+    minimizer: [
+      new TerserPlugin({
+        parallel: true,
+        terserOptions: {
+          // prevent Eui* function (component) names from being mangled,
+          // as mangling prevents copy-pasteable component code from being generated
+          keep_fnames: /^Eui[A-Z]/,
+        },
+      }),
+    ],
   },
 };
 

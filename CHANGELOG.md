@@ -1,5 +1,6 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+- Improved `EuiSelectable` keypress scenarios ([#5613](https://github.com/elastic/eui/pull/5613))
 - Converted `FieldValueSelectionFilter` in `EuiSearchBar` to use `EuiSelectable` ([#5387](https://github.com/elastic/eui/issues/5387))
 
 ## [`48.0.0`](https://github.com/elastic/eui/tree/v48.0.0)
