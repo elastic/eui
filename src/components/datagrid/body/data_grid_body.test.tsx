@@ -132,14 +132,4 @@ describe('Cell', () => {
     const component = shallow(<Cell {...requiredProps} />);
     expect(component.find('EuiDataGridCell').exists()).toBe(true);
   });
-
-  describe('stripes', () => {
-    it('renders odd rows with .euiDataGridRowCell--stripe', () => {
-      const component = shallow(<Cell {...requiredProps} rowIndex={3} />);
-      expect(component.hasClass('euiDataGridRowCell--stripe')).toBe(true);
-
-      component.setProps({ rowIndex: 4 });
-      expect(component.hasClass('euiDataGridRowCell--stripe')).toBe(false);
-    });
-  });
 });

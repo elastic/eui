@@ -61,7 +61,7 @@ export type EuiSelectableTemplateSitewideOption<T = { [key: string]: any }> = {
 
 export const euiSelectableTemplateSitewideFormatOptions = (
   options: EuiSelectableTemplateSitewideOption[]
-) => {
+): EuiSelectableTemplateSitewideOption[] => {
   return options.map((item: EuiSelectableTemplateSitewideOption) => {
     let title = item.label;
     if (item.meta && item.meta.length) {

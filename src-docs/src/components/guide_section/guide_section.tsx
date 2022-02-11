@@ -48,6 +48,10 @@ export const GuideSectionCodeTypesMap = {
     name: 'demoTSX',
     displayName: 'Demo TS',
   },
+  STRING_JS: {
+    name: 'demoJS',
+    displayName: 'Demo JS',
+  },
   SNIPPET: {
     name: 'snippet',
     displayName: 'Snippet',
@@ -134,7 +138,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
     const isPlaygroundUnsupported =
       typeof window !== 'undefined' &&
       typeof document !== 'undefined' &&
-      !!window.MSInputMethodContext &&
+      !!(window as any).MSInputMethodContext &&
       // @ts-ignore doesn't exist?
       !!document.documentMode;
 

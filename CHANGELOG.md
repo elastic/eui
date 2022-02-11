@@ -1,14 +1,43 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+- Improved `EuiSelectable` keypress scenarios ([#5613](https://github.com/elastic/eui/pull/5613))
+
+## [`48.0.0`](https://github.com/elastic/eui/tree/v48.0.0)
+
+- Refactored `EuiSuggest` to use `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
+- Added a return type to `EuiTable` `resolveWidthAsStyle` util ([#5615](https://github.com/elastic/eui/pull/5615))
+- Added a return type to `euiSelectableTemplateSitewideFormatOptions` util ([#5620](https://github.com/elastic/eui/pull/5620))
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` to correctly remove the cell expansion action button when a column sets both `cellActions` and `isExpandable` to false ([#5592](https://github.com/elastic/eui/pull/5592))
+- Fixed `EuiDataGrid` re-playing the cell actions animation when hovering over an already-focused cell ([#5592](https://github.com/elastic/eui/pull/5592))
+- Fixed `EuiDataGrid` auto row heights bugging out when cell popovers are opened ([#5622](https://github.com/elastic/eui/pull/5622))
+
+**Breaking changes**
+
+- Removed `EuiSuggestInput` ([#5157](https://github.com/elastic/eui/pull/5157))
+- Required `aria-label` or `aria-labelledby` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
+- Renamed `sendValue` prop to `onSearchChange` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
+
+## [`47.0.0`](https://github.com/elastic/eui/tree/v47.0.0)
+
+- Added support for React 17 (this is a backwards compatible change - React 16.12+ is still supported for consuming applications) ([#5584](https://github.com/elastic/eui/pull/5584))
 - Added the ability to control internal `EuiDataGrid` fullscreen, cell focus, and cell popover state via the `ref` prop ([#5590](https://github.com/elastic/eui/pull/5590))
 - Added `paddingSize` prop to `EuiSelectableList` ([#5581](https://github.com/elastic/eui/pull/5581))
 - Added `errorMessage` prop to `EuiSelectable` ([#5581](https://github.com/elastic/eui/pull/5581))
 - Refactored `EuiSelectable` accessibility ([#5581](https://github.com/elastic/eui/pull/5581))
+- Updated `tokenTag` design to look more like a tag ([#5553](https://github.com/elastic/eui/pull/5553))
+- Lowered border radius of `.euiToken--square` to look more like a square ([#5553](https://github.com/elastic/eui/pull/5553))
 
 **Bug fixes**
 
 - Fixed `EuiInMemoryTable`'s `onTableChange` callback not returning the correct `sort.field` value on pagination ([#5588](https://github.com/elastic/eui/pull/5588))
 - Fixed `EuiFilePicker` allowing files to be removed when `disabled` ([#5603](https://github.com/elastic/eui/pull/5603))
+
+**Breaking changes**
+
+- Upgraded TypeScript version to ~4.5.3 ([#5591](https://github.com/elastic/eui/pull/5591))
 
 ## [`46.2.0`](https://github.com/elastic/eui/tree/v46.2.0)
 

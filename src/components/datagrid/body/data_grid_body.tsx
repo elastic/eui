@@ -79,7 +79,6 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
 
   const isFirstColumn = columnIndex === 0;
   const isLastColumn = columnIndex === visibleColCount - 1;
-  const isStripableRow = visibleRowIndex % 2 !== 0;
 
   const isLeadingControlColumn = columnIndex < leadingControlColumns.length;
   const isTrailingControlColumn =
@@ -99,7 +98,6 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
   const textTransform = transformClass?.textTransform;
 
   const classes = classNames({
-    'euiDataGridRowCell--stripe': isStripableRow,
     'euiDataGridRowCell--firstColumn': isFirstColumn,
     'euiDataGridRowCell--lastColumn': isLastColumn,
     'euiDataGridRowCell--controlColumn':

@@ -18,7 +18,7 @@ describe('useScrollCellIntoView', () => {
   const scrollTo = jest.fn();
 
   const mockCell = {
-    offsetTop: 30,
+    parentNode: { offsetTop: 30 },
     offsetLeft: 0,
     offsetWidth: 100,
     offsetHeight: 20,
@@ -91,7 +91,7 @@ describe('useScrollCellIntoView', () => {
   it("does nothing if the current cell is in view and not outside the grid's scroll bounds", () => {
     getCell.mockReturnValue({
       ...mockCell,
-      offsetTop: 50,
+      parentNode: { offsetTop: 50 },
       offsetLeft: 50,
     });
     const {
@@ -184,7 +184,7 @@ describe('useScrollCellIntoView', () => {
   describe('bottom scroll adjustments', () => {
     const cell = {
       ...mockCell,
-      offsetTop: 400,
+      parentNode: { offsetTop: 400 },
       offsetHeight: 100,
     };
     const grid = {
@@ -256,7 +256,7 @@ describe('useScrollCellIntoView', () => {
   describe('top scroll adjustments', () => {
     const cell = {
       ...mockCell,
-      offsetTop: 50,
+      parentNode: { offsetTop: 50 },
       offsetHeight: 25,
     };
     const grid = {
@@ -295,7 +295,7 @@ describe('useScrollCellIntoView', () => {
     it('scrolls to the top side over the bottom if the cell height is larger than the grid height', () => {
       const cell = {
         ...mockCell,
-        offsetTop: 100,
+        parentNode: { offsetTop: 100 },
         offsetHeight: 600,
       };
       const grid = {

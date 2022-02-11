@@ -33,9 +33,9 @@ import {
   EuiDataGridCellValueProps,
 } from '../data_grid_types';
 import {
-  EuiDataGridCellButtons,
-  EuiDataGridCellPopoverButtons,
-} from './data_grid_cell_buttons';
+  EuiDataGridCellActions,
+  EuiDataGridCellPopoverActions,
+} from './data_grid_cell_actions';
 import { IS_JEST_ENVIRONMENT } from '../../../test';
 
 const EuiDataGridCellContent: FunctionComponent<
@@ -465,7 +465,7 @@ export class EuiDataGridCell extends Component<
               isDetails={true}
             />
           </PopoverContent>
-          <EuiDataGridCellPopoverButtons
+          <EuiDataGridCellPopoverActions
             rowIndex={rowIndex}
             colIndex={colIndex}
             column={column}
@@ -495,8 +495,8 @@ export class EuiDataGridCell extends Component<
     const { rowIndex, visibleRowIndex, colIndex } = rest;
 
     const popoverIsOpen = this.isPopoverOpen();
-    const hasCellButtons = isExpandable || column?.cellActions;
-    const showCellButtons =
+    const hasCellActions = isExpandable || column?.cellActions;
+    const showCellActions =
       this.state.isFocused ||
       this.state.isEntered ||
       this.state.enableInteractions ||
@@ -506,7 +506,7 @@ export class EuiDataGridCell extends Component<
       'euiDataGridRowCell',
       {
         [`euiDataGridRowCell--${columnType}`]: columnType,
-        ['euiDataGridRowCell--open']: popoverIsOpen,
+        'euiDataGridRowCell--open': popoverIsOpen,
       },
       className
     );
@@ -522,6 +522,7 @@ export class EuiDataGridCell extends Component<
 
     cellProps.style = {
       ...style, // from react-window
+      top: 0, // The cell's row will handle top positioning
       width, // column width, can be undefined
       lineHeight: rowHeightsOptions?.lineHeight ?? undefined, // lineHeight configuration
       ...cellProps.style, // apply anything from setCellProps({style})
@@ -615,7 +616,6 @@ export class EuiDataGridCell extends Component<
         onDeactivation={() => {
           this.setState({ isEntered: false }, this.preventTabbing);
         }}
-        style={isDefinedHeight ? { height: '100%' } : {}}
         clickOutsideDisables={true}
       >
         <div className={anchorClass} ref={this.popoverAnchorRef}>
@@ -626,18 +626,18 @@ export class EuiDataGridCell extends Component<
       </EuiFocusTrap>
     );
 
-    if (hasCellButtons) {
-      if (showCellButtons) {
-        innerContent = (
-          <div className={anchorClass} ref={this.popoverAnchorRef}>
-            <div className={expandClass}>
-              <EuiDataGridCellContent {...cellContentProps} />
-            </div>
-            <EuiDataGridCellButtons
+    if (hasCellActions) {
+      innerContent = (
+        <div className={anchorClass} ref={this.popoverAnchorRef}>
+          <div className={expandClass}>
+            <EuiDataGridCellContent {...cellContentProps} />
+          </div>
+          {showCellActions && (
+            <EuiDataGridCellActions
               rowIndex={rowIndex}
               colIndex={colIndex}
               column={column}
-              popoverIsOpen={popoverIsOpen}
+              isExpandable={isExpandable}
               closePopover={closeCellPopover}
               onExpandClick={() => {
                 if (popoverIsOpen) {
@@ -647,17 +647,9 @@ export class EuiDataGridCell extends Component<
                 }
               }}
             />
-          </div>
-        );
-      } else {
-        innerContent = (
-          <div className={anchorClass} ref={this.popoverAnchorRef}>
-            <div className={expandClass}>
-              <EuiDataGridCellContent {...cellContentProps} />
-            </div>
-          </div>
-        );
-      }
+          )}
+        </div>
+      );
     }
 
     const content = (
@@ -690,7 +682,15 @@ export class EuiDataGridCell extends Component<
     );
 
     return rowManager && !IS_JEST_ENVIRONMENT
-      ? createPortal(content, rowManager.getRow(rowIndex))
+      ? createPortal(
+          content,
+          rowManager.getRow({
+            rowIndex,
+            visibleRowIndex,
+            top: style!.top as string, // comes in as a `{float}px` string from react-window
+            height: style!.height as number, // comes in as an integer from react-window
+          })
+        )
       : content;
   }
 }
