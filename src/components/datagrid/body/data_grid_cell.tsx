@@ -616,7 +616,6 @@ export class EuiDataGridCell extends Component<
         onDeactivation={() => {
           this.setState({ isEntered: false }, this.preventTabbing);
         }}
-        style={isDefinedHeight ? { height: '100%' } : {}}
         clickOutsideDisables={true}
       >
         <div className={anchorClass} ref={this.popoverAnchorRef}>
@@ -628,12 +627,12 @@ export class EuiDataGridCell extends Component<
     );
 
     if (hasCellActions) {
-      if (showCellActions) {
-        innerContent = (
-          <div className={anchorClass} ref={this.popoverAnchorRef}>
-            <div className={expandClass}>
-              <EuiDataGridCellContent {...cellContentProps} />
-            </div>
+      innerContent = (
+        <div className={anchorClass} ref={this.popoverAnchorRef}>
+          <div className={expandClass}>
+            <EuiDataGridCellContent {...cellContentProps} />
+          </div>
+          {showCellActions && (
             <EuiDataGridCellActions
               rowIndex={rowIndex}
               colIndex={colIndex}
@@ -648,17 +647,9 @@ export class EuiDataGridCell extends Component<
                 }
               }}
             />
-          </div>
-        );
-      } else {
-        innerContent = (
-          <div className={anchorClass} ref={this.popoverAnchorRef}>
-            <div className={expandClass}>
-              <EuiDataGridCellContent {...cellContentProps} />
-            </div>
-          </div>
-        );
-      }
+          )}
+        </div>
+      );
     }
 
     const content = (

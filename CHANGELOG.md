@@ -1,5 +1,10 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+- Improved `EuiSelectable` keypress scenarios ([#5613](https://github.com/elastic/eui/pull/5613))
+- Converted `FieldValueSelectionFilter` in `EuiSearchBar` to use `EuiSelectable` ([#5387](https://github.com/elastic/eui/issues/5387))
+
+## [`48.0.0`](https://github.com/elastic/eui/tree/v48.0.0)
+
 - Refactored `EuiSuggest` to use `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
 - Added a return type to `EuiTable` `resolveWidthAsStyle` util ([#5615](https://github.com/elastic/eui/pull/5615))
 - Added a return type to `euiSelectableTemplateSitewideFormatOptions` util ([#5620](https://github.com/elastic/eui/pull/5620))
@@ -8,6 +13,7 @@
 
 - Fixed `EuiDataGrid` to correctly remove the cell expansion action button when a column sets both `cellActions` and `isExpandable` to false ([#5592](https://github.com/elastic/eui/pull/5592))
 - Fixed `EuiDataGrid` re-playing the cell actions animation when hovering over an already-focused cell ([#5592](https://github.com/elastic/eui/pull/5592))
+- Fixed `EuiDataGrid` auto row heights bugging out when cell popovers are opened ([#5622](https://github.com/elastic/eui/pull/5622))
 
 **Breaking changes**
 
@@ -48,6 +54,17 @@
 - Fixed an accessibility issue where `EuiComboBoxPill` close button had a nested interactive element ([#5560](https://github.com/elastic/eui/pull/5560))
 - Fixed EuiDataGrid height issue when in full-screen mode and with scrolling content ([#5557](https://github.com/elastic/eui/pull/5557))
 - Fixed an accessibility issue in custom and interactive Drag and Drop patterns ([#5568](https://github.com/elastic/eui/pull/5568))
+- Fixed a focus bug in `EuiDataGrid` when clicking another cell header with an already-open cell header popover ([#5556](https://github.com/elastic/eui/pull/5556))
+- Fixed `EuiDataGrid` to always focus back into the grid on pagination ([#5587](https://github.com/elastic/eui/pull/5587))
+- Fixed `EuiDataGrid` and `EuiTable` pagination potentially rendering out view on narrow tables with many pages ([#5561](https://github.com/elastic/eui/pull/5561))
+
+## [`46.1.1`](https://github.com/elastic/eui/tree/v46.1.1)
+
+**Note: this release is a backport containing changes originally made in `46.2.0`**
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` height issue when in full-screen mode and with scrolling content ([#5557](https://github.com/elastic/eui/pull/5557))
 - Fixed a focus bug in `EuiDataGrid` when clicking another cell header with an already-open cell header popover ([#5556](https://github.com/elastic/eui/pull/5556))
 - Fixed `EuiDataGrid` to always focus back into the grid on pagination ([#5587](https://github.com/elastic/eui/pull/5587))
 - Fixed `EuiDataGrid` and `EuiTable` pagination potentially rendering out view on narrow tables with many pages ([#5561](https://github.com/elastic/eui/pull/5561))

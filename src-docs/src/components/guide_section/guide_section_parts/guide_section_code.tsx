@@ -50,7 +50,11 @@ export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode>
   return (
     <>
       <EuiCodeBlock
-        language={type === GuideSectionTypes.JS ? 'jsx' : type.toLowerCase()}
+        language={
+          type === GuideSectionTypes.JS || type === GuideSectionTypes.STRING_JS
+            ? 'jsx'
+            : type.toLowerCase()
+        }
         overflowHeight={400}
         isCopyable
       >

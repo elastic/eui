@@ -71,7 +71,6 @@ export const useCellPopover = (): {
   const cellPopover = popoverIsOpen && popoverAnchor && (
     <EuiWrappingPopover
       hasArrow={false}
-      anchorClassName="euiDataGridRowCell__expand"
       button={popoverAnchor}
       isOpen={popoverIsOpen}
       panelClassName="euiDataGridRowCell__popover"

@@ -1,4 +1,10 @@
+.euiDataGridFooter {
+  display: flex;
+}
+
 @include euiDataGridFooterCell {
+  flex: 0 0 auto;
+  position: relative;
   font-weight: $euiFontWeightBold;
 }
 

@@ -31,7 +31,7 @@ export default () => {
       emptyPromptProps = {
         color: 'danger',
         iconType: 'alert',
-        title: <h2>Error loading Dashboards</h2>,
+        title: <h2>Unable to load your dashboards</h2>,
         body: (
           <p>
             There was an error loading the Dashboard application. Contact your
