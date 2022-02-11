@@ -108,34 +108,38 @@ export default () => {
     },
   ];
 
+  const textLine = (
+    <EuiImage size="fullWidth" alt="Fake table text" url={singleSvg} />
+  );
+
   const columns = [
     {
       field: 'enabled',
       name: 'Enabled',
       render: (enabled) => (
-        <EuiSwitch checked={enabled} onChange={() => {}} compressed />
+        <EuiSwitch
+          checked={enabled}
+          onChange={() => {}}
+          compressed
+          showLabel={false}
+          label="Enabled"
+        />
       ),
     },
     {
       field: 'name',
-      name: 'Name',
-      render: () => (
-        <EuiImage size="fullWidth" alt="Fake table text" url={singleSvg} />
-      ),
+      name: textLine,
+      render: () => textLine,
     },
     {
       field: 'version',
-      name: 'Version',
-      render: () => (
-        <EuiImage size="fullWidth" alt="Fake table text" url={singleSvg} />
-      ),
+      name: textLine,
+      render: () => textLine,
     },
     {
       field: 'description',
-      name: 'Description',
-      render: () => (
-        <EuiImage size="fullWidth" alt="Fake table text" url={singleSvg} />
-      ),
+      name: textLine,
+      render: () => textLine,
     },
   ];
 
@@ -186,14 +190,22 @@ export default () => {
           type="do"
           text="Sentence case makes titles easier to read."
         >
-          <EuiCheckboxGroup options={accessDo} onChange={() => {}} />
+          <EuiCheckboxGroup
+            options={accessDo}
+            onChange={() => {}}
+            idToSelectedMap={{ access_do_one: true }}
+          />
         </GuideRuleExample>
 
         <GuideRuleExample
           type="dont"
           text="Title case can feel more cluttered."
         >
-          <EuiCheckboxGroup options={accessDont} onChange={() => {}} />
+          <EuiCheckboxGroup
+            options={accessDont}
+            onChange={() => {}}
+            idToSelectedMap={{ access_dont_one: true }}
+          />
         </GuideRuleExample>
       </GuideRule>
 
