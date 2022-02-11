@@ -157,7 +157,7 @@ export const SelectionControlsExample = {
           </p>
           <p>
             When the individual labels for each radio do not provide a
-            sufficient description, pass a legend to the group.
+            sufficient description, pass a <EuiCode>legend</EuiCode> to the group.
           </p>
           <p>
             Use the <EuiCode>compressed</EuiCode> prop to tighten up the spacing
