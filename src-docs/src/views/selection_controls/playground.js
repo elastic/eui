@@ -1,7 +1,6 @@
 import {
   propUtilityForPlayground,
   dummyFunction,
-  simulateFunction,
 } from '../../services/playground';
 import { htmlIdGenerator } from '../../../../src/services';
 import { EuiCheckbox, EuiRadio, EuiSwitch } from '../../../../src/components/';
@@ -107,7 +106,10 @@ export const SwitchConfig = () => {
     value: true,
   };
 
-  propsToUse.onChange = simulateFunction(propsToUse.onChange);
+  propsToUse.onChange = {
+    ...propsToUse.onChange,
+    value: 'onChange',
+  };
 
   return {
     config: {
