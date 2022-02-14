@@ -212,7 +212,7 @@ export class EuiComboBoxInput<T> extends Component<
       // reader.
       removeOptionMessage = (
         <EuiScreenReaderOnly>
-          <span aria-live="assertive" id={removeOptionMessageId}>
+          <span aria-live="polite" id={removeOptionMessageId}>
             {removeOptionMessageContent}
           </span>
         </EuiScreenReaderOnly>
@@ -284,10 +284,11 @@ export class EuiComboBoxInput<T> extends Component<
           {!singleSelection || !searchValue ? pills : null}
           {placeholderMessage}
           <AutosizeInput
-            aria-label={ariaLabel}
-            aria-labelledby={ariaLabelledby}
             aria-activedescendant={focusedOptionId}
             aria-controls={isListOpen ? rootId('listbox') : ''}
+            aria-expanded={isListOpen}
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledby}
             className="euiComboBox__input"
             data-test-subj="comboBoxSearchInput"
             disabled={isDisabled}
@@ -297,7 +298,7 @@ export class EuiComboBoxInput<T> extends Component<
             onChange={this.inputOnChange}
             onFocus={this.onFocus}
             ref={this.inputRefCallback}
-            role="textbox"
+            role="combobox"
             style={{ fontSize: 14 }}
             value={searchValue}
             autoFocus={autoFocus}

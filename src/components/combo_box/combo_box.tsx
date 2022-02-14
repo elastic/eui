@@ -151,6 +151,10 @@ export interface _EuiComboBoxProps<T>
    * supplied by `aria-label` or from [EuiFormRow](/#/forms/form-layouts).
    */
   'aria-labelledby'?: string;
+  /**
+   * Autocomplete `role="listbox"` elements require an accessible label
+   */
+  accessibleListboxLabel: string;
 }
 
 /**
@@ -193,6 +197,7 @@ export class EuiComboBox<T> extends Component<
   EuiComboBoxState<T>
 > {
   static defaultProps = {
+    accessibleListboxLabel: 'Choose from the following options',
     async: false,
     compressed: false,
     fullWidth: false,
@@ -936,6 +941,7 @@ export class EuiComboBox<T> extends Component<
       autoFocus,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby,
+      accessibleListboxLabel,
       ...rest
     } = this.props;
     const {
@@ -1010,6 +1016,7 @@ export class EuiComboBox<T> extends Component<
             width={width}
             delimiter={delimiter}
             getSelectedOptionForSearchValue={getSelectedOptionForSearchValue}
+            accessibleListboxLabel={accessibleListboxLabel}
           />
         </EuiPortal>
       );
@@ -1029,13 +1036,10 @@ export class EuiComboBox<T> extends Component<
       // eslint-disable-next-line jsx-a11y/interactive-supports-focus
       <div
         {...rest}
-        aria-expanded={isListOpen}
-        aria-haspopup="listbox"
         className={classes}
         data-test-subj={dataTestSubj}
         onKeyDown={this.onKeyDown}
         ref={this.comboBoxRefCallback}
-        role="combobox"
       >
         <EuiComboBoxInput
           autoSizeInputRef={this.autoSizeInputRefCallback}

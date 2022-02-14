@@ -2,11 +2,8 @@
 
 exports[`EuiComboBox is rendered 1`] = `
 <div
-  aria-expanded="false"
-  aria-haspopup="listbox"
   class="euiComboBox testClass1 testClass2"
   data-test-subj="test subject string"
-  role="combobox"
 >
   <div
     class="euiFormControlLayout"
@@ -25,10 +22,11 @@ exports[`EuiComboBox is rendered 1`] = `
         >
           <input
             aria-controls=""
+            aria-expanded="false"
             aria-label="aria-label"
             data-test-subj="comboBoxSearchInput"
             id="generated-id__eui-combobox-id"
-            role="textbox"
+            role="combobox"
             style="box-sizing:content-box;width:1px"
             value=""
           />
@@ -60,11 +58,8 @@ exports[`EuiComboBox is rendered 1`] = `
 
 exports[`props aria-label attribute is rendered 1`] = `
 <div
-  aria-expanded={false}
-  aria-haspopup="listbox"
   className="euiComboBox"
   onKeyDown={[Function]}
-  role="combobox"
 >
   <EuiComboBoxInput
     aria-label="Test label"
@@ -96,11 +91,8 @@ exports[`props aria-label attribute is rendered 1`] = `
 
 exports[`props aria-labelledby attribute is rendered 1`] = `
 <div
-  aria-expanded={false}
-  aria-haspopup="listbox"
   className="euiComboBox"
   onKeyDown={[Function]}
-  role="combobox"
 >
   <EuiComboBoxInput
     aria-labelledby="test-heading-id"
@@ -132,11 +124,8 @@ exports[`props aria-labelledby attribute is rendered 1`] = `
 
 exports[`props autoFocus is rendered 1`] = `
 <div
-  aria-expanded={false}
-  aria-haspopup="listbox"
   className="euiComboBox"
   onKeyDown={[Function]}
-  role="combobox"
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
@@ -176,11 +165,8 @@ exports[`props autoFocus is rendered 1`] = `
 
 exports[`props custom ID is rendered 1`] = `
 <div
-  aria-expanded={false}
-  aria-haspopup="listbox"
   className="euiComboBox"
   onKeyDown={[Function]}
-  role="combobox"
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
@@ -220,11 +206,8 @@ exports[`props custom ID is rendered 1`] = `
 
 exports[`props delimiter is rendered 1`] = `
 <div
-  aria-expanded={false}
-  aria-haspopup="listbox"
   className="euiComboBox"
   onKeyDown={[Function]}
-  role="combobox"
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
@@ -264,11 +247,8 @@ exports[`props delimiter is rendered 1`] = `
 
 exports[`props full width is rendered 1`] = `
 <div
-  aria-expanded={false}
-  aria-haspopup="listbox"
   className="euiComboBox euiComboBox--fullWidth"
   onKeyDown={[Function]}
-  role="combobox"
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
@@ -305,11 +285,8 @@ exports[`props full width is rendered 1`] = `
 
 exports[`props isClearable=false disallows user from clearing input when no options are selected 1`] = `
 <div
-  aria-expanded={false}
-  aria-haspopup="listbox"
   className="euiComboBox"
   onKeyDown={[Function]}
-  role="combobox"
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
@@ -339,11 +316,8 @@ exports[`props isClearable=false disallows user from clearing input when no opti
 
 exports[`props isClearable=false disallows user from clearing input when options are selected 1`] = `
 <div
-  aria-expanded={false}
-  aria-haspopup="listbox"
   className="euiComboBox"
   onKeyDown={[Function]}
-  role="combobox"
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
@@ -382,11 +356,8 @@ exports[`props isClearable=false disallows user from clearing input when options
 
 exports[`props isDisabled is rendered 1`] = `
 <div
-  aria-expanded={false}
-  aria-haspopup="listbox"
   className="euiComboBox euiComboBox-isDisabled"
   onKeyDown={[Function]}
-  role="combobox"
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
@@ -423,11 +394,8 @@ exports[`props isDisabled is rendered 1`] = `
 
 exports[`props options list is rendered 1`] = `
 <div
-  aria-expanded="true"
-  aria-haspopup="listbox"
   class="euiComboBox euiComboBox-isOpen"
   data-test-subj="alsoGetsAppliedToOptionsList"
-  role="combobox"
 >
   <div
     class="euiFormControlLayout"
@@ -446,9 +414,10 @@ exports[`props options list is rendered 1`] = `
         >
           <input
             aria-controls="generated-id_listbox"
+            aria-expanded="true"
             data-test-subj="comboBoxSearchInput"
             id="generated-id__eui-combobox-id"
-            role="textbox"
+            role="combobox"
             style="box-sizing: content-box; width: 2px;"
             value=""
           />
@@ -487,8 +456,9 @@ exports[`props options list is rendered 1`] = `
         style="position: relative; height: 200px; width: 0px; overflow: auto; will-change: transform; direction: ltr;"
       >
         <div
+          aria-label="Choose from the following options"
           id="generated-id_listbox"
-          role="listBox"
+          role="listbox"
           style="height: 290px; width: 100%;"
           tabindex="0"
         >
@@ -745,11 +715,8 @@ exports[`props options list is rendered 1`] = `
 
 exports[`props selectedOptions are rendered 1`] = `
 <div
-  aria-expanded={false}
-  aria-haspopup="listbox"
   className="euiComboBox"
   onKeyDown={[Function]}
-  role="combobox"
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
@@ -789,11 +756,8 @@ exports[`props selectedOptions are rendered 1`] = `
 
 exports[`props singleSelection is rendered 1`] = `
 <div
-  aria-expanded={false}
-  aria-haspopup="listbox"
   className="euiComboBox"
   onKeyDown={[Function]}
-  role="combobox"
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
@@ -830,11 +794,8 @@ exports[`props singleSelection is rendered 1`] = `
 
 exports[`props singleSelection prepend and append is rendered 1`] = `
 <div
-  aria-expanded={true}
-  aria-haspopup="listbox"
   className="euiComboBox euiComboBox--prepended euiComboBox--appended euiComboBox-isOpen"
   onKeyDown={[Function]}
-  role="combobox"
 >
   <EuiComboBoxInput
     append="String"
@@ -864,6 +825,7 @@ exports[`props singleSelection prepend and append is rendered 1`] = `
   />
   <EuiPortal>
     <EuiComboBoxOptionsList
+      accessibleListboxLabel="Choose from the following options"
       activeOptionIndex={-1}
       areAllOptionsSelected={false}
       data-test-subj=""
@@ -961,11 +923,8 @@ exports[`props singleSelection prepend and append is rendered 1`] = `
 
 exports[`props singleSelection selects existing option when opened 1`] = `
 <div
-  aria-expanded={true}
-  aria-haspopup="listbox"
   className="euiComboBox euiComboBox-isOpen"
   onKeyDown={[Function]}
-  role="combobox"
 >
   <EuiComboBoxInput
     autoSizeInputRef={[Function]}
@@ -999,6 +958,7 @@ exports[`props singleSelection selects existing option when opened 1`] = `
   />
   <EuiPortal>
     <EuiComboBoxOptionsList
+      accessibleListboxLabel="Choose from the following options"
       activeOptionIndex={-1}
       areAllOptionsSelected={false}
       data-test-subj=""
