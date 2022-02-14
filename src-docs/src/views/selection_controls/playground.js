@@ -3,6 +3,7 @@ import {
   dummyFunction,
   simulateFunction,
 } from '../../services/playground';
+import { htmlIdGenerator } from '../../../../src/services';
 import { EuiCheckbox, EuiRadio, EuiSwitch } from '../../../../src/components/';
 import { PropTypes } from 'react-view';
 
@@ -14,7 +15,7 @@ export const CheckboxConfig = () => {
 
   propsToUse.id = {
     ...propsToUse.id,
-    value: 'Playground__checkbox',
+    value: htmlIdGenerator('generated')(),
   };
 
   propsToUse.label = {
@@ -23,7 +24,10 @@ export const CheckboxConfig = () => {
     value: 'Label',
   };
 
-  propsToUse.onChange = simulateFunction(propsToUse.onChange);
+  propsToUse.onChange = {
+    ...propsToUse.onChange,
+    value: 'onChange',
+  };
 
   return {
     config: {
@@ -53,7 +57,7 @@ export const RadioConfig = () => {
   propsToUse.id = {
     ...propsToUse.id,
     type: PropTypes.String,
-    value: 'Playground__radio',
+    value: htmlIdGenerator('generated')(),
   };
 
   propsToUse.label = {
@@ -62,7 +66,10 @@ export const RadioConfig = () => {
     value: 'Label',
   };
 
-  propsToUse.onChange = simulateFunction(propsToUse.onChange);
+  propsToUse.onChange = {
+    ...propsToUse.onChange,
+    value: 'onChange',
+  };
 
   return {
     config: {
