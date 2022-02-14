@@ -18,10 +18,11 @@ export const CheckboxMarkdownRenderer: FunctionComponent<
     position: EuiMarkdownAstNodePosition;
   }
 > = ({ position, lead, label, isChecked, children }) => {
-  const { replaceNode } = useContext(EuiMarkdownContext);
+  const { isDisabled, replaceNode } = useContext(EuiMarkdownContext);
   return (
     <EuiCheckbox
       id={useGeneratedHtmlId()}
+      disabled={isDisabled}
       checked={isChecked}
       label={children}
       onChange={() => {
