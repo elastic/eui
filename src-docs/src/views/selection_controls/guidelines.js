@@ -213,8 +213,8 @@ export default () => {
         heading="Switch labels"
         description={
           <p>
-            The label should be static, action-oriented, and describe the
-            feature or present a question.
+            The label should be static, action-oriented and describe the
+            feature.
           </p>
         }
       >
