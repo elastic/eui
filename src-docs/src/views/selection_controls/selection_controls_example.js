@@ -98,7 +98,7 @@ export const SelectionControlsExample = {
         of options.
       </p>
       <p>
-        To deal with longer lists, consider using a{' '}
+        For longer lists of options, consider using a{' '}
         <Link to="/forms/form-controls#select">EuiSelect</Link>,{' '}
         <Link to="/forms/super-select">EuiSuperSelect</Link> or{' '}
         <Link to="/forms/combo-box">EuiComboBox</Link>.
