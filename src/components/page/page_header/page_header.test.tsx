@@ -70,6 +70,7 @@ describe('EuiPageHeader', () => {
             rightSideItems={rightSideItems}
             rightSideGroupProps={{ responsive: true, ...requiredProps }}
             breadcrumbs={breadcrumbs}
+            // breadcrumbProps={requiredProps}
           >
             <p>Anything</p>
           </EuiPageHeader>

@@ -14,9 +14,12 @@ export default () => (
             <EuiIcon size="s" type="arrowLeft" /> Return
           </>
         ),
-        href: '#',
         color: 'primary',
         'aria-current': false,
+        href: '#',
+        onClick: (e: { preventDefault: () => void }) => {
+          e.preventDefault();
+        },
       },
     ]}
     rightSideItems={[
