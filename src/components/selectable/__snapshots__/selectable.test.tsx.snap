@@ -12,6 +12,7 @@ exports[`EuiSelectable custom options with data 1`] = `
   </p>
   <div
     class="euiSelectableList"
+    data-test-subj="euiSelectableList"
   >
     <div
       data-eui="EuiAutoSizer"
@@ -123,6 +124,7 @@ exports[`EuiSelectable errorMessage prop can render an element as the message 1`
   </p>
   <div
     class="euiText euiText--extraSmall euiSelectableMessage"
+    data-test-subj="euiSelectableMessage"
     id="generated-id_messageContent"
   >
     <div
@@ -148,6 +150,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
   </p>
   <div
     class="euiSelectableList"
+    data-test-subj="euiSelectableList"
   >
     <div
       data-eui="EuiAutoSizer"
@@ -260,6 +263,7 @@ exports[`EuiSelectable errorMessage prop does renders the message when defined 1
   </p>
   <div
     class="euiText euiText--extraSmall euiSelectableMessage"
+    data-test-subj="euiSelectableMessage"
     id="generated-id_messageContent"
   >
     <div

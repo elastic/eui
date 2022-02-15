@@ -701,6 +701,7 @@ export class EuiSelectable<T = {}> extends Component<
 
             {messageContent ? (
               <EuiSelectableMessage
+                data-test-subj="euiSelectableMessage"
                 id={this.messageContentId}
                 bordered={listProps && listProps.bordered}
               >
@@ -708,6 +709,7 @@ export class EuiSelectable<T = {}> extends Component<
               </EuiSelectableMessage>
             ) : (
               <EuiSelectableList<T>
+                data-test-subj="euiSelectableList"
                 key="list"
                 options={options}
                 visibleOptions={visibleOptions}
