@@ -102,16 +102,46 @@ export const useCellPopover = (): {
  * Popover content renderers
  */
 import { EuiText } from '../../text';
+import { EuiCodeBlock } from '../../code';
 
 export const DefaultCellPopover = ({
+  schema,
   cellActions,
   children,
+  cellContentsElement,
 }: EuiDataGridCellPopoverElementProps) => {
-  // TODO: Handle JSON schema popovers
+  switch (schema) {
+    case 'json':
+      return (
+        <>
+          <JsonPopoverContent cellText={cellContentsElement.innerText} />
+          {cellActions}
+        </>
+      );
+    default:
+      return (
+        <>
+          <EuiText>{children}</EuiText>
+          {cellActions}
+        </>
+      );
+  }
+};
+
+export const JsonPopoverContent = ({ cellText }: { cellText: string }) => {
+  let formattedText = cellText;
+  try {
+    formattedText = JSON.stringify(JSON.parse(formattedText), null, 2);
+  } catch (e) {} // eslint-disable-line no-empty
+
   return (
-    <>
-      <EuiText>{children}</EuiText>
-      {cellActions}
-    </>
+    <EuiCodeBlock
+      isCopyable
+      transparentBackground
+      paddingSize="none"
+      language="json"
+    >
+      {formattedText}
+    </EuiCodeBlock>
   );
 };

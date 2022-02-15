@@ -7,30 +7,7 @@
  */
 
 import React from 'react';
-import { EuiCodeBlock } from '../../code';
 import {
   EuiDataGridPopoverContents,
   EuiDataGridPopoverContent,
 } from '../data_grid_types';
-
-export const providedPopoverContents: EuiDataGridPopoverContents = {
-  json: ({ cellContentsElement }) => {
-    let formattedText = cellContentsElement.innerText;
-
-    // attempt to pretty-print the json
-    try {
-      formattedText = JSON.stringify(JSON.parse(formattedText), null, 2);
-    } catch (e) {} // eslint-disable-line no-empty
-
-    return (
-      <EuiCodeBlock
-        isCopyable
-        transparentBackground
-        paddingSize="none"
-        language="json"
-      >
-        {formattedText}
-      </EuiCodeBlock>
-    );
-  },
-};

@@ -237,6 +237,19 @@ describe('popover content renderers', () => {
   });
 
   test('JSON schema popover', () => {
-    // TODO
+    const component = shallow(<DefaultCellPopover {...props} schema="json" />);
+    const codeBlock = component.find('JsonPopoverContent').dive();
+    expect(codeBlock).toMatchInlineSnapshot(`
+      <EuiCodeBlock
+        isCopyable={true}
+        language="json"
+        paddingSize="none"
+        transparentBackground={true}
+      >
+        {
+        "hello": "world"
+      }
+      </EuiCodeBlock>
+    `);
   });
 });
