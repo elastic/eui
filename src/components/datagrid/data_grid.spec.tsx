@@ -423,6 +423,189 @@ describe('EuiDataGrid', () => {
       });
     });
   });
+
+  describe('cell popovers', () => {
+    // Props
+    const cellActions = [
+      ({ Component }) => (
+        <Component iconType="plusInCircle" aria-label="Filter in">
+          Filter in
+        </Component>
+      ),
+      ({ Component }) => (
+        <Component iconType="minusInCircle" aria-label="Filter out">
+          Filter out
+        </Component>
+      ),
+    ];
+    const columns = [
+      { id: 'default', cellActions },
+      { id: 'json', schema: 'json', cellActions },
+    ];
+    const columnVisibility = {
+      visibleColumns: ['default', 'json'],
+      setVisibleColumns: () => {},
+    };
+    const baseCellPopoverProps = { ...baseProps, columns, columnVisibility };
+
+    // Utils
+    const openPopover = (columnId = 'default', rowIndex = 0) => {
+      cy.realPress('Escape'); // Close any open popovers
+      cy.get(
+        `[data-gridcell-column-id="${columnId}"][data-gridcell-row-index="${rowIndex}"]`
+      ).click();
+      cy.focused().type('{enter}'); // Open cell popover
+    };
+
+    // Tests
+    it('renders a default popover with default cell values and a footer with cell actions', () => {
+      cy.mount(<EuiDataGrid {...baseCellPopoverProps} />);
+      openPopover();
+      cy.get('[data-test-subj="euiDataGridExpansionPopover"]').then((el) => {
+        expect(el.find('.euiText').text()).equals('default, 0');
+        expect(el.find('.euiPopoverFooter').length).equals(1);
+        expect(el.find('.euiButtonEmpty').length).equals(2);
+      });
+    });
+
+    describe('renderCellValue isDetails', () => {
+      it('renders a default popover with custom content in an EuiText wrapper and default cell actions', () => {
+        cy.mount(
+          <EuiDataGrid
+            {...baseCellPopoverProps}
+            renderCellValue={({ isDetails, schema }) => {
+              if (isDetails && schema !== 'json') {
+                return 'custom popover content';
+              }
+              return 'no -popover content';
+            }}
+          />
+        );
+        openPopover();
+        cy.get('[data-test-subj="euiDataGridExpansionPopover"]').then((el) => {
+          expect(el.find('.euiText').text()).equals('custom popover content');
+          expect(el.find('.euiPopoverFooter').length).equals(1);
+        });
+      });
+    });
+
+    describe('renderCellPopover', () => {
+      it('renders a custom popover with completely custom content', () => {
+        cy.mount(
+          <EuiDataGrid
+            {...baseCellPopoverProps}
+            renderCellPopover={() => (
+              <>
+                <div data-test-subj="customPopover">Hello world!</div>
+                <button data-test-subj="customAction">Test</button>
+              </>
+            )}
+          />
+        );
+        openPopover();
+        cy.get('[data-test-subj="euiDataGridExpansionPopover"]').then((el) => {
+          expect(el.find('.euiText').length).equals(0);
+          expect(el.find('.euiPopoverFooter').length).equals(0);
+
+          expect(el.find('[data-test-subj="customPopover"]').text()).equals(
+            'Hello world!'
+          );
+          expect(el.find('[data-test-subj="customAction"]').text()).equals(
+            'Test'
+          );
+        });
+      });
+
+      it('renders a custom popover with default cell content and no cell actions', () => {
+        cy.mount(
+          <EuiDataGrid
+            {...baseCellPopoverProps}
+            renderCellPopover={({ children }) => (
+              <div data-test-subj="customPopover">{children}</div>
+            )}
+          />
+        );
+        openPopover();
+        cy.get('[data-test-subj="euiDataGridExpansionPopover"]').then((el) => {
+          expect(el.find('.euiText').length).equals(0);
+          expect(el.find('.euiPopoverFooter').length).equals(0);
+
+          expect(el.find('[data-test-subj="customPopover"]').text()).equals(
+            'default, 0'
+          );
+        });
+      });
+
+      it('renders a custom popover with custom cell content and default cell actions', () => {
+        cy.mount(
+          <EuiDataGrid
+            {...baseCellPopoverProps}
+            renderCellPopover={({ cellActions }) => (
+              <>
+                <div data-test-subj="customPopover">Test</div>
+                {cellActions}
+              </>
+            )}
+          />
+        );
+        openPopover();
+        cy.get('[data-test-subj="euiDataGridExpansionPopover"]').then((el) => {
+          expect(el.find('.euiText').length).equals(0);
+          expect(el.find('.euiPopoverFooter').length).equals(1);
+          expect(el.find('.euiButtonEmpty').length).equals(2);
+
+          expect(el.find('[data-test-subj="customPopover"]').text()).equals(
+            'Test'
+          );
+        });
+      });
+
+      it('conditionally renders default cell popovers and custom cell popovers', () => {
+        cy.mount(
+          <EuiDataGrid
+            {...baseCellPopoverProps}
+            renderCellPopover={(props) => {
+              const {
+                schema,
+                defaultPopoverRender,
+                cellContentsElement,
+              } = props;
+
+              if (schema === 'json') {
+                return defaultPopoverRender(props);
+              }
+              if (cellContentsElement.innerText === 'default, 2') {
+                return (
+                  <div data-test-subj="oneOffPopover">
+                    Extremely custom popover
+                  </div>
+                );
+              }
+              return <div data-test-subj="customPopover">Custom popover</div>;
+            }}
+          />
+        );
+        openPopover('default');
+        cy.get('[data-test-subj="euiDataGridExpansionPopover"]').then((el) => {
+          expect(el.find('[data-test-subj="customPopover"]').text()).equals(
+            'Custom popover'
+          );
+        });
+        openPopover('default', 2);
+        cy.get('[data-test-subj="euiDataGridExpansionPopover"]').then((el) => {
+          expect(el.find('[data-test-subj="oneOffPopover"]').text()).equals(
+            'Extremely custom popover'
+          );
+        });
+        openPopover('json');
+        cy.get('[data-test-subj="euiDataGridExpansionPopover"]').then((el) => {
+          expect(el.find('[data-test-subj="customPopover"]').length).equals(0);
+          expect(el.find('.euiCodeBlock').length).equals(1);
+          expect(el.find('.euiPopoverFooter').length).equals(1);
+        });
+      });
+    });
+  });
 });
 
 function getGridData() {
