@@ -31,6 +31,7 @@ import {
   EuiDataGridCellState,
   EuiDataGridCellValueElementProps,
   EuiDataGridCellValueProps,
+  EuiDataGridCellPopoverElementProps,
 } from '../data_grid_types';
 import {
   EuiDataGridCellActions,
@@ -292,7 +293,8 @@ export class EuiDataGridCell extends Component<
       this.props.popoverContext.popoverIsOpen !==
         prevProps.popoverContext.popoverIsOpen ||
       this.props.popoverContext.cellLocation !==
-        prevProps.popoverContext.cellLocation
+        prevProps.popoverContext.cellLocation ||
+      this.props.renderCellPopover !== prevProps.renderCellPopover
     ) {
       this.handleCellPopover();
     }
@@ -315,9 +317,10 @@ export class EuiDataGridCell extends Component<
     if (nextProps.rowHeightsOptions !== this.props.rowHeightsOptions)
       return true;
     if (nextProps.renderCellValue !== this.props.renderCellValue) return true;
+    if (nextProps.renderCellPopover !== this.props.renderCellPopover)
+      return true;
     if (nextProps.interactiveCellId !== this.props.interactiveCellId)
       return true;
-    if (nextProps.popoverContent !== this.props.popoverContent) return true;
     if (
       nextProps.popoverContext.popoverIsOpen !==
         this.props.popoverContext.popoverIsOpen ||
@@ -442,35 +445,37 @@ export class EuiDataGridCell extends Component<
 
       // Set popover contents with cell content
       const {
-        popoverContent: PopoverContent,
+        renderCellPopover,
         renderCellValue,
         rowIndex,
         colIndex,
         column,
         columnId,
       } = this.props;
+      const PopoverElement = renderCellPopover as JSXElementConstructor<
+        EuiDataGridCellPopoverElementProps
+      >;
       const CellElement = renderCellValue as JSXElementConstructor<
         EuiDataGridCellValueElementProps
       >;
+      const sharedProps = {
+        rowIndex,
+        colIndex,
+        columnId,
+      };
       const popoverContent = (
-        <>
-          <PopoverContent cellContentsElement={this.cellContentsRef!}>
-            <CellElement
-              rowIndex={rowIndex}
-              colIndex={colIndex}
-              columnId={columnId}
-              isExpandable={true}
-              isExpanded={true}
-              setCellProps={this.setCellProps}
-              isDetails={true}
-            />
-          </PopoverContent>
-          <EuiDataGridCellPopoverActions
-            rowIndex={rowIndex}
-            colIndex={colIndex}
-            column={column}
+        <PopoverElement
+          {...sharedProps}
+          cellContentsElement={this.cellContentsRef!}
+        >
+          <CellElement
+            {...sharedProps}
+            setCellProps={this.setCellProps}
+            isExpandable={true}
+            isExpanded={true}
+            isDetails={true}
           />
-        </>
+        </PopoverElement>
       );
       setPopoverContent(popoverContent);
     }
@@ -480,7 +485,6 @@ export class EuiDataGridCell extends Component<
     const {
       width,
       isExpandable,
-      popoverContent,
       popoverContext: { closeCellPopover, openCellPopover },
       interactiveCellId,
       columnType,

@@ -6,7 +6,6 @@ exports[`EuiDataGridCell renders 1`] = `
   columnId="someColumn"
   interactiveCellId="someId"
   isExpandable={true}
-  popoverContent={[Function]}
   popoverContext={
     Object {
       "cellLocation": Object {
