@@ -10,7 +10,10 @@ import React, { createContext, useState, useCallback, ReactNode } from 'react';
 
 import { keys } from '../../../services';
 import { EuiWrappingPopover } from '../../popover';
-import { DataGridCellPopoverContextShape } from '../data_grid_types';
+import {
+  DataGridCellPopoverContextShape,
+  EuiDataGridCellPopoverElementProps,
+} from '../data_grid_types';
 
 export const DataGridCellPopoverContext = createContext<
   DataGridCellPopoverContextShape
@@ -93,4 +96,21 @@ export const useCellPopover = (): {
   );
 
   return { cellPopoverContext, cellPopover };
+};
+
+/**
+ * Popover content renderers
+ */
+import { EuiText } from '../../text';
+
+export const DefaultCellPopover = ({
+  children,
+}: EuiDataGridCellPopoverElementProps) => {
+  // TODO: Handle JSON schema popovers
+  // TODO: Render cell actions
+  return (
+    <>
+      <EuiText>{children}</EuiText>
+    </>
+  );
 };

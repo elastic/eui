@@ -37,6 +37,7 @@ import {
   EuiDataGridCellActions,
   EuiDataGridCellPopoverActions,
 } from './data_grid_cell_actions';
+import { DefaultCellPopover } from './data_grid_cell_popover';
 import { IS_JEST_ENVIRONMENT } from '../../../test';
 
 const EuiDataGridCellContent: FunctionComponent<
@@ -452,7 +453,8 @@ export class EuiDataGridCell extends Component<
         column,
         columnId,
       } = this.props;
-      const PopoverElement = renderCellPopover as JSXElementConstructor<
+      const PopoverElement = (renderCellPopover ||
+        DefaultCellPopover) as JSXElementConstructor<
         EuiDataGridCellPopoverElementProps
       >;
       const CellElement = renderCellValue as JSXElementConstructor<

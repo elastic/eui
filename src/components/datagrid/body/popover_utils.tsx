@@ -7,18 +7,11 @@
  */
 
 import React from 'react';
-import { EuiText } from '../../text';
 import { EuiCodeBlock } from '../../code';
 import {
   EuiDataGridPopoverContents,
   EuiDataGridPopoverContent,
 } from '../data_grid_types';
-
-export const DefaultColumnFormatter: EuiDataGridPopoverContent = ({
-  children,
-}) => {
-  return <EuiText>{children}</EuiText>;
-};
 
 export const providedPopoverContents: EuiDataGridPopoverContents = {
   json: ({ cellContentsElement }) => {

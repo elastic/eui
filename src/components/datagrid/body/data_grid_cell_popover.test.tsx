@@ -13,7 +13,7 @@ import { keys } from '../../../services';
 import { testCustomHook } from '../../../test/test_custom_hook.test_helper';
 
 import { DataGridCellPopoverContextShape } from '../data_grid_types';
-import { useCellPopover } from './data_grid_cell_popover';
+import { useCellPopover, DefaultCellPopover } from './data_grid_cell_popover';
 
 describe('useCellPopover', () => {
   describe('openCellPopover', () => {
@@ -200,5 +200,36 @@ describe('useCellPopover', () => {
         expect(event.stopPropagation).not.toHaveBeenCalled();
       });
     });
+  });
+});
+
+describe('popover content renderers', () => {
+  const cellContentsElement = document.createElement('div');
+  cellContentsElement.innerText = '{ "hello": "world" }';
+  const props = {
+    rowIndex: 0,
+    colIndex: 0,
+    columnId: 'someId',
+    children: <div data-test-subj="mockCellValue">Content</div>,
+    cellContentsElement,
+  };
+
+  test('default cell popover', () => {
+    const component = shallow(<DefaultCellPopover {...props} />);
+    expect(component).toMatchInlineSnapshot(`
+      <Fragment>
+        <EuiText>
+          <div
+            data-test-subj="mockCellValue"
+          >
+            Content
+          </div>
+        </EuiText>
+      </Fragment>
+    `);
+  });
+
+  test('JSON schema popover', () => {
+    // TODO
   });
 });
