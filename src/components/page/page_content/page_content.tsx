@@ -18,6 +18,7 @@ import {
   EuiPageContentBody,
   EuiPageContentBodyProps,
 } from './page_content_body';
+import { useEuiTheme } from '../../../services';
 
 export type EuiPageContentPositions = 'top' | 'center' | 'horizontalCenter';
 
@@ -47,6 +48,7 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
   style = {},
   ...rest
 }) => {
+  const { euiTheme } = useEuiTheme();
   const isTemplate = restrictWidth || bottomBorder || alignment;
   const color = panelled ? 'plain' : 'transparent';
 
@@ -85,14 +87,12 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
   style.paddingTop = 0;
   style.paddingBottom = 0;
 
-  const contentBodyProps: Partial<EuiPageContentBodyProps> = {
-    paddingSize,
-    style: { ...bodyProps?.style, paddingLeft: 0, paddingRight: 0 },
+  const pageContentBodyStyles = {
+    borderBottom: bottomBorder === true ? euiTheme.border.thin : undefined,
+    paddingLeft: 0,
+    paddingRight: 0,
+    width: alignment?.toLowerCase().includes('center') ? 'auto' : undefined,
   };
-
-  if (alignment?.toLowerCase().includes('center')) {
-    contentBodyProps.style!.width = 'auto';
-  }
 
   return (
     <EuiPanel
@@ -104,10 +104,10 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
       {...rest}
     >
       <EuiPageContentBody
-        bottomBorder={bottomBorder === true}
+        css={pageContentBodyStyles}
         restrictWidth={restrictWidth}
+        paddingSize={paddingSize}
         {...bodyProps}
-        {...contentBodyProps}
       >
         {children}
       </EuiPageContentBody>

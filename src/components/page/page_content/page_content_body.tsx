@@ -6,29 +6,38 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../../common';
+import { CommonProps, keysOf } from '../../common';
 import {
   _EuiPageRestrictWidth,
   setPropsForRestrictedPageWidth,
 } from '../_restrict_width';
-import { _EuiPanelDivlike, EuiPanel, EuiPanelProps } from '../../panel/panel';
+
+const paddingSizeToClassNameMap = {
+  none: null,
+  s: 'euiPageContentBody--paddingSmall',
+  m: 'euiPageContentBody--paddingMedium',
+  l: 'euiPageContentBody--paddingLarge',
+};
+
+export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
 export interface EuiPageContentBodyProps
   extends CommonProps,
-    Omit<_EuiPanelDivlike, 'onClick'>,
+    HTMLAttributes<HTMLDivElement>,
     _EuiPageRestrictWidth {
-  paddingSize?: EuiPanelProps['paddingSize'];
-  bottomBorder?: boolean;
+  /**
+   * Adjust the padding.
+   * When using this setting it's best to be consistent throughout all similar usages
+   */
+  paddingSize?: typeof PADDING_SIZES[number];
 }
 
 export const EuiPageContentBody: FunctionComponent<EuiPageContentBodyProps> = ({
-  paddingSize = 'none',
-  restrictWidth = false,
-  bottomBorder = false,
-  grow = false,
   children,
+  restrictWidth = false,
+  paddingSize = 'none',
   style,
   className,
   ...rest
@@ -40,24 +49,16 @@ export const EuiPageContentBody: FunctionComponent<EuiPageContentBodyProps> = ({
 
   const classes = classNames(
     'euiPageContentBody',
+    paddingSizeToClassNameMap[paddingSize],
     {
-      'euiPageContentBody--bottomBorder': bottomBorder,
       [`euiPageContentBody--${widthClassName}`]: widthClassName,
     },
     className
   );
 
   return (
-    <EuiPanel
-      className={classes}
-      style={newStyle || style}
-      paddingSize={paddingSize}
-      color="transparent"
-      borderRadius="none"
-      grow={grow}
-      {...rest}
-    >
+    <div className={classes} style={newStyle || style} {...rest}>
       {children}
-    </EuiPanel>
+    </div>
   );
 };

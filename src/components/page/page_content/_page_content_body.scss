@@ -1,7 +1,11 @@
 .euiPageContentBody {
   @include euiPageRestrictWidth;
+}
 
-  &--bottomBorder {
-    border-bottom: $euiBorderThin;
+// Uses the same values as EuiPanel
+@each $modifier, $amount in $euiPanelPaddingModifiers {
+  .euiPageContentBody--#{$modifier} {
+    padding: $amount;
   }
 }
+
