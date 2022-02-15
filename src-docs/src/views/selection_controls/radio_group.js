@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { EuiRadioGroup } from '../../../../src/components';
 
 import { useGeneratedHtmlId } from '../../../../src/services';
-import { DisplayToggles } from './display_toggles';
+
+import { DisplayToggles } from '../form_controls/display_toggles';
 
 export default () => {
   const radioGroupItemId__1 = useGeneratedHtmlId({

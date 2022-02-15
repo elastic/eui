@@ -22,10 +22,10 @@ export default () => {
 
   return (
     <Fragment>
-      <EuiFormRow display="columnCompressedSwitch" label="Enable">
+      <EuiFormRow display="columnCompressedSwitch" label="Autoscaling">
         <EuiSwitch
           showLabel={false}
-          label="Enable"
+          label="Autoscaling"
           checked={checked1}
           onChange={onChange1}
           compressed

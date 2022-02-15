@@ -2,6 +2,7 @@
 
 - Improved `EuiSelectable` keypress scenarios ([#5613](https://github.com/elastic/eui/pull/5613))
 - Converted `FieldValueSelectionFilter` in `EuiSearchBar` to use `EuiSelectable` ([#5387](https://github.com/elastic/eui/issues/5387))
+- Added `lineDashed`, `lineDotted`, and `lineSolid` glyphs to `EuiIcon` ([#5633](https://github.com/elastic/eui/pull/5633))
 - Updated `colorMode` return type in theme context utilities ([#5639](https://github.com/elastic/eui/issues/5639))
 
 ## [`48.0.0`](https://github.com/elastic/eui/tree/v48.0.0)
@@ -55,6 +56,17 @@
 - Fixed an accessibility issue where `EuiComboBoxPill` close button had a nested interactive element ([#5560](https://github.com/elastic/eui/pull/5560))
 - Fixed EuiDataGrid height issue when in full-screen mode and with scrolling content ([#5557](https://github.com/elastic/eui/pull/5557))
 - Fixed an accessibility issue in custom and interactive Drag and Drop patterns ([#5568](https://github.com/elastic/eui/pull/5568))
+- Fixed a focus bug in `EuiDataGrid` when clicking another cell header with an already-open cell header popover ([#5556](https://github.com/elastic/eui/pull/5556))
+- Fixed `EuiDataGrid` to always focus back into the grid on pagination ([#5587](https://github.com/elastic/eui/pull/5587))
+- Fixed `EuiDataGrid` and `EuiTable` pagination potentially rendering out view on narrow tables with many pages ([#5561](https://github.com/elastic/eui/pull/5561))
+
+## [`46.1.1`](https://github.com/elastic/eui/tree/v46.1.1)
+
+**Note: this release is a backport containing changes originally made in `46.2.0`**
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` height issue when in full-screen mode and with scrolling content ([#5557](https://github.com/elastic/eui/pull/5557))
 - Fixed a focus bug in `EuiDataGrid` when clicking another cell header with an already-open cell header popover ([#5556](https://github.com/elastic/eui/pull/5556))
 - Fixed `EuiDataGrid` to always focus back into the grid on pagination ([#5587](https://github.com/elastic/eui/pull/5587))
 - Fixed `EuiDataGrid` and `EuiTable` pagination potentially rendering out view on narrow tables with many pages ([#5561](https://github.com/elastic/eui/pull/5561))
