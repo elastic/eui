@@ -201,6 +201,40 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
   <div
     class="euiPageHeaderContent"
   >
+    <nav
+      aria-label="Breadcrumbs"
+      class="euiBreadcrumbs euiBreadcrumbs--truncate"
+    >
+      <ol
+        class="euiBreadcrumbs__list"
+      >
+        <li
+          class="euiBreadcrumb"
+        >
+          <a
+            class="euiLink euiLink--primary euiBreadcrumb__content customClass"
+            data-test-subj="breadcrumbsAnimals"
+            href="#"
+            rel="noreferrer"
+          >
+            Animals
+          </a>
+        </li>
+        <li
+          class="euiBreadcrumb euiBreadcrumb--last"
+        >
+          <span
+            aria-current="page"
+            class="euiBreadcrumb__content"
+          >
+            Edit
+          </span>
+        </li>
+      </ol>
+    </nav>
+    <div
+      class="euiSpacer euiSpacer--s"
+    />
     <div
       class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
     >

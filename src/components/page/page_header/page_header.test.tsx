@@ -12,6 +12,7 @@ import { requiredProps } from '../../../test/required_props';
 
 import { EuiPageHeader, EuiPageHeaderProps } from './page_header';
 import { ALIGN_ITEMS } from './page_header_content';
+import { EuiBreadcrumb } from '../../breadcrumbs';
 
 export const tabs: EuiPageHeaderProps['tabs'] = [
   {
@@ -20,6 +21,23 @@ export const tabs: EuiPageHeaderProps['tabs'] = [
   },
   {
     label: 'Tab 2',
+  },
+];
+
+const breadcrumbs: EuiBreadcrumb[] = [
+  {
+    text: 'Animals',
+    href: '#',
+    onClick: (e: React.MouseEvent) => {
+      e.preventDefault();
+      console.log('You clicked Animals');
+    },
+    'data-test-subj': 'breadcrumbsAnimals',
+    className: 'customClass',
+    color: 'primary',
+  },
+  {
+    text: 'Edit',
   },
 ];
 
@@ -51,6 +69,7 @@ describe('EuiPageHeader', () => {
             description="Description"
             rightSideItems={rightSideItems}
             rightSideGroupProps={{ responsive: true, ...requiredProps }}
+            breadcrumbs={breadcrumbs}
           >
             <p>Anything</p>
           </EuiPageHeader>

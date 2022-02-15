@@ -49,13 +49,13 @@ export type EuiPageHeaderContentTitle = {
    */
   iconProps?: Partial<Omit<EuiIconProps, 'type'>>;
   /**
-   * Optional breadcrumbs
+   * Optional array breadcrumbs that render before the `pageTitle`
    */
   breadcrumbs?: EuiBreadcrumbsProps['breadcrumbs'];
   /**
-   * Adjust the props of EuiBreadcrumbs
+   * Adjust the props of [EuiBreadcrumbs](#/navigation/breadcrumbs)
    */
-  breadcrumbProps?: EuiBreadcrumbsProps;
+  breadcrumbProps?: Partial<EuiBreadcrumbsProps>;
 };
 
 export type EuiPageHeaderContentTabs = {
