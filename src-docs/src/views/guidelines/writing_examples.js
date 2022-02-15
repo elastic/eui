@@ -18,7 +18,6 @@ import {
   EuiModalHeaderTitle,
   EuiPanel,
   EuiSpacer,
-  EuiSwitch,
   EuiText,
   EuiToolTip,
   EuiToast,
@@ -40,7 +39,6 @@ export const writingExamplesSections = [
   { id: 'labels', title: 'Labels' },
   { id: 'links', title: 'Links' },
   { id: 'modals', title: 'Modals' },
-  { id: 'switches', title: 'Switches' },
   { id: 'text-fields', title: 'Text fields' },
   { id: 'toasts', title: 'Toasts' },
   { id: 'tooltips', title: 'Tooltips' },
@@ -509,48 +507,6 @@ export const WritingExamples = () => {
               </EuiButton>
             </EuiModalFooter>
           </EuiPanel>
-        </GuideRuleExample>
-      </GuideRule>
-
-      <EuiSpacer size="xxl" />
-      <EuiSpacer size="xxl" />
-
-      <EuiText grow={false}>
-        <h2 id="switches">Switches</h2>
-
-        <p>
-          Describe the action when the{' '}
-          <Link to="/forms/form-controls/#switch">switch</Link> is enabled.
-        </p>
-      </EuiText>
-
-      <GuideRule>
-        <GuideRuleExample
-          text="Keep labels and descriptions short and direct."
-          minHeight={150}
-        >
-          <div style={{ width: 400 }}>
-            <EuiSwitch
-              checked={false}
-              onChange={() => {}}
-              label="Use the first matching geo data"
-            />
-            <EuiSpacer />
-          </div>
-        </GuideRuleExample>
-        <GuideRuleExample
-          text='Start with a keyword instead of "If true" or "If enabled".'
-          minHeight={150}
-        >
-          <div style={{ width: 400 }}>
-            <EuiFormRow helpText="Rollover when an index is 30 days old or reaches 50 gigabytes.">
-              <EuiSwitch
-                checked={false}
-                onChange={() => {}}
-                label="Use recommended defaults"
-              />
-            </EuiFormRow>
-          </div>
         </GuideRuleExample>
       </GuideRule>
 
