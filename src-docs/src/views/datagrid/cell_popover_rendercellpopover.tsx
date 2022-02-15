@@ -1,0 +1,167 @@
+import React, { useState, ReactNode } from 'react';
+// @ts-ignore - faker does not have type declarations
+import { fake } from 'faker';
+
+import {
+  EuiDataGrid,
+  EuiDataGridCellPopoverElementProps,
+  EuiDataGridColumnCellAction,
+  EuiDataGridColumn,
+  EuiPopoverTitle,
+  EuiPopoverFooter,
+  EuiButtonEmpty,
+  EuiCopy,
+  EuiText,
+  EuiImage,
+} from '../../../../src/components';
+
+const cellActions: EuiDataGridColumnCellAction[] = [
+  ({ Component }) => (
+    <Component iconType="plusInCircle" aria-label="Filter in">
+      Filter in
+    </Component>
+  ),
+  ({ Component }) => (
+    <Component iconType="minusInCircle" aria-label="Filter out">
+      Filter out
+    </Component>
+  ),
+];
+
+const columns: EuiDataGridColumn[] = [
+  {
+    id: 'default',
+    cellActions,
+  },
+  {
+    id: 'datetime',
+    cellActions,
+  },
+  {
+    id: 'json',
+    cellActions,
+  },
+  {
+    id: 'custom',
+    schema: 'favoriteFranchise',
+    cellActions,
+  },
+];
+
+const data: Array<{ [key: string]: ReactNode }> = [];
+for (let i = 1; i < 5; i++) {
+  data.push({
+    default: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
+    datetime: fake('{{date.past}}'),
+    json: JSON.stringify([
+      {
+        numeric: fake('{{finance.account}}'),
+        currency: fake('${{finance.amount}}'),
+        date: fake('{{date.past}}'),
+      },
+    ]),
+    custom: i % 2 === 0 ? 'Star Wars' : 'Star Trek',
+  });
+}
+
+const RenderCellPopover = (props: EuiDataGridCellPopoverElementProps) => {
+  const {
+    columnId,
+    schema,
+    children,
+    cellActions,
+    cellContentsElement,
+    defaultPopoverRender,
+  } = props;
+
+  let title: ReactNode = 'Custom popover';
+  let content: ReactNode = <EuiText size="s">{children}</EuiText>;
+  let footer: ReactNode = cellActions;
+
+  // An example of completely custom popover content
+  if (schema === 'favoriteFranchise') {
+    title = 'Custom popover with default actions';
+    const franchise = cellContentsElement.innerText;
+    const caption = `${franchise} is the best!`;
+    content = (
+      <>
+        {franchise === 'Star Wars' ? (
+          <EuiImage
+            allowFullScreen
+            size="m"
+            hasShadow
+            caption={caption}
+            alt="Random Star Wars image"
+            url="https://source.unsplash.com/600x600/?starwars"
+          />
+        ) : (
+          <EuiImage
+            allowFullScreen
+            size="m"
+            hasShadow
+            caption={caption}
+            alt="Random Star Trek image"
+            url="https://source.unsplash.com/600x600/?startrek"
+          />
+        )}
+      </>
+    );
+  }
+
+  // An example of conditionally hiding the default cell actions footer
+  // Simply do not pass or render `cellActions`
+  if (columnId === 'default') {
+    title = 'Custom popover with no actions';
+    footer = null;
+  }
+
+  // An example of a custom cell actions footer, and of using
+  // `cellContentsElement` to directly access a cell's raw text
+  if (columnId === 'datetime') {
+    title = 'Custom popover with custom actions';
+    footer = (
+      <EuiPopoverFooter className="eui-textRight">
+        <EuiCopy textToCopy={cellContentsElement.innerText}>
+          {(copy) => (
+            <EuiButtonEmpty size="xs" onClick={copy} color="success">
+              Click to copy
+            </EuiButtonEmpty>
+          )}
+        </EuiCopy>
+      </EuiPopoverFooter>
+    );
+  }
+
+  // An example of conditionally falling back back to the default cell popover render.
+  // Note that JSON schemas have automatic EuiCodeBlock and isCopyable formatting
+  // which can be nice to keep intact. For cells that have non-JSON content but
+  // JSON popovers, you can also manually pass a `json` schema to force this formatting.
+  if (columnId === 'json') {
+    return defaultPopoverRender({ ...props, schema: 'json' });
+  }
+
+  return (
+    <>
+      <EuiPopoverTitle>{title}</EuiPopoverTitle>
+      {content}
+      {footer}
+    </>
+  );
+};
+
+export default () => {
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  return (
+    <EuiDataGrid
+      aria-label="Data grid renderCellPopover example"
+      columns={columns}
+      columnVisibility={{ visibleColumns, setVisibleColumns }}
+      rowCount={data.length}
+      renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+      renderCellPopover={RenderCellPopover}
+    />
+  );
+};
