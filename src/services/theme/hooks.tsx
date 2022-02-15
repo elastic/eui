@@ -14,14 +14,14 @@ import {
   EuiColorModeContext,
 } from './context';
 import {
-  EuiThemeColorMode,
+  EuiThemeColorModeStandard,
   EuiThemeModifications,
   EuiThemeComputed,
 } from './types';
 
 export interface UseEuiTheme<T extends {} = {}> {
   euiTheme: EuiThemeComputed<T>;
-  colorMode: EuiThemeColorMode;
+  colorMode: EuiThemeColorModeStandard;
   modifications: EuiThemeModifications<T>;
 }
 

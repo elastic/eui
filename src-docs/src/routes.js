@@ -117,6 +117,8 @@ import { FocusTrapExample } from './views/focus_trap/focus_trap_example';
 
 import { FormControlsExample } from './views/form_controls/form_controls_example';
 
+import { SelectionControlsExample } from './views/selection_controls/selection_controls_example';
+
 import { FormLayoutsExample } from './views/form_layouts/form_layouts_example';
 
 import { FormCompressedExample } from './views/form_compressed/form_compressed_example';
@@ -526,6 +528,7 @@ const navigation = [
     name: 'Forms',
     items: [
       FormControlsExample,
+      SelectionControlsExample,
       FormLayoutsExample,
       FormCompressedExample,
       FormValidationExample,
