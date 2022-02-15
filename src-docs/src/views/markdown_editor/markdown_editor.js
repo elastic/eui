@@ -19,6 +19,10 @@ The editor also ships with some built in plugins. For example it can handle chec
 - [ ] Checkboxes
 - [x] Can be filled
 - [ ] Or empty
+
+It can also handle emojis! :smile:
+
+And it can render !{tooltip[tooltips like this](Look! I'm a very helpful tooltip content!)}
 `;
 
 const dropHandlers = [
