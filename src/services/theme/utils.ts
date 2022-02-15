@@ -49,7 +49,7 @@ export const getColorMode = (
   if (colorMode == null) {
     return parentColorMode || DEFAULT_COLOR_MODE;
   }
-  const mode = colorMode?.toUpperCase() as
+  const mode = colorMode.toUpperCase() as
     | EuiThemeColorModeInverse
     | EuiThemeColorModeStandard;
   if (isInverseColorMode(mode)) {
