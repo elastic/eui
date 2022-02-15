@@ -40,7 +40,7 @@ export const isInverseColorMode = (
  * Returns the color mode configured in the current EuiThemeProvider.
  * Returns the parent color mode if none is explicity set.
  * @param {string} coloMode - `light`, `dark`, or `inverse`
- * @param {string} parentColorMode - `light` or `dark`; used as the fallback
+ * @param {string} parentColorMode - `LIGHT` or `DARK`; used as the fallback
  */
 export const getColorMode = (
   colorMode?: EuiThemeColorMode,
