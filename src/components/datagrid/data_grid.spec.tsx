@@ -111,14 +111,14 @@ describe('EuiDataGrid', () => {
         .first();
 
       // make sure the horizontal scrollbar is present
-      virtualizedContainer.then(([outerContainer]: [HTMLDivElement]) => {
+      virtualizedContainer.then(([outerContainer]: JQuery<HTMLElement>) => {
         expect(outerContainer.offsetHeight).to.be.greaterThan(
           outerContainer.clientHeight
         );
       });
 
       // make sure the vertical scrollbar is gone
-      virtualizedContainer.then(([outerContainer]: [HTMLDivElement]) => {
+      virtualizedContainer.then(([outerContainer]: JQuery<HTMLElement>) => {
         expect(outerContainer.offsetWidth).to.equal(outerContainer.clientWidth);
       });
     });
@@ -261,25 +261,33 @@ describe('EuiDataGrid', () => {
         cy.focused().should('not.exist');
 
         // tab through the control bar
-        cy.get('body')
-          .tab()
-          .should('have.attr', 'data-test-subj', 'dataGridColumnSelectorButton')
-          .tab()
-          .should(
-            'have.attr',
-            'data-test-subj',
-            'dataGridDisplaySelectorButton'
-          )
-          .tab()
-          .should('have.attr', 'data-test-subj', 'dataGridFullScreenButton');
+        cy.realPress('Tab');
+        cy.focused().should(
+          'have.attr',
+          'data-test-subj',
+          'dataGridColumnSelectorButton'
+        );
+        cy.realPress('Tab');
+        cy.focused().should(
+          'have.attr',
+          'data-test-subj',
+          'dataGridDisplaySelectorButton'
+        );
+        cy.realPress('Tab');
+        cy.focused().should(
+          'have.attr',
+          'data-test-subj',
+          'dataGridFullScreenButton'
+        );
 
         // tab into the grid, should focus first cell after a short delay
-        cy.focused().tab();
+        cy.realPress('Tab');
         cy.focused()
           .should('have.attr', 'data-gridcell-column-index', '0')
           .should('have.attr', 'data-gridcell-row-index', '0');
 
-        cy.focused().tab().should('have.id', 'final-tabbable');
+        cy.realPress('Tab');
+        cy.focused().should('have.id', 'final-tabbable');
       });
 
       it('arrow-keying focuses another cell, unless it has only one interactive element', () => {
@@ -379,9 +387,9 @@ describe('EuiDataGrid', () => {
         // enable interactives & focus trap
         cy.focused().type('{enter}');
         cy.focused().should('have.attr', 'data-test-subj', 'btn-yes');
-        cy.focused().tab();
+        cy.realPress('Tab');
         cy.focused().should('have.attr', 'data-test-subj', 'btn-no');
-        cy.focused().tab();
+        cy.realPress('Tab');
         cy.focused().should('have.attr', 'data-test-subj', 'btn-yes');
         cy.focused().type('{esc}');
         cy.focused()
@@ -400,9 +408,9 @@ describe('EuiDataGrid', () => {
         cy.focused().parentsUntil(
           '[data-test-subj="euiDataGridExpansionPopover"]'
         ); // ensure focus is in the popover
-        cy.focused().tab();
+        cy.realPress('Tab');
         cy.focused().should('have.attr', 'data-test-subj', 'btn-no');
-        cy.focused().tab();
+        cy.realPress('Tab');
         cy.focused().should(
           'have.attr',
           'data-test-subj',
