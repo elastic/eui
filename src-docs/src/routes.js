@@ -42,10 +42,6 @@ import { PrettyDurationExample } from './views/pretty_duration/pretty_duration_e
 
 import { UtilityClassesExample } from './views/utility_classes/utility_classes_example';
 
-// Templates
-
-import { PageTemplateExample } from './views/page/page_template_example';
-
 // Component examples
 
 import { AccessibilityExample } from './views/accessibility/accessibility_example';
@@ -217,7 +213,6 @@ import { StepsExample } from './views/steps/steps_example';
 
 import { SuggestExample } from './views/suggest/suggest_example';
 
-import { SitewideSearchExample } from './views/selectable/selectable_sitewide_template_example';
 import { SuperDatePickerExample } from './views/super_date_picker/super_date_picker_example';
 
 import { TableExample } from './views/tables/tables_example';
