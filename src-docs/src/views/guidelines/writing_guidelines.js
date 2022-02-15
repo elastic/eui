@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 import { GuideRule, GuideRuleExample } from '../../components';
@@ -58,6 +59,10 @@ export const writingGuidelinesSections = [
   {
     id: 'be-careful-with-humor',
     title: 'Be careful with humor',
+  },
+  {
+    id: 'specific-component-guidelines',
+    title: 'Specific component guidelines',
   },
   {
     id: 'verifying-your-text',
@@ -799,6 +804,8 @@ export const WritingGuidelines = () => {
         </GuideRuleExample>
       </GuideRule>
 
+      <EuiSpacer />
+
       <GuideRule
         heading="Label buttons with their action"
         description="Don't use Yes or OK when you can use a verb phrase instead."
@@ -809,7 +816,7 @@ export const WritingGuidelines = () => {
         >
           <EuiPanel style={{ transform: 'scale(.75)' }}>
             <EuiTitle size="m">
-              <span>Remove this index pattern?</span>
+              <span>Remove this user?</span>
             </EuiTitle>
             <EuiSpacer />
             <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
@@ -817,7 +824,7 @@ export const WritingGuidelines = () => {
                 Cancel
               </EuiButtonEmpty>
               <EuiButton color="danger" size="s">
-                Remove index pattern
+                Remove user
               </EuiButton>
             </EuiFlexGroup>
           </EuiPanel>
@@ -828,7 +835,7 @@ export const WritingGuidelines = () => {
         >
           <EuiPanel style={{ transform: 'scale(.75)' }}>
             <EuiTitle size="m">
-              <span>Remove this index pattern?</span>
+              <span>Remove this user?</span>
             </EuiTitle>
             <EuiSpacer />
             <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
@@ -891,6 +898,44 @@ export const WritingGuidelines = () => {
           </EuiText>
         </GuideRuleExample>
       </GuideRule>
+      <EuiHorizontalRule />
+
+      <EuiSpacer size="xl" />
+
+      <EuiTitle>
+        <h2 id="specific-component-guidelines">
+          Specific component guidelines
+        </h2>
+      </EuiTitle>
+
+      <EuiSpacer />
+
+      <EuiText grow={false}>
+        <p>
+          Find specific guidelines and examples by checking component details.
+        </p>
+        <ul>
+          <li>
+            <Link to="/navigation/button/guidelines">Button</Link>
+          </li>
+          <li>
+            <Link to="/layout/modal/guidelines">Modal</Link>
+          </li>
+          <li>
+            <Link to="/forms/selection-controls/guidelines">
+              Selection control labels
+            </Link>
+          </li>
+          <li>
+            <Link to="/display/toast/guidelines">Toast</Link>
+          </li>
+        </ul>
+        <p>
+          Need some more writing examples? Check out the{' '}
+          <Link to="/guidelines/writing/examples">Examples</Link> page.
+        </p>
+      </EuiText>
+
       <EuiHorizontalRule />
 
       <EuiSpacer size="xl" />

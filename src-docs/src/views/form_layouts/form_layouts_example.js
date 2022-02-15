@@ -36,7 +36,7 @@ const accessibleLabelsSnippet = `<EuiFormRow
   label="Settings"
   hasChildLabel={false}>
   <EuiSwitch
-    label="Dark mode?"
+    label="Dark mode"
     onChange={}
     checked={}
   />

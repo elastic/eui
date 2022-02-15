@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { EuiSwitch } from '../../../../src/components';
-import { DisplayToggles } from './display_toggles';
+import { DisplayToggles } from '../form_controls/display_toggles';
 
 export default () => {
   const [checked, setChecked] = useState(false);
@@ -19,7 +19,7 @@ export default () => {
       canFullWidth={false}
     >
       <EuiSwitch
-        label="Enable"
+        label="Malware protection"
         checked={checked}
         onChange={(e) => onChange(e)}
       />
