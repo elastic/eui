@@ -114,10 +114,10 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
       grow: true,
       className: classNames(fullHeightClass, pageContentProps?.className),
       bodyProps: {
-        grow: true,
         style: {
           display: 'flex',
           flexDirection: 'column',
+          flexGrow: 1,
         },
         className: classNames(
           fullHeightClass,

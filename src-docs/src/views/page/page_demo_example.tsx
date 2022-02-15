@@ -231,9 +231,7 @@ export const PageDemoExample: FunctionComponent<
         }
         demoPanelProps={{
           paddingSize: 'none',
-          // @ts-ignore Works
-          hasBorder: '0 0 1px',
-          style: { overflow: 'hidden' },
+          style: { overflow: 'hidden', borderWidth: '0 0 1px' },
         }}
         fullScreen={{
           slug,
