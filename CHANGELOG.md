@@ -58,6 +58,17 @@
 - Fixed `EuiDataGrid` to always focus back into the grid on pagination ([#5587](https://github.com/elastic/eui/pull/5587))
 - Fixed `EuiDataGrid` and `EuiTable` pagination potentially rendering out view on narrow tables with many pages ([#5561](https://github.com/elastic/eui/pull/5561))
 
+## [`46.1.1`](https://github.com/elastic/eui/tree/v46.1.1)
+
+**Note: this release is a backport containing changes originally made in `46.2.0`**
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` height issue when in full-screen mode and with scrolling content ([#5557](https://github.com/elastic/eui/pull/5557))
+- Fixed a focus bug in `EuiDataGrid` when clicking another cell header with an already-open cell header popover ([#5556](https://github.com/elastic/eui/pull/5556))
+- Fixed `EuiDataGrid` to always focus back into the grid on pagination ([#5587](https://github.com/elastic/eui/pull/5587))
+- Fixed `EuiDataGrid` and `EuiTable` pagination potentially rendering out view on narrow tables with many pages ([#5561](https://github.com/elastic/eui/pull/5561))
+
 ## [`46.1.0`](https://github.com/elastic/eui/tree/v46.1.0)
 
 - Added `sun` glyph to `EuiIcon` ([#5548](https://github.com/elastic/eui/pull/5548))
