@@ -922,7 +922,9 @@ export const WritingGuidelines = () => {
             <Link to="/layout/modal/guidelines">Modal</Link>
           </li>
           <li>
-            <Link to="/forms/selection-controls/guidelines">Selection control labels</Link>
+            <Link to="/forms/selection-controls/guidelines">
+              Selection control labels
+            </Link>
           </li>
           <li>
             <Link to="/display/toast/guidelines">Toast</Link>
