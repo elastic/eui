@@ -85,7 +85,7 @@ export default () => {
         <EuiSwitch
           id={modalFormSwitchId}
           name="popswitch"
-          label="Isn't this modal form cool?"
+          label="Cool modal form"
           checked={isSwitchChecked}
           onChange={onSwitchChange}
         />
