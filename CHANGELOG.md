@@ -1,5 +1,9 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+No public interface changes since `48.1.0`.
+
+## [`48.1.0`](https://github.com/elastic/eui/tree/v48.1.0)
+
 - Improved `EuiSelectable` keypress scenarios ([#5613](https://github.com/elastic/eui/pull/5613))
 - Converted `FieldValueSelectionFilter` in `EuiSearchBar` to use `EuiSelectable` ([#5387](https://github.com/elastic/eui/issues/5387))
 - Added `lineDashed`, `lineDotted`, and `lineSolid` glyphs to `EuiIcon` ([#5633](https://github.com/elastic/eui/pull/5633))
