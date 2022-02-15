@@ -91,6 +91,7 @@ const EuiDataGridCellContent: FunctionComponent<
             data-test-subj="cell-content"
             rowIndex={rowIndex}
             colIndex={colIndex}
+            schema={column?.schema || rest.columnType}
             {...rest}
           />
         </div>
@@ -452,6 +453,7 @@ export class EuiDataGridCell extends Component<
         colIndex,
         column,
         columnId,
+        columnType,
       } = this.props;
       const PopoverElement = (renderCellPopover ||
         DefaultCellPopover) as JSXElementConstructor<
@@ -464,6 +466,7 @@ export class EuiDataGridCell extends Component<
         rowIndex,
         colIndex,
         columnId,
+        schema: column?.schema || columnType,
       };
       const popoverContent = (
         <PopoverElement
@@ -603,7 +606,7 @@ export class EuiDataGridCell extends Component<
       ...rest,
       setCellProps: this.setCellProps,
       column,
-      columnType: columnType,
+      columnType,
       isExpandable,
       isExpanded: popoverIsOpen,
       isDetails: false,

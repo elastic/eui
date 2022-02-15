@@ -404,6 +404,10 @@ interface SharedRenderCellElementProps {
    * ID of the column being rendered, the value comes from the #EuiDataGridColumn `id`
    */
   columnId: string;
+  /**
+   * The schema type of the column being rendered
+   */
+  schema: string | undefined | null;
 }
 
 export interface EuiDataGridCellValueElementProps

@@ -210,6 +210,7 @@ describe('popover content renderers', () => {
     rowIndex: 0,
     colIndex: 0,
     columnId: 'someId',
+    schema: null,
     children: <div data-test-subj="mockCellValue">Content</div>,
     cellActions: <div data-test-subj="mockCellActions">Action</div>,
     cellContentsElement,
