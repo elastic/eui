@@ -9,5 +9,6 @@
 
 .euiMarkdownEditorPreview-isDisabled {
   @include euiFormControlDisabledTextStyle;
-  cursor: not-allowed;
+  // prevents components like the tooltip to work
+  pointer-events: none;
 }
