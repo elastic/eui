@@ -2,7 +2,7 @@
 
 exports[`EuiTablePagination is rendered 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow eui-xScroll"
+  class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--wrap eui-xScroll"
 >
   <div
     class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -194,7 +194,7 @@ exports[`EuiTablePagination is rendered 1`] = `
 
 exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow eui-xScroll"
+  class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--wrap eui-xScroll"
 >
   <div
     class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -357,7 +357,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
 
 exports[`EuiTablePagination renders a "show all" itemsPerPage option 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow eui-xScroll"
+  class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--wrap eui-xScroll"
 >
   <div
     class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -384,7 +384,7 @@ exports[`EuiTablePagination renders a "show all" itemsPerPage option 1`] = `
             <span
               class="euiButtonEmpty__text"
             >
-              Showing all
+              All rows
             </span>
           </span>
         </button>

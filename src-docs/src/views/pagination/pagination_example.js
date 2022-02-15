@@ -232,13 +232,13 @@ export const PaginationExample = {
       ],
       text: (
         <p>
-          You can use{' '}
+          You can use <strong>EuiTablePagination</strong> to create a
+          combination &quot;Rows per page&quot; and pagination set, commonly
+          used with{' '}
           <Link to="/tabular-content/tables#adding-pagination-to-a-table">
-            <strong>EuiTablePagination</strong>
-          </Link>{' '}
-          to create a combination &quot;Rows per page&quot; and pagination set,
-          commonly used with <Link to="/tabular-content/tables">tables</Link>.
-          If you pass <EuiCode>0</EuiCode> (zero) in as one of the{' '}
+            tables
+          </Link>
+          . If you pass <EuiCode>{"'all'"}</EuiCode> in as one of the{' '}
           <EuiCode>itemsPerPageOptions</EuiCode>, it will create a &quot;Show
           all&quot; option and hide the pagination.
         </p>

@@ -365,9 +365,10 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                 gutterSize="s"
                 justifyContent="spaceBetween"
                 responsive={false}
+                wrap={true}
               >
                 <div
-                  className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow eui-xScroll"
+                  className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--wrap eui-xScroll"
                 >
                   <EuiFlexItem
                     grow={false}
@@ -1834,7 +1835,7 @@ exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
       class="euiSpacer euiSpacer--m"
     />
     <div
-      class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow eui-xScroll"
+      class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--wrap eui-xScroll"
     >
       <div
         class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -1861,7 +1862,7 @@ exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
                 <span
                   class="euiButtonEmpty__text"
                 >
-                  Showing all
+                  All rows
                 </span>
               </span>
             </button>

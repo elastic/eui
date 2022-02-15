@@ -76,7 +76,7 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
       onClick={onButtonClick}
     >
       {itemsPerPage === 'all' ? (
-        <EuiI18n token="euiTablePagination.showingAll" default="Showing all" />
+        <EuiI18n token="euiTablePagination.allRows" default="All rows" />
       ) : (
         <>
           <EuiI18n
@@ -133,6 +133,7 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
       justifyContent="spaceBetween"
       alignItems="center"
       responsive={false}
+      wrap
       gutterSize="s"
       className="eui-xScroll"
     >

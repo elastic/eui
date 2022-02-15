@@ -71,7 +71,7 @@ export const PaginationBar = ({
 
   useEffect(() => {
     if (pageCount < pagination.pageIndex + 1) {
-      onPageChange!(pageCount - 1);
+      onPageChange?.(pageCount - 1);
     }
   }, [pageCount, onPageChange, pagination]);
 
