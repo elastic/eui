@@ -211,6 +211,7 @@ describe('popover content renderers', () => {
     colIndex: 0,
     columnId: 'someId',
     children: <div data-test-subj="mockCellValue">Content</div>,
+    cellActions: <div data-test-subj="mockCellActions">Action</div>,
     cellContentsElement,
   };
 
@@ -225,6 +226,11 @@ describe('popover content renderers', () => {
             Content
           </div>
         </EuiText>
+        <div
+          data-test-subj="mockCellActions"
+        >
+          Action
+        </div>
       </Fragment>
     `);
   });

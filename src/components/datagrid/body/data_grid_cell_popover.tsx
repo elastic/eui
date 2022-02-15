@@ -104,13 +104,14 @@ export const useCellPopover = (): {
 import { EuiText } from '../../text';
 
 export const DefaultCellPopover = ({
+  cellActions,
   children,
 }: EuiDataGridCellPopoverElementProps) => {
   // TODO: Handle JSON schema popovers
-  // TODO: Render cell actions
   return (
     <>
       <EuiText>{children}</EuiText>
+      {cellActions}
     </>
   );
 };

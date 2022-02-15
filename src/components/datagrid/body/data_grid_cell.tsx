@@ -469,6 +469,9 @@ export class EuiDataGridCell extends Component<
         <PopoverElement
           {...sharedProps}
           cellContentsElement={this.cellContentsRef!}
+          cellActions={
+            <EuiDataGridCellPopoverActions {...sharedProps} column={column} />
+          }
         >
           <CellElement
             {...sharedProps}

@@ -441,6 +441,11 @@ export interface EuiDataGridCellPopoverElementProps
    * References the div element the cell contents have been rendered into. Primarily useful for processing the rendered text
    */
   cellContentsElement: HTMLDivElement;
+  /**
+   * An `EuiPopoverFooter` containing all column `cellActions` (as `EuiEmptyButton`s).
+   * Use `{cellActions}` to render the default cell action buttons, or leave it out to hide cell actions/render your own.
+   */
+  cellActions: ReactNode;
 }
 
 export interface EuiDataGridCellProps {
