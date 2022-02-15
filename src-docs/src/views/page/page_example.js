@@ -10,6 +10,8 @@ import {
   EuiPage,
 } from '../../../../src';
 
+import { pageConfig } from './components/playground';
+
 import { PageComponentDemo } from './components/page_demo';
 const PageSource = require('!!raw-loader!./components/page');
 
@@ -55,20 +57,21 @@ export const PageExample = {
           </p>
         </>
       ),
+      demo: <PageComponentDemo />,
+      demoPanelProps: {
+        paddingSize: 'none',
+        style: { overflow: 'hidden' },
+      },
       source: [
         {
           type: GuideSectionTypes.TSX,
           code: PageSource,
         },
       ],
-      demo: <PageComponentDemo />,
-      demoPanelProps: {
-        paddingSize: 'none',
-        style: { overflow: 'hidden' },
-      },
       props: {
         EuiPage,
       },
+      playground: pageConfig,
     },
   ],
 };
