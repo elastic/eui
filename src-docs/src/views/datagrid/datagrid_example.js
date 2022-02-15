@@ -38,8 +38,6 @@ import {
 
 const gridSnippet = `
   <EuiDataGrid
-    // Optional. Will try to autodectect schemas and do sorting and pagination in memory.
-    inMemory={{ level: 'sorting' }}
     // Required. There are 200 total records.
     rowCount={200}
     // Required. Sets up three columns, the last of which has a custom schema we later define down below.
@@ -47,15 +45,16 @@ const gridSnippet = `
     // The second column B won't allow clicking in to see the content in a popup and doesn't show move actions in column header cell
     // The third column provides one additional cell action, that triggers an alert once clicked
     columns={[
-        { id: 'A', initialWidth: 150, isResizable: false, actions: false },
-        { id: 'B', isExpandable: false, actions: { showMoveLeft: false, showMoveRight: false } },
-        { id: 'C', schema: 'franchise', cellActions: [{ label: 'test', iconType: 'heart', callback: ()=> alert('test') }]}
+      { id: 'A', initialWidth: 150, isResizable: false, actions: false },
+      { id: 'B', isExpandable: false, actions: { showMoveLeft: false, showMoveRight: false } },
+      { id: 'C', schema: 'franchise', cellActions: [{ label: 'test', iconType: 'heart', callback: ()=> alert('test') }]}
     ]}
-    // Optional. This allows you to initially hide columns. Users can still turn them on.
+    // Required. Determines column visibility state. Allows you to initially hide columns, although users can still turn them on.
     columnVisibility={{
       visibleColumns: ['A', 'C'],
       setVisibleColumns: () => {},
     }}
+    // Optional
     leadingControlColumns={[
       {
         id: 'selection',
@@ -64,6 +63,7 @@ const gridSnippet = `
         rowCellRender: () => <div><EuiCheckbox ... /></div>,
       },
     ]}
+    // Optional
     trailingControlColumns={[
       {
         id: 'actions',
@@ -86,6 +86,13 @@ const gridSnippet = `
         {cellActions}
       </>
     )}
+    // Optional. Will try to autodectect schemas and do sorting and pagination in memory.
+    inMemory={{ level: 'sorting' }}
+    // Optional, but required when inMemory is set. Provides the sort and gives a callback for when it changes in the grid.
+    sorting={{
+      columns: [{ id: 'C', direction: 'asc' }],
+      onSort: () => {},
+    }}
     // Optional. Add pagination.
     pagination={{
       pageIndex: 1,
@@ -93,11 +100,6 @@ const gridSnippet = `
       pageSizeOptions: [50, 100, 200],
       onChangePage: () => {},
       onChangeItemsPerPage: () => {},
-    }}
-    // Optional, but required when inMemory is set. Provides the sort and gives a callback for when it changes in the grid.
-    sorting={{
-      columns: [{ id: 'C', direction: 'asc' }],
-      onSort: () => {},
     }}
     // Optional. Allows you to configure what features the toolbar shows.
     // The prop also accepts a boolean if you want to toggle the entire toolbar on/off.
@@ -124,7 +126,7 @@ const gridSnippet = `
     rowHeightsOptions={{
       defaultHeight: 34,
       rowHeights: {
-        0: auto
+        0: 'auto',
       },
       lineHeight: '1em',
     }}
