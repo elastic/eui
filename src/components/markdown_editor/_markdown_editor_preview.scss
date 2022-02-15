@@ -10,6 +10,4 @@
 .euiMarkdownEditorPreview-isDisabled {
   @include euiFormControlDisabledTextStyle;
   cursor: not-allowed;
-  // prevents interactive components like checkboxes to be clickable
-  pointer-events: none;
 }
