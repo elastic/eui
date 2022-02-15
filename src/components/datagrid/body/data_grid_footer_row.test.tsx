@@ -203,4 +203,11 @@ describe('EuiDataGridFooterRow', () => {
       .prop('renderCellValue');
     expect(renderCellValue()).toEqual(null);
   });
+
+  it('renders striped styling if the footer row is odd', () => {
+    const component = shallow(
+      <EuiDataGridFooterRow {...requiredProps} visibleRowIndex={15} />
+    );
+    expect(component.hasClass('euiDataGridRow--striped')).toBe(true);
+  });
 });

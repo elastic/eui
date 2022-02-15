@@ -48,6 +48,10 @@ export const GuideSectionCodeTypesMap = {
     name: 'demoTSX',
     displayName: 'Demo TS',
   },
+  STRING_JS: {
+    name: 'demoJS',
+    displayName: 'Demo JS',
+  },
   SNIPPET: {
     name: 'snippet',
     displayName: 'Snippet',

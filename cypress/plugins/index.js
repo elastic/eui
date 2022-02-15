@@ -18,6 +18,21 @@ module.exports = (on, config) => {
 
   require('@cypress/code-coverage/task')(on, config);
   on('file:preprocessor', require('@cypress/code-coverage/use-babelrc'));
+  
+  // `cy.task()` executes code in Node via the task plugin event
+  // These are being added to print messages and errors to console and CI logs
+  // https://docs.cypress.io/api/commands/task
+  // https://github.com/component-driven/cypress-axe#using-the-violationcallback-argument
+  on('task', {
+    log(message) {
+      console.log(message);
+      return null;
+    },
+    table(message) {
+      console.table(message);
+      return null;
+    }
+  });
 
   if (config.testingType === 'component') {
     const { startDevServer } = require('@cypress/webpack-dev-server');
