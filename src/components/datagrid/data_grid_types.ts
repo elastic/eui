@@ -161,10 +161,10 @@ export type EuiDataGridFooterRowProps = CommonProps &
     trailingControlColumns: EuiDataGridControlColumn[];
     columns: EuiDataGridColumn[];
     schema: EuiDataGridSchema;
-    popoverContents: EuiDataGridPopoverContents;
     columnWidths: EuiDataGridColumnWidths;
     defaultColumnWidth?: number | null;
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
+    renderCellPopover?: EuiDataGridCellProps['renderCellPopover'];
     interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
     visibleRowIndex?: number;
   };
@@ -228,22 +228,31 @@ export type CommonGridProps = CommonProps &
      */
     schemaDetectors?: EuiDataGridSchemaDetector[];
     /**
-     * An object mapping #EuiDataGridColumn `schema`s to a custom popover formatting component which receives #EuiDataGridPopoverContent props
-     */
-    popoverContents?: EuiDataGridPopoverContents;
-    /**
      * The total number of rows in the dataset (used by e.g. pagination to know how many pages to list)
      */
     rowCount: number;
     /**
      * A function called to render a cell's value. Behind the scenes it is treated as a React component
-     * allowing hooks, context, and other React concepts to be used. The function receives a #CellValueElement
+     * allowing hooks, context, and other React concepts to be used. The function receives #EuiDataGridCellValueElementProps
      * as its only argument.
      */
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
     /**
-     * A function called to render a cell's value. Behind the scenes it is treated as a React component
-     * allowing hooks, context, and other React concepts to be used. The function receives a #CellValueElement
+     * An optional function that can be used to completely customize the rendering of cell popovers.
+     *
+     * If not specified, defaults to an `<EuiText>` wrapper around the rendered cell value and an
+     * `<EuiPopoverFooter>` around the cell actions.
+     *
+     * Behind the scenes it is treated as a React component allowing hooks, context, and other React concepts to be used.
+     * The function receives #EuiDataGridCellPopoverElementProps as its only argument.
+     *
+     */
+    renderCellPopover?: EuiDataGridCellProps['renderCellPopover'];
+    /**
+     * An optional function called to render a footer cell. If not specified, no footer row is rendered.
+     *
+     * Behind the scenes it is treated as a React component
+     * allowing hooks, context, and other React concepts to be used. The function receives #EuiDataGridCellValueElementProps
      * as its only argument.
      */
     renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
@@ -345,6 +354,7 @@ export interface EuiDataGridColumnSortingDraggableProps {
    */
   display: string;
 }
+
 export interface EuiDataGridBodyProps {
   leadingControlColumns: EuiDataGridControlColumn[];
   trailingControlColumns: EuiDataGridControlColumn[];
@@ -352,10 +362,10 @@ export interface EuiDataGridBodyProps {
   visibleColCount: number;
   schema: EuiDataGridSchema;
   schemaDetectors: EuiDataGridSchemaDetector[];
-  popoverContents: EuiDataGridPopoverContents;
   rowCount: number;
   visibleRows: EuiDataGridVisibleRows;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
+  renderCellPopover?: EuiDataGridCellProps['renderCellPopover'];
   renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
   pagination?: EuiDataGridPaginationProps;
@@ -444,11 +454,13 @@ export interface EuiDataGridCellProps {
   interactiveCellId: string;
   isExpandable: boolean;
   className?: string;
-  popoverContent: EuiDataGridPopoverContent;
   popoverContext: DataGridCellPopoverContextShape;
   renderCellValue:
     | JSXElementConstructor<EuiDataGridCellValueElementProps>
     | ((props: EuiDataGridCellValueElementProps) => ReactNode);
+  renderCellPopover?:
+    | JSXElementConstructor<EuiDataGridCellPopoverElementProps>
+    | ((props: EuiDataGridCellPopoverElementProps) => ReactNode);
   setRowHeight?: (height: number) => void;
   getRowHeight?: (rowIndex: number) => number;
   style?: React.CSSProperties;
@@ -467,11 +479,7 @@ export interface EuiDataGridCellState {
 
 export type EuiDataGridCellValueProps = Omit<
   EuiDataGridCellProps,
-  | 'width'
-  | 'interactiveCellId'
-  | 'popoverContent'
-  | 'popoverContext'
-  | 'rowManager'
+  'width' | 'interactiveCellId' | 'popoverContext' | 'rowManager'
 >;
 export interface EuiDataGridControlColumn {
   /**
