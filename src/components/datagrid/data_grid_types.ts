@@ -450,6 +450,13 @@ export interface EuiDataGridCellPopoverElementProps
    * Use `{cellActions}` to render the default cell action buttons, or leave it out to hide cell actions/render your own.
    */
   cellActions: ReactNode;
+  /**
+   * For certain columns or schemas, you may want to fall back to the standard EuiDataGrid popover display.
+   * If so, that component is provided here as a passed render function for your usage.
+   */
+  defaultPopoverRender: (
+    props: EuiDataGridCellPopoverElementProps
+  ) => ReactNode;
 }
 
 export interface EuiDataGridCellProps {

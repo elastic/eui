@@ -214,6 +214,7 @@ describe('popover content renderers', () => {
     children: <div data-test-subj="mockCellValue">Content</div>,
     cellActions: <div data-test-subj="mockCellActions">Action</div>,
     cellContentsElement,
+    defaultPopoverRender: DefaultCellPopover,
   };
 
   test('default cell popover', () => {
