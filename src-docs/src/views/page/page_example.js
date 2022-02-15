@@ -1,7 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { GuideSectionTypes } from '../../components';
 
-import { EuiText, EuiSpacer, EuiCallOut } from '../../../../src/components';
+import {
+  EuiText,
+  EuiSpacer,
+  EuiCallOut,
+  EuiCode,
+  EuiPage,
+} from '../../../../src';
+
+import { PageComponentDemo } from './components/page_demo';
+const PageSource = require('!!raw-loader!./components/page');
 
 export const PageExample = {
   title: 'Page components',
@@ -31,8 +41,34 @@ export const PageExample = {
   ),
   sections: [
     {
-      title: 'To do',
-      text: <p>TO DO</p>,
+      title: 'Page',
+      text: (
+        <>
+          <p>
+            <strong>EuiPage</strong> is simply a flex wrapper that will
+            automatically <EuiCode>grow</EuiCode> to fill the height of a flex
+            container. You can also control the flex{' '}
+            <EuiCode>direction</EuiCode> and the maximum width using
+            <EuiCode>restrictWidth</EuiCode> which centers the page when it
+            reaches the provided value (or <EuiCode>1200px</EuiCode> if set to{' '}
+            <EuiCode>true</EuiCode>).
+          </p>
+        </>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: PageSource,
+        },
+      ],
+      demo: <PageComponentDemo />,
+      demoPanelProps: {
+        paddingSize: 'none',
+        style: { overflow: 'hidden' },
+      },
+      props: {
+        EuiPage,
+      },
     },
   ],
 };
