@@ -49,7 +49,7 @@ export const renderJsSourceCode = (code) => {
   const nonEuiImports = [];
 
   renderedCode = renderedCode.replace(
-    /import\s+([^]+?)\s+from\s+(\'[A-Za-z0-9 _./-]*\'\;)/g,
+    /(\/\/.+\n)?import\s+([^]+?)\s+from\s+(\'[A-Za-z0-9 _./-]*\'\;)/g,
     (match) => {
       nonEuiImports.push(match);
       return '';
