@@ -24,11 +24,13 @@ export const COLOR_MODES_STANDARD = {
 } as const;
 export const COLOR_MODES_INVERSE = 'INVERSE' as const;
 
-type EuiThemeColorModeInverse = typeof COLOR_MODES_INVERSE;
+export type EuiThemeColorModeInverse = typeof COLOR_MODES_INVERSE;
 export type EuiThemeColorModeStandard = ValueOf<typeof COLOR_MODES_STANDARD>;
 export type EuiThemeColorMode =
-  | string
+  | 'light'
+  | 'dark'
   | EuiThemeColorModeStandard
+  | 'inverse'
   | EuiThemeColorModeInverse;
 
 export type ColorModeSwitch<T = string> =

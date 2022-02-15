@@ -19,13 +19,13 @@ export default () => {
           <>
             Navigate to this Switch with a screen reader. With{' '}
             <EuiCode>hasChildLabel = false</EuiCode> the name of this is
-            &ldquo;Dark mode?&rdquo; instead of &ldquo;Settings&rdquo;.
+            &ldquo;Dark mode&rdquo; instead of &ldquo;Settings&rdquo;.
           </>
         }
       >
         <EuiSwitch
           name="switch"
-          label="Dark mode?"
+          label="Dark mode"
           onChange={() => {
             setCheckedState(false);
             setTimeout(() => {
