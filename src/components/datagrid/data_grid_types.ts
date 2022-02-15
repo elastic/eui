@@ -373,40 +373,64 @@ export interface EuiDataGridBodyProps {
   gridItemsRendered: MutableRefObject<GridOnItemsRenderedProps | null>;
   wrapperRef: MutableRefObject<HTMLDivElement | null>;
 }
-export interface EuiDataGridCellValueElementProps {
+
+/**
+ * Props shared between renderCellValue and renderCellPopover
+ */
+interface SharedRenderCellElementProps {
   /**
-   * index of the row being rendered, 0 represents the first row. This index always includes
+   * Index of the row being rendered, 0 represents the first row. This index always includes
    * pagination offset, meaning the first rowIndex in a grid is `pagination.pageIndex * pagination.pageSize`
    * so take care if you need to adjust the rowIndex to fit your data
    */
   rowIndex: number;
   /**
-   * index of the column being rendered, 0 represents the first column. This index accounts
+   * Index of the column being rendered, 0 represents the first column. This index accounts
    * for columns that have been hidden or reordered by the user, so take care if you need
    * to adjust the colIndex to fit your data
    */
   colIndex: number;
   /**
-   * id of the column being rendered, the value comes from the #EuiDataGridColumn `id`
+   * ID of the column being rendered, the value comes from the #EuiDataGridColumn `id`
    */
   columnId: string;
+}
+
+export interface EuiDataGridCellValueElementProps
+  extends SharedRenderCellElementProps {
   /**
-   * callback function to set custom props & attributes on the cell's wrapping `div` element;
+   * Callback function to set custom props & attributes on the cell's wrapping `div` element;
    * it's best to wrap calls to `setCellProps` in a `useEffect` hook
    */
   setCellProps: (props: CommonProps & HTMLAttributes<HTMLDivElement>) => void;
   /**
-   * whether or not the cell is expandable, comes from the #EuiDataGridColumn `isExpandable` which defaults to `true`
+   * Whether or not the cell is expandable, comes from the #EuiDataGridColumn `isExpandable` which defaults to `true`
    */
   isExpandable: boolean;
   /**
-   * whether or not the cell is expanded
+   * Whether or not the cell is expanded
    */
   isExpanded: boolean;
   /**
-   * when rendering the cell, `isDetails` is false; when the cell is expanded, `renderCellValue` is called again to render into the details popover and `isDetails` is true
+   * When rendering the cell, `isDetails` is false; when the cell is expanded, `renderCellValue` is called again to render into the details popover and `isDetails` is true
+   *
+   * This boolean is not used if a custom `renderCellPopover` element is passed, because `renderCellPopover` is always an expanded details popover.
    */
   isDetails: boolean;
+}
+
+export interface EuiDataGridCellPopoverElementProps
+  extends SharedRenderCellElementProps {
+  /**
+   * The default `children` passed to the cell popover comes from the passed `renderCellValue` prop as a ReactElement.
+   *
+   * Allows wrapping the rendered content: `({ children }) => <div>{children}</div>` - or leave it out to render completely custom content.
+   */
+  children: ReactNode;
+  /**
+   * References the div element the cell contents have been rendered into. Primarily useful for processing the rendered text
+   */
+  cellContentsElement: HTMLDivElement;
 }
 
 export interface EuiDataGridCellProps {
@@ -775,23 +799,6 @@ export interface EuiDataGridInMemory {
 
 export interface EuiDataGridInMemoryValues {
   [rowIndex: string]: { [columnId: string]: string };
-}
-
-export interface EuiDataGridPopoverContentProps {
-  /**
-   * your `cellValueRenderer` as a ReactElement; allows wrapping the rendered content: `({children}) => <div>{children}</div>`
-   */
-  children: ReactNode;
-  /**
-   * div element the cell contents have been rendered into; useful for processing the rendered text
-   */
-  cellContentsElement: HTMLDivElement;
-}
-export type EuiDataGridPopoverContent = ComponentType<
-  EuiDataGridPopoverContentProps
->;
-export interface EuiDataGridPopoverContents {
-  [key: string]: EuiDataGridPopoverContent;
 }
 
 export interface EuiDataGridOnColumnResizeData {
