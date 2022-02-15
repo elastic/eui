@@ -9,6 +9,7 @@
 import React, {
   AriaAttributes,
   FunctionComponent,
+  HTMLAttributes,
   MouseEventHandler,
   ReactNode,
   useEffect,
@@ -35,23 +36,27 @@ export type EuiBreadcrumbResponsiveMaxCount = {
   [key in EuiBreakpointSize]?: number;
 };
 
-export type EuiBreadcrumb = CommonProps & {
-  href?: string;
-  onClick?: MouseEventHandler<HTMLAnchorElement>;
-  /**
-   * Visible label of the breadcrumb
-   */
-  text: ReactNode;
-  /**
-   * Force a max-width on the breadcrumb text
-   */
-  truncate?: boolean;
-  color?: EuiLinkColor;
-  /**
-   * Override the existing `aria-current` which defaults to `page` for the last breadcrumb
-   */
-  'aria-current'?: AriaAttributes['aria-current'];
-};
+export type EuiBreadcrumb = HTMLAttributes<HTMLElement> &
+  CommonProps & {
+    href?: string;
+    onClick?: MouseEventHandler<HTMLAnchorElement>;
+    /**
+     * Visible label of the breadcrumb
+     */
+    text: ReactNode;
+    /**
+     * Force a max-width on the breadcrumb text
+     */
+    truncate?: boolean;
+    /**
+     * Accepts any EuiLink `color` when rendered as one (has `href` or `onClick`)
+     */
+    color?: EuiLinkColor;
+    /**
+     * Override the existing `aria-current` which defaults to `page` for the last breadcrumb
+     */
+    'aria-current'?: AriaAttributes['aria-current'];
+  };
 
 export type EuiBreadcrumbsProps = CommonProps & {
   /**

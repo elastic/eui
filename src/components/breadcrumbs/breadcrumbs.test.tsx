@@ -10,9 +10,9 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import { EuiBreadcrumbs } from './breadcrumbs';
+import { EuiBreadcrumbs, EuiBreadcrumb } from './breadcrumbs';
 
-const breadcrumbs = [
+const breadcrumbs: EuiBreadcrumb[] = [
   {
     text: 'Animals',
     href: '#',
@@ -22,6 +22,7 @@ const breadcrumbs = [
     },
     'data-test-subj': 'breadcrumbsAnimals',
     className: 'customClass',
+    color: 'primary',
   },
   {
     text: 'Metazoans',
@@ -46,6 +47,7 @@ const breadcrumbs = [
   },
   {
     text: 'Boa constrictor',
+    title: 'Boa constrictor has an error',
     href: '#',
     truncate: true,
   },
