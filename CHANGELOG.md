@@ -1,6 +1,8 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `48.1.0`.
+**Bug fixes**
+
+- Fixed `EuiDataGrid` throwing a console error when grids without trailing control columns are sorted and then all columns are hidden ([#5635](https://github.com/elastic/eui/issues/5635))
 
 ## [`48.1.0`](https://github.com/elastic/eui/tree/v48.1.0)
 
@@ -8,10 +10,6 @@ No public interface changes since `48.1.0`.
 - Converted `FieldValueSelectionFilter` in `EuiSearchBar` to use `EuiSelectable` ([#5387](https://github.com/elastic/eui/issues/5387))
 - Added `lineDashed`, `lineDotted`, and `lineSolid` glyphs to `EuiIcon` ([#5633](https://github.com/elastic/eui/pull/5633))
 - Updated `colorMode` return type in theme context utilities ([#5639](https://github.com/elastic/eui/issues/5639))
-
-**Bug fixes**
-
-- Fixed `EuiDataGrid` throwing a console error when grids without trailing control columns are sorted and then all columns are hidden ([#5635](https://github.com/elastic/eui/issues/5635))
 
 ## [`48.0.0`](https://github.com/elastic/eui/tree/v48.0.0)
 
