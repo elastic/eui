@@ -21,7 +21,8 @@ export const renderJsSourceCode = (code) => {
     // (, )?          - optional comma after React - some files, like tests, only need the main React import
     // ({([^]+?)})?   - optionally capture any characters (including newlines) between the import braces
     //  from 'react'; - ` from 'react';` exactly
-    /import (React)?(, )?({([^]+?)})? from 'react';/,
+    // [\r\n]         - match end of line
+    /import (React)?(, )?({([^]+?)})? from 'react';[\r\n]/,
     (match) => {
       reactImport = match;
       return '';
@@ -35,12 +36,11 @@ export const renderJsSourceCode = (code) => {
 
   // Find all imports that come from '@elastic/eui'
   renderedCode = renderedCode.replace(
-    // [\r\n]                       - start of a line
     // import\s+\{                  - import / whitespace / opening brace
     // ([^}]+)                      - group together anything that isn't a closing brace
     // \}\s+from\s+'@elastic\/eui'; - closing brace / whitespace / from / whitespace / '@elastic/eui';
     // [\r\n]                       - match end of line, so the extra new line is removed via the replace operation
-    /[\r\n]import\s+\{([^}]+)\}\s+from\s+'@elastic\/eui';/g,
+    /import\s+\{([^}]+)\}\s+from\s+'@elastic\/eui';[\r\n]/g,
     (match, imports) => {
       // remove any additional characters from imports
       const namedImports = imports.match(/[a-zA-Z0-9]+/g);
@@ -83,11 +83,14 @@ export const renderJsSourceCode = (code) => {
     }
   );
 
-  const formattedRemainingImports = remainingImports.join('\n');
+  const formattedRemainingImports = remainingImports.reduce(
+    (imports, importString) => (imports += `\n${importString}`),
+    ''
+  );
 
   /**
    * Putting it all together
    */
-  const fullyFormattedCode = `${reactImport}\n${formattedEuiImports}\n${formattedRemainingImports}\n\n${renderedCode.trim()}`;
+  const fullyFormattedCode = `${reactImport}${formattedEuiImports}${formattedRemainingImports}\n\n${renderedCode.trim()}`;
   return fullyFormattedCode;
 };
