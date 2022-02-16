@@ -2,7 +2,7 @@
 
 exports[`EuiMark is rendered 1`] = `
 .emotion-0 {
-  background-color: transparent;
+  background-color: rgba(0,119,204,0.1);
   font-weight: 700;
   color: #343741;
 }
