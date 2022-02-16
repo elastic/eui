@@ -278,9 +278,11 @@ export const EuiMarkdownEditor = forwardRef<
 
     const contextValue = useMemo<ContextShape>(
       () => ({
-        openPluginEditor: (plugin: EuiMarkdownEditorUiPlugin) =>
-          setPluginEditorPlugin(() => plugin),
-        replaceNode,
+        openPluginEditor: readOnly
+          ? () => {}
+          : (plugin: EuiMarkdownEditorUiPlugin) =>
+              setPluginEditorPlugin(() => plugin),
+        replaceNode: readOnly ? () => {} : replaceNode,
         readOnly: readOnly,
       }),
       [replaceNode, readOnly]
