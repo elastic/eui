@@ -1,6 +1,6 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `48.1.0`.
+- Added two new `data-test` attributes to `EuiDataGrid` and `EuiSelectable` for more explicit E2E testing ([#5643](https://github.com/elastic/eui/pull/5643))
 
 ## [`48.1.0`](https://github.com/elastic/eui/tree/v48.1.0)
 
