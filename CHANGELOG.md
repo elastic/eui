@@ -1,6 +1,11 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `48.1.0`.
+No public interface changes since `48.1.1`.
+
+## [`48.1.1`](https://github.com/elastic/eui/tree/v48.1.1)
+
+- Added a `data-test-subj` attribute to `EuiDataGrid` cell expansion buttons ([#5643](https://github.com/elastic/eui/pull/5643))
+- Added a `data-test-selected` attribute to `EuiSelectable` list options ([#5643](https://github.com/elastic/eui/pull/5643))
 
 ## [`48.1.0`](https://github.com/elastic/eui/tree/v48.1.0)
 
