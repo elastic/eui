@@ -10,7 +10,15 @@ import { cleanEuiImports } from '../../services';
 export const renderJsSourceCode = (code) => {
   let renderedCode = cleanEuiImports(code.default);
 
-  /* ----- Combine and clean EUI imports ----- */
+  /**
+   * Extract React import (to ensure it's always at the top)
+   */
+
+  // TODO
+
+  /**
+   * Combine and clean EUI imports
+   */
   let elasticImports = [''];
 
   // Find all imports that come from '@elastic/eui'
@@ -45,23 +53,29 @@ export const renderJsSourceCode = (code) => {
     formattedEuiImports = `import {\n  ${lineSeparatedImports},\n} from '@elastic/eui';`;
   }
 
-  // Find any non-EUI imports and join them with new lines between each import for uniformity
-  const nonEuiImports = [];
+  /**
+   * Non React/EUI imports
+   */
+  const remainingImports = [];
 
+  // Find any non-EUI imports and join them with new lines between each import for uniformity
   renderedCode = renderedCode.replace(
-    // (\/\/.+\n)?                      - Optional preceding comments that must be above specific imports, e.g. // @ts-ignore
+    // (\/\/.+\n)?                      - optional preceding comments that must be above specific imports, e.g. // @ts-ignore
     // import\s+                        - import + whitespace
     // ([^]+?)\s+                       - capture any characters (including newlines) before a whitespace
     // from\s+(\'[A-Za-z0-9 _./-]*\'\;) - from 'someLibrary'; - alphanumeric and certain special characters only
     /(\/\/.+\n)?import\s+([^]+?)\s+from\s+(\'[A-Za-z0-9 _./-]*\'\;)/g,
     (match) => {
-      nonEuiImports.push(match);
+      remainingImports.push(match);
       return '';
     }
   );
 
-  const formattedNonEuiImports = nonEuiImports.join('\n');
+  const formattedRemainingImports = remainingImports.join('\n');
 
-  const fullyFormattedCode = `${formattedEuiImports}\n${formattedNonEuiImports}\n\n${renderedCode.trim()}`;
+  /**
+   * Putting it all together
+   */
+  const fullyFormattedCode = `${formattedEuiImports}\n${formattedRemainingImports}\n\n${renderedCode.trim()}`;
   return fullyFormattedCode;
 };
