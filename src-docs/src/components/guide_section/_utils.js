@@ -54,15 +54,17 @@ export const renderJsSourceCode = (code) => {
 
   let formattedEuiImports = '';
 
-  // determine if imports should be wrapped to new lines based on the import statement length
-  const combinedImports = elasticImports.join(', ');
-  const singleLineImports = `import { ${combinedImports} } from '@elastic/eui';`;
+  if (elasticImports.length) {
+    // determine if imports should be wrapped to new lines based on the import statement length
+    const combinedImports = elasticImports.join(', ');
+    const singleLineImports = `import { ${combinedImports} } from '@elastic/eui';`;
 
-  if (singleLineImports.length <= 81) {
-    formattedEuiImports = singleLineImports;
-  } else {
-    const lineSeparatedImports = elasticImports.join(',\n  ');
-    formattedEuiImports = `import {\n  ${lineSeparatedImports},\n} from '@elastic/eui';`;
+    if (singleLineImports.length <= 81) {
+      formattedEuiImports = singleLineImports;
+    } else {
+      const lineSeparatedImports = elasticImports.join(',\n  ');
+      formattedEuiImports = `import {\n  ${lineSeparatedImports},\n} from '@elastic/eui';`;
+    }
   }
 
   /**
