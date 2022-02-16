@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
-import { EuiCode } from '../../../../src/components';
+import { EuiCode, EuiCallOut, EuiSpacer } from '../../../../src/components';
 
 import IsDetailsPopover from './cell_popover_is_details';
 const IsDetailsPopoverSource = require('!!raw-loader!./cell_popover_is_details');
@@ -63,7 +63,7 @@ export const DataGridCellPopoverExample = {
             If you want complete control over the rendering of the entire cell
             popover, use the <EuiCode>renderCellPopover</EuiCode> prop to pass a
             component. This allows you to do things like set your own wrappers
-            and replace the default cell actions with your own.
+            and replace the default cell actions rendering with your own.
           </p>
           <p>
             To make falling back to atoms of the default cell popover easier,
@@ -72,27 +72,46 @@ export const DataGridCellPopoverExample = {
           </p>
           <ul>
             <li>
-              <EuiCode>children</EuiCode> - the direct JSX output of the
-              cell&apos;s returned <EuiCode>renderCellValue</EuiCode>. It can be
-              used (e.g.) if you want a custom wrapper or cell actions, but
-              default popover content.
+              <p>
+                <EuiCode>children</EuiCode> - the direct JSX output of the
+                cell&apos;s returned <EuiCode>renderCellValue</EuiCode>. It can
+                be used (e.g.) if you want a custom wrapper or cell actions, but
+                default popover content.
+              </p>
             </li>
             <li>
-              <EuiCode>cellContentsElement</EuiCode> - a direct reference to the
-              cell&apos;s HTML content node, which allows accessing the
-              cell&apos;s <EuiCode>innerText</EuiCode> for cases where raw
-              non-JSX text is useful (e.g. copying).
+              <p>
+                <EuiCode>cellContentsElement</EuiCode> - a direct reference to
+                the cell&apos;s HTML content node, which allows accessing the
+                cell&apos;s <EuiCode>innerText</EuiCode> for cases where raw
+                non-JSX text is useful (e.g. copying).
+              </p>
             </li>
             <li>
               <EuiCode>cellActions</EuiCode> - the direct JSX output of the
               default popover footer and buttons. Use this prop if you want
               custom popover content but default cell actions.
+              <EuiCallOut
+                color="warning"
+                iconType="alert"
+                title="Using custom cell actions"
+              >
+                If deliberately leaving out the default{' '}
+                <EuiCode>cellActions</EuiCode>, you <strong>must</strong>{' '}
+                re-implement your cell actions in the popover in some form.
+                Leaving out cell actions available in the cell but not in the
+                popover introduces UX inconsistencies and will confuse the end
+                user.
+              </EuiCallOut>
+              <EuiSpacer />
             </li>
             <li>
-              <EuiCode>DefaultCellPopover</EuiCode> - the default popover
-              component. Use this component if you only want custom popover
-              content for certain schemas or columns and default popover
-              rendering for other cells.
+              <p>
+                <EuiCode>DefaultCellPopover</EuiCode> - the default popover
+                component. Use this component if you only want custom popover
+                content for certain schemas or columns and default popover
+                rendering for other cells.
+              </p>
             </li>
           </ul>
           <p>

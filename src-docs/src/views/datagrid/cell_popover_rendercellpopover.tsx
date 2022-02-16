@@ -9,6 +9,8 @@ import {
   EuiDataGridColumn,
   EuiPopoverTitle,
   EuiPopoverFooter,
+  EuiFlexGroup,
+  EuiFlexItem,
   EuiButtonEmpty,
   EuiCopy,
   EuiText,
@@ -78,9 +80,9 @@ const RenderCellPopover = (props: EuiDataGridCellPopoverElementProps) => {
   let content: ReactNode = <EuiText size="s">{children}</EuiText>;
   let footer: ReactNode = cellActions;
 
-  // An example of completely custom popover content
+  // An example of custom popover content
   if (schema === 'favoriteFranchise') {
-    title = 'Custom popover with default actions';
+    title = 'Custom popover with custom content';
     const franchise = cellContentsElement.innerText;
     const caption = `${franchise} is the best!`;
     content = (
@@ -108,26 +110,33 @@ const RenderCellPopover = (props: EuiDataGridCellPopoverElementProps) => {
     );
   }
 
-  // An example of conditionally hiding the default cell actions footer
-  // Simply do not pass or render `cellActions`
-  if (columnId === 'default') {
-    title = 'Custom popover with no actions';
-    footer = null;
-  }
-
   // An example of a custom cell actions footer, and of using
   // `cellContentsElement` to directly access a cell's raw text
   if (columnId === 'datetime') {
     title = 'Custom popover with custom actions';
     footer = (
-      <EuiPopoverFooter className="eui-textRight">
-        <EuiCopy textToCopy={cellContentsElement.innerText}>
-          {(copy) => (
-            <EuiButtonEmpty size="xs" onClick={copy} color="success">
-              Click to copy
-            </EuiButtonEmpty>
-          )}
-        </EuiCopy>
+      <EuiPopoverFooter>
+        <EuiFlexGroup
+          justifyContent="spaceBetween"
+          gutterSize="none"
+          responsive={false}
+        >
+          <EuiFlexItem className="eui-displayBlock">
+            {/* When not using the default cellActions, be sure to replace them
+            with your own action buttons to ensure a consistent user experience */}
+            <EuiButtonEmpty size="xs">Filter in</EuiButtonEmpty>
+            <EuiButtonEmpty size="xs">Filter out</EuiButtonEmpty>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiCopy textToCopy={cellContentsElement.innerText}>
+              {(copy) => (
+                <EuiButtonEmpty size="xs" onClick={copy} color="success">
+                  Click to copy
+                </EuiButtonEmpty>
+              )}
+            </EuiCopy>
+          </EuiFlexItem>
+        </EuiFlexGroup>
       </EuiPopoverFooter>
     );
   }
