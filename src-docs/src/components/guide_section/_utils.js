@@ -36,11 +36,11 @@ export const renderJsSourceCode = (code) => {
 
   // Find all imports that come from '@elastic/eui'
   renderedCode = renderedCode.replace(
-    // import\s+\{                  - import / whitespace / opening brace
-    // ([^}]+)                      - group together anything that isn't a closing brace
-    // \}\s+from\s+'@elastic\/eui'; - closing brace / whitespace / from / whitespace / '@elastic/eui';
-    // [\r\n]                       - match end of line, so the extra new line is removed via the replace operation
-    /import\s+\{([^}]+)\}\s+from\s+'@elastic\/eui';[\r\n]/g,
+    // import {                - import / whitespace / opening brace
+    // ([^}]+)                 - group together anything that isn't a closing brace
+    // } from '@elastic\/eui'; - closing brace / whitespace / from / whitespace / '@elastic/eui';
+    // [\r\n]                  - match end of line, so the extra new line is removed via the replace operation
+    /import {([^}]+)} from '@elastic\/eui';[\r\n]/g,
     (match, imports) => {
       // remove any additional characters from imports
       const namedImports = imports.match(/[a-zA-Z0-9]+/g);
@@ -72,11 +72,11 @@ export const renderJsSourceCode = (code) => {
 
   // Find any non-EUI imports and join them with new lines between each import for uniformity
   renderedCode = renderedCode.replace(
-    // (\/\/.+\n)?                      - optional preceding comments that must be above specific imports, e.g. // @ts-ignore
-    // import\s+                        - import + whitespace
-    // ([^]+?)\s+                       - capture any characters (including newlines) before a whitespace
-    // from\s+(\'[A-Za-z0-9 _./-]*\'\;) - from 'someLibrary'; - alphanumeric and certain special characters only
-    /(\/\/.+\n)?import\s+([^]+?)\s+from\s+(\'[A-Za-z0-9 _./-@]*\'\;)/g,
+    // (\/\/.+\n)?                   - optional preceding comments that must be above specific imports, e.g. // @ts-ignore
+    // import                        - import + whitespace
+    // ([^]+?)                       - capture any characters (including newlines)
+    //  from ('[A-Za-z0-9 -_.@/]*';) - ` from 'someLibrary';` - alphanumeric and certain special characters only
+    /(\/\/.+\n)?import ([^]+?) from ('[A-Za-z0-9 -_.@/]*';)/g,
     (match) => {
       remainingImports.push(match);
       return '';
