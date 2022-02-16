@@ -33,8 +33,12 @@
   }
 }
 
-.euiMarkdownEditorTextArea-isDisabled {
-  @include euiFormControlDisabledStyle;
-  // overrides inset box-shadow that comes from the mixin euiFormControlDisabledStyle
-  box-shadow: none;
+.euiMarkdownEditorTextArea-isReadOnly {
+  cursor: default;
+  background: $euiFormBackgroundReadOnlyColor;
+
+  &:focus,
+  .euiMarkdownEditor:focus-within & {
+    background: none;
+  }
 }

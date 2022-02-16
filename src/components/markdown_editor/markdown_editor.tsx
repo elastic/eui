@@ -78,9 +78,9 @@ type CommonMarkdownEditorProps = Omit<
     onChange: (value: string) => void;
 
     /**
-     * Sets the current display mode to a disabled state
+     * Sets the current display mode to a read-only state. All editing gets resctricted.
      */
-    isDisabled?: ContextShape['isDisabled'];
+    readOnly?: ContextShape['readOnly'];
 
     /**
      * Sets the `height` in pixels of the editor/preview area or pass `full` to allow
@@ -214,7 +214,7 @@ export const EuiMarkdownEditor = forwardRef<
       dropHandlers = [],
       markdownFormatProps,
       placeholder,
-      isDisabled,
+      readOnly,
       ...rest
     },
     ref
@@ -281,9 +281,9 @@ export const EuiMarkdownEditor = forwardRef<
         openPluginEditor: (plugin: EuiMarkdownEditorUiPlugin) =>
           setPluginEditorPlugin(() => plugin),
         replaceNode,
-        isDisabled: isDisabled,
+        readOnly: readOnly,
       }),
-      [replaceNode, isDisabled]
+      [replaceNode, readOnly]
     );
 
     const [selectedNode, setSelectedNode] = useState<EuiMarkdownAstNode>();
@@ -362,7 +362,7 @@ export const EuiMarkdownEditor = forwardRef<
     );
 
     const classesPreview = classNames('euiMarkdownEditorPreview', {
-      'euiMarkdownEditorPreview-isDisabled': isDisabled,
+      'euiMarkdownEditorPreview-readOnly': readOnly,
     });
 
     const onResize = () => {
@@ -492,7 +492,7 @@ export const EuiMarkdownEditor = forwardRef<
                       value={value}
                       onFocus={() => setHasUnacceptedItems(false)}
                       placeholder={placeholder}
-                      isDisabled={isDisabled}
+                      readOnly={readOnly}
                       {...{
                         'aria-label': ariaLabel,
                         'aria-labelledby': ariaLabelledBy,

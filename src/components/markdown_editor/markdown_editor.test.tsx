@@ -92,7 +92,7 @@ describe('EuiMarkdownEditor', () => {
       });
     });
 
-    describe('isDisabled', () => {
+    describe('readOnly', () => {
       test('is set to true', () => {
         const component = render(
           <EuiMarkdownEditor
@@ -100,7 +100,7 @@ describe('EuiMarkdownEditor', () => {
             autoExpandPreview={false}
             value=""
             onChange={() => null}
-            isDisabled
+            readOnly
             {...requiredProps}
           />
         );

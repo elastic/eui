@@ -6,9 +6,3 @@
   border: $euiBorderThin;
   padding: $euiSizeM;
 }
-
-.euiMarkdownEditorPreview-isDisabled {
-  @include euiFormControlDisabledTextStyle;
-  // prevents components like the tooltip to work
-  pointer-events: none;
-}

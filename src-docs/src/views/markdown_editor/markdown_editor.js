@@ -54,10 +54,10 @@ export default () => {
     setAst(JSON.stringify(ast, null, 2));
   }, []);
 
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [isReadOnly, setIsReadOnly] = useState(false);
 
   const onChange = (e) => {
-    setIsDisabled(e.target.checked);
+    setIsReadOnly(e.target.checked);
   };
 
   return (
@@ -71,15 +71,15 @@ export default () => {
         onParse={onParse}
         errors={messages}
         dropHandlers={dropHandlers}
-        isDisabled={isDisabled}
+        readOnly={isReadOnly}
         initialViewMode="viewing"
       />
       <EuiSpacer size="s" />
       <EuiFlexGroup alignItems="center">
         <EuiFlexItem grow={true}>
           <EuiSwitch
-            label="Disable editor"
-            checked={isDisabled}
+            label="Read-only"
+            checked={isReadOnly}
             onChange={onChange}
           />
         </EuiFlexItem>

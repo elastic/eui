@@ -113,7 +113,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
     'Syntax help'
   );
 
-  const { isDisabled } = useContext(EuiMarkdownContext);
+  const { readOnly } = useContext(EuiMarkdownContext);
 
   if (isUploadingFiles) {
     uploadButton = (
@@ -121,7 +121,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
         size="s"
         iconType={EuiLoadingSpinner}
         aria-label={ariaLabels.uploadingFiles}
-        isDisabled={isDisabled}
+        isDisabled={readOnly}
       />
     );
   } else if (dropHandlers.length > 0 && hasUnacceptedItems) {
@@ -135,7 +135,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
           color="danger"
           aria-label={`${ariaLabels.unsupportedFileType}. ${ariaLabels.supportedFileTypes}. ${ariaLabels.uploadingFiles}`}
           onClick={openFiles}
-          isDisabled={isDisabled}
+          isDisabled={readOnly}
         >
           {ariaLabels.unsupportedFileType}
         </EuiButtonEmpty>
@@ -149,7 +149,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
         color="text"
         aria-label={ariaLabels.openUploadModal}
         onClick={openFiles}
-        isDisabled={isDisabled}
+        isDisabled={readOnly}
       />
     );
   }
@@ -165,7 +165,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
             color="danger"
             aria-label={ariaLabels.showSyntaxErrors}
             onClick={onButtonClick}
-            isDisabled={isDisabled}
+            isDisabled={readOnly}
           >
             {errors.length}
           </EuiButtonEmpty>
@@ -220,7 +220,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
             color="text"
             aria-label={ariaLabels.showMarkdownHelp}
             onClick={() => setIsShowingHelpModal(!isShowingHelpModal)}
-            isDisabled={isDisabled}
+            isDisabled={readOnly}
           />
         </EuiToolTip>
 
