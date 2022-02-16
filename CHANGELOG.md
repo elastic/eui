@@ -1,6 +1,11 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `48.1.1`.
+- Added new `renderCellPopover` prop to `EuiDataGrid` ([#5640](https://github.com/elastic/eui/pull/5640))
+- Added cell `schema` info to `EuiDataGrid`'s `renderCellValue` props ([#5640](https://github.com/elastic/eui/pull/5640))
+
+**Breaking changes**
+
+- Removed `popoverContents` props from `EuiDataGrid` (use new `renderCellPopover` instead) ([#5640](https://github.com/elastic/eui/pull/5640))
 
 ## [`48.1.1`](https://github.com/elastic/eui/tree/v48.1.1)
 
