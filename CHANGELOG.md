@@ -1,8 +1,20 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+- Added new `renderCellPopover` prop to `EuiDataGrid` ([#5640](https://github.com/elastic/eui/pull/5640))
+- Added cell `schema` info to `EuiDataGrid`'s `renderCellValue` props ([#5640](https://github.com/elastic/eui/pull/5640))
+
 **Bug fixes**
 
 - Fixed `EuiDataGrid` throwing a console error when grids without trailing control columns are sorted and then all columns are hidden ([#5635](https://github.com/elastic/eui/issues/5635))
+
+**Breaking changes**
+
+- Removed `popoverContents` props from `EuiDataGrid` (use new `renderCellPopover` instead) ([#5640](https://github.com/elastic/eui/pull/5640))
+
+## [`48.1.1`](https://github.com/elastic/eui/tree/v48.1.1)
+
+- Added a `data-test-subj` attribute to `EuiDataGrid` cell expansion buttons ([#5643](https://github.com/elastic/eui/pull/5643))
+- Added a `data-test-selected` attribute to `EuiSelectable` list options ([#5643](https://github.com/elastic/eui/pull/5643))
 
 ## [`48.1.0`](https://github.com/elastic/eui/tree/v48.1.0)
 
