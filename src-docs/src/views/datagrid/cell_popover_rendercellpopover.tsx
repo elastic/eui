@@ -71,7 +71,7 @@ const RenderCellPopover = (props: EuiDataGridCellPopoverElementProps) => {
     children,
     cellActions,
     cellContentsElement,
-    defaultPopoverRender,
+    DefaultCellPopover,
   } = props;
 
   let title: ReactNode = 'Custom popover';
@@ -137,7 +137,7 @@ const RenderCellPopover = (props: EuiDataGridCellPopoverElementProps) => {
   // which can be nice to keep intact. For cells that have non-JSON content but
   // JSON popovers, you can also manually pass a `json` schema to force this formatting.
   if (columnId === 'json') {
-    return defaultPopoverRender({ ...props, schema: 'json' });
+    return <DefaultCellPopover {...props} schema="json" />;
   }
 
   return (

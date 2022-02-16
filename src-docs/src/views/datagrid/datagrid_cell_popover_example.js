@@ -89,8 +89,8 @@ export const DataGridCellPopoverExample = {
               custom popover content but default cell actions.
             </li>
             <li>
-              <EuiCode>defaultPopoverRender</EuiCode> - the default render
-              function. Use this render function if you only want custom popover
+              <EuiCode>DefaultCellPopover</EuiCode> - the default popover
+              component. Use this component if you only want custom popover
               content for certain schemas or columns and default popover
               rendering for other cells.
             </li>

@@ -565,14 +565,10 @@ describe('EuiDataGrid', () => {
           <EuiDataGrid
             {...baseCellPopoverProps}
             renderCellPopover={(props) => {
-              const {
-                schema,
-                defaultPopoverRender,
-                cellContentsElement,
-              } = props;
+              const { schema, DefaultCellPopover, cellContentsElement } = props;
 
               if (schema === 'json') {
-                return defaultPopoverRender(props);
+                return <DefaultCellPopover {...props} />;
               }
               if (cellContentsElement.innerText === 'default, 2') {
                 return (

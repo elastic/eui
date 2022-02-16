@@ -452,11 +452,9 @@ export interface EuiDataGridCellPopoverElementProps
   cellActions: ReactNode;
   /**
    * For certain columns or schemas, you may want to fall back to the standard EuiDataGrid popover display.
-   * If so, that component is provided here as a passed render function for your usage.
+   * If so, that component is provided here as a passed React function component for your usage.
    */
-  defaultPopoverRender: (
-    props: EuiDataGridCellPopoverElementProps
-  ) => ReactNode;
+  DefaultCellPopover: JSXElementConstructor<EuiDataGridCellPopoverElementProps>;
 }
 
 export interface EuiDataGridCellProps {
