@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { EuiCheckboxGroup } from '../../../../src/components';
-import { DisplayToggles } from './display_toggles';
+import { DisplayToggles } from '../form_controls/display_toggles';
 
 import { useGeneratedHtmlId } from '../../../../src/services';
 

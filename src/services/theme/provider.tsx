@@ -24,6 +24,7 @@ import {
 import { buildTheme, getColorMode, getComputed, mergeDeep } from './utils';
 import {
   EuiThemeColorMode,
+  EuiThemeColorModeStandard,
   EuiThemeSystem,
   EuiThemeModifications,
 } from './types';
@@ -54,7 +55,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
   );
   const prevModifications = useRef(modifications);
 
-  const [colorMode, setColorMode] = useState<EuiThemeColorMode>(
+  const [colorMode, setColorMode] = useState<EuiThemeColorModeStandard>(
     getColorMode(_colorMode, parentColorMode)
   );
   const prevColorMode = useRef(colorMode);
