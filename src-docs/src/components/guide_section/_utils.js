@@ -76,7 +76,7 @@ export const renderJsSourceCode = (code) => {
     // import\s+                        - import + whitespace
     // ([^]+?)\s+                       - capture any characters (including newlines) before a whitespace
     // from\s+(\'[A-Za-z0-9 _./-]*\'\;) - from 'someLibrary'; - alphanumeric and certain special characters only
-    /(\/\/.+\n)?import\s+([^]+?)\s+from\s+(\'[A-Za-z0-9 _./-]*\'\;)/g,
+    /(\/\/.+\n)?import\s+([^]+?)\s+from\s+(\'[A-Za-z0-9 _./-@]*\'\;)/g,
     (match) => {
       remainingImports.push(match);
       return '';
