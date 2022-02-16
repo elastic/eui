@@ -1,6 +1,7 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-- Added two new `data-test` attributes to `EuiDataGrid` and `EuiSelectable` for more explicit E2E testing ([#5643](https://github.com/elastic/eui/pull/5643))
+- Added a `data-test-subj` attribute to `EuiDataGrid` cell expansion buttons ([#5643](https://github.com/elastic/eui/pull/5643))
+- Added a `data-test-selected` attribute to `EuiSelectable` list options ([#5643](https://github.com/elastic/eui/pull/5643))
 
 ## [`48.1.0`](https://github.com/elastic/eui/tree/v48.1.0)
 
