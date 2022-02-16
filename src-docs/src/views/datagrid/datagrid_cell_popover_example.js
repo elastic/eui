@@ -62,8 +62,8 @@ export const DataGridCellPopoverExample = {
           <p>
             If you want complete control over the rendering of the entire cell
             popover, use the <EuiCode>renderCellPopover</EuiCode> prop to pass a
-            functional component. This allows you to do things like set your own
-            wrappers and replace the default cell actions with your own.
+            component. This allows you to do things like set your own wrappers
+            and replace the default cell actions with your own.
           </p>
           <p>
             To make falling back to atoms of the default cell popover easier,

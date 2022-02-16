@@ -427,8 +427,6 @@ export interface EuiDataGridCellValueElementProps
   isExpanded: boolean;
   /**
    * When rendering the cell, `isDetails` is false; when the cell is expanded, `renderCellValue` is called again to render into the details popover and `isDetails` is true
-   *
-   * This boolean is not used if a custom `renderCellPopover` element is passed, because `renderCellPopover` is always an expanded details popover.
    */
   isDetails: boolean;
 }
