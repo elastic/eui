@@ -13,8 +13,20 @@ export const renderJsSourceCode = (code) => {
   /**
    * Extract React import (to ensure it's always at the top)
    */
+  let reactImport = '';
 
-  // TODO
+  renderedCode = renderedCode.replace(
+    // import         - import + space
+    // (React)?       - optional import `React` prefix - some files (like hooks) do not need it
+    // (, )?          - optional comma after React - some files, like tests, only need the main React import
+    // ({([^]+?)})?   - optionally capture any characters (including newlines) between the import braces
+    //  from 'react'; - ` from 'react';` exactly
+    /import (React)?(, )?({([^]+?)})? from 'react';/,
+    (match) => {
+      reactImport = match;
+      return '';
+    }
+  );
 
   /**
    * Combine and clean EUI imports
@@ -76,6 +88,6 @@ export const renderJsSourceCode = (code) => {
   /**
    * Putting it all together
    */
-  const fullyFormattedCode = `${formattedEuiImports}\n${formattedRemainingImports}\n\n${renderedCode.trim()}`;
+  const fullyFormattedCode = `${reactImport}\n${formattedEuiImports}\n${formattedRemainingImports}\n\n${renderedCode.trim()}`;
   return fullyFormattedCode;
 };
