@@ -16,13 +16,13 @@ export const renderJsSourceCode = (code) => {
   let reactImport = '';
 
   renderedCode = renderedCode.replace(
-    // import         - import + space
-    // (React)?       - optional import `React` prefix - some files (like hooks) do not need it
-    // (, )?          - optional comma after React - some files, like tests, only need the main React import
-    // ({([^]+?)})?   - optionally capture any characters (including newlines) between the import braces
-    //  from 'react'; - ` from 'react';` exactly
-    // [\r\n]         - match end of line
-    /import (React)?(, )?({([^]+?)})? from 'react';[\r\n]/,
+    // import          - import + space
+    // (React)?        - optional import `React` prefix - some files (like hooks) do not need it
+    // (, )?           - optional comma after React - some files, like tests, only need the main React import
+    // ({([^}]+?)})?   - optionally capture anything that isn't a closing brace between the import braces
+    //  from 'react';  - ` from 'react';` exactly
+    // [\r\n]          - match end of line
+    /import (React)?(, )?({([^}]+?)})? from 'react';[\r\n]/,
     (match) => {
       reactImport = match;
       return '';
