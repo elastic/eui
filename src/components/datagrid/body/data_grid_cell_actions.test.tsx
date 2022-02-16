@@ -47,6 +47,7 @@ describe('EuiDataGridCellActions', () => {
         aria-hidden={true}
         className="euiDataGridRowCell__actionButtonIcon"
         color="primary"
+        data-test-subj="euiDataGridCellExpandButton"
         display="fill"
         iconSize="s"
         iconType="expandMini"

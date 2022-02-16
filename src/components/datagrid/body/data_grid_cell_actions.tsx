@@ -44,6 +44,7 @@ export const EuiDataGridCellActions = ({
         <EuiButtonIcon
           display="fill"
           className="euiDataGridRowCell__actionButtonIcon"
+          data-test-subj="euiDataGridCellExpandButton"
           color="primary"
           iconSize="s"
           iconType="expandMini"
