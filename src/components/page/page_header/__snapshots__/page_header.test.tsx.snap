@@ -202,8 +202,9 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
     class="euiPageHeaderContent"
   >
     <nav
-      aria-label="Breadcrumbs"
-      class="euiBreadcrumbs euiBreadcrumbs--truncate"
+      aria-label="aria-label"
+      class="euiBreadcrumbs testClass1 testClass2 euiBreadcrumbs--truncate"
+      data-test-subj="test subject string"
     >
       <ol
         class="euiBreadcrumbs__list"
