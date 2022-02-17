@@ -251,6 +251,7 @@ export class EuiComboBoxInput<T> extends Component<
         onClick: isListOpen && !isDisabled ? onCloseListClick : onOpenListClick,
         ref: toggleButtonRef,
         side: 'right',
+        tabIndex: -1,
         type: 'arrowDown',
       };
     }
@@ -285,6 +286,7 @@ export class EuiComboBoxInput<T> extends Component<
           {placeholderMessage}
           <AutosizeInput
             aria-activedescendant={focusedOptionId}
+            aria-autocomplete="list"
             aria-controls={isListOpen ? rootId('listbox') : ''}
             aria-expanded={isListOpen}
             aria-label={ariaLabel}

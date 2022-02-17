@@ -23,6 +23,7 @@ import classNames from 'classnames';
 
 import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
 import { EuiPortal } from '../portal';
+import { EuiI18n } from '../i18n';
 import { EuiComboBoxOptionsList } from './combo_box_options_list';
 
 import {
@@ -151,10 +152,6 @@ export interface _EuiComboBoxProps<T>
    * supplied by `aria-label` or from [EuiFormRow](/#/forms/form-layouts).
    */
   'aria-labelledby'?: string;
-  /**
-   * Autocomplete `role="listbox"` elements require an accessible label
-   */
-  accessibleListboxLabel: string;
 }
 
 /**
@@ -197,7 +194,6 @@ export class EuiComboBox<T> extends Component<
   EuiComboBoxState<T>
 > {
   static defaultProps = {
-    accessibleListboxLabel: 'Choose from the following options',
     async: false,
     compressed: false,
     fullWidth: false,
@@ -941,7 +937,6 @@ export class EuiComboBox<T> extends Component<
       autoFocus,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby,
-      accessibleListboxLabel,
       ...rest
     } = this.props;
     const {
@@ -986,39 +981,48 @@ export class EuiComboBox<T> extends Component<
         : undefined;
 
       optionsList = (
-        <EuiPortal>
-          <EuiComboBoxOptionsList
-            zIndex={this.state.listZIndex}
-            activeOptionIndex={this.state.activeOptionIndex}
-            areAllOptionsSelected={this.areAllOptionsSelected()}
-            customOptionText={customOptionText}
-            data-test-subj={optionsListDataTestSubj}
-            fullWidth={fullWidth}
-            isLoading={isLoading}
-            listRef={this.listRefCallback}
-            matchingOptions={matchingOptions}
-            onCloseList={this.closeList}
-            onCreateOption={onCreateOption}
-            onOptionClick={this.onOptionClick}
-            onOptionEnterKey={this.onOptionEnterKey}
-            onScroll={this.onOptionListScroll}
-            optionRef={this.optionRefCallback}
-            options={options}
-            position={listPosition}
-            singleSelection={singleSelection}
-            renderOption={renderOption}
-            rootId={this.rootId}
-            rowHeight={rowHeight}
-            scrollToIndex={activeOptionIndex}
-            searchValue={searchValue}
-            selectedOptions={selectedOptions}
-            updatePosition={this.updatePosition}
-            width={width}
-            delimiter={delimiter}
-            getSelectedOptionForSearchValue={getSelectedOptionForSearchValue}
-            accessibleListboxLabel={accessibleListboxLabel}
-          />
-        </EuiPortal>
+        <EuiI18n
+          token="euiComboBox.listboxAriaLabel"
+          default="Choose from the following options"
+        >
+          {(listboxAriaLabel: string) => (
+            <EuiPortal>
+              <EuiComboBoxOptionsList
+                zIndex={this.state.listZIndex}
+                activeOptionIndex={this.state.activeOptionIndex}
+                areAllOptionsSelected={this.areAllOptionsSelected()}
+                customOptionText={customOptionText}
+                data-test-subj={optionsListDataTestSubj}
+                fullWidth={fullWidth}
+                isLoading={isLoading}
+                listRef={this.listRefCallback}
+                matchingOptions={matchingOptions}
+                onCloseList={this.closeList}
+                onCreateOption={onCreateOption}
+                onOptionClick={this.onOptionClick}
+                onOptionEnterKey={this.onOptionEnterKey}
+                onScroll={this.onOptionListScroll}
+                optionRef={this.optionRefCallback}
+                options={options}
+                position={listPosition}
+                singleSelection={singleSelection}
+                renderOption={renderOption}
+                rootId={this.rootId}
+                rowHeight={rowHeight}
+                scrollToIndex={activeOptionIndex}
+                searchValue={searchValue}
+                selectedOptions={selectedOptions}
+                updatePosition={this.updatePosition}
+                width={width}
+                delimiter={delimiter}
+                getSelectedOptionForSearchValue={
+                  getSelectedOptionForSearchValue
+                }
+                listboxAriaLabel={listboxAriaLabel}
+              />
+            </EuiPortal>
+          )}
+        </EuiI18n>
       );
     }
 

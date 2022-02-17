@@ -21,6 +21,7 @@ exports[`EuiComboBox is rendered 1`] = `
           style="font-size:14px;display:inline-block"
         >
           <input
+            aria-autocomplete="list"
             aria-controls=""
             aria-expanded="false"
             aria-label="aria-label"
@@ -42,6 +43,7 @@ exports[`EuiComboBox is rendered 1`] = `
           aria-label="Open list of options"
           class="euiFormControlLayoutCustomIcon euiFormControlLayoutCustomIcon--clickable"
           data-test-subj="comboBoxToggleListButton"
+          tabindex="-1"
           type="button"
         >
           <span
@@ -413,6 +415,7 @@ exports[`props options list is rendered 1`] = `
           style="font-size: 14px; display: inline-block;"
         >
           <input
+            aria-autocomplete="list"
             aria-controls="generated-id_listbox"
             aria-expanded="true"
             data-test-subj="comboBoxSearchInput"
@@ -433,6 +436,7 @@ exports[`props options list is rendered 1`] = `
           aria-label="Close list of options"
           class="euiFormControlLayoutCustomIcon euiFormControlLayoutCustomIcon--clickable"
           data-test-subj="comboBoxToggleListButton"
+          tabindex="-1"
           type="button"
         >
           <span
@@ -823,101 +827,12 @@ exports[`props singleSelection prepend and append is rendered 1`] = `
     updatePosition={[Function]}
     value=""
   />
-  <EuiPortal>
-    <EuiComboBoxOptionsList
-      accessibleListboxLabel="Choose from the following options"
-      activeOptionIndex={-1}
-      areAllOptionsSelected={false}
-      data-test-subj=""
-      fullWidth={false}
-      getSelectedOptionForSearchValue={[Function]}
-      listRef={[Function]}
-      matchingOptions={
-        Array [
-          Object {
-            "data-test-subj": "titanOption",
-            "label": "Titan",
-          },
-          Object {
-            "label": "Enceladus",
-          },
-          Object {
-            "label": "Mimas",
-          },
-          Object {
-            "label": "Dione",
-          },
-          Object {
-            "label": "Iapetus",
-          },
-          Object {
-            "label": "Phoebe",
-          },
-          Object {
-            "label": "Rhea",
-          },
-          Object {
-            "label": "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
-          },
-          Object {
-            "label": "Tethys",
-          },
-          Object {
-            "label": "Hyperion",
-          },
-        ]
-      }
-      onCloseList={[Function]}
-      onOptionClick={[Function]}
-      onOptionEnterKey={[Function]}
-      onScroll={[Function]}
-      optionRef={[Function]}
-      options={
-        Array [
-          Object {
-            "data-test-subj": "titanOption",
-            "label": "Titan",
-          },
-          Object {
-            "label": "Enceladus",
-          },
-          Object {
-            "label": "Mimas",
-          },
-          Object {
-            "label": "Dione",
-          },
-          Object {
-            "label": "Iapetus",
-          },
-          Object {
-            "label": "Phoebe",
-          },
-          Object {
-            "label": "Rhea",
-          },
-          Object {
-            "label": "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
-          },
-          Object {
-            "label": "Tethys",
-          },
-          Object {
-            "label": "Hyperion",
-          },
-        ]
-      }
-      position="bottom"
-      rootId={[Function]}
-      rowHeight={29}
-      scrollToIndex={-1}
-      searchValue=""
-      selectedOptions={Array []}
-      singleSelection={true}
-      updatePosition={[Function]}
-      width={0}
-    />
-  </EuiPortal>
+  <EuiI18n
+    default="Choose from the following options"
+    token="euiComboBox.listboxAriaLabel"
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -956,106 +871,11 @@ exports[`props singleSelection selects existing option when opened 1`] = `
     updatePosition={[Function]}
     value="Mimas"
   />
-  <EuiPortal>
-    <EuiComboBoxOptionsList
-      accessibleListboxLabel="Choose from the following options"
-      activeOptionIndex={-1}
-      areAllOptionsSelected={false}
-      data-test-subj=""
-      fullWidth={false}
-      getSelectedOptionForSearchValue={[Function]}
-      listRef={[Function]}
-      matchingOptions={
-        Array [
-          Object {
-            "data-test-subj": "titanOption",
-            "label": "Titan",
-          },
-          Object {
-            "label": "Enceladus",
-          },
-          Object {
-            "label": "Mimas",
-          },
-          Object {
-            "label": "Dione",
-          },
-          Object {
-            "label": "Iapetus",
-          },
-          Object {
-            "label": "Phoebe",
-          },
-          Object {
-            "label": "Rhea",
-          },
-          Object {
-            "label": "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
-          },
-          Object {
-            "label": "Tethys",
-          },
-          Object {
-            "label": "Hyperion",
-          },
-        ]
-      }
-      onCloseList={[Function]}
-      onOptionClick={[Function]}
-      onOptionEnterKey={[Function]}
-      onScroll={[Function]}
-      optionRef={[Function]}
-      options={
-        Array [
-          Object {
-            "data-test-subj": "titanOption",
-            "label": "Titan",
-          },
-          Object {
-            "label": "Enceladus",
-          },
-          Object {
-            "label": "Mimas",
-          },
-          Object {
-            "label": "Dione",
-          },
-          Object {
-            "label": "Iapetus",
-          },
-          Object {
-            "label": "Phoebe",
-          },
-          Object {
-            "label": "Rhea",
-          },
-          Object {
-            "label": "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
-          },
-          Object {
-            "label": "Tethys",
-          },
-          Object {
-            "label": "Hyperion",
-          },
-        ]
-      }
-      position="bottom"
-      rootId={[Function]}
-      rowHeight={29}
-      scrollToIndex={-1}
-      searchValue=""
-      selectedOptions={
-        Array [
-          Object {
-            "label": "Mimas",
-          },
-        ]
-      }
-      singleSelection={true}
-      updatePosition={[Function]}
-      width={0}
-    />
-  </EuiPortal>
+  <EuiI18n
+    default="Choose from the following options"
+    token="euiComboBox.listboxAriaLabel"
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
