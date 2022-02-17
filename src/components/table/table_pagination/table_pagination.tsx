@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useState } from 'react';
+import React, {
+  FunctionComponent,
+  useState,
+  useMemo,
+  useCallback,
+} from 'react';
 
 import { EuiButtonEmpty } from '../../button';
 import { EuiContextMenuItem, EuiContextMenuPanel } from '../../context_menu';
@@ -58,13 +63,13 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
 }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-  const onButtonClick = () => {
+  const togglePopover = useCallback(() => {
     setIsPopoverOpen((isOpen) => !isOpen);
-  };
+  }, []);
 
-  const closePopover = () => {
+  const closePopover = useCallback(() => {
     setIsPopoverOpen(false);
-  };
+  }, []);
 
   const button = (
     <EuiButtonEmpty
@@ -73,7 +78,7 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
       iconType="arrowDown"
       iconSide="right"
       data-test-subj="tablePaginationPopoverButton"
-      onClick={onButtonClick}
+      onClick={togglePopover}
     >
       {itemsPerPage === 'all' ? (
         <EuiI18n token="euiTablePagination.allRows" default="All rows" />
@@ -89,32 +94,34 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
     </EuiButtonEmpty>
   );
 
-  const items = itemsPerPageOptions.map((itemsPerPageOption) => {
-    return (
-      <EuiContextMenuItem
-        key={itemsPerPageOption}
-        icon={itemsPerPageOption === itemsPerPage ? 'check' : 'empty'}
-        onClick={() => {
-          closePopover();
-          onChangeItemsPerPage(itemsPerPageOption);
-        }}
-        data-test-subj={`tablePagination-${itemsPerPageOption}-rows`}
-      >
-        {itemsPerPageOption === 'all' ? (
-          <EuiI18n
-            token="euiTablePagination.rowsPerPageOptionShowAll"
-            default="Show all"
-          />
-        ) : (
-          <EuiI18n
-            token="euiTablePagination.rowsPerPageOption"
-            values={{ rowsPerPage: itemsPerPageOption }}
-            default="{rowsPerPage} rows"
-          />
-        )}
-      </EuiContextMenuItem>
-    );
-  });
+  const items = useMemo(
+    () =>
+      itemsPerPageOptions.map((itemsPerPageOption) => (
+        <EuiContextMenuItem
+          key={itemsPerPageOption}
+          icon={itemsPerPageOption === itemsPerPage ? 'check' : 'empty'}
+          onClick={() => {
+            closePopover();
+            onChangeItemsPerPage(itemsPerPageOption);
+          }}
+          data-test-subj={`tablePagination-${itemsPerPageOption}-rows`}
+        >
+          {itemsPerPageOption === 'all' ? (
+            <EuiI18n
+              token="euiTablePagination.rowsPerPageOptionShowAll"
+              default="Show all"
+            />
+          ) : (
+            <EuiI18n
+              token="euiTablePagination.rowsPerPageOption"
+              values={{ rowsPerPage: itemsPerPageOption }}
+              default="{rowsPerPage} rows"
+            />
+          )}
+        </EuiContextMenuItem>
+      )),
+    [itemsPerPageOptions, itemsPerPage, onChangeItemsPerPage, closePopover]
+  );
 
   const itemsPerPagePopover = (
     <EuiPopover
