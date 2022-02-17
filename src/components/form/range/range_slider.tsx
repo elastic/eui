@@ -23,9 +23,6 @@ export type EuiRangeSliderProps = InputHTMLAttributes<HTMLInputElement> &
     max: number;
     step?: number;
     compressed?: boolean;
-    /**
-     * Will only show if `showInput = inputWithPopover`
-     */
     isLoading?: boolean;
     hasFocus?: boolean;
     showRange?: boolean;

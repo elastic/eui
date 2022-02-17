@@ -37,7 +37,7 @@ type ValueMember = number | string;
 export interface EuiDualRangeProps
   extends Omit<
     EuiRangeSliderProps,
-    'onChange' | 'onBlur' | 'onFocus' | 'value'
+    'onChange' | 'onBlur' | 'onFocus' | 'value' | 'isLoading'
   > {
   value: [ValueMember, ValueMember];
   onBlur?: (
@@ -101,6 +101,10 @@ export interface EuiDualRangeProps
    *  Creates a draggble highlighted range area
    */
   isDraggable?: boolean;
+  /**
+   * Will only show if `showInput = inputWithPopover`
+   */
+  isLoading?: boolean;
 }
 
 export class EuiDualRange extends Component<EuiDualRangeProps> {
