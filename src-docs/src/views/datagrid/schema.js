@@ -1,12 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { fake } from 'faker';
 
-import {
-  EuiDataGrid,
-  EuiImage,
-  EuiTitle,
-  EuiSpacer,
-} from '../../../../src/components/';
+import { EuiDataGrid } from '../../../../src/components/';
 
 const columns = [
   {
@@ -14,7 +9,6 @@ const columns = [
   },
   {
     id: 'boolean',
-    isExpandable: false,
   },
   {
     id: 'numeric',
@@ -38,11 +32,13 @@ const columns = [
 const storeData = [];
 
 for (let i = 1; i < 5; i++) {
-  let json;
-  let franchise;
-  if (i < 3) {
-    franchise = 'Star Wars';
-    json = JSON.stringify([
+  storeData.push({
+    default: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
+    boolean: fake('{{random.boolean}}'),
+    numeric: fake('{{finance.account}}'),
+    currency: fake('${{finance.amount}}'),
+    datetime: fake('{{date.past}}'),
+    json: JSON.stringify([
       {
         default: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
         boolean: fake('{{random.boolean}}'),
@@ -51,70 +47,28 @@ for (let i = 1; i < 5; i++) {
         date: fake('{{date.past}}'),
         custom: fake('{{date.past}}'),
       },
-    ]);
-  } else {
-    franchise = 'Star Trek';
-    json = JSON.stringify([
-      {
-        name: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
-      },
-    ]);
-  }
-
-  storeData.push({
-    default: fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'),
-    boolean: fake('{{random.boolean}}'),
-    numeric: fake('{{finance.account}}'),
-    currency: fake('${{finance.amount}}'),
-    datetime: fake('{{date.past}}'),
-    json: json,
-    custom: franchise,
+    ]),
+    custom: i % 2 === 0 ? 'Star Wars' : 'Star Trek',
   });
 }
 
-const Franchise = (props) => {
-  return (
-    <div>
-      <EuiTitle size="s">
-        <h3>{props.name} is the best!</h3>
-      </EuiTitle>
-      <EuiSpacer size="s" />
-      {props.name === 'Star Wars' ? (
-        <EuiImage
-          allowFullScreen
-          size="m"
-          hasShadow
-          caption="Random star wars image"
-          alt="Random star wars image"
-          url="https://source.unsplash.com/600x600/?starwars"
-        />
-      ) : (
-        <EuiImage
-          allowFullScreen
-          size="m"
-          hasShadow
-          caption="Random star trek image"
-          alt="Random trek image"
-          url="https://source.unsplash.com/600x600/?startrek"
-        />
-      )}
-    </div>
+const commaSeparateNumbers = (numberString) => {
+  // extract the groups-of-three digits that are right-aligned
+  return numberString.replace(/((\d{3})+)$/, (match) =>
+    // then replace each group of xyz digits with ,xyz
+    match.replace(/(\d{3})/g, ',$1')
   );
 };
 
-const DataGridSchema = () => {
-  const [data, setData] = useState(storeData);
-
-  const [sortingColumns, setSortingColumns] = useState([
-    { id: 'custom', direction: 'asc' },
-  ]);
-  const [pagination, setPagination] = useState({
-    pageIndex: 0,
-    pageSize: 10,
-  });
+export default () => {
   const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
   );
+
+  const [data, setData] = useState(storeData);
+  const [sortingColumns, setSortingColumns] = useState([
+    { id: 'custom', direction: 'asc' },
+  ]);
 
   const setSorting = (sortingColumns) => {
     const sortedData = [...data].sort((a, b) => {
@@ -134,49 +88,23 @@ const DataGridSchema = () => {
     setSortingColumns(sortingColumns);
   };
 
-  const setPageIndex = useCallback(
-    (pageIndex) => {
-      setPagination({ ...pagination, pageIndex });
-    },
-    [pagination, setPagination]
-  );
-
-  const setPageSize = useCallback(
-    (pageSize) => {
-      setPagination({ ...pagination, pageIndex: 0, pageSize });
-    },
-    [pagination, setPagination]
-  );
-
-  const handleVisibleColumns = (visibleColumns) =>
-    setVisibleColumns(visibleColumns);
-
   return (
     <EuiDataGrid
-      aria-label="Top EUI contributors"
+      aria-label="Data grid schema example"
       columns={columns}
-      columnVisibility={{
-        visibleColumns: visibleColumns,
-        setVisibleColumns: handleVisibleColumns,
-      }}
+      columnVisibility={{ visibleColumns, setVisibleColumns }}
       rowCount={data.length}
       inMemory={{ level: 'sorting' }}
-      renderCellValue={({ rowIndex, columnId, isDetails }) => {
-        const value = data[rowIndex][columnId];
+      renderCellValue={({ rowIndex, columnId, schema }) => {
+        let value = data[rowIndex][columnId];
 
-        if (columnId === 'custom' && isDetails) {
-          return <Franchise name={value} />;
+        if (schema === 'numeric') {
+          value = commaSeparateNumbers(value);
         }
 
         return value;
       }}
       sorting={{ columns: sortingColumns, onSort: setSorting }}
-      pagination={{
-        ...pagination,
-        pageSizeOptions: [5, 10, 25],
-        onChangeItemsPerPage: setPageSize,
-        onChangePage: setPageIndex,
-      }}
       schemaDetectors={[
         {
           type: 'favoriteFranchise',
@@ -200,19 +128,6 @@ const DataGridSchema = () => {
           color: '#800080',
         },
       ]}
-      popoverContents={{
-        numeric: ({ cellContentsElement }) => {
-          // want to process the already-rendered cell value
-          const stringContents = cellContentsElement.textContent;
-
-          // extract the groups-of-three digits that are right-aligned
-          return stringContents.replace(/((\d{3})+)$/, (match) =>
-            // then replace each group of xyz digits with ,xyz
-            match.replace(/(\d{3})/g, ',$1')
-          );
-        },
-      }}
     />
   );
 };
-export default DataGridSchema;

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 import { EuiDataGrid, EuiCode } from '../../../../src/components';
@@ -9,18 +9,13 @@ const dataGridSchemaSource = require('!!raw-loader!./schema');
 import {
   EuiDataGridColumn,
   EuiDataGridColumnActions,
-  EuiDataGridPaginationProps,
   EuiDataGridSorting,
   EuiDataGridInMemory,
-  EuiDataGridStyle,
-  EuiDataGridToolBarVisibilityOptions,
-  EuiDataGridColumnVisibility,
   EuiDataGridSchemaDetector,
-  EuiDataGridCellValueElementProps,
 } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
 
 export const DataGridSchemaExample = {
-  title: 'Data grid schemas and popovers',
+  title: 'Data grid schemas',
   sections: [
     {
       source: [
@@ -30,7 +25,7 @@ export const DataGridSchemaExample = {
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             Schemas are data types you pass to grid columns to affect how the
             columns and expansion popovers render. Schemas also allow you to
@@ -60,36 +55,16 @@ export const DataGridSchemaExample = {
             </EuiCode>{' '}
             to each matching cell.
           </p>
-          <h2>Defining expansion</h2>
-          <p>
-            Likewise, you can inject custom content into any of the popovers a
-            cell expands into. Add <EuiCode>popoverContents</EuiCode> functions
-            to populate a matching schema&apos;s popover using a new component.
-            You can see an example of this by clicking into one of the cells in
-            the last column below.
-          </p>
-          <h2>Disabling expansion popovers</h2>
-          <p>
-            Often the popovers are unnecessary for short form content. In the
-            example below we&apos;ve turned them off by setting{' '}
-            <EuiCode language="js">isExpandable=false</EuiCode> on the boolean
-            column.
-          </p>
-        </Fragment>
+        </>
       ),
       components: { DataGridSchema },
       props: {
+        EuiDataGridSchemaDetector,
         EuiDataGrid,
         EuiDataGridInMemory,
         EuiDataGridColumn,
         EuiDataGridColumnActions,
-        EuiDataGridColumnVisibility,
-        EuiDataGridPaginationProps,
         EuiDataGridSorting,
-        EuiDataGridCellValueElementProps,
-        EuiDataGridSchemaDetector,
-        EuiDataGridStyle,
-        EuiDataGridToolBarVisibilityOptions,
       },
       demo: <DataGridSchema />,
     },
