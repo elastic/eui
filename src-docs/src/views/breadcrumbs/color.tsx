@@ -7,9 +7,7 @@ const breadcrumbs: EuiBreadcrumb[] = [
     text: 'Animals',
     href: '#',
     color: 'primary',
-    onClick: (e: { preventDefault: () => void }) => {
-      e.preventDefault();
-    },
+    onClick: (e) => e.preventDefault(),
   },
   {
     text: 'Reptiles',
@@ -24,9 +22,7 @@ const breadcrumbs: EuiBreadcrumb[] = [
     title: 'Boa constrictor has an error',
     href: '#',
     color: 'danger',
-    onClick: (e: { preventDefault: () => void }) => {
-      e.preventDefault();
-    },
+    onClick: (e) => e.preventDefault(),
   },
   {
     text: 'Edit',

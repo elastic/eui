@@ -17,9 +17,7 @@ export default () => (
         color: 'primary',
         'aria-current': false,
         href: '#',
-        onClick: (e: { preventDefault: () => void }) => {
-          e.preventDefault();
-        },
+        onClick: (e) => e.preventDefault(),
       },
     ]}
     rightSideItems={[
