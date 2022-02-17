@@ -17,6 +17,7 @@ If the upgrade includes a large number of commits or has known breaking changes,
 9. Resolve and commit reported issues (see [Resolving errors](#resolving-errors))
 10. Open a PR or mark existing as "Ready for review" (see [PR template](#pr-template))
     * Add the `EUI`, `ci:deploy-cloud`, `release_note:skip`, and relevant version tag(s) (the next minor version that has not yet entered feature freeze)
+	* We typically only merge into the main branch (the next minor version), but if an upgrade is specifically targeting a previous version, you can use the `auto-backport` tag to have Kibana automatically create a backport PR to an existing version branch.
     * Mention/ping any teams that are waiting on features to be available
 
 ## Resolving errors

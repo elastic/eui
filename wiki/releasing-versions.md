@@ -33,7 +33,7 @@ The latest changes have now been pushed to GitHub, a new `git` tag now exists on
 In addition to the GitHub pages deployment, we need to manually deploy to the [EUI Bekitzur environment](https://github.com/elastic/infra/tree/master/terraform/providers/gcp/env/elastic-bekitzur) (which will eventually be the canonical home of the EUI docs).
 
 * Go to [the Jenkins job page](https://kibana-ci.elastic.co/job/elastic+eui+deploy-docs/build)
-* Log in (uses Elastic single sign in)
+* Log in (uses Elastic SSO)
 * Change the `branch_specifier` parameter to the new version tag name (e.g., `v48.0.0`)
 * Click "Build"
 
