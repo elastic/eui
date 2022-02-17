@@ -21,8 +21,7 @@ export const renderJsSourceCode = (code) => {
     // (, )?           - optional comma after React - some files, like tests, only need the main React import
     // ({([^}]+?)})?   - optionally capture anything that isn't a closing brace between the import braces
     //  from 'react';  - ` from 'react';` exactly
-    // [\r\n]          - match end of line
-    /import (React)?(, )?({([^}]+?)})? from 'react';[\r\n]/,
+    /import (React)?(, )?({([^}]+?)})? from 'react';/,
     (match) => {
       reactImport = match;
       return '';
@@ -32,7 +31,7 @@ export const renderJsSourceCode = (code) => {
   /**
    * Combine and clean EUI imports
    */
-  let elasticImports = [''];
+  const elasticImports = [];
 
   // Find all imports that come from '@elastic/eui'
   renderedCode = renderedCode.replace(
@@ -49,13 +48,10 @@ export const renderJsSourceCode = (code) => {
     }
   );
 
-  // Remove empty spaces in the array
-  elasticImports = elasticImports.filter((ele) => ele);
-
   let formattedEuiImports = '';
 
   if (elasticImports.length) {
-    // determine if imports should be wrapped to new lines based on the import statement length
+    // Determine if imports should be wrapped to new lines based on the import statement length
     const combinedImports = elasticImports.join(', ');
     const singleLineImports = `import { ${combinedImports} } from '@elastic/eui';`;
 
@@ -68,11 +64,10 @@ export const renderJsSourceCode = (code) => {
   }
 
   /**
-   * Non React/EUI imports
+   * Extract remaining non-React/EUI imports
    */
   const remainingImports = [];
 
-  // Find any non-EUI imports and join them with new lines between each import for uniformity
   renderedCode = renderedCode.replace(
     // (\/\/.+\n)?                   - optional preceding comments that must be above specific imports, e.g. // @ts-ignore
     // import                        - import + whitespace
@@ -85,14 +80,17 @@ export const renderJsSourceCode = (code) => {
     }
   );
 
-  const formattedRemainingImports = remainingImports.reduce(
-    (imports, importString) => (imports += `\n${importString}`),
-    ''
-  );
-
   /**
    * Putting it all together
    */
-  const fullyFormattedCode = `${reactImport}${formattedEuiImports}${formattedRemainingImports}\n\n${renderedCode.trim()}`;
-  return fullyFormattedCode;
+  // Render each import with just 1 newline between them for uniformity
+  const renderedImports = [
+    reactImport,
+    formattedEuiImports,
+    ...remainingImports,
+  ]
+    .filter((stripEmptyImports) => stripEmptyImports)
+    .join('\n');
+
+  return `${renderedImports}\n\n${renderedCode.trim()}`;
 };
