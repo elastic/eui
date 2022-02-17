@@ -231,7 +231,7 @@ ReactDOM.render(
     >
       {/* 7 */}
       <input type="hidden" name="parameters" value={params} />
-      <input type="hidden" name="query" value="file=/demo.js" />
+      <input type="hidden" name="query" value={`file=/demo.${type}`} />
       {childWithSubmit}
     </form>
   );
