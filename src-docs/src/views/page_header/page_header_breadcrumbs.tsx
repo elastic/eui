@@ -12,23 +12,17 @@ export default () => (
       {
         text: 'Breadcrumb 1',
         href: '#',
-        onClick: (e: { preventDefault: () => void }) => {
-          e.preventDefault();
-        },
+        onClick: (e) => e.preventDefault(),
       },
       {
         text: 'Breadcrumb 2',
         href: '#',
-        onClick: (e: { preventDefault: () => void }) => {
-          e.preventDefault();
-        },
+        onClick: (e) => e.preventDefault(),
       },
       {
         text: 'Current',
         href: '#',
-        onClick: (e: { preventDefault: () => void }) => {
-          e.preventDefault();
-        },
+        onClick: (e) => e.preventDefault(),
       },
     ]}
     rightSideItems={[

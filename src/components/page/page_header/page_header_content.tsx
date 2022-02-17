@@ -30,7 +30,7 @@ type Tab = EuiTabProps & {
   label: ReactNode;
 };
 
-export type EuiPageHeaderContentTitle = {
+export interface EuiPageHeaderContentTitle {
   /**
    * Wrapped in an `H1` so choose appropriately.
    * A simple string is best
@@ -56,9 +56,9 @@ export type EuiPageHeaderContentTitle = {
    * Adjust the props of [EuiBreadcrumbs](#/navigation/breadcrumbs)
    */
   breadcrumbProps?: Partial<EuiBreadcrumbsProps>;
-};
+}
 
-export type EuiPageHeaderContentTabs = {
+export interface EuiPageHeaderContentTabs {
   /**
    * In-app navigation presented as large borderless tabs.
    * Accepts an array of `EuiTab` objects;
@@ -69,50 +69,54 @@ export type EuiPageHeaderContentTabs = {
    * Extends `EuiTabs`
    */
   tabsProps?: Omit<EuiTabsProps, 'size' | 'expand' | 'display'>;
-};
+}
 
 /**
  * The left side can either be a title with optional description and/or icon;
  * Or a list of tabs,
  * Or a custom node
  */
-type EuiPageHeaderContentLeft = EuiPageHeaderContentTitle &
-  EuiPageHeaderContentTabs & {
-    /**
-     * Position is dependent on existing with a `pageTitle` or `tabs`
-     * Automatically get wrapped in a single paragraph tag inside an EuiText block
-     */
-    description?: string | ReactNode;
-  };
+interface EuiPageHeaderContentLeft
+  extends EuiPageHeaderContentTitle,
+    EuiPageHeaderContentTabs {
+  /**
+   * Position is dependent on existing with a `pageTitle` or `tabs`
+   * Automatically get wrapped in a single paragraph tag inside an EuiText block
+   */
+  description?: string | ReactNode;
+}
 
-export type EuiPageHeaderContentProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> &
-  EuiPageHeaderContentLeft & {
-    /**
-     * Set to false if you don't want the children to stack at small screen sizes.
-     * Set to `reverse` to display the right side content first for the sake of hierarchy (like global time)
-     */
-    responsive?: boolean | 'reverse';
-    /**
-     * Vertical alignment of the left and right side content;
-     * Default is `middle` for custom content, but `top` for when `pageTitle` or `tabs` are included
-     */
-    alignItems?: typeof ALIGN_ITEMS[number];
-    /**
-     * Pass custom an array of content to this side usually up to 3 buttons.
-     * The first button should be primary, usually with `fill` and will be visually displayed as the last item,
-     * but first in the tab order
-     */
-    rightSideItems?: ReactNode[];
-    /**
-     * Additional EuiFlexGroup props to pass to the container of the `rightSideItems`
-     */
-    rightSideGroupProps?: Partial<EuiFlexGroupProps>;
-    /**
-     * Custom children will be rendered before the `tabs` unless no `pageTitle` is present, then it will be the last item
-     */
-    children?: ReactNode;
-  };
+export interface _EuiPageHeaderContentProps extends EuiPageHeaderContentLeft {
+  /**
+   * Set to false if you don't want the children to stack at small screen sizes.
+   * Set to `reverse` to display the right side content first for the sake of hierarchy (like global time)
+   */
+  responsive?: boolean | 'reverse';
+  /**
+   * Vertical alignment of the left and right side content;
+   * Default is `middle` for custom content, but `top` for when `pageTitle` or `tabs` are included
+   */
+  alignItems?: typeof ALIGN_ITEMS[number];
+  /**
+   * Pass custom an array of content to this side usually up to 3 buttons.
+   * The first button should be primary, usually with `fill` and will be visually displayed as the last item,
+   * but first in the tab order
+   */
+  rightSideItems?: ReactNode[];
+  /**
+   * Additional EuiFlexGroup props to pass to the container of the `rightSideItems`
+   */
+  rightSideGroupProps?: Partial<EuiFlexGroupProps>;
+  /**
+   * Custom children will be rendered before the `tabs` unless no `pageTitle` is present, then it will be the last item
+   */
+  children?: ReactNode;
+}
+
+export interface EuiPageHeaderContentProps
+  extends CommonProps,
+    HTMLAttributes<HTMLDivElement>,
+    _EuiPageHeaderContentProps {}
 
 export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> = ({
   className,
