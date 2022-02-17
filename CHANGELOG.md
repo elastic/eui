@@ -1,6 +1,7 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
 - Added `readOnly` prop to `EuiMarkdownEditor` ([#5627](https://github.com/elastic/eui/pull/5627))
+- Removed the cursor default style in `euiFormControlReadOnlyStyle` mixin to make browsers use their default `:read-only` cursor style ([#5627](https://github.com/elastic/eui/pull/5627))
 
 ## [`48.1.0`](https://github.com/elastic/eui/tree/v48.1.0)
 

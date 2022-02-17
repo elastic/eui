@@ -364,7 +364,7 @@ export const EuiMarkdownEditor = forwardRef<
     );
 
     const classesPreview = classNames('euiMarkdownEditorPreview', {
-      'euiMarkdownEditorPreview-readOnly': readOnly,
+      'euiMarkdownEditorPreview-isReadOnly': readOnly,
     });
 
     const onResize = () => {
