@@ -110,6 +110,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     step: 1,
     fullWidth: false,
     compressed: false,
+    isLoading: false,
     showLabels: false,
     showInput: false,
     showRange: true,
@@ -499,6 +500,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
       compressed,
       disabled,
       fullWidth,
+      isLoading,
       readOnly,
       id: propsId,
       max,
@@ -760,6 +762,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
             readOnly={readOnly}
             append={append}
             prepend={prepend}
+            isLoading={isLoading}
           />
         }
         fullWidth={fullWidth}
