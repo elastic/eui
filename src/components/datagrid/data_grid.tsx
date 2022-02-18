@@ -48,7 +48,6 @@ import {
   DataGridCellPopoverContext,
   useCellPopover,
 } from './body/data_grid_cell_popover';
-import { providedPopoverContents } from './body/popover_utils';
 import { computeVisibleRows } from './utils/row_count';
 import { EuiDataGridPaginationRenderer } from './utils/data_grid_pagination';
 import {
@@ -117,6 +116,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
       schemaDetectors,
       rowCount,
       renderCellValue,
+      renderCellPopover,
       renderFooterCellValue,
       className,
       gridStyle,
@@ -124,7 +124,6 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
       pagination,
       sorting,
       inMemory,
-      popoverContents,
       onColumnResize,
       minSizeForControls,
       height,
@@ -140,14 +139,6 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     const gridStyleWithDefaults = useMemo(
       () => ({ ...startingStyles, ...gridStyle }),
       [gridStyle]
-    );
-
-    const mergedPopoverContents = useMemo(
-      () => ({
-        ...providedPopoverContents,
-        ...popoverContents,
-      }),
-      [popoverContents]
     );
 
     const [inMemoryValues, onCellRender] = useInMemoryValues(
@@ -460,9 +451,9 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                     headerIsInteractive={headerIsInteractive}
                     handleHeaderMutation={handleHeaderMutation}
                     schemaDetectors={allSchemaDetectors}
-                    popoverContents={mergedPopoverContents}
                     pagination={pagination}
                     renderCellValue={renderCellValue}
+                    renderCellPopover={renderCellPopover}
                     renderFooterCellValue={renderFooterCellValue}
                     rowCount={rowCount}
                     visibleRows={visibleRows}

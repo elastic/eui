@@ -245,8 +245,9 @@ export class EuiSelectableListItem extends Component<
     return (
       <li
         role={role}
+        data-test-selected={isChecked} // Whether the item is checked/selected
         aria-checked={role === 'option' ? isChecked : undefined} // Whether the item is "checked"
-        aria-selected={!disabled && isFocused} // Whether the item has keybord focus
+        aria-selected={!disabled && isFocused} // Whether the item has keyboard focus per W3 spec
         className={classes}
         aria-disabled={disabled}
         {...rest}
