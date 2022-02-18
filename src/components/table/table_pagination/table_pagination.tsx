@@ -81,7 +81,7 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
       onClick={togglePopover}
     >
       {itemsPerPage === 'all' ? (
-        <EuiI18n token="euiTablePagination.allRows" default="All rows" />
+        <EuiI18n token="euiTablePagination.allRows" default="Showing all rows" />
       ) : (
         <>
           <EuiI18n
