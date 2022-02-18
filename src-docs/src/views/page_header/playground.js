@@ -87,6 +87,7 @@ export const pageHeaderConfig = () => {
   propsToUse.breadcrumbs = simulateFunction({
     ...propsToUse.breadcrumbs,
     custom: {
+      ...propsToUse.breadcrumbs.custom,
       value: breadcrumbs,
     },
   });
