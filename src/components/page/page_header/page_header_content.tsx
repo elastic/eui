@@ -55,7 +55,7 @@ export interface EuiPageHeaderContentTitle {
   /**
    * Adjust the props of [EuiBreadcrumbs](#/navigation/breadcrumbs)
    */
-  breadcrumbProps?: Partial<EuiBreadcrumbsProps>;
+  breadcrumbProps?: Partial<Omit<EuiBreadcrumbsProps, 'breadcrumbs'>>;
 }
 
 export interface EuiPageHeaderContentTabs {
@@ -155,13 +155,12 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
     );
   }
 
-  const optionalBreadcrumbs =
-    breadcrumbs || breadcrumbProps ? (
-      <>
-        <EuiBreadcrumbs breadcrumbs={breadcrumbs!} {...breadcrumbProps} />
-        <EuiSpacer size="s" />
-      </>
-    ) : undefined;
+  const optionalBreadcrumbs = breadcrumbs ? (
+    <>
+      <EuiBreadcrumbs breadcrumbs={breadcrumbs} {...breadcrumbProps} />
+      <EuiSpacer size="s" />
+    </>
+  ) : undefined;
 
   let pageTitleNode;
   if (pageTitle) {
