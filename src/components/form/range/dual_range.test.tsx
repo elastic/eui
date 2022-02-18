@@ -131,6 +131,22 @@ describe('EuiDualRange', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('loading should display when showInput="inputWithPopover"', () => {
+      const component = render(
+        <EuiDualRange
+          name="name"
+          id="id"
+          value={['1', '8']}
+          showInput="inputWithPopover"
+          isLoading
+          {...props}
+          {...requiredProps}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('levels should render', () => {
       const component = render(
         <EuiDualRange

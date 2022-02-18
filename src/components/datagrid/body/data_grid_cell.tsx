@@ -31,11 +31,13 @@ import {
   EuiDataGridCellState,
   EuiDataGridCellValueElementProps,
   EuiDataGridCellValueProps,
+  EuiDataGridCellPopoverElementProps,
 } from '../data_grid_types';
 import {
   EuiDataGridCellActions,
   EuiDataGridCellPopoverActions,
 } from './data_grid_cell_actions';
+import { DefaultCellPopover } from './data_grid_cell_popover';
 import { IS_JEST_ENVIRONMENT } from '../../../test';
 
 const EuiDataGridCellContent: FunctionComponent<
@@ -89,6 +91,7 @@ const EuiDataGridCellContent: FunctionComponent<
             data-test-subj="cell-content"
             rowIndex={rowIndex}
             colIndex={colIndex}
+            schema={column?.schema || rest.columnType}
             {...rest}
           />
         </div>
@@ -292,7 +295,8 @@ export class EuiDataGridCell extends Component<
       this.props.popoverContext.popoverIsOpen !==
         prevProps.popoverContext.popoverIsOpen ||
       this.props.popoverContext.cellLocation !==
-        prevProps.popoverContext.cellLocation
+        prevProps.popoverContext.cellLocation ||
+      this.props.renderCellPopover !== prevProps.renderCellPopover
     ) {
       this.handleCellPopover();
     }
@@ -315,9 +319,10 @@ export class EuiDataGridCell extends Component<
     if (nextProps.rowHeightsOptions !== this.props.rowHeightsOptions)
       return true;
     if (nextProps.renderCellValue !== this.props.renderCellValue) return true;
+    if (nextProps.renderCellPopover !== this.props.renderCellPopover)
+      return true;
     if (nextProps.interactiveCellId !== this.props.interactiveCellId)
       return true;
-    if (nextProps.popoverContent !== this.props.popoverContent) return true;
     if (
       nextProps.popoverContext.popoverIsOpen !==
         this.props.popoverContext.popoverIsOpen ||
@@ -442,35 +447,44 @@ export class EuiDataGridCell extends Component<
 
       // Set popover contents with cell content
       const {
-        popoverContent: PopoverContent,
+        renderCellPopover,
         renderCellValue,
         rowIndex,
         colIndex,
         column,
         columnId,
+        columnType,
       } = this.props;
+      const PopoverElement = (renderCellPopover ||
+        DefaultCellPopover) as JSXElementConstructor<
+        EuiDataGridCellPopoverElementProps
+      >;
       const CellElement = renderCellValue as JSXElementConstructor<
         EuiDataGridCellValueElementProps
       >;
+      const sharedProps = {
+        rowIndex,
+        colIndex,
+        columnId,
+        schema: column?.schema || columnType,
+      };
       const popoverContent = (
-        <>
-          <PopoverContent cellContentsElement={this.cellContentsRef!}>
-            <CellElement
-              rowIndex={rowIndex}
-              colIndex={colIndex}
-              columnId={columnId}
-              isExpandable={true}
-              isExpanded={true}
-              setCellProps={this.setCellProps}
-              isDetails={true}
-            />
-          </PopoverContent>
-          <EuiDataGridCellPopoverActions
-            rowIndex={rowIndex}
-            colIndex={colIndex}
-            column={column}
+        <PopoverElement
+          {...sharedProps}
+          cellContentsElement={this.cellContentsRef!}
+          cellActions={
+            <EuiDataGridCellPopoverActions {...sharedProps} column={column} />
+          }
+          DefaultCellPopover={DefaultCellPopover}
+        >
+          <CellElement
+            {...sharedProps}
+            setCellProps={this.setCellProps}
+            isExpandable={true}
+            isExpanded={true}
+            isDetails={true}
           />
-        </>
+        </PopoverElement>
       );
       setPopoverContent(popoverContent);
     }
@@ -480,7 +494,6 @@ export class EuiDataGridCell extends Component<
     const {
       width,
       isExpandable,
-      popoverContent,
       popoverContext: { closeCellPopover, openCellPopover },
       interactiveCellId,
       columnType,
@@ -594,7 +607,7 @@ export class EuiDataGridCell extends Component<
       ...rest,
       setCellProps: this.setCellProps,
       column,
-      columnType: columnType,
+      columnType,
       isExpandable,
       isExpanded: popoverIsOpen,
       isDetails: false,
