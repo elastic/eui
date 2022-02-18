@@ -384,7 +384,7 @@ exports[`EuiTablePagination renders a "show all" itemsPerPage option 1`] = `
             <span
               class="euiButtonEmpty__text"
             >
-              All rows
+              Showing all rows
             </span>
           </span>
         </button>

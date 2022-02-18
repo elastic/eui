@@ -1862,7 +1862,7 @@ exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
                 <span
                   class="euiButtonEmpty__text"
                 >
-                  All rows
+                  Showing all rows
                 </span>
               </span>
             </button>
