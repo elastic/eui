@@ -111,8 +111,8 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
         >
           {itemsPerPageOption === 'all' ? (
             <EuiI18n
-              token="euiTablePagination.rowsPerPageOptionShowAll"
-              default="Show all"
+              token="euiTablePagination.rowsPerPageOptionShowAllRows"
+              default="Show all rows"
             />
           ) : (
             <EuiI18n
