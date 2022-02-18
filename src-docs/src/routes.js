@@ -83,6 +83,7 @@ import { CopyExample } from './views/copy/copy_example';
 import { DataGridExample } from './views/datagrid/datagrid_example';
 import { DataGridMemoryExample } from './views/datagrid/datagrid_memory_example';
 import { DataGridSchemaExample } from './views/datagrid/datagrid_schema_example';
+import { DataGridCellPopoverExample } from './views/datagrid/datagrid_cell_popover_example';
 import { DataGridFocusExample } from './views/datagrid/datagrid_focus_example';
 import { DataGridStylingExample } from './views/datagrid/datagrid_styling_example';
 import { DataGridControlColumnsExample } from './views/datagrid/datagrid_controlcolumns_example';
@@ -116,6 +117,8 @@ import { FlyoutExample } from './views/flyout/flyout_example';
 import { FocusTrapExample } from './views/focus_trap/focus_trap_example';
 
 import { FormControlsExample } from './views/form_controls/form_controls_example';
+
+import { SelectionControlsExample } from './views/selection_controls/selection_controls_example';
 
 import { FormLayoutsExample } from './views/form_layouts/form_layouts_example';
 
@@ -484,6 +487,7 @@ const navigation = [
       DataGridExample,
       DataGridMemoryExample,
       DataGridSchemaExample,
+      DataGridCellPopoverExample,
       DataGridFocusExample,
       DataGridStylingExample,
       DataGridControlColumnsExample,
@@ -526,6 +530,7 @@ const navigation = [
     name: 'Forms',
     items: [
       FormControlsExample,
+      SelectionControlsExample,
       FormLayoutsExample,
       FormCompressedExample,
       FormValidationExample,

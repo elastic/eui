@@ -27,19 +27,17 @@ import {
   EuiDataGridToolBarAdditionalControlsLeftOptions,
   EuiDataGridColumnVisibility,
   EuiDataGridColumnActions,
-  EuiDataGridPopoverContentProps,
   EuiDataGridControlColumn,
   EuiDataGridToolBarVisibilityColumnSelectorOptions,
   EuiDataGridRowHeightsOptions,
   EuiDataGridCellValueElementProps,
+  EuiDataGridCellPopoverElementProps,
   EuiDataGridSchemaDetector,
   EuiDataGridRefProps,
 } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
 
 const gridSnippet = `
   <EuiDataGrid
-    // Optional. Will try to autodectect schemas and do sorting and pagination in memory.
-    inMemory={{ level: 'sorting' }}
     // Required. There are 200 total records.
     rowCount={200}
     // Required. Sets up three columns, the last of which has a custom schema we later define down below.
@@ -47,15 +45,16 @@ const gridSnippet = `
     // The second column B won't allow clicking in to see the content in a popup and doesn't show move actions in column header cell
     // The third column provides one additional cell action, that triggers an alert once clicked
     columns={[
-        { id: 'A', initialWidth: 150, isResizable: false, actions: false },
-        { id: 'B', isExpandable: false, actions: { showMoveLeft: false, showMoveRight: false } },
-        { id: 'C', schema: 'franchise', cellActions: [{ label: 'test', iconType: 'heart', callback: ()=> alert('test') }]}
+      { id: 'A', initialWidth: 150, isResizable: false, actions: false },
+      { id: 'B', isExpandable: false, actions: { showMoveLeft: false, showMoveRight: false } },
+      { id: 'C', schema: 'franchise', cellActions: [{ label: 'test', iconType: 'heart', callback: ()=> alert('test') }]}
     ]}
-    // Optional. This allows you to initially hide columns. Users can still turn them on.
+    // Required. Determines column visibility state. Allows you to initially hide columns, although users can still turn them on.
     columnVisibility={{
       visibleColumns: ['A', 'C'],
       setVisibleColumns: () => {},
     }}
+    // Optional
     leadingControlColumns={[
       {
         id: 'selection',
@@ -64,6 +63,7 @@ const gridSnippet = `
         rowCellRender: () => <div><EuiCheckbox ... /></div>,
       },
     ]}
+    // Optional
     trailingControlColumns={[
       {
         id: 'actions',
@@ -72,11 +72,27 @@ const gridSnippet = `
         rowCellRender: MyGridActionsComponent,
       },
     ]}
-    // Optional. Customize the content inside the cell. The current example outputs the row and column position.
-    // Often used in combination with useEffect() to dynamically change the render.
+    // Required. Renders the content of each cell. The current example outputs the row and column position.
+    // Treated as a React component allowing hooks, context, and other React concepts to be used.
     renderCellValue={({ rowIndex, columnId }) =>
-     \`\${rowIndex}, \${columnId}\`
+      \`\${rowIndex}, \${columnId}\`
     }
+    // Optional. Customizes the content of each cell expansion popover.
+    // Treated as a React component allowing hooks, context, and other React concepts to be used.
+    renderCellPopover={({ children, cellActions }) => (
+      <>
+        <EuiPopoverTitle>I'm a custom popover!</EuiPopoverTitle>
+        {children}
+        {cellActions}
+      </>
+    )}
+    // Optional. Will try to autodectect schemas and do sorting and pagination in memory.
+    inMemory={{ level: 'sorting' }}
+    // Optional, but required when inMemory is set. Provides the sort and gives a callback for when it changes in the grid.
+    sorting={{
+      columns: [{ id: 'C', direction: 'asc' }],
+      onSort: () => {},
+    }}
     // Optional. Add pagination.
     pagination={{
       pageIndex: 1,
@@ -84,11 +100,6 @@ const gridSnippet = `
       pageSizeOptions: [50, 100, 200],
       onChangePage: () => {},
       onChangeItemsPerPage: () => {},
-    }}
-    // Optional, but required when inMemory is set. Provides the sort and gives a callback for when it changes in the grid.
-    sorting={{
-      columns: [{ id: 'C', direction: 'asc' }],
-      onSort: () => {},
     }}
     // Optional. Allows you to configure what features the toolbar shows.
     // The prop also accepts a boolean if you want to toggle the entire toolbar on/off.
@@ -115,7 +126,7 @@ const gridSnippet = `
     rowHeightsOptions={{
       defaultHeight: 34,
       rowHeights: {
-        0: auto
+        0: 'auto',
       },
       lineHeight: '1em',
     }}
@@ -149,22 +160,6 @@ const gridSnippet = `
         color: '#000000',
       },
     ]}
-    // Optional. Mapped against the schema, provide custom layout and/or content for the popover.
-    popoverContents={{
-      numeric: ({ children, cellContentsElement }) => {
-        // \`children\` is the datagrid's \`renderCellValue\` as a ReactElement and should be used when you are only wrapping the contents
-        // \`cellContentsElement\` is the cell's existing DOM element and can be used to extract the text value for processing, as below
-
-        // want to process the already-rendered cell value
-        const stringContents = cellContentsElement.textContent;
-
-        // extract the groups-of-three digits that are right-aligned
-        return stringContents.replace(/((\\d{3})+)$/, match =>
-          // then replace each group of xyz digits with ,xyz
-          match.replace(/(\\d{3})/g, ',$1')
-        );
-      },
-    }}
     // Optional. For advanced control of internal data grid popover/focus state, passes back an object of API methods
     ref={dataGridRef}
   />
@@ -218,16 +213,6 @@ const gridConcepts = [
         An array of custom <strong>EuiDataGridSchemaDetector</strong> objects.
         You can inject custom schemas to the grid to define the classnames
         applied.
-      </span>
-    ),
-  },
-  {
-    title: 'popoverContents',
-    description: (
-      <span>
-        An object mapping <strong>EuiDataGridColumn</strong> schemas to a custom
-        popover render. This dictates the content of the popovers when you click
-        into each cell.
       </span>
     ),
   },
@@ -292,8 +277,22 @@ const gridConcepts = [
       <span>
         A function called to render a cell&apos;s value. Behind the scenes it is
         treated as a React component allowing hooks, context, and other React
-        concepts to be used. The function receives a{' '}
-        <strong>EuiDataGridCellValueElement</strong> as its only argument.
+        concepts to be used. The function receives{' '}
+        <strong>EuiDataGridCellValueElementProps</strong> as its only argument.
+      </span>
+    ),
+  },
+  {
+    title: 'renderCellPopover',
+    description: (
+      <span>
+        An optional function called to render a cell&apos;s popover. Behind the
+        scenes it is treated as a React component, receiving{' '}
+        <strong>EuiDataGridCellPopoverElementProps</strong> as its props. See{' '}
+        <Link to="tabular-content/data-grid-cell-popovers">
+          Data grid cell popovers
+        </Link>{' '}
+        for more details and examples.
       </span>
     ),
   },
@@ -422,13 +421,13 @@ export const DataGridExample = {
         EuiDataGridPaginationProps,
         EuiDataGridSorting,
         EuiDataGridCellValueElementProps,
+        EuiDataGridCellPopoverElementProps,
         EuiDataGridSchemaDetector,
         EuiDataGridStyle,
         EuiDataGridToolBarVisibilityOptions,
         EuiDataGridToolBarVisibilityColumnSelectorOptions,
         EuiDataGridToolBarAdditionalControlsOptions,
         EuiDataGridToolBarAdditionalControlsLeftOptions,
-        EuiDataGridPopoverContentProps,
         EuiDataGridRowHeightsOptions,
         EuiDataGridRefProps,
       },
