@@ -49,6 +49,7 @@
     "url": "https://github.com/elastic/eui.git"
   },
   "resolutions": {
+    "**/prismjs": "1.27.0",
     "**/trim": "0.0.3",
     "**/node-sass": "^6.0.1",
     "**/react": "^17.0.0"
@@ -93,7 +94,7 @@
     "text-diff": "^1.0.1",
     "unified": "^9.2.0",
     "unist-util-visit": "^2.0.3",
-    "url-parse": "^1.5.6",
+    "url-parse": "^1.5.10",
     "uuid": "^8.3.0",
     "vfile": "^4.2.0"
   },
@@ -132,7 +133,7 @@
     "@types/react-is": "^17.0.3",
     "@types/react-router-dom": "^5.1.5",
     "@types/tabbable": "^3.1.0",
-    "@types/url-parse": "^1.4.3",
+    "@types/url-parse": "^1.4.8",
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^5.10.2",
     "@typescript-eslint/parser": "^5.10.2",
