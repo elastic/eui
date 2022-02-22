@@ -1,5 +1,9 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+No public interface changes since `49.0.0`.
+
+## [`49.0.0`](https://github.com/elastic/eui/tree/v49.0.0)
+
 - Added new `renderCellPopover` prop to `EuiDataGrid` ([#5640](https://github.com/elastic/eui/pull/5640))
 - Added cell `schema` info to `EuiDataGrid`'s `renderCellValue` props ([#5640](https://github.com/elastic/eui/pull/5640))
 - Added `isLoading` prop to `EuiDualRange` ([#5648](https://github.com/elastic/eui/pull/5648))
