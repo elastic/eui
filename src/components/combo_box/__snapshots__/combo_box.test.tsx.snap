@@ -827,12 +827,14 @@ exports[`props singleSelection prepend and append is rendered 1`] = `
     updatePosition={[Function]}
     value=""
   />
-  <EuiI18n
-    default="Choose from the following options"
-    token="euiComboBox.listboxAriaLabel"
-  >
-    <Component />
-  </EuiI18n>
+  <EuiPortal>
+    <EuiI18n
+      default="Choose from the following options"
+      token="euiComboBox.listboxAriaLabel"
+    >
+      <Component />
+    </EuiI18n>
+  </EuiPortal>
 </div>
 `;
 
@@ -871,11 +873,13 @@ exports[`props singleSelection selects existing option when opened 1`] = `
     updatePosition={[Function]}
     value="Mimas"
   />
-  <EuiI18n
-    default="Choose from the following options"
-    token="euiComboBox.listboxAriaLabel"
-  >
-    <Component />
-  </EuiI18n>
+  <EuiPortal>
+    <EuiI18n
+      default="Choose from the following options"
+      token="euiComboBox.listboxAriaLabel"
+    >
+      <Component />
+    </EuiI18n>
+  </EuiPortal>
 </div>
 `;

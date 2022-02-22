@@ -981,12 +981,12 @@ export class EuiComboBox<T> extends Component<
         : undefined;
 
       optionsList = (
-        <EuiI18n
-          token="euiComboBox.listboxAriaLabel"
-          default="Choose from the following options"
-        >
-          {(listboxAriaLabel: string) => (
-            <EuiPortal>
+        <EuiPortal>
+          <EuiI18n
+            token="euiComboBox.listboxAriaLabel"
+            default="Choose from the following options"
+          >
+            {(listboxAriaLabel: string) => (
               <EuiComboBoxOptionsList
                 zIndex={this.state.listZIndex}
                 activeOptionIndex={this.state.activeOptionIndex}
@@ -1020,24 +1020,22 @@ export class EuiComboBox<T> extends Component<
                 }
                 listboxAriaLabel={listboxAriaLabel}
               />
-            </EuiPortal>
-          )}
-        </EuiI18n>
+            )}
+          </EuiI18n>
+        </EuiPortal>
       );
     }
 
     return (
       /**
-       * Re: jsx-a11y/interactive-supports-focus
-       * Focus is managed and is placed on the textbox element (`EuiComboBoxInput`)
+       * February 2022
        *
-       * Re: jsx-a11y/role-has-required-aria-props
-       * Expansion is managed and required `aria-controls` prop is placed on the textbox element (`EuiComboBoxInput`)
+       * Component has been refactored to the WAI-ARIA 1.2 spec for
+       * editable combobox with list autocomplete. This pattern is an improvement
+       * on the user experience for screen readers over the WAI-ARIA 1.1 pattern.
        *
-       * Reference for both: https://www.w3.org/TR/2017/REC-wai-aria-1.1-20171214/#combobox,
-       * which verifies that this implementation follows the spec.
+       * https://www.w3.org/TR/wai-aria-practices-1.2/examples/combobox/combobox-autocomplete-list.html
        */
-      // eslint-disable-next-line jsx-a11y/interactive-supports-focus
       <div
         {...rest}
         className={classes}
