@@ -4,10 +4,17 @@
 - Added cell `schema` info to `EuiDataGrid`'s `renderCellValue` props ([#5640](https://github.com/elastic/eui/pull/5640))
 - Added `isLoading` prop to `EuiDualRange` ([#5648](https://github.com/elastic/eui/pull/5648))
 - Updated `EuiComboBox` to WAI-ARIA 1.2 pattern and improved keyboard navigation ([#5636](https://github.com/elastic/eui/pull/5636))
+- Added an `'all'` option to `EuiTablePagination.itemsPerPage` and `itemsPerPageOptions` to render a "Show all" option and updated `EuiBasicTable` and `EuiDataGrid` usages ([#5547](https://github.com/elastic/eui/issues/5547))
+
+**Bug fixes**
+
+- Fixed `EuiImage` images' width in small containers by adding `max-width: 100%` ([#5547](https://github.com/elastic/eui/issues/5547))
+- Fixed `EuiTablePagination` layout in small containers by adding `wrap` ([#5547](https://github.com/elastic/eui/issues/5547))
 
 **Breaking changes**
 
 - Removed `popoverContents` props from `EuiDataGrid` (use new `renderCellPopover` instead) ([#5640](https://github.com/elastic/eui/pull/5640))
+- Changed the `EuiTablePagination` prop `hidePerPageOptions` to the positive form `showPerPageOptions` ([#5547](https://github.com/elastic/eui/issues/5547))
 
 ## [`48.1.1`](https://github.com/elastic/eui/tree/v48.1.1)
 
