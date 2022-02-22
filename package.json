@@ -49,6 +49,7 @@
     "url": "https://github.com/elastic/eui.git"
   },
   "resolutions": {
+    "**/prismjs": "1.27.0",
     "**/trim": "0.0.3",
     "**/node-sass": "^6.0.1",
     "**/react": "^17.0.0"
