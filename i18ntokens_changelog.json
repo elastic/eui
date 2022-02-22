@@ -1,5 +1,20 @@
 [
   {
+    "version": "49.0.0",
+    "changes": [
+      {
+        "token": "euiTablePagination.allRows",
+        "changeType": "added",
+        "value": "Showing all rows"
+      },
+      {
+        "token": "euiTablePagination.rowsPerPageOptionShowAllRows",
+        "changeType": "added",
+        "value": "Show all rows"
+      }
+    ]
+  },
+  {
     "version": "48.0.0",
     "changes": [
       {
