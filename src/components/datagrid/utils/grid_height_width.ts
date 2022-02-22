@@ -7,7 +7,7 @@
  */
 
 import { useEffect, useState, useContext, MutableRefObject } from 'react';
-import { IS_JEST_ENVIRONMENT } from '../../../test';
+import { IS_JEST_ENVIRONMENT } from '../../../utils';
 import { useUpdateEffect, useForceRender } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
 import { EuiDataGridRowHeightsOptions } from '../data_grid_types';
