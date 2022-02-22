@@ -1,7 +1,6 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
 - Added `readOnly` prop to `EuiMarkdownEditor` ([#5627](https://github.com/elastic/eui/pull/5627))
-- Removed the cursor default style in `euiFormControlReadOnlyStyle` mixin to make browsers use their default `:read-only` cursor style ([#5627](https://github.com/elastic/eui/pull/5627))
 - Added new `renderCellPopover` prop to `EuiDataGrid` ([#5640](https://github.com/elastic/eui/pull/5640))
 - Added cell `schema` info to `EuiDataGrid`'s `renderCellValue` props ([#5640](https://github.com/elastic/eui/pull/5640))
 
