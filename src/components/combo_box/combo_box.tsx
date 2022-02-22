@@ -10,8 +10,6 @@
  * Elements within EuiComboBox which would normally be tabbable (inputs, buttons) have been removed
  * from the tab order with tabindex={-1} so that we can control the keyboard navigation interface.
  */
-/* eslint-disable jsx-a11y/role-has-required-aria-props */
-
 import React, {
   Component,
   FocusEventHandler,
@@ -1028,11 +1026,9 @@ export class EuiComboBox<T> extends Component<
 
     return (
       /**
-       * February 2022
-       *
-       * Component has been refactored to the WAI-ARIA 1.2 spec for
-       * editable combobox with list autocomplete. This pattern is an improvement
-       * on the user experience for screen readers over the WAI-ARIA 1.1 pattern.
+       * EuiComboBox follows the WAI-ARIA 1.2 spec for editable comboboxes
+       * with list autocomplete. This pattern is an improvement on the user
+       * experience for screen readers over the WAI-ARIA 1.1 pattern.
        *
        * https://www.w3.org/TR/wai-aria-practices-1.2/examples/combobox/combobox-autocomplete-list.html
        */
