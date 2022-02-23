@@ -107,7 +107,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
 
     const isPreviewing = viewMode === MODE_VIEWING;
 
-    const buttonIsDisabled = isPreviewing || readOnly;
+    const isEditable = !isPreviewing && !readOnly;
 
     return (
       <div ref={ref} className="euiMarkdownEditorToolbar">
