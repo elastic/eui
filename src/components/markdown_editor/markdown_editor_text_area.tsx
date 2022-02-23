@@ -20,7 +20,6 @@ export type EuiMarkdownEditorTextAreaProps = TextareaHTMLAttributes<
     compressed?: boolean;
     height: string;
     maxHeight: string;
-    readOnly?: boolean;
   };
 
 export const EuiMarkdownEditorTextArea = forwardRef<
