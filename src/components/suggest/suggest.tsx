@@ -60,7 +60,14 @@ export interface EuiSuggestionProps
 }
 
 type _EuiSuggestProps = CommonProps &
-  EuiFieldSearchProps & {
+  Omit<
+    EuiFieldSearchProps,
+    | 'isLoading' // Use status.loading instead for consistency
+    | 'onChange' // Use onSearchChange instead for consistency
+    | 'onSearch' // Use onSearchChange instead for consistency
+    | 'incremental' // Hard-coded by EuiSelectableSearch, and must be true because EuiSuggest doesn't respond to Enter keypresses
+    | 'inputRef' // Hard-coded by EuiSelectable - not supported as a consumer-passed prop, although the input element can be obtained via onInputChange
+  > & {
     /**
      * List of suggestions to display using EuiSuggestItem.
      * Accepts props from #EuiSuggestItemProps
