@@ -115,8 +115,8 @@ export const MarkdownEditorExample = {
             <Link to="/display/comment-list">EuiCommentList</Link>. When dealing
             with asynchronous events consider using the{' '}
             <EuiCode>readOnly</EuiCode> prop to restrict editing during the
-            events. This will ensure users understand that the content can no
-            longer be changed while the comment is being submitted.
+            submit events. This will ensure users understand that the content
+            can no longer be changed while the comment is being submitted.
           </p>
         </>
       ),
