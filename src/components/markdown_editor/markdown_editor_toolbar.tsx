@@ -119,7 +119,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
                 onClick={() => handleMdButtonClick(item.id)}
                 iconType={item.iconType}
                 aria-label={item.label}
-                isDisabled={buttonIsDisabled}
+                isDisabled={!isEditable}
               />
             </EuiToolTip>
           ))}
@@ -131,7 +131,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
                 onClick={() => handleMdButtonClick(item.id)}
                 iconType={item.iconType}
                 aria-label={item.label}
-                isDisabled={buttonIsDisabled}
+                isDisabled={!isEditable}
               />
             </EuiToolTip>
           ))}
@@ -143,7 +143,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
                 onClick={() => handleMdButtonClick(item.id)}
                 iconType={item.iconType}
                 aria-label={item.label}
-                isDisabled={buttonIsDisabled}
+                isDisabled={!isEditable}
               />
             </EuiToolTip>
           ))}
@@ -166,7 +166,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
                       onClick={() => handleMdButtonClick(name)}
                       iconType={button.iconType}
                       aria-label={button.label}
-                      isDisabled={buttonIsDisabled}
+                      isDisabled={!isEditable}
                     />
                   </EuiToolTip>
                 );

@@ -102,10 +102,23 @@ export const MarkdownEditorExample = {
       ],
       title: 'Base editor',
       text: (
-        <p>
-          The base editor can render basic markdown along with some built-in
-          plugins.
-        </p>
+        <>
+          <p>
+            Use the base editor to produce technical content in markdown which
+            can contain text, code, and images. Besides this default markdown
+            content, the base editor comes with built-in plugins that let you
+            add emojis, to-do lists, and tooltips.
+          </p>
+          <p>
+            Producing technical content is one of its main use cases. Another
+            one might be adding comments to a{' '}
+            <Link to="/display/comment-list">EuiCommentList</Link>. When dealing
+            with asynchronous events consider using the{' '}
+            <EuiCode>readOnly</EuiCode> prop to restrict editing during the
+            events. This will ensure users understand that the content can no
+            longer be changed while the comment is being submitted.
+          </p>
+        </>
       ),
       props: {
         EuiMarkdownEditor,

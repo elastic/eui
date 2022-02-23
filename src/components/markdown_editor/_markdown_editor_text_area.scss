@@ -35,6 +35,7 @@
 
 .euiMarkdownEditorTextArea-isReadOnly {
   background: $euiFormBackgroundReadOnlyColor;
+  cursor: unset;
 
   &:focus,
   .euiMarkdownEditor:focus-within & {
