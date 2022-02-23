@@ -90,7 +90,7 @@ export type EuiSelectableProps<T = {}> = CommonProps &
       list: ReactElement<
         typeof EuiSelectableMessage | typeof EuiSelectableList
       >,
-      search: ReactElement<EuiSelectableSearch<T>> | undefined
+      search: ReactElement<typeof EuiSelectableSearch> | undefined
     ) => ReactNode;
     /**
      * Array of EuiSelectableOption objects. See #EuiSelectableOptionProps

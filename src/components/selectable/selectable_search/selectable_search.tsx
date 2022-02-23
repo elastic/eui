@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ChangeEvent } from 'react';
+import React, { useEffect, useCallback, ChangeEvent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { EuiFieldSearch, EuiFieldSearchProps } from '../../form';
@@ -39,68 +39,65 @@ export type EuiSelectableSearchProps<T> = Omit<
     isPreFiltered: boolean;
   };
 
-export class EuiSelectableSearch<T> extends Component<
-  EuiSelectableSearchProps<T>
-> {
-  componentDidMount() {
-    const { value } = this.props;
+export const EuiSelectableSearch = <T,>({
+  onChange: onChangeCallback,
+  options,
+  value,
+  placeholder,
+  isPreFiltered,
+  listId,
+  className,
+  ...rest
+}: EuiSelectableSearchProps<T>) => {
+  useEffect(() => {
     const matchingOptions = getMatchingOptions<T>(
-      this.props.options,
-      value,
-      this.props.isPreFiltered
-    );
-    this.props.onChange(matchingOptions, value);
-  }
-
-  onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const searchValue = e.target.value;
-    const matchingOptions = getMatchingOptions<T>(
-      this.props.options,
-      searchValue,
-      this.props.isPreFiltered
-    );
-    this.props.onChange(matchingOptions, searchValue);
-  };
-
-  render() {
-    const {
-      className,
-      onChange,
       options,
       value,
-      listId,
-      placeholder,
-      isPreFiltered,
-      ...rest
-    } = this.props;
-
-    const classes = classNames('euiSelectableSearch', className);
-
-    const ariaPropsIfListIsPresent:
-      | Partial<EuiFieldSearchProps>
-      | undefined = listId
-      ? {
-          role: 'combobox',
-          'aria-autocomplete': 'list',
-          'aria-expanded': true,
-          'aria-controls': listId,
-          'aria-owns': listId, // legacy attribute but shims support for nearly everything atm
-        }
-      : undefined;
-
-    return (
-      <EuiFieldSearch
-        className={classes}
-        placeholder={placeholder}
-        value={value}
-        onChange={this.onChange}
-        incremental
-        fullWidth
-        autoComplete="off"
-        aria-haspopup="listbox"
-        {...ariaPropsIfListIsPresent}
-        {...rest}
-      />
+      isPreFiltered
     );
-  }
-}
+    onChangeCallback(matchingOptions, value);
+    // Call on mount only
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const onChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const searchValue = e.target.value;
+      const matchingOptions = getMatchingOptions<T>(
+        options,
+        searchValue,
+        isPreFiltered
+      );
+      onChangeCallback(matchingOptions, searchValue);
+    },
+    [options, isPreFiltered, onChangeCallback]
+  );
+
+  const classes = classNames('euiSelectableSearch', className);
+
+  const ariaPropsIfListIsPresent:
+    | Partial<EuiFieldSearchProps>
+    | undefined = listId
+    ? {
+        role: 'combobox',
+        'aria-autocomplete': 'list',
+        'aria-expanded': true,
+        'aria-controls': listId,
+        'aria-owns': listId, // legacy attribute but shims support for nearly everything atm
+      }
+    : undefined;
+
+  return (
+    <EuiFieldSearch
+      className={classes}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      incremental
+      fullWidth
+      autoComplete="off"
+      aria-haspopup="listbox"
+      {...ariaPropsIfListIsPresent}
+      {...rest}
+    />
+  );
+};

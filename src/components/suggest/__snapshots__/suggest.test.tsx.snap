@@ -294,7 +294,6 @@ exports[`EuiSuggest props isVirtualized 1`] = `
                       <EuiSelectableSearch
                         aria-activedescendant=""
                         aria-label="aria-label"
-                        defaultValue=""
                         className="testClass1 testClass2"
                         data-test-subj="test subject string"
                         fullWidth={true}
@@ -335,6 +334,7 @@ exports[`EuiSuggest props isVirtualized 1`] = `
                           ]
                         }
                         placeholder="Filter options"
+                        value=""
                       >
                         <EuiFieldSearch
                           aria-activedescendant=""
@@ -350,10 +350,11 @@ exports[`EuiSuggest props isVirtualized 1`] = `
                           isClearable={true}
                           isLoading={false}
                           onBlur={[Function]}
+                          onChange={[Function]}
                           onFocus={[Function]}
                           onInput={[Function]}
-                          onSearch={[Function]}
                           placeholder="Filter options"
+                          value=""
                         >
                           <EuiFormControlLayout
                             compressed={false}
@@ -376,11 +377,13 @@ exports[`EuiSuggest props isVirtualized 1`] = `
                                     className="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
                                     data-test-subj="test subject string"
                                     onBlur={[Function]}
+                                    onChange={[Function]}
                                     onFocus={[Function]}
                                     onInput={[Function]}
                                     onKeyUp={[Function]}
                                     placeholder="Filter options"
                                     type="search"
+                                    value=""
                                   />
                                 </EuiValidatableControl>
                                 <EuiFormControlLayoutIcons
@@ -657,6 +660,7 @@ exports[`EuiSuggest props maxHeight 1`] = `
                           ]
                         }
                         placeholder="Filter options"
+                        value=""
                       >
                         <EuiFieldSearch
                           aria-activedescendant=""
@@ -672,10 +676,11 @@ exports[`EuiSuggest props maxHeight 1`] = `
                           isClearable={true}
                           isLoading={false}
                           onBlur={[Function]}
+                          onChange={[Function]}
                           onFocus={[Function]}
                           onInput={[Function]}
-                          onSearch={[Function]}
                           placeholder="Filter options"
+                          value=""
                         >
                           <EuiFormControlLayout
                             compressed={false}
@@ -697,13 +702,14 @@ exports[`EuiSuggest props maxHeight 1`] = `
                                     autoComplete="off"
                                     className="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
                                     data-test-subj="test subject string"
-                                    defaultValue=""
                                     onBlur={[Function]}
+                                    onChange={[Function]}
                                     onFocus={[Function]}
                                     onInput={[Function]}
                                     onKeyUp={[Function]}
                                     placeholder="Filter options"
                                     type="search"
+                                    value=""
                                   />
                                 </EuiValidatableControl>
                                 <EuiFormControlLayoutIcons

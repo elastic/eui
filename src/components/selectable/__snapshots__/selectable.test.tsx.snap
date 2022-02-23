@@ -339,6 +339,103 @@ exports[`EuiSelectable props singleSelection 1`] = `
 />
 `;
 
+exports[`EuiSelectable search value supports inheriting initialSearchValue from searchProps.defaultValue 1`] = `
+<div
+  class="euiSelectable"
+>
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      role="status"
+    />
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      role="status"
+    >
+      <p>
+        <strong>
+          default value
+        </strong>
+         doesn't match any options
+      </p>
+    </div>
+  </div>
+  <p
+    class="euiScreenReaderOnly"
+    id="generated-id_instructions"
+  >
+    Filter options
+  </p>
+  <div
+    class="euiText euiText--extraSmall euiSelectableMessage"
+    data-test-subj="euiSelectableMessage"
+    id="generated-id_messageContent"
+  >
+    <div
+      class="euiTextColor euiTextColor--subdued"
+    >
+      <p>
+        <strong>
+          default value
+        </strong>
+         doesn't match any options
+      </p>
+    </div>
+  </div>
+  <div
+    class="euiFormControlLayout euiFormControlLayout--fullWidth"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <input
+        aria-activedescendant=""
+        aria-haspopup="listbox"
+        aria-label="Filter options"
+        autocomplete="off"
+        class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isClearable euiSelectableSearch"
+        data-test-subj="searchInput"
+        placeholder="Filter options"
+        type="search"
+        value="default value"
+      />
+      <div
+        class="euiFormControlLayoutIcons"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="search"
+          />
+        </span>
+      </div>
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      >
+        <button
+          aria-label="Clear input"
+          class="euiFormControlLayoutClearButton"
+          data-test-subj="clearSearchButton"
+          type="button"
+        >
+          <span
+            class="euiFormControlLayoutClearButton__icon"
+            data-euiicon-type="cross"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiSelectable should not reset the activeOptionIndex nor isFocused when EuiSelectable is blurred in favour of its popover 1`] = `
 Object {
   "activeOptionIndex": 0,
