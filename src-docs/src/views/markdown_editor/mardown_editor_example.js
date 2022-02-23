@@ -110,13 +110,11 @@ export const MarkdownEditorExample = {
             add emojis, to-do lists, and tooltips.
           </p>
           <p>
-            Producing technical content is one of its main use cases. Another
-            one might be adding comments to a{' '}
-            <Link to="/display/comment-list">EuiCommentList</Link>. When dealing
-            with asynchronous events consider using the{' '}
-            <EuiCode>readOnly</EuiCode> prop to restrict editing during the
-            submit events. This will ensure users understand that the content
-            can no longer be changed while the comment is being submitted.
+            Consider applying the <EuiCode>readOnly</EuiCode> prop to restrict editing during
+            asynchronous submit events, like when submitting a{' '}
+            <Link to="/display/comment-list">comment</Link>. 
+            This will ensure users understand that the content
+            cannot be changed while the comment is being submitted.
           </p>
         </>
       ),
