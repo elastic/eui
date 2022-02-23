@@ -197,9 +197,10 @@ export class EuiSelectable<T = {}> extends Component<
     this.listId = this.rootId('listbox');
     this.messageContentId = this.rootId('messageContent');
 
-    const { options, singleSelection, isPreFiltered } = props;
+    const { options, singleSelection, isPreFiltered, searchProps } = props;
 
-    const initialSearchValue = '';
+    const initialSearchValue =
+      searchProps?.value || String(searchProps?.defaultValue || '');
 
     const visibleOptions = getMatchingOptions<T>(
       options,
@@ -228,7 +229,7 @@ export class EuiSelectable<T = {}> extends Component<
     nextProps: EuiSelectableProps<T>,
     prevState: EuiSelectableState<T>
   ) {
-    const { options, isPreFiltered } = nextProps;
+    const { options, isPreFiltered, searchProps } = nextProps;
     const { activeOptionIndex, searchValue } = prevState;
 
     const matchingOptions = getMatchingOptions<T>(
@@ -237,13 +238,20 @@ export class EuiSelectable<T = {}> extends Component<
       isPreFiltered
     );
 
-    const stateUpdate = { visibleOptions: matchingOptions, activeOptionIndex };
+    const stateUpdate: Partial<EuiSelectableState<T>> = {
+      visibleOptions: matchingOptions,
+      activeOptionIndex,
+    };
 
     if (
       activeOptionIndex != null &&
       activeOptionIndex >= matchingOptions.length
     ) {
       stateUpdate.activeOptionIndex = -1;
+    }
+
+    if (searchProps?.value != null && searchProps.value !== searchValue) {
+      stateUpdate.searchValue = searchProps.value;
     }
 
     return stateUpdate;
@@ -482,6 +490,7 @@ export class EuiSelectable<T = {}> extends Component<
       'aria-describedby': searchAriaDescribedby,
       onChange: propsOnChange,
       onSearch,
+      defaultValue, // Because we control the underlying EuiFieldSearch value state with state.searchValue, we cannot pass a defaultValue prop without a React error
       ...cleanedSearchProps
     } = (searchProps || unknownAccessibleName) as typeof searchProps &
       typeof unknownAccessibleName;
@@ -638,6 +647,7 @@ export class EuiSelectable<T = {}> extends Component<
           <EuiSelectableSearch<T>
             key="listSearch"
             options={options}
+            value={searchValue}
             onChange={this.onSearchChange}
             listId={this.optionsListRef.current ? this.listId : undefined} // Only pass the listId if it exists on the page
             aria-activedescendant={this.makeOptionId(activeOptionIndex)} // the current faux-focused option

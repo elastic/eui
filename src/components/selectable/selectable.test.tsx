@@ -139,6 +139,74 @@ describe('EuiSelectable', () => {
     });
   });
 
+  describe('search value', () => {
+    it('supports inheriting initialSearchValue from searchProps.defaultValue', () => {
+      const component = render(
+        <EuiSelectable
+          options={options}
+          searchable
+          searchProps={{
+            defaultValue: 'default value',
+            'data-test-subj': 'searchInput',
+          }}
+        >
+          {(list, search) => (
+            <>
+              {list}
+              {search}
+            </>
+          )}
+        </EuiSelectable>
+      );
+      expect(component).toMatchSnapshot();
+      expect(
+        component.find('input[data-test-subj="searchInput"]').prop('value')
+      ).toEqual('default value');
+    });
+
+    it('supports controlled searchValue state from searchProps.value', () => {
+      const searchProps = {
+        value: 'first value',
+        'data-test-subj': 'searchInput',
+      };
+      const component = mount(
+        <EuiSelectable options={options} searchable searchProps={searchProps}>
+          {(list, search) => (
+            <>
+              {list}
+              {search}
+            </>
+          )}
+        </EuiSelectable>
+      );
+      expect(
+        component.find('input[data-test-subj="searchInput"]').prop('value')
+      ).toEqual('first value');
+
+      component.setProps({
+        searchProps: { ...searchProps, value: 'second value' },
+      });
+      expect(
+        component.find('input[data-test-subj="searchInput"]').prop('value')
+      ).toEqual('second value');
+    });
+
+    it('defaults to an empty string if no value or defaultValue is passed from searchProps', () => {
+      const component = render(
+        <EuiSelectable
+          options={options}
+          searchable
+          searchProps={{ 'data-test-subj': 'searchInput' }}
+        >
+          {(_, search) => <>{search}</>}
+        </EuiSelectable>
+      );
+      expect(
+        component.find('input[data-test-subj="searchInput"]').prop('value')
+      ).toEqual('');
+    });
+  });
+
   describe('custom options', () => {
     test('optional properties', () => {
       type OptionalOption = EuiSelectableOption<{ value?: string }>;

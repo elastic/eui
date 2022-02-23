@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component } from 'react';
+import React, { Component, ChangeEvent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { EuiFieldSearch, EuiFieldSearchProps } from '../../form';
@@ -15,7 +15,9 @@ import { EuiSelectableOption } from '../selectable_option';
 
 export type EuiSelectableSearchProps<T> = Omit<
   EuiFieldSearchProps,
-  'onChange'
+  | 'onChange' // Omitted because we're returning our own custom onChange args
+  | 'onSearch' // Omitted because we don't need Enter key behavior and we don't want to fire an event on keyup - it messes up the combobox up/down navigation
+  | 'incremental' // Must be true (hard-coded below) if we don't support Enter key to search
 > &
   CommonProps & {
     /**
@@ -26,7 +28,10 @@ export type EuiSelectableSearchProps<T> = Omit<
       searchValue: string
     ) => void;
     options: Array<EuiSelectableOption<T>>;
-    defaultValue: string;
+    /**
+     * Search value state managed by parent EuiSelectable
+     */
+    value: string;
     /**
      * The id of the visible list to create the appropriate aria controls
      */
@@ -34,47 +39,27 @@ export type EuiSelectableSearchProps<T> = Omit<
     isPreFiltered: boolean;
   };
 
-export interface EuiSelectableSearchState {
-  searchValue: string;
-}
-
 export class EuiSelectableSearch<T> extends Component<
-  EuiSelectableSearchProps<T>,
-  EuiSelectableSearchState
+  EuiSelectableSearchProps<T>
 > {
-  static defaultProps = {
-    defaultValue: '',
-  };
-
-  constructor(props: EuiSelectableSearchProps<T>) {
-    super(props);
-
-    this.state = {
-      searchValue: props.defaultValue,
-    };
+  componentDidMount() {
+    const { value } = this.props;
+    const matchingOptions = getMatchingOptions<T>(
+      this.props.options,
+      value,
+      this.props.isPreFiltered
+    );
+    this.props.onChange(matchingOptions, value);
   }
 
-  componentDidMount() {
-    const { searchValue } = this.state;
+  onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const searchValue = e.target.value;
     const matchingOptions = getMatchingOptions<T>(
       this.props.options,
       searchValue,
       this.props.isPreFiltered
     );
     this.props.onChange(matchingOptions, searchValue);
-  }
-
-  onSearchChange = (value: string) => {
-    if (value !== this.state.searchValue) {
-      this.setState({ searchValue: value }, () => {
-        const matchingOptions = getMatchingOptions<T>(
-          this.props.options,
-          value,
-          this.props.isPreFiltered
-        );
-        this.props.onChange(matchingOptions, value);
-      });
-    }
   };
 
   render() {
@@ -82,7 +67,7 @@ export class EuiSelectableSearch<T> extends Component<
       className,
       onChange,
       options,
-      defaultValue,
+      value,
       listId,
       placeholder,
       isPreFiltered,
@@ -107,9 +92,9 @@ export class EuiSelectableSearch<T> extends Component<
       <EuiFieldSearch
         className={classes}
         placeholder={placeholder}
-        onSearch={this.onSearchChange}
+        value={value}
+        onChange={this.onChange}
         incremental
-        defaultValue={defaultValue}
         fullWidth
         autoComplete="off"
         aria-haspopup="listbox"

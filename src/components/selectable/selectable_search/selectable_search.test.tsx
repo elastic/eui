@@ -17,6 +17,7 @@ describe('EuiSelectableSearch', () => {
     const component = render(
       <EuiSelectableSearch
         options={[]}
+        value=""
         listId="list"
         onChange={() => {}}
         isPreFiltered={false}
@@ -27,19 +28,5 @@ describe('EuiSelectableSearch', () => {
     expect(component).toMatchSnapshot();
   });
 
-  describe('props', () => {
-    test('defaultValue', () => {
-      const component = render(
-        <EuiSelectableSearch
-          options={[]}
-          listId="list"
-          onChange={() => {}}
-          isPreFiltered={false}
-          defaultValue="Mi"
-        />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-  });
+  // TODO: Write more unit tests
 });
