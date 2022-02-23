@@ -17,7 +17,7 @@ import {
   EuiDataGridToolBarAdditionalControlsOptions,
   EuiDataGridToolBarAdditionalControlsLeftOptions,
 } from '../data_grid_types';
-import { IS_JEST_ENVIRONMENT } from '../../../test';
+import { IS_JEST_ENVIRONMENT } from '../../../utils';
 
 // When below this number the grid only shows the full screen button
 const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
