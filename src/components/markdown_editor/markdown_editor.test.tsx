@@ -91,6 +91,23 @@ describe('EuiMarkdownEditor', () => {
         expect(component).toMatchSnapshot();
       });
     });
+
+    describe('readOnly', () => {
+      test('is set to true', () => {
+        const component = render(
+          <EuiMarkdownEditor
+            editorId="editorId"
+            autoExpandPreview={false}
+            value=""
+            onChange={() => null}
+            readOnly
+            {...requiredProps}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 
   test('is preview rendered', () => {
