@@ -100,7 +100,6 @@ describe('renderJsSourceCode', () => {
   
             export default () => <EuiButton>Hello world!</EuiButton>;`),
         })
-        // dedent isn't working for some reason
       ).toEqual(
         dedent(`
             import React, { useState } from 'react';
@@ -131,7 +130,6 @@ describe('renderJsSourceCode', () => {
   
             export default () => <EuiButton>Hello world!</EuiButton>;`),
         })
-        // dedent isn't working for some reason
       ).toEqual(
         dedent(`
             import React, { useState } from 'react';
