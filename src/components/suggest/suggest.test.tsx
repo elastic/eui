@@ -137,5 +137,24 @@ describe('EuiSuggest', () => {
         expect(component).toMatchSnapshot();
       });
     });
+
+    test('remaining EuiFieldSearch props are spread to the search input', () => {
+      const component = render(
+        <EuiSuggest
+          {...requiredProps}
+          suggestions={sampleItems}
+          name="testName"
+          id="testId"
+          placeholder="Start typing"
+          value="Controlled value"
+          isInvalid={true}
+          compressed={true}
+          fullWidth={false}
+          isClearable={true}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });

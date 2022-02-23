@@ -292,7 +292,6 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
           onFocusBadge: false,
           paddingSize: 'none',
           isVirtualized,
-          ...rest,
         }}
         searchable
         searchProps={{
@@ -306,6 +305,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
           'aria-describedby': inputDescribedbyId,
           'aria-label': ariaLabel,
           'aria-labelledby': labelId,
+          ...rest,
         }}
       >
         {(list, search) => (
