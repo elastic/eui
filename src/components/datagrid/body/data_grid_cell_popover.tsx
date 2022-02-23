@@ -10,7 +10,10 @@ import React, { createContext, useState, useCallback, ReactNode } from 'react';
 
 import { keys } from '../../../services';
 import { EuiWrappingPopover } from '../../popover';
-import { DataGridCellPopoverContextShape } from '../data_grid_types';
+import {
+  DataGridCellPopoverContextShape,
+  EuiDataGridCellPopoverElementProps,
+} from '../data_grid_types';
 
 export const DataGridCellPopoverContext = createContext<
   DataGridCellPopoverContextShape
@@ -93,4 +96,52 @@ export const useCellPopover = (): {
   );
 
   return { cellPopoverContext, cellPopover };
+};
+
+/**
+ * Popover content renderers
+ */
+import { EuiText } from '../../text';
+import { EuiCodeBlock } from '../../code';
+
+export const DefaultCellPopover = ({
+  schema,
+  cellActions,
+  children,
+  cellContentsElement,
+}: EuiDataGridCellPopoverElementProps) => {
+  switch (schema) {
+    case 'json':
+      return (
+        <>
+          <JsonPopoverContent cellText={cellContentsElement.innerText} />
+          {cellActions}
+        </>
+      );
+    default:
+      return (
+        <>
+          <EuiText>{children}</EuiText>
+          {cellActions}
+        </>
+      );
+  }
+};
+
+export const JsonPopoverContent = ({ cellText }: { cellText: string }) => {
+  let formattedText = cellText;
+  try {
+    formattedText = JSON.stringify(JSON.parse(formattedText), null, 2);
+  } catch (e) {} // eslint-disable-line no-empty
+
+  return (
+    <EuiCodeBlock
+      isCopyable
+      transparentBackground
+      paddingSize="none"
+      language="json"
+    >
+      {formattedText}
+    </EuiCodeBlock>
+  );
 };

@@ -125,6 +125,7 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<EuiDataGridInMemoryR
                   colIndex={j}
                   columnId={column.id}
                   setCellProps={noop}
+                  schema={column.schema}
                   isExpandable={isExpandable}
                   isExpanded={false}
                   isDetails={false}

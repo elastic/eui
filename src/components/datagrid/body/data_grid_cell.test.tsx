@@ -37,9 +37,6 @@ describe('EuiDataGridCell', () => {
         <button data-datagrid-interactable="true">world</button>
       </div>
     ),
-    popoverContent: ({ children }: { children: React.ReactNode }) => (
-      <div data-test-subj="popover-test">{children}</div>
-    ),
     popoverContext: mockPopoverContext,
     rowHeightUtils: mockRowHeightUtils,
   };
@@ -51,7 +48,7 @@ describe('EuiDataGridCell', () => {
     expect(component).toMatchSnapshot();
   });
 
-  it('renders cell buttons', () => {
+  it('renders cell actions', () => {
     const component = mount(
       <EuiDataGridCell
         {...requiredProps}
@@ -127,11 +124,11 @@ describe('EuiDataGridCell', () => {
         it('renderCellValue', () => {
           component.setProps({ renderCellValue: () => <div>test</div> });
         });
+        it('renderCellPopover', () => {
+          component.setProps({ renderCellPopover: () => <div>test</div> });
+        });
         it('interactiveCellId', () => {
           component.setProps({ interactiveCellId: 'test' });
-        });
-        it('popoverContent', () => {
-          component.setProps({ popoverContent: () => <div>test</div> });
         });
         it('popoverContext.popoverIsOpen', () => {
           component.setProps({
