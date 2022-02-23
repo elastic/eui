@@ -110,11 +110,11 @@ export const MarkdownEditorExample = {
             add emojis, to-do lists, and tooltips.
           </p>
           <p>
-            Consider applying the <EuiCode>readOnly</EuiCode> prop to restrict editing during
-            asynchronous submit events, like when submitting a{' '}
-            <Link to="/display/comment-list">comment</Link>. 
-            This will ensure users understand that the content
-            cannot be changed while the comment is being submitted.
+            Consider applying the <EuiCode>readOnly</EuiCode> prop to restrict
+            editing during asynchronous submit events, like when submitting a{' '}
+            <Link to="/display/comment-list">comment</Link>. This will ensure
+            users understand that the content cannot be changed while the
+            comment is being submitted.
           </p>
         </>
       ),
