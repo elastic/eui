@@ -195,6 +195,7 @@ exports[`EuiSuggest props isVirtualized 1`] = `
         "className": "testClass1 testClass2",
         "data-test-subj": "test subject string",
         "fullWidth": true,
+        "id": undefined,
         "isLoading": false,
         "onBlur": [Function],
         "onFocus": [Function],
@@ -517,6 +518,7 @@ exports[`EuiSuggest props maxHeight 1`] = `
         "className": "testClass1 testClass2",
         "data-test-subj": "test subject string",
         "fullWidth": true,
+        "id": undefined,
         "isLoading": false,
         "onBlur": [Function],
         "onFocus": [Function],
@@ -901,6 +903,7 @@ Array [
                 autocomplete="off"
                 class="euiFieldSearch euiFieldSearch--compressed euiFieldSearch-isClearable euiSelectableSearch testClass1 testClass2"
                 data-test-subj="test subject string"
+                id="testId"
                 name="testName"
                 placeholder="Start typing"
                 type="search"

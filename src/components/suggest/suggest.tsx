@@ -281,7 +281,6 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   return (
     <>
       <EuiSelectable<EuiSuggestionProps>
-        id={id}
         singleSelection={true}
         height={isVirtualized ? undefined : 'full'}
         options={suggestionList}
@@ -295,6 +294,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
         }}
         searchable
         searchProps={{
+          id,
           append: appendArray.length ? appendArray : undefined,
           fullWidth,
           isLoading: status === 'loading' ? true : false,
