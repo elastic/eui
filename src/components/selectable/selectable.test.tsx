@@ -30,7 +30,7 @@ const options: EuiSelectableOption[] = [
 describe('EuiSelectable', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiSelectable options={options} {...requiredProps} />
+      <EuiSelectable options={options} {...requiredProps} id="testId" />
     );
 
     expect(component).toMatchSnapshot();

@@ -194,7 +194,7 @@ export class EuiSelectable<T = {}> extends Component<
       ? (suffix) => `${props.id}${suffix ? `_${suffix}` : ''}`
       : htmlIdGenerator();
 
-    this.listId = this.rootId();
+    this.listId = this.rootId('listbox');
     this.messageContentId = this.rootId('messageContent');
 
     const { options, singleSelection, isPreFiltered } = props;
@@ -446,7 +446,6 @@ export class EuiSelectable<T = {}> extends Component<
 
   render() {
     const {
-      id,
       children,
       className,
       options,
@@ -666,7 +665,7 @@ export class EuiSelectable<T = {}> extends Component<
       />
     );
 
-    const listAriaDescribedbyId = `${this.listId}-instructions`;
+    const listAriaDescribedbyId = this.rootId('instructions');
     const listAccessibleName = getAccessibleName(
       listProps,
       listAriaDescribedbyId
