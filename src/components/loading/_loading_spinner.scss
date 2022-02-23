@@ -13,26 +13,10 @@
   }
 }
 
-.euiLoadingSpinner--small {
-  width: $euiSizeM;
-  height: $euiSizeM;
-  border-width: 1px;
-}
-
-.euiLoadingSpinner--medium {
-  width: $euiSize;
-  height: $euiSize;
-  border-width: 1px;
-}
-
-.euiLoadingSpinner--large {
-  width: $euiSizeL;
-  height: $euiSizeL;
-}
-
-.euiLoadingSpinner--xLarge {
-  width: $euiSizeXL;
-  height: $euiSizeXL;
+@each $name, $size in $euiLoadingSpinnerSizes {
+  .euiLoadingSpinner--#{$name} {
+    @include size($size);
+  }
 }
 
 @keyframes euiLoadingSpinner {

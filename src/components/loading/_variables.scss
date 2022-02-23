@@ -1,2 +1,10 @@
 $euiGradientStartStop: tintOrShade($euiColorLightShade, 65%, 12%);
 $euiGradientMiddle: tintOrShade($euiColorLightShade, 80%, 24%);
+
+$euiLoadingSpinnerSizes: (
+  small: $euiSizeM,
+  medium: $euiSize,
+  large: $euiSizeL,
+  xLarge: $euiSizeXL,
+  xxLarge: $euiSizeXXL
+);
