@@ -5,6 +5,7 @@ import { Options } from './data';
 
 export default () => {
   const [options, setOptions] = useState(Options);
+  const [search, setSearch] = useState('t');
 
   return (
     <Fragment>
@@ -13,6 +14,11 @@ export default () => {
         searchable
         searchProps={{
           'data-test-subj': 'selectableSearchHere',
+          value: search,
+          onSearch: (search) => {
+            console.log(search);
+            setSearch(search);
+          },
         }}
         options={options}
         onChange={(newOptions) => setOptions(newOptions)}
