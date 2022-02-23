@@ -17,9 +17,11 @@ interface MarkdownPosition {
 export interface ContextShape {
   openPluginEditor: (plugin: EuiMarkdownEditorUiPlugin) => void;
   replaceNode(position: MarkdownPosition, next: string): void;
+  readOnly?: boolean;
 }
 
 export const EuiMarkdownContext = createContext<ContextShape>({
   openPluginEditor: () => {},
   replaceNode() {},
+  readOnly: false,
 });
