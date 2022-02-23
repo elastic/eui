@@ -7,7 +7,7 @@
  */
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { IS_JEST_ENVIRONMENT } from '../../../test';
+import { IS_JEST_ENVIRONMENT } from '../../../utils';
 import {
   EuiDataGridColumn,
   EuiDataGridColumnWidths,
@@ -131,17 +131,27 @@ export const useColumnWidths = ({
   // Used by react-window to determine actual column widths
   const getColumnWidth = useCallback(
     (index: number) => {
-      if (index < leadingControlColumns.length) {
-        // this is a leading control column
+      // Leading control columns
+      if (
+        leadingControlColumns.length &&
+        index < leadingControlColumns.length
+      ) {
         return leadingControlColumns[index].width;
-      } else if (index >= leadingControlColumns.length + columns.length) {
-        // this is a trailing control column
+      }
+      // Trailing control columns
+      if (
+        trailingControlColumns.length &&
+        index >= leadingControlColumns.length + columns.length
+      ) {
         return trailingControlColumns[
           index - leadingControlColumns.length - columns.length
         ].width;
       }
-      // normal data column
-      const columnId = columns[index - leadingControlColumns.length].id;
+      // Normal data columns
+      const columnId =
+        columns.length > 0
+          ? columns[index - leadingControlColumns.length].id
+          : '';
       return (
         columnWidths[columnId] || defaultColumnWidth || DEFAULT_COLUMN_WIDTH
       );
