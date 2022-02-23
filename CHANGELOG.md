@@ -2,6 +2,18 @@
 
 - Updated `EuiComboBox` to WAI-ARIA 1.2 pattern and improved keyboard navigation ([#5636](https://github.com/elastic/eui/pull/5636))
 - Added `readOnly` prop to `EuiMarkdownEditor` ([#5627](https://github.com/elastic/eui/pull/5627))
+- Added the ability for `EuiSelectable` and `EuiSuggest` to accept controlled `value` props ([#5658](https://github.com/elastic/eui/pull/5658))
+
+**Bug fixes**
+
+- Fixed `EuiSuggest` not correctly passing props to the search input ([#5658](https://github.com/elastic/eui/pull/5658))
+- Fixed `EuiSelectable` incorrectly rendering the passed `id` prop on the listbox instead of the parent wrapper ([#5658](https://github.com/elastic/eui/pull/5658))
+
+**Breaking changes**
+
+- `EuiSuggest` no longer lists `onSearch`/`onChange` as valid props - use `onSearchChange` instead ([#5658](https://github.com/elastic/eui/pull/5658))
+- `EuiSuggest` no longer lists `isLoading` as a valid prop - use `status.loading` instead ([#5658](https://github.com/elastic/eui/pull/5658))
+- `EuiSuggest` no longer lists `incremental` or `inputRef` as valid props - these props are set internally and cannot be overriden by consumers ([#5658](https://github.com/elastic/eui/pull/5658))
 
 ## [`49.0.0`](https://github.com/elastic/eui/tree/v49.0.0)
 
