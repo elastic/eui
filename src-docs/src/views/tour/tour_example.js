@@ -47,6 +47,7 @@ const fullSource = require('!!raw-loader!./fullscreen');
 
 export const TourExample = {
   title: 'Tour',
+  guidelines: <Guidelines />,
   intro: (
     <EuiText>
       <p>
@@ -167,5 +168,4 @@ export const TourExample = {
       },
     },
   ],
-  guidelines: <Guidelines />,
 };

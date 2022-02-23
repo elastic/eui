@@ -7,9 +7,10 @@
  */
 
 import { useEffect, useState, useContext, MutableRefObject } from 'react';
-import { IS_JEST_ENVIRONMENT } from '../../../test';
+import { IS_JEST_ENVIRONMENT } from '../../../utils';
 import { useUpdateEffect, useForceRender } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
+import { EuiTablePaginationProps } from '../../table/table_pagination';
 import { EuiDataGridRowHeightsOptions } from '../data_grid_types';
 import { RowHeightUtils } from './row_heights';
 import { DataGridSortingContext } from './sorting';
@@ -162,7 +163,7 @@ export const useUnconstrainedHeight = ({
 export const useVirtualizeContainerWidth = (
   virtualizeContainer: HTMLDivElement | null,
   gridWidth: number,
-  pageSize: number | undefined
+  pageSize: EuiTablePaginationProps['itemsPerPage']
 ) => {
   const [virtualizeContainerWidth, setVirtualizeContainerWidth] = useState(0);
   useResizeObserver(virtualizeContainer);

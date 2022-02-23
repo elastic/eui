@@ -38,7 +38,7 @@ import {
   EuiDataGridCellPopoverActions,
 } from './data_grid_cell_actions';
 import { DefaultCellPopover } from './data_grid_cell_popover';
-import { IS_JEST_ENVIRONMENT } from '../../../test';
+import { IS_JEST_ENVIRONMENT } from '../../../utils';
 
 const EuiDataGridCellContent: FunctionComponent<
   EuiDataGridCellValueProps & {

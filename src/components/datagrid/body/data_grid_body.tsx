@@ -45,7 +45,7 @@ import { useRowHeightUtils, useDefaultRowHeight } from '../utils/row_heights';
 import { useHeaderFocusWorkaround } from '../utils/focus';
 import { useScrollBars, useScroll } from '../utils/scrolling';
 import { DataGridSortingContext } from '../utils/sorting';
-import { IS_JEST_ENVIRONMENT } from '../../../test';
+import { IS_JEST_ENVIRONMENT } from '../../../utils';
 
 export const Cell: FunctionComponent<GridChildComponentProps> = ({
   columnIndex,

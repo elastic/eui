@@ -113,7 +113,10 @@ export const Table = () => {
       }
       items={users}
       columns={columns}
-      pagination={pagination}
+      pagination={{
+        ...pagination,
+        pageSizeOptions: [10, 20, 'all'],
+      }}
       sorting={sorting}
     />
   );
