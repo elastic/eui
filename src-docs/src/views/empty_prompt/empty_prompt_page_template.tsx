@@ -1,54 +1,37 @@
-import React from 'react';
-
+import React, { useContext } from 'react';
+import { ThemeContext } from '../../components/with_theme';
 import {
   EuiPageTemplate,
   EuiEmptyPrompt,
-  EuiButton,
-  EuiTitle,
-  EuiLink,
   EuiImage,
 } from '../../../../src/components';
-import illustration from '../../images/empty-prompt/illustration.svg';
+import { examples, examplesType } from './_examples';
 
-export default () => (
-  <EuiPageTemplate
-    template="empty"
-    pageContentProps={{
-      paddingSize: 'none',
-      role: null, // For passing a11y tests in EUI docs only
-    }}
-  >
-    <EuiEmptyPrompt
-      title={<h2>Create your first visualization</h2>}
-      icon={<EuiImage size="fullWidth" src={illustration} alt="" />}
-      color="plain"
-      layout="horizontal"
-      body={
-        <>
-          <p>
-            There are no visualizations to display. This tool allows you to
-            create a wide range of charts, graphs, maps, and other graphics.
-          </p>
-          <p>
-            The visualizations you create can be easily shared with your peers.
-          </p>
-        </>
-      }
-      actions={
-        <EuiButton color="primary" fill>
-          Create visualization
-        </EuiButton>
-      }
-      footer={
-        <>
-          <EuiTitle size="xxs">
-            <span>Want to learn more?</span>
-          </EuiTitle>{' '}
-          <EuiLink href="#" target="_blank">
-            Read documentation
-          </EuiLink>
-        </>
-      }
-    />
-  </EuiPageTemplate>
-);
+const example: examplesType = examples.firstTimeVisualization;
+
+export default () => {
+  const themeContext = useContext(ThemeContext);
+  const isDarkTheme = themeContext.theme.includes('dark');
+
+  const iconImg: string = isDarkTheme ? example.iconDark! : example.iconLight!;
+
+  return (
+    <EuiPageTemplate
+      template="empty"
+      pageContentProps={{
+        paddingSize: 'none',
+        role: null, // For passing a11y tests in EUI docs only
+      }}
+    >
+      <EuiEmptyPrompt
+        icon={<EuiImage size="fullWidth" src={iconImg} alt="" />}
+        title={example.title}
+        layout="horizontal"
+        color="plain"
+        body={example.body}
+        actions={example.actions}
+        footer={example.footer}
+      />
+    </EuiPageTemplate>
+  );
+};

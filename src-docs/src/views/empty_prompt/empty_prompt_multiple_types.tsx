@@ -12,8 +12,6 @@ import noPrivileges from './prompt_types/no_permission';
 const noPrivilegesSource = require('!!raw-loader!./prompt_types/no_permission');
 import licenseUpgrade from './prompt_types/license_upgrade';
 const licenseUpgradeSource = require('!!raw-loader!./prompt_types/license_upgrade');
-import complex from './prompt_types/complex';
-const complexSource = require('!!raw-loader!./prompt_types/complex');
 
 export default () => {
   const options: Array<{
@@ -40,13 +38,6 @@ export default () => {
       text: 'License upgrade',
       component: licenseUpgrade,
       source: licenseUpgradeSource,
-    },
-    {
-      value: 'complex',
-      text: 'Complex',
-      component: complex,
-      source: complexSource,
-      demoBackground: 'subdued',
     },
   ];
 

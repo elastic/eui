@@ -1,10 +1,9 @@
 import React from 'react';
+import { EuiEmptyPrompt } from '../../../../src/components';
+import { examples, examplesType } from './_examples';
 
-import { EuiEmptyPrompt, EuiLoadingLogo } from '../../../../src/components';
+const example: examplesType = examples.loading;
 
 export default () => (
-  <EuiEmptyPrompt
-    icon={<EuiLoadingLogo logo="logoKibana" size="xl" />}
-    title={<h2>Loading Dashboards</h2>}
-  />
+  <EuiEmptyPrompt icon={example.iconLoading} title={example.title} />
 );

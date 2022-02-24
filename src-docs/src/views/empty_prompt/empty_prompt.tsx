@@ -1,36 +1,15 @@
 import React from 'react';
+import { EuiEmptyPrompt } from '../../../../src/components';
+import { examples, examplesType } from './_examples';
 
-import {
-  EuiEmptyPrompt,
-  EuiButton,
-  EuiTitle,
-  EuiLink,
-} from '../../../../src/components';
+const example: examplesType = examples.startAddingCases;
 
 export default () => (
   <EuiEmptyPrompt
-    iconType="logoSecurity"
-    title={<h2>Start adding cases</h2>}
-    body={
-      <p>
-        There are no cases to display. Add a new case or change your filter
-        settings.
-      </p>
-    }
-    actions={
-      <EuiButton color="primary" fill>
-        Add a case
-      </EuiButton>
-    }
-    footer={
-      <>
-        <EuiTitle size="xxs">
-          <h3>Want to learn more?</h3>
-        </EuiTitle>
-        <EuiLink href="#" target="_blank">
-          Read documentation
-        </EuiLink>
-      </>
-    }
+    iconType={example.iconType}
+    title={example.title}
+    body={example.body}
+    actions={example.actions}
+    footer={example.footer}
   />
 );

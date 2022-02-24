@@ -1,9 +1,9 @@
 import React from 'react';
 import { EuiEmptyPrompt } from '../../../../../src/components';
 // @ts-ignore Importing from JS file
-import { typesOfUseCases } from '../_types_of_use_cases';
+import { examples, examplesType } from '../_examples';
 
-const example: any = typesOfUseCases.licenseUpgrade.example;
+const example: examplesType = examples.licenseUpgrade;
 
 export default () => (
   <EuiEmptyPrompt

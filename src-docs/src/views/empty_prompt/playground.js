@@ -56,7 +56,7 @@ export default () => {
     <h3>Want to learn more?</h3>
   </EuiTitle>
   <EuiLink href="#" target="_blank">
-    Read documentation
+    Read the docs
   </EuiLink>
 </>`,
     type: PropTypes.ReactNode,

@@ -1,22 +1,6 @@
 import React, { ReactNode } from 'react';
-import {
-  EuiButton,
-  EuiButtonEmpty,
-  EuiLoadingLogo,
-  EuiTitle,
-  EuiLink,
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiDescriptionList,
-  EuiDescriptionListTitle,
-  EuiDescriptionListDescription,
-  IconType,
-} from '../../../../src/components';
-
-import pageNotFoundLight from '../../images/empty-prompt/404_rainy_cloud_light.png';
-import pageNotFoundDark from '../../images/empty-prompt/404_rainy_cloud_dark.png';
-import noResultsLight from '../../images/empty-prompt/no-results--light.svg';
-import noResultsDark from '../../images/empty-prompt/no-results--dark.svg';
+import { EuiLink } from '../../../../src/components';
+import { examples, examplesType } from './_examples';
 
 export const typesOfUseCases: {
   [key: string]: {
@@ -27,17 +11,7 @@ export const typesOfUseCases: {
       goal: ReactNode;
       action?: ReactNode;
     };
-    example: {
-      iconLoading?: ReactNode;
-      iconLight?: string;
-      iconDark?: string;
-      iconType?: IconType;
-      title: ReactNode;
-      body?: ReactNode;
-      actions?: ReactNode[];
-      layout?: 'horizontal' | 'vertical';
-      footer?: ReactNode;
-    };
+    example: examplesType;
     footer?: ReactNode;
   };
 } = {
@@ -71,53 +45,8 @@ export const typesOfUseCases: {
       ),
     },
     example: {
-      iconType: 'logoSecurity',
-      title: <h2>Start adding cases</h2>,
-      body: <p>Add a new case or change your filter settings.</p>,
-      actions: [
-        <EuiButton color="primary" fill>
-          Add a case
-        </EuiButton>,
-      ],
+      ...examples.startAddingCases,
     },
-    footer: (
-      <EuiFlexGroup className="eui-textLeft">
-        <EuiFlexItem grow={false}>
-          <EuiTitle size="xxs">
-            <h3>Want to learn more?</h3>
-          </EuiTitle>
-          <span>
-            <EuiButtonEmpty
-              href="#"
-              iconType="popout"
-              iconSide="right"
-              iconSize="s"
-              flush="both"
-              size="s"
-            >
-              Read documentation
-            </EuiButtonEmpty>
-          </span>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiTitle size="xxs">
-            <h3>Sure you have data?</h3>
-          </EuiTitle>
-          <span>
-            <EuiButtonEmpty
-              onClick={() => {}}
-              iconType="refresh"
-              iconSide="right"
-              iconSize="s"
-              flush="both"
-              size="s"
-            >
-              Check for new data
-            </EuiButtonEmpty>
-          </span>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    ),
   },
   noPrivileges: {
     id: 'noPrivileges',
@@ -134,9 +63,7 @@ export const typesOfUseCases: {
     },
 
     example: {
-      iconType: 'lock',
-      title: <h2>Contact your administrator for access</h2>,
-      body: <p>To view cases in this space, you need additional privileges.</p>,
+      ...examples.noPrivileges,
     },
   },
   noResults: {
@@ -158,25 +85,7 @@ export const typesOfUseCases: {
       ),
     },
     example: {
-      iconLight: noResultsLight,
-      iconDark: noResultsDark,
-      title: <h2>No results match your search criteria</h2>,
-      layout: 'horizontal',
-      body: (
-        <EuiDescriptionList compressed>
-          <EuiDescriptionListTitle>
-            Expand your time range
-          </EuiDescriptionListTitle>
-          <EuiDescriptionListDescription>
-            Try searching over a longer period of time.
-          </EuiDescriptionListDescription>
-
-          <EuiDescriptionListTitle>Adjust your query</EuiDescriptionListTitle>
-          <EuiDescriptionListDescription>
-            Try searching for a different combination of terms.
-          </EuiDescriptionListDescription>
-        </EuiDescriptionList>
-      ),
+      ...examples.noResults,
     },
   },
   error: {
@@ -192,14 +101,7 @@ export const typesOfUseCases: {
       ),
     },
     example: {
-      iconType: 'alert',
-      title: <h2>Unable to load your dashboards</h2>,
-      body: (
-        <p>
-          There was a problem loading the Dashboard application. Contact your
-          administrator for help.
-        </p>
-      ),
+      ...examples.unableToLoadDashboards,
     },
   },
   errorPages: {
@@ -216,23 +118,7 @@ export const typesOfUseCases: {
       action: <p>Go home or go back.</p>,
     },
     example: {
-      iconLight: pageNotFoundLight,
-      iconDark: pageNotFoundDark,
-      title: <h2>Page not found</h2>,
-      body: (
-        <p>
-          Sorry, we can&apos;t find the page you&apos;re looking for. It might
-          have been removed or renamed, or maybe it never existed.
-        </p>
-      ),
-      actions: [
-        <EuiButton color="primary" fill>
-          Go home
-        </EuiButton>,
-        <EuiButtonEmpty iconType="arrowLeft" flush="both">
-          Go back
-        </EuiButtonEmpty>,
-      ],
+      ...examples.pageNotFound,
     },
   },
   licenseUpgrade: {
@@ -250,29 +136,7 @@ export const typesOfUseCases: {
       action: <p>Start a trial or upgrade the license.</p>,
     },
     example: {
-      iconType: 'logoKibana',
-      title: <h2>Do more with Kibana!</h2>,
-      body: (
-        <p>
-          Start a free trial or upgrade your license to use anomaly detection.
-        </p>
-      ),
-      actions: [
-        <EuiButton color="primary" fill>
-          Upgrade
-        </EuiButton>,
-        <EuiButtonEmpty>Start a free trial</EuiButtonEmpty>,
-      ],
-      footer: (
-        <>
-          <EuiTitle size="xxs">
-            <h3>Want to learn more?</h3>
-          </EuiTitle>
-          <EuiLink href="#" target="_blank">
-            Read documentation
-          </EuiLink>
-        </>
-      ),
+      ...examples.licenseUpgrade,
     },
   },
   loading: {
@@ -283,8 +147,7 @@ export const typesOfUseCases: {
       goal: <p>Help users understand that the data is loading.</p>,
     },
     example: {
-      iconLoading: <EuiLoadingLogo logo="logoKibana" size="xl" />,
-      title: <h2>Loading dashboards</h2>,
+      ...examples.loading,
     },
   },
 };

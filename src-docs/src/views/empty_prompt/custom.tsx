@@ -1,25 +1,16 @@
 import React from 'react';
+import { EuiEmptyPrompt } from '../../../../src/components';
+import { examples, examplesType } from './_examples';
 
-import { EuiEmptyPrompt, EuiButton } from '../../../../src/components';
+const example: examplesType = examples.startAddingCases;
 
 export default () => (
   <EuiEmptyPrompt
-    iconType="securityAnalyticsApp"
+    iconType={example.iconTypeApp}
     iconColor="default"
-    title={<h2>Start adding cases</h2>}
+    title={example.title}
     titleSize="xs"
-    body={
-      <>
-        <p>
-          There are no cases to display. Add a new case or change your filter
-          settings.
-        </p>
-      </>
-    }
-    actions={
-      <EuiButton size="s" color="primary" fill>
-        Add a case
-      </EuiButton>
-    }
+    body={example.body}
+    actions={example.actions}
   />
 );

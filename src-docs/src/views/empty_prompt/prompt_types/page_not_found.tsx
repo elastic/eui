@@ -1,16 +1,17 @@
 import React, { useContext } from 'react';
 import { EuiEmptyPrompt, EuiImage } from '../../../../../src/components';
-// @ts-ignore Importing from JS file
-import { typesOfUseCases } from '../_types_of_use_cases';
 import { ThemeContext } from '../../../components/with_theme';
+
+// @ts-ignore Importing from JS file
+import { examples, examplesType } from '../_examples';
+
+const example: examplesType = examples.pageNotFound;
 
 export default () => {
   const themeContext = useContext(ThemeContext);
   const isDarkTheme = themeContext.theme.includes('dark');
 
-  const example: any = typesOfUseCases.errorPages.example;
-
-  const iconImg: string = isDarkTheme ? example.iconDark : example.iconLight;
+  const iconImg: string = isDarkTheme ? example.iconDark! : example.iconLight!;
 
   return (
     <EuiEmptyPrompt
