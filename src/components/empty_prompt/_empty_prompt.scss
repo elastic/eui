@@ -12,6 +12,7 @@
     // Consumers should use an EuiImage (recommended) with the horizontal layout
     // But they can use for example an img or other react node
     > * {
+      flex-shrink: 1;
       max-width: convertToRem(360px);
     }
   }
@@ -91,6 +92,7 @@
     justify-content: center;
 
     @include euiBreakpoint('l', 'xl') {
+      min-width: 33%;
       max-width: 50%;
     }
   }
