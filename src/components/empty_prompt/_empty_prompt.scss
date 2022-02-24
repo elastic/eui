@@ -79,6 +79,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: $euiSizeXL;
 
     @include euiBreakpoint('l', 'xl') {
       flex-direction: row-reverse;
@@ -89,22 +90,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
 
-  .euiEmptyPrompt__content {
     @include euiBreakpoint('l', 'xl') {
-      padding: $euiSizeL 0;
+      max-width: 50%;
     }
   }
 
-  .euiEmptyPrompt__contentInner {
-    max-width: $euiTextConstrainedMaxWidth;
-  }
-
-  .euiEmptyPrompt__icon,
   .euiEmptyPrompt__content {
+    max-width: $euiTextConstrainedMaxWidth;
+
     @include euiBreakpoint('l', 'xl') {
-      width: 50%;
+      padding: $euiSizeL 0;
     }
   }
 

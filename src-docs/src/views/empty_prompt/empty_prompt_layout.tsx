@@ -14,7 +14,7 @@ export default () => {
   return (
     <>
       <EuiEmptyPrompt
-        icon={<EuiImage size="fullWidth" src={illustration} alt="" />}
+        icon={<EuiImage size="l" src={illustration} alt="" />}
         title={<h2>Create your first visualization</h2>}
         layout="horizontal"
         color="plain"
