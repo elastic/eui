@@ -17,7 +17,6 @@ import {
   EuiLink,
   EuiCode,
   EuiButtonEmpty,
-  EuiContextMenuPanel,
   EuiContextMenuItem,
 } from '../../../../src/components';
 
@@ -45,13 +44,13 @@ const tooManyItems = [
   <EuiContextMenuItem key="10 rows" icon={'check'}>
     10 rows
   </EuiContextMenuItem>,
-  <EuiContextMenuItem key="20 rows" icon={'empty'}>
+  <EuiContextMenuItem key="15 rows" icon={'empty'}>
     15 rows
   </EuiContextMenuItem>,
   <EuiContextMenuItem key="20 rows" icon={'empty'}>
     20 rows
   </EuiContextMenuItem>,
-  <EuiContextMenuItem key="20 rows" icon={'empty'}>
+  <EuiContextMenuItem key="30 rows" icon={'empty'}>
     30 rows
   </EuiContextMenuItem>,
   <EuiContextMenuItem key="50 rows" icon={'empty'}>
@@ -162,7 +161,7 @@ export default () => (
           </EuiButtonEmpty>
           <EuiSpacer size="s" />
           <EuiPanel paddingSize="none" hasShadow>
-            <EuiContextMenuPanel items={items} />
+            {items}
           </EuiPanel>
         </div>
       </GuideRuleExample>
@@ -184,7 +183,7 @@ export default () => (
           </EuiButtonEmpty>
           <EuiSpacer size="s" />
           <EuiPanel paddingSize="none" hasShadow>
-            <EuiContextMenuPanel items={tooManyItems} />
+            {tooManyItems}
           </EuiPanel>
         </div>
       </GuideRuleExample>
