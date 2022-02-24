@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
 import { EuiEmptyPrompt, EuiImage } from '../../../../../src/components';
 import { ThemeContext } from '../../../components/with_theme';
-
-// @ts-ignore Importing from JS file
 import { examples, examplesType } from '../_examples';
 
 const example: examplesType = examples.pageNotFound;
