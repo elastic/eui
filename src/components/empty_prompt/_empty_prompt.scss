@@ -79,7 +79,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: $euiSizeXL;
 
     @include euiBreakpoint('l', 'xl') {
       flex-direction: row-reverse;
@@ -117,6 +116,12 @@
     .euiEmptyPrompt__main,
     .euiEmptyPrompt__footer {
       padding: $amount;
+    }
+
+    &.euiEmptyPrompt--horizontal {
+      .euiEmptyPrompt__main {
+        gap: $amount; // sass-lint:disable-line no-misspelled-properties
+      }
     }
   }
 }
