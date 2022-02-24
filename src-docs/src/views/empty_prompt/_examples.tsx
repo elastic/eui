@@ -5,7 +5,6 @@ import {
   EuiLoadingLogo,
   EuiTitle,
   EuiLink,
-  EuiSteps,
   EuiDescriptionList,
   EuiDescriptionListTitle,
   EuiDescriptionListDescription,
