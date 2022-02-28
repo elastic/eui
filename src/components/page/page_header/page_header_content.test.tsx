@@ -15,6 +15,7 @@ import {
   EuiPageHeaderContent,
   EuiPageHeaderContentProps,
 } from './page_header_content';
+import { EuiBreadcrumb } from '../../breadcrumbs';
 
 const tabs: EuiPageHeaderContentProps['tabs'] = [
   {
@@ -29,6 +30,23 @@ const tabs: EuiPageHeaderContentProps['tabs'] = [
 const rightSideItems: EuiPageHeaderContentProps['rightSideItems'] = [
   <button>Button 1</button>,
   <button>Button 2</button>,
+];
+
+const breadcrumbs: EuiBreadcrumb[] = [
+  {
+    text: 'Animals',
+    href: '#',
+    onClick: (e: React.MouseEvent) => {
+      e.preventDefault();
+      console.log('You clicked Animals');
+    },
+    'data-test-subj': 'breadcrumbsAnimals',
+    className: 'customClass',
+    color: 'primary',
+  },
+  {
+    text: 'Edit',
+  },
 ];
 
 describe('EuiPageHeaderContent', () => {
@@ -90,6 +108,19 @@ describe('EuiPageHeaderContent', () => {
       test('is rendered with tabsProps', () => {
         const component = render(
           <EuiPageHeaderContent tabs={tabs} tabsProps={requiredProps} />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('breadcrumbs', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiPageHeaderContent
+            breadcrumbs={breadcrumbs}
+            breadcrumbProps={requiredProps}
+          />
         );
 
         expect(component).toMatchSnapshot();
