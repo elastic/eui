@@ -12,6 +12,7 @@
 **Breaking changes**
 
 - Removed the `incremental` prop from `EuiSuggest` and `EuiSelectable`'s `searchProps` ([#5658](https://github.com/elastic/eui/pull/5658))
+- Removed `EuiSelectable`'s `searchProps.onSearch` prop (since Enter keypresses do not trigger a search callback) - use `searchProps.onChange` instead ([#5658](https://github.com/elastic/eui/pull/5658))
 - `EuiSuggest` no longer lists `onSearch`/`onChange` as valid props - use `onSearchChange` instead ([#5658](https://github.com/elastic/eui/pull/5658))
 - Removed `EuiSuggest`'s `isLoading` prop - use `status.loading` instead ([#5658](https://github.com/elastic/eui/pull/5658))
 

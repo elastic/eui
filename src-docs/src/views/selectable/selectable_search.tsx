@@ -15,7 +15,7 @@ export default () => {
         searchProps={{
           'data-test-subj': 'selectableSearchHere',
           value: search,
-          onSearch: (search) => {
+          onChange: (search) => {
             console.log(search);
             setSearch(search);
           },

@@ -198,9 +198,9 @@ exports[`EuiSuggest props isVirtualized 1`] = `
         "id": undefined,
         "isLoading": false,
         "onBlur": [Function],
+        "onChange": [Function],
         "onFocus": [Function],
         "onInput": [Function],
-        "onSearch": [Function],
       }
     }
     searchable={true}
@@ -524,9 +524,9 @@ exports[`EuiSuggest props maxHeight 1`] = `
         "id": undefined,
         "isLoading": false,
         "onBlur": [Function],
+        "onChange": [Function],
         "onFocus": [Function],
         "onInput": [Function],
-        "onSearch": [Function],
       }
     }
     searchable={true}

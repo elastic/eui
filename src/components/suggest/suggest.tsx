@@ -300,7 +300,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
           onFocus: searchOnFocus,
           onBlur: searchOnBlur,
           onInput: searchOnInput,
-          onSearch: searchOnChange,
+          onChange: searchOnChange,
           'aria-describedby': inputDescribedbyId,
           'aria-label': ariaLabel,
           'aria-labelledby': labelId,

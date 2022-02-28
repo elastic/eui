@@ -71,12 +71,7 @@ type EuiSelectableSearchableProps<T> = ExclusiveUnion<
 >;
 
 export type EuiSelectableSearchableSearchProps<T> = Partial<
-  Omit<EuiSelectableSearchProps<T>, 'onSearch'> & {
-    onSearch: (
-      searchValue: string,
-      matchingOptions: Array<EuiSelectableOption<T>>
-    ) => void;
-  }
+  EuiSelectableSearchProps<T>
 >;
 
 export type EuiSelectableProps<T = {}> = CommonProps &
@@ -406,8 +401,8 @@ export class EuiSelectable<T = {}> extends Component<
         }
       }
     );
-    if (this.props.searchProps && this.props.searchProps.onSearch) {
-      this.props.searchProps.onSearch(searchValue, visibleOptions);
+    if (this.props.searchProps && this.props.searchProps.onChange) {
+      this.props.searchProps.onChange(searchValue, visibleOptions);
     }
   };
 
@@ -489,7 +484,6 @@ export class EuiSelectable<T = {}> extends Component<
       'aria-label': searchAriaLabel,
       'aria-describedby': searchAriaDescribedby,
       onChange: propsOnChange,
-      onSearch,
       defaultValue, // Because we control the underlying EuiFieldSearch value state with state.searchValue, we cannot pass a defaultValue prop without a React error
       ...cleanedSearchProps
     } = (searchProps || unknownAccessibleName) as typeof searchProps &
