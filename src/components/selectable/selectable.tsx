@@ -481,6 +481,7 @@ export class EuiSelectable<T = {}> extends Component<
       'aria-describedby': searchAriaDescribedby,
       onChange: propsOnChange,
       defaultValue, // Because we control the underlying EuiFieldSearch value state with state.searchValue, we cannot pass a defaultValue prop without a React error
+      inputRef, // We need to store the inputRef before passing it back to consuming applications
       ...cleanedSearchProps
     } = (searchProps || unknownAccessibleName) as typeof searchProps &
       typeof unknownAccessibleName;
@@ -643,7 +644,10 @@ export class EuiSelectable<T = {}> extends Component<
             aria-activedescendant={this.makeOptionId(activeOptionIndex)} // the current faux-focused option
             placeholder={placeholderName}
             isPreFiltered={isPreFiltered ?? false}
-            inputRef={(node) => (this.inputRef = node)}
+            inputRef={(node) => {
+              this.inputRef = node;
+              searchProps?.inputRef?.(node);
+            }}
             {...(searchHasAccessibleName
               ? searchAccessibleName
               : { 'aria-label': placeholderName })}
