@@ -11,9 +11,9 @@
 
 **Breaking changes**
 
+- Removed the `incremental` prop from `EuiSuggest` and `EuiSelectable`'s `searchProps` ([#5658](https://github.com/elastic/eui/pull/5658))
 - `EuiSuggest` no longer lists `onSearch`/`onChange` as valid props - use `onSearchChange` instead ([#5658](https://github.com/elastic/eui/pull/5658))
-- `EuiSuggest` no longer lists `isLoading` as a valid prop - use `status.loading` instead ([#5658](https://github.com/elastic/eui/pull/5658))
-- `EuiSuggest` no longer lists `incremental` or `inputRef` as valid props - these props are set internally and cannot be overriden by consumers ([#5658](https://github.com/elastic/eui/pull/5658))
+- Removed `EuiSuggest`'s `isLoading` prop - use `status.loading` instead ([#5658](https://github.com/elastic/eui/pull/5658))
 
 ## [`49.0.0`](https://github.com/elastic/eui/tree/v49.0.0)
 

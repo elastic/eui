@@ -13,13 +13,13 @@ import { EuiFieldSearch, EuiFieldSearchProps } from '../../form';
 import { getMatchingOptions } from '../matching_options';
 import { EuiSelectableOption } from '../selectable_option';
 
-export type EuiSelectableSearchProps<T> = Omit<
-  EuiFieldSearchProps,
-  | 'onChange' // Omitted because we're returning our own custom onChange args
-  | 'onSearch' // Omitted because we don't need Enter key behavior and we don't want to fire an event on keyup - it messes up the combobox up/down navigation
-  | 'incremental' // Must be true (hard-coded below) if we don't support Enter key to search
-> &
-  CommonProps & {
+export type EuiSelectableSearchProps<T> = CommonProps &
+  Omit<
+    EuiFieldSearchProps,
+    | 'onChange' // Omitted because we're returning our own custom onChange args
+    | 'onSearch' // Omitted because we don't need Enter key behavior and we don't want to fire an event on keyup - it messes up the combobox up/down navigation
+    | 'incremental' // Must be true (hard-coded below) if we don't support Enter key to search
+  > & {
     /**
      * Passes back (matchingOptions, searchValue)
      */
@@ -27,17 +27,20 @@ export type EuiSelectableSearchProps<T> = Omit<
       matchingOptions: Array<EuiSelectableOption<T>>,
       searchValue: string
     ) => void;
-    options: Array<EuiSelectableOption<T>>;
-    /**
-     * Search value state managed by parent EuiSelectable
-     */
-    value: string;
-    /**
-     * The id of the visible list to create the appropriate aria controls
-     */
-    listId?: string;
-    isPreFiltered: boolean;
   };
+
+type _EuiSelectableSearchProps<T> = EuiSelectableSearchProps<T> & {
+  options: Array<EuiSelectableOption<T>>;
+  /**
+   * Search value state managed by parent EuiSelectable
+   */
+  value: string;
+  /**
+   * The id of the visible list to create the appropriate aria controls
+   */
+  listId?: string;
+  isPreFiltered: boolean;
+};
 
 export const EuiSelectableSearch = <T,>({
   onChange: onChangeCallback,
@@ -48,7 +51,7 @@ export const EuiSelectableSearch = <T,>({
   listId,
   className,
   ...rest
-}: EuiSelectableSearchProps<T>) => {
+}: _EuiSelectableSearchProps<T>) => {
   useEffect(() => {
     const matchingOptions = getMatchingOptions<T>(
       options,

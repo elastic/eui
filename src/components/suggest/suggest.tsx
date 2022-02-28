@@ -17,11 +17,14 @@ import { CommonProps, ExclusiveUnion } from '../common';
 import { useGeneratedHtmlId } from '../../services';
 
 import { EuiScreenReaderOnly } from '../accessibility';
-import { EuiFieldSearchProps } from '../form';
 import { EuiIcon } from '../icon';
 import { useEuiI18n } from '../i18n';
 import { EuiInputPopover } from '../popover';
-import { EuiSelectable, EuiSelectableListItemProps } from '../selectable';
+import {
+  EuiSelectable,
+  EuiSelectableListItemProps,
+  EuiSelectableSearchableSearchProps,
+} from '../selectable';
 import { EuiToolTip } from '../tool_tip';
 
 import { EuiSuggestItem, _EuiSuggestItemPropsBase } from './suggest_item';
@@ -61,12 +64,8 @@ export interface EuiSuggestionProps
 
 type _EuiSuggestProps = CommonProps &
   Omit<
-    EuiFieldSearchProps,
-    | 'isLoading' // Use status.loading instead for consistency
-    | 'onChange' // Use onSearchChange instead for consistency
-    | 'onSearch' // Use onSearchChange instead for consistency
-    | 'incremental' // Hard-coded by EuiSelectableSearch, and must be true because EuiSuggest doesn't respond to Enter keypresses
-    | 'inputRef' // Hard-coded by EuiSelectable - not supported as a consumer-passed prop, although the input element can be obtained via onInputChange
+    EuiSelectableSearchableSearchProps<{}>,
+    'isLoading' // status.loading should be used instead for consistency
   > & {
     /**
      * List of suggestions to display using EuiSuggestItem.
