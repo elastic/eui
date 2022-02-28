@@ -3,5 +3,5 @@ export const GuideSectionTypes = {
   TSX: 'TSX',
   SNIPPET: 'SNIPPET',
   SASS: 'SASS',
-  STRING_JS: 'STRING_JS',
+  JSX_STRING: 'JSX_STRING',
 };

@@ -20,6 +20,10 @@ export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode>
     () => [GuideSectionTypes.JS, GuideSectionTypes.TSX].includes(type),
     [type]
   );
+  const isJSXString = useMemo(
+    () => [GuideSectionTypes.JSX_STRING].includes(type),
+    [type]
+  );
   const sourceCode = useMemo(
     () => (isJavascript ? renderJsSourceCode(code) : code),
     [isJavascript, code]
@@ -35,23 +39,29 @@ export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode>
     };
   }, [sourceCode]);
 
-  const codeSandboxLink = isJavascript ? (
-    <CodeSandboxLink
-      className="guideSectionExampleCode__link"
-      content={sourceCode}
-      type={type.toLowerCase()}
-    >
-      <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
-        Try out this demo on Code Sandbox
-      </EuiButtonEmpty>
-    </CodeSandboxLink>
-  ) : undefined;
+  const finalType =
+    type === GuideSectionTypes.JSX_STRING
+      ? GuideSectionTypes.JS.toLowerCase()
+      : type;
+
+  const codeSandboxLink =
+    isJavascript || isJSXString ? (
+      <CodeSandboxLink
+        className="guideSectionExampleCode__link"
+        content={sourceCode}
+        type={finalType}
+      >
+        <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
+          Try out this demo on Code Sandbox
+        </EuiButtonEmpty>
+      </CodeSandboxLink>
+    ) : undefined;
 
   return (
     <>
       <EuiCodeBlock
         language={
-          type === GuideSectionTypes.JS || type === GuideSectionTypes.STRING_JS
+          type === GuideSectionTypes.JS || type === GuideSectionTypes.JSX_STRING
             ? 'jsx'
             : type.toLowerCase()
         }

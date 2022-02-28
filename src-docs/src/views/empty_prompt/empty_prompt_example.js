@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -16,8 +15,7 @@ import emptyPromptConfig from './playground';
 
 import PageTemplateTable from './_page_template_table';
 
-import EmptyPrompt from './empty_prompt';
-const emptyPromptSource = require('!!raw-loader!./empty_prompt');
+import EmptyPrompt, { emptyPromptJSXString } from './empty_prompt';
 const emptyPromptSnippet = `<EuiEmptyPrompt
   iconType="logoSolution"
   title={<h2>Your title</h2>}
@@ -27,15 +25,6 @@ const emptyPromptSnippet = `<EuiEmptyPrompt
 />`;
 
 import Layout from './empty_prompt_layout';
-const layoutSource = require('!!raw-loader!./empty_prompt_layout');
-const layoutSnippet = `<EuiEmptyPrompt
-  layout="horizontal"
-  icon={<EuiImage size="fullWidth" src={illustration} alt="" />}
-  title={<h2>Your title</h2>}
-  body={<p>bodyContent</p>}
-  actions={actions}
-  footer={footer}
-/>`;
 
 import Simple from './simple';
 const simpleSource = require('!!raw-loader!./simple');
@@ -102,8 +91,8 @@ export const EmptyPromptExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
-          code: emptyPromptSource,
+          type: GuideSectionTypes.JSX_STRING,
+          code: emptyPromptJSXString,
         },
       ],
       text: (
@@ -247,12 +236,12 @@ export const EmptyPromptExample = {
     },
     {
       title: 'Layout',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: layoutSource,
-        },
-      ],
+      // source: [
+      //   {
+      //     type: GuideSectionTypes.JSX_STRING,
+      //     code: layoutJSXString,
+      //   },
+      // ],
       text: (
         <>
           <p>
@@ -276,15 +265,10 @@ export const EmptyPromptExample = {
             </Link>{' '}
             with <EuiCode language="tsx">{'size="fullWidth"'}</EuiCode>.
           </p>
+          <EuiSpacer />
+          <Layout />
         </>
       ),
-      props: { EuiEmptyPrompt },
-      demo: <Layout />,
-      demoPanelProps: {
-        color: 'subdued',
-        paddingSize: 'l',
-      },
-      snippet: layoutSnippet,
     },
     {
       title: 'More types of empty states',

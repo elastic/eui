@@ -48,7 +48,7 @@ export const GuideSectionCodeTypesMap = {
     name: 'demoTSX',
     displayName: 'Demo TS',
   },
-  STRING_JS: {
+  JSX_STRING: {
     name: 'demoJS',
     displayName: 'Demo JS',
   },

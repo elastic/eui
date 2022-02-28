@@ -249,7 +249,25 @@ export default () => {
     );
   }
 
-  const code = reactElementToJSXString(demo);
+  const hasLoadingSpinner =
+    currentUseCaseExample.iconLoading &&
+    radioUseCaseId === 'loading' &&
+    isMultiple
+      ? ', EuiLoadingSpinner'
+      : '';
+
+  const hasMultiplePanels = isMultiple
+    ? ', EuiFlexGrid, EuiFlexItem, EuiPanel'
+    : '';
+
+  const code = `
+  import React from 'react';
+  import { EuiEmptyPrompt, EuiButton, EuiPageTemplate, EuiImage${hasMultiplePanels}${hasLoadingSpinner} } from '@elastic/eui';
+  
+  export default () => (
+    ${reactElementToJSXString(demo)}
+  );
+  `;
 
   return (
     <>
@@ -389,7 +407,7 @@ export default () => {
         demo={<div className={'guideDemo__emptyPromptDemoPreview'}>{demo}</div>}
         source={[
           {
-            type: GuideSectionTypes.STRING_JS,
+            type: GuideSectionTypes.JSX_STRING,
             code: code,
           },
         ]}
