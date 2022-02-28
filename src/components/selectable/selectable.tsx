@@ -391,13 +391,13 @@ export class EuiSelectable<T = {}> extends Component<
   };
 
   onSearchChange = (
-    visibleOptions: Array<EuiSelectableOption<T>>,
-    searchValue: string
+    searchValue: string,
+    visibleOptions: Array<EuiSelectableOption<T>>
   ) => {
     this.setState(
       {
-        visibleOptions,
         searchValue,
+        visibleOptions,
         activeOptionIndex: undefined,
       },
       () => {

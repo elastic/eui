@@ -21,11 +21,11 @@ export type EuiSelectableSearchProps<T> = CommonProps &
     | 'incremental' // Must be true (hard-coded below) if we don't support Enter key to search
   > & {
     /**
-     * Passes back (matchingOptions, searchValue)
+     * Passes back (searchValue, matchingOptions)
      */
     onChange: (
-      matchingOptions: Array<EuiSelectableOption<T>>,
-      searchValue: string
+      searchValue: string,
+      matchingOptions: Array<EuiSelectableOption<T>>
     ) => void;
   };
 
@@ -58,7 +58,7 @@ export const EuiSelectableSearch = <T,>({
       value,
       isPreFiltered
     );
-    onChangeCallback(matchingOptions, value);
+    onChangeCallback(value, matchingOptions);
     // Call on mount only
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -70,7 +70,7 @@ export const EuiSelectableSearch = <T,>({
         searchValue,
         isPreFiltered
       );
-      onChangeCallback(matchingOptions, searchValue);
+      onChangeCallback(searchValue, matchingOptions);
     },
     [options, isPreFiltered, onChangeCallback]
   );

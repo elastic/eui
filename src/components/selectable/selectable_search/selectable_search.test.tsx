@@ -52,7 +52,7 @@ describe('EuiSelectableSearch', () => {
 
   it('calls the onChange callback on mount', () => {
     mount(<EuiSelectableSearch {...baseProps} value="w" />);
-    expect(onChange).toHaveBeenCalledWith([{ label: 'world' }], 'w');
+    expect(onChange).toHaveBeenCalledWith('w', [{ label: 'world' }]);
   });
 
   it("calls the onChange callback when the EuiFieldSearch's change event fires", () => {
@@ -60,6 +60,6 @@ describe('EuiSelectableSearch', () => {
     component
       .find('EuiFieldSearch')
       .simulate('change', { target: { value: 'h' } });
-    expect(onChange).toHaveBeenCalledWith([{ label: 'hello' }], 'h');
+    expect(onChange).toHaveBeenCalledWith('h', [{ label: 'hello' }]);
   });
 });
