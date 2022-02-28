@@ -7,3 +7,4 @@
  */
 
 export * from './prop_types';
+export * from './is_jest';

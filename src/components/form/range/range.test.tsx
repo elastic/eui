@@ -130,6 +130,22 @@ describe('EuiRange', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('loading should display when showInput="inputWithPopover"', () => {
+      const component = render(
+        <EuiRange
+          name="name"
+          id="id"
+          onChange={() => {}}
+          showInput="inputWithPopover"
+          isLoading
+          {...props}
+          {...requiredProps}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('levels should render', () => {
       const component = render(
         <EuiRange

@@ -2,7 +2,7 @@
 
 exports[`EuiTablePagination is rendered 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow eui-xScroll"
+  class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--wrap eui-xScroll"
 >
   <div
     class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -194,7 +194,7 @@ exports[`EuiTablePagination is rendered 1`] = `
 
 exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow eui-xScroll"
+  class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--wrap eui-xScroll"
 >
   <div
     class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -352,5 +352,47 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
       </button>
     </nav>
   </div>
+</div>
+`;
+
+exports[`EuiTablePagination renders a "show all" itemsPerPage option 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--wrap eui-xScroll"
+>
+  <div
+    class="euiFlexItem euiFlexItem--flexGrowZero"
+  >
+    <div
+      class="euiPopover euiPopover--anchorUpRight"
+    >
+      <div
+        class="euiPopover__anchor"
+      >
+        <button
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
+          data-test-subj="tablePaginationPopoverButton"
+          type="button"
+        >
+          <span
+            class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+          >
+            <span
+              class="euiButtonContent__icon"
+              color="inherit"
+              data-euiicon-type="arrowDown"
+            />
+            <span
+              class="euiButtonEmpty__text"
+            >
+              Showing all rows
+            </span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiFlexItem euiFlexItem--flexGrowZero"
+  />
 </div>
 `;

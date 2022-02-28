@@ -161,10 +161,10 @@ export type EuiDataGridFooterRowProps = CommonProps &
     trailingControlColumns: EuiDataGridControlColumn[];
     columns: EuiDataGridColumn[];
     schema: EuiDataGridSchema;
-    popoverContents: EuiDataGridPopoverContents;
     columnWidths: EuiDataGridColumnWidths;
     defaultColumnWidth?: number | null;
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
+    renderCellPopover?: EuiDataGridCellProps['renderCellPopover'];
     interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
     visibleRowIndex?: number;
   };
@@ -228,22 +228,31 @@ export type CommonGridProps = CommonProps &
      */
     schemaDetectors?: EuiDataGridSchemaDetector[];
     /**
-     * An object mapping #EuiDataGridColumn `schema`s to a custom popover formatting component which receives #EuiDataGridPopoverContent props
-     */
-    popoverContents?: EuiDataGridPopoverContents;
-    /**
      * The total number of rows in the dataset (used by e.g. pagination to know how many pages to list)
      */
     rowCount: number;
     /**
      * A function called to render a cell's value. Behind the scenes it is treated as a React component
-     * allowing hooks, context, and other React concepts to be used. The function receives a #CellValueElement
+     * allowing hooks, context, and other React concepts to be used. The function receives #EuiDataGridCellValueElementProps
      * as its only argument.
      */
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
     /**
-     * A function called to render a cell's value. Behind the scenes it is treated as a React component
-     * allowing hooks, context, and other React concepts to be used. The function receives a #CellValueElement
+     * An optional function that can be used to completely customize the rendering of cell popovers.
+     *
+     * If not specified, defaults to an `<EuiText>` wrapper around the rendered cell value and an
+     * `<EuiPopoverFooter>` around the cell actions.
+     *
+     * Behind the scenes it is treated as a React component allowing hooks, context, and other React concepts to be used.
+     * The function receives #EuiDataGridCellPopoverElementProps as its only argument.
+     *
+     */
+    renderCellPopover?: EuiDataGridCellProps['renderCellPopover'];
+    /**
+     * An optional function called to render a footer cell. If not specified, no footer row is rendered.
+     *
+     * Behind the scenes it is treated as a React component
+     * allowing hooks, context, and other React concepts to be used. The function receives #EuiDataGridCellValueElementProps
      * as its only argument.
      */
     renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
@@ -345,6 +354,7 @@ export interface EuiDataGridColumnSortingDraggableProps {
    */
   display: string;
 }
+
 export interface EuiDataGridBodyProps {
   leadingControlColumns: EuiDataGridControlColumn[];
   trailingControlColumns: EuiDataGridControlColumn[];
@@ -352,10 +362,10 @@ export interface EuiDataGridBodyProps {
   visibleColCount: number;
   schema: EuiDataGridSchema;
   schemaDetectors: EuiDataGridSchemaDetector[];
-  popoverContents: EuiDataGridPopoverContents;
   rowCount: number;
   visibleRows: EuiDataGridVisibleRows;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
+  renderCellPopover?: EuiDataGridCellProps['renderCellPopover'];
   renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
   pagination?: EuiDataGridPaginationProps;
@@ -373,40 +383,76 @@ export interface EuiDataGridBodyProps {
   gridItemsRendered: MutableRefObject<GridOnItemsRenderedProps | null>;
   wrapperRef: MutableRefObject<HTMLDivElement | null>;
 }
-export interface EuiDataGridCellValueElementProps {
+
+/**
+ * Props shared between renderCellValue and renderCellPopover
+ */
+interface SharedRenderCellElementProps {
   /**
-   * index of the row being rendered, 0 represents the first row. This index always includes
+   * Index of the row being rendered, 0 represents the first row. This index always includes
    * pagination offset, meaning the first rowIndex in a grid is `pagination.pageIndex * pagination.pageSize`
    * so take care if you need to adjust the rowIndex to fit your data
    */
   rowIndex: number;
   /**
-   * index of the column being rendered, 0 represents the first column. This index accounts
+   * Index of the column being rendered, 0 represents the first column. This index accounts
    * for columns that have been hidden or reordered by the user, so take care if you need
    * to adjust the colIndex to fit your data
    */
   colIndex: number;
   /**
-   * id of the column being rendered, the value comes from the #EuiDataGridColumn `id`
+   * ID of the column being rendered, the value comes from the #EuiDataGridColumn `id`
    */
   columnId: string;
   /**
-   * callback function to set custom props & attributes on the cell's wrapping `div` element;
+   * The schema type of the column being rendered
+   */
+  schema: string | undefined | null;
+}
+
+export interface EuiDataGridCellValueElementProps
+  extends SharedRenderCellElementProps {
+  /**
+   * Callback function to set custom props & attributes on the cell's wrapping `div` element;
    * it's best to wrap calls to `setCellProps` in a `useEffect` hook
    */
   setCellProps: (props: CommonProps & HTMLAttributes<HTMLDivElement>) => void;
   /**
-   * whether or not the cell is expandable, comes from the #EuiDataGridColumn `isExpandable` which defaults to `true`
+   * Whether or not the cell is expandable, comes from the #EuiDataGridColumn `isExpandable` which defaults to `true`
    */
   isExpandable: boolean;
   /**
-   * whether or not the cell is expanded
+   * Whether or not the cell is expanded
    */
   isExpanded: boolean;
   /**
-   * when rendering the cell, `isDetails` is false; when the cell is expanded, `renderCellValue` is called again to render into the details popover and `isDetails` is true
+   * When rendering the cell, `isDetails` is false; when the cell is expanded, `renderCellValue` is called again to render into the details popover and `isDetails` is true
    */
   isDetails: boolean;
+}
+
+export interface EuiDataGridCellPopoverElementProps
+  extends SharedRenderCellElementProps {
+  /**
+   * The default `children` passed to the cell popover comes from the passed `renderCellValue` prop as a ReactElement.
+   *
+   * Allows wrapping the rendered content: `({ children }) => <div>{children}</div>` - or leave it out to render completely custom content.
+   */
+  children: ReactNode;
+  /**
+   * References the div element the cell contents have been rendered into. Primarily useful for processing the rendered text
+   */
+  cellContentsElement: HTMLDivElement;
+  /**
+   * An `EuiPopoverFooter` containing all column `cellActions` (as `EuiEmptyButton`s).
+   * Use `{cellActions}` to render the default cell action buttons, or leave it out to hide cell actions/render your own.
+   */
+  cellActions: ReactNode;
+  /**
+   * For certain columns or schemas, you may want to fall back to the standard EuiDataGrid popover display.
+   * If so, that component is provided here as a passed React function component for your usage.
+   */
+  DefaultCellPopover: JSXElementConstructor<EuiDataGridCellPopoverElementProps>;
 }
 
 export interface EuiDataGridCellProps {
@@ -420,11 +466,13 @@ export interface EuiDataGridCellProps {
   interactiveCellId: string;
   isExpandable: boolean;
   className?: string;
-  popoverContent: EuiDataGridPopoverContent;
   popoverContext: DataGridCellPopoverContextShape;
   renderCellValue:
     | JSXElementConstructor<EuiDataGridCellValueElementProps>
     | ((props: EuiDataGridCellValueElementProps) => ReactNode);
+  renderCellPopover?:
+    | JSXElementConstructor<EuiDataGridCellPopoverElementProps>
+    | ((props: EuiDataGridCellPopoverElementProps) => ReactNode);
   setRowHeight?: (height: number) => void;
   getRowHeight?: (rowIndex: number) => number;
   style?: React.CSSProperties;
@@ -443,11 +491,7 @@ export interface EuiDataGridCellState {
 
 export type EuiDataGridCellValueProps = Omit<
   EuiDataGridCellProps,
-  | 'width'
-  | 'interactiveCellId'
-  | 'popoverContent'
-  | 'popoverContext'
-  | 'rowManager'
+  'width' | 'interactiveCellId' | 'popoverContext' | 'rowManager'
 >;
 export interface EuiDataGridControlColumn {
   /**
@@ -722,18 +766,20 @@ export interface EuiDataGridPaginationProps {
    */
   pageIndex: number;
   /**
-   * How many rows should initially be shown per page
+   * How many rows should initially be shown per page.
+   * Pass `'all'` to display the selected "Show all" option and hide the pagination.
    */
-  pageSize: number;
+  pageSize: number | 'all';
   /**
    * An array of page sizes the user can select from.
-   * Leave this prop undefined or use an empty array to hide "Rows per page" select button
+   * Pass `'all'` as one of the options to create a "Show all" option.
+   * Leave this prop undefined or use an empty array to hide "Rows per page" select button.
    */
-  pageSizeOptions?: number[];
+  pageSizeOptions?: Array<number | 'all'>;
   /**
    * A callback for when the user changes the page size selection
    */
-  onChangeItemsPerPage: (itemsPerPage: number) => void;
+  onChangeItemsPerPage: (itemsPerPage: number | 'all') => void;
   /**
    * A callback for when the current page index changes
    */
@@ -775,23 +821,6 @@ export interface EuiDataGridInMemory {
 
 export interface EuiDataGridInMemoryValues {
   [rowIndex: string]: { [columnId: string]: string };
-}
-
-export interface EuiDataGridPopoverContentProps {
-  /**
-   * your `cellValueRenderer` as a ReactElement; allows wrapping the rendered content: `({children}) => <div>{children}</div>`
-   */
-  children: ReactNode;
-  /**
-   * div element the cell contents have been rendered into; useful for processing the rendered text
-   */
-  cellContentsElement: HTMLDivElement;
-}
-export type EuiDataGridPopoverContent = ComponentType<
-  EuiDataGridPopoverContentProps
->;
-export interface EuiDataGridPopoverContents {
-  [key: string]: EuiDataGridPopoverContent;
 }
 
 export interface EuiDataGridOnColumnResizeData {

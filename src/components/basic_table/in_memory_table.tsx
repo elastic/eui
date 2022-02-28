@@ -31,6 +31,7 @@ import { EuiSpacer } from '../spacer';
 import { CommonProps } from '../common';
 import { EuiSearchBarProps } from '../search_bar/search_bar';
 import { SchemaType } from '../search_bar/search_box';
+import { EuiTablePaginationProps } from '../table';
 
 interface onChangeArgument {
   query: Query | null;
@@ -46,13 +47,12 @@ function isEuiSearchBarProps<T>(
 
 export type Search = boolean | EuiSearchBarProps;
 
-interface PaginationOptions {
-  pageSizeOptions?: number[];
-  hidePerPageOptions?: boolean;
+interface PaginationOptions extends EuiTablePaginationProps {
+  pageSizeOptions?: Array<number | 'all'>;
   initialPageIndex?: number;
-  initialPageSize?: number;
+  initialPageSize?: number | 'all';
   pageIndex?: number;
-  pageSize?: number;
+  pageSize?: number | 'all';
 }
 
 type Pagination = boolean | PaginationOptions;
@@ -114,12 +114,12 @@ interface State<T> {
   search?: Search;
   query: Query | null;
   pageIndex: number;
-  pageSize?: number;
-  pageSizeOptions?: number[];
+  pageSize?: number | 'all';
+  pageSizeOptions?: Array<number | 'all'>;
   sortName: ReactNode;
   sortDirection?: Direction;
   allowNeutralSort: boolean;
-  hidePerPageOptions: boolean | undefined;
+  showPerPageOptions: boolean | undefined;
 }
 
 const getQueryFromSearch = (
@@ -151,7 +151,7 @@ const getInitialPagination = (pagination: Pagination | undefined) => {
 
   const {
     pageSizeOptions = paginationBarDefaults.pageSizeOptions,
-    hidePerPageOptions,
+    showPerPageOptions,
   } = pagination as PaginationOptions;
 
   const defaultPageSize = pageSizeOptions
@@ -168,7 +168,7 @@ const getInitialPagination = (pagination: Pagination | undefined) => {
       : pagination.pageSize || pagination.initialPageSize || defaultPageSize;
 
   if (
-    !hidePerPageOptions &&
+    showPerPageOptions &&
     initialPageSize &&
     (!pageSizeOptions || !pageSizeOptions.includes(initialPageSize))
   ) {
@@ -181,7 +181,7 @@ const getInitialPagination = (pagination: Pagination | undefined) => {
     pageIndex: initialPageIndex,
     pageSize: initialPageSize,
     pageSizeOptions,
-    hidePerPageOptions,
+    showPerPageOptions,
   };
 };
 
@@ -355,7 +355,7 @@ export class EuiInMemoryTable<T> extends Component<
       pageIndex,
       pageSize,
       pageSizeOptions,
-      hidePerPageOptions,
+      showPerPageOptions,
     } = getInitialPagination(pagination);
     const { sortName, sortDirection } = getInitialSorting(columns, sorting);
 
@@ -374,7 +374,7 @@ export class EuiInMemoryTable<T> extends Component<
       sortName,
       sortDirection,
       allowNeutralSort: allowNeutralSort !== false,
-      hidePerPageOptions,
+      showPerPageOptions,
     };
 
     this.tableRef = React.createRef<EuiBasicTable>();
@@ -389,7 +389,7 @@ export class EuiInMemoryTable<T> extends Component<
   onTableChange = ({ page, sort }: Criteria<T>) => {
     let { index: pageIndex, size: pageSize } = (page || {}) as {
       index: number;
-      size: number;
+      size: number | 'all';
     };
 
     // don't apply pagination changes that are otherwise controlled
@@ -583,7 +583,7 @@ export class EuiInMemoryTable<T> extends Component<
       : matchingItems;
 
     const visibleItems =
-      pageSize && this.props.pagination
+      typeof pageSize === 'number' && this.props.pagination
         ? (() => {
             const startIndex = pageIndex * pageSize;
             return sortedItems.slice(
@@ -631,7 +631,7 @@ export class EuiInMemoryTable<T> extends Component<
       pageSizeOptions,
       sortName,
       sortDirection,
-      hidePerPageOptions,
+      showPerPageOptions,
     } = this.state;
 
     const { items, totalItemCount } = this.getItems();
@@ -643,7 +643,7 @@ export class EuiInMemoryTable<T> extends Component<
           pageSize: pageSize || 1,
           pageSizeOptions,
           totalItemCount,
-          hidePerPageOptions,
+          showPerPageOptions,
         };
 
     // Data loaded from a server can have a default sort order which is meaningful to the

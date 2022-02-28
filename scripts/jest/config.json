@@ -2,6 +2,7 @@
   "rootDir": "../../",
   "roots": [
     "<rootDir>/src/",
+    "<rootDir>/src-docs/src/components",
     "<rootDir>/scripts/babel",
     "<rootDir>/packages/eslint-plugin"
   ],
