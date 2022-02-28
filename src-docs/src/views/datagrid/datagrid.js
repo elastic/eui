@@ -84,6 +84,9 @@ const RenderCellValue = ({ rowIndex, columnId, setCellProps }) => {
         });
       }
     }
+    if (rowIndex === 2) {
+      setCellProps({ isExpandable: false });
+    }
   }, [rowIndex, columnId, setCellProps, data]);
 
   function getFormatted() {
