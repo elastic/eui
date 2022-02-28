@@ -1,4 +1,6 @@
 import React, { FunctionComponent, useState, useEffect, useMemo } from 'react';
+import prettier from 'prettier/standalone';
+import typescriptParser from 'prettier/parser-typescript';
 import { EuiCodeBlock } from '../../../../../src/components/code';
 import { EuiButtonEmpty } from '../../../../../src/components/button';
 // @ts-ignore Not TS
@@ -32,7 +34,12 @@ export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode>
   const [codeToRender, setCodeToRender] = useState();
 
   useEffect(() => {
-    setCodeToRender(sourceCode);
+    const prettierCode: any = prettier.format(sourceCode, {
+      parser: 'typescript',
+      plugins: [typescriptParser],
+    });
+
+    setCodeToRender(prettierCode);
 
     return () => {
       setCodeToRender(undefined);

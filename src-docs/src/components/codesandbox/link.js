@@ -1,4 +1,6 @@
 import React from 'react';
+import prettier from 'prettier/standalone';
+import typescriptParser from 'prettier/parser-typescript';
 import { getParameters } from 'codesandbox/lib/api/define';
 import {
   cleanEuiImports,
@@ -153,7 +155,10 @@ export const Demo = () => (<EuiButton>Hello world!</EuiButton>);
       },
       /* 3 */
       [`demo.${type}`]: {
-        content: demoContent,
+        content: prettier.format(demoContent, {
+          parser: 'typescript',
+          plugins: [typescriptParser],
+        }),
       },
       'index.js': {
         content: `import '${cssFile}';
