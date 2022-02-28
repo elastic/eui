@@ -529,13 +529,18 @@ export class EuiDataGridCell extends Component<
       className
     );
 
-    const cellProps = {
-      ...this.state.cellProps,
-      'data-test-subj': classNames(
-        'dataGridRowCell',
-        this.state.cellProps['data-test-subj']
-      ),
-      className: classNames(cellClasses, this.state.cellProps.className),
+    const {
+      isExpandable: _, // Not a valid DOM property, so needs to be destructured out
+      style: cellPropsStyle,
+      className: cellPropsClassName,
+      'data-test-subj': cellPropsDataTestSubj,
+      ...setCellProps
+    } = this.state.cellProps;
+
+    const cellProps: EuiDataGridSetCellProps = {
+      ...setCellProps,
+      'data-test-subj': classNames('dataGridRowCell', cellPropsDataTestSubj),
+      className: classNames(cellClasses, cellPropsClassName),
     };
 
     cellProps.style = {
@@ -543,7 +548,7 @@ export class EuiDataGridCell extends Component<
       top: 0, // The cell's row will handle top positioning
       width, // column width, can be undefined
       lineHeight: rowHeightsOptions?.lineHeight ?? undefined, // lineHeight configuration
-      ...cellProps.style, // apply anything from setCellProps({style})
+      ...cellPropsStyle, // apply anything from setCellProps({ style })
     };
 
     const handleCellKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
