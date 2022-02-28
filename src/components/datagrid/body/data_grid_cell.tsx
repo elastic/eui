@@ -12,7 +12,6 @@ import React, {
   createRef,
   FocusEvent,
   FunctionComponent,
-  HTMLAttributes,
   JSXElementConstructor,
   KeyboardEvent,
   memo,
@@ -29,6 +28,7 @@ import { DataGridFocusContext } from '../utils/focus';
 import {
   EuiDataGridCellProps,
   EuiDataGridCellState,
+  EuiDataGridSetCellProps,
   EuiDataGridCellValueElementProps,
   EuiDataGridCellValueProps,
   EuiDataGridCellPopoverElementProps,
@@ -353,7 +353,7 @@ export class EuiDataGridCell extends Component<
     return false;
   }
 
-  setCellProps = (cellProps: HTMLAttributes<HTMLDivElement>) => {
+  setCellProps = (cellProps: EuiDataGridSetCellProps) => {
     this.setState({ cellProps });
   };
 
