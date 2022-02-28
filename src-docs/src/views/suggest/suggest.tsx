@@ -71,7 +71,7 @@ export default () => {
   };
 
   const [value, setValue] = useState('field');
-  const onSearchChange = (searchValue: string) => {
+  const onSearch = (searchValue: string) => {
     setValue(searchValue);
     console.log(searchValue);
   };
@@ -89,9 +89,9 @@ export default () => {
           fullWidth
           aria-labelledby={`${idPrefix}-label`}
           status={status}
-          onInputChange={() => {}}
+          onInput={(input) => console.log(input)}
           onItemClick={onItemClick}
-          onSearchChange={onSearchChange}
+          onSearch={onSearch}
           value={value}
           placeholder="Enter query to display suggestions"
           suggestions={sampleItems}

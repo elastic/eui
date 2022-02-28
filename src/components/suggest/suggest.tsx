@@ -96,12 +96,12 @@ type _EuiSuggestProps = CommonProps &
     /**
      * Callback function called when the input changes.
      */
-    onInputChange?: (target: EventTarget) => void;
+    onInput?: (target: EventTarget) => void;
 
     /**
      * Callback function called when the search changes.
      */
-    onSearchChange?: (value: string) => void;
+    onSearch?: (value: string) => void;
 
     /**
      * Use virtualized rendering for list items with `react-window`.
@@ -132,8 +132,8 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   onItemClick,
   onBlur,
   onFocus,
-  onInputChange,
-  onSearchChange,
+  onInput,
+  onSearch,
   status = 'unchanged',
   append,
   tooltipContent,
@@ -158,24 +158,24 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
    * Search helpers
    */
   const searchOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    onFocus && onFocus(e);
+    onFocus?.(e);
     openPopover();
   };
 
   const searchOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    onBlur && onBlur(e);
+    onBlur?.(e);
     if (!popoverRef?.contains(e.relatedTarget as HTMLElement)) {
       closePopover();
     }
   };
 
   const searchOnInput = (e: FormEvent<HTMLInputElement>) => {
-    onInputChange && onInputChange(e.target);
+    onInput?.(e.target);
     openPopover();
   };
 
   const searchOnChange = (value: string) => {
-    onSearchChange && onSearchChange(value);
+    onSearch?.(value);
   };
 
   const inputDescribedbyId = useGeneratedHtmlId({ prefix: id });
