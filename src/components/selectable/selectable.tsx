@@ -421,7 +421,7 @@ export class EuiSelectable<T = {}> extends Component<
   };
 
   onOptionClick = (options: Array<EuiSelectableOption<T>>) => {
-    const { isPreFiltered, onChange, searchProps } = this.props;
+    const { isPreFiltered, onChange } = this.props;
     const { searchValue } = this.state;
     const visibleOptions = getMatchingOptions(
       options,
@@ -433,10 +433,6 @@ export class EuiSelectable<T = {}> extends Component<
 
     if (onChange) {
       onChange(options);
-    }
-
-    if (searchProps && searchProps.onChange) {
-      searchProps.onChange(visibleOptions, searchValue);
     }
   };
 
