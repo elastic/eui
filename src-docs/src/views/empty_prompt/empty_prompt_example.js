@@ -1,72 +1,17 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { GuideSectionTypes } from '../../components';
-
-import {
-  EuiCode,
-  EuiEmptyPrompt,
-  EuiText,
-  EuiSpacer,
-} from '../../../../src/components';
-
+import { EuiCode, EuiText, EuiSpacer } from '../../../../src/components';
 import Guidelines from './guidelines';
-
-import emptyPromptConfig from './playground';
-
-import PageTemplateTable from './_page_template_table';
-
-import EmptyPrompt, { emptyPromptJSXString } from './empty_prompt';
-const emptyPromptSnippet = `<EuiEmptyPrompt
-  iconType="logoSolution"
-  title={<h2>Your title</h2>}
-  body={<p>Content</p>}
-  actions={actions}
-  footer={footer}
-/>`;
-
+import EmptyPrompt from './empty_prompt';
 import Layout from './empty_prompt_layout';
-
-import Simple from './simple';
-const simpleSource = require('!!raw-loader!./simple');
-const simpleSnippet = `<EuiEmptyPrompt
-  title={<h2>Your title</h2>}
-  actions={[primaryAction, secondaryAction]}
-/>`;
-
+import Simple from './empty_prompt_simple';
 import Panel from './empty_prompt_panel_options';
-
 import Custom from './custom';
-const customSource = require('!!raw-loader!./custom');
-const customSnippet = `<EuiEmptyPrompt
-  iconType="solutionApp"
-  iconColor="default"
-  title={<h2>Your title</h2>}
-  titleSize="xs"
-  body={<p>Content</p>}
-  actions={actions}
-/>`;
-
 import Loading from './empty_prompt_loading';
-const loadingSource = require('!!raw-loader!./empty_prompt_loading');
-const loadingSnippet = `<EuiEmptyPrompt
-  icon={<EuiLoadingLogo logo="logoKibana" size="xl" />}
-  title={<h2>Loading</h2>}
-/>`;
-
 import Error from './empty_prompt_error';
-const errorSource = require('!!raw-loader!./empty_prompt_error');
-const errorSnippet = `<EuiEmptyPrompt
-  color="danger"
-  iconType="alert"
-  title={<h2>There was an error</h2>}
-/>`;
-
 import States from './empty_prompt_states';
-const statesSource = require('!!raw-loader!./empty_prompt_states');
-
+import PageTemplateTable from './_page_template_table';
 import PageTemplate from './empty_prompt_page_template';
-const pageTemplateSource = require('!!raw-loader!./empty_prompt_page_template');
-
 import MultipleTypes from './empty_prompt_multiple_types';
 
 export const EmptyPromptExample = {
@@ -89,50 +34,39 @@ export const EmptyPromptExample = {
   ),
   sections: [
     {
-      source: [
-        {
-          type: GuideSectionTypes.JSX_STRING,
-          code: emptyPromptJSXString,
-        },
-      ],
+      wrapText: false,
       text: (
         <>
-          <p>
-            While no one piece of content is required, each{' '}
-            <strong>EuiEmptyPrompt</strong> should contain at least a{' '}
-            <EuiCode>title</EuiCode> (wrapped in an HTML heading element) and/or
-            a <EuiCode>description</EuiCode>. They usually contain one or more{' '}
-            <EuiCode>actions</EuiCode> that promotes the primary
-            call-to-actions. You can also provide a <EuiCode>footer</EuiCode> to
-            direct users towards making informed decisions.
-          </p>
+          <EuiText>
+            <p>
+              While no one piece of content is required, each{' '}
+              <strong>EuiEmptyPrompt</strong> should contain at least a{' '}
+              <EuiCode>title</EuiCode> (wrapped in an HTML heading element)
+              and/or a <EuiCode>description</EuiCode>. They usually contain one
+              or more <EuiCode>actions</EuiCode> that promotes the primary
+              call-to-actions. You can also provide a <EuiCode>footer</EuiCode>{' '}
+              to direct users towards making informed decisions.
+            </p>
+          </EuiText>
+          <EmptyPrompt />
         </>
       ),
-      demo: <EmptyPrompt />,
-      props: { EuiEmptyPrompt },
-      snippet: emptyPromptSnippet,
-      playground: emptyPromptConfig,
     },
     {
       title: 'Less content, more actions',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: simpleSource,
-        },
-      ],
+      wrapText: false,
       text: (
-        <Fragment>
-          <p>
-            You can remove parts of the prompt to simplify it. You can also
-            provide an array of multiple actions. Be sure to list primary
-            actions first and secondary actions as empty buttons.
-          </p>
-        </Fragment>
+        <>
+          <EuiText>
+            <p>
+              You can remove parts of the prompt to simplify it. You can also
+              provide an array of multiple actions. Be sure to list primary
+              actions first and secondary actions as empty buttons.
+            </p>
+          </EuiText>
+          <Simple />
+        </>
       ),
-      props: { EuiEmptyPrompt },
-      demo: <Simple />,
-      snippet: simpleSnippet,
     },
     {
       title: 'Panel options',
@@ -166,105 +100,89 @@ export const EmptyPromptExample = {
     },
     {
       title: 'Title sizes and icon colors',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: customSource,
-        },
-      ],
+      wrapText: false,
       text: (
-        <p>
-          Other customization options include changing the
-          <EuiCode>titleSize</EuiCode> to any of the{' '}
-          <Link to="/display/title">
-            <strong>EuiTitle</strong> sizes
-          </Link>{' '}
-          and <EuiCode>iconColor</EuiCode>. When using an application or
-          solution logo as the <EuiCode>iconType</EuiCode>, you can reset to the
-          multi-tone colors with{' '}
-          <EuiCode language="tsx">{'iconColor="default"'}</EuiCode>
-        </p>
+        <>
+          <EuiText>
+            <p>
+              Other customization options include changing the
+              <EuiCode>titleSize</EuiCode> to any of the{' '}
+              <Link to="/display/title">
+                <strong>EuiTitle</strong> sizes
+              </Link>{' '}
+              and <EuiCode>iconColor</EuiCode>. When using an application or
+              solution logo as the <EuiCode>iconType</EuiCode>, you can reset to
+              the multi-tone colors with{' '}
+              <EuiCode language="tsx">{'iconColor="default"'}</EuiCode>
+            </p>
+          </EuiText>
+          <Custom />
+        </>
       ),
-      props: { EuiEmptyPrompt },
-      demo: <Custom />,
-      snippet: customSnippet,
     },
     {
       title: 'Loading and error prompts',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: loadingSource,
-        },
-      ],
+      wrapText: false,
       text: (
         <>
-          <p>
-            Empty prompts can also be used to emulate loading and error states,
-            by utilizing the same patterns.
-          </p>
-          <p>
-            For <strong>loading</strong> states, instead of passing a{' '}
-            <EuiCode>iconType</EuiCode>, you can provide a custom{' '}
-            <EuiCode>icon</EuiCode> and pass in one of our{' '}
-            <Link to="/display/loading">loading components</Link>.
-          </p>
+          <EuiText>
+            <p>
+              Empty prompts can also be used to emulate loading and error
+              states, by utilizing the same patterns.
+            </p>
+            <p>
+              For <strong>loading</strong> states, instead of passing a{' '}
+              <EuiCode>iconType</EuiCode>, you can provide a custom{' '}
+              <EuiCode>icon</EuiCode> and pass in one of our{' '}
+              <Link to="/display/loading">loading components</Link>.
+            </p>
+          </EuiText>
+          <Loading />
         </>
       ),
-      props: { EuiEmptyPrompt },
-      demo: <Loading />,
-      snippet: loadingSnippet,
     },
     {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: errorSource,
-        },
-      ],
+      wrapText: false,
       text: (
         <>
-          <p>
-            For <strong>error</strong> states, you can simply set the{' '}
-            <EuiCode>color</EuiCode> to <EuiCode>danger</EuiCode>.
-          </p>
+          <EuiText>
+            <p>
+              For <strong>error</strong> states, you can simply set the{' '}
+              <EuiCode>color</EuiCode> to <EuiCode>danger</EuiCode>.
+            </p>
+          </EuiText>
+          <Error />
         </>
       ),
-      props: { EuiEmptyPrompt },
-      demo: <Error />,
-      snippet: errorSnippet,
     },
     {
       title: 'Layout',
-      // source: [
-      //   {
-      //     type: GuideSectionTypes.JSX_STRING,
-      //     code: layoutJSXString,
-      //   },
-      // ],
+      wrapText: false,
       text: (
         <>
-          <p>
-            You can supply a <EuiCode>layout</EuiCode> of either{' '}
-            <EuiCode>{'"horizontal"'}</EuiCode> or{' '}
-            <EuiCode>{'"vertical"'}</EuiCode> with the default being{' '}
-            <EuiCode>{'vertical'}</EuiCode>. When creating empty states we want
-            the content to be short and straight to the point. So most of the
-            time, the <EuiCode>vertical</EuiCode> layout is enough. All the
-            content will be center aligned and this type of text alignment only
-            works with small content.
-          </p>
-          <p>
-            When you have longer body text with multiple calls to action, you
-            can use the <EuiCode>horizontal</EuiCode> layout. This layout works
-            best when you can provide a larger graphic like an illustration as
-            the <EuiCode>icon</EuiCode>. For consistency, we recommend providing
-            the illustration using a{' '}
-            <Link to="/display/image">
-              <strong>EuiImage</strong>
-            </Link>{' '}
-            with <EuiCode language="tsx">{'size="fullWidth"'}</EuiCode>.
-          </p>
+          <EuiText>
+            <p>
+              You can supply a <EuiCode>layout</EuiCode> of either{' '}
+              <EuiCode>{'"horizontal"'}</EuiCode> or{' '}
+              <EuiCode>{'"vertical"'}</EuiCode> with the default being{' '}
+              <EuiCode>{'vertical'}</EuiCode>. When creating empty states we
+              want the content to be short and straight to the point. So most of
+              the time, the <EuiCode>vertical</EuiCode> layout is enough. All
+              the content will be center aligned and this type of text alignment
+              only works with small content.
+            </p>
+            <p>
+              When you have longer body text with multiple calls to action, you
+              can use the <EuiCode>horizontal</EuiCode> layout. This layout
+              works best when you can provide a larger graphic like an
+              illustration as the <EuiCode>icon</EuiCode>. For consistency, we
+              recommend providing the illustration using a{' '}
+              <Link to="/display/image">
+                <strong>EuiImage</strong>
+              </Link>{' '}
+              with <EuiCode language="tsx">{'size="fullWidth"'}</EuiCode>.
+            </p>
+          </EuiText>
           <EuiSpacer />
           <Layout />
         </>
@@ -291,59 +209,52 @@ export const EmptyPromptExample = {
     },
     {
       title: 'Using in a page template',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: pageTemplateSource,
-        },
-      ],
+      wrapText: false,
       text: (
         <>
-          <p>
-            When using a <strong>EuiEmptyPrompt</strong> in a{' '}
-            <Link to="/layout/page">EuiPageTemplate</Link>, pay attention to the
-            template you’re passing. The template will determine which{' '}
-            <EuiCode>color</EuiCode> and <EuiCode>hasBorder</EuiCode> prop you
-            should use to ensure consistency across our Elastic products.
-          </p>
+          <EuiText>
+            <p>
+              When using a <strong>EuiEmptyPrompt</strong> in a{' '}
+              <Link to="/layout/page">EuiPageTemplate</Link>, pay attention to
+              the template you’re passing. The template will determine which{' '}
+              <EuiCode>color</EuiCode> and <EuiCode>hasBorder</EuiCode> prop you
+              should use to ensure consistency across our Elastic products.
+            </p>
+          </EuiText>
+
           <PageTemplateTable />
 
           <EuiSpacer size="xl" />
-          <p>
-            The following example shows the usage of a{' '}
-            <strong>EuiEmptyPrompt</strong> in a page template where the
-            template is set to <EuiCode>{'"empty"'}</EuiCode>.
-          </p>
+
+          <EuiText>
+            <p>
+              The following example shows the usage of a{' '}
+              <strong>EuiEmptyPrompt</strong> in a page template where the
+              template is set to <EuiCode>{'"empty"'}</EuiCode>.
+            </p>
+          </EuiText>
+
+          <PageTemplate />
         </>
       ),
-      props: { EuiEmptyPrompt },
-      demo: <PageTemplate />,
     },
     {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: statesSource,
-        },
-      ],
+      wrapText: false,
       text: (
         <>
-          <p>
-            You can then tie multiple types of empty states together to create a
-            seamless loading to empty or loading to error experience. The
-            following example shows how to encorprate these states with{' '}
-            <Link to="/layout/page#simple-layout-with-centered-content">
-              <strong>EuiPageTemplate</strong>
-            </Link>{' '}
-            using <EuiCode>{'template="centeredContent"'}</EuiCode>.
-          </p>
-        </>
-      ),
-      props: { EuiEmptyPrompt },
-      demo: (
-        <div className="guideDemo__highlightLayout">
+          <EuiText>
+            <p>
+              You can then tie multiple types of empty states together to create
+              a seamless loading to empty or loading to error experience. The
+              following example shows how to encorprate these states with{' '}
+              <Link to="/layout/page#simple-layout-with-centered-content">
+                <strong>EuiPageTemplate</strong>
+              </Link>{' '}
+              using <EuiCode>{'template="centeredContent"'}</EuiCode>.
+            </p>
+          </EuiText>
           <States />
-        </div>
+        </>
       ),
     },
   ],

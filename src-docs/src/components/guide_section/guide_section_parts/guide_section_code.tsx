@@ -42,7 +42,7 @@ export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode>
   const finalType =
     type === GuideSectionTypes.JSX_STRING
       ? GuideSectionTypes.JS.toLowerCase()
-      : type;
+      : type.toLowerCase();
 
   const codeSandboxLink =
     isJavascript || isJSXString ? (

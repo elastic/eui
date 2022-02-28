@@ -1,11 +1,15 @@
 import React, { useContext } from 'react';
+import reactElementToJSXString from 'react-element-to-jsx-string';
 import { ThemeContext } from '../../components/with_theme';
 import {
-  EuiPageTemplate,
   EuiEmptyPrompt,
   EuiImage,
+  EuiSpacer,
+  EuiPageTemplate,
 } from '../../../../src/components';
 import { examples, examplesType } from './_examples';
+import { GuideSection } from '../../components/guide_section/guide_section';
+import { GuideSectionTypes } from '../../components/guide_section/guide_section_types';
 
 const example: examplesType = examples.firstTimeVisualization;
 
@@ -15,7 +19,7 @@ export default () => {
 
   const iconImg: string = isDarkTheme ? example.iconDark! : example.iconLight!;
 
-  return (
+  const emptyPrompt = (
     <EuiPageTemplate
       template="empty"
       pageContentProps={{
@@ -33,5 +37,31 @@ export default () => {
         footer={example.footer}
       />
     </EuiPageTemplate>
+  );
+
+  const emptyPromptLayoutJSXString = `
+  import React from 'react';
+  import { EuiPageTemplate, EuiEmptyPrompt, EuiButton, EuiTitle, EuiLink, EuiImage } from '@elastic/eui';
+  
+  export default () => (
+    ${reactElementToJSXString(emptyPrompt)}
+  );
+  `;
+
+  return (
+    <>
+      <EuiSpacer size="l" />
+
+      <GuideSection
+        demo={emptyPrompt}
+        source={[
+          {
+            type: GuideSectionTypes.JSX_STRING,
+            code: emptyPromptLayoutJSXString,
+          },
+        ]}
+        props={{ EuiEmptyPrompt }}
+      />
+    </>
   );
 };

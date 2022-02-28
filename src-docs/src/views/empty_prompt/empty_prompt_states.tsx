@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import {
   EuiEmptyPrompt,
   EuiPageTemplate,
@@ -7,6 +6,8 @@ import {
   EuiButton,
   EuiEmptyPromptProps,
 } from '../../../../src/components';
+import { GuideSection } from '../../components/guide_section/guide_section';
+import { GuideSectionTypes } from '../../components/guide_section/guide_section_types';
 
 export default () => {
   const states = ['loading1', 'error', 'loading2', 'empty'];
@@ -65,7 +66,7 @@ export default () => {
       break;
   }
 
-  return (
+  const emptyPrompt = (
     <EuiPageTemplate
       template="centeredContent"
       pageContentProps={{
@@ -75,5 +76,93 @@ export default () => {
     >
       <EuiEmptyPrompt {...emptyPromptProps} />
     </EuiPageTemplate>
+  );
+
+  const emptyPromptJSXString = `
+  import React, { useState, useEffect } from 'react';
+  import { EuiEmptyPrompt, EuiLoadingLogo, EuiButton, EuiPageTemplate } from '@elastic/eui';
+
+  export default () => {
+
+  const states = ['loading1', 'error', 'loading2', 'empty'];
+
+  const [currentState, setCurrentState] = useState(states[0]);
+
+  const searchTimeout = setTimeout(() => {
+    // Cycle through the array of states
+    const index = states.indexOf(currentState);
+    setCurrentState(index < states.length - 1 ? states[index + 1] : states[0]);
+  }, 3000);
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(searchTimeout);
+    };
+  });
+
+  let emptyPromptProps;
+  switch (currentState) {
+    case 'error':
+      emptyPromptProps = {
+        color: 'danger',
+        iconType: 'alert',
+        title: <h2>Unable to load your dashboards</h2>,
+        body: (
+          <p>
+            There was an error loading the Dashboard application. Contact your
+            administrator for help.
+          </p>
+        ),
+      };
+      break;
+    case 'empty':
+      emptyPromptProps = {
+        color: 'plain',
+        hasBorder: true,
+        iconType: 'dashboardApp',
+        iconColor: 'default',
+        title: <h2>Dashboards</h2>,
+        body: <p>You don&apos;t have any dashboards yet.</p>,
+        actions: [
+          <EuiButton fill iconType="plusInCircleFilled">
+            Create new dashboard
+          </EuiButton>,
+        ],
+      };
+      break;
+
+    default:
+      emptyPromptProps = {
+        color: 'subdued',
+        icon: <EuiLoadingLogo logo="logoKibana" size="xl" />,
+        title: <h2>Loading Dashboards</h2>,
+      };
+      break;
+  }
+
+  return (
+    <EuiPageTemplate
+    template="centeredContent"
+    pageContentProps={{
+      paddingSize: 'none',
+    }}
+  >
+    <EuiEmptyPrompt {...emptyPromptProps} />
+  </EuiPageTemplate>
+  )
+};
+  `;
+
+  return (
+    <GuideSection
+      demo={emptyPrompt}
+      source={[
+        {
+          type: GuideSectionTypes.JSX_STRING,
+          code: emptyPromptJSXString,
+        },
+      ]}
+      props={{ EuiEmptyPrompt }}
+    />
   );
 };

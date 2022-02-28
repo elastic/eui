@@ -5,31 +5,25 @@ import { examples, examplesType } from './_examples';
 import { GuideSection } from '../../components/guide_section/guide_section';
 import { GuideSectionTypes } from '../../components/guide_section/guide_section_types';
 
-const example: examplesType = examples.unableToLoadDashboards;
+const example: examplesType = examples.licenseUpgrade;
 
 export default () => {
   const emptyPrompt = (
-    <EuiEmptyPrompt
-      iconType={example.iconType}
-      color="danger"
-      title={example.title}
-      body={example.body}
-    />
+    <EuiEmptyPrompt title={example.title} actions={example.actions} />
   );
 
   const emptyPromptJSXString = `
   import React from 'react';
-  import { EuiEmptyPrompt, EuiLoadingLogo } from '@elastic/eui';
+  import { EuiEmptyPrompt, EuiButton, EuiButtonEmpty, EuiTitle, EuiLink } from '@elastic/eui';
   
   export default () => (
     ${reactElementToJSXString(emptyPrompt)}
   );
   `;
 
-  const errorSnippet = `<EuiEmptyPrompt
-  color="danger"
-  iconType="alert"
-  title={<h2>There was an error</h2>}
+  const simpleSnippet = `<EuiEmptyPrompt
+  title={<h2>Your title</h2>}
+  actions={[primaryAction, secondaryAction]}
 />`;
 
   return (
@@ -42,7 +36,7 @@ export default () => {
         },
       ]}
       props={{ EuiEmptyPrompt }}
-      snippet={errorSnippet}
+      snippet={simpleSnippet}
     />
   );
 };
