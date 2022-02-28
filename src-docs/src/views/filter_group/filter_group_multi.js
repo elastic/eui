@@ -2,12 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import {
   EuiPopover,
-  EuiPopoverTitle,
   EuiFilterGroup,
   EuiFilterButton,
   EuiSelectable,
-  EuiSpacer,
-  EuiSwitch,
 } from '../../../../src/components';
 import { useGeneratedHtmlId } from '../../../../src/services';
 
@@ -58,6 +55,7 @@ export default () => {
     { label: 'Piotr Illitch Tchaïkovsky' },
     { label: 'Robert Schumann' },
     { label: 'Sergej S. Prokofiew' },
+    { label: 'Wolfgang Amadeus Mozart' },
   ]);
 
   const button = (
@@ -74,45 +72,30 @@ export default () => {
   );
 
   return (
-    <>
-      <EuiSwitch
-        checked={withLoading}
-        onChange={(e) => setWithLoading(e.target.checked)}
-        label="Simulate dynamic loading"
-      />
-      <EuiSpacer />
-      <EuiFilterGroup>
-        <EuiPopover
-          id={filterGroupPopoverId}
-          button={button}
-          isOpen={isPopoverOpen}
-          closePopover={closePopover}
-          panelPaddingSize="none"
+    <EuiFilterGroup>
+      <EuiPopover
+        id={filterGroupPopoverId}
+        button={button}
+        isOpen={isPopoverOpen}
+        closePopover={closePopover}
+        panelPaddingSize="none"
+      >
+        <EuiSelectable
+          aria-label="Filter group multiselect example"
+          searchable
+          options={items}
+          onChange={(newItems) => setItems(newItems)}
+          allowExclusions
         >
-          <EuiSelectable
-            allowExclusions
-            searchable
-            searchProps={{
-              placeholder: 'Filter list',
-              compressed: true,
-            }}
-            aria-label="Composers"
-            options={items}
-            onChange={(newOptions) => setItems(newOptions)}
-            isLoading={isLoading}
-            loadingMessage="Loading filters"
-            emptyMessage="No filters available"
-            noMatchesMessage="No filters found"
-          >
-            {(list, search) => (
-              <div style={{ width: 300 }}>
-                <EuiPopoverTitle paddingSize="s">{search}</EuiPopoverTitle>
-                {list}
-              </div>
-            )}
-          </EuiSelectable>
-        </EuiPopover>
-      </EuiFilterGroup>
-    </>
+          {(items, search) => (
+            <>
+              {search}
+              {items}
+            </>
+          )}
+        </EuiSelectable>
+      </EuiPopover>
+    </EuiFilterGroup>
+
   );
 };

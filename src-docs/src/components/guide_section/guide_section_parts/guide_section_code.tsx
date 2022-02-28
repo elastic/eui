@@ -20,25 +20,25 @@ export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode>
     () => [GuideSectionTypes.JS, GuideSectionTypes.TSX].includes(type),
     [type]
   );
+  const sourceCode = useMemo(
+    () => (isJavascript ? renderJsSourceCode(code) : code),
+    [isJavascript, code]
+  );
 
   const [codeToRender, setCodeToRender] = useState();
 
   useEffect(() => {
-    if (isJavascript) {
-      setCodeToRender(renderJsSourceCode(code));
-    } else {
-      setCodeToRender(code);
-    }
+    setCodeToRender(sourceCode);
 
     return () => {
       setCodeToRender(undefined);
     };
-  }, [code, isJavascript]);
+  }, [sourceCode]);
 
   const codeSandboxLink = isJavascript ? (
     <CodeSandboxLink
       className="guideSectionExampleCode__link"
-      content={code.default}
+      content={sourceCode}
       type={type.toLowerCase()}
     >
       <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
