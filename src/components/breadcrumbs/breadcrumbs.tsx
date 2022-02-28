@@ -9,6 +9,7 @@
 import React, {
   AriaAttributes,
   FunctionComponent,
+  HTMLAttributes,
   MouseEventHandler,
   ReactNode,
   useEffect,
@@ -19,7 +20,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiI18n } from '../i18n';
 import { EuiInnerText } from '../inner_text';
-import { EuiLink } from '../link';
+import { EuiLink, EuiLinkColor } from '../link';
 import { EuiPopover } from '../popover';
 import { EuiIcon } from '../icon';
 import { throttle } from '../../services';
@@ -35,22 +36,27 @@ export type EuiBreadcrumbResponsiveMaxCount = {
   [key in EuiBreakpointSize]?: number;
 };
 
-export type EuiBreadcrumb = CommonProps & {
-  /**
-   * Visible label of the breadcrumb
-   */
-  text: ReactNode;
-  href?: string;
-  onClick?: MouseEventHandler<HTMLAnchorElement>;
-  /**
-   * Force a max-width on the breadcrumb text
-   */
-  truncate?: boolean;
-  /**
-   * Override the existing `aria-current` which defaults to `page` for the last breadcrumb
-   */
-  'aria-current'?: AriaAttributes['aria-current'];
-};
+export type EuiBreadcrumb = HTMLAttributes<HTMLElement> &
+  CommonProps & {
+    href?: string;
+    onClick?: MouseEventHandler<HTMLAnchorElement>;
+    /**
+     * Visible label of the breadcrumb
+     */
+    text: ReactNode;
+    /**
+     * Force a max-width on the breadcrumb text
+     */
+    truncate?: boolean;
+    /**
+     * Accepts any EuiLink `color` when rendered as one (has `href` or `onClick`)
+     */
+    color?: EuiLinkColor;
+    /**
+     * Override the existing `aria-current` which defaults to `page` for the last breadcrumb
+     */
+    'aria-current'?: AriaAttributes['aria-current'];
+  };
 
 export type EuiBreadcrumbsProps = CommonProps & {
   /**

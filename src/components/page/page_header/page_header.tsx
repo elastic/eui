@@ -11,7 +11,7 @@ import classNames from 'classnames';
 import { CommonProps, keysOf } from '../../common';
 import {
   EuiPageHeaderContent,
-  EuiPageHeaderContentProps,
+  _EuiPageHeaderContentProps,
 } from './page_header_content';
 import {
   _EuiPageRestrictWidth,
@@ -27,20 +27,21 @@ const paddingSizeToClassNameMap = {
 
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
-export type EuiPageHeaderProps = CommonProps &
-  HTMLAttributes<HTMLElement> &
-  EuiPageHeaderContentProps &
-  _EuiPageRestrictWidth & {
-    /**
-     * Adjust the padding.
-     * When using this setting it's best to be consistent throughout all similar usages
-     */
-    paddingSize?: typeof PADDING_SIZES[number];
-    /**
-     * Adds a bottom border to separate it from the content after
-     */
-    bottomBorder?: boolean;
-  };
+export interface EuiPageHeaderProps
+  extends CommonProps,
+    HTMLAttributes<HTMLElement>,
+    _EuiPageHeaderContentProps,
+    _EuiPageRestrictWidth {
+  /**
+   * Adjust the padding.
+   * When using this setting it's best to be consistent throughout all similar usages
+   */
+  paddingSize?: typeof PADDING_SIZES[number];
+  /**
+   * Adds a bottom border to separate it from the content after
+   */
+  bottomBorder?: boolean;
+}
 
 export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   className,
@@ -61,6 +62,8 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   iconProps,
   tabs,
   tabsProps,
+  breadcrumbs,
+  breadcrumbProps,
   description,
   rightSideItems,
   rightSideGroupProps,
@@ -109,6 +112,8 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
         description={description}
         rightSideItems={rightSideItems}
         rightSideGroupProps={rightSideGroupProps}
+        breadcrumbs={breadcrumbs}
+        breadcrumbProps={breadcrumbProps}
       >
         {children}
       </EuiPageHeaderContent>
