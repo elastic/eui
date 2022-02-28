@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import {
   EuiPopover,
@@ -9,9 +9,22 @@ import {
 import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
+  const timeoutRef = useRef();
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [withLoading, setWithLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    return () => clearTimeout(timeoutRef.current);
+  }, []);
 
   const onButtonClick = () => {
+    if (withLoading && !isPopoverOpen) {
+      setIsLoading(true);
+      timeoutRef.current = setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
+    }
     setIsPopoverOpen(!isPopoverOpen);
   };
 
@@ -50,7 +63,7 @@ export default () => {
       iconType="arrowDown"
       onClick={onButtonClick}
       isSelected={isPopoverOpen}
-      numFilters={items.length}
+      numFilters={items.filter((item) => item.checked !== 'off').length}
       hasActiveFilters={!!items.find((item) => item.checked === 'on')}
       numActiveFilters={items.filter((item) => item.checked === 'on').length}
     >
@@ -83,5 +96,6 @@ export default () => {
         </EuiSelectable>
       </EuiPopover>
     </EuiFilterGroup>
+
   );
 };

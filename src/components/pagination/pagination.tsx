@@ -25,7 +25,7 @@ export type SafeClickHandler = (e: MouseEvent, pageIndex: number) => void;
 export interface EuiPaginationProps {
   /**
    * The total number of pages.
-   * Pass `0` if total count in unknown.
+   * Pass `0` if total count is unknown.
    */
   pageCount?: number;
 

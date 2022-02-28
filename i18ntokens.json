@@ -37,11 +37,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 664,
+        "line": 672,
         "column": 10
       },
       "end": {
-        "line": 674,
+        "line": 676,
         "column": 12
       }
     },
@@ -53,11 +53,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 683,
+        "line": 685,
         "column": 12
       },
       "end": {
-        "line": 694,
+        "line": 689,
         "column": 14
       }
     },
@@ -69,11 +69,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 698,
+        "line": 693,
         "column": 12
       },
       "end": {
-        "line": 708,
+        "line": 697,
         "column": 14
       }
     },
@@ -85,11 +85,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 713,
+        "line": 702,
         "column": 10
       },
       "end": {
-        "line": 719,
+        "line": 706,
         "column": 12
       }
     },
@@ -101,11 +101,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 761,
+        "line": 748,
         "column": 6
       },
       "end": {
-        "line": 761,
+        "line": 748,
         "column": 77
       }
     },
@@ -117,11 +117,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1153,
+        "line": 1142,
         "column": 8
       },
       "end": {
-        "line": 1153,
+        "line": 1142,
         "column": 79
       }
     },
@@ -133,11 +133,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1373,
+        "line": 1362,
         "column": 8
       },
       "end": {
-        "line": 1377,
+        "line": 1366,
         "column": 9
       }
     },
@@ -837,11 +837,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 65,
+        "line": 67,
         "column": 25
       },
       "end": {
-        "line": 69,
+        "line": 71,
         "column": 5
       }
     },
@@ -1445,11 +1445,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 356,
+        "line": 352,
         "column": 22
       },
       "end": {
-        "line": 364,
+        "line": 356,
         "column": 5
       }
     },
@@ -1461,11 +1461,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 366,
+        "line": 357,
         "column": 27
       },
       "end": {
-        "line": 373,
+        "line": 361,
         "column": 5
       }
     },
@@ -1477,11 +1477,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 498,
+        "line": 485,
         "column": 18
       },
       "end": {
-        "line": 501,
+        "line": 488,
         "column": 20
       }
     },
@@ -3461,11 +3461,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 518,
+        "line": 531,
         "column": 16
       },
       "end": {
-        "line": 521,
+        "line": 534,
         "column": 18
       }
     },
@@ -3477,11 +3477,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 540,
+        "line": 553,
         "column": 14
       },
       "end": {
-        "line": 544,
+        "line": 557,
         "column": 16
       }
     },
@@ -3493,11 +3493,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 559,
+        "line": 572,
         "column": 14
       },
       "end": {
-        "line": 562,
+        "line": 575,
         "column": 16
       }
     },
@@ -3509,11 +3509,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 624,
+        "line": 637,
         "column": 6
       },
       "end": {
-        "line": 624,
+        "line": 637,
         "column": 78
       }
     },
@@ -3525,11 +3525,11 @@
     "highlighting": "code",
     "loc": {
       "start": {
-        "line": 646,
+        "line": 660,
         "column": 6
       },
       "end": {
-        "line": 652,
+        "line": 666,
         "column": 8
       }
     },
@@ -3541,11 +3541,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 664,
+        "line": 678,
         "column": 6
       },
       "end": {
-        "line": 673,
+        "line": 687,
         "column": 7
       }
     },
@@ -3557,11 +3557,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 664,
+        "line": 678,
         "column": 6
       },
       "end": {
-        "line": 673,
+        "line": 687,
         "column": 7
       }
     },
@@ -3968,17 +3968,49 @@
     "filepath": "src/components/table/table_header_cell.tsx"
   },
   {
+    "token": "euiTablePagination.allRows",
+    "defString": "Showing all rows",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 84,
+        "column": 8
+      },
+      "end": {
+        "line": 87,
+        "column": 10
+      }
+    },
+    "filepath": "src/components/table/table_pagination/table_pagination.tsx"
+  },
+  {
     "token": "euiTablePagination.rowsPerPage",
     "defString": "Rows per page",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 81,
-        "column": 8
+        "line": 90,
+        "column": 10
       },
       "end": {
-        "line": 84,
-        "column": 10
+        "line": 93,
+        "column": 12
+      }
+    },
+    "filepath": "src/components/table/table_pagination/table_pagination.tsx"
+  },
+  {
+    "token": "euiTablePagination.rowsPerPageOptionShowAllRows",
+    "defString": "Show all rows",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 113,
+        "column": 12
+      },
+      "end": {
+        "line": 116,
+        "column": 14
       }
     },
     "filepath": "src/components/table/table_pagination/table_pagination.tsx"
@@ -3989,12 +4021,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 99,
-        "column": 8
+        "line": 118,
+        "column": 12
       },
       "end": {
-        "line": 103,
-        "column": 10
+        "line": 122,
+        "column": 14
       }
     },
     "filepath": "src/components/table/table_pagination/table_pagination.tsx"

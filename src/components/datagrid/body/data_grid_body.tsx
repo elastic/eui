@@ -27,7 +27,6 @@ import { useResizeObserver } from '../../observer/resize_observer';
 import { EuiDataGridCell } from './data_grid_cell';
 import { EuiDataGridFooterRow } from './data_grid_footer_row';
 import { EuiDataGridHeaderRow } from './header';
-import { DefaultColumnFormatter } from './popover_utils';
 import { DataGridCellPopoverContext } from './data_grid_cell_popover';
 import {
   EuiDataGridBodyProps,
@@ -46,7 +45,7 @@ import { useRowHeightUtils, useDefaultRowHeight } from '../utils/row_heights';
 import { useHeaderFocusWorkaround } from '../utils/focus';
 import { useScrollBars, useScroll } from '../utils/scrolling';
 import { DataGridSortingContext } from '../utils/sorting';
-import { IS_JEST_ENVIRONMENT } from '../../../test';
+import { IS_JEST_ENVIRONMENT } from '../../../utils';
 
 export const Cell: FunctionComponent<GridChildComponentProps> = ({
   columnIndex,
@@ -60,10 +59,10 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     columns,
     visibleColCount,
     schema,
-    popoverContents,
     columnWidths,
     defaultColumnWidth,
     renderCellValue,
+    renderCellPopover,
     interactiveCellId,
     setRowHeight,
     schemaDetectors,
@@ -130,7 +129,6 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
       <EuiDataGridCell
         {...sharedCellProps}
         columnId={id}
-        popoverContent={DefaultColumnFormatter}
         width={leadingColumn.width}
         renderCellValue={rowCellRender}
         isExpandable={false}
@@ -146,7 +144,6 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
       <EuiDataGridCell
         {...sharedCellProps}
         columnId={id}
-        popoverContent={DefaultColumnFormatter}
         width={trailingColumn.width}
         renderCellValue={rowCellRender}
         isExpandable={false}
@@ -154,15 +151,10 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     );
   } else {
     // this is a normal data cell
-
-    // offset the column index by the leading control columns
     const columnType = schema[columnId] ? schema[columnId].columnType : null;
 
     const isExpandable =
       column.isExpandable !== undefined ? column.isExpandable : true;
-
-    const popoverContent =
-      popoverContents[columnType as string] || DefaultColumnFormatter;
 
     const width = columnWidths[columnId] || defaultColumnWidth;
 
@@ -172,9 +164,9 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
         columnId={columnId}
         column={column}
         columnType={columnType}
-        popoverContent={popoverContent}
         width={width || undefined}
         renderCellValue={renderCellValue}
+        renderCellPopover={renderCellPopover}
         interactiveCellId={interactiveCellId}
         isExpandable={isExpandable}
       />
@@ -226,10 +218,10 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     visibleColCount,
     schema,
     schemaDetectors,
-    popoverContents,
     rowCount,
     visibleRows: { startRow, endRow, visibleRowCount },
     renderCellValue,
+    renderCellPopover,
     renderFooterCellValue,
     interactiveCellId,
     pagination,
@@ -348,10 +340,10 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
         trailingControlColumns={trailingControlColumns}
         columns={columns}
         schema={schema}
-        popoverContents={popoverContents}
         columnWidths={columnWidths}
         defaultColumnWidth={defaultColumnWidth}
         renderCellValue={renderFooterCellValue}
+        renderCellPopover={renderCellPopover}
         rowIndex={visibleRowCount}
         visibleRowIndex={visibleRowCount}
         interactiveCellId={interactiveCellId}
@@ -363,8 +355,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     defaultColumnWidth,
     interactiveCellId,
     leadingControlColumns,
-    popoverContents,
     renderFooterCellValue,
+    renderCellPopover,
     schema,
     trailingControlColumns,
     visibleRowCount,
@@ -484,10 +476,10 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
           columns,
           visibleColCount,
           schema,
-          popoverContents,
           columnWidths,
           defaultColumnWidth,
           renderCellValue,
+          renderCellPopover,
           interactiveCellId,
           rowHeightsOptions,
           rowHeightUtils,

@@ -50,7 +50,7 @@ export default () => {
 
       <EuiSpacer size="xl" />
 
-      <DisplayToggles canAppend canPrepend canLoading={false}>
+      <DisplayToggles canAppend canPrepend>
         <EuiDualRange
           id={dualInputRangeSliderId}
           value={dualValue}

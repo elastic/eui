@@ -2371,6 +2371,118 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
 </div>
 `;
 
+exports[`EuiBasicTable with pagination - show all 1`] = `
+<div
+  className="euiBasicTable"
+>
+  <div>
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        justifyContent="spaceBetween"
+        responsive={false}
+      >
+        <EuiFlexItem
+          grow={false}
+        />
+        <EuiFlexItem
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
+    <EuiTable
+      id="__table_generated-id"
+      responsive={true}
+      tableLayout="fixed"
+    >
+      <EuiScreenReaderOnly>
+        <caption
+          className="euiTableCaption"
+        >
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
+              token="euiBasicTable.tableAutoCaptionWithPagination"
+              values={
+                Object {
+                  "itemCount": 2,
+                  "page": 1,
+                  "pageCount": 1,
+                  "totalItemCount": 2,
+                }
+              }
+            />
+          </EuiDelayRender>
+        </caption>
+      </EuiScreenReaderOnly>
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          data-test-subj="tableHeaderCell_name_0"
+          description="description"
+          key="_data_h_name_0"
+        >
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
+        <EuiTableRow
+          isSelected={false}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_0_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
+            setScopeRow={false}
+            textOnly={true}
+          >
+            name1
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
+            setScopeRow={false}
+            textOnly={true}
+          >
+            name2
+          </EuiTableRowCell>
+        </EuiTableRow>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
+      Object {
+        "tableCaption": undefined,
+      }
+    }
+  >
+    <Component />
+  </EuiI18n>
+</div>
+`;
+
 exports[`EuiBasicTable with pagination 1`] = `
 <div
   className="euiBasicTable"

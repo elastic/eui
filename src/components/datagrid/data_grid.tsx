@@ -48,7 +48,6 @@ import {
   DataGridCellPopoverContext,
   useCellPopover,
 } from './body/data_grid_cell_popover';
-import { providedPopoverContents } from './body/popover_utils';
 import { computeVisibleRows } from './utils/row_count';
 import { EuiDataGridPaginationRenderer } from './utils/data_grid_pagination';
 import {
@@ -117,6 +116,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
       schemaDetectors,
       rowCount,
       renderCellValue,
+      renderCellPopover,
       renderFooterCellValue,
       className,
       gridStyle,
@@ -124,7 +124,6 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
       pagination,
       sorting,
       inMemory,
-      popoverContents,
       onColumnResize,
       minSizeForControls,
       height,
@@ -140,14 +139,6 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     const gridStyleWithDefaults = useMemo(
       () => ({ ...startingStyles, ...gridStyle }),
       [gridStyle]
-    );
-
-    const mergedPopoverContents = useMemo(
-      () => ({
-        ...providedPopoverContents,
-        ...popoverContents,
-      }),
-      [popoverContents]
     );
 
     const [inMemoryValues, onCellRender] = useInMemoryValues(
@@ -353,23 +344,20 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     const interactiveCellId = useGeneratedHtmlId();
     const ariaLabelledById = useGeneratedHtmlId();
 
+    const ariaPage = pagination ? pagination.pageIndex + 1 : 1;
+    const ariaPageCount =
+      typeof pagination?.pageSize === 'number'
+        ? Math.ceil(rowCount / pagination.pageSize)
+        : 1;
     const ariaLabel = useEuiI18n(
       'euiDataGrid.ariaLabel',
       '{label}; Page {page} of {pageCount}.',
-      {
-        label: rest['aria-label'],
-        page: pagination ? pagination.pageIndex + 1 : 0,
-        pageCount: pagination ? Math.ceil(rowCount / pagination.pageSize) : 0,
-      }
+      { label: rest['aria-label'], page: ariaPage, pageCount: ariaPageCount }
     );
-
     const ariaLabelledBy = useEuiI18n(
       'euiDataGrid.ariaLabelledBy',
       'Page {page} of {pageCount}.',
-      {
-        page: pagination ? pagination.pageIndex + 1 : 0,
-        pageCount: pagination ? Math.ceil(rowCount / pagination.pageSize) : 0,
-      }
+      { page: ariaPage, pageCount: ariaPageCount }
     );
 
     // extract aria-label and/or aria-labelledby from `rest`
@@ -422,11 +410,10 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                     renderCellValue={renderCellValue}
                     columns={columns}
                     rowCount={
-                      inMemory.level === 'enhancements'
-                        ? // if `inMemory.level === enhancements` then we can only be sure the pagination's pageSize is available in memory
-                          pagination?.pageSize || rowCount
-                        : // otherwise, all of the data is present and usable
-                          rowCount
+                      inMemory.level === 'enhancements' && // if `inMemory.level === enhancements` then we can only be sure the pagination's pageSize is available in memory
+                      typeof pagination?.pageSize === 'number' // If pageSize is set to 'all' instead of a number, then all rows are being displayed
+                        ? pagination?.pageSize || rowCount
+                        : rowCount // otherwise, all of the data is present and usable
                     }
                     onCellRender={onCellRender}
                   />
@@ -464,9 +451,9 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                     headerIsInteractive={headerIsInteractive}
                     handleHeaderMutation={handleHeaderMutation}
                     schemaDetectors={allSchemaDetectors}
-                    popoverContents={mergedPopoverContents}
                     pagination={pagination}
                     renderCellValue={renderCellValue}
+                    renderCellPopover={renderCellPopover}
                     renderFooterCellValue={renderFooterCellValue}
                     rowCount={rowCount}
                     visibleRows={visibleRows}
