@@ -1,9 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiAvatar allows a name composed entirely of whitespace 1`] = `
+.emotion-0 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  overflow-x: hidden;
+  font-weight: 500;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: calc(16px * .9);
+  position: relative;
+  border-radius: 50%;
+}
+
+.emotion-0:after {
+  display: none;
+}
+
+.emotion-0:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  border: 1px solid rgba(52,55,65,0.05);
+}
+
 <div
   aria-label="aria-label"
-  class="euiAvatar euiAvatar--m euiAvatar--user testClass1 testClass2"
+  class="euiAvatar euiAvatar--m euiAvatar--user testClass1 testClass2 emotion-0"
   data-test-subj="test subject string"
   role="img"
   style="background-color:#ee789d;color:#000000"
@@ -18,9 +64,55 @@ exports[`EuiAvatar allows a name composed entirely of whitespace 1`] = `
 `;
 
 exports[`EuiAvatar is rendered 1`] = `
+.emotion-0 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  overflow-x: hidden;
+  font-weight: 500;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: calc(16px * .9);
+  position: relative;
+  border-radius: 50%;
+}
+
+.emotion-0:after {
+  display: none;
+}
+
+.emotion-0:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  border: 1px solid rgba(52,55,65,0.05);
+}
+
 <div
   aria-label="aria-label"
-  class="euiAvatar euiAvatar--m euiAvatar--user testClass1 testClass2"
+  class="euiAvatar euiAvatar--m euiAvatar--user testClass1 testClass2 emotion-0"
   data-test-subj="test subject string"
   role="img"
   style="background-color:#e4a6c7;color:#000000"
@@ -35,9 +127,55 @@ exports[`EuiAvatar is rendered 1`] = `
 `;
 
 exports[`EuiAvatar props color as null is rendered 1`] = `
+.emotion-0 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  overflow-x: hidden;
+  font-weight: 500;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: calc(16px * .9);
+  position: relative;
+  border-radius: 50%;
+}
+
+.emotion-0:after {
+  display: none;
+}
+
+.emotion-0:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  border: 1px solid rgba(52,55,65,0.05);
+}
+
 <div
   aria-label="name"
-  class="euiAvatar euiAvatar--m euiAvatar--user"
+  class="euiAvatar euiAvatar--m euiAvatar--user emotion-0"
   role="img"
   title="name"
 >
@@ -50,9 +188,56 @@ exports[`EuiAvatar props color as null is rendered 1`] = `
 `;
 
 exports[`EuiAvatar props color as plain is rendered 1`] = `
+.emotion-0 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  overflow-x: hidden;
+  font-weight: 500;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: calc(16px * .9);
+  position: relative;
+  border-radius: 50%;
+  background-color: #FFF;
+}
+
+.emotion-0:after {
+  display: none;
+}
+
+.emotion-0:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  border: 1px solid rgba(52,55,65,0.05);
+}
+
 <div
   aria-label="name"
-  class="euiAvatar euiAvatar--m euiAvatar--user euiAvatar--plain"
+  class="euiAvatar euiAvatar--m euiAvatar--user euiAvatar--plain emotion-0"
   role="img"
   title="name"
 >
@@ -65,9 +250,55 @@ exports[`EuiAvatar props color as plain is rendered 1`] = `
 `;
 
 exports[`EuiAvatar props color as string is rendered 1`] = `
+.emotion-0 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  overflow-x: hidden;
+  font-weight: 500;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: calc(16px * .9);
+  position: relative;
+  border-radius: 50%;
+}
+
+.emotion-0:after {
+  display: none;
+}
+
+.emotion-0:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  border: 1px solid rgba(52,55,65,0.05);
+}
+
 <div
   aria-label="name"
-  class="euiAvatar euiAvatar--m euiAvatar--user"
+  class="euiAvatar euiAvatar--m euiAvatar--user emotion-0"
   role="img"
   style="background-color:#000;color:#FFFFFF"
   title="name"
@@ -81,15 +312,62 @@ exports[`EuiAvatar props color as string is rendered 1`] = `
 `;
 
 exports[`EuiAvatar props iconType and iconColor as null is rendered 1`] = `
+.emotion-0 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  overflow-x: hidden;
+  font-weight: 500;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: calc(16px * .9);
+  position: relative;
+  border-radius: 50%;
+}
+
+.emotion-0:after {
+  display: none;
+}
+
+.emotion-0:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  border: 1px solid rgba(52,55,65,0.05);
+}
+
 <div
   aria-label="name"
-  class="euiAvatar euiAvatar--m euiAvatar--user"
+  class="euiAvatar euiAvatar--m euiAvatar--user emotion-0"
   role="img"
   style="background-color:#e4a6c7;color:#000000"
   title="name"
 >
   <span
-    class="euiAvatar__icon"
+    aria-label="name"
+    class="euiAvatar__icon emotion-1"
     data-euiicon-type="bolt"
   >
     name
@@ -98,15 +376,62 @@ exports[`EuiAvatar props iconType and iconColor as null is rendered 1`] = `
 `;
 
 exports[`EuiAvatar props iconType and iconColor is rendered 1`] = `
+.emotion-0 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  overflow-x: hidden;
+  font-weight: 500;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: calc(16px * .9);
+  position: relative;
+  border-radius: 50%;
+}
+
+.emotion-0:after {
+  display: none;
+}
+
+.emotion-0:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  border: 1px solid rgba(52,55,65,0.05);
+}
+
 <div
   aria-label="name"
-  class="euiAvatar euiAvatar--m euiAvatar--user"
+  class="euiAvatar euiAvatar--m euiAvatar--user emotion-0"
   role="img"
   style="background-color:#e4a6c7;color:#000000"
   title="name"
 >
   <span
-    class="euiAvatar__icon"
+    aria-label="name"
+    class="euiAvatar__icon emotion-1"
     color="primary"
     data-euiicon-type="bolt"
   >
@@ -116,15 +441,62 @@ exports[`EuiAvatar props iconType and iconColor is rendered 1`] = `
 `;
 
 exports[`EuiAvatar props iconType and iconSize is rendered 1`] = `
+.emotion-0 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  overflow-x: hidden;
+  font-weight: 500;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: calc(16px * .9);
+  position: relative;
+  border-radius: 50%;
+}
+
+.emotion-0:after {
+  display: none;
+}
+
+.emotion-0:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  border: 1px solid rgba(52,55,65,0.05);
+}
+
 <div
   aria-label="name"
-  class="euiAvatar euiAvatar--m euiAvatar--user"
+  class="euiAvatar euiAvatar--m euiAvatar--user emotion-0"
   role="img"
   style="background-color:#e4a6c7;color:#000000"
   title="name"
 >
   <span
-    class="euiAvatar__icon"
+    aria-label="name"
+    class="euiAvatar__icon emotion-1"
     color="#000000"
     data-euiicon-type="bolt"
   >
@@ -134,15 +506,62 @@ exports[`EuiAvatar props iconType and iconSize is rendered 1`] = `
 `;
 
 exports[`EuiAvatar props iconType is rendered 1`] = `
+.emotion-0 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  overflow-x: hidden;
+  font-weight: 500;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: calc(16px * .9);
+  position: relative;
+  border-radius: 50%;
+}
+
+.emotion-0:after {
+  display: none;
+}
+
+.emotion-0:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  border: 1px solid rgba(52,55,65,0.05);
+}
+
 <div
   aria-label="name"
-  class="euiAvatar euiAvatar--m euiAvatar--user"
+  class="euiAvatar euiAvatar--m euiAvatar--user emotion-0"
   role="img"
   style="background-color:#e4a6c7;color:#000000"
   title="name"
 >
   <span
-    class="euiAvatar__icon"
+    aria-label="name"
+    class="euiAvatar__icon emotion-1"
     color="#000000"
     data-euiicon-type="bolt"
   >
@@ -152,9 +571,55 @@ exports[`EuiAvatar props iconType is rendered 1`] = `
 `;
 
 exports[`EuiAvatar props imageUrl is rendered 1`] = `
+.emotion-0 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  overflow-x: hidden;
+  font-weight: 500;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: calc(16px * .9);
+  position: relative;
+  border-radius: 50%;
+}
+
+.emotion-0:after {
+  display: none;
+}
+
+.emotion-0:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  border: 1px solid rgba(52,55,65,0.05);
+}
+
 <div
   aria-label="name"
-  class="euiAvatar euiAvatar--m euiAvatar--user"
+  class="euiAvatar euiAvatar--m euiAvatar--user emotion-0"
   role="img"
   style="background-color:#e4a6c7;color:#000000;background-image:url(image url)"
   title="name"
@@ -162,9 +627,55 @@ exports[`EuiAvatar props imageUrl is rendered 1`] = `
 `;
 
 exports[`EuiAvatar props initials is rendered 1`] = `
+.emotion-0 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  overflow-x: hidden;
+  font-weight: 500;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: calc(16px * .9);
+  position: relative;
+  border-radius: 50%;
+}
+
+.emotion-0:after {
+  display: none;
+}
+
+.emotion-0:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  border: 1px solid rgba(52,55,65,0.05);
+}
+
 <div
   aria-label="name"
-  class="euiAvatar euiAvatar--m euiAvatar--user"
+  class="euiAvatar euiAvatar--m euiAvatar--user emotion-0"
   role="img"
   style="background-color:#e4a6c7;color:#000000"
   title="name"
@@ -178,9 +689,55 @@ exports[`EuiAvatar props initials is rendered 1`] = `
 `;
 
 exports[`EuiAvatar props initialsLength is rendered 1`] = `
+.emotion-0 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  overflow-x: hidden;
+  font-weight: 500;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: calc(16px * .9);
+  position: relative;
+  border-radius: 50%;
+}
+
+.emotion-0:after {
+  display: none;
+}
+
+.emotion-0:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  border: 1px solid rgba(52,55,65,0.05);
+}
+
 <div
   aria-label="name"
-  class="euiAvatar euiAvatar--m euiAvatar--user"
+  class="euiAvatar euiAvatar--m euiAvatar--user emotion-0"
   role="img"
   style="background-color:#e4a6c7;color:#000000"
   title="name"
@@ -194,8 +751,57 @@ exports[`EuiAvatar props initialsLength is rendered 1`] = `
 `;
 
 exports[`EuiAvatar props isDisabled is rendered 1`] = `
+.emotion-0 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  overflow-x: hidden;
+  font-weight: 500;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: calc(16px * .9);
+  position: relative;
+  border-radius: 50%;
+  cursor: not-allowed;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.emotion-0:after {
+  display: none;
+}
+
+.emotion-0:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  border: 1px solid rgba(52,55,65,0.05);
+}
+
 <div
-  class="euiAvatar euiAvatar--m euiAvatar--user euiAvatar-isDisabled"
+  class="euiAvatar euiAvatar--m euiAvatar--user euiAvatar-isDisabled emotion-0"
   role="presentation"
   style="background-color:#e4a6c7;color:#000000"
   title="name"
@@ -209,9 +815,55 @@ exports[`EuiAvatar props isDisabled is rendered 1`] = `
 `;
 
 exports[`EuiAvatar props size l is rendered 1`] = `
+.emotion-0 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  overflow-x: hidden;
+  font-weight: 500;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: calc(24px * .8);
+  position: relative;
+  border-radius: 50%;
+}
+
+.emotion-0:after {
+  display: none;
+}
+
+.emotion-0:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  border: 1px solid rgba(52,55,65,0.05);
+}
+
 <div
   aria-label="name"
-  class="euiAvatar euiAvatar--l euiAvatar--user"
+  class="euiAvatar euiAvatar--l euiAvatar--user emotion-0"
   role="img"
   style="background-color:#e4a6c7;color:#000000"
   title="name"
@@ -225,9 +877,55 @@ exports[`EuiAvatar props size l is rendered 1`] = `
 `;
 
 exports[`EuiAvatar props size m is rendered 1`] = `
+.emotion-0 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  overflow-x: hidden;
+  font-weight: 500;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: calc(16px * .9);
+  position: relative;
+  border-radius: 50%;
+}
+
+.emotion-0:after {
+  display: none;
+}
+
+.emotion-0:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  border: 1px solid rgba(52,55,65,0.05);
+}
+
 <div
   aria-label="name"
-  class="euiAvatar euiAvatar--m euiAvatar--user"
+  class="euiAvatar euiAvatar--m euiAvatar--user emotion-0"
   role="img"
   style="background-color:#e4a6c7;color:#000000"
   title="name"
@@ -241,9 +939,55 @@ exports[`EuiAvatar props size m is rendered 1`] = `
 `;
 
 exports[`EuiAvatar props size s is rendered 1`] = `
+.emotion-0 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  overflow-x: hidden;
+  font-weight: 500;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
+  position: relative;
+  border-radius: 50%;
+}
+
+.emotion-0:after {
+  display: none;
+}
+
+.emotion-0:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  border: 1px solid rgba(52,55,65,0.05);
+}
+
 <div
   aria-label="name"
-  class="euiAvatar euiAvatar--s euiAvatar--user"
+  class="euiAvatar euiAvatar--s euiAvatar--user emotion-0"
   role="img"
   style="background-color:#e4a6c7;color:#000000"
   title="name"
@@ -257,9 +1001,55 @@ exports[`EuiAvatar props size s is rendered 1`] = `
 `;
 
 exports[`EuiAvatar props size xl is rendered 1`] = `
+.emotion-0 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  overflow-x: hidden;
+  font-weight: 500;
+  width: calc(16px * 4);
+  height: calc(16px * 4);
+  line-height: calc(16px * 4);
+  font-size: calc(32px * .8);
+  position: relative;
+  border-radius: 50%;
+}
+
+.emotion-0:after {
+  display: none;
+}
+
+.emotion-0:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  border: 1px solid rgba(52,55,65,0.05);
+}
+
 <div
   aria-label="name"
-  class="euiAvatar euiAvatar--xl euiAvatar--user"
+  class="euiAvatar euiAvatar--xl euiAvatar--user emotion-0"
   role="img"
   style="background-color:#e4a6c7;color:#000000"
   title="name"
@@ -273,9 +1063,55 @@ exports[`EuiAvatar props size xl is rendered 1`] = `
 `;
 
 exports[`EuiAvatar props type is rendered 1`] = `
+.emotion-0 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  overflow-x: hidden;
+  font-weight: 500;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  font-size: calc(16px * .9);
+  position: relative;
+  border-radius: 6px;
+}
+
+.emotion-0:after {
+  display: none;
+}
+
+.emotion-0:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 6px;
+  content: '';
+  pointer-events: none;
+  border: 1px solid rgba(52,55,65,0.05);
+}
+
 <div
   aria-label="name"
-  class="euiAvatar euiAvatar--m euiAvatar--space"
+  class="euiAvatar euiAvatar--m euiAvatar--space emotion-0"
   role="img"
   style="background-color:#e4a6c7;color:#000000"
   title="name"

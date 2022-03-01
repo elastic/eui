@@ -19,6 +19,52 @@ exports[`EuiCommentTimeline is rendered 1`] = `
 `;
 
 exports[`EuiCommentTimeline props timelineIcon is rendered 1`] = `
+.emotion-0 {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  vertical-align: middle;
+  overflow-x: hidden;
+  font-weight: 500;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: calc(24px * .8);
+  position: relative;
+  border-radius: 50%;
+}
+
+.emotion-0:after {
+  display: none;
+}
+
+.emotion-0:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  border: 1px solid rgba(52,55,65,0.05);
+}
+
 <div
   class="euiCommentTimeline"
 >
@@ -30,7 +76,7 @@ exports[`EuiCommentTimeline props timelineIcon is rendered 1`] = `
     >
       <div
         aria-label="Mario"
-        class="euiAvatar euiAvatar--l euiAvatar--user"
+        class="euiAvatar euiAvatar--l euiAvatar--user emotion-0"
         role="img"
         style="background-color:#f1d86f;color:#000000"
         title="Mario"
