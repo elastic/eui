@@ -301,7 +301,10 @@ export class EuiDataGridCell extends Component<
       this.handleCellPopover();
     }
 
-    if (this.props.columnId !== prevProps.columnId) {
+    if (
+      this.props.columnId !== prevProps.columnId ||
+      this.props.rowIndex !== prevProps.rowIndex
+    ) {
       this.setCellProps({});
     }
   }

@@ -52,7 +52,8 @@
     "**/prismjs": "1.27.0",
     "**/trim": "0.0.3",
     "**/node-sass": "^6.0.1",
-    "**/react": "^17.0.0"
+    "**/react": "^17.0.0",
+    "**/known-css-properties": "0.24.0"
   },
   "pre-commit": [
     "test-staged"
