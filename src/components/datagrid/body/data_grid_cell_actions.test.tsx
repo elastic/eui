@@ -28,9 +28,7 @@ describe('EuiDataGridCellActions', () => {
   };
 
   it('renders an expand button', () => {
-    const component = shallow(
-      <EuiDataGridCellActions {...requiredProps} isExpandable={true} />
-    );
+    const component = shallow(<EuiDataGridCellActions {...requiredProps} />);
 
     expect(component).toMatchInlineSnapshot(`
       <div
@@ -66,26 +64,9 @@ describe('EuiDataGridCellActions', () => {
     const component = shallow(
       <EuiDataGridCellActions
         {...requiredProps}
-        isExpandable={false}
         column={{ id: 'someId', cellActions: [MockAction] }}
       />
     );
-
-    expect(component).toMatchInlineSnapshot(`
-      <div
-        className="euiDataGridRowCell__expandActions"
-      >
-        <MockAction
-          Component={[Function]}
-          closePopover={[MockFunction]}
-          colIndex={0}
-          columnId="someId"
-          isExpanded={false}
-          key="0"
-          rowIndex={0}
-        />
-      </div>
-    `);
 
     const button = component.childAt(0).renderProp('Component');
     expect(button({ iconType: 'eye' })).toMatchInlineSnapshot(`
@@ -102,7 +83,6 @@ describe('EuiDataGridCellActions', () => {
     const component = shallow(
       <EuiDataGridCellActions
         {...requiredProps}
-        isExpandable={true}
         column={{ id: 'someId', cellActions: [MockAction] }}
       />
     );
