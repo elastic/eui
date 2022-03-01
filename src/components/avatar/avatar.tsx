@@ -11,8 +11,14 @@ import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import classNames from 'classnames';
 
 import { isColorDark, hexToRgb, isValidHex } from '../../services/color';
-import { euiPaletteColorBlindBehindText, toInitials } from '../../services';
+import {
+  euiPaletteColorBlindBehindText,
+  toInitials,
+  useEuiTheme,
+} from '../../services';
 import { IconType, EuiIcon, IconSize, IconColor } from '../icon';
+
+import { euiAvatarStyles } from './avatar.styles';
 
 const sizeToClassNameMap = {
   s: 'euiAvatar--s',
@@ -118,6 +124,9 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   style,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiAvatarStyles(euiTheme);
+
   const visColors = euiPaletteColorBlindBehindText();
 
   const classes = classNames(
@@ -166,6 +175,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   } else if (iconType) {
     content = (
       <EuiIcon
+        css={[styles.euiAvatarIcon]}
         className="euiAvatar__icon"
         size={iconSize || size}
         type={iconType}
@@ -177,6 +187,13 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
 
   return (
     <div
+      css={[
+        styles.euiAvatar,
+        styles[size],
+        styles[type],
+        isDisabled && styles.isDisabled,
+        color === 'plain' && styles.plain,
+      ]}
       className={classes}
       style={avatarStyle}
       aria-label={isDisabled ? undefined : name}
