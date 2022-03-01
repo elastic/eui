@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+/// <reference types="../../../cypress/support"/>
+
 import React from 'react';
 
 import { EuiSuggest, EuiSuggestionProps } from './suggest';
@@ -49,14 +51,14 @@ describe('EuiSuggest', () => {
     });
   });
 
-  describe('onInputChange', () => {
+  describe('onInput', () => {
     it('is called on each key input value change', () => {
       const handler = cy.stub();
       cy.mount(
         <EuiSuggest
           aria-label="onInputChange"
           suggestions={sampleItems}
-          onInputChange={handler}
+          onInput={handler}
         />
       );
 
@@ -69,14 +71,14 @@ describe('EuiSuggest', () => {
     });
   });
 
-  describe('onSearchChange', () => {
+  describe('onSearch', () => {
     it('is called on each key input value change', () => {
       const handler = cy.stub();
       cy.mount(
         <EuiSuggest
           aria-label="onSearchChange"
           suggestions={sampleItems}
-          onSearchChange={handler}
+          onSearch={handler}
         />
       );
 
