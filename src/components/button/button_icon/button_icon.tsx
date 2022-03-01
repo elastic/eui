@@ -180,8 +180,9 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
     );
   }
 
-  // 'original' size doesn't exist in `EuiLoadingSpinner`
-  // so we're changing it to the default value
+  // `original` size doesn't exist in `EuiLoadingSpinner`
+  // when the `iconSize` is `original` we don't pass any size to the `EuiLoadingSpinner`
+  // so it gets the default size
   const loadingSize = iconSize === 'original' ? undefined : iconSize;
 
   if (iconType && isLoading) {
