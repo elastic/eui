@@ -13,7 +13,6 @@ export default () => {
     {
       text: 'Animals',
       href: '#',
-      color: 'primary',
       onClick: (e) => {
         e.preventDefault();
       },

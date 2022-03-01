@@ -13,7 +13,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
       class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiLink--subdued euiBreadcrumb__content customClass"
+        class="euiLink euiLink--primary euiBreadcrumb__content customClass"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -70,6 +70,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
         class="euiLink euiLink--subdued euiBreadcrumb__content"
         href="#"
         rel="noreferrer"
+        title="Boa constrictor has an error"
       >
         Boa constrictor
       </a>
@@ -101,7 +102,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
       class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiLink--subdued euiBreadcrumb__content customClass"
+        class="euiLink euiLink--primary euiBreadcrumb__content customClass"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -148,6 +149,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
         class="euiLink euiLink--subdued euiBreadcrumb__content"
         href="#"
         rel="noreferrer"
+        title="Boa constrictor has an error"
       >
         Boa constrictor
       </a>
@@ -189,7 +191,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
       class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiLink--subdued euiBreadcrumb__content customClass"
+        class="euiLink euiLink--primary euiBreadcrumb__content customClass"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -253,6 +255,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
         class="euiLink euiLink--subdued euiBreadcrumb__content"
         href="#"
         rel="noreferrer"
+        title="Boa constrictor has an error"
       >
         Boa constrictor
       </a>
@@ -328,7 +331,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
       class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiLink--subdued euiBreadcrumb__content customClass"
+        class="euiLink euiLink--primary euiBreadcrumb__content customClass"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -392,6 +395,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
         class="euiLink euiLink--subdued euiBreadcrumb__content"
         href="#"
         rel="noreferrer"
+        title="Boa constrictor has an error"
       >
         Boa constrictor
       </a>
@@ -422,7 +426,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
       class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiLink--subdued euiBreadcrumb__content customClass"
+        class="euiLink euiLink--primary euiBreadcrumb__content customClass"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -480,6 +484,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
         class="euiLink euiLink--subdued euiBreadcrumb__content"
         href="#"
         rel="noreferrer"
+        title="Boa constrictor has an error"
       >
         Boa constrictor
       </a>
@@ -510,7 +515,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
       class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiLink--subdued euiBreadcrumb__content customClass"
+        class="euiLink euiLink--primary euiBreadcrumb__content customClass"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -568,6 +573,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
         class="euiLink euiLink--subdued euiBreadcrumb__content"
         href="#"
         rel="noreferrer"
+        title="Boa constrictor has an error"
       >
         Boa constrictor
       </a>
@@ -643,7 +649,7 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
       class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiLink--subdued euiBreadcrumb__content customClass"
+        class="euiLink euiLink--primary euiBreadcrumb__content customClass"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -702,6 +708,7 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
         class="euiLink euiLink--subdued euiBreadcrumb__content"
         href="#"
         rel="noreferrer"
+        title="Boa constrictor has an error"
       >
         Boa constrictor
       </a>
