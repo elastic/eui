@@ -9,10 +9,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
+import { EuiDataGridColumnCellAction } from '../data_grid_types';
 import {
   EuiDataGridCellActions,
   EuiDataGridCellPopoverActions,
 } from './data_grid_cell_actions';
+
+const MockAction: EuiDataGridColumnCellAction = ({ Component }) => (
+  <Component iconType="starEmpty" data-test-subj="mockCellAction" />
+);
 
 describe('EuiDataGridCellActions', () => {
   const requiredProps = {
@@ -62,7 +67,7 @@ describe('EuiDataGridCellActions', () => {
       <EuiDataGridCellActions
         {...requiredProps}
         isExpandable={false}
-        column={{ id: 'someId', cellActions: [() => <button />] }}
+        column={{ id: 'someId', cellActions: [MockAction] }}
       />
     );
 
@@ -70,7 +75,7 @@ describe('EuiDataGridCellActions', () => {
       <div
         className="euiDataGridRowCell__expandActions"
       >
-        <Component
+        <MockAction
           Component={[Function]}
           closePopover={[MockFunction]}
           colIndex={0}
@@ -98,7 +103,7 @@ describe('EuiDataGridCellActions', () => {
       <EuiDataGridCellActions
         {...requiredProps}
         isExpandable={true}
-        column={{ id: 'someId', cellActions: [() => <button />] }}
+        column={{ id: 'someId', cellActions: [MockAction] }}
       />
     );
 
@@ -106,7 +111,7 @@ describe('EuiDataGridCellActions', () => {
       <div
         className="euiDataGridRowCell__expandActions"
       >
-        <Component
+        <MockAction
           Component={[Function]}
           closePopover={[MockFunction]}
           colIndex={0}
@@ -133,7 +138,7 @@ describe('EuiDataGridCellPopoverActions', () => {
       <EuiDataGridCellPopoverActions
         colIndex={0}
         rowIndex={0}
-        column={{ id: 'someId', cellActions: [() => <button />] }}
+        column={{ id: 'someId', cellActions: [MockAction] }}
       />
     );
 
@@ -147,7 +152,7 @@ describe('EuiDataGridCellPopoverActions', () => {
           <EuiFlexItem
             key="0"
           >
-            <Component
+            <MockAction
               Component={[Function]}
               colIndex={0}
               columnId="someId"
@@ -159,11 +164,8 @@ describe('EuiDataGridCellPopoverActions', () => {
       </EuiPopoverFooter>
     `);
 
-    const button = component
-      .childAt(0)
-      .childAt(0)
-      .childAt(0) // .find('Component') doesn't work, for whatever reason
-      .renderProp('Component');
+    const action = component.find('MockAction') as any;
+    const button = action.renderProp('Component');
     expect(button({ iconType: 'function' })).toMatchInlineSnapshot(`
       <EuiButtonEmpty
         iconType="function"
