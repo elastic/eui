@@ -77,12 +77,11 @@ const RenderCellValue = ({ rowIndex, columnId, setCellProps }) => {
           data[rowIndex][columnId].match(/\d+\.\d+/)[0],
           10
         );
-        numeric > 800 &&
-          setCellProps({
-            style: {
-              backgroundColor: `rgba(0, 255, 0, ${numeric * 0.0002})`,
-            },
-          });
+        setCellProps({
+          style: {
+            backgroundColor: `rgba(0, 255, 0, ${numeric * 0.0002})`,
+          },
+        });
       }
     }
   }, [rowIndex, columnId, setCellProps, data]);
