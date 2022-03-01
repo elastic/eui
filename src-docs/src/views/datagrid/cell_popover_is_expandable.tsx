@@ -37,7 +37,7 @@ const columns: EuiDataGridColumn[] = [
   },
   {
     id: 'boolean',
-    isExpandable: false,
+    isExpandable: true, // Overridden by setCellProps for specific cells
   },
 ];
 
@@ -58,11 +58,21 @@ export default () => {
 
   return (
     <EuiDataGrid
-      aria-label="Data grid example of columns.isExpandable"
+      aria-label="Data grid example of isExpandable false"
       columns={columns}
       columnVisibility={{ visibleColumns, setVisibleColumns }}
       rowCount={data.length}
-      renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+      renderCellValue={({ rowIndex, columnId, setCellProps }) => {
+        const value = data[rowIndex][columnId];
+
+        useEffect(() => {
+          if (columnId === 'boolean' && value === 'false') {
+            setCellProps({ isExpandable: false });
+          }
+        }, [columnId, value, setCellProps]);
+
+        return value;
+      }}
     />
   );
 };
