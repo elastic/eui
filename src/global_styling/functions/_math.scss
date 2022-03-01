@@ -1,63 +1,91 @@
-//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow
-@function pow($number, $power) {
-  @if ($power != $power or ($power != 0 and $power == $power / 2)) {
-    @return $power;
+//Forked by @elastic/eui from strarsis/sass-math-pow see https://github.com/strarsis/sass-math-pow
+
+/**
+The MIT License (MIT)
+
+Copyright (c) 2015 strarsis
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+ */
+
+// By drtimofey, script based on script by davidkpiano, see these links:
+// https://github.com/thoughtbot/bitters/issues/167
+// https://github.com/thoughtbot/bourbon/issues/717
+// https://gist.github.com/davidkpiano/ad6e6771df050ff3727f
+//
+
+
+@function pow($number, $exp) {
+  $exp1: round($exp);
+  $result: powInt($number, $exp1);
+
+  @if ($exp1 != $exp) {
+    $result: $result * mathExp(($exp - $exp1) * mathLn($number));
   }
-  @if ($power == 1) {
-    @return $number;
-  }
-  @if ($power == 0) {
+
+  @return $result;
+}
+
+@function powInt($number, $exp) {
+  @if $exp == 0 {
     @return 1;
-  }
-  @if ($power < 0) {
-    @return 1 / pow($number, -$power);
-  }
-  @if (0 < $power and $power < 2) {
-    $hasLeadingOne: false;
-    @if (floor($power) == 1) {
-      $power: $power - 1;
-      $hasLeadingOne: true;
-    } @else {
-      $hasLeadingOne: false;
-    }
-    $doublePower: pow($number, $power * 2);
-    $fullPower: nthRoot($doublePower, 2);
-    @if ($hasLeadingOne) {
-      $fullPower: $fullPower * $number;
-    }
-    @return $fullPower;
-  } @else if (getDecimal($power) != 0) {
-    $wholePower: floor($power);
-    $decimalPower: getDecimal($power);
-    @return pow($number, $wholePower) * pow($number, $decimalPower);
+  } @else if $exp < 0 {
+    @return 1 / powInt($number, -$exp);
   } @else {
-    $hasTrailingOne: $power % 2 == 1;
-    @if ($hasTrailingOne) {
-      $power: $power - 1;
+    $e: floor($exp / 2);
+    $pow: pow($number, $e);
+    @if $e * 2 == $exp {
+      @return $pow * $pow;
+    } @else {
+      @return $pow * $pow * $number;
     }
-    $halfPower: pow($number, floor($power / 2));
-    $fullPower: $halfPower * $halfPower;
-    @if ($hasTrailingOne) {
-      $fullPower: $fullPower * $number;
-    }
-    @return $fullPower;
   }
 }
 
-@function getDecimal($number) {
-  @if ($number < 0) {
-    $number: -$number;
+@function mathExp($value) {
+  $item: 1;
+  $result: 1;
+
+  @for $index from 1 to 100 {
+    $item: $item * $value / $index;
+    $result: $result + $item;
   }
-  @return $number % 1;
+
+  @return $result;
 }
 
-// From: http://rosettacode.org/wiki/Nth_root#JavaScript
-@function nthRoot($num, $n: 2, $prec: 12) {
-  $x: 1;
+@function mathLn($value) {
+  $tenExp: 0;
+  $lnTen: 2.30258509;
 
-  @for $i from 0 through $prec {
-    $x: 1 / $n * (($n - 1) * $x + ($num / pow($x, $n - 1)));
+  @while ($value > 1) {
+    $tenExp: $tenExp + 1;
+    $value: $value / 10;
   }
 
-  @return $x;
+  $item: -1;
+  $result: 0;
+
+  @for $index from 1 to 100 {
+    $item: $item * (1 - $value);
+    $result: $result + $item / $index;
+  }
+
+  @return $result + $tenExp * $lnTen;
 }
