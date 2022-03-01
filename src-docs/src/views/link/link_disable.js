@@ -7,7 +7,7 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-export const LinkDisable = () => {
+export default () => {
   const [disableLink, setDisableLink] = useState(true);
 
   return (
