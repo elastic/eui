@@ -4,6 +4,7 @@ import { EuiPageHeader, EuiButton } from '../../../../src/components';
 
 export default () => (
   <EuiPageHeader
+    bottomBorder
     pageTitle="Page title"
     tabs={[
       {
@@ -18,6 +19,5 @@ export default () => (
       <EuiButton fill>Add something</EuiButton>,
       <EuiButton>Do something</EuiButton>,
     ]}
-    bottomBorder
   />
 );

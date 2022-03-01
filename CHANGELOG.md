@@ -1,6 +1,9 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `49.0.0`.
+- Updated `EuiComboBox` to WAI-ARIA 1.2 pattern and improved keyboard navigation ([#5636](https://github.com/elastic/eui/pull/5636))
+- Added `readOnly` prop to `EuiMarkdownEditor` ([#5627](https://github.com/elastic/eui/pull/5627))
+- Added support for supplying `breadcrumbs` and `breadcrumbProps` directly to `EuiPageHeader` ([#5634](https://github.com/elastic/eui/pull/5634))
+- Extended props of `EuiBreadcrumb` to include `HTMLElement` and `color` inherited from `EuiLink` ([#5634](https://github.com/elastic/eui/pull/5634))
 
 ## [`49.0.0`](https://github.com/elastic/eui/tree/v49.0.0)
 
@@ -13,9 +16,6 @@ No public interface changes since `49.0.0`.
 
 - Fixed `EuiImage` images' width in small containers by adding `max-width: 100%` ([#5547](https://github.com/elastic/eui/issues/5547))
 - Fixed `EuiTablePagination` layout in small containers by adding `wrap` ([#5547](https://github.com/elastic/eui/issues/5547))
-
-**Bug fixes**
-
 - Fixed `EuiDataGrid` throwing a console error when grids without trailing control columns are sorted and then all columns are hidden ([#5635](https://github.com/elastic/eui/issues/5635))
 
 **Breaking changes**
