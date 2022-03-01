@@ -110,6 +110,21 @@ describe('EuiDataGridCellActions', () => {
       </div>
     `);
   });
+
+  it('does not render more than the first two primary cell actions', () => {
+    const component = shallow(
+      <EuiDataGridCellActions
+        {...requiredProps}
+        isExpandable={true}
+        column={{
+          id: 'someId',
+          cellActions: [MockAction, MockAction, MockAction],
+        }}
+      />
+    );
+
+    expect(component.find('MockAction')).toHaveLength(2);
+  });
 });
 
 describe('EuiDataGridCellPopoverActions', () => {
@@ -123,25 +138,27 @@ describe('EuiDataGridCellPopoverActions', () => {
     );
 
     expect(component).toMatchInlineSnapshot(`
-      <EuiPopoverFooter>
-        <EuiFlexGroup
-          gutterSize="s"
-          responsive={false}
-          wrap={true}
-        >
-          <EuiFlexItem
-            key="0"
+      <Fragment>
+        <EuiPopoverFooter>
+          <EuiFlexGroup
+            gutterSize="s"
+            responsive={false}
+            wrap={true}
           >
-            <MockAction
-              Component={[Function]}
-              colIndex={0}
-              columnId="someId"
-              isExpanded={true}
-              rowIndex={0}
-            />
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      </EuiPopoverFooter>
+            <EuiFlexItem
+              key="0"
+            >
+              <MockAction
+                Component={[Function]}
+                colIndex={0}
+                columnId="someId"
+                isExpanded={true}
+                rowIndex={0}
+              />
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiPopoverFooter>
+      </Fragment>
     `);
 
     const action = component.find('MockAction') as any;
@@ -154,6 +171,72 @@ describe('EuiDataGridCellPopoverActions', () => {
     `);
   });
 
+  it('renders the first two primary actions in their own footer, and all remaining secondary actions in a column footer', () => {
+    const component = shallow(
+      <EuiDataGridCellPopoverActions
+        colIndex={0}
+        rowIndex={0}
+        column={{
+          id: 'someId',
+          cellActions: [MockAction, MockAction, MockAction],
+        }}
+      />
+    );
+
+    expect(component).toMatchInlineSnapshot(`
+      <Fragment>
+        <EuiPopoverFooter>
+          <EuiFlexGroup
+            gutterSize="s"
+            responsive={false}
+            wrap={true}
+          >
+            <EuiFlexItem
+              key="0"
+            >
+              <MockAction
+                Component={[Function]}
+                colIndex={0}
+                columnId="someId"
+                isExpanded={true}
+                rowIndex={0}
+              />
+            </EuiFlexItem>
+            <EuiFlexItem
+              key="1"
+            >
+              <MockAction
+                Component={[Function]}
+                colIndex={0}
+                columnId="someId"
+                isExpanded={true}
+                rowIndex={0}
+              />
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiPopoverFooter>
+        <EuiPopoverFooter>
+          <EuiFlexGroup
+            direction="column"
+            gutterSize="s"
+          >
+            <EuiFlexItem
+              key="0"
+            >
+              <MockAction
+                Component={[Function]}
+                colIndex={0}
+                columnId="someId"
+                isExpanded={true}
+                rowIndex={0}
+              />
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiPopoverFooter>
+      </Fragment>
+    `);
+  });
+
   it('does not render anything if the column has no cell actions', () => {
     const component = shallow(
       <EuiDataGridCellPopoverActions
@@ -163,6 +246,6 @@ describe('EuiDataGridCellPopoverActions', () => {
       />
     );
 
-    expect(component.isEmptyRender()).toBe(true);
+    expect(component).toMatchInlineSnapshot('<Fragment />');
   });
 });
