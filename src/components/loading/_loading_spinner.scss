@@ -19,6 +19,11 @@
   }
 }
 
+.euiLoadingSpinner--small,
+.euiLoadingSpinner--medium {
+  border-width: 1px;
+}
+
 @keyframes euiLoadingSpinner {
   from {
     transform: rotate(0deg);
