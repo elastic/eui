@@ -4,7 +4,7 @@ import { GuideSectionTypes } from '../../../components';
 import { EuiCode, EuiCallOut, EuiSpacer } from '../../../../../src';
 
 import IsDetailsPopover from './cell_popover_is_details';
-const IsDetailsPopoverSource = require('!!raw-loader!./cell_popover_is_details');
+const isDetailsPopoverSource = require('!!raw-loader!./cell_popover_is_details');
 
 import RenderCellPopover from './cell_popover_rendercellpopover';
 const renderCellPopoverSource = require('!!raw-loader!./cell_popover_rendercellpopover');
@@ -19,7 +19,6 @@ import {
 } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
 export const DataGridCellPopoverExample = {
-  title: 'Data grid cell popovers',
   sections: [
     {
       title: 'Conditionally customizing cell popover content',
@@ -48,7 +47,7 @@ export const DataGridCellPopoverExample = {
       source: [
         {
           type: GuideSectionTypes.TSX,
-          code: IsDetailsPopoverSource,
+          code: isDetailsPopoverSource,
         },
       ],
       props: {
