@@ -4,6 +4,8 @@
 - Added `readOnly` prop to `EuiMarkdownEditor` ([#5627](https://github.com/elastic/eui/pull/5627))
 - Added support for supplying `breadcrumbs` and `breadcrumbProps` directly to `EuiPageHeader` ([#5634](https://github.com/elastic/eui/pull/5634))
 - Extended props of `EuiBreadcrumb` to include `HTMLElement` and `color` inherited from `EuiLink` ([#5634](https://github.com/elastic/eui/pull/5634))
+- Added `"xxl"` size to `EuiLoadingSpinner` ([#0000](https://github.com/elastic/eui/pull/0000))
+- Added `isLoading` prop to `EuiButtonIcon` ([#0000](https://github.com/elastic/eui/pull/0000))
 
 ## [`49.0.0`](https://github.com/elastic/eui/tree/v49.0.0)
 
