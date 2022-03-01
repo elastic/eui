@@ -19,6 +19,7 @@ import {
   EuiSelect,
   EuiTextArea,
   EuiText,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import {
@@ -128,23 +129,6 @@ const formControlLayoutSource = require('!!raw-loader!./form_control_layout');
 import FormControlLayoutRange from './form_control_layout_range';
 const formControlLayoutRangeSource = require('!!raw-loader!./form_control_layout_range');
 
-const commonLabelPlaceholderText = (formControl) => (
-  <>
-    <p>
-      For accessibility, a label must be provided. The easiest way is to wrap
-      the <strong>{formControl}</strong> in a{' '}
-      <Link to="/forms/form-layouts#form-and-form-rows">EuiFormRow</Link> with a{' '}
-      <EuiCode>label</EuiCode>, adding an <EuiCode>aria-label</EuiCode> prop, or
-      passing a text node ID to the <EuiCode>aria-labelledby</EuiCode> prop.
-    </p>
-    <p>
-      Use the <EuiCode>placeholder</EuiCode> prop to provide a short hint that
-      describes the expected value of the text field. Placeholders should never
-      replace a label but used as a hint in addition to the label.
-    </p>
-  </>
-);
-
 export const FormControlsExample = {
   title: 'Form controls',
   intro: (
@@ -178,6 +162,13 @@ export const FormControlsExample = {
             the <EuiCode>aria-labelledby</EuiCode> prop.
           </p>
         </EuiCallOut>
+        <EuiSpacer />
+        <p>
+          Use the <EuiCode>placeholder</EuiCode> prop to provide a short hint
+          that describes the expected value of the text field. Placeholders
+          should never replace a label but used as a hint in addition to the
+          label.
+        </p>
       </EuiText>
     </>
   ),
@@ -197,7 +188,6 @@ export const FormControlsExample = {
             <EuiCode>{'<input type="text">'}</EuiCode> element. Use a{' '}
             <strong>EuiFieldText</strong> to allow users to enter or edit text.
           </p>
-          {commonLabelPlaceholderText('EuiTextField')}
         </>
       ),
       snippet: fieldTextSnippet,
@@ -219,11 +209,10 @@ export const FormControlsExample = {
         <>
           <p>
             This component renders a basic HTML{' '}
-            <EuiCode>{'<input type="search">'}</EuiCode> element. A{' '}
-            <strong>EuiFieldSearch</strong> is similar to a text field but
-            designed for searches.
+            <EuiCode>{'<input type="search">'}</EuiCode> element. Use a{' '}
+            <strong>EuiFieldSearch</strong> to allow users to enter search
+            queries.
           </p>
-          {commonLabelPlaceholderText('EuiFieldSearch')}
         </>
       ),
       snippet: fieldSearchSnippet,
@@ -248,7 +237,6 @@ export const FormControlsExample = {
             <EuiCode>{'<input type="number">'}</EuiCode> element. Use a{' '}
             <strong>EuiFieldNumber</strong> to allow users to enter numbers.
           </p>
-          {commonLabelPlaceholderText('EuiFieldNumber')}
         </>
       ),
       snippet: fieldNumberSnippet,
@@ -282,7 +270,6 @@ export const FormControlsExample = {
             show/obfuscate the content. This option makes the experience more
             user-friendly and accessible.
           </p>
-          {commonLabelPlaceholderText('EuiFieldPassword')}
         </>
       ),
       snippet: fieldPasswordSnippet,
@@ -348,9 +335,8 @@ export const FormControlsExample = {
             This component renders a basic HTML{' '}
             <EuiCode>{'<textarea> '}</EuiCode> element. Use a{' '}
             <strong>EuiTextArea</strong> to allow users to enter an amount of
-            text that’s longer than a single line.
+            text that&apos;s longer than a single line.
           </p>
-          {commonLabelPlaceholderText('EuiTextArea')}
         </>
       ),
       snippet: textAreaSnippet,
