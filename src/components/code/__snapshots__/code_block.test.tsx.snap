@@ -40,7 +40,7 @@ exports[`EuiCodeBlock dynamic content updates DOM when input changes 2`] = `
 </div>
 `;
 
-exports[`EuiCodeBlock full screen displays content in fullscreen mode 1`] = `
+exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
 <div
   className="testClass1 testClass2 euiCodeBlock euiCodeBlock--hasControl euiCodeBlock--fontLarge euiCodeBlock--paddingLarge euiCodeBlock-isFullScreen"
 >
