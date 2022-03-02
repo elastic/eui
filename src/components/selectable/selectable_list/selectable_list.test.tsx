@@ -255,5 +255,19 @@ describe('EuiSelectableListItem', () => {
         });
       });
     });
+
+    describe('textWrap', () => {
+      test('can be "wrap"', () => {
+        const component = render(
+          <EuiSelectableList
+            options={options}
+            textWrap="wrap"
+            {...selectableListRequiredProps}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });

@@ -11,5 +11,7 @@ export default () => (
     <EuiLoadingSpinner size="l" />
     &nbsp;&nbsp;
     <EuiLoadingSpinner size="xl" />
+    &nbsp;&nbsp;
+    <EuiLoadingSpinner size="xxl" />
   </div>
 );

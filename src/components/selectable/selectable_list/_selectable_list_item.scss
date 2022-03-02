@@ -50,6 +50,9 @@
 }
 
 .euiSelectableListItem__text {
-  @include euiTextTruncate;
   flex-grow: 1; // Pushes appended content to the far right
+
+  &--truncate {
+    @include euiTextTruncate;
+  }
 }

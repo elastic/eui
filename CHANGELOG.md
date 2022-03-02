@@ -4,7 +4,12 @@
 - Added `readOnly` prop to `EuiMarkdownEditor` ([#5627](https://github.com/elastic/eui/pull/5627))
 - Added support for supplying `breadcrumbs` and `breadcrumbProps` directly to `EuiPageHeader` ([#5634](https://github.com/elastic/eui/pull/5634))
 - Extended props of `EuiBreadcrumb` to include `HTMLElement` and `color` inherited from `EuiLink` ([#5634](https://github.com/elastic/eui/pull/5634))
+- Added `"xxl"` size to `EuiLoadingSpinner` ([#5668](https://github.com/elastic/eui/pull/5668))
+- Added `isLoading` prop to `EuiButtonIcon` ([#5668](https://github.com/elastic/eui/pull/5668))
 - Updated `EuiDataGrid` to allow setting individual cell `isExpandable` state via `setCellProps` ([#5667](https://github.com/elastic/eui/pull/5667))
+- Added `textWrap` to `EuiSelectableListItem`, `EuiSelectableList`, and `EuiSelectable.listOptions` ([#5679](https://github.com/elastic/eui/issues/5679))
+- Forced `truncation` on `EuiSuggest` items when `isVirtualize` ([#5679](https://github.com/elastic/eui/issues/5679))
+- Changed proportion handling between content and image in `horizontal` `EuiEmptyPrompt` and added spacing between ([#5663](https://github.com/elastic/eui/pull/5663))
 - Added the ability for `EuiSelectable` and `EuiSuggest` to accept controlled `value` props ([#5658](https://github.com/elastic/eui/pull/5658))
 
 **Bug fixes**
@@ -14,6 +19,8 @@
 - Fixed `EuiSelectable` incorrectly rendering the passed `id` prop on the listbox instead of the parent wrapper ([#5658](https://github.com/elastic/eui/pull/5658))
 - Fixed `EuiSelectable` to no longer call `searchProps.onChange` when list items are clicked ([#5658](https://github.com/elastic/eui/pull/5658))
 - Fixed `EuiSelectable` not respecting `searchProps.inputRef` ([#5658](https://github.com/elastic/eui/pull/5658))
+- Fixed render of `EuiSelectableListItem` when no icons are present ([#5679](https://github.com/elastic/eui/issues/5679))
+- Fixed render of `EuiSelectableTemplateSitewide` items when no icons are present ([#5679](https://github.com/elastic/eui/issues/5679))
 
 **Breaking changes**
 

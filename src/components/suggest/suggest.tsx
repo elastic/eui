@@ -264,6 +264,8 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
       ...(liProps as typeof props),
       data,
       className: classNames(className, 'euiSuggestItemOption'),
+      // Force truncation if `isVirtualized` is true
+      truncate: isVirtualized ? true : props.truncate,
     };
   });
 
@@ -289,6 +291,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
           showIcons: false,
           onFocusBadge: false,
           paddingSize: 'none',
+          textWrap: isVirtualized ? 'truncate' : 'wrap',
           isVirtualized,
         }}
         searchable
