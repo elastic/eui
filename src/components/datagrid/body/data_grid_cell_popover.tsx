@@ -80,6 +80,7 @@ export const useCellPopover = (): {
       panelPaddingSize="s"
       display="block"
       closePopover={closeCellPopover}
+      onTrapDeactivation={closeCellPopover}
       panelProps={{
         'data-test-subj': 'euiDataGridExpansionPopover',
       }}
