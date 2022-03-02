@@ -25,6 +25,8 @@ import {
 
 import { IconType, IconSize, EuiIcon } from '../../icon';
 
+import { EuiLoadingSpinner } from '../../loading';
+
 import { ButtonColor } from '../button';
 
 import { validateHref } from '../../../services/security/href_validator';
@@ -71,6 +73,10 @@ export interface EuiButtonIconProps extends CommonProps {
    * `empty` (default) is equivalent to an EuiButtonEmpty
    */
   display?: EuiButtonIconDisplay;
+  /**
+   * Disables the button and changes the icon to a loading spinner
+   */
+  isLoading?: boolean;
 }
 
 export type EuiButtonIconPropsForAnchor = {
@@ -133,10 +139,11 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   size = 'xs',
   buttonRef,
   isSelected,
+  isLoading,
   ...rest
 }) => {
   const isHrefValid = !href || validateHref(href);
-  const isDisabled = _isDisabled || disabled || !isHrefValid;
+  const isDisabled = _isDisabled || disabled || !isHrefValid || isLoading;
 
   const ariaHidden = rest['aria-hidden'];
   const isAriaHidden = ariaHidden === 'true' || ariaHidden === true;
@@ -161,7 +168,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   // Add an icon to the button if one exists.
   let buttonIcon;
 
-  if (iconType) {
+  if (iconType && !isLoading) {
     buttonIcon = (
       <EuiIcon
         className="euiButtonIcon__icon"
@@ -171,6 +178,15 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
         color="inherit" // forces the icon to inherit its parent color
       />
     );
+  }
+
+  // `original` size doesn't exist in `EuiLoadingSpinner`
+  // when the `iconSize` is `original` we don't pass any size to the `EuiLoadingSpinner`
+  // so it gets the default size
+  const loadingSize = iconSize === 'original' ? undefined : iconSize;
+
+  if (iconType && isLoading) {
+    buttonIcon = <EuiLoadingSpinner size={loadingSize} />;
   }
 
   // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
