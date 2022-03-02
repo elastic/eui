@@ -14,8 +14,6 @@ import {
   CSSProperties,
   ReactElement,
   AriaAttributes,
-  Dispatch,
-  SetStateAction,
   MutableRefObject,
 } from 'react';
 import {
@@ -34,12 +32,11 @@ export interface EuiDataGridToolbarProps {
   gridWidth: number;
   minSizeForControls?: number;
   toolbarVisibility: boolean | EuiDataGridToolBarVisibilityOptions;
-  displaySelector: ReactNode;
   isFullScreen: boolean;
-  controlBtnClasses: string;
+  fullScreenSelector: ReactNode;
+  displaySelector: ReactNode;
   columnSelector: ReactNode;
   columnSorting: ReactNode;
-  setIsFullScreen: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface EuiDataGridPaginationRendererProps
