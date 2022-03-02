@@ -1012,7 +1012,7 @@ Array [
             class="euiToolTipAnchor"
           >
             <button
-              aria-label="Full screen"
+              aria-label="Enter fullscreen"
               class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
               data-test-subj="dataGridFullScreenButton"
               type="button"
@@ -1436,7 +1436,7 @@ Array [
             class="euiToolTipAnchor"
           >
             <button
-              aria-label="Full screen"
+              aria-label="Enter fullscreen"
               class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
               data-test-subj="dataGridFullScreenButton"
               type="button"
@@ -2201,7 +2201,7 @@ Array [
             class="euiToolTipAnchor"
           >
             <button
-              aria-label="Full screen"
+              aria-label="Enter fullscreen"
               class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
               data-test-subj="dataGridFullScreenButton"
               type="button"
@@ -2624,7 +2624,7 @@ Array [
             class="euiToolTipAnchor"
           >
             <button
-              aria-label="Full screen"
+              aria-label="Enter fullscreen"
               class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
               data-test-subj="dataGridFullScreenButton"
               type="button"

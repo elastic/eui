@@ -39,13 +39,13 @@ describe('useDataGridFullScreenSelector', () => {
       expect(component).toMatchInlineSnapshot(`
         <div>
           <EuiToolTip
-            content="Full screen"
+            content="Enter fullscreen"
             delay="long"
             display="inlineBlock"
             position="top"
           >
             <EuiButtonIcon
-              aria-label="Full screen"
+              aria-label="Enter fullscreen"
               className="euiDataGrid__controlBtn"
               color="text"
               data-test-subj="dataGridFullScreenButton"
@@ -73,7 +73,7 @@ describe('useDataGridFullScreenSelector', () => {
           <EuiToolTip
             content={
               <React.Fragment>
-                Exit full screen
+                Exit fullscreen
                  (
                 <kbd>
                   esc
@@ -86,7 +86,7 @@ describe('useDataGridFullScreenSelector', () => {
             position="top"
           >
             <EuiButtonIcon
-              aria-label="Exit full screen"
+              aria-label="Exit fullscreen"
               className="euiDataGrid__controlBtn euiDataGrid__controlBtn--active"
               color="text"
               data-test-subj="dataGridFullScreenButton"

@@ -271,7 +271,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     const { cellPopoverContext, cellPopover } = useCellPopover();
 
     /**
-     * Toolbar & full-screen
+     * Toolbar & fullscreen
      */
     const showToolbar = !!toolbarVisibility;
 

@@ -33,10 +33,10 @@ export const useDataGridFullScreenSelector = (): {
 
   const [fullScreenButton, fullScreenButtonActive] = useEuiI18n(
     [
-      'euiDataGridToolbar.fullScreenButton',
-      'euiDataGridToolbar.fullScreenButtonActive',
+      'euiFullScreenSelector.fullScreenButton',
+      'euiFullScreenSelector.fullScreenButtonActive',
     ],
-    ['Full screen', 'Exit full screen']
+    ['Enter fullscreen', 'Exit fullscreen']
   );
   const controlBtnClasses = classNames('euiDataGrid__controlBtn', {
     'euiDataGrid__controlBtn--active': isFullScreen,
