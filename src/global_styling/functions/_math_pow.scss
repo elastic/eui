@@ -1,9 +1,7 @@
-//Forked by @elastic/eui from strarsis/sass-math-pow see https://github.com/strarsis/sass-math-pow
-
 /**
 The MIT License (MIT)
 
-Copyright (c) 2015 strarsis
+Copyright (c) 2015 strarsis https://github.com/strarsis/sass-math-pow
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,13 +21,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-
-// By drtimofey, script based on script by davidkpiano, see these links:
-// https://github.com/thoughtbot/bitters/issues/167
-// https://github.com/thoughtbot/bourbon/issues/717
-// https://gist.github.com/davidkpiano/ad6e6771df050ff3727f
-//
-
 
 @function pow($number, $exp) {
   $exp1: round($exp);
