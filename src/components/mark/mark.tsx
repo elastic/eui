@@ -29,7 +29,7 @@ export const EuiMark: FunctionComponent<EuiMarkProps> = ({
   const classes = classNames('euiMark', className);
 
   return (
-    <mark css={styles} className={classes} {...rest}>
+    <mark css={[styles]} className={classes} {...rest}>
       {children}
     </mark>
   );
