@@ -186,7 +186,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   const loadingSize = iconSize === 'original' ? undefined : iconSize;
 
   if (iconType && isLoading) {
-    buttonIcon = <EuiLoadingSpinner size={loadingSize!} />;
+    buttonIcon = <EuiLoadingSpinner size={loadingSize} />;
   }
 
   // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
