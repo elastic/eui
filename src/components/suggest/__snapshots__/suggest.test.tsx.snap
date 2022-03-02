@@ -155,6 +155,7 @@ exports[`EuiSuggest props isVirtualized 1`] = `
         "onFocusBadge": false,
         "paddingSize": "none",
         "showIcons": false,
+        "textWrap": "truncate",
       }
     }
     options={
@@ -170,6 +171,7 @@ exports[`EuiSuggest props isVirtualized 1`] = `
             },
           },
           "label": "Field sample",
+          "truncate": true,
         },
         Object {
           "className": "euiSuggestItemOption",
@@ -182,6 +184,7 @@ exports[`EuiSuggest props isVirtualized 1`] = `
             },
           },
           "label": "Value sample",
+          "truncate": true,
         },
       ]
     }
@@ -314,6 +317,7 @@ exports[`EuiSuggest props isVirtualized 1`] = `
                                 },
                               },
                               "label": "Field sample",
+                              "truncate": true,
                             },
                             Object {
                               "className": "euiSuggestItemOption",
@@ -326,6 +330,7 @@ exports[`EuiSuggest props isVirtualized 1`] = `
                                 },
                               },
                               "label": "Value sample",
+                              "truncate": true,
                             },
                           ]
                         }
@@ -475,6 +480,7 @@ exports[`EuiSuggest props maxHeight 1`] = `
         "onFocusBadge": false,
         "paddingSize": "none",
         "showIcons": false,
+        "textWrap": "wrap",
       }
     }
     options={
@@ -490,6 +496,7 @@ exports[`EuiSuggest props maxHeight 1`] = `
             },
           },
           "label": "Field sample",
+          "truncate": undefined,
         },
         Object {
           "className": "euiSuggestItemOption",
@@ -502,6 +509,7 @@ exports[`EuiSuggest props maxHeight 1`] = `
             },
           },
           "label": "Value sample",
+          "truncate": undefined,
         },
       ]
     }
@@ -634,6 +642,7 @@ exports[`EuiSuggest props maxHeight 1`] = `
                                 },
                               },
                               "label": "Field sample",
+                              "truncate": undefined,
                             },
                             Object {
                               "className": "euiSuggestItemOption",
@@ -646,6 +655,7 @@ exports[`EuiSuggest props maxHeight 1`] = `
                                 },
                               },
                               "label": "Value sample",
+                              "truncate": undefined,
                             },
                           ]
                         }

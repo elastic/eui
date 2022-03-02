@@ -74,6 +74,14 @@ describe('EuiSelectableListItem', () => {
       });
     });
 
+    describe('textWrap', () => {
+      test('can be "wrap"', () => {
+        const component = render(<EuiSelectableListItem textWrap="wrap" />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('onFocusBadge', () => {
       test('can be true', () => {
         const component = render(<EuiSelectableListItem onFocusBadge={true} />);
