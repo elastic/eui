@@ -1,18 +1,39 @@
 import React from 'react';
-import { EuiEmptyPrompt } from '../../../../../src/components';
-// @ts-ignore Importing from JS file
-import { typesOfUseCases } from '../_types_of_use_cases';
-
-const example: any = typesOfUseCases.licenseUpgrade.example;
+import {
+  EuiEmptyPrompt,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiTitle,
+  EuiLink,
+} from '../../../../../src/components';
 
 export default () => (
   <EuiEmptyPrompt
-    iconType={example.iconType}
-    title={example.title}
+    color="subdued"
+    iconType="logoKibana"
+    title={<h2>Do more with Kibana!</h2>}
     layout="vertical"
     hasBorder
-    body={example.body}
-    actions={example.actions}
-    footer={example.footer}
+    body={
+      <p>
+        Start a free trial or upgrade your license to use anomaly detection.
+      </p>
+    }
+    actions={[
+      <EuiButton color="primary" fill>
+        Upgrade
+      </EuiButton>,
+      <EuiButtonEmpty>Start a free trial</EuiButtonEmpty>,
+    ]}
+    footer={
+      <>
+        <EuiTitle size="xxs">
+          <h3>Want to learn more?</h3>
+        </EuiTitle>
+        <EuiLink href="#" target="_blank">
+          Read the docs
+        </EuiLink>
+      </>
+    }
   />
 );

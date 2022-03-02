@@ -41,7 +41,7 @@ export default () => {
               <span>Want to learn more?</span>
             </EuiTitle>{' '}
             <EuiLink href="#" target="_blank">
-              Read documentation
+              Read the docs
             </EuiLink>
           </>
         }
