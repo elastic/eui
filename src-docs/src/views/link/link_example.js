@@ -16,10 +16,10 @@ const linkExternalSource = require('!!raw-loader!./link_external');
 import LinkColor from './link_color';
 const linkColorSource = require('!!raw-loader!./link_color');
 
-import { LinkDisable } from './link_disable';
+import LinkDisable from './link_disable';
 const linkDisableSource = require('!!raw-loader!./link_disable');
 
-import { LinkValidation } from './link_validation';
+import LinkValidation from './link_validation';
 const linkValidationSource = require('!!raw-loader!./link_validation');
 
 export const LinkExample = {

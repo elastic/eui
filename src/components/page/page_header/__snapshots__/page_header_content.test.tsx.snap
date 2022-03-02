@@ -184,6 +184,55 @@ exports[`EuiPageHeaderContent props alignItems top is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiPageHeaderContent props breadcrumbs is rendered 1`] = `
+<div
+  class="euiPageHeaderContent"
+>
+  <nav
+    aria-label="aria-label"
+    class="euiBreadcrumbs testClass1 testClass2 euiBreadcrumbs--truncate"
+    data-test-subj="test subject string"
+  >
+    <ol
+      class="euiBreadcrumbs__list"
+    >
+      <li
+        class="euiBreadcrumb"
+      >
+        <a
+          class="euiLink euiLink--primary euiBreadcrumb__content customClass"
+          data-test-subj="breadcrumbsAnimals"
+          href="#"
+          rel="noreferrer"
+        >
+          Animals
+        </a>
+      </li>
+      <li
+        class="euiBreadcrumb euiBreadcrumb--last"
+      >
+        <span
+          aria-current="page"
+          class="euiBreadcrumb__content"
+        >
+          Edit
+        </span>
+      </li>
+    </ol>
+  </nav>
+  <div
+    class="euiSpacer euiSpacer--s"
+  />
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+  >
+    <div
+      class="euiFlexItem"
+    />
+  </div>
+</div>
+`;
+
 exports[`EuiPageHeaderContent props children is rendered 1`] = `
 <div
   class="euiPageHeaderContent"
