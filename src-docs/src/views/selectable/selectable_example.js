@@ -365,7 +365,7 @@ export const SelectableExample = {
             If <EuiCode>listProps.isVirtualized</EuiCode> is set to{' '}
             <EuiCode>false</EuiCode>, each row will fit its contents and removes
             all scrolling. Therefore, we recommend having a large enough
-            container to accomodate all optons. You can also remove truncation
+            container to accommodate all options. You can also remove truncation
             by setting <EuiCode>{'textWrap="wrap"'}</EuiCode> when
             virtualization is off.
           </p>
