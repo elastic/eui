@@ -135,12 +135,21 @@ export const DataGridCellPopoverExample = {
     {
       title: 'Disabling cell expansion popovers',
       text: (
-        <p>
-          Popovers can sometimes be unnecessary for short form content. In the
-          example below we&apos;ve turned them off by setting{' '}
-          <EuiCode>isExpandable=false</EuiCode> on specific{' '}
-          <EuiCode>columns</EuiCode>.
-        </p>
+        <>
+          <p>
+            Popovers can sometimes be unnecessary for short form content. In the
+            example below we&apos;ve turned them off by setting{' '}
+            <EuiCode>isExpandable=false</EuiCode> on specific{' '}
+            <EuiCode>columns</EuiCode>.
+          </p>
+          <p>
+            To set <EuiCode>isExpandable</EuiCode> at a per-cell level instead
+            of per-column, you can use the <EuiCode>setCellProps</EuiCode>{' '}
+            callback passed by <EuiCode>renderCellValue</EuiCode>. The below
+            example conditionally disables the expansion popover for boolean
+            cells that are &apos;false&apos;.
+          </p>
+        </>
       ),
       demo: <IsExpandablePopover />,
       components: { IsExpandablePopover },
@@ -152,6 +161,7 @@ export const DataGridCellPopoverExample = {
       ],
       props: {
         EuiDataGridColumn,
+        EuiDataGridCellValueElementProps,
       },
     },
   ],
