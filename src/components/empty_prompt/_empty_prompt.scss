@@ -92,7 +92,7 @@
     justify-content: center;
 
     @include euiBreakpoint('l', 'xl') {
-      min-width: 33%;
+      min-width: 40%;
       max-width: 50%;
     }
   }
