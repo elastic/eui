@@ -99,7 +99,7 @@ export default ({ onThemeUpdate }) => {
 
         {brandKeys.map((color) => (
           <ThemeValue
-            key={colors[color]}
+            key={color}
             property="colors"
             type={props[color]}
             name={color}
@@ -130,7 +130,7 @@ export default ({ onThemeUpdate }) => {
 
         {brandTextKeys.map((color, index) => (
           <ThemeValue
-            key={colors[color]}
+            key={color}
             property="colors"
             name={brandTextKeys[index]}
             type={props[color]}
@@ -164,7 +164,7 @@ export default ({ onThemeUpdate }) => {
 
         {shadeKeys.map((color) => (
           <ThemeValue
-            key={colors[color]}
+            key={color}
             property="colors"
             type={props[color]}
             name={color}
@@ -188,7 +188,7 @@ export default ({ onThemeUpdate }) => {
 
         {textKeys.map((color) => (
           <ThemeValue
-            key={colors[color]}
+            key={color}
             property="colors"
             name={color}
             type={props[color]}
@@ -224,7 +224,7 @@ export default ({ onThemeUpdate }) => {
           if (color.includes('Text')) {
             return (
               <ThemeValue
-                key={colors[color]}
+                key={color}
                 property="colors"
                 name={color}
                 type={props[color]}
@@ -246,7 +246,7 @@ export default ({ onThemeUpdate }) => {
           } else {
             return (
               <ThemeValue
-                key={colors[color]}
+                key={color}
                 property="colors"
                 name={color}
                 type={props[color]}
