@@ -165,7 +165,7 @@
   }
 
   .euiCard__icon {
-    margin-top: $euiCardSpacing / 2;
+    margin-top: $euiCardSpacing * .5;
   }
 }
 
@@ -196,7 +196,7 @@
 
   .euiCard__description,
   .euiCard__children {
-    margin-top: $euiCardSpacing / 2;
+    margin-top: $euiCardSpacing * .5;
   }
 
   .euiCard__titleAnchor,

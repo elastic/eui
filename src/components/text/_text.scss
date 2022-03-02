@@ -2,8 +2,8 @@
 @mixin euiScaleText($baseFontSize, $sizingMethod: 'rem') {
   @include fontSize($baseFontSize, $sizingMethod);
 
-  $baseLineHeightMultiplier: $baseFontSize / 2;
-  line-height: ($baseLineHeightMultiplier * 3) / $baseFontSize;
+  $baseLineHeightMultiplier: $baseFontSize * .5;
+  line-height: calc(($baseLineHeightMultiplier * 3) / $baseFontSize);
 
   p,
   ul,
@@ -38,37 +38,37 @@
 
   h1 {
     font-size: fontSizeToRemOrEm($fontSizeH1, $sizingMethod);
-    line-height: ($baseLineHeightMultiplier * 6) / $fontSizeH1;
+    line-height: calc(($baseLineHeightMultiplier * 6) / $fontSizeH1);
     margin-bottom: marginToRemOrEm($headingMarginBottom, $fontSizeH1, $sizingMethod);
   }
 
   h2 {
     font-size: fontSizeToRemOrEm($fontSizeH2, $sizingMethod);
-    line-height: ($baseLineHeightMultiplier * 5) / $fontSizeH2;
+    line-height: calc(($baseLineHeightMultiplier * 5) / $fontSizeH2);
     margin-bottom: marginToRemOrEm($headingMarginBottom, $fontSizeH2, $sizingMethod);
   }
 
   h3 {
     font-size: fontSizeToRemOrEm($fontSizeH3, $sizingMethod);
-    line-height: ($baseLineHeightMultiplier * 4) / $fontSizeH3;
+    line-height: calc(($baseLineHeightMultiplier * 4) / $fontSizeH3);
     margin-bottom: marginToRemOrEm($headingMarginBottom, $fontSizeH3, $sizingMethod);
   }
 
   h4 {
     font-size: fontSizeToRemOrEm($fontSizeH4, $sizingMethod);
-    line-height: ($baseLineHeightMultiplier * 3) / $fontSizeH4;
+    line-height: calc(($baseLineHeightMultiplier * 3) / $fontSizeH4);
     margin-bottom: marginToRemOrEm($headingMarginBottom, $fontSizeH4, $sizingMethod);
   }
 
   h5 {
     font-size: fontSizeToRemOrEm($fontSizeH5, $sizingMethod);
-    line-height: ($baseLineHeightMultiplier * 2) / $fontSizeH5;
+    line-height: calc(($baseLineHeightMultiplier * 2) / $fontSizeH5);
     margin-bottom: marginToRemOrEm($headingMarginBottom, $fontSizeH5, $sizingMethod);
   }
 
   h6 {
     font-size: fontSizeToRemOrEm($fontSizeH6, $sizingMethod);
-    line-height: ($baseLineHeightMultiplier * 2) / $fontSizeH6;
+    line-height: calc(($baseLineHeightMultiplier * 2) / $fontSizeH6);
     margin-bottom: marginToRemOrEm($headingMarginBottom, $fontSizeH6, $sizingMethod);
   }
 
@@ -95,13 +95,13 @@
   dd + dt {
     $marginTop: $baseLineHeightMultiplier * 2;
 
-    margin-top: marginToRemOrEm($marginTop, $marginTop/$baseFontSize, $sizingMethod);
+    margin-top: marginToRemOrEm($marginTop, calc($marginTop / $baseFontSize), $sizingMethod);
   }
 
   dt,
   .eui-definitionListReverse dd {
     font-size: fontSizeToRemOrEm(($baseFontSize * nth($euiTextScale, 5)), $sizingMethod); // skip level 4 on purpose
-    line-height: ($baseLineHeightMultiplier * 3) / ($baseFontSize * nth($euiTextScale, 5));
+    line-height: calc(($baseLineHeightMultiplier * 3) / ($baseFontSize * nth($euiTextScale, 5)));
   }
 
   .eui-definitionListReverse dt {
@@ -126,7 +126,7 @@
   &.euiMarkdownFormat {
     .euiMarkdownFormat__blockquote {
       padding: 0 marginToRemOrEm($baseLineHeightMultiplier * 2, $baseFontSize, $sizingMethod);
-      border-left-width:  marginToRemOrEm($baseLineHeightMultiplier / 2, $baseFontSize, $sizingMethod);
+      border-left-width:  marginToRemOrEm($baseLineHeightMultiplier * .5, $baseFontSize, $sizingMethod);
       margin-bottom: marginToRemOrEm($baseLineHeightMultiplier * 2, $baseFontSize, $sizingMethod);
     }
 
@@ -137,7 +137,7 @@
     .euiCheckbox__label {
       font-size: fontSizeToRemOrEm($baseFontSize, $sizingMethod);
       padding-left: marginToRemOrEm($baseLineHeightMultiplier * 3, $baseFontSize, $sizingMethod);
-      line-height: $baseLineHeightMultiplier * 3 / $baseFontSize;
+      line-height: calc($baseLineHeightMultiplier * 3 / $baseFontSize);
     }
 
     .euiCheckbox + *:not(.euiCheckbox) {
@@ -154,7 +154,7 @@
 
     .euiMarkdownFormat__table th,
     .euiMarkdownFormat__table td {
-      padding: marginToRemOrEm($baseLineHeightMultiplier / 2, $baseFontSize, $sizingMethod) marginToRemOrEm($baseLineHeightMultiplier * 1, $baseFontSize, $sizingMethod);
+      padding: marginToRemOrEm($baseLineHeightMultiplier * .5, $baseFontSize, $sizingMethod) marginToRemOrEm($baseLineHeightMultiplier * 1, $baseFontSize, $sizingMethod);
     }
   }
 }

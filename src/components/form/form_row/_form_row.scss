@@ -73,7 +73,7 @@
       width: auto;
 
       .euiSwitch--compressed {
-        margin-top: $euiSizeXS / 2; // Better vertical alignment of a compressed switch to the horizontal label
+        margin-top: $euiSizeXS * .5; // Better vertical alignment of a compressed switch to the horizontal label
       }
     }
 

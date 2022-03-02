@@ -18,7 +18,7 @@
 @mixin euiCustomControl($type: null, $size: $euiSize) {
   @if $size {
     $size: $size - 2px; // subtract 2px from size to account for border size
-    padding: $size / 2;
+    padding: $size * .5;
   }
 
   border: 1px solid $euiFormCustomControlBorderColor;

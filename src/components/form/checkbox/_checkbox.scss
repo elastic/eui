@@ -7,7 +7,7 @@
   position: relative;
 
   // Set a top offset for the real input and faux input to align better with the text
-  $topOffset: (($euiSizeL - $euiCheckBoxSize) / 2) - 1px;
+  $topOffset: (($euiSizeL - $euiCheckBoxSize) * .5) - 1px;
 
   .euiCheckbox__input {
     @include size($euiCheckBoxSize);

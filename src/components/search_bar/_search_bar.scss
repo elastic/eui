@@ -1,5 +1,5 @@
 .euiSearchBar__searchHolder {
-  min-width: $euiFormMaxWidth / 2;
+  min-width: $euiFormMaxWidth * .5;
 }
 
 @include euiBreakpoint('m', 'l', 'xl') {

@@ -10,8 +10,8 @@
 
   // Custom sizing
   $arrowSize: $euiSizeM;
-  $arrowPlusSize: (($arrowSize/2) + 1px) * -1; /* 1 */
-  $arrowMinusSize: (($arrowSize/2) - 1px) * -1; /* 1 */
+  $arrowPlusSize: (($arrowSize * .5) + 1px) * -1; /* 1 */
+  $arrowMinusSize: (($arrowSize * .5) - 1px) * -1; /* 1 */
 
   .euiToolTip__arrow {
     content: '';

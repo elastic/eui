@@ -89,7 +89,7 @@
 
 .euiControlBar__button {
   flex-shrink: 0;
-  border-radius: $euiBorderRadius / 2;
+  border-radius: $euiBorderRadius * .5;
   margin-left: $euiSizeXS;
   font-size: $euiFontSizeS;
 

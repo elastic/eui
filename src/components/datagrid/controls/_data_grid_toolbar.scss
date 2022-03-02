@@ -27,7 +27,7 @@
 .euiDataGrid__leftControls {
   // Ensure there's sufficient spacing between each toolbar button/popover
   > * + * {
-    margin-left: $euiSizeXS / 2;
+    margin-left: $euiSizeXS * .5;
   }
 }
 

@@ -141,7 +141,7 @@
 
   &.euiFormControlLayout--compressed {
     @include euiFormControlDefaultShadow($borderOnly: true);
-    border-radius: $euiBorderRadius / 2;
+    border-radius: $euiBorderRadius * .5;
     overflow: hidden; // Keeps backgrounds inside border radius
 
     // Padding

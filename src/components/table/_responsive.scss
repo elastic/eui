@@ -106,12 +106,12 @@
       }
 
       &.euiTableRow-isSelectable {
-        padding-left: $euiTableCellCheckboxWidth + ($euiTableCellContentPadding / 2);
+        padding-left: $euiTableCellCheckboxWidth + ($euiTableCellContentPadding * .5);
         position: relative;
 
         .euiTableRowCellCheckbox {
           position: absolute;
-          left: $euiTableCellContentPadding / 2;
+          left: $euiTableCellContentPadding * .5;
           top: $euiSizeS;
         }
       }

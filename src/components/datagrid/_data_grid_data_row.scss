@@ -143,7 +143,7 @@
 
 .euiDataGridRowCell__actionButtonIcon {
   height: $euiSizeM;
-  border-radius: $euiBorderRadius / 2;
+  border-radius: $euiBorderRadius * .5;
   width: 0;
   overflow: hidden;
   // Have to take out the generic transition so it is instaneous on focus
@@ -218,7 +218,7 @@
 // Compressed density grids - height tweaks
 @include euiDataGridStyles(fontSizeSmall, paddingSmall) {
   @include euiDataGridRowCellActions($definedHeight: true) {
-    padding: ($euiDataGridCellPaddingS / 2) 0;
+    padding: ($euiDataGridCellPaddingS * .5) 0;
   }
   @include euiDataGridRowCellActions($definedHeight: false) {
     transform: translateY(1px);

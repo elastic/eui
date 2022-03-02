@@ -14,7 +14,7 @@
   width: $euiSizeS;
   display: inline-block;
   margin-bottom: -$euiSize;
-  margin-left: $euiSizeXS / 2;
+  margin-left: $euiSizeXS * .5;
 
   // sass-lint:disable-block mixins-before-declarations
   @include euiCanAnimate {
@@ -77,8 +77,8 @@
   height: $euiSize;
 
   > span {
-    width: $euiSizeXS / 2;
-    margin-left: $euiSizeXS / 2;
+    width: $euiSizeXS * .5;
+    margin-left: $euiSizeXS * .5;
     margin-bottom: $euiSizeS;
   }
 }
@@ -88,8 +88,8 @@
 
   > span {
     width: $euiSizeXS;
-    margin-left: $euiSizeXS / 2;
-    margin-bottom: $euiSizeL / 2;
+    margin-left: $euiSizeXS * .5;
+    margin-bottom: $euiSizeL * .5;
   }
 }
 
@@ -99,7 +99,7 @@
   > span {
     width: $euiSizeS;
     margin-left: $euiSizeXS;
-    margin-bottom: $euiSizeXL / 2;
+    margin-bottom: $euiSizeXL * .5;
   }
 }
 

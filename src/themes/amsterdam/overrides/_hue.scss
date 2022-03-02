@@ -18,7 +18,7 @@
       background-color: inherit;
     }
 
-    top: - $euiSizeM / 2;
+    top: - $euiSizeM * .5;
 
     &:focus {
       @include euiRangeThumbPerBrowser {

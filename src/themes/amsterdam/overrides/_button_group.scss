@@ -62,7 +62,7 @@
 .euiButtonGroup--small .euiButtonGroup__buttons {
   // Use a moderately smaller radius on small buttons
   // so that they don't appear completely rounded
-  border-radius: $euiBorderRadius * (2 / 3);
+  border-radius: $euiBorderRadius * calc(2 / 3);
 }
 
 .euiButtonGroup--compressed .euiButtonGroupButton {

@@ -35,7 +35,7 @@
   width: $euiSizeXL;
   line-height: $euiSizeXL;
   border-radius: $euiBorderRadiusSmall;
-  margin: ($euiSizeXS / 2);
+  margin: ($euiSizeXS * .5);
 }
 
 .react-datepicker__day-name {

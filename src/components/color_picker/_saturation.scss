@@ -3,7 +3,7 @@
   position: relative;
   width: 100%;
   padding-bottom: 100%;
-  border-radius: $euiBorderRadius / 2;
+  border-radius: $euiBorderRadius * .5;
   touch-action: none; // prevent TouchMove events from scrolling page
   z-index: 3; // Required to be above the hue slider, which can overlap
 
@@ -14,7 +14,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    border-radius: $euiBorderRadius / 2;
+    border-radius: $euiBorderRadius * .5;
   }
 
   .euiSaturation__lightness {

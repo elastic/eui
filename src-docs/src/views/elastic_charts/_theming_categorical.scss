@@ -6,7 +6,7 @@
 .guideCharts__customLegendLine {
   display: inline-block;
   width: $euiSize;
-  height: $euiSizeM / 2;
+  height: $euiSizeM * .5;
   background-color: currentColor;
   vertical-align: middle;
   margin-right: $euiSizeS;

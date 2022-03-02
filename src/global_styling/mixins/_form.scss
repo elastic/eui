@@ -9,7 +9,7 @@
 @mixin euiFormControlLayoutPadding($numOfIcons, $side: 'right', $compressed: false) {
   $iconSize: $euiSize;
   $iconPadding: $euiFormControlPadding;
-  $marginBetweenIcons: $euiFormControlPadding / 2;
+  $marginBetweenIcons: $euiFormControlPadding * .5;
 
   @if ($compressed) {
     $iconPadding: $euiFormControlCompressedPadding;
@@ -46,7 +46,7 @@
   }
 
   #{$iconClass} {
-    @include size($clearSize / 2);
+    @include size($clearSize * .5);
     fill: $euiColorEmptyShade;
     // increase thickness of icon at such a small size
     stroke: $euiColorEmptyShade;
@@ -306,7 +306,7 @@
 
   @if $size {
     $size: $size - 2px; // subtract 2px from size to account for border size
-    padding: $size / 2;
+    padding: $size * .5;
   }
 
   border: 1px solid $euiFormCustomControlBorderColor;

@@ -124,7 +124,7 @@
   }
 
   &.euiTabs--small .euiTab {
-    padding: ($euiSizeM / 2) $euiSizeXS;
+    padding: ($euiSizeM * .5) $euiSizeXS;
 
     .euiTab__content {
       @include euiFontSizeS;

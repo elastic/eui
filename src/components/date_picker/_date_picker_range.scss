@@ -52,8 +52,8 @@
     background-color: transparent !important; // sass-lint:disable-line no-important
     line-height: 1 !important; // sass-lint:disable-line no-important
     flex: 0 0 auto;
-    padding-left: $euiFormControlPadding / 2;
-    padding-right: $euiFormControlPadding / 2;
+    padding-left: $euiFormControlPadding * .5;
+    padding-right: $euiFormControlPadding * .5;
   }
 }
 

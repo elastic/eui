@@ -6,7 +6,7 @@
   .euiRangeTick:not(.euiRangeTick--hasTickMark)::before,
   .euiRangeTick__pseudo {
     width: $euiSizeXS;
-    height: $euiSizeM / 2;
+    height: $euiSizeM * .5;
     background-color: $euiColorLightShade;
     border-radius: $euiBorderRadiusSmall;
   }

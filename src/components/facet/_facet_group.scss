@@ -2,8 +2,8 @@
   .euiFacetGroup--#{$gutterName} {
     .euiFacetButton {
       // Split the margin between top and bottom
-      margin-top: $gutterSize / 2;
-      margin-bottom: $gutterSize / 2;
+      margin-top: $gutterSize * .5;
+      margin-bottom: $gutterSize * .5;
     }
 
     &.euiFacetGroup--horizontal {

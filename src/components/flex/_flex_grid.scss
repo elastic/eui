@@ -29,7 +29,7 @@
 
 $gutterTypes: (
   // We're using calc which requires the px unit
-  gutterNone: 0px, // sass-lint:disable-line zero-unit
+  gutterNone: 0, // sass-lint:disable-line zero-unit
   gutterSmall: $euiSizeS,
   gutterMedium: $euiSize,
   gutterLarge: $euiSizeL,

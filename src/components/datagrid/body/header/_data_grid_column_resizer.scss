@@ -38,7 +38,7 @@
 
     .euiDataGridColumnResizer {
       right: 0;
-      width: $euiSize / 2;
+      width: $euiSize * .5;
 
       &:after {
         left: auto;

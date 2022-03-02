@@ -49,12 +49,12 @@
 }
 
 .euiTreeView__iconWrapper {
-  margin-top: -($euiSizeXS / 2);
+  margin-top: -($euiSizeXS * .5);
   margin-right: $euiSizeS;
 
   // This helps tokens appear vertically centered
   .euiToken {
-    margin-top: $euiSizeXS / 2;
+    margin-top: $euiSizeXS * .5;
   }
 }
 

@@ -16,9 +16,9 @@
     &::before {
       content: '';
       position: absolute;
-      left: $euiSizeXXL / 2;
+      left: $euiSizeXXL * .5;
       top: $euiSizeL;
-      width: $euiSizeXS / 2;
+      width: $euiSizeXS * .5;
       background-color: $euiColorLightShade;
       height: calc(100% + #{$euiSizeL});
     }

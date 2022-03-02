@@ -2,7 +2,7 @@
   position: absolute;
   left: 0;
   width: 100%;
-  top: calc(50% - #{($euiRangeHighlightHeight / 2)});
+  top: calc(50% - #{($euiRangeHighlightHeight * .5)});
   overflow: hidden;
 
   &__progress {
@@ -16,10 +16,10 @@
   }
 
   &--hasTicks {
-    top: ($euiFormControlHeight / 4) - ($euiRangeHighlightHeight / 2);
+    top: ($euiFormControlHeight * .25) - ($euiRangeHighlightHeight * .5);
   }
 
   &--hasTicks.euiRangeHighlight--compressed {
-    top: ($euiFormControlCompressedHeight / 4) - ($euiRangeHighlightHeight / 2);
+    top: ($euiFormControlCompressedHeight * .25) - ($euiRangeHighlightHeight * .5);
   }
 }

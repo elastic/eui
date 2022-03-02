@@ -78,7 +78,7 @@
 
 @mixin euiSlightShadowHover($color: $euiShadowColor, $opacity: .3) {
   box-shadow:
-    0 4px 8px 0 rgba($color, $opacity/2),
+    0 4px 8px 0 rgba($color, $opacity * .5),
     0 2px 2px -1px rgba($color, $opacity);
 }
 
@@ -90,11 +90,11 @@
   $hideHeight: $euiScrollBarCornerThin * 1.25;
   $gradient: null;
   $gradientStart:
-  transparentize(red, .9) 0%,
-  transparentize(red, 0) $hideHeight;
+  transparentize(#F00, .9) 0%,
+  transparentize(#F00, 0) $hideHeight;
   $gradientEnd:
-  transparentize(red, 0) calc(100% - #{$hideHeight}),
-  transparentize(red, .9) 100%;
+  transparentize(#F00, 0) calc(100% - #{$hideHeight}),
+  transparentize(#F00, .9) 100%;
   @if ($side == 'both' or $side == 'start' or $side == 'end') {
     @if ($side == 'both') {
       $gradient: $gradientStart, $gradientEnd;

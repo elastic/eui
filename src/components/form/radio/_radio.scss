@@ -7,7 +7,7 @@
   position: relative;
 
   // Set a top offset for the real input and faux input to align better with the text
-  $topOffset: (($euiSizeL - $euiRadioSize) / 2) - 1px;
+  $topOffset: (($euiSizeL - $euiRadioSize) * .5) - 1px;
 
   .euiRadio__input {
     @include size($euiRadioSize);

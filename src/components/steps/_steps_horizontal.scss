@@ -64,9 +64,9 @@
   &::after {
     content: '';
     position: absolute;
-    width: calc(50% - #{$euiStepNumberSize / 2});
+    width: calc(50% - #{$euiStepNumberSize * .5});
     height: 1px;
-    top: $euiSizeL + ($euiStepNumberSize / 2);
+    top: $euiSizeL + ($euiStepNumberSize * .5);
     background-color: $euiColorLightShade;
     z-index: $euiZLevel0; /* 1 */
   }
@@ -124,7 +124,7 @@
 
     &::before,
     &::after {
-      top: $euiSize + $euiStepNumberSize / 2;
+      top: $euiSize + $euiStepNumberSize * .5;
     }
   }
 

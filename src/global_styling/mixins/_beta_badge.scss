@@ -9,7 +9,7 @@
 
     #{$selector}__betaBadgeWrapper {
       position: absolute;
-      top: ($euiSizeL / -2);
+      top: calc($euiSizeL / -2);
       left: 50%;
       transform: translateX(-50%);
       z-index: 3; // get above abs positioned image

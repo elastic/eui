@@ -14,7 +14,7 @@ $euiRangeHighlightColor: $euiColorDarkShade;
 $euiRangeThumbBorderColor: $euiColorEmptyShade;
 $euiRangeThumbBackgroundColor: $euiRangeHighlightColor;
 
-$euiRangeTrackHeight: $euiSizeM / 2;
+$euiRangeTrackHeight: $euiSizeM * .5;
 $euiRangeTrackCompressedHeight: $euiSizeXS;
 $euiRangeHighlightHeight: $euiRangeTrackHeight;
 $euiRangeHighlightCompressedHeight: $euiRangeTrackCompressedHeight;

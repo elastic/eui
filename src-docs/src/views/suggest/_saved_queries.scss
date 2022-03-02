@@ -13,7 +13,7 @@
 }
 
 .savedQueryManagement__text {
-  padding: $euiSizeM $euiSizeM ($euiSizeM / 2);
+  padding: $euiSizeM $euiSizeM ($euiSizeM * .5);
 }
 
 .savedQueryManagement__listWrapper {
@@ -27,5 +27,5 @@
   max-height: inherit; // Fixes overflow for applied max-height
   // Left/Right padding is calculated to match the left alignment of the
   // popover text and buttons
-  padding: ($euiSizeM / 2) $euiSizeXS !important; // sass-lint:disable-line no-important
+  padding: ($euiSizeM * .5) $euiSizeXS !important; // sass-lint:disable-line no-important
 }

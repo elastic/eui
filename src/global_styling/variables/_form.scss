@@ -44,7 +44,7 @@ $euiSwitchOffColor: lightOrDarkTheme(transparentize($euiColorMediumShade, .8), t
 // Control Layout
 $euiFormControlLayoutGroupInputHeight: $euiFormControlHeight - 2px !default;
 $euiFormControlLayoutGroupInputCompressedHeight: $euiFormControlCompressedHeight - 2px !default;
-$euiFormControlLayoutGroupInputCompressedBorderRadius: $euiFormControlCompressedBorderRadius / 2 !default;
+$euiFormControlLayoutGroupInputCompressedBorderRadius: $euiFormControlCompressedBorderRadius * .5 !default;
 
 // Range
 $euiRangeTrackColor: $euiColorDarkShade !default;

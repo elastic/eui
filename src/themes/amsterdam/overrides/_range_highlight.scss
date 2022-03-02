@@ -12,20 +12,20 @@
   }
 
   &--compressed {
-    top: calc(50% - #{($euiRangeTrackCompressedHeight/2)});
+    top: calc(50% - #{($euiRangeTrackCompressedHeight * .5)});
 
     .euiRangeHighlight__progress {
       height: $euiRangeHighlightCompressedHeight;
     }
 
     &.euiRangeHighlight--hasTicks {
-      top: ($euiRangeThumbHeight - $euiRangeTrackCompressedHeight) / 2;
+      top: ($euiRangeThumbHeight - $euiRangeTrackCompressedHeight) * .5;
     }
   }
 
   &:not(.euiRangeHighlight--compressed) {
     &.euiRangeHighlight--hasTicks {
-      top: ($euiRangeThumbHeight - $euiRangeTrackHeight) / 2;
+      top: ($euiRangeThumbHeight - $euiRangeTrackHeight) * .5;
     }
   }
 }

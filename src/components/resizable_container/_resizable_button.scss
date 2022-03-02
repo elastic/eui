@@ -24,8 +24,8 @@
   &.euiResizableButton--horizontal {
     cursor: col-resize;
     width: $euiResizableButtonSize;
-    margin-left: -($euiResizableButtonSize / 2);
-    margin-right: -($euiResizableButtonSize / 2);
+    margin-left: -($euiResizableButtonSize * .5);
+    margin-right: -($euiResizableButtonSize * .5);
 
     &:before,
     &:after {
@@ -45,8 +45,8 @@
   &.euiResizableButton--vertical {
     cursor: row-resize;
     height: $euiResizableButtonSize;
-    margin-top: -($euiResizableButtonSize / 2);
-    margin-bottom: -($euiResizableButtonSize / 2);
+    margin-top: -($euiResizableButtonSize * .5);
+    margin-bottom: -($euiResizableButtonSize * .5);
 
     &:before,
     &:after {
@@ -85,7 +85,7 @@
         height $euiResizableButtonTransitionSpeed ease,
         transform $euiResizableButtonTransitionSpeed ease
       );
-      transition-delay: $euiResizableButtonTransitionSpeed / 2;
+      transition-delay: $euiResizableButtonTransitionSpeed * .5;
     }
   }
 

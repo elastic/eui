@@ -9,7 +9,7 @@
 
 // Progress bars come in different sizes.
 $euiProgressSizes: (
-  xs: $euiSizeXS / 2,
+  xs: $euiSizeXS * .5,
   s: $euiSizeXS,
   m: $euiSizeS,
   l: $euiSize,

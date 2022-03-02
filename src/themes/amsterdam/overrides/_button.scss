@@ -31,7 +31,7 @@
 .euiButtonIcon--xSmall {
   // Use a moderately smaller radius on small buttons
   // so that they don't appear completely rounded
-  border-radius: $euiBorderRadius * (2 / 3);
+  border-radius: $euiBorderRadius * calc(2 / 3);
 }
 
 // Change the hollow (bordered) buttons to have a transparent background

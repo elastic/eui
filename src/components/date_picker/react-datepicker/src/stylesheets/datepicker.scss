@@ -33,7 +33,7 @@
 .react-datepicker {
   font-family: $datepicker__font-family;
   font-size: $datepicker__font-size;
-  background-color: #fff;
+  background-color: #FFF;
   color: $datepicker__text-color;
   border: 1px solid $datepicker__border-color;
   border-radius: $datepicker__border-radius;
@@ -47,7 +47,7 @@
   }
 
   .react-datepicker__time-container {
-    border-left: 0;
+    border-left: none;
   }
 
   .react-datepicker__time {
@@ -234,7 +234,7 @@
 
   &--with-today-button {
     display: inline;
-    border: 1px solid #aeaeae;
+    border: 1px solid #AEAEAE;
     border-radius: 0.3rem;
     position: absolute;
     right: -72px;
@@ -243,7 +243,7 @@
 
   .react-datepicker__time {
     position: relative;
-    background: white;
+    background: #FFF;
 
     .react-datepicker__time-box {
       width: 70px;
@@ -255,8 +255,8 @@
         margin: 0;
         height: calc(195px + (#{$datepicker__item-size} / 2));
         overflow-y: scroll;
-        padding-right: 0px;
-        padding-left: 0px;
+        padding-right: 0;
+        padding-left: 0;
         width: 100%;
         box-sizing: content-box;
 
@@ -272,7 +272,7 @@
           }
           &--selected {
             background-color: $datepicker__selected-color;
-            color: white;
+            color: #FFF;
             font-weight: bold;
             &:hover {
               background-color: $datepicker__selected-color;
@@ -339,18 +339,18 @@
   &--highlighted {
     border-radius: $datepicker__border-radius;
     background-color: $datepicker__highlighted-color;
-    color: #fff;
+    color: #FFF;
 
     &:hover {
       background-color: darken($datepicker__highlighted-color, 5%);
     }
 
     &-custom-1 {
-      color: magenta;
+      color: #F0F;
     }
 
     &-custom-2 {
-      color: green;
+      color: #008000;
     }
   }
 
@@ -359,7 +359,7 @@
   &--in-range {
     border-radius: $datepicker__border-radius;
     background-color: $datepicker__selected-color;
-    color: #fff;
+    color: #FFF;
 
     &:hover {
       background-color: darken($datepicker__selected-color, 5%);
@@ -369,7 +369,7 @@
   &--keyboard-selected {
     border-radius: $datepicker__border-radius;
     background-color: lighten($datepicker__selected-color, 10%);
-    color: #fff;
+    color: #FFF;
 
     &:hover {
       background-color: darken($datepicker__selected-color, 5%);
@@ -495,7 +495,7 @@
 
 .react-datepicker__close-icon {
   background-color: transparent;
-  border: 0;
+  border: none;
   cursor: pointer;
   outline: 0;
   padding: 0;
@@ -511,7 +511,7 @@
     border-radius: 50%;
     bottom: 0;
     box-sizing: border-box;
-    color: #fff;
+    color: #FFF;
     content: "\00d7";
     cursor: pointer;
     font-size: 12px;
@@ -521,7 +521,7 @@
     margin: -8px auto 0;
     padding: 2px;
     position: absolute;
-    right: 0px;
+    right: 0;
     text-align: center;
   }
 }

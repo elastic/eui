@@ -10,7 +10,7 @@
   border-bottom: $euiBorderWidthThick solid transparent;
   display: inline-block; /* 1 */
   text-align: left;
-  padding: ($euiSizeXS / 2) 0;
+  padding: ($euiSizeXS * .5) 0;
   transition: all $euiAnimSpeedNormal ease-in-out;
   color: $euiTextColor;
 

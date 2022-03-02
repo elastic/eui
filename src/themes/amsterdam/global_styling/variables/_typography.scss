@@ -23,12 +23,12 @@ $euiCodeFontWeightBold: 700;
 // Normally functions are imported before variables in `_index.scss` files
 // But because they need to consume some typography variables they need to live here
 @function convertToRem($size) {
-  @return #{$size / $euiFontSize}rem;
+  @return #{calc($size / $euiFontSize)}rem;
 }
 
 // Use 8px increments for base gridline
 @function lineHeightFromBaseline($multiplier: 3) {
-  @return convertToRem(($euiSize/2)*$multiplier);
+  @return convertToRem(($euiSize * .5) * $multiplier);
 }
 
 $euiTitles: (

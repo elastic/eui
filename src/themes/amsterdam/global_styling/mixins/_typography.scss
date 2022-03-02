@@ -5,17 +5,17 @@
 
 @function fontSizeToRemOrEm($size, $sizingMethod: 'rem') {
   @if ($sizingMethod == 'rem') {
-    @return #{$size / $euiFontSize}rem;
+    @return #{calc($size / $euiFontSize)}rem;
   } @else if ($sizingMethod == 'em') {
-    @return #{$size / $euiFontSize}em;
+    @return #{calc($size / $euiFontSize)}em;
   }
 }
 
 @function marginToRemOrEm($elementSize, $elementFontSize, $sizingMethod: 'rem') {
   @if ($sizingMethod == 'rem') {
-    @return #{$elementSize / $euiFontSize}rem;
+    @return #{calc($elementSize / $euiFontSize)}rem;
   } @else if ($sizingMethod == 'em') {
-    @return #{$elementSize / $elementFontSize}em;
+    @return #{calc($elementSize / $elementFontSize)}em;
   }
 }
 

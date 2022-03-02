@@ -60,7 +60,7 @@
 
         &.euiSwitch__icon--checked {
           right: auto;
-          left: -($euiSwitchWidth - ($euiSwitchThumbSize / 2));
+          left: -($euiSwitchWidth - ($euiSwitchThumbSize * .5));
         }
       }
     }
@@ -98,10 +98,10 @@
 
   .euiSwitch__icon {
     position: absolute;
-    right: -($euiSwitchWidth - ($euiSwitchThumbSize / 2));
-    top: ($euiSwitchHeight - $euiSwitchIconHeight) / 2;
+    right: -($euiSwitchWidth - ($euiSwitchThumbSize * .5));
+    top: ($euiSwitchHeight - $euiSwitchIconHeight) * .5;
     bottom: 0;
-    width: $euiSwitchWidth - ($euiSwitchThumbSize / 2) + $euiSizeS;
+    width: $euiSwitchWidth - ($euiSwitchThumbSize * .5) + $euiSizeS;
     height: $euiSwitchIconHeight;
     transition: left $euiAnimSpeedNormal $euiAnimSlightBounce, right $euiAnimSpeedNormal $euiAnimSlightBounce;
     fill: $euiTextColor;

@@ -10,7 +10,7 @@
     .euiPageContent[class*='#{$modifier}'] .euiPageContentHeader--responsive {
       .euiPageContentHeaderSection + .euiPageContentHeaderSection {
         margin-left: 0;
-        margin-top: $amount / 2;
+        margin-top: $amount * .5;
       }
     }
   }

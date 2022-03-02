@@ -4,17 +4,17 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: ($euiFormControlHeight / 2) + 2px;
+  top: ($euiFormControlHeight * .5) + 2px;
 
   &--hasTicks {
-    top: ($euiFormControlHeight / 4) + 2px;
+    top: ($euiFormControlHeight * .25) + 2px;
   }
 
   &--compressed {
-    top: ($euiFormControlCompressedHeight / 2) + 2px;
+    top: ($euiFormControlCompressedHeight * .5) + 2px;
 
     &.euiRangeLevels--hasTicks {
-      top: ($euiFormControlCompressedHeight / 4) + 2px;
+      top: ($euiFormControlCompressedHeight * .25) + 2px;
     }
   }
 }

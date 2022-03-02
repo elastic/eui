@@ -6,7 +6,7 @@
   top: 0;
   bottom: 0;
   width: calc(100% - #{$euiRangeThumbWidth});
-  margin-left: $euiRangeThumbWidth / 2;
+  margin-left: $euiRangeThumbWidth * .5;
   pointer-events: none;
   z-index: 2; // higher than .euiRangeSlider that is 1
 }
@@ -18,7 +18,7 @@
   border: 1px solid $euiTooltipBackgroundColor;
   position: absolute;
   border-radius: $euiBorderRadius;
-  padding: ($euiSizeXS / 2) $euiSizeS;
+  padding: ($euiSizeXS * .5) $euiSizeS;
   background-color: $euiTooltipBackgroundColor;
   color: $euiColorGhost;
   max-width: 256px;
@@ -29,13 +29,13 @@
 
   // Custom sizing
   $arrowSize: $euiSizeM;
-  $arrowMinusSize: (($arrowSize / 2) - 1px) * -1;
+  $arrowMinusSize: (($arrowSize * .5) - 1px) * -1;
 
   &::after,
   &::before {
     content: '';
     position: absolute;
-    bottom: -$arrowSize / 2;
+    bottom: -$arrowSize * .5;
     left: 50%;
     transform-origin: center;
     background-color: $euiTooltipBackgroundColor;
@@ -88,10 +88,10 @@
   }
 
   &--hasTicks {
-    top: ($euiFormControlHeight / 4);
+    top: ($euiFormControlHeight * .25);
 
     .euiRangeTooltip--compressed & {
-      top: ($euiFormControlCompressedHeight / 4);
+      top: ($euiFormControlCompressedHeight * .25);
     }
   }
 }

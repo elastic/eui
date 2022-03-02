@@ -29,7 +29,7 @@
   .euiPopover__panelArrow.euiPopover__panelArrow--right {
     .euiTour__beacon {
       opacity: 1;
-      top: $euiPopoverArrowSize / 2;
+      top: $euiPopoverArrowSize * .5;
       left: -$euiPopoverArrowSize * 2;
     }
   }
@@ -37,7 +37,7 @@
   .euiPopover__panelArrow.euiPopover__panelArrow--left {
     .euiTour__beacon {
       opacity: 1;
-      top: $euiPopoverArrowSize / 2;
+      top: $euiPopoverArrowSize * .5;
       left: $euiPopoverArrowSize;
     }
   }
@@ -50,7 +50,7 @@
     .euiTour__beacon {
       opacity: 1;
       top: $euiPopoverArrowSize;
-      left: $euiPopoverArrowSize / 2;
+      left: $euiPopoverArrowSize * .5;
     }
   }
 
@@ -58,7 +58,7 @@
     .euiTour__beacon {
       opacity: 1;
       top: -$euiPopoverArrowSize * 2;
-      left: $euiPopoverArrowSize / 2;
+      left: $euiPopoverArrowSize * .5;
     }
   }
 }

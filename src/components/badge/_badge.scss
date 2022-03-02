@@ -8,7 +8,7 @@
   padding: 0 $euiSizeS;
   display: inline-block;
   text-decoration: none;
-  border-radius: $euiBorderRadius / 2;
+  border-radius: $euiBorderRadius * .5;
   border: solid 1px transparent;
   background-color: transparent;
   white-space: nowrap;

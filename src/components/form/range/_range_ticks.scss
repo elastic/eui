@@ -15,8 +15,8 @@
   display: flex;
 
   &--isCustom {
-    left: ($euiRangeThumbWidth / 8);
-    right: ($euiRangeThumbWidth / 8);
+    left: ($euiRangeThumbWidth * .125);
+    right: ($euiRangeThumbWidth * .125);
   }
 }
 
@@ -32,7 +32,7 @@
   &:not(.euiRangeTick--hasTickMark)::before {
     @include tickStyles;
     content: '';
-    left: calc(50% - #{($euiSizeXS/2)});
+    left: calc(50% - #{($euiSizeXS * .5)});
   }
 
   .euiRangeTick__pseudo {

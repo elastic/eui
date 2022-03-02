@@ -18,9 +18,9 @@
 @mixin datePickerArrow {
   background-position: center;
   @if (lightness($euiColorEmptyShade) > 50) {
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiI+ICA8ZGVmcz4gICAgPHBhdGggaWQ9ImFycm93X2Rvd24tYSIgZD0iTTEzLjA2ODg1MDgsNS4xNTcyNTAzOCBMOC4zODQyMzk3NSw5Ljc2ODI3NDI4IEM4LjE3MDU0NDE1LDkuOTc4NjEzMDggNy44Mjk5OTIxNCw5Ljk3OTE0MDk1IDcuNjE1NzYwMjUsOS43NjgyNzQyOCBMMi45MzExNDkxNSw1LjE1NzI1MDM4IEMyLjcxODEzNTksNC45NDc1ODMyMSAyLjM3Mjc3MzE5LDQuOTQ3NTgzMjEgMi4xNTk3NTk5NCw1LjE1NzI1MDM4IEMxLjk0Njc0NjY5LDUuMzY2OTE3NTYgMS45NDY3NDY2OSw1LjcwNjg1NTIyIDIuMTU5NzU5OTQsNS45MTY1MjI0IEw2Ljg0NDM3MTA0LDEwLjUyNzU0NjMgQzcuNDg1MTc0MjQsMTEuMTU4MjgzNiA4LjUxNjQ0OTc5LDExLjE1NjY4NTEgOS4xNTU2Mjg5NiwxMC41Mjc1NDYzIEwxMy44NDAyNDAxLDUuOTE2NTIyNCBDMTQuMDUzMjUzMyw1LjcwNjg1NTIyIDE0LjA1MzI1MzMsNS4zNjY5MTc1NiAxMy44NDAyNDAxLDUuMTU3MjUwMzggQzEzLjYyNzIyNjgsNC45NDc1ODMyMSAxMy4yODE4NjQxLDQuOTQ3NTgzMjEgMTMuMDY4ODUwOCw1LjE1NzI1MDM4IFoiLz4gIDwvZGVmcz4gIDxnIGZpbGwtcnVsZT0iZXZlbm9kZCI+ICAgIDx1c2UgZmlsbC1ydWxlPSJub256ZXJvIiB4bGluazpocmVmPSIjYXJyb3dfZG93bi1hIi8+ICA8L2c+PC9zdmc+);
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiI+ICA8ZGVmcz4gICAgPHBhdGggaWQ9ImFycm93X2Rvd24tYSIgZD0iTTEzLjA2ODg1MDgsNS4xNTcyNTAzOCBMOC4zODQyMzk3NSw5Ljc2ODI3NDI4IEM4LjE3MDU0NDE1LDkuOTc4NjEzMDggNy44Mjk5OTIxNCw5Ljk3OTE0MDk1IDcuNjE1NzYwMjUsOS43NjgyNzQyOCBMMi45MzExNDkxNSw1LjE1NzI1MDM4IEMyLjcxODEzNTksNC45NDc1ODMyMSAyLjM3Mjc3MzE5LDQuOTQ3NTgzMjEgMi4xNTk3NTk5NCw1LjE1NzI1MDM4IEMxLjk0Njc0NjY5LDUuMzY2OTE3NTYgMS45NDY3NDY2OSw1LjcwNjg1NTIyIDIuMTU5NzU5OTQsNS45MTY1MjI0IEw2Ljg0NDM3MTA0LDEwLjUyNzU0NjMgQzcuNDg1MTc0MjQsMTEuMTU4MjgzNiA4LjUxNjQ0OTc5LDExLjE1NjY4NTEgOS4xNTU2Mjg5NiwxMC41Mjc1NDYzIEwxMy44NDAyNDAxLDUuOTE2NTIyNCBDMTQuMDUzMjUzMyw1LjcwNjg1NTIyIDE0LjA1MzI1MzMsNS4zNjY5MTc1NiAxMy44NDAyNDAxLDUuMTU3MjUwMzggQzEzLjYyNzIyNjgsNC45NDc1ODMyMSAxMy4yODE4NjQxLDQuOTQ3NTgzMjEgMTMuMDY4ODUwOCw1LjE1NzI1MDM4IFoiLz4gIDwvZGVmcz4gIDxnIGZpbGwtcnVsZT0iZXZlbm9kZCI+ICAgIDx1c2UgZmlsbC1ydWxlPSJub256ZXJvIiB4bGluazpocmVmPSIjYXJyb3dfZG93bi1hIi8+ICA8L2c+PC9zdmc+');
   } @else {
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiI+ICA8ZGVmcz4gICAgPHBhdGggaWQ9ImRvd25hcnJvd3doaXRlLWEiIGQ9Ik0xMy4wNjg4NTA4LDUuMTU3MjUwMzggTDguMzg0MjM5NzUsOS43NjgyNzQyOCBDOC4xNzA1NDQxNSw5Ljk3ODYxMzA4IDcuODI5OTkyMTQsOS45NzkxNDA5NSA3LjYxNTc2MDI1LDkuNzY4Mjc0MjggTDIuOTMxMTQ5MTUsNS4xNTcyNTAzOCBDMi43MTgxMzU5LDQuOTQ3NTgzMjEgMi4zNzI3NzMxOSw0Ljk0NzU4MzIxIDIuMTU5NzU5OTQsNS4xNTcyNTAzOCBDMS45NDY3NDY2OSw1LjM2NjkxNzU2IDEuOTQ2NzQ2NjksNS43MDY4NTUyMiAyLjE1OTc1OTk0LDUuOTE2NTIyNCBMNi44NDQzNzEwNCwxMC41Mjc1NDYzIEM3LjQ4NTE3NDI0LDExLjE1ODI4MzYgOC41MTY0NDk3OSwxMS4xNTY2ODUxIDkuMTU1NjI4OTYsMTAuNTI3NTQ2MyBMMTMuODQwMjQwMSw1LjkxNjUyMjQgQzE0LjA1MzI1MzMsNS43MDY4NTUyMiAxNC4wNTMyNTMzLDUuMzY2OTE3NTYgMTMuODQwMjQwMSw1LjE1NzI1MDM4IEMxMy42MjcyMjY4LDQuOTQ3NTgzMjEgMTMuMjgxODY0MSw0Ljk0NzU4MzIxIDEzLjA2ODg1MDgsNS4xNTcyNTAzOCBaIi8+ICA8L2RlZnM+ICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPiAgICA8dXNlIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0ibm9uemVybyIgeGxpbms6aHJlZj0iI2Rvd25hcnJvd3doaXRlLWEiLz4gIDwvZz48L3N2Zz4=);
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiI+ICA8ZGVmcz4gICAgPHBhdGggaWQ9ImRvd25hcnJvd3doaXRlLWEiIGQ9Ik0xMy4wNjg4NTA4LDUuMTU3MjUwMzggTDguMzg0MjM5NzUsOS43NjgyNzQyOCBDOC4xNzA1NDQxNSw5Ljk3ODYxMzA4IDcuODI5OTkyMTQsOS45NzkxNDA5NSA3LjYxNTc2MDI1LDkuNzY4Mjc0MjggTDIuOTMxMTQ5MTUsNS4xNTcyNTAzOCBDMi43MTgxMzU5LDQuOTQ3NTgzMjEgMi4zNzI3NzMxOSw0Ljk0NzU4MzIxIDIuMTU5NzU5OTQsNS4xNTcyNTAzOCBDMS45NDY3NDY2OSw1LjM2NjkxNzU2IDEuOTQ2NzQ2NjksNS43MDY4NTUyMiAyLjE1OTc1OTk0LDUuOTE2NTIyNCBMNi44NDQzNzEwNCwxMC41Mjc1NDYzIEM3LjQ4NTE3NDI0LDExLjE1ODI4MzYgOC41MTY0NDk3OSwxMS4xNTY2ODUxIDkuMTU1NjI4OTYsMTAuNTI3NTQ2MyBMMTMuODQwMjQwMSw1LjkxNjUyMjQgQzE0LjA1MzI1MzMsNS43MDY4NTUyMiAxNC4wNTMyNTMzLDUuMzY2OTE3NTYgMTMuODQwMjQwMSw1LjE1NzI1MDM4IEMxMy42MjcyMjY4LDQuOTQ3NTgzMjEgMTMuMjgxODY0MSw0Ljk0NzU4MzIxIDEzLjA2ODg1MDgsNS4xNTcyNTAzOCBaIi8+ICA8L2RlZnM+ICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPiAgICA8dXNlIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0ibm9uemVybyIgeGxpbms6aHJlZj0iI2Rvd25hcnJvd3doaXRlLWEiLz4gIDwvZz48L3N2Zz4=');
   }
 }
 
@@ -98,7 +98,7 @@
 
 
   .react-datepicker__time-container {
-    border-left: 0;
+    border-left: none;
   }
 
   // .react-datepicker__triangle {
@@ -185,7 +185,7 @@
   cursor: pointer;
   position: absolute;
   // Pixel pushing because these are icons against text
-  top: $euiSize + ($euiSizeXS / 2);
+  top: $euiSize + ($euiSizeXS * .5);
   width: 0;
   padding: 0;
   z-index: 1;
@@ -207,12 +207,12 @@
 
     &:hover {
       background-color: $euiColorLightestShade;
-      box-shadow: 0 0 0 ($euiSizeXS / 2) $euiColorLightestShade;
+      box-shadow: 0 0 0 ($euiSizeXS * .5) $euiColorLightestShade;
     }
 
     &:focus {
       background-color: $euiFocusBackgroundColor;
-      box-shadow: 0 0 0 ($euiSizeXS / 2) $euiFocusBackgroundColor;
+      box-shadow: 0 0 0 ($euiSizeXS * .5) $euiFocusBackgroundColor;
     }
 
     &--disabled,
@@ -243,12 +243,12 @@
 
     &:hover {
       background-color: $euiColorLightestShade;
-      box-shadow: 0 0 0 ($euiSizeXS / 2) $euiColorLightestShade;
+      box-shadow: 0 0 0 ($euiSizeXS * .5) $euiColorLightestShade;
     }
 
     &:focus {
       background-color: $euiFocusBackgroundColor;
-      box-shadow: 0 0 0 ($euiSizeXS / 2) $euiFocusBackgroundColor;
+      box-shadow: 0 0 0 ($euiSizeXS * .5) $euiFocusBackgroundColor;
     }
 
     &--disabled,
@@ -343,8 +343,8 @@
           }
           &--selected {
             background-color: $euiColorPrimary;
-            color: white;
-            border-radius: $euiBorderRadius / 2;
+            color: #FFF;
+            border-radius: $euiBorderRadius * .5;
             &:hover {
               background-color: $euiColorPrimary;
             }
@@ -393,7 +393,7 @@
   width: $euiSizeXL;
   line-height: $euiSizeXL - $euiSizeXS;
   text-align: center;
-  margin: 0 $euiSizeXS / 2;
+  margin: 0 $euiSizeXS * .5;
 }
 
 .react-datepicker__day-name {
@@ -444,11 +444,11 @@
   &--selected,
   &--in-selecting-range {
     height: $euiSizeXL;
-    margin: 0 $euiSizeXS / 2;
+    margin: 0 $euiSizeXS * .5;
     border-radius: $euiBorderRadius;
     background-color: $euiColorPrimary;
     line-height: $euiSizeL + $euiSizeXS;
-    border: solid $euiSizeXS / 2 $euiColorPrimary;
+    border: solid $euiSizeXS * .5 $euiColorPrimary;
     color: $euiColorGhost;
 
     &:hover {
@@ -458,7 +458,7 @@
 
   &--keyboard-selected {
     border-radius: $euiBorderRadius;
-    border: solid $euiSizeXS / 2 $euiColorPrimary;
+    border: solid $euiSizeXS * .5 $euiColorPrimary;
     font-weight: $euiFontWeightBold;
 
     &:hover {

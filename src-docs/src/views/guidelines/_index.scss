@@ -109,11 +109,11 @@
 }
 
 .guideSass__euiSizeXS2 {
-  padding: $euiSizeXS / 2;
+  padding: $euiSizeXS * .5;
   background-color: $euiColorHighlight;
 
   &::after {
-    content: 'padding: #{$euiSizeXS / 2}';
+    content: 'padding: #{$euiSizeXS * .5}';
     font-weight: $euiFontWeightBold;
   }
 }

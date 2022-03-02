@@ -18,7 +18,7 @@
   // Target when the euiFormControlLayout is compressed without specifying the full class name in case it ever changes
   &[class*='--compressed'] {
     @include euiFormControlDefaultShadow($borderOnly: true);
-    border-radius: $euiBorderRadius / 2;
+    border-radius: $euiBorderRadius * .5;
 
     .euiFormControlLayoutDelimited__input {
       height: 100%;
@@ -91,6 +91,6 @@
   // sass-lint:disable-block no-important
   line-height: 1 !important; // Override EuiText line-height
   flex: 0 0 auto;
-  padding-left: $euiFormControlPadding / 2;
-  padding-right: $euiFormControlPadding / 2;
+  padding-left: $euiFormControlPadding * .5;
+  padding-right: $euiFormControlPadding * .5;
 }
