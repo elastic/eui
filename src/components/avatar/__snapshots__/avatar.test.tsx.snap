@@ -27,24 +27,7 @@ exports[`EuiAvatar allows a name composed entirely of whitespace 1`] = `
   height: 32px;
   line-height: 32px;
   font-size: calc(16px * .9);
-  position: relative;
   border-radius: 50%;
-}
-
-.emotion-0:after {
-  display: none;
-}
-
-.emotion-0:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50%;
-  content: '';
-  pointer-events: none;
-  border: 1px solid rgba(52,55,65,0.05);
 }
 
 <div
@@ -90,24 +73,7 @@ exports[`EuiAvatar is rendered 1`] = `
   height: 32px;
   line-height: 32px;
   font-size: calc(16px * .9);
-  position: relative;
   border-radius: 50%;
-}
-
-.emotion-0:after {
-  display: none;
-}
-
-.emotion-0:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50%;
-  content: '';
-  pointer-events: none;
-  border: 1px solid rgba(52,55,65,0.05);
 }
 
 <div
@@ -153,24 +119,7 @@ exports[`EuiAvatar props color as null is rendered 1`] = `
   height: 32px;
   line-height: 32px;
   font-size: calc(16px * .9);
-  position: relative;
   border-radius: 50%;
-}
-
-.emotion-0:after {
-  display: none;
-}
-
-.emotion-0:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50%;
-  content: '';
-  pointer-events: none;
-  border: 1px solid rgba(52,55,65,0.05);
 }
 
 <div
@@ -214,25 +163,8 @@ exports[`EuiAvatar props color as plain is rendered 1`] = `
   height: 32px;
   line-height: 32px;
   font-size: calc(16px * .9);
-  position: relative;
   border-radius: 50%;
   background-color: #FFF;
-}
-
-.emotion-0:after {
-  display: none;
-}
-
-.emotion-0:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50%;
-  content: '';
-  pointer-events: none;
-  border: 1px solid rgba(52,55,65,0.05);
 }
 
 <div
@@ -276,24 +208,7 @@ exports[`EuiAvatar props color as string is rendered 1`] = `
   height: 32px;
   line-height: 32px;
   font-size: calc(16px * .9);
-  position: relative;
   border-radius: 50%;
-}
-
-.emotion-0:after {
-  display: none;
-}
-
-.emotion-0:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50%;
-  content: '';
-  pointer-events: none;
-  border: 1px solid rgba(52,55,65,0.05);
 }
 
 <div
@@ -338,24 +253,7 @@ exports[`EuiAvatar props iconType and iconColor as null is rendered 1`] = `
   height: 32px;
   line-height: 32px;
   font-size: calc(16px * .9);
-  position: relative;
   border-radius: 50%;
-}
-
-.emotion-0:after {
-  display: none;
-}
-
-.emotion-0:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50%;
-  content: '';
-  pointer-events: none;
-  border: 1px solid rgba(52,55,65,0.05);
 }
 
 <div
@@ -402,24 +300,7 @@ exports[`EuiAvatar props iconType and iconColor is rendered 1`] = `
   height: 32px;
   line-height: 32px;
   font-size: calc(16px * .9);
-  position: relative;
   border-radius: 50%;
-}
-
-.emotion-0:after {
-  display: none;
-}
-
-.emotion-0:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50%;
-  content: '';
-  pointer-events: none;
-  border: 1px solid rgba(52,55,65,0.05);
 }
 
 <div
@@ -467,24 +348,7 @@ exports[`EuiAvatar props iconType and iconSize is rendered 1`] = `
   height: 32px;
   line-height: 32px;
   font-size: calc(16px * .9);
-  position: relative;
   border-radius: 50%;
-}
-
-.emotion-0:after {
-  display: none;
-}
-
-.emotion-0:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50%;
-  content: '';
-  pointer-events: none;
-  border: 1px solid rgba(52,55,65,0.05);
 }
 
 <div
@@ -532,24 +396,7 @@ exports[`EuiAvatar props iconType is rendered 1`] = `
   height: 32px;
   line-height: 32px;
   font-size: calc(16px * .9);
-  position: relative;
   border-radius: 50%;
-}
-
-.emotion-0:after {
-  display: none;
-}
-
-.emotion-0:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50%;
-  content: '';
-  pointer-events: none;
-  border: 1px solid rgba(52,55,65,0.05);
 }
 
 <div
@@ -597,24 +444,7 @@ exports[`EuiAvatar props imageUrl is rendered 1`] = `
   height: 32px;
   line-height: 32px;
   font-size: calc(16px * .9);
-  position: relative;
   border-radius: 50%;
-}
-
-.emotion-0:after {
-  display: none;
-}
-
-.emotion-0:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50%;
-  content: '';
-  pointer-events: none;
-  border: 1px solid rgba(52,55,65,0.05);
 }
 
 <div
@@ -653,24 +483,7 @@ exports[`EuiAvatar props initials is rendered 1`] = `
   height: 32px;
   line-height: 32px;
   font-size: calc(16px * .9);
-  position: relative;
   border-radius: 50%;
-}
-
-.emotion-0:after {
-  display: none;
-}
-
-.emotion-0:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50%;
-  content: '';
-  pointer-events: none;
-  border: 1px solid rgba(52,55,65,0.05);
 }
 
 <div
@@ -715,24 +528,7 @@ exports[`EuiAvatar props initialsLength is rendered 1`] = `
   height: 32px;
   line-height: 32px;
   font-size: calc(16px * .9);
-  position: relative;
   border-radius: 50%;
-}
-
-.emotion-0:after {
-  display: none;
-}
-
-.emotion-0:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50%;
-  content: '';
-  pointer-events: none;
-  border: 1px solid rgba(52,55,65,0.05);
 }
 
 <div
@@ -777,27 +573,10 @@ exports[`EuiAvatar props isDisabled is rendered 1`] = `
   height: 32px;
   line-height: 32px;
   font-size: calc(16px * .9);
-  position: relative;
   border-radius: 50%;
   cursor: not-allowed;
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
-}
-
-.emotion-0:after {
-  display: none;
-}
-
-.emotion-0:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50%;
-  content: '';
-  pointer-events: none;
-  border: 1px solid rgba(52,55,65,0.05);
 }
 
 <div
@@ -841,24 +620,7 @@ exports[`EuiAvatar props size l is rendered 1`] = `
   height: 40px;
   line-height: 40px;
   font-size: calc(24px * .8);
-  position: relative;
   border-radius: 50%;
-}
-
-.emotion-0:after {
-  display: none;
-}
-
-.emotion-0:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50%;
-  content: '';
-  pointer-events: none;
-  border: 1px solid rgba(52,55,65,0.05);
 }
 
 <div
@@ -903,24 +665,7 @@ exports[`EuiAvatar props size m is rendered 1`] = `
   height: 32px;
   line-height: 32px;
   font-size: calc(16px * .9);
-  position: relative;
   border-radius: 50%;
-}
-
-.emotion-0:after {
-  display: none;
-}
-
-.emotion-0:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50%;
-  content: '';
-  pointer-events: none;
-  border: 1px solid rgba(52,55,65,0.05);
 }
 
 <div
@@ -965,24 +710,7 @@ exports[`EuiAvatar props size s is rendered 1`] = `
   height: 24px;
   line-height: 24px;
   font-size: 12px;
-  position: relative;
   border-radius: 50%;
-}
-
-.emotion-0:after {
-  display: none;
-}
-
-.emotion-0:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50%;
-  content: '';
-  pointer-events: none;
-  border: 1px solid rgba(52,55,65,0.05);
 }
 
 <div
@@ -1027,24 +755,7 @@ exports[`EuiAvatar props size xl is rendered 1`] = `
   height: calc(16px * 4);
   line-height: calc(16px * 4);
   font-size: calc(32px * .8);
-  position: relative;
   border-radius: 50%;
-}
-
-.emotion-0:after {
-  display: none;
-}
-
-.emotion-0:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50%;
-  content: '';
-  pointer-events: none;
-  border: 1px solid rgba(52,55,65,0.05);
 }
 
 <div
@@ -1089,24 +800,7 @@ exports[`EuiAvatar props type is rendered 1`] = `
   height: 32px;
   line-height: 32px;
   font-size: calc(16px * .9);
-  position: relative;
   border-radius: 6px;
-}
-
-.emotion-0:after {
-  display: none;
-}
-
-.emotion-0:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 6px;
-  content: '';
-  pointer-events: none;
-  border: 1px solid rgba(52,55,65,0.05);
 }
 
 <div

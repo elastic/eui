@@ -45,24 +45,7 @@ exports[`EuiCommentTimeline props timelineIcon is rendered 1`] = `
   height: 40px;
   line-height: 40px;
   font-size: calc(24px * .8);
-  position: relative;
   border-radius: 50%;
-}
-
-.emotion-0:after {
-  display: none;
-}
-
-.emotion-0:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50%;
-  content: '';
-  pointer-events: none;
-  border: 1px solid rgba(52,55,65,0.05);
 }
 
 <div

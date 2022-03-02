@@ -8,7 +8,6 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { innerBorder } from '../../global_styling/mixins/_helpers';
 import { size } from '../../global_styling/mixins/_size';
 
 export const euiAvatarStyles = ({ euiTheme }: UseEuiTheme) => {
@@ -44,36 +43,15 @@ export const euiAvatarStyles = ({ euiTheme }: UseEuiTheme) => {
       overflow-x: hidden;
       font-weight: ${euiTheme.font.weight
         .medium}; // Explicitly state so it doesn't get overridden by inheritance
-
-      // Remove faux outline
-      &:after {
-        display: none;
-      }
     `,
     // Variants
     plain: css`
       background-color: ${euiTheme.colors.emptyShade};
     `,
     user: css`
-      ${innerBorder(
-        {
-          type: 'dark',
-          borderRadius: '50%',
-          alpha: 0.05,
-        },
-        euiTheme
-      )}
       border-radius: 50%;
     `,
     space: css`
-      ${innerBorder(
-        {
-          type: 'dark',
-          borderRadius: euiTheme.border.radius.medium,
-          alpha: 0.05,
-        },
-        euiTheme
-      )}
       border-radius: ${euiTheme.border.radius.medium};
     `,
     // States

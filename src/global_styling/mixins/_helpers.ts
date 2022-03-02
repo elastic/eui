@@ -7,7 +7,7 @@
  */
 
 import chroma from 'chroma-js';
-import { UseEuiTheme, useEuiTheme } from '../../services/theme/hooks';
+import { useEuiTheme } from '../../services/theme/hooks';
 import { transparentize } from '../../services/color';
 import { useOverflowShadow } from './_shadow';
 import { CSSProperties } from 'react';
@@ -82,16 +82,18 @@ export const useScrollBar = ({
  */
 
 // Useful border shade when dealing with images of unknown color.
-interface InnerBorderInterface {
+export const useInnerBorder = ({
+  type = 'dark',
+  borderRadius = 0,
+  alpha = 0.1,
+}: {
   type?: 'light' | 'dark';
-  borderRadius?: number | string;
+  borderRadius?: number;
   alpha?: number;
-}
-export const innerBorder = (
-  { type = 'dark', borderRadius = 0, alpha = 0.1 }: InnerBorderInterface,
-  euiTheme: UseEuiTheme['euiTheme']
-) => {
-  const { colors } = euiTheme;
+}) => {
+  const {
+    euiTheme: { colors },
+  } = useEuiTheme();
   const color = chroma(
     type === 'dark' ? colors.darkestShade : colors.emptyShade
   )
@@ -113,14 +115,6 @@ export const innerBorder = (
       border: 1px solid ${color};
     }
   `;
-};
-export const useInnerBorder = ({
-  type = 'dark',
-  borderRadius = 0,
-  alpha = 0.1,
-}: InnerBorderInterface) => {
-  const { euiTheme } = useEuiTheme();
-  return innerBorder({ type, borderRadius, alpha }, euiTheme);
 };
 
 /**
