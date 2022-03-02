@@ -1,4 +1,9 @@
-import React, { FunctionComponent, ReactNode, useCallback } from 'react';
+import React, {
+  FunctionComponent,
+  ReactNode,
+  useCallback,
+  useEffect,
+} from 'react';
 import { css, SerializedStyles } from '@emotion/react';
 import debounce from 'lodash/debounce';
 import {
@@ -59,6 +64,13 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
   const [color, setColor, errors] = useColorPickerState(
     isValidHex(String(value)) ? String(value) : ''
   );
+
+  useEffect(() => {
+    if (typeof value === 'string')
+      setColor(value, { hex: value, isValid: true });
+    // Safe to omit setState function
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedOnUpdate = useCallback(

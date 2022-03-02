@@ -6,6 +6,11 @@
 - Extended props of `EuiBreadcrumb` to include `HTMLElement` and `color` inherited from `EuiLink` ([#5634](https://github.com/elastic/eui/pull/5634))
 - Added `"xxl"` size to `EuiLoadingSpinner` ([#5668](https://github.com/elastic/eui/pull/5668))
 - Added `isLoading` prop to `EuiButtonIcon` ([#5668](https://github.com/elastic/eui/pull/5668))
+- Updated `EuiDataGrid` to allow setting individual cell `isExpandable` state via `setCellProps` ([#5667](https://github.com/elastic/eui/pull/5667))
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` cell props not resetting on column sort ([#5665](https://github.com/elastic/eui/issues/5665))
 
 ## [`49.0.0`](https://github.com/elastic/eui/tree/v49.0.0)
 

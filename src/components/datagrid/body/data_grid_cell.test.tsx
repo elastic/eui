@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { mount, render, ReactWrapper } from 'enzyme';
 import { keys } from '../../../services';
 import { mockRowHeightUtils } from '../utils/__mocks__/row_heights';
@@ -180,12 +180,17 @@ describe('EuiDataGridCell', () => {
   });
 
   describe('componentDidUpdate', () => {
-    it('resets cell props when the cell columnId changes', () => {
+    it('resets cell props when the cell is moved (columnId) or sorted (rowIndex)', () => {
       const setState = jest.spyOn(EuiDataGridCell.prototype, 'setState');
       const component = mount(<EuiDataGridCell {...requiredProps} />);
 
       component.setProps({ columnId: 'newColumnId' });
       expect(setState).toHaveBeenCalledWith({ cellProps: {} });
+      expect(setState).toHaveBeenCalledTimes(1);
+
+      component.setProps({ rowIndex: 1 });
+      expect(setState).toHaveBeenCalledWith({ cellProps: {} });
+      expect(setState).toHaveBeenCalledTimes(2);
     });
 
     it("handles the cell popover by forwarding the cell's DOM node and contents to the parent popover context", () => {
@@ -382,6 +387,36 @@ describe('EuiDataGridCell', () => {
         <EuiDataGridCell {...props} isExpandable={false} />
       );
       expect((component.instance() as any).isPopoverOpen()).toEqual(false);
+    });
+  });
+
+  describe('isExpandable', () => {
+    it('falls back to props.isExpandable which is derived from the column config', () => {
+      const component = mount(
+        <EuiDataGridCell {...requiredProps} isExpandable={true} />
+      );
+
+      expect(component.find('renderCellValue').prop('isExpandable')).toBe(true);
+    });
+
+    it('allows overriding column.isExpandable with setCellProps({ isExpandable })', () => {
+      const RenderCellValue = ({ setCellProps }: any) => {
+        useEffect(() => {
+          setCellProps({ isExpandable: false });
+        }, [setCellProps]);
+        return 'cell render';
+      };
+      const component = mount(
+        <EuiDataGridCell
+          {...requiredProps}
+          isExpandable={true}
+          renderCellValue={RenderCellValue}
+        />
+      );
+
+      expect(component.find('RenderCellValue').prop('isExpandable')).toBe(
+        false
+      );
     });
   });
 

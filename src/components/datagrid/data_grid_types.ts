@@ -410,13 +410,18 @@ interface SharedRenderCellElementProps {
   schema: string | undefined | null;
 }
 
+export type EuiDataGridSetCellProps = CommonProps &
+  HTMLAttributes<HTMLDivElement> & {
+    isExpandable?: boolean;
+  };
+
 export interface EuiDataGridCellValueElementProps
   extends SharedRenderCellElementProps {
   /**
    * Callback function to set custom props & attributes on the cell's wrapping `div` element;
    * it's best to wrap calls to `setCellProps` in a `useEffect` hook
    */
-  setCellProps: (props: CommonProps & HTMLAttributes<HTMLDivElement>) => void;
+  setCellProps: (props: EuiDataGridSetCellProps) => void;
   /**
    * Whether or not the cell is expandable, comes from the #EuiDataGridColumn `isExpandable` which defaults to `true`
    */
@@ -482,7 +487,7 @@ export interface EuiDataGridCellProps {
 }
 
 export interface EuiDataGridCellState {
-  cellProps: CommonProps & HTMLAttributes<HTMLDivElement>;
+  cellProps: EuiDataGridSetCellProps;
   isFocused: boolean; // tracks if this cell has focus or not, used to enable tabIndex on the cell
   isEntered: boolean; // enables focus trap for non-expandable cells with multiple interactive elements
   enableInteractions: boolean; // cell got hovered at least once, so cell button and popover interactions are rendered
