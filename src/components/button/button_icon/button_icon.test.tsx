@@ -164,5 +164,15 @@ describe('EuiButtonIcon', () => {
         expect(handler.mock.calls.length).toEqual(1);
       });
     });
+
+    describe('isLoading', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiButtonIcon aria-label="button" iconType="user" isLoading />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });
