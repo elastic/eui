@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useMemo, useCallback, useEffect, useRef, useState } from 'react';
 import { IS_JEST_ENVIRONMENT } from '../../../utils';
 import {
   EuiDataGridColumn,
@@ -24,7 +24,7 @@ export const useDefaultColumnWidth = (
   trailingControlColumns: EuiDataGridControlColumn[],
   columns: EuiDataGridProps['columns']
 ): number | null => {
-  const computeDefaultWidth = useCallback((): number | null => {
+  const defaultColumnWidth = useMemo(() => {
     if (IS_JEST_ENVIRONMENT) return DEFAULT_COLUMN_WIDTH;
     if (gridWidth === 0) return null; // we can't tell what size to compute yet
 
@@ -51,15 +51,6 @@ export const useDefaultColumnWidth = (
     }
     return Math.max(widthToFill / unsizedColumnCount, DEFAULT_COLUMN_WIDTH);
   }, [gridWidth, columns, leadingControlColumns, trailingControlColumns]);
-
-  const [defaultColumnWidth, setDefaultColumnWidth] = useState<number | null>(
-    computeDefaultWidth
-  );
-
-  useEffect(() => {
-    const columnWidth = computeDefaultWidth();
-    setDefaultColumnWidth(columnWidth);
-  }, [computeDefaultWidth]);
 
   return defaultColumnWidth;
 };
