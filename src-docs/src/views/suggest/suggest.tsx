@@ -70,12 +70,6 @@ export default () => {
     console.log(item);
   };
 
-  const [value, setValue] = useState('field');
-  const onSearch = (searchValue: string) => {
-    setValue(searchValue);
-    console.log(searchValue);
-  };
-
   return (
     <div>
       <EuiRadioGroup
@@ -89,10 +83,8 @@ export default () => {
           fullWidth
           aria-labelledby={`${idPrefix}-label`}
           status={status}
-          onInput={(input) => console.log(input)}
+          onInput={() => {}}
           onItemClick={onItemClick}
-          onSearch={onSearch}
-          value={value}
           placeholder="Enter query to display suggestions"
           suggestions={sampleItems}
         />
