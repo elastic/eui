@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { useMemo, useCallback, useEffect, useRef, useState } from 'react';
+import { useMemo, useCallback, useState } from 'react';
+import { useUpdateEffect } from '../../../services';
 import { IS_JEST_ENVIRONMENT } from '../../../utils';
 import {
   EuiDataGridColumn,
@@ -78,8 +79,6 @@ export const useColumnWidths = ({
   setColumnWidth: (columnId: string, width: number) => void;
   getColumnWidth: (index: number) => number;
 } => {
-  const hasMounted = useRef(false);
-
   const computeColumnWidths = useCallback(() => {
     return columns
       .filter(doesColumnHaveAnInitialWidth)
@@ -93,12 +92,7 @@ export const useColumnWidths = ({
     computeColumnWidths
   );
 
-  useEffect(() => {
-    if (!hasMounted.current) {
-      hasMounted.current = true;
-      return;
-    }
-
+  useUpdateEffect(() => {
     setColumnWidths(computeColumnWidths());
   }, [computeColumnWidths]);
 

@@ -88,6 +88,17 @@ describe('useColumnWidths', () => {
       } = testCustomHook(() => useColumnWidths(args));
       expect(columnWidths).toEqual({ b: 75 });
     });
+
+    it('recomputes column widths on columns change', () => {
+      const { updateHookArgs, getUpdatedState } = testCustomHook<
+        ReturnedValues
+      >(useColumnWidths, args);
+
+      updateHookArgs({
+        columns: [{ id: 'c', initialWidth: 125 }],
+      });
+      expect(getUpdatedState().columnWidths).toEqual({ c: 125 });
+    });
   });
 
   describe('setColumnWidth', () => {
