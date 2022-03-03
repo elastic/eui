@@ -6,7 +6,7 @@ exports[`EuiSelectable custom options with data 1`] = `
 >
   <p
     class="euiScreenReaderOnly"
-    id="generated-id-instructions"
+    id="generated-id_instructions"
   >
     Filter options
   </p>
@@ -31,7 +31,7 @@ exports[`EuiSelectable custom options with data 1`] = `
             aria-setsize="3"
             class="euiSelectableListItem euiSelectableListItem--paddingSmall"
             data-test-selected="false"
-            id="generated-id_option-0"
+            id="generated-id_listbox_option-0"
             role="option"
             style="position:absolute;left:0;top:0;height:32px;width:100%"
             title="Titan"
@@ -59,7 +59,7 @@ exports[`EuiSelectable custom options with data 1`] = `
             aria-setsize="3"
             class="euiSelectableListItem euiSelectableListItem--paddingSmall"
             data-test-selected="false"
-            id="generated-id_option-1"
+            id="generated-id_listbox_option-1"
             role="option"
             style="position:absolute;left:0;top:32px;height:32px;width:100%"
             title="Enceladus"
@@ -87,7 +87,7 @@ exports[`EuiSelectable custom options with data 1`] = `
             aria-setsize="3"
             class="euiSelectableListItem euiSelectableListItem--paddingSmall"
             data-test-selected="false"
-            id="generated-id_option-2"
+            id="generated-id_listbox_option-2"
             role="option"
             style="position:absolute;left:0;top:64px;height:32px;width:100%"
             title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
@@ -121,7 +121,7 @@ exports[`EuiSelectable errorMessage prop can render an element as the message 1`
 >
   <p
     class="euiScreenReaderOnly"
-    id="generated-id-instructions"
+    id="generated-id_instructions"
   >
     Filter options
   </p>
@@ -147,7 +147,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
 >
   <p
     class="euiScreenReaderOnly"
-    id="generated-id-instructions"
+    id="generated-id_instructions"
   >
     Filter options
   </p>
@@ -173,7 +173,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
             class="euiSelectableListItem euiSelectableListItem--paddingSmall"
             data-test-selected="false"
             data-test-subj="titanOption"
-            id="generated-id_option-0"
+            id="generated-id_listbox_option-0"
             role="option"
             style="position:absolute;left:0;top:0;height:32px;width:100%"
             title="Titan"
@@ -201,7 +201,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
             aria-setsize="3"
             class="euiSelectableListItem euiSelectableListItem--paddingSmall"
             data-test-selected="false"
-            id="generated-id_option-1"
+            id="generated-id_listbox_option-1"
             role="option"
             style="position:absolute;left:0;top:32px;height:32px;width:100%"
             title="Enceladus"
@@ -229,7 +229,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
             aria-setsize="3"
             class="euiSelectableListItem euiSelectableListItem--paddingSmall"
             data-test-selected="false"
-            id="generated-id_option-2"
+            id="generated-id_listbox_option-2"
             role="option"
             style="position:absolute;left:0;top:64px;height:32px;width:100%"
             title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
@@ -263,7 +263,7 @@ exports[`EuiSelectable errorMessage prop does renders the message when defined 1
 >
   <p
     class="euiScreenReaderOnly"
-    id="generated-id-instructions"
+    id="generated-id_instructions"
   >
     Filter options
   </p>
@@ -287,6 +287,7 @@ exports[`EuiSelectable is rendered 1`] = `
 <div
   class="euiSelectable testClass1 testClass2"
   data-test-subj="test subject string"
+  id="testId"
 />
 `;
 
@@ -338,6 +339,103 @@ exports[`EuiSelectable props singleSelection 1`] = `
 />
 `;
 
+exports[`EuiSelectable search value supports inheriting initialSearchValue from searchProps.defaultValue 1`] = `
+<div
+  class="euiSelectable"
+>
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      role="status"
+    />
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      role="status"
+    >
+      <p>
+        <strong>
+          default value
+        </strong>
+         doesn't match any options
+      </p>
+    </div>
+  </div>
+  <p
+    class="euiScreenReaderOnly"
+    id="generated-id_instructions"
+  >
+    Filter options
+  </p>
+  <div
+    class="euiText euiText--extraSmall euiSelectableMessage"
+    data-test-subj="euiSelectableMessage"
+    id="generated-id_messageContent"
+  >
+    <div
+      class="euiTextColor euiTextColor--subdued"
+    >
+      <p>
+        <strong>
+          default value
+        </strong>
+         doesn't match any options
+      </p>
+    </div>
+  </div>
+  <div
+    class="euiFormControlLayout euiFormControlLayout--fullWidth"
+  >
+    <div
+      class="euiFormControlLayout__childrenWrapper"
+    >
+      <input
+        aria-activedescendant=""
+        aria-haspopup="listbox"
+        aria-label="Filter options"
+        autocomplete="off"
+        class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isClearable euiSelectableSearch"
+        data-test-subj="searchInput"
+        placeholder="Filter options"
+        type="search"
+        value="default value"
+      />
+      <div
+        class="euiFormControlLayoutIcons"
+      >
+        <span
+          class="euiFormControlLayoutCustomIcon"
+        >
+          <span
+            aria-hidden="true"
+            class="euiFormControlLayoutCustomIcon__icon"
+            data-euiicon-type="search"
+          />
+        </span>
+      </div>
+      <div
+        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+      >
+        <button
+          aria-label="Clear input"
+          class="euiFormControlLayoutClearButton"
+          data-test-subj="clearSearchButton"
+          type="button"
+        >
+          <span
+            class="euiFormControlLayoutClearButton__icon"
+            data-euiicon-type="cross"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiSelectable should not reset the activeOptionIndex nor isFocused when EuiSelectable is blurred in favour of its popover 1`] = `
 Object {
   "activeOptionIndex": 0,
@@ -360,8 +458,8 @@ Object {
 
 exports[`EuiSelectable should not reset the activeOptionIndex nor isFocused when EuiSelectable is blurred in favour of its popover 2`] = `
 Object {
-  "activeOptionIndex": undefined,
-  "isFocused": false,
+  "activeOptionIndex": 0,
+  "isFocused": true,
   "searchValue": "",
   "visibleOptions": Array [
     Object {

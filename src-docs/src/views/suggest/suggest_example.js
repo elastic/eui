@@ -13,6 +13,7 @@ import {
 
 import Suggest from './suggest';
 const suggestSource = require('!!raw-loader!./suggest');
+import { suggestConfig } from './playground';
 
 import SavedQueries from './saved_queries';
 const savedQueriesSource = require('!!raw-loader!./saved_queries');
@@ -95,6 +96,7 @@ export const SuggestExample = {
       props: { EuiSuggest },
       snippet: suggestSnippet,
       demo: <Suggest />,
+      playground: suggestConfig,
     },
     {
       title: 'Suggest item',

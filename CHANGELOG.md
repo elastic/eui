@@ -7,16 +7,29 @@
 - Added `"xxl"` size to `EuiLoadingSpinner` ([#5668](https://github.com/elastic/eui/pull/5668))
 - Added `isLoading` prop to `EuiButtonIcon` ([#5668](https://github.com/elastic/eui/pull/5668))
 - Updated `EuiDataGrid` to allow setting individual cell `isExpandable` state via `setCellProps` ([#5667](https://github.com/elastic/eui/pull/5667))
+- Added the ability for `EuiSelectable` and `EuiSuggest` to accept controlled `value` props ([#5658](https://github.com/elastic/eui/pull/5658))
 - Added `textWrap` to `EuiSelectableListItem`, `EuiSelectableList`, and `EuiSelectable.listOptions` ([#5679](https://github.com/elastic/eui/issues/5679))
 - Forced `truncation` on `EuiSuggest` items when `isVirtualize` ([#5679](https://github.com/elastic/eui/issues/5679))
 - Changed proportion handling between content and image in `horizontal` `EuiEmptyPrompt` and added spacing between ([#5663](https://github.com/elastic/eui/pull/5663))
+- Reduced SASS compilation time using a different math `pow` implementation ([#5674](https://github.com/elastic/eui/pull/5674)) 
 
 **Bug fixes**
 
 - Fixed `EuiDataGrid` cell props not resetting on column sort ([#5665](https://github.com/elastic/eui/issues/5665))
 - Fixed `EuiDataGrid` not correctly closing cell popovers when the originating cell is clicked ([#5681](https://github.com/elastic/eui/pull/5681))
+- Fixed `EuiSuggest` not correctly passing props to the search input ([#5658](https://github.com/elastic/eui/pull/5658))
+- Fixed `EuiSelectable` incorrectly rendering the passed `id` prop on the listbox instead of the parent wrapper ([#5658](https://github.com/elastic/eui/pull/5658))
+- Fixed `EuiSelectable` to no longer call `searchProps.onChange` when list items are clicked ([#5658](https://github.com/elastic/eui/pull/5658))
+- Fixed `EuiSelectable` not respecting `searchProps.inputRef` ([#5658](https://github.com/elastic/eui/pull/5658))
 - Fixed render of `EuiSelectableListItem` when no icons are present ([#5679](https://github.com/elastic/eui/issues/5679))
 - Fixed render of `EuiSelectableTemplateSitewide` items when no icons are present ([#5679](https://github.com/elastic/eui/issues/5679))
+
+**Breaking changes**
+
+- Removed the `incremental` prop from `EuiSuggest` and `EuiSelectable`'s `searchProps` ([#5658](https://github.com/elastic/eui/pull/5658))
+- Removed `EuiSelectable`'s `searchProps.onSearch` prop (since Enter keypresses do not trigger a search callback) - use `searchProps.onChange` instead ([#5658](https://github.com/elastic/eui/pull/5658))
+- Renamed `EuiSuggest`'s `onInputChange` and `onSearchChange` callbacks to `onInput`/`onSearch` respectively, for consistency with our existing callback naming conventions ([#5658](https://github.com/elastic/eui/pull/5658))
+- Removed `EuiSuggest`'s `isLoading` prop - use `status.loading` instead ([#5658](https://github.com/elastic/eui/pull/5658))
 
 ## [`49.0.0`](https://github.com/elastic/eui/tree/v49.0.0)
 
