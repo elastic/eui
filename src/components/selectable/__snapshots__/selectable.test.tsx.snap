@@ -44,7 +44,7 @@ exports[`EuiSelectable custom options with data 1`] = `
                 data-euiicon-type="empty"
               />
               <span
-                class="euiSelectableListItem__text"
+                class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
               >
                 <span>
                   VI: Titan
@@ -72,7 +72,7 @@ exports[`EuiSelectable custom options with data 1`] = `
                 data-euiicon-type="empty"
               />
               <span
-                class="euiSelectableListItem__text"
+                class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
               >
                 <span>
                   II: Enceladus
@@ -100,7 +100,7 @@ exports[`EuiSelectable custom options with data 1`] = `
                 data-euiicon-type="empty"
               />
               <span
-                class="euiSelectableListItem__text"
+                class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
               >
                 <span>
                   XVII: Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
@@ -186,7 +186,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
                 data-euiicon-type="empty"
               />
               <span
-                class="euiSelectableListItem__text"
+                class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
               >
                 <span>
                   Titan
@@ -214,7 +214,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
                 data-euiicon-type="empty"
               />
               <span
-                class="euiSelectableListItem__text"
+                class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
               >
                 <span>
                   Enceladus
@@ -242,7 +242,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
                 data-euiicon-type="empty"
               />
               <span
-                class="euiSelectableListItem__text"
+                class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
               >
                 <span>
                   Pandora is one of Saturn's moons, named for a Titaness of Greek mythology

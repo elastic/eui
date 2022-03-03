@@ -4,10 +4,18 @@
 - Added `readOnly` prop to `EuiMarkdownEditor` ([#5627](https://github.com/elastic/eui/pull/5627))
 - Added support for supplying `breadcrumbs` and `breadcrumbProps` directly to `EuiPageHeader` ([#5634](https://github.com/elastic/eui/pull/5634))
 - Extended props of `EuiBreadcrumb` to include `HTMLElement` and `color` inherited from `EuiLink` ([#5634](https://github.com/elastic/eui/pull/5634))
+- Added `"xxl"` size to `EuiLoadingSpinner` ([#5668](https://github.com/elastic/eui/pull/5668))
+- Added `isLoading` prop to `EuiButtonIcon` ([#5668](https://github.com/elastic/eui/pull/5668))
+- Updated `EuiDataGrid` to allow setting individual cell `isExpandable` state via `setCellProps` ([#5667](https://github.com/elastic/eui/pull/5667))
+- Added `textWrap` to `EuiSelectableListItem`, `EuiSelectableList`, and `EuiSelectable.listOptions` ([#5679](https://github.com/elastic/eui/issues/5679))
+- Forced `truncation` on `EuiSuggest` items when `isVirtualize` ([#5679](https://github.com/elastic/eui/issues/5679))
+- Changed proportion handling between content and image in `horizontal` `EuiEmptyPrompt` and added spacing between ([#5663](https://github.com/elastic/eui/pull/5663))
 
 **Bug fixes**
 
 - Fixed `EuiDataGrid` cell props not resetting on column sort ([#5665](https://github.com/elastic/eui/issues/5665))
+- Fixed render of `EuiSelectableListItem` when no icons are present ([#5679](https://github.com/elastic/eui/issues/5679))
+- Fixed render of `EuiSelectableTemplateSitewide` items when no icons are present ([#5679](https://github.com/elastic/eui/issues/5679))
 
 ## [`49.0.0`](https://github.com/elastic/eui/tree/v49.0.0)
 

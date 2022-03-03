@@ -21,7 +21,6 @@ import {
   Options,
   MetaData,
 } from './props';
-
 import Selectable from './selectable';
 const selectableSource = require('!!raw-loader!./selectable');
 
@@ -333,7 +332,7 @@ export const SelectableExample = {
         <Fragment>
           <p>
             There are two object properties you can add to enhance the content
-            of you options, <EuiCode>option.prepend</EuiCode> and{' '}
+            of your options, <EuiCode>option.prepend</EuiCode> and{' '}
             <EuiCode>option.append</EuiCode>. These will add nodes before and
             after the option label respectively. They will not be included in
             the searchable content as this only matches against the label
@@ -366,7 +365,9 @@ export const SelectableExample = {
             If <EuiCode>listProps.isVirtualized</EuiCode> is set to{' '}
             <EuiCode>false</EuiCode>, each row will fit its contents and removes
             all scrolling. Therefore, we recommend having a large enough
-            container to accomodate all optons.
+            container to accommodate all options. You can also remove truncation
+            by setting <EuiCode>{'textWrap="wrap"'}</EuiCode> when
+            virtualization is off.
           </p>
           <h3>Custom content</h3>
           <p>
