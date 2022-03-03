@@ -101,6 +101,7 @@ describe('useCellPopover', () => {
           hasArrow={false}
           isOpen={true}
           onKeyDown={[Function]}
+          onTrapDeactivation={[Function]}
           panelClassName="euiDataGridRowCell__popover"
           panelPaddingSize="s"
           panelProps={
