@@ -1,0 +1,43 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
+import { act } from 'react-dom/test-utils';
+import { testCustomHook } from '../../../../test/test_custom_hook.test_helper';
+import { useHeaderIsInteractive } from './header_is_interactive';
+
+describe('useHeaderIsInteractive', () => {
+  const mockGridEl = document.createElement('div');
+  const mockHeaderEl = mockGridEl.appendChild(document.createElement('div'));
+  mockHeaderEl.setAttribute('data-test-subj', 'dataGridHeader');
+
+  it('returns headerIsInteractive state', () => {
+    const {
+      return: { headerIsInteractive },
+    } = testCustomHook(() => useHeaderIsInteractive(mockGridEl));
+
+    expect(headerIsInteractive).toEqual(false);
+  });
+
+  describe('handleHeaderMutation', () => {
+    it('updates headerIsInteractive state by checking if tabbable elements exist in the header cell', () => {
+      const mockCell = document.createElement('div');
+      const mockTarget = mockCell.appendChild(document.createElement('div'));
+      mockTarget.setAttribute('data-euigrid-tab-managed', 'true');
+      mockHeaderEl.appendChild(mockCell);
+
+      const {
+        return: { handleHeaderMutation },
+        getUpdatedState,
+      } = testCustomHook<any>(() => useHeaderIsInteractive(null));
+
+      act(() => handleHeaderMutation([{ target: mockTarget }]));
+
+      expect(getUpdatedState().headerIsInteractive).toEqual(true);
+    });
+  });
+});
