@@ -37,17 +37,13 @@ export const useDefaultColumnWidth = (
       0
     );
 
-    const columnsWithWidths = columns.filter<
-      EuiDataGridColumn & { initialWidth: number }
-    >(doesColumnHaveAnInitialWidth);
-
+    const columnsWithWidths = columns.filter(doesColumnHaveAnInitialWidth);
     const definedColumnsWidth = columnsWithWidths.reduce(
-      (claimedWidth, column) => claimedWidth + column.initialWidth,
+      (claimedWidth, column) => claimedWidth + column.initialWidth!,
       0
     );
 
     const claimedWidth = controlColumnWidths + definedColumnsWidth;
-
     const widthToFill = gridWidth - claimedWidth;
     const unsizedColumnCount = columns.length - columnsWithWidths.length;
     if (unsizedColumnCount === 0) {
@@ -70,7 +66,7 @@ export const useDefaultColumnWidth = (
 
 export const doesColumnHaveAnInitialWidth = (
   column: EuiDataGridColumn
-): column is EuiDataGridColumn & { initialWidth: number } => {
+): boolean => {
   return column.hasOwnProperty('initialWidth');
 };
 
@@ -95,11 +91,9 @@ export const useColumnWidths = ({
 
   const computeColumnWidths = useCallback(() => {
     return columns
-      .filter<EuiDataGridColumn & { initialWidth: number }>(
-        doesColumnHaveAnInitialWidth
-      )
+      .filter(doesColumnHaveAnInitialWidth)
       .reduce<EuiDataGridColumnWidths>((initialWidths, column) => {
-        initialWidths[column.id] = column.initialWidth;
+        initialWidths[column.id] = column.initialWidth!;
         return initialWidths;
       }, {});
   }, [columns]);

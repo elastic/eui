@@ -7,9 +7,21 @@
  */
 
 import { testCustomHook } from '../../../test/test_custom_hook.test_helper';
-import { useColumnWidths } from './col_widths';
+import { doesColumnHaveAnInitialWidth, useColumnWidths } from './col_widths';
 
 // TODO: Remaining col_widths utils
+
+describe('doesColumnHaveAnInitialWidth', () => {
+  it('returns true if the column object has an initialWidth property', () => {
+    expect(
+      doesColumnHaveAnInitialWidth({ id: 'someColumn', initialWidth: 100 })
+    ).toEqual(true);
+  });
+
+  it('returns false if not', () => {
+    expect(doesColumnHaveAnInitialWidth({ id: 'someColumn' })).toEqual(false);
+  });
+});
 
 describe('useColumnWidths', () => {
   // TODO: Remaining useColumnWidths values
