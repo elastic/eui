@@ -38,7 +38,7 @@ export default () => {
             content={isTextCopied ? 'Text copied to clipboard' : 'Copy text'}
           >
             <EuiButtonIcon
-              aria-label="Copy text clipboard"
+              aria-label="Copy text to clipboard"
               color="text"
               iconType="copy"
               onClick={onClick}
