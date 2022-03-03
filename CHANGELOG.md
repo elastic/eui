@@ -7,10 +7,11 @@
 - Added `"xxl"` size to `EuiLoadingSpinner` ([#5668](https://github.com/elastic/eui/pull/5668))
 - Added `isLoading` prop to `EuiButtonIcon` ([#5668](https://github.com/elastic/eui/pull/5668))
 - Updated `EuiDataGrid` to allow setting individual cell `isExpandable` state via `setCellProps` ([#5667](https://github.com/elastic/eui/pull/5667))
+- Added the ability for `EuiSelectable` and `EuiSuggest` to accept controlled `value` props ([#5658](https://github.com/elastic/eui/pull/5658))
 - Added `textWrap` to `EuiSelectableListItem`, `EuiSelectableList`, and `EuiSelectable.listOptions` ([#5679](https://github.com/elastic/eui/issues/5679))
 - Forced `truncation` on `EuiSuggest` items when `isVirtualize` ([#5679](https://github.com/elastic/eui/issues/5679))
 - Changed proportion handling between content and image in `horizontal` `EuiEmptyPrompt` and added spacing between ([#5663](https://github.com/elastic/eui/pull/5663))
-- Added the ability for `EuiSelectable` and `EuiSuggest` to accept controlled `value` props ([#5658](https://github.com/elastic/eui/pull/5658))
+- Reduced SASS compilation time using a different math `pow` implementation ([#5674](https://github.com/elastic/eui/pull/5674)) 
 
 **Bug fixes**
 
