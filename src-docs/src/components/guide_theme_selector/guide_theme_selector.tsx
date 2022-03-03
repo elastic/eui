@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks/useIsWithinBreakpoints';
-import { EUI_THEME, EUI_THEMES } from '../../../../src/themes';
+import { EUI_THEME } from '../../../../src/themes';
 
-import { ThemeContext } from '../with_theme';
+import { ThemeContext, SUPPORTED_THEMES } from '../with_theme';
 // @ts-ignore Not TS
 import { GuideLocaleSelector } from '../guide_locale_selector';
 import {
@@ -37,7 +37,6 @@ export const GuideThemeSelector: React.FunctionComponent<GuideThemeSelectorProps
 
 const STORAGE_KEY = 'legeacy_theme_notification';
 
-// @ts-ignore Context has no type
 const GuideThemeSelectorComponent: React.FunctionComponent<GuideThemeSelectorProps> = ({
   context,
   onToggleLocale,
@@ -65,13 +64,14 @@ const GuideThemeSelectorComponent: React.FunctionComponent<GuideThemeSelectorPro
   };
 
   const currentTheme: EUI_THEME =
-    EUI_THEMES.find((theme) => theme.value === context.theme) || EUI_THEMES[0];
+    SUPPORTED_THEMES.find((theme) => theme.value === context.theme) ||
+    SUPPORTED_THEMES[0];
 
   const getIconType = (value: EUI_THEME['value']) => {
     return value === currentTheme.value ? 'check' : 'empty';
   };
 
-  const items = EUI_THEMES.map((theme) => {
+  const items = SUPPORTED_THEMES.map((theme) => {
     return (
       <EuiContextMenuItem
         key={theme.value}
@@ -104,8 +104,8 @@ const GuideThemeSelectorComponent: React.FunctionComponent<GuideThemeSelectorPro
       content={
         <EuiText style={{ maxWidth: 320 }}>
           <p>
-            Amsterdam is now the default theme and the old theme is considered
-            legacy. Our{' '}
+            Amsterdam is now the default theme and the old theme is deprecated.
+            Our{' '}
             <EuiLink href="#/guidelines/getting-started#importing-styles">
               setup instructions
             </EuiLink>{' '}

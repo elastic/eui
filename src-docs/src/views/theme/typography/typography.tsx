@@ -41,7 +41,6 @@ export const typographySections = [
 export default () => {
   const { euiTheme } = useEuiTheme();
   const themeContext = useContext(ThemeContext);
-  const legacyTheme = !themeContext.theme.includes('amsterdam');
   const currentLanguage = themeContext.themeLanguage;
   const showSass = currentLanguage.includes('sass');
 
@@ -156,51 +155,47 @@ export default () => {
 
       {weightContent}
 
-      {!legacyTheme ? (
-        <>
-          <ThemeExample
-            title="Variable fonts"
-            description={
-              <>
-                <p>
-                  EUI also supports variable font families which can be{' '}
-                  <EuiLink href="https://css-tricks.com/getting-the-most-out-of-variable-fonts-on-google-fonts/">
-                    imported from Google fonts using their new API
-                  </EuiLink>
-                  . Though we still recommend sticking to the theme token names.
-                </p>
-                <EuiRange
-                  fullWidth
-                  id={htmlIdGenerator()()}
-                  min={300}
-                  max={700}
-                  step={1}
-                  value={fontWeight}
-                  onChange={onFontWeightChange}
-                  showValue
-                  aria-label="Font weight"
-                  showTicks
-                  ticks={euiFontWeights.map(function (name) {
-                    return {
-                      label: name.split('euiFontWeight').pop(),
-                      value: fonts[name],
-                    };
-                  })}
-                />
-              </>
-            }
-            example={
-              <div style={{ fontWeight: fontWeight }}>The quick brown fox</div>
-            }
-            snippet={
-              showSass
-                ? findSassFontWeight({ fontWeight })
-                : findJSFontWeight({ fontWeight, euiTheme })
-            }
-            snippetLanguage={showSass ? 'scss' : 'jsx'}
-          />
-        </>
-      ) : undefined}
+      <ThemeExample
+        title="Variable fonts"
+        description={
+          <>
+            <p>
+              EUI also supports variable font families which can be{' '}
+              <EuiLink href="https://css-tricks.com/getting-the-most-out-of-variable-fonts-on-google-fonts/">
+                imported from Google fonts using their new API
+              </EuiLink>
+              . Though we still recommend sticking to the theme token names.
+            </p>
+            <EuiRange
+              fullWidth
+              id={htmlIdGenerator()()}
+              min={300}
+              max={700}
+              step={1}
+              value={fontWeight}
+              onChange={onFontWeightChange}
+              showValue
+              aria-label="Font weight"
+              showTicks
+              ticks={euiFontWeights.map(function (name) {
+                return {
+                  label: name.split('euiFontWeight').pop(),
+                  value: fonts[name],
+                };
+              })}
+            />
+          </>
+        }
+        example={
+          <div style={{ fontWeight: fontWeight }}>The quick brown fox</div>
+        }
+        snippet={
+          showSass
+            ? findSassFontWeight({ fontWeight })
+            : findJSFontWeight({ fontWeight, euiTheme })
+        }
+        snippetLanguage={showSass ? 'scss' : 'jsx'}
+      />
 
       <EuiSpacer size="xl" />
       {scaleContent}

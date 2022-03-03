@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import {
   EuiCodeBlock,
-  LEGACY_NAME_KEY,
   EuiSplitPanel,
   EuiFlexGroup,
   EuiFlexItem,
@@ -20,16 +19,6 @@ const ImportOutsideExample = () => {
   const themeContext = useContext(ThemeContext);
   let files;
   switch (themeContext.theme) {
-    case `${LEGACY_NAME_KEY}_light`:
-      files = `// This is the legacy theme and will be deprecated
-@import '@elastic/eui/src/themes/legacy/colors_light';
-@import '@elastic/eui/src/themes/legacy/globals';`;
-      break;
-    case `${LEGACY_NAME_KEY}_dark`:
-      files = `// This is the legacy theme and will be deprecated
-@import '@elastic/eui/src/themes/legacy/colors_dark';
-@import '@elastic/eui/src/themes/legacy/globals';`;
-      break;
     case 'dark':
       files = `@import '@elastic/eui/src/themes/amsterdam/colors_dark';
 @import '@elastic/eui/src/themes/amsterdam/globals';`;

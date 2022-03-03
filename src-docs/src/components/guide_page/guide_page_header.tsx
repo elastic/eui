@@ -15,11 +15,7 @@ import { EuiButtonEmpty } from '../../../../src/components/button';
 // @ts-ignore Not TS
 import { CodeSandboxLink } from '../../components/codesandbox/link';
 import logoEUI from '../../images/logo-eui.svg';
-import {
-  GuideThemeSelector,
-  GuideSketchLink,
-  GuideFigmaLink,
-} from '../guide_theme_selector';
+import { GuideThemeSelector, GuideFigmaLink } from '../guide_theme_selector';
 
 const pkg = require('../../../../package.json');
 
@@ -111,7 +107,6 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
         closePopover={() => setMobilePopoverIsOpen(false)}
       >
         {renderGithub()}
-        <GuideSketchLink />
         <GuideFigmaLink />
         {renderCodeSandbox()}
       </EuiPopover>
@@ -132,7 +127,6 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
           selectedLocale={selectedLocale}
         />,
         renderGithub(),
-        <GuideSketchLink key="sketch" />,
         <GuideFigmaLink key="figma" />,
         renderCodeSandbox(),
       ];

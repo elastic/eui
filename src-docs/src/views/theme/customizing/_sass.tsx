@@ -1,15 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { EuiSpacer, EuiCallOut, EuiText, EuiLink } from '../../../../../src';
 
-// @ts-ignore Importing from JS
-import { ThemeContext } from '../../../components/with_theme';
 import { CustomizeTokens } from '../../guidelines/getting_started/_customize_tokens';
 
 export const SassAlert = () => {
-  const themeContext = useContext(ThemeContext);
-  return themeContext.theme.includes('legacy') ? (
-    <></>
-  ) : (
+  return (
     <EuiCallOut color="warning">
       <p>
         EUI is transitioning to a CSS-in-JS solution for theming and so this
