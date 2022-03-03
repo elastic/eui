@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import { act } from 'react-dom/test-utils';
 import { testCustomHook } from '../../../test/test_custom_hook.test_helper';
 import {
   useDefaultColumnWidth,
@@ -71,17 +72,41 @@ describe('doesColumnHaveAnInitialWidth', () => {
 });
 
 describe('useColumnWidths', () => {
-  // TODO: Remaining useColumnWidths values
+  const args = {
+    leadingControlColumns: [{ id: 'a', width: 50 }] as any,
+    columns: [{ id: 'b', initialWidth: 75 }, { id: 'c ' }],
+    trailingControlColumns: [{ id: 'd', width: 25 }] as any,
+    defaultColumnWidth: 150,
+    onColumnResize: jest.fn(),
+  };
+  type ReturnedValues = ReturnType<typeof useColumnWidths>;
+
+  describe('columnWidths', () => {
+    it('returns a map of column `id`s to `initialWidth`s', () => {
+      const {
+        return: { columnWidths },
+      } = testCustomHook(() => useColumnWidths(args));
+      expect(columnWidths).toEqual({ b: 75 });
+    });
+  });
+
+  describe('setColumnWidth', () => {
+    it("sets a single column's width in the columnWidths map", () => {
+      const {
+        return: { setColumnWidth },
+        getUpdatedState,
+      } = testCustomHook<ReturnedValues>(() => useColumnWidths(args));
+
+      act(() => setColumnWidth('c', 125));
+      expect(getUpdatedState().columnWidths).toEqual({ b: 75, c: 125 });
+      expect(args.onColumnResize).toHaveBeenCalledWith({
+        columnId: 'c',
+        width: 125,
+      });
+    });
+  });
 
   describe('getColumnWidth', () => {
-    const args = {
-      leadingControlColumns: [{ id: 'a', width: 50 }] as any,
-      columns: [{ id: 'b', initialWidth: 75 }, { id: 'c ' }],
-      trailingControlColumns: [{ id: 'd', width: 25 }] as any,
-      defaultColumnWidth: 150,
-      onColumnResize: jest.fn(),
-    };
-
     describe('leading control columns', () => {
       it('returns the width property of the column', () => {
         const {
