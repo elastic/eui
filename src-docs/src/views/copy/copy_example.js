@@ -47,7 +47,8 @@ export const CopyExample = {
       text: (
         <p>
           The function <EuiCode>copyToClipboard</EuiCode> allows you to copy
-          text in a string format to the clipboard.
+          text to the clipboard. It receives an argument of type{' '}
+          <EuiCode>string</EuiCode>.
         </p>
       ),
       demo: <CopyToClipboard />,

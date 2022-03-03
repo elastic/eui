@@ -19,8 +19,8 @@ export default () => {
     setTextCopied(true);
   };
 
-  // we want to make sure that after clicking on the comment copy button the tooltip is reset to the initial msg "Copy text"
-  // after that, users can copy to clipboard other texts on a page
+  // we want to make sure that after clicking on the comment copy button the tooltip is reset to the initial msg "copy text"
+  // after clicking on the button, users can copy to clipboard other texts on a page
   // so showing in the tooltip that the text from the comment is copied to clipboard could be misleading
   const onBlur = () => {
     setTextCopied(false);
@@ -29,29 +29,27 @@ export default () => {
   const date = formatDate(Date.now(), 'dobLong');
 
   return (
-    <div>
-      <EuiComment
-        username="Gusteau"
-        event="added a comment"
-        actions={
-          <EuiToolTip
-            content={isTextCopied ? 'Text copied to clipboard' : 'Copy text'}
-          >
-            <EuiButtonIcon
-              aria-label="Copy text to clipboard"
-              color="text"
-              iconType="copy"
-              onClick={onClick}
-              onBlur={onBlur}
-            />
-          </EuiToolTip>
-        }
-        timestamp={`on ${date}`}
-      >
-        <EuiText size="s">
-          <p>{text}</p>
-        </EuiText>
-      </EuiComment>
-    </div>
+    <EuiComment
+      username="Gusteau"
+      event="added a comment"
+      actions={
+        <EuiToolTip
+          content={isTextCopied ? 'Text copied to clipboard' : 'Copy text'}
+        >
+          <EuiButtonIcon
+            aria-label="Copy text to clipboard"
+            color="text"
+            iconType="copy"
+            onClick={onClick}
+            onBlur={onBlur}
+          />
+        </EuiToolTip>
+      }
+      timestamp={`on ${date}`}
+    >
+      <EuiText size="s">
+        <p>{text}</p>
+      </EuiText>
+    </EuiComment>
   );
 };
