@@ -11,29 +11,49 @@ import { testCustomHook } from '../../../../test/test_custom_hook.test_helper';
 import { useHeaderIsInteractive } from './header_is_interactive';
 
 describe('useHeaderIsInteractive', () => {
-  const mockGridEl = document.createElement('div');
-  const mockHeaderEl = mockGridEl.appendChild(document.createElement('div'));
-  mockHeaderEl.setAttribute('data-test-subj', 'dataGridHeader');
+  const createMockGrid = () => {
+    const mockGridEl = document.createElement('div');
+    const mockHeaderEl = mockGridEl.appendChild(document.createElement('div'));
+    mockHeaderEl.setAttribute('data-test-subj', 'dataGridHeader');
 
-  it('returns headerIsInteractive state', () => {
-    const {
-      return: { headerIsInteractive },
-    } = testCustomHook(() => useHeaderIsInteractive(mockGridEl));
+    return [mockGridEl, mockHeaderEl];
+  };
 
-    expect(headerIsInteractive).toEqual(false);
+  describe('initial headerIsInteractive state', () => {
+    it('returns false when there are no interactive children within the header', () => {
+      const [mockGridEl] = createMockGrid();
+      const {
+        return: { headerIsInteractive },
+      } = testCustomHook(() => useHeaderIsInteractive(mockGridEl));
+
+      expect(headerIsInteractive).toEqual(false);
+    });
+
+    it('returns true when there are interactive children within the header', () => {
+      const [mockGridEl, mockHeaderEl] = createMockGrid();
+      mockHeaderEl.appendChild(document.createElement('button')); // Interactive child
+
+      const {
+        return: { headerIsInteractive },
+      } = testCustomHook(() => useHeaderIsInteractive(mockGridEl));
+
+      expect(headerIsInteractive).toEqual(true);
+    });
   });
 
   describe('handleHeaderMutation', () => {
     it('updates headerIsInteractive state by checking if tabbable elements exist in the header cell', () => {
+      const [, mockHeaderEl] = createMockGrid();
       const mockCell = document.createElement('div');
       const mockTarget = mockCell.appendChild(document.createElement('div'));
       mockTarget.setAttribute('data-euigrid-tab-managed', 'true');
       mockHeaderEl.appendChild(mockCell);
 
       const {
-        return: { handleHeaderMutation },
+        return: { headerIsInteractive, handleHeaderMutation },
         getUpdatedState,
-      } = testCustomHook<any>(() => useHeaderIsInteractive(null));
+      } = testCustomHook(() => useHeaderIsInteractive(null));
+      expect(headerIsInteractive).toEqual(false);
 
       act(() => handleHeaderMutation([{ target: mockTarget }]));
 
