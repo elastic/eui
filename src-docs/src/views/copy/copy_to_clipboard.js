@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { copyToClipboard, formatDate } from '../../../../src/services';
 import {
@@ -9,12 +9,14 @@ import {
 } from '../../../../src/components';
 
 export default () => {
+  const buttonRef = useRef();
   const [isTextCopied, setTextCopied] = useState(false);
 
   const text =
     'You must be imaginative, strong-hearted. You must try things that may not work, and you must not let anyone define your limits because of where you come from. Your only limit is your soul. What I say is true—anyone can cook… but only the fearless can be great.';
 
   const onClick = () => {
+    buttonRef.current.focus(); // sets focus for safari
     copyToClipboard(text);
     setTextCopied(true);
   };
@@ -37,6 +39,7 @@ export default () => {
           content={isTextCopied ? 'Text copied to clipboard' : 'Copy text'}
         >
           <EuiButtonIcon
+            buttonRef={buttonRef}
             aria-label="Copy text to clipboard"
             color="text"
             iconType="copy"
