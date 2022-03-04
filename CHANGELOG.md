@@ -1,6 +1,6 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `50.0.0`.
+- Added `"custom"` option to `EuiComment.type` ([#0000](https://github.com/elastic/eui/pull/0000))
 
 ## [`50.0.0`](https://github.com/elastic/eui/tree/v50.0.0)
 
