@@ -66,8 +66,17 @@ describe('doesColumnHaveAnInitialWidth', () => {
     ).toEqual(true);
   });
 
-  it('returns false if not', () => {
+  it('returns false if initialWidth is missing', () => {
     expect(doesColumnHaveAnInitialWidth({ id: 'someColumn' })).toEqual(false);
+  });
+
+  it('returns false if initialWidth is undefined', () => {
+    expect(
+      doesColumnHaveAnInitialWidth({
+        id: 'someColumn',
+        initialWidth: undefined,
+      })
+    ).toEqual(false);
   });
 });
 

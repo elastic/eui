@@ -59,7 +59,7 @@ export const useDefaultColumnWidth = (
 export const doesColumnHaveAnInitialWidth = (
   column: EuiDataGridColumn
 ): boolean => {
-  return column.hasOwnProperty('initialWidth');
+  return column.hasOwnProperty('initialWidth') && column.initialWidth != null;
 };
 
 export const useColumnWidths = ({
