@@ -15,6 +15,7 @@
   border-radius: 50%;
   background-color: $euiColorLightestShade;
 
+  &.euiCommentTimeline__icon--custom,
   &.euiCommentTimeline__icon--regular {
     width: $euiSizeXXL;
     height: $euiSizeXXL;

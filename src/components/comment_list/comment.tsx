@@ -23,6 +23,7 @@ export interface EuiCommentProps
 const typeToClassNameMap = {
   regular: '',
   update: 'euiComment--update',
+  custom: '',
 };
 
 export const EuiComment: FunctionComponent<EuiCommentProps> = ({

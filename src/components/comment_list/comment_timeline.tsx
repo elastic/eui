@@ -22,6 +22,7 @@ export interface EuiCommentTimelineProps extends CommonProps {
 const typeToClassNameMap = {
   regular: 'euiCommentTimeline__icon--regular',
   update: 'euiCommentTimeline__icon--update',
+  custom: 'euiCommentTimeline__icon--custom',
 };
 
 export const TYPES = keysOf(typeToClassNameMap);

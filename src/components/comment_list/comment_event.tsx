@@ -14,7 +14,7 @@ export interface EuiCommentEventProps extends CommonProps {
   /**
    * Author of the comment. Display a small icon or avatar with it if needed.
    */
-  username: ReactNode;
+  username?: ReactNode;
   /**
    * Time of occurrence of the event. Its format is set on the consumer's side
    */
@@ -28,7 +28,8 @@ export interface EuiCommentEventProps extends CommonProps {
    */
   actions?: ReactNode;
   /**
-   * Use "update" when the comment is primarily showing info about actions that the user or the system has performed (e.g. "user1 edited a case").
+   * Use `update` when the comment is primarily showing info about actions that the user or the system has performed (e.g. "user1 edited a case").
+   * Use `custom` when passing a children that doesn't require the event header. Elements like `username`, `timestamp`, `event` and `actions` won't show.
    */
   type?: EuiCommentType;
 }
@@ -36,6 +37,7 @@ export interface EuiCommentEventProps extends CommonProps {
 const typeToClassNameMap = {
   regular: 'euiCommentEvent--regular',
   update: 'euiCommentEvent--update',
+  custom: 'euiCommentEvent--custom',
 };
 
 export const TYPES = keysOf(typeToClassNameMap);
@@ -63,22 +65,28 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   const Element = isFigure ? 'figure' : 'div';
   const HeaderElement = isFigure ? 'figcaption' : 'div';
 
+  // when the type of event is `custom` we don't want to show the header
+  // or any elements like `username`, `event`, `timestamp` or `actions`
+  const commentEventHeader = type !== 'custom' && (
+    <HeaderElement className="euiCommentEvent__header">
+      <div className="euiCommentEvent__headerData">
+        <div className="euiCommentEvent__headerUsername">{username}</div>
+        <div className="euiCommentEvent__headerEvent">{event}</div>
+        {timestamp ? (
+          <div className="euiCommentEvent__headerTimestamp">
+            <time>{timestamp}</time>
+          </div>
+        ) : undefined}
+      </div>
+      {actions ? (
+        <div className="euiCommentEvent__headerActions">{actions}</div>
+      ) : undefined}
+    </HeaderElement>
+  );
+
   return (
     <Element className={classes}>
-      <HeaderElement className="euiCommentEvent__header">
-        <div className="euiCommentEvent__headerData">
-          <div className="euiCommentEvent__headerUsername">{username}</div>
-          <div className="euiCommentEvent__headerEvent">{event}</div>
-          {timestamp ? (
-            <div className="euiCommentEvent__headerTimestamp">
-              <time>{timestamp}</time>
-            </div>
-          ) : undefined}
-        </div>
-        {actions ? (
-          <div className="euiCommentEvent__headerActions">{actions}</div>
-        ) : undefined}
-      </HeaderElement>
+      {commentEventHeader}
       {children ? (
         <div className="euiCommentEvent__body">{children}</div>
       ) : undefined}

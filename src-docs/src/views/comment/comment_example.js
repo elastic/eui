@@ -26,6 +26,9 @@ const commentActionsSource = require('!!raw-loader!./comment_actions');
 import CommentList from './comment_list';
 const commentListSource = require('!!raw-loader!./comment_list');
 
+import CommentListComplex from './comment_list_complex';
+const commentListComplexSource = require('!!raw-loader!./comment_list_complex');
+
 const commentSnippet = `<EuiComment username="janed">
   {body}
 </EuiComment>`;
@@ -224,6 +227,56 @@ export const CommentListExample = {
       props: { EuiComment },
       snippet: commentActionsSnippet,
       demo: <CommentActions />,
+    },
+    {
+      title: 'A comment system',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: commentListComplexSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            The below example uses a list of <strong>EuiComments</strong>, a{' '}
+            <Link to="/editors-syntax/markdown-editor">
+              <strong>EuiMarkdownEditor</strong>
+            </Link>
+            , and a{' '}
+            <Link to="/editors-syntax/markdown-format">
+              <strong>EuiMarkdownFormat</strong>
+            </Link>{' '}
+            to create a simple comment system.
+          </p>
+          <ul>
+            <li>
+              Each comment renders in a <strong>EuiComment</strong>.
+            </li>
+            <li>
+              We use the <strong>EuiMarkdownEditor</strong> to post the{' '}
+              <EuiCode>EuiComment.children</EuiCode>. This means the content
+              uses Markdown.
+            </li>
+            <li>
+              A new <strong>EuiComment</strong> is posted and we use the{' '}
+              <strong>EuiMarkdownFormat</strong> to wrap the{' '}
+              <EuiCode>EuiComment.children</EuiCode> and render the Markdown
+              correctly.
+            </li>
+          </ul>
+          <p>
+            When dealing with asynchronous events like when adding a message we
+            recommend setting the <strong>EuiMarkdownEditor</strong> to a{' '}
+            <EuiCode>readOnly</EuiCode> state and the add comment button to a{' '}
+            <EuiCode>isLoading</EuiCode> state. This will ensure users
+            understand that the content cannot be changed while the comment is
+            being submitted.
+          </p>
+        </>
+      ),
+      props: { EuiCommentList, EuiComment },
+      demo: <CommentListComplex />,
     },
   ],
 };
