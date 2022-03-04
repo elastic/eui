@@ -28,7 +28,7 @@ import {
 } from '../selectable';
 import { EuiToolTip } from '../tool_tip';
 
-import { EuiSuggestItem, _EuiSuggestItemPropsBase } from './suggest_item';
+import { EuiSuggestItem, EuiSuggestItemProps } from './suggest_item';
 import { EuiSuggestStatus, _EuiSuggestStatusMap } from './types';
 
 const statusMap: _EuiSuggestStatusMap = {
@@ -57,11 +57,7 @@ const suggestItemPropsKeys = [
   'descriptionDisplay',
 ];
 
-export interface EuiSuggestionProps
-  extends CommonProps,
-    _EuiSuggestItemPropsBase {
-  onClick?: EuiSelectableListItemProps['onClick'];
-}
+export type EuiSuggestionProps = CommonProps & EuiSuggestItemProps;
 
 type _EuiSuggestProps = CommonProps &
   Omit<
@@ -242,12 +238,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   /**
    * Options list
    */
-  const suggestionList = suggestions.map((item: EuiSuggestionProps) => {
-    const { className, ...props } = item;
-    if (onItemClick) {
-      props.onClick = () => onItemClick(item);
-    }
-
+  const suggestionList = suggestions.map((props: EuiSuggestionProps) => {
     // Omit props destined for the EuiSuggestItem so that they don't
     // cause warnings or render in the DOM of the EuiSelectableItem
     const data = {};
@@ -264,17 +255,11 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
     return {
       ...(liProps as typeof props),
       data,
-      className: classNames(className, 'euiSuggestItemOption'),
+      className: classNames(props.className, 'euiSuggestItemOption'),
       // Force truncation if `isVirtualized` is true
       truncate: isVirtualized ? true : props.truncate,
     };
   });
-
-  const renderOption = (option: EuiSuggestionProps) => {
-    // `onClick` handled by EuiSelectable
-    const { onClick, ...props } = option;
-    return <EuiSuggestItem {...props} />;
-  };
 
   const onItemSelect = useCallback(
     (options: EuiSelectableOption[]) => {
@@ -301,7 +286,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
         singleSelection={true}
         height={isVirtualized ? undefined : 'full'}
         options={suggestionList}
-        renderOption={renderOption}
+        renderOption={EuiSuggestItem}
         onChange={onItemSelect}
         listProps={{
           bordered: false,

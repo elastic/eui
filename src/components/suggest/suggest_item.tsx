@@ -6,13 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  HTMLAttributes,
-  ButtonHTMLAttributes,
-  MouseEventHandler,
-} from 'react';
-import { CommonProps, ExclusiveUnion, keysOf } from '../common';
+import React, { FunctionComponent } from 'react';
+import { CommonProps, keysOf } from '../common';
 import classNames from 'classnames';
 import { EuiIcon, IconType } from '../icon';
 
@@ -21,7 +16,7 @@ interface Type {
   color: string | keyof typeof colorToClassNameMap;
 }
 
-export interface _EuiSuggestItemPropsBase {
+export type EuiSuggestItemProps = CommonProps & {
   /**
    * Takes `iconType` for EuiIcon and 'color'. 'color' can be tint1 through tint9.
    */
@@ -62,19 +57,7 @@ export interface _EuiSuggestItemPropsBase {
    * _Label display is 'fixed' by default. Label will increase its width beyond 50% if needed with 'expand'._
    */
   labelDisplay?: keyof typeof labelDisplayToClassMap;
-}
-
-type PropsForSpan = Omit<HTMLAttributes<HTMLSpanElement>, 'onClick'>;
-type PropsForButton = Omit<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  'onClick' | 'type'
-> & {
-  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
-
-export type EuiSuggestItemProps = CommonProps &
-  _EuiSuggestItemPropsBase &
-  ExclusiveUnion<PropsForSpan, PropsForButton>;
 
 interface ColorToClassMap {
   tint0: string;
@@ -141,7 +124,6 @@ export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
   description,
   truncate = true,
   descriptionDisplay = 'truncate',
-  onClick,
   ...rest
 }) => {
   const classes = classNames(
@@ -188,21 +170,9 @@ export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
     </React.Fragment>
   );
 
-  if (onClick) {
-    return (
-      <button
-        onClick={onClick}
-        className={classes}
-        {...(rest as Omit<PropsForButton, 'onClick' | 'className'>)}
-      >
-        {innerContent}
-      </button>
-    );
-  } else {
-    return (
-      <span className={classes} {...(rest as PropsForSpan)}>
-        {innerContent}
-      </span>
-    );
-  }
+  return (
+    <span className={classes} {...rest}>
+      {innerContent}
+    </span>
+  );
 };
