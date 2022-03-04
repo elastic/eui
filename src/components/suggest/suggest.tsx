@@ -11,6 +11,7 @@ import React, {
   FormEvent,
   FunctionComponent,
   useState,
+  useCallback,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
@@ -22,7 +23,7 @@ import { useEuiI18n } from '../i18n';
 import { EuiInputPopover } from '../popover';
 import {
   EuiSelectable,
-  EuiSelectableListItemProps,
+  EuiSelectableOption,
   EuiSelectableSearchableSearchProps,
 } from '../selectable';
 import { EuiToolTip } from '../tool_tip';
@@ -275,6 +276,21 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
     return <EuiSuggestItem {...props} />;
   };
 
+  const onItemSelect = useCallback(
+    (options: EuiSelectableOption[]) => {
+      if (onItemClick) {
+        const selectedIndex = options.findIndex(
+          (option) => option.checked === 'on'
+        );
+        if (selectedIndex >= 0) {
+          const selectedSuggestion = suggestions[selectedIndex];
+          onItemClick(selectedSuggestion);
+        }
+      }
+    },
+    [onItemClick, suggestions]
+  );
+
   const classes = classNames('euiInputPopover', {
     'euiInputPopover--fullWidth': fullWidth,
   });
@@ -286,6 +302,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
         height={isVirtualized ? undefined : 'full'}
         options={suggestionList}
         renderOption={renderOption}
+        onChange={onItemSelect}
         listProps={{
           bordered: false,
           showIcons: false,
