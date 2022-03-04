@@ -1,6 +1,6 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-- Added `"custom"` option to `EuiComment.type` ([#0000](https://github.com/elastic/eui/pull/0000))
+- Added `"custom"` option to `EuiComment.type` ([#5692](https://github.com/elastic/eui/pull/5692))
 
 ## [`50.0.0`](https://github.com/elastic/eui/tree/v50.0.0)
 
