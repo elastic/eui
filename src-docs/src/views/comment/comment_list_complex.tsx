@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from 'react';
-import { formatDate } from '../../../../src/services';
+import React, { useState, useEffect, useRef } from 'react';
+import { formatDate, htmlIdGenerator } from '../../../../src/services';
 import {
   EuiComment,
   EuiCommentProps,
@@ -14,6 +14,7 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiButton,
+  EuiFormErrorText,
 } from '../../../../src/components/';
 
 const actionButton = (
@@ -92,11 +93,21 @@ I also found something suspicious: [Update.exe](http://my-drive.elastic.co/suspi
 `;
 
 export default () => {
+  const errorElementId = useRef(htmlIdGenerator()());
   const [editorValue, setEditorValue] = useState(replyMsg);
   const [comments, setComments] = useState(initialComments);
   const [isLoading, setIsLoading] = useState(false);
+  const [editorError, setEditorError] = useState(true);
 
   const date = formatDate(Date.now(), 'dobLong');
+
+  useEffect(() => {
+    if (editorValue === '') {
+      setEditorError(true);
+    } else {
+      setEditorError(false);
+    }
+  }, [editorValue, editorError]);
 
   const onAddComment = () => {
     setIsLoading(true);
@@ -151,31 +162,46 @@ export default () => {
 
   return (
     <>
-      <div>
-        {commentsList}
+      {commentsList}
 
-        <EuiComment type="custom" timelineIcon={<EuiAvatar name="emma" />}>
-          <EuiMarkdownEditor
-            aria-label="Markdown editor"
-            placeholder="Add a comment..."
-            value={editorValue}
-            onChange={setEditorValue}
-            readOnly={isLoading}
-            initialViewMode="editing"
-            markdownFormatProps={{ textSize: 's' }}
-          />
+      <EuiComment type="custom" timelineIcon={<EuiAvatar name="emma" />}>
+        <EuiMarkdownEditor
+          aria-label="Markdown editor"
+          aria-describedby={errorElementId.current}
+          placeholder="Add a comment..."
+          value={editorValue}
+          onChange={setEditorValue}
+          readOnly={isLoading}
+          initialViewMode="editing"
+          markdownFormatProps={{ textSize: 's' }}
+        />
+
+        {editorError ? (
+          <>
+            <EuiSpacer size="xs" />
+
+            <EuiFormErrorText id={errorElementId.current}>
+              A comment is required.
+            </EuiFormErrorText>
+          </>
+        ) : (
           <EuiSpacer />
-          <EuiFlexGroup justifyContent="flexEnd">
-            <EuiFlexItem grow={false}>
-              <div>
-                <EuiButton onClick={onAddComment} isLoading={isLoading}>
-                  Add comment
-                </EuiButton>
-              </div>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </EuiComment>
-      </div>
+        )}
+
+        <EuiFlexGroup justifyContent="flexEnd">
+          <EuiFlexItem grow={false}>
+            <div>
+              <EuiButton
+                onClick={onAddComment}
+                isLoading={isLoading}
+                isDisabled={editorError}
+              >
+                Add comment
+              </EuiButton>
+            </div>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiComment>
     </>
   );
 };
