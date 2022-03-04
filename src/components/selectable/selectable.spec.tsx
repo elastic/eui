@@ -172,6 +172,50 @@ describe('EuiSelectable', () => {
         expect(onSearchChange).to.have.been.calledWith(' ');
       });
     });
+
+    // mouse+keyboard combo users
+    it('allows users to click into an list item and still press Enter or Space to toggle list items', () => {
+      const onChange = cy.stub();
+      cy.realMount(
+        <EuiSelectable searchable options={options} onChange={onChange}>
+          {(list, search) => (
+            <>
+              {search}
+              {list}
+            </>
+          )}
+        </EuiSelectable>
+      );
+
+      cy.get('li[role=option]')
+        .first()
+        .click()
+        .then(() => {
+          expect(onChange).to.have.been.calledWith([
+            { ...options[0], checked: 'on' },
+            options[1],
+            options[2],
+          ]);
+        });
+      cy.realPress('ArrowDown')
+        .realPress('Enter')
+        .then(() => {
+          expect(onChange).to.have.been.calledWith([
+            options[0], // FYI: doesn't remain `on` because `options` is not controlled to remember state
+            { ...options[1], checked: 'on' },
+            options[2],
+          ]);
+        });
+      cy.realPress('ArrowDown')
+        .realPress('Space')
+        .then(() => {
+          expect(onChange).to.have.been.calledWith([
+            options[0],
+            options[1],
+            { ...options[2], checked: 'on' },
+          ]);
+        });
+    });
   });
 
   describe('without a `searchable` configuration', () => {
