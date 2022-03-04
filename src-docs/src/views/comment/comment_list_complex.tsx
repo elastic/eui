@@ -133,10 +133,11 @@ export default () => {
     }, 3000);
   };
 
-  const commentsList = comments.map((comment) => {
+  const commentsList = comments.map((comment, index) => {
     if (comment.type === 'update') {
       return (
         <EuiComment
+          key={`comment-update-${index}`}
           type="update"
           username={comment.username}
           event={comment.event}
@@ -147,6 +148,7 @@ export default () => {
     } else {
       return (
         <EuiComment
+          key={`comment-regular-${index}`}
           type="regular"
           username={comment.username}
           event={comment.event}
