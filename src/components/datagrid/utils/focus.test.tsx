@@ -11,11 +11,30 @@ import { mount } from 'enzyme';
 import { keys } from '../../../services';
 import {
   DataGridFocusContext,
+  notifyCellOfFocusState,
   createKeyDownHandler,
   preventTabbing,
   getParentCellContent,
   useHeaderFocusWorkaround,
 } from './focus';
+
+describe('notifyCellOfFocusState', () => {
+  const onFocus = jest.fn();
+  const cellsUpdateFocus = new Map();
+  cellsUpdateFocus.set('0-0', onFocus);
+
+  it("looks through the cellsUpdateFocus map and calls the focused cell's onFocus callback", () => {
+    notifyCellOfFocusState(cellsUpdateFocus, [0, 0], true);
+    expect(onFocus).toHaveBeenLastCalledWith(true);
+
+    notifyCellOfFocusState(cellsUpdateFocus, [0, 0], false);
+    expect(onFocus).toHaveBeenLastCalledWith(false);
+  });
+
+  it('does not error if the cell does not exist in the map', () => {
+    notifyCellOfFocusState(cellsUpdateFocus, [1, 1], true);
+  });
+});
 
 describe('createKeyDownHandler', () => {
   const focusContext = {
