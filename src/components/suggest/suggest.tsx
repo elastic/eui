@@ -28,7 +28,7 @@ import {
 } from '../selectable';
 import { EuiToolTip } from '../tool_tip';
 
-import { EuiSuggestItem, EuiSuggestItemProps } from './suggest_item';
+import { EuiSuggestItem, _EuiSuggestItemPropsBase } from './suggest_item';
 import { EuiSuggestStatus, _EuiSuggestStatusMap } from './types';
 
 const statusMap: _EuiSuggestStatusMap = {
@@ -57,7 +57,7 @@ const suggestItemPropsKeys = [
   'descriptionDisplay',
 ];
 
-export type EuiSuggestionProps = CommonProps & EuiSuggestItemProps;
+export type EuiSuggestionProps = CommonProps & _EuiSuggestItemPropsBase;
 
 type _EuiSuggestProps = CommonProps &
   Omit<
@@ -261,6 +261,10 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
     };
   });
 
+  const renderOption = useCallback((props: EuiSuggestionProps) => {
+    return <EuiSuggestItem {...props} />;
+  }, []);
+
   const onItemSelect = useCallback(
     (options: EuiSelectableOption[]) => {
       if (onItemClick) {
@@ -286,7 +290,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
         singleSelection={true}
         height={isVirtualized ? undefined : 'full'}
         options={suggestionList}
-        renderOption={EuiSuggestItem}
+        renderOption={renderOption}
         onChange={onItemSelect}
         listProps={{
           bordered: false,
