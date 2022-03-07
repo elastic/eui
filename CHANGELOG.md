@@ -1,6 +1,7 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
 - Added `"custom"` option to `EuiComment.type` ([#5692](https://github.com/elastic/eui/pull/5692))
+- Changed `.euiMarkdownEditor` display to `flex` to prevent display issues when the markdown editor is inside a `EuiComment` ([#5692](https://github.com/elastic/eui/pull/5692))
 
 ## [`50.0.0`](https://github.com/elastic/eui/tree/v50.0.0)
 
