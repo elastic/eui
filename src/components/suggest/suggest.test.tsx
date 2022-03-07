@@ -10,6 +10,7 @@ import React from 'react';
 import { render, mount, shallow } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
+import { EuiSelectable } from '../selectable';
 import { EuiSuggest, EuiSuggestionProps } from './suggest';
 import { ALL_STATUSES } from './types';
 
@@ -149,9 +150,9 @@ describe('EuiSuggest', () => {
           />
         );
 
-        const options: any = component.find('EuiSelectable').prop('options');
+        const options = component.find(EuiSelectable).prop('options');
         options[1].checked = 'on';
-        component.find('EuiSelectable').simulate('change', options);
+        component.find(EuiSelectable).simulate('change', options);
 
         expect(onItemClick).toHaveBeenCalledWith(sampleItems[1]);
       });
