@@ -119,15 +119,17 @@ export const EuiDataGridCellPopoverActions = ({
       >;
       return (
         <EuiFlexItem key={idx}>
-          <ActionButtonElement
-            rowIndex={rowIndex}
-            colIndex={colIndex}
-            columnId={column!.id}
-            Component={(props: EuiButtonEmptyProps) => (
-              <EuiButtonEmpty {...props} size="s" />
-            )}
-            isExpanded={true}
-          />
+          <div>
+            <ActionButtonElement
+              rowIndex={rowIndex}
+              colIndex={colIndex}
+              columnId={column!.id}
+              Component={(props: EuiButtonEmptyProps) => (
+                <EuiButtonEmpty {...props} size="s" />
+              )}
+              isExpanded={true}
+            />
+          </div>
         </EuiFlexItem>
       );
     },
@@ -145,7 +147,11 @@ export const EuiDataGridCellPopoverActions = ({
       )}
       {secondaryActions.length > 0 && (
         <EuiPopoverFooter>
-          <EuiFlexGroup gutterSize="s" direction="column">
+          <EuiFlexGroup
+            gutterSize="s"
+            direction="column"
+            alignItems="flexStart"
+          >
             {secondaryActions.map(renderActions)}
           </EuiFlexGroup>
         </EuiPopoverFooter>

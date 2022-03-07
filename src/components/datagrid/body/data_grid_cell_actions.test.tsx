@@ -148,13 +148,15 @@ describe('EuiDataGridCellPopoverActions', () => {
             <EuiFlexItem
               key="0"
             >
-              <MockAction
-                Component={[Function]}
-                colIndex={0}
-                columnId="someId"
-                isExpanded={true}
-                rowIndex={0}
-              />
+              <div>
+                <MockAction
+                  Component={[Function]}
+                  colIndex={0}
+                  columnId="someId"
+                  isExpanded={true}
+                  rowIndex={0}
+                />
+              </div>
             </EuiFlexItem>
           </EuiFlexGroup>
         </EuiPopoverFooter>
@@ -194,42 +196,49 @@ describe('EuiDataGridCellPopoverActions', () => {
             <EuiFlexItem
               key="0"
             >
-              <MockAction
-                Component={[Function]}
-                colIndex={0}
-                columnId="someId"
-                isExpanded={true}
-                rowIndex={0}
-              />
+              <div>
+                <MockAction
+                  Component={[Function]}
+                  colIndex={0}
+                  columnId="someId"
+                  isExpanded={true}
+                  rowIndex={0}
+                />
+              </div>
             </EuiFlexItem>
             <EuiFlexItem
               key="1"
             >
-              <MockAction
-                Component={[Function]}
-                colIndex={0}
-                columnId="someId"
-                isExpanded={true}
-                rowIndex={0}
-              />
+              <div>
+                <MockAction
+                  Component={[Function]}
+                  colIndex={0}
+                  columnId="someId"
+                  isExpanded={true}
+                  rowIndex={0}
+                />
+              </div>
             </EuiFlexItem>
           </EuiFlexGroup>
         </EuiPopoverFooter>
         <EuiPopoverFooter>
           <EuiFlexGroup
+            alignItems="flexStart"
             direction="column"
             gutterSize="s"
           >
             <EuiFlexItem
               key="0"
             >
-              <MockAction
-                Component={[Function]}
-                colIndex={0}
-                columnId="someId"
-                isExpanded={true}
-                rowIndex={0}
-              />
+              <div>
+                <MockAction
+                  Component={[Function]}
+                  colIndex={0}
+                  columnId="someId"
+                  isExpanded={true}
+                  rowIndex={0}
+                />
+              </div>
             </EuiFlexItem>
           </EuiFlexGroup>
         </EuiPopoverFooter>
