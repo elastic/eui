@@ -6,7 +6,14 @@
  * Side Public License, v 1.
  */
 
-import { getParentCellContent } from './focus';
+import React from 'react';
+import { mount } from 'enzyme';
+
+import {
+  DataGridFocusContext,
+  getParentCellContent,
+  useHeaderFocusWorkaround,
+} from './focus';
 
 describe('getParentCellContent', () => {
   const doc = document.createDocumentFragment();
@@ -38,5 +45,38 @@ describe('getParentCellContent', () => {
 
   it('does not locate the cell element when starting outside the cell', () => {
     expect(getParentCellContent(body)).toBeNull();
+  });
+});
+
+describe('useHeaderFocusWorkaround', () => {
+  const MockComponent = () => {
+    useHeaderFocusWorkaround(false);
+    return <div />;
+  };
+
+  it('moves focus down from the header to the first data row if the header becomes uninteractive', () => {
+    const focusedCell = [2, -1];
+    const setFocusedCell = jest.fn();
+    mount(
+      <DataGridFocusContext.Provider
+        value={{ focusedCell, setFocusedCell } as any}
+      >
+        <MockComponent />
+      </DataGridFocusContext.Provider>
+    );
+    expect(setFocusedCell).toHaveBeenCalledWith([2, 0]);
+  });
+
+  it('does nothing if the focus was not on the header when the header became uninteractive', () => {
+    const focusedCell = [2, 0];
+    const setFocusedCell = jest.fn();
+    mount(
+      <DataGridFocusContext.Provider
+        value={{ focusedCell, setFocusedCell } as any}
+      >
+        <MockComponent />
+      </DataGridFocusContext.Provider>
+    );
+    expect(setFocusedCell).not.toHaveBeenCalled();
   });
 });
