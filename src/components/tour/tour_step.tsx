@@ -150,18 +150,23 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   }
 
   const [willMount, setWillMount] = useState<boolean>(false);
+  const animationFrameId = useRef<number>();
   const node = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (anchor) {
-      console.log(anchor);
-      window.requestAnimationFrame(() => {
+      animationFrameId.current = window.requestAnimationFrame(() => {
         node.current = findElement(anchor);
         if (node) {
           setWillMount(true);
         }
       });
     }
+
+    return () => {
+      animationFrameId.current &&
+        window.cancelAnimationFrame(animationFrameId.current);
+    };
   }, [anchor]);
 
   const newStyle: CSSProperties = { ...style, maxWidth, minWidth };
