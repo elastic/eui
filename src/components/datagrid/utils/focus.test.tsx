@@ -7,16 +7,188 @@
  */
 
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 import { keys } from '../../../services';
+import { testCustomHook } from '../../../test/test_custom_hook.test_helper';
 import {
   DataGridFocusContext,
+  useFocus,
   notifyCellOfFocusState,
   createKeyDownHandler,
   preventTabbing,
   getParentCellContent,
   useHeaderFocusWorkaround,
 } from './focus';
+
+describe('useFocus', () => {
+  type ReturnValues = ReturnType<typeof useFocus>;
+  const mockArgs = {
+    headerIsInteractive: true,
+    gridItemsRendered: { current: null },
+  };
+
+  describe('onFocusUpdate', () => {
+    const onFocus = jest.fn();
+    const {
+      return: { onFocusUpdate, setFocusedCell },
+    } = testCustomHook<ReturnValues>(() => useFocus(mockArgs));
+
+    let cleanupFn: Function;
+
+    it("adds a cell's onFocus callback to the internal cellsUpdateFocus map,", () => {
+      cleanupFn = onFocusUpdate([0, 0], onFocus);
+      // Note: there's no great way to assert this since cellsUpdateFocus is internal,
+      // so this is a separate test mostly just to document the intention/behavior
+    });
+
+    it("calls the cell's onFocus callback with true when the cell becomes focused", () => {
+      act(() => setFocusedCell([0, 0]));
+      expect(onFocus).toHaveBeenCalledWith(true);
+    });
+
+    it("calls the previous cell's onFocus callback with false when another cell becomes focused", () => {
+      act(() => setFocusedCell([1, 1]));
+      expect(onFocus).toHaveBeenCalledWith(false);
+    });
+
+    it('removes the cell from the internal cellsUpdateFocus map as a cleanup function', () => {
+      cleanupFn();
+      // Note: there's no great way to assert this since cellsUpdateFocus is internal,
+      // so this is mostly here to document behavior and for line coverage
+    });
+  });
+
+  describe('focusedCell / setFocusedCell', () => {
+    it('gets and sets the focusedCell state', () => {
+      const {
+        return: { focusedCell, setFocusedCell },
+        getUpdatedState,
+      } = testCustomHook(() => useFocus(mockArgs));
+      expect(focusedCell).toEqual(undefined);
+
+      act(() => setFocusedCell([2, 2]));
+      expect(getUpdatedState().focusedCell).toEqual([2, 2]);
+    });
+  });
+
+  describe('focusFirstVisibleInteractiveCell', () => {
+    describe('when the sticky header is interactive', () => {
+      it('always focuses the first header cell', () => {
+        const {
+          return: { focusFirstVisibleInteractiveCell },
+          getUpdatedState,
+        } = testCustomHook<ReturnValues>(() =>
+          useFocus({ ...mockArgs, headerIsInteractive: true })
+        );
+
+        act(() => focusFirstVisibleInteractiveCell());
+        expect(getUpdatedState().focusedCell).toEqual([0, -1]);
+      });
+    });
+
+    describe('describe when the header is not interactive', () => {
+      it('focuses the first visible data cell in the virtualized grid', () => {
+        const {
+          return: { focusFirstVisibleInteractiveCell },
+          getUpdatedState,
+        } = testCustomHook<ReturnValues>(() =>
+          useFocus({
+            headerIsInteractive: false,
+            gridItemsRendered: {
+              current: {
+                visibleColumnStartIndex: 1,
+                visibleRowStartIndex: 10,
+              } as any,
+            },
+          })
+        );
+
+        act(() => focusFirstVisibleInteractiveCell());
+        expect(getUpdatedState().focusedCell).toEqual([1, 10]);
+      });
+
+      it("does nothing if the grid isn't yet rendered", () => {
+        const {
+          return: { focusFirstVisibleInteractiveCell },
+          getUpdatedState,
+        } = testCustomHook<ReturnValues>(() =>
+          useFocus({
+            headerIsInteractive: false,
+            gridItemsRendered: { current: null },
+          })
+        );
+
+        act(() => focusFirstVisibleInteractiveCell());
+        expect(getUpdatedState().focusedCell).toEqual(undefined);
+      });
+    });
+  });
+
+  describe('setIsFocusedCellInView / focusProps', () => {
+    describe('when no focused child cell is in view', () => {
+      it('renders the grid with tabindex 0 and an onFocus event', () => {
+        const {
+          return: { focusProps },
+        } = testCustomHook(() => useFocus(mockArgs));
+
+        expect(focusProps).toEqual({
+          tabIndex: 0,
+          onFocus: expect.any(Function),
+        });
+      });
+
+      describe('onFocus event', () => {
+        const mockGrid = document.createElement('div');
+        const someChild = mockGrid.appendChild(
+          document.createElement('button')
+        );
+
+        it('focuses into the first visible cell of the grid when the grid is directly tabbed to', () => {
+          const {
+            return: {
+              focusProps: { onFocus },
+            },
+            getUpdatedState,
+          } = testCustomHook<ReturnValues>(() => useFocus(mockArgs));
+
+          act(() =>
+            onFocus!({ target: mockGrid, currentTarget: mockGrid } as any)
+          );
+          expect(getUpdatedState().focusedCell).toEqual([0, -1]);
+        });
+
+        it('does nothing if the focus event was not on the grid itself', () => {
+          const {
+            return: {
+              focusProps: { onFocus },
+            },
+            getUpdatedState,
+          } = testCustomHook<ReturnValues>(() => useFocus(mockArgs));
+
+          act(() =>
+            onFocus!({ target: someChild, currentTarget: mockGrid } as any)
+          );
+          expect(getUpdatedState().focusedCell).toEqual(undefined);
+        });
+      });
+    });
+
+    describe('when a focused cell is in view', () => {
+      it('renders the grid with tabindex -1 (because the child cell will already have a tabindex 0)', () => {
+        const {
+          return: { setIsFocusedCellInView },
+          getUpdatedState,
+        } = testCustomHook<ReturnValues>(() => useFocus(mockArgs));
+
+        act(() => setIsFocusedCellInView(true));
+        expect(getUpdatedState().focusProps).toEqual({
+          tabIndex: -1,
+        });
+      });
+    });
+  });
+});
 
 describe('notifyCellOfFocusState', () => {
   const onFocus = jest.fn();
