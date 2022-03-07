@@ -10,7 +10,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiCommentTimeline } from './comment_timeline';
+import { EuiCommentTimeline, TYPES } from './comment_timeline';
 import { EuiAvatar } from '../avatar';
 
 describe('EuiCommentTimeline', () => {
@@ -22,10 +22,12 @@ describe('EuiCommentTimeline', () => {
 
   describe('props', () => {
     describe('type', () => {
-      it('is rendered', () => {
-        const component = render(<EuiCommentTimeline type="update" />);
+      TYPES.forEach((type) => {
+        test(`${type} is rendered`, () => {
+          const component = render(<EuiCommentTimeline type={type} />);
 
-        expect(component).toMatchSnapshot();
+          expect(component).toMatchSnapshot();
+        });
       });
     });
 

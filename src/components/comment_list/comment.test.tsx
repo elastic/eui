@@ -10,7 +10,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiComment } from './comment';
+import { EuiComment, TYPES } from './comment';
 import { EuiAvatar } from '../avatar';
 
 describe('EuiComment', () => {
@@ -24,12 +24,12 @@ describe('EuiComment', () => {
 
   describe('props', () => {
     describe('type', () => {
-      it('is rendered', () => {
-        const component = render(
-          <EuiComment username="someuser" type="update" />
-        );
+      TYPES.forEach((type) => {
+        test(`${type} is rendered`, () => {
+          const component = render(<EuiComment type={type} />);
 
-        expect(component).toMatchSnapshot();
+          expect(component).toMatchSnapshot();
+        });
       });
     });
 

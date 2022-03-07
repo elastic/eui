@@ -46,7 +46,43 @@ exports[`EuiCommentTimeline props timelineIcon is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiCommentTimeline props type is rendered 1`] = `
+exports[`EuiCommentTimeline props type custom is rendered 1`] = `
+<div
+  class="euiCommentTimeline"
+>
+  <div
+    class="euiCommentTimeline__content"
+  >
+    <div
+      class="euiCommentTimeline__icon--default euiCommentTimeline__icon--custom"
+    >
+      <span
+        data-euiicon-type="user"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCommentTimeline props type regular is rendered 1`] = `
+<div
+  class="euiCommentTimeline"
+>
+  <div
+    class="euiCommentTimeline__content"
+  >
+    <div
+      class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
+    >
+      <span
+        data-euiicon-type="user"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCommentTimeline props type update is rendered 1`] = `
 <div
   class="euiCommentTimeline"
 >

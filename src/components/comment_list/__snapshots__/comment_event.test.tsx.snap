@@ -78,7 +78,34 @@ exports[`EuiCommentEvent props timestamp is rendered 1`] = `
 </figure>
 `;
 
-exports[`EuiCommentEvent props type is rendered 1`] = `
+exports[`EuiCommentEvent props type custom is rendered 1`] = `
+<div
+  class="euiCommentEvent euiCommentEvent--custom"
+/>
+`;
+
+exports[`EuiCommentEvent props type regular is rendered 1`] = `
+<figure
+  class="euiCommentEvent euiCommentEvent--regular"
+>
+  <figcaption
+    class="euiCommentEvent__header"
+  >
+    <div
+      class="euiCommentEvent__headerData"
+    >
+      <div
+        class="euiCommentEvent__headerUsername"
+      />
+      <div
+        class="euiCommentEvent__headerEvent"
+      />
+    </div>
+  </figcaption>
+</figure>
+`;
+
+exports[`EuiCommentEvent props type update is rendered 1`] = `
 <div
   class="euiCommentEvent euiCommentEvent--update"
 >
@@ -90,9 +117,7 @@ exports[`EuiCommentEvent props type is rendered 1`] = `
     >
       <div
         class="euiCommentEvent__headerUsername"
-      >
-        someuser
-      </div>
+      />
       <div
         class="euiCommentEvent__headerEvent"
       />

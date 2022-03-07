@@ -8,7 +8,7 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-
+import { keysOf } from '../common';
 import { EuiCommentEvent, EuiCommentEventProps } from './comment_event';
 import {
   EuiCommentTimeline,
@@ -25,6 +25,8 @@ const typeToClassNameMap = {
   update: 'euiComment--update',
   custom: '',
 };
+
+export const TYPES = keysOf(typeToClassNameMap);
 
 export const EuiComment: FunctionComponent<EuiCommentProps> = ({
   children,

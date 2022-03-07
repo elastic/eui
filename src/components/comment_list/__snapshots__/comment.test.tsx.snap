@@ -189,7 +189,72 @@ exports[`EuiComment props timestamp is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiComment props type is rendered 1`] = `
+exports[`EuiComment props type custom is rendered 1`] = `
+<div
+  class="euiComment"
+>
+  <div
+    class="euiCommentTimeline"
+  >
+    <div
+      class="euiCommentTimeline__content"
+    >
+      <div
+        class="euiCommentTimeline__icon--default euiCommentTimeline__icon--custom"
+      >
+        <span
+          data-euiicon-type="user"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiCommentEvent euiCommentEvent--custom"
+  />
+</div>
+`;
+
+exports[`EuiComment props type regular is rendered 1`] = `
+<div
+  class="euiComment"
+>
+  <div
+    class="euiCommentTimeline"
+  >
+    <div
+      class="euiCommentTimeline__content"
+    >
+      <div
+        class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
+      >
+        <span
+          data-euiicon-type="user"
+        />
+      </div>
+    </div>
+  </div>
+  <figure
+    class="euiCommentEvent euiCommentEvent--regular"
+  >
+    <figcaption
+      class="euiCommentEvent__header"
+    >
+      <div
+        class="euiCommentEvent__headerData"
+      >
+        <div
+          class="euiCommentEvent__headerUsername"
+        />
+        <div
+          class="euiCommentEvent__headerEvent"
+        />
+      </div>
+    </figcaption>
+  </figure>
+</div>
+`;
+
+exports[`EuiComment props type update is rendered 1`] = `
 <div
   class="euiComment euiComment--update"
 >
@@ -219,9 +284,7 @@ exports[`EuiComment props type is rendered 1`] = `
       >
         <div
           class="euiCommentEvent__headerUsername"
-        >
-          someuser
-        </div>
+        />
         <div
           class="euiCommentEvent__headerEvent"
         />
