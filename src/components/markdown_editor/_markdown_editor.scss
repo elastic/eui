@@ -1,4 +1,7 @@
 .euiMarkdownEditor {
+  display: flex;
+  flex-direction: column;
+
   &--isPreviewing {
     .euiMarkdownEditor__toggleContainer {
       display: none;
@@ -6,8 +9,6 @@
   }
 
   &--fullHeight {
-    display: flex;
-    flex-direction: column;
     height: 100%;
 
     .euiMarkdownEditorTextArea {
