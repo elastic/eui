@@ -11,9 +11,60 @@ import { mount } from 'enzyme';
 
 import {
   DataGridFocusContext,
+  preventTabbing,
   getParentCellContent,
   useHeaderFocusWorkaround,
 } from './focus';
+
+describe('preventTabbing', () => {
+  const mockCellWithInteractiveChildren = () => {
+    const cell = document.createElement('div');
+    cell.setAttribute('data-datagrid-cellcontent', 'true');
+
+    const button = cell.appendChild(document.createElement('button'));
+    const link = cell.appendChild(document.createElement('a'));
+    link.setAttribute('href', 'courageous');
+
+    return [cell, button, link];
+  };
+
+  it('on mutation, sets all interactive children of the parent cell to tabindex -1', () => {
+    const [cell, button, link] = mockCellWithInteractiveChildren();
+    preventTabbing([{ target: cell }] as any);
+
+    expect(button.getAttribute('tabIndex')).toEqual('-1');
+    expect(button.getAttribute('data-datagrid-interactable')).toEqual('true');
+
+    expect(link.getAttribute('tabIndex')).toEqual('-1');
+    expect(link.getAttribute('data-datagrid-interactable')).toEqual('true');
+  });
+
+  it('stops early if two separate mutation records occur from the same cell', () => {
+    const [button, link] = mockCellWithInteractiveChildren();
+    preventTabbing([{ target: button }, { target: link }] as any);
+
+    // There isn't a super great way of asserting a continue,
+    // so this is mostly just here for line code coverage
+  });
+
+  it('does nothing if the mutation event does not have a valid parent cell', () => {
+    const notCell = document.createElement('div');
+    preventTabbing([{ target: notCell }] as any);
+
+    // There isn't a super great way of asserting this,
+    // so this is mostly just here for branch code coverage
+  });
+
+  it('ignores header cells that manage their own tabindex state (data-euigrid-tab-managed attr)', () => {
+    const [cell, button] = mockCellWithInteractiveChildren();
+    button.setAttribute('data-euigrid-tab-managed', 'true');
+    button.setAttribute('tabIndex', '0');
+
+    preventTabbing([{ target: cell }] as any);
+
+    expect(button.getAttribute('tabIndex')).toEqual('0');
+  });
+});
 
 describe('getParentCellContent', () => {
   const doc = document.createDocumentFragment();
@@ -36,11 +87,11 @@ describe('getParentCellContent', () => {
   });
 
   it('locates the cell element when starting with an element inside the cell', () => {
-    expect(getParentCellContent(span!)).toBe(cell);
+    expect(getParentCellContent(span)).toBe(cell);
   });
 
   it('locates the cell element when starting with a text node inside the cell', () => {
-    expect(getParentCellContent(text!)).toBe(cell);
+    expect(getParentCellContent(text)).toBe(cell);
   });
 
   it('does not locate the cell element when starting outside the cell', () => {

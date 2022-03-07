@@ -271,10 +271,7 @@ export const preventTabbing = (records: MutationRecord[]) => {
       const tabbables = tabbable(cell);
       for (let i = 0; i < tabbables.length; i++) {
         const element = tabbables[i];
-        if (
-          element.getAttribute('role') !== 'gridcell' &&
-          !element.dataset['euigrid-tab-managed']
-        ) {
+        if (!element.hasAttribute('data-euigrid-tab-managed')) {
           element.setAttribute('tabIndex', '-1');
           element.setAttribute('data-datagrid-interactable', 'true');
         }
