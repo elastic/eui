@@ -26,8 +26,8 @@ const commentActionsSource = require('!!raw-loader!./comment_actions');
 import CommentList from './comment_list';
 const commentListSource = require('!!raw-loader!./comment_list');
 
-import CommentListComplex from './comment_list_complex';
-const commentListComplexSource = require('!!raw-loader!./comment_list_complex');
+import CommentSystem from './comment_system';
+const commentSystemSource = require('!!raw-loader!./comment_system');
 
 const commentSnippet = `<EuiComment username="janed">
   {body}
@@ -233,7 +233,7 @@ export const CommentListExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: commentListComplexSource,
+          code: commentSystemSource,
         },
       ],
       text: (
@@ -259,7 +259,7 @@ export const CommentListExample = {
               uses Markdown.
             </li>
             <li>
-              A new <strong>EuiComment</strong> is posted and we use the{' '}
+              When the new <strong>EuiComment</strong> is posted, we use the{' '}
               <strong>EuiMarkdownFormat</strong> to wrap the{' '}
               <EuiCode>EuiComment.children</EuiCode> and render the Markdown
               correctly.
@@ -268,15 +268,15 @@ export const CommentListExample = {
           <p>
             When dealing with asynchronous events like when adding a message we
             recommend setting the <strong>EuiMarkdownEditor</strong> to a{' '}
-            <EuiCode>readOnly</EuiCode> state and the add comment button to a{' '}
-            <EuiCode>isLoading</EuiCode> state. This will ensure users
-            understand that the content cannot be changed while the comment is
-            being submitted.
+            <EuiCode>readOnly</EuiCode> state and the &quot;Add comment&quot;{' '}
+            <strong>EuiButton</strong> to a <EuiCode>isLoading</EuiCode> state.
+            This will ensure users understand that the content cannot be changed
+            while the comment is being submitted.
           </p>
         </>
       ),
       props: { EuiCommentList, EuiComment },
-      demo: <CommentListComplex />,
+      demo: <CommentSystem />,
     },
   ],
 };

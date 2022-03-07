@@ -3,10 +3,8 @@ import { formatDate, htmlIdGenerator } from '../../../../src/services';
 import {
   EuiComment,
   EuiCommentProps,
-  EuiLink,
   EuiAvatar,
   EuiButtonIcon,
-  EuiText,
   EuiBadge,
   EuiMarkdownEditor,
   EuiMarkdownFormat,
@@ -15,7 +13,7 @@ import {
   EuiFlexItem,
   EuiButton,
   EuiFormErrorText,
-} from '../../../../src/components/';
+} from '../../../../src/components';
 
 const actionButton = (
   <EuiButtonIcon
@@ -34,9 +32,9 @@ const initialComments: EuiCommentProps[] = [
     timestamp: 'on 3rd March 2022',
     timelineIcon: <EuiAvatar name="emma" />,
     children: (
-      <EuiText size="s">
-        <p>Phishing emails have been on the rise since February</p>
-      </EuiText>
+      <EuiMarkdownFormat textSize="s">
+        Phishing emails have been on the rise since February
+      </EuiMarkdownFormat>
     ),
     actions: actionButton,
   },
@@ -64,11 +62,10 @@ const initialComments: EuiCommentProps[] = [
     timelineIcon: <EuiAvatar name="tiago" />,
     actions: actionButton,
     children: (
-      <EuiText size="s">
-        <p>
-          Take a look at this <EuiLink href="#">Office.exe</EuiLink>
-        </p>
-      </EuiText>
+      <EuiMarkdownFormat textSize="s">
+        Take a look at this
+        [Office.exe](http://my-drive.elastic.co/suspicious-file)
+      </EuiMarkdownFormat>
     ),
   },
   {
