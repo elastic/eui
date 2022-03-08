@@ -344,20 +344,23 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     const interactiveCellId = useGeneratedHtmlId();
     const ariaLabelledById = useGeneratedHtmlId();
 
-    const ariaPage = pagination ? pagination.pageIndex + 1 : 1;
-    const ariaPageCount =
-      typeof pagination?.pageSize === 'number'
-        ? Math.ceil(rowCount / pagination.pageSize)
-        : 1;
     const ariaLabel = useEuiI18n(
       'euiDataGrid.ariaLabel',
       '{label}; Page {page} of {pageCount}.',
-      { label: rest['aria-label'], page: ariaPage, pageCount: ariaPageCount }
+      {
+        label: rest['aria-label'],
+        page: pagination ? pagination.pageIndex + 1 : 0,
+        pageCount: pagination ? Math.ceil(rowCount / pagination.pageSize) : 0,
+      }
     );
+
     const ariaLabelledBy = useEuiI18n(
       'euiDataGrid.ariaLabelledBy',
       'Page {page} of {pageCount}.',
-      { page: ariaPage, pageCount: ariaPageCount }
+      {
+        page: pagination ? pagination.pageIndex + 1 : 0,
+        pageCount: pagination ? Math.ceil(rowCount / pagination.pageSize) : 0,
+      }
     );
 
     // extract aria-label and/or aria-labelledby from `rest`
@@ -410,10 +413,11 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                     renderCellValue={renderCellValue}
                     columns={columns}
                     rowCount={
-                      inMemory.level === 'enhancements' && // if `inMemory.level === enhancements` then we can only be sure the pagination's pageSize is available in memory
-                      typeof pagination?.pageSize === 'number' // If pageSize is set to 'all' instead of a number, then all rows are being displayed
-                        ? pagination?.pageSize || rowCount
-                        : rowCount // otherwise, all of the data is present and usable
+                      inMemory.level === 'enhancements'
+                        ? // if `inMemory.level === enhancements` then we can only be sure the pagination's pageSize is available in memory
+                          pagination?.pageSize || rowCount
+                        : // otherwise, all of the data is present and usable
+                          rowCount
                     }
                     onCellRender={onCellRender}
                   />

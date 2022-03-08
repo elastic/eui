@@ -101,39 +101,6 @@ describe('EuiDataGridPaginationRenderer', () => {
     `);
   });
 
-  it('handles the "all" page size option', () => {
-    const component = shallow(
-      <EuiDataGridPaginationRenderer
-        {...props}
-        pageSize="all"
-        pageSizeOptions={[10, 25, 'all']}
-      />
-    );
-    expect(component).toMatchInlineSnapshot(`
-      <div
-        className="euiDataGrid__pagination"
-      >
-        <EuiTablePagination
-          activePage={0}
-          aria-controls="data-grid-id"
-          aria-label="Pagination for preceding grid"
-          itemsPerPage="all"
-          itemsPerPageOptions={
-            Array [
-              10,
-              25,
-              "all",
-            ]
-          }
-          onChangeItemsPerPage={[MockFunction]}
-          onChangePage={[Function]}
-          pageCount={1}
-          showPerPageOptions={true}
-        />
-      </div>
-    `);
-  });
-
   it('does not render if there are fewer rows than the smallest page size option', () => {
     const component = shallow(
       <EuiDataGridPaginationRenderer
