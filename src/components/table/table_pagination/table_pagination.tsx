@@ -31,12 +31,12 @@ export interface EuiTablePaginationProps
   showPerPageOptions?: boolean;
   /**
    * Current selection for "Rows per page".
-   * Pass `0` as to display the selected "Show all" option and hide the pagination.
+   * Pass `0` to display the selected "Show all" option and hide the pagination.
    */
   itemsPerPage?: number;
   /**
    * Custom array of options for "Rows per page".
-   * Pass `0` as one of option to create a "Show all" option.
+   * Pass `0` as one of the options to create a "Show all" option.
    */
   itemsPerPageOptions?: number[];
   /**

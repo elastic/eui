@@ -20,7 +20,8 @@ export interface Pagination {
    */
   pageIndex: number;
   /**
-   * The maximum number of items that can be shown in a single page
+   * The maximum number of items that can be shown in a single page.
+   * Pass `0` to display the selected "Show all" option and hide the pagination.
    */
   pageSize: number;
   /**
@@ -28,7 +29,8 @@ export interface Pagination {
    */
   totalItemCount: number;
   /**
-   * Configures the page size dropdown options
+   * Configures the page size dropdown options.
+   * Pass `0` as one of the options to create a "Show all" option.
    */
   pageSizeOptions?: number[];
   /**
