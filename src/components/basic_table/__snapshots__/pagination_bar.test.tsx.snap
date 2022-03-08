@@ -47,6 +47,29 @@ exports[`PaginationBar render - hiding per page options 1`] = `
 </div>
 `;
 
+exports[`PaginationBar render - show all pageSize 1`] = `
+<div>
+  <EuiSpacer
+    size="m"
+  />
+  <EuiTablePagination
+    activePage={0}
+    aria-label="aria-label"
+    itemsPerPage={0}
+    itemsPerPageOptions={
+      Array [
+        1,
+        5,
+        0,
+      ]
+    }
+    onChangeItemsPerPage={[Function]}
+    onChangePage={[Function]}
+    pageCount={Infinity}
+  />
+</div>
+`;
+
 exports[`PaginationBar render 1`] = `
 <div>
   <EuiSpacer

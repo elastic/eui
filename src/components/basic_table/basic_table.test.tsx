@@ -304,6 +304,32 @@ describe('EuiBasicTable', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('with pagination - show all', () => {
+    const props: EuiBasicTableProps<BasicItem> = {
+      items: [
+        { id: '1', name: 'name1' },
+        { id: '2', name: 'name2' },
+      ],
+      columns: [
+        {
+          field: 'name',
+          name: 'Name',
+          description: 'description',
+        },
+      ],
+      pagination: {
+        pageIndex: 0,
+        pageSize: 0,
+        pageSizeOptions: [1, 5, 0],
+        totalItemCount: 2,
+      },
+      onChange: () => {},
+    };
+    const component = shallow(<EuiBasicTable {...props} />);
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('with pagination and error', () => {
     const props: EuiBasicTableProps<BasicItem> = {
       items: [

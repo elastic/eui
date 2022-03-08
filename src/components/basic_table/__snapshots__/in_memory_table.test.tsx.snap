@@ -1705,6 +1705,250 @@ exports[`EuiInMemoryTable with pagination 1`] = `
 />
 `;
 
+exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiBasicTable testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div>
+    <div
+      class="euiTableHeaderMobile"
+    >
+      <div
+        class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
+      >
+        <div
+          class="euiFlexItem euiFlexItem--flexGrowZero"
+        />
+        <div
+          class="euiFlexItem euiFlexItem--flexGrowZero"
+        />
+      </div>
+    </div>
+    <table
+      class="euiTable euiTable--responsive"
+      id="__table_generated-id"
+      tabindex="-1"
+    >
+      <caption
+        class="euiScreenReaderOnly euiTableCaption"
+      />
+      <thead>
+        <tr>
+          <th
+            class="euiTableHeaderCell"
+            data-test-subj="tableHeaderCell_name_0"
+            role="columnheader"
+            scope="col"
+          >
+            <span
+              class="euiTableCellContent"
+            >
+              <span
+                class="euiTableCellContent__text"
+                title="; description"
+              >
+                Name
+              </span>
+              <span
+                class="euiScreenReaderOnly"
+              >
+                description
+              </span>
+            </span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="euiTableRow"
+        >
+          <td
+            class="euiTableRowCell euiTableRowCell--middle"
+          >
+            <div
+              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            >
+              Name
+            </div>
+            <div
+              class="euiTableCellContent"
+            >
+              <span
+                class="euiTableCellContent__text"
+              >
+                name1
+              </span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <div
+      class="euiSpacer euiSpacer--m"
+    />
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--wrap eui-xScroll"
+    >
+      <div
+        class="euiFlexItem euiFlexItem--flexGrowZero"
+      >
+        <div
+          class="euiPopover euiPopover--anchorUpRight"
+        >
+          <div
+            class="euiPopover__anchor"
+          >
+            <button
+              class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
+              data-test-subj="tablePaginationPopoverButton"
+              type="button"
+            >
+              <span
+                class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+              >
+                <span
+                  class="euiButtonContent__icon"
+                  color="inherit"
+                  data-euiicon-type="arrowDown"
+                />
+                <span
+                  class="euiButtonEmpty__text"
+                >
+                  Rows per page: 1
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="euiFlexItem euiFlexItem--flexGrowZero"
+      >
+        <nav
+          aria-label="Pagination for table: "
+          class="euiPagination"
+        >
+          <span
+            aria-atomic="true"
+            aria-relevant="additions text"
+            class="euiScreenReaderOnly"
+            role="status"
+          >
+            Page 1 of 3
+          </span>
+          <button
+            aria-label="Previous page"
+            class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton"
+            data-test-subj="pagination-button-previous"
+            disabled=""
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="arrowLeft"
+            />
+          </button>
+          <ul
+            aria-label="Pagination for table: "
+            class="euiPagination__list"
+          >
+            <li
+              class="euiPagination__item"
+            >
+              <button
+                aria-controls="__table_generated-id"
+                aria-current="true"
+                aria-label="Page 1 of 3"
+                class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiButtonEmpty-isDisabled euiPaginationButton euiPaginationButton-isActive"
+                data-test-subj="pagination-button-0"
+                disabled=""
+                type="button"
+              >
+                <span
+                  class="euiButtonContent euiButtonEmpty__content"
+                >
+                  <span
+                    class="euiButtonEmpty__text"
+                  >
+                    1
+                  </span>
+                </span>
+              </button>
+            </li>
+            <li
+              class="euiPagination__item"
+            >
+              <a
+                aria-controls="__table_generated-id"
+                aria-label="Page 2 of 3"
+                class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiPaginationButton"
+                data-test-subj="pagination-button-1"
+                href="#__table_generated-id"
+                rel="noreferrer"
+              >
+                <span
+                  class="euiButtonContent euiButtonEmpty__content"
+                >
+                  <span
+                    class="euiButtonEmpty__text"
+                  >
+                    2
+                  </span>
+                </span>
+              </a>
+            </li>
+            <li
+              class="euiPagination__item"
+            >
+              <a
+                aria-controls="__table_generated-id"
+                aria-label="Page 3 of 3"
+                class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiPaginationButton"
+                data-test-subj="pagination-button-2"
+                href="#__table_generated-id"
+                rel="noreferrer"
+              >
+                <span
+                  class="euiButtonContent euiButtonEmpty__content"
+                >
+                  <span
+                    class="euiButtonEmpty__text"
+                  >
+                    3
+                  </span>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <a
+            aria-controls="__table_generated-id"
+            aria-label="Next page"
+            class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton"
+            data-test-subj="pagination-button-next"
+            href="#__table_generated-id"
+            rel="noreferrer"
+            title="Next page"
+          >
+            <span
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="arrowRight"
+            />
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiInMemoryTable with pagination and default page size and index 1`] = `
 <EuiBasicTable
   aria-label="aria-label"
