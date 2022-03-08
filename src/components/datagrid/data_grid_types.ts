@@ -407,7 +407,7 @@ interface SharedRenderCellElementProps {
   /**
    * The schema type of the column being rendered
    */
-  schema: string | undefined | null;
+  schema?: string | null;
 }
 
 export type EuiDataGridSetCellProps = CommonProps &
