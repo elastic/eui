@@ -161,15 +161,15 @@ const getInitialPagination = (pagination: Pagination | undefined) => {
   const initialPageIndex =
     pagination === true
       ? 0
-      : pagination.pageIndex || pagination.initialPageIndex || 0;
+      : pagination.pageIndex ?? pagination.initialPageIndex ?? 0;
   const initialPageSize =
     pagination === true
       ? defaultPageSize
-      : pagination.pageSize || pagination.initialPageSize || defaultPageSize;
+      : pagination.pageSize ?? pagination.initialPageSize ?? defaultPageSize;
 
   if (
     showPerPageOptions &&
-    initialPageSize &&
+    initialPageSize != null &&
     (!pageSizeOptions || !pageSizeOptions.includes(initialPageSize))
   ) {
     throw new Error(
@@ -640,7 +640,7 @@ export class EuiInMemoryTable<T> extends Component<
       ? undefined
       : {
           pageIndex,
-          pageSize: pageSize || 1,
+          pageSize: pageSize ?? 1,
           pageSizeOptions,
           totalItemCount,
           showPerPageOptions,
