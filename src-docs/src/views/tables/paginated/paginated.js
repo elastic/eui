@@ -134,12 +134,12 @@ export const Table = () => {
     pageIndex,
     pageSize,
     totalItemCount,
-    pageSizeOptions: [10, 'all'],
+    pageSizeOptions: [10, 0],
     showPerPageOptions,
   };
 
   const resultsCount =
-    pageSize === 'all' ? (
+    pageSize === 0 ? (
       <strong>All</strong>
     ) : (
       <>

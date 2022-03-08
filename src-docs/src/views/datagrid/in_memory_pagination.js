@@ -117,7 +117,7 @@ export default () => {
       sorting={{ columns: sortingColumns, onSort }}
       pagination={{
         ...pagination,
-        pageSizeOptions: [10, 50, 'all'],
+        pageSizeOptions: [10, 50, 100],
         onChangeItemsPerPage: onChangeItemsPerPage,
         onChangePage: onChangePage,
       }}
