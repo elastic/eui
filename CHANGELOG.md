@@ -1,5 +1,9 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+No public interface changes since `51.0.0`.
+
+## [`51.0.0`](https://github.com/elastic/eui/tree/v51.0.0)
+
 - Enhanced `EuiSuggest` to fire the `onItemClick` callback on Enter key press as well as clicks ([#5693](https://github.com/elastic/eui/pull/5693))
 
 **Bug fixes**
