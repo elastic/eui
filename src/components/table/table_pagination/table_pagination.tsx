@@ -21,7 +21,7 @@ import { EuiPopover } from '../../popover';
 import { EuiI18n } from '../../i18n';
 
 export type PageChangeHandler = EuiPaginationProps['onPageClick'];
-export type ItemsPerPageChangeHandler = (pageSize: number | 'all') => void;
+export type ItemsPerPageChangeHandler = (pageSize: number) => void;
 
 export interface EuiTablePaginationProps
   extends Omit<EuiPaginationProps, 'onPageClick'> {
@@ -31,14 +31,14 @@ export interface EuiTablePaginationProps
   showPerPageOptions?: boolean;
   /**
    * Current selection for "Rows per page".
-   * Pass `'all'` to display the selected "Show all" option and hide the pagination.
+   * Pass `0` as to display the selected "Show all" option and hide the pagination.
    */
-  itemsPerPage?: number | 'all';
+  itemsPerPage?: number;
   /**
    * Custom array of options for "Rows per page".
-   * Pass `'all'` as one of the options to create a "Show all" option.
+   * Pass `0` as one of option to create a "Show all" option.
    */
-  itemsPerPageOptions?: Array<number | 'all'>;
+  itemsPerPageOptions?: number[];
   /**
    * Click handler that passes back selected `pageSize` number
    */
@@ -80,9 +80,9 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
       data-test-subj="tablePaginationPopoverButton"
       onClick={togglePopover}
     >
-      {itemsPerPage === 'all' ? (
+      {itemsPerPage === 0 ? (
         <EuiI18n
-          token="euiTablePagination.allRows"
+          token="euiTablePagination.showingAll"
           default="Showing all rows"
         />
       ) : (
@@ -109,7 +109,7 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
           }}
           data-test-subj={`tablePagination-${itemsPerPageOption}-rows`}
         >
-          {itemsPerPageOption === 'all' ? (
+          {itemsPerPageOption === 0 ? (
             <EuiI18n
               token="euiTablePagination.rowsPerPageOptionShowAllRows"
               default="Show all rows"
@@ -152,7 +152,7 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        {itemsPerPage !== 'all' && (
+        {itemsPerPage > 0 && (
           <EuiPagination
             pageCount={pageCount}
             activePage={activePage}
