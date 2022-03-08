@@ -319,8 +319,8 @@ describe('EuiBasicTable', () => {
       ],
       pagination: {
         pageIndex: 0,
-        pageSize: 'all',
-        pageSizeOptions: [1, 5, 'all'],
+        pageSize: 0,
+        pageSizeOptions: [1, 5, 0],
         totalItemCount: 2,
       },
       onChange: () => {},
