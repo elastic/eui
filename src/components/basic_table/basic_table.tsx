@@ -165,7 +165,7 @@ export interface Criteria<T> {
    */
   page?: {
     index: number;
-    size: number | 'all';
+    size: number;
   };
   /**
    * If the shown items are sorted, this describes the sort criteria
@@ -182,7 +182,7 @@ export interface CriteriaWithPagination<T> extends Criteria<T> {
    */
   page: {
     index: number;
-    size: number | 'all';
+    size: number;
   };
 }
 
@@ -459,7 +459,7 @@ export class EuiBasicTable<T = any> extends Component<
     this.changeSelection([]);
   }
 
-  onPageSizeChange(size: number | 'all') {
+  onPageSizeChange(size: number) {
     this.clearSelection();
     const currentCriteria = this.buildCriteria(this.props);
     const criteria: CriteriaWithPagination<T> = {
@@ -657,14 +657,6 @@ export class EuiBasicTable<T = any> extends Component<
 
   renderTableCaption() {
     const { items, pagination, tableCaption } = this.props;
-    const itemCount = items.length;
-    const totalItemCount = pagination ? pagination.totalItemCount : itemCount;
-    const page = pagination ? pagination.pageIndex + 1 : 1;
-    const pageCount =
-      typeof pagination?.pageSize === 'number'
-        ? Math.ceil(pagination.totalItemCount / pagination.pageSize)
-        : 1;
-
     let captionElement;
     if (tableCaption) {
       if (pagination) {
@@ -672,7 +664,13 @@ export class EuiBasicTable<T = any> extends Component<
           <EuiI18n
             token="euiBasicTable.tableCaptionWithPagination"
             default="{tableCaption}; Page {page} of {pageCount}."
-            values={{ tableCaption, page, pageCount }}
+            values={{
+              tableCaption,
+              page: pagination.pageIndex + 1,
+              pageCount: Math.ceil(
+                pagination.totalItemCount / pagination.pageSize
+              ),
+            }}
           />
         );
       } else {
@@ -685,7 +683,14 @@ export class EuiBasicTable<T = any> extends Component<
             <EuiI18n
               token="euiBasicTable.tableAutoCaptionWithPagination"
               default="This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
-              values={{ totalItemCount, itemCount, page, pageCount }}
+              values={{
+                totalItemCount: pagination.totalItemCount,
+                itemCount: items.length,
+                page: pagination.pageIndex + 1,
+                pageCount: Math.ceil(
+                  pagination.totalItemCount / pagination.pageSize
+                ),
+              }}
             />
           );
         } else {
@@ -693,7 +698,13 @@ export class EuiBasicTable<T = any> extends Component<
             <EuiI18n
               token="euiBasicTable.tableSimpleAutoCaptionWithPagination"
               default="This table contains {itemCount} rows; Page {page} of {pageCount}."
-              values={{ itemCount, page, pageCount }}
+              values={{
+                itemCount: items.length,
+                page: pagination.pageIndex + 1,
+                pageCount: Math.ceil(
+                  pagination.totalItemCount / pagination.pageSize
+                ),
+              }}
             />
           );
         }
@@ -702,7 +713,9 @@ export class EuiBasicTable<T = any> extends Component<
           <EuiI18n
             token="euiBasicTable.tableAutoCaptionWithoutPagination"
             default="This table contains {itemCount} rows."
-            values={{ itemCount }}
+            values={{
+              itemCount: items.length,
+            }}
           />
         );
       }
@@ -948,12 +961,10 @@ export class EuiBasicTable<T = any> extends Component<
 
     const rows = items.map((item: T, index: number) => {
       // if there's pagination the item's index must be adjusted to the where it is in the whole dataset
-      const tableItemIndex =
-        hasPagination(this.props) &&
-        typeof this.props.pagination.pageSize === 'number'
-          ? this.props.pagination.pageIndex * this.props.pagination.pageSize +
-            index
-          : index;
+      const tableItemIndex = hasPagination(this.props)
+        ? this.props.pagination.pageIndex * this.props.pagination.pageSize +
+          index
+        : index;
       return this.renderItemRow(item, tableItemIndex);
     });
     return <EuiTableBody bodyRef={this.setTbody}>{rows}</EuiTableBody>;

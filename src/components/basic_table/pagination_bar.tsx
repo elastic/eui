@@ -20,19 +20,17 @@ export interface Pagination {
    */
   pageIndex: number;
   /**
-   * The maximum number of items that can be shown in a single page.
-   * Pass `'all'` to display the selected "Show all" option and hide the pagination.
+   * The maximum number of items that can be shown in a single page
    */
-  pageSize: number | 'all';
+  pageSize: number;
   /**
    * The total number of items the page is "sliced" of
    */
   totalItemCount: number;
   /**
-   * Configures the page size dropdown options.
-   * Pass `'all'` as one of the options to create a "Show all" option.
+   * Configures the page size dropdown options
    */
-  pageSizeOptions?: Array<number | 'all'>;
+  pageSizeOptions?: number[];
   /**
    * Hides the page size dropdown
    */
@@ -64,10 +62,7 @@ export const PaginationBar = ({
   const pageSizeOptions = pagination.pageSizeOptions
     ? pagination.pageSizeOptions
     : defaults.pageSizeOptions;
-  const pageCount =
-    pagination.pageSize === 'all'
-      ? 1
-      : Math.ceil(pagination.totalItemCount / pagination.pageSize);
+  const pageCount = Math.ceil(pagination.totalItemCount / pagination.pageSize);
 
   useEffect(() => {
     if (pageCount < pagination.pageIndex + 1) {
