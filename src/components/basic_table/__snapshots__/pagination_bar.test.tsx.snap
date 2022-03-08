@@ -65,7 +65,7 @@ exports[`PaginationBar render - show all pageSize 1`] = `
     }
     onChangeItemsPerPage={[Function]}
     onChangePage={[Function]}
-    pageCount={Infinity}
+    pageCount={1}
   />
 </div>
 `;

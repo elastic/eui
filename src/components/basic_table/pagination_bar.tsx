@@ -64,7 +64,9 @@ export const PaginationBar = ({
   const pageSizeOptions = pagination.pageSizeOptions
     ? pagination.pageSizeOptions
     : defaults.pageSizeOptions;
-  const pageCount = Math.ceil(pagination.totalItemCount / pagination.pageSize);
+  const pageCount = pagination.pageSize
+    ? Math.ceil(pagination.totalItemCount / pagination.pageSize)
+    : 1;
 
   useEffect(() => {
     if (pageCount < pagination.pageIndex + 1) {

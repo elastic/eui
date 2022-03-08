@@ -344,23 +344,19 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     const interactiveCellId = useGeneratedHtmlId();
     const ariaLabelledById = useGeneratedHtmlId();
 
+    const ariaPage = pagination ? pagination.pageIndex + 1 : 1;
+    const ariaPageCount = pagination?.pageSize
+      ? Math.ceil(rowCount / pagination.pageSize)
+      : 1;
     const ariaLabel = useEuiI18n(
       'euiDataGrid.ariaLabel',
       '{label}; Page {page} of {pageCount}.',
-      {
-        label: rest['aria-label'],
-        page: pagination ? pagination.pageIndex + 1 : 0,
-        pageCount: pagination ? Math.ceil(rowCount / pagination.pageSize) : 0,
-      }
+      { label: rest['aria-label'], page: ariaPage, pageCount: ariaPageCount }
     );
-
     const ariaLabelledBy = useEuiI18n(
       'euiDataGrid.ariaLabelledBy',
       'Page {page} of {pageCount}.',
-      {
-        page: pagination ? pagination.pageIndex + 1 : 0,
-        pageCount: pagination ? Math.ceil(rowCount / pagination.pageSize) : 0,
-      }
+      { page: ariaPage, pageCount: ariaPageCount }
     );
 
     // extract aria-label and/or aria-labelledby from `rest`

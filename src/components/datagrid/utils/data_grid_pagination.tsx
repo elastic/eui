@@ -42,7 +42,7 @@ export const EuiDataGridPaginationRenderer = ({
     [setFocusedCell, _onChangePage]
   );
 
-  const pageCount = Math.ceil(rowCount / pageSize);
+  const pageCount = pageSize ? Math.ceil(rowCount / pageSize) : 1;
   const minSizeOption =
     pageSizeOptions && [...pageSizeOptions].sort((a, b) => a - b)[0];
 

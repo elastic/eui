@@ -2409,7 +2409,7 @@ exports[`EuiBasicTable with pagination - show all 1`] = `
                 Object {
                   "itemCount": 2,
                   "page": 1,
-                  "pageCount": Infinity,
+                  "pageCount": 1,
                   "totalItemCount": 2,
                 }
               }
