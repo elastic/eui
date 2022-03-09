@@ -107,7 +107,7 @@ export default () => {
     <GuidePage
       title="Typography"
       isBeta={!showSass}
-      notice={!showSass && <ThemeNotice />}
+      notice={<ThemeNotice />}
       showThemeLanguageToggle
       description={
         <>

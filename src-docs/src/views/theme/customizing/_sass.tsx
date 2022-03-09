@@ -1,23 +1,7 @@
 import React from 'react';
-import { EuiSpacer, EuiCallOut, EuiText, EuiLink } from '../../../../../src';
+import { EuiSpacer, EuiText } from '../../../../../src';
 
 import { CustomizeTokens } from '../../guidelines/getting_started/_customize_tokens';
-
-export const SassAlert = () => {
-  return (
-    <EuiCallOut color="warning">
-      <p>
-        EUI is transitioning to a CSS-in-JS solution for theming and so this
-        method of overriding the theme will only affect components that are
-        still Sass-based. To track this effort, subscribe to the{' '}
-        <EuiLink href="https://github.com/elastic/eui/issues/3912">
-          Meta ticket
-        </EuiLink>
-        .
-      </p>
-    </EuiCallOut>
-  );
-};
 
 export default () => {
   return (
