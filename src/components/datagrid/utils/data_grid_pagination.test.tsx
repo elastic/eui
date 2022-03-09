@@ -101,12 +101,12 @@ describe('EuiDataGridPaginationRenderer', () => {
     `);
   });
 
-  it('handles the "all" page size option', () => {
+  it('handles the "show all" page size option', () => {
     const component = shallow(
       <EuiDataGridPaginationRenderer
         {...props}
-        pageSize="all"
-        pageSizeOptions={[10, 25, 'all']}
+        pageSize={0}
+        pageSizeOptions={[10, 25, 0]}
       />
     );
     expect(component).toMatchInlineSnapshot(`
@@ -117,12 +117,12 @@ describe('EuiDataGridPaginationRenderer', () => {
           activePage={0}
           aria-controls="data-grid-id"
           aria-label="Pagination for preceding grid"
-          itemsPerPage="all"
+          itemsPerPage={0}
           itemsPerPageOptions={
             Array [
               10,
               25,
-              "all",
+              0,
             ]
           }
           onChangeItemsPerPage={[MockFunction]}

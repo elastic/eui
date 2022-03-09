@@ -46,8 +46,29 @@ describe('EuiSuggest', () => {
         .first()
         .click()
         .then(() => {
-          expect(handler).to.be.called;
+          expect(handler).to.be.calledWith(sampleItems[0]);
         });
+    });
+
+    it('is called when an option is pressed via the Enter key', () => {
+      const handler = cy.stub();
+      cy.mount(
+        <EuiSuggest
+          aria-label="onItemClick"
+          suggestions={sampleItems}
+          onItemClick={handler}
+        />
+      );
+
+      cy.get('input')
+        .click()
+        .then(() => {
+          expect(cy.get('ul')).to.exist;
+        });
+      cy.realPress('ArrowDown');
+      cy.realPress('Enter').then(() => {
+        expect(handler).to.be.calledWith(sampleItems[0]);
+      });
     });
   });
 

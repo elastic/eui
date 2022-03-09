@@ -158,6 +158,7 @@ exports[`EuiSuggest props isVirtualized 1`] = `
         "textWrap": "truncate",
       }
     }
+    onChange={[Function]}
     options={
       Array [
         Object {
@@ -489,6 +490,7 @@ exports[`EuiSuggest props maxHeight 1`] = `
         "textWrap": "wrap",
       }
     }
+    onChange={[Function]}
     options={
       Array [
         Object {

@@ -769,19 +769,19 @@ export interface EuiDataGridPaginationProps {
   pageIndex: number;
   /**
    * How many rows should initially be shown per page.
-   * Pass `'all'` to display the selected "Show all" option and hide the pagination.
+   * Pass `0` to display the selected "Show all" option and hide the pagination.
    */
-  pageSize: number | 'all';
+  pageSize: number;
   /**
    * An array of page sizes the user can select from.
-   * Pass `'all'` as one of the options to create a "Show all" option.
+   * Pass `0` as one of the options to create a "Show all" option.
    * Leave this prop undefined or use an empty array to hide "Rows per page" select button.
    */
-  pageSizeOptions?: Array<number | 'all'>;
+  pageSizeOptions?: number[];
   /**
    * A callback for when the user changes the page size selection
    */
-  onChangeItemsPerPage: (itemsPerPage: number | 'all') => void;
+  onChangeItemsPerPage: (itemsPerPage: number) => void;
   /**
    * A callback for when the current page index changes
    */

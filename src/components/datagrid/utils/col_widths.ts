@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useMemo, useCallback, useState } from 'react';
+import { useUpdateEffect } from '../../../services';
 import { IS_JEST_ENVIRONMENT } from '../../../utils';
 import {
   EuiDataGridColumn,
@@ -24,7 +25,7 @@ export const useDefaultColumnWidth = (
   trailingControlColumns: EuiDataGridControlColumn[],
   columns: EuiDataGridProps['columns']
 ): number | null => {
-  const computeDefaultWidth = useCallback((): number | null => {
+  const defaultColumnWidth = useMemo(() => {
     if (IS_JEST_ENVIRONMENT) return DEFAULT_COLUMN_WIDTH;
     if (gridWidth === 0) return null; // we can't tell what size to compute yet
 
@@ -37,17 +38,13 @@ export const useDefaultColumnWidth = (
       0
     );
 
-    const columnsWithWidths = columns.filter<
-      EuiDataGridColumn & { initialWidth: number }
-    >(doesColumnHaveAnInitialWidth);
-
+    const columnsWithWidths = columns.filter(doesColumnHaveAnInitialWidth);
     const definedColumnsWidth = columnsWithWidths.reduce(
-      (claimedWidth, column) => claimedWidth + column.initialWidth,
+      (claimedWidth, column) => claimedWidth + column.initialWidth!,
       0
     );
 
     const claimedWidth = controlColumnWidths + definedColumnsWidth;
-
     const widthToFill = gridWidth - claimedWidth;
     const unsizedColumnCount = columns.length - columnsWithWidths.length;
     if (unsizedColumnCount === 0) {
@@ -56,22 +53,13 @@ export const useDefaultColumnWidth = (
     return Math.max(widthToFill / unsizedColumnCount, DEFAULT_COLUMN_WIDTH);
   }, [gridWidth, columns, leadingControlColumns, trailingControlColumns]);
 
-  const [defaultColumnWidth, setDefaultColumnWidth] = useState<number | null>(
-    computeDefaultWidth
-  );
-
-  useEffect(() => {
-    const columnWidth = computeDefaultWidth();
-    setDefaultColumnWidth(columnWidth);
-  }, [computeDefaultWidth]);
-
   return defaultColumnWidth;
 };
 
 export const doesColumnHaveAnInitialWidth = (
   column: EuiDataGridColumn
-): column is EuiDataGridColumn & { initialWidth: number } => {
-  return column.hasOwnProperty('initialWidth');
+): boolean => {
+  return column.hasOwnProperty('initialWidth') && column.initialWidth != null;
 };
 
 export const useColumnWidths = ({
@@ -91,15 +79,11 @@ export const useColumnWidths = ({
   setColumnWidth: (columnId: string, width: number) => void;
   getColumnWidth: (index: number) => number;
 } => {
-  const hasMounted = useRef(false);
-
   const computeColumnWidths = useCallback(() => {
     return columns
-      .filter<EuiDataGridColumn & { initialWidth: number }>(
-        doesColumnHaveAnInitialWidth
-      )
+      .filter(doesColumnHaveAnInitialWidth)
       .reduce<EuiDataGridColumnWidths>((initialWidths, column) => {
-        initialWidths[column.id] = column.initialWidth;
+        initialWidths[column.id] = column.initialWidth!;
         return initialWidths;
       }, {});
   }, [columns]);
@@ -108,12 +92,7 @@ export const useColumnWidths = ({
     computeColumnWidths
   );
 
-  useEffect(() => {
-    if (!hasMounted.current) {
-      hasMounted.current = true;
-      return;
-    }
-
+  useUpdateEffect(() => {
     setColumnWidths(computeColumnWidths());
   }, [computeColumnWidths]);
 

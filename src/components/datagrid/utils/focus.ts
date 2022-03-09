@@ -215,9 +215,10 @@ export const createKeyDownHandler = ({
         setFocusedCell([x + 1, y]);
       }
     } else if (key === keys.PAGE_DOWN) {
-      if (pagination && pagination.pageSize !== 'all') {
+      if (pagination && pagination.pageSize > 0) {
         event.preventDefault();
-        const pageCount = Math.ceil(rowCount / pagination.pageSize);
+        const pageSize = pagination.pageSize;
+        const pageCount = Math.ceil(rowCount / pageSize);
         const pageIndex = pagination.pageIndex;
         if (pageIndex < pageCount - 1) {
           pagination.onChangePage(pageIndex + 1);
@@ -225,7 +226,7 @@ export const createKeyDownHandler = ({
         setFocusedCell([focusedCell[0], 0]);
       }
     } else if (key === keys.PAGE_UP) {
-      if (pagination && pagination.pageSize !== 'all') {
+      if (pagination && pagination.pageSize > 0) {
         event.preventDefault();
         const pageIndex = pagination.pageIndex;
         if (pageIndex > 0) {
