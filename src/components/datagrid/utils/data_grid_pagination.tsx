@@ -42,17 +42,9 @@ export const EuiDataGridPaginationRenderer = ({
     [setFocusedCell, _onChangePage]
   );
 
-  const pageCount =
-    typeof pageSize === 'number' ? Math.ceil(rowCount / pageSize) : 1;
+  const pageCount = pageSize ? Math.ceil(rowCount / pageSize) : 1;
   const minSizeOption =
-    pageSizeOptions?.length &&
-    [...pageSizeOptions].reduce((a, b) => {
-      // Account for 'all' strings
-      if (typeof b !== 'number') return a;
-      if (typeof a !== 'number') return b;
-      // Find the smallest number
-      return Math.min(a, b);
-    });
+    pageSizeOptions && [...pageSizeOptions].sort((a, b) => a - b)[0];
 
   if (rowCount < (minSizeOption || pageSize)) {
     /**

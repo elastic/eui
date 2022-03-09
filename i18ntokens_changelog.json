@@ -1,5 +1,15 @@
 [
   {
+    "version": "50.0.0",
+    "changes": [
+      {
+        "token": "euiComboBox.listboxAriaLabel",
+        "changeType": "added",
+        "value": "Choose from the following options"
+      }
+    ]
+  },
+  {
     "version": "49.0.0",
     "changes": [
       {

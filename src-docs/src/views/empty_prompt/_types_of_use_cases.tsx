@@ -95,7 +95,7 @@ export const typesOfUseCases: {
               flush="both"
               size="s"
             >
-              Read documentation
+              Read the docs
             </EuiButtonEmpty>
           </span>
         </EuiFlexItem>
@@ -269,7 +269,7 @@ export const typesOfUseCases: {
             <h3>Want to learn more?</h3>
           </EuiTitle>
           <EuiLink href="#" target="_blank">
-            Read documentation
+            Read the docs
           </EuiLink>
         </>
       ),

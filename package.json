@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "49.0.0",
+  "version": "51.0.0",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
@@ -52,7 +52,8 @@
     "**/prismjs": "1.27.0",
     "**/trim": "0.0.3",
     "**/node-sass": "^6.0.1",
-    "**/react": "^17.0.0"
+    "**/react": "^17.0.0",
+    "**/known-css-properties": "0.24.0"
   },
   "pre-commit": [
     "test-staged"

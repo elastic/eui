@@ -36,8 +36,7 @@ export default () => {
 
   propsToUse.body = {
     ...propsToUse.body,
-    value:
-      '<p>There are no cases to display. Add a new case or change your filter settings.</p>',
+    value: '<p>Add a new case or change your filter settings.</p>',
     type: PropTypes.ReactNode,
   };
 
@@ -56,7 +55,7 @@ export default () => {
     <h3>Want to learn more?</h3>
   </EuiTitle>
   <EuiLink href="#" target="_blank">
-    Read documentation
+    Read the docs
   </EuiLink>
 </>`,
     type: PropTypes.ReactNode,

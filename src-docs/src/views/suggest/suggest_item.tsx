@@ -86,7 +86,7 @@ export default ({
       <EuiSuggest
         fullWidth={fullWidth}
         aria-label="Suggest"
-        onInputChange={() => {}}
+        onInput={() => {}}
         placeholder="Enter query to display suggestions"
         isVirtualized={virtualized}
         suggestions={allItems}

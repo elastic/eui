@@ -345,10 +345,9 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     const ariaLabelledById = useGeneratedHtmlId();
 
     const ariaPage = pagination ? pagination.pageIndex + 1 : 1;
-    const ariaPageCount =
-      typeof pagination?.pageSize === 'number'
-        ? Math.ceil(rowCount / pagination.pageSize)
-        : 1;
+    const ariaPageCount = pagination?.pageSize
+      ? Math.ceil(rowCount / pagination.pageSize)
+      : 1;
     const ariaLabel = useEuiI18n(
       'euiDataGrid.ariaLabel',
       '{label}; Page {page} of {pageCount}.',
@@ -410,10 +409,11 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                     renderCellValue={renderCellValue}
                     columns={columns}
                     rowCount={
-                      inMemory.level === 'enhancements' && // if `inMemory.level === enhancements` then we can only be sure the pagination's pageSize is available in memory
-                      typeof pagination?.pageSize === 'number' // If pageSize is set to 'all' instead of a number, then all rows are being displayed
-                        ? pagination?.pageSize || rowCount
-                        : rowCount // otherwise, all of the data is present and usable
+                      inMemory.level === 'enhancements'
+                        ? // if `inMemory.level === enhancements` then we can only be sure the pagination's pageSize is available in memory
+                          pagination?.pageSize || rowCount
+                        : // otherwise, all of the data is present and usable
+                          rowCount
                     }
                     onCellRender={onCellRender}
                   />

@@ -224,7 +224,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                 <button
                   aria-label="Bold"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -273,7 +272,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                 <button
                   aria-label="Italic"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -325,7 +323,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                 <button
                   aria-label="Unordered list"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -374,7 +371,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                 <button
                   aria-label="Ordered list"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -423,7 +419,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                 <button
                   aria-label="Task list"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -475,7 +470,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                 <button
                   aria-label="Quote"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -524,7 +518,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                 <button
                   aria-label="Code"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -573,7 +566,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                 <button
                   aria-label="Link"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -764,7 +756,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                       <button
                         aria-label="Show markdown help"
                         className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--small euiMarkdownEditorFooter__helpButton"
-                        disabled={false}
                         onClick={[Function]}
                         title="Syntax help"
                         type="button"
@@ -1582,7 +1573,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 <button
                   aria-label="Bold"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -1631,7 +1621,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 <button
                   aria-label="Italic"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -1683,7 +1672,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 <button
                   aria-label="Unordered list"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -1732,7 +1720,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 <button
                   aria-label="Ordered list"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -1781,7 +1768,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 <button
                   aria-label="Task list"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -1833,7 +1819,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 <button
                   aria-label="Quote"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -1882,7 +1867,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 <button
                   aria-label="Code"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -1931,7 +1915,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 <button
                   aria-label="Link"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -1983,7 +1966,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 <button
                   aria-label="Tooltip"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -2204,7 +2186,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                     <button
                       aria-label="Show markdown help"
                       className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--small euiMarkdownEditorFooter__helpButton"
-                      disabled={false}
                       onBlur={[Function]}
                       onClick={[Function]}
                       onFocus={[Function]}
@@ -3109,7 +3090,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                       <button
                                         aria-label="Closes this modal window"
                                         className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiModal__closeIcon"
-                                        disabled={false}
                                         onClick={[Function]}
                                         type="button"
                                       >

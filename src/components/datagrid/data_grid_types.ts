@@ -410,13 +410,18 @@ interface SharedRenderCellElementProps {
   schema: string | undefined | null;
 }
 
+export type EuiDataGridSetCellProps = CommonProps &
+  HTMLAttributes<HTMLDivElement> & {
+    isExpandable?: boolean;
+  };
+
 export interface EuiDataGridCellValueElementProps
   extends SharedRenderCellElementProps {
   /**
    * Callback function to set custom props & attributes on the cell's wrapping `div` element;
    * it's best to wrap calls to `setCellProps` in a `useEffect` hook
    */
-  setCellProps: (props: CommonProps & HTMLAttributes<HTMLDivElement>) => void;
+  setCellProps: (props: EuiDataGridSetCellProps) => void;
   /**
    * Whether or not the cell is expandable, comes from the #EuiDataGridColumn `isExpandable` which defaults to `true`
    */
@@ -482,7 +487,7 @@ export interface EuiDataGridCellProps {
 }
 
 export interface EuiDataGridCellState {
-  cellProps: CommonProps & HTMLAttributes<HTMLDivElement>;
+  cellProps: EuiDataGridSetCellProps;
   isFocused: boolean; // tracks if this cell has focus or not, used to enable tabIndex on the cell
   isEntered: boolean; // enables focus trap for non-expandable cells with multiple interactive elements
   enableInteractions: boolean; // cell got hovered at least once, so cell button and popover interactions are rendered
@@ -767,19 +772,19 @@ export interface EuiDataGridPaginationProps {
   pageIndex: number;
   /**
    * How many rows should initially be shown per page.
-   * Pass `'all'` to display the selected "Show all" option and hide the pagination.
+   * Pass `0` to display the selected "Show all" option and hide the pagination.
    */
-  pageSize: number | 'all';
+  pageSize: number;
   /**
    * An array of page sizes the user can select from.
-   * Pass `'all'` as one of the options to create a "Show all" option.
+   * Pass `0` as one of the options to create a "Show all" option.
    * Leave this prop undefined or use an empty array to hide "Rows per page" select button.
    */
-  pageSizeOptions?: Array<number | 'all'>;
+  pageSizeOptions?: number[];
   /**
    * A callback for when the user changes the page size selection
    */
-  onChangeItemsPerPage: (itemsPerPage: number | 'all') => void;
+  onChangeItemsPerPage: (itemsPerPage: number) => void;
   /**
    * A callback for when the current page index changes
    */

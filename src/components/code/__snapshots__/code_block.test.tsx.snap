@@ -110,7 +110,6 @@ exports[`EuiCodeBlock full screen displays content in fullscreen mode 1`] = `
           <button
             aria-label="Collapse"
             className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton"
-            disabled={false}
             onClick={[Function]}
             type="button"
           >
@@ -449,7 +448,6 @@ console.log(some);"
                     <button
                       aria-label="Copy"
                       className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                      disabled={false}
                       onBlur={[Function]}
                       onClick={[Function]}
                       onFocus={[Function]}

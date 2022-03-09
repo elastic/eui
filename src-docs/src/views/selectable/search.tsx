@@ -56,6 +56,7 @@ export default () => {
 
   const onWindowKeyDown = (e: any) => {
     if (e.metaKey && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
       window.addEventListener('keyup', onWindowKeyUp);
     }
   };

@@ -881,7 +881,6 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                                                                               <button
                                                                                 aria-label="Remove Column A from data grid sort"
                                                                                 className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGridColumnSorting__button"
-                                                                                disabled={false}
                                                                                 onClick={[Function]}
                                                                                 type="button"
                                                                               >

@@ -80,9 +80,7 @@ export class EuiFieldSearch extends Component<
   };
 
   state = {
-    value:
-      this.props.value ||
-      (this.props.defaultValue ? `${this.props.defaultValue}` : ''),
+    value: this.props.value || String(this.props.defaultValue || ''),
   };
 
   inputElement: HTMLInputElement | null = null;
