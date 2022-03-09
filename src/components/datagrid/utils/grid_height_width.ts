@@ -10,7 +10,6 @@ import { useEffect, useState, useContext, MutableRefObject } from 'react';
 import { IS_JEST_ENVIRONMENT } from '../../../utils';
 import { useUpdateEffect, useForceRender } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
-import { EuiTablePaginationProps } from '../../table/table_pagination';
 import { EuiDataGridRowHeightsOptions } from '../data_grid_types';
 import { RowHeightUtils } from './row_heights';
 import { DataGridSortingContext } from './sorting';
@@ -33,7 +32,7 @@ export const useFinalGridDimensions = ({
   // Used if the grid needs to scroll
   const [height, setHeight] = useState<number | undefined>(undefined);
   const [width, setWidth] = useState<number | undefined>(undefined);
-  // Tracking full screen height separately is necessary to correctly restore the grid back to non-full-screen height
+  // Tracking fullscreen height separately is necessary to correctly restore the grid back to non-fullscreen height
   const [fullScreenHeight, setFullScreenHeight] = useState(0);
 
   // Set the wrapper height on load, whenever the grid wrapper resizes, and whenever rowCount changes
@@ -163,7 +162,7 @@ export const useUnconstrainedHeight = ({
 export const useVirtualizeContainerWidth = (
   virtualizeContainer: HTMLDivElement | null,
   gridWidth: number,
-  pageSize: EuiTablePaginationProps['itemsPerPage']
+  pageSize: number | undefined
 ) => {
   const [virtualizeContainerWidth, setVirtualizeContainerWidth] = useState(0);
   useResizeObserver(virtualizeContainer);

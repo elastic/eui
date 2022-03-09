@@ -14,8 +14,6 @@ import {
   CSSProperties,
   ReactElement,
   AriaAttributes,
-  Dispatch,
-  SetStateAction,
   MutableRefObject,
 } from 'react';
 import {
@@ -34,12 +32,11 @@ export interface EuiDataGridToolbarProps {
   gridWidth: number;
   minSizeForControls?: number;
   toolbarVisibility: boolean | EuiDataGridToolBarVisibilityOptions;
-  displaySelector: ReactNode;
   isFullScreen: boolean;
-  controlBtnClasses: string;
+  fullScreenSelector: ReactNode;
+  displaySelector: ReactNode;
   columnSelector: ReactNode;
   columnSorting: ReactNode;
-  setIsFullScreen: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface EuiDataGridPaginationRendererProps
@@ -310,7 +307,7 @@ export type EuiDataGridProps = OneOf<
 
 export interface EuiDataGridRefProps {
   /**
-   * Allows manually controlling the full-screen state of the grid.
+   * Allows manually controlling the fullscreen state of the grid.
    */
   setIsFullScreen: (isFullScreen: boolean) => void;
   /**
@@ -727,7 +724,7 @@ export interface EuiDataGridToolBarVisibilityOptions {
    */
   showSortSelector?: boolean;
   /**
-   * Allows user to be able to full screen the data grid. If set to `false` make sure your grid fits within a large enough panel to still show the other controls.
+   * Allows user to be able to fullscreen the data grid. If set to `false` make sure your grid fits within a large enough panel to still show the other controls.
    */
   showFullScreenSelector?: boolean;
   /**
@@ -745,7 +742,7 @@ export interface EuiDataGridToolBarAdditionalControlsOptions {
    */
   left?: ReactNode | EuiDataGridToolBarAdditionalControlsLeftOptions;
   /**
-   * Will prepend the passed node into the right side of the toolbar, **before** the density & full screen controls.
+   * Will prepend the passed node into the right side of the toolbar, **before** the density & fullscreen controls.
    * We recommend using `<EuiButtonIcon size="xs" />` to match the existing controls on the right.
    */
   right?: ReactNode;
@@ -772,19 +769,19 @@ export interface EuiDataGridPaginationProps {
   pageIndex: number;
   /**
    * How many rows should initially be shown per page.
-   * Pass `'all'` to display the selected "Show all" option and hide the pagination.
+   * Pass `0` to display the selected "Show all" option and hide the pagination.
    */
-  pageSize: number | 'all';
+  pageSize: number;
   /**
    * An array of page sizes the user can select from.
-   * Pass `'all'` as one of the options to create a "Show all" option.
+   * Pass `0` as one of the options to create a "Show all" option.
    * Leave this prop undefined or use an empty array to hide "Rows per page" select button.
    */
-  pageSizeOptions?: Array<number | 'all'>;
+  pageSizeOptions?: number[];
   /**
    * A callback for when the user changes the page size selection
    */
-  onChangeItemsPerPage: (itemsPerPage: number | 'all') => void;
+  onChangeItemsPerPage: (itemsPerPage: number) => void;
   /**
    * A callback for when the current page index changes
    */

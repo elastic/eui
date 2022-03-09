@@ -289,7 +289,7 @@ const CollapsibleNavAll = () => {
           {
             items: [
               <EuiButtonEmpty href={exitPath} iconType="exit">
-                Exit full screen
+                Exit fullscreen
               </EuiButtonEmpty>,
             ],
           },

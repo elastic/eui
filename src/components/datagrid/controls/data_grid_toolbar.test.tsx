@@ -21,11 +21,10 @@ describe('EuiDataGridToolbar', () => {
     gridWidth: 500,
     toolbarVisibility: true,
     isFullScreen: false,
+    fullScreenSelector: <div>mock fullscreen selector</div>,
     displaySelector: <div>mock style selector</div>,
-    controlBtnClasses: '',
     columnSelector: <div>mock column selector</div>,
     columnSorting: <div>mock column sorting</div>,
-    setIsFullScreen: jest.fn(),
   };
 
   it('renders', () => {
@@ -52,21 +51,9 @@ describe('EuiDataGridToolbar', () => {
           <div>
             mock style selector
           </div>
-          <EuiToolTip
-            content="Full screen"
-            delay="long"
-            display="inlineBlock"
-            position="top"
-          >
-            <EuiButtonIcon
-              aria-label="Full screen"
-              color="text"
-              data-test-subj="dataGridFullScreenButton"
-              iconType="fullScreen"
-              onClick={[Function]}
-              size="xs"
-            />
-          </EuiToolTip>
+          <div>
+            mock fullscreen selector
+          </div>
         </div>
       </div>
     `);
@@ -129,29 +116,6 @@ describe('EuiDataGridToolbar', () => {
           </div>
         </div>
       </div>
-    `);
-  });
-
-  it('handles full screen toggling', () => {
-    const component = shallow(<EuiDataGridToolbar {...requiredProps} />);
-    component.setProps({
-      setIsFullScreen: () => component.setProps({ isFullScreen: true }),
-    });
-
-    component
-      .find('[data-test-subj="dataGridFullScreenButton"]')
-      .simulate('click');
-
-    expect(component.find('[data-test-subj="dataGridFullScreenButton"]'))
-      .toMatchInlineSnapshot(`
-      <EuiButtonIcon
-        aria-label="Exit full screen"
-        color="text"
-        data-test-subj="dataGridFullScreenButton"
-        iconType="fullScreenExit"
-        onClick={[Function]}
-        size="xs"
-      />
     `);
   });
 });
