@@ -1,6 +1,5 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
-
-No public interface changes since `51.0.0`.
+- Updated `testenv` mock for `EuiFlyout` to include default `aria-label` on the close button ([#5702](https://github.com/elastic/eui/pull/5702))
 
 ## [`51.0.0`](https://github.com/elastic/eui/tree/v51.0.0)
 
