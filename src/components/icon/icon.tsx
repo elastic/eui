@@ -202,6 +202,7 @@ const typeToPathMap = {
   link: 'link',
   list: 'list',
   listAdd: 'list_add',
+  listOptions: 'list_options',
   lock: 'lock',
   lockOpen: 'lockOpen',
   logoAWS: 'logo_aws',

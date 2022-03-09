@@ -132,6 +132,7 @@ export const iconTypes = [
   'link',
   'list',
   'listAdd',
+  'listOptions',
   'lock',
   'lockOpen',
   'logstashFilter',
