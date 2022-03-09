@@ -1,7 +1,7 @@
 import React from 'react';
 import { EuiSpacer, EuiText } from '../../../../../src';
 
-import { CustomizeTokens } from '../../guidelines/getting_started/_customize_tokens';
+import { CustomizeTokens } from '../../guidelines/getting_started/_customizing';
 
 export default () => {
   return (

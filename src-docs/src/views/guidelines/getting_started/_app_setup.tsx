@@ -6,6 +6,7 @@ import {
   EuiCode,
   EuiSpacer,
   EuiText,
+  EuiCallOut,
 } from '../../../../../src';
 
 type AppSetup = {};
@@ -30,20 +31,25 @@ const MyApp = ({ Page }) => (
 
   return (
     <>
-      <EuiText grow={false}>
+      <EuiCallOut color="warning">
         <p>
-          EUI provides a general context provider to handle global aspects like
-          theming. While EUI is in the process of converting from a Sass based
-          theme to CSS-in-JS via Emotion. We require that both the{' '}
+          While EUI is in the process of converting from a Sass based theme to
+          CSS-in-JS via Emotion. We require that both the{' '}
           <Link to="/utilities/provider">
             <strong>EuiProvider</strong>
           </Link>{' '}
           <strong>and</strong> the compiled CSS (or raw Sass) files be imported
           during this transition.
         </p>
+      </EuiCallOut>
+
+      <EuiSpacer />
+
+      <EuiText grow={false}>
         <p>
-          EUI builds with both a light and dark theme. You can import these
-          default themes through their respective compiled CSS files. Use the{' '}
+          EUI provides a general context provider to handle global aspects like
+          light and dark theme. You can import these default themes through
+          their respective compiled CSS files. Use the{' '}
           <EuiCode>.min.css</EuiCode> file extension for the minified version.
         </p>
       </EuiText>
