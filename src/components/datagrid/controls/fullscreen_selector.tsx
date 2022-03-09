@@ -33,8 +33,8 @@ export const useDataGridFullScreenSelector = (): {
 
   const [fullScreenButton, fullScreenButtonActive] = useEuiI18n(
     [
-      'euiFullScreenSelector.fullScreenButton',
-      'euiFullScreenSelector.fullScreenButtonActive',
+      'euiFullscreenSelector.fullscreenButton',
+      'euiFullscreenSelector.fullscreenButtonActive',
     ],
     ['Enter fullscreen', 'Exit fullscreen']
   );

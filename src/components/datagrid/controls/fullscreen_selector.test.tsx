@@ -11,7 +11,7 @@ import { act } from 'react-dom/test-utils';
 import { shallow } from 'enzyme';
 import { keys } from '../../../services';
 import { testCustomHook } from '../../../test/test_custom_hook.test_helper';
-import { useDataGridFullScreenSelector } from './full_screen_selector';
+import { useDataGridFullScreenSelector } from './fullscreen_selector';
 
 describe('useDataGridFullScreenSelector', () => {
   type ReturnedValues = ReturnType<typeof useDataGridFullScreenSelector>;
