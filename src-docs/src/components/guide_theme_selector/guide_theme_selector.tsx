@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks/useIsWithinBreakpoints';
-import { EUI_THEME } from '../../../../src/themes';
+import { EUI_THEME, EUI_THEMES } from '../../../../src/themes';
 
-import { ThemeContext, SUPPORTED_THEMES } from '../with_theme';
+import { ThemeContext } from '../with_theme';
 // @ts-ignore Not TS
 import { GuideLocaleSelector } from '../guide_locale_selector';
 import {
@@ -64,14 +64,13 @@ const GuideThemeSelectorComponent: React.FunctionComponent<GuideThemeSelectorPro
   };
 
   const currentTheme: EUI_THEME =
-    SUPPORTED_THEMES.find((theme) => theme.value === context.theme) ||
-    SUPPORTED_THEMES[0];
+    EUI_THEMES.find((theme) => theme.value === context.theme) || EUI_THEMES[0];
 
   const getIconType = (value: EUI_THEME['value']) => {
     return value === currentTheme.value ? 'check' : 'empty';
   };
 
-  const items = SUPPORTED_THEMES.map((theme) => {
+  const items = EUI_THEMES.map((theme) => {
     return (
       <EuiContextMenuItem
         key={theme.value}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { EUI_THEMES, EUI_THEME, LEGACY_NAME_KEY } from '../../../../src/themes';
+import { EUI_THEMES, EUI_THEME } from '../../../../src/themes';
 // @ts-ignore importing from a JS file
 import { applyTheme } from '../../services';
 
@@ -23,10 +23,8 @@ export const theme_languages: THEME_LANGUAGES[] = [
     title: 'Language selector: Sass',
   },
 ];
-export const SUPPORTED_THEMES = EUI_THEMES.filter(
-  (item) => !item.value.includes(LEGACY_NAME_KEY)
-);
-const THEME_NAMES = SUPPORTED_THEMES.map(({ value }) => value);
+
+const THEME_NAMES = EUI_THEMES.map(({ value }) => value);
 const THEME_LANGS = theme_languages.map(({ id }) => id);
 
 const defaultState = {
