@@ -12,7 +12,6 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiButton,
-  EuiFormErrorText,
 } from '../../../../src/components';
 
 const actionButton = (
@@ -175,17 +174,7 @@ export default () => {
           markdownFormatProps={{ textSize: 's' }}
         />
 
-        {editorError ? (
-          <>
-            <EuiSpacer size="xs" />
-
-            <EuiFormErrorText id={errorElementId.current}>
-              A comment is required.
-            </EuiFormErrorText>
-          </>
-        ) : (
-          <EuiSpacer />
-        )}
+        <EuiSpacer />
 
         <EuiFlexGroup justifyContent="flexEnd">
           <EuiFlexItem grow={false}>
