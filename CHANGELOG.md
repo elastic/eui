@@ -1,5 +1,9 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+**Bug fixes**
+
+- Fixed EuiDataGrid not rerendering correctly on row heights change ([#5712](https://github.com/elastic/eui/pull/5712))
+
 **Breaking changes**
 
 - Removed Legacy theme including compiled CSS ([#5688](https://github.com/elastic/eui/pull/5688))
