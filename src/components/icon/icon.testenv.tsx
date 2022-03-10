@@ -8,7 +8,8 @@
 
 import React, { ComponentType } from 'react';
 
-export const EuiIcon = ({ type, ...rest }: any) => (
+// aria-label is not allowed on a span element, so it's removed from props
+export const EuiIcon = ({ type, 'aria-label': ariaLabel, ...rest }: any) => (
   <span
     data-euiicon-type={
       typeof type === 'string' ? type : type.displayName || type.name
