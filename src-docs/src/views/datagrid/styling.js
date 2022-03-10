@@ -678,12 +678,12 @@ const DataGrid = () => {
 
                   <EuiFormRow
                     display="columnCompressed"
-                    label="Show full screen selector"
+                    label="Show fullscreen selector"
                   >
                     <EuiButtonGroup
                       isFullWidth
                       buttonSize="compressed"
-                      legend="Full screen options"
+                      legend="Fullscreen options"
                       options={showFullScreenSelectorOptions}
                       idSelected={showFullScreenSelector.toString()}
                       onChange={onShowFullScreenSelectorChange}

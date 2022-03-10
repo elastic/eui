@@ -191,14 +191,14 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     FullScreenDisplay,
   } = useFullScreen({ overflowHeight });
 
-  // Classes used in both full-screen and non-full-screen mode
+  // Classes used in both fullscreen and non-fullscreen mode
   const wrapperClasses = classNames(className, 'euiCodeBlock', {
     'euiCodeBlock--hasControl': showCopyButton || showFullScreenButton,
     'euiCodeBlock--hasBothControls': showCopyButton && showFullScreenButton,
     'euiCodeBlock--hasLineNumbers': lineNumbersConfig.show,
   });
 
-  // Classes used in non-full-screen mode only
+  // Classes used in non-fullscreen mode only
   const classes = classNames(
     wrapperClasses,
     fontSizeToClassNameMap[fontSize],

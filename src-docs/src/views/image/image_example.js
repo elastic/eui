@@ -67,7 +67,7 @@ export const ImageExample = {
       playground: imageConfig,
     },
     {
-      title: 'Click an image for a full screen version',
+      title: 'Click an image for a fullscreen version',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -77,7 +77,7 @@ export const ImageExample = {
       text: (
         <p>
           Apply the <EuiCode>allowFullScreen</EuiCode> prop to make the image
-          clickable and show a full screen version. Note that the second image
+          clickable and show a fullscreen version. Note that the second image
           also passes{' '}
           <EuiCode language="js">fullScreenIconColor=&quot;dark&quot;</EuiCode>{' '}
           to change icon color to better contrast against the light background

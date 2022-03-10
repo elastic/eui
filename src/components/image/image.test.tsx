@@ -23,7 +23,7 @@ describe('EuiImage', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('is rendered and allows full screen', () => {
+  test('is rendered and allows fullscreen', () => {
     const component = render(
       <EuiImage
         alt="alt"
@@ -73,7 +73,7 @@ describe('EuiImage', () => {
     expect(component).toMatchSnapshot();
   });
 
-  describe('Full screen behaviour', () => {
+  describe('Fullscreen behaviour', () => {
     let component: ReactWrapper;
 
     beforeEach(() => {
@@ -95,7 +95,7 @@ describe('EuiImage', () => {
       findTestSubject(component, 'activateFullScreenButton').simulate('click');
     });
 
-    test('full screen image is rendered', () => {
+    test('fullscreen image is rendered', () => {
       const overlayMask = document.querySelectorAll(
         '[data-test-subj=fullScreenOverlayMask]'
       );
