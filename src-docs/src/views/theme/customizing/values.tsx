@@ -38,7 +38,7 @@ import Animation from './_animation';
 // @ts-ignore Importing from JS
 import Breakpoints from './_breakpoints';
 
-import Sass, { SassAlert } from './_sass';
+import Sass from './_sass';
 
 // @ts-ignore TODO
 const JsonFlyout = ({ setIsOpen }) => {
@@ -80,8 +80,7 @@ export default () => {
       <GuidePage
         isBeta
         title="Customizing theme"
-        intro={!showSass && <ThemeNotice type="support" />}
-        notice={showSass ? <SassAlert /> : <ThemeNotice />}
+        notice={<ThemeNotice />}
         showThemeLanguageToggle
       >
         {showSass ? (

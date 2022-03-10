@@ -441,7 +441,6 @@ const navigation = [
       {
         name: 'Customizing themes',
         component: ThemeValues,
-        isNew: true,
       },
     ],
   },

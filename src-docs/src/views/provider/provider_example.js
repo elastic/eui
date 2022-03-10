@@ -17,7 +17,6 @@ import GlobalStyles from './provider_styles';
 
 export const ProviderExample = {
   title: 'Provider',
-  isNew: true,
   intro: (
     <EuiText>
       <p>

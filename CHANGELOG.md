@@ -1,6 +1,8 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `51.1.0`.
+**Breaking changes**
+
+- Removed Legacy theme including compiled CSS ([#5688](https://github.com/elastic/eui/pull/5688))
 
 ## [`51.1.0`](https://github.com/elastic/eui/tree/v51.1.0)
 

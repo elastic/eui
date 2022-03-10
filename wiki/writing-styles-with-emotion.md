@@ -10,7 +10,7 @@ Styles can be added conditionally based on environment variables, such as the ac
 ```
 `
     color: colors.primary;
-    font-size: ${isLegacyTheme ? '16px' : '14px'`}
+    background: ${colorMode === 'light' ? 'white' : 'black'`}
 `
 ```
 
