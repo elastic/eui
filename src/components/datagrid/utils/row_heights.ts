@@ -16,6 +16,7 @@ import {
 } from 'react';
 import type { VariableSizeGrid as Grid } from 'react-window';
 import { isObject, isNumber } from '../../../services/predicate';
+import { useForceRender } from '../../../services';
 import {
   EuiDataGridStyleCellPaddings,
   EuiDataGridStyle,
@@ -253,10 +254,12 @@ export const useRowHeightUtils = ({
   gridRef,
   gridStyles,
   columns,
+  rowHeightsOptions,
 }: {
   gridRef: Grid | null;
   gridStyles: EuiDataGridStyle;
   columns: EuiDataGridColumn[];
+  rowHeightsOptions?: EuiDataGridRowHeightsOptions;
 }) => {
   const rowHeightUtils = useMemo(() => new RowHeightUtils(), []);
 
@@ -264,6 +267,19 @@ export const useRowHeightUtils = ({
   useEffect(() => {
     if (gridRef) rowHeightUtils.setGrid(gridRef);
   }, [gridRef, rowHeightUtils]);
+
+  // Forces a rerender whenever the row heights change, as this can cause the
+  // grid to change height/have scrollbars. Without this, grid rerendering is stale
+  useEffect(() => {
+    requestAnimationFrame(forceRender);
+  }, [
+    // Effects that should cause rerendering
+    rowHeightsOptions?.defaultHeight,
+    rowHeightsOptions?.rowHeights,
+    // Dependencies
+    rowHeightUtils,
+    forceRender,
+  ]);
 
   // Re-cache styles whenever grid density changes
   useEffect(() => {
