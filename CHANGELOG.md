@@ -2,6 +2,11 @@
 
 - Updated `testenv` mock for `EuiFlyout` to include default `aria-label` on the close button ([#5702](https://github.com/elastic/eui/pull/5702))
 
+**Bug fixes**
+
+- Fixed type of `SharedRenderCellElementProps.schema` to be optional ([#5704](https://github.com/elastic/eui/pull/5704))
+- Fixed generated type definition file referencing nonexistant Jest util ([#5704](https://github.com/elastic/eui/pull/5704))
+
 **Breaking changes**
 
 - Changed the I18n token `euiDataGridToolbar.fullScreenButton` to `euiFullscreenSelector.fullscreenButton`, and its text to `Enter fullscreen` (with no space) ([#5680](https://github.com/elastic/eui/pull/5680))
