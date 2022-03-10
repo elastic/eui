@@ -9,7 +9,6 @@ import { cleanEuiImports } from '../../services';
 
 export const renderJsSourceCode = (code) => {
   let renderedCode = cleanEuiImports(code.default);
-  console.log(renderedCode);
   /**
    * Extract React import (to ensure it's always at the top)
    */
