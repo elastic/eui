@@ -363,7 +363,7 @@ export default () => {
                       color="primary"
                       href={`#${parentPath}`}
                     >
-                      Exit full screen
+                      Exit fullscreen
                     </EuiButton>
                   )}
                 </ExampleContext.Consumer>

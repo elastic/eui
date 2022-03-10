@@ -60,7 +60,7 @@ export default () => {
       title: 'View options',
       items: [
         {
-          name: 'Show full screen',
+          name: 'Show fullscreen',
           icon: <EuiIcon type="search" size="m" />,
           onClick: () => {
             closePopover();

@@ -22,7 +22,7 @@ const ExitFullscreenDemoButton = () => {
   const exitPath = useExitPath();
   return (
     <EuiButton fill href={exitPath} iconType="exit">
-      Exit full screen
+      Exit fullscreen
     </EuiButton>
   );
 };
@@ -69,7 +69,7 @@ export const PageDemo: FunctionComponent<{
     <ExitFullscreenDemoButton />
   ) : (
     <EuiButton fill href={`#${path}/${slug}`}>
-      Go full screen
+      Go fullscreen
     </EuiButton>
   );
 

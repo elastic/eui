@@ -32,7 +32,7 @@ export const useFinalGridDimensions = ({
   // Used if the grid needs to scroll
   const [height, setHeight] = useState<number | undefined>(undefined);
   const [width, setWidth] = useState<number | undefined>(undefined);
-  // Tracking full screen height separately is necessary to correctly restore the grid back to non-full-screen height
+  // Tracking fullscreen height separately is necessary to correctly restore the grid back to non-fullscreen height
   const [fullScreenHeight, setFullScreenHeight] = useState(0);
 
   // Set the wrapper height on load, whenever the grid wrapper resizes, and whenever rowCount changes
