@@ -311,7 +311,8 @@ export default () => {
         heading="Checkbox and radio button labels"
         description={
           <p>
-            For groups of options, add a legend that gives meaning to the options.
+            For groups of options, add a legend that gives meaning to the
+            options.
           </p>
         }
       >
