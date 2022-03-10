@@ -1,6 +1,9 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `51.0.0`.
+**Bug fixes**
+
+- Fixed type of `SharedRenderCellElementProps.schema` to be optional ([#5704](https://github.com/elastic/eui/pull/5704))
+- Fixed generated type definition file referencing non-existant Jest util ([#5704](https://github.com/elastic/eui/pull/5704))
 
 ## [`51.0.0`](https://github.com/elastic/eui/tree/v51.0.0)
 
