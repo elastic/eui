@@ -224,7 +224,6 @@ export default () => {
       </EuiTitle>
 
       <GuideRule
-        heading="Checkbox and radio button labels"
         description={
           <p>
             A label should be succinct, short, and descriptive with one to two
@@ -282,7 +281,38 @@ export default () => {
 
       <GuideRule
         description={
-          <p>For groups of options, be consistent with wording and title.</p>
+          <p>Always prefer sentence cases (capitalize the first word).</p>
+        }
+      >
+        <GuideRuleExample
+          type="do"
+          text="Sentence case makes titles easier to read."
+        >
+          <EuiCheckboxGroup
+            options={accessDo}
+            onChange={() => {}}
+            idToSelectedMap={{ access_do_one: true }}
+          />
+        </GuideRuleExample>
+
+        <GuideRuleExample
+          type="dont"
+          text="Title case can feel more cluttered."
+        >
+          <EuiCheckboxGroup
+            options={accessDont}
+            onChange={() => {}}
+            idToSelectedMap={{ access_dont_one: true }}
+          />
+        </GuideRuleExample>
+      </GuideRule>
+
+      <GuideRule
+        heading="Checkbox and radio button labels"
+        description={
+          <p>
+            For groups of options, add titles that give meaning to the options.
+          </p>
         }
       >
         <GuideRuleExample
@@ -313,7 +343,13 @@ export default () => {
         </GuideRuleExample>
       </GuideRule>
 
-      <GuideRule>
+      <GuideRule
+        description={
+          <p>
+            Use consistent label structures for options within the same group.
+          </p>
+        }
+      >
         <GuideRuleExample
           type="do"
           text="Use sentences only or fragments only."
@@ -370,34 +406,6 @@ export default () => {
             legend={{
               children: <span>Availability zones</span>,
             }}
-          />
-        </GuideRuleExample>
-      </GuideRule>
-
-      <GuideRule
-        description={
-          <p>Always prefer sentence cases (capitalize the first word).</p>
-        }
-      >
-        <GuideRuleExample
-          type="do"
-          text="Sentence case makes titles easier to read."
-        >
-          <EuiCheckboxGroup
-            options={accessDo}
-            onChange={() => {}}
-            idToSelectedMap={{ access_do_one: true }}
-          />
-        </GuideRuleExample>
-
-        <GuideRuleExample
-          type="dont"
-          text="Title case can feel more cluttered."
-        >
-          <EuiCheckboxGroup
-            options={accessDont}
-            onChange={() => {}}
-            idToSelectedMap={{ access_dont_one: true }}
           />
         </GuideRuleExample>
       </GuideRule>
