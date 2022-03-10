@@ -282,5 +282,21 @@ describe('renderJsSourceCode', () => {
           export default () => 'Hello world!';`)
       );
     });
+
+    it('keeps underscores (_) in the Elastic import statement', () => {
+      expect(
+        renderJsSourceCode({
+          default: dedent(`
+            import { EUI_CHARTS_THEME_DARK } from '@elastic/eui';
+  
+            export default () => 'Hello world!';`),
+        })
+      ).toEqual(
+        dedent(`
+        import { EUI_CHARTS_THEME_DARK } from '@elastic/eui';
+  
+        export default () => 'Hello world!';`)
+      );
+    });
   });
 });

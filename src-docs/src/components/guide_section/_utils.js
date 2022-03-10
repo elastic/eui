@@ -9,7 +9,7 @@ import { cleanEuiImports } from '../../services';
 
 export const renderJsSourceCode = (code) => {
   let renderedCode = cleanEuiImports(code.default);
-
+  console.log(renderedCode);
   /**
    * Extract React import (to ensure it's always at the top)
    */
@@ -41,8 +41,8 @@ export const renderJsSourceCode = (code) => {
     // [\r\n]                  - match end of line, so the extra new line is removed via the replace operation
     /import {([^}]+)} from '@elastic\/eui';[\r\n]/g,
     (match, imports) => {
-      // remove any additional characters from imports
-      const namedImports = imports.match(/[a-zA-Z0-9]+/g);
+      // remove all characters except (_) from the imports
+      const namedImports = imports.match(/[a-zA-Z0-9_]+/g);
       elasticImports.push(...namedImports);
       return '';
     }
