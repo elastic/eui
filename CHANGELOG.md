@@ -1,13 +1,14 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `51.1.0`.
+**Breaking changes**
+
+- Removed Legacy theme including compiled CSS ([#5688](https://github.com/elastic/eui/pull/5688))
 
 ## [`51.1.0`](https://github.com/elastic/eui/tree/v51.1.0)
 
 - Updated `testenv` mock for `EuiFlyout` to include default `aria-label` on the close button ([#5702](https://github.com/elastic/eui/pull/5702))
 - Changed the I18n token `euiDataGridToolbar.fullScreenButton` to `euiFullscreenSelector.fullscreenButton`, and its text to `Enter fullscreen` (with no space) ([#5680](https://github.com/elastic/eui/pull/5680))
 - Changed the I18n token `euiDataGridToolbar.fullScreenButtonActive` to `euiFullscreenSelector.fullscreenButtonActive`, and its text to `Exit fullscreen` (with no space) ([#5680](https://github.com/elastic/eui/pull/5680))
-- Removed Legacy theme including compiled CSS ([#5688](https://github.com/elastic/eui/pull/5688))
 
 **Bug fixes**
 
