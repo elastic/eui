@@ -1,6 +1,31 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `50.0.0`.
+**Breaking changes**
+
+- Removed Legacy theme including compiled CSS ([#5688](https://github.com/elastic/eui/pull/5688))
+
+## [`51.1.0`](https://github.com/elastic/eui/tree/v51.1.0)
+
+- Updated `testenv` mock for `EuiFlyout` to include default `aria-label` on the close button ([#5702](https://github.com/elastic/eui/pull/5702))
+- Changed the I18n token `euiDataGridToolbar.fullScreenButton` to `euiFullscreenSelector.fullscreenButton`, and its text to `Enter fullscreen` (with no space) ([#5680](https://github.com/elastic/eui/pull/5680))
+- Changed the I18n token `euiDataGridToolbar.fullScreenButtonActive` to `euiFullscreenSelector.fullscreenButtonActive`, and its text to `Exit fullscreen` (with no space) ([#5680](https://github.com/elastic/eui/pull/5680))
+
+**Bug fixes**
+
+- Fixed type of `SharedRenderCellElementProps.schema` to be optional ([#5704](https://github.com/elastic/eui/pull/5704))
+- Fixed generated type definition file referencing nonexistant Jest util ([#5704](https://github.com/elastic/eui/pull/5704))
+
+## [`51.0.0`](https://github.com/elastic/eui/tree/v51.0.0)
+
+- Enhanced `EuiSuggest` to fire the `onItemClick` callback on Enter key press as well as clicks ([#5693](https://github.com/elastic/eui/pull/5693))
+
+**Bug fixes**
+
+- Fixed non-searchable `EuiSelectable`s not selecting items with the Enter & Space keys ([#5693](https://github.com/elastic/eui/pull/5693))
+
+**Breaking changes**
+
+- Removed the `'all'` option in `EuiTablePagination.itemsPerPage` and `itemsPerPageOptions` in `EuiBasicTable` and `EuiDataGrid` due to Typescript issues. Use `0` instead to represent a "Show all" option ([#5699](https://github.com/elastic/eui/issues/5699))
 
 ## [`50.0.0`](https://github.com/elastic/eui/tree/v50.0.0)
 

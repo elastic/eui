@@ -9,10 +9,10 @@ const dataGridRefSource = require('!!raw-loader!./ref');
 const dataGridRefSnippet = `const dataGridRef = useRef();
 <EuiDataGrid ref={dataGridRef} {...props} />
 
-// Mnaually toggle the data grid's full screen state
+// Manually toggle the data grid's fullscreen state
 dataGridRef.current.setIsFullScreen(true);
 
-// Mnaually focus a specific cell within the data grid
+// Manually focus a specific cell within the data grid
 dataGridRef.current.setFocusedCell({ rowIndex, colIndex });
 
 // Manually opens the popover of a specified cell within the data grid
@@ -45,7 +45,7 @@ export const DataGridRefExample = {
             <li>
               <p>
                 <EuiCode>setIsFullScreen(isFullScreen)</EuiCode> - controls the
-                full screen state of the data grid. Accepts a true/false boolean
+                fullscreen state of the data grid. Accepts a true/false boolean
                 flag.
               </p>
             </li>

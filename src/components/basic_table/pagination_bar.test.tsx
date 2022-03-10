@@ -70,8 +70,8 @@ describe('PaginationBar', () => {
       ...requiredProps,
       pagination: {
         pageIndex: 0,
-        pageSize: 'all' as const,
-        pageSizeOptions: [1, 5, 'all' as const],
+        pageSize: 0,
+        pageSizeOptions: [1, 5, 0],
         totalItemCount: 5,
       },
       onPageSizeChange: () => {},

@@ -29,6 +29,7 @@ export const EuiFlyout = ({
         <button
           type="button"
           data-test-subj="euiFlyoutCloseButton"
+          aria-label="Close this dialog"
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
             onClose();
             closeButtonProps?.onClick && closeButtonProps.onClick(e);

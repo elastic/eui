@@ -11,7 +11,6 @@ import { shallow } from 'enzyme';
 import createCache from '@emotion/cache';
 
 import { EuiProvider } from './provider';
-import { EuiThemeLegacy } from '../../themes/legacy/theme';
 
 describe('EuiProvider', () => {
   it('is rendered', () => {
@@ -34,14 +33,6 @@ describe('EuiProvider', () => {
     });
     it('applies the cache to global styles', () => {
       const component = shallow(<EuiProvider cache={emotionCache} />);
-
-      expect(component).toMatchSnapshot();
-    });
-  });
-
-  describe('changing themes', () => {
-    it('propagates `theme`', () => {
-      const component = shallow(<EuiProvider theme={EuiThemeLegacy} />);
 
       expect(component).toMatchSnapshot();
     });

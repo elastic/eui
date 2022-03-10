@@ -179,7 +179,7 @@ export default () => {
             size="s"
             onClick={() => dataGridRef.current!.setIsFullScreen(true)}
           >
-            Set grid to full screen
+            Set grid to fullscreen
           </EuiButton>
         </EuiFlexItem>
       </EuiFlexGroup>

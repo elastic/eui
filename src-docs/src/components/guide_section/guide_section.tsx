@@ -206,7 +206,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
                     iconType="fullScreen"
                     href={`#${path}/${fullScreen.slug}`}
                   >
-                    Full screen demo
+                    Fullscreen demo
                   </EuiButton>
                 ) : (
                   demo
