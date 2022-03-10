@@ -202,6 +202,9 @@ export class RowHeightUtils {
     rowHeights.set(colId, adaptedHeight);
     this.heightsCache.set(rowIndex, rowHeights);
     this.resetRow(visibleRowIndex);
+
+    // When an auto row height is updated, force a re-render
+    // of the grid body to update the unconstrained height
     this.rerenderGridBody();
   }
 
@@ -247,8 +250,8 @@ export class RowHeightUtils {
 }
 
 /**
- * Hook for instantiating RowHeightUtils, and also updating
- * internal vars from outside props via useEffects
+ * Hook for instantiating RowHeightUtils, setting internal class vars,
+ * and setting up various row-height-related side effects
  */
 export const useRowHeightUtils = ({
   gridRef,
@@ -263,10 +266,12 @@ export const useRowHeightUtils = ({
 }) => {
   const rowHeightUtils = useMemo(() => new RowHeightUtils(), []);
 
-  // Update rowHeightUtils with grid ref
+  // Update rowHeightUtils with internal vars from outside dependencies
+  const forceRender = useForceRender();
   useEffect(() => {
     if (gridRef) rowHeightUtils.setGrid(gridRef);
-  }, [gridRef, rowHeightUtils]);
+    rowHeightUtils.setRerenderGridBody(forceRender);
+  }, [gridRef, forceRender, rowHeightUtils]);
 
   // Forces a rerender whenever the row heights change, as this can cause the
   // grid to change height/have scrollbars. Without this, grid rerendering is stale
