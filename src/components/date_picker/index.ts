@@ -7,15 +7,16 @@
  */
 
 export * from './super_date_picker';
+export * from './auto_refresh';
 
-export { EuiDatePicker, EuiDatePickerProps } from './date_picker';
+export type { EuiDatePickerProps } from './date_picker';
+export { EuiDatePicker } from './date_picker';
 
-export {
-  EuiDatePickerRange,
-  EuiDatePickerRangeProps,
-} from './date_picker_range';
+export type { EuiDatePickerRangeProps } from './date_picker_range';
+export { EuiDatePickerRange } from './date_picker_range';
 
-export {
+export type {
+  ApplyTime,
   DurationRange as EuiSuperDatePickerCommonRange,
   DurationRange as EuiSuperDatePickerDurationRange,
   DurationRange as EuiSuperDatePickerRecentRange,

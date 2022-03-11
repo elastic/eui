@@ -117,9 +117,8 @@
     padding: fontSizeToRemOrEm(($baseLineHeightMultiplier * 2), $sizingMethod);
   }
 
-  code {
-    // Setting the font size in rem's ensure it doesn't compound
-    // the 90% set by euiCodeBlock
+  code:not(.euiCode):not(.euiCodeBlock__code) {
+    // Excluding EuiCode and EuiCodeBlock selectors to not compound the reduced font-size
     font-size: fontSizeToRemOrEm(($baseFontSize * .9), $sizingMethod);
   }
 
@@ -268,11 +267,8 @@
     display: block;
   }
 
-  // unset font-size from euiCodeBlock so it doesn't doubly add 90%
   code {
     @include euiCodeFont;
-    display: inline-block; // ensures background stretches the full line-height
-    font-weight: $euiFontWeightRegular;
   }
 
   &.euiText--constrainedWidth {

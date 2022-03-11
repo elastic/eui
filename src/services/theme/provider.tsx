@@ -24,6 +24,7 @@ import {
 import { buildTheme, getColorMode, getComputed, mergeDeep } from './utils';
 import {
   EuiThemeColorMode,
+  EuiThemeColorModeStandard,
   EuiThemeSystem,
   EuiThemeModifications,
 } from './types';
@@ -35,12 +36,12 @@ export interface EuiThemeProviderProps<T> {
   children: any;
 }
 
-export function EuiThemeProvider<T = {}>({
+export const EuiThemeProvider = <T extends {} = {}>({
   theme: _system,
   colorMode: _colorMode,
   modify: _modifications,
   children,
-}: PropsWithChildren<EuiThemeProviderProps<T>>) {
+}: PropsWithChildren<EuiThemeProviderProps<T>>) => {
   const parentSystem = useContext(EuiSystemContext);
   const parentModifications = useContext(EuiModificationsContext);
   const parentColorMode = useContext(EuiColorModeContext);
@@ -54,7 +55,7 @@ export function EuiThemeProvider<T = {}>({
   );
   const prevModifications = useRef(modifications);
 
-  const [colorMode, setColorMode] = useState<EuiThemeColorMode>(
+  const [colorMode, setColorMode] = useState<EuiThemeColorModeStandard>(
     getColorMode(_colorMode, parentColorMode)
   );
   const prevColorMode = useRef(colorMode);
@@ -125,4 +126,4 @@ export function EuiThemeProvider<T = {}>({
       </EuiSystemContext.Provider>
     </EuiColorModeContext.Provider>
   );
-}
+};

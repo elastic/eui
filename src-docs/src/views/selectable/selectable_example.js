@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -23,40 +21,31 @@ import {
   Options,
   MetaData,
 } from './props';
-
 import Selectable from './selectable';
 const selectableSource = require('!!raw-loader!./selectable');
-const selectableHtml = renderToHtml(Selectable);
 
 import SelectablePopover from './selectable_popover';
 const selectablePopoverSource = require('!!raw-loader!./selectable_popover');
-const selectablePopoverHtml = renderToHtml(SelectablePopover);
 
 import SelectableSearch from './selectable_search';
 const selectableSearchSource = require('!!raw-loader!./selectable_search');
-const selectableSearchHtml = renderToHtml(SelectableSearch);
 
 import SelectableSingle from './selectable_single';
 const selectableSingleSource = require('!!raw-loader!./selectable_single');
-const selectableSingleHtml = renderToHtml(SelectableSingle);
 
 import SelectableExclusion from './selectable_exclusion';
 const selectableExclusionSource = require('!!raw-loader!./selectable_exclusion');
-const selectableExclusionHtml = renderToHtml(SelectableExclusion);
 
 import SelectableMessages from './selectable_messages';
 const selectableMessagesSource = require('!!raw-loader!./selectable_messages');
-const selectableMessagesHtml = renderToHtml(SelectableMessages);
 
 import SelectableCustomRender from './selectable_custom_render';
 const selectableCustomRenderSource = require('!!raw-loader!./selectable_custom_render');
-const selectableCustomRenderHtml = renderToHtml(SelectableCustomRender);
 
 import SearchOption from './sitewide_option';
 import Search from './search';
 import { EuiCallOut } from '../../../../src/components/call_out';
 const searchSource = require('!!raw-loader!./search');
-const searchHtml = renderToHtml(Search);
 
 export const SelectableExample = {
   title: 'Selectable',
@@ -91,10 +80,6 @@ export const SelectableExample = {
         {
           type: GuideSectionTypes.JS,
           code: selectableSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableHtml,
         },
       ],
       text: (
@@ -142,10 +127,6 @@ export const SelectableExample = {
         {
           type: GuideSectionTypes.JS,
           code: selectableSearchSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableSearchHtml,
         },
       ],
       text: (
@@ -200,10 +181,6 @@ export const SelectableExample = {
           type: GuideSectionTypes.JS,
           code: selectableSingleSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableSingleHtml,
-        },
       ],
       text: (
         <Fragment>
@@ -236,10 +213,6 @@ export const SelectableExample = {
           type: GuideSectionTypes.JS,
           code: selectablePopoverSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectablePopoverHtml,
-        },
       ],
       text: (
         <Fragment>
@@ -251,11 +224,16 @@ export const SelectableExample = {
           <h3>Width and height</h3>
           <p>
             The width has been made to always be 100% of its container,
-            including stretching the search input. By default, the height is
-            capped at showing up to 7.5 items. It shows half of the last one to
-            help indicate that there are more options to scroll to. To stretch
-            the box to fill its container, pass &apos;full&apos; to the{' '}
-            <EuiCode>height</EuiCode> prop.
+            including stretching the search input. When used inside of{' '}
+            <Link to="layout/popover">
+              <strong>EuiPopover</strong>
+            </Link>
+            , we recommend setting a width (or min/max values) via CSS on the
+            element containing the list to avoid expansion and contraction. By
+            default, the height is capped at showing up to 7.5 items. It shows
+            half of the last one to help indicate that there are more options to
+            scroll to. To stretch the box to fill its container, pass
+            &apos;full&apos; to the <EuiCode>height</EuiCode> prop.
           </p>
           <h3>Flexbox</h3>
           <p>
@@ -275,10 +253,6 @@ export const SelectableExample = {
         {
           type: GuideSectionTypes.JS,
           code: selectableExclusionSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableExclusionHtml,
         },
       ],
       text: (
@@ -307,20 +281,17 @@ export const SelectableExample = {
           type: GuideSectionTypes.JS,
           code: selectableMessagesSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableMessagesHtml,
-        },
       ],
       text: (
         <Fragment>
           <p>
             The component comes with pre-composed messages for loading, empty,
             and no search result states. To display your own messages, pass{' '}
-            <EuiCode>loadingMessage</EuiCode>, <EuiCode>emptyMessage</EuiCode>,
-            or <EuiCode>noMatchesMessage</EuiCode> respectively. Alternatively,
-            you can replace the entire <EuiCode>list</EuiCode> display with your
-            own message for any state. In which case, we recommend wrapping your
+            <EuiCode>loadingMessage</EuiCode>, <EuiCode>emptyMessage</EuiCode>,{' '}
+            <EuiCode>errorMessage</EuiCode>, or{' '}
+            <EuiCode>noMatchesMessage</EuiCode> respectively. Alternatively, you
+            can replace the entire <EuiCode>list</EuiCode> display with your own
+            message for any state. In which case, we recommend wrapping your
             custom message in an <strong>EuiSelectableMessage</strong>{' '}
             component.
           </p>
@@ -336,6 +307,7 @@ export const SelectableExample = {
   isLoading={isLoading}
   loadingMessage={customLoadingMessage}
   emptyMessage={customEmptyMessage}
+  errorMessage={hasError ? errorMessage : undefined}
   noMatchesMessage={customNoMatchesMessage}>
   {list => list}
 </EuiSelectable>`,
@@ -355,16 +327,12 @@ export const SelectableExample = {
           type: GuideSectionTypes.JS,
           code: selectableCustomRenderSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableCustomRenderHtml,
-        },
       ],
       text: (
         <Fragment>
           <p>
             There are two object properties you can add to enhance the content
-            of you options, <EuiCode>option.prepend</EuiCode> and{' '}
+            of your options, <EuiCode>option.prepend</EuiCode> and{' '}
             <EuiCode>option.append</EuiCode>. These will add nodes before and
             after the option label respectively. They will not be included in
             the searchable content as this only matches against the label
@@ -385,6 +353,22 @@ export const SelectableExample = {
             similar to a title. Add one of these by setting the{' '}
             <EuiCode>option.isGroupLabel</EuiCode> to true.{' '}
           </p>
+          <h3>Row height and virtualization</h3>
+          <p>
+            When virtualization is on,{' '}
+            <strong>every row must be the same height</strong> in order for the
+            list to know how to scroll to the selected or highlighted option. It
+            applies the <EuiCode>listProps.rowHeight</EuiCode> (in pixels)
+            directly to each option hiding any overflow.
+          </p>
+          <p>
+            If <EuiCode>listProps.isVirtualized</EuiCode> is set to{' '}
+            <EuiCode>false</EuiCode>, each row will fit its contents and removes
+            all scrolling. Therefore, we recommend having a large enough
+            container to accommodate all options. You can also remove truncation
+            by setting <EuiCode>{'textWrap="wrap"'}</EuiCode> when
+            virtualization is off.
+          </p>
           <h3>Custom content</h3>
           <p>
             While it is best to stick to the{' '}
@@ -395,15 +379,17 @@ export const SelectableExample = {
             <EuiCode>searchValue</EuiCode> to use for highlighting.
           </p>
           <p>
-            In order for the list to know how to scroll to the selected or
-            highlighted option, it must also know the height of the rows. It
-            applies this pixel height directly to options. If your custom
-            content is taller than the default of <EuiCode>32px</EuiCode> tall,
-            you will need to recalculate this height and apply it via{' '}
-            <EuiCode>listProps.rowHeight</EuiCode>.
+            To provide data that can be used by the{' '}
+            <EuiCode>renderOption</EuiCode> function that does not match the
+            standard option API, use <EuiCode>option.data</EuiCode> which will
+            make custom data available in the <EuiCode>option</EuiCode>{' '}
+            parameter. See the <EuiCode>secondaryContent</EuiCode> configuration
+            in the following example.
           </p>
           <p>
-            <strong>Every row must be the same height.</strong>
+            Also, if your custom content is taller than the default{' '}
+            <EuiCode>listProps.rowHeight</EuiCode> of <EuiCode>32px</EuiCode>{' '}
+            tall, you will need to pass in a custom value to this prop.
           </p>
         </Fragment>
       ),
@@ -433,10 +419,6 @@ export const SelectableExample = {
         {
           type: GuideSectionTypes.JS,
           code: searchSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: searchHtml,
         },
       ],
       text: (

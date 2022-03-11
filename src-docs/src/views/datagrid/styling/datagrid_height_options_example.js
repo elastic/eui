@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../../components';
 import {
@@ -41,7 +42,6 @@ const lineHeightFullSnippet = `const rowHeightsOptions = useMemo(
   columns={columns}
   columnVisibility={{ visibleColumns, setVisibleColumns }}
   rowCount={rowCount}
-  height={400}
   renderCellValue={renderCellValue}
   rowHeightsOptions={rowHeightsOptions}
 />
@@ -61,26 +61,21 @@ const rowHeightsSnippet = `rowHeightsOptions = {
 const rowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
   () => ({
     defaultHeight: 140,
+    rowHeights: {
+      0: 200,
+      1: 50,
+    },
   }),
   []
 );
 
 <EuiDataGrid
-  aria-label="Data grid with fixed height for rows"
+  aria-label="Data grid with row heights overrides"
   columns={columns}
   columnVisibility={{ visibleColumns, setVisibleColumns }}
   rowCount={rowCount}
-  height={400}
   renderCellValue={renderCellValue}
-  inMemory={{ level: 'sorting' }}
-  sorting={{ columns: sortingColumns, onSort }}
   rowHeightsOptions={rowHeightsOptions}
-  pagination={{
-    ...pagination,
-    pageSizeOptions: [50, 250, 1000],
-    onChangeItemsPerPage: onChangeItemsPerPage,
-    onChangePage: onChangePage,
-  }}
 />
 `;
 
@@ -110,17 +105,8 @@ const autoRowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
   columns={columns}
   columnVisibility={{ visibleColumns, setVisibleColumns }}
   rowCount={rowCount}
-  height={400}
   renderCellValue={renderCellValue}
-  inMemory={{ level: 'sorting' }}
-  sorting={{ columns: sortingColumns, onSort }}
   rowHeightsOptions={rowHeightsOptions}
-  pagination={{
-    ...pagination,
-    pageSizeOptions: [50, 250, 1000],
-    onChangeItemsPerPage: onChangeItemsPerPage,
-    onChangePage: onChangePage,
-  }}
 />
 `;
 
@@ -135,8 +121,8 @@ export const dataGridRowHeightOptionsExample = {
               By default, all rows get a height of <strong>34 pixels</strong>,
               but there are scenarios where you might want to adjust the height
               to fit more content. To do that, you can pass an object to the{' '}
-              <EuiCode>rowHeightsOptions</EuiCode> prop. This object accepts
-              three properties:
+              <EuiCode>rowHeightsOptions</EuiCode> prop. This object accepts the
+              following properties:
             </p>
             <ul>
               <li>
@@ -170,6 +156,24 @@ export const dataGridRowHeightOptionsExample = {
                     Accepts any value that the <EuiCode>line-height</EuiCode>{' '}
                     CSS property normally takes (e.g. px, ems, rems, or
                     unitless)
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <EuiCode>onChange</EuiCode>
+                <ul>
+                  <li>
+                    Optional callback when the user changes the data grid&apos;s
+                    internal <EuiCode>rowHeightsOptions</EuiCode> (e.g., via the
+                    toolbar display selector).
+                  </li>
+                  <li>
+                    Can be used to store and preserve user display preferences
+                    on page refresh - see this{' '}
+                    <Link to="/tabular-content/data-grid-styling-and-control#adjusting-your-grid-to-usertoolbar-changes">
+                      data grid styling and control example
+                    </Link>
+                    .
                   </li>
                 </ul>
               </li>
@@ -248,6 +252,18 @@ export const dataGridRowHeightOptionsExample = {
           <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
             {rowHeightsSnippet}
           </EuiCodeBlock>
+          <EuiCallOut
+            color="warning"
+            title="Disabling the row height toolbar control"
+          >
+            Individual row heights will be overridden by the toolbar display
+            controls. If you do not want users to be able to override specific
+            row heights, set{' '}
+            <EuiCode>
+              toolbarVisibility.showDisplaySelector.allowRowHeight
+            </EuiCode>{' '}
+            to <EuiCode>false</EuiCode>.
+          </EuiCallOut>
         </Fragment>
       ),
       props: {

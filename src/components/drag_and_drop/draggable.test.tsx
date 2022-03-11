@@ -8,18 +8,16 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { render } from 'enzyme';
 import { resetServerContext } from 'react-beautiful-dnd';
-import html from 'html';
 import { requiredProps } from '../../test/required_props';
 import { EuiDragDropContext, EuiDraggable, EuiDroppable } from './';
 
 function takeSnapshot(element: HTMLElement) {
-  expect(
-    html.prettyPrint(element.innerHTML, {
-      indent_size: 2,
-      unformatted: [], // Expand all tags, including spans
-    })
-  ).toMatchSnapshot();
+  const snapshot = render(
+    <div dangerouslySetInnerHTML={{ __html: element.innerHTML }} />
+  );
+  expect(snapshot).toMatchSnapshot();
 }
 
 describe('EuiDraggable', () => {
@@ -60,6 +58,26 @@ describe('EuiDraggable', () => {
       <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
         <EuiDroppable droppableId="testDroppable">
           <EuiDraggable draggableId="testDraggable" index={0}>
+            <div>Hello</div>
+          </EuiDraggable>
+        </EuiDroppable>
+      </EuiDragDropContext>,
+      appDiv
+    );
+
+    expect(takeSnapshot(appDiv)).toMatchSnapshot();
+  });
+
+  test('hasInteractiveChildren renders with role="group" and no tabIndex', () => {
+    const handler = jest.fn();
+    ReactDOM.render(
+      <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
+        <EuiDroppable droppableId="testDroppable">
+          <EuiDraggable
+            hasInteractiveChildren={true}
+            draggableId="testDraggable"
+            index={0}
+          >
             <div>Hello</div>
           </EuiDraggable>
         </EuiDroppable>

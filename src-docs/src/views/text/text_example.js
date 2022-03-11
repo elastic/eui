@@ -9,6 +9,7 @@ import {
   EuiTextColor,
   EuiTextAlign,
 } from '../../../../src/components';
+
 import { textConfig, textColorConfig } from './playground';
 
 import Text from './text';
@@ -45,10 +46,6 @@ const LineHeightText = () => {
   const themeContext = useContext(ThemeContext);
   let text;
   switch (themeContext.theme) {
-    case 'light':
-    case 'dark':
-      text = '';
-      break;
     default:
       text = (
         <>

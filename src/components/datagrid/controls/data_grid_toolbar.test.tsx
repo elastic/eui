@@ -21,12 +21,10 @@ describe('EuiDataGridToolbar', () => {
     gridWidth: 500,
     toolbarVisibility: true,
     isFullScreen: false,
+    fullScreenSelector: <div>mock fullscreen selector</div>,
     displaySelector: <div>mock style selector</div>,
-    controlBtnClasses: '',
     columnSelector: <div>mock column selector</div>,
     columnSorting: <div>mock column sorting</div>,
-    setRef: jest.fn(),
-    setIsFullScreen: jest.fn(),
   };
 
   it('renders', () => {
@@ -53,22 +51,9 @@ describe('EuiDataGridToolbar', () => {
           <div>
             mock style selector
           </div>
-          <EuiToolTip
-            content="Full screen"
-            delay="long"
-            display="inlineBlock"
-            position="top"
-          >
-            <EuiButtonIcon
-              aria-label="Full screen"
-              className=""
-              color="text"
-              data-test-subj="dataGridFullScreenButton"
-              iconType="fullScreen"
-              onClick={[Function]}
-              size="xs"
-            />
-          </EuiToolTip>
+          <div>
+            mock fullscreen selector
+          </div>
         </div>
       </div>
     `);
@@ -133,30 +118,6 @@ describe('EuiDataGridToolbar', () => {
       </div>
     `);
   });
-
-  it('handles full screen toggling', () => {
-    const component = shallow(<EuiDataGridToolbar {...requiredProps} />);
-    component.setProps({
-      setIsFullScreen: () => component.setProps({ isFullScreen: true }),
-    });
-
-    component
-      .find('[data-test-subj="dataGridFullScreenButton"]')
-      .simulate('click');
-
-    expect(component.find('[data-test-subj="dataGridFullScreenButton"]'))
-      .toMatchInlineSnapshot(`
-      <EuiButtonIcon
-        aria-label="Exit full screen"
-        className=""
-        color="text"
-        data-test-subj="dataGridFullScreenButton"
-        iconType="fullScreen"
-        onClick={[Function]}
-        size="xs"
-      />
-    `);
-  });
 });
 
 describe('checkOrDefaultToolBarDisplayOptions', () => {
@@ -189,32 +150,113 @@ describe('renderAdditionalControls', () => {
   const mockControl = <div data-test-subj="test" />;
 
   it('does not render if a boolean was passed into toolbarVisibility', () => {
-    expect(renderAdditionalControls(false, 'left')).toEqual(null);
-    expect(renderAdditionalControls(true, 'left')).toEqual(null);
+    expect(renderAdditionalControls(false, 'right')).toEqual(null);
+    expect(renderAdditionalControls(true, 'right')).toEqual(null);
   });
 
   it('does not render if toolbarVisibility is undefined or additionalControls is undefined', () => {
-    expect(renderAdditionalControls(undefined, 'left')).toEqual(null);
+    expect(renderAdditionalControls(undefined, 'right')).toEqual(null);
     expect(
-      renderAdditionalControls({ additionalControls: undefined }, 'left')
+      renderAdditionalControls({ additionalControls: undefined }, 'right')
     ).toEqual(null);
   });
 
-  describe('left', () => {
-    it('renders a react node passed into the left side toolbar', () => {
+  describe('left.append', () => {
+    it('renders a react node appended into the left side toolbar', () => {
       expect(
         renderAdditionalControls(
-          { additionalControls: { left: mockControl } },
-          'left'
+          { additionalControls: { left: { append: mockControl } } },
+          'left.append'
         )
       ).toEqual(mockControl);
     });
 
-    it('does not render right side positions', () => {
+    it('does not render other positions', () => {
+      expect(
+        renderAdditionalControls(
+          { additionalControls: { left: { prepend: mockControl } } },
+          'left.append'
+        )
+      ).toEqual(null);
       expect(
         renderAdditionalControls(
           { additionalControls: { right: mockControl } },
-          'left'
+          'left.append'
+        )
+      ).toEqual(null);
+    });
+
+    describe('additionalControls.left fallback', () => {
+      it('renders `additionalControls.left` nodes into `left.append` by default', () => {
+        expect(
+          renderAdditionalControls(
+            { additionalControls: { left: mockControl } },
+            'left.append'
+          )
+        ).toEqual(mockControl);
+      });
+
+      it('does not render other positions', () => {
+        expect(
+          renderAdditionalControls(
+            { additionalControls: { left: mockControl } },
+            'left.prepend'
+          )
+        ).toEqual(null);
+        expect(
+          renderAdditionalControls(
+            { additionalControls: { left: mockControl } },
+            'right'
+          )
+        ).toEqual(null);
+      });
+    });
+
+    describe('additionalControls fallback', () => {
+      it('renders `additionalControls` nodes into `left.append` by default', () => {
+        expect(
+          renderAdditionalControls(
+            { additionalControls: mockControl },
+            'left.append'
+          )
+        ).toEqual(mockControl);
+      });
+
+      it('does not render other positions', () => {
+        expect(
+          renderAdditionalControls(
+            { additionalControls: mockControl },
+            'left.prepend'
+          )
+        ).toEqual(null);
+        expect(
+          renderAdditionalControls({ additionalControls: mockControl }, 'right')
+        ).toEqual(null);
+      });
+    });
+  });
+
+  describe('left.prepend', () => {
+    it('renders a react node prepended into the left side toolbar', () => {
+      expect(
+        renderAdditionalControls(
+          { additionalControls: { left: { prepend: mockControl } } },
+          'left.prepend'
+        )
+      ).toEqual(mockControl);
+    });
+
+    it('does not render other positions', () => {
+      expect(
+        renderAdditionalControls(
+          { additionalControls: { left: { append: mockControl } } },
+          'left.prepend'
+        )
+      ).toEqual(null);
+      expect(
+        renderAdditionalControls(
+          { additionalControls: { right: mockControl } },
+          'left.prepend'
         )
       ).toEqual(null);
     });
@@ -233,42 +275,54 @@ describe('renderAdditionalControls', () => {
     it('does not render left side positions', () => {
       expect(
         renderAdditionalControls(
-          { additionalControls: { left: mockControl } },
+          { additionalControls: { left: { prepend: mockControl } } },
           'right'
         )
       ).toEqual(null);
-    });
-  });
-
-  describe('single node', () => {
-    it('renders into the left side of toolbar by default', () => {
       expect(
-        renderAdditionalControls({ additionalControls: mockControl }, 'left')
-      ).toEqual(mockControl);
-    });
-
-    it('does not render into the right side of the toolbar', () => {
-      expect(
-        renderAdditionalControls({ additionalControls: mockControl }, 'right')
+        renderAdditionalControls(
+          { additionalControls: { left: { append: mockControl } } },
+          'right'
+        )
       ).toEqual(null);
     });
   });
 });
 
 describe('getNestedObjectOptions', () => {
-  it('returns the passed boolean if the option is set to a boolean instead of an object', () => {
-    expect(getNestedObjectOptions(true, 'someKey')).toEqual(true);
-    expect(getNestedObjectOptions(false, 'someKey')).toEqual(false);
+  interface MockOptions {
+    someKey?: boolean;
+  }
+
+  describe('non-object configuration', () => {
+    it('returns passed booleans', () => {
+      expect(getNestedObjectOptions<MockOptions>(true, 'someKey')).toEqual(
+        true
+      );
+      expect(getNestedObjectOptions<MockOptions>(false, 'someKey')).toEqual(
+        false
+      );
+    });
+
+    it('returns true if the option is undefined', () => {
+      expect(getNestedObjectOptions<MockOptions>(undefined, 'someKey')).toEqual(
+        true
+      );
+    });
   });
 
-  it('returns true if the option is undefined', () => {
-    expect(getNestedObjectOptions(undefined, 'someKey')).toEqual(true);
-  });
+  describe('object configuration', () => {
+    it('returns nested object booleans', () => {
+      expect(
+        getNestedObjectOptions<MockOptions>({ someKey: true }, 'someKey')
+      ).toEqual(true);
+      expect(
+        getNestedObjectOptions<MockOptions>({ someKey: false }, 'someKey')
+      ).toEqual(false);
+    });
 
-  it('returns the nested object boolean if the option is an object configuration', () => {
-    expect(getNestedObjectOptions({ someKey: true }, 'someKey')).toEqual(true);
-    expect(getNestedObjectOptions({ someKey: false }, 'someKey')).toEqual(
-      false
-    );
+    it('returns true if the nested object key is undefined', () => {
+      expect(getNestedObjectOptions<MockOptions>({}, 'someKey')).toEqual(true);
+    });
   });
 });

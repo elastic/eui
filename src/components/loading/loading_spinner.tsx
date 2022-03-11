@@ -15,6 +15,7 @@ const sizeToClassNameMap = {
   m: 'euiLoadingSpinner--medium',
   l: 'euiLoadingSpinner--large',
   xl: 'euiLoadingSpinner--xLarge',
+  xxl: 'euiLoadingSpinner--xxLarge',
 };
 
 export const SIZES = keysOf(sizeToClassNameMap);

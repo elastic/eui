@@ -13,11 +13,17 @@ module.exports = {
     }],
     ["@babel/typescript", { isTSX: true, allExtensions: true }],
     "@babel/react",
+    [
+      "@emotion/babel-preset-css-prop",
+      {
+        "labelFormat": "[filename]-[local]"
+      },
+    ],
   ],
   "plugins": [
     "@babel/plugin-syntax-dynamic-import",
     "pegjs-inline-precompile",
-    "./scripts/babel/proptypes-from-ts-props",
+    `${__dirname}/scripts/babel/proptypes-from-ts-props`,
     "add-module-exports",
     // stage 3
     "@babel/proposal-object-rest-spread",

@@ -20,6 +20,7 @@ import { icon as empty } from './assets/empty';
 import { enqueueStateChange } from '../../services/react';
 
 import { htmlIdGenerator } from '../../services';
+import { colorToClassMap, isNamedColor, NamedColor } from './named_colors';
 
 const typeToPathMap = {
   accessibility: 'accessibility',
@@ -38,6 +39,8 @@ const typeToPathMap = {
   arrowLeft: 'arrow_left',
   arrowRight: 'arrow_right',
   arrowUp: 'arrow_up',
+  arrowStart: 'arrowStart',
+  arrowEnd: 'arrowEnd',
   asterisk: 'asterisk',
   auditbeatApp: 'app_auditbeat',
   beaker: 'beaker',
@@ -94,6 +97,8 @@ const typeToPathMap = {
   documentation: 'documentation',
   documents: 'documents',
   dot: 'dot',
+  doubleArrowLeft: 'doubleArrowLeft',
+  doubleArrowRight: 'doubleArrowRight',
   download: 'download',
   editorAlignCenter: 'editor_align_center',
   editorAlignLeft: 'editor_align_left',
@@ -190,6 +195,10 @@ const typeToPathMap = {
   kqlValue: 'kql_value',
   layers: 'layers',
   lensApp: 'app_lens',
+  lettering: 'lettering',
+  lineDashed: 'lineDashed',
+  lineDotted: 'lineDotted',
+  lineSolid: 'lineSolid',
   link: 'link',
   list: 'list',
   listAdd: 'list_add',
@@ -260,6 +269,7 @@ const typeToPathMap = {
   logstashQueue: 'logstash_queue',
   machineLearningApp: 'app_ml',
   magnet: 'magnet',
+  magnifyWithExclamation: 'magnifyWithExclamation',
   magnifyWithMinus: 'magnifyWithMinus',
   magnifyWithPlus: 'magnifyWithPlus',
   managementApp: 'app_management',
@@ -294,6 +304,7 @@ const typeToPathMap = {
   paperClip: 'paper_clip',
   partial: 'partial',
   pause: 'pause',
+  payment: 'payment',
   pencil: 'pencil',
   percent: 'percent',
   pin: 'pin',
@@ -349,6 +360,7 @@ const typeToPathMap = {
   storage: 'storage',
   string: 'string',
   submodule: 'submodule',
+  sun: 'sun',
   swatchInput: 'swatch_input', // Undocumented on purpose. Has an extra stroke for EuiColorPicker
   symlink: 'symlink',
   tableDensityCompact: 'table_density_compact',
@@ -360,6 +372,7 @@ const typeToPathMap = {
   temperature: 'temperature',
   timeline: 'timeline',
   timelionApp: 'app_timelion',
+  timeRefresh: 'timeRefresh',
   timeslider: 'timeslider',
   training: 'training',
   trash: 'trash',
@@ -457,26 +470,7 @@ export type EuiIconType = keyof typeof typeToPathMap;
 
 export type IconType = EuiIconType | string | ComponentType;
 
-const colorToClassMap = {
-  default: null,
-  primary: 'euiIcon--primary',
-  success: 'euiIcon--success',
-  accent: 'euiIcon--accent',
-  warning: 'euiIcon--warning',
-  danger: 'euiIcon--danger',
-  text: 'euiIcon--text',
-  subdued: 'euiIcon--subdued',
-  ghost: 'euiIcon--ghost',
-  inherit: 'euiIcon--inherit',
-};
-
 export const COLORS: NamedColor[] = keysOf(colorToClassMap);
-
-type NamedColor = keyof typeof colorToClassMap;
-
-export function isNamedColor(name: string): name is NamedColor {
-  return colorToClassMap.hasOwnProperty(name);
-}
 
 // We accept arbitrary color strings, which are impossible to type.
 export type IconColor = string | NamedColor;

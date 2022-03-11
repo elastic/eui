@@ -6,15 +6,16 @@
  * Side Public License, v 1.
  */
 
+/// <reference types="../../../cypress/support"/>
+
 import React from 'react';
-import { mount } from '@cypress/react';
 import { EuiFocusTrap } from './focus_trap';
 import { EuiPortal } from '../portal';
 
 describe('EuiFocusTrap', () => {
   describe('focus', () => {
     it('is set on the first focusable element by default', () => {
-      mount(
+      cy.mount(
         <div>
           <input data-test-subj="outside" />
           <EuiFocusTrap>
@@ -36,7 +37,7 @@ describe('EuiFocusTrap', () => {
     });
 
     it('will not take focus when `autoFocus` is disabled', () => {
-      mount(
+      cy.mount(
         <div>
           <input data-test-subj="outside" />
           <EuiFocusTrap autoFocus={false}>
@@ -52,7 +53,7 @@ describe('EuiFocusTrap', () => {
     });
 
     it('is set on the element identified by `data-autofocus`', () => {
-      mount(
+      cy.mount(
         <div>
           <input data-test-subj="outside" />
           <EuiFocusTrap>
@@ -70,7 +71,7 @@ describe('EuiFocusTrap', () => {
 
   describe('clickOutsideDisables', () => {
     it('trap remains enabled when false', () => {
-      mount(
+      cy.mount(
         <div>
           <EuiFocusTrap>
             <div data-test-subj="container">
@@ -94,7 +95,7 @@ describe('EuiFocusTrap', () => {
     });
 
     it('trap remains enabled after internal clicks', () => {
-      mount(
+      cy.mount(
         <div>
           <EuiFocusTrap clickOutsideDisables>
             <div data-test-subj="container">
@@ -114,7 +115,7 @@ describe('EuiFocusTrap', () => {
     });
 
     it('trap remains enabled after internal portal clicks', () => {
-      mount(
+      cy.mount(
         <div>
           <EuiFocusTrap clickOutsideDisables>
             <div data-test-subj="container">
@@ -137,7 +138,7 @@ describe('EuiFocusTrap', () => {
     });
 
     it('trap becomes disabled on outside clicks', () => {
-      mount(
+      cy.mount(
         <div>
           <EuiFocusTrap clickOutsideDisables>
             <div data-test-subj="container">

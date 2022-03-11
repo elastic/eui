@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
-export { EuiKeyPadMenu, EuiKeyPadMenuProps } from './key_pad_menu';
+export type { EuiKeyPadMenuProps } from './key_pad_menu';
+export { EuiKeyPadMenu } from './key_pad_menu';
 
-export { EuiKeyPadMenuItem, EuiKeyPadMenuItemProps } from './key_pad_menu_item';
+export type { EuiKeyPadMenuItemProps } from './key_pad_menu_item';
+export { EuiKeyPadMenuItem } from './key_pad_menu_item';

@@ -6,14 +6,12 @@ import { GuideSection } from '../../components/guide_section/guide_section';
 import { GuideSectionTypes } from '../../components/guide_section/guide_section_types';
 import { PanelColor } from '../../../../src/components/panel/panel';
 
-import pageError from './prompt_types/page_error';
-const pageErrorSource = require('!!raw-loader!./prompt_types/page_error');
-import noPermission from './prompt_types/no_permission';
-const noPermissionSource = require('!!raw-loader!./prompt_types/no_permission');
+import errorPages from './prompt_types/page_not_found';
+const errorPagesSource = require('!!raw-loader!./prompt_types/page_not_found');
+import noPrivileges from './prompt_types/no_permission';
+const noPrivilegesSource = require('!!raw-loader!./prompt_types/no_permission');
 import licenseUpgrade from './prompt_types/license_upgrade';
 const licenseUpgradeSource = require('!!raw-loader!./prompt_types/license_upgrade');
-import complex from './prompt_types/complex';
-const complexSource = require('!!raw-loader!./prompt_types/complex');
 
 export default () => {
   const options: Array<{
@@ -24,29 +22,22 @@ export default () => {
     demoBackground?: PanelColor;
   }> = [
     {
-      value: 'pageError',
+      value: 'errorPages',
       text: 'Page not found',
-      component: pageError,
-      source: pageErrorSource,
+      component: errorPages,
+      source: errorPagesSource,
     },
     {
-      value: 'noPermission',
+      value: 'noPrivileges',
       text: 'No permission',
-      component: noPermission,
-      source: noPermissionSource,
+      component: noPrivileges,
+      source: noPrivilegesSource,
     },
     {
       value: 'licenseUpgrade',
       text: 'License upgrade',
       component: licenseUpgrade,
       source: licenseUpgradeSource,
-    },
-    {
-      value: 'complex',
-      text: 'Complex',
-      component: complex,
-      source: complexSource,
-      demoBackground: 'subdued',
     },
   ];
 

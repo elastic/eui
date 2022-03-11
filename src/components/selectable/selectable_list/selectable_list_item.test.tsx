@@ -10,7 +10,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiSelectableListItem } from './selectable_list_item';
+import { EuiSelectableListItem, PADDING_SIZES } from './selectable_list_item';
 
 describe('EuiSelectableListItem', () => {
   test('is rendered', () => {
@@ -60,6 +60,26 @@ describe('EuiSelectableListItem', () => {
       const component = render(<EuiSelectableListItem append={<span />} />);
 
       expect(component).toMatchSnapshot();
+    });
+
+    describe('paddingSize', () => {
+      PADDING_SIZES.forEach((size) => {
+        test(`${size} is rendered`, () => {
+          const component = render(
+            <EuiSelectableListItem paddingSize={size} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('textWrap', () => {
+      test('can be "wrap"', () => {
+        const component = render(<EuiSelectableListItem textWrap="wrap" />);
+
+        expect(component).toMatchSnapshot();
+      });
     });
 
     describe('onFocusBadge', () => {

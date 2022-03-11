@@ -18,7 +18,6 @@ describe('EuiDataGridFooterRow', () => {
     trailingControlColumns: [],
     columns: [{ id: 'someColumn' }, { id: 'someColumnWithoutSchema' }],
     schema: { someColumn: { columnType: 'string' } },
-    popoverContents: {},
     columnWidths: { someColumn: 30 },
     renderCellValue: () => <div />,
     interactiveCellId: 'someId',
@@ -41,7 +40,19 @@ describe('EuiDataGridFooterRow', () => {
           interactiveCellId="someId"
           isExpandable={true}
           key="someColumn-10"
-          popoverContent={[Function]}
+          popoverContext={
+            Object {
+              "cellLocation": Object {
+                "colIndex": 0,
+                "rowIndex": 0,
+              },
+              "closeCellPopover": [Function],
+              "openCellPopover": [Function],
+              "popoverIsOpen": false,
+              "setPopoverAnchor": [Function],
+              "setPopoverContent": [Function],
+            }
+          }
           renderCellValue={[Function]}
           rowIndex={10}
           visibleRowIndex={10}
@@ -55,7 +66,19 @@ describe('EuiDataGridFooterRow', () => {
           interactiveCellId="someId"
           isExpandable={true}
           key="someColumnWithoutSchema-10"
-          popoverContent={[Function]}
+          popoverContext={
+            Object {
+              "cellLocation": Object {
+                "colIndex": 0,
+                "rowIndex": 0,
+              },
+              "closeCellPopover": [Function],
+              "openCellPopover": [Function],
+              "popoverIsOpen": false,
+              "setPopoverAnchor": [Function],
+              "setPopoverContent": [Function],
+            }
+          }
           renderCellValue={[Function]}
           rowIndex={10}
           visibleRowIndex={10}
@@ -93,7 +116,19 @@ describe('EuiDataGridFooterRow', () => {
           interactiveCellId="someId"
           isExpandable={true}
           key="someLeadingColumn-10"
-          popoverContent={[Function]}
+          popoverContext={
+            Object {
+              "cellLocation": Object {
+                "colIndex": 0,
+                "rowIndex": 0,
+              },
+              "closeCellPopover": [Function],
+              "openCellPopover": [Function],
+              "popoverIsOpen": false,
+              "setPopoverAnchor": [Function],
+              "setPopoverContent": [Function],
+            }
+          }
           renderCellValue={[Function]}
           rowIndex={10}
           visibleRowIndex={10}
@@ -137,7 +172,19 @@ describe('EuiDataGridFooterRow', () => {
           interactiveCellId="someId"
           isExpandable={true}
           key="someTrailingColumn-10"
-          popoverContent={[Function]}
+          popoverContext={
+            Object {
+              "cellLocation": Object {
+                "colIndex": 0,
+                "rowIndex": 0,
+              },
+              "closeCellPopover": [Function],
+              "openCellPopover": [Function],
+              "popoverIsOpen": false,
+              "setPopoverAnchor": [Function],
+              "setPopoverContent": [Function],
+            }
+          }
           renderCellValue={[Function]}
           rowIndex={10}
           visibleRowIndex={10}
@@ -150,5 +197,12 @@ describe('EuiDataGridFooterRow', () => {
       .find('EuiDataGridCell')
       .prop('renderCellValue');
     expect(renderCellValue()).toEqual(null);
+  });
+
+  it('renders striped styling if the footer row is odd', () => {
+    const component = shallow(
+      <EuiDataGridFooterRow {...requiredProps} visibleRowIndex={15} />
+    );
+    expect(component.hasClass('euiDataGridRow--striped')).toBe(true);
   });
 });

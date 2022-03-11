@@ -53,7 +53,7 @@ for (let i = 1; i < 100; i++) {
 }
 
 export default () => {
-  // ** Pagination config
+  // Pagination
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
   const onChangeItemsPerPage = useCallback(
     (pageSize) =>
@@ -70,7 +70,7 @@ export default () => {
     [setPagination]
   );
 
-  // ** Sorting config
+  // Sorting
   const [sortingColumns, setSortingColumns] = useState([]);
   const onSort = useCallback(
     (sortingColumns) => {
@@ -96,9 +96,9 @@ export default () => {
   }, [sortingColumns]);
 
   // Column visibility
-  const [visibleColumns, setVisibleColumns] = useState(() =>
+  const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
-  ); // initialize to the full set of columns
+  );
 
   const renderCellValue = useMemo(() => {
     return ({ rowIndex, columnId }) => {
@@ -117,7 +117,7 @@ export default () => {
       sorting={{ columns: sortingColumns, onSort }}
       pagination={{
         ...pagination,
-        pageSizeOptions: [10, 50, 100],
+        pageSizeOptions: [10, 50, 0],
         onChangeItemsPerPage: onChangeItemsPerPage,
         onChangePage: onChangePage,
       }}

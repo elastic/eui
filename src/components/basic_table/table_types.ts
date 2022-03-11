@@ -7,7 +7,7 @@
  */
 
 import { ReactElement, ReactNode, TdHTMLAttributes } from 'react';
-import { Direction, HorizontalAlignment } from '../../services';
+import { HorizontalAlignment } from '../../services';
 import { Pagination } from './pagination_bar';
 import { Action } from './action_types';
 import { Primitive } from '../../services/sort/comparators';
@@ -34,7 +34,9 @@ export interface EuiTableFieldDataColumnType<T>
   /**
    * A field of the item (may be a nested field)
    */
-  field: keyof T | string; // supports outer.inner key paths
+  // type hack used for better autocomplete support
+  // https://github.com/microsoft/TypeScript/issues/29729
+  field: keyof T | (string & {}); // supports outer.inner key paths
   /**
    * The display name of the column
    */
@@ -145,7 +147,7 @@ export interface EuiTableSortingType<T> {
    */
   sort?: {
     field: keyof T;
-    direction: Direction;
+    direction: 'asc' | 'desc';
   };
   /**
    * Enables/disables unsorting of table columns. Supported by EuiInMemoryTable.

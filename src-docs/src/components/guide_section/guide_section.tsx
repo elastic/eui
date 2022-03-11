@@ -20,7 +20,6 @@ import {
   GuideSectionExampleTabs,
   GuideSectionExampleTabsProps,
 } from './guide_section_parts/guide_section_tabs';
-import { GuideSectionTypes } from './guide_section_types';
 
 export interface GuideSection {
   id?: string;
@@ -49,9 +48,17 @@ export const GuideSectionCodeTypesMap = {
     name: 'demoTSX',
     displayName: 'Demo TS',
   },
+  STRING_JS: {
+    name: 'demoJS',
+    displayName: 'Demo JS',
+  },
   SNIPPET: {
     name: 'snippet',
     displayName: 'Snippet',
+  },
+  SASS: {
+    name: 'sass',
+    displayName: 'Sass',
   },
   PROPS: {
     name: 'props',
@@ -106,8 +113,6 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
 
     if (source) {
       source.map((source) => {
-        // Forever skipping the HTML tab
-        if (source.type === GuideSectionTypes.HTML) return;
         tabs.push({
           // @ts-ignore Complicated
           ...GuideSectionCodeTypesMap[source.type],
@@ -133,7 +138,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
     const isPlaygroundUnsupported =
       typeof window !== 'undefined' &&
       typeof document !== 'undefined' &&
-      !!window.MSInputMethodContext &&
+      !!(window as any).MSInputMethodContext &&
       // @ts-ignore doesn't exist?
       !!document.documentMode;
 
@@ -201,7 +206,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
                     iconType="fullScreen"
                     href={`#${path}/${fullScreen.slug}`}
                   >
-                    Full screen demo
+                    Fullscreen demo
                   </EuiButton>
                 ) : (
                   demo

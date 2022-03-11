@@ -546,7 +546,7 @@ export class EuiPopover extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.positionPopoverFixed);
+    window.removeEventListener('scroll', this.positionPopoverFixed, true);
     clearTimeout(this.respositionTimeout);
     clearTimeout(this.closingTransitionTimeout);
     cancelAnimationFrame(this.closingTransitionAnimationFrame!);
@@ -731,7 +731,14 @@ export class EuiPopover extends Component<Props, State> {
       let ariaDescribedby;
       let ariaLive: HTMLAttributes<any>['aria-live'];
 
-      if (ownFocus) {
+      const panelAriaModal = panelProps?.hasOwnProperty('aria-modal')
+        ? panelProps['aria-modal']
+        : 'true';
+      const panelRole = panelProps?.hasOwnProperty('role')
+        ? panelProps.role
+        : 'dialog';
+
+      if (ownFocus || panelAriaModal !== 'true') {
         tabIndex = tabIndexProp ?? 0;
         ariaLive = 'off';
 
@@ -784,10 +791,10 @@ export class EuiPopover extends Component<Props, State> {
               paddingSize={panelPaddingSize}
               tabIndex={tabIndex}
               aria-live={ariaLive}
-              role="dialog"
+              role={panelRole}
               aria-label={ariaLabel}
               aria-labelledby={ariaLabelledBy}
-              aria-modal="true"
+              aria-modal={panelAriaModal}
               aria-describedby={ariaDescribedby}
               style={{
                 ...this.state.popoverStyles,

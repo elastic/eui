@@ -1,7 +1,7 @@
 // sass-lint:disable no-important
 .guideDemo__textLines {
   background-image: linear-gradient($euiFocusBackgroundColor 1px, transparent 1px);
-  background-size: 100% $euiFontSize / 2;
+  background-size: 100% $euiFontSizeXS;
   background-position-y: -1px;
 
   > * {
@@ -14,9 +14,5 @@
 
   &[class*='--extraSmall'] {
     background-size: 100% $euiFontSizeXS / 2;
-  }
-
-  &[class*='amsterdam'] {
-    background-size: 100% 4px;
   }
 }

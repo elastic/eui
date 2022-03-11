@@ -1,6 +1,5 @@
 .euiDataGridRow {
-  // needed for footer cells to correctly position
-  display: flex;
+  background-color: $euiColorEmptyShade;
 }
 
 @include euiDataGridRowCell {
@@ -9,17 +8,10 @@
   padding: $euiDataGridCellPaddingM;
   border-right: $euiDataGridVerticalBorder;
   border-bottom: $euiBorderThin;
-  flex: 0 0 auto;
-  background: $euiColorEmptyShade;
-  position: relative;
-  align-items: center;
-  display: flex;
   overflow: hidden;
 
-  // Hack to allow for all the focus guard stuff
+  // Hack to allow focus trap to still stretch to full row height on defined heights
   > * {
-    max-width: 100%;
-    width: 100%;
     height: 100%;
   }
 
@@ -38,41 +30,23 @@
   // Only add the transition effect on hover, so that it is instantaneous on focus
   // Long delays on hover to mitigate the accordion effect
   &:hover {
-    .euiDataGridRowCell__expandButtonIcon {
-      animation-duration: $euiAnimSpeedExtraFast;
-      animation-name: euiDataGridCellButtonSlideIn;
-      animation-iteration-count: 1;
-      animation-delay: $euiAnimSpeedNormal;
-      animation-fill-mode: forwards;
-    }
-
     .euiDataGridRowCell__actionButtonIcon {
       animation-duration: $euiAnimSpeedExtraFast;
-      animation-name: euiDataGridCellButtonSlideIn;
+      animation-name: euiDataGridCellActionsSlideIn;
       animation-iteration-count: 1;
       animation-delay: $euiAnimSpeedNormal;
       animation-fill-mode: forwards;
     }
   }
 
-  &:not(:hover),
+  // On focus, directly show action buttons (without animation)
+  &:focus,
+  // Prevent the animation from flickering after cell popover close when focus is restored the expansion button
+  &:focus-within,
+  // Always make the cell actions visible when the cell popover is open
   &.euiDataGridRowCell--open {
-    .euiDataGridRowCell__expandButtonIcon {
-      animation: none;
-      margin-left: $euiDataGridCellPaddingM;
-      width: $euiSizeM;
-    }
-
     .euiDataGridRowCell__actionButtonIcon {
       animation: none;
-      margin-left: $euiDataGridCellPaddingM;
-      width: $euiSizeM;
-    }
-  }
-
-  // on focus, directly show action buttons (without animation), but still slide in the open popover button
-  &:focus {
-    .euiDataGridRowCell__actionButtonIcon {
       margin-left: $euiDataGridCellPaddingM;
       width: $euiSizeM;
     }
@@ -80,7 +54,6 @@
 
   // if a cell is not hovered nor focused nor open via popover, don't show buttons in general
   &:not(:hover):not(:focus):not(.euiDataGridRowCell--open) {
-    .euiDataGridRowCell__expandButtonIcon,
     .euiDataGridRowCell__actionButtonIcon {
       display: none;
     }
@@ -130,11 +103,7 @@
   // sass-lint:disable-block no-important
   max-width: 400px !important;
   max-height: 400px !important;
-}
-
-.euiDataGridRowCell__expand {
-  width: 100%;
-  max-width: 100%;
+  z-index: $euiZDataGridCellPopover !important;
 }
 
 .euiDataGridRowCell__expandFlex {
@@ -158,9 +127,7 @@
 }
 
 // Cell actions
-// Could probably be more precisely named than '__expandButton', since there can be multiple actions/buttons
-// TODO: Consider renaming this when working on https://github.com/elastic/eui/issues/5132
-.euiDataGridRowCell__expandButton {
+.euiDataGridRowCell__expandActions {
   display: flex;
 }
 @include euiDataGridRowCellActions($definedHeight: false) {
@@ -174,56 +141,36 @@
   padding: $euiDataGridCellPaddingM 0;
 }
 
-.euiDataGridRowCell__expandButtonIcon {
-  height: $euiSizeM;
-  border-radius: $euiBorderRadius / 2;
-  width: 0;
-  overflow: hidden;
-  transition: none; // Have to take out the generic transition so it is instaneous on focus
-  box-shadow: none !important; // sass-lint:disable-line no-important
-  // Remove default .euiButtonIcon--fill border
-  // This way we don't need to animate the border that is inexistent in Amsterdam and unnecessary for a fill button
-  border: none;
-
-  &-isActive {
-    margin-left: $euiDataGridCellPaddingM;
-    width: $euiSizeM;
-  }
-}
-
 .euiDataGridRowCell__actionButtonIcon {
   height: $euiSizeM;
   border-radius: $euiBorderRadius / 2;
   width: 0;
   overflow: hidden;
-  transition: none; // Have to take out the generic transition so it is instaneous on focus
+  // Have to take out the generic transition so it is instaneous on focus
+  transition: none;
+  // Disable filled button box-shadows on legacy theme - they're unnecessary when this small in a datagrid
+  box-shadow: none !important; // sass-lint:disable-line no-important
+  // Remove filled button borders on legacy theme - this way we don't need to animate the border
+  border: none;
+}
+
+// Row stripes
+@include euiDataGridStyles(stripes) {
+  .euiDataGridRow--striped {
+    @include euiDataGridRowCellActions($definedHeight: true) {
+      background-color: $euiColorLightestShade;
+    }
+    background-color: $euiColorLightestShade;
+  }
 }
 
 // Row highlights
 @include euiDataGridStyles(rowHoverHighlight) {
   .euiDataGridRow:hover {
-    @include euiDataGridRowCell {
-      // sass-lint:disable-block no-important
-      // Needed to overtake striping
-      background-color: $euiColorHighlight !important;
-    }
     @include euiDataGridRowCellActions($definedHeight: true) {
-      // sass-lint:disable-block no-important
-      // Needed to overtake striping
-      background-color: $euiColorHighlight !important;
+      background-color: $euiColorHighlight;
     }
-  }
-}
-
-// Stripes
-@include euiDataGridStyles(stripes) {
-  @include euiDataGridRowCell {
-    &.euiDataGridRowCell--stripe {
-      @include euiDataGridRowCellActions($definedHeight: true) {
-        background-color: $euiColorLightestShade;
-      }
-      background: $euiColorLightestShade;
-    }
+    background-color: $euiColorHighlight;
   }
 }
 
@@ -278,7 +225,7 @@
   }
 }
 
-@keyframes euiDataGridCellButtonSlideIn {
+@keyframes euiDataGridCellActionsSlideIn {
   from {
     margin-left: 0;
     width: 0;

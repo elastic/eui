@@ -6,135 +6,161 @@
  * Side Public License, v 1.
  */
 
-import React, { Component } from 'react';
+import React, {
+  FunctionComponent,
+  useState,
+  useMemo,
+  useCallback,
+} from 'react';
 
 import { EuiButtonEmpty } from '../../button';
 import { EuiContextMenuItem, EuiContextMenuPanel } from '../../context_menu';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
-import { EuiPagination } from '../../pagination';
+import { EuiPagination, EuiPaginationProps } from '../../pagination';
 import { EuiPopover } from '../../popover';
 import { EuiI18n } from '../../i18n';
 
-export type PageChangeHandler = (pageIndex: number) => void;
+export type PageChangeHandler = EuiPaginationProps['onPageClick'];
 export type ItemsPerPageChangeHandler = (pageSize: number) => void;
 
-export interface EuiTablePaginationProps {
-  activePage?: number;
-  hidePerPageOptions?: boolean;
+export interface EuiTablePaginationProps
+  extends Omit<EuiPaginationProps, 'onPageClick'> {
+  /**
+   * Option to completely hide the "Rows per page" selector.
+   */
+  showPerPageOptions?: boolean;
+  /**
+   * Current selection for "Rows per page".
+   * Pass `0` to display the selected "Show all" option and hide the pagination.
+   */
   itemsPerPage?: number;
+  /**
+   * Custom array of options for "Rows per page".
+   * Pass `0` as one of the options to create a "Show all" option.
+   */
   itemsPerPageOptions?: number[];
+  /**
+   * Click handler that passes back selected `pageSize` number
+   */
   onChangeItemsPerPage?: ItemsPerPageChangeHandler;
   onChangePage?: PageChangeHandler;
-  pageCount?: number;
   /**
-   * id of the table being controlled
+   * Requires the `id` of the table being controlled
    */
   'aria-controls'?: string;
   'aria-label'?: string;
 }
 
-interface State {
-  isPopoverOpen: boolean;
-}
+export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
+  activePage,
+  itemsPerPage = 50,
+  itemsPerPageOptions = [10, 20, 50, 100],
+  showPerPageOptions = true,
+  onChangeItemsPerPage = () => {},
+  onChangePage,
+  pageCount,
+  ...rest
+}) => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-export class EuiTablePagination extends Component<
-  EuiTablePaginationProps,
-  State
-> {
-  state = {
-    isPopoverOpen: false,
-  };
+  const togglePopover = useCallback(() => {
+    setIsPopoverOpen((isOpen) => !isOpen);
+  }, []);
 
-  onButtonClick = () => {
-    this.setState({
-      isPopoverOpen: !this.state.isPopoverOpen,
-    });
-  };
+  const closePopover = useCallback(() => {
+    setIsPopoverOpen(false);
+  }, []);
 
-  closePopover = () => {
-    this.setState({
-      isPopoverOpen: false,
-    });
-  };
-
-  render() {
-    const {
-      activePage,
-      itemsPerPage = 50,
-      itemsPerPageOptions = [10, 20, 50, 100],
-      hidePerPageOptions = false,
-      onChangeItemsPerPage = () => {},
-      onChangePage,
-      pageCount,
-      ...rest
-    } = this.props;
-
-    const button = (
-      <EuiButtonEmpty
-        size="xs"
-        color="text"
-        iconType="arrowDown"
-        iconSide="right"
-        data-test-subj="tablePaginationPopoverButton"
-        onClick={this.onButtonClick}
-      >
+  const button = (
+    <EuiButtonEmpty
+      size="xs"
+      color="text"
+      iconType="arrowDown"
+      iconSide="right"
+      data-test-subj="tablePaginationPopoverButton"
+      onClick={togglePopover}
+    >
+      {itemsPerPage === 0 ? (
         <EuiI18n
-          token="euiTablePagination.rowsPerPage"
-          default="Rows per page"
+          token="euiTablePagination.allRows"
+          default="Showing all rows"
         />
-        : {itemsPerPage}
-      </EuiButtonEmpty>
-    );
+      ) : (
+        <>
+          <EuiI18n
+            token="euiTablePagination.rowsPerPage"
+            default="Rows per page"
+          />
+          : {itemsPerPage}
+        </>
+      )}
+    </EuiButtonEmpty>
+  );
 
-    const items = itemsPerPageOptions.map((itemsPerPageOption) => (
-      <EuiContextMenuItem
-        key={itemsPerPageOption}
-        icon={itemsPerPageOption === itemsPerPage ? 'check' : 'empty'}
-        onClick={() => {
-          this.closePopover();
-          onChangeItemsPerPage(itemsPerPageOption);
-        }}
-        data-test-subj={`tablePagination-${itemsPerPageOption}-rows`}
-      >
-        <EuiI18n
-          token="euiTablePagination.rowsPerPageOption"
-          values={{ rowsPerPage: itemsPerPageOption }}
-          default="{rowsPerPage} rows"
-        />
-      </EuiContextMenuItem>
-    ));
+  const items = useMemo(
+    () =>
+      itemsPerPageOptions.map((itemsPerPageOption) => (
+        <EuiContextMenuItem
+          key={itemsPerPageOption}
+          icon={itemsPerPageOption === itemsPerPage ? 'check' : 'empty'}
+          onClick={() => {
+            closePopover();
+            onChangeItemsPerPage(itemsPerPageOption);
+          }}
+          data-test-subj={`tablePagination-${itemsPerPageOption}-rows`}
+        >
+          {itemsPerPageOption === 0 ? (
+            <EuiI18n
+              token="euiTablePagination.rowsPerPageOptionShowAllRows"
+              default="Show all rows"
+            />
+          ) : (
+            <EuiI18n
+              token="euiTablePagination.rowsPerPageOption"
+              values={{ rowsPerPage: itemsPerPageOption }}
+              default="{rowsPerPage} rows"
+            />
+          )}
+        </EuiContextMenuItem>
+      )),
+    [itemsPerPageOptions, itemsPerPage, onChangeItemsPerPage, closePopover]
+  );
 
-    const itemsPerPagePopover = (
-      <EuiPopover
-        button={button}
-        isOpen={this.state.isPopoverOpen}
-        closePopover={this.closePopover}
-        panelPaddingSize="none"
-        anchorPosition="upRight"
-      >
-        <EuiContextMenuPanel items={items} />
-      </EuiPopover>
-    );
+  const itemsPerPagePopover = (
+    <EuiPopover
+      button={button}
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}
+      panelPaddingSize="none"
+      anchorPosition="upRight"
+    >
+      <EuiContextMenuPanel items={items} />
+    </EuiPopover>
+  );
 
-    return (
-      <EuiFlexGroup
-        justifyContent="spaceBetween"
-        alignItems="center"
-        responsive={false}
-      >
-        <EuiFlexItem grow={false}>
-          {hidePerPageOptions ? null : itemsPerPagePopover}
-        </EuiFlexItem>
+  return (
+    <EuiFlexGroup
+      justifyContent="spaceBetween"
+      alignItems="center"
+      responsive={false}
+      wrap
+      gutterSize="s"
+      className="eui-xScroll"
+    >
+      <EuiFlexItem grow={false}>
+        {showPerPageOptions && itemsPerPagePopover}
+      </EuiFlexItem>
 
-        <EuiFlexItem grow={false}>
+      <EuiFlexItem grow={false}>
+        {itemsPerPage > 0 && (
           <EuiPagination
             pageCount={pageCount}
             activePage={activePage}
             onPageClick={onChangePage}
             {...rest}
           />
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    );
-  }
-}
+        )}
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+};

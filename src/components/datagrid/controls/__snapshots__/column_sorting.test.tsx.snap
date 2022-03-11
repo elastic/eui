@@ -395,7 +395,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                 scrollLock={false}
                 sideCar={[Function]}
               >
-                <ForwardRef
+                <ForwardRef(FocusLockUI)
                   as={
                     Object {
                       "$$typeof": Symbol(react.forward_ref),
@@ -606,7 +606,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                                           <EuiDroppable
                                             droppableId="columnSorting"
                                           >
-                                            <ConnectFunction
+                                            <Connect(Droppable)
                                               direction="vertical"
                                               droppableId="columnSorting"
                                               getContainerForClone={[Function]}
@@ -881,7 +881,6 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                                                                               <button
                                                                                 aria-label="Remove Column A from data grid sort"
                                                                                 className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGridColumnSorting__button"
-                                                                                disabled={false}
                                                                                 onClick={[Function]}
                                                                                 type="button"
                                                                               >
@@ -1125,7 +1124,6 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                                                                                   >
                                                                                     <EuiButtonDisplay
                                                                                       baseClassName="euiButtonGroupButton"
-                                                                                      className=""
                                                                                       color="text"
                                                                                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
                                                                                       element="label"
@@ -1262,7 +1260,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                                                   </div>
                                                 </div>
                                               </Droppable>
-                                            </ConnectFunction>
+                                            </Connect(Droppable)>
                                           </EuiDroppable>
                                         </Provider>
                                       </App>
@@ -1454,7 +1452,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                     }
                     tabIndex={-1}
                   />
-                </ForwardRef>
+                </ForwardRef(FocusLockUI)>
               </ForwardRef>
             </ForwardRef>
           </EuiFocusTrap>

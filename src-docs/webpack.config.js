@@ -1,8 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const babelConfig = require('./.babelrc.js');
-// const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const getPort = require('get-port');
 const deasync = require('deasync');
@@ -12,6 +13,8 @@ const { NODE_ENV, CI, WEBPACK_DEV_SERVER } = process.env;
 const isDevelopment = WEBPACK_DEV_SERVER === 'true' && CI == null;
 const isProduction = NODE_ENV === 'production';
 const isPuppeteer = NODE_ENV === 'puppeteer';
+
+const useReactRefresh = isDevelopment && !isPuppeteer;
 
 function employCache(loaders) {
   if (isDevelopment && !isPuppeteer) {
@@ -27,6 +30,10 @@ function employCache(loaders) {
   }
 
   return loaders;
+}
+
+if (useReactRefresh) {
+  babelConfig.plugins.push('react-refresh/babel');
 }
 
 const webpackConfig = {
@@ -116,12 +123,8 @@ const webpackConfig = {
       failOnError: true,
     }),
 
-    // run TypeScript during webpack build
-    // new ForkTsCheckerWebpackPlugin({
-    //   typescript: { configFile: path.resolve(__dirname, '..', 'tsconfig.json') },
-    //   async: false, // makes errors more visible, but potentially less performant
-    // }),
-  ],
+    useReactRefresh && new ReactRefreshWebpackPlugin(),
+  ].filter(Boolean),
 
   devServer: isDevelopment
     ? {
@@ -141,10 +144,25 @@ const webpackConfig = {
               ignored: '**/*',
             }
           : undefined,
+        hot: true,
       }
     : undefined,
   node: {
     fs: 'empty',
+  },
+
+  optimization: {
+    minimize: isProduction,
+    minimizer: [
+      new TerserPlugin({
+        parallel: true,
+        terserOptions: {
+          // prevent Eui* function (component) names from being mangled,
+          // as mangling prevents copy-pasteable component code from being generated
+          keep_fnames: /^Eui[A-Z]/,
+        },
+      }),
+    ],
   },
 };
 

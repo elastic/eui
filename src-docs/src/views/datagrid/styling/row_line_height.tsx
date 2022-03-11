@@ -102,10 +102,10 @@ const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
 };
 
 export default () => {
-  // ** Pagination config
+  // Pagination
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 50 });
 
-  // ** Sorting config
+  // Sorting
   const [sortingColumns, setSortingColumns] = useState([]);
   const onSort = useCallback(
     (sortingColumns) => {
@@ -131,9 +131,9 @@ export default () => {
   );
 
   // Column visibility
-  const [visibleColumns, setVisibleColumns] = useState(() =>
+  const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
-  ); // initialize to the full set of columns
+  );
 
   // matches the snippet example
   const rowHeightsOptions = useMemo(

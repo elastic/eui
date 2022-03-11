@@ -23,19 +23,11 @@ export const GuideFigmaLink: React.FunctionComponent<GuideFigmaLinkProps> = () =
 };
 
 // @ts-ignore Context has no type
-const GuideFigmaLinkComponent: React.FunctionComponent<GuideFigmaLinkProps> = ({
-  context,
-}) => {
+const GuideFigmaLinkComponent: React.FunctionComponent<GuideFigmaLinkProps> = () => {
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
 
-  const isAmsterdam = context.theme.includes('amsterdam');
-
-  let href = 'https://www.figma.com/community/file/809845546262698150';
+  const href = 'https://www.figma.com/community/file/964536385682658129';
   const label = 'EUI Figma Design Library';
-
-  if (isAmsterdam) {
-    href = 'https://www.figma.com/community/file/964536385682658129';
-  }
 
   return isMobileSize ? (
     <EuiButtonEmpty size="s" flush="both" iconType={logoFigma} href={href}>

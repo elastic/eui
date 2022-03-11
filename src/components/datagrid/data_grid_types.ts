@@ -11,18 +11,20 @@ import {
   JSXElementConstructor,
   ReactNode,
   HTMLAttributes,
-  RefCallback,
   CSSProperties,
   ReactElement,
   AriaAttributes,
-  Dispatch,
-  SetStateAction,
+  MutableRefObject,
 } from 'react';
-import { VariableSizeGridProps } from 'react-window';
+import {
+  VariableSizeGridProps,
+  VariableSizeGrid as Grid,
+  GridOnItemsRenderedProps,
+} from 'react-window';
 import { EuiListGroupItemProps } from '../list_group';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { ExclusiveUnion, CommonProps, OneOf } from '../common';
-import { RowHeightUtils } from './row_height_utils';
+import { RowHeightUtils } from './utils/row_heights';
 import { IconType } from '../icon';
 import { EuiTokenProps } from '../token';
 
@@ -30,20 +32,18 @@ export interface EuiDataGridToolbarProps {
   gridWidth: number;
   minSizeForControls?: number;
   toolbarVisibility: boolean | EuiDataGridToolBarVisibilityOptions;
-  displaySelector: ReactNode;
   isFullScreen: boolean;
-  controlBtnClasses: string;
+  fullScreenSelector: ReactNode;
+  displaySelector: ReactNode;
   columnSelector: ReactNode;
   columnSorting: ReactNode;
-  setRef: RefCallback<HTMLDivElement | null>;
-  setIsFullScreen: Dispatch<SetStateAction<boolean>>;
 }
+
 export interface EuiDataGridPaginationRendererProps
   extends EuiDataGridPaginationProps {
   rowCount: number;
   controls: string;
   'aria-label'?: AriaAttributes['aria-label'];
-  'aria-labelledby'?: AriaAttributes['aria-labelledby'];
 }
 
 export interface EuiDataGridInMemoryRendererProps {
@@ -158,20 +158,48 @@ export type EuiDataGridFooterRowProps = CommonProps &
     trailingControlColumns: EuiDataGridControlColumn[];
     columns: EuiDataGridColumn[];
     schema: EuiDataGridSchema;
-    popoverContents: EuiDataGridPopoverContents;
     columnWidths: EuiDataGridColumnWidths;
     defaultColumnWidth?: number | null;
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
+    renderCellPopover?: EuiDataGridCellProps['renderCellPopover'];
     interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
     visibleRowIndex?: number;
   };
 
+export interface EuiDataGridVisibleRows {
+  startRow: number;
+  endRow: number;
+  visibleRowCount: number;
+}
+
+export interface DataGridSortingContextShape {
+  sorting?: EuiDataGridSorting;
+  sortedRowMap: number[];
+  getCorrectRowIndex: (visibleRowIndex: number) => number;
+}
+
+// An array of [x,y] coordinates. Note that the `y` value expected internally is a `visibleRowIndex`
+export type EuiDataGridFocusedCell = [number, number];
+
 export interface DataGridFocusContextShape {
+  focusedCell?: EuiDataGridFocusedCell;
   setFocusedCell: (cell: EuiDataGridFocusedCell) => void;
+  setIsFocusedCellInView: (isFocusedCellInView: boolean) => void;
   onFocusUpdate: (
     cell: EuiDataGridFocusedCell,
     updateFocus: Function
   ) => () => void;
+  focusFirstVisibleInteractiveCell: () => void;
+}
+
+export interface DataGridCellPopoverContextShape {
+  popoverIsOpen: boolean;
+  // Note that the rowIndex used to locate cells internally is a `visibleRowIndex`
+  cellLocation: { rowIndex: number; colIndex: number };
+  openCellPopover(args: { rowIndex: number; colIndex: number }): void;
+  closeCellPopover(): void;
+  setPopoverAnchor(anchor: HTMLElement): void;
+  setPopoverContent(content: ReactNode): void;
 }
 
 export type CommonGridProps = CommonProps &
@@ -201,23 +229,31 @@ export type CommonGridProps = CommonProps &
      */
     schemaDetectors?: EuiDataGridSchemaDetector[];
     /**
-     * An object mapping #EuiDataGridColumn `schema`s to a custom popover formatting component which receives #EuiDataGridPopoverContentProps.
-     * This dictates the content of the popovers when you click into each cell.
-     */
-    popoverContents?: EuiDataGridPopoverContents;
-    /**
      * The total number of rows in the dataset (used by e.g. pagination to know how many pages to list).
      */
     rowCount: number;
     /**
      * A function called to render a cell's value. Behind the scenes it is treated as a React component
-     * allowing hooks, context, and other React concepts to be used. The function receives a #EuiDataGridCellValueElementProps
+     * allowing hooks, context, and other React concepts to be used. The function receives #EuiDataGridCellValueElementProps
      * as its only argument.
      */
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
     /**
-     * A function called to render a cell's value. Behind the scenes it is treated as a React component
-     * allowing hooks, context, and other React concepts to be used. The function receives a #EuiDataGridCellValueElementProps
+     * An optional function that can be used to completely customize the rendering of cell popovers.
+     *
+     * If not specified, defaults to an `<EuiText>` wrapper around the rendered cell value and an
+     * `<EuiPopoverFooter>` around the cell actions.
+     *
+     * Behind the scenes it is treated as a React component allowing hooks, context, and other React concepts to be used.
+     * The function receives #EuiDataGridCellPopoverElementProps as its only argument.
+     *
+     */
+    renderCellPopover?: EuiDataGridCellProps['renderCellPopover'];
+    /**
+     * An optional function called to render a footer cell. If not specified, no footer row is rendered.
+     *
+     * Behind the scenes it is treated as a React component
+     * allowing hooks, context, and other React concepts to be used. The function receives #EuiDataGridCellValueElementProps
      * as its only argument.
      */
     renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
@@ -282,6 +318,29 @@ export type EuiDataGridProps = OneOf<
   'aria-label' | 'aria-labelledby'
 >;
 
+export interface EuiDataGridRefProps {
+  /**
+   * Allows manually controlling the fullscreen state of the grid.
+   */
+  setIsFullScreen: (isFullScreen: boolean) => void;
+  /**
+   * Allows manually focusing the specified cell in the grid.
+   *
+   * Using this method is an accessibility requirement if your EuiDataGrid
+   * toggles a modal or flyout - focus must be restored to the grid on close
+   * to prevent keyboard or screen reader users from being stranded.
+   */
+  setFocusedCell: (cell: { rowIndex: number; colIndex: number }) => void;
+  /**
+   * Allows manually opening the popover of the specified cell in the grid.
+   */
+  openCellPopover: (cell: { rowIndex: number; colIndex: number }) => void;
+  /**
+   * Closes any currently open popovers in the data grid.
+   */
+  closeCellPopover: () => void;
+}
+
 export interface EuiDataGridColumnResizerProps {
   columnId: string;
   columnWidth: number;
@@ -293,20 +352,6 @@ export interface EuiDataGridColumnResizerState {
   offset: number;
 }
 
-export interface EuiDataGridCellPopoverProps {
-  anchorContent: NonNullable<ReactNode>;
-  cellContentProps: EuiDataGridCellValueElementProps;
-  cellContentsRef: HTMLDivElement | null;
-  closePopover: () => void;
-  column?: EuiDataGridColumn;
-  panelRefFn: RefCallback<HTMLElement | null>;
-  popoverIsOpen: boolean;
-  popoverContent: EuiDataGridPopoverContent;
-  renderCellValue:
-    | JSXElementConstructor<EuiDataGridCellValueElementProps>
-    | ((props: EuiDataGridCellValueElementProps) => ReactNode);
-  rowIndex: number;
-}
 export interface EuiDataGridColumnSortingDraggableProps {
   id: string;
   direction: string;
@@ -319,62 +364,110 @@ export interface EuiDataGridColumnSortingDraggableProps {
    */
   display: string;
 }
+
 export interface EuiDataGridBodyProps {
-  isFullScreen: boolean;
-  columnWidths: EuiDataGridColumnWidths;
-  defaultColumnWidth?: number | null;
-  leadingControlColumns?: EuiDataGridControlColumn[];
-  trailingControlColumns?: EuiDataGridControlColumn[];
+  leadingControlColumns: EuiDataGridControlColumn[];
+  trailingControlColumns: EuiDataGridControlColumn[];
   columns: EuiDataGridColumn[];
+  visibleColCount: number;
   schema: EuiDataGridSchema;
   schemaDetectors: EuiDataGridSchemaDetector[];
-  popoverContents?: EuiDataGridPopoverContents;
   rowCount: number;
+  visibleRows: EuiDataGridVisibleRows;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
+  renderCellPopover?: EuiDataGridCellProps['renderCellPopover'];
   renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
-  inMemory?: EuiDataGridInMemory;
-  inMemoryValues: EuiDataGridInMemoryValues;
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
   pagination?: EuiDataGridPaginationProps;
-  setColumnWidth: (columnId: string, width: number) => void;
   headerIsInteractive: boolean;
   handleHeaderMutation: MutationCallback;
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
-  toolbarHeight: number;
+  onColumnResize?: EuiDataGridOnColumnResizeHandler;
   virtualizationOptions?: Partial<VariableSizeGridProps>;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
-  rowHeightUtils: RowHeightUtils;
-  gridStyles?: EuiDataGridStyle;
+  isFullScreen: boolean;
+  gridStyles: EuiDataGridStyle;
+  gridWidth: number;
+  gridRef: MutableRefObject<Grid | null>;
+  gridItemsRendered: MutableRefObject<GridOnItemsRenderedProps | null>;
+  wrapperRef: MutableRefObject<HTMLDivElement | null>;
 }
-export interface EuiDataGridCellValueElementProps {
+
+/**
+ * Props shared between renderCellValue and renderCellPopover
+ */
+interface SharedRenderCellElementProps {
   /**
-   * index of the row being rendered, 0 represents the first row. This index always includes
+   * Index of the row being rendered, 0 represents the first row. This index always includes
    * pagination offset, meaning the first rowIndex in a grid is `pagination.pageIndex * pagination.pageSize`
    * so take care if you need to adjust the rowIndex to fit your data
    */
   rowIndex: number;
   /**
-   * id of the column being rendered, the value comes from the #EuiDataGridColumn `id`
+   * Index of the column being rendered, 0 represents the first column. This index accounts
+   * for columns that have been hidden or reordered by the user, so take care if you need
+   * to adjust the colIndex to fit your data
+   */
+  colIndex: number;
+  /**
+   * ID of the column being rendered, the value comes from the #EuiDataGridColumn `id`
    */
   columnId: string;
   /**
-   * callback function to set custom props & attributes on the cell's wrapping `div` element;
+   * The schema type of the column being rendered
+   */
+  schema?: string | null;
+}
+
+export type EuiDataGridSetCellProps = CommonProps &
+  HTMLAttributes<HTMLDivElement> & {
+    isExpandable?: boolean;
+  };
+
+export interface EuiDataGridCellValueElementProps
+  extends SharedRenderCellElementProps {
+  /**
+   * Callback function to set custom props & attributes on the cell's wrapping `div` element;
    * it's best to wrap calls to `setCellProps` in a `useEffect` hook
    */
-  setCellProps: (props: CommonProps & HTMLAttributes<HTMLDivElement>) => void;
+  setCellProps: (props: EuiDataGridSetCellProps) => void;
   /**
-   * whether or not the cell is expandable, comes from the #EuiDataGridColumn `isExpandable` which defaults to `true`
+   * Whether or not the cell is expandable, comes from the #EuiDataGridColumn `isExpandable` which defaults to `true`
    */
   isExpandable: boolean;
   /**
-   * whether or not the cell is expanded
+   * Whether or not the cell is expanded
    */
   isExpanded: boolean;
   /**
-   * when rendering the cell, `isDetails` is false; when the cell is expanded, `renderCellValue` is called again to render into the details popover and `isDetails` is true
+   * When rendering the cell, `isDetails` is false; when the cell is expanded, `renderCellValue` is called again to render into the details popover and `isDetails` is true
    */
   isDetails: boolean;
+}
+
+export interface EuiDataGridCellPopoverElementProps
+  extends SharedRenderCellElementProps {
+  /**
+   * The default `children` passed to the cell popover comes from the passed `renderCellValue` prop as a ReactElement.
+   *
+   * Allows wrapping the rendered content: `({ children }) => <div>{children}</div>` - or leave it out to render completely custom content.
+   */
+  children: ReactNode;
+  /**
+   * References the div element the cell contents have been rendered into. Primarily useful for processing the rendered text
+   */
+  cellContentsElement: HTMLDivElement;
+  /**
+   * An `EuiPopoverFooter` containing all column `cellActions` (as `EuiEmptyButton`s).
+   * Use `{cellActions}` to render the default cell action buttons, or leave it out to hide cell actions/render your own.
+   */
+  cellActions: ReactNode;
+  /**
+   * For certain columns or schemas, you may want to fall back to the standard EuiDataGrid popover display.
+   * If so, that component is provided here as a passed React function component for your usage.
+   */
+  DefaultCellPopover: JSXElementConstructor<EuiDataGridCellPopoverElementProps>;
 }
 
 export interface EuiDataGridCellProps {
@@ -388,10 +481,13 @@ export interface EuiDataGridCellProps {
   interactiveCellId: string;
   isExpandable: boolean;
   className?: string;
-  popoverContent: EuiDataGridPopoverContent;
+  popoverContext: DataGridCellPopoverContextShape;
   renderCellValue:
     | JSXElementConstructor<EuiDataGridCellValueElementProps>
     | ((props: EuiDataGridCellValueElementProps) => ReactNode);
+  renderCellPopover?:
+    | JSXElementConstructor<EuiDataGridCellPopoverElementProps>
+    | ((props: EuiDataGridCellPopoverElementProps) => ReactNode);
   setRowHeight?: (height: number) => void;
   getRowHeight?: (rowIndex: number) => number;
   style?: React.CSSProperties;
@@ -401,8 +497,7 @@ export interface EuiDataGridCellProps {
 }
 
 export interface EuiDataGridCellState {
-  cellProps: CommonProps & HTMLAttributes<HTMLDivElement>;
-  popoverIsOpen: boolean; // is expansion popover open
+  cellProps: EuiDataGridSetCellProps;
   isFocused: boolean; // tracks if this cell has focus or not, used to enable tabIndex on the cell
   isEntered: boolean; // enables focus trap for non-expandable cells with multiple interactive elements
   enableInteractions: boolean; // cell got hovered at least once, so cell button and popover interactions are rendered
@@ -411,7 +506,7 @@ export interface EuiDataGridCellState {
 
 export type EuiDataGridCellValueProps = Omit<
   EuiDataGridCellProps,
-  'width' | 'interactiveCellId' | 'popoverContent' | 'rowManager'
+  'width' | 'interactiveCellId' | 'popoverContext' | 'rowManager'
 >;
 export interface EuiDataGridControlColumn {
   /**
@@ -518,6 +613,10 @@ export interface EuiDataGridColumnCellActionProps {
    */
   rowIndex: number;
   /**
+   * The index of the column that contains cell's data
+   */
+  colIndex: number;
+  /**
    * The id of the column that contains the cell's data
    */
   columnId: string;
@@ -534,7 +633,7 @@ export interface EuiDataGridColumnCellActionProps {
    * Closes the popover if a cell is expanded.
    * The prop is provided for an expanded cell only.
    */
-  closePopover: () => void;
+  closePopover?: () => void;
 }
 
 export interface EuiDataGridColumnVisibility {
@@ -592,6 +691,11 @@ export interface EuiDataGridStyle {
    * If set to true, the footer row will be sticky
    */
   stickyFooter?: boolean;
+  /**
+   * Optional callback returning the current `gridStyle` config when changes occur from user input (e.g. toolbar display controls).
+   * Can be used for, e.g. storing user `gridStyle` in a local storage object.
+   */
+  onChange?: (gridStyle: EuiDataGridStyle) => void;
 }
 
 export interface EuiDataGridToolBarVisibilityColumnSelectorOptions {
@@ -624,7 +728,7 @@ export interface EuiDataGridToolBarVisibilityOptions {
     | boolean
     | EuiDataGridToolBarVisibilityColumnSelectorOptions;
   /**
-   * Allows the ability for the user to customize display settings such as grid density and row heights, boolean or a #EuiDataGridToolBarVisibilityDisplaySelectorOptions.
+   * Allows the ability for the user to customize display settings such as grid density and row heights.
    * User changes will override what is provided in #EuiDataGridStyle and #EuiDataGridRowHeightsOptions
    */
   showDisplaySelector?:
@@ -635,7 +739,7 @@ export interface EuiDataGridToolBarVisibilityOptions {
    */
   showSortSelector?: boolean;
   /**
-   * Allows user to be able to full screen the data grid. If set to `false` make sure your grid fits within a large enough panel to still show the other controls.
+   * Allows user to be able to fullscreen the data grid. If set to `false` make sure your grid fits within a large enough panel to still show the other controls.
    */
   showFullScreenSelector?: boolean;
   /**
@@ -647,15 +751,27 @@ export interface EuiDataGridToolBarVisibilityOptions {
 
 export interface EuiDataGridToolBarAdditionalControlsOptions {
   /**
-   * Will append the passed node into the left side of the toolbar, **after** the column & sort controls.
+   * If passed a `ReactNode`, appends the passed node into the left side of the toolbar, **after** the column & sort controls.
+   * Or use #EuiDataGridToolBarAdditionalControlsLeftOptions to customize the location of your control.
    * We recommend using `<EuiButtonEmpty size="xs" />` to match the existing controls on the left.
    */
-  left?: ReactNode;
+  left?: ReactNode | EuiDataGridToolBarAdditionalControlsLeftOptions;
   /**
-   * Will prepend the passed node into the right side of the toolbar, **before** the density & full screen controls.
+   * Will prepend the passed node into the right side of the toolbar, **before** the density & fullscreen controls.
    * We recommend using `<EuiButtonIcon size="xs" />` to match the existing controls on the right.
    */
   right?: ReactNode;
+}
+
+export interface EuiDataGridToolBarAdditionalControlsLeftOptions {
+  /**
+   * Will prepend the passed node into the left side of the toolbar, **before** the column & sort controls.
+   */
+  prepend?: ReactNode;
+  /**
+   * Will append the passed node into the left side of the toolbar, **after** the column & sort controls.
+   */
+  append?: ReactNode;
 }
 
 // ideally this would use a generic to enforce `pageSize` exists in `pageSizeOptions`,
@@ -667,12 +783,14 @@ export interface EuiDataGridPaginationProps {
    */
   pageIndex: number;
   /**
-   * How many rows should initially be shown per page
+   * How many rows should initially be shown per page.
+   * Pass `0` to display the selected "Show all" option and hide the pagination.
    */
   pageSize: number;
   /**
    * An array of page sizes the user can select from.
-   * Leave this prop undefined or use an empty array to hide "Rows per page" select button
+   * Pass `0` as one of the options to create a "Show all" option.
+   * Leave this prop undefined or use an empty array to hide "Rows per page" select button.
    */
   pageSizeOptions?: number[];
   /**
@@ -718,27 +836,8 @@ export interface EuiDataGridInMemory {
   skipColumns?: string[];
 }
 
-export type EuiDataGridFocusedCell = [number, number];
-
 export interface EuiDataGridInMemoryValues {
   [rowIndex: string]: { [columnId: string]: string };
-}
-
-export interface EuiDataGridPopoverContentProps {
-  /**
-   * your `cellValueRenderer` as a ReactElement; allows wrapping the rendered content: `({children}) => <div>{children}</div>`
-   */
-  children: ReactNode;
-  /**
-   * div element the cell contents have been rendered into; useful for processing the rendered text
-   */
-  cellContentsElement: HTMLDivElement;
-}
-export type EuiDataGridPopoverContent = ComponentType<
-  EuiDataGridPopoverContentProps
->;
-export interface EuiDataGridPopoverContents {
-  [key: string]: EuiDataGridPopoverContent;
 }
 
 export interface EuiDataGridOnColumnResizeData {
@@ -762,14 +861,27 @@ export interface EuiDataGridRowHeightsOptions {
   defaultHeight?: EuiDataGridRowHeightOption;
   /**
    * Defines the height for a specific row. It can be line count or just height.
+   *
+   * When using row height overrides, we strongly setting the `showDisplaySelector: allowRowHeight`
+   * toolbar control to `false` in #EuiDataGridToolBarVisibilityOptions
    */
   rowHeights?: Record<number, EuiDataGridRowHeightOption>;
   /**
    * Defines a global lineHeight style to apply to all cells
    */
   lineHeight?: string;
+  /**
+   * Optional callback returning the current `rowHeightsOptions` when changes occur from user input (e.g. toolbar display controls).
+   * Can be used for, e.g. storing user `rowHeightsOptions` in a local storage object.
+   */
+  onChange?: (rowHeightsOptions: EuiDataGridRowHeightsOptions) => void;
 }
 
 export interface EuiDataGridRowManager {
-  getRow(rowIndex: number): HTMLDivElement;
+  getRow(args: {
+    rowIndex: number;
+    visibleRowIndex: number;
+    top: string;
+    height: number;
+  }): HTMLDivElement;
 }

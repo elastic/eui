@@ -1,17 +1,356 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+**Breaking changes**
+
+- Removed Legacy theme including compiled CSS ([#5688](https://github.com/elastic/eui/pull/5688))
+
+## [`51.1.0`](https://github.com/elastic/eui/tree/v51.1.0)
+
+- Updated `testenv` mock for `EuiFlyout` to include default `aria-label` on the close button ([#5702](https://github.com/elastic/eui/pull/5702))
+- Changed the I18n token `euiDataGridToolbar.fullScreenButton` to `euiFullscreenSelector.fullscreenButton`, and its text to `Enter fullscreen` (with no space) ([#5680](https://github.com/elastic/eui/pull/5680))
+- Changed the I18n token `euiDataGridToolbar.fullScreenButtonActive` to `euiFullscreenSelector.fullscreenButtonActive`, and its text to `Exit fullscreen` (with no space) ([#5680](https://github.com/elastic/eui/pull/5680))
+
+**Bug fixes**
+
+- Fixed type of `SharedRenderCellElementProps.schema` to be optional ([#5704](https://github.com/elastic/eui/pull/5704))
+- Fixed generated type definition file referencing nonexistant Jest util ([#5704](https://github.com/elastic/eui/pull/5704))
+
+## [`51.0.0`](https://github.com/elastic/eui/tree/v51.0.0)
+
+- Enhanced `EuiSuggest` to fire the `onItemClick` callback on Enter key press as well as clicks ([#5693](https://github.com/elastic/eui/pull/5693))
+
+**Bug fixes**
+
+- Fixed non-searchable `EuiSelectable`s not selecting items with the Enter & Space keys ([#5693](https://github.com/elastic/eui/pull/5693))
+
+**Breaking changes**
+
+- Removed the `'all'` option in `EuiTablePagination.itemsPerPage` and `itemsPerPageOptions` in `EuiBasicTable` and `EuiDataGrid` due to Typescript issues. Use `0` instead to represent a "Show all" option ([#5699](https://github.com/elastic/eui/issues/5699))
+
+## [`50.0.0`](https://github.com/elastic/eui/tree/v50.0.0)
+
+- Updated `EuiComboBox` to WAI-ARIA 1.2 pattern and improved keyboard navigation ([#5636](https://github.com/elastic/eui/pull/5636))
+- Added `readOnly` prop to `EuiMarkdownEditor` ([#5627](https://github.com/elastic/eui/pull/5627))
+- Added support for supplying `breadcrumbs` and `breadcrumbProps` directly to `EuiPageHeader` ([#5634](https://github.com/elastic/eui/pull/5634))
+- Extended props of `EuiBreadcrumb` to include `HTMLElement` and `color` inherited from `EuiLink` ([#5634](https://github.com/elastic/eui/pull/5634))
+- Added `"xxl"` size to `EuiLoadingSpinner` ([#5668](https://github.com/elastic/eui/pull/5668))
+- Added `isLoading` prop to `EuiButtonIcon` ([#5668](https://github.com/elastic/eui/pull/5668))
+- Updated `EuiDataGrid` to allow setting individual cell `isExpandable` state via `setCellProps` ([#5667](https://github.com/elastic/eui/pull/5667))
+- Added the ability for `EuiSelectable` and `EuiSuggest` to accept controlled `value` props ([#5658](https://github.com/elastic/eui/pull/5658))
+- Added `textWrap` to `EuiSelectableListItem`, `EuiSelectableList`, and `EuiSelectable.listOptions` ([#5679](https://github.com/elastic/eui/issues/5679))
+- Forced `truncation` on `EuiSuggest` items when `isVirtualize` ([#5679](https://github.com/elastic/eui/issues/5679))
+- Changed proportion handling between content and image in `horizontal` `EuiEmptyPrompt` and added spacing between ([#5663](https://github.com/elastic/eui/pull/5663))
+- Reduced SASS compilation time using a different math `pow` implementation ([#5674](https://github.com/elastic/eui/pull/5674)) 
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` cell props not resetting on column sort ([#5665](https://github.com/elastic/eui/issues/5665))
+- Fixed `EuiDataGrid` not correctly closing cell popovers when the originating cell is clicked ([#5681](https://github.com/elastic/eui/pull/5681))
+- Fixed `EuiSuggest` not correctly passing props to the search input ([#5658](https://github.com/elastic/eui/pull/5658))
+- Fixed `EuiSelectable` incorrectly rendering the passed `id` prop on the listbox instead of the parent wrapper ([#5658](https://github.com/elastic/eui/pull/5658))
+- Fixed `EuiSelectable` to no longer call `searchProps.onChange` when list items are clicked ([#5658](https://github.com/elastic/eui/pull/5658))
+- Fixed `EuiSelectable` not respecting `searchProps.inputRef` ([#5658](https://github.com/elastic/eui/pull/5658))
+- Fixed render of `EuiSelectableListItem` when no icons are present ([#5679](https://github.com/elastic/eui/issues/5679))
+- Fixed render of `EuiSelectableTemplateSitewide` items when no icons are present ([#5679](https://github.com/elastic/eui/issues/5679))
+
+**Breaking changes**
+
+- Removed the `incremental` prop from `EuiSuggest` and `EuiSelectable`'s `searchProps` ([#5658](https://github.com/elastic/eui/pull/5658))
+- Removed `EuiSelectable`'s `searchProps.onSearch` prop (since Enter keypresses do not trigger a search callback) - use `searchProps.onChange` instead ([#5658](https://github.com/elastic/eui/pull/5658))
+- Renamed `EuiSuggest`'s `onInputChange` and `onSearchChange` callbacks to `onInput`/`onSearch` respectively, for consistency with our existing callback naming conventions ([#5658](https://github.com/elastic/eui/pull/5658))
+- Removed `EuiSuggest`'s `isLoading` prop - use `status.loading` instead ([#5658](https://github.com/elastic/eui/pull/5658))
+
+## [`49.0.0`](https://github.com/elastic/eui/tree/v49.0.0)
+
+- Added new `renderCellPopover` prop to `EuiDataGrid` ([#5640](https://github.com/elastic/eui/pull/5640))
+- Added cell `schema` info to `EuiDataGrid`'s `renderCellValue` props ([#5640](https://github.com/elastic/eui/pull/5640))
+- Added `isLoading` prop to `EuiDualRange` ([#5648](https://github.com/elastic/eui/pull/5648))
+- Added an `'all'` option to `EuiTablePagination.itemsPerPage` and `itemsPerPageOptions` to render a "Show all" option and updated `EuiBasicTable` and `EuiDataGrid` usages ([#5547](https://github.com/elastic/eui/issues/5547))
+
+**Bug fixes**
+
+- Fixed `EuiImage` images' width in small containers by adding `max-width: 100%` ([#5547](https://github.com/elastic/eui/issues/5547))
+- Fixed `EuiTablePagination` layout in small containers by adding `wrap` ([#5547](https://github.com/elastic/eui/issues/5547))
+- Fixed `EuiDataGrid` throwing a console error when grids without trailing control columns are sorted and then all columns are hidden ([#5635](https://github.com/elastic/eui/issues/5635))
+
+**Breaking changes**
+
+- Removed `popoverContents` props from `EuiDataGrid` (use new `renderCellPopover` instead) ([#5640](https://github.com/elastic/eui/pull/5640))
+- Changed the `EuiTablePagination` prop `hidePerPageOptions` to the positive form `showPerPageOptions` ([#5547](https://github.com/elastic/eui/issues/5547))
+
+## [`48.1.1`](https://github.com/elastic/eui/tree/v48.1.1)
+
+- Added a `data-test-subj` attribute to `EuiDataGrid` cell expansion buttons ([#5643](https://github.com/elastic/eui/pull/5643))
+- Added a `data-test-selected` attribute to `EuiSelectable` list options ([#5643](https://github.com/elastic/eui/pull/5643))
+
+## [`48.1.0`](https://github.com/elastic/eui/tree/v48.1.0)
+
+- Improved `EuiSelectable` keypress scenarios ([#5613](https://github.com/elastic/eui/pull/5613))
+- Converted `FieldValueSelectionFilter` in `EuiSearchBar` to use `EuiSelectable` ([#5387](https://github.com/elastic/eui/issues/5387))
+- Added `lineDashed`, `lineDotted`, and `lineSolid` glyphs to `EuiIcon` ([#5633](https://github.com/elastic/eui/pull/5633))
+- Updated `colorMode` return type in theme context utilities ([#5639](https://github.com/elastic/eui/issues/5639))
+
+## [`48.0.0`](https://github.com/elastic/eui/tree/v48.0.0)
+
+- Refactored `EuiSuggest` to use `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
+- Added a return type to `EuiTable` `resolveWidthAsStyle` util ([#5615](https://github.com/elastic/eui/pull/5615))
+- Added a return type to `euiSelectableTemplateSitewideFormatOptions` util ([#5620](https://github.com/elastic/eui/pull/5620))
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` to correctly remove the cell expansion action button when a column sets both `cellActions` and `isExpandable` to false ([#5592](https://github.com/elastic/eui/pull/5592))
+- Fixed `EuiDataGrid` re-playing the cell actions animation when hovering over an already-focused cell ([#5592](https://github.com/elastic/eui/pull/5592))
+- Fixed `EuiDataGrid` auto row heights bugging out when cell popovers are opened ([#5622](https://github.com/elastic/eui/pull/5622))
+
+**Breaking changes**
+
+- Removed `EuiSuggestInput` ([#5157](https://github.com/elastic/eui/pull/5157))
+- Required `aria-label` or `aria-labelledby` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
+- Renamed `sendValue` prop to `onSearchChange` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
+
+## [`47.0.0`](https://github.com/elastic/eui/tree/v47.0.0)
+
+- Added support for React 17 (this is a backwards compatible change - React 16.12+ is still supported for consuming applications) ([#5584](https://github.com/elastic/eui/pull/5584))
+- Added the ability to control internal `EuiDataGrid` fullscreen, cell focus, and cell popover state via the `ref` prop ([#5590](https://github.com/elastic/eui/pull/5590))
+- Added `paddingSize` prop to `EuiSelectableList` ([#5581](https://github.com/elastic/eui/pull/5581))
+- Added `errorMessage` prop to `EuiSelectable` ([#5581](https://github.com/elastic/eui/pull/5581))
+- Refactored `EuiSelectable` accessibility ([#5581](https://github.com/elastic/eui/pull/5581))
+- Updated `tokenTag` design to look more like a tag ([#5553](https://github.com/elastic/eui/pull/5553))
+- Lowered border radius of `.euiToken--square` to look more like a square ([#5553](https://github.com/elastic/eui/pull/5553))
+
+**Bug fixes**
+
+- Fixed `EuiInMemoryTable`'s `onTableChange` callback not returning the correct `sort.field` value on pagination ([#5588](https://github.com/elastic/eui/pull/5588))
+- Fixed `EuiFilePicker` allowing files to be removed when `disabled` ([#5603](https://github.com/elastic/eui/pull/5603))
+
+**Breaking changes**
+
+- Upgraded TypeScript version to ~4.5.3 ([#5591](https://github.com/elastic/eui/pull/5591))
+
+## [`46.2.0`](https://github.com/elastic/eui/tree/v46.2.0)
+
+- Updated `EuiDataGrid`s with scrolling content to always have a border around the grid body and any scrollbars ([#5563](https://github.com/elastic/eui/pull/5563))
+- Updated `EuiDataGrid`'s body to a light gray background, which primarily shows when scrolling through virtualized content ([#5562](https://github.com/elastic/eui/pull/5562))
+- Added referenceable `id` for the generated label in `EuiFormRow` ([#5574](https://github.com/elastic/eui/pull/5574))
+- Addeed optional attribute configurations in `EuiPopover` to aid screen reader announcements ([#5574](https://github.com/elastic/eui/pull/5574))
+- Added `ref` passthroughs to `EuiIputPopover` subcomponents ([#5574](https://github.com/elastic/eui/pull/5574))
+- Added `EuiScreenReaderLive` component for updateable `aria-live` regions ([#5567](https://github.com/elastic/eui/pull/5567))
+
+**Bug fixes**
+
+- Fixed an accessibility issue where `EuiComboBoxPill` close button had a nested interactive element ([#5560](https://github.com/elastic/eui/pull/5560))
+- Fixed EuiDataGrid height issue when in full-screen mode and with scrolling content ([#5557](https://github.com/elastic/eui/pull/5557))
+- Fixed an accessibility issue in custom and interactive Drag and Drop patterns ([#5568](https://github.com/elastic/eui/pull/5568))
+- Fixed a focus bug in `EuiDataGrid` when clicking another cell header with an already-open cell header popover ([#5556](https://github.com/elastic/eui/pull/5556))
+- Fixed `EuiDataGrid` to always focus back into the grid on pagination ([#5587](https://github.com/elastic/eui/pull/5587))
+- Fixed `EuiDataGrid` and `EuiTable` pagination potentially rendering out view on narrow tables with many pages ([#5561](https://github.com/elastic/eui/pull/5561))
+
+## [`46.1.1`](https://github.com/elastic/eui/tree/v46.1.1)
+
+**Note: this release is a backport containing changes originally made in `46.2.0`**
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` height issue when in full-screen mode and with scrolling content ([#5557](https://github.com/elastic/eui/pull/5557))
+- Fixed a focus bug in `EuiDataGrid` when clicking another cell header with an already-open cell header popover ([#5556](https://github.com/elastic/eui/pull/5556))
+- Fixed `EuiDataGrid` to always focus back into the grid on pagination ([#5587](https://github.com/elastic/eui/pull/5587))
+- Fixed `EuiDataGrid` and `EuiTable` pagination potentially rendering out view on narrow tables with many pages ([#5561](https://github.com/elastic/eui/pull/5561))
+
+## [`46.1.0`](https://github.com/elastic/eui/tree/v46.1.0)
+
+- Added `sun` glyph to `EuiIcon` ([#5548](https://github.com/elastic/eui/pull/5548))
+- Updated styles in `EuiDescriptionList` of `type` inline ([#5534](https://github.com/elastic/eui/pull/5534))
+
+## [`46.0.0`](https://github.com/elastic/eui/tree/v46.0.0)
+
+- **[Beta]** Added `optimize` build as a lighter weight option more suited to production environments ([#5527](https://github.com/elastic/eui/pull/5527))
+- Added `lettering` glyph to `EuiIcon` ([#5525](https://github.com/elastic/eui/pull/5525))
+- Updated the outline color in `euiCustomControlFocused` mixin to use `$euiFocusRingColor` instead of `currentColor` ([#5479](https://github.com/elastic/eui/pull/5479))
+- Added `betaBadgeTooltipProps` to `EuiKeyPadMenuItem` to extend the wrapping `EuiToolTip` ([#5541](https://github.com/elastic/eui/pull/5541))
+- Added `globalStyles` prop to `EuiProvider` to allow for global style customization ([#5497](https://github.com/elastic/eui/pull/5497))
+- Exported `EuiGlobalStyles` component ([#5497](https://github.com/elastic/eui/pull/5497))
+
+**Bug fixes**
+
+- Updated the outline color in `euiCustomControlFocused` mixin to use `$euiFocusRingColor` instead of `currentColor` ([#5479](https://github.com/elastic/eui/pull/5479))
+- Fixed keyboard navigation in `EuiDataGrid` not fully scrolling cells into view ([#5515](https://github.com/elastic/eui/pull/5515))
+- Fixed `EuiKeyPadMenuItem` accessibility issue where there was a nested focusable element ([#5541](https://github.com/elastic/eui/pull/5541))
+
+**Deprecations**
+
+- Deprecated `data-gridcell-id` from `EuiDataGrid` in favor of 4 new and more flexible props - `data-gridcell-column-id`, `data-gridcell-column-index`, `data-gridcell-row-index`, and `data-gridcell-visible-row-index` ([#5515](https://github.com/elastic/eui/pull/5515))
+
+**Breaking changes**
+
+- `EuiKeyPadMenuItem` now wraps itself with `EuiToolTip` when `betaBadgeLabel` is supplied forcing top element style props to be passed via `betaBadgeTooltipProps` ([#5541](https://github.com/elastic/eui/pull/5541))
+- Changed `data-gridcell-id` in `EuiDataGrid` to the inverse index order: `[columnIndex],[rowIndex]` ([#5515](https://github.com/elastic/eui/pull/5515))
+
+## [`45.0.0`](https://github.com/elastic/eui/tree/v45.0.0)
+
+- Added virtulized rendering option to `EuiSelectableList` with `isVirtualized` ([#5521](https://github.com/elastic/eui/pull/5521))
+- Added expanded option properties to `EuiSelectableOption` with `data` ([#5521](https://github.com/elastic/eui/pull/5521))
+
+**Bug fixes**
+
+- Fixed multiple bugs with `EuiDataGrid` keyboard focus restoration ([#5530](https://github.com/elastic/eui/pull/5530))
+- Fixed `EuiDataGrid`'s display toolbar control to update initial UI state when developer `gridStyle` or `rowHeightsOptions` props are updated ([#5525](https://github.com/elastic/eui/pull/5525))
+
+**Breaking changes**
+
+- Changed `EuiSearchBar` to preserve phrases with leading and trailing spaces, instead of dropping surrounding whitespace ([#5514](https://github.com/elastic/eui/pull/5514))
+- Removed `data-test-subj="dataGridWrapper"`  from `EuiDataGrid` in favor of `data-test-subj="euiDataGridBody"` ([#5506](https://github.com/elastic/eui/pull/5506))
+
+## [`44.0.0`](https://github.com/elastic/eui/tree/v44.0.0)
+
+**Bug fixes**
+
+- Fixed a `EuiDataGrid` sizing bug which didn't account for a horizontal scrollbar ([#5478](https://github.com/elastic/eui/pull/5478))
+- Fixed a `EuiDatePicker` a11y bug where axe-core reported missing ARIA and role attributes ([#5501](https://github.com/elastic/eui/pull/5501))
+- Fixed `EuiModalHeaderTitle` to conditionally wrap title strings in an H1 ([#5494](https://github.com/elastic/eui/pull/5494))
+- Fixed a `EuiDataGrid` issue where a focused cell would lose focus when scrolled out of and back into view ([#5488](https://github.com/elastic/eui/pull/5488))
+- Fixed an `EuiDatePicker` accessibility issue where `tabindex` was not applied to a listbox element ([#5509](https://github.com/elastic/eui/pull/5509))
+
+**Deprecations**
+
+- Deprecated `PartitionConfig` in favor of inclusion in Charts `theme.partition` ([#5492](https://github.com/elastic/eui/pull/5492))
+
+**Breaking changes**
+
+- Removed `popoverClassName` and `repositionOnScroll` props from `EuiSuperSelect` (use `popoverProps` instead) ([#5512](https://github.com/elastic/eui/pull/5512))
+
+## [`43.1.1`](https://github.com/elastic/eui/tree/v43.1.1)
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid`'s cell popover overlapping with modals and flyouts ([#5461](https://github.com/elastic/eui/pull/5461))
+- Fixed an accessibility issue where `EuiDatePicker` time options did not have unique IDs ([#5466](https://github.com/elastic/eui/pull/5466))
+- Fixed global and reset styles when using the legacy theme ([#5473](https://github.com/elastic/eui/pull/5473))
+- Fixed `EuiSuperDatePicker` not passing `isDisabled` to `EuiAutoRefresh` ([#5472](https://github.com/elastic/eui/pull/5472))
+
+## [`43.1.0`](https://github.com/elastic/eui/tree/v43.1.0)
+
+- Added `magnifyWithExclamation` icon ([#5455](https://github.com/elastic/eui/pull/5455))
+
+**Bug fixes**
+
+- Reinstated `EuiCode` and `EuiCodeBlock` `testenv` mocking ([#5464](https://github.com/elastic/eui/pull/5464))
+
+## [`43.0.0`](https://github.com/elastic/eui/tree/v43.0.0)
+
 - Updated the organization of `EuiDataGrid`'s toolbar/grid controls ([#5334](https://github.com/elastic/eui/pull/5334))
-- Added the ability for users to configure `EuiDataGrid`'s default row heights ([#5372](https://github.com/elastic/eui/pull/5372))
+- Updated `EuiDataGrid`'s full screen mode to use the `fullScreenExit` icon ([#5415](https://github.com/elastic/eui/pull/5415))
+- Added `left.append` and `left.prepend` to `EuiDataGrid`'s `toolbarVisibility.additionalControls` prop [#5394](https://github.com/elastic/eui/pull/5394))
+- Added a row height control to `EuiDataGrid`'s toolbar ([#5372](https://github.com/elastic/eui/pull/5372))
+- Added `onChange` callbacks to `EuiDataGrid`'s `gridStyle` and `rowHeightOptions` settings ([#5424](https://github.com/elastic/eui/pull/5424))
+- Added a reset button to `EuiDataGrid`'s display controls ([#5428](https://github.com/elastic/eui/pull/5428))
+- Added `timeRefresh` icon ([#5383](https://github.com/elastic/eui/pull/5383))
+- Added `responsive` and `iconOnly` props to `EuiSuperUpdateButton`  ([#5383](https://github.com/elastic/eui/pull/5383))
+- Added better auto refresh indicator to `EuiSuperDatePicker` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Added `compressed`, `width`, `isQuickSelectOnly` props to `EuiSuperDatePicker` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Updated `showUpdateButton` prop with `iconOnly` option in `EuiSuperDatePicker` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Increased default `refreshInterval` of `EuiSuperDatePicker` to `1000` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Remove `Show dates` button from pretty format of `EuiSuperDatePicker` in favor of directly opening `start` date popover ([#5383](https://github.com/elastic/eui/pull/5383))
+- Added `shortHand` option to `prettyInterval` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Moved `rounding` switch to popover footer in relative tab of `EuiSuperDatePicker` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Simplified `EuiRefreshInterval` to use a switch to start/stop and other visual touch ups ([#5383](https://github.com/elastic/eui/pull/5383))
+- Created stand alone `EuiAutoRefresh` and `EuiAutoRefreshButton` components ([#5383](https://github.com/elastic/eui/pull/5383))
 
 **Bug fixes**
 
 - Fixed persistent `EuiDataGrid` full screen `<body>` class ([#5354](https://github.com/elastic/eui/pull/5354))
+- Fixed dark mode background color of `EuiFormControlLayout` `prepend` and `append` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Fixed background color of `EuiFormControlLayout` when `readOnly` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Fixed the name of `data-test-subj` prop of `EuiFormControlLayout` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Fixed global reset styles for plain `<button>`s ([#5452](https://github.com/elastic/eui/pull/5452))
 
 **Breaking changes**
 
-- Removed `toolbarVisibility`'s `showStyleSelector` prop of `EuiDataGrid` in favor of `showDisplaySelector`, which allows users to configure both grid density and row height ([#5372](https://github.com/elastic/eui/pull/5372))
+- Removed `toolbarVisibility`'s `showStyleSelector` prop of `EuiDataGrid` in favor of `showDisplaySelector`, which allows configuration of both grid density and row height ([#5372](https://github.com/elastic/eui/pull/5372))
+- Changed prop name `applyRefreshInterval` to `onRefreshChange` in `EuiRefreshInterval` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Increased the size of `s`-sized `EuiLoadingSpinner`s to match `s`-sized `EuiIcon`s ([#5440](https://github.com/elastic/eui/pull/5440))
 
-## END FEATURE BRANCH
+## [`42.1.0`](https://github.com/elastic/eui/tree/v42.1.0)
+
+- Added first and last page arrow buttons to `EuiPagination` when `compressed=true` ([#5362](https://github.com/elastic/eui/pull/5362))
+- Added support for indeterminate `EuiPagination` when `pageCount=0` ([#5362](https://github.com/elastic/eui/pull/5362))
+- Moved mobile behavior to a customizable `responsive` prop to `EuiPagination` that renders the `compressed` display ([#5362](https://github.com/elastic/eui/pull/5362))
+- Added `doubleArrowLeft`, `doubleArrowRight`, `arrowStart`, `arrowEnd` icons ([#5362](https://github.com/elastic/eui/pull/5362))
+
+**Bug fixes**
+
+- Fixed scrollbars in `EuiRange` tick labels in Safari ([#5427](https://github.com/elastic/eui/pull/5427))
+- Fixed an `EuiOverlayMask` bug where it calls window.document on server side([#5422](https://github.com/elastic/eui/pull/5422))
+- Fixed unremoved event listener memory leak in `EuiPopover` ([#5437](https://github.com/elastic/eui/pull/5437))
+- Fixed `EuiDatePicker` not correctly handling the `onBlur` callback ([#5441](https://github.com/elastic/eui/pull/5441))
+- Fixed `EuiToolTip` not correctly handling child `onBlur` and `onFocus` callbacks ([#5441](https://github.com/elastic/eui/pull/5441))
+
+## [`42.0.0`](https://github.com/elastic/eui/tree/v42.0.0)
+
+### Feature: CSS-in-JS ([#5121](https://github.com/elastic/eui/pull/5121))
+
+- Added reset and global styles via CSS-in-JS with `@emotion/react/Global`
+- Added `EuiProvider`, a React context provider for theming and global styles
+- Added `isDefaultTheme` and `isLegacyTheme` utilities
+
+**Breaking changes**
+
+- Added `@emotion/react` to `peerDependencies`
+- Amsterdam is now the default theme, deprecated and renamed old theme as "legacy"
+- Re-organized Sass files including where the `globals` are imported from
+
+## [`41.4.0`](https://github.com/elastic/eui/tree/v41.4.0)
+
+- Added `payment` glyph to `EuiIcon` ([#5414](https://github.com/elastic/eui/pull/5414))
+- Updated `EuiCodeBlock`'s full screen mode to use the `fullScreenExit` icon ([#5421](https://github.com/elastic/eui/pull/5421))
+
+**Bug fixes**
+
+- Fixed an `EuiCodeBlock` bug where empty code blocks could be copyable ([#5421](https://github.com/elastic/eui/pull/5421))
+- Fixed an accessibility issue in `EuiAvatar` by adding a meaningful role ([#5423](https://github.com/elastic/eui/pull/5423))
+
+## [`41.3.0`](https://github.com/elastic/eui/tree/v41.3.0)
+
+- Updated color of `EuiHorizontalRule` when rendered inside `EuiToolTip` ([#5378](https://github.com/elastic/eui/pull/5378))
+
+**Bug fixes**
+
+- Fixed an `EuiDataGrid` bug where paginated overflowing data grids could become unscrollable when `rowCount` changed ([#5400](https://github.com/elastic/eui/pull/5400))
+- Fixed `EuiCode` line-wrapping ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed `EuiCodeBlock` not passing `data-test-subj` or `aria-label` to virtualized & full-screen code blocks ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed `EuiCodeBlock` not closing full-screen mode when the Escape key is pressed ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed virtualized `EuiCodeBlock`s blanking out when entering & exiting full-screen mode ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed `EuiCodeBlock`'s full-screen mode to use a large font and padding size & added several missing wrapper classes ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed `EuiCodeBlock` broken line wrapping when using virtualization ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed type exports to not include test mocks & specs ([#5412](https://github.com/elastic/eui/pull/5412))
+
+**Theme: Amsterdam**
+
+- Fixed `EuiCodeBlock` not properly increasing large font sizes on Amsterdam ([#5379](https://github.com/elastic/eui/pull/5379))
+
+## [`41.2.3`](https://github.com/elastic/eui/tree/v41.2.3)
+
+**Note: this release is a backport containing changes originally made in `42.1.0`**
+
+**Bug fixes**
+
+- Fixed `EuiDatePicker` not correctly handling the `onBlur` callback ([#5441](https://github.com/elastic/eui/pull/5441))
+- Fixed `EuiToolTip` not correctly handling child `onBlur` and `onFocus` callbacks ([#5441](https://github.com/elastic/eui/pull/5441))
+
+## [`41.2.2`](https://github.com/elastic/eui/tree/v41.2.2)
+
+**Bug fixes**
+
+- Fixed type exports to not include test mocks & specs ([#5412](https://github.com/elastic/eui/pull/5412))
+
+**Note: this release is a backport containing changes originally made in `41.3.0`**
+
+## [`41.2.1`](https://github.com/elastic/eui/tree/v41.2.1)
+
+**Bug fixes**
+
+- Refactored definition of `isNamedColor` function so it isn't mocked away by the testenv configuration ([#5397](https://github.com/elastic/eui/pull/5397))
+
+**Note: this release is a backport containing changes originally made in `14.6.0` and `14.7.0`**
 
 ## [`41.2.0`](https://github.com/elastic/eui/tree/v41.2.0)
 
@@ -65,6 +404,14 @@
 - Removed mobile-only props from `EuiTableRowCell` ([#5323](https://github.com/elastic/eui/pull/5323))
 - Removed Sass vars `$euiColorSecondary` and `$euiColorSecondaryText` ([#5345](https://github.com/elastic/eui/pull/5345))
 
+## [`40.1.1`](https://github.com/elastic/eui/tree/v40.1.0)
+
+**Note: this release is a backport containing changes originally made after `42.0.0`**
+
+**Bug fixes**
+
+- Fixed unremoved event listener memory leak in `EuiPopover` ([#5437](https://github.com/elastic/eui/pull/5437))
+
 ## [`40.1.0`](https://github.com/elastic/eui/tree/v40.1.0)
 
 - Added styling support for `valign` prop on `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283))
@@ -95,6 +442,22 @@
 **Breaking changes**
 
 - Renamed `tokenKeyword` icon to `tokenTag` in `EuiToken` ([#5251](https://github.com/elastic/eui/pull/5251))
+
+## [`39.1.4`](https://github.com/elastic/eui/tree/v39.1.4)
+
+**Note: this release is a backport containing changes originally made in `44.0.0`**
+
+**Deprecations**
+
+- Deprecated `PartitionConfig` in favor of inclusion in Charts `theme.partition` ([#5492](https://github.com/elastic/eui/pull/5492)).
+
+## [`39.1.3`](https://github.com/elastic/eui/tree/v39.1.2)
+
+**Note: this release is a backport containing changes originally made after `42.0.0`**
+
+**Bug fixes**
+
+- Fixed unremoved event listener memory leak in `EuiPopover` ([#5437](https://github.com/elastic/eui/pull/5437))
 
 ## [`39.1.2`](https://github.com/elastic/eui/tree/v39.1.2)
 
@@ -245,7 +608,7 @@
 
 ## [`37.5.0`](https://github.com/elastic/eui/tree/v37.5.0)
 
-### Feature: Emotion ([#4511](https://github.com/elastic/eui/pull/4511))
+### Feature: CSS-in-JS ([#4511](https://github.com/elastic/eui/pull/4511))
 
 - Added `EuiThemeProvider`, a React context provider for theme values and color mode selection
 - Added `useEuiTheme` React hook, and `withEuiTheme` React HOC for consuming the EuiTheme

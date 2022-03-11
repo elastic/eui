@@ -172,7 +172,7 @@ export interface Criteria<T> {
    */
   sort?: {
     field: keyof T;
-    direction: Direction;
+    direction: 'asc' | 'desc';
   };
 }
 
@@ -657,6 +657,13 @@ export class EuiBasicTable<T = any> extends Component<
 
   renderTableCaption() {
     const { items, pagination, tableCaption } = this.props;
+    const itemCount = items.length;
+    const totalItemCount = pagination ? pagination.totalItemCount : itemCount;
+    const page = pagination ? pagination.pageIndex + 1 : 1;
+    const pageCount = pagination?.pageSize
+      ? Math.ceil(pagination.totalItemCount / pagination.pageSize)
+      : 1;
+
     let captionElement;
     if (tableCaption) {
       if (pagination) {
@@ -664,13 +671,7 @@ export class EuiBasicTable<T = any> extends Component<
           <EuiI18n
             token="euiBasicTable.tableCaptionWithPagination"
             default="{tableCaption}; Page {page} of {pageCount}."
-            values={{
-              tableCaption,
-              page: pagination.pageIndex + 1,
-              pageCount: Math.ceil(
-                pagination.totalItemCount / pagination.pageSize
-              ),
-            }}
+            values={{ tableCaption, page, pageCount }}
           />
         );
       } else {
@@ -683,14 +684,7 @@ export class EuiBasicTable<T = any> extends Component<
             <EuiI18n
               token="euiBasicTable.tableAutoCaptionWithPagination"
               default="This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
-              values={{
-                totalItemCount: pagination.totalItemCount,
-                itemCount: items.length,
-                page: pagination.pageIndex + 1,
-                pageCount: Math.ceil(
-                  pagination.totalItemCount / pagination.pageSize
-                ),
-              }}
+              values={{ totalItemCount, itemCount, page, pageCount }}
             />
           );
         } else {
@@ -698,13 +692,7 @@ export class EuiBasicTable<T = any> extends Component<
             <EuiI18n
               token="euiBasicTable.tableSimpleAutoCaptionWithPagination"
               default="This table contains {itemCount} rows; Page {page} of {pageCount}."
-              values={{
-                itemCount: items.length,
-                page: pagination.pageIndex + 1,
-                pageCount: Math.ceil(
-                  pagination.totalItemCount / pagination.pageSize
-                ),
-              }}
+              values={{ itemCount, page, pageCount }}
             />
           );
         }
@@ -713,9 +701,7 @@ export class EuiBasicTable<T = any> extends Component<
           <EuiI18n
             token="euiBasicTable.tableAutoCaptionWithoutPagination"
             default="This table contains {itemCount} rows."
-            values={{
-              itemCount: items.length,
-            }}
+            values={{ itemCount }}
           />
         );
       }
@@ -961,10 +947,11 @@ export class EuiBasicTable<T = any> extends Component<
 
     const rows = items.map((item: T, index: number) => {
       // if there's pagination the item's index must be adjusted to the where it is in the whole dataset
-      const tableItemIndex = hasPagination(this.props)
-        ? this.props.pagination.pageIndex * this.props.pagination.pageSize +
-          index
-        : index;
+      const tableItemIndex =
+        hasPagination(this.props) && this.props.pagination.pageSize > 0
+          ? this.props.pagination.pageIndex * this.props.pagination.pageSize +
+            index
+          : index;
       return this.renderItemRow(item, tableItemIndex);
     });
     return <EuiTableBody bodyRef={this.setTbody}>{rows}</EuiTableBody>;

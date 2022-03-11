@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react';
 
-import { GuideSectionTypes } from '../../../components';
+import { GuideSectionTypes } from '../../components';
 import {
   EuiDataGrid,
   EuiCallOut,
   EuiCode,
   EuiText,
   EuiSpacer,
-} from '../../../../../src/components';
+} from '../../../../src/components';
 
 import InMemoryDataGrid from './in_memory';
 const inMemoryDataGridSource = require('!!raw-loader!./in_memory');
@@ -29,13 +29,12 @@ import {
   EuiDataGridStyle,
   EuiDataGridToolBarVisibilityOptions,
   EuiDataGridColumnVisibility,
-} from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
-
-import { EuiDataGridCellValueElementProps } from '!!prop-loader!../../../../../src/components/datagrid/body/data_grid_cell';
-import { EuiDataGridSchemaDetector } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_schema';
+  EuiDataGridCellValueElementProps,
+  EuiDataGridSchemaDetector,
+} from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
 
 export const DataGridMemoryExample = {
-  title: 'Data grid in-memory',
+  title: 'Data grid in-memory settings',
   intro: (
     <Fragment>
       <EuiCallOut title="What is the difference in the examples?">
@@ -126,6 +125,7 @@ export const DataGridMemoryExample = {
         EuiDataGridStyle,
         EuiDataGridToolBarVisibilityOptions,
       },
+      components: { InMemoryDataGrid },
       demo: <InMemoryDataGrid />,
     },
     {
@@ -159,6 +159,7 @@ export const DataGridMemoryExample = {
         EuiDataGridStyle,
         EuiDataGridToolBarVisibilityOptions,
       },
+      components: { InMemoryEnhancementsDataGrid },
       demo: <InMemoryEnhancementsDataGrid />,
     },
     {
@@ -191,6 +192,7 @@ export const DataGridMemoryExample = {
         EuiDataGridStyle,
         EuiDataGridToolBarVisibilityOptions,
       },
+      components: { InMemoryPaginationDataGrid },
       demo: <InMemoryPaginationDataGrid />,
     },
     {
@@ -222,6 +224,7 @@ export const DataGridMemoryExample = {
         EuiDataGridStyle,
         EuiDataGridToolBarVisibilityOptions,
       },
+      components: { InMemorySortingDataGrid },
       demo: <InMemorySortingDataGrid />,
     },
   ],

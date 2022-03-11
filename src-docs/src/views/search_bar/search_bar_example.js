@@ -1,6 +1,4 @@
 import React from 'react';
-
-import { renderToHtml } from '../../services';
 import { propsInfo } from './props_info';
 
 import { GuideRuleTitle, GuideSectionTypes } from '../../components';
@@ -12,13 +10,10 @@ import { ControlledSearchBar } from './controlled_search_bar';
 import { SearchBarFilters } from './search_bar_filters';
 
 const searchBarSource = require('!!raw-loader!./search_bar');
-const searchBarHtml = renderToHtml(SearchBar);
 
 const controlledSearchBarSource = require('!!raw-loader!./controlled_search_bar');
-const controlledSearchBarHtml = renderToHtml(ControlledSearchBar);
 
 const searchBarFiltersSource = require('!!raw-loader!./search_bar_filters');
-const searchBarFiltersHtml = renderToHtml(SearchBarFilters);
 
 export const SearchBarExample = {
   title: 'Search bar',
@@ -28,10 +23,6 @@ export const SearchBarExample = {
         {
           type: GuideSectionTypes.JS,
           code: searchBarSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: searchBarHtml,
         },
       ],
       text: (
@@ -224,10 +215,6 @@ export const SearchBarExample = {
           type: GuideSectionTypes.JS,
           code: controlledSearchBarSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: controlledSearchBarHtml,
-        },
       ],
       text: (
         <div>
@@ -248,10 +235,6 @@ export const SearchBarExample = {
         {
           type: GuideSectionTypes.JS,
           code: searchBarFiltersSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: searchBarFiltersHtml,
         },
       ],
       text: (

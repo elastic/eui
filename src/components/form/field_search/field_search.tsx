@@ -80,9 +80,7 @@ export class EuiFieldSearch extends Component<
   };
 
   state = {
-    value:
-      this.props.value ||
-      (this.props.defaultValue ? `${this.props.defaultValue}` : ''),
+    value: this.props.value || String(this.props.defaultValue || ''),
   };
 
   inputElement: HTMLInputElement | null = null;
@@ -247,7 +245,7 @@ export class EuiFieldSearch extends Component<
         isLoading={isLoading}
         clear={
           isClearable && value && !rest.readOnly && !rest.disabled
-            ? { onClick: this.onClear }
+            ? { onClick: this.onClear, 'data-test-subj': 'clearSearchButton' }
             : undefined
         }
         compressed={compressed}

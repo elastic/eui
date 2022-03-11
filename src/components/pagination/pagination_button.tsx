@@ -19,7 +19,6 @@ export type EuiPaginationButtonProps = EuiButtonEmptyProps & {
    * For ellipsis or other non-clickable buttons.
    */
   isPlaceholder?: boolean;
-  hideOnMobile?: boolean;
   pageIndex: number;
   totalPages?: number;
 };
@@ -41,7 +40,6 @@ export const EuiPaginationButton: FunctionComponent<Props> = ({
   className,
   isActive,
   isPlaceholder,
-  hideOnMobile,
   pageIndex,
   totalPages,
   ...rest
@@ -49,7 +47,6 @@ export const EuiPaginationButton: FunctionComponent<Props> = ({
   const classes = classNames('euiPaginationButton', className, {
     'euiPaginationButton-isActive': isActive,
     'euiPaginationButton-isPlaceholder': isPlaceholder,
-    'euiPaginationButton--hideOnMobile': hideOnMobile,
   });
 
   const props = {

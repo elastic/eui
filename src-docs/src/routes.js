@@ -1,24 +1,30 @@
 import React, { createElement, Fragment } from 'react';
+
 import { slugify } from '../../src/services';
 
 import { createHashHistory } from 'history';
 
 import { GuidePage, GuideSection, GuideMarkdownFormat } from './components';
 
+import { GuideTabbedPage } from './components/guide_tabbed_page';
+
 import { EuiErrorBoundary } from '../../src/components';
 
 import { playgroundCreator } from './services/playground';
 
 // Guidelines
-const GettingStarted = require('!!raw-loader!./views/guidelines/getting_started.md');
+import { GettingStarted } from './views/guidelines/getting_started/getting_started';
 
 import AccessibilityGuidelines from './views/guidelines/accessibility';
 
-import ColorGuidelines from './views/guidelines/colors';
-
-import { SassGuidelines } from './views/guidelines/sass';
-
-import WritingGuidelines from './views/guidelines/writing';
+import {
+  WritingGuidelines,
+  writingGuidelinesSections,
+} from './views/guidelines/writing_guidelines';
+import {
+  WritingExamples,
+  writingExamplesSections,
+} from './views/guidelines/writing_examples';
 
 // Services
 
@@ -37,6 +43,8 @@ import { AccessibilityExample } from './views/accessibility/accessibility_exampl
 import { AccordionExample } from './views/accordion/accordion_example';
 
 import { AspectRatioExample } from './views/aspect_ratio/aspect_ratio_example';
+
+import { AutoRefreshExample } from './views/auto_refresh/auto_refresh_example';
 
 import { AutoSizerExample } from './views/auto_sizer/auto_sizer_example';
 
@@ -78,6 +86,13 @@ import { DataGridToolbarExample } from './views/datagrid/datagrid_toolbar_exampl
 import { DataGridColumnsExample } from './views/datagrid/columns_cells/datagrid_columns_example';
 import { DataGridStylingExample } from './views/datagrid/datagrid_styling_example';
 import { DataGridMemoryExample } from './views/datagrid/in-memory/datagrid_memory_example';
+import { DataGridCellPopoverExample } from './views/datagrid/datagrid_cell_popover_example';
+import { DataGridFocusExample } from './views/datagrid/datagrid_focus_example';
+import { DataGridControlColumnsExample } from './views/datagrid/datagrid_controlcolumns_example';
+import { DataGridFooterRowExample } from './views/datagrid/datagrid_footer_row_example';
+import { DataGridVirtualizationExample } from './views/datagrid/datagrid_virtualization_example';
+import { DataGridRowHeightOptionsExample } from './views/datagrid/datagrid_height_options_example';
+import { DataGridRefExample } from './views/datagrid/datagrid_ref_example';
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
@@ -104,6 +119,8 @@ import { FlyoutExample } from './views/flyout/flyout_example';
 import { FocusTrapExample } from './views/focus_trap/focus_trap_example';
 
 import { FormControlsExample } from './views/form_controls/form_controls_example';
+
+import { SelectionControlsExample } from './views/selection_controls/selection_controls_example';
 
 import { FormLayoutsExample } from './views/form_layouts/form_layouts_example';
 
@@ -167,6 +184,8 @@ import { PortalExample } from './views/portal/portal_example';
 
 import { ProgressExample } from './views/progress/progress_example';
 
+import { ProviderExample } from './views/provider/provider_example';
+
 import { RangeControlExample } from './views/range/range_example';
 
 import { TreeViewExample } from './views/tree_view/tree_view_example';
@@ -220,14 +239,16 @@ import { I18nTokens } from './views/package/i18n_tokens';
 import { SuperSelectExample } from './views/super_select/super_select_example';
 
 import { ThemeExample } from './views/theme/theme_example';
-import ThemeValues from './views/theme/values';
+import { ColorModeExample } from './views/theme/color_mode/color_mode_example';
+import Breakpoints from './views/theme/breakpoints/breakpoints';
+import Borders, { bordersSections } from './views/theme/borders/borders';
+import Color, { colorsSections } from './views/theme/color/colors';
+import Sizing, { sizingSections } from './views/theme/sizing/sizing';
 import Typography, {
   typographySections,
 } from './views/theme/typography/typography';
-import Sizing, { sizingSections } from './views/theme/sizing/sizing';
-import Breakpoints from './views/theme/breakpoints/breakpoints';
-import Borders, { bordersSections } from './views/theme/borders/borders';
 import Other, { otherSections } from './views/theme/other/other';
+import ThemeValues from './views/theme/customizing/values';
 
 /** Elastic Charts */
 
@@ -305,8 +326,45 @@ const createExample = (example, customTitle) => {
   };
 };
 
-const createMarkdownExample = (example, title) => {
-  const headings = example.default.match(/^(##) (.*)/gm);
+const createTabbedPage = ({
+  title,
+  pages,
+  isNew,
+  description,
+  showThemeLanguageToggle,
+  notice,
+  isBeta,
+}) => {
+  const component = () => (
+    <GuideTabbedPage
+      title={title}
+      pages={pages}
+      description={description}
+      showThemeLanguageToggle={showThemeLanguageToggle}
+      notice={notice}
+      isBeta={isBeta}
+    />
+  );
+
+  const pagesSections = pages.map((page, index) => {
+    return {
+      id: slugify(page.title),
+      title: page.title,
+      sections: pages[index].sections,
+    };
+  });
+
+  return {
+    name: title,
+    component,
+    sections: pagesSections,
+    isNew,
+  };
+};
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const createMarkdownExample = (file, name, intro) => {
+  const headings = file.default.match(/^(##) (.*)/gm);
 
   const sections = headings.map((heading) => {
     const title = heading.replace('## ', '');
@@ -315,12 +373,10 @@ const createMarkdownExample = (example, title) => {
   });
 
   return {
-    name: title,
+    name,
     component: () => (
-      <GuidePage title={title}>
-        <GuideMarkdownFormat grow={false}>
-          {example.default}
-        </GuideMarkdownFormat>
+      <GuidePage title={name}>
+        <GuideMarkdownFormat grow={false}>{file.default}</GuideMarkdownFormat>
       </GuidePage>
     ),
     sections: sections,
@@ -331,24 +387,30 @@ const navigation = [
   {
     name: 'Guidelines',
     items: [
-      createMarkdownExample(GettingStarted, 'Getting started'),
+      createExample(GettingStarted, 'Getting started'),
       createExample(AccessibilityGuidelines, 'Accessibility'),
-      {
-        name: 'Colors',
-        component: ColorGuidelines,
-      },
-      createExample(WritingGuidelines, 'Writing'),
+      createTabbedPage({
+        title: 'Writing',
+        pages: [
+          {
+            title: 'Guidelines',
+            page: WritingGuidelines,
+            sections: writingGuidelinesSections,
+          },
+          {
+            title: 'Examples',
+            page: WritingExamples,
+            sections: writingExamplesSections,
+          },
+        ],
+      }),
     ],
   },
   {
     name: 'Theming',
     items: [
       createExample(ThemeExample, 'Theme provider'),
-      {
-        name: 'Global values',
-        component: ThemeValues,
-        isNew: true,
-      },
+      createExample(ColorModeExample),
       {
         name: 'Breakpoints',
         component: Breakpoints,
@@ -357,6 +419,11 @@ const navigation = [
         name: 'Borders',
         component: Borders,
         sections: bordersSections,
+      },
+      {
+        name: 'Colors',
+        component: Color,
+        sections: colorsSections,
       },
       {
         name: 'Sizing',
@@ -373,7 +440,10 @@ const navigation = [
         component: Other,
         sections: otherSections,
       },
-      createExample(SassGuidelines, 'Sass'),
+      {
+        name: 'Customizing themes',
+        component: ThemeValues,
+      },
     ],
   },
   {
@@ -421,6 +491,14 @@ const navigation = [
       DataGridColumnsExample,
       DataGridStylingExample,
       DataGridMemoryExample,
+      DataGridCellPopoverExample,
+      DataGridFocusExample,
+      DataGridStylingExample,
+      DataGridControlColumnsExample,
+      DataGridFooterRowExample,
+      DataGridVirtualizationExample,
+      DataGridRowHeightOptionsExample,
+      DataGridRefExample,
       TableExample,
       TableInMemoryExample,
     ].map((example) => createExample(example)),
@@ -456,10 +534,11 @@ const navigation = [
     name: 'Forms',
     items: [
       FormControlsExample,
+      SelectionControlsExample,
       FormLayoutsExample,
       FormCompressedExample,
       FormValidationExample,
-      SuperSelectExample,
+      AutoRefreshExample,
       ComboBoxExample,
       ColorPickerExample,
       DatePickerExample,
@@ -470,6 +549,7 @@ const navigation = [
       SelectableExample,
       SuggestExample,
       SuperDatePickerExample,
+      SuperSelectExample,
     ].map((example) => createExample(example)),
   },
   {
@@ -514,6 +594,7 @@ const navigation = [
       OverlayMaskExample,
       PortalExample,
       PrettyDurationExample,
+      ProviderExample,
       ResizeObserverExample,
       ResponsiveExample,
       TextDiffExample,
@@ -527,20 +608,23 @@ const navigation = [
 ].map(({ name, items, ...rest }) => ({
   name,
   type: slugify(name),
-  items: items.map(({ name: itemName, hasGuidelines, ...rest }) => {
-    const item = {
-      name: itemName,
-      path: `${slugify(name)}/${slugify(itemName)}`,
-      ...rest,
-    };
+  items: items.map(
+    ({ name: itemName, hasGuidelines, isTabbedPage, sections, ...rest }) => {
+      const item = {
+        name: itemName,
+        path: `${slugify(name)}/${slugify(itemName)}`,
+        sections,
+        ...rest,
+      };
 
-    if (hasGuidelines) {
-      item.from = `guidelines/${slugify(itemName)}`;
-      item.to = `${slugify(name)}/${slugify(itemName)}/guidelines`;
+      if (hasGuidelines) {
+        item.from = `guidelines/${slugify(itemName)}`;
+        item.to = `${slugify(name)}/${slugify(itemName)}/guidelines`;
+      }
+
+      return item;
     }
-
-    return item;
-  }),
+  ),
   ...rest,
 }));
 

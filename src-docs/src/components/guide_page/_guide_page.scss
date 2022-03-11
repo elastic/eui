@@ -22,7 +22,7 @@ $guideSideNavWidth: 240px;
   }
 
   .euiHeader:not(.euiHeader--fixed) {
-    // Force headers below the full screen.
+    // Force headers below the fullscreen.
     // This shouldn't be necessary in consuming applications because headers should always be at the top of the page
     z-index: 0;
   }
@@ -63,8 +63,8 @@ $guideSideNavWidth: 240px;
   }
 }
 
-.guideSideNav__item--inSearch {
-  color: $euiColorDarkShade;
+.euiSideNavItem--trunk > .euiSideNavItemButton .guideSideNav__item--inSearch .euiMark {
+  color: $euiColorPrimary;
 }
 
 

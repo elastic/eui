@@ -15,17 +15,30 @@ export const makeRowManager = (
   const rowIdToElements = new Map<number, HTMLDivElement>();
 
   return {
-    getRow(rowIndex) {
+    getRow({ rowIndex, visibleRowIndex, top, height }) {
       let rowElement = rowIdToElements.get(rowIndex);
 
       if (rowElement == null) {
         rowElement = document.createElement('div');
         rowElement.setAttribute('role', 'row');
+        rowElement.dataset.gridRowIndex = String(rowIndex); // Row index from data, affected by sorting/pagination
+        rowElement.dataset.gridVisibleRowIndex = String(visibleRowIndex); // Affected by sorting/pagination
         rowElement.classList.add('euiDataGridRow');
-        rowIdToElements.set(rowIndex, rowElement);
+        const isOddRow = visibleRowIndex % 2 !== 0;
+        if (isOddRow) rowElement.classList.add('euiDataGridRow--striped');
+        rowElement.style.position = 'absolute';
+        rowElement.style.left = '0';
+        rowElement.style.right = '0';
+
+        // In order for the rowElement's left and right position to correctly inherit
+        // from the innerGrid width, we need to make its position relative
+        containerRef.current!.style.position = 'relative';
 
         // add the element to the wrapping container
-        containerRef.current?.appendChild(rowElement);
+        containerRef.current!.appendChild(rowElement);
+
+        // add the element to the row map
+        rowIdToElements.set(rowIndex, rowElement);
 
         // watch the row's children, if they all disappear then remove this row
         const observer = new MutationObserver((records) => {
@@ -37,6 +50,10 @@ export const makeRowManager = (
         });
         observer.observe(rowElement, { childList: true });
       }
+
+      // Ensure that the row's dimensions are always correct by having each cell update position styles
+      rowElement.style.top = top;
+      rowElement.style.height = `${height}px`;
 
       return rowElement;
     },

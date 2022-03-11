@@ -2,6 +2,7 @@
   "rootDir": "../../",
   "roots": [
     "<rootDir>/src/",
+    "<rootDir>/src-docs/src/components",
     "<rootDir>/scripts/babel",
     "<rootDir>/packages/eslint-plugin"
   ],
@@ -46,6 +47,7 @@
     "^.+\\.(js|tsx?)$": "babel-jest"
   },
   "snapshotSerializers": [
-    "<rootDir>/node_modules/enzyme-to-json/serializer"
+    "<rootDir>/node_modules/enzyme-to-json/serializer",
+    "@emotion/jest/enzyme-serializer"
   ]
 }

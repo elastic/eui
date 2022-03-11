@@ -6,6 +6,9 @@
  * Side Public License, v 1.
  */
 
-export { EuiText, EuiTextProps } from './text';
-export { EuiTextColor, EuiTextColorProps } from './text_color';
-export { EuiTextAlign, EuiTextAlignProps } from './text_align';
+export type { EuiTextProps } from './text';
+export { EuiText } from './text';
+export type { EuiTextColorProps } from './text_color';
+export { EuiTextColor } from './text_color';
+export type { EuiTextAlignProps } from './text_align';
+export { EuiTextAlign } from './text_align';

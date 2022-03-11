@@ -1,12 +1,10 @@
 import React from 'react';
 import { GuideSectionTypes } from '../../../components';
-import { renderToHtml } from '../../../services';
 import { EuiCode } from '../../../../../src/components';
 
 import { Table } from './auto';
 
 const source = require('!!raw-loader!./auto');
-const html = renderToHtml(Table);
 const layoutSnippet = [
   `<EuiBasicTable
   columns={[
@@ -36,10 +34,6 @@ export const section = {
     {
       type: GuideSectionTypes.JS,
       code: source,
-    },
-    {
-      type: GuideSectionTypes.HTML,
-      code: html,
     },
   ],
   text: (

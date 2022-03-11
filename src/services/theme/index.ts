@@ -12,12 +12,9 @@ export {
   EuiModificationsContext,
   EuiColorModeContext,
 } from './context';
-export {
-  useEuiTheme,
-  UseEuiTheme,
-  withEuiTheme,
-  WithEuiThemeProps,
-} from './hooks';
+export type { UseEuiTheme, WithEuiThemeProps } from './hooks';
+export { useEuiTheme, withEuiTheme } from './hooks';
+export type { EuiThemeProviderProps } from './provider';
 export { EuiThemeProvider } from './provider';
 export {
   buildTheme,
@@ -30,7 +27,7 @@ export {
   setOn,
   Computed,
 } from './utils';
-export {
+export type {
   ComputedThemeShape,
   EuiThemeColorMode,
   EuiThemeColorModeStandard,
@@ -38,7 +35,7 @@ export {
   EuiThemeModifications,
   EuiThemeShape,
   EuiThemeSystem,
-  COLOR_MODES_STANDARD,
 } from './types';
+export { COLOR_MODES_STANDARD } from './types';
 export { lineHeightFromBaseline } from './typography';
 export { sizeToPixel } from './size';

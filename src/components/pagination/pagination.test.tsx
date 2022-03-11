@@ -18,4 +18,66 @@ describe('EuiPagination', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  describe('props', () => {
+    describe('pageCount', () => {
+      test('is rendered', () => {
+        const component = render(<EuiPagination pageCount={10} />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('can be 0', () => {
+        const component = render(<EuiPagination pageCount={0} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('activePage', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiPagination activePage={5} pageCount={10} />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('can be -1', () => {
+        const component = render(
+          <EuiPagination pageCount={0} activePage={-1} />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('compressed', () => {
+      test('is rendered', () => {
+        const component = render(<EuiPagination compressed />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    test('aria-controls is rendered', () => {
+      const component = render(<EuiPagination aria-controls={'idOfTable'} />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    describe('responsive', () => {
+      test('can be false', () => {
+        const component = render(<EuiPagination responsive={false} />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('can be customized', () => {
+        const component = render(<EuiPagination responsive={['xs']} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+  });
 });

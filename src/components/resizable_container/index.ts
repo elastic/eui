@@ -6,7 +6,5 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiResizableContainer,
-  EuiResizableContainerProps,
-} from './resizable_container';
+export type { EuiResizableContainerProps } from './resizable_container';
+export { EuiResizableContainer } from './resizable_container';

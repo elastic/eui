@@ -184,6 +184,7 @@ schemaDetectors={[
         </Fragment>
       ),
       props: {
+        EuiDataGridSchemaDetector,
         EuiDataGrid,
         EuiDataGridCellValueElementProps,
         EuiDataGridPopoverContentProps,

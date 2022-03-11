@@ -3,5 +3,8 @@
   "include": [
     "./src/**/*.spec.tsx",
   ],
-  "exclude": ["node_modules"]
+  "compilerOptions": {
+    "types": ["cypress", "cypress-real-events", "cypress-axe"]
+  },
+  "exclude": ["node_modules"],
 }

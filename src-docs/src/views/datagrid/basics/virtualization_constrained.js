@@ -90,7 +90,7 @@ function RenderCellValue({ rowIndex, columnId }) {
 }
 
 export default () => {
-  // ** Pagination config
+  // Pagination
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 50 });
   const onChangeItemsPerPage = useCallback(
     (pageSize) =>
@@ -108,9 +108,9 @@ export default () => {
   );
 
   // Column visibility
-  const [visibleColumns, setVisibleColumns] = useState(() =>
+  const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
-  ); // initialize to the full set of columns
+  );
 
   const [mountedCellCount, setMountedCellCount] = useState(0);
 

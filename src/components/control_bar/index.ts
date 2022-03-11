@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiControlBar, EuiControlBarProps } from './control_bar';
+export type { EuiControlBarProps } from './control_bar';
+export { EuiControlBar } from './control_bar';

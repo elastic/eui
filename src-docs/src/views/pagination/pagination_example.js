@@ -6,12 +6,13 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCode,
   EuiPagination,
-  EuiPaginationButton,
   EuiText,
   EuiCallOut,
+  EuiTablePagination,
 } from '../../../../src/components';
 
-import { paginationConfig } from './playground';
+import Guidelines from './guidelines';
+import { paginationConfig, tablePaginationConfig } from './playground';
 
 import ManyPages from './many_pages';
 const manyPagesSource = require('!!raw-loader!./many_pages');
@@ -46,38 +47,41 @@ const centeredPaginationSnippet = `<EuiFlexGroup justifyContent="spaceAround">
 
 import CustomizablePagination from './customizable_pagination';
 const customizablePaginationSource = require('!!raw-loader!./customizable_pagination');
-const customizablePaginationSnippet = `<EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
-  <EuiFlexItem grow={false}>
-    <EuiPopover
-      button={button}
-      isOpen={isPopoverOpen}
-      closePopover={closePopover}>
-      <EuiContextMenuPanel items={items} />
-    </EuiPopover>
-  </EuiFlexItem>
-
-  <EuiFlexItem grow={false}>
-    <EuiPagination
-      aria-label={paginationLabel}
-      pageCount={pageCount}
-      activePage={activePage}
-      onPageClick={(activePage) => goToPage(activePage)}
-    />
-  </EuiFlexItem>
-</EuiFlexGroup>`;
 
 import Compressed from './compressed';
 const compressedSource = require('!!raw-loader!./compressed');
-const compressedSnippet = `<EuiPagination
+const compressedSnippet = [
+  `<EuiPagination
   aria-label={paginationLabel}
   pageCount={pageCount}
   activePage={activePage}
   onPageClick={(activePage) => goToPage(activePage)}
   compressed
+/>`,
+  `<EuiPagination
+  aria-label={paginationLabel}
+  pageCount={pageCount}
+  activePage={activePage}
+  onPageClick={(activePage) => goToPage(activePage)}
+  responsive={['xs']}
+/>`,
+];
+
+import Indeterminate from './indeterminate';
+const indeterminateSource = require('!!raw-loader!./indeterminate');
+const indeterminateSnippet = `<EuiPagination
+  aria-label={paginationLabel}
+  pageCount={0}
+  activePage={activePage}
+  onPageClick={(activePage) => goToPage(activePage)}
 />`;
+
+import TablePagination from './table_pagination';
+const tablePaginationSource = require('!!raw-loader!./table_pagination');
 
 export const PaginationExample = {
   title: 'Pagination',
+  guidelines: <Guidelines />,
   intro: (
     <EuiText>
       <p>
@@ -122,7 +126,7 @@ export const PaginationExample = {
           />
         </>
       ),
-      props: { EuiPagination, EuiPaginationButton },
+      props: { EuiPagination },
       snippet: manyPagesSnippet,
       demo: <ManyPages />,
       playground: paginationConfig,
@@ -143,6 +147,7 @@ export const PaginationExample = {
       ),
       snippet: fewPagesSnippet,
       demo: <FewPages />,
+      props: { EuiPagination },
     },
     {
       title: 'Centered pagination',
@@ -158,14 +163,14 @@ export const PaginationExample = {
           <Link to="/layout/flex">
             <strong>EuiFlexGroup</strong>
           </Link>{' '}
-          to set up this pagination layout.
+          to center the pagination in a layout.
         </p>
       ),
       snippet: centeredPaginationSnippet,
       demo: <CenteredPagination />,
     },
     {
-      title: 'Compressed display',
+      title: 'Compressed and responsive',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -173,25 +178,86 @@ export const PaginationExample = {
         },
       ],
       text: (
-        <p>
-          Use the <EuiCode>compressed</EuiCode> prop to minimize the horizontal
-          footprint.
-        </p>
+        <>
+          <p>
+            Use the <EuiCode>compressed</EuiCode> prop to minimize the
+            horizontal footprint. This will replace the numbered buttons with
+            static numbers and rely on the first, last, next and previous icon
+            buttons to navigate.
+          </p>
+          <p>
+            This is also the same display that will occur when{' '}
+            <EuiCode>responsive</EuiCode> is <strong>not</strong>{' '}
+            <EuiCode>false</EuiCode>. You can adjust the responsiveness by
+            supplying an array of{' '}
+            <Link to="/theming/breakpoints">named breakpoints</Link> to{' '}
+            <EuiCode>responsive</EuiCode>. The default is{' '}
+            <EuiCode>{"['xs', 's']"}</EuiCode>.
+          </p>
+        </>
       ),
       snippet: compressedSnippet,
       demo: <Compressed />,
+      props: { EuiPagination },
+    },
+    {
+      title: 'Indeterminate page count',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: indeterminateSource,
+        },
+      ],
+      text: (
+        <p>
+          If the total number of pages cannot be accurately determined, you can
+          pass <EuiCode>0</EuiCode> as the <EuiCode>pageCount</EuiCode>. This
+          will remove the button numbers and rely solely on the arrow icon
+          buttons for navigation. Without a total page count, the last page
+          button will pass back <EuiCode>-1</EuiCode> for the{' '}
+          <EuiCode>activePage</EuiCode>.
+        </p>
+      ),
+      snippet: indeterminateSnippet,
+      demo: <Indeterminate />,
+      props: { EuiPagination },
+    },
+    {
+      title: 'Table pagination',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: tablePaginationSource,
+        },
+      ],
+      text: (
+        <p>
+          You can use <strong>EuiTablePagination</strong> to create a
+          combination &quot;Rows per page&quot; and pagination set, commonly
+          used with{' '}
+          <Link to="/tabular-content/tables#adding-pagination-to-a-table">
+            tables
+          </Link>
+          . If you pass <EuiCode>0</EuiCode> in as one of the{' '}
+          <EuiCode>itemsPerPageOptions</EuiCode>, it will create a &quot;Show
+          all&quot; option and hide the pagination.
+        </p>
+      ),
+      demo: <TablePagination />,
+      props: { EuiTablePagination },
+      playground: tablePaginationConfig,
     },
     {
       title: 'Customizable pagination',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: customizablePaginationSource,
         },
       ],
       text: (
         <p>
-          You can use{' '}
+          Or you can use{' '}
           <Link to="/layout/flex">
             <strong>EuiFlexGroup</strong>
           </Link>{' '}
@@ -199,12 +265,11 @@ export const PaginationExample = {
           <Link to="/navigation/context-menu#with-single-panel">
             <strong>EuiContextMenu</strong>
           </Link>{' '}
-          to set up this pagination layout, commonly used with{' '}
-          <Link to="/tabular-content/tables">tables</Link>.
+          to set up your own custom pagination layout.
         </p>
       ),
-      snippet: customizablePaginationSnippet,
       demo: <CustomizablePagination />,
+      props: { EuiPagination },
     },
   ],
 };

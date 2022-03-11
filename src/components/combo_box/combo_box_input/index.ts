@@ -6,5 +6,7 @@
  * Side Public License, v 1.
  */
 
-export { EuiComboBoxInput, EuiComboBoxInputProps } from './combo_box_input';
-export { EuiComboBoxPill, EuiComboBoxPillProps } from './combo_box_pill';
+export type { EuiComboBoxInputProps } from './combo_box_input';
+export { EuiComboBoxInput } from './combo_box_input';
+export type { EuiComboBoxPillProps } from './combo_box_pill';
+export { EuiComboBoxPill } from './combo_box_pill';

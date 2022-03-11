@@ -1,17 +1,14 @@
-import React from 'react';
-
-import { renderToHtml } from '../../services';
+import React, { Fragment } from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiImage } from '../../../../src/components';
+import { EuiCode, EuiCallOut, EuiImage } from '../../../../src/components';
 EuiImage.__docgenInfo.props.src.required = true;
 
 import imageConfig from './playground';
 
 import Image from './image';
 const imageSource = require('!!raw-loader!./image');
-const imageHtml = renderToHtml(Image);
 const imageSnippet = `<EuiImage
   alt={description}
   src={someSrc}
@@ -20,7 +17,6 @@ const imageSnippet = `<EuiImage
 
 import ImageSizes from './image_size';
 const imageSizesSource = require('!!raw-loader!./image_size');
-const imageSizesHtml = renderToHtml(ImageSizes);
 const imageSizesSnippet = `<EuiImage
   size="l"
   alt={description}
@@ -30,7 +26,6 @@ const imageSizesSnippet = `<EuiImage
 
 import ImageZoom from './image_zoom';
 const imageZoomSource = require('!!raw-loader!./image_zoom');
-const imageZoomHtml = renderToHtml(ImageZoom);
 const imageZoomSnippet = `<EuiImage
   allowFullScreen
   alt={description}
@@ -39,10 +34,7 @@ const imageZoomSnippet = `<EuiImage
 `;
 
 import ImageFloat from './float';
-import { EuiCallOut } from '../../../../src/components/call_out';
-import { Fragment } from 'react-is';
 const imageFloatSource = require('!!raw-loader!./float');
-const imageFloatHtml = renderToHtml(ImageFloat);
 const imageFloatSnippet = `<EuiImage
   alt={description}
   src={someSrc}
@@ -60,10 +52,6 @@ export const ImageExample = {
           type: GuideSectionTypes.JS,
           code: imageSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: imageHtml,
-        },
       ],
       text: (
         <div>
@@ -79,21 +67,17 @@ export const ImageExample = {
       playground: imageConfig,
     },
     {
-      title: 'Click an image for a full screen version',
+      title: 'Click an image for a fullscreen version',
       source: [
         {
           type: GuideSectionTypes.JS,
           code: imageZoomSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: imageZoomHtml,
-        },
       ],
       text: (
         <p>
           Apply the <EuiCode>allowFullScreen</EuiCode> prop to make the image
-          clickable and show a full screen version. Note that the second image
+          clickable and show a fullscreen version. Note that the second image
           also passes{' '}
           <EuiCode language="js">fullScreenIconColor=&quot;dark&quot;</EuiCode>{' '}
           to change icon color to better contrast against the light background
@@ -109,10 +93,6 @@ export const ImageExample = {
         {
           type: GuideSectionTypes.JS,
           code: imageSizesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: imageSizesHtml,
         },
       ],
       text: (
@@ -137,10 +117,6 @@ export const ImageExample = {
         {
           type: GuideSectionTypes.JS,
           code: imageFloatSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: imageFloatHtml,
         },
       ],
       text: (

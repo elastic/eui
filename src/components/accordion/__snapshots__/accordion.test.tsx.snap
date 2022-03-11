@@ -32,7 +32,6 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
           aria-expanded={false}
           aria-labelledby="generated-id"
           className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton"
-          disabled={false}
           onClick={[Function]}
           tabIndex={-1}
           type="button"
@@ -78,9 +77,7 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
         onResize={[Function]}
       >
         <div>
-          <div
-            className=""
-          >
+          <div>
             <p>
               You can not see me.
             </p>
@@ -124,7 +121,6 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
           aria-expanded={true}
           aria-labelledby="generated-id"
           className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton-isOpen"
-          disabled={false}
           onClick={[Function]}
           tabIndex={-1}
           type="button"
@@ -170,9 +166,7 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
         onResize={[Function]}
       >
         <div>
-          <div
-            className=""
-          >
+          <div>
             <p>
               You can see me.
             </p>
@@ -216,7 +210,6 @@ exports[`EuiAccordion behavior opens when div is clicked if element is a div 1`]
           aria-expanded={true}
           aria-labelledby="generated-id"
           className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton-isOpen"
-          disabled={false}
           onClick={[Function]}
           tabIndex={-1}
           type="button"
@@ -262,9 +255,7 @@ exports[`EuiAccordion behavior opens when div is clicked if element is a div 1`]
         onResize={[Function]}
       >
         <div>
-          <div
-            className=""
-          >
+          <div>
             <p>
               You can see me.
             </p>

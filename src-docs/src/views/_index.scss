@@ -6,6 +6,7 @@ $guideDemoHighlightColor: transparentize($euiColorPrimary, .9);
 @import './datagrid/datagrid';
 @import './date_picker/date_picker';
 @import './elastic_charts/index';
+@import './empty_prompt/empty_prompt';
 @import './flex/flex';
 @import './horizontal_rule/horizontal_rule';
 @import './page/page';
@@ -15,3 +16,5 @@ $guideDemoHighlightColor: transparentize($euiColorPrimary, .9);
 @import './suggest/index';
 @import './text/text_scaling';
 @import './tree_view/tree_view';
+
+@import './theme/color/color';

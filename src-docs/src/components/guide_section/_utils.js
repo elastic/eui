@@ -1,38 +1,96 @@
+/**
+ * renderJsSource code is responsible for formatting the JavaScript that goes into the DemoJS within the
+ * EUI Docs. In addition to formatting the code for the tab, this function also combines EUI imports by
+ * searching code.default for all EUI imports, extracting the variables, and combining them at the top of
+ * the formatted code.
+ */
+
 import { cleanEuiImports } from '../../services';
 
 export const renderJsSourceCode = (code) => {
-  let renderedCode = cleanEuiImports(code.default).split('\n');
-  const linesWithImport = [];
-  // eslint-disable-next-line guard-for-in
-  for (const idx in renderedCode) {
-    const line = renderedCode[idx];
-    if (line.includes('import') && line.includes("from '@elastic/eui';")) {
-      linesWithImport.push(line);
-      renderedCode[idx] = '';
+  let renderedCode = cleanEuiImports(code.default);
+
+  /**
+   * Extract React import (to ensure it's always at the top)
+   */
+  let reactImport = '';
+
+  renderedCode = renderedCode.replace(
+    // import          - import + space
+    // (React)?        - optional import `React` prefix - some files (like hooks) do not need it
+    // (, )?           - optional comma after React - some files, like tests, only need the main React import
+    // ({([^}]+?)})?   - optionally capture anything that isn't a closing brace between the import braces
+    //  from 'react';  - ` from 'react';` exactly
+    /import (React)?(, )?({([^}]+?)})? from 'react';/,
+    (match) => {
+      reactImport = match;
+      return '';
     }
-  }
-  if (linesWithImport.length > 1) {
-    linesWithImport[0] = linesWithImport[0].replace(
-      " } from '@elastic/eui';",
-      ','
-    );
-    for (let i = 1; i < linesWithImport.length - 1; i++) {
-      linesWithImport[i] = linesWithImport[i]
-        .replace('import {', '')
-        .replace(" } from '@elastic/eui';", ',');
+  );
+
+  /**
+   * Combine and clean EUI imports
+   */
+  const elasticImports = [];
+
+  // Find all imports that come from '@elastic/eui'
+  renderedCode = renderedCode.replace(
+    // import {                - import / whitespace / opening brace
+    // ([^}]+)                 - group together anything that isn't a closing brace
+    // } from '@elastic\/eui'; - closing brace / whitespace / from / whitespace / '@elastic/eui';
+    // [\r\n]                  - match end of line, so the extra new line is removed via the replace operation
+    /import {([^}]+)} from '@elastic\/eui';[\r\n]/g,
+    (match, imports) => {
+      // remove any additional characters from imports
+      const namedImports = imports.match(/[a-zA-Z0-9]+/g);
+      elasticImports.push(...namedImports);
+      return '';
     }
-    linesWithImport[linesWithImport.length - 1] = linesWithImport[
-      linesWithImport.length - 1
-    ].replace('import {', '');
-  }
-  const newImport = linesWithImport.join('');
-  renderedCode.unshift(newImport);
-  renderedCode = renderedCode.join('\n');
-  let len = renderedCode.replace('\n\n\n', '\n\n').length;
-  while (len < renderedCode.length) {
-    renderedCode = renderedCode.replace('\n\n\n', '\n\n');
-    len = renderedCode.replace('\n\n\n', '\n\n').length;
+  );
+
+  let formattedEuiImports = '';
+
+  if (elasticImports.length) {
+    // Determine if imports should be wrapped to new lines based on the import statement length
+    const combinedImports = elasticImports.join(', ');
+    const singleLineImports = `import { ${combinedImports} } from '@elastic/eui';`;
+
+    if (singleLineImports.length <= 81) {
+      formattedEuiImports = singleLineImports;
+    } else {
+      const lineSeparatedImports = elasticImports.join(',\n  ');
+      formattedEuiImports = `import {\n  ${lineSeparatedImports},\n} from '@elastic/eui';`;
+    }
   }
 
-  return renderedCode;
+  /**
+   * Extract remaining non-React/EUI imports
+   */
+  const remainingImports = [];
+
+  renderedCode = renderedCode.replace(
+    // (\/\/.+\n)?                   - optional preceding comments that must be above specific imports, e.g. // @ts-ignore
+    // import                        - import + whitespace
+    // ([^]+?)                       - capture any characters (including newlines)
+    //  from ('[A-Za-z0-9 -_.@/]*';) - ` from 'someLibrary';` - alphanumeric and certain special characters only
+    /(\/\/.+\n)?import ([^]+?) from ('[A-Za-z0-9 -_.@/]*';)/g,
+    (match) => {
+      remainingImports.push(match);
+      return '';
+    }
+  );
+
+  /**
+   * Putting it all together
+   */
+  // Render each import with just 1 newline between them for uniformity
+  const renderedImports = [
+    reactImport,
+    formattedEuiImports,
+    ...remainingImports,
+  ]
+    .filter((stripEmptyImports) => stripEmptyImports)
+    .join('\n');
+
+  return `${renderedImports}\n\n${renderedCode.trim()}`;
 };

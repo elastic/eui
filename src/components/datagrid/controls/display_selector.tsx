@@ -6,12 +6,20 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactNode, useState, useMemo, useCallback } from 'react';
+import React, {
+  ReactNode,
+  useState,
+  useMemo,
+  useCallback,
+  useEffect,
+} from 'react';
 
+import { useUpdateEffect } from '../../../services';
 import { EuiI18n, useEuiI18n } from '../../i18n';
-import { EuiPopover } from '../../popover';
-import { EuiButtonIcon, EuiButtonGroup } from '../../button';
+import { EuiPopover, EuiPopoverFooter } from '../../popover';
+import { EuiButtonIcon, EuiButtonGroup, EuiButtonEmpty } from '../../button';
 import { EuiFormRow, EuiRange } from '../../form';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiToolTip } from '../../tool_tip';
 
 import {
@@ -48,23 +56,37 @@ const densityStyles: { [key: string]: Partial<EuiDataGridStyle> } = {
     cellPadding: 's',
   },
 };
+const convertGridStylesToSelection = (gridStyles: EuiDataGridStyle) => {
+  if (gridStyles.fontSize === 's' && gridStyles.cellPadding === 's')
+    return 'compact';
+  if (gridStyles.fontSize === 'm' && gridStyles.cellPadding === 'm')
+    return 'normal';
+  if (gridStyles.fontSize === 'l' && gridStyles.cellPadding === 'l')
+    return 'expanded';
+  return '';
+};
+
 // Used to correctly format the icon name for the grid density icon
 const capitalizeDensityString = (s: string) => s[0].toUpperCase() + s.slice(1);
 
 // Row height options and utilities
 const rowHeightButtonOptions: string[] = ['undefined', 'auto', 'lineCount'];
 const convertRowHeightsOptionsToSelection = (
-  rowHeightsOptions?: EuiDataGridRowHeightsOptions
+  rowHeightsOptions: EuiDataGridRowHeightsOptions
 ) => {
-  if (rowHeightsOptions) {
-    const { defaultHeight } = rowHeightsOptions;
+  const { defaultHeight } = rowHeightsOptions;
 
-    if (defaultHeight === 'auto') {
-      return rowHeightButtonOptions[1];
-    }
-    if (typeof defaultHeight === 'object' && defaultHeight?.lineCount) {
-      return rowHeightButtonOptions[2];
-    }
+  if (defaultHeight === 'auto') {
+    return rowHeightButtonOptions[1];
+  }
+  if (typeof defaultHeight === 'object' && defaultHeight?.lineCount) {
+    return rowHeightButtonOptions[2];
+  }
+  if (
+    typeof defaultHeight === 'number' ||
+    (typeof defaultHeight === 'object' && defaultHeight.height)
+  ) {
+    return '';
   }
   return rowHeightButtonOptions[0];
 };
@@ -86,40 +108,31 @@ export const useDataGridDisplaySelector = (
     'allowRowHeight'
   );
 
-  // track styles specified by the user at run time
+  // Track styles specified by the user at run time
   const [userGridStyles, setUserGridStyles] = useState({});
-  const [userRowHeightsOptions, setUserRowHeightsOptions] = useState(
-    initialRowHeightsOptions // Set initial state from the developer-passed props
-  );
+  const [userRowHeightsOptions, setUserRowHeightsOptions] = useState({});
 
-  // Normal is the default density
-  const [gridDensity, _setGridDensity] = useState(densityOptions[1]);
-  const setGridDensity = (density: string) => {
-    _setGridDensity(density);
+  // Density logic
+  const setGridStyles = useCallback((density: string) => {
     setUserGridStyles(densityStyles[density]);
-  };
+  }, []);
 
-  // Row height state
-  const [lineCount, setLineCount] = useState(
-    // @ts-ignore - optional chaining operator handles types & cases that aren't lineCount
-    initialRowHeightsOptions?.defaultHeight?.lineCount || 2
-  );
-  const [rowHeightSelection, setRowHeightSelection] = useState(
-    convertRowHeightsOptionsToSelection(initialRowHeightsOptions)
-  );
+  // Row height logic
+  const [lineCount, setLineCount] = useState(2);
   const setRowHeight = useCallback(
     (option: string) => {
-      let rowHeightsOptions: EuiDataGridRowHeightsOptions | undefined;
+      const rowHeightsOptions: EuiDataGridRowHeightsOptions = {
+        rowHeights: {}, // Unset all row-specific heights
+      };
 
       if (option === 'auto') {
-        rowHeightsOptions = { defaultHeight: 'auto' };
+        rowHeightsOptions.defaultHeight = 'auto';
       } else if (option === 'lineCount') {
-        rowHeightsOptions = { defaultHeight: { lineCount } };
+        rowHeightsOptions.defaultHeight = { lineCount };
       } else {
-        rowHeightsOptions = { defaultHeight: undefined };
+        rowHeightsOptions.defaultHeight = undefined;
       }
 
-      setRowHeightSelection(option);
       setUserRowHeightsOptions(rowHeightsOptions);
     },
     [lineCount]
@@ -129,10 +142,13 @@ export const useDataGridDisplaySelector = (
     if (newLineCount < 1) return; // Don't let users set a 0 or negative line count
 
     setLineCount(newLineCount);
-    setUserRowHeightsOptions({ defaultHeight: { lineCount: newLineCount } });
+    setUserRowHeightsOptions({
+      rowHeights: {}, // Unset all row-specific line counts
+      defaultHeight: { lineCount: newLineCount },
+    });
   }, []);
 
-  // merge the developer-specified styles with any user overrides
+  // Merge the developer-specified configurations with user overrides
   const gridStyles = useMemo(() => {
     return {
       ...initialStyles,
@@ -147,9 +163,55 @@ export const useDataGridDisplaySelector = (
     };
   }, [initialRowHeightsOptions, userRowHeightsOptions]);
 
+  // Set UI controls based on current configurations, on init & when either developer or user settings change
+  const gridDensity = useMemo(() => {
+    return convertGridStylesToSelection(gridStyles);
+  }, [gridStyles]);
+
+  const rowHeightSelection = useMemo(() => {
+    return convertRowHeightsOptionsToSelection(rowHeightsOptions);
+  }, [rowHeightsOptions]);
+
+  useEffect(() => {
+    // @ts-ignore - optional chaining operator handles types & cases that aren't lineCount
+    setLineCount(rowHeightsOptions?.defaultHeight?.lineCount || 2);
+    // @ts-ignore - same as above
+  }, [rowHeightsOptions?.defaultHeight?.lineCount]);
+
+  // Show a reset button whenever users manually change settings, and
+  // invoke onChange callbacks (removing the callback value itself, so that only configuration values are returned)
+  const [showResetButton, setShowResetButton] = useState(false);
+
+  useUpdateEffect(() => {
+    const hasUserChanges = Object.keys(userGridStyles).length > 0;
+    if (hasUserChanges) setShowResetButton(true);
+
+    const { onChange, ...currentGridStyles } = gridStyles;
+    initialStyles?.onChange?.(currentGridStyles);
+  }, [userGridStyles]);
+
+  useUpdateEffect(() => {
+    const hasUserChanges = Object.keys(userRowHeightsOptions).length > 0;
+    if (hasUserChanges) setShowResetButton(true);
+
+    const { onChange, ...currentRowHeightsOptions } = rowHeightsOptions;
+    initialRowHeightsOptions?.onChange?.(currentRowHeightsOptions);
+  }, [userRowHeightsOptions]);
+
+  // Allow resetting to initial developer-specified configurations
+  const resetToInitialState = useCallback(() => {
+    setUserGridStyles({});
+    setUserRowHeightsOptions({});
+    setShowResetButton(false);
+  }, []);
+
   const buttonLabel = useEuiI18n(
     'euiDisplaySelector.buttonText',
     'Display options'
+  );
+  const resetButtonLabel = useEuiI18n(
+    'euiDisplaySelector.resetButtonText',
+    'Reset to default'
   );
 
   const displaySelector =
@@ -165,7 +227,11 @@ export const useDataGridDisplaySelector = (
           <EuiToolTip content={buttonLabel} delay="long">
             <EuiButtonIcon
               size="xs"
-              iconType={`tableDensity${capitalizeDensityString(gridDensity)}`}
+              iconType={
+                gridDensity
+                  ? `tableDensity${capitalizeDensityString(gridDensity)}`
+                  : 'tableDensityNormal'
+              }
               className="euiDataGrid__controlBtn"
               color="text"
               data-test-subj="dataGridDisplaySelectorButton"
@@ -210,7 +276,7 @@ export const useDataGridDisplaySelector = (
                       label: labelExpanded,
                     },
                   ]}
-                  onChange={setGridDensity}
+                  onChange={setGridStyles}
                   idSelected={gridDensity}
                   data-test-subj="densityButtonGroup"
                 />
@@ -285,6 +351,24 @@ export const useDataGridDisplaySelector = (
               </>
             )}
           </EuiI18n>
+        )}
+        {showResetButton && (
+          <EuiPopoverFooter>
+            <EuiFlexGroup justifyContent="flexEnd" responsive={false}>
+              <EuiFlexItem grow={false}>
+                <div>
+                  <EuiButtonEmpty
+                    flush="both"
+                    size="xs"
+                    onClick={resetToInitialState}
+                    data-test-subj="resetDisplaySelector"
+                  >
+                    {resetButtonLabel}
+                  </EuiButtonEmpty>
+                </div>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiPopoverFooter>
         )}
       </EuiPopover>
     ) : null;
