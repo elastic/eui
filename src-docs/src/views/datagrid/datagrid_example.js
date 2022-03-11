@@ -265,7 +265,6 @@ export const DataGridExample = {
         EuiDataGridToolBarVisibilityOptions,
         EuiDataGridToolBarVisibilityColumnSelectorOptions,
         EuiDataGridToolBarAdditionalControlsOptions,
-        EuiDataGridPopoverContentProps,
         EuiDataGridRowHeightsOptions,
         EuiDataGridRefProps,
       },

@@ -6,7 +6,7 @@ import {
   EuiSwitch,
   EuiFlexGroup,
   EuiFlexItem,
-} from '../../../../src/components/';
+} from '../../../../../src/components/';
 
 const raw_data = [];
 

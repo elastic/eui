@@ -22,9 +22,11 @@ import {
   text_colors,
 } from '../../../../../src/global_styling/variables/_colors';
 
+import { getPropsFromComponent } from '../../../services/props/get_props';
+
 import { ThemeValue } from './_values';
 
-import { getPropsFromThemeKey, EuiThemeColors } from '../_props';
+import { EuiThemeColors } from '../_props';
 
 const brandKeys = Object.keys(brand_colors);
 const brandTextKeys = Object.keys(brand_text_colors);
@@ -35,7 +37,7 @@ const textKeys = Object.keys(text_colors);
 export default ({ onThemeUpdate }) => {
   const { euiTheme, colorMode } = useEuiTheme();
   const colors = euiTheme.colors;
-  const props = getPropsFromThemeKey(EuiThemeColors);
+  const props = getPropsFromComponent(EuiThemeColors);
 
   const updateColor = (property, value) => {
     onThemeUpdate({

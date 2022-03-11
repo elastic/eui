@@ -91,7 +91,6 @@ import { DataGridFocusExample } from './views/datagrid/datagrid_focus_example';
 import { DataGridControlColumnsExample } from './views/datagrid/datagrid_controlcolumns_example';
 import { DataGridFooterRowExample } from './views/datagrid/datagrid_footer_row_example';
 import { DataGridVirtualizationExample } from './views/datagrid/datagrid_virtualization_example';
-import { DataGridRowHeightOptionsExample } from './views/datagrid/datagrid_height_options_example';
 import { DataGridRefExample } from './views/datagrid/datagrid_ref_example';
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
@@ -497,7 +496,6 @@ const navigation = [
       DataGridControlColumnsExample,
       DataGridFooterRowExample,
       DataGridVirtualizationExample,
-      DataGridRowHeightOptionsExample,
       DataGridRefExample,
       TableExample,
       TableInMemoryExample,

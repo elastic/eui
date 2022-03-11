@@ -3,8 +3,8 @@ import React, { Fragment } from 'react';
 import { GuideSectionTypes } from '../../components';
 import { EuiDataGrid, EuiCodeBlock, EuiCode } from '../../../../src/components';
 
-import DataGridControlColumns from './control_columns';
-const dataGridControlColumnsSource = require('!!raw-loader!./control_columns');
+import DataGridControlColumns from './columns_cells/control_columns';
+const dataGridControlColumnsSource = require('!!raw-loader!./columns_cells/control_columns');
 
 import { EuiDataGridControlColumn } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
 

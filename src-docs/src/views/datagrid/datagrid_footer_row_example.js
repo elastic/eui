@@ -3,8 +3,8 @@ import React, { Fragment } from 'react';
 import { GuideSectionTypes } from '../../components';
 import { EuiDataGrid, EuiCodeBlock, EuiCode } from '../../../../src/components';
 
-import DataGridFooterRow from './footer_row';
-const dataGridControlColumnsSource = require('!!raw-loader!./footer_row');
+import DataGridFooterRow from './schema/footer_row';
+const dataGridControlColumnsSource = require('!!raw-loader!./schema/footer_row');
 
 import { EuiDataGridControlColumn } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
 import { EuiDataGridCellValueElementProps } from '!!prop-loader!../../../../src/components/datagrid/body/data_grid_cell';

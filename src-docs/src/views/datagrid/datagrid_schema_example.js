@@ -16,7 +16,6 @@ const dataGridControlColumnsSource = require('!!raw-loader!./schema/footer_row')
 
 import {
   EuiDataGridColumn,
-  EuiDataGridPopoverContentProps,
   EuiDataGridSchemaDetector,
   EuiDataGridCellValueElementProps,
 } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
@@ -187,7 +186,6 @@ schemaDetectors={[
         EuiDataGridSchemaDetector,
         EuiDataGrid,
         EuiDataGridCellValueElementProps,
-        EuiDataGridPopoverContentProps,
       },
       demo: <DataGridSchema customPopover />,
     },

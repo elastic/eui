@@ -2,11 +2,11 @@ import React, { Fragment } from 'react';
 import { EuiCallOut, EuiCode } from '../../../../src/components';
 import { GuideSectionTypes } from '../../components';
 
-import DataGridVirtualization from './virtualization';
-const dataGridVirtualizationSource = require('!!raw-loader!./virtualization');
+import DataGridVirtualization from './basics/virtualization';
+const dataGridVirtualizationSource = require('!!raw-loader!./basics/virtualization');
 
-import DataGridVirtualizationConstrained from './virtualization_constrained';
-const dataGridVirtualizationConstrainedSource = require('!!raw-loader!./virtualization_constrained');
+import DataGridVirtualizationConstrained from './basics/virtualization_constrained';
+const dataGridVirtualizationConstrainedSource = require('!!raw-loader!./basics/virtualization_constrained');
 
 export const DataGridVirtualizationExample = {
   title: 'Data grid virtualization',

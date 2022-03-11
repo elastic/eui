@@ -3,8 +3,8 @@ import React, { Fragment } from 'react';
 import { GuideSectionTypes } from '../../components';
 import { EuiCallOut, EuiCode } from '../../../../src/components';
 
-import DataGridFocus from './focus';
-const dataGridFocusSource = require('!!raw-loader!./focus');
+import DataGridFocus from './styling/focus';
+const dataGridFocusSource = require('!!raw-loader!./styling/focus');
 
 export const DataGridFocusExample = {
   title: 'Data grid focus',

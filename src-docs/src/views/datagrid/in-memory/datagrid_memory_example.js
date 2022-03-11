@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react';
 
-import { GuideSectionTypes } from '../../components';
+import { GuideSectionTypes } from '../../../components';
 import {
   EuiDataGrid,
   EuiCallOut,
   EuiCode,
   EuiText,
   EuiSpacer,
-} from '../../../../src/components';
+} from '../../../../../src/components';
 
 import InMemoryDataGrid from './in_memory';
 const inMemoryDataGridSource = require('!!raw-loader!./in_memory');
@@ -31,7 +31,7 @@ import {
   EuiDataGridColumnVisibility,
   EuiDataGridCellValueElementProps,
   EuiDataGridSchemaDetector,
-} from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
+} from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
 export const DataGridMemoryExample = {
   title: 'Data grid in-memory settings',
