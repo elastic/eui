@@ -1,28 +1,28 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import { GuideSectionTypes } from '../../components';
+import { GuideSectionTypes } from '../../../components';
 import {
   EuiDataGrid,
   EuiCallOut,
   EuiCode,
   EuiText,
   EuiSpacer,
-} from '../../../../src/components';
+} from '../../../../../src/components';
 
-import DataGrid from './basics/datagrid';
-import TopLevelProps from './basics/_props';
-const dataGridSource = require('!!raw-loader!./basics/datagrid');
+import DataGrid from './datagrid';
+import TopLevelProps from './_props';
+const dataGridSource = require('!!raw-loader!./datagrid');
 
-import DataGridContainer from './basics/container';
-const dataGridContainerSource = require('!!raw-loader!./basics/container');
-import DataGridFlex from './basics/flex';
-const dataGridFlexSource = require('!!raw-loader!./basics/flex');
+import DataGridContainer from './container';
+const dataGridContainerSource = require('!!raw-loader!./container');
+import DataGridFlex from './flex';
+const dataGridFlexSource = require('!!raw-loader!./flex');
 
-import DataGridVirtualization from './basics/virtualization';
-const dataGridVirtualizationSource = require('!!raw-loader!./basics/virtualization');
-import DataGridVirtualizationConstrained from './basics/virtualization_constrained';
-const dataGridVirtualizationConstrainedSource = require('!!raw-loader!./basics/virtualization_constrained');
+import DataGridVirtualization from './virtualization';
+const dataGridVirtualizationSource = require('!!raw-loader!./virtualization');
+import DataGridVirtualizationConstrained from './virtualization_constrained';
+const dataGridVirtualizationConstrainedSource = require('!!raw-loader!./virtualization_constrained');
 
 import {
   EuiDataGridColumn,
@@ -42,7 +42,7 @@ import {
   EuiDataGridCellPopoverElementProps,
   EuiDataGridSchemaDetector,
   EuiDataGridRefProps,
-} from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
+} from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
 const gridSnippet = `<EuiDataGrid
   // Optional. Will try to autodectect schemas and do sorting and pagination in memory.

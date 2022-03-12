@@ -80,14 +80,12 @@ import { ControlBarExample } from './views/control_bar/control_bar_example';
 
 import { CopyExample } from './views/copy/copy_example';
 
-import { DataGridExample } from './views/datagrid/datagrid_example';
+import { DataGridExample } from './views/datagrid/basics/datagrid_example';
 import { DataGridSchemaExample } from './views/datagrid/data/datagrid_schema_example';
 import { DataGridToolbarExample } from './views/datagrid/toolbar/datagrid_toolbar_example';
 import { DataGridColumnsExample } from './views/datagrid/columns_cells/datagrid_columns_example';
 import { DataGridStylingExample } from './views/datagrid/styling/datagrid_styling_example';
 import { DataGridMemoryExample } from './views/datagrid/in-memory/datagrid_memory_example';
-import { DataGridCellPopoverExample } from './views/datagrid/data/datagrid_cell_popover_example';
-import { DataGridVirtualizationExample } from './views/datagrid/datagrid_virtualization_example';
 import { DataGridAdvancedExample } from './views/datagrid/advanced/datagrid_advanced_example';
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
@@ -482,9 +480,6 @@ const navigation = [
     name: 'Tabular content',
     items: [
       DataGridExample,
-      DataGridCellPopoverExample,
-      DataGridVirtualizationExample,
-      // Done
       DataGridSchemaExample,
       DataGridToolbarExample,
       DataGridColumnsExample,
