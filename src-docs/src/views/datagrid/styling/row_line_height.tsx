@@ -9,12 +9,7 @@ import React, {
 // @ts-ignore not configured to import json
 import githubData from '../_row_auto_height_data.json';
 
-import { formatDate } from '../../../../../src/services';
-
-import {
-  EuiDataGrid,
-  EuiDataGridProps,
-} from '../../../../../src/components/datagrid';
+import { EuiDataGrid, EuiDataGridProps, formatDate } from '../../../../../src';
 
 interface DataShape {
   html_url: string;

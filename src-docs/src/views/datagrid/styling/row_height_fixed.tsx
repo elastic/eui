@@ -9,8 +9,6 @@ import React, {
 // @ts-ignore not configured to import json
 import githubData from '../_row_auto_height_data.json';
 
-import { formatDate } from '../../../../../src/services';
-
 import {
   EuiDataGrid,
   EuiDataGridProps,
@@ -20,7 +18,8 @@ import {
   EuiMarkdownFormat,
   EuiText,
   EuiSpacer,
-} from '../../../../../src/components';
+  formatDate,
+} from '../../../../../src';
 
 interface DataShape {
   html_url: string;
