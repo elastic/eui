@@ -87,7 +87,6 @@ import { DataGridColumnsExample } from './views/datagrid/columns_cells/datagrid_
 import { DataGridStylingExample } from './views/datagrid/styling/datagrid_styling_example';
 import { DataGridMemoryExample } from './views/datagrid/in-memory/datagrid_memory_example';
 import { DataGridCellPopoverExample } from './views/datagrid/datagrid_cell_popover_example';
-import { DataGridControlColumnsExample } from './views/datagrid/datagrid_controlcolumns_example';
 import { DataGridFooterRowExample } from './views/datagrid/datagrid_footer_row_example';
 import { DataGridVirtualizationExample } from './views/datagrid/datagrid_virtualization_example';
 import { DataGridAdvancedExample } from './views/datagrid/advanced/datagrid_advanced_example';
@@ -486,12 +485,11 @@ const navigation = [
       DataGridExample,
       DataGridSchemaExample,
       DataGridToolbarExample,
-      DataGridColumnsExample,
       DataGridCellPopoverExample,
-      DataGridControlColumnsExample,
       DataGridFooterRowExample,
       DataGridVirtualizationExample,
       // Done
+      DataGridColumnsExample,
       DataGridStylingExample,
       DataGridMemoryExample,
       DataGridAdvancedExample,
