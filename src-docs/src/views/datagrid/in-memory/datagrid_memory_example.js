@@ -34,7 +34,7 @@ import {
 } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
 export const DataGridMemoryExample = {
-  title: 'Data grid in-memory settings',
+  title: 'Data grid in-memory',
   intro: (
     <Fragment>
       <EuiCallOut title="What is the difference in the examples?">

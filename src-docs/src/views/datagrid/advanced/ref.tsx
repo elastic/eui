@@ -17,7 +17,7 @@ import {
   EuiModalHeader,
   EuiModalHeaderTitle,
   EuiText,
-} from '../../../../src/components';
+} from '../../../../../src';
 
 const raw_data: Array<{ [key: string]: string }> = [];
 for (let i = 1; i < 100; i++) {

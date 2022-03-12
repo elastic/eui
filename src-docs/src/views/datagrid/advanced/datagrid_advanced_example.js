@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { GuideSectionTypes } from '../../components';
-import { EuiCode, EuiSpacer, EuiCallOut } from '../../../../src/components';
+import { GuideSectionTypes } from '../../../components';
+import { EuiCode, EuiSpacer, EuiCallOut } from '../../../../../src/components';
 
-import { EuiDataGridRefProps } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
+import { EuiDataGridRefProps } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 import DataGridRef from './ref';
 const dataGridRefSource = require('!!raw-loader!./ref');
 const dataGridRefSnippet = `const dataGridRef = useRef();
@@ -22,10 +22,11 @@ dataGridRef.current.openCellPopover({ rowIndex, colIndex });
 dataGridRef.current.closeCellPopover();
 `;
 
-export const DataGridRefExample = {
-  title: 'Data grid ref methods',
+export const DataGridAdvancedExample = {
+  title: 'Data grid advanced',
   sections: [
     {
+      title: 'Ref methods',
       source: [
         {
           type: GuideSectionTypes.TSX,
