@@ -6,7 +6,7 @@ import {
   EuiDataGrid,
   EuiDataGridColumnCellAction,
   EuiDataGridColumn,
-} from '../../../../src/components';
+} from '../../../../../src';
 
 const cellActions: EuiDataGridColumnCellAction[] = [
   ({ Component }) => (

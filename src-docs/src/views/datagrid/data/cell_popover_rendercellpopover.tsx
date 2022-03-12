@@ -15,7 +15,7 @@ import {
   EuiCopy,
   EuiText,
   EuiImage,
-} from '../../../../src/components';
+} from '../../../../../src';
 
 const cellActions: EuiDataGridColumnCellAction[] = [
   ({ Component }) => (

@@ -8,7 +8,7 @@ import {
   EuiDataGridColumnCellAction,
   EuiDataGridColumn,
   EuiTitle,
-} from '../../../../src/components';
+} from '../../../../../src';
 
 const cellActions: EuiDataGridColumnCellAction[] = [
   ({ Component }) => (

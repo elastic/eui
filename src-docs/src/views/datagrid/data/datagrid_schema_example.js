@@ -1,24 +1,25 @@
 import React, { Fragment } from 'react';
 
-import { GuideSectionTypes } from '../../components';
+import { GuideSectionTypes } from '../../../components';
 import {
   EuiDataGrid,
   EuiCode,
   EuiCodeBlock,
-  EuiSpacer,
-} from '../../../../src/components';
+} from '../../../../../src/components';
 
-import DataGridSchema from './schema/_grid';
-const dataGridSchemaSource = require('!!raw-loader!./schema/_grid');
+import DataGridSchema from './_grid';
+const dataGridSchemaSource = require('!!raw-loader!./_grid');
 
-import DataGridFooterRow from './schema/footer_row';
-const dataGridControlColumnsSource = require('!!raw-loader!./schema/footer_row');
+import DataGridFooterRow from './footer_row';
+const dataGridControlColumnsSource = require('!!raw-loader!./footer_row');
+
+import { DataGridCellPopoverExample } from './datagrid_cell_popover_example';
 
 import {
   EuiDataGridColumn,
   EuiDataGridSchemaDetector,
   EuiDataGridCellValueElementProps,
-} from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
+} from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
 export const DataGridSchemaExample = {
   title: 'Data grid data',
@@ -100,95 +101,9 @@ schemaDetectors={[
   },
 ]}`,
     },
-    {
-      title: 'Expansion popovers',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: dataGridSchemaSource,
-        },
-      ],
-      text: (
-        <Fragment>
-          <p>
-            These popovers allow users to view the entire contents of a cell. By
-            default, they are on for every column and every cell. There are
-            three ways to customize these popovers.
-          </p>
-          <h3>Disabling</h3>
-          <p>
-            It is recommended to keep them on in case of truncation of cell
-            contents. In the event you know that your cell contents is very
-            short you can turn them off in the <EuiCode>columns</EuiCode>{' '}
-            object.
-          </p>
-          <EuiCodeBlock language="js" paddingSize="s" isCopyable>
-            {"columns={[{ id: 'boolean', isExpandable: false, }]}"}
-          </EuiCodeBlock>
-          <EuiSpacer />
-          <p>
-            In the example below we&apos;ve turned them off by setting{' '}
-            <EuiCode language="js">isExpandable=false</EuiCode> on the{' '}
-            <EuiCode>boolean</EuiCode>
-            column.
-          </p>
-          <h3>
-            Defining through <EuiCode>popoverContents</EuiCode>
-          </h3>
-          <p>
-            Likewise, you can inject custom content into any of the popovers a
-            cell expands into based on the <EuiCode>schema</EuiCode> for that
-            column. Add <EuiCode>popoverContents</EuiCode> functions to populate
-            a matching schema&apos;s popover using a new component.
-          </p>
-          <EuiCodeBlock language="js" paddingSize="s" isCopyable>
-            {`popoverContents={{
-  numeric: ({ cellContentsElement }) => {
-    // process the already-rendered cell value
-    const stringContents = cellContentsElement.textContent;
-    return stringContents.something();
-  },
-}}`}
-          </EuiCodeBlock>
-          <p>
-            You can see an example of this by clicking into one of the cells in
-            the <EuiCode>numeric</EuiCode> column below.
-          </p>
-          <h3>
-            Defining through <EuiCode>renderCellValue</EuiCode>
-          </h3>
-          <p>
-            Another way to define expansion is through the{' '}
-            <EuiCode>renderCellValue</EuiCode> prop which is a function that
-            returns an object containing internal information about that cell
-            including <EuiCode>isDetails</EuiCode>. When true, you can use this
-            to return a React component to render inside of the expansion
-            popover.{' '}
-          </p>
-          <EuiCodeBlock language="js" paddingSize="s" isCopyable>
-            {`renderCellValue={({ rowIndex, columnId, isDetails }) => {
-  const value = data[rowIndex][columnId];
 
-  if (columnId === 'custom' && isDetails) {
-    return <Custom name={value} />;
-  }
+    ...DataGridCellPopoverExample.sections,
 
-  return value;
-}}`}
-          </EuiCodeBlock>
-          <p>
-            You can see an example of this by clicking into one of the cells in
-            the <EuiCode>custom</EuiCode> column below.
-          </p>
-        </Fragment>
-      ),
-      props: {
-        EuiDataGridSchemaDetector,
-        EuiDataGrid,
-        EuiDataGridCellValueElementProps,
-      },
-      demo: <DataGridSchema customPopover />,
-    },
     {
       title: 'Footer row',
       source: [
