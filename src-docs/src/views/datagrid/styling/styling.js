@@ -7,7 +7,7 @@ import {
   EuiPopover,
   EuiButton,
   EuiCallOut,
-} from '../../../../../src/components';
+} from '../../../../../src';
 
 import DataGridStyle from './styling_grid';
 

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import { GuideSectionTypes } from '../../components';
+import { GuideSectionTypes } from '../../../components';
 import {
   EuiDataGrid,
   EuiCallOut,
@@ -8,17 +8,20 @@ import {
   EuiCodeBlock,
   EuiBasicTable,
   EuiSpacer,
-} from '../../../../src/components';
+} from '../../../../../src/components';
 
-import { EuiDataGridStyle } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
+import { EuiDataGridStyle } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
-import DataGridStyling from './styling/styling';
-const dataGridStylingSource = require('!!raw-loader!./styling/styling_grid');
+import DataGridStyling from './styling';
+const dataGridStylingSource = require('!!raw-loader!./styling_grid');
 
-import DataGridFocus from './styling/focus';
-const dataGridFocusSource = require('!!raw-loader!./styling/focus');
+import DataGridDisplayCallbacks from './display_callbacks';
+const dataGridDisplayCallbacksSource = require('!!raw-loader!./display_callbacks');
 
-import { dataGridRowHeightOptionsExample } from './styling/datagrid_height_options_example';
+import DataGridFocus from './focus';
+const dataGridFocusSource = require('!!raw-loader!./focus');
+
+import { dataGridRowHeightOptionsExample } from './datagrid_height_options_example';
 
 export const gridSnippet = `gridStyle={{
   border: 'all',
@@ -71,6 +74,32 @@ export const DataGridStylingExample = {
       demo: <DataGridStyling />,
     },
     ...dataGridRowHeightOptionsExample.sections,
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: dataGridDisplayCallbacksSource,
+        },
+      ],
+      title: 'Adjusting your grid to user/toolbar changes',
+      text: (
+        <>
+          <p>
+            You can use the optional <EuiCode>gridStyle.onChange</EuiCode> and{' '}
+            <EuiCode>rowHeightsOptions.onChange</EuiCode> callbacks to adjust
+            your data grid based on user density or row height changes.
+          </p>
+          <p>
+            For example, if the user changes the grid density to compressed, you
+            may want to adjust a cell&apos;s content sizing in response. Or you
+            could store user settings in localStorage or other database to
+            preserve display settings on page refresh, like the below example
+            does.
+          </p>
+        </>
+      ),
+      demo: <DataGridDisplayCallbacks />,
+    },
     {
       title: 'Focus',
       source: [
@@ -181,12 +210,12 @@ export const DataGridStylingExample = {
             title="Don't off cell expansion when the width of the column is unknown"
           >
             In general, you should change <EuiCode>isExpandable</EuiCode> to{' '}
-            <EuiCode>false</EuiCode>
-            only when you know the exact width and number of items that a cell
-            will include. Control columns that contain row actions are a good
-            example of when to use them. In certain scenarios, allowing multiple
-            interactive elements in cells when you cannot control the width can
-            lead to hidden focus because the content is truncated.
+            <EuiCode>false</EuiCode> only when you know the exact width and
+            number of items that a cell will include. Control columns that
+            contain row actions are a good example of when to use them. In
+            certain scenarios, allowing multiple interactive elements in cells
+            when you cannot control the width can lead to hidden focus because
+            the content is truncated.
           </EuiCallOut>
         </Fragment>
       ),
