@@ -10,13 +10,13 @@ inMemory={{ level: 'sorting' }}`,
   columns: `columns={[
   {
     id: 'A', // required
-    initialWidth: 150,
-    isResizable: false,
-    actions: false
-    isExpandable: false,
-    actions: { showMoveLeft: false, showMoveRight: false },
-    schema: 'franchise',
-    cellActions: [
+    initialWidth: 150, // starting width of 150px
+    isResizable: false, // prevents the user from resizing width
+    actions: false, // no column header actions are displayed
+    isExpandable: false, // doesn't allow clicking in to see the content in a popup
+    actions: { showMoveLeft: false, showMoveRight: false }, // doesn't show move actions in column header
+    schema: 'franchise', // custom schema later defined under schemaDetectors
+    cellActions: [ // provides one additional cell action that triggers an alert once clicked
       {
         label: 'test',
         iconType: 'heart',
@@ -46,6 +46,13 @@ inMemory={{ level: 'sorting' }}`,
   },
 ]}`,
   renderCellValue: 'renderCellValue={({ rowIndex, columnId }) => {}}',
+  renderCellPopover: `renderCellPopover={({ children, cellActions }) => (
+  <>
+    <EuiPopoverTitle>I'm a custom popover!</EuiPopoverTitle>
+    {children}
+    {cellActions}
+  </>
+)}`,
   renderFooterCellValue:
     'renderFooterCellValue={({ rowIndex, columnId }) => {}}',
   pagination: `pagination={{
@@ -89,12 +96,6 @@ inMemory={{ level: 'sorting' }}`,
       See Data Grid Schemas for full details.
     </EuiLink>
   ),
-  popoverContents: `popoverContents={{
-  numeric: ({ children, cellContentsElement }) => {
-    // \`children\` is the datagrid's \`renderCellValue\` as a ReactElement and should be used when you are only wrapping the contents
-    // \`cellContentsElement\` is the cell's existing DOM element and can be used to extract the text value for processing
-  },
-}}`,
   onColumnResize: 'onColumnResize={({columnId, width}) => {}}',
 };
 
@@ -114,7 +115,7 @@ const gridLinks = {
   toolbarVisibility: '/#/tabular-content/data-grid-toolbar#toolbar-visibility',
 };
 
-export default () => {
+export const DataGridTopProps = () => {
   return (
     <DataGridPropsTable
       component={EuiDataGrid}
@@ -125,6 +126,7 @@ export default () => {
         'width',
         'height',
         'minSizeForControls',
+        'ref',
       ]}
       snippets={gridSnippets}
       links={gridLinks}

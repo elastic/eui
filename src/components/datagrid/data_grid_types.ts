@@ -258,11 +258,13 @@ export type CommonGridProps = CommonProps &
      */
     renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
     /**
-     * Defines the look and feel for the grid. Accepts a partial #EuiDataGridStyle object.
+     * Defines the initial style of the grid. Accepts a partial #EuiDataGridStyle object.
      * Settings provided may be overwritten or merged with user defined preferences if `toolbarVisibility.showDisplaySelector.allowDensity = true` (which is the default).
      */
     gridStyle?: EuiDataGridStyle;
     /**
+     * Allows you to configure what features the toolbar shows.
+     *
      * Accepts either a boolean or #EuiDataGridToolBarVisibilityOptions object.
      * When used as a boolean, defines the display of the entire toolbar.
      * When passed an object allows you to turn off individual controls within the toolbar as well as add additional buttons.

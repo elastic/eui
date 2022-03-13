@@ -11,7 +11,7 @@ import {
 } from '../../../../../src/components';
 
 import DataGrid from './datagrid';
-import TopLevelProps from './_props';
+import { DataGridTopProps } from './_props';
 const dataGridSource = require('!!raw-loader!./datagrid');
 
 import DataGridContainer from './container';
@@ -45,133 +45,7 @@ import {
 } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
 const gridSnippet = `<EuiDataGrid
-  // Optional. Will try to autodectect schemas and do sorting and pagination in memory.
-  inMemory={{ level: 'sorting' }}
-  // Required. There are 200 total records.
-  rowCount={200}
-  // Required. Sets up three columns, the last of which has a custom schema we later define down below.
-  // The first column defines a starting width of 150px, prevents the user from resizing it and no actions are displayed
-  // The second column B won't allow clicking in to see the content in a popup and doesn't show move actions in column header cell
-  // The third column provides one additional cell action, that triggers an alert once clicked
-  columns={[
-      { id: 'A', initialWidth: 150, isResizable: false, actions: false },
-      { id: 'B', isExpandable: false, actions: { showMoveLeft: false, showMoveRight: false } },
-      { id: 'C', schema: 'franchise', cellActions: [{ label: 'test', iconType: 'heart', callback: ()=> alert('test') }]}
-  ]}
-  // Optional. This allows you to initially hide columns. Users can still turn them on.
-  columnVisibility={{
-    visibleColumns: ['A', 'C'],
-    setVisibleColumns: () => {},
-  }}
-  leadingControlColumns={[
-    {
-      id: 'selection',
-      width: 31,
-      headerCellRender: () => <span>Select a Row</span>,
-      rowCellRender: () => <div><EuiCheckbox ... /></div>,
-    },
-  ]}
-  trailingControlColumns={[
-    {
-      id: 'actions',
-      width: 40,
-      headerCellRender: () => null,
-      rowCellRender: MyGridActionsComponent,
-    },
-  ]}
-  // Optional. Customize the content inside the cell. The current example outputs the row and column position.
-  // Often used in combination with useEffect() to dynamically change the render.
-  renderCellValue={({ rowIndex, columnId }) =>
-    \`\${rowIndex}, \${columnId}\`
-  }
-  // Optional. Add pagination.
-  pagination={{
-    pageIndex: 1,
-    pageSize: 100,
-    pageSizeOptions: [50, 100, 200],
-    onChangePage: () => {},
-    onChangeItemsPerPage: () => {},
-  }}
-  // Optional, but required when inMemory is set. Provides the sort and gives a callback for when it changes in the grid.
-  sorting={{
-    columns: [{ id: 'C', direction: 'asc' }],
-    onSort: () => {},
-  }}
-  // Optional. Allows you to configure what features the toolbar shows.
-  // The prop also accepts a boolean if you want to toggle the entire toolbar on/off.
-  toolbarVisibility={{
-    showColumnSelector: false,
-    showDisplaySelector: false,
-    showSortSelector: false,
-    showFullScreenSelector: false,
-    additionalControls: {
-      left: <EuiButtonEmpty size="xs" />,
-      right: <EuiButtonIcon size="xs" />,
-    },
-  }}
-  // Optional. Change the initial style of the grid.
-  gridStyle={{
-    border: 'all',
-    fontSize: 'm',
-    cellPadding: 'm',
-    stripes: true,
-    rowHover: 'highlight',
-    header: 'shade',
-  }}
-  // Optional. Allows configuring the heights of grid rows
-  rowHeightsOptions={{
-    defaultHeight: 34,
-    rowHeights: {
-      0: auto
-    },
-    lineHeight: '1em',
-  }}
-  // Optional. Provide additional schemas to use in the grid.
-  // This schema 'franchise' essentially acts like a boolean, looking for Star Wars or Star Trek in a column.
-  schemaDetectors={[
-    {
-      type: 'franchise',
-      // Try to detect if column data is this schema. A value of 1 is the highest possible. A (mean_average - standard_deviation) of .5 will be good enough for the autodetector to assign.
-      detector(value) {
-        return value.toLowerCase() === 'star wars' ||
-          value.toLowerCase() === 'star trek'
-          ? 1
-          : 0;
-      },
-      // How we should sort data matching this schema. Again, a value of 1 is the highest value.
-      comparator(a, b, direction) {
-        const aValue = a.toLowerCase() === 'star wars';
-        const bValue = b.toLowerCase() === 'star wars';
-        if (aValue < bValue) return direction === 'asc' ? 1 : -1;
-        if (aValue > bValue) return direction === 'asc' ? -1 : 1;
-        return 0;
-      },
-      // Text for what the ASC sort does.
-      sortTextAsc: 'Star Wars-Star Trek',
-      // Text for what the DESC sort does.
-      sortTextDesc: 'Star Trek-Star Wars',
-      // EuiIcon or Token to signify this schema.
-      icon: 'star',
-      // The color to use for the icon token.
-      color: '#000000',
-    },
-  ]}
-  // Optional. Mapped against the schema, provide custom layout and/or content for the popover.
-  popoverContents={{
-    numeric: ({ children, cellContentsElement }) => {
-      // \`children\` is the datagrid's \`renderCellValue\` as a ReactElement and should be used when you are only wrapping the contents
-      // \`cellContentsElement\` is the cell's existing DOM element and can be used to extract the text value for processing, as below
-
-      // want to process the already-rendered cell value
-      const stringContents = cellContentsElement.textContent;
-
-      // extract the groups-of-three digits that are right-aligned
-      return stringContents.replace(/((\\d{3})+)$/, match =>
-        // then replace each group of xyz digits with ,xyz
-        match.replace(/(\\d{3})/g, ',$1')
-      );
-    },
-  }}
+  // What is the simplist form?
 />`;
 
 export const DataGridExample = {
@@ -293,7 +167,7 @@ export const DataGridExample = {
             </p>
           </EuiText>
           <EuiSpacer />
-          <TopLevelProps />
+          <DataGridTopProps />
         </Fragment>
       ),
     },
