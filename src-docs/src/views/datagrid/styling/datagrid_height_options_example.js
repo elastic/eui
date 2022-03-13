@@ -113,7 +113,7 @@ const autoRowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
 export const dataGridRowHeightOptionsExample = {
   sections: [
     {
-      title: 'Data grid row heights options',
+      title: 'Row heights options',
       text: (
         <Fragment>
           <EuiText>
@@ -170,7 +170,7 @@ export const dataGridRowHeightOptionsExample = {
                   <li>
                     Can be used to store and preserve user display preferences
                     on page refresh - see this{' '}
-                    <Link to="/tabular-content/data-grid-styling-and-control#adjusting-your-grid-to-usertoolbar-changes">
+                    <Link to="/tabular-content/data-grid-style-display#adjusting-your-grid-to-usertoolbar-changes">
                       data grid styling and control example
                     </Link>
                     .

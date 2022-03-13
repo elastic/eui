@@ -203,7 +203,7 @@ export const DataGridExample = {
           <ul>
             <li>
               The grid allows you to optionally define an{' '}
-              <Link to="/tabular-content/data-grid-in-memory-settings/">
+              <Link to="/tabular-content/data-grid-in-memory/">
                 in memory level
               </Link>{' '}
               to have the grid automatically handle updating your columns.
@@ -211,37 +211,35 @@ export const DataGridExample = {
               content order separately from the grid.
             </li>
             <li>
-              <Link to="/tabular-content/data-grid-schemas-and-popovers/">
-                Schemas
-              </Link>{' '}
-              allow you to tailor the render and sort methods for each column.
-              The component ships with a few automatic schema detection and
-              types, but you can also pass in custom ones.
+              <Link to="/tabular-content/data-grid-data">Schemas</Link> allow
+              you to tailor the render and sort methods for each column. The
+              component ships with a few automatic schema detection and types,
+              but you can also pass in custom ones.
             </li>
             <li>
               Unlike tables, the data grid <strong>forces truncation</strong>.
               To display more content your can customize{' '}
-              <Link to="/tabular-content/data-grid-schemas-and-popovers/">
+              <Link to="/tabular-content/data-grid-data#conditionally-customizing-cell-popover-content">
                 popovers
               </Link>{' '}
               to display more content and actions into popovers.
             </li>
             <li>
-              <Link to="/tabular-content/data-grid-styling-and-control/">
+              <Link to="/tabular-content/data-grid-style-display#grid-style">
                 Grid styling
               </Link>{' '}
               can be controlled by the engineer, but augmented by user
               preference depending upon the features you enable.
             </li>
             <li>
-              <Link to="/tabular-content/data-grid-control-columns/">
+              <Link to="/tabular-content/data-grid-columns-cells#control-columns">
                 Control columns
               </Link>{' '}
               allow you to add repeatable actions and controls like checkboxes
               or buttons to your grid.
             </li>
             <li>
-              The <Link to="/tabular-content/data-grid-toolbar/">toolbar</Link>{' '}
+              The <Link to="/tabular-content/data-grid-toolbar">toolbar</Link>{' '}
               offers the user ways to manipulate the display and order of the
               data.
             </li>

@@ -477,20 +477,6 @@ const navigation = [
     ].map((example) => createExample(example)),
   },
   {
-    name: 'Tabular content',
-    items: [
-      DataGridExample,
-      DataGridSchemaExample,
-      DataGridToolbarExample,
-      DataGridColumnsExample,
-      DataGridStylingExample,
-      DataGridMemoryExample,
-      DataGridAdvancedExample,
-      TableExample,
-      TableInMemoryExample,
-    ].map((example) => createExample(example)),
-  },
-  {
     name: 'Display',
     items: [
       AspectRatioExample,
@@ -537,6 +523,20 @@ const navigation = [
       SuggestExample,
       SuperDatePickerExample,
       SuperSelectExample,
+    ].map((example) => createExample(example)),
+  },
+  {
+    name: 'Tabular content',
+    items: [
+      DataGridExample,
+      DataGridSchemaExample,
+      DataGridToolbarExample,
+      DataGridColumnsExample,
+      DataGridStylingExample,
+      DataGridMemoryExample,
+      DataGridAdvancedExample,
+      TableExample,
+      TableInMemoryExample,
     ].map((example) => createExample(example)),
   },
   {

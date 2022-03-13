@@ -100,14 +100,15 @@ inMemory={{ level: 'sorting' }}`,
 
 const gridLinks = {
   rowHeightsOptions:
-    '/#/tabular-content/data-grid-style-display#data-grid-row-heights-options',
+    '/#/tabular-content/data-grid-style-display#row-heights-options',
   gridStyle: '/#/tabular-content/data-grid-style-display#grid-style',
   inMemory: '/#/tabular-content/data-grid-in-memory',
   leadingControlColumns:
     '/#/tabular-content/data-grid-columns-cells#control-columns',
   trailingControlColumns:
     '/#/tabular-content/data-grid-columns-cells#control-columns',
-  popoverContents: '/#/tabular-content/data-grid-data#expansion-popovers',
+  renderCellPopover:
+    '/#/tabular-content/data-grid-data#completely-customizing-cell-popover-rendering',
   renderFooterCellValue: '/#/tabular-content/data-grid-data#footer-row',
   schemaDetectors: '/#/tabular-content/data-grid-data#schemas',
   toolbarVisibility: '/#/tabular-content/data-grid-toolbar#toolbar-visibility',

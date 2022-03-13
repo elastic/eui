@@ -11,9 +11,9 @@ const docsPages = async (root, page) => {
     `${root}#/forms/color-selection`,
     `${root}#/forms/date-picker`,
     `${root}#/forms/super-date-picker`,
-    `${root}#/tabular-content/data-grid-styling-and-control`,
-    `${root}#/tabular-content/data-grid-virtualization`,
-    `${root}#/tabular-content/data-grid-row-heights-options`,
+    // TODO: Check if this still needs to be skipped
+    // `${root}#/tabular-content/data-grid`,
+    // `${root}#/tabular-content/data-grid-style-display`,
   ];
 
   return [

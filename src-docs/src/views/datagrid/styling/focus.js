@@ -21,12 +21,12 @@ for (let i = 0; i < 10; i++) {
     <span>{fake('{{name.firstName}}')}</span>,
 
     <span>
-      <EuiLink href="#/tabular-content/data-grid-focus">
+      <EuiLink href="#/tabular-content/data-grid-style-display#focus">
         {fake('{{internet.email}}')}
       </EuiLink>
     </span>,
     <span>
-      <EuiLink href="#/tabular-content/data-grid-focus">
+      <EuiLink href="#/tabular-content/data-grid-style-display#focus">
         {fake('{{internet.email}}')}
       </EuiLink>
     </span>,
