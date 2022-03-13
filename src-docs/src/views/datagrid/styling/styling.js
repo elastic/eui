@@ -59,11 +59,11 @@ const cellPaddingOptions = [
 const stripeOptions = [
   {
     id: 'true',
-    label: 'Stripes on',
+    label: 'True',
   },
   {
     id: 'false',
-    label: 'Stripes off',
+    label: 'False',
   },
 ];
 
@@ -182,6 +182,39 @@ const DataGrid = () => {
             />
           </EuiFormRow>
 
+          <EuiFormRow label="Stripes" display="columnCompressed">
+            <EuiButtonGroup
+              isFullWidth
+              buttonSize="compressed"
+              legend="Stripes"
+              options={stripeOptions}
+              idSelected={stripesSelected.toString()}
+              onChange={onStripesChange}
+            />
+          </EuiFormRow>
+
+          <EuiFormRow label="Row hover" display="columnCompressed">
+            <EuiButtonGroup
+              isFullWidth
+              buttonSize="compressed"
+              legend="Hover row"
+              options={rowHoverOptions}
+              idSelected={rowHoverSelected}
+              onChange={onRowHoverChange}
+            />
+          </EuiFormRow>
+
+          <EuiFormRow label="Header" display="columnCompressed">
+            <EuiButtonGroup
+              isFullWidth
+              buttonSize="compressed"
+              legend="Header"
+              options={headerOptions}
+              idSelected={headerSelected}
+              onChange={onHeaderChange}
+            />
+          </EuiFormRow>
+
           <EuiFormRow label="Cell padding" display="columnCompressed">
             <EuiButtonGroup
               isFullWidth
@@ -201,39 +234,6 @@ const DataGrid = () => {
               options={fontSizeOptions}
               idSelected={fontSizeSelected}
               onChange={onFontSizeChange}
-            />
-          </EuiFormRow>
-
-          <EuiFormRow label="Stripes" display="columnCompressed">
-            <EuiButtonGroup
-              isFullWidth
-              buttonSize="compressed"
-              legend="Stripes"
-              options={stripeOptions}
-              idSelected={stripesSelected.toString()}
-              onChange={onStripesChange}
-            />
-          </EuiFormRow>
-
-          <EuiFormRow label="Hover row" display="columnCompressed">
-            <EuiButtonGroup
-              isFullWidth
-              buttonSize="compressed"
-              legend="Hover row"
-              options={rowHoverOptions}
-              idSelected={rowHoverSelected}
-              onChange={onRowHoverChange}
-            />
-          </EuiFormRow>
-
-          <EuiFormRow label="Header" display="columnCompressed">
-            <EuiButtonGroup
-              isFullWidth
-              buttonSize="compressed"
-              legend="Header"
-              options={headerOptions}
-              idSelected={headerSelected}
-              onChange={onHeaderChange}
             />
           </EuiFormRow>
 

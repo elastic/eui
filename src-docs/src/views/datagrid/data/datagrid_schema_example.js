@@ -1,11 +1,7 @@
 import React, { Fragment } from 'react';
 
 import { GuideSectionTypes } from '../../../components';
-import {
-  EuiDataGrid,
-  EuiCode,
-  EuiCodeBlock,
-} from '../../../../../src/components';
+import { EuiDataGrid, EuiCode } from '../../../../../src/components';
 
 import DataGridSchema from './_grid';
 const dataGridSchemaSource = require('!!raw-loader!./_grid');
@@ -21,8 +17,24 @@ import {
   EuiDataGridCellValueElementProps,
 } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
+const gridFooterSnippet = `const footerCellValues = {
+  // desired data
+};
+
+<EuiDataGrid
+  aria-label="Data grid with footer set"
+  columns={columns}
+  columnVisibility={{ visibleColumns, setVisibleColumns }}
+  rowCount={rowCount}
+  renderCellValue={renderCellValue}
+  renderFooterCellValue={({ rowIndex, columnId }) =>
+    footerCellValues[columnId] || null
+  }
+/>
+`;
+
 export const DataGridSchemaExample = {
-  title: 'Data grid data',
+  title: 'Data grid data', // TO ASK: `data` or `schema` here?
   sections: [
     {
       title: 'Schemas',
@@ -128,19 +140,6 @@ schemaDetectors={[
             <EuiCode>EuiDataGridCellValueElementProps</EuiCode> and returning a
             React node.
           </p>
-          <EuiCodeBlock language="jsx" paddingSize="s" isCopyable>
-            {`const footerCellValues = {
-  // desired data
-};
-
-<EuiDataGrid
-  {...usualProps}
-  renderFooterCellValue={({ columnId }) =>
-    footerCellValues[columnId] || null
-  }
-/>
-`}
-          </EuiCodeBlock>
         </Fragment>
       ),
       props: {
@@ -148,6 +147,7 @@ schemaDetectors={[
         EuiDataGridCellValueElementProps,
       },
       demo: <DataGridFooterRow />,
+      snippet: gridFooterSnippet,
     },
   ],
 };

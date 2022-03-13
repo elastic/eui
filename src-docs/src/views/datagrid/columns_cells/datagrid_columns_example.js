@@ -3,7 +3,6 @@ import React, { Fragment } from 'react';
 import { GuideSectionTypes } from '../../../components';
 import {
   EuiDataGrid,
-  EuiCodeBlock,
   EuiCode,
   EuiListGroupItem,
 } from '../../../../../src/components';
@@ -26,23 +25,11 @@ import {
   EuiDataGridControlColumn,
 } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
-const widthsSnippet = `<EuiDataGrid
-  {...usualGridProps}
-  columns={[
-    {
-      id: 'Column A',
-      initialWidth: 100, // start at 100px
-    },
-    {
-      id: 'Column B',
-      isResizable: false, // don't let users resize this column
-    },
-  ]}
-/>
-`;
-
-const gridSnippet = `<EuiDataGrid
-  {...usualProps}
+const gridLeadingColumnsSnippet = `<EuiDataGrid
+  aria-label="Data grid with trailing columns set"
+  columns={columns}
+  columnVisibility={{ visibleColumns, setVisibleColumns }}
+  rowCount={rowCount}
   leadingControlColumns={[
     {
       id: 'selection',
@@ -57,6 +44,23 @@ const gridSnippet = `<EuiDataGrid
       width: 40,
       headerCellRender: () => null,
       rowCellRender: MyGridActionsComponent,
+    },
+  ]}
+/>
+`;
+
+const widthsSnippet = `<EuiDataGrid
+  aria-label="Data grid with columns columns set"
+  columnVisibility={{ visibleColumns, setVisibleColumns }}
+  rowCount={rowCount}
+  columns={[
+    {
+      id: 'Column A',
+      initialWidth: 100, // start at 100px
+    },
+    {
+      id: 'Column B',
+      isResizable: false, // don't let users resize this column
     },
   ]}
 />
@@ -164,9 +168,6 @@ export const DataGridColumnsExample = {
             <EuiCode>rowCellRender</EuiCode> props are treated as React
             components.
           </p>
-          <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
-            {gridSnippet}
-          </EuiCodeBlock>
         </Fragment>
       ),
       props: {
@@ -174,6 +175,7 @@ export const DataGridColumnsExample = {
         EuiDataGridControlColumn,
       },
       demo: <DataGridControlColumns />,
+      snippet: gridLeadingColumnsSnippet,
     },
     {
       source: [

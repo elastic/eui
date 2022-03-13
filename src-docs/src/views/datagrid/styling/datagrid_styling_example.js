@@ -5,7 +5,6 @@ import {
   EuiDataGrid,
   EuiCallOut,
   EuiCode,
-  EuiCodeBlock,
   EuiBasicTable,
   EuiSpacer,
 } from '../../../../../src/components';
@@ -22,17 +21,25 @@ import DataGridFocus from './focus';
 const dataGridFocusSource = require('!!raw-loader!./focus');
 
 import { dataGridRowHeightOptionsExample } from './datagrid_height_options_example';
+import { gridSnippets } from '../_snippets';
 
-export const gridSnippet = `gridStyle={{
-  border: 'all',
-  stripes: true,
-  rowHover: 'highlight',
-  header: 'shade',
-  // If showDisplaySelector.allowDensity={true} from toolbarVisibility, fontSize and cellPadding will be superceded by what the user decides.
-  fontSize: 'm',
-  cellPadding: 'm',
-  footer: 'overline'
-}}`;
+// TO ASK: Is `useMemo` helpful here?
+const gridStyleSnippet = `const gridStyle = useMemo(
+  () => ({
+    ${gridSnippets.gridStyle}
+  }),
+  []
+);
+
+<EuiDataGrid
+  aria-label="Data grid with grid style set"
+  columns={columns}
+  columnVisibility={{ visibleColumns, setVisibleColumns }}
+  rowCount={rowCount}
+  renderCellValue={renderCellValue}
+  gridStyle={gridStyle}
+/>
+`;
 
 export const DataGridStylingExample = {
   title: 'Data grid style & display',
@@ -62,15 +69,13 @@ export const DataGridStylingExample = {
             parent font size or elements that use units relative to the parent
             container.
           </p>
-          <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
-            {gridSnippet}
-          </EuiCodeBlock>
         </Fragment>
       ),
       props: {
         EuiDataGrid,
         EuiDataGridStyle,
       },
+      snippet: gridStyleSnippet,
       demo: <DataGridStyling />,
     },
     ...dataGridRowHeightOptionsExample.sections,

@@ -6,7 +6,6 @@ import {
   EuiDataGrid,
   EuiCallOut,
   EuiCode,
-  EuiCodeBlock,
   EuiSpacer,
   EuiText,
 } from '../../../../../src/components';
@@ -20,19 +19,12 @@ const dataGridRowHeightOptionsSource = require('!!raw-loader!./row_height_fixed'
 import DataGridRowAutoHeight from './row_height_auto';
 const dataGridRowAutoHeightSource = require('!!raw-loader!./row_height_auto');
 
-const lineHeightSnippet = `rowHeightsOptions = {
-  defaultHeight: {
-    lineCount: 3 // default every row to 3 lines of text
-  },
-  lineHeight: '2em', // default every cell line-height to 2em
-}`;
-
 const lineHeightFullSnippet = `const rowHeightsOptions = useMemo(
   () => ({
     defaultHeight: {
-      lineCount: 3,
+      lineCount: 3 // default every row to 3 lines of text
     },
-    lineHeight: '2em';
+    lineHeight: '2em', // default every cell line-height to 2em
   }),
   []
 );
@@ -47,23 +39,15 @@ const lineHeightFullSnippet = `const rowHeightsOptions = useMemo(
 />
 `;
 
-const rowHeightsSnippet = `rowHeightsOptions = {
-  defaultHeight: 140, // default every row to 140px
-  rowHeights: {
-    1: {
-      lineCount: 5, // row at index 1 will show 5 lines
-    },
-    4: 200, // row at index 4 will adjust the height to 200px
-    5: 80,
-  },
-}`;
-
 const rowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
   () => ({
-    defaultHeight: 140,
+    defaultHeight: 140, // default every row to 140px
     rowHeights: {
-      0: 200,
-      1: 50,
+      1: {
+        lineCount: 5, // row at index 1 will show 5 lines
+      },
+      4: 200, // row at index 4 will adjust the height to 200px
+      5: 80,
     },
   }),
   []
@@ -79,23 +63,30 @@ const rowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
 />
 `;
 
-const autoRowHeightsSnippet = `// the demo below matches this snippet
-rowHeightsOptions = {
-  defaultHeight: 'auto', // all rows will automatically adjust the height except rows defined in 'rowHeights'
-}
-
-// you can also automatically adjust the height for a specific row
-rowHeightsOptions = {
-  rowHeights: {
-    1: 'auto', // row at index 1 will automatically adjust the height
-    4: 140, // row at index 4 will adjust the height to 140px
-  }
-}
-`;
-
-const autoRowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
+const autoRowHeightsFullSnippet = [
+  `// the demo matches this snippet
+const rowHeightsOptions = useMemo(
   () => ({
-    defaultHeight: 'auto'
+    defaultHeight: 'auto' // all rows will automatically adjust the height except rows defined in 'rowHeights'
+  }),
+  []
+);
+
+<EuiDataGrid
+  aria-label="Data grid with auto height for rows"
+  columns={columns}
+  columnVisibility={{ visibleColumns, setVisibleColumns }}
+  rowCount={rowCount}
+  renderCellValue={renderCellValue}
+  rowHeightsOptions={rowHeightsOptions}
+/>`,
+  `// you can also automatically adjust the height for a specific row
+const rowHeightsOptions = useMemo(
+  () => ({
+    rowHeights: {
+      1: 'auto', // row at index 1 will automatically adjust the height
+      4: 140, // row at index 4 will adjust the height to 140px
+    }
   }),
   []
 );
@@ -108,7 +99,8 @@ const autoRowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
   renderCellValue={renderCellValue}
   rowHeightsOptions={rowHeightsOptions}
 />
-`;
+`,
+];
 
 export const dataGridRowHeightOptionsExample = {
   sections: [
@@ -222,9 +214,6 @@ export const dataGridRowHeightOptionsExample = {
             <EuiCode>lineHeight</EuiCode> property to the actual cell content
             line height.
           </p>
-          <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
-            {lineHeightSnippet}
-          </EuiCodeBlock>
         </Fragment>
       ),
       props: {
@@ -249,9 +238,6 @@ export const dataGridRowHeightOptionsExample = {
             <EuiCode>rowHeights</EuiCode> object associating the row&apos;s
             index with a specific height configuration.
           </p>
-          <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
-            {rowHeightsSnippet}
-          </EuiCodeBlock>
           <EuiCallOut
             color="warning"
             title="Disabling the row height toolbar control"
@@ -293,9 +279,6 @@ export const dataGridRowHeightOptionsExample = {
             <EuiCode>rowHeights</EuiCode> object associating the row&apos;s
             index with an <EuiCode>&quot;auto&quot;</EuiCode> value.
           </p>
-          <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
-            {autoRowHeightsSnippet}
-          </EuiCodeBlock>
         </Fragment>
       ),
       props: {
