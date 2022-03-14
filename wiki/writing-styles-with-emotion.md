@@ -22,4 +22,10 @@ Although possible in some contexts, it is not recommended to "shortcut" logic us
 
 ## The `css` prop
 
-TBD
+_Work in progress_
+
+* Use an array inside of the `css` prop for optimal style composition and class name generation. This is relevant even if only a single style object is passed.
+
+```tsx
+<EuiComponent css={[styles.default, styles.stateful]} />
+```

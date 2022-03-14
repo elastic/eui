@@ -5,6 +5,33 @@
 1. Create a directory for your component in `src/components`.
 2. Create a `{component name}.styles.ts` file inside the directory.
 
+```ts
+import { css } from '@emotion/react';
+import { UseEuiTheme } from '../../services';
+
+export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => {
+  return css`
+    color: ${euiTheme.colors.primary};
+  `;
+};
+```
+
+3. Import the `{component name}.styles.ts` file into your component, for example:
+
+```tsx
+import { useEuiTheme } from '../../services';
+import { euiComponentNameStyles } from './{component name}.styles.ts';
+
+export const EuiComponent = () => {
+  const theme = useEuiTheme();
+  const styles = euiComponentStyles(theme);
+
+  return (
+    <div css={[styles]} />
+  );
+};
+```
+
 ## Create the React component
 
 1. Create the React component(s) (preferably as TypeScript) in the same directory as the related style file(s).
