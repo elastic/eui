@@ -224,6 +224,7 @@ export default () => {
       </EuiTitle>
 
       <GuideRule
+        heading="Checkbox and radio button labels"
         description={
           <p>
             A label should be succinct, short, and descriptive with one to two
@@ -308,43 +309,6 @@ export default () => {
       </GuideRule>
 
       <GuideRule
-        heading="Checkbox and radio button labels"
-        description={
-          <p>
-            For groups of options, add a legend that gives meaning to the
-            options.
-          </p>
-        }
-      >
-        <GuideRuleExample
-          type="do"
-          text="Use nouns that describe the choices to make as group title."
-        >
-          <EuiCheckboxGroup
-            options={groupTitleDo}
-            onChange={() => {}}
-            idToSelectedMap={{ group_title_do_one: true }}
-            legend={{
-              children: <span>Data to ship</span>,
-            }}
-          />
-        </GuideRuleExample>
-        <GuideRuleExample
-          type="dont"
-          text="Repeat choices or use the title as instructions."
-        >
-          <EuiCheckboxGroup
-            options={groupTitleDo}
-            onChange={() => {}}
-            idToSelectedMap={{ group_title_do_one: true }}
-            legend={{
-              children: <span>Choose to ship logs and/or metrics</span>,
-            }}
-          />
-        </GuideRuleExample>
-      </GuideRule>
-
-      <GuideRule
         description={
           <p>
             Use consistent label structures for options within the same group.
@@ -406,6 +370,43 @@ export default () => {
             name="radio group"
             legend={{
               children: <span>Availability zones</span>,
+            }}
+          />
+        </GuideRuleExample>
+      </GuideRule>
+
+      <GuideRule
+        heading="Legends"
+        description={
+          <p>
+            For groups of options, add a legend that gives meaning to the
+            options. Legends appear like a title.
+          </p>
+        }
+      >
+        <GuideRuleExample
+          type="do"
+          text="Use nouns that describe the choices to make as group title."
+        >
+          <EuiCheckboxGroup
+            options={groupTitleDo}
+            onChange={() => {}}
+            idToSelectedMap={{ group_title_do_one: true }}
+            legend={{
+              children: <span>Data to ship</span>,
+            }}
+          />
+        </GuideRuleExample>
+        <GuideRuleExample
+          type="dont"
+          text="Repeat choices or use the title as instructions."
+        >
+          <EuiCheckboxGroup
+            options={groupTitleDo}
+            onChange={() => {}}
+            idToSelectedMap={{ group_title_do_one: true }}
+            legend={{
+              children: <span>Choose to ship logs and/or metrics</span>,
             }}
           />
         </GuideRuleExample>
