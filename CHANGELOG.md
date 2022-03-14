@@ -6,6 +6,7 @@
 **Breaking changes**
 
 - Removed Legacy theme including compiled CSS ([#5688](https://github.com/elastic/eui/pull/5688))
+- Removed `flush` and `size` props in `EuiFilterButtonProps` ([#5717](https://github.com/elastic/eui/pull/5717))
 
 ## [`51.1.0`](https://github.com/elastic/eui/tree/v51.1.0)
 

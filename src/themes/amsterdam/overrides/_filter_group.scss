@@ -9,10 +9,16 @@
   border-radius: $euiFormControlCompressedBorderRadius;
 
   & .euiFilterButton {
-    height: $euiButtonHeightSmall;
+    height: $euiFormControlCompressedHeight;
+  }
+
+  // Override the size to match the default `.euiNotificationBadge` size
+  .euiFilterButton__notification {
+    line-height: $euiSize;
+    height: $euiSize;
+    min-width: $euiSize;
   }
 }
-
 
 .euiFilterButton {
   border-radius: 0;

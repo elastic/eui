@@ -18,10 +18,7 @@ import {
 
 import { useInnerText } from '../inner_text';
 
-export type EuiFilterButtonProps = Omit<
-  EuiButtonEmptyProps,
-  'flush' | 'size'
-> & {
+export type EuiFilterButtonProps = {
   /**
    * Bolds the button if true
    */
@@ -53,7 +50,7 @@ export type EuiFilterButtonProps = Omit<
    * Remove border after button, good for opposite filters
    */
   noDivider?: boolean;
-};
+} & Omit<EuiButtonEmptyProps, 'flush' | 'size'>;
 
 export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   children,
