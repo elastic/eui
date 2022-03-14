@@ -1079,12 +1079,13 @@ Array [
                         A
                       </div>
                       <span
-                        aria-label="Header actions"
                         class="euiDataGridHeaderCell__icon"
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-A"
-                      />
+                      >
+                        Header actions
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -1121,12 +1122,13 @@ Array [
                         B
                       </div>
                       <span
-                        aria-label="Header actions"
                         class="euiDataGridHeaderCell__icon"
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-B"
-                      />
+                      >
+                        Header actions
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -1522,12 +1524,13 @@ Array [
                         A
                       </div>
                       <span
-                        aria-label="Header actions"
                         class="euiDataGridHeaderCell__icon"
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-A"
-                      />
+                      >
+                        Header actions
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -1564,12 +1567,13 @@ Array [
                         B
                       </div>
                       <span
-                        aria-label="Header actions"
                         class="euiDataGridHeaderCell__icon"
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-B"
-                      />
+                      >
+                        Header actions
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -2268,12 +2272,13 @@ Array [
                         Column A
                       </div>
                       <span
-                        aria-label="Header actions"
                         class="euiDataGridHeaderCell__icon"
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-A"
-                      />
+                      >
+                        Header actions
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -2312,12 +2317,13 @@ Array [
                         </div>
                       </div>
                       <span
-                        aria-label="Header actions"
                         class="euiDataGridHeaderCell__icon"
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-B"
-                      />
+                      >
+                        Header actions
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -2691,12 +2697,13 @@ Array [
                         A
                       </div>
                       <span
-                        aria-label="Header actions"
                         class="euiDataGridHeaderCell__icon"
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-A"
-                      />
+                      >
+                        Header actions
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -2733,12 +2740,13 @@ Array [
                         B
                       </div>
                       <span
-                        aria-label="Header actions"
                         class="euiDataGridHeaderCell__icon"
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-B"
-                      />
+                      >
+                        Header actions
+                      </span>
                     </button>
                   </div>
                 </div>
