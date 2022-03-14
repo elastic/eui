@@ -5,7 +5,7 @@
 1. Create a directory for your component in `src/components`.
 2. Create a `{component name}.styles.ts` file inside the directory
 
-Refer to the [Writing styles with emotion](wiki/writing-styles-with-emotion.md) guidelines for more instruction.
+Refer to the [Writing styles with emotion](./writing-styles-with-emotion.md) guidelines for more instruction.
 
 ## Create the React component
 
