@@ -75,8 +75,16 @@ const footerCellValues = {
   }`,
 };
 
-const renderFooterCellValue = ({ columnId }) =>
-  footerCellValues[columnId] || null;
+const RenderFooterCellValue = ({ columnId, setCellProps }) => {
+  const value = footerCellValues[columnId];
+
+  useEffect(() => {
+    // Turn off the cell expansion button if the footer cell is empty
+    if (!value) setCellProps({ isExpandable: false });
+  }, [value, setCellProps]);
+
+  return value || null;
+};
 
 export default () => {
   // Pagination
@@ -121,7 +129,7 @@ export default () => {
           rowCount={raw_data.length}
           renderCellValue={RenderCellValue}
           renderFooterCellValue={
-            showFooterRow ? renderFooterCellValue : undefined
+            showFooterRow ? RenderFooterCellValue : undefined
           }
           pagination={{
             ...pagination,
