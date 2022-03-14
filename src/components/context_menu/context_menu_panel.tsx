@@ -161,17 +161,20 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     if (this.props.items && this.props.items.length) {
       switch (event.key) {
         case cascadingMenuKeys.TAB:
-          // We need to sync up with the user if s/he is tabbing through the items.
-          const focusedItemIndex = this.state.menuItems.indexOf(
-            document.activeElement as HTMLElement
-          );
+          setTimeout(() => {
+            // NOTE: document.activeElement is stale if not wrapped in a setTimeout
+            const focusedItemIndex = this.state.menuItems.indexOf(
+              document.activeElement as HTMLElement
+            );
 
-          this.setState({
-            focusedItemIndex:
-              focusedItemIndex >= 0 &&
-              focusedItemIndex < this.state.menuItems.length
-                ? focusedItemIndex
-                : undefined,
+            // We need to sync up with the user if s/he is tabbing through the items.
+            this.setState({
+              focusedItemIndex:
+                focusedItemIndex >= 0 &&
+                focusedItemIndex < this.state.menuItems.length
+                  ? focusedItemIndex
+                  : undefined,
+            });
           });
           break;
 
