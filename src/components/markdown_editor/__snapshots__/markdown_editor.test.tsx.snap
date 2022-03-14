@@ -827,10 +827,11 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                                   >
                                     GitHub flavored markdown
                                     <span
-                                      aria-label="External link"
                                       class="euiLink__externalIcon"
                                       data-euiicon-type="popout"
-                                    />
+                                    >
+                                      External link
+                                    </span>
                                     <span
                                       class="euiScreenReaderOnly"
                                     >
@@ -1070,11 +1071,12 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                                                     type="popout"
                                                   >
                                                     <span
-                                                      aria-label="External link"
                                                       className="euiLink__externalIcon"
                                                       data-euiicon-type="popout"
                                                       size="s"
-                                                    />
+                                                    >
+                                                      External link
+                                                    </span>
                                                   </EuiIcon>
                                                   <EuiScreenReaderOnly>
                                                     <span
@@ -2284,10 +2286,11 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                       >
                                         GitHub flavored markdown
                                         <span
-                                          aria-label="External link"
                                           class="euiLink__externalIcon"
                                           data-euiicon-type="popout"
-                                        />
+                                        >
+                                          External link
+                                        </span>
                                         <span
                                           class="euiScreenReaderOnly"
                                         >
@@ -2520,10 +2523,11 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                               >
                                                 GitHub flavored markdown
                                                 <span
-                                                  aria-label="External link"
                                                   class="euiLink__externalIcon"
                                                   data-euiicon-type="popout"
-                                                />
+                                                >
+                                                  External link
+                                                </span>
                                                 <span
                                                   class="euiScreenReaderOnly"
                                                 >
@@ -2672,10 +2676,11 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                                 >
                                                   GitHub flavored markdown
                                                   <span
-                                                    aria-label="External link"
                                                     class="euiLink__externalIcon"
                                                     data-euiicon-type="popout"
-                                                  />
+                                                  >
+                                                    External link
+                                                  </span>
                                                   <span
                                                     class="euiScreenReaderOnly"
                                                   >
@@ -2824,10 +2829,11 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                                   >
                                                     GitHub flavored markdown
                                                     <span
-                                                      aria-label="External link"
                                                       class="euiLink__externalIcon"
                                                       data-euiicon-type="popout"
-                                                    />
+                                                    >
+                                                      External link
+                                                    </span>
                                                     <span
                                                       class="euiScreenReaderOnly"
                                                     >
@@ -2964,10 +2970,11 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                                     >
                                                       GitHub flavored markdown
                                                       <span
-                                                        aria-label="External link"
                                                         class="euiLink__externalIcon"
                                                         data-euiicon-type="popout"
-                                                      />
+                                                      >
+                                                        External link
+                                                      </span>
                                                       <span
                                                         class="euiScreenReaderOnly"
                                                       >
@@ -3178,11 +3185,12 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                                         type="popout"
                                                       >
                                                         <span
-                                                          aria-label="External link"
                                                           className="euiLink__externalIcon"
                                                           data-euiicon-type="popout"
                                                           size="s"
-                                                        />
+                                                        >
+                                                          External link
+                                                        </span>
                                                       </EuiIcon>
                                                       <EuiScreenReaderOnly>
                                                         <span
