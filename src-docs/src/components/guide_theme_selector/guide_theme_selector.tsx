@@ -35,9 +35,8 @@ export const GuideThemeSelector: React.FunctionComponent<GuideThemeSelectorProps
   );
 };
 
-const STORAGE_KEY = 'legeacy_theme_notification';
+const STORAGE_KEY = 'legacy_theme_notification';
 
-// @ts-ignore Context has no type
 const GuideThemeSelectorComponent: React.FunctionComponent<GuideThemeSelectorProps> = ({
   context,
   onToggleLocale,
@@ -104,12 +103,8 @@ const GuideThemeSelectorComponent: React.FunctionComponent<GuideThemeSelectorPro
       content={
         <EuiText style={{ maxWidth: 320 }}>
           <p>
-            Amsterdam is now the default theme and the old theme is considered
-            legacy. Our{' '}
-            <EuiLink href="#/guidelines/getting-started#importing-styles">
-              setup instructions
-            </EuiLink>{' '}
-            will sync with the currently selected theme.
+            Amsterdam is now the only theme and the legacy theme has been
+            removed.
           </p>
         </EuiText>
       }

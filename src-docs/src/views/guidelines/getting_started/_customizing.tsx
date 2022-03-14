@@ -13,25 +13,26 @@ import {
 
 import { GuideSectionExampleCode } from '../../../components/guide_section/guide_section_parts/guide_section_code';
 import { LanguageSelector, ThemeContext } from '../../../components/with_theme';
-const consumingSource = require('!!raw-loader!../../theme/consuming');
+const overrideSimpleSource = require('!!raw-loader!../../theme/override_simple');
 
-const ImportOutsideExample = () => {
+export const CustomizeTokens = () => {
   const themeContext = useContext(ThemeContext);
   let files;
   switch (themeContext.theme) {
     case 'dark':
-      files = `@import '@elastic/eui/src/themes/amsterdam/colors_dark';
-@import '@elastic/eui/src/themes/amsterdam/globals';`;
+      files = "@import '@elastic/eui/src/themes/amsterdam/theme_dark';";
       break;
     default:
-      files = `@import '@elastic/eui/src/themes/amsterdam/colors_light';
-@import '@elastic/eui/src/themes/amsterdam/globals';`;
+      files = "@import '@elastic/eui/src/themes/amsterdam/theme_light';";
       break;
   }
 
   return (
     <EuiCodeBlock language="scss" fontSize="m" isCopyable>
-      {`// index.scss
+      {`// mytheme.scss
+$euiColorPrimary: #7B61FF;
+
+// The following rebuilds the entire EUI component styles
 ${files}
 
 @import 'your/custom/styles';`}
@@ -39,7 +40,7 @@ ${files}
   );
 };
 
-export const Tokens: FunctionComponent = () => {
+export const Customizing: FunctionComponent = () => {
   const themeContext = useContext(ThemeContext);
   const currentLanguage = themeContext.themeLanguage;
   const showSass = currentLanguage.includes('sass');
@@ -69,11 +70,14 @@ export const Tokens: FunctionComponent = () => {
         <>
           <EuiSplitPanel.Inner>
             <EuiText>
-              <p>This will require style, css, postcss, and sass loaders.</p>
+              <p>
+                This will require style, css, postcss, and sass loaders and a
+                full re-compile of all EUI component styles.
+              </p>
             </EuiText>
           </EuiSplitPanel.Inner>
           <EuiSplitPanel.Inner paddingSize="none">
-            <ImportOutsideExample />
+            <CustomizeTokens />
           </EuiSplitPanel.Inner>
         </>
       ) : (
@@ -81,18 +85,18 @@ export const Tokens: FunctionComponent = () => {
           <EuiSplitPanel.Inner>
             <EuiText>
               <p>
-                As long as you have wrapped your application with{' '}
+                You can pass along a full or partial list of global{' '}
+                <EuiCode>overrides</EuiCode> to the{' '}
                 <Link to="/guidelines/getting-started#setting-up-your-application">
                   <strong>EuiProvider</strong>
-                </Link>
-                , you have access to the JS theme tokens via{' '}
-                <EuiCode>useEuiTheme()</EuiCode> and Emotion&apos;s{' '}
-                <EuiCode>css</EuiCode> prop.
+                </Link>{' '}
+                which will update the EUI components that are currently using
+                the Emotion method of theming.
               </p>
             </EuiText>
           </EuiSplitPanel.Inner>
           <EuiSplitPanel.Inner paddingSize="none">
-            <GuideSectionExampleCode code={consumingSource} />
+            <GuideSectionExampleCode code={overrideSimpleSource} />
           </EuiSplitPanel.Inner>
         </>
       )}
