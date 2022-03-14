@@ -1,6 +1,7 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-- Added `compressed` prop to `EuiFilterGroup` ([#0000](https://github.com/elastic/eui/pull/0000))
+- Added `compressed` prop to `EuiFilterGroup` ([#5717](https://github.com/elastic/eui/pull/5717))
+- Updated `testenv` mock for `EuiIcon` to render `aria-label` as text ([#5709](https://github.com/elastic/eui/pull/5709))
 
 **Breaking changes**
 
