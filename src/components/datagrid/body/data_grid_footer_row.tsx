@@ -81,7 +81,7 @@ const EuiDataGridFooterRow = memo(
             return (
               <EuiDataGridCell
                 {...sharedCellProps}
-                key={`${id}-${rowIndex}`}
+                key={`${columnPosition},${visibleRowIndex}`} // Note: this key should use cell position to match react-window/data cell behavior. See #5720
                 colIndex={columnPosition}
                 columnId={id}
                 columnType={columnType}

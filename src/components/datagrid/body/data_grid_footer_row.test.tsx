@@ -39,7 +39,7 @@ describe('EuiDataGridFooterRow', () => {
           columnType="string"
           interactiveCellId="someId"
           isExpandable={true}
-          key="someColumn-10"
+          key="0,10"
           popoverContext={
             Object {
               "cellLocation": Object {
@@ -65,7 +65,7 @@ describe('EuiDataGridFooterRow', () => {
           columnType={null}
           interactiveCellId="someId"
           isExpandable={true}
-          key="someColumnWithoutSchema-10"
+          key="1,10"
           popoverContext={
             Object {
               "cellLocation": Object {
