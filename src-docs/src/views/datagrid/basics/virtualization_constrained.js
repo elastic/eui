@@ -127,7 +127,7 @@ export default () => {
 
   const grid = (
     <EuiDataGrid
-      aria-label="Virtualized data grid demo"
+      aria-label="Virtualized and constrained data grid demo"
       columns={columns}
       columnVisibility={{ visibleColumns, setVisibleColumns }}
       rowCount={10000}

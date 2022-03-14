@@ -69,7 +69,7 @@ export default () => {
           paddingSize="none"
         >
           <EuiDataGrid
-            aria-label="Container constrained data grid demo"
+            aria-label="Container flex data grid demo"
             columns={columns}
             columnVisibility={{
               visibleColumns: visibleColumns,

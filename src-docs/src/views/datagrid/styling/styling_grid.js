@@ -92,7 +92,7 @@ const DataGridStyle = ({
 
   return (
     <EuiDataGrid
-      aria-label="Top EUI contributors"
+      aria-label="Data grid styling demo"
       columns={columns}
       columnVisibility={{
         visibleColumns: visibleColumns,

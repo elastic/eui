@@ -151,7 +151,7 @@ export default () => {
   return (
     <DataContext.Provider value={dataContext}>
       <EuiDataGrid
-        aria-label="Row height options with auto demo"
+        aria-label="Row height options with line height demo"
         columns={columns}
         columnVisibility={{ visibleColumns, setVisibleColumns }}
         rowCount={raw_data.length}
