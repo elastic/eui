@@ -171,7 +171,7 @@ export const TourExample = {
       demo: <Managed />,
     },
     {
-      title: 'Full screen demo',
+      title: 'Fullscreen demo',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -185,7 +185,7 @@ export const TourExample = {
         </p>
       ),
       fullScreen: {
-        slug: 'full-screen',
+        slug: 'fullscreen',
         demo: <FullScreen />,
       },
     },

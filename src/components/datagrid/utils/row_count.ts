@@ -16,12 +16,12 @@ export const computeVisibleRows = ({
   rowCount: EuiDataGridProps['rowCount'];
 }): EuiDataGridVisibleRows => {
   const startRow =
-    pagination && pagination.pageSize !== 'all'
+    pagination && pagination.pageSize > 0
       ? pagination.pageIndex * pagination.pageSize
       : 0;
 
   let endRow =
-    pagination && pagination.pageSize !== 'all'
+    pagination && pagination.pageSize > 0
       ? (pagination.pageIndex + 1) * pagination.pageSize
       : rowCount;
   endRow = Math.min(endRow, rowCount);

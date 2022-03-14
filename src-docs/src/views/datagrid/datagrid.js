@@ -256,7 +256,7 @@ const trailingControlColumns = [
                     <strong>EuiModal</strong>
                   </Link>{' '}
                   components have a higher <EuiCode>z-index</EuiCode> than{' '}
-                  <strong>EuiDataGrid</strong> components, even in full screen
+                  <strong>EuiDataGrid</strong> components, even in fullscreen
                   mode. This ensures that modals will never appear behind the
                   data grid.
                 </p>
@@ -305,7 +305,7 @@ const trailingControlColumns = [
                     <strong>EuiFlyout</strong>
                   </Link>{' '}
                   components have a higher <EuiCode>z-index</EuiCode> than{' '}
-                  <strong>EuiDataGrid</strong> components, even in full screen
+                  <strong>EuiDataGrid</strong> components, even in fullscreen
                   mode. This ensures that flyouts will never appear behind the
                   data grid.
                 </p>
@@ -313,7 +313,7 @@ const trailingControlColumns = [
                 <p>
                   Flyouts are also styled with a vertical offset that accounts
                   for the presence of fixed headers. However, when the data grid
-                  is in full screen mode, these offset styles are ignored to
+                  is in fullscreen mode, these offset styles are ignored to
                   allow the flyout to correctly appear at the top of the
                   viewport.
                 </p>

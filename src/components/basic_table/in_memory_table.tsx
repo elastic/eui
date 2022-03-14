@@ -48,11 +48,11 @@ function isEuiSearchBarProps<T>(
 export type Search = boolean | EuiSearchBarProps;
 
 interface PaginationOptions extends EuiTablePaginationProps {
-  pageSizeOptions?: Array<number | 'all'>;
+  pageSizeOptions?: number[];
   initialPageIndex?: number;
-  initialPageSize?: number | 'all';
+  initialPageSize?: number;
   pageIndex?: number;
-  pageSize?: number | 'all';
+  pageSize?: number;
 }
 
 type Pagination = boolean | PaginationOptions;
@@ -114,8 +114,8 @@ interface State<T> {
   search?: Search;
   query: Query | null;
   pageIndex: number;
-  pageSize?: number | 'all';
-  pageSizeOptions?: Array<number | 'all'>;
+  pageSize?: number;
+  pageSizeOptions?: number[];
   sortName: ReactNode;
   sortDirection?: Direction;
   allowNeutralSort: boolean;
@@ -161,15 +161,15 @@ const getInitialPagination = (pagination: Pagination | undefined) => {
   const initialPageIndex =
     pagination === true
       ? 0
-      : pagination.pageIndex || pagination.initialPageIndex || 0;
+      : pagination.pageIndex ?? pagination.initialPageIndex ?? 0;
   const initialPageSize =
     pagination === true
       ? defaultPageSize
-      : pagination.pageSize || pagination.initialPageSize || defaultPageSize;
+      : pagination.pageSize ?? pagination.initialPageSize ?? defaultPageSize;
 
   if (
     showPerPageOptions &&
-    initialPageSize &&
+    initialPageSize != null &&
     (!pageSizeOptions || !pageSizeOptions.includes(initialPageSize))
   ) {
     throw new Error(
@@ -389,7 +389,7 @@ export class EuiInMemoryTable<T> extends Component<
   onTableChange = ({ page, sort }: Criteria<T>) => {
     let { index: pageIndex, size: pageSize } = (page || {}) as {
       index: number;
-      size: number | 'all';
+      size: number;
     };
 
     // don't apply pagination changes that are otherwise controlled
@@ -583,7 +583,7 @@ export class EuiInMemoryTable<T> extends Component<
       : matchingItems;
 
     const visibleItems =
-      typeof pageSize === 'number' && this.props.pagination
+      pageSize && this.props.pagination
         ? (() => {
             const startIndex = pageIndex * pageSize;
             return sortedItems.slice(
@@ -640,7 +640,7 @@ export class EuiInMemoryTable<T> extends Component<
       ? undefined
       : {
           pageIndex,
-          pageSize: pageSize || 1,
+          pageSize: pageSize ?? 1,
           pageSizeOptions,
           totalItemCount,
           showPerPageOptions,

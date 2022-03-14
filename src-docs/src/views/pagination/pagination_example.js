@@ -238,7 +238,7 @@ export const PaginationExample = {
           <Link to="/tabular-content/tables#adding-pagination-to-a-table">
             tables
           </Link>
-          . If you pass <EuiCode>{"'all'"}</EuiCode> in as one of the{' '}
+          . If you pass <EuiCode>0</EuiCode> in as one of the{' '}
           <EuiCode>itemsPerPageOptions</EuiCode>, it will create a &quot;Show
           all&quot; option and hide the pagination.
         </p>

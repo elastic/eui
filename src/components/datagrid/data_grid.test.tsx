@@ -786,9 +786,9 @@ describe('EuiDataGrid', () => {
       });
 
       // fullscreen selector
-      expect(findTestSubject(component, 'dataGridFullScrenButton').length).toBe(
-        0
-      );
+      expect(
+        findTestSubject(component, 'dataGridFullScreenButton').length
+      ).toBe(0);
 
       // sort selector
       expect(

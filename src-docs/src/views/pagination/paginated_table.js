@@ -56,12 +56,12 @@ export default () => {
   const totalItemCount = raw_data.length;
   const startIndex = pageIndex * pageSize;
   const pageOfItems =
-    pageSize === 'all'
-      ? raw_data
-      : raw_data.slice(
+    pageSize > 0
+      ? raw_data.slice(
           startIndex,
           Math.min(startIndex + pageSize, totalItemCount)
-        );
+        )
+      : raw_data;
 
   const columns = [
     {
@@ -93,11 +93,11 @@ export default () => {
     pageIndex,
     pageSize,
     totalItemCount,
-    pageSizeOptions: [10, 'all'],
+    pageSizeOptions: [10, 0],
   };
 
   const resultsCount =
-    pageSize === 'all' ? (
+    pageSize === 0 ? (
       <strong>All</strong>
     ) : (
       <>
