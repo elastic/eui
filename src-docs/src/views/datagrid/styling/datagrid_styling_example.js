@@ -14,13 +14,9 @@ const dataGridDisplayCallbacksSource = require('!!raw-loader!./display_callbacks
 import { dataGridRowHeightOptionsExample } from './datagrid_height_options_example';
 import { gridSnippets } from '../_snippets';
 
-// TO ASK: Is `useMemo` helpful here?
-const gridStyleSnippet = `const gridStyle = useMemo(
-  () => ({
-    ${gridSnippets.gridStyle}
-  }),
-  []
-);
+const gridStyleSnippet = `
+// memoize your gridStyle if necessary, or declare it as a constant outside of components to reduce grid re-renders
+const ${gridSnippets.gridStyle};
 
 <EuiDataGrid
   aria-label="Data grid with grid style set"
