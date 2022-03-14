@@ -140,7 +140,7 @@ exports[`EuiFilterButton props numActiveFilters and hasActiveFilters is rendered
       />
       <span
         aria-label="5 active filters"
-        class="euiNotificationBadge euiNotificationBadge--medium euiFilterButton__notification"
+        class="euiNotificationBadge euiFilterButton__notification"
       >
         5
       </span>
@@ -165,7 +165,7 @@ exports[`EuiFilterButton props numFilters is rendered 1`] = `
       />
       <span
         aria-label="5 available filters"
-        class="euiNotificationBadge euiNotificationBadge--medium euiNotificationBadge--subdued euiFilterButton__notification"
+        class="euiNotificationBadge euiNotificationBadge--subdued euiFilterButton__notification"
       >
         5
       </span>
@@ -230,7 +230,7 @@ exports[`EuiFilterButton renders zero properly 1`] = `
       />
       <span
         aria-label="0 available filters"
-        class="euiNotificationBadge euiNotificationBadge--medium euiNotificationBadge--subdued euiFilterButton__notification"
+        class="euiNotificationBadge euiNotificationBadge--subdued euiFilterButton__notification"
       >
         0
       </span>

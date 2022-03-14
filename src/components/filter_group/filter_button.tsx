@@ -110,7 +110,6 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   const badgeContent = showBadge && (
     <EuiNotificationBadge
       className="euiFilterButton__notification"
-      size="m"
       aria-label={hasActiveFilters ? activeBadgeLabel : availableBadgeLabel}
       color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}
     >
