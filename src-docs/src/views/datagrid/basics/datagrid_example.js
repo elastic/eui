@@ -77,7 +77,7 @@ export const DataGridExample = {
           <ul>
             <li>
               The grid allows you to optionally define an{' '}
-              <Link to="/tabular-content/data-grid-in-memory/">
+              <Link to="/tabular-content/data-grid-advanced#data-grid-in-memory/">
                 in memory level
               </Link>{' '}
               to have the grid automatically handle updating your columns.
@@ -85,15 +85,17 @@ export const DataGridExample = {
               content order separately from the grid.
             </li>
             <li>
-              <Link to="/tabular-content/data-grid-data">Schemas</Link> allow
-              you to tailor the render and sort methods for each column. The
-              component ships with a few automatic schema detection and types,
-              but you can also pass in custom ones.
+              <Link to="/tabular-content/data-grid-schema-columns">
+                Schemas
+              </Link>{' '}
+              allow you to tailor the render and sort methods for each column.
+              The component ships with a few automatic schema detection and
+              types, but you can also pass in custom ones.
             </li>
             <li>
               Unlike tables, the data grid <strong>forces truncation</strong>.
               To display more content your can customize{' '}
-              <Link to="/tabular-content/data-grid-data#conditionally-customizing-cell-popover-content">
+              <Link to="/tabular-content/data-grid-cells-popovers#conditionally-customizing-cell-popover-content">
                 popovers
               </Link>{' '}
               to display more content and actions into popovers.
@@ -106,7 +108,7 @@ export const DataGridExample = {
               preference depending upon the features you enable.
             </li>
             <li>
-              <Link to="/tabular-content/data-grid-columns-cells#control-columns">
+              <Link to="/tabular-content/data-grid-schema-columns#control-columns#control-columns">
                 Control columns
               </Link>{' '}
               allow you to add repeatable actions and controls like checkboxes

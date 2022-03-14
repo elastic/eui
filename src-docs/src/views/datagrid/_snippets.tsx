@@ -98,7 +98,7 @@ inMemory={{ level: 'sorting' }}`,
   },
 }}`,
   schemaDetectors: (
-    <EuiLink href="/#/tabular-content/data-grid-data#schemas">
+    <EuiLink href="/#/tabular-content/data-grid-schema-columns#schemas">
       See Data Grid Schemas for full details.
     </EuiLink>
   ),

@@ -125,7 +125,7 @@ export default () => {
   return (
     <div>
       <EuiDataGrid
-        aria-label="Data grid demo"
+        aria-label="Data grid enhanced in-memory demo"
         columns={columns}
         columnVisibility={{ visibleColumns, setVisibleColumns }}
         rowCount={raw_data.length}

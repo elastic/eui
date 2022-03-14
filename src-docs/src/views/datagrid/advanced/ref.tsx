@@ -186,7 +186,7 @@ export default () => {
       <EuiSpacer />
 
       <EuiDataGrid
-        aria-label="Data grid demo"
+        aria-label="Data grid ref demo"
         columns={columns}
         columnVisibility={{ visibleColumns, setVisibleColumns }}
         sorting={{ columns: sortingColumns, onSort }}
