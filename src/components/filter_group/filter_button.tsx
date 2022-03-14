@@ -11,11 +11,17 @@ import classNames from 'classnames';
 
 import { useEuiI18n } from '../i18n';
 import { EuiNotificationBadge } from '../badge/notification_badge';
-import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button/button_empty';
+import {
+  EuiButtonEmpty,
+  EuiButtonEmptyProps,
+} from '../button/button_empty/button_empty';
 
 import { useInnerText } from '../inner_text';
 
-export type EuiFilterButtonProps = EuiButtonEmptyProps & {
+export type EuiFilterButtonProps = Omit<
+  EuiButtonEmptyProps,
+  'flush' | 'size'
+> & {
   /**
    * Bolds the button if true
    */
@@ -137,6 +143,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   );
 
   return (
+    // @ts-ignore type error
     <EuiButtonEmpty
       className={classes}
       color={color}
