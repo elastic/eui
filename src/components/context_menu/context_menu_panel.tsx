@@ -162,7 +162,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       switch (event.key) {
         case cascadingMenuKeys.TAB:
           requestAnimationFrame(() => {
-            // NOTE: document.activeElement is stale if not wrapped in a setTimeout
+            // NOTE: document.activeElement is stale if not wrapped in requestAnimationFrame
             const focusedItemIndex = this.state.menuItems.indexOf(
               document.activeElement as HTMLElement
             );
