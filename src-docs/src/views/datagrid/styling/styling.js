@@ -89,21 +89,6 @@ const headerOptions = [
   },
 ];
 
-const footerOptions = [
-  {
-    id: 'shade',
-    label: 'Shade',
-  },
-  {
-    id: 'overline',
-    label: 'Overline',
-  },
-  {
-    id: 'striped',
-    label: 'Striped',
-  },
-];
-
 const DataGrid = () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [borderSelected, setBorderSelected] = useState('none');
@@ -113,6 +98,22 @@ const DataGrid = () => {
   const [rowHoverSelected, setRowHoverSelected] = useState('highlight');
   const [headerSelected, setHeaderSelected] = useState('underline');
   const [footerSelected, setFooterSelected] = useState('overline');
+
+  const footerOptions = [
+    {
+      id: 'shade',
+      label: 'Shade',
+    },
+    {
+      id: 'overline',
+      label: 'Overline',
+    },
+    {
+      id: 'striped',
+      label: 'Striped',
+      isDisabled: !stripesSelected,
+    },
+  ];
 
   const onBorderChange = (optionId) => {
     setBorderSelected(optionId);

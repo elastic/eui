@@ -212,7 +212,7 @@ export const DataGridStylingExample = {
           <EuiSpacer />
           <EuiCallOut
             color="warning"
-            title="Don't off cell expansion when the width of the column is unknown"
+            title="Don't turn off cell expansion when the width of the column is unknown"
           >
             In general, you should change <EuiCode>isExpandable</EuiCode> to{' '}
             <EuiCode>false</EuiCode> only when you know the exact width and
