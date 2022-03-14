@@ -76,7 +76,7 @@ describe('EuiImage', () => {
   describe('Fullscreen behaviour', () => {
     let component: ReactWrapper;
 
-    beforeEach(() => {
+    beforeAll(() => {
       const testProps = {
         ...requiredProps,
         'data-test-subj': 'euiImage',
@@ -91,7 +91,9 @@ describe('EuiImage', () => {
           {...testProps}
         />
       );
+    });
 
+    beforeEach(() => {
       findTestSubject(component, 'activateFullScreenButton').simulate('click');
     });
 
