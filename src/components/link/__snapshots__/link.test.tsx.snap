@@ -57,10 +57,11 @@ exports[`EuiLink it is an external link 1`] = `
   rel="noreferrer"
 >
   <span
-    aria-label="External link"
     class="euiLink__externalIcon"
     data-euiicon-type="popout"
-  />
+  >
+    External link
+  </span>
 </a>
 `;
 
@@ -146,10 +147,11 @@ exports[`EuiLink supports target 1`] = `
   target="_blank"
 >
   <span
-    aria-label="External link"
     class="euiLink__externalIcon"
     data-euiicon-type="popout"
-  />
+  >
+    External link
+  </span>
   <span
     class="euiScreenReaderOnly"
   >

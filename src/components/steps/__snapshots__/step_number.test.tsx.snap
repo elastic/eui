@@ -59,10 +59,11 @@ exports[`EuiStepNumber props status complete is rendered 1`] = `
   class="euiStepNumber euiStepNumber--complete"
 >
   <span
-    aria-label="Step 1 is complete"
     class="euiStepNumber__icon"
     data-euiicon-type="check"
-  />
+  >
+    Step 1 is complete
+  </span>
 </span>
 `;
 
@@ -89,10 +90,11 @@ exports[`EuiStepNumber props status danger is rendered 1`] = `
   class="euiStepNumber euiStepNumber--danger"
 >
   <span
-    aria-label="Step 1 has errors"
     class="euiStepNumber__icon"
     data-euiicon-type="cross"
-  />
+  >
+    Step 1 has errors
+  </span>
 </span>
 `;
 
@@ -152,9 +154,10 @@ exports[`EuiStepNumber props status warning is rendered 1`] = `
   class="euiStepNumber euiStepNumber--warning"
 >
   <span
-    aria-label="Step 1 has warnings"
     class="euiStepNumber__icon"
     data-euiicon-type="alert"
-  />
+  >
+    Step 1 has warnings
+  </span>
 </span>
 `;
