@@ -165,6 +165,9 @@ export const DataGridExample = {
               </a>{' '}
               file.
             </p>
+            <h3>
+              <EuiCode>EuiDataGrid</EuiCode>
+            </h3>
           </EuiText>
           <EuiSpacer />
           <DataGridTopProps />

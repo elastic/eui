@@ -188,13 +188,13 @@ const DataGrid = () => {
               {toggleColumnSelector && (
                 <ul style={{ marginLeft: 32 }}>
                   <li>
-                    {createItem('Allow hiding', {
+                    {createItem('Allow ordering', {
                       idSelected: allowOrderingColumns.toString(),
                       onChange: onAllowOrderingColumnsChange,
                     })}
                   </li>
                   <li>
-                    {createItem('Allow ordering', {
+                    {createItem('Allow hiding', {
                       idSelected: allowHideColumns.toString(),
                       onChange: onAllowHideColumnsChange,
                     })}

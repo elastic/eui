@@ -24,6 +24,5 @@ export default () => (
   <DataGridPropsTable
     component={EuiDataGridToolBarVisibilityOptions}
     snippets={gridSnippets}
-    // links={gridLinks}
   />
 );

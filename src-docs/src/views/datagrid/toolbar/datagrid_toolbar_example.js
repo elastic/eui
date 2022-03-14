@@ -3,8 +3,8 @@ import React, { Fragment } from 'react';
 import { GuideSectionTypes } from '../../../components';
 import { EuiCode } from '../../../../../src';
 
-import DataGridStyling from './visibility';
-const dataGridStylingSource = require('!!raw-loader!./_grid');
+import DataGridToolbarVisibility from './visibility';
+const dataGridToolbarVisibilitySource = require('!!raw-loader!./_grid');
 
 import DataGridControls from './additional_controls';
 const dataGridControlsSource = require('!!raw-loader!./additional_controls');
@@ -20,13 +20,16 @@ import {
 } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
 const controlsSnippet = `<EuiDataGrid
-{...usualGridProps}
-toolbarVisibility={{
+  aria-label="Data grid with additional toolbar controls"
+  columns={columns}
+  columnVisibility={{ visibleColumns, setVisibleColumns }}
+  rowCount={rowCount}
+  toolbarVisibility={{
   // Use of a fragment for multiple items will insure proper margins
   additionalControls: {
     left: {
       prepend: (
-        <Fragment>
+        <>
           <EuiButtonEmpty
             size="xs"
             onClick={() => {}}>
@@ -37,10 +40,10 @@ toolbarVisibility={{
             onClick={() => {}}>
             Another button
           </EuiButtonEmpty>
-        </Fragment>
+        </>
       ),
       append: (
-        <Fragment>
+        <>
           <EuiButtonEmpty
             size="xs"
             onClick={() => {}}>
@@ -51,11 +54,11 @@ toolbarVisibility={{
             onClick={() => {}}>
             Another button
           </EuiButtonEmpty>
-        </Fragment>
+        </>
       ),
     },
     right: (
-      <Fragment>
+      <>
         <EuiToolTip content="Right-side button">
           <EuiButtonIcon
             aria-label="Right-side button"
@@ -72,7 +75,7 @@ toolbarVisibility={{
             onClick={() => {}}
           />
         </EuiToolTip>
-      </Fragment>
+      </>
     )
   }
 }}
@@ -87,7 +90,7 @@ export const DataGridToolbarExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: dataGridStylingSource,
+          code: dataGridToolbarVisibilitySource,
         },
       ],
       text: (
@@ -106,7 +109,19 @@ export const DataGridToolbarExample = {
         EuiDataGridToolBarVisibilityColumnSelectorOptions,
         EuiDataGridToolBarVisibilityDisplaySelectorOptions,
       },
-      demo: <DataGridStyling />,
+      demo: <DataGridToolbarVisibility />,
+      snippet: `<EuiDataGrid
+  aria-label="Data grid with additional toolbar controls"
+  columns={columns}
+  columnVisibility={{ visibleColumns, setVisibleColumns }}
+  rowCount={rowCount}
+  toolbarVisibility={{
+    showColumnSelector: false,
+    showSortSelector: false,
+    showDisplaySelector: false,
+    showFullScreenSelector: false,
+  }}
+/>`,
     },
     {
       source: [
@@ -171,7 +186,14 @@ export const DataGridToolbarExample = {
     },
     {
       title: 'Toolbar props',
-      text: <ToolbarPropsTable />,
+      text: (
+        <>
+          <h3>
+            <EuiCode>EuiDataGridToolBarVisibilityOptions</EuiCode>
+          </h3>
+          <ToolbarPropsTable />
+        </>
+      ),
     },
   ],
 };
