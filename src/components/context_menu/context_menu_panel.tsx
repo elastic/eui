@@ -167,7 +167,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
               document.activeElement as HTMLElement
             );
 
-            // We need to sync up with the user if s/he is tabbing through the items.
+            // We need to sync our internal state with the user tabbing through items
             this.setState({
               focusedItemIndex:
                 focusedItemIndex >= 0 &&
