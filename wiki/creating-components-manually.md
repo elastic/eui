@@ -3,11 +3,11 @@
 ## Create component style files
 
 1. Create a directory for your component in `src/components`.
-2. TBD
+2. Create a `{component name}.styles.ts` file inside the directory.
 
 ## Create the React component
 
-1. Create the React component(s) (preferably as TypeScript) in the same directory as the related SCSS file(s).
+1. Create the React component(s) (preferably as TypeScript) in the same directory as the related style file(s).
 2. Export these components from an `index.ts` file.
 3. Re-export these components from `src/components/index.ts`.
 

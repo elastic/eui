@@ -4,7 +4,7 @@
 
 - Removed Legacy theme including compiled CSS ([#5688](https://github.com/elastic/eui/pull/5688))
 
-**CSS-in-JS Conversions**
+**CSS-in-JS conversions**
 
 - Converted `EuiMark` to CSS-in-JS styling ([#4575](https://github.com/elastic/eui/pull/4575))
 
