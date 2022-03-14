@@ -16,8 +16,11 @@ export const EuiDescriptionListDescription: FunctionComponent<
   const classes = classNames('euiDescriptionList__description', className);
 
   return (
-    <dd className={classes} {...rest}>
-      {children}
-    </dd>
+    <>
+      <dd className={classes} {...rest}>
+        {children}
+      </dd>
+      <wbr />
+    </>
   );
 };
