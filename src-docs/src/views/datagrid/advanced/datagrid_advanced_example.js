@@ -4,6 +4,9 @@ import { GuideSectionTypes } from '../../../components';
 import { EuiCode, EuiSpacer, EuiCallOut } from '../../../../../src/components';
 
 import { EuiDataGridRefProps } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
+
+import { DataGridMemoryExample } from './datagrid_memory_example';
+
 import DataGridRef from './ref';
 const dataGridRefSource = require('!!raw-loader!./ref');
 const dataGridRefSnippet = `const dataGridRef = useRef();
@@ -114,5 +117,6 @@ export const DataGridAdvancedExample = {
       snippet: dataGridRefSnippet,
       props: { EuiDataGridRefProps },
     },
+    ...DataGridMemoryExample.sections,
   ],
 };

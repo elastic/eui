@@ -34,62 +34,66 @@ import {
 } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
 export const DataGridMemoryExample = {
-  title: 'Data grid in-memory',
-  intro: (
-    <Fragment>
-      <EuiCallOut title="What is the difference in the examples?">
-        <p>
-          These examples show the same grid built with the four available{' '}
-          <EuiCode>inMemory</EuiCode> settings. While they may look the same,
-          look at the source to see how they require different levels of data
-          management in regards to sorting and pagination.
-        </p>
-      </EuiCallOut>
-      <EuiSpacer />
-      <EuiText>
-        <p>
-          The grid has levels of <strong>in-memory</strong> settings that can be
-          set. It is in the consuming application&apos;s best interest to put as
-          much of the data grid in memory as performance allows. Try to use the
-          highest level <EuiCode language="js">{'inMemory="sorting"'}</EuiCode>{' '}
-          whenever possible. The following values are available.
-        </p>
-        <ul>
-          <li>
-            <strong>undefined (default)</strong>: When not in use the grid will
-            not autodetect schemas. The sorting and pagination is the
-            responsibility of the consuming application.
-          </li>
-          <li>
-            <strong>enhancements</strong>: Provides no in-memory operations. If
-            set, the grid will try to autodetect schemas only based on the
-            content currently available (the current page of data).
-          </li>
-          <li>
-            <strong>pagination</strong>: Schema detection works as above and
-            pagination is performed in-memory. The pagination callbacks are
-            still triggered on user interactions, but the row updates are
-            performed by the grid.
-          </li>
-          <li>
-            <strong>sorting (suggested)</strong>: Schema detection and
-            pagination are performed as above, and sorting is applied in-memory
-            too. The onSort callback is still called and the application must
-            own the column sort state, but data sorting is done by the grid
-            based on the defined and/or detected schemas.
-          </li>
-        </ul>
-        <p>
-          When enabled, <strong>in-memory</strong> renders cell data off-screen
-          and uses those values to detect schemas and perform sorting. This
-          detaches the user experience from the raw data; the data grid never
-          has access to the backing data, only what is returned by{' '}
-          <EuiCode>renderCellValue</EuiCode>.
-        </p>
-      </EuiText>
-    </Fragment>
-  ),
   sections: [
+    {
+      title: 'Data grid in-memory',
+      wrapText: false,
+      text: (
+        <Fragment>
+          <EuiCallOut title="What is the difference in the examples?">
+            <p>
+              These examples show the same grid built with the four available{' '}
+              <EuiCode>inMemory</EuiCode> settings. While they may look the
+              same, look at the source to see how they require different levels
+              of data management in regards to sorting and pagination.
+            </p>
+          </EuiCallOut>
+          <EuiSpacer />
+          <EuiText>
+            <p>
+              The grid has levels of <strong>in-memory</strong> settings that
+              can be set. It is in the consuming application&apos;s best
+              interest to put as much of the data grid in memory as performance
+              allows. Try to use the highest level{' '}
+              <EuiCode language="js">{'inMemory="sorting"'}</EuiCode> whenever
+              possible. The following values are available.
+            </p>
+            <ul>
+              <li>
+                <strong>undefined (default)</strong>: When not in use the grid
+                will not autodetect schemas. The sorting and pagination is the
+                responsibility of the consuming application.
+              </li>
+              <li>
+                <strong>enhancements</strong>: Provides no in-memory operations.
+                If set, the grid will try to autodetect schemas only based on
+                the content currently available (the current page of data).
+              </li>
+              <li>
+                <strong>pagination</strong>: Schema detection works as above and
+                pagination is performed in-memory. The pagination callbacks are
+                still triggered on user interactions, but the row updates are
+                performed by the grid.
+              </li>
+              <li>
+                <strong>sorting (suggested)</strong>: Schema detection and
+                pagination are performed as above, and sorting is applied
+                in-memory too. The onSort callback is still called and the
+                application must own the column sort state, but data sorting is
+                done by the grid based on the defined and/or detected schemas.
+              </li>
+            </ul>
+            <p>
+              When enabled, <strong>in-memory</strong> renders cell data
+              off-screen and uses those values to detect schemas and perform
+              sorting. This detaches the user experience from the raw data; the
+              data grid never has access to the backing data, only what is
+              returned by <EuiCode>renderCellValue</EuiCode>.
+            </p>
+          </EuiText>
+        </Fragment>
+      ),
+    },
     {
       source: [
         {

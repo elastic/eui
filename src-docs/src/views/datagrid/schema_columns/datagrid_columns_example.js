@@ -7,6 +7,9 @@ import {
   EuiListGroupItem,
 } from '../../../../../src/components';
 
+import DataGridSchema from '../schema_columns/schema';
+const dataGridSchemaSource = require('!!raw-loader!./schema');
+
 import DataGridControlColumns from './control_columns';
 const dataGridControlColumnsSource = require('!!raw-loader!./control_columns');
 
@@ -14,15 +17,16 @@ import DataGridColumnWidths from './column_widths';
 const dataGridColumnWidthsSource = require('!!raw-loader!./column_widths');
 import DataGridColumnActions from './column_actions';
 const dataGridColumnActionsSource = require('!!raw-loader!./column_actions');
-import DataGridColumnCellActions from './column_cell_actions';
-const dataGridColumnCellActionsSource = require('!!raw-loader!./column_cell_actions');
+
+import DataGridFooterRow from './footer_row';
+const dataGridFooterRowSource = require('!!raw-loader!./footer_row');
 
 import {
   EuiDataGridColumn,
   EuiDataGridColumnActions,
-  EuiDataGridColumnCellAction,
-  EuiDataGridColumnCellActionProps,
   EuiDataGridControlColumn,
+  EuiDataGridSchemaDetector,
+  EuiDataGridCellValueElementProps,
 } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
 const gridLeadingColumnsSnippet = `<EuiDataGrid
@@ -66,9 +70,102 @@ const widthsSnippet = `<EuiDataGrid
 />
 `;
 
+const gridFooterSnippet = `const footerCellValues = {
+  // desired data
+};
+
+<EuiDataGrid
+  aria-label="Data grid with footer set"
+  columns={columns}
+  columnVisibility={{ visibleColumns, setVisibleColumns }}
+  rowCount={rowCount}
+  renderCellValue={renderCellValue}
+  renderFooterCellValue={({ rowIndex, columnId }) =>
+    footerCellValues[columnId] || null
+  }
+/>
+`;
+
 export const DataGridColumnsExample = {
-  title: 'Data grid columns & cells',
+  title: 'Data grid schema & columns',
   sections: [
+    {
+      title: 'Schemas',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: dataGridSchemaSource,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            Schemas are data types you pass to grid columns to affect how the
+            columns and expansion popovers render. Schemas also allow you to
+            define individual sorting comparators so that sorts can do more than
+            just A-Z comparisons. By default, <strong>EuiDataGrid</strong> ships
+            with a few built-in schemas for{' '}
+            <EuiCode>numeric, currency, datetime, boolean and json</EuiCode>{' '}
+            data. When the <EuiCode>inMemory</EuiCode> prop is in use it will
+            automatically try to figure out the best schema based on the{' '}
+            <EuiCode language="js">{'inMemory:{{ level: value }}'}</EuiCode> you
+            set, but this will come with the caveat that you will need to
+            provide and manage sorting outside the component. In general we
+            recommend passing schema information to your columns instead of
+            using auto-detection when you have that knowledge of your data
+            available during ingestion.
+          </p>
+          <h3>Defining custom schemas</h3>
+          <p>
+            Custom schemas are passed as an array to{' '}
+            <EuiCode>schemaDetectors</EuiCode> and are constructed against the{' '}
+            <strong>EuiDataGridSchemaDetector</strong> interface. You can see an
+            example of a simple custom schema used on the last column below. In
+            addition to schemas being useful to map against for cell and
+            expansion rendering, any schema will also add a
+            <EuiCode language="js">
+              {'className="euiDataGridRowCell--schemaName"'}
+            </EuiCode>{' '}
+            to each matching cell.
+          </p>
+        </Fragment>
+      ),
+      demo: <DataGridSchema />,
+      props: {
+        EuiDataGrid,
+        EuiDataGridColumn,
+        EuiDataGridSchemaDetector,
+      },
+      snippet: `// The following schema 'franchise' essentially acts like a boolean, looking for Star Wars or Star Trek in a column.
+schemaDetectors={[
+{
+  type: 'franchise',
+  // Try to detect if column data is this schema. A value of 1 is the highest possible. A (mean_average - standard_deviation) of .5 will be good enough for the autodetector to assign.
+  detector(value) {
+    return value.toLowerCase() === 'star wars' ||
+      value.toLowerCase() === 'star trek'
+      ? 1
+      : 0;
+  },
+  // How we should sort data matching this schema. Again, a value of 1 is the highest value.
+  comparator(a, b, direction) {
+    const aValue = a.toLowerCase() === 'star wars';
+    const bValue = b.toLowerCase() === 'star wars';
+    if (aValue < bValue) return direction === 'asc' ? 1 : -1;
+    if (aValue > bValue) return direction === 'asc' ? -1 : 1;
+    return 0;
+  },
+  // Text for what the ASC sort does.
+  sortTextAsc: 'Star Wars-Star Trek',
+  // Text for what the DESC sort does.
+  sortTextDesc: 'Star Trek-Star Wars',
+  // EuiIcon or Prop to signify this schema.
+  icon: 'star',
+  // The color to use for the icon prop.
+  color: '#000000',
+},
+]}`,
+    },
     {
       source: [
         {
@@ -178,47 +275,37 @@ export const DataGridColumnsExample = {
       snippet: gridLeadingColumnsSnippet,
     },
     {
+      title: 'Footer row',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: dataGridColumnCellActionsSource,
+          code: dataGridFooterRowSource,
         },
       ],
-      title: 'Cell actions',
       text: (
         <Fragment>
           <p>
-            On top of making a cell expandable, you can add more custom actions
-            by setting <EuiCode>cellActions</EuiCode>. This contains functions
-            called to render additional buttons in the cell and in the popover
-            when expanded. Behind the scenes those are treated as a React
-            components allowing hooks, context, and other React concepts to be
-            used. The functions receives an argument of type
-            <code>EuiDataGridColumnCellActionProps</code>. The icons of these
-            actions are displayed on mouse over, and also appear in the popover
-            when the cell is expanded. Note that once you&apos;ve defined the{' '}
-            <EuiCode>cellAction</EuiCode> property, the cell&apos;s
-            automatically expandable.
+            A footer row can be used to include value aggregations to the grid.
+            Values could be based on the dataset, such as sum/average/min/max of
+            numeric values in a column, or any other necessary data.
           </p>
           <p>
-            Below, the email and city columns provide 1{' '}
-            <EuiCode>cellAction</EuiCode> each, while the country column
-            provides 2 <EuiCode>cellAction</EuiCode>s.
-            <br />
-            The email column cell action closes the popover if it&apos;s
-            expanded through the <EuiCode>closePopover</EuiCode> prop.
+            The footer row is defined by passing{' '}
+            <EuiCode>renderFooterCellValue</EuiCode> function prop into{' '}
+            <strong>EuiDataGrid</strong>.{' '}
+            <EuiCode>renderFooterCellValue</EuiCode> acts like a React
+            component, receiving{' '}
+            <EuiCode>EuiDataGridCellValueElementProps</EuiCode> and returning a
+            React node.
           </p>
         </Fragment>
       ),
       props: {
         EuiDataGrid,
-        EuiDataGridColumn,
-        EuiDataGridColumnActions,
-        EuiDataGridColumnCellAction,
-        EuiDataGridColumnCellActionProps,
-        EuiListGroupItem,
+        EuiDataGridCellValueElementProps,
       },
-      demo: <DataGridColumnCellActions />,
+      demo: <DataGridFooterRow />,
+      snippet: gridFooterSnippet,
     },
   ],
 };
