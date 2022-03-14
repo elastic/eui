@@ -110,7 +110,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
       expect(headerCell.getAttribute('tabIndex')).toEqual('-1');
     };
 
-    // Reset focus between between tests
+    // Reset focus between tests
     beforeEach(() => (document.activeElement as HTMLElement)?.blur());
 
     describe('isFocused context', () => {
