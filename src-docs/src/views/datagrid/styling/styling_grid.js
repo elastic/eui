@@ -51,13 +51,13 @@ const renderFooterCellValue = ({ columnId }) =>
   footerCellValues[columnId] || null;
 
 const DataGridStyle = ({
-  border,
-  fontSize,
-  cellPadding,
-  stripes,
-  rowHover,
-  header,
-  footer,
+  border = 'none',
+  fontSize = 'm',
+  cellPadding = 'm',
+  stripes = true,
+  rowHover = 'highlight',
+  header = 'underline',
+  footer = 'overline',
 }) => {
   const [pagination, setPagination] = useState({
     pageIndex: 0,
