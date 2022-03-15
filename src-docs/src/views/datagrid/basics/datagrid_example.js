@@ -44,8 +44,14 @@ import {
   EuiDataGridRefProps,
 } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
-const gridSnippet = `<EuiDataGrid
-  // What is the simplist form?
+const gridSnippet = `const columns = [{ id: 'A' }, { id: 'B' }];
+const [visibleColumns, setVisibleColumns] = useState(['A', 'B']);
+
+<EuiDataGrid
+  columns={columns}
+  columnVisibility={{ visibleColumns, setVisibleColumns }}
+  rowCount={10}
+  renderCellValue={({ rowIndex, colIndex }) => \`\${rowIndex},\${colIndex}\`}
 />`;
 
 export const DataGridExample = {
@@ -59,7 +65,7 @@ export const DataGridExample = {
         many columns, the data in those columns is fairly uniform, and when
         schemas and sorting are important for comparison. Although it is similar
         to traditional spreedsheet software, EuiDataGrid&apos;s current
-        strengths are in rendering rather than creating content.{' '}
+        strengths are in rendering rather than creating content.
       </p>
     </EuiText>
   ),
