@@ -14,8 +14,9 @@ import { EuiNotificationBadge } from '../badge/notification_badge';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button/button_empty';
 
 import { useInnerText } from '../inner_text';
+import { DistributiveOmit } from '../common';
 
-export type EuiFilterButtonProps = EuiButtonEmptyProps & {
+export type EuiFilterButtonProps = {
   /**
    * Bolds the button if true
    */
@@ -47,7 +48,7 @@ export type EuiFilterButtonProps = EuiButtonEmptyProps & {
    * Remove border after button, good for opposite filters
    */
   noDivider?: boolean;
-};
+} & DistributiveOmit<EuiButtonEmptyProps, 'flush' | 'size'>;
 
 export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   children,
@@ -107,7 +108,6 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   const badgeContent = showBadge && (
     <EuiNotificationBadge
       className="euiFilterButton__notification"
-      size="m"
       aria-label={hasActiveFilters ? activeBadgeLabel : availableBadgeLabel}
       color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}
     >
