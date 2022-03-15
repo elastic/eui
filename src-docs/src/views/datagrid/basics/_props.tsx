@@ -31,7 +31,6 @@ export const DataGridTopProps = () => {
         'width',
         'height',
         'minSizeForControls',
-        'ref',
       ]}
       snippets={gridSnippets}
       links={gridLinks}
