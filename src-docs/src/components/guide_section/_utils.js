@@ -9,6 +9,7 @@ import { cleanEuiImports } from '../../services';
 
 export const renderJsSourceCode = (code) => {
   let renderedCode = cleanEuiImports(code.default);
+
   /**
    * Extract React import (to ensure it's always at the top)
    */
