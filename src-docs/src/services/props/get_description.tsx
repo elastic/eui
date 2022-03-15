@@ -11,19 +11,11 @@ export function getDescriptionSmall(
   type: any,
   markdownProps?: Partial<EuiMarkdownFormatProps>
 ) {
-  if (type?.description) {
-    return (
-      <EuiMarkdownFormat
-        textSize="xs"
-        color="subdued"
-        parsingPluginList={parsingPluginList}
-        processingPluginList={processingPluginListWithBoldProps}
-        {...markdownProps}
-      >
-        {type.description}
-      </EuiMarkdownFormat>
-    );
-  }
+  return getDescription(type, {
+    textSize: 'xs',
+    color: 'subdued',
+    ...markdownProps,
+  });
 }
 
 export function getDescription(
