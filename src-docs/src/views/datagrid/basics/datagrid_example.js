@@ -8,6 +8,7 @@ import {
   EuiCode,
   EuiText,
   EuiSpacer,
+  EuiLink,
 } from '../../../../../src/components';
 
 import DataGrid from './datagrid';
@@ -165,12 +166,12 @@ export const DataGridExample = {
               Please check the props tab in the example above for more
               explanation on the lower level object types. The majority of the
               types are defined in the{' '}
-              <a
+              <EuiLink
                 href="https://github.com/elastic/eui/tree/main/src/components/datagrid/data_grid_types.ts"
                 target="_blank"
               >
                 /datagrid/data_grid_types.ts
-              </a>{' '}
+              </EuiLink>{' '}
               file.
             </p>
             <h3>
