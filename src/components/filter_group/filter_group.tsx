@@ -18,7 +18,7 @@ export type EuiFilterGroupProps = HTMLAttributes<HTMLDivElement> &
      */
     fullWidth?: boolean;
     /**
-     *  When `true` creates a shorter height filter group matching that of `compressed` form controls
+     *  When `true`, creates a shorter height filter group matching that of `compressed` form controls
      */
     compressed?: boolean;
   };
