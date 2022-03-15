@@ -264,7 +264,6 @@ exports[`EuiAvatar props iconType and iconColor as null is rendered 1`] = `
   title="name"
 >
   <span
-    aria-label="name"
     class="euiAvatar__icon emotion-1"
     data-euiicon-type="bolt"
   >
@@ -311,7 +310,6 @@ exports[`EuiAvatar props iconType and iconColor is rendered 1`] = `
   title="name"
 >
   <span
-    aria-label="name"
     class="euiAvatar__icon emotion-1"
     color="primary"
     data-euiicon-type="bolt"
@@ -359,7 +357,6 @@ exports[`EuiAvatar props iconType and iconSize is rendered 1`] = `
   title="name"
 >
   <span
-    aria-label="name"
     class="euiAvatar__icon emotion-1"
     color="#000000"
     data-euiicon-type="bolt"
@@ -407,7 +404,6 @@ exports[`EuiAvatar props iconType is rendered 1`] = `
   title="name"
 >
   <span
-    aria-label="name"
     class="euiAvatar__icon emotion-1"
     color="#000000"
     data-euiicon-type="bolt"
