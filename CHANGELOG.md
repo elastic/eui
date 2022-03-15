@@ -9,6 +9,10 @@
 - Removed Legacy theme including compiled CSS ([#5688](https://github.com/elastic/eui/pull/5688))
 - Removed `flush` and `size` props in `EuiFilterButtonProps` ([#5717](https://github.com/elastic/eui/pull/5717))
 
+**CSS-in-JS conversions**
+
+- Converted `EuiMark` to CSS-in-JS styling ([#4575](https://github.com/elastic/eui/pull/4575))
+
 ## [`51.1.0`](https://github.com/elastic/eui/tree/v51.1.0)
 
 - Updated `testenv` mock for `EuiFlyout` to include default `aria-label` on the close button ([#5702](https://github.com/elastic/eui/pull/5702))

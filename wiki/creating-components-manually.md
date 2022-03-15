@@ -1,18 +1,15 @@
 # Creating components manually
 
-## Create component SCSS files
+## Create component style files
 
 1. Create a directory for your component in `src/components`.
-2. In this directory, create `_{component name}.scss`.
-3. _Optional:_ Create any other components that should be [logically-grouped][docs-logical-group] in this directory.
-4. Create an `_index.scss` file in this directory that import all of the new component SCSS files you created.
-5. Import the `_index.scss` file into `src/components/index.scss`.
+2. Create a `{component name}.styles.ts` file inside the directory
 
-This makes your styles available to your project and to the [EUI documentation][docs].
+Refer to the [Writing styles with emotion](./writing-styles-with-emotion.md) guidelines for more instruction.
 
 ## Create the React component
 
-1. Create the React component(s) (preferably as TypeScript) in the same directory as the related SCSS file(s).
+1. Create the React component(s) (preferably as TypeScript) in the same directory as the related style file(s).
 2. Export these components from an `index.ts` file.
 3. Re-export these components from `src/components/index.ts`.
 

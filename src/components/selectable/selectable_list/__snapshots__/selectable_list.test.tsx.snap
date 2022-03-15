@@ -2127,6 +2127,12 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
 `;
 
 exports[`EuiSelectableListItem props searchValue 1`] = `
+.emotion-0 {
+  background-color: rgba(0,119,204,0.1);
+  font-weight: 700;
+  color: #343741;
+}
+
 <div
   class="euiSelectableList testClass1 testClass2"
   data-test-subj="test subject string"
@@ -2222,7 +2228,7 @@ exports[`EuiSelectableListItem props searchValue 1`] = `
             >
               <span>
                 <mark
-                  class="euiMark"
+                  class="euiMark emotion-0"
                 >
                   Mi
                 </mark>
@@ -2322,6 +2328,12 @@ exports[`EuiSelectableListItem props searchValue 1`] = `
 `;
 
 exports[`EuiSelectableListItem props searchValue 2`] = `
+.emotion-0 {
+  background-color: rgba(0,119,204,0.1);
+  font-weight: 700;
+  color: #343741;
+}
+
 <div
   class="euiSelectableList testClass1 testClass2"
   data-test-subj="test subject string"
@@ -2417,7 +2429,7 @@ exports[`EuiSelectableListItem props searchValue 2`] = `
             >
               <span>
                 <mark
-                  class="euiMark"
+                  class="euiMark emotion-0"
                 >
                   Mi
                 </mark>
