@@ -10,9 +10,15 @@ import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
+type EuiDescriptionListType = 'row' | 'inline' | 'column' | 'responsiveColumn';
+
+export interface EuiDescriptionListTitleProps extends CommonProps {
+  type?: EuiDescriptionListType;
+}
+
 export const EuiDescriptionListTitle: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLElement>
-> = ({ children, className, ...rest }) => {
+  CommonProps & HTMLAttributes<HTMLElement> & EuiDescriptionListTitleProps
+> = ({ children, className, type, ...rest }) => {
   const classes = classNames('euiDescriptionList__title', className);
 
   return (
@@ -20,7 +26,7 @@ export const EuiDescriptionListTitle: FunctionComponent<
       <dt className={classes} {...rest}>
         {children}
       </dt>
-      <wbr />
+      {type === 'inline' ? <wbr /> : undefined}
     </>
   );
 };

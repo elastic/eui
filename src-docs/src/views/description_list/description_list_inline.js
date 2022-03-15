@@ -1,27 +1,11 @@
 import React from 'react';
 
-import { EuiDescriptionList } from '../../../../src/components';
-
-const favoriteVideoGames = [
-  {
-    title: 'The Elder Scrolls: Morrowind',
-    description: 'The opening music alone evokes such strong memories.',
-  },
-  {
-    title: 'TIE Fighter',
-    description:
-      'The sequel to XWING, join the dark side and fly for the Emporer.',
-  },
-  {
-    title: 'Quake 2',
-    description: 'The game that made me drop out of college.',
-  },
-];
+import { EuiDescriptionList, EuiPanel } from '../../../../src/components';
 
 const discoverItems = [
   {
     title: 'category',
-    description: "Men's Clothing",
+    description: "Women's Clothing, Women's Accessories",
   },
   {
     title: 'currency',
@@ -29,15 +13,15 @@ const discoverItems = [
   },
   {
     title: 'customer_first_name',
-    description: 'Abd',
+    description: 'Yasmine',
   },
   {
     title: 'customer_full_name',
-    description: 'Abd Farmer',
+    description: 'Yasmine Portugal',
   },
   {
     title: 'customer_gender',
-    description: 'MALE',
+    description: 'FEMALE',
   },
   {
     title: 'customer_id',
@@ -45,15 +29,11 @@ const discoverItems = [
   },
   {
     title: 'customer_last_name',
-    description: 'Farmer',
+    description: 'Portugal',
   },
   {
     title: 'customer_phone',
     description: '(empty)',
-  },
-  {
-    title: 'customer_last_name',
-    description: 'Farmer',
   },
   {
     title: 'day_of_week',
@@ -72,28 +52,18 @@ const discoverItems = [
     description: 'sample_ecommerce',
   },
   {
-    title: 'geoip.city_name',
-    description: 'Cairo',
-  },
-  {
     title: 'geoip.continent_name',
-    description: 'Africa',
+    description: 'America',
   },
 ];
 
 export default () => (
-  <>
-    <EuiDescriptionList
-      type="inline"
-      listItems={favoriteVideoGames}
-      style={{ maxWidth: '400px' }}
-    />
-    <br />
-    <EuiDescriptionList
-      type="inline"
-      compressed
-      listItems={discoverItems}
-      style={{ maxWidth: '800px' }}
-    />
-  </>
+  <EuiPanel
+    paddingSize="s"
+    style={{ maxWidth: '800px' }}
+    hasShadow={false}
+    hasBorder
+  >
+    <EuiDescriptionList type="inline" listItems={discoverItems} />
+  </EuiPanel>
 );

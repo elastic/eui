@@ -102,11 +102,16 @@ export const EuiDescriptionList: FunctionComponent<
   if (listItems) {
     childrenOrListItems = listItems.map((item, index) => {
       return [
-        <EuiDescriptionListTitle key={`title-${index}`} {...titleProps}>
+        <EuiDescriptionListTitle
+          type={type}
+          key={`title-${index}`}
+          {...titleProps}
+        >
           {item.title}
         </EuiDescriptionListTitle>,
 
         <EuiDescriptionListDescription
+          type={type}
           key={`description-${index}`}
           {...descriptionProps}
         >
