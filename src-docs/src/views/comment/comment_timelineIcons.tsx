@@ -1,23 +1,15 @@
 import React, { Fragment } from 'react';
-import { EuiComment } from '../../../../src/components/comment_list';
-import { EuiText } from '../../../../src/components/text';
-import { EuiAvatar } from '../../../../src/components/avatar';
-import { EuiCode } from '../../../../src/components/code';
+import {
+  EuiComment,
+  EuiText,
+  EuiAvatar,
+  EuiCode,
+} from '../../../../src/components/';
 
 const defaultBody = (
   <EuiText size="s">
     <p>
-      This comment and the one below are using the default{' '}
-      <EuiCode>timelineIcon</EuiCode>.
-    </p>
-  </EuiText>
-);
-
-const iconStringBody = (
-  <EuiText size="s">
-    <p>
-      This comment passed the string &ldquo;tag&rdquo; to the{' '}
-      <EuiCode>timelineIcon</EuiCode> prop.
+      This comment is using the default <EuiCode>timelineIcon</EuiCode>.
     </p>
   </EuiText>
 );
@@ -25,7 +17,7 @@ const iconStringBody = (
 const customIconBody = (
   <EuiText size="s">
     <p>
-      This comment has a custom element as its <EuiCode>timelineIcon</EuiCode>.
+      This comment has a custom <EuiCode>timelineIcon</EuiCode>.
     </p>
   </EuiText>
 );
@@ -35,31 +27,27 @@ export default () => (
     <EuiComment
       username="janed"
       event="added a comment"
-      timestamp="Jan 1, 2020"
+      timestamp="12 hours ago"
       timelineIcon={<EuiAvatar initials="janed" name="Juana" />}
     >
       {defaultBody}
     </EuiComment>
     <EuiComment
-      username="pancho1"
+      username="system"
       type="update"
-      event="edited case"
-      timestamp="Jan 3, 2020"
-      updateIcon="pencil"
-      timelineIcon={<EuiAvatar name="Management" iconType="managementApp" />}
+      event={
+        <>
+          passed the string <EuiCode>{'"dot"'}</EuiCode> to the{' '}
+          <EuiCode>timelineIcon</EuiCode> prop
+        </>
+      }
+      timestamp="10 hours ago"
+      timelineIcon="dot"
     />
-    <EuiComment
-      username="janed"
-      event="added a comment"
-      timestamp="Jan 1, 2020"
-      timelineIcon="user"
-    >
-      {iconStringBody}
-    </EuiComment>
     <EuiComment
       username="juanab"
       event="added a comment"
-      timestamp="Jan 3, 2020"
+      timestamp="7 hours ago"
       timelineIcon={
         <EuiAvatar
           imageUrl="https://source.unsplash.com/64x64/?woman"

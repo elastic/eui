@@ -1,13 +1,18 @@
-import React, { Component, HTMLAttributes } from 'react';
-import { EuiComment } from '../../../../src/components/comment_list';
-import { EuiButtonIcon } from '../../../../src/components/button';
-import { EuiText } from '../../../../src/components/text';
-import { EuiPopover } from '../../../../src/components/popover';
+import React, { useState } from 'react';
 import {
+  EuiComment,
+  EuiButtonIcon,
+  EuiText,
+  EuiPopover,
   EuiContextMenuPanel,
   EuiContextMenuItem,
-} from '../../../../src/components/context_menu';
-import { CommonProps } from '../../../../src/components/common';
+  EuiLink,
+  EuiFlyout,
+  EuiFlyoutHeader,
+  EuiFlyoutBody,
+  EuiTitle,
+} from '../../../../src/components/';
+import { useGeneratedHtmlId } from '../../../../src/services/';
 
 const body = (
   <EuiText size="s">
@@ -17,92 +22,120 @@ const body = (
   </EuiText>
 );
 
-export type CustomActionsProps = HTMLAttributes<HTMLDivElement> &
-  CommonProps & {};
+export default () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
 
-interface CustomActionsState {
-  isPopoverOpen: boolean;
-}
+  const flyoutTitleId = useGeneratedHtmlId({
+    prefix: 'flyoutTitleId',
+  });
 
-export default class extends Component<CustomActionsProps, CustomActionsState> {
-  state = {
-    isPopoverOpen: false,
+  const togglePopover = () => {
+    setIsPopoverOpen(!isPopoverOpen);
   };
 
-  togglePopover = () => {
-    this.setState((prevState) => ({
-      isPopoverOpen: !prevState.isPopoverOpen,
-    }));
+  const closePopover = () => {
+    setIsPopoverOpen(false);
   };
 
-  closePopover = () => {
-    this.setState({
-      isPopoverOpen: false,
-    });
+  const toggleFlyout = () => {
+    setIsFlyoutVisible(!isFlyoutVisible);
   };
 
-  render() {
-    const { isPopoverOpen } = this.state;
-    const customActions = (
-      <EuiPopover
-        button={
-          <EuiButtonIcon
-            aria-label="Actions"
-            iconType="gear"
-            size="s"
-            color="text"
-            onClick={() => this.togglePopover()}
-          />
-        }
-        isOpen={isPopoverOpen}
-        closePopover={() => this.closePopover()}
-        panelPaddingSize="none"
-        anchorPosition="leftCenter"
-      >
-        <EuiContextMenuPanel
-          items={[
-            <EuiContextMenuItem
-              key="A"
-              icon="pencil"
-              onClick={() => {
-                this.closePopover();
-              }}
-            >
-              Edit
-            </EuiContextMenuItem>,
-            <EuiContextMenuItem
-              key="B"
-              icon="share"
-              onClick={() => {
-                this.closePopover();
-              }}
-            >
-              Share
-            </EuiContextMenuItem>,
-            <EuiContextMenuItem
-              key="C"
-              icon="copy"
-              onClick={() => {
-                this.closePopover();
-              }}
-            >
-              Copy
-            </EuiContextMenuItem>,
-          ]}
+  const flyout = isFlyoutVisible && (
+    <EuiFlyout
+      ownFocus
+      onClose={() => setIsFlyoutVisible(false)}
+      aria-labelledby={flyoutTitleId}
+    >
+      <EuiFlyoutHeader hasBorder>
+        <EuiTitle size="m">
+          <h2 id={flyoutTitleId}>Malware detection alert</h2>
+        </EuiTitle>
+      </EuiFlyoutHeader>
+      <EuiFlyoutBody>
+        <EuiText>
+          <p>
+            Use a flyout to show more details related to your comment event.
+          </p>
+        </EuiText>
+      </EuiFlyoutBody>
+    </EuiFlyout>
+  );
+
+  const customActions = (
+    <EuiPopover
+      button={
+        <EuiButtonIcon
+          aria-label="Actions"
+          iconType="gear"
+          size="s"
+          color="text"
+          onClick={togglePopover}
         />
-      </EuiPopover>
-    );
-    return (
-      <div>
-        <EuiComment
-          username="janed"
-          event="added a comment"
-          actions={customActions}
-          timestamp="Jan 1, 2020"
-        >
-          {body}
-        </EuiComment>
-      </div>
-    );
-  }
-}
+      }
+      isOpen={isPopoverOpen}
+      closePopover={togglePopover}
+      panelPaddingSize="none"
+      anchorPosition="leftCenter"
+    >
+      <EuiContextMenuPanel
+        items={[
+          <EuiContextMenuItem key="A" icon="pencil" onClick={closePopover}>
+            Edit
+          </EuiContextMenuItem>,
+          <EuiContextMenuItem key="B" icon="share" onClick={closePopover}>
+            Share
+          </EuiContextMenuItem>,
+          <EuiContextMenuItem key="C" icon="copy" onClick={closePopover}>
+            Copy
+          </EuiContextMenuItem>,
+        ]}
+      />
+    </EuiPopover>
+  );
+
+  const updateActions = [
+    <EuiButtonIcon
+      title="Copy alert link"
+      aria-label="Copy alert link"
+      iconType="link"
+      size="s"
+      color="text"
+    />,
+    <EuiButtonIcon
+      title="Show the alert details in a flyout"
+      aria-label="Show details"
+      iconType="popout"
+      size="s"
+      color="text"
+      onClick={toggleFlyout}
+    />,
+  ];
+
+  return (
+    <div>
+      <EuiComment
+        username="janed"
+        event="added a comment"
+        actions={customActions}
+        timestamp="Jan 1, 2020"
+      >
+        {body}
+      </EuiComment>
+      <EuiComment
+        type="update"
+        username="system"
+        event={
+          <>
+            added an alert from <EuiLink>malware detection</EuiLink>
+          </>
+        }
+        actions={updateActions}
+        timestamp="Jan 2, 2020"
+        timelineIcon="dot"
+      />
+      {flyout}
+    </div>
+  );
+};

@@ -25,7 +25,7 @@ const actionButton = (
 const initialComments: EuiCommentProps[] = [
   {
     type: 'regular',
-    username: 'emma@elastic.co',
+    username: 'emma',
     event: 'added a comment',
     timestamp: 'on 3rd March 2022',
     children: (
@@ -37,7 +37,7 @@ const initialComments: EuiCommentProps[] = [
   },
   {
     type: 'update',
-    username: 'emma@elastic.co',
+    username: 'emma',
     event: (
       <>
         added tags <EuiBadge>case</EuiBadge> <EuiBadge>phising</EuiBadge>{' '}
@@ -49,7 +49,7 @@ const initialComments: EuiCommentProps[] = [
   },
   {
     type: 'regular',
-    username: 'tiago@elastic.co',
+    username: 'tiago',
     event: 'added a comment',
     timestamp: 'on 4th March 2022',
     actions: actionButton,
@@ -62,7 +62,7 @@ const initialComments: EuiCommentProps[] = [
   },
   {
     type: 'update',
-    username: 'tiago@elastic.co',
+    username: 'tiago',
     event: (
       <>
         marked case as <EuiBadge color="warning">In progress</EuiBadge>
@@ -105,7 +105,7 @@ export default () => {
         ...comments,
         {
           type: 'regular',
-          username: 'emma@elastic.co',
+          username: 'emma',
           event: 'added a comment',
           timestamp: `on ${date}`,
           actions: actionButton,

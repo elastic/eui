@@ -17,6 +17,9 @@ const commentSource = require('!!raw-loader!./comment');
 import CommentTypes from './comment_types';
 const commentTypesSource = require('!!raw-loader!./comment_types');
 
+import CommentTypeUpdate from './comment_type_update';
+const commentTypeUpdateSource = require('!!raw-loader!./comment_type_update');
+
 import CommentTimelineIcons from './comment_timelineIcons';
 const commentTimelineIconsSource = require('!!raw-loader!./comment_timelineIcons');
 
@@ -34,6 +37,19 @@ const commentSnippet = `<EuiComment username="janed">
 </EuiComment>`;
 
 const commentTypesSnippet = [
+  `<EuiComment username="janed">
+  {body}
+</EuiComment>
+`,
+  `<EuiComment type="update" username="janed" />
+`,
+  `<EuiComment type="custom" username="janed">
+  {custom}
+</EuiComment>
+`,
+];
+
+const commentTypeUpdateSnippet = [
   `<EuiComment username="janed">
   {body}
 </EuiComment>
@@ -110,11 +126,7 @@ export const CommentListExample = {
             Use <strong>EuiComment</strong> to display comments. Each{' '}
             <strong>EuiComment</strong> has two parts: a{' '}
             <EuiCode>timelineIcon</EuiCode> on the left and content on the
-            right. The <EuiCode>timelineIcon</EuiCode> provides a visual
-            indication of the <EuiCode>type</EuiCode> of comment it is. For
-            example, it can be an icon that represents what action was performed
-            or it can be a user avatar. The content has a header with all the
-            relevant metadata and a body.
+            right.
           </p>
         </div>
       ),
@@ -134,22 +146,64 @@ export const CommentListExample = {
       text: (
         <div>
           <p>
-            The default <EuiCode>type</EuiCode> of comment is
-            <EuiCode>regular</EuiCode> and displays a comment that a user has
-            written.
+            You can supply one of the following types with the default being{' '}
+            <EuiCode>regular</EuiCode>:
           </p>
-          <p>
-            Change the type to <EuiCode>update</EuiCode> to display comments
-            that generally do not have a body and are logging actions that
-            either the user or the system has performed (e.g. &ldquo;jsmith
-            edited a case&rdquo; or &ldquo;kibanamachine added the review
-            label&rdquo;).
-          </p>
+          <ul>
+            <li>
+              <EuiCode>regular</EuiCode>: displays a comment that a user has
+              written. The content has a header with all the relevant metadata
+              and a body.
+            </li>
+            <li>
+              <EuiCode>update</EuiCode>: displays comments that generally do not
+              have a body and are logging actions that either the user or the
+              system has performed (e.g. “jsmith edited a case” or
+              “kibanamachine added the review label”).
+            </li>
+            <li>
+              <EuiCode>custom</EuiCode>: displays any custom content. Elements
+              like <EuiCode>username</EuiCode>, <EuiCode>timestamp</EuiCode>,{' '}
+              <EuiCode>event</EuiCode>, and <EuiCode>actions</EuiCode>{' '}
+              won&apos;t show even if they are passed.
+            </li>
+          </ul>
         </div>
       ),
       props: { EuiComment },
       snippet: commentTypesSnippet,
       demo: <CommentTypes />,
+    },
+    {
+      title: 'Comment type update ',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: commentTypeUpdateSource,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            As mentioned in the section before, the <strong>EuiComment</strong>{' '}
+            type <EuiCode>update</EuiCode> generally displays logging actions
+            that either the user or the system has performed. Most of these
+            actions are meant to be discrete. But when you want to make an
+            action easier to scan in the timeline, consider using an icon by
+            specifying <EuiCode>updateIcon</EuiCode>. For example, if the user
+            added a tag use a <EuiCode>tag</EuiCode> icon.
+          </p>
+          <p>
+            You can also use color by specifying the{' '}
+            <EuiCode>updateColor</EuiCode>. The color should indicate the level
+            of urgency. For example, if an alert was triggered and it is very
+            urgent you can use the color <EuiCode>danger</EuiCode>.
+          </p>
+        </div>
+      ),
+      props: { EuiComment },
+      snippet: commentTypeUpdateSnippet,
+      demo: <CommentTypeUpdate />,
     },
     {
       title: 'Timeline icon',
@@ -166,14 +220,13 @@ export const CommentListExample = {
           </p>
           <ol>
             <li>
-              Use the defaults; a user icon inside a large container for
-              <EuiCode>regular</EuiCode> comments; or a dot icon inside a small
-              container for <EuiCode>update</EuiCode> comments.
+              Use the defaults; it will show an avatar with the initial letter
+              of the username.
             </li>
             <li>
               Pass a string with any of the icon types that{' '}
-              <strong>EuiIcon</strong> supports and it will receive the default
-              styling.
+              <strong>EuiIcon</strong> supports and it will show in a circle.
+              Consider this option when showing a system update.
             </li>
             <li>
               Pass any other element (e.g.{' '}
