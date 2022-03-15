@@ -14,7 +14,7 @@ import { EuiNotificationBadge } from '../badge/notification_badge';
 import {
   EuiButtonEmpty,
   EuiButtonEmptyProps,
-} from '../button/button_empty/button_empty';
+} from '../button/button_empty';
 
 import { useInnerText } from '../inner_text';
 import { DistributiveOmit } from '../common';
