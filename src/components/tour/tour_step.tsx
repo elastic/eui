@@ -41,7 +41,7 @@ import {
 
 type PopoverOverrides = 'button' | 'closePopover';
 
-type EuiPopoverPartials = Partial<Pick<EuiPopoverProps, PopoverOverrides>>;
+type EuiPopoverPartials = Partial<Pick<EuiPopoverProps, 'closePopover'>>;
 
 export type EuiTourStepAnchorProps = ExclusiveUnion<
   {
@@ -128,7 +128,6 @@ export type EuiTourStepProps = CommonProps &
 export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   anchorPosition = 'leftUp',
   anchor,
-  button,
   children,
   className,
   closePopover = () => {},
