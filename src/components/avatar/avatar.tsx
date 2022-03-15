@@ -129,13 +129,15 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
 
   const visColors = euiPaletteColorBlindBehindText();
 
+  const isPlain = color === 'plain';
+
   const classes = classNames(
     'euiAvatar',
     sizeToClassNameMap[size],
     typeToClassNameMap[type],
     {
       'euiAvatar-isDisabled': isDisabled,
-      'euiAvatar--plain': color === 'plain',
+      'euiAvatar--plain': isPlain,
     },
     className
   );
@@ -145,7 +147,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   const avatarStyle: CSSProperties = style || {};
   let iconCustomColor = iconColor;
 
-  const isNamedColor = color === 'plain' || color === null;
+  const isNamedColor = isPlain || color === null;
   if (!isNamedColor) {
     checkValidColor(color);
 
@@ -191,7 +193,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
         styles[size],
         styles[type],
         isDisabled && styles.isDisabled,
-        color === 'plain' && styles.plain,
+        isPlain && styles.plain,
       ]}
       className={classes}
       style={avatarStyle}
