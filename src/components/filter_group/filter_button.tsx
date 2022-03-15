@@ -17,6 +17,7 @@ import {
 } from '../button/button_empty/button_empty';
 
 import { useInnerText } from '../inner_text';
+import { DistributiveOmit } from '../common';
 
 export type EuiFilterButtonProps = {
   /**
@@ -50,7 +51,7 @@ export type EuiFilterButtonProps = {
    * Remove border after button, good for opposite filters
    */
   noDivider?: boolean;
-} & Omit<EuiButtonEmptyProps, 'flush' | 'size'>;
+} & DistributiveOmit<EuiButtonEmptyProps, 'flush' | 'size'>;
 
 export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   children,
@@ -139,7 +140,6 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   );
 
   return (
-    // @ts-ignore type error
     <EuiButtonEmpty
       className={classes}
       color={color}
