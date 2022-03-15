@@ -36,6 +36,7 @@ export default () => (
       username="janed"
       event="added a comment"
       timestamp="Jan 1, 2020"
+      timelineIcon={<EuiAvatar initials="janed" name="Juana" />}
     >
       {defaultBody}
     </EuiComment>
@@ -44,12 +45,14 @@ export default () => (
       type="update"
       event="edited case"
       timestamp="Jan 3, 2020"
+      updateIcon="pencil"
+      timelineIcon={<EuiAvatar name="Management" iconType="managementApp" />}
     />
     <EuiComment
       username="janed"
       event="added a comment"
       timestamp="Jan 1, 2020"
-      timelineIcon="tag"
+      timelineIcon="user"
     >
       {iconStringBody}
     </EuiComment>
@@ -60,7 +63,6 @@ export default () => (
       timelineIcon={
         <EuiAvatar
           imageUrl="https://source.unsplash.com/64x64/?woman"
-          size="l"
           name="Juana"
         />
       }

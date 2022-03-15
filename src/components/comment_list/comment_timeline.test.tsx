@@ -10,31 +10,24 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiCommentTimeline, TYPES } from './comment_timeline';
+import { EuiCommentTimeline } from './comment_timeline';
 import { EuiAvatar } from '../avatar';
 
 describe('EuiCommentTimeline', () => {
   test('is rendered', () => {
-    const component = render(<EuiCommentTimeline {...requiredProps} />);
+    const component = render(
+      <EuiCommentTimeline username="someuser" {...requiredProps} />
+    );
 
     expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
-    describe('type', () => {
-      TYPES.forEach((type) => {
-        test(`${type} is rendered`, () => {
-          const component = render(<EuiCommentTimeline type={type} />);
-
-          expect(component).toMatchSnapshot();
-        });
-      });
-    });
-
     describe('timelineIcon', () => {
       it('is rendered', () => {
         const component = render(
           <EuiCommentTimeline
+            username="someuser"
             timelineIcon={<EuiAvatar size="l" name="Mario" />}
           />
         );

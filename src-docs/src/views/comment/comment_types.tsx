@@ -29,6 +29,7 @@ export default () => (
       type="update"
       event="edited case"
       timestamp="22 hours ago"
+      updateColor="danger"
     />
     <EuiComment
       username="milal"

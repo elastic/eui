@@ -9,12 +9,14 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import { CommonProps, keysOf } from '../common';
 import classNames from 'classnames';
+import { EuiIcon, IconType } from '../icon';
+import { EuiPanel, EuiPanelProps } from '../panel';
 
 export interface EuiCommentEventProps extends CommonProps {
   /**
-   * Author of the comment. Display a small icon or avatar with it if needed.
+   * Author of the comment. When no `timelineIcon` is passed the username initial letter is used to generate an avatar.
    */
-  username?: ReactNode;
+  username: string;
   /**
    * Time of occurrence of the event. Its format is set on the consumer's side
    */
@@ -32,6 +34,15 @@ export interface EuiCommentEventProps extends CommonProps {
    * Use `custom` when passing a children that doesn't require the event header. Elements like `username`, `timestamp`, `event` and `actions` won't show.
    */
   type?: EuiCommentType;
+  /**
+   * Custom icon that shows before the username only when the `type` is `"update"`.
+   */
+  updateIcon?: IconType;
+  /**
+   * Background color for the event header only when the `type` is `"update"`.
+   * When a color is used it adds a padding.
+   */
+  updateColor?: EuiPanelProps['color'];
 }
 
 const typeToClassNameMap = {
@@ -51,6 +62,8 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   type = 'regular',
   event,
   actions,
+  updateIcon,
+  updateColor,
 }) => {
   const classes = classNames(
     'euiCommentEvent',
@@ -64,11 +77,11 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
 
   const Element = isFigure ? 'figure' : 'div';
   const HeaderElement = isFigure ? 'figcaption' : 'div';
+  const isTypeUpdate = type === 'update';
+  const isTypeCustom = type === 'custom';
 
-  // when the type of event is `custom` we don't want to show the header
-  // or any elements like `username`, `event`, `timestamp` or `actions`
-  const commentEventHeader = type !== 'custom' && (
-    <HeaderElement className="euiCommentEvent__header">
+  const headerElements = (
+    <>
       <div className="euiCommentEvent__headerData">
         <div className="euiCommentEvent__headerUsername">{username}</div>
         <div className="euiCommentEvent__headerEvent">{event}</div>
@@ -81,12 +94,37 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
       {actions ? (
         <div className="euiCommentEvent__headerActions">{actions}</div>
       ) : undefined}
+    </>
+  );
+
+  const panelProps = updateColor
+    ? { color: updateColor, paddingSize: 's' }
+    : { color: 'transparent', paddingSize: 'none' };
+
+  const updateEventHeader = !isTypeCustom && (
+    <EuiPanel {...(panelProps as EuiPanelProps)}>
+      <HeaderElement className="euiCommentEvent__header">
+        {updateIcon && (
+          <span className="euiCommentEvent__headerIconUpdate">
+            <EuiIcon size="s" type={updateIcon} />
+          </span>
+        )}
+        {headerElements}
+      </HeaderElement>
+    </EuiPanel>
+  );
+
+  // when the type of event is `custom` we don't want to show the header
+  // or any elements like `username`, `event`, `timestamp` or `actions`
+  const commentEventHeader = !isTypeCustom && (
+    <HeaderElement className="euiCommentEvent__header">
+      {headerElements}
     </HeaderElement>
   );
 
   return (
     <Element className={classes}>
-      {commentEventHeader}
+      {isTypeUpdate ? updateEventHeader : commentEventHeader}
       {children ? (
         <div className="euiCommentEvent__body">{children}</div>
       ) : undefined}

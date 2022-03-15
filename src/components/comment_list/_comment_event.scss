@@ -75,3 +75,14 @@
     padding-top: $euiSizeXS;
   }
 }
+
+.euiCommentEvent__headerIconUpdate {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: $euiColorLightestShade;
+  width: $euiSizeL;
+  height: $euiSizeL;
+  margin-right: $euiSizeS;
+}

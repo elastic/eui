@@ -3,7 +3,6 @@ import {
   EuiCommentList,
   EuiCommentProps,
 } from '../../../../src/components/comment_list';
-import { EuiAvatar } from '../../../../src/components/avatar';
 import { EuiButtonIcon } from '../../../../src/components/button';
 import { EuiText } from '../../../../src/components/text';
 import { EuiBadge } from '../../../../src/components/badge';
@@ -39,15 +38,6 @@ const complexEvent = (
   </EuiFlexGroup>
 );
 
-const complexUsername = (
-  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s">
-    <EuiFlexItem grow={false}>
-      <EuiAvatar size="s" type="space" name="Pedro" />
-    </EuiFlexItem>
-    <EuiFlexItem grow={false}>pedror</EuiFlexItem>
-  </EuiFlexGroup>
-);
-
 const longBody = (
   <EuiText size="s">
     <p>
@@ -59,14 +49,6 @@ const longBody = (
       unhappy.
     </p>
   </EuiText>
-);
-
-const avatar = (
-  <EuiAvatar
-    imageUrl="https://source.unsplash.com/64x64/?woman"
-    size="l"
-    name="Juana"
-  />
 );
 
 const comments: EuiCommentProps[] = [
@@ -83,27 +65,26 @@ const comments: EuiCommentProps[] = [
     actions: copyAction,
     event: 'pushed incident X0Z235',
     timestamp: 'on Jan 3, 2020',
-    timelineIcon: avatar,
   },
   {
     username: 'pancho1',
     type: 'update',
     event: 'edited case',
     timestamp: 'on Jan 9, 2020',
+    updateIcon: 'pencil',
   },
   {
-    username: complexUsername,
+    username: 'pedror',
     type: 'update',
     actions: copyAction,
     event: complexEvent,
     timestamp: 'on Jan 11, 2020',
-    timelineIcon: 'tag',
+    updateIcon: 'tag',
   },
   {
     username: 'elohar',
     event: 'added a comment',
     timestamp: 'on Jan 14, 2020',
-    timelineIcon: <EuiAvatar size="l" name="Eloha" />,
     children: longBody,
     actions: copyAction,
   },

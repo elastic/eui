@@ -152,7 +152,7 @@ export const CommentListExample = {
       demo: <CommentTypes />,
     },
     {
-      title: 'Custom timeline icon',
+      title: 'Timeline icon',
       source: [
         {
           type: GuideSectionTypes.JS,

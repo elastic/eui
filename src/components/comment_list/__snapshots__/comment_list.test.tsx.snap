@@ -16,11 +16,21 @@ exports[`EuiCommentList is rendered 1`] = `
         class="euiCommentTimeline__content"
       >
         <div
-          class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
+          class=""
         >
-          <span
-            data-euiicon-type="user"
-          />
+          <div
+            aria-label="janed"
+            class="euiAvatar euiAvatar--m euiAvatar--user"
+            role="img"
+            style="background-color:#f1d86f;color:#000000"
+            title="janed"
+          >
+            <span
+              aria-hidden="true"
+            >
+              j
+            </span>
+          </div>
         </div>
       </div>
     </div>

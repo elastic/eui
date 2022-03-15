@@ -26,7 +26,9 @@ describe('EuiComment', () => {
     describe('type', () => {
       TYPES.forEach((type) => {
         test(`${type} is rendered`, () => {
-          const component = render(<EuiComment type={type} />);
+          const component = render(
+            <EuiComment username="someuser" type={type} />
+          );
 
           expect(component).toMatchSnapshot();
         });

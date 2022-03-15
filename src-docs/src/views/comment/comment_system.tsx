@@ -3,7 +3,6 @@ import { formatDate, htmlIdGenerator } from '../../../../src/services';
 import {
   EuiComment,
   EuiCommentProps,
-  EuiAvatar,
   EuiButtonIcon,
   EuiBadge,
   EuiMarkdownEditor,
@@ -29,7 +28,6 @@ const initialComments: EuiCommentProps[] = [
     username: 'emma@elastic.co',
     event: 'added a comment',
     timestamp: 'on 3rd March 2022',
-    timelineIcon: <EuiAvatar name="emma" />,
     children: (
       <EuiMarkdownFormat textSize="s">
         Phishing emails have been on the rise since February
@@ -39,11 +37,7 @@ const initialComments: EuiCommentProps[] = [
   },
   {
     type: 'update',
-    username: (
-      <>
-        <EuiAvatar size="s" name="emma" /> emma@elastic.co
-      </>
-    ),
+    username: 'emma@elastic.co',
     event: (
       <>
         added tags <EuiBadge>case</EuiBadge> <EuiBadge>phising</EuiBadge>{' '}
@@ -51,14 +45,13 @@ const initialComments: EuiCommentProps[] = [
       </>
     ),
     timestamp: 'on 3rd March 2022',
-    timelineIcon: 'tag',
+    updateIcon: 'tag',
   },
   {
     type: 'regular',
     username: 'tiago@elastic.co',
     event: 'added a comment',
     timestamp: 'on 4th March 2022',
-    timelineIcon: <EuiAvatar name="tiago" />,
     actions: actionButton,
     children: (
       <EuiMarkdownFormat textSize="s">
@@ -69,11 +62,7 @@ const initialComments: EuiCommentProps[] = [
   },
   {
     type: 'update',
-    username: (
-      <>
-        <EuiAvatar size="s" name="tiago" /> tiago@elastic.co
-      </>
-    ),
+    username: 'tiago@elastic.co',
     event: (
       <>
         marked case as <EuiBadge color="warning">In progress</EuiBadge>
@@ -119,7 +108,6 @@ export default () => {
           username: 'emma@elastic.co',
           event: 'added a comment',
           timestamp: `on ${date}`,
-          timelineIcon: <EuiAvatar name="emma" />,
           actions: actionButton,
           children: (
             <EuiMarkdownFormat textSize="s">{editorValue}</EuiMarkdownFormat>
@@ -138,7 +126,7 @@ export default () => {
           username={comment.username}
           event={comment.event}
           timestamp={comment.timestamp}
-          timelineIcon={comment.timelineIcon}
+          updateIcon={comment.updateIcon}
         />
       );
     } else {
@@ -149,7 +137,6 @@ export default () => {
           username={comment.username}
           event={comment.event}
           timestamp={comment.timestamp}
-          timelineIcon={comment.timelineIcon}
           actions={comment.actions}
         >
           {comment.children}
@@ -162,7 +149,7 @@ export default () => {
     <>
       {commentsList}
 
-      <EuiComment type="custom" timelineIcon={<EuiAvatar name="emma" />}>
+      <EuiComment username="emma" type="custom">
         <EuiMarkdownEditor
           aria-label="Markdown editor"
           aria-describedby={errorElementId.current}

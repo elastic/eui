@@ -96,7 +96,9 @@ exports[`EuiCommentEvent props type regular is rendered 1`] = `
     >
       <div
         class="euiCommentEvent__headerUsername"
-      />
+      >
+        someuser
+      </div>
       <div
         class="euiCommentEvent__headerEvent"
       />
@@ -110,6 +112,33 @@ exports[`EuiCommentEvent props type update is rendered 1`] = `
   class="euiCommentEvent euiCommentEvent--update"
 >
   <div
+    class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow"
+  >
+    <div
+      class="euiCommentEvent__header"
+    >
+      <div
+        class="euiCommentEvent__headerData"
+      >
+        <div
+          class="euiCommentEvent__headerUsername"
+        >
+          someuser
+        </div>
+        <div
+          class="euiCommentEvent__headerEvent"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCommentEvent props updateColor is rendered 1`] = `
+<figure
+  class="euiCommentEvent euiCommentEvent--regular"
+>
+  <figcaption
     class="euiCommentEvent__header"
   >
     <div
@@ -117,11 +146,36 @@ exports[`EuiCommentEvent props type update is rendered 1`] = `
     >
       <div
         class="euiCommentEvent__headerUsername"
-      />
+      >
+        someuser
+      </div>
       <div
         class="euiCommentEvent__headerEvent"
       />
     </div>
-  </div>
-</div>
+  </figcaption>
+</figure>
+`;
+
+exports[`EuiCommentEvent props updateIcon is rendered 1`] = `
+<figure
+  class="euiCommentEvent euiCommentEvent--regular"
+>
+  <figcaption
+    class="euiCommentEvent__header"
+  >
+    <div
+      class="euiCommentEvent__headerData"
+    >
+      <div
+        class="euiCommentEvent__headerUsername"
+      >
+        someuser
+      </div>
+      <div
+        class="euiCommentEvent__headerEvent"
+      />
+    </div>
+  </figcaption>
+</figure>
 `;

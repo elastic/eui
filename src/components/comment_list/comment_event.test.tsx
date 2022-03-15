@@ -25,7 +25,9 @@ describe('EuiCommentEvent', () => {
     describe('type', () => {
       TYPES.forEach((type) => {
         test(`${type} is rendered`, () => {
-          const component = render(<EuiCommentEvent type={type} />);
+          const component = render(
+            <EuiCommentEvent username="someuser" type={type} />
+          );
 
           expect(component).toMatchSnapshot();
         });
@@ -46,6 +48,26 @@ describe('EuiCommentEvent', () => {
       it('is rendered', () => {
         const component = render(
           <EuiCommentEvent event="commented" username="someuser" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('updateIcon', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiCommentEvent username="someuser" updateIcon="pencil" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('updateColor', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiCommentEvent username="someuser" updateColor="danger" />
         );
 
         expect(component).toMatchSnapshot();

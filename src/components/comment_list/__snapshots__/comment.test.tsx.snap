@@ -13,11 +13,21 @@ exports[`EuiComment is rendered 1`] = `
       class="euiCommentTimeline__content"
     >
       <div
-        class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
+        class=""
       >
-        <span
-          data-euiicon-type="user"
-        />
+        <div
+          aria-label="someuser"
+          class="euiAvatar euiAvatar--m euiAvatar--user"
+          role="img"
+          style="background-color:#c47c6c;color:#000000"
+          title="someuser"
+        >
+          <span
+            aria-hidden="true"
+          >
+            s
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -55,11 +65,21 @@ exports[`EuiComment props event is rendered 1`] = `
       class="euiCommentTimeline__content"
     >
       <div
-        class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
+        class=""
       >
-        <span
-          data-euiicon-type="user"
-        />
+        <div
+          aria-label="someuser"
+          class="euiAvatar euiAvatar--m euiAvatar--user"
+          role="img"
+          style="background-color:#c47c6c;color:#000000"
+          title="someuser"
+        >
+          <span
+            aria-hidden="true"
+          >
+            s
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -99,7 +119,7 @@ exports[`EuiComment props timelineIcon is rendered 1`] = `
       class="euiCommentTimeline__content"
     >
       <div
-        class="euiCommentTimeline__icon--regular"
+        class=""
       >
         <div
           aria-label="Mario"
@@ -151,11 +171,21 @@ exports[`EuiComment props timestamp is rendered 1`] = `
       class="euiCommentTimeline__content"
     >
       <div
-        class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
+        class=""
       >
-        <span
-          data-euiicon-type="user"
-        />
+        <div
+          aria-label="someuser"
+          class="euiAvatar euiAvatar--m euiAvatar--user"
+          role="img"
+          style="background-color:#c47c6c;color:#000000"
+          title="someuser"
+        >
+          <span
+            aria-hidden="true"
+          >
+            s
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -200,11 +230,21 @@ exports[`EuiComment props type custom is rendered 1`] = `
       class="euiCommentTimeline__content"
     >
       <div
-        class="euiCommentTimeline__icon--default euiCommentTimeline__icon--custom"
+        class=""
       >
-        <span
-          data-euiicon-type="user"
-        />
+        <div
+          aria-label="someuser"
+          class="euiAvatar euiAvatar--m euiAvatar--user"
+          role="img"
+          style="background-color:#c47c6c;color:#000000"
+          title="someuser"
+        >
+          <span
+            aria-hidden="true"
+          >
+            s
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -225,11 +265,21 @@ exports[`EuiComment props type regular is rendered 1`] = `
       class="euiCommentTimeline__content"
     >
       <div
-        class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
+        class=""
       >
-        <span
-          data-euiicon-type="user"
-        />
+        <div
+          aria-label="someuser"
+          class="euiAvatar euiAvatar--m euiAvatar--user"
+          role="img"
+          style="background-color:#c47c6c;color:#000000"
+          title="someuser"
+        >
+          <span
+            aria-hidden="true"
+          >
+            s
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -244,7 +294,9 @@ exports[`EuiComment props type regular is rendered 1`] = `
       >
         <div
           class="euiCommentEvent__headerUsername"
-        />
+        >
+          someuser
+        </div>
         <div
           class="euiCommentEvent__headerEvent"
         />
@@ -265,11 +317,21 @@ exports[`EuiComment props type update is rendered 1`] = `
       class="euiCommentTimeline__content"
     >
       <div
-        class="euiCommentTimeline__icon--default euiCommentTimeline__icon--update"
+        class=""
       >
-        <span
-          data-euiicon-type="dot"
-        />
+        <div
+          aria-label="someuser"
+          class="euiAvatar euiAvatar--m euiAvatar--user"
+          role="img"
+          style="background-color:#c47c6c;color:#000000"
+          title="someuser"
+        >
+          <span
+            aria-hidden="true"
+          >
+            s
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -277,17 +339,23 @@ exports[`EuiComment props type update is rendered 1`] = `
     class="euiCommentEvent euiCommentEvent--update"
   >
     <div
-      class="euiCommentEvent__header"
+      class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow"
     >
       <div
-        class="euiCommentEvent__headerData"
+        class="euiCommentEvent__header"
       >
         <div
-          class="euiCommentEvent__headerUsername"
-        />
-        <div
-          class="euiCommentEvent__headerEvent"
-        />
+          class="euiCommentEvent__headerData"
+        >
+          <div
+            class="euiCommentEvent__headerUsername"
+          >
+            someuser
+          </div>
+          <div
+            class="euiCommentEvent__headerEvent"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -305,11 +373,21 @@ exports[`EuiComment renders a body 1`] = `
       class="euiCommentTimeline__content"
     >
       <div
-        class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
+        class=""
       >
-        <span
-          data-euiicon-type="user"
-        />
+        <div
+          aria-label="someuser"
+          class="euiAvatar euiAvatar--m euiAvatar--user"
+          role="img"
+          style="background-color:#c47c6c;color:#000000"
+          title="someuser"
+        >
+          <span
+            aria-hidden="true"
+          >
+            s
+          </span>
+        </div>
       </div>
     </div>
   </div>

@@ -6,23 +6,13 @@
   position: relative;
 }
 
-.euiCommentTimeline__icon--default {
-  flex-shrink: 0;
+.euiCommentTimeline__iconBackground {
   display: flex;
   justify-content: center;
   align-items: center;
   overflow-x: hidden;
   border-radius: 50%;
   background-color: $euiColorLightestShade;
-
-  &.euiCommentTimeline__icon--custom,
-  &.euiCommentTimeline__icon--regular {
-    width: $euiSizeXXL;
-    height: $euiSizeXXL;
-  }
-
-  &.euiCommentTimeline__icon--update {
-    width: $euiSizeL;
-    height: $euiSizeL;
-  }
+  width: $euiSizeXL;
+  height: $euiSizeXL;
 }

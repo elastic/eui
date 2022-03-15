@@ -37,6 +37,8 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
   timelineIcon,
   type = 'regular',
   timestamp,
+  updateIcon,
+  updateColor,
   ...rest
 }) => {
   const classes = classNames(
@@ -48,13 +50,15 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
 
   return (
     <div className={classes} {...rest}>
-      <EuiCommentTimeline type={type} timelineIcon={timelineIcon} />
+      <EuiCommentTimeline username={username} timelineIcon={timelineIcon} />
       <EuiCommentEvent
         username={username}
         actions={actions}
         event={event}
         timestamp={timestamp}
         type={type}
+        updateIcon={updateIcon}
+        updateColor={updateColor}
       >
         {children}
       </EuiCommentEvent>
