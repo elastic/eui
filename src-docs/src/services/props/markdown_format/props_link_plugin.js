@@ -25,7 +25,7 @@ export function PropsLinkMarkdownParser() {
   methods.splice(methods.indexOf('text'), 0, 'propsLink');
 }
 
-export const PropsLinkMarkdownRenderer = ({ propId }) => {
+export const PropsLinkRenderer = ({ propId }) => {
   const onClick = () => {
     document.getElementById(propId).scrollIntoView();
     window.scrollBy(0, -48); // Account for sticky header height
@@ -34,6 +34,6 @@ export const PropsLinkMarkdownRenderer = ({ propId }) => {
   return <EuiLink onClick={onClick}>{propId}</EuiLink>;
 };
 
-export const PropsLinkAsBoldRenderer = ({ propId }) => {
+export const PropsBoldRenderer = ({ propId }) => {
   return <strong>{propId}</strong>;
 };

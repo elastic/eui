@@ -1,29 +1,11 @@
 import React from 'react';
-import markdown from 'remark-parse';
-import {
-  EuiMarkdownFormat,
-  EuiMarkdownFormatProps,
-  getDefaultEuiMarkdownProcessingPlugins,
-} from '../../../../src';
+import { EuiMarkdownFormat, EuiMarkdownFormatProps } from '../../../../src';
 
 import {
-  PropsLinkMarkdownParser,
-  PropsLinkAsBoldRenderer,
+  parsingPluginList,
+  processingPluginListWithBoldProps,
   // @ts-ignore Importing from JS
-} from '../playground/markdown_format/props_link_plugin';
-
-import highlight from '../../../../src/components/markdown_editor/plugins/remark/remark_prismjs';
-
-const parsingPluginList: EuiMarkdownFormatProps['parsingPluginList'] = [
-  [markdown, {}],
-  [highlight, {}],
-  // Excludes the emoji, checkbox, & tooltip plugins that come with the
-  // EUI default - we almost certainly don't need those for props tables
-  [PropsLinkMarkdownParser, {}],
-];
-
-const processingPluginList = getDefaultEuiMarkdownProcessingPlugins();
-processingPluginList[1][1].components.propsLinkPlugin = PropsLinkAsBoldRenderer;
+} from './markdown_format';
 
 export function getDescriptionSmall(
   type: any,
@@ -35,7 +17,7 @@ export function getDescriptionSmall(
         textSize="xs"
         color="subdued"
         parsingPluginList={parsingPluginList}
-        processingPluginList={processingPluginList}
+        processingPluginList={processingPluginListWithBoldProps}
         {...markdownProps}
       >
         {type.description}
@@ -53,7 +35,7 @@ export function getDescription(
       <EuiMarkdownFormat
         textSize="s"
         parsingPluginList={parsingPluginList}
-        processingPluginList={processingPluginList}
+        processingPluginList={processingPluginListWithBoldProps}
         {...markdownProps}
       >
         {type.description}

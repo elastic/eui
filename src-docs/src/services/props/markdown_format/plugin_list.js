@@ -4,7 +4,8 @@ import { getDefaultEuiMarkdownProcessingPlugins } from '../../../../../src/compo
 
 import {
   PropsLinkMarkdownParser,
-  PropsLinkMarkdownRenderer,
+  PropsLinkRenderer,
+  PropsBoldRenderer,
 } from './props_link_plugin';
 
 export const parsingPluginList = [
@@ -15,5 +16,8 @@ export const parsingPluginList = [
   [PropsLinkMarkdownParser, {}],
 ];
 
-export const processingPluginList = getDefaultEuiMarkdownProcessingPlugins();
-processingPluginList[1][1].components.propsLinkPlugin = PropsLinkMarkdownRenderer;
+export const processingPluginListWithLinkedProps = getDefaultEuiMarkdownProcessingPlugins();
+processingPluginListWithLinkedProps[1][1].components.propsLinkPlugin = PropsLinkRenderer;
+
+export const processingPluginListWithBoldProps = getDefaultEuiMarkdownProcessingPlugins();
+processingPluginListWithBoldProps[1][1].components.propsLinkPlugin = PropsBoldRenderer;
