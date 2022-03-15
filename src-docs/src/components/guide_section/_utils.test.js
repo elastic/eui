@@ -283,7 +283,7 @@ describe('renderJsSourceCode', () => {
       );
     });
 
-    it('keeps underscores (_) in the Elastic import statement', () => {
+    it('keeps underscores in Elastic imports', () => {
       expect(
         renderJsSourceCode({
           default: dedent(`
