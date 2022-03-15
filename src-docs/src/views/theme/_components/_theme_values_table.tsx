@@ -11,7 +11,7 @@ import {
 } from '../../../../../src';
 import { getType } from '../_props';
 
-import { getDescriptionSmall } from './_theme_values_descriptions';
+import { getDescriptionSmall } from '../../../services/props/get_description';
 
 interface BasicItem {
   id: string;

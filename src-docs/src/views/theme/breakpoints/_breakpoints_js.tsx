@@ -9,14 +9,15 @@ import {
   EuiCode,
 } from '../../../../../src';
 
-import { getPropsFromThemeKey, _EuiThemeBreakpoint } from '../_props';
+import { _EuiThemeBreakpoint } from '../_props';
+import { getPropsFromComponent } from '../../../services/props/get_props';
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 
 export default () => {
   const { euiTheme } = useEuiTheme();
   const breakpoint = euiTheme.breakpoint;
-  const breakpointTypes = getPropsFromThemeKey(_EuiThemeBreakpoint);
+  const breakpointTypes = getPropsFromComponent(_EuiThemeBreakpoint);
   const breakpoints = Object.keys(breakpointTypes);
 
   const [currentBreakpoint, setCurrentBreakpoint] = useState(

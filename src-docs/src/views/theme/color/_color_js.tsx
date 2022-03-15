@@ -2,10 +2,11 @@ import React, { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { transparentize, useEuiTheme } from '../../../../../src/services';
+import { getPropsFromComponent } from '../../../services/props/get_props';
 
 import { EuiCode, EuiColorPickerSwatch } from '../../../../../src';
 
-import { EuiThemeColors, getPropsFromThemeKey, ThemeRowType } from '../_props';
+import { EuiThemeColors, ThemeRowType } from '../_props';
 
 import { ThemeExample } from '../_components/_theme_example';
 import {
@@ -21,7 +22,7 @@ export const brandKeys = Object.keys(brand_colors);
 
 export const BrandJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
-  const props = getPropsFromThemeKey(EuiThemeColors);
+  const props = getPropsFromComponent(EuiThemeColors);
 
   return (
     <>
@@ -63,7 +64,7 @@ export const textKeys = Object.keys(text_colors);
 
 export const TextJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
-  const props = getPropsFromThemeKey(EuiThemeColors);
+  const props = getPropsFromComponent(EuiThemeColors);
   const textColors = textKeys.concat(brandTextKeys);
 
   return (
@@ -126,7 +127,7 @@ export const shadeKeys = Object.keys(shade_colors);
 
 export const ShadeJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
-  const props = getPropsFromThemeKey(EuiThemeColors);
+  const props = getPropsFromComponent(EuiThemeColors);
 
   return (
     <>
@@ -170,7 +171,7 @@ const specialKeys = Object.keys(special_colors);
 
 export const SpecialJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
-  const props = getPropsFromThemeKey(EuiThemeColors);
+  const props = getPropsFromComponent(EuiThemeColors);
   const allSpecialKeys = specialKeys.concat(['ghost', 'ink']);
 
   return (
