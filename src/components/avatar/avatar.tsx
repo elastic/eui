@@ -175,7 +175,6 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   } else if (iconType) {
     content = (
       <EuiIcon
-        css={[styles.euiAvatarIcon]}
         className="euiAvatar__icon"
         size={iconSize || size}
         type={iconType}

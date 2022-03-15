@@ -8,79 +8,59 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { size } from '../../global_styling/mixins/_size';
 
-export const euiAvatarStyles = ({ euiTheme }: UseEuiTheme) => {
-  const avatarSizing = {
-    s: {
-      size: euiTheme.size.l,
-      fontSize: euiTheme.size.m,
-    },
-    m: {
-      size: euiTheme.size.xl,
-      fontSize: `calc(${euiTheme.size.base} * .9)`,
-    },
-    l: {
-      size: euiTheme.size.xxl,
-      fontSize: `calc(${euiTheme.size.l} * .8)`,
-    },
-    xl: {
-      size: `calc(${euiTheme.size.base} * 4)`,
-      fontSize: `calc(${euiTheme.size.xl} * .8)`,
-    },
-  };
-
-  return {
-    // Block
-    euiAvatar: css`
-      flex-shrink: 0; // Ensures it never scales down below its intended size
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      background-size: cover;
-      text-align: center;
-      vertical-align: middle;
-      overflow-x: hidden;
-      font-weight: ${euiTheme.font.weight
-        .medium}; // Explicitly state so it doesn't get overridden by inheritance
-    `,
-    // Variants
-    plain: css`
-      background-color: ${euiTheme.colors.emptyShade};
-    `,
-    user: css`
-      border-radius: 50%;
-    `,
-    space: css`
-      border-radius: ${euiTheme.border.radius.medium};
-    `,
-    // States
-    isDisabled: css`
-      cursor: not-allowed;
-      filter: grayscale(100%);
-    `,
-    // Sizes
-    s: css`
-      ${size(avatarSizing.s.size)}
-      line-height: ${avatarSizing.s.size};
-      font-size: ${avatarSizing.s.fontSize};
-    `,
-    m: css`
-      ${size(avatarSizing.m.size)}
-      line-height: ${avatarSizing.m.size};
-      font-size: ${avatarSizing.m.fontSize};
-    `,
-    l: css`
-      ${size(avatarSizing.l.size)}
-      line-height: ${avatarSizing.l.size};
-      font-size: ${avatarSizing.l.fontSize};
-    `,
-    xl: css`
-      ${size(avatarSizing.xl.size)}
-      line-height: ${avatarSizing.xl.size};
-      font-size: ${avatarSizing.xl.fontSize};
-    `,
-    // Elements
-    euiAvatarIcon: css``,
-  };
-};
+export const euiAvatarStyles = ({ euiTheme }: UseEuiTheme) => ({
+  // Base
+  euiAvatar: css`
+    flex-shrink: 0; // Ensures it never scales down below its intended size
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    text-align: center;
+    vertical-align: middle;
+    overflow-x: hidden;
+    font-weight: ${euiTheme.font.weight
+      .medium}; // Explicitly state so it doesn't get overridden by inheritance
+  `,
+  // Variants
+  plain: css`
+    background-color: ${euiTheme.colors.emptyShade};
+  `,
+  user: css`
+    border-radius: 50%;
+  `,
+  space: css`
+    border-radius: ${euiTheme.border.radius.medium};
+  `,
+  // States
+  isDisabled: css`
+    cursor: not-allowed;
+    filter: grayscale(100%);
+  `,
+  // Sizes
+  s: css`
+    width: ${euiTheme.size.l};
+    height: ${euiTheme.size.l};
+    line-height: ${euiTheme.size.l};
+    font-size: ${euiTheme.size.m};
+  `,
+  m: css`
+    width: ${euiTheme.size.xl};
+    height: ${euiTheme.size.xl};
+    line-height: ${euiTheme.size.xl};
+    font-size: calc(${euiTheme.size.base} * 0.9);
+  `,
+  l: css`
+    width: ${euiTheme.size.xxl};
+    height: ${euiTheme.size.xxl};
+    line-height: ${euiTheme.size.xxl};
+    font-size: calc(${euiTheme.size.l} * 0.8);
+  `,
+  xl: css`
+    width: calc(${euiTheme.size.base} * 4);
+    height: calc(${euiTheme.size.base} * 4);
+    line-height: calc(${euiTheme.size.base} * 4);
+    font-size: calc(${euiTheme.size.xl} * 0.8);
+  `,
+});

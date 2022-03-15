@@ -26,7 +26,7 @@ exports[`EuiAvatar allows a name composed entirely of whitespace 1`] = `
   width: 32px;
   height: 32px;
   line-height: 32px;
-  font-size: calc(16px * .9);
+  font-size: calc(16px * 0.9);
   border-radius: 50%;
 }
 
@@ -72,7 +72,7 @@ exports[`EuiAvatar is rendered 1`] = `
   width: 32px;
   height: 32px;
   line-height: 32px;
-  font-size: calc(16px * .9);
+  font-size: calc(16px * 0.9);
   border-radius: 50%;
 }
 
@@ -118,7 +118,7 @@ exports[`EuiAvatar props color as null is rendered 1`] = `
   width: 32px;
   height: 32px;
   line-height: 32px;
-  font-size: calc(16px * .9);
+  font-size: calc(16px * 0.9);
   border-radius: 50%;
 }
 
@@ -162,7 +162,7 @@ exports[`EuiAvatar props color as plain is rendered 1`] = `
   width: 32px;
   height: 32px;
   line-height: 32px;
-  font-size: calc(16px * .9);
+  font-size: calc(16px * 0.9);
   border-radius: 50%;
   background-color: #FFF;
 }
@@ -207,7 +207,7 @@ exports[`EuiAvatar props color as string is rendered 1`] = `
   width: 32px;
   height: 32px;
   line-height: 32px;
-  font-size: calc(16px * .9);
+  font-size: calc(16px * 0.9);
   border-radius: 50%;
 }
 
@@ -252,7 +252,7 @@ exports[`EuiAvatar props iconType and iconColor as null is rendered 1`] = `
   width: 32px;
   height: 32px;
   line-height: 32px;
-  font-size: calc(16px * .9);
+  font-size: calc(16px * 0.9);
   border-radius: 50%;
 }
 
@@ -264,7 +264,7 @@ exports[`EuiAvatar props iconType and iconColor as null is rendered 1`] = `
   title="name"
 >
   <span
-    class="euiAvatar__icon emotion-1"
+    class="euiAvatar__icon"
     data-euiicon-type="bolt"
   >
     name
@@ -298,7 +298,7 @@ exports[`EuiAvatar props iconType and iconColor is rendered 1`] = `
   width: 32px;
   height: 32px;
   line-height: 32px;
-  font-size: calc(16px * .9);
+  font-size: calc(16px * 0.9);
   border-radius: 50%;
 }
 
@@ -310,7 +310,7 @@ exports[`EuiAvatar props iconType and iconColor is rendered 1`] = `
   title="name"
 >
   <span
-    class="euiAvatar__icon emotion-1"
+    class="euiAvatar__icon"
     color="primary"
     data-euiicon-type="bolt"
   >
@@ -345,7 +345,7 @@ exports[`EuiAvatar props iconType and iconSize is rendered 1`] = `
   width: 32px;
   height: 32px;
   line-height: 32px;
-  font-size: calc(16px * .9);
+  font-size: calc(16px * 0.9);
   border-radius: 50%;
 }
 
@@ -357,7 +357,7 @@ exports[`EuiAvatar props iconType and iconSize is rendered 1`] = `
   title="name"
 >
   <span
-    class="euiAvatar__icon emotion-1"
+    class="euiAvatar__icon"
     color="#000000"
     data-euiicon-type="bolt"
   >
@@ -392,7 +392,7 @@ exports[`EuiAvatar props iconType is rendered 1`] = `
   width: 32px;
   height: 32px;
   line-height: 32px;
-  font-size: calc(16px * .9);
+  font-size: calc(16px * 0.9);
   border-radius: 50%;
 }
 
@@ -404,7 +404,7 @@ exports[`EuiAvatar props iconType is rendered 1`] = `
   title="name"
 >
   <span
-    class="euiAvatar__icon emotion-1"
+    class="euiAvatar__icon"
     color="#000000"
     data-euiicon-type="bolt"
   >
@@ -439,7 +439,7 @@ exports[`EuiAvatar props imageUrl is rendered 1`] = `
   width: 32px;
   height: 32px;
   line-height: 32px;
-  font-size: calc(16px * .9);
+  font-size: calc(16px * 0.9);
   border-radius: 50%;
 }
 
@@ -478,7 +478,7 @@ exports[`EuiAvatar props initials is rendered 1`] = `
   width: 32px;
   height: 32px;
   line-height: 32px;
-  font-size: calc(16px * .9);
+  font-size: calc(16px * 0.9);
   border-radius: 50%;
 }
 
@@ -523,7 +523,7 @@ exports[`EuiAvatar props initialsLength is rendered 1`] = `
   width: 32px;
   height: 32px;
   line-height: 32px;
-  font-size: calc(16px * .9);
+  font-size: calc(16px * 0.9);
   border-radius: 50%;
 }
 
@@ -568,7 +568,7 @@ exports[`EuiAvatar props isDisabled is rendered 1`] = `
   width: 32px;
   height: 32px;
   line-height: 32px;
-  font-size: calc(16px * .9);
+  font-size: calc(16px * 0.9);
   border-radius: 50%;
   cursor: not-allowed;
   -webkit-filter: grayscale(100%);
@@ -615,7 +615,7 @@ exports[`EuiAvatar props size l is rendered 1`] = `
   width: 40px;
   height: 40px;
   line-height: 40px;
-  font-size: calc(24px * .8);
+  font-size: calc(24px * 0.8);
   border-radius: 50%;
 }
 
@@ -660,7 +660,7 @@ exports[`EuiAvatar props size m is rendered 1`] = `
   width: 32px;
   height: 32px;
   line-height: 32px;
-  font-size: calc(16px * .9);
+  font-size: calc(16px * 0.9);
   border-radius: 50%;
 }
 
@@ -750,7 +750,7 @@ exports[`EuiAvatar props size xl is rendered 1`] = `
   width: calc(16px * 4);
   height: calc(16px * 4);
   line-height: calc(16px * 4);
-  font-size: calc(32px * .8);
+  font-size: calc(32px * 0.8);
   border-radius: 50%;
 }
 
@@ -795,7 +795,7 @@ exports[`EuiAvatar props type is rendered 1`] = `
   width: 32px;
   height: 32px;
   line-height: 32px;
-  font-size: calc(16px * .9);
+  font-size: calc(16px * 0.9);
   border-radius: 6px;
 }
 
