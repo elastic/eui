@@ -2,6 +2,7 @@
 
 - Added `compressed` prop to `EuiFilterGroup` and reduced the size of the `EuiFilterButton` notification badge ([#5717](https://github.com/elastic/eui/pull/5717))
 - Updated `testenv` mock for `EuiIcon` to render `aria-label` as text ([#5709](https://github.com/elastic/eui/pull/5709))
+- Added `editorChecklist` glyph to `EuiIcon` ([#5705](https://github.com/elastic/eui/pull/5705))
 
 **Breaking changes**
 
