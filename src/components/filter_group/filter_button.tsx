@@ -11,10 +11,7 @@ import classNames from 'classnames';
 
 import { useEuiI18n } from '../i18n';
 import { EuiNotificationBadge } from '../badge/notification_badge';
-import {
-  EuiButtonEmpty,
-  EuiButtonEmptyProps,
-} from '../button/button_empty';
+import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button/button_empty';
 
 import { useInnerText } from '../inner_text';
 import { DistributiveOmit } from '../common';
