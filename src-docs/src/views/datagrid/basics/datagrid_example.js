@@ -77,7 +77,7 @@ export const DataGridExample = {
           <ul>
             <li>
               The grid allows you to optionally define an{' '}
-              <Link to="/tabular-content/data-grid-advanced#data-grid-in-memory/">
+              <Link to="/tabular-content/data-grid-advanced#data-grid-in-memory">
                 in memory level
               </Link>{' '}
               to have the grid automatically handle updating your columns.
@@ -108,7 +108,7 @@ export const DataGridExample = {
               preference depending upon the features you enable.
             </li>
             <li>
-              <Link to="/tabular-content/data-grid-schema-columns#control-columns#control-columns">
+              <Link to="/tabular-content/data-grid-schema-columns#control-columns">
                 Control columns
               </Link>{' '}
               allow you to add repeatable actions and controls like checkboxes

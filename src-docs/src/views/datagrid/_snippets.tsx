@@ -1,5 +1,5 @@
 import React from 'react';
-import { EuiLink } from '../../../../src/components';
+import { Link } from 'react-router-dom';
 
 export const gridSnippets = {
   inMemory: `// Will try to autodectect schemas and do sorting and pagination in memory.
@@ -98,9 +98,9 @@ inMemory={{ level: 'sorting' }}`,
   },
 }}`,
   schemaDetectors: (
-    <EuiLink href="/#/tabular-content/data-grid-schema-columns#schemas">
+    <Link to="/tabular-content/data-grid-schema-columns#schemas">
       See Data Grid Schemas for full details.
-    </EuiLink>
+    </Link>
   ),
   onColumnResize: 'onColumnResize={({columnId, width}) => {}}',
 };

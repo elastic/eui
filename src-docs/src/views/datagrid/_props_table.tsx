@@ -1,6 +1,6 @@
 import React, { FunctionComponent, ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import {
-  EuiLink,
   EuiCodeBlock,
   EuiBasicTable,
   EuiBasicTableProps,
@@ -55,9 +55,9 @@ export const DataGridPropsTable: FunctionComponent<{
   const renderProp = (item: BasicItem) => {
     if (item.link) {
       return (
-        <EuiLink href={item.link}>
+        <Link to={item.link}>
           <strong>{item.prop}</strong>
-        </EuiLink>
+        </Link>
       );
     } else {
       return <strong>{item.prop}</strong>;
