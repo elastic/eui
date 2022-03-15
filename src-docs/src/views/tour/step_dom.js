@@ -5,6 +5,7 @@ import {
   EuiText,
   EuiSpacer,
   EuiTourStep,
+  EuiCode,
 } from '../../../../src/components';
 
 export default () => {
@@ -16,7 +17,9 @@ export default () => {
         anchor="#anchorTarget" // Example of function ref: `anchor={() => anchorRef.current}`
         content={
           <EuiText>
-            <p>The tour step content.</p>
+            <p>
+              Popover is attached to the <EuiCode>#anchor</EuiCode> button
+            </p>
           </EuiText>
         }
         isStepOpen={isOpen}
@@ -24,8 +27,7 @@ export default () => {
         onFinish={() => setIsOpen(false)}
         step={1}
         stepsTotal={1}
-        title="Title of the current step"
-        subtitle="Title of the full tour (optional)"
+        title="DOM selector as anchor location"
         anchorPosition="rightUp"
       />
       <EuiButtonIcon
