@@ -12,11 +12,9 @@ import { useDebouncedUpdate } from '../hooks';
 
 import { ThemeValue } from './_values';
 
-import {
-  getPropsFromThemeKey,
-  EuiThemeAnimationSpeed,
-  EuiThemeAnimationEasing,
-} from '../_props';
+import { EuiThemeAnimationSpeed, EuiThemeAnimationEasing } from '../_props';
+
+import { getPropsFromComponent } from '../../../services/props/get_props';
 
 export default ({ onThemeUpdate }) => {
   const { euiTheme } = useEuiTheme();
@@ -28,8 +26,8 @@ export default ({ onThemeUpdate }) => {
     time: 1000,
   });
 
-  const speedTypes = getPropsFromThemeKey(EuiThemeAnimationSpeed);
-  const easingTypes = getPropsFromThemeKey(EuiThemeAnimationEasing);
+  const speedTypes = getPropsFromComponent(EuiThemeAnimationSpeed);
+  const easingTypes = getPropsFromComponent(EuiThemeAnimationEasing);
 
   return (
     <div>

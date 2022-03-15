@@ -10,8 +10,9 @@ import {
   EuiPanel,
 } from '../../../../../src';
 
+import { getPropsFromComponent } from '../../../services/props/get_props';
 import { useDebouncedUpdate } from '../hooks';
-import { getPropsFromThemeKey, EuiTheme, _EuiThemeSize } from '../_props';
+import { EuiTheme, _EuiThemeSize } from '../_props';
 import { ThemeValue } from './_values';
 
 export default ({ onThemeUpdate }) => {
@@ -24,8 +25,8 @@ export default ({ onThemeUpdate }) => {
     onUpdate: onThemeUpdate,
   });
 
-  const themeProps = getPropsFromThemeKey(EuiTheme);
-  const themeSizeProps = getPropsFromThemeKey(_EuiThemeSize);
+  const themeProps = getPropsFromComponent(EuiTheme);
+  const themeSizeProps = getPropsFromComponent(_EuiThemeSize);
 
   return (
     <div>
