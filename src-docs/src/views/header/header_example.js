@@ -477,7 +477,7 @@ export const HeaderExample = {
         <>
           <h3>Putting it all together</h3>
           <p>
-            The button below will launch a full screen example that includes two{' '}
+            The button below will launch a fullscreen example that includes two{' '}
             <strong>EuiHeaders</strong> with all the appropriate navigation
             pieces including{' '}
             <Link to="/navigation/collapsible-nav">

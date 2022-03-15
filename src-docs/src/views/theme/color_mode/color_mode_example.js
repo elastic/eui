@@ -12,8 +12,7 @@ const InverseSource = require('!!raw-loader!./inverse');
 
 export const ColorModeExample = {
   title: 'Color mode',
-  notice: <ThemeNotice type="both" />,
-  isNew: true,
+  notice: <ThemeNotice />,
   beta: true,
   intro: <Intro />,
   sections: [

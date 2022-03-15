@@ -1248,38 +1248,6 @@
     "filepath": "src/components/datagrid/controls/column_sorting.tsx"
   },
   {
-    "token": "euiDataGridToolbar.fullScreenButton",
-    "defString": "Full screen",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 39,
-        "column": 53
-      },
-      "end": {
-        "line": 45,
-        "column": 3
-      }
-    },
-    "filepath": "src/components/datagrid/controls/data_grid_toolbar.tsx"
-  },
-  {
-    "token": "euiDataGridToolbar.fullScreenButtonActive",
-    "defString": "Exit full screen",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 39,
-        "column": 53
-      },
-      "end": {
-        "line": 45,
-        "column": 3
-      }
-    },
-    "filepath": "src/components/datagrid/controls/data_grid_toolbar.tsx"
-  },
-  {
     "token": "euiDisplaySelector.buttonText",
     "defString": "Display options",
     "highlighting": "string",
@@ -1456,16 +1424,48 @@
     "filepath": "src/components/datagrid/controls/display_selector.tsx"
   },
   {
+    "token": "euiFullscreenSelector.fullscreenButton",
+    "defString": "Enter fullscreen",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 34,
+        "column": 53
+      },
+      "end": {
+        "line": 40,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/datagrid/controls/fullscreen_selector.tsx"
+  },
+  {
+    "token": "euiFullscreenSelector.fullscreenButtonActive",
+    "defString": "Exit fullscreen",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 34,
+        "column": 53
+      },
+      "end": {
+        "line": 40,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/datagrid/controls/fullscreen_selector.tsx"
+  },
+  {
     "token": "euiDataGrid.ariaLabel",
     "defString": "{label}; Page {page} of {pageCount}.",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 351,
+        "line": 337,
         "column": 22
       },
       "end": {
-        "line": 355,
+        "line": 341,
         "column": 5
       }
     },
@@ -1477,11 +1477,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 356,
+        "line": 342,
         "column": 27
       },
       "end": {
-        "line": 360,
+        "line": 346,
         "column": 5
       }
     },
@@ -1493,11 +1493,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 485,
+        "line": 470,
         "column": 18
       },
       "end": {
-        "line": 488,
+        "line": 473,
         "column": 20
       }
     },
@@ -2449,7 +2449,7 @@
   },
   {
     "token": "euiImage.closeImage",
-    "defString": "Close full screen {alt} image",
+    "defString": "Close fullscreen {alt} image",
     "highlighting": "string",
     "loc": {
       "start": {
@@ -2465,7 +2465,7 @@
   },
   {
     "token": "euiImage.openImage",
-    "defString": "Open full screen {alt} image",
+    "defString": "Open fullscreen {alt} image",
     "highlighting": "string",
     "loc": {
       "start": {

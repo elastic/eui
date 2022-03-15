@@ -248,11 +248,12 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           data-test-subj="test subject string"
         >
           <span
-            aria-label="aria-label"
             class="euiPageHeaderContent__titleIcon testClass1 testClass2"
             data-euiicon-type="logoKibana"
             data-test-subj="test subject string"
-          />
+          >
+            aria-label
+          </span>
           Page title
         </h1>
         <div

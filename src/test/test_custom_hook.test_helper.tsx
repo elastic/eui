@@ -10,15 +10,23 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 export const HookWrapper = (props: { hook?: Function }) => {
-  const hook = props.hook ? props.hook() : undefined;
+  const { hook: _, ...args } = props;
+  const hook = props.hook ? props.hook(args) : undefined;
   // @ts-ignore the actual div is irrelevant, we just need to inspect the prop for return values
   return <div hook={hook} />;
 };
 
 export const testCustomHook = <T,>(
-  hook?: Function
-): { return: T; getUpdatedState: () => T } => {
-  const wrapper = mount(<HookWrapper hook={hook} />);
+  hook?: Function,
+  args?: unknown
+): {
+  return: T;
+  getUpdatedState: () => T;
+  updateHookArgs: (args: unknown) => void;
+} => {
+  const wrapper = mount(<HookWrapper hook={hook} {...args} />);
+
+  const updateHookArgs = (args: any) => wrapper.setProps(args);
 
   const getHookReturn = (): T => {
     wrapper.update();
@@ -28,5 +36,6 @@ export const testCustomHook = <T,>(
   return {
     return: getHookReturn(),
     getUpdatedState: getHookReturn, // Allows consuming tests to get most recent values
+    updateHookArgs, // Allows consuming tests to pass updated hook arguments (objects only, no tuples)
   };
 };

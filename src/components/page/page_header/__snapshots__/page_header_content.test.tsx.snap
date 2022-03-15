@@ -441,11 +441,12 @@ exports[`EuiPageHeaderContent props pageTitle is rendered with icon and iconProp
         class="euiTitle euiTitle--large"
       >
         <span
-          aria-label="aria-label"
           class="euiPageHeaderContent__titleIcon testClass1 testClass2"
           data-euiicon-type="logoKibana"
           data-test-subj="test subject string"
-        />
+        >
+          aria-label
+        </span>
         Page title
       </h1>
     </div>

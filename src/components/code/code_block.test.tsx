@@ -146,7 +146,7 @@ describe('EuiCodeBlock', () => {
     });
   });
 
-  describe('full screen', () => {
+  describe('fullscreen', () => {
     it('displays content in fullscreen mode', () => {
       const component = mount(
         <EuiCodeBlock

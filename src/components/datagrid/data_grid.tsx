@@ -7,18 +7,12 @@
  */
 
 import classNames from 'classnames';
-import React, {
-  forwardRef,
-  KeyboardEvent,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { forwardRef, useMemo, useRef, useState } from 'react';
 import {
   VariableSizeGrid as Grid,
   GridOnItemsRenderedProps,
 } from 'react-window';
-import { useGeneratedHtmlId, keys } from '../../services';
+import { useGeneratedHtmlId } from '../../services';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiI18n, useEuiI18n } from '../i18n';
 import { useMutationObserver } from '../observer/mutation_observer';
@@ -29,6 +23,7 @@ import {
   useDataGridColumnSorting,
   useDataGridDisplaySelector,
   startingStyles,
+  useDataGridFullScreenSelector,
   checkOrDefaultToolBarDisplayOptions,
   EuiDataGridToolbar,
 } from './controls';
@@ -276,21 +271,16 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     const { cellPopoverContext, cellPopover } = useCellPopover();
 
     /**
-     * Toolbar & full-screen
+     * Toolbar & fullscreen
      */
     const showToolbar = !!toolbarVisibility;
 
-    const [isFullScreen, setIsFullScreen] = useState(false);
-    const handleGridKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-      switch (event.key) {
-        case keys.ESCAPE:
-          if (isFullScreen) {
-            event.preventDefault();
-            setIsFullScreen(false);
-          }
-          break;
-      }
-    };
+    const {
+      isFullScreen,
+      setIsFullScreen,
+      fullScreenSelector,
+      handleGridKeyDown,
+    } = useDataGridFullScreenSelector();
 
     /**
      * Expose certain internal APIs as ref to consumer
@@ -332,10 +322,6 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
       },
       className
     );
-
-    const controlBtnClasses = classNames('euiDataGrid__controlBtn', {
-      'euiDataGrid__controlBtn--active': isFullScreen,
-    });
 
     /**
      * Accessibility
@@ -395,10 +381,9 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                     gridWidth={gridWidth}
                     minSizeForControls={minSizeForControls}
                     toolbarVisibility={toolbarVisibility}
-                    displaySelector={displaySelector}
                     isFullScreen={isFullScreen}
-                    setIsFullScreen={setIsFullScreen}
-                    controlBtnClasses={controlBtnClasses}
+                    fullScreenSelector={fullScreenSelector}
+                    displaySelector={displaySelector}
                     columnSelector={columnSelector}
                     columnSorting={columnSorting}
                   />

@@ -14,8 +14,6 @@ import {
   CSSProperties,
   ReactElement,
   AriaAttributes,
-  Dispatch,
-  SetStateAction,
   MutableRefObject,
 } from 'react';
 import {
@@ -34,12 +32,11 @@ export interface EuiDataGridToolbarProps {
   gridWidth: number;
   minSizeForControls?: number;
   toolbarVisibility: boolean | EuiDataGridToolBarVisibilityOptions;
-  displaySelector: ReactNode;
   isFullScreen: boolean;
-  controlBtnClasses: string;
+  fullScreenSelector: ReactNode;
+  displaySelector: ReactNode;
   columnSelector: ReactNode;
   columnSorting: ReactNode;
-  setIsFullScreen: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface EuiDataGridPaginationRendererProps
@@ -310,7 +307,7 @@ export type EuiDataGridProps = OneOf<
 
 export interface EuiDataGridRefProps {
   /**
-   * Allows manually controlling the full-screen state of the grid.
+   * Allows manually controlling the fullscreen state of the grid.
    */
   setIsFullScreen: (isFullScreen: boolean) => void;
   /**
@@ -407,7 +404,7 @@ interface SharedRenderCellElementProps {
   /**
    * The schema type of the column being rendered
    */
-  schema: string | undefined | null;
+  schema?: string | null;
 }
 
 export type EuiDataGridSetCellProps = CommonProps &
@@ -727,7 +724,7 @@ export interface EuiDataGridToolBarVisibilityOptions {
    */
   showSortSelector?: boolean;
   /**
-   * Allows user to be able to full screen the data grid. If set to `false` make sure your grid fits within a large enough panel to still show the other controls.
+   * Allows user to be able to fullscreen the data grid. If set to `false` make sure your grid fits within a large enough panel to still show the other controls.
    */
   showFullScreenSelector?: boolean;
   /**
@@ -745,7 +742,7 @@ export interface EuiDataGridToolBarAdditionalControlsOptions {
    */
   left?: ReactNode | EuiDataGridToolBarAdditionalControlsLeftOptions;
   /**
-   * Will prepend the passed node into the right side of the toolbar, **before** the density & full screen controls.
+   * Will prepend the passed node into the right side of the toolbar, **before** the density & fullscreen controls.
    * We recommend using `<EuiButtonIcon size="xs" />` to match the existing controls on the right.
    */
   right?: ReactNode;
