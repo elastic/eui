@@ -104,6 +104,7 @@ const typeToPathMap = {
   editorAlignLeft: 'editor_align_left',
   editorAlignRight: 'editor_align_right',
   editorBold: 'editor_bold',
+  editorChecklist: 'editor_checklist',
   editorCodeBlock: 'editor_code_block',
   editorComment: 'editor_comment',
   editorDistributeHorizontal: 'editorDistributeHorizontal',

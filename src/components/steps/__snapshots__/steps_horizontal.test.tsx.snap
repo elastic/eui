@@ -17,10 +17,11 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
         class="euiStepNumber euiStepNumber--complete euiStepHorizontal__number"
       >
         <span
-          aria-label="Step 1 is complete"
           class="euiStepNumber__icon"
           data-euiicon-type="check"
-        />
+        >
+          Step 1 is complete
+        </span>
       </span>
       <span
         class="euiStepHorizontal__title"

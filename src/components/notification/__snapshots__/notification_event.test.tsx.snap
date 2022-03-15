@@ -262,10 +262,11 @@ exports[`EuiNotificationEvent props iconAriaLabel is rendered 1`] = `
         class="euiNotificationEventMeta__section"
       >
         <span
-          aria-label="my icon aria label"
           class="euiNotificationEventMeta__icon"
           data-euiicon-type="logoCloud"
-        />
+        >
+          my icon aria label
+        </span>
         <span
           class="euiBadge euiBadge--hollow euiBadge--iconLeft euiNotificationEventMeta__badge"
         >

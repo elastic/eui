@@ -1,8 +1,15 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+- Updated `testenv` mock for `EuiIcon` to render `aria-label` as text ([#5709](https://github.com/elastic/eui/pull/5709))
+- Added `editorChecklist` glyph to `EuiIcon` ([#5705](https://github.com/elastic/eui/pull/5705))
+
 **Breaking changes**
 
 - Removed Legacy theme including compiled CSS ([#5688](https://github.com/elastic/eui/pull/5688))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiMark` to CSS-in-JS styling ([#4575](https://github.com/elastic/eui/pull/4575))
 
 ## [`51.1.0`](https://github.com/elastic/eui/tree/v51.1.0)
 
