@@ -13,8 +13,7 @@ export default () => {
   return (
     <div>
       <EuiTourStep
-        // anchor={() => anchorRef.current}
-        anchor="#anchorTarget"
+        anchor="#anchorTarget" // Example of function ref: `anchor={() => anchorRef.current}`
         content={
           <EuiText>
             <p>The tour step content.</p>

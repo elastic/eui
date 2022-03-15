@@ -33,7 +33,11 @@ import {
 import { EuiTitle } from '../title';
 
 import { EuiTourStepIndicator, EuiTourStepStatus } from './tour_step_indicator';
-import { useGeneratedHtmlId, findElement, ElementTarget } from '../../services';
+import {
+  useGeneratedHtmlId,
+  findElementBySelectorOrRef,
+  ElementTarget,
+} from '../../services';
 
 type PopoverOverrides = 'button' | 'closePopover';
 
@@ -149,17 +153,15 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
     );
   }
 
-  const [willMount, setWillMount] = useState<boolean>(false);
+  const [hasValidAnchor, setHasValidAnchor] = useState<boolean>(false);
   const animationFrameId = useRef<number>();
-  const node = useRef<HTMLElement | null>(null);
+  const anchorNode = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (anchor) {
       animationFrameId.current = window.requestAnimationFrame(() => {
-        node.current = findElement(anchor);
-        if (node) {
-          setWillMount(true);
-        }
+        anchorNode.current = findElementBySelectorOrRef(anchor);
+        setHasValidAnchor(anchorNode.current ? true : false);
       });
     }
 
@@ -271,8 +273,8 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
     );
   }
 
-  return willMount && node.current ? (
-    <EuiWrappingPopover button={node.current} {...popoverProps}>
+  return hasValidAnchor && anchorNode.current ? (
+    <EuiWrappingPopover button={anchorNode.current} {...popoverProps}>
       {layout}
     </EuiWrappingPopover>
   ) : null;

@@ -106,7 +106,7 @@ export const TourExample = {
           <p>
             Instead of wrapping the target element, use the{' '}
             <EuiCode>anchor</EuiCode> prop to specify a DOM node. Accepted
-            values include an HTML element or function returning an HTML
+            values include an HTML element, a function returning an HTML
             element, or a DOM query selector.
           </p>
         </>

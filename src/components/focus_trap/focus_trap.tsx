@@ -11,7 +11,7 @@ import { FocusOn } from 'react-focus-on';
 import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
 
 import { CommonProps } from '../common';
-import { findElement, ElementTarget } from '../../services';
+import { findElementBySelectorOrRef, ElementTarget } from '../../services';
 
 export type FocusTarget = ElementTarget;
 
@@ -66,7 +66,7 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
 
   // Programmatically sets focus on a nested DOM node; optional
   setInitialFocus = (initialFocus?: FocusTarget) => {
-    const node = findElement(initialFocus);
+    const node = findElementBySelectorOrRef(initialFocus);
     if (!node) return;
     // `data-autofocus` is part of the 'react-focus-on' API
     node.setAttribute('data-autofocus', 'true');
