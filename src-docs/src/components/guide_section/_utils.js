@@ -40,7 +40,7 @@ export const renderJsSourceCode = (code) => {
     // [\r\n]                  - match end of line, so the extra new line is removed via the replace operation
     /import {([^}]+)} from '@elastic\/eui';[\r\n]/g,
     (match, imports) => {
-      // remove all characters except (_) from the imports
+      // remove all characters that aren't letters, numbers, or underscores from the imports
       const namedImports = imports.match(/[a-zA-Z0-9_]+/g);
       elasticImports.push(...namedImports);
       return '';
