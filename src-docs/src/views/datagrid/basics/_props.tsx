@@ -18,6 +18,7 @@ const gridLinks = {
   renderFooterCellValue: '/tabular-content/data-grid-schema-columns#footer-row',
   schemaDetectors: '/tabular-content/data-grid-schema-columns#schemas',
   toolbarVisibility: '/tabular-content/data-grid-toolbar#toolbar-visibility',
+  ref: '/tabular-content/data-grid-advanced#ref-methods',
 };
 
 export const DataGridTopProps = () => {

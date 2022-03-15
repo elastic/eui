@@ -97,6 +97,8 @@ inMemory={{ level: 'sorting' }}`,
     6: 'auto', // row at index 6 will automatically adjust the height
   },
 }}`,
+  ref: `// Optional. For advanced control of internal data grid state, passes back an object of imperative API methods
+ref={dataGridRef}`,
   schemaDetectors: (
     <Link to="/tabular-content/data-grid-schema-columns#schemas">
       See Data Grid Schemas for full details.
