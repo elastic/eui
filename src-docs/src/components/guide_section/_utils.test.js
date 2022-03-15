@@ -293,9 +293,9 @@ describe('renderJsSourceCode', () => {
         })
       ).toEqual(
         dedent(`
-        import { EUI_CHARTS_THEME_DARK } from '@elastic/eui';
+          import { EUI_CHARTS_THEME_DARK } from '@elastic/eui';
   
-        export default () => 'Hello world!';`)
+          export default () => 'Hello world!';`)
       );
     });
   });
