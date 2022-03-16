@@ -190,14 +190,14 @@ export const CommentListExample = {
             that either the user or the system has performed. Most of these
             actions are meant to be discrete. But when you want to make an
             action easier to scan in the timeline, consider using an icon by
-            specifying <EuiCode>updateIcon</EuiCode>. For example, if the user
-            added a tag use a <EuiCode>tag</EuiCode> icon.
+            specifying <EuiCode>updateIcon</EuiCode> (e.g. if the user added a
+            tag use a <EuiCode>tag</EuiCode> icon).
           </p>
           <p>
             You can also use color by specifying the{' '}
             <EuiCode>updateColor</EuiCode>. The color should indicate the level
-            of urgency. For example, if an alert was triggered and it is very
-            urgent you can use the color <EuiCode>danger</EuiCode>.
+            of urgency (e.g. if an alert was triggered and it is very urgent you
+            can use the color <EuiCode>danger</EuiCode>).
           </p>
         </div>
       ),
