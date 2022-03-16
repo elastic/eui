@@ -7,22 +7,13 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
-import { createSerializer } from '@emotion/jest';
+import { renderWithStyles } from '../../test';
 
 import { EuiMark } from './mark';
 
 describe('EuiMark', () => {
   test('is rendered', () => {
-    expect.addSnapshotSerializer(
-      createSerializer({
-        classNameReplacer(className) {
-          return className;
-        },
-      })
-    );
-
-    const component = render(<EuiMark>Marked</EuiMark>);
+    const component = renderWithStyles(<EuiMark>Marked</EuiMark>);
 
     expect(component).toMatchSnapshot();
   });
