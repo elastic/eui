@@ -80,17 +80,12 @@ import { ControlBarExample } from './views/control_bar/control_bar_example';
 
 import { CopyExample } from './views/copy/copy_example';
 
-import { DataGridExample } from './views/datagrid/datagrid_example';
-import { DataGridMemoryExample } from './views/datagrid/datagrid_memory_example';
-import { DataGridSchemaExample } from './views/datagrid/datagrid_schema_example';
-import { DataGridCellPopoverExample } from './views/datagrid/datagrid_cell_popover_example';
-import { DataGridFocusExample } from './views/datagrid/datagrid_focus_example';
-import { DataGridStylingExample } from './views/datagrid/datagrid_styling_example';
-import { DataGridControlColumnsExample } from './views/datagrid/datagrid_controlcolumns_example';
-import { DataGridFooterRowExample } from './views/datagrid/datagrid_footer_row_example';
-import { DataGridVirtualizationExample } from './views/datagrid/datagrid_virtualization_example';
-import { DataGridRowHeightOptionsExample } from './views/datagrid/datagrid_height_options_example';
-import { DataGridRefExample } from './views/datagrid/datagrid_ref_example';
+import { DataGridExample } from './views/datagrid/basics/datagrid_example';
+import { DataGridCellsExample } from './views/datagrid/cells_popovers/datagrid_cells_example';
+import { DataGridToolbarExample } from './views/datagrid/toolbar/datagrid_toolbar_example';
+import { DataGridColumnsExample } from './views/datagrid/schema_columns/datagrid_columns_example';
+import { DataGridStylingExample } from './views/datagrid/styling/datagrid_styling_example';
+import { DataGridAdvancedExample } from './views/datagrid/advanced/datagrid_advanced_example';
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
@@ -441,7 +436,6 @@ const navigation = [
       {
         name: 'Customizing themes',
         component: ThemeValues,
-        isNew: true,
       },
     ],
   },
@@ -479,24 +473,6 @@ const navigation = [
       StepsExample,
       TabsExample,
       TreeViewExample,
-    ].map((example) => createExample(example)),
-  },
-  {
-    name: 'Tabular content',
-    items: [
-      DataGridExample,
-      DataGridMemoryExample,
-      DataGridSchemaExample,
-      DataGridCellPopoverExample,
-      DataGridFocusExample,
-      DataGridStylingExample,
-      DataGridControlColumnsExample,
-      DataGridFooterRowExample,
-      DataGridVirtualizationExample,
-      DataGridRowHeightOptionsExample,
-      DataGridRefExample,
-      TableExample,
-      TableInMemoryExample,
     ].map((example) => createExample(example)),
   },
   {
@@ -546,6 +522,19 @@ const navigation = [
       SuggestExample,
       SuperDatePickerExample,
       SuperSelectExample,
+    ].map((example) => createExample(example)),
+  },
+  {
+    name: 'Tabular content',
+    items: [
+      DataGridExample,
+      DataGridColumnsExample,
+      DataGridCellsExample,
+      DataGridToolbarExample,
+      DataGridStylingExample,
+      DataGridAdvancedExample,
+      TableExample,
+      TableInMemoryExample,
     ].map((example) => createExample(example)),
   },
   {

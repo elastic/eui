@@ -55,12 +55,12 @@ exports[`PaginationBar render - show all pageSize 1`] = `
   <EuiTablePagination
     activePage={0}
     aria-label="aria-label"
-    itemsPerPage="all"
+    itemsPerPage={0}
     itemsPerPageOptions={
       Array [
         1,
         5,
-        "all",
+        0,
       ]
     }
     onChangeItemsPerPage={[Function]}

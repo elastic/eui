@@ -14,8 +14,6 @@ import {
   CSSProperties,
   ReactElement,
   AriaAttributes,
-  Dispatch,
-  SetStateAction,
   MutableRefObject,
 } from 'react';
 import {
@@ -34,12 +32,11 @@ export interface EuiDataGridToolbarProps {
   gridWidth: number;
   minSizeForControls?: number;
   toolbarVisibility: boolean | EuiDataGridToolBarVisibilityOptions;
-  displaySelector: ReactNode;
   isFullScreen: boolean;
-  controlBtnClasses: string;
+  fullScreenSelector: ReactNode;
+  displaySelector: ReactNode;
   columnSelector: ReactNode;
   columnSorting: ReactNode;
-  setIsFullScreen: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface EuiDataGridPaginationRendererProps
@@ -72,7 +69,7 @@ export interface SchemaTypeScore {
 }
 export interface EuiDataGridSchemaDetector {
   /**
-   * The name of this data type, matches #EuiDataGridColumn / schema `schema`
+   * The name of this data type, matches #EuiDataGridColumn / `schema`
    */
   type: string;
   /**
@@ -208,27 +205,31 @@ export interface DataGridCellPopoverContextShape {
 export type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     /**
-     * An array of #EuiDataGridControlColumn objects. Used to define ancillary columns on the left side of the data grid.
-     */
-    leadingControlColumns?: EuiDataGridControlColumn[];
-    /**
-     * An array of #EuiDataGridControlColumn objects. Used to define ancillary columns on the right side of the data grid.
-     */
-    trailingControlColumns?: EuiDataGridControlColumn[];
-    /**
      * An array of #EuiDataGridColumn objects. Lists the columns available and the schema and settings tied to it.
      */
     columns: EuiDataGridColumn[];
     /**
-     * An array of #EuiDataGridColumnVisibility objects. Defines which columns are visible in the grid and the order they are displayed.
+     * An array of #EuiDataGridControlColumn objects. Used to define ancillary columns on the left side of the data grid.
+     * Useful for adding items like checkboxes and buttons.
+     */
+    leadingControlColumns?: EuiDataGridControlColumn[];
+    /**
+     * An array of #EuiDataGridControlColumn objects. Used to define ancillary columns on the right side of the data grid.
+     * Useful for adding items like checkboxes and buttons.
+     */
+    trailingControlColumns?: EuiDataGridControlColumn[];
+    /**
+     * An array of #EuiDataGridColumnVisibility objects.
+     * Defines which columns are **intitially** visible in the grid and the order they are displayed.
+     * Users can still turn their visibility on/off when `toolbarVisibility.showColumnSelector = true` (which is the default).
      */
     columnVisibility: EuiDataGridColumnVisibility;
     /**
-     * An array of custom #EuiDataGridSchemaDetector objects. You can inject custom schemas to the grid to define the classnames applied
+     * An array of custom #EuiDataGridSchemaDetector objects. You can inject custom schemas to the grid to define the classnames applied.
      */
     schemaDetectors?: EuiDataGridSchemaDetector[];
     /**
-     * The total number of rows in the dataset (used by e.g. pagination to know how many pages to list)
+     * The total number of rows in the dataset (used by e.g. pagination to know how many pages to list).
      */
     rowCount: number;
     /**
@@ -257,15 +258,22 @@ export type CommonGridProps = CommonProps &
      */
     renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
     /**
-     * Defines the look and feel for the grid. Accepts a partial #EuiDataGridStyle object. Settings provided may be overwritten or merged with user defined preferences if toolbarVisibility density controls are available.
+     * Defines the initial style of the grid. Accepts a partial #EuiDataGridStyle object.
+     * Settings provided may be overwritten or merged with user defined preferences if `toolbarVisibility.showDisplaySelector.allowDensity = true` (which is the default).
      */
     gridStyle?: EuiDataGridStyle;
     /**
-     * Accepts either a boolean or #EuiDataGridToolBarVisibilityOptions object. When used as a boolean, defines the display of the toolbar entire. WHen passed an object allows you to turn off individual controls within the toolbar as well as add additional buttons.
+     * Allows you to configure what features the toolbar shows.
+     *
+     * Accepts either a boolean or #EuiDataGridToolBarVisibilityOptions object.
+     * When used as a boolean, defines the display of the entire toolbar.
+     * When passed an object allows you to turn off individual controls within the toolbar as well as add additional buttons.
      */
     toolbarVisibility?: boolean | EuiDataGridToolBarVisibilityOptions;
     /**
-     * A #EuiDataGridInMemory object to definite the level of high order schema-detection and sorting logic to use on your data. *Try to set when possible*. When omitted, disables all enhancements and assumes content is flat strings.
+     * A #EuiDataGridInMemory object to define the level of high order schema-detection and sorting logic to use on your data.
+     * **Try to set when possible**.
+     * If omitted, disables all enhancements and assumes content is flat strings.
      */
     inMemory?: EuiDataGridInMemory;
     /**
@@ -273,7 +281,9 @@ export type CommonGridProps = CommonProps &
      */
     pagination?: EuiDataGridPaginationProps;
     /**
-     * A #EuiDataGridSorting object that provides the sorted columns along with their direction. Omit to disable, but you'll likely want to also turn off the user sorting controls through the `toolbarVisibility` prop.
+     * A #EuiDataGridSorting object that provides the sorted columns along with their direction. Provides a callback for when it changes.
+     * Optional, but required when inMemory is set.
+     * Omit to disable, but you'll likely want to also turn off the user sorting controls through the `toolbarVisibility` prop.
      */
     sorting?: EuiDataGridSorting;
     /**
@@ -281,15 +291,15 @@ export type CommonGridProps = CommonProps &
      */
     onColumnResize?: EuiDataGridOnColumnResizeHandler;
     /**
-     * Defines a minimum width for the grid to show all controls in its header.
+     * Defines a minimum width for the grid to show all controls in its toolbar.
      */
     minSizeForControls?: number;
     /**
-     * Sets the grid's height, forcing it to overflow in a scrollable container with cell virtualization
+     * Sets the grid's height, forcing it to overflow in a scrollable container with cell virtualization.
      */
     height?: CSSProperties['height'];
     /**
-     * Sets the grid's width, forcing it to overflow in a scrollable container with cell virtualization
+     * Sets the grid's width, forcing it to overflow in a scrollable container with cell virtualization.
      */
     width?: CSSProperties['width'];
     /**
@@ -297,7 +307,9 @@ export type CommonGridProps = CommonProps &
      */
     virtualizationOptions?: Partial<VariableSizeGridProps>;
     /**
-     * A #EuiDataGridRowHeightsOptions object that provides row heights options
+     * A #EuiDataGridRowHeightsOptions object that provides row heights options.
+     * Allows configuring both default and specific heights of grid rows.
+     * Settings provided may be overwritten or merged with user defined preferences if `toolbarVisibility.showDisplaySelector.allowRowHeight = true` (which is the default).
      */
     rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   };
@@ -310,7 +322,7 @@ export type EuiDataGridProps = OneOf<
 
 export interface EuiDataGridRefProps {
   /**
-   * Allows manually controlling the full-screen state of the grid.
+   * Allows manually controlling the fullscreen state of the grid.
    */
   setIsFullScreen: (isFullScreen: boolean) => void;
   /**
@@ -407,7 +419,7 @@ interface SharedRenderCellElementProps {
   /**
    * The schema type of the column being rendered
    */
-  schema: string | undefined | null;
+  schema?: string | null;
 }
 
 export type EuiDataGridSetCellProps = CommonProps &
@@ -527,7 +539,9 @@ export interface EuiDataGridColumn {
    */
   display?: ReactNode;
   /**
-   * A Schema to use for the column. Built-in values are ['boolean', 'currency', 'datetime', 'numeric', 'json'] but can be expanded by defining your own #EuiDataGrid `schemaDetectors` (for in-memory detection). In general, it is advised to pass in a value here when you are sure of the schema ahead of time, so that you don't need to rely on the automatic detection.
+   * A Schema to use for the column.
+   * Built-in values are [`boolean`, `currency`, `datetime`, `numeric`, `json`] but can be expanded by defining your own #EuiDataGrid `schemaDetectors` (for in-memory detection).
+   * In general, it is advised to pass in a value here when you are sure of the schema ahead of time, so that you don't need to rely on the automatic detection.
    */
   schema?: string;
   /**
@@ -727,7 +741,7 @@ export interface EuiDataGridToolBarVisibilityOptions {
    */
   showSortSelector?: boolean;
   /**
-   * Allows user to be able to full screen the data grid. If set to `false` make sure your grid fits within a large enough panel to still show the other controls.
+   * Allows user to be able to fullscreen the data grid. If set to `false` make sure your grid fits within a large enough panel to still show the other controls.
    */
   showFullScreenSelector?: boolean;
   /**
@@ -745,7 +759,7 @@ export interface EuiDataGridToolBarAdditionalControlsOptions {
    */
   left?: ReactNode | EuiDataGridToolBarAdditionalControlsLeftOptions;
   /**
-   * Will prepend the passed node into the right side of the toolbar, **before** the density & full screen controls.
+   * Will prepend the passed node into the right side of the toolbar, **before** the density & fullscreen controls.
    * We recommend using `<EuiButtonIcon size="xs" />` to match the existing controls on the right.
    */
   right?: ReactNode;
@@ -772,19 +786,19 @@ export interface EuiDataGridPaginationProps {
   pageIndex: number;
   /**
    * How many rows should initially be shown per page.
-   * Pass `'all'` to display the selected "Show all" option and hide the pagination.
+   * Pass `0` to display the selected "Show all" option and hide the pagination.
    */
-  pageSize: number | 'all';
+  pageSize: number;
   /**
    * An array of page sizes the user can select from.
-   * Pass `'all'` as one of the options to create a "Show all" option.
+   * Pass `0` as one of the options to create a "Show all" option.
    * Leave this prop undefined or use an empty array to hide "Rows per page" select button.
    */
-  pageSizeOptions?: Array<number | 'all'>;
+  pageSizeOptions?: number[];
   /**
    * A callback for when the user changes the page size selection
    */
-  onChangeItemsPerPage: (itemsPerPage: number | 'all') => void;
+  onChangeItemsPerPage: (itemsPerPage: number) => void;
   /**
    * A callback for when the current page index changes
    */

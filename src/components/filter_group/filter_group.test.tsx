@@ -25,5 +25,11 @@ describe('EuiFilterGroup', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    test('compressed is rendered', () => {
+      const component = render(<EuiFilterGroup compressed />);
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });

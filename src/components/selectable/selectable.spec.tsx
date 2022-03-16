@@ -123,5 +123,137 @@ describe('EuiSelectable', () => {
             .should('have.attr', 'title', 'Titan');
         });
     });
+
+    it('allows pressing the Enter key to select an item', () => {
+      const onChange = cy.stub();
+      cy.realMount(
+        <EuiSelectable searchable options={options} onChange={onChange}>
+          {(list, search) => (
+            <>
+              {search}
+              {list}
+            </>
+          )}
+        </EuiSelectable>
+      );
+
+      cy.realPress('Tab');
+      cy.realPress('Enter').then(() => {
+        expect(onChange).to.have.been.calledWith([
+          { ...options[0], checked: 'on' },
+          options[1],
+          options[2],
+        ]);
+      });
+    });
+
+    it('does not allow pressing the Space key to select an item while in the searchbox (should filter instead)', () => {
+      const onItemChange = cy.stub();
+      const onSearchChange = cy.stub();
+      cy.realMount(
+        <EuiSelectable
+          searchable
+          options={options}
+          onChange={onItemChange}
+          searchProps={{ onChange: onSearchChange }}
+        >
+          {(list, search) => (
+            <>
+              {search}
+              {list}
+            </>
+          )}
+        </EuiSelectable>
+      );
+
+      cy.realPress('Tab');
+      cy.realPress('Space').then(() => {
+        expect(onItemChange).not.have.been.called;
+        expect(onSearchChange).to.have.been.calledWith(' ');
+      });
+    });
+
+    // mouse+keyboard combo users
+    it('allows users to click into an list item and still press Enter or Space to toggle list items', () => {
+      const onChange = cy.stub();
+      cy.realMount(
+        <EuiSelectable searchable options={options} onChange={onChange}>
+          {(list, search) => (
+            <>
+              {search}
+              {list}
+            </>
+          )}
+        </EuiSelectable>
+      );
+
+      cy.get('li[role=option]')
+        .first()
+        .click()
+        .then(() => {
+          expect(onChange).to.have.been.calledWith([
+            { ...options[0], checked: 'on' },
+            options[1],
+            options[2],
+          ]);
+        });
+      cy.realPress('ArrowDown')
+        .realPress('Enter')
+        .then(() => {
+          expect(onChange).to.have.been.calledWith([
+            options[0], // FYI: doesn't remain `on` because `options` is not controlled to remember state
+            { ...options[1], checked: 'on' },
+            options[2],
+          ]);
+        });
+      cy.realPress('ArrowDown')
+        .realPress('Space')
+        .then(() => {
+          expect(onChange).to.have.been.calledWith([
+            options[0],
+            options[1],
+            { ...options[2], checked: 'on' },
+          ]);
+        });
+    });
+  });
+
+  describe('without a `searchable` configuration', () => {
+    it('allows pressing the Enter key to select an item', () => {
+      const onChange = cy.stub();
+      cy.realMount(
+        <EuiSelectable options={options} onChange={onChange}>
+          {(list) => <>{list}</>}
+        </EuiSelectable>
+      );
+
+      cy.realPress('Tab');
+      cy.realPress('ArrowDown');
+      cy.realPress('Enter').then(() => {
+        expect(onChange).to.have.been.calledWith([
+          options[0],
+          { ...options[1], checked: 'on' },
+          options[2],
+        ]);
+      });
+    });
+
+    it('allows pressing the Space key to select an item', () => {
+      const onChange = cy.stub();
+      cy.realMount(
+        <EuiSelectable options={options} onChange={onChange}>
+          {(list) => <>{list}</>}
+        </EuiSelectable>
+      );
+      cy.realPress('Tab');
+      cy.repeatRealPress('ArrowDown', 2);
+      cy.realPress('Space').then(() => {
+        expect(onChange).to.have.been.calledWith([
+          options[0],
+          options[1],
+          { ...options[2], checked: 'on' },
+        ]);
+      });
+    });
   });
 });

@@ -165,7 +165,7 @@ export interface Criteria<T> {
    */
   page?: {
     index: number;
-    size: number | 'all';
+    size: number;
   };
   /**
    * If the shown items are sorted, this describes the sort criteria
@@ -182,7 +182,7 @@ export interface CriteriaWithPagination<T> extends Criteria<T> {
    */
   page: {
     index: number;
-    size: number | 'all';
+    size: number;
   };
 }
 
@@ -459,7 +459,7 @@ export class EuiBasicTable<T = any> extends Component<
     this.changeSelection([]);
   }
 
-  onPageSizeChange(size: number | 'all') {
+  onPageSizeChange(size: number) {
     this.clearSelection();
     const currentCriteria = this.buildCriteria(this.props);
     const criteria: CriteriaWithPagination<T> = {
@@ -660,10 +660,9 @@ export class EuiBasicTable<T = any> extends Component<
     const itemCount = items.length;
     const totalItemCount = pagination ? pagination.totalItemCount : itemCount;
     const page = pagination ? pagination.pageIndex + 1 : 1;
-    const pageCount =
-      typeof pagination?.pageSize === 'number'
-        ? Math.ceil(pagination.totalItemCount / pagination.pageSize)
-        : 1;
+    const pageCount = pagination?.pageSize
+      ? Math.ceil(pagination.totalItemCount / pagination.pageSize)
+      : 1;
 
     let captionElement;
     if (tableCaption) {
@@ -949,8 +948,7 @@ export class EuiBasicTable<T = any> extends Component<
     const rows = items.map((item: T, index: number) => {
       // if there's pagination the item's index must be adjusted to the where it is in the whole dataset
       const tableItemIndex =
-        hasPagination(this.props) &&
-        typeof this.props.pagination.pageSize === 'number'
+        hasPagination(this.props) && this.props.pagination.pageSize > 0
           ? this.props.pagination.pageIndex * this.props.pagination.pageSize +
             index
           : index;

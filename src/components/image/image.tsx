@@ -212,7 +212,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
               type="button"
               aria-label={useEuiI18n(
                 'euiImage.closeImage',
-                'Close full screen {alt} image',
+                'Close fullscreen {alt} image',
                 { alt }
               )}
               className="euiImage__button"
@@ -241,7 +241,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
 
   const fullscreenLabel = useEuiI18n(
     'euiImage.openImage',
-    'Open full screen {alt} image',
+    'Open fullscreen {alt} image',
     { alt }
   );
 

@@ -21,8 +21,6 @@ import { MARKDOWN_MODE, MODE_VIEWING } from './markdown_modes';
 import { EuiMarkdownEditorUiPlugin } from './markdown_types';
 import { EuiMarkdownContext } from './markdown_context';
 import MarkdownActions from './markdown_actions';
-// @ts-ignore a react svg
-import MarkdownCheckmarkIcon from './icons/markdown_checkmark';
 
 export type EuiMarkdownEditorToolbarProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
@@ -65,7 +63,7 @@ const listButtons = [
     id: 'mdTl',
     label: 'Task list',
     name: 'tl',
-    iconType: MarkdownCheckmarkIcon,
+    iconType: 'editorChecklist',
   },
 ];
 

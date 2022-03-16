@@ -7,9 +7,10 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { render, mount, shallow } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
+import { EuiSelectable } from '../selectable';
 import { EuiSuggest, EuiSuggestionProps } from './suggest';
 import { ALL_STATUSES } from './types';
 
@@ -135,6 +136,25 @@ describe('EuiSuggest', () => {
         );
 
         expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('onItemClick', () => {
+      it('passes an onChange callback to the underlying EuiSelectable, which will fire on list item clicks and enter keypresses', () => {
+        const onItemClick = jest.fn();
+        const component = shallow(
+          <EuiSuggest
+            {...requiredProps}
+            suggestions={sampleItems}
+            onItemClick={onItemClick}
+          />
+        );
+
+        const options = component.find(EuiSelectable).prop('options');
+        options[1].checked = 'on';
+        component.find(EuiSelectable).simulate('change', options);
+
+        expect(onItemClick).toHaveBeenCalledWith(sampleItems[1]);
       });
     });
 
