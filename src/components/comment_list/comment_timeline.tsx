@@ -37,7 +37,7 @@ export const EuiCommentTimeline: FunctionComponent<EuiCommentTimelineProps> = ({
     iconRender = timelineIcon;
   } else {
     // if no `iconType` or custom avatar is passed, it defaults to an avatar with the username initial letter
-    iconRender = <EuiAvatar name={username} initials={username} />;
+    iconRender = <EuiAvatar name={username} />;
   }
 
   return (
