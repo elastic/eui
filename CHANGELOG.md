@@ -2,6 +2,7 @@
 
 - Updated `testenv` mock for `EuiIcon` to render `aria-label` as text ([#5709](https://github.com/elastic/eui/pull/5709))
 - Added `editorChecklist` glyph to `EuiIcon` ([#5705](https://github.com/elastic/eui/pull/5705))
+- Added `renderWithStyles` test util to replace global `@emotion/jest` config ([#5722](https://github.com/elastic/eui/pull/5722))
 
 **Breaking changes**
 
