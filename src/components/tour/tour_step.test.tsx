@@ -11,7 +11,6 @@ import { mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiTourStep } from './tour_step';
-import { EuiWrappingPopover } from '../popover';
 
 jest.mock('../portal', () => ({
   EuiPortal: ({ children }: any) => children,
@@ -119,22 +118,5 @@ describe('EuiTourStep', () => {
     );
 
     expect(component.render()).toMatchSnapshot();
-  });
-
-  test('can use the `anchor` prop', () => {
-    const component = mount(
-      <div>
-        <span id="anchor">Test</span>
-        <EuiTourStep
-          data-test-subj="step"
-          {...config}
-          {...steps[0]}
-          isStepOpen
-          anchor="#anchor"
-        />
-      </div>
-    );
-
-    expect(component.find(EuiWrappingPopover)).toBeDefined;
   });
 });
