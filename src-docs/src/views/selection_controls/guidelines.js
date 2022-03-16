@@ -386,7 +386,7 @@ export default () => {
       >
         <GuideRuleExample
           type="do"
-          text="Use nouns that describe the choices to make as group title."
+          text="Use nouns that describe the choices to make."
         >
           <EuiCheckboxGroup
             options={groupTitleDo}
