@@ -41,8 +41,7 @@
     "start-test-server-and-a11y-test": "cross-env WAIT_ON_TIMEOUT=600000 start-server-and-test start-test-server http-get://localhost:9999 test-a11y",
     "yo-doc": "yo ./generator-eui/app/documentation.js",
     "release": "node ./scripts/release.js",
-    "postinstall": "node ./scripts/postinstall.js",
-    "version": "node ./scripts/update-changelog-version.js"
+    "postinstall": "node ./scripts/postinstall.js"
   },
   "repository": {
     "type": "git",

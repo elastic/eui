@@ -7,6 +7,7 @@ const path = require('path');
 const glob = require('glob');
 const fs = require('fs');
 const chalk = require('chalk');
+const { execSync } = require('child_process');
 
 // Helpers
 const rootDir = path.resolve(__dirname, '..');
@@ -104,4 +105,31 @@ const collateChangelogFiles = () => {
   return { changelogMap: upcomingChangelogMap, changelog: upcomingChangelog };
 };
 
-module.exports = { collateChangelogFiles };
+/**
+ * Write to CHANGELOG.md and commit the file
+ */
+const updateChangelog = (upcomingChangelog) => {
+  if (!upcomingChangelog) {
+    throwError('Cannot update CHANGELOG.md - no changes found');
+  }
+
+  const pathToChangelog = path.resolve(rootDir, 'CHANGELOG.md');
+  const changelogArchive = fs.readFileSync(pathToChangelog).toString();
+
+  const pathToPackage = path.resolve(rootDir, 'package.json');
+  const { version } = require(pathToPackage);
+  const latestVersionHeading = `## [\`${version}\`](https://github.com/elastic/eui/tree/v${version})`;
+
+  if (changelogArchive.startsWith(latestVersionHeading)) {
+    throwError('Cannot update CHANGELOG.md - already on latest version');
+  }
+
+  const updatedChangelog = `${latestVersionHeading}\n\n${upcomingChangelog}\n\n${changelogArchive}`;
+  fs.writeFileSync(pathToChangelog, updatedChangelog);
+
+  execSync('git add CHANGELOG.md');
+  execSync('git commit -m "Updated changelog." -n');
+  execSync('git push upstream');
+};
+
+module.exports = { collateChangelogFiles, updateChangelog };
