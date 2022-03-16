@@ -259,17 +259,16 @@ export const CommentListExample = {
             sharing and copying. To add custom <EuiCode>actions</EuiCode> to a
             comment, use the <EuiCode>actions</EuiCode>
             prop. These will be placed to the right of the metadata in the
-            comment&apos;s header. You can use any element to display{' '}
-            <EuiCode>actions</EuiCode>. For example, for something simple you
-            can use{' '}
+            comment&apos;s header. We recommend using a{' '}
             <Link to="/navigation/button">
               <strong>EuiButtonIcon</strong>
             </Link>{' '}
-            and for something more complex you can combine that with{' '}
+            to trigger an action. When having multiple actions, consider
+            grouping them in a nested menu system using a{' '}
             <Link to="/layout/popover">
               <strong>EuiPopover</strong>
             </Link>{' '}
-            and{' '}
+            with a{' '}
             <Link to="/navigation/context-menu">
               <strong>EuiContextMenu</strong>
             </Link>

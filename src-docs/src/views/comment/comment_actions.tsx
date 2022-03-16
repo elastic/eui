@@ -68,8 +68,8 @@ export default () => {
       button={
         <EuiButtonIcon
           aria-label="Actions"
-          iconType="gear"
-          size="s"
+          iconType="boxesHorizontal"
+          size="xs"
           color="text"
           onClick={togglePopover}
         />
@@ -100,14 +100,14 @@ export default () => {
       title="Copy alert link"
       aria-label="Copy alert link"
       iconType="link"
-      size="s"
+      size="xs"
       color="text"
     />,
     <EuiButtonIcon
       title="Show the alert details in a flyout"
       aria-label="Show details"
       iconType="popout"
-      size="s"
+      size="xs"
       color="text"
       onClick={toggleFlyout}
     />,

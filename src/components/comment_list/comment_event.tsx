@@ -28,7 +28,7 @@ export interface EuiCommentEventProps extends CommonProps {
   /**
    * Custom actions that the user can perform from the comment's header
    */
-  actions?: ReactNode;
+  actions?: ReactNode | ReactNode[];
   /**
    * Use `update` when the comment is primarily showing info about actions that the user or the system has performed (e.g. "user1 edited a case").
    * Use `custom` when passing a children that doesn't require the event header. Elements like `username`, `timestamp`, `event` and `actions` won't show.

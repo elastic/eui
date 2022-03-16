@@ -87,3 +87,9 @@
   height: $euiSizeL;
   margin-right: $euiSizeS;
 }
+
+.euiCommentEvent__headerActions {
+  > * + * {
+    margin-left: $euiSizeXS;
+  }
+}

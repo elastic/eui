@@ -18,7 +18,7 @@ const actionButton = (
     title="Custom action"
     aria-label="Custom action"
     color="text"
-    iconType="lensApp"
+    iconType="copy"
   />
 );
 
