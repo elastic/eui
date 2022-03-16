@@ -175,7 +175,7 @@ export const CommentListExample = {
       demo: <CommentTypes />,
     },
     {
-      title: 'Comment type update ',
+      title: 'Comment type update',
       source: [
         {
           type: GuideSectionTypes.JS,
