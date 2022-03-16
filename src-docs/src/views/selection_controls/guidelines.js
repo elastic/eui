@@ -282,7 +282,7 @@ export default () => {
 
       <GuideRule
         description={
-          <p>Always prefer sentence cases (capitalize the first word).</p>
+          <p>Use sentence case (capitalize the first word).</p>
         }
       >
         <GuideRuleExample
