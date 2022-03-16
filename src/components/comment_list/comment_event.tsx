@@ -114,9 +114,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
     </EuiPanel>
   );
 
-  // when the type of event is `custom` we don't want to show the header
-  // or any elements like `username`, `event`, `timestamp` or `actions`
-  const commentEventHeader = !isTypeCustom && (
+  const regularEventHeader = !isTypeCustom && (
     <HeaderElement className="euiCommentEvent__header">
       {headerElements}
     </HeaderElement>
@@ -124,7 +122,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
 
   return (
     <Element className={classes}>
-      {isTypeUpdate ? updateEventHeader : commentEventHeader}
+      {isTypeUpdate ? updateEventHeader : regularEventHeader}
       {children ? (
         <div className="euiCommentEvent__body">{children}</div>
       ) : undefined}
