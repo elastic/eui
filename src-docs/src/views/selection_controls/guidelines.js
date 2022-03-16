@@ -258,7 +258,7 @@ export default () => {
       <GuideRule description={<p>Use positive and active wording.</p>}>
         <GuideRuleExample
           type="do"
-          text="Let users know what happens when the selection control is on."
+          text="Tell users what happens when the selection control is on."
         >
           <EuiCheckboxGroup
             options={positiveDo}
