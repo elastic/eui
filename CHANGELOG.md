@@ -2,6 +2,7 @@
 
 - Added `"custom"` option to `EuiComment.type` ([#5692](https://github.com/elastic/eui/pull/5692))
 - Added `updateIcon` and `updateColor` props to `EuiCommentEvent` ([#5692](https://github.com/elastic/eui/pull/5692))
+- Updated `EuiComment.actions` type to accept `ReactNode[]` ([#5692](https://github.com/elastic/eui/pull/5692))
 - Changed `.euiMarkdownEditor` display to `flex` to prevent display issues when the markdown editor is inside a `EuiComment` ([#5692](https://github.com/elastic/eui/pull/5692))
 - Added `compressed` prop to `EuiFilterGroup` and reduced the size of the `EuiFilterButton` notification badge ([#5717](https://github.com/elastic/eui/pull/5717))
 - Updated `testenv` mock for `EuiIcon` to render `aria-label` as text ([#5709](https://github.com/elastic/eui/pull/5709))
