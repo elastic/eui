@@ -14,12 +14,6 @@ import { EuiMark } from './mark';
 
 describe('EuiMark', () => {
   test('is rendered', () => {
-    const component = render(<EuiMark>Marked</EuiMark>);
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('has correct styles', () => {
     expect.addSnapshotSerializer(
       createSerializer({
         classNameReplacer(className) {

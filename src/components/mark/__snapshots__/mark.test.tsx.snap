@@ -1,20 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiMark has correct styles 1`] = `
+exports[`EuiMark is rendered 1`] = `
 .css-1izqibv-euiMarkStyles-EuiMark {
   background-color: rgba(0,119,204,0.1);
   font-weight: 700;
   color: #343741;
 }
 
-<mark
-  class="euiMark css-1izqibv-euiMarkStyles-EuiMark"
->
-  Marked
-</mark>
-`;
-
-exports[`EuiMark is rendered 1`] = `
 <mark
   class="euiMark css-1izqibv-euiMarkStyles-EuiMark"
 >
