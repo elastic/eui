@@ -142,6 +142,14 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
     className
   );
 
+  const cssStyles = [
+    styles.euiAvatar,
+    styles[size],
+    styles[type],
+    isPlain && styles.plain,
+    isDisabled && styles.isDisabled,
+  ];
+
   checkValidInitials(initials);
 
   const avatarStyle: CSSProperties = style || {};
@@ -188,13 +196,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
 
   return (
     <div
-      css={[
-        styles.euiAvatar,
-        styles[size],
-        styles[type],
-        isDisabled && styles.isDisabled,
-        isPlain && styles.plain,
-      ]}
+      css={cssStyles}
       className={classes}
       style={avatarStyle}
       aria-label={isDisabled ? undefined : name}
