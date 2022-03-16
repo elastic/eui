@@ -232,10 +232,7 @@ export default () => {
           </p>
         }
       >
-        <GuideRuleExample
-          type="do"
-          text="A label should be succinct, short, and descriptive with one to two words."
-        >
+        <GuideRuleExample type="do" text="Use one to two descriptive words.">
           <EuiRadioGroup
             options={easyScanDo}
             onChange={() => {}}
@@ -245,7 +242,7 @@ export default () => {
 
         <GuideRuleExample
           type="dont"
-          text="Long labels makes it difficult to scan."
+          text="Repeat the same words. They make labels difficult to scan."
         >
           <EuiRadioGroup
             options={easyScanDont}
@@ -281,9 +278,7 @@ export default () => {
       </GuideRule>
 
       <GuideRule
-        description={
-          <p>Use sentence case (capitalize the first word).</p>
-        }
+        description={<p>Use sentence case (capitalize the first word).</p>}
       >
         <GuideRuleExample
           type="do"
@@ -416,8 +411,9 @@ export default () => {
         heading="Switch labels"
         description={
           <p>
-            The label should be static, action-oriented and describe the
-            feature.
+            The label should be static, action-oriented, and describe the
+            feature. Avoid verbs that are less conversational such as `enable`
+            unless they are your only option.
           </p>
         }
       >
@@ -462,7 +458,7 @@ export default () => {
         </GuideRuleExample>
         <GuideRuleExample
           type="dont"
-          text='Use only a verb, such as "Enable".'
+          text="Use only a verb. Generic verbs alone make options unclear."
           minHeight={80}
         >
           <EuiSwitch checked={false} onChange={() => {}} label="Enable" />
