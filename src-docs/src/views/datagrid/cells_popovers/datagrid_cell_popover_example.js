@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../../components';
 import { EuiCode, EuiCallOut, EuiSpacer } from '../../../../../src';
