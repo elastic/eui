@@ -84,9 +84,9 @@ export type EuiAvatarProps = Omit<HTMLAttributes<HTMLDivElement>, 'color'> &
 
     /**
      * Accepts hex values like `#FFFFFF`, `#000` otherwise a viz palette color will be assigned.
-     * Or pass `'plain'` for an empty shade or `null` to remove entirely and the text/icon color will `inherit`
+     * Or pass `'plain'` for an empty shade, `'shade'` for an light shade or `null` to remove entirely and the text/icon color will `inherit`
      */
-    color?: string | 'plain' | null;
+    color?: string | 'plain' | 'shade' | null;
 
     /**
      * The type of avatar mainly controlling the shape.
@@ -127,6 +127,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
     {
       'euiAvatar-isDisabled': isDisabled,
       'euiAvatar--plain': color === 'plain',
+      'euiAvatar--shade': color === 'shade',
     },
     className
   );
@@ -136,7 +137,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   const avatarStyle: CSSProperties = style || {};
   let iconCustomColor = iconColor;
 
-  const isNamedColor = color === 'plain' || color === null;
+  const isNamedColor = color === 'plain' || color === 'shade' || color === null;
   if (!isNamedColor) {
     checkValidColor(color);
 
@@ -191,7 +192,8 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
 
 // TODO: Migrate to a service
 export const checkValidColor = (color: EuiAvatarProps['color']) => {
-  const validHex = (color && isValidHex(color)) || color === 'plain';
+  const validHex =
+    (color && isValidHex(color)) || color === 'plain' || color === 'shade';
   if (color && !validHex) {
     throw new Error(
       'EuiAvatar needs to pass a valid color. This can either be a three ' +

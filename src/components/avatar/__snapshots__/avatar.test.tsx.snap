@@ -64,6 +64,21 @@ exports[`EuiAvatar props color as plain is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiAvatar props color as shade is rendered 1`] = `
+<div
+  aria-label="name"
+  class="euiAvatar euiAvatar--m euiAvatar--user euiAvatar--shade"
+  role="img"
+  title="name"
+>
+  <span
+    aria-hidden="true"
+  >
+    n
+  </span>
+</div>
+`;
+
 exports[`EuiAvatar props color as string is rendered 1`] = `
 <div
   aria-label="name"

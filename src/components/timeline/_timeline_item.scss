@@ -1,0 +1,34 @@
+.euiTimelineItem {
+  font-size: $euiFontSizeS;
+  display: flex;
+  padding-bottom: $euiSize;
+  min-height: $euiSize * 3.5;
+
+  .euiTimelineItemEvent {
+    flex-grow: 1;
+  }
+
+  .euiTimelineItemIcon {
+    position: relative;
+    flex-grow: 0;
+    margin-right: $euiSize;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: $euiSizeXXL / 2;
+      top: $euiSize;
+      width: $euiSizeXS / 2;
+      background-color: $euiColorLightShade;
+      height: calc(100% + #{$euiSize});
+    }
+  }
+}
+
+.euiTimelineItem:last-of-type {
+  .euiTimelineItemIcon {
+    &::before {
+      display: none;
+    }
+  }
+}

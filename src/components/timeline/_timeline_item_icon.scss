@@ -1,0 +1,18 @@
+.euiTimelineItemIcon__content {
+  min-width: $euiSizeXXL;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.euiTimelineItemIcon__iconBackground {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  border-radius: 50%;
+  background-color: $euiColorLightestShade;
+  width: $euiSizeXL;
+  height: $euiSizeXL;
+}

@@ -215,6 +215,8 @@ import { TextDiffExample } from './views/text_diff/text_diff_example';
 
 import { TextExample } from './views/text/text_example';
 
+import { TimelineExample } from './views/timeline/timeline_example';
+
 import { TitleExample } from './views/title/title_example';
 
 import { ToastExample } from './views/toast/toast_example';
@@ -496,6 +498,7 @@ const navigation = [
       ProgressExample,
       StatExample,
       TextExample,
+      TimelineExample,
       TitleExample,
       ToastExample,
       ToolTipExample,

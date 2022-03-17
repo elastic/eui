@@ -29,6 +29,11 @@
   background-color: $euiColorEmptyShade;
 }
 
+.euiAvatar--shade {
+  background-color: $euiColorLightestShade;
+}
+
+
 // Modifiers for sizing.
 $avatarSizing: (
   s: (
