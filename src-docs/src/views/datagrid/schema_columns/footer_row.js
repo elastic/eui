@@ -66,9 +66,9 @@ const columns = [
 ];
 
 const footerCellValues = {
-  amount: `Total: $${raw_data
+  amount: `Total: ${raw_data
     .reduce((acc, { amount }) => acc + Number(amount.split('$')[1]), 0)
-    .toFixed(2)}`,
+    .toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`,
   version: `Latest: ${
     raw_data.map(({ version }) => version).sort()[raw_data.length - 1]
   }`,
