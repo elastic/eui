@@ -8,7 +8,6 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { keysOf } from '../common';
 import { EuiTimelineItemEvent } from './timeline_item_event';
 import {
   EuiTimelineItemIcon,
@@ -17,14 +16,6 @@ import {
 
 export type EuiTimelineItemProps = HTMLAttributes<HTMLDivElement> &
   EuiTimelineItemIconProps;
-
-const typeToClassNameMap = {
-  regular: '',
-  update: 'euiTimeline--update',
-  custom: '',
-};
-
-export const TYPES = keysOf(typeToClassNameMap);
 
 export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
   children,

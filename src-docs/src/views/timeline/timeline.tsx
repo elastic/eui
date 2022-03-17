@@ -5,7 +5,7 @@ import {
   EuiTimelineItemPanel,
 } from '../../../../src/components/timeline';
 
-const body = <EuiTimelineItemPanel paddingSize="s">Lorem</EuiTimelineItemPanel>;
+const body = <EuiTimelineItemPanel>Lorem</EuiTimelineItemPanel>;
 
 const items: EuiTimelineProps['items'] = [
   {

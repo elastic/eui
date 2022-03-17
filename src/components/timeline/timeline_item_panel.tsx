@@ -28,7 +28,7 @@ export type EuiTimelineItemPanelProps = {
   color?: _EuiPanelDivlike['color'];
   headerColor?: _EuiPanelDivlike['color'];
   /**
-   * Adds a border around the panel. When a `header` is passed adds a border separating the header and body.
+   * Adds a border around the panel and a line separating the header and body.
    */
   hasBorder?: _EuiPanelDivlike['hasBorder'];
   /**

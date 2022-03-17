@@ -9,8 +9,6 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiSpacer,
-  EuiLink,
-  EuiMarkdownEditor,
   EuiPanel,
   EuiBadge,
   EuiTitle,
@@ -22,7 +20,6 @@ export default () => {
   const [checked1, setChecked1] = useState(false);
   const [checked2, setChecked2] = useState(false);
   const [checked3, setChecked3] = useState(false);
-  const toggleTextSwitchId = useGeneratedHtmlId({ prefix: 'toggleTextSwitch' });
   const buttonElementAccordionId = useGeneratedHtmlId({
     prefix: 'buttonElementAccordion',
   });

@@ -54,7 +54,7 @@ export const TimelineExample = {
           <strong>EuiTimeline</strong> will generate a timeline thread.
         </div>
       ),
-      props: { EuiTimeline, EuiTimeline },
+      props: { EuiTimeline, EuiTimelineItem },
       snippet: timelineSnippet,
       demo: <Timeline />,
     },
@@ -69,17 +69,17 @@ export const TimelineExample = {
       text: (
         <div>
           <p>
-            Use <strong>EuiTimelineItem</strong>to display timeline items. Each
-            EuiTimelineItem accepts two props: <EuiCode>icon</EuiCode>icon and{' '}
-            <EuiCode>children</EuiCode>. For the children, we recommend the
-            usage of a{' '}
+            Use <strong>EuiTimelineItem</strong> to display timeline items. Each{' '}
+            <strong>EuiTimelineItem</strong> accepts two props:{' '}
+            <EuiCode>icon</EuiCode> and <EuiCode>children</EuiCode>. For the{' '}
+            <EuiCode>children</EuiCode>, we recommend the usage of a{' '}
+            <strong>EuiTimelineItemPanel</strong> but you can use any other
+            component. If you use a{' '}
             <Link to="/layout/panel">
               <strong>EuiPanel</strong>
-            </Link>{' '}
-            with <EuiCode>hasBorder</EuiCode> set to true or with color{' '}
-            <EuiCode>{'"transparent"'}</EuiCode>. Try to avoid passing the color{' '}
-            <EuiCode>{'"plain"'}</EuiCode>. This color adds a shadow that is not
-            suitable for this component.
+            </Link>
+            , try to avoid passing the color <EuiCode>{'"plain"'}</EuiCode>.
+            This color adds a shadow that is not suitable for this component.
           </p>
         </div>
       ),
@@ -104,12 +104,12 @@ export const TimelineExample = {
             <Link to="/layout/panel">
               <strong>EuiPanel</strong>
             </Link>{' '}
-            and it&apos;s the perfect building block to create any type os
-            timelines.
+            and it&apos;s the recommended component to use in{' '}
+            <EuiCode>EuiTimelineItem.children</EuiCode>.
           </p>
         </div>
       ),
-      props: { EuiTimeline },
+      props: { EuiTimelineItemPanel },
       snippet: timelineItemPanelSnippet,
       demo: <TimelineItemPanel />,
     },
@@ -130,7 +130,7 @@ export const TimelineExample = {
           </p>
         </div>
       ),
-      props: { EuiTimelineItemPanel },
+      props: { EuiTimeline, EuiTimelineItem, EuiTimelineItemPanel },
       demo: <TimelineComplex />,
     },
   ],
