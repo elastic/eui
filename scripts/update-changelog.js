@@ -127,9 +127,8 @@ const updateChangelog = (upcomingChangelog) => {
   const updatedChangelog = `${latestVersionHeading}\n\n${upcomingChangelog}\n\n${changelogArchive}`;
   fs.writeFileSync(pathToChangelog, updatedChangelog);
 
+  // This will get committed with the `npm version` step in release.js
   execSync('git add CHANGELOG.md');
-  execSync('git commit -m "Updated changelog." -n');
-  execSync('git push upstream');
 };
 
 module.exports = { collateChangelogFiles, updateChangelog };
