@@ -30,11 +30,10 @@ import { EuiDataGridHeaderRow } from './header';
 import { DataGridCellPopoverContext } from './data_grid_cell_popover';
 import {
   EuiDataGridBodyProps,
-  EuiDataGridRowManager,
   DataGridWrapperRowsContentsShape,
   EuiDataGridSchemaDetector,
 } from '../data_grid_types';
-import { makeRowManager } from './data_grid_row_manager';
+import { useRowManager } from './data_grid_row_manager';
 import {
   useFinalGridDimensions,
   useUnconstrainedHeight,
@@ -378,11 +377,9 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   /**
    * Row manager
    */
-  // useState instead of useMemo as React reserves the right to drop memoized
-  // values in the future, and that would be very bad here
-  const [rowManager] = useState<EuiDataGridRowManager>(() =>
-    makeRowManager(innerGridRef)
-  );
+  const rowManager = useRowManager({
+    innerGridRef,
+  });
 
   /**
    * Heights
