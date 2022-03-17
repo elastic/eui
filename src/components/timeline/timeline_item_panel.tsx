@@ -8,40 +8,81 @@
 
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
-import { EuiSplitPanel } from '../panel';
-import {
-  _EuiSplitPanelOuterProps,
-  _EuiSplitPanelInnerProps,
-} from '../panel/split_panel';
+import { EuiPanel, _EuiPanelDivlike } from '../panel/panel';
+import { CommonProps, keysOf } from '../common';
+
+const paddingSizeToClassNameMap = {
+  none: null,
+  s: 'euiTimelineItemPanel--paddingSmall',
+  m: 'euiTimelineItemPanel--paddingMedium',
+  l: 'euiTimelineItemPanel--paddingLarge',
+};
+
+export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
+
+export type PaddingSize = typeof PADDING_SIZES[number];
 
 export type EuiTimelineItemPanelProps = {
   header?: ReactNode;
-  paddingSize?: _EuiSplitPanelInnerProps['paddingSize'];
-} & Omit<_EuiSplitPanelOuterProps, 'hasBorder'>;
+  paddingSize?: PaddingSize;
+  color?: _EuiPanelDivlike['color'];
+  headerColor?: _EuiPanelDivlike['color'];
+  /**
+   * Adds a border around the panel. When a `header` is passed adds a border separating the header and body.
+   */
+  hasBorder?: _EuiPanelDivlike['hasBorder'];
+  /**
+   * Should match the icon size to make the content get vertically center aligned with the icon.
+   */
+  minHeight?: number;
+} & CommonProps &
+  Omit<
+    _EuiPanelDivlike,
+    'hasBorder' | 'color' | 'paddingSize' | 'borderRadius'
+  >;
 
 export const EuiTimelineItemPanel: FunctionComponent<EuiTimelineItemPanelProps> = ({
   children,
   className,
   header,
-  paddingSize,
+  paddingSize = 's',
+  color = 'transparent',
+  headerColor = 'transparent',
+  minHeight,
+  hasBorder,
+  grow = true,
+  ...rest
 }) => {
-  const classes = classNames('euiTimelineItemPanel', className);
+  const classes = classNames(
+    'euiTimelineItemPanel',
+    { 'euiTimelineItemPanel--noBody': !children },
+    paddingSizeToClassNameMap[paddingSize],
+    className
+  );
+
+  const headerClasses = classNames(
+    'euiTimelineItemPanel__header',
+    `euiTimelineItemPanel__header--${headerColor}`
+  );
+
+  const bodyClasses = classNames(
+    'euiTimelineItemPanel__body',
+    `euiTimelineItemPanel__body--${color}`
+  );
 
   return (
-    <EuiSplitPanel.Outer className={classes} hasBorder>
-      {header && (
-        <EuiSplitPanel.Inner
-          className="euiTimelineItemPanel__header"
-          color="subdued"
-          paddingSize={paddingSize}
-        >
-          {header}
-        </EuiSplitPanel.Inner>
-      )}
+    <div className={classes} style={{ minHeight: minHeight }}>
+      <EuiPanel
+        paddingSize="none"
+        color="transparent"
+        hasBorder={hasBorder}
+        grow={grow}
+        {...rest}
+      >
+        {header && <div className={headerClasses}>{header}</div>}
 
-      <EuiSplitPanel.Inner paddingSize={paddingSize}>
-        {children}
-      </EuiSplitPanel.Inner>
-    </EuiSplitPanel.Outer>
+        <div className={bodyClasses}>{children}</div>
+      </EuiPanel>
+    </div>
   );
 };

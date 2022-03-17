@@ -2,10 +2,10 @@ import React from 'react';
 import {
   EuiTimeline,
   EuiTimelineProps,
+  EuiTimelineItemPanel,
 } from '../../../../src/components/timeline';
-import { EuiPanel } from '../../../../src/components/';
 
-const body = <EuiPanel hasBorder>Lorem</EuiPanel>;
+const body = <EuiTimelineItemPanel paddingSize="s">Lorem</EuiTimelineItemPanel>;
 
 const items: EuiTimelineProps['items'] = [
   {

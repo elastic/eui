@@ -1,16 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiTimeline } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiTimeline,
+  EuiTimelineItem,
+  EuiTimelineItemPanel,
+} from '../../../../src/components';
 
 import Timeline from './timeline';
 const timelineSource = require('!!raw-loader!./timeline');
 const timelineSnippet = `<EuiTimeline
   timelines={[
     {
-      username: username,
-      event: event,
-      timestamp: timestamp,
+      icon: icon,
       children: body,
     },
 ]}
@@ -18,15 +22,18 @@ const timelineSnippet = `<EuiTimeline
 
 import TimelineItem from './timeline_item';
 const timelineItemSource = require('!!raw-loader!./timeline_item');
-const timelineItemSnippet = `<EuiTimeline username="janed">
+const timelineItemSnippet = `<EuiTimelineItem icon="user">
   {body}
 </EuiTimeline>`;
 
 import TimelineItemPanel from './timeline_item_panel';
 const timelineItemPanelSource = require('!!raw-loader!./timeline_item_panel');
-const timelineItemPanelSnippet = `<EuiTimeline username="janed">
+const timelineItemPanelSnippet = `<EuiTimelineItemPanel hasBorder header={header}>
   {body}
-</EuiTimeline>`;
+</EuiTimelineItemPanel>`;
+
+import TimelineComplex from './timeline_complex';
+const TimelineComplexSource = require('!!raw-loader!./timeline_complex');
 
 export const TimelineExample = {
   title: 'Timeline',
@@ -40,10 +47,11 @@ export const TimelineExample = {
       ],
       text: (
         <div>
-          Use <strong>EuiTimeline</strong> to display a list of{' '}
-          <strong>EuiTimelines</strong>. Pass an array of{' '}
-          <strong>EuiTimeline</strong> objects and <strong>EuiTimeline</strong>{' '}
-          will generate a timeline thread.
+          The <strong>EuiTimeline</strong> component is somehow an opinionated
+          component that standardizes the way a timeline thread is displayed.
+          But it gives the ability to add custom components and icons. Pass an
+          array of <strong>EuiTimelineItem</strong> objects and{' '}
+          <strong>EuiTimeline</strong> will generate a timeline thread.
         </div>
       ),
       props: { EuiTimeline, EuiTimeline },
@@ -61,14 +69,21 @@ export const TimelineExample = {
       text: (
         <div>
           <p>
-            Use <strong>EuiTimeline</strong> to display timelines. Each{' '}
-            <strong>EuiTimeline</strong> has two parts: a{' '}
-            <EuiCode>timelineIcon</EuiCode> on the left and content on the
-            right.
+            Use <strong>EuiTimelineItem</strong>to display timeline items. Each
+            EuiTimelineItem accepts two props: <EuiCode>icon</EuiCode>icon and{' '}
+            <EuiCode>children</EuiCode>. For the children, we recommend the
+            usage of a{' '}
+            <Link to="/layout/panel">
+              <strong>EuiPanel</strong>
+            </Link>{' '}
+            with <EuiCode>hasBorder</EuiCode> set to true or with color{' '}
+            <EuiCode>{'"transparent"'}</EuiCode>. Try to avoid passing the color{' '}
+            <EuiCode>{'"plain"'}</EuiCode>. This color adds a shadow that is not
+            suitable for this component.
           </p>
         </div>
       ),
-      props: { EuiTimeline },
+      props: { EuiTimelineItem },
       snippet: timelineItemSnippet,
       demo: <TimelineItem />,
     },
@@ -83,16 +98,40 @@ export const TimelineExample = {
       text: (
         <div>
           <p>
-            Use <strong>EuiTimeline</strong> to display timelines. Each{' '}
-            <strong>EuiTimeline</strong> has two parts: a{' '}
-            <EuiCode>timelineIcon</EuiCode> on the left and content on the
-            right.
+            The <strong>EuiTimelineItemPanel</strong> is an opinionated
+            component whose purpose is to display a panel that can have a header
+            and body. It&apos;s built on top of the{' '}
+            <Link to="/layout/panel">
+              <strong>EuiPanel</strong>
+            </Link>{' '}
+            and it&apos;s the perfect building block to create any type os
+            timelines.
           </p>
         </div>
       ),
       props: { EuiTimeline },
       snippet: timelineItemPanelSnippet,
       demo: <TimelineItemPanel />,
+    },
+    {
+      title: 'Complex example',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: TimelineComplexSource,
+        },
+      ],
+      text: (
+        <div>
+          <p>
+            This is an example of how to combine multiple{' '}
+            <strong>EuiTimelineItem</strong> with{' '}
+            <strong>EuiTimelinePanel</strong>.
+          </p>
+        </div>
+      ),
+      props: { EuiTimelineItemPanel },
+      demo: <TimelineComplex />,
     },
   ],
 };
