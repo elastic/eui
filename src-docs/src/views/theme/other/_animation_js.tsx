@@ -7,11 +7,8 @@ import {
   _EuiThemeAnimationSpeed,
 } from '../../../../../src/global_styling/variables/_animations';
 
-import {
-  getPropsFromThemeKey,
-  EuiThemeAnimationSpeed,
-  EuiThemeAnimationEasing,
-} from '../_props';
+import { EuiThemeAnimationSpeed, EuiThemeAnimationEasing } from '../_props';
+import { getPropsFromComponent } from '../../../services/props/get_props';
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 
@@ -25,11 +22,11 @@ export default ({
   const { euiTheme } = useEuiTheme();
   const animation = euiTheme.animation;
 
-  const speedTypes = (getPropsFromThemeKey(
+  const speedTypes = (getPropsFromComponent(
     EuiThemeAnimationSpeed
   ) as unknown) as _EuiThemeAnimationSpeed;
   const speeds = keysOf(speedTypes);
-  const easingTypes = (getPropsFromThemeKey(
+  const easingTypes = (getPropsFromComponent(
     EuiThemeAnimationEasing
   ) as unknown) as _EuiThemeAnimationEasing;
   const eases = keysOf(easingTypes);

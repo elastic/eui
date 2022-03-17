@@ -58,6 +58,22 @@ describe('renderJsSourceCode', () => {
             export default () => <EuiCode>{useGeneratedHtmlId()}</EuiCode>;`)
       );
     });
+
+    it('keeps underscores in Elastic imports', () => {
+      expect(
+        renderJsSourceCode({
+          default: dedent(`
+            import { EUI_CHARTS_THEME_DARK } from '@elastic/eui';
+  
+            export default () => 'Hello world!';`),
+        })
+      ).toEqual(
+        dedent(`
+          import { EUI_CHARTS_THEME_DARK } from '@elastic/eui';
+  
+          export default () => 'Hello world!';`)
+      );
+    });
   });
 
   describe('React import', () => {

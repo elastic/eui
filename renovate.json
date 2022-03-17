@@ -13,10 +13,6 @@
   },
   "packageRules": [
     {
-      "matchPackagePatterns": [".*"],
-      "enabled": false
-    },
-    {
       "groupName": "@elastic/charts",
       "matchPackageNames": ["@elastic/charts"],
       "matchUpdateTypes": ["major"],
@@ -24,6 +20,10 @@
       "labels": ["dependencies", "skip-changelog"],
       "automerge": true,
       "enabled": true
+    },
+    {
+      "matchPackagePatterns": [".*"],
+      "enabled": false
     }
   ]
 }

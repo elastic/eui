@@ -410,7 +410,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
               <EuiButtonIcon
                 aria-label="Task list"
                 color="text"
-                iconType={[Function]}
+                iconType="editorChecklist"
                 isDisabled={false}
                 onBlur={[Function]}
                 onClick={[Function]}
@@ -429,13 +429,13 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                     className="euiButtonIcon__icon"
                     color="inherit"
                     size="m"
-                    type={[Function]}
+                    type="editorChecklist"
                   >
                     <span
                       aria-hidden="true"
                       className="euiButtonIcon__icon"
                       color="inherit"
-                      data-euiicon-type="MarkdownCheckmark"
+                      data-euiicon-type="editorChecklist"
                       size="m"
                     />
                   </EuiIcon>
@@ -827,10 +827,11 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                                   >
                                     GitHub flavored markdown
                                     <span
-                                      aria-label="External link"
                                       class="euiLink__externalIcon"
                                       data-euiicon-type="popout"
-                                    />
+                                    >
+                                      External link
+                                    </span>
                                     <span
                                       class="euiScreenReaderOnly"
                                     >
@@ -1070,11 +1071,12 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                                                     type="popout"
                                                   >
                                                     <span
-                                                      aria-label="External link"
                                                       className="euiLink__externalIcon"
                                                       data-euiicon-type="popout"
                                                       size="s"
-                                                    />
+                                                    >
+                                                      External link
+                                                    </span>
                                                   </EuiIcon>
                                                   <EuiScreenReaderOnly>
                                                     <span
@@ -1234,7 +1236,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="MarkdownCheckmark"
+            data-euiicon-type="editorChecklist"
           />
         </button>
       </span>
@@ -1759,7 +1761,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
               <EuiButtonIcon
                 aria-label="Task list"
                 color="text"
-                iconType={[Function]}
+                iconType="editorChecklist"
                 isDisabled={false}
                 onBlur={[Function]}
                 onClick={[Function]}
@@ -1778,13 +1780,13 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                     className="euiButtonIcon__icon"
                     color="inherit"
                     size="m"
-                    type={[Function]}
+                    type="editorChecklist"
                   >
                     <span
                       aria-hidden="true"
                       className="euiButtonIcon__icon"
                       color="inherit"
-                      data-euiicon-type="MarkdownCheckmark"
+                      data-euiicon-type="editorChecklist"
                       size="m"
                     />
                   </EuiIcon>
@@ -2284,10 +2286,11 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                       >
                                         GitHub flavored markdown
                                         <span
-                                          aria-label="External link"
                                           class="euiLink__externalIcon"
                                           data-euiicon-type="popout"
-                                        />
+                                        >
+                                          External link
+                                        </span>
                                         <span
                                           class="euiScreenReaderOnly"
                                         >
@@ -2520,10 +2523,11 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                               >
                                                 GitHub flavored markdown
                                                 <span
-                                                  aria-label="External link"
                                                   class="euiLink__externalIcon"
                                                   data-euiicon-type="popout"
-                                                />
+                                                >
+                                                  External link
+                                                </span>
                                                 <span
                                                   class="euiScreenReaderOnly"
                                                 >
@@ -2672,10 +2676,11 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                                 >
                                                   GitHub flavored markdown
                                                   <span
-                                                    aria-label="External link"
                                                     class="euiLink__externalIcon"
                                                     data-euiicon-type="popout"
-                                                  />
+                                                  >
+                                                    External link
+                                                  </span>
                                                   <span
                                                     class="euiScreenReaderOnly"
                                                   >
@@ -2824,10 +2829,11 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                                   >
                                                     GitHub flavored markdown
                                                     <span
-                                                      aria-label="External link"
                                                       class="euiLink__externalIcon"
                                                       data-euiicon-type="popout"
-                                                    />
+                                                    >
+                                                      External link
+                                                    </span>
                                                     <span
                                                       class="euiScreenReaderOnly"
                                                     >
@@ -2964,10 +2970,11 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                                     >
                                                       GitHub flavored markdown
                                                       <span
-                                                        aria-label="External link"
                                                         class="euiLink__externalIcon"
                                                         data-euiicon-type="popout"
-                                                      />
+                                                      >
+                                                        External link
+                                                      </span>
                                                       <span
                                                         class="euiScreenReaderOnly"
                                                       >
@@ -3178,11 +3185,12 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                                         type="popout"
                                                       >
                                                         <span
-                                                          aria-label="External link"
                                                           className="euiLink__externalIcon"
                                                           data-euiicon-type="popout"
                                                           size="s"
-                                                        />
+                                                        >
+                                                          External link
+                                                        </span>
                                                       </EuiIcon>
                                                       <EuiScreenReaderOnly>
                                                         <span
@@ -3520,7 +3528,7 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="MarkdownCheckmark"
+            data-euiicon-type="editorChecklist"
           />
         </button>
       </span>
@@ -3754,7 +3762,7 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="MarkdownCheckmark"
+            data-euiicon-type="editorChecklist"
           />
         </button>
       </span>
@@ -3988,7 +3996,7 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="MarkdownCheckmark"
+            data-euiicon-type="editorChecklist"
           />
         </button>
       </span>
@@ -4222,7 +4230,7 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="MarkdownCheckmark"
+            data-euiicon-type="editorChecklist"
           />
         </button>
       </span>
@@ -4461,7 +4469,7 @@ exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="MarkdownCheckmark"
+            data-euiicon-type="editorChecklist"
           />
         </button>
       </span>
