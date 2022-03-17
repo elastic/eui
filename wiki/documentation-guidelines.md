@@ -214,11 +214,11 @@ import { ExampleContext } from '../../services';
 
 ## Changelog
 
-Any updates to the `src/` folder require an entry in the [CHANGELOG.md](../CHANGELOG.md) file. Here are our guidelines for updating the file:
+Any updates to the `src/` folder require a new [upcoming changelog](../upcoming_changelog/_template.md) file. Our release script will handle collating upcoming changelog files into our main [CHANGELOG.md](../CHANGELOG.md) on new EUI versions. Here are our guidelines for creating a changelog:
 
-* Append your changes to the `main` sub-heading of `CHANGELOG.md`.
-* Add a list item for each significant change in the PR: bugs that were fixed, new features, new components, or changes to the public API
-* In the list item, always link to any relevant pull requests
+* Create a new file with the ID/number of the pull request
+* Create `**` wrapped subheadings for bug fixes, deprecations, or breaking changes. New features/enhancements should go at the top, and do not need a subheading.
+* Add a `-` list item for each significant change in the PR. Larger PRs may have multiple changes, whereas smaller PRs may have only one.
 * Add a summary of what has changed, making sure it's informative to consumers who might be unaware of implementation details
 * Avoid documenting internal implementation changes that don't affect the public interface
 * Write your entry in the **past tense**, starting with a verb (e.g. Added... , Fixed...)
