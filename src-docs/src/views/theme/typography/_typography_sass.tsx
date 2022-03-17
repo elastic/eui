@@ -8,17 +8,13 @@ import { EuiCode, EuiBasicTable, EuiSpacer } from '../../../../../src';
 // @ts-ignore Importing from JS
 import { useJsonVars } from '../_json/_get_json_vars';
 
-import {
-  getPropsFromThemeKey,
-  EuiThemeFontBase,
-  ThemeRowType,
-} from '../_props';
-
+import { EuiThemeFontBase, ThemeRowType } from '../_props';
+import { getPropsFromComponent } from '../../../services/props/get_props';
 import { ThemeExample } from '../_components/_theme_example';
 import {
   getDescription,
   getDescriptionSmall,
-} from '../_components/_theme_values_descriptions';
+} from '../../../services/props/get_description';
 
 export const euiFontMixins: {
   [key: string]: { description: string; sample?: any };
@@ -48,7 +44,7 @@ export const euiFontMixins: {
 
 export const FontSass = () => {
   const values = useJsonVars();
-  const baseProps = getPropsFromThemeKey(EuiThemeFontBase);
+  const baseProps = getPropsFromComponent(EuiThemeFontBase);
 
   return (
     <>

@@ -5,6 +5,14 @@
   box-shadow: inset 0 0 0 1px $euiFormBorderColor;
 }
 
+.euiFilterGroup--compressed {
+  border-radius: $euiFormControlCompressedBorderRadius;
+
+  & .euiFilterButton {
+    height: $euiFormControlCompressedHeight;
+  }
+}
+
 .euiFilterButton {
   border-radius: 0;
   border: none;
