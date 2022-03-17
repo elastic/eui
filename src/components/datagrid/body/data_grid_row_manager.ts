@@ -6,13 +6,15 @@
  * Side Public License, v 1.
  */
 
-import { useRef, useCallback, RefObject } from 'react';
-import { EuiDataGridRowManager } from '../data_grid_types';
+import { useRef, useCallback, useEffect, RefObject } from 'react';
+import { EuiDataGridRowManager, EuiDataGridStyle } from '../data_grid_types';
 
 export const useRowManager = ({
   innerGridRef,
+  rowClasses,
 }: {
   innerGridRef: RefObject<HTMLDivElement>;
+  rowClasses?: EuiDataGridStyle['rowClasses'];
 }): EuiDataGridRowManager => {
   const rowIdToElements = useRef(new Map<number, HTMLDivElement>());
 
@@ -26,6 +28,9 @@ export const useRowManager = ({
         rowElement.dataset.gridRowIndex = String(rowIndex); // Row index from data, affected by sorting/pagination
         rowElement.dataset.gridVisibleRowIndex = String(visibleRowIndex); // Affected by sorting/pagination
         rowElement.classList.add('euiDataGridRow');
+        if (rowClasses?.[rowIndex]) {
+          rowElement.classList.add(rowClasses[rowIndex]);
+        }
         const isOddRow = visibleRowIndex % 2 !== 0;
         if (isOddRow) rowElement.classList.add('euiDataGridRow--striped');
         rowElement.style.position = 'absolute';
@@ -59,8 +64,21 @@ export const useRowManager = ({
 
       return rowElement;
     },
-    [innerGridRef]
+    [rowClasses, innerGridRef]
   );
+
+  // Update row classes dynamically whenever a new prop is passed in
+  useEffect(() => {
+    if (rowClasses) {
+      rowIdToElements.current.forEach((rowElement, rowIndex) => {
+        if (rowClasses[rowIndex]) {
+          rowElement.classList.value = `euiDataGridRow ${rowClasses[rowIndex]}`;
+        } else {
+          rowElement.classList.value = 'euiDataGridRow'; // Clear any added classes
+        }
+      });
+    }
+  }, [rowClasses]);
 
   return { getRow };
 };

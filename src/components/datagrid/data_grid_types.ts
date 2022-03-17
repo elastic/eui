@@ -694,6 +694,10 @@ export interface EuiDataGridStyle {
    */
   stickyFooter?: boolean;
   /**
+   * Optionally pass custom classes to highlight or customize certain rows
+   */
+  rowClasses?: { [rowIndex: number]: string };
+  /**
    * Optional callback returning the current `gridStyle` config when changes occur from user input (e.g. toolbar display controls).
    * Can be used for, e.g. storing user `gridStyle` in a local storage object.
    */

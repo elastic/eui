@@ -379,6 +379,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
    */
   const rowManager = useRowManager({
     innerGridRef,
+    rowClasses: gridStyles.rowClasses,
   });
 
   /**

@@ -107,4 +107,41 @@ describe('row manager', () => {
       });
     });
   });
+
+  describe('rowClasses', () => {
+    const rowClasses = {
+      0: 'hello',
+    };
+    let row0: HTMLDivElement;
+    let row1: HTMLDivElement;
+    const mockRowArgs = { visibleRowIndex: 99, top: '15px', height: 30 };
+
+    const { return: rowManager, updateHookArgs } = testCustomHook<
+      EuiDataGridRowManager
+    >(useRowManager, { innerGridRef: mockGridRef, rowClasses });
+
+    beforeAll(() => {
+      row0 = rowManager.getRow({ ...mockRowArgs, rowIndex: 0 });
+      row1 = rowManager.getRow({ ...mockRowArgs, rowIndex: 1 });
+    });
+
+    it('creates rows with the passed gridStyle.rowClasses', () => {
+      expect(row0.classList.contains('hello')).toBe(true);
+    });
+
+    it('updates row classes dynamically when gridStyle.rowClasses updates', () => {
+      updateHookArgs({ rowClasses: { 0: 'world' } });
+
+      expect(row0.classList.contains('hello')).toBe(false);
+      expect(row0.classList.contains('world')).toBe(true);
+    });
+
+    it('adds/removes row classes correctly when gridStyle.rowClasses updates', () => {
+      updateHookArgs({ rowClasses: { 1: 'test' } });
+
+      expect(row0.classList.contains('hello')).toBe(false);
+      expect(row0.classList.contains('world')).toBe(false);
+      expect(row1.classList.contains('test')).toBe(true);
+    });
+  });
 });
