@@ -666,6 +666,10 @@ export interface EuiDataGridStyle {
    */
   fontSize?: EuiDataGridStyleFontSizes;
   /**
+   * Defines the padding with the row and column cells
+   */
+  cellPadding?: EuiDataGridStyleCellPaddings;
+  /**
    * Border uses for the row and column cells
    */
   border?: EuiDataGridStyleBorders;
@@ -682,17 +686,13 @@ export interface EuiDataGridStyle {
    */
   footer?: EuiDataGridStyleFooter;
   /**
-   * Will define what visual style to show on row hover
-   */
-  rowHover?: EuiDataGridStyleRowHover;
-  /**
-   * Defines the padding with the row and column cells
-   */
-  cellPadding?: EuiDataGridStyleCellPaddings;
-  /**
    * If set to true, the footer row will be sticky
    */
   stickyFooter?: boolean;
+  /**
+   * Will define what visual style to show on row hover
+   */
+  rowHover?: EuiDataGridStyleRowHover;
   /**
    * Optionally pass custom classes to highlight or customize certain rows
    */
