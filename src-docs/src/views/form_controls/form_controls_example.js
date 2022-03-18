@@ -170,7 +170,7 @@ export const FormControlsExample = {
           iconType="accessibility"
           title={
             <>
-              For accessibility, we recommend wrapping each from control in a{' '}
+              Wrap each of your from controls in a{' '}
               <strong>EuiFormRow</strong>
             </>
           }
