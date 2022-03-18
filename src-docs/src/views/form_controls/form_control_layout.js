@@ -6,6 +6,7 @@ import {
   EuiFormLabel,
   EuiButtonEmpty,
   EuiText,
+  EuiFieldText,
 } from '../../../../src/components';
 import { useGeneratedHtmlId } from '../../../../src/services';
 
@@ -15,40 +16,40 @@ export default () => {
 
   return (
     <Fragment>
-      <EuiFormControlLayout icon="search">
-        <input
-          type="text"
-          className="euiFieldText"
+      <EuiFormControlLayout icon="search" isInvalid>
+        <EuiFieldText
+          controlOnly
+          isInvalid
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
 
       <EuiSpacer size="m" />
 
-      <EuiFormControlLayout isLoading>
-        <input
-          type="text"
-          className="euiFieldText"
+      <EuiFormControlLayout isLoading isInvalid>
+        <EuiFieldText
+          controlOnly
+          isInvalid
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
 
       <EuiSpacer size="m" />
 
-      <EuiFormControlLayout clear={{ onClick: () => {} }}>
-        <input
-          type="text"
-          className="euiFieldText"
+      <EuiFormControlLayout clear={{ onClick: () => {} }} isInvalid>
+        <EuiFieldText
+          controlOnly
+          isInvalid
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
 
       <EuiSpacer size="m" />
 
-      <EuiFormControlLayout isLoading clear={{ onClick: () => {} }}>
-        <input
-          type="text"
-          className="euiFieldText"
+      <EuiFormControlLayout isLoading clear={{ onClick: () => {} }} isInvalid>
+        <EuiFieldText
+          controlOnly
+          isInvalid
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>

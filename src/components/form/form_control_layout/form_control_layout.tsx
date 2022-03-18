@@ -48,6 +48,7 @@ export type EuiFormControlLayoutProps = CommonProps &
     className?: string;
     compressed?: boolean;
     readOnly?: boolean;
+    isInvalid?: boolean;
     /**
      * Connects the prepend and append labels to the input
      */
@@ -68,6 +69,7 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
       prepend,
       append,
       readOnly,
+      isInvalid: invalid,
       inputId,
       ...rest
     } = this.props;
@@ -98,6 +100,7 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
             clear={clear}
             compressed={compressed}
             isLoading={isLoading}
+            isInvalid={invalid}
           />
         </div>
         {appendNodes}
