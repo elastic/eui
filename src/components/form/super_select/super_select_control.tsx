@@ -22,6 +22,7 @@ import {
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
 import { EuiI18n } from '../../i18n';
+import { getFormControlClassNameForIconCount } from '../_numIcons';
 
 export interface EuiSuperSelectOption<T> {
   value: T;
@@ -81,8 +82,15 @@ export const EuiSuperSelectControl: <T extends string>(
   screenReaderId,
   ...rest
 }) => {
+  const numIconsClass = getFormControlClassNameForIconCount({
+    icon: true,
+    isInvalid,
+    isLoading,
+  });
+
   const classes = classNames(
     'euiSuperSelectControl',
+    numIconsClass,
     {
       'euiSuperSelectControl--fullWidth': fullWidth,
       'euiSuperSelectControl--compressed': compressed,

@@ -397,7 +397,7 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
         aria-haspopup="listbox"
         aria-label="Filter options"
         autocomplete="off"
-        class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isClearable euiFieldSearch-1icons euiSelectableSearch"
+        class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch--fullWidth euiFieldSearch-isClearable euiSelectableSearch"
         data-test-subj="searchInput"
         placeholder="Filter options"
         type="search"

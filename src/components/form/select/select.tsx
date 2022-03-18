@@ -20,6 +20,7 @@ import {
 } from '../form_control_layout';
 import { EuiValidatableControl } from '../validatable_control';
 import { EuiFormControlLayoutIconsProps } from '../form_control_layout/form_control_layout_icons';
+import { getFormControlClassNameForIconCount } from '../_numIcons';
 
 export interface EuiSelectOption
   extends OptionHTMLAttributes<HTMLOptionElement> {
@@ -91,8 +92,20 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
     if (onMouseUp) onMouseUp(e);
   };
 
+  const icon: EuiFormControlLayoutIconsProps['icon'] = {
+    type: 'arrowDown',
+    side: 'right',
+  };
+
+  const numIconsClass = getFormControlClassNameForIconCount({
+    icon: Boolean(icon),
+    isInvalid,
+    isLoading,
+  });
+
   const classes = classNames(
     'euiSelect',
+    numIconsClass,
     {
       'euiSelect--fullWidth': fullWidth,
       'euiSelect--compressed': compressed,
@@ -117,11 +130,6 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
   if (value == null) {
     selectDefaultValue = defaultValue || '';
   }
-
-  const icon: EuiFormControlLayoutIconsProps['icon'] = {
-    type: 'arrowDown',
-    side: 'right',
-  };
 
   return (
     <EuiFormControlLayout

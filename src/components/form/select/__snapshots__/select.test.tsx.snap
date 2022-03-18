@@ -11,7 +11,7 @@ exports[`EuiSelect is rendered 1`] = `
   <eui-validatable-control>
     <select
       aria-label="aria-label"
-      class="euiSelect testClass1 testClass2"
+      class="euiSelect euiFormControlLayout--1icons testClass1 testClass2"
       data-test-subj="test subject string"
       id="id"
       name="name"
@@ -29,7 +29,7 @@ exports[`EuiSelect props disabled options are rendered 1`] = `
 >
   <eui-validatable-control>
     <select
-      class="euiSelect"
+      class="euiSelect euiFormControlLayout--1icons"
     >
       <option
         value="1"
@@ -56,7 +56,7 @@ exports[`EuiSelect props fullWidth is rendered 1`] = `
 >
   <eui-validatable-control>
     <select
-      class="euiSelect euiSelect--fullWidth"
+      class="euiSelect euiFormControlLayout--1icons euiSelect--fullWidth"
     />
   </eui-validatable-control>
 </eui-form-control-layout>
@@ -74,7 +74,7 @@ exports[`EuiSelect props isInvalid is rendered 1`] = `
     isinvalid="true"
   >
     <select
-      class="euiSelect"
+      class="euiSelect euiFormControlLayout--2icons"
     />
   </eui-validatable-control>
 </eui-form-control-layout>
@@ -89,7 +89,7 @@ exports[`EuiSelect props isLoading is rendered 1`] = `
 >
   <eui-validatable-control>
     <select
-      class="euiSelect euiSelect-isLoading"
+      class="euiSelect euiFormControlLayout--2icons euiSelect-isLoading"
     />
   </eui-validatable-control>
 </eui-form-control-layout>
@@ -104,7 +104,7 @@ exports[`EuiSelect props options are rendered 1`] = `
 >
   <eui-validatable-control>
     <select
-      class="euiSelect"
+      class="euiSelect euiFormControlLayout--1icons"
     >
       <option
         value="1"
@@ -130,7 +130,7 @@ exports[`EuiSelect props value option is rendered 1`] = `
 >
   <eui-validatable-control>
     <select
-      class="euiSelect"
+      class="euiSelect euiFormControlLayout--1icons"
     >
       <option
         selected=""

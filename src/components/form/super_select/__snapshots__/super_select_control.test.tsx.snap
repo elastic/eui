@@ -20,7 +20,7 @@ Array [
       <button
         aria-haspopup="listbox"
         aria-label="aria-label"
-        class="euiSuperSelectControl testClass1 testClass2"
+        class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2"
         data-test-subj="test subject string"
         type="button"
       />
@@ -61,7 +61,7 @@ Array [
       </span>
       <button
         aria-haspopup="listbox"
-        class="euiSuperSelectControl euiSuperSelectControl--compressed"
+        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--compressed"
         type="button"
       />
       <div
@@ -101,7 +101,7 @@ Array [
       </span>
       <button
         aria-haspopup="listbox"
-        class="euiSuperSelectControl"
+        class="euiSuperSelectControl euiFormControlLayout--1icons"
         type="button"
       />
       <div
@@ -141,7 +141,7 @@ Array [
       </span>
       <button
         aria-haspopup="listbox"
-        class="euiSuperSelectControl"
+        class="euiSuperSelectControl euiFormControlLayout--1icons"
         type="button"
       />
       <div
@@ -181,7 +181,7 @@ Array [
       </span>
       <button
         aria-haspopup="listbox"
-        class="euiSuperSelectControl euiSuperSelectControl--fullWidth"
+        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--fullWidth"
         type="button"
       />
       <div
@@ -221,7 +221,7 @@ Array [
       </span>
       <button
         aria-haspopup="listbox"
-        class="euiSuperSelectControl euiSuperSelectControl-isInvalid"
+        class="euiSuperSelectControl euiFormControlLayout--2icons euiSuperSelectControl-isInvalid"
         type="button"
       />
       <div
@@ -265,7 +265,7 @@ Array [
       </span>
       <button
         aria-haspopup="listbox"
-        class="euiSuperSelectControl euiSuperSelectControl-isLoading"
+        class="euiSuperSelectControl euiFormControlLayout--2icons euiSuperSelectControl-isLoading"
         type="button"
       />
       <div
@@ -308,7 +308,7 @@ Array [
       </span>
       <button
         aria-haspopup="listbox"
-        class="euiSuperSelectControl"
+        class="euiSuperSelectControl euiFormControlLayout--1icons"
         type="button"
       >
         Option #1
