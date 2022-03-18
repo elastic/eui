@@ -189,14 +189,11 @@ export const FormControlsExample = {
         </EuiCallOut>
         <EuiSpacer />
 
-        <dl>
-          <dt>Placeholders</dt>
-          <dd>
-            Placeholders should never replace a label but used as a hint in
+        <p>
+            <strong>Placeholders</strong> should never replace a label but used as a hint in
             addition to the label. Use the <EuiCode>placeholder</EuiCode> prop
             to describe the expected value of the input.
-          </dd>
-        </dl>
+        </p>
       </EuiText>
     </>
   ),
