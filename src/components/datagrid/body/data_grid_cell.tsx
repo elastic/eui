@@ -12,7 +12,6 @@ import React, {
   createRef,
   FocusEvent,
   FunctionComponent,
-  HTMLAttributes,
   JSXElementConstructor,
   KeyboardEvent,
   memo,
@@ -29,6 +28,7 @@ import { DataGridFocusContext } from '../utils/focus';
 import {
   EuiDataGridCellProps,
   EuiDataGridCellState,
+  EuiDataGridSetCellProps,
   EuiDataGridCellValueElementProps,
   EuiDataGridCellValueProps,
   EuiDataGridCellPopoverElementProps,
@@ -160,7 +160,7 @@ export class EuiDataGridCell extends Component<
 
       if (doFocusUpdate) {
         const interactables = this.getInteractables();
-        if (this.props.isExpandable === false && interactables.length === 1) {
+        if (this.isExpandable() === false && interactables.length === 1) {
           // Only one element can be interacted with
           interactables[0].focus({ preventScroll });
         } else {
@@ -301,7 +301,10 @@ export class EuiDataGridCell extends Component<
       this.handleCellPopover();
     }
 
-    if (this.props.columnId !== prevProps.columnId) {
+    if (
+      this.props.columnId !== prevProps.columnId ||
+      this.props.rowIndex !== prevProps.rowIndex
+    ) {
       this.setCellProps({});
     }
   }
@@ -353,7 +356,7 @@ export class EuiDataGridCell extends Component<
     return false;
   }
 
-  setCellProps = (cellProps: HTMLAttributes<HTMLDivElement>) => {
+  setCellProps = (cellProps: EuiDataGridSetCellProps) => {
     this.setState({ cellProps });
   };
 
@@ -379,7 +382,7 @@ export class EuiDataGridCell extends Component<
     //  * if the cell children include portalled content React will bubble the focus
     //      event up, which can trigger the focus() call below, causing focus lock fighting
     if (this.cellRef.current === e.target) {
-      const { colIndex, visibleRowIndex, isExpandable } = this.props;
+      const { colIndex, visibleRowIndex } = this.props;
       // focus in next tick to give potential focus capturing mechanisms time to release their traps
       // also clear any previous focus timeout that may still be queued
       if (EuiDataGridCell.activeFocusTimeoutId) {
@@ -390,7 +393,7 @@ export class EuiDataGridCell extends Component<
           this.context.setFocusedCell([colIndex, visibleRowIndex]);
 
           const interactables = this.getInteractables();
-          if (interactables.length === 1 && isExpandable === false) {
+          if (interactables.length === 1 && this.isExpandable() === false) {
             interactables[0].focus();
             this.setState({ disableCellTabIndex: true });
           }
@@ -425,12 +428,21 @@ export class EuiDataGridCell extends Component<
     }
   };
 
+  isExpandable = () => {
+    // A cell must always show an expansion popover if it has cell actions,
+    // otherwise keyboard and screen reader users have no way of accessing them
+    if (this.props.column?.cellActions?.length) return true;
+
+    // props.isExpandable inherits from column.isExpandable
+    // state.cellProps allows consuming applications to override isExpandable on a per-cell basis
+    return this.state.cellProps.isExpandable ?? this.props.isExpandable;
+  };
+
   isPopoverOpen = () => {
-    const { isExpandable, popoverContext } = this.props;
-    const { popoverIsOpen, cellLocation } = popoverContext;
+    const { popoverIsOpen, cellLocation } = this.props.popoverContext;
 
     return (
-      isExpandable &&
+      this.isExpandable() &&
       popoverIsOpen &&
       cellLocation.colIndex === this.props.colIndex &&
       cellLocation.rowIndex === this.props.visibleRowIndex
@@ -493,7 +505,6 @@ export class EuiDataGridCell extends Component<
   render() {
     const {
       width,
-      isExpandable,
       popoverContext: { closeCellPopover, openCellPopover },
       interactiveCellId,
       columnType,
@@ -507,8 +518,8 @@ export class EuiDataGridCell extends Component<
     } = this.props;
     const { rowIndex, visibleRowIndex, colIndex } = rest;
 
+    const isExpandable = this.isExpandable();
     const popoverIsOpen = this.isPopoverOpen();
-    const hasCellActions = isExpandable || column?.cellActions;
     const showCellActions =
       this.state.isFocused ||
       this.state.isEntered ||
@@ -524,13 +535,18 @@ export class EuiDataGridCell extends Component<
       className
     );
 
-    const cellProps = {
-      ...this.state.cellProps,
-      'data-test-subj': classNames(
-        'dataGridRowCell',
-        this.state.cellProps['data-test-subj']
-      ),
-      className: classNames(cellClasses, this.state.cellProps.className),
+    const {
+      isExpandable: _, // Not a valid DOM property, so needs to be destructured out
+      style: cellPropsStyle,
+      className: cellPropsClassName,
+      'data-test-subj': cellPropsDataTestSubj,
+      ...setCellProps
+    } = this.state.cellProps;
+
+    const cellProps: EuiDataGridSetCellProps = {
+      ...setCellProps,
+      'data-test-subj': classNames('dataGridRowCell', cellPropsDataTestSubj),
+      className: classNames(cellClasses, cellPropsClassName),
     };
 
     cellProps.style = {
@@ -538,7 +554,7 @@ export class EuiDataGridCell extends Component<
       top: 0, // The cell's row will handle top positioning
       width, // column width, can be undefined
       lineHeight: rowHeightsOptions?.lineHeight ?? undefined, // lineHeight configuration
-      ...cellProps.style, // apply anything from setCellProps({style})
+      ...cellPropsStyle, // apply anything from setCellProps({ style })
     };
 
     const handleCellKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -639,7 +655,7 @@ export class EuiDataGridCell extends Component<
       </EuiFocusTrap>
     );
 
-    if (hasCellActions) {
+    if (isExpandable) {
       innerContent = (
         <div className={anchorClass} ref={this.popoverAnchorRef}>
           <div className={expandClass}>
@@ -650,7 +666,6 @@ export class EuiDataGridCell extends Component<
               rowIndex={rowIndex}
               colIndex={colIndex}
               column={column}
-              isExpandable={isExpandable}
               closePopover={closeCellPopover}
               onExpandClick={() => {
                 if (popoverIsOpen) {

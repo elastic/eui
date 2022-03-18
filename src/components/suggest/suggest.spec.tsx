@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+/// <reference types="../../../cypress/support"/>
+
 import React from 'react';
 
 import { EuiSuggest, EuiSuggestionProps } from './suggest';
@@ -44,19 +46,40 @@ describe('EuiSuggest', () => {
         .first()
         .click()
         .then(() => {
-          expect(handler).to.be.called;
+          expect(handler).to.be.calledWith(sampleItems[0]);
         });
+    });
+
+    it('is called when an option is pressed via the Enter key', () => {
+      const handler = cy.stub();
+      cy.mount(
+        <EuiSuggest
+          aria-label="onItemClick"
+          suggestions={sampleItems}
+          onItemClick={handler}
+        />
+      );
+
+      cy.get('input')
+        .click()
+        .then(() => {
+          expect(cy.get('ul')).to.exist;
+        });
+      cy.realPress('ArrowDown');
+      cy.realPress('Enter').then(() => {
+        expect(handler).to.be.calledWith(sampleItems[0]);
+      });
     });
   });
 
-  describe('onInputChange', () => {
+  describe('onInput', () => {
     it('is called on each key input value change', () => {
       const handler = cy.stub();
       cy.mount(
         <EuiSuggest
           aria-label="onInputChange"
           suggestions={sampleItems}
-          onInputChange={handler}
+          onInput={handler}
         />
       );
 
@@ -69,14 +92,14 @@ describe('EuiSuggest', () => {
     });
   });
 
-  describe('onSearchChange', () => {
+  describe('onSearch', () => {
     it('is called on each key input value change', () => {
       const handler = cy.stub();
       cy.mount(
         <EuiSuggest
           aria-label="onSearchChange"
           suggestions={sampleItems}
-          onSearchChange={handler}
+          onSearch={handler}
         />
       );
 

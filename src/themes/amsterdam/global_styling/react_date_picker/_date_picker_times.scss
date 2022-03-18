@@ -48,7 +48,7 @@
   flex-direction: column;
   flex-grow: 1;
   align-items: center;
-  gap: $euiSizeXS; // sass-lint:disable-line no-misspelled-properties
+  gap: $euiSizeXS;
 }
 
 // Mainly a copy/paste of .euiEmptyButton

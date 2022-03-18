@@ -25,15 +25,23 @@ import {
   EuiPanel,
   EuiMarkdownFormat,
 } from '../../../../src/components/';
-import { parsingPluginList, processingPluginList } from './markdown_format';
+import {
+  parsingPluginList,
+  processingPluginListWithLinkedProps,
+  processingPluginListWithBoldProps,
+} from '../props/markdown_format';
 
-export const markup = (text) => {
+export const markup = (text, isPlayground) => {
   return (
     <EuiMarkdownFormat
       textSize="xs"
       color="subdued"
       parsingPluginList={parsingPluginList}
-      processingPluginList={processingPluginList}
+      processingPluginList={
+        isPlayground
+          ? processingPluginListWithBoldProps
+          : processingPluginListWithLinkedProps
+      }
     >
       {text}
     </EuiMarkdownFormat>
@@ -449,7 +457,7 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
               <>
                 <EuiSpacer size="xs" />
 
-                {markup(state[name].description)}
+                {markup(state[name].description, isPlayground)}
               </>
             )}
           </div>

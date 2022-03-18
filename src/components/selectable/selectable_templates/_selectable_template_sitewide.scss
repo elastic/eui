@@ -9,12 +9,13 @@
   }
 
   &:not(:focus-within) {
-    color: transparentize($euiColorGhost, .3);
+    // Increase contrast of filled text to be more than placeholder text
+    color: $euiColorGhost;
 
     input {
       // Increase contrast of placeholder text
       @include euiPlaceholderPerBrowser {
-        color: transparentize($euiColorGhost, .6);
+        color: makeHighContrastColor($euiFormControlPlaceholderText, $euiHeaderDarkBackgroundColor, 8);
       }
 
       // Inherit color from form control layout

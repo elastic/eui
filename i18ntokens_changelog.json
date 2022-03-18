@@ -1,5 +1,48 @@
 [
   {
+    "version": "51.1.0",
+    "changes": [
+      {
+        "token": "euiDataGridToolbar.fullScreenButton",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridToolbar.fullScreenButtonActive",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiImage.closeImage",
+        "changeType": "modified",
+        "value": "Close fullscreen {alt} image"
+      },
+      {
+        "token": "euiImage.openImage",
+        "changeType": "modified",
+        "value": "Open fullscreen {alt} image"
+      },
+      {
+        "token": "euiFullscreenSelector.fullscreenButton",
+        "changeType": "added",
+        "value": "Enter fullscreen"
+      },
+      {
+        "token": "euiFullscreenSelector.fullscreenButtonActive",
+        "changeType": "added",
+        "value": "Exit fullscreen"
+      }
+    ]
+  },
+  {
+    "version": "50.0.0",
+    "changes": [
+      {
+        "token": "euiComboBox.listboxAriaLabel",
+        "changeType": "added",
+        "value": "Choose from the following options"
+      }
+    ]
+  },
+  {
     "version": "49.0.0",
     "changes": [
       {

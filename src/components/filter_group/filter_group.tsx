@@ -17,18 +17,24 @@ export type EuiFilterGroupProps = HTMLAttributes<HTMLDivElement> &
      * Expand the whole bar to fill its parent's width
      */
     fullWidth?: boolean;
+    /**
+     *  When `true`, creates a shorter height filter group matching that of `compressed` form controls
+     */
+    compressed?: boolean;
   };
 
 export const EuiFilterGroup: FunctionComponent<EuiFilterGroupProps> = ({
   children,
   className,
   fullWidth = false,
+  compressed,
   ...rest
 }) => {
   const classes = classNames(
     'euiFilterGroup',
     {
       'euiFilterGroup--fullWidth': fullWidth,
+      'euiFilterGroup--compressed': compressed,
     },
     className
   );

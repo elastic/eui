@@ -43,8 +43,8 @@ describe('EuiTablePagination', () => {
       <EuiTablePagination
         {...requiredProps}
         {...paginationProps}
-        itemsPerPage="all"
-        itemsPerPageOptions={[10, 50, 'all']}
+        itemsPerPage={0}
+        itemsPerPageOptions={[10, 50, 0]}
       />
     );
 

@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "49.0.0",
+  "version": "52.0.0",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
@@ -40,9 +40,9 @@
     "update-token-changelog": "node ./scripts/update-token-changelog.js",
     "start-test-server-and-a11y-test": "cross-env WAIT_ON_TIMEOUT=600000 start-server-and-test start-test-server http-get://localhost:9999 test-a11y",
     "yo-doc": "yo ./generator-eui/app/documentation.js",
+    "yo-changelog": "yo ./generator-eui/changelog/index.js",
     "release": "node ./scripts/release.js",
-    "postinstall": "node ./scripts/postinstall.js",
-    "version": "node ./scripts/update-changelog-version.js"
+    "postinstall": "node ./scripts/postinstall.js"
   },
   "repository": {
     "type": "git",
@@ -52,7 +52,8 @@
     "**/prismjs": "1.27.0",
     "**/trim": "0.0.3",
     "**/node-sass": "^6.0.1",
-    "**/react": "^17.0.0"
+    "**/react": "^17.0.0",
+    "**/known-css-properties": "0.24.0"
   },
   "pre-commit": [
     "test-staged"

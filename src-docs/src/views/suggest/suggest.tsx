@@ -61,7 +61,7 @@ export default () => {
   const [status, setStatus] = useState<EuiSuggestStatus>('unchanged');
   const [radioIdSelected, setSelectedId] = useState(`${idPrefix}0`);
 
-  const onChange = (optionId: string) => {
+  const onStatusChange = (optionId: string) => {
     setSelectedId(optionId);
     setStatus(radios.find((x) => x.id === optionId)!.value);
   };
@@ -75,7 +75,7 @@ export default () => {
       <EuiRadioGroup
         options={radios}
         idSelected={radioIdSelected}
-        onChange={(id) => onChange(id)}
+        onChange={(id) => onStatusChange(id)}
       />
       <EuiSpacer size="xl" />
       <EuiFormRow label="Suggest" id={idPrefix}>
@@ -83,7 +83,7 @@ export default () => {
           fullWidth
           aria-labelledby={`${idPrefix}-label`}
           status={status}
-          onInputChange={() => {}}
+          onInput={() => {}}
           onItemClick={onItemClick}
           placeholder="Enter query to display suggestions"
           suggestions={sampleItems}

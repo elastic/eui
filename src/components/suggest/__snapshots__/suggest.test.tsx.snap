@@ -23,7 +23,8 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
                 placeholder="Filter options"
                 type="search"
                 value=""
@@ -79,7 +80,8 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
                 placeholder="Filter options"
                 type="search"
                 value=""
@@ -149,14 +151,14 @@ exports[`EuiSuggest props isVirtualized 1`] = `
     listProps={
       Object {
         "bordered": false,
-        "className": "testClass1 testClass2",
-        "data-test-subj": "test subject string",
         "isVirtualized": true,
         "onFocusBadge": false,
         "paddingSize": "none",
         "showIcons": false,
+        "textWrap": "truncate",
       }
     }
+    onChange={[Function]}
     options={
       Array [
         Object {
@@ -170,6 +172,7 @@ exports[`EuiSuggest props isVirtualized 1`] = `
             },
           },
           "label": "Field sample",
+          "truncate": true,
         },
         Object {
           "className": "euiSuggestItemOption",
@@ -182,6 +185,7 @@ exports[`EuiSuggest props isVirtualized 1`] = `
             },
           },
           "label": "Value sample",
+          "truncate": true,
         },
       ]
     }
@@ -192,12 +196,15 @@ exports[`EuiSuggest props isVirtualized 1`] = `
         "aria-describedby": "generated-id",
         "aria-label": "aria-label",
         "aria-labelledby": undefined,
+        "className": "testClass1 testClass2",
+        "data-test-subj": "test subject string",
         "fullWidth": true,
+        "id": undefined,
         "isLoading": false,
         "onBlur": [Function],
+        "onChange": [Function],
         "onFocus": [Function],
         "onInput": [Function],
-        "onSearch": [Function],
       }
     }
     searchable={true}
@@ -291,7 +298,8 @@ exports[`EuiSuggest props isVirtualized 1`] = `
                       <EuiSelectableSearch
                         aria-activedescendant=""
                         aria-label="aria-label"
-                        defaultValue=""
+                        className="testClass1 testClass2"
+                        data-test-subj="test subject string"
                         fullWidth={true}
                         inputRef={[Function]}
                         isLoading={false}
@@ -314,6 +322,7 @@ exports[`EuiSuggest props isVirtualized 1`] = `
                                 },
                               },
                               "label": "Field sample",
+                              "truncate": true,
                             },
                             Object {
                               "className": "euiSuggestItemOption",
@@ -326,29 +335,32 @@ exports[`EuiSuggest props isVirtualized 1`] = `
                                 },
                               },
                               "label": "Value sample",
+                              "truncate": true,
                             },
                           ]
                         }
                         placeholder="Filter options"
+                        value=""
                       >
                         <EuiFieldSearch
                           aria-activedescendant=""
                           aria-haspopup="listbox"
                           aria-label="aria-label"
                           autoComplete="off"
-                          className="euiSelectableSearch"
+                          className="euiSelectableSearch testClass1 testClass2"
                           compressed={false}
-                          defaultValue=""
+                          data-test-subj="test subject string"
                           fullWidth={true}
                           incremental={true}
                           inputRef={[Function]}
                           isClearable={true}
                           isLoading={false}
                           onBlur={[Function]}
+                          onChange={[Function]}
                           onFocus={[Function]}
                           onInput={[Function]}
-                          onSearch={[Function]}
                           placeholder="Filter options"
+                          value=""
                         >
                           <EuiFormControlLayout
                             compressed={false}
@@ -368,14 +380,16 @@ exports[`EuiSuggest props isVirtualized 1`] = `
                                     aria-haspopup="listbox"
                                     aria-label="aria-label"
                                     autoComplete="off"
-                                    className="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch"
-                                    defaultValue=""
+                                    className="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
+                                    data-test-subj="test subject string"
                                     onBlur={[Function]}
+                                    onChange={[Function]}
                                     onFocus={[Function]}
                                     onInput={[Function]}
                                     onKeyUp={[Function]}
                                     placeholder="Filter options"
                                     type="search"
+                                    value=""
                                   />
                                 </EuiValidatableControl>
                                 <EuiFormControlLayoutIcons
@@ -469,14 +483,14 @@ exports[`EuiSuggest props maxHeight 1`] = `
     listProps={
       Object {
         "bordered": false,
-        "className": "testClass1 testClass2",
-        "data-test-subj": "test subject string",
         "isVirtualized": false,
         "onFocusBadge": false,
         "paddingSize": "none",
         "showIcons": false,
+        "textWrap": "wrap",
       }
     }
+    onChange={[Function]}
     options={
       Array [
         Object {
@@ -490,6 +504,7 @@ exports[`EuiSuggest props maxHeight 1`] = `
             },
           },
           "label": "Field sample",
+          "truncate": undefined,
         },
         Object {
           "className": "euiSuggestItemOption",
@@ -502,6 +517,7 @@ exports[`EuiSuggest props maxHeight 1`] = `
             },
           },
           "label": "Value sample",
+          "truncate": undefined,
         },
       ]
     }
@@ -512,12 +528,15 @@ exports[`EuiSuggest props maxHeight 1`] = `
         "aria-describedby": "generated-id",
         "aria-label": "aria-label",
         "aria-labelledby": undefined,
+        "className": "testClass1 testClass2",
+        "data-test-subj": "test subject string",
         "fullWidth": true,
+        "id": undefined,
         "isLoading": false,
         "onBlur": [Function],
+        "onChange": [Function],
         "onFocus": [Function],
         "onInput": [Function],
-        "onSearch": [Function],
       }
     }
     searchable={true}
@@ -611,7 +630,8 @@ exports[`EuiSuggest props maxHeight 1`] = `
                       <EuiSelectableSearch
                         aria-activedescendant=""
                         aria-label="aria-label"
-                        defaultValue=""
+                        className="testClass1 testClass2"
+                        data-test-subj="test subject string"
                         fullWidth={true}
                         inputRef={[Function]}
                         isLoading={false}
@@ -634,6 +654,7 @@ exports[`EuiSuggest props maxHeight 1`] = `
                                 },
                               },
                               "label": "Field sample",
+                              "truncate": undefined,
                             },
                             Object {
                               "className": "euiSuggestItemOption",
@@ -646,29 +667,32 @@ exports[`EuiSuggest props maxHeight 1`] = `
                                 },
                               },
                               "label": "Value sample",
+                              "truncate": undefined,
                             },
                           ]
                         }
                         placeholder="Filter options"
+                        value=""
                       >
                         <EuiFieldSearch
                           aria-activedescendant=""
                           aria-haspopup="listbox"
                           aria-label="aria-label"
                           autoComplete="off"
-                          className="euiSelectableSearch"
+                          className="euiSelectableSearch testClass1 testClass2"
                           compressed={false}
-                          defaultValue=""
+                          data-test-subj="test subject string"
                           fullWidth={true}
                           incremental={true}
                           inputRef={[Function]}
                           isClearable={true}
                           isLoading={false}
                           onBlur={[Function]}
+                          onChange={[Function]}
                           onFocus={[Function]}
                           onInput={[Function]}
-                          onSearch={[Function]}
                           placeholder="Filter options"
+                          value=""
                         >
                           <EuiFormControlLayout
                             compressed={false}
@@ -688,14 +712,16 @@ exports[`EuiSuggest props maxHeight 1`] = `
                                     aria-haspopup="listbox"
                                     aria-label="aria-label"
                                     autoComplete="off"
-                                    className="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch"
-                                    defaultValue=""
+                                    className="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
+                                    data-test-subj="test subject string"
                                     onBlur={[Function]}
+                                    onChange={[Function]}
                                     onFocus={[Function]}
                                     onInput={[Function]}
                                     onKeyUp={[Function]}
                                     placeholder="Filter options"
                                     type="search"
+                                    value=""
                                   />
                                 </EuiValidatableControl>
                                 <EuiFormControlLayoutIcons
@@ -779,7 +805,8 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
                 placeholder="Filter options"
                 type="search"
                 value=""
@@ -835,7 +862,8 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
                 placeholder="Filter options"
                 type="search"
                 value=""
@@ -868,6 +896,80 @@ Array [
 ]
 `;
 
+exports[`EuiSuggest props remaining EuiFieldSearch props are spread to the search input 1`] = `
+Array [
+  <div
+    class="euiSelectable euiSelectable-fullHeight"
+  >
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover"
+    >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--compressed"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-haspopup="listbox"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--compressed euiFieldSearch-isClearable euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
+                id="testId"
+                name="testName"
+                placeholder="Start typing"
+                type="search"
+                value="Controlled value"
+              />
+              <div
+                class="euiFormControlLayoutIcons"
+              >
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
+              </div>
+              <div
+                class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+              >
+                <button
+                  aria-label="Clear input"
+                  class="euiFormControlLayoutClearButton euiFormControlLayoutClearButton--small"
+                  data-test-subj="clearSearchButton"
+                  type="button"
+                >
+                  <span
+                    class="euiFormControlLayoutClearButton__icon"
+                    data-euiicon-type="cross"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <p
+    class="euiScreenReaderOnly"
+    id="testId_generated-id"
+  >
+    State: unchanged.
+  </p>,
+]
+`;
+
 exports[`EuiSuggest props status status: loading is rendered 1`] = `
 Array [
   <div
@@ -891,7 +993,8 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isLoading euiSelectableSearch"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isLoading euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
                 placeholder="Filter options"
                 type="search"
                 value=""
@@ -954,7 +1057,8 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
                 placeholder="Filter options"
                 type="search"
                 value=""
@@ -1019,7 +1123,8 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
                 placeholder="Filter options"
                 type="search"
                 value=""
@@ -1075,7 +1180,8 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
                 placeholder="Filter options"
                 type="search"
                 value=""
@@ -1140,7 +1246,8 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isLoading euiSelectableSearch"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isLoading euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
                 placeholder="Filter options"
                 type="search"
                 value=""
@@ -1203,7 +1310,8 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
                 placeholder="Filter options"
                 type="search"
                 value=""
@@ -1268,7 +1376,8 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
                 placeholder="Filter options"
                 type="search"
                 value=""
@@ -1324,7 +1433,8 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
                 placeholder="Filter options"
                 type="search"
                 value=""

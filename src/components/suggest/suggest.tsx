@@ -11,17 +11,21 @@ import React, {
   FormEvent,
   FunctionComponent,
   useState,
+  useCallback,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { useGeneratedHtmlId } from '../../services';
 
 import { EuiScreenReaderOnly } from '../accessibility';
-import { EuiFieldSearchProps } from '../form';
 import { EuiIcon } from '../icon';
 import { useEuiI18n } from '../i18n';
 import { EuiInputPopover } from '../popover';
-import { EuiSelectable, EuiSelectableListItemProps } from '../selectable';
+import {
+  EuiSelectable,
+  EuiSelectableOption,
+  EuiSelectableSearchableSearchProps,
+} from '../selectable';
 import { EuiToolTip } from '../tool_tip';
 
 import { EuiSuggestItem, _EuiSuggestItemPropsBase } from './suggest_item';
@@ -53,14 +57,13 @@ const suggestItemPropsKeys = [
   'descriptionDisplay',
 ];
 
-export interface EuiSuggestionProps
-  extends CommonProps,
-    _EuiSuggestItemPropsBase {
-  onClick?: EuiSelectableListItemProps['onClick'];
-}
+export type EuiSuggestionProps = CommonProps & _EuiSuggestItemPropsBase;
 
 type _EuiSuggestProps = CommonProps &
-  EuiFieldSearchProps & {
+  Omit<
+    EuiSelectableSearchableSearchProps<{}>,
+    'isLoading' // status.loading should be used instead for consistency
+  > & {
     /**
      * List of suggestions to display using EuiSuggestItem.
      * Accepts props from #EuiSuggestItemProps
@@ -90,12 +93,12 @@ type _EuiSuggestProps = CommonProps &
     /**
      * Callback function called when the input changes.
      */
-    onInputChange?: (target: EventTarget) => void;
+    onInput?: (target: EventTarget) => void;
 
     /**
      * Callback function called when the search changes.
      */
-    onSearchChange?: (value: string) => void;
+    onSearch?: (value: string) => void;
 
     /**
      * Use virtualized rendering for list items with `react-window`.
@@ -126,8 +129,8 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   onItemClick,
   onBlur,
   onFocus,
-  onInputChange,
-  onSearchChange,
+  onInput,
+  onSearch,
   status = 'unchanged',
   append,
   tooltipContent,
@@ -152,24 +155,24 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
    * Search helpers
    */
   const searchOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    onFocus && onFocus(e);
+    onFocus?.(e);
     openPopover();
   };
 
   const searchOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    onBlur && onBlur(e);
+    onBlur?.(e);
     if (!popoverRef?.contains(e.relatedTarget as HTMLElement)) {
       closePopover();
     }
   };
 
   const searchOnInput = (e: FormEvent<HTMLInputElement>) => {
-    onInputChange && onInputChange(e.target);
+    onInput?.(e.target);
     openPopover();
   };
 
   const searchOnChange = (value: string) => {
-    onSearchChange && onSearchChange(value);
+    onSearch?.(value);
   };
 
   const inputDescribedbyId = useGeneratedHtmlId({ prefix: id });
@@ -235,12 +238,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   /**
    * Options list
    */
-  const suggestionList = suggestions.map((item: EuiSuggestionProps) => {
-    const { className, ...props } = item;
-    if (onItemClick) {
-      props.onClick = () => onItemClick(item);
-    }
-
+  const suggestionList = suggestions.map((props: EuiSuggestionProps) => {
     // Omit props destined for the EuiSuggestItem so that they don't
     // cause warnings or render in the DOM of the EuiSelectableItem
     const data = {};
@@ -257,15 +255,30 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
     return {
       ...(liProps as typeof props),
       data,
-      className: classNames(className, 'euiSuggestItemOption'),
+      className: classNames(props.className, 'euiSuggestItemOption'),
+      // Force truncation if `isVirtualized` is true
+      truncate: isVirtualized ? true : props.truncate,
     };
   });
 
-  const renderOption = (option: EuiSuggestionProps) => {
-    // `onClick` handled by EuiSelectable
-    const { onClick, ...props } = option;
+  const renderOption = useCallback((props: EuiSuggestionProps) => {
     return <EuiSuggestItem {...props} />;
-  };
+  }, []);
+
+  const onItemSelect = useCallback(
+    (options: EuiSelectableOption[]) => {
+      if (onItemClick) {
+        const selectedIndex = options.findIndex(
+          (option) => option.checked === 'on'
+        );
+        if (selectedIndex >= 0) {
+          const selectedSuggestion = suggestions[selectedIndex];
+          onItemClick(selectedSuggestion);
+        }
+      }
+    },
+    [onItemClick, suggestions]
+  );
 
   const classes = classNames('euiInputPopover', {
     'euiInputPopover--fullWidth': fullWidth,
@@ -274,31 +287,33 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   return (
     <>
       <EuiSelectable<EuiSuggestionProps>
-        id={id}
         singleSelection={true}
         height={isVirtualized ? undefined : 'full'}
         options={suggestionList}
         renderOption={renderOption}
+        onChange={onItemSelect}
         listProps={{
           bordered: false,
           showIcons: false,
           onFocusBadge: false,
           paddingSize: 'none',
+          textWrap: isVirtualized ? 'truncate' : 'wrap',
           isVirtualized,
-          ...rest,
         }}
         searchable
         searchProps={{
+          id,
           append: appendArray.length ? appendArray : undefined,
           fullWidth,
           isLoading: status === 'loading' ? true : false,
           onFocus: searchOnFocus,
           onBlur: searchOnBlur,
           onInput: searchOnInput,
-          onSearch: searchOnChange,
+          onChange: searchOnChange,
           'aria-describedby': inputDescribedbyId,
           'aria-label': ariaLabel,
           'aria-labelledby': labelId,
+          ...rest,
         }}
       >
         {(list, search) => (

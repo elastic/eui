@@ -240,8 +240,8 @@ describe('EuiInMemoryTable', () => {
         },
       ],
       pagination: {
-        initialPageSize: 'all',
-        pageSizeOptions: [1, 2, 3, 'all'],
+        initialPageSize: 0,
+        pageSizeOptions: [1, 2, 3, 0],
       },
     };
     const component = render(<EuiInMemoryTable {...props} />);
