@@ -12,7 +12,6 @@ import { Link } from 'react-router-dom';
 import { fake } from 'faker';
 
 import {
-  EuiFieldNumber,
   EuiButton,
   EuiButtonEmpty,
   EuiButtonIcon,
@@ -376,10 +375,6 @@ const trailingControlColumns = [
 ];
 
 export default () => {
-  // row heights testing
-  const [rowHeight, setRowHeight] = useState(36);
-  const [lineCount, setLineCount] = useState(0);
-
   // Pagination
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
   const onChangeItemsPerPage = useCallback(
@@ -417,20 +412,6 @@ export default () => {
 
   return (
     <DataContext.Provider value={raw_data}>
-      <EuiFieldNumber
-        aria-label="line count"
-        prepend="Line count"
-        value={lineCount}
-        min={0}
-        onChange={(e) => setLineCount(Number(e.currentTarget.value))}
-      />
-      <EuiFieldNumber
-        aria-label="static height"
-        prepend="Static height"
-        value={rowHeight}
-        min={34}
-        onChange={(e) => setRowHeight(Number(e.currentTarget.value))}
-      />
       <EuiDataGrid
         aria-label="Data grid demo"
         columns={columns}
@@ -448,12 +429,6 @@ export default () => {
         }}
         onColumnResize={onColumnResize.current}
         ref={gridRef}
-        rowHeightsOptions={
-          lineCount
-            ? { defaultHeight: { lineCount } }
-            : { defaultHeight: rowHeight }
-        }
-        height={600}
       />
     </DataContext.Provider>
   );
