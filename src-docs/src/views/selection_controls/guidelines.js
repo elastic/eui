@@ -412,7 +412,7 @@ export default () => {
         description={
           <p>
             The label should be static, action-oriented, and describe the
-            feature. Avoid verbs that are less conversational such as `enable`
+            feature. Avoid verbs that are less conversational such as "enable"
             unless they are your only option.
           </p>
         }
