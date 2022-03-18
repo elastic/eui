@@ -66,20 +66,26 @@ export const DataGridCellsExample = {
       text: (
         <Fragment>
           <p>
-            On top of making a cell expandable, you can add more custom actions
-            by setting <EuiCode>cellActions</EuiCode>. This contains functions
-            called to render additional buttons in the cell and in the popover
-            when expanded. Behind the scenes those are treated as a React
-            components allowing hooks, context, and other React concepts to be
-            used. The functions receives an argument of type
-            <code>EuiDataGridColumnCellActionProps</code>. The icons of these
-            actions are displayed on mouse over, and also appear in the popover
-            when the cell is expanded. Note that once you&apos;ve defined the{' '}
-            <EuiCode>cellAction</EuiCode> property, the cell&apos;s
-            automatically expandable.
+            In addition to making a cell expandable, you can add more custom
+            actions by setting <EuiCode>columns.cellActions</EuiCode>. These
+            actions will render as icon buttons in the cell on hover/focus, and
+            render as full buttons in the cell expansion popover. Note that once
+            any <EuiCode>cellActions</EuiCode> are passed, the cell becomes
+            automatically expandable - this ensures keyboard and screen reader
+            users have access to all cell actions.
           </p>
           <p>
-            Below, the email and city columns provide 1{' '}
+            <EuiCode>columns.cellActions</EuiCode> accepts an array of render
+            functions. Behind the scenes, the functions are treated as a React
+            components allowing hooks, context, and other React concepts to be
+            used. Because different button types are used between the cell and
+            the cell popover, we pass your render function a{' '}
+            <EuiCode>Component</EuiCode> prop which you must render in order for
+            your cell actions to switch correctly between button icons and
+            buttons.
+          </p>
+          <p>
+            In the below example, the email and city columns provide 1{' '}
             <EuiCode>cellAction</EuiCode> each, while the country column
             provides 2 <EuiCode>cellAction</EuiCode>s.
             <br />
