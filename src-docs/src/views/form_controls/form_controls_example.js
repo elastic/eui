@@ -135,40 +135,68 @@ export const FormControlsExample = {
     <>
       <EuiText>
         <p>
-          EUI provides different types of form controls:{' '}
-          <strong>EuiFieldText</strong>, <strong>EuiFieldSearch</strong>,{' '}
-          <strong>EuiFieldNumber</strong>, <strong>EuiFieldPassword</strong>,{' '}
-          <strong>EuiSelect</strong>, <strong>EuiTextArea</strong>, and{' '}
-          <strong>EuiFilePicker</strong>.
-        </p>
-        <p>
-          Although using these controls outside of a form is allowed, the
-          recommendation is to use them wrapped in a{' '}
-          <Link to="/forms/form-layouts#form-and-form-rows">
-            EuiForm and EuiFormRow
+          EUI provides different types of basic form controls:{' '}
+          <Link to="#text-field">
+            <strong>EuiFieldText</strong>
           </Link>
-          . This is the easiest way to provide labels, help text, error text and
-          ensure the best layout.
+          ,{' '}
+          <Link to="#search-field">
+            <strong>EuiFieldSearch</strong>
+          </Link>
+          ,{' '}
+          <Link to="#number-field">
+            <strong>EuiFieldNumber</strong>
+          </Link>
+          ,{' '}
+          <Link to="#password-field">
+            <strong>EuiFieldPassword</strong>
+          </Link>
+          ,{' '}
+          <Link to="#select">
+            <strong>EuiSelect</strong>
+          </Link>
+          ,{' '}
+          <Link to="#textarea">
+            <strong>EuiTextArea</strong>
+          </Link>
+          , and{' '}
+          <Link to="#file-picker">
+            <strong>EuiFilePicker</strong>
+          </Link>
+          .
         </p>
         <EuiCallOut
           color="warning"
           iconType="accessibility"
-          title="For accessibility, provide a label to each form control"
+          title={
+            <>
+              For accessibility, we recommend wrapping each from control in a{' '}
+              <strong>EuiFormRow</strong>
+            </>
+          }
         >
           <p>
-            Labels can be created by wrapping the from control in a{' '}
-            <strong>EuiFormRow</strong> with a <EuiCode>label</EuiCode>, adding
-            an <EuiCode>aria-label</EuiCode> prop, or passing a text node ID to
-            the <EuiCode>aria-labelledby</EuiCode> prop.
+            Use the{' '}
+            <Link to="/forms/form-layouts#form-and-form-rows">
+              <strong>EuiFormRow</strong>
+            </Link>{' '}
+            component to easily associate form components with labels, help
+            text, and error text. It is highly recommended to provide a{' '}
+            <EuiCode>label</EuiCode>, adding an <EuiCode>aria-label</EuiCode>{' '}
+            prop, or passing a text node ID to the{' '}
+            <EuiCode>aria-labelledby</EuiCode> prop.
           </p>
         </EuiCallOut>
         <EuiSpacer />
-        <p>
-          Use the <EuiCode>placeholder</EuiCode> prop to provide a short hint
-          that describes the expected value of the text field. Placeholders
-          should never replace a label but used as a hint in addition to the
-          label.
-        </p>
+
+        <dl>
+          <dt>Placeholders</dt>
+          <dd>
+            Placeholders should never replace a label but used as a hint in
+            addition to the label. Use the <EuiCode>placeholder</EuiCode> prop
+            to describe the expected value of the input.
+          </dd>
+        </dl>
       </EuiText>
     </>
   ),
@@ -185,8 +213,9 @@ export const FormControlsExample = {
         <>
           <p>
             This component renders a basic HTML{' '}
-            <EuiCode>{'<input type="text">'}</EuiCode> element. Use a{' '}
-            <strong>EuiFieldText</strong> to allow users to enter or edit text.
+            <EuiCode language="html">{'<input type="text">'}</EuiCode> element.
+            Use a <strong>EuiFieldText</strong> to allow users to enter or edit
+            text.
           </p>
         </>
       ),
@@ -209,9 +238,9 @@ export const FormControlsExample = {
         <>
           <p>
             This component renders a basic HTML{' '}
-            <EuiCode>{'<input type="search">'}</EuiCode> element. Use a{' '}
-            <strong>EuiFieldSearch</strong> to allow users to enter search
-            queries.
+            <EuiCode language="html">{'<input type="search">'}</EuiCode>{' '}
+            element. Use a <strong>EuiFieldSearch</strong> to allow users to
+            enter search queries.
           </p>
         </>
       ),
@@ -234,8 +263,9 @@ export const FormControlsExample = {
         <>
           <p>
             This component renders a basic HTML{' '}
-            <EuiCode>{'<input type="number">'}</EuiCode> element. Use a{' '}
-            <strong>EuiFieldNumber</strong> to allow users to enter numbers.
+            <EuiCode language="html">{'<input type="number">'}</EuiCode>{' '}
+            element. Use a <strong>EuiFieldNumber</strong> to allow users to
+            enter numbers.
           </p>
         </>
       ),
@@ -260,15 +290,15 @@ export const FormControlsExample = {
           <p>
             Use a <strong>EuiFieldPassword</strong> to allow users to enter a
             password. By default, it renders a basic HTML{' '}
-            <EuiCode>{'<input type="password">'}</EuiCode> where the content is
-            obfuscated. When users type in into the field the characters are
-            presented as asterisks.
+            <EuiCode language="html">{'<input type="password">'}</EuiCode> where
+            the content is obfuscated. When users type in the field the
+            characters are presented as asterisks.
           </p>
           <p>
             You can change this default behavior by passing{' '}
-            <EuiCode>{'type="dual"'}</EuiCode> so that users can toggle between
-            show/obfuscate the content. This option makes the experience more
-            user-friendly and accessible.
+            <EuiCode language="html">{'type="dual"'}</EuiCode> so that users can
+            toggle between showing and obfuscating the content. This option
+            makes the experience more user-friendly and accessible.
           </p>
         </>
       ),
@@ -291,10 +321,10 @@ export const FormControlsExample = {
         <>
           <p>
             This component renders a basic HTML{' '}
-            <EuiCode language="html">&lt;select&gt;</EuiCode> element. Use a{' '}
+            <EuiCode language="html">&lt;select&gt;</EuiCode> element. Use{' '}
             <strong>EuiSelect</strong> to allow users to choose an option from a
-            list of more than 7 options and no more than 12. When there are less
-            than 7 options consider using a{' '}
+            list of 7 to 12 options. When there are less than 7 options consider
+            using a{' '}
             <Link to="/forms/selection-controls#radio-group">
               <strong>EuiRadioGroup</strong>
             </Link>
@@ -302,11 +332,11 @@ export const FormControlsExample = {
           </p>
           <p>
             If you need more customization for how the options and/or selected
-            values render in <strong>EuiSelect</strong>, use the{' '}
+            values render in, you can use an{' '}
             <Link to="/forms/super-select">
               <strong>EuiSuperSelect</strong>
-            </Link>
-            . Another option is to use the{' '}
+            </Link>{' '}
+            instead. For long lists of options use an{' '}
             <Link to="/forms/combo-box">
               <strong>EuiComboBox</strong>
             </Link>
@@ -333,9 +363,9 @@ export const FormControlsExample = {
         <>
           <p>
             This component renders a basic HTML{' '}
-            <EuiCode>{'<textarea> '}</EuiCode> element. Use a{' '}
-            <strong>EuiTextArea</strong> to allow users to enter an amount of
-            text that&apos;s longer than a single line.
+            <EuiCode language="html">{'<textarea />'}</EuiCode> element. Use{' '}
+            <strong>EuiTextArea</strong> to allow users to enter multi-line
+            text.
           </p>
         </>
       ),
