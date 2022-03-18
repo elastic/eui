@@ -155,6 +155,16 @@ describe('RowHeightUtils', () => {
           });
         });
       });
+
+      it('falls back to m-sized cellPadding if gridStyle.cellPadding is undefined', () => {
+        rowHeightUtils.cacheStyles({ cellPadding: undefined });
+
+        // @ts-ignore this var is private, but we're inspecting it for the sake of the unit test
+        expect(rowHeightUtils.styles).toEqual({
+          paddingTop: 6,
+          paddingBottom: 6,
+        });
+      });
     });
 
     describe('getStylesForCell (returns inline CSS styles based on height config)', () => {

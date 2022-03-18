@@ -97,8 +97,8 @@ export class RowHeightUtils {
 
   cacheStyles(gridStyles: EuiDataGridStyle) {
     this.styles = {
-      paddingTop: cellPaddingsMap[gridStyles.cellPadding!],
-      paddingBottom: cellPaddingsMap[gridStyles.cellPadding!],
+      paddingTop: cellPaddingsMap[gridStyles.cellPadding || 'm'],
+      paddingBottom: cellPaddingsMap[gridStyles.cellPadding || 'm'],
     };
   }
 
