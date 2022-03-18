@@ -391,6 +391,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     gridRef: gridRef.current,
     gridStyles,
     columns,
+    rowHeightsOptions,
   });
 
   const { defaultRowHeight, setRowHeight, getRowHeight } = useDefaultRowHeight({
