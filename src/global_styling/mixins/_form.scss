@@ -1,9 +1,33 @@
+@import '../../components/icon/variables';
+
 // Labels
 @mixin euiFormLabel {
   @include euiFontSizeXS;
   @include euiTextBreakWord;
   color: $euiTitleColor;
   font-weight: $euiFontWeightSemiBold;
+}
+
+@mixin euiFormControlLayoutIconPadding($selector: '', $compressed: false, $side: 'right') {
+  $iconSize: map-get($euiIconSizes, 'medium');
+  $iconPadding: $euiFormControlPadding;
+  $marginBetweenIcons: $euiFormControlPadding / 2;
+
+  @if ($compressed) {
+    $iconSize: map-get($euiIconSizes, 'small');
+    $iconPadding: $euiFormControlCompressedPadding;
+    $marginBetweenIcons: $euiFormControlCompressedPadding / 2;
+  }
+
+  @if variable-exists(selector) == false {
+    @error '$selector:string must be provided to @mixin euiFormControlLayoutIconPadding().';
+  }
+
+  @for $i from 1 through 4 {
+    &#{$selector}-#{$i}icons {
+      padding-#{$side}: $iconPadding + ($iconSize + $marginBetweenIcons) * $i;
+    }
+  }
 }
 
 @mixin euiFormControlLayoutPadding($numOfIcons, $side: 'right', $compressed: false) {
