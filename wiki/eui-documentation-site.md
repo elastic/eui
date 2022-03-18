@@ -1,0 +1,107 @@
+# Elastic UI documentation site
+
+Code for the Elastic UI [documentation site](https://elastic.github.io/eui/#/) can be found in the `src-docs` directory.
+
+## Documenting new components
+
+- [] In `src-docs/src/views`, create a directory with the name of the component being documented.
+- [] Define examples which demonstrate the component and describe its role from a UI perspective. File names should follow the `{component}_{example name}.js/.tsx` naming structure (i.e. `accordion_isLoading.js`).
+- [] Create a `{component name}_example.js` file in the new directory. It will combine the code snippets, examples, and documentation copy into one file that will be used to generate the full page for the new component. To learn more about the configuration for `example.js`, review [creating the component example file](#creating-the-component-example-file).
+- [] Create a route for the new component documentation by importing the `example` component from `{component name}_example.js` to `src-docs/src/routes.js`. After importing, locate the `navigation` array and add the component to the most appropriate section.
+ 
+## Documenting existing components with new examples
+- [] Locate the desired component directory in `src-docs/src/views` and define new examples which demonstrate the component and describe its role from a UI perspective. File names should follow the `{component}_{example name}.js/.tsx` naming structure (i.e. `accordion_isLoading.js`).
+- [] Locate the `example` file in the directory. It should be named `{component name}_example.js`. Configure the new example component by importing it, adding new code snippets, and creating a new entry in the documentation object. To learn more about the configuration for `example.js`, review [creating the component example file](#creating-the-component-example-file).
+
+## Creating the component `example` file
+
+Each component documented in `src-docs/src/views` should have one `{component name}_example.js` file. This file is responsible for combining all code snippets and documentation copy, then renders the examples and copy together on one page. 
+
+### Required imports and variables
+
+Each component and code sample should have the following elements:
+- An import of the example component from the associated directory (`src-docs/src/views/{component}`)
+
+   **Example**
+```
+   import Accordion from './accordion'; 
+```
+
+- A variable to employs Webpack's `raw-loader` to to store the example component's source code as a string. This will be used in the Demo JS tab.
+
+   **Example**
+```
+   const accordionSource = require('!!raw-loader!./accordion');
+```
+
+- A simplified code sample without to highlight specific component props and functionality. This will be used in the Snippet tab.
+
+   **Example**
+```
+   <EuiAccordion
+     id={accordionId1}
+     buttonContent="Clickable title">
+     <!-- Content to show when expanded -->
+   </EuiAccordion>
+```
+
+### Composing the documentation object
+
+After importing and storing the values for each component code sample, combine the examples in an object that will be used to construct the component's documentation page.
+
+#### Object structure
+
+```
+export const ComponentExample = {
+    title: string,
+    intro: jsx element,
+    sections: [
+        {
+            title: string,
+            source: [
+                {
+                    type: string,
+                    code: string
+                }
+            ],
+            text: jsx element,
+            demo: React component,
+            playground: function,
+            props: React component,
+            snippet: string
+        }
+    ]
+}
+```
+
+`title`: string - The name of the component and the title that will be used as the header of the documentation page.
+
+`intro`: `jsx` element - A quick intro about the component.
+
+`sections`: object array - An array of all examples and code snippets relevant to this component. There should be one object per component example.
+
+`title`: string - Title for the component example.
+
+`source`: object array - An array of code samples and file types that belong to a component example
+
+`type`: string - The type of file used to create the component (i.e. `js`, `tsx`, etc.). Use `GuideSectionTypes` (found at `src-docs/src/components/guide_section/guide_section_types.tsx`) for this configuration.
+
+`code`: The source code for the code sample. This will likely be the variable defined to store the component's source code via Webpack's `raw-loader` as explained in [required imports and variables](#required-imports-and-variables). 
+
+`text`: `jsx` element - Text to fully explain and document the component and example being showcased.
+
+`demo`: React component - The example component created to document and showcase specific features.
+
+`playground`: function (optional) - The function used to configure the playground testing area for the component. 
+
+`props`: React component - The EUI component being documented (the original component, not examples of the component).
+
+`snippet`: string - A simplified code sample without to highlight specific component props and functionality as explained in [required imports and variables](#required-imports-and-variables). 
+
+
+
+
+
+
+
+
