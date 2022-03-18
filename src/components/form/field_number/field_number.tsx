@@ -18,7 +18,7 @@ import {
 import { EuiValidatableControl } from '../validatable_control';
 
 import { IconType } from '../../icon';
-import { getFormControlClassNameForIconCount } from '../_numIcons';
+import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
 
 export type EuiFieldNumberProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,

@@ -16,7 +16,7 @@ import {
 } from '../form_control_layout';
 
 import { EuiValidatableControl } from '../validatable_control';
-import { getFormControlClassNameForIconCount } from '../_numIcons';
+import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
 
 export type EuiFieldTextProps = InputHTMLAttributes<HTMLInputElement> &
   CommonProps & {

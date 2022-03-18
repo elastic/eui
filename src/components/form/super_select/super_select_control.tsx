@@ -22,7 +22,7 @@ import {
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
 import { EuiI18n } from '../../i18n';
-import { getFormControlClassNameForIconCount } from '../_numIcons';
+import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
 
 export interface EuiSuperSelectOption<T> {
   value: T;

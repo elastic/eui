@@ -20,7 +20,7 @@ import {
 } from '../form_control_layout';
 import { EuiValidatableControl } from '../validatable_control';
 import { EuiFormControlLayoutIconsProps } from '../form_control_layout/form_control_layout_icons';
-import { getFormControlClassNameForIconCount } from '../_numIcons';
+import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
 
 export interface EuiSelectOption
   extends OptionHTMLAttributes<HTMLOptionElement> {
