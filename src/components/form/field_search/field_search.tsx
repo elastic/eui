@@ -18,6 +18,7 @@ import {
 } from '../form_control_layout';
 
 import { EuiValidatableControl } from '../validatable_control';
+import { getFormControlClassNameForIconCount } from '../_numIcons';
 
 export interface EuiFieldSearchProps
   extends CommonProps,
@@ -227,11 +228,15 @@ export class EuiFieldSearch extends Component<
     if (typeof this.props.value !== 'string') value = this.state.value;
 
     // Set actual value of isClearable if value exists as well
-    const isClearable = Boolean(_isClearable && value);
+    const isClearable = Boolean(
+      _isClearable && value && !rest.readOnly && !rest.disabled
+    );
 
-    const numIcons = [isClearable, isInvalid, isLoading].filter(
-      (item) => item === true
-    ).length;
+    const numIconsClass = getFormControlClassNameForIconCount({
+      clear: isClearable,
+      isInvalid,
+      isLoading,
+    });
 
     const classes = classNames(
       'euiFieldSearch',
@@ -242,8 +247,7 @@ export class EuiFieldSearch extends Component<
         'euiFieldSearch-isLoading': isLoading,
         'euiFieldSearch-isClearable': isClearable,
         'euiFieldSearch-isInvalid': isInvalid,
-        [`euiFieldSearch-${numIcons}icons`]:
-          isInvalid || isClearable || isLoading,
+        [`euiFieldSearch${numIconsClass}`]: numIconsClass,
       },
       className
     );
@@ -255,7 +259,7 @@ export class EuiFieldSearch extends Component<
         isLoading={isLoading}
         isInvalid={isInvalid}
         clear={
-          isClearable && !rest.readOnly && !rest.disabled
+          isClearable
             ? { onClick: this.onClear, 'data-test-subj': 'clearSearchButton' }
             : undefined
         }

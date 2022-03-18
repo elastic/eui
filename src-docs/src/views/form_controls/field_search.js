@@ -5,7 +5,7 @@ import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const [isClearable, setIsClearable] = useState(true);
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState('This is a long value be sure to revert');
 
   const onChange = (e) => {
     setValue(e.target.value);
