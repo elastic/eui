@@ -631,11 +631,6 @@ export interface EuiDataGridColumnCellActionProps {
    * Determines whether the cell's action is displayed expanded (in the Popover)
    */
   isExpanded: boolean;
-  /**
-   * Closes the popover if a cell is expanded.
-   * The prop is provided for an expanded cell only.
-   */
-  closePopover?: () => void;
 }
 
 export interface EuiDataGridColumnVisibility {

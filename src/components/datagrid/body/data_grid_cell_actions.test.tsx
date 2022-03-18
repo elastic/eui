@@ -21,7 +21,6 @@ const MockAction: EuiDataGridColumnCellAction = ({ Component }) => (
 
 describe('EuiDataGridCellActions', () => {
   const requiredProps = {
-    closePopover: jest.fn(),
     onExpandClick: jest.fn(),
     rowIndex: 0,
     colIndex: 0,
@@ -93,7 +92,6 @@ describe('EuiDataGridCellActions', () => {
       >
         <MockAction
           Component={[Function]}
-          closePopover={[MockFunction]}
           colIndex={0}
           columnId="someId"
           isExpanded={false}
