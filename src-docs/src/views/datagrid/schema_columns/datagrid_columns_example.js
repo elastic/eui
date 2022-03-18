@@ -298,6 +298,11 @@ schemaDetectors={[
             <EuiCode>EuiDataGridCellValueElementProps</EuiCode> and returning a
             React node.
           </p>
+          <p>
+            When rendering footer cell values, we encourage turning off cell
+            expansion on cells without content with{' '}
+            <EuiCode>setCellProps({'{ isExpandable: false }'})</EuiCode>.
+          </p>
         </Fragment>
       ),
       props: {
