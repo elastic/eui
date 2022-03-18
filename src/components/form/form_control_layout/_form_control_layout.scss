@@ -1,6 +1,27 @@
 .euiFormControlLayout {
   // Let the height expand as needed
   @include euiFormControlSize($includeAlternates: true);
+
+  $iconSize: map-get($euiIconSizes, 'medium');
+  $iconPadding: $euiFormControlPadding;
+  $marginBetweenIcons: $euiFormControlPadding / 2;
+
+  // The `.euiFormControlLayout-{num}icons` selector string is also declared in `src/components/form/_numIcons.ts`.
+  // It is the same for all form controls so as to lessen the total classes exported,
+  // we use a form control layout class on all form controls.
+  @for $i from 1 through 4 {
+    &--#{$i}icons {
+      padding-right: $iconPadding + ($iconSize + $marginBetweenIcons) * $i;
+
+      &[class*='compressed'] {
+        $iconSizeCompressed: map-get($euiIconSizes, 'small');
+        $iconPaddingCompressed: $euiFormControlCompressedPadding;
+        $marginBetweenIconsCompressed: $euiFormControlCompressedPadding / 2;
+
+        padding-right: $iconPaddingCompressed + ($iconSizeCompressed + $marginBetweenIconsCompressed) * $i;
+      }
+    }
+  }
 }
 
 .euiFormControlLayout__childrenWrapper {

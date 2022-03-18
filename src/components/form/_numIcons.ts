@@ -34,5 +34,6 @@ export function getFormControlClassNameForIconCount({
     (item) => item === true
   ).length;
 
-  return numIcons > 0 ? `-${numIcons}icons` : undefined;
+  // This className is also specifically used in `src/global_styling/mixins/_form.scss`
+  return numIcons > 0 ? `euiFormControlLayout--${numIcons}icons` : undefined;
 }

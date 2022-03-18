@@ -22,9 +22,6 @@
   }
 }
 
-@include euiFormControlLayoutIconPadding('.euiFieldSearch');
-
 .euiFieldSearch--compressed {
   @include euiFormControlWithIcon($isIconOptional: false, $side: 'left', $compressed: true);
-  @include euiFormControlLayoutIconPadding('.euiFieldSearch', true);
 }

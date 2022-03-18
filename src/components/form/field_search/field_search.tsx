@@ -240,6 +240,7 @@ export class EuiFieldSearch extends Component<
 
     const classes = classNames(
       'euiFieldSearch',
+      numIconsClass,
       {
         'euiFieldSearch--fullWidth': fullWidth,
         'euiFieldSearch--compressed': compressed,
@@ -247,7 +248,6 @@ export class EuiFieldSearch extends Component<
         'euiFieldSearch-isLoading': isLoading,
         'euiFieldSearch-isClearable': isClearable,
         'euiFieldSearch-isInvalid': isInvalid,
-        [`euiFieldSearch${numIconsClass}`]: numIconsClass,
       },
       className
     );
