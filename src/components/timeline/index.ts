@@ -9,11 +9,10 @@
 export type { EuiTimelineItemProps } from './timeline_item';
 export { EuiTimelineItem } from './timeline_item';
 
+export type { EuiTimelineItemEventProps } from './timeline_item_event';
 export { EuiTimelineItemEvent } from './timeline_item_event';
 
 export { EuiTimelineItemIcon } from './timeline_item_icon';
-
-export { EuiTimelineItemPanel } from './timeline_item_panel';
 
 export type { EuiTimelineProps } from './timeline';
 export { EuiTimeline } from './timeline';

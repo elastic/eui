@@ -25,6 +25,10 @@
   }
 }
 
+.euiTimelineItem--update:not(.euiTimelineItem--hasBody) {
+  align-items: center;
+}
+
 .euiTimelineItem:last-of-type {
   .euiTimelineItemIcon {
     &::before {

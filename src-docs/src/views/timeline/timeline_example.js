@@ -6,7 +6,7 @@ import {
   EuiCode,
   EuiTimeline,
   EuiTimelineItem,
-  EuiTimelineItemPanel,
+  EuiTimelineItemEvent,
 } from '../../../../src/components';
 
 import Timeline from './timeline';
@@ -26,11 +26,11 @@ const timelineItemSnippet = `<EuiTimelineItem icon="user">
   {body}
 </EuiTimeline>`;
 
-import TimelineItemPanel from './timeline_item_panel';
-const timelineItemPanelSource = require('!!raw-loader!./timeline_item_panel');
-const timelineItemPanelSnippet = `<EuiTimelineItemPanel hasBorder header={header}>
+import TimelineItemEvent from './timeline_item_event';
+const timelineItemEventSource = require('!!raw-loader!./timeline_item_event');
+const timelineItemEventSnippet = `<EuiTimelineItemEvent hasBorder header={header}>
   {body}
-</EuiTimelineItemPanel>`;
+</EuiTimelineItemEvent>`;
 
 import TimelineComplex from './timeline_complex';
 const TimelineComplexSource = require('!!raw-loader!./timeline_complex');
@@ -47,14 +47,14 @@ export const TimelineExample = {
       ],
       text: (
         <div>
-          The <strong>EuiTimeline</strong> component is somehow an opinionated
-          component that standardizes the way a timeline thread is displayed.
-          But it gives the ability to add custom components and icons. Pass an
-          array of <strong>EuiTimelineItem</strong> objects and{' '}
+          The <strong>EuiTimeline</strong> is a component that standardizes the
+          way a timeline thread is displayed. But it gives the ability to add
+          custom components and icons. Pass an array of{' '}
+          <strong>EuiTimelineItem</strong> objects and{' '}
           <strong>EuiTimeline</strong> will generate a timeline thread.
         </div>
       ),
-      props: { EuiTimeline, EuiTimelineItem },
+      props: { EuiTimeline, EuiTimelineItem, EuiTimelineItemEvent },
       snippet: timelineSnippet,
       demo: <Timeline />,
     },
@@ -70,16 +70,9 @@ export const TimelineExample = {
         <div>
           <p>
             Use <strong>EuiTimelineItem</strong> to display timeline items. Each{' '}
-            <strong>EuiTimelineItem</strong> accepts two props:{' '}
-            <EuiCode>icon</EuiCode> and <EuiCode>children</EuiCode>. For the{' '}
-            <EuiCode>children</EuiCode>, we recommend the usage of a{' '}
-            <strong>EuiTimelineItemPanel</strong> but you can use any other
-            component. If you use a{' '}
-            <Link to="/layout/panel">
-              <strong>EuiPanel</strong>
-            </Link>
-            , try to avoid passing the color <EuiCode>{'"plain"'}</EuiCode>.
-            This color adds a shadow that is not suitable for this component.
+            <strong>EuiTimelineItem</strong> accepts two parts:{' '}
+            <EuiCode>icon</EuiCode> on the left side and an{' '}
+            <EuiCode>event</EuiCode> on the right side.
           </p>
         </div>
       ),
@@ -88,30 +81,44 @@ export const TimelineExample = {
       demo: <TimelineItem />,
     },
     {
-      title: 'Timeline item panel',
+      title: 'Item event',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: timelineItemPanelSource,
+          code: timelineItemEventSource,
         },
       ],
       text: (
         <div>
           <p>
-            The <strong>EuiTimelineItemPanel</strong> is an opinionated
-            component whose purpose is to display a panel that can have a header
-            and body. It&apos;s built on top of the{' '}
+            An event is built on top of the{' '}
             <Link to="/layout/panel">
               <strong>EuiPanel</strong>
             </Link>{' '}
-            and it&apos;s the recommended component to use in{' '}
-            <EuiCode>EuiTimelineItem.children</EuiCode>.
+            and it&apos;s made of a header and a body. To create an event you
+            just need to use the following props:
           </p>
+          <ul>
+            <li>
+              <EuiCode>eventHeader</EuiCode>: the most important part of the
+              event (e.g. a title, username, metadata).
+            </li>
+            <li>
+              <EuiCode>eventBody</EuiCode>: additional content. You can also use
+              this prop to pass more complex components like editors, code
+              blocks or any custom component.
+            </li>
+            <li>
+              <EuiCode>eventProps</EuiCode>: additional props to customize the
+              event panel. You can change the color, header color, and adjust
+              the padding.
+            </li>
+          </ul>
         </div>
       ),
-      props: { EuiTimelineItemPanel },
-      snippet: timelineItemPanelSnippet,
-      demo: <TimelineItemPanel />,
+      props: { EuiTimelineItemEvent },
+      snippet: timelineItemEventSnippet,
+      demo: <TimelineItemEvent />,
     },
     {
       title: 'Complex example',
@@ -124,13 +131,12 @@ export const TimelineExample = {
       text: (
         <div>
           <p>
-            This is an example of how to combine multiple{' '}
-            <strong>EuiTimelineItem</strong> with{' '}
-            <strong>EuiTimelinePanel</strong>.
+            This is an example of how you can customize and display multiple{' '}
+            <strong>EuiTimelineItem</strong>.
           </p>
         </div>
       ),
-      props: { EuiTimeline, EuiTimelineItem, EuiTimelineItemPanel },
+      props: { EuiTimeline, EuiTimelineItem, EuiTimelineItemEvent },
       demo: <TimelineComplex />,
     },
   ],

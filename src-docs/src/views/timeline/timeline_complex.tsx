@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   EuiTimelineItem,
-  EuiTimelineItemPanel,
   EuiAvatar,
   EuiText,
   EuiSwitch,
@@ -14,7 +13,10 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 
-import { useGeneratedHtmlId } from '../../../../src/services';
+import {
+  useGeneratedHtmlId,
+  euiPaletteColorBlind,
+} from '../../../../src/services';
 
 export default () => {
   const [checked1, setChecked1] = useState(false);
@@ -42,97 +44,116 @@ export default () => {
     setChecked3(e.target.checked);
   };
 
-  const phase = (title: string, checked: boolean, onChange: any) => (
+  const phase = (
+    title: string,
+    checked: boolean,
+    onChange: any,
+    avatarColor: string
+  ) => (
     <EuiTimelineItem
       icon={
         checked ? (
-          <EuiAvatar size="m" name={title} iconType="check" />
+          <EuiAvatar
+            size="m"
+            name={title}
+            iconType="check"
+            color={avatarColor}
+          />
         ) : (
           <EuiAvatar size="s" name={title} iconType="dot" color="shade" />
         )
       }
-    >
-      <EuiTimelineItemPanel
-        hasBorder
-        headerColor="subdued"
-        paddingSize="m"
-        header={
-          <EuiFlexGroup alignItems="center" gutterSize="s">
-            <EuiFlexItem grow={false}>
-              <EuiSwitch
-                showLabel={false}
-                label={checked ? `${title} is on` : `${title} is off`}
-                checked={checked}
-                onChange={onChange}
-              />
-            </EuiFlexItem>
-            <EuiFlexItem>
-              <EuiTitle size="s">
-                <h2>{title}</h2>
-              </EuiTitle>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        }
-      >
-        <EuiText size="s" grow={false}>
-          <p>
-            Move data to the cold tier when you are searching it less often and
-            don’t need to update it. The cold tier is optimized for cost savings
-            over search performance.
-          </p>
-        </EuiText>
+      eventProps={{
+        hasBorder: true,
+        headerColor: 'subdued',
+        paddingSize: 'm',
+      }}
+      eventHeader={
+        <EuiFlexGroup alignItems="center" gutterSize="s">
+          <EuiFlexItem grow={false}>
+            <EuiSwitch
+              showLabel={false}
+              label={checked ? `${title} is on` : `${title} is off`}
+              checked={checked}
+              onChange={onChange}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiTitle size="s">
+              <h2>{title}</h2>
+            </EuiTitle>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      }
+      eventBody={
+        <>
+          <EuiText size="s" grow={false}>
+            <p>
+              Move data to the cold tier when you are searching it less often
+              and don’t need to update it. The cold tier is optimized for cost
+              savings over search performance.
+            </p>
+          </EuiText>
 
-        {checked && (
-          <>
-            <EuiSpacer />
-            <EuiAccordion
-              id={buttonElementAccordionId}
-              buttonElement="div"
-              buttonContent="Advanced settings"
-            >
-              <EuiPanel color="subdued">
-                Any content inside of <strong>EuiAccordion</strong> will appear
-                here.
-              </EuiPanel>
-            </EuiAccordion>
-          </>
-        )}
-      </EuiTimelineItemPanel>
-    </EuiTimelineItem>
+          {checked && (
+            <>
+              <EuiSpacer />
+              <EuiAccordion
+                id={buttonElementAccordionId}
+                buttonElement="div"
+                buttonContent="Advanced settings"
+              >
+                <EuiPanel color="subdued">
+                  Any content inside of <strong>EuiAccordion</strong> will
+                  appear here.
+                </EuiPanel>
+              </EuiAccordion>
+            </>
+          )}
+        </>
+      }
+    />
   );
 
   return (
     <div>
       <EuiTimelineItem
-        icon={<EuiAvatar size="m" name="Checked" iconType="check" />}
-      >
-        <EuiTimelineItemPanel
-          hasBorder
-          headerColor="subdued"
-          paddingSize="m"
-          header={
-            <EuiTitle size="s">
-              <h2>
-                Hot phase <EuiBadge color="warning">Required</EuiBadge>
-              </h2>
-            </EuiTitle>
-          }
-        >
-          <EuiText grow={false}>
+        icon={
+          <EuiAvatar
+            size="m"
+            name="Checked"
+            iconType="check"
+            color={euiPaletteColorBlind()[0]}
+          />
+        }
+        eventProps={{
+          hasBorder: true,
+          headerColor: 'subdued',
+          paddingSize: 'm',
+        }}
+        eventHeader={
+          <EuiTitle size="s">
+            <h2>
+              Hot phase <EuiBadge color="warning">Required</EuiBadge>
+            </h2>
+          </EuiTitle>
+        }
+        eventBody={
+          <EuiText grow={false} size="s">
             <p>
               Store your most recent, most frequently-searched data in the hot
               tier. The hot tier provides the best indexing and search
               performance by using the most powerful, expensive hardware.
             </p>
           </EuiText>
-        </EuiTimelineItemPanel>
-      </EuiTimelineItem>
+        }
+      />
 
-      {phase('Warm phase', checked1, onChange1)}
+      {phase('Warm phase', checked1, onChange1, euiPaletteColorBlind()[1])}
 
-      {phase('Cold phase', checked2, onChange2)}
+      {phase('Cold phase', checked2, onChange2, euiPaletteColorBlind()[2])}
 
-      {phase('Frozen phase', checked3, onChange3)}
+      {phase('Frozen phase', checked3, onChange3, euiPaletteColorBlind()[3])}
     </div>
   );
 };
