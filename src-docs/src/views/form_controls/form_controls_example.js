@@ -182,7 +182,7 @@ export const FormControlsExample = {
             </Link>{' '}
             component to easily associate form components with labels, help
             text, and error text. For accessibility, you must provide a{' '}
-            <EuiCode>label</EuiCode>, adding an <EuiCode>aria-label</EuiCode>{' '}
+            <EuiCode>label</EuiCode>, <EuiCode>aria-label</EuiCode>{' '}
             prop, or passing a text node ID to the{' '}
             <EuiCode>aria-labelledby</EuiCode> prop.
           </p>
