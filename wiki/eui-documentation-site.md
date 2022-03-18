@@ -97,11 +97,3 @@ export const ComponentExample = {
 `props`: React component - The EUI component being documented (the original component, not examples of the component).
 
 `snippet`: string - A simplified code sample without to highlight specific component props and functionality as explained in [required imports and variables](#required-imports-and-variables). 
-
-
-
-
-
-
-
-
