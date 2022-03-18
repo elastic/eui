@@ -329,7 +329,7 @@ export const FormControlsExample = {
           </p>
           <p>
             If you need more customization for how the options and/or selected
-            values render in, you can use an{' '}
+            values render, you can use an{' '}
             <Link to="/forms/super-select">
               <strong>EuiSuperSelect</strong>
             </Link>{' '}
