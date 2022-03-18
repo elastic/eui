@@ -1,6 +1,4 @@
 <%_ if (features) { -%>
-**Features**
-
 - Added/Updated ...
 
 <%_ } -%>

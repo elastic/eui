@@ -7,6 +7,7 @@ const path = require('path');
 const glob = require('glob');
 const fs = require('fs');
 const chalk = require('chalk');
+const rimraf = require('rimraf');
 const { execSync } = require('child_process');
 
 // Helpers
@@ -106,7 +107,7 @@ const collateChangelogFiles = () => {
 };
 
 /**
- * Write to CHANGELOG.md and commit the file
+ * Write to CHANGELOG.md, delete individual upcoming changelog files, & stage changes
  */
 const updateChangelog = (upcomingChangelog) => {
   if (!upcomingChangelog) {
@@ -127,8 +128,11 @@ const updateChangelog = (upcomingChangelog) => {
   const updatedChangelog = `${latestVersionHeading}\n\n${upcomingChangelog}\n\n${changelogArchive}`;
   fs.writeFileSync(pathToChangelog, updatedChangelog);
 
+  // Delete upcoming changelogs
+  rimraf.sync('upcoming_changelogs/!(_template).md');
+
   // This will get committed with the `npm version` step in release.js
-  execSync('git add CHANGELOG.md');
+  execSync('git add CHANGELOG.md upcoming_changelogs/');
 };
 
 module.exports = { collateChangelogFiles, updateChangelog };
