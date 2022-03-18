@@ -118,11 +118,13 @@ export default () => {
             </EuiTitle>
           }
         >
-          <p>
-            Store your most recent, most frequently-searched data in the hot
-            tier. The hot tier provides the best indexing and search performance
-            by using the most powerful, expensive hardware.
-          </p>
+          <EuiText grow={false}>
+            <p>
+              Store your most recent, most frequently-searched data in the hot
+              tier. The hot tier provides the best indexing and search
+              performance by using the most powerful, expensive hardware.
+            </p>
+          </EuiText>
         </EuiTimelineItemPanel>
       </EuiTimelineItem>
 
