@@ -15,6 +15,9 @@ import {
 import DataGridColumnCellActions from './column_cell_actions';
 const dataGridColumnCellActionsSource = require('!!raw-loader!./column_cell_actions');
 
+import VisibleCellActions from './visible_cell_actions';
+const visibleCellActionsSource = require('!!raw-loader!./visible_cell_actions');
+
 import { DataGridCellPopoverExample } from './datagrid_cell_popover_example';
 
 import DataGridFocus from './focus';
@@ -94,6 +97,42 @@ export const DataGridCellsExample = {
         EuiListGroupItem,
       },
       demo: <DataGridColumnCellActions />,
+    },
+    {
+      title: 'Visible cell actions and cell popovers',
+      text: (
+        <>
+          <p>
+            By default, only the first 2 cell actions of a cell will be
+            displayed to the left of the expand action button, and remaining
+            actions will be displayed in the footer of the cell expansion
+            popover.
+          </p>
+          <p>
+            This number is configurable by setting{' '}
+            <EuiCode>columns.visibleCellActions</EuiCode>, should you need to
+            display more cell actions immediately. However, we advise caution
+            when increasing this limit - the default is set to ensure cell
+            action buttons do not crowd out content.
+          </p>
+          <p>
+            The below example shows an increasing number of{' '}
+            <EuiCode>cellActions</EuiCode> in each column. The third column
+            shows <EuiCode>visibleCellActions</EuiCode> set to 3, and the fourth
+            column shows excess actions overflowing into the popover.
+          </p>
+        </>
+      ),
+      demo: <VisibleCellActions />,
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: visibleCellActionsSource,
+        },
+      ],
+      props: {
+        EuiDataGridColumn,
+      },
     },
 
     ...DataGridCellPopoverExample.sections,
