@@ -319,7 +319,7 @@ export const FormControlsExample = {
           <p>
             This component renders a basic HTML{' '}
             <EuiCode language="html">&lt;select&gt;</EuiCode> element. Use{' '}
-            <strong>EuiSelect</strong> to allow users to choose an option from a
+            <strong>EuiSelect</strong> to allow users to choose from a
             list of 7 to 12 options. When there are less than 7 options consider
             using a{' '}
             <Link to="/forms/selection-controls#radio-group">
