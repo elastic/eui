@@ -228,6 +228,10 @@ Array [
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
       >
         <span
+          color="danger"
+          data-euiicon-type="alert"
+        />
+        <span
           class="euiFormControlLayoutCustomIcon"
         >
           <span

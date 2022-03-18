@@ -217,7 +217,7 @@ export class EuiFieldSearch extends Component<
       incremental,
       compressed,
       onSearch,
-      isClearable,
+      isClearable: _isClearable,
       append,
       prepend,
       ...rest
@@ -226,6 +226,13 @@ export class EuiFieldSearch extends Component<
     let value = this.props.value;
     if (typeof this.props.value !== 'string') value = this.state.value;
 
+    // Set actual value of isClearable if value exists as well
+    const isClearable = Boolean(_isClearable && value);
+
+    const numIcons = [isClearable, isInvalid, isLoading].filter(
+      (item) => item === true
+    ).length;
+
     const classes = classNames(
       'euiFieldSearch',
       {
@@ -233,7 +240,10 @@ export class EuiFieldSearch extends Component<
         'euiFieldSearch--compressed': compressed,
         'euiFieldSearch--inGroup': prepend || append,
         'euiFieldSearch-isLoading': isLoading,
-        'euiFieldSearch-isClearable': isClearable && value,
+        'euiFieldSearch-isClearable': isClearable,
+        'euiFieldSearch-isInvalid': isInvalid,
+        [`euiFieldSearch-${numIcons}icons`]:
+          isInvalid || isClearable || isLoading,
       },
       className
     );
@@ -243,8 +253,9 @@ export class EuiFieldSearch extends Component<
         icon="search"
         fullWidth={fullWidth}
         isLoading={isLoading}
+        isInvalid={isInvalid}
         clear={
-          isClearable && value && !rest.readOnly && !rest.disabled
+          isClearable && !rest.readOnly && !rest.disabled
             ? { onClick: this.onClear, 'data-test-subj': 'clearSearchButton' }
             : undefined
         }

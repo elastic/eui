@@ -118,6 +118,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = ({
       icon={icon}
       fullWidth={fullWidth}
       isLoading={isLoading}
+      isInvalid={isInvalid}
       compressed={compressed}
       readOnly={readOnly}
       prepend={prepend}

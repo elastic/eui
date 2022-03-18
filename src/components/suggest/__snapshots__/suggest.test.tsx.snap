@@ -919,7 +919,7 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--compressed euiFieldSearch-isClearable euiSelectableSearch testClass1 testClass2"
+                class="euiFieldSearch euiFieldSearch--compressed euiFieldSearch-isClearable euiFieldSearch-isInvalid euiFieldSearch-2icons euiSelectableSearch testClass1 testClass2"
                 data-test-subj="test subject string"
                 id="testId"
                 name="testName"
@@ -943,6 +943,10 @@ Array [
               <div
                 class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
               >
+                <span
+                  color="danger"
+                  data-euiicon-type="alert"
+                />
                 <button
                   aria-label="Clear input"
                   class="euiFormControlLayoutClearButton euiFormControlLayoutClearButton--small"
@@ -993,7 +997,7 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isLoading euiSelectableSearch testClass1 testClass2"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isLoading euiFieldSearch-1icons euiSelectableSearch testClass1 testClass2"
                 data-test-subj="test subject string"
                 placeholder="Filter options"
                 type="search"
@@ -1246,7 +1250,7 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isLoading euiSelectableSearch testClass1 testClass2"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isLoading euiFieldSearch-1icons euiSelectableSearch testClass1 testClass2"
                 data-test-subj="test subject string"
                 placeholder="Filter options"
                 type="search"

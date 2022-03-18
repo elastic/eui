@@ -128,6 +128,7 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
       icon={icon}
       fullWidth={fullWidth}
       isLoading={isLoading}
+      isInvalid={isInvalid}
       compressed={compressed}
       prepend={prepend}
       append={append}

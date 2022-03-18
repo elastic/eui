@@ -82,7 +82,7 @@ exports[`EuiSelectableSearch renders placeholder, value, name, and other remaini
       aria-haspopup="listbox"
       aria-label="aria-label"
       autocomplete="off"
-      class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isClearable euiSelectableSearch testClass"
+      class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isClearable euiFieldSearch-1icons euiSelectableSearch testClass"
       data-test-subj="test subject string"
       id="testId"
       name="testName"

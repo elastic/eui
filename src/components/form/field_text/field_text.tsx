@@ -99,6 +99,7 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
       icon={icon}
       fullWidth={fullWidth}
       isLoading={isLoading}
+      isInvalid={isInvalid}
       compressed={compressed}
       readOnly={readOnly}
       prepend={prepend}

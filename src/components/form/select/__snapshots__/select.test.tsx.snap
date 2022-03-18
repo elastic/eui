@@ -67,6 +67,7 @@ exports[`EuiSelect props isInvalid is rendered 1`] = `
   compressed="false"
   fullwidth="false"
   icon="[object Object]"
+  isinvalid="true"
   isloading="false"
 >
   <eui-validatable-control

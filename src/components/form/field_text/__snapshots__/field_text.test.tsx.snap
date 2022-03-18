@@ -46,6 +46,7 @@ exports[`EuiFieldText props fullWidth is rendered 1`] = `
 exports[`EuiFieldText props isInvalid is rendered 1`] = `
 <eui-form-control-layout
   fullwidth="false"
+  isinvalid="true"
 >
   <eui-validatable-control
     isinvalid="true"

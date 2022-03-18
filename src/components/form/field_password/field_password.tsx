@@ -152,6 +152,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
       icon="lock"
       fullWidth={fullWidth}
       isLoading={isLoading}
+      isInvalid={isInvalid}
       compressed={compressed}
       prepend={prepend}
       append={finalAppend}

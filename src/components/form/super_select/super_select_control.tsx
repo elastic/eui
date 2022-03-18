@@ -127,6 +127,7 @@ export const EuiSuperSelectControl: <T extends string>(
         icon={icon}
         fullWidth={fullWidth}
         isLoading={isLoading}
+        isInvalid={isInvalid}
         compressed={compressed}
         prepend={prepend}
         append={append}
