@@ -170,8 +170,7 @@ export const FormControlsExample = {
           iconType="accessibility"
           title={
             <>
-              Wrap each of your from controls in a{' '}
-              <strong>EuiFormRow</strong>
+              Wrap each of your from controls in a <strong>EuiFormRow</strong>
             </>
           }
         >
@@ -182,17 +181,18 @@ export const FormControlsExample = {
             </Link>{' '}
             component to easily associate form components with labels, help
             text, and error text. For accessibility, you must provide a{' '}
-            <EuiCode>label</EuiCode>, <EuiCode>aria-label</EuiCode>{' '}
-           , or a text node ID of an external label to the{' '}
+            <EuiCode>label</EuiCode>, <EuiCode>aria-label</EuiCode> , or a text
+            node ID of an external label to the{' '}
             <EuiCode>aria-labelledby</EuiCode> prop.
           </p>
         </EuiCallOut>
         <EuiSpacer />
 
         <p>
-            <strong>Placeholders</strong> should never replace a label but used as a hint in
-            addition to the label. Use the <EuiCode>placeholder</EuiCode> prop
-            to describe the expected value of the input.
+          <strong>Placeholders</strong> should never replace a label but used as
+          a hint in addition to the label. Use the{' '}
+          <EuiCode>placeholder</EuiCode> prop to describe the expected value of
+          the input.
         </p>
       </EuiText>
     </>
@@ -319,9 +319,8 @@ export const FormControlsExample = {
           <p>
             This component renders a basic HTML{' '}
             <EuiCode language="html">&lt;select&gt;</EuiCode> element. Use{' '}
-            <strong>EuiSelect</strong> to allow users to choose from a
-            list of 7 to 12 options. When there are less than 7 options consider
-            using a{' '}
+            <strong>EuiSelect</strong> to allow users to choose from a list of 7
+            to 12 options. When there are less than 7 options consider using a{' '}
             <Link to="/forms/selection-controls#radio-group">
               <strong>EuiRadioGroup</strong>
             </Link>
