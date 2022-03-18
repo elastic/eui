@@ -70,8 +70,11 @@ export const EuiDataGridCellActions = ({
       />
     );
 
-    const [primaryCellActions] = getPrimaryActions(column?.cellActions);
-    return primaryCellActions.map(
+    const [visibleCellActions] = getVisibleCellActions(
+      column?.cellActions,
+      column?.visibleCellActions
+    );
+    return visibleCellActions.map(
       (Action: EuiDataGridColumnCellAction, idx: number) => {
         // React is more permissible than the TS types indicate
         const ActionButtonElement = Action as JSXElementConstructor<
@@ -108,8 +111,9 @@ export const EuiDataGridCellPopoverActions = ({
   colIndex: number;
   rowIndex: number;
 }) => {
-  const [primaryActions, secondaryActions] = getPrimaryActions(
-    column?.cellActions
+  const [primaryActions, secondaryActions] = getVisibleCellActions(
+    column?.cellActions,
+    column?.visibleCellActions
   );
 
   const renderActions = useCallback(
@@ -160,16 +164,17 @@ export const EuiDataGridCellPopoverActions = ({
   );
 };
 
-// Util helper to separate primary actions (the first two cell actions)
-// and secondary actions (all other actions after the first two)
-const getPrimaryActions = (
-  cellActions?: EuiDataGridColumnCellAction[]
+// Util helper to separate primary actions (columns.visibleCellActions, defaults to 2)
+// and secondary actions (all remaning actions)
+const getVisibleCellActions = (
+  cellActions?: EuiDataGridColumnCellAction[],
+  visibleCellActions = 2
 ): [EuiDataGridColumnCellAction[], EuiDataGridColumnCellAction[]] => {
   if (!cellActions) return [[], []];
-  if (cellActions.length <= 2) return [cellActions, []];
+  if (cellActions.length <= visibleCellActions) return [cellActions, []];
 
-  const primaryCellActions = cellActions.slice(0, 2);
-  const remainingCellActions = cellActions.slice(2);
+  const primaryCellActions = cellActions.slice(0, visibleCellActions);
+  const remainingCellActions = cellActions.slice(visibleCellActions);
 
   return [primaryCellActions, remainingCellActions];
 };

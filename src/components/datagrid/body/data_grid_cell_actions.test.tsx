@@ -111,19 +111,35 @@ describe('EuiDataGridCellActions', () => {
     `);
   });
 
-  it('does not render more than the first two primary cell actions', () => {
-    const component = shallow(
-      <EuiDataGridCellActions
-        {...requiredProps}
-        isExpandable={true}
-        column={{
-          id: 'someId',
-          cellActions: [MockAction, MockAction, MockAction],
-        }}
-      />
-    );
+  describe('visible cell actions limit', () => {
+    it('by default, does not render more than the first two primary cell actions', () => {
+      const component = shallow(
+        <EuiDataGridCellActions
+          {...requiredProps}
+          column={{
+            id: 'someId',
+            cellActions: [MockAction, MockAction, MockAction],
+          }}
+        />
+      );
 
-    expect(component.find('MockAction')).toHaveLength(2);
+      expect(component.find('MockAction')).toHaveLength(2);
+    });
+
+    it('allows configuring the default number of visible cell actions', () => {
+      const component = shallow(
+        <EuiDataGridCellActions
+          {...requiredProps}
+          column={{
+            id: 'someId',
+            cellActions: [MockAction, MockAction, MockAction, MockAction],
+            visibleCellActions: 3,
+          }}
+        />
+      );
+
+      expect(component.find('MockAction')).toHaveLength(3);
+    });
   });
 });
 
@@ -173,7 +189,7 @@ describe('EuiDataGridCellPopoverActions', () => {
     `);
   });
 
-  it('renders the first two primary actions in their own footer, and all remaining secondary actions in a column footer', () => {
+  it('renders primary actions in their own footer, and all remaining secondary actions in a column footer', () => {
     const component = shallow(
       <EuiDataGridCellPopoverActions
         colIndex={0}
@@ -244,6 +260,27 @@ describe('EuiDataGridCellPopoverActions', () => {
         </EuiPopoverFooter>
       </Fragment>
     `);
+  });
+
+  it('uses visibleCellActions to configure the number of primary vs. secondary actions', () => {
+    const component = shallow(
+      <EuiDataGridCellPopoverActions
+        colIndex={0}
+        rowIndex={0}
+        column={{
+          id: 'someId',
+          cellActions: [MockAction, MockAction, MockAction, MockAction],
+          visibleCellActions: 3,
+        }}
+      />
+    );
+
+    expect(
+      component.find('EuiPopoverFooter').first().find('MockAction')
+    ).toHaveLength(3);
+    expect(
+      component.find('EuiPopoverFooter').last().find('MockAction')
+    ).toHaveLength(1);
   });
 
   it('does not render anything if the column has no cell actions', () => {
