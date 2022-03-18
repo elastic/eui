@@ -1,60 +1,56 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import {
   EuiFormControlLayout,
-  EuiSpacer,
   EuiFormLabel,
   EuiButtonEmpty,
   EuiText,
-  EuiFieldText,
-} from '../../../../src/components';
-import { useGeneratedHtmlId } from '../../../../src/services';
+  useGeneratedHtmlId,
+} from '../../../../src';
 
 export default () => {
   const labelInputId = useGeneratedHtmlId({ prefix: 'labelInput' });
   const readOnlyInputId = useGeneratedHtmlId({ prefix: 'readOnlyInput' });
 
   return (
-    <Fragment>
+    <div
+      css={{
+        display: 'inline-flex',
+        flexWrap: 'wrap',
+        gap: 24,
+      }}
+    >
       <EuiFormControlLayout icon="search" isInvalid>
-        <EuiFieldText
-          controlOnly
-          isInvalid
+        <input
+          type="text"
+          className="euiFieldText"
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
 
-      <EuiSpacer size="m" />
-
-      <EuiFormControlLayout isLoading isInvalid>
-        <EuiFieldText
-          controlOnly
-          isInvalid
+      <EuiFormControlLayout isLoading>
+        <input
+          type="text"
+          className="euiFieldText"
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
 
-      <EuiSpacer size="m" />
-
-      <EuiFormControlLayout clear={{ onClick: () => {} }} isInvalid>
-        <EuiFieldText
-          controlOnly
-          isInvalid
+      <EuiFormControlLayout clear={{ onClick: () => {} }}>
+        <input
+          type="text"
+          className="euiFieldText"
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
 
-      <EuiSpacer size="m" />
-
-      <EuiFormControlLayout isLoading clear={{ onClick: () => {} }} isInvalid>
-        <EuiFieldText
-          controlOnly
-          isInvalid
+      <EuiFormControlLayout isLoading clear={{ onClick: () => {} }}>
+        <input
+          type="text"
+          className="euiFieldText"
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
-
-      <EuiSpacer size="m" />
 
       <EuiFormControlLayout isLoading icon="search">
         <input
@@ -64,8 +60,6 @@ export default () => {
         />
       </EuiFormControlLayout>
 
-      <EuiSpacer size="m" />
-
       <EuiFormControlLayout
         isLoading
         icon={{ type: 'arrowDown', side: 'right' }}
@@ -76,8 +70,6 @@ export default () => {
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
-
-      <EuiSpacer size="m" />
 
       <EuiFormControlLayout clear={{ onClick: () => {} }} icon="search">
         <input
@@ -87,8 +79,6 @@ export default () => {
         />
       </EuiFormControlLayout>
 
-      <EuiSpacer size="m" />
-
       <EuiFormControlLayout
         clear={{ onClick: () => {} }}
         icon={{ type: 'arrowDown', side: 'right' }}
@@ -99,8 +89,6 @@ export default () => {
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
-
-      <EuiSpacer size="m" />
 
       <EuiFormControlLayout
         isLoading
@@ -114,8 +102,6 @@ export default () => {
         />
       </EuiFormControlLayout>
 
-      <EuiSpacer size="m" />
-
       <EuiFormControlLayout
         isLoading
         clear={{ onClick: () => {} }}
@@ -128,8 +114,6 @@ export default () => {
         />
       </EuiFormControlLayout>
 
-      <EuiSpacer size="m" />
-
       <EuiFormControlLayout
         isLoading
         clear={{ onClick: () => {} }}
@@ -141,8 +125,6 @@ export default () => {
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
-
-      <EuiSpacer size="m" />
 
       <EuiFormControlLayout
         prepend={<EuiFormLabel htmlFor={labelInputId}>Label</EuiFormLabel>}
@@ -153,8 +135,6 @@ export default () => {
           id={labelInputId}
         />
       </EuiFormControlLayout>
-
-      <EuiSpacer size="m" />
 
       <EuiFormControlLayout
         readOnly
@@ -171,8 +151,6 @@ export default () => {
         />
       </EuiFormControlLayout>
 
-      <EuiSpacer size="m" />
-
       <EuiFormControlLayout
         append={
           <EuiText size="xs">
@@ -186,8 +164,6 @@ export default () => {
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
-
-      <EuiSpacer size="m" />
 
       <EuiFormControlLayout
         isLoading
@@ -204,6 +180,6 @@ export default () => {
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
-    </Fragment>
+    </div>
   );
 };

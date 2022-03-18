@@ -331,7 +331,7 @@ export const FormControlsExample = {
       title: 'Form control layout',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: formControlLayoutSource,
         },
       ],
@@ -368,7 +368,7 @@ export const FormControlsExample = {
       title: 'Form control layout delimited',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: formControlLayoutRangeSource,
         },
       ],

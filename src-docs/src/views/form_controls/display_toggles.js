@@ -1,5 +1,4 @@
 import React, { cloneElement, useState, Fragment } from 'react';
-import PropTypes from 'prop-types';
 
 import {
   EuiFlexGroup,
@@ -13,28 +12,28 @@ import {
 } from '../../../../src/components';
 
 export const DisplayToggles = ({
-  canIsDisabled,
-  canDisabled,
-  canReadOnly,
-  canLoading,
-  canCompressed,
-  canFullWidth,
-  canPrepend,
-  canAppend,
-  canInvalid,
+  canIsDisabled = false,
+  canDisabled = true,
+  canReadOnly = true,
+  canLoading = true,
+  canCompressed = true,
+  canFullWidth = true,
+  canInvalid = true,
+  canPrepend = false,
+  canAppend = false,
   children,
   extras,
-  spacerSize,
+  spacerSize = 'l',
 }) => {
   const [disabled, setDisabled] = useState(false);
   const [readOnly, setReadOnly] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [compressed, setCompressed] = useState(false);
   const [fullWidth, setFullWidth] = useState(false);
-  const [prepend, setPrepend] = useState(true);
-  const [append, setAppend] = useState(true);
+  const [prepend, setPrepend] = useState(false);
+  const [append, setAppend] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [invalid, setInvalid] = useState(true);
+  const [invalid, setInvalid] = useState(false);
 
   const canProps = {};
   if (canDisabled) canProps.disabled = disabled;
@@ -178,32 +177,4 @@ export const DisplayToggles = ({
       </EuiPopover>
     </Fragment>
   );
-};
-
-DisplayToggles.propTypes = {
-  canIsDisabled: PropTypes.bool,
-  canDisabled: PropTypes.bool,
-  canReadOnly: PropTypes.bool,
-  canLoading: PropTypes.bool,
-  canCompressed: PropTypes.bool,
-  canFullWidth: PropTypes.bool,
-  canPrepend: PropTypes.bool,
-  canAppend: PropTypes.bool,
-  canInvalid: PropTypes.bool,
-  extras: PropTypes.arrayOf(PropTypes.node),
-  // Manually building the spacer array to avoid having to import Spacer into codesandbox
-  spacerSize: PropTypes.oneOf(['xs', 's', 'm', 'l', 'xl', 'xxl']),
-};
-
-DisplayToggles.defaultProps = {
-  canIsDisabled: false,
-  canDisabled: true,
-  canReadOnly: true,
-  canLoading: true,
-  canCompressed: true,
-  canFullWidth: true,
-  canInvalid: true,
-  canPrepend: false,
-  canAppend: false,
-  spacerSize: 'l',
 };
