@@ -6,6 +6,8 @@ export {
   listExtraDeps,
 } from './string/clean_imports';
 
+export { getPropsFromComponent } from './props/get_props';
+
 export { registerTheme, applyTheme } from './theme/theme';
 
 export { ExampleContext, useExitPath } from './routing/routing';

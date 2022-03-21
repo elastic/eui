@@ -6,7 +6,15 @@
  * Side Public License, v 1.
  */
 
-import { RowHeightUtils, cellPaddingsMap } from './row_heights';
+import { act } from 'react-dom/test-utils';
+import { testCustomHook } from '../../../test/internal';
+import { startingStyles } from '../controls';
+
+import {
+  RowHeightUtils,
+  cellPaddingsMap,
+  useRowHeightUtils,
+} from './row_heights';
 
 describe('RowHeightUtils', () => {
   const rowHeightUtils = new RowHeightUtils();
@@ -145,6 +153,16 @@ describe('RowHeightUtils', () => {
             paddingTop: padding,
             paddingBottom: padding,
           });
+        });
+      });
+
+      it('falls back to m-sized cellPadding if gridStyle.cellPadding is undefined', () => {
+        rowHeightUtils.cacheStyles({ cellPadding: undefined });
+
+        // @ts-ignore this var is private, but we're inspecting it for the sake of the unit test
+        expect(rowHeightUtils.styles).toEqual({
+          paddingTop: 6,
+          paddingBottom: 6,
         });
       });
     });
@@ -369,5 +387,94 @@ describe('RowHeightUtils', () => {
         });
       });
     });
+  });
+});
+
+describe('useRowHeightUtils', () => {
+  const mockArgs = {
+    gridRef: null,
+    gridStyles: startingStyles,
+    columns: [{ id: 'A' }, { id: 'B' }],
+    rowHeightOptions: undefined,
+  };
+
+  it('instantiates and returns an instance of RowHeightUtils', () => {
+    const { return: rowHeightUtils } = testCustomHook(() =>
+      useRowHeightUtils(mockArgs)
+    );
+    expect(rowHeightUtils).toBeInstanceOf(RowHeightUtils);
+  });
+
+  it('populates internal RowHeightUtils vars from outside dependencies', () => {
+    const args = { ...mockArgs, gridRef: {} as any };
+    const { return: rowHeightUtils } = testCustomHook(() =>
+      useRowHeightUtils(args)
+    );
+    // @ts-ignore - intentionally inspecting private var for test
+    expect(rowHeightUtils.grid).toEqual(args.gridRef);
+    // @ts-ignore - intentionally inspecting private var for test
+    expect(rowHeightUtils.rerenderGridBody).toBeInstanceOf(Function);
+  });
+
+  it('forces a rerender every time rowHeightsOptions changes', () => {
+    const requestAnimationFrameSpy = jest
+      .spyOn(window, 'requestAnimationFrame')
+      .mockImplementation((cb: any) => cb());
+
+    const { updateHookArgs } = testCustomHook(useRowHeightUtils, mockArgs);
+    expect(requestAnimationFrameSpy).toHaveBeenCalledTimes(1);
+
+    updateHookArgs({ rowHeightsOptions: { defaultHeight: 300 } });
+    expect(requestAnimationFrameSpy).toHaveBeenCalledTimes(2);
+
+    updateHookArgs({
+      rowHeightsOptions: { defaultHeight: 300, rowHeights: { 0: 200 } },
+    });
+    expect(requestAnimationFrameSpy).toHaveBeenCalledTimes(3);
+  });
+
+  it('updates internal cached styles whenever gridStyle.cellPadding changes', () => {
+    const { return: rowHeightUtils, updateHookArgs } = testCustomHook(
+      useRowHeightUtils,
+      mockArgs
+    );
+
+    updateHookArgs({ gridStyles: { ...startingStyles, cellPadding: 's' } });
+    // @ts-ignore - intentionally inspecting private var for test
+    expect(rowHeightUtils.styles).toEqual({
+      paddingTop: 4,
+      paddingBottom: 4,
+    });
+  });
+
+  it('prunes columns from the row heights cache if a column is hidden', () => {
+    const { return: rowHeightUtils, updateHookArgs } = testCustomHook<
+      RowHeightUtils
+    >(useRowHeightUtils, mockArgs);
+
+    act(() => {
+      rowHeightUtils.setRowHeight(0, 'A', 30, 0);
+      rowHeightUtils.setRowHeight(0, 'B', 50, 0);
+    });
+    // @ts-ignore - intentionally inspecting private var for test
+    expect(rowHeightUtils.heightsCache).toMatchInlineSnapshot(`
+      Map {
+        0 => Map {
+          "A" => 42,
+          "B" => 62,
+        },
+      }
+    `);
+
+    updateHookArgs({ columns: [{ id: 'A' }] }); // Hiding column B
+
+    // @ts-ignore - intentionally inspecting private var for test
+    expect(rowHeightUtils.heightsCache).toMatchInlineSnapshot(`
+      Map {
+        0 => Map {
+          "A" => 42,
+        },
+      }
+    `);
   });
 });

@@ -28,7 +28,7 @@ import {
 
 // @ts-ignore NOT TS yet
 import { humanizeType } from '../../../services/playground/knobs';
-import { getDescription } from '../_components/_theme_values_descriptions';
+import { getDescription } from '../../../services/props/get_description';
 
 export const LANGUAGES = ['javascript', 'html'] as const;
 

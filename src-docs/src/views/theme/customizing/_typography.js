@@ -15,10 +15,10 @@ import {
   fontScale,
 } from '../../../../../src/global_styling/variables/_typography';
 
+import { getPropsFromComponent } from '../../../services/props/get_props';
 import { ThemeValue } from './_values';
 
 import {
-  getPropsFromThemeKey,
   EuiThemeFontBase,
   EuiThemeFontWeight,
   EuiThemeFontScale,
@@ -49,9 +49,9 @@ export default ({ onThemeUpdate }) => {
     onUpdate: onThemeUpdate,
   });
 
-  const baseProps = getPropsFromThemeKey(EuiThemeFontBase);
-  const weightProps = getPropsFromThemeKey(EuiThemeFontWeight);
-  const scaleProps = getPropsFromThemeKey(EuiThemeFontScale);
+  const baseProps = getPropsFromComponent(EuiThemeFontBase);
+  const weightProps = getPropsFromComponent(EuiThemeFontWeight);
+  const scaleProps = getPropsFromComponent(EuiThemeFontScale);
 
   const fontFamilies = fontClone.family.split(',');
   const codeFontFamilies = fontClone.familyCode.split(',');
