@@ -81,6 +81,7 @@ export default () => (
           }
           onChange={() => {}}
           initialViewMode="viewing"
+          markdownFormatProps={{ textSize: 's' }}
         />
       }
     />
