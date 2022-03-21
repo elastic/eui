@@ -27,7 +27,7 @@ Each component and code sample should have the following elements:
    import Accordion from './accordion'; 
 ```
 
-- A variable to employs Webpack's `raw-loader` to to store the example component's source code as a string. This will be used in the Demo JS tab.
+- A variable to employ Webpack's `raw-loader` to store the example's source code as a string. This will be rendered in the Demo JS tab.
 
    **Example**
 ```
