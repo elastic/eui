@@ -17,7 +17,7 @@ import {
   EuiFormControlLayoutCustomIcon,
   EuiFormControlLayoutCustomIconProps,
 } from './form_control_layout_custom_icon';
-import { EuiIcon, IconType } from '../../icon';
+import { EuiIcon, IconColor, IconType } from '../../icon';
 import { DistributiveOmit } from '../../common';
 
 export const ICON_SIDES: ['left', 'right'] = ['left', 'right'];
@@ -28,6 +28,7 @@ type IconShape = DistributiveOmit<
 > & {
   type: IconType;
   side?: typeof ICON_SIDES[number];
+  color?: IconColor;
   ref?: EuiFormControlLayoutCustomIconProps['iconRef'];
 };
 
@@ -42,6 +43,7 @@ export interface EuiFormControlLayoutIconsProps {
   clear?: EuiFormControlLayoutClearButtonProps;
   isLoading?: boolean;
   isInvalid?: boolean;
+  isDropdown?: boolean;
   compressed?: boolean;
 }
 
@@ -49,12 +51,13 @@ export class EuiFormControlLayoutIcons extends Component<
   EuiFormControlLayoutIconsProps
 > {
   render() {
-    const { icon, isInvalid } = this.props;
+    const { icon, isInvalid, isDropdown } = this.props;
     const iconSide = isIconShape(icon) && icon.side ? icon.side : 'left';
     const customIcon = this.renderCustomIcon();
     const loadingSpinner = this.renderLoadingSpinner();
     const clearButton = this.renderClearButton();
     const invalidIcon = this.renderInvalidIcon();
+    const dropdownIcon = this.renderDropdownIcon();
 
     let leftIcons;
 
@@ -69,6 +72,7 @@ export class EuiFormControlLayoutIcons extends Component<
       clearButton ||
       loadingSpinner ||
       isInvalid ||
+      isDropdown ||
       (customIcon && iconSide === 'right')
     ) {
       rightIcons = (
@@ -77,6 +81,7 @@ export class EuiFormControlLayoutIcons extends Component<
           {clearButton}
           {loadingSpinner}
           {iconSide === 'right' ? customIcon : undefined}
+          {dropdownIcon}
         </div>
       );
     }
@@ -109,6 +114,21 @@ export class EuiFormControlLayoutIcons extends Component<
         size={compressed ? 's' : 'm'}
         iconRef={iconRef}
         {...iconRest}
+      />
+    );
+  }
+
+  renderDropdownIcon() {
+    const { isDropdown, compressed } = this.props;
+
+    if (!isDropdown) {
+      return null;
+    }
+
+    return (
+      <EuiFormControlLayoutCustomIcon
+        size={compressed ? 's' : 'm'}
+        type="arrowDown"
       />
     );
   }
