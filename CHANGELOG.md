@@ -13,7 +13,6 @@
 **CSS-in-JS conversions**
 
 - Converted `EuiMark` to CSS-in-JS styling ([#4575](https://github.com/elastic/eui/pull/4575))
-- Converted `EuiAvatar` to CSS-in-JS styling ([#5670](https://github.com/elastic/eui/pull/5670))
 
 ## [`51.1.0`](https://github.com/elastic/eui/tree/v51.1.0)
 
