@@ -4,7 +4,7 @@ Code for the Elastic UI [documentation site](https://elastic.github.io/eui/#/) c
 
 ## Documenting new components
 
-- [ ] In `src-docs/src/views`, create a directory with the name of the component being documented.
+- [ ] In `src-docs/src/views`, create a directory with the [snake_case](https://en.wikipedia.org/wiki/Snake_case) name of the component being documented.
 - [ ] Define examples which demonstrate the component and describe its role from a UI perspective. File names should follow the `{component}_{example name}.js/.tsx` naming structure (i.e. `accordion_isLoading.js`).
 - [ ] Create a `{component name}_example.js` file in the new directory. It will combine the code snippets, examples, and documentation copy into one file that will be used to generate the full page for the new component. To learn more about the configuration for `example.js`, review [creating the component example file](#creating-the-component-example-file).
 - [ ] Create a route for the new component documentation by importing the `example` component from `{component name}_example.js` to `src-docs/src/routes.js`. After importing, locate the `navigation` array and add the component to the most appropriate section.
