@@ -9,11 +9,21 @@ exports[`EuiHighlight behavior loose matching matches strings with different cas
 
 <span>
   different 
+  <span
+    class="euiScreenReaderOnly"
+  >
+    highlight start
+  </span>
   <mark
     class="euiMark emotion-0"
   >
     case
   </mark>
+  <span
+    class="euiScreenReaderOnly"
+  >
+    highlight end
+  </span>
    match
 </span>
 `;
@@ -26,23 +36,53 @@ exports[`EuiHighlight behavior matching applies to all matches 1`] = `
 }
 
 <span>
+  <span
+    class="euiScreenReaderOnly"
+  >
+    highlight start
+  </span>
   <mark
     class="euiMark emotion-0"
   >
     match
   </mark>
+  <span
+    class="euiScreenReaderOnly"
+  >
+    highlight end
+  </span>
    
+  <span
+    class="euiScreenReaderOnly"
+  >
+    highlight start
+  </span>
   <mark
     class="euiMark emotion-0"
   >
     match
   </mark>
+  <span
+    class="euiScreenReaderOnly"
+  >
+    highlight end
+  </span>
    
+  <span
+    class="euiScreenReaderOnly"
+  >
+    highlight start
+  </span>
   <mark
     class="euiMark emotion-0"
   >
     match
   </mark>
+  <span
+    class="euiScreenReaderOnly"
+  >
+    highlight end
+  </span>
 </span>
 `;
 
@@ -54,11 +94,21 @@ exports[`EuiHighlight behavior matching only applies to first match 1`] = `
 }
 
 <span>
+  <span
+    class="euiScreenReaderOnly"
+  >
+    highlight start
+  </span>
   <mark
     class="euiMark emotion-0"
   >
     match
   </mark>
+  <span
+    class="euiScreenReaderOnly"
+  >
+    highlight end
+  </span>
    match match
 </span>
 `;

@@ -6,7 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent, ReactNode } from 'react';
+import React, {
+  HTMLAttributes,
+  Fragment,
+  FunctionComponent,
+  ReactNode,
+} from 'react';
+import { EuiScreenReaderOnly } from '../accessibility';
+import { useEuiI18n } from '../i18n';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
@@ -29,8 +36,16 @@ export const EuiMark: FunctionComponent<EuiMarkProps> = ({
   const classes = classNames('euiMark', className);
 
   return (
-    <mark css={[styles]} className={classes} {...rest}>
-      {children}
-    </mark>
+    <Fragment>
+      <EuiScreenReaderOnly>
+        <span>{useEuiI18n('euiMark.highlightStart', 'highlight start')}</span>
+      </EuiScreenReaderOnly>
+      <mark css={[styles]} className={classes} {...rest}>
+        {children}
+      </mark>
+      <EuiScreenReaderOnly>
+        <span>{useEuiI18n('euiMark.highlightEnd', 'highlight end')}</span>
+      </EuiScreenReaderOnly>
+    </Fragment>
   );
 };

@@ -2227,11 +2227,21 @@ exports[`EuiSelectableListItem props searchValue 1`] = `
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
               <span>
+                <span
+                  class="euiScreenReaderOnly"
+                >
+                  highlight start
+                </span>
                 <mark
                   class="euiMark emotion-0"
                 >
                   Mi
                 </mark>
+                <span
+                  class="euiScreenReaderOnly"
+                >
+                  highlight end
+                </span>
                 mas
               </span>
             </span>
@@ -2428,11 +2438,21 @@ exports[`EuiSelectableListItem props searchValue 2`] = `
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
               <span>
+                <span
+                  class="euiScreenReaderOnly"
+                >
+                  highlight start
+                </span>
                 <mark
                   class="euiMark emotion-0"
                 >
                   Mi
                 </mark>
+                <span
+                  class="euiScreenReaderOnly"
+                >
+                  highlight end
+                </span>
                 mas
               </span>
             </span>
