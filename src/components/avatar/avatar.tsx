@@ -84,7 +84,7 @@ export type EuiAvatarProps = Omit<HTMLAttributes<HTMLDivElement>, 'color'> &
 
     /**
      * Accepts hex values like `#FFFFFF`, `#000` otherwise a viz palette color will be assigned.
-     * Or pass `'plain'` for an empty shade, `'shade'` for an light shade or `null` to remove entirely and the text/icon color will `inherit`
+     * Or pass `'plain'` for an empty shade, `'shade'` for a light shade or `null` to remove entirely and the text/icon color will `inherit`
      */
     color?: string | 'plain' | 'shade' | null;
 
