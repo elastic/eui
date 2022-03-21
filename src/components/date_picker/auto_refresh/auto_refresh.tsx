@@ -29,7 +29,6 @@ export type EuiAutoRefreshSharedProps = EuiRefreshIntervalProps & {
 export type EuiAutoRefreshProps = EuiAutoRefreshSharedProps & {
   /**
    * The input is `readOnly` by default because the input value is handled by the popover form.
-   * If you need make the input `isInvalid`, you'll need to set `readOnly` to `false`.
    */
   readOnly?: EuiFieldTextProps['readOnly'];
 } & Omit<EuiFieldTextProps, 'icon' | 'prepend' | 'controlOnly' | 'readOnly'>;
