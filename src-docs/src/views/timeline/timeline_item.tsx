@@ -1,15 +1,10 @@
 import React from 'react';
-import {
-  EuiTimelineItem,
-  EuiText,
-  EuiBadge,
-  EuiTextArea,
-} from '../../../../src/components';
+import { EuiTimelineItem, EuiText, EuiBadge } from '../../../../src/components';
 
 export default () => (
   <div>
     <EuiTimelineItem
-      icon="dot"
+      icon="editorComment"
       eventHeader={
         <EuiText size="s">
           <p>
@@ -18,17 +13,19 @@ export default () => (
           </p>
         </EuiText>
       }
-    />
-
-    <EuiTimelineItem
-      icon="dot"
       eventBody={
-        <EuiTextArea
-          placeholder="You can pass any type of component"
-          value=""
-          onChange={() => {}}
-        />
+        <EuiText size="s">
+          <p>
+            The <EuiBadge>icon</EuiBadge> is on the left side and I&apos;m an{' '}
+            <EuiBadge>eventBody</EuiBadge>
+          </p>
+        </EuiText>
       }
+      eventProps={{
+        paddingSize: 's',
+        hasBorder: true,
+        headerColor: 'subdued',
+      }}
     />
   </div>
 );

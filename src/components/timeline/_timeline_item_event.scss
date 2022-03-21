@@ -5,6 +5,10 @@
   overflow: hidden;
 }
 
+.euiTimelineItemEvent__inner {
+  flex: 1;
+}
+
 .euiTimelineItemEvent__header {
   border-radius: $euiBorderRadius $euiBorderRadius 0 0;
 }

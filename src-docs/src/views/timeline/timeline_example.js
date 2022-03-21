@@ -81,7 +81,7 @@ export const TimelineExample = {
       demo: <TimelineItem />,
     },
     {
-      title: 'Item event',
+      title: 'Timeline item event',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -91,22 +91,25 @@ export const TimelineExample = {
       text: (
         <div>
           <p>
-            An event is built on top of the{' '}
+            An event is basically the right side of the{' '}
+            <strong>EuiTimelineItem</strong> and it&apos;s built on top of the{' '}
             <Link to="/layout/panel">
-              <strong>EuiPanel</strong>
+              <strong>EuiPanel</strong>.
             </Link>{' '}
-            and it&apos;s made of a header and a body. To create an event you
-            just need to use the following props:
+            Each event can have a <EuiCode>eventHeader</EuiCode>, a{' '}
+            <EuiCode>eventBody</EuiCode> and <EuiCode>eventProps</EuiCode>:
           </p>
           <ul>
             <li>
               <EuiCode>eventHeader</EuiCode>: the most important part of the
-              event (e.g. a title, username, metadata).
+              event (e.g. a title, username, metadata). All the content should
+              be in one line. When no body is present the header vertically
+              center aligns with the left side icon.
             </li>
             <li>
               <EuiCode>eventBody</EuiCode>: additional content. You can also use
-              this prop to pass more complex components like editors, code
-              blocks or any custom component.
+              this prop to pass more complex components (e.g. editors, code
+              blocks or any custom component).
             </li>
             <li>
               <EuiCode>eventProps</EuiCode>: additional props to customize the

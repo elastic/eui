@@ -24,26 +24,35 @@ export type PaddingSize = typeof PADDING_SIZES[number];
 
 export type EuiTimelineItemEventProps = {
   /**
-   * The most important part of the event. Normally where tags in metadata should live.
+   * The most important part of the event (e.g. a title, username, metadata).
+   * It should be one line. When no body is passed it vertically center aligns with the icon.
    */
   header?: ReactNode;
   /**
-   * Use the body for aditional content.
+   * Use the body for aditional content. You can also use this prop
+   * to pass more complex components (e.g. editors, code blocks or any custom component).
    */
   body?: ReactNode;
+  /**
+   * Padding applied around the event header and/or event body.
+   */
   paddingSize?: PaddingSize;
   /**
-   * Sets the color of the panel
+   * Sets the color of all the panel.
    */
   color?: _EuiPanelDivlike['color'];
   /**
-   * Sets the color of the header color
+   * Sets the color of the header color.
    */
   headerColor?: _EuiPanelDivlike['color'];
   /**
    * Adds a border around the panel and a line separating the header and body.
    */
   hasBorder?: _EuiPanelDivlike['hasBorder'];
+  /**
+   * Changes the event wrapper element to `figure` and the the header element to `figcaption`.
+   */
+  isFigure?: boolean;
 } & CommonProps &
   Omit<
     _EuiPanelDivlike,
@@ -60,6 +69,7 @@ export const EuiTimelineItemEvent: FunctionComponent<EuiTimelineItemEventProps> 
   headerColor = 'transparent',
   hasBorder,
   grow = true,
+  isFigure = false,
   ...rest
 }) => {
   const classes = classNames(
@@ -75,19 +85,25 @@ export const EuiTimelineItemEvent: FunctionComponent<EuiTimelineItemEventProps> 
 
   const bodyClasses = classNames('euiTimelineItemEvent__body');
 
+  const Element = isFigure ? 'figure' : 'div';
+  const HeaderElement = isFigure ? 'figcaption' : 'div';
+
   return (
-    <div className={classes}>
-      <EuiPanel
-        paddingSize="none"
-        color={color}
-        hasBorder={hasBorder}
-        grow={grow}
-        {...rest}
-      >
-        {header && <div className={headerClasses}>{header}</div>}
+    <EuiPanel
+      className={classes}
+      paddingSize="none"
+      color={color}
+      hasBorder={hasBorder}
+      grow={grow}
+      {...rest}
+    >
+      <Element className="euiTimelineItemEvent__inner">
+        {header && (
+          <HeaderElement className={headerClasses}>{header}</HeaderElement>
+        )}
 
         {body && <div className={bodyClasses}>{body}</div>}
-      </EuiPanel>
-    </div>
+      </Element>
+    </EuiPanel>
   );
 };

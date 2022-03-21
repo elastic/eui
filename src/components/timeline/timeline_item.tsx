@@ -20,7 +20,7 @@ import {
 export type EuiTimelineItemProps = HTMLAttributes<HTMLDivElement> & {
   eventHeader?: EuiTimelineItemEventProps['header'];
   eventBody?: EuiTimelineItemEventProps['body'];
-  eventProps?: EuiTimelineItemEventProps;
+  eventProps?: Omit<EuiTimelineItemEventProps, 'header' | 'body'>;
 } & EuiTimelineItemIconProps;
 
 export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
@@ -34,7 +34,7 @@ export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
 }) => {
   const classes = classNames(
     'euiTimelineItem',
-    { 'euiTimelineItem--update': eventHeader },
+    { 'euiTimelineItem--hasHeader': eventHeader },
     { 'euiTimelineItem--hasBody': eventBody },
     className
   );
