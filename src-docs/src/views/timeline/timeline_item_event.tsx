@@ -40,11 +40,18 @@ export default () => (
           <p>Error detected in dashboard 5 minutes ago</p>
         </EuiText>
       }
-      panelPaddingSize="s"
-      panelColor="danger"
+      panelProps={{
+        paddingSize: 's',
+        color: 'danger',
+      }}
     />
 
     <EuiTimelineItem
+      panelProps={{
+        hasBorder: true,
+        paddingSize: 's',
+        headerColor: 'subdued',
+      }}
       icon={
         <EuiAvatar name="system" iconType="editorCodeBlock" color="shade" />
       }
@@ -66,9 +73,6 @@ export default () => (
 <iframe src="#" width="560" height="315" allowfullscreen="allowfullscreen"></iframe>`}
         </EuiCodeBlock>
       }
-      panelHasBorder
-      panelPaddingSize="s"
-      headerPanelColor="subdued"
     />
 
     <EuiTimelineItem

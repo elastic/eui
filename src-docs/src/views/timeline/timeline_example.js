@@ -6,8 +6,8 @@ import {
   EuiCode,
   EuiTimeline,
   EuiTimelineItem,
-  EuiTimelineItemEvent,
 } from '../../../../src/components';
+import { EuiTimelineItemEventPanel } from './_props';
 
 import Timeline from './timeline';
 const timelineSource = require('!!raw-loader!./timeline');
@@ -54,7 +54,7 @@ export const TimelineExample = {
           <strong>EuiTimeline</strong> will generate a timeline thread.
         </div>
       ),
-      props: { EuiTimeline, EuiTimelineItem, EuiTimelineItemEvent },
+      props: { EuiTimeline, EuiTimelineItem, EuiTimelineItemEventPanel },
       snippet: timelineSnippet,
       demo: <Timeline />,
     },
@@ -113,12 +113,11 @@ export const TimelineExample = {
             <Link to="/layout/panel">
               <strong>EuiPanel</strong>
             </Link>
-            . This example demonstrates how you can use multiple panel props to
-            customize an event (e.g change the <EuiCode>panelColor</EuiCode>).
+            . This example demonstrates how you can use{' '}
+            <EuiCode>panelProps</EuiCode> to customize an event.
           </p>
         </>
       ),
-      props: { EuiTimelineItemEvent },
       snippet: timelineItemEventSnippet,
       demo: <TimelineItemEvent />,
     },
@@ -138,7 +137,12 @@ export const TimelineExample = {
           </p>
         </div>
       ),
-      props: { EuiTimeline, EuiTimelineItem, EuiTimelineItemEvent },
+      props: {
+        EuiTimeline,
+        EuiTimelineItem,
+        EuiTimelineItemEventPanel,
+        EuiTimelineItem,
+      },
       demo: <TimelineComplex />,
     },
   ],

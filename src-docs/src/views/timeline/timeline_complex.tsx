@@ -51,9 +51,11 @@ export default () => {
     avatarColor: string
   ) => (
     <EuiTimelineItem
-      panelHasBorder
-      panelPaddingSize="m"
-      headerPanelColor="subdued"
+      panelProps={{
+        hasBorder: true,
+        paddingSize: 'm',
+        headerColor: 'subdued',
+      }}
       icon={
         checked ? (
           <EuiAvatar
@@ -116,9 +118,11 @@ export default () => {
   return (
     <div>
       <EuiTimelineItem
-        panelHasBorder
-        panelPaddingSize="m"
-        headerPanelColor="subdued"
+        panelProps={{
+          hasBorder: true,
+          paddingSize: 'm',
+          headerColor: 'subdued',
+        }}
         icon={
           <EuiAvatar
             size="m"
