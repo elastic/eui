@@ -21,6 +21,7 @@ export const DisplayToggles = ({
   canInvalid = true,
   canPrepend = false,
   canAppend = false,
+  canClear = false,
   children,
   extras,
   spacerSize = 'l',
@@ -34,6 +35,7 @@ export const DisplayToggles = ({
   const [append, setAppend] = useState(true);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [invalid, setInvalid] = useState(true);
+  const [isClearable, setIsClearable] = useState(false);
 
   const canProps = {};
   if (canDisabled) canProps.disabled = disabled;
@@ -45,6 +47,7 @@ export const DisplayToggles = ({
   if (canPrepend && prepend) canProps.prepend = 'Prepend';
   if (canAppend && append) canProps.append = 'Append';
   if (canInvalid) canProps.isInvalid = invalid;
+  if (canClear) canProps.isClearable = isClearable;
 
   return (
     <Fragment>
@@ -161,6 +164,16 @@ export const DisplayToggles = ({
                   label={'append'}
                   checked={append}
                   onChange={(e) => setAppend(e.target.checked)}
+                />
+              </EuiFlexItem>
+            )}
+            {canClear && (
+              <EuiFlexItem grow={false}>
+                <EuiSwitch
+                  compressed
+                  label={'clearable'}
+                  checked={isClearable}
+                  onChange={(e) => setIsClearable(e.target.checked)}
                 />
               </EuiFlexItem>
             )}

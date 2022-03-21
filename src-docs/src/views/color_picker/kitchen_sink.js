@@ -19,7 +19,7 @@ export default () => {
   return (
     <React.Fragment>
       {/* DisplayToggles wrapper for Docs only */}
-      <DisplayToggles canLoading={false} canPrepend={true} canAppend={true}>
+      <DisplayToggles canLoading canPrepend canAppend canClear>
         <EuiColorPicker color={color} onChange={setColor} />
       </DisplayToggles>
       <EuiSpacer />
