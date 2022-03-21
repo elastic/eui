@@ -18,13 +18,14 @@ import { createSerializer } from '@emotion/jest';
  * it's recommended that this util be used in the last test in the file.
  */
 export const renderWithStyles = (component: ReactElement) => {
-  expect.addSnapshotSerializer(
-    createSerializer({
-      classNameReplacer(className) {
-        return className;
-      },
-    })
-  );
-
-  return render(component);
+  afterAll(() => {
+    expect.addSnapshotSerializer(
+      createSerializer({
+        classNameReplacer(className) {
+          return className;
+        },
+      })
+    );
+    expect(render(component)).toMatchSnapshot('renderWithStyles');
+  });
 };

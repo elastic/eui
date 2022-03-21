@@ -1,6 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiMark is rendered 1`] = `
+<mark
+  aria-label="aria-label"
+  class="euiMark testClass1 testClass2 css-1izqibv-euiMarkStyles-EuiMark"
+  data-test-subj="test subject string"
+>
+  Marked
+</mark>
+`;
+
+exports[`EuiMark is rendered: renderWithStyles 1`] = `
 .css-1izqibv-euiMarkStyles-EuiMark {
   background-color: rgba(0,119,204,0.1);
   font-weight: 700;
