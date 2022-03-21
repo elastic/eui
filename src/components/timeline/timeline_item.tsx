@@ -17,36 +17,25 @@ import {
   EuiTimelineItemIconProps,
 } from './timeline_item_icon';
 
-export type EuiTimelineItemProps = HTMLAttributes<HTMLDivElement> & {
-  eventHeader?: EuiTimelineItemEventProps['header'];
-  eventBody?: EuiTimelineItemEventProps['body'];
-  eventProps?: Omit<EuiTimelineItemEventProps, 'header' | 'body'>;
-} & EuiTimelineItemIconProps;
+export type EuiTimelineItemProps = HTMLAttributes<HTMLDivElement> &
+  EuiTimelineItemEventProps &
+  EuiTimelineItemIconProps;
 
 export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
-  children,
   className,
-  icon,
-  eventHeader,
-  eventBody,
-  eventProps,
   ...rest
 }) => {
   const classes = classNames(
     'euiTimelineItem',
-    { 'euiTimelineItem--hasHeader': eventHeader },
-    { 'euiTimelineItem--hasBody': eventBody },
+    { 'euiTimelineItem--hasHeader': rest.header },
+    { 'euiTimelineItem--hasBody': rest.body },
     className
   );
 
   return (
-    <div className={classes} {...rest}>
-      <EuiTimelineItemIcon icon={icon} />
-      <EuiTimelineItemEvent
-        header={eventHeader}
-        body={eventBody}
-        {...eventProps}
-      />
+    <div className={classes} {...(rest as HTMLAttributes<HTMLDivElement>)}>
+      <EuiTimelineItemIcon {...(rest as EuiTimelineItemIconProps)} />
+      <EuiTimelineItemEvent {...(rest as EuiTimelineItemEventProps)} />
     </div>
   );
 };

@@ -11,12 +11,12 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { EuiIcon, IconType } from '../icon';
 
-export interface EuiTimelineItemIconProps extends CommonProps {
+export type EuiTimelineItemIconProps = CommonProps & {
   /**
    * Main icon. To customize, pass a `string` as an `EuiIcon['type']` or any `ReactNode`.
    */
-  icon?: ReactNode | IconType;
-}
+  icon: ReactNode | IconType;
+};
 
 export const EuiTimelineItemIcon: FunctionComponent<EuiTimelineItemIconProps> = ({
   icon,

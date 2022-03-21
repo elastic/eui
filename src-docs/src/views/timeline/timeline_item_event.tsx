@@ -5,13 +5,14 @@ import {
   EuiText,
   EuiCodeBlock,
   EuiLink,
+  EuiMarkdownEditor,
 } from '../../../../src/components';
 
 export default () => (
   <div>
     <EuiTimelineItem
       icon={<EuiAvatar name="Checked" iconType="pencil" color="shade" />}
-      eventHeader={
+      header={
         <EuiText size="s">
           <p>
             <strong>Janet</strong> edited the dashboard 4 days ago
@@ -22,7 +23,7 @@ export default () => (
 
     <EuiTimelineItem
       icon={<EuiAvatar name="system" iconType="editorComment" color="shade" />}
-      eventHeader={
+      header={
         <EuiText size="s">
           <p>
             <strong>Nicole</strong> mentioned this dashboard in{' '}
@@ -34,29 +35,27 @@ export default () => (
 
     <EuiTimelineItem
       icon={<EuiAvatar name="system" iconType="alert" color="shade" />}
-      eventHeader={
+      header={
         <EuiText size="s">
           <p>Error detected in dashboard 5 minutes ago</p>
         </EuiText>
       }
-      eventProps={{
-        paddingSize: 's',
-        color: 'danger',
-      }}
+      panelPaddingSize="s"
+      panelColor="danger"
     />
 
     <EuiTimelineItem
       icon={
         <EuiAvatar name="system" iconType="editorCodeBlock" color="shade" />
       }
-      eventHeader={
+      header={
         <EuiText size="s">
           <p>
             <strong>Nicole</strong> generated a new iframe 2 minutes ago
           </p>
         </EuiText>
       }
-      eventBody={
+      body={
         <EuiCodeBlock
           language="html"
           isCopyable
@@ -67,11 +66,23 @@ export default () => (
 <iframe src="#" width="560" height="315" allowfullscreen="allowfullscreen"></iframe>`}
         </EuiCodeBlock>
       }
-      eventProps={{
-        hasBorder: true,
-        paddingSize: 's',
-        headerColor: 'subdued',
-      }}
+      panelHasBorder
+      panelPaddingSize="s"
+      headerPanelColor="subdued"
+    />
+
+    <EuiTimelineItem
+      icon={<EuiAvatar name="system" iconType="alert" color="shade" />}
+      body={
+        <EuiMarkdownEditor
+          aria-label="Markdown editor"
+          value={
+            'Just a markdown editor passed in the `body` prop without any panel customization :tada:'
+          }
+          onChange={() => {}}
+          initialViewMode="viewing"
+        />
+      }
     />
   </div>
 );

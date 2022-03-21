@@ -1,31 +1,30 @@
 import React from 'react';
-import { EuiTimelineItem, EuiText, EuiBadge } from '../../../../src/components';
+import {
+  EuiTimelineItem,
+  EuiText,
+  EuiTitle,
+  EuiCode,
+} from '../../../../src/components';
 
 export default () => (
   <div>
     <EuiTimelineItem
       icon="editorComment"
-      eventHeader={
+      header={
+        <EuiTitle size="xs">
+          <h2>
+            I&apos;m an event <EuiCode>header</EuiCode>
+          </h2>
+        </EuiTitle>
+      }
+      body={
         <EuiText size="s">
           <p>
-            The <EuiBadge>icon</EuiBadge> is on the left side and I&apos;m an{' '}
-            <EuiBadge>eventHeader</EuiBadge>
+            I&apos;m an event <EuiCode>body</EuiCode> and you can find the{' '}
+            <EuiCode>icon</EuiCode> on the left side.
           </p>
         </EuiText>
       }
-      eventBody={
-        <EuiText size="s">
-          <p>
-            The <EuiBadge>icon</EuiBadge> is on the left side and I&apos;m an{' '}
-            <EuiBadge>eventBody</EuiBadge>
-          </p>
-        </EuiText>
-      }
-      eventProps={{
-        paddingSize: 's',
-        hasBorder: true,
-        headerColor: 'subdued',
-      }}
     />
   </div>
 );

@@ -34,53 +34,51 @@ export type EuiTimelineItemEventProps = {
    */
   body?: ReactNode;
   /**
-   * Padding applied around the event header and/or event body.
+   * Changes the event wrapping div to `figure` and the div wrapping the `header` content to `figcaption`.
    */
-  paddingSize?: PaddingSize;
+  isFigure?: boolean;
   /**
-   * Sets the color of all the panel.
+   * When true the panel will grow in height and width to match the parent container
    */
-  color?: _EuiPanelDivlike['color'];
-  /**
-   * Sets the color of the header color.
-   */
-  headerColor?: _EuiPanelDivlike['color'];
+  panelGrow?: boolean;
   /**
    * Adds a border around the panel and a line separating the header and body.
    */
-  hasBorder?: _EuiPanelDivlike['hasBorder'];
+  panelHasBorder?: _EuiPanelDivlike['hasBorder'];
   /**
-   * Changes the event wrapper element to `figure` and the the header element to `figcaption`.
+   * Padding applied around the event header and/or event body.
    */
-  isFigure?: boolean;
-} & CommonProps &
-  Omit<
-    _EuiPanelDivlike,
-    'hasBorder' | 'color' | 'paddingSize' | 'borderRadius' | 'hasShadow'
-  >;
+  panelPaddingSize?: PaddingSize;
+  /**
+   * Sets the color of all the panel.
+   */
+  panelColor?: _EuiPanelDivlike['color'];
+  /**
+   * Sets the color of the header color.
+   */
+  headerPanelColor?: _EuiPanelDivlike['color'];
+} & CommonProps;
 
 export const EuiTimelineItemEvent: FunctionComponent<EuiTimelineItemEventProps> = ({
-  children,
   className,
   header,
   body,
-  paddingSize = 'none',
-  color = 'transparent',
-  headerColor = 'transparent',
-  hasBorder,
-  grow = true,
+  panelPaddingSize = 'none',
+  panelColor = 'transparent',
+  headerPanelColor = 'transparent',
+  panelHasBorder,
+  panelGrow = true,
   isFigure = false,
-  ...rest
 }) => {
   const classes = classNames(
     'euiTimelineItemEvent',
-    paddingSizeToClassNameMap[paddingSize],
+    paddingSizeToClassNameMap[panelPaddingSize],
     className
   );
 
   const headerClasses = classNames(
     'euiTimelineItemEvent__header',
-    `euiTimelineItemEvent__header--${headerColor}`
+    `euiTimelineItemEvent__header--${headerPanelColor}`
   );
 
   const bodyClasses = classNames('euiTimelineItemEvent__body');
@@ -92,10 +90,9 @@ export const EuiTimelineItemEvent: FunctionComponent<EuiTimelineItemEventProps> 
     <EuiPanel
       className={classes}
       paddingSize="none"
-      color={color}
-      hasBorder={hasBorder}
-      grow={grow}
-      {...rest}
+      color={panelColor}
+      hasBorder={panelHasBorder}
+      grow={panelGrow}
     >
       <Element className="euiTimelineItemEvent__inner">
         {header && (

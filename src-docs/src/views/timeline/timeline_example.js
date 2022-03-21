@@ -67,21 +67,38 @@ export const TimelineExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Use <strong>EuiTimelineItem</strong> to display timeline items. Each{' '}
-            <strong>EuiTimelineItem</strong> accepts two parts:{' '}
-            <EuiCode>icon</EuiCode> on the left side and an{' '}
-            <EuiCode>event</EuiCode> on the right side.
+            <strong>EuiTimelineItem</strong> has two parts: an icon on the left
+            side and an event on the right side. To create an item you basically
+            need the following props:
           </p>
-        </div>
+          <ul>
+            <li>
+              <EuiCode>icon</EuiCode>: main icon that appears on the left side.
+            </li>
+            <li>
+              <EuiCode>header</EuiCode>: the most important part of an event
+              (e.g. a title, username, metadata). All the content should be in
+              one line. When no <EuiCode>body</EuiCode> is present the{' '}
+              <EuiCode>header</EuiCode>
+              vertically center aligns with the left side icon.
+            </li>
+            <li>
+              <EuiCode>body</EuiCode>: additional event content. You can also
+              use this prop to pass more complex components (e.g. editors, code
+              blocks or any custom component).
+            </li>
+          </ul>
+        </>
       ),
       props: { EuiTimelineItem },
       snippet: timelineItemSnippet,
       demo: <TimelineItem />,
     },
     {
-      title: 'Timeline item event',
+      title: 'Customizing an event',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -89,35 +106,17 @@ export const TimelineExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             An event is basically the right side of the{' '}
             <strong>EuiTimelineItem</strong> and it&apos;s built on top of the{' '}
             <Link to="/layout/panel">
-              <strong>EuiPanel</strong>.
-            </Link>{' '}
-            Each event can have a <EuiCode>eventHeader</EuiCode>, a{' '}
-            <EuiCode>eventBody</EuiCode> and <EuiCode>eventProps</EuiCode>:
+              <strong>EuiPanel</strong>
+            </Link>
+            . This example demonstrates how you can use multiple panel props to
+            customize an event (e.g change the <EuiCode>panelColor</EuiCode>).
           </p>
-          <ul>
-            <li>
-              <EuiCode>eventHeader</EuiCode>: the most important part of the
-              event (e.g. a title, username, metadata). All the content should
-              be in one line. When no body is present the header vertically
-              center aligns with the left side icon.
-            </li>
-            <li>
-              <EuiCode>eventBody</EuiCode>: additional content. You can also use
-              this prop to pass more complex components (e.g. editors, code
-              blocks or any custom component).
-            </li>
-            <li>
-              <EuiCode>eventProps</EuiCode>: additional props to customize the
-              event panel. You can change the color, header color, and adjust
-              the padding.
-            </li>
-          </ul>
-        </div>
+        </>
       ),
       props: { EuiTimelineItemEvent },
       snippet: timelineItemEventSnippet,

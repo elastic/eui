@@ -51,6 +51,9 @@ export default () => {
     avatarColor: string
   ) => (
     <EuiTimelineItem
+      panelHasBorder
+      panelPaddingSize="m"
+      headerPanelColor="subdued"
       icon={
         checked ? (
           <EuiAvatar
@@ -63,12 +66,7 @@ export default () => {
           <EuiAvatar size="s" name={title} iconType="dot" color="shade" />
         )
       }
-      eventProps={{
-        hasBorder: true,
-        headerColor: 'subdued',
-        paddingSize: 'm',
-      }}
-      eventHeader={
+      header={
         <EuiFlexGroup alignItems="center" gutterSize="s">
           <EuiFlexItem grow={false}>
             <EuiSwitch
@@ -85,7 +83,7 @@ export default () => {
           </EuiFlexItem>
         </EuiFlexGroup>
       }
-      eventBody={
+      body={
         <>
           <EuiText size="s" grow={false}>
             <p>
@@ -118,6 +116,9 @@ export default () => {
   return (
     <div>
       <EuiTimelineItem
+        panelHasBorder
+        panelPaddingSize="m"
+        headerPanelColor="subdued"
         icon={
           <EuiAvatar
             size="m"
@@ -126,19 +127,14 @@ export default () => {
             color={euiPaletteColorBlind()[0]}
           />
         }
-        eventProps={{
-          hasBorder: true,
-          headerColor: 'subdued',
-          paddingSize: 'm',
-        }}
-        eventHeader={
+        header={
           <EuiTitle size="s">
             <h2>
               Hot phase <EuiBadge color="warning">Required</EuiBadge>
             </h2>
           </EuiTitle>
         }
-        eventBody={
+        body={
           <EuiText grow={false} size="s">
             <p>
               Store your most recent, most frequently-searched data in the hot
