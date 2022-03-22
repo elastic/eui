@@ -123,8 +123,11 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
           className="euiDatePopoverContent__padded--large"
         >
           <p>
-            Setting the time to &quot;now&quot; means that on every refresh this
-            time will be set to the time of the refresh.
+            <EuiI18n
+              token="euiDatePopoverContent.nowTabContent"
+              default='Setting the time to "now" means that on every refresh this
+            time will be set to the time of the refresh.'
+            />
           </p>
           <EuiButton
             data-test-subj="superDatePickerNowButton"
@@ -135,7 +138,17 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
             size="s"
             fill
           >
-            Set {position} date and time to now
+            {position === 'start' ? (
+              <EuiI18n
+                token="euiDatePopoverContent.nowTabButtonStart"
+                default="Set start date and time to now"
+              />
+            ) : (
+              <EuiI18n
+                token="euiDatePopoverContent.nowTabButtonEnd"
+                default="Set end date and time to now"
+              />
+            )}
           </EuiButton>
         </EuiText>
       ),
