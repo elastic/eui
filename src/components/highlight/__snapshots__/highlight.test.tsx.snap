@@ -7,23 +7,33 @@ exports[`EuiHighlight behavior loose matching matches strings with different cas
   color: #343741;
 }
 
+.emotion-0:before,
+.emotion-0:after {
+  -webkit-clip-path: inset(100%);
+  clip-path: inset(100%);
+  cli: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.emotion-0:before {
+  content: ' [highlight start] ';
+}
+
+.emotion-0:after {
+  content: ' [highlight end] ';
+}
+
 <span>
   different 
-  <span
-    class="euiScreenReaderOnly"
-  >
-    highlight start
-  </span>
   <mark
     class="euiMark emotion-0"
   >
     case
   </mark>
-  <span
-    class="euiScreenReaderOnly"
-  >
-    highlight end
-  </span>
    match
 </span>
 `;
@@ -35,54 +45,44 @@ exports[`EuiHighlight behavior matching applies to all matches 1`] = `
   color: #343741;
 }
 
+.emotion-0:before,
+.emotion-0:after {
+  -webkit-clip-path: inset(100%);
+  clip-path: inset(100%);
+  cli: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.emotion-0:before {
+  content: ' [highlight start] ';
+}
+
+.emotion-0:after {
+  content: ' [highlight end] ';
+}
+
 <span>
-  <span
-    class="euiScreenReaderOnly"
-  >
-    highlight start
-  </span>
   <mark
     class="euiMark emotion-0"
   >
     match
   </mark>
-  <span
-    class="euiScreenReaderOnly"
-  >
-    highlight end
-  </span>
    
-  <span
-    class="euiScreenReaderOnly"
-  >
-    highlight start
-  </span>
   <mark
     class="euiMark emotion-0"
   >
     match
   </mark>
-  <span
-    class="euiScreenReaderOnly"
-  >
-    highlight end
-  </span>
    
-  <span
-    class="euiScreenReaderOnly"
-  >
-    highlight start
-  </span>
   <mark
     class="euiMark emotion-0"
   >
     match
   </mark>
-  <span
-    class="euiScreenReaderOnly"
-  >
-    highlight end
-  </span>
 </span>
 `;
 
@@ -93,22 +93,32 @@ exports[`EuiHighlight behavior matching only applies to first match 1`] = `
   color: #343741;
 }
 
+.emotion-0:before,
+.emotion-0:after {
+  -webkit-clip-path: inset(100%);
+  clip-path: inset(100%);
+  cli: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.emotion-0:before {
+  content: ' [highlight start] ';
+}
+
+.emotion-0:after {
+  content: ' [highlight end] ';
+}
+
 <span>
-  <span
-    class="euiScreenReaderOnly"
-  >
-    highlight start
-  </span>
   <mark
     class="euiMark emotion-0"
   >
     match
   </mark>
-  <span
-    class="euiScreenReaderOnly"
-  >
-    highlight end
-  </span>
    match match
 </span>
 `;

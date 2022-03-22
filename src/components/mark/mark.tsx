@@ -6,13 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  HTMLAttributes,
-  Fragment,
-  FunctionComponent,
-  ReactNode,
-} from 'react';
-import { EuiScreenReaderOnly } from '../accessibility';
+import React, { HTMLAttributes, FunctionComponent, ReactNode } from 'react';
+import { css } from '@emotion/react';
 import { useEuiI18n } from '../i18n';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
@@ -34,18 +29,24 @@ export const EuiMark: FunctionComponent<EuiMarkProps> = ({
   const useTheme = useEuiTheme();
   const styles = euiMarkStyles(useTheme);
   const classes = classNames('euiMark', className);
+  const highlightStart = useEuiI18n(
+    'euiMark.highlightStart',
+    'highlight start'
+  );
+  const highlightEnd = useEuiI18n('euiMark.highlightEnd', 'highlight end');
+  const pseudoStyles = css`
+    &:before {
+      content: ' [${highlightStart}] ';
+    }
+
+    &:after {
+      content: ' [${highlightEnd}] ';
+    }
+  `;
 
   return (
-    <Fragment>
-      <EuiScreenReaderOnly>
-        <span>{useEuiI18n('euiMark.highlightStart', 'highlight start')}</span>
-      </EuiScreenReaderOnly>
-      <mark css={[styles]} className={classes} {...rest}>
-        {children}
-      </mark>
-      <EuiScreenReaderOnly>
-        <span>{useEuiI18n('euiMark.highlightEnd', 'highlight end')}</span>
-      </EuiScreenReaderOnly>
-    </Fragment>
+    <mark css={[styles, pseudoStyles]} className={classes} {...rest}>
+      {children}
+    </mark>
   );
 };

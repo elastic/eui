@@ -2133,6 +2133,26 @@ exports[`EuiSelectableListItem props searchValue 1`] = `
   color: #343741;
 }
 
+.emotion-0:before,
+.emotion-0:after {
+  -webkit-clip-path: inset(100%);
+  clip-path: inset(100%);
+  cli: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.emotion-0:before {
+  content: ' [highlight start] ';
+}
+
+.emotion-0:after {
+  content: ' [highlight end] ';
+}
+
 <div
   class="euiSelectableList testClass1 testClass2"
   data-test-subj="test subject string"
@@ -2227,21 +2247,11 @@ exports[`EuiSelectableListItem props searchValue 1`] = `
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
               <span>
-                <span
-                  class="euiScreenReaderOnly"
-                >
-                  highlight start
-                </span>
                 <mark
                   class="euiMark emotion-0"
                 >
                   Mi
                 </mark>
-                <span
-                  class="euiScreenReaderOnly"
-                >
-                  highlight end
-                </span>
                 mas
               </span>
             </span>
@@ -2344,6 +2354,26 @@ exports[`EuiSelectableListItem props searchValue 2`] = `
   color: #343741;
 }
 
+.emotion-0:before,
+.emotion-0:after {
+  -webkit-clip-path: inset(100%);
+  clip-path: inset(100%);
+  cli: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.emotion-0:before {
+  content: ' [highlight start] ';
+}
+
+.emotion-0:after {
+  content: ' [highlight end] ';
+}
+
 <div
   class="euiSelectableList testClass1 testClass2"
   data-test-subj="test subject string"
@@ -2438,21 +2468,11 @@ exports[`EuiSelectableListItem props searchValue 2`] = `
               class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
             >
               <span>
-                <span
-                  class="euiScreenReaderOnly"
-                >
-                  highlight start
-                </span>
                 <mark
                   class="euiMark emotion-0"
                 >
                   Mi
                 </mark>
-                <span
-                  class="euiScreenReaderOnly"
-                >
-                  highlight end
-                </span>
                 mas
               </span>
             </span>

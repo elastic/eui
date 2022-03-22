@@ -1,27 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiMark is rendered 1`] = `
-Array [
-  <span
-    class="euiScreenReaderOnly"
-  >
-    highlight start
-  </span>,
-  .emotion-0 {
+.emotion-0 {
   background-color: rgba(0,119,204,0.1);
   font-weight: 700;
   color: #343741;
 }
 
+.emotion-0:before,
+.emotion-0:after {
+  -webkit-clip-path: inset(100%);
+  clip-path: inset(100%);
+  cli: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.emotion-0:before {
+  content: ' [highlight start] ';
+}
+
+.emotion-0:after {
+  content: ' [highlight end] ';
+}
+
 <mark
-    class="euiMark emotion-0"
-  >
-    Marked
-  </mark>,
-  <span
-    class="euiScreenReaderOnly"
-  >
-    highlight end
-  </span>,
-]
+  class="euiMark emotion-0"
+>
+  Marked
+</mark>
 `;

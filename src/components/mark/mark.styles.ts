@@ -22,5 +22,16 @@ export const euiMarkStyles = ({ euiTheme, colorMode }: UseEuiTheme) => {
     // Override the browser's black color.
     // Can't use 'inherit' because the text to background color contrast may not be sufficient
     color: ${euiTheme.colors.text};
+
+    &:before,
+    &:after {
+      clip-path: inset(100%);
+      cli: rect(1px, 1px, 1px, 1px);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
   `;
 };
