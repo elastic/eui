@@ -14,6 +14,7 @@
  * @param clear {boolean} Is it currently clearable
  * @param isLoading {boolean} Is is currently loading
  * @param isInvalid {boolean} It is currently invalid
+ * @param isDropdown {boolean} It is as dropdown
  * @returns {string | undefined} Returns the string to append to the base className of the form control; or `undefined` if all evaluate to false
  */
 

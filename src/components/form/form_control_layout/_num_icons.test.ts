@@ -20,16 +20,18 @@ describe('getFormControlClassNameForIconCount', () => {
       clear: false,
       isLoading: false,
       isInvalid: false,
+      isDropdown: false,
     });
     expect(numberClass).toEqual(undefined);
   });
 
-  it('should return 2 if half are true', () => {
+  it('should return 2 if 2 are true', () => {
     const numberClass = getFormControlClassNameForIconCount({
       icon: false,
       clear: true,
       isLoading: true,
       isInvalid: false,
+      isDropdown: false,
     });
     expect(numberClass).toEqual('euiFormControlLayout--2icons');
   });
@@ -40,7 +42,8 @@ describe('getFormControlClassNameForIconCount', () => {
       clear: true,
       isLoading: true,
       isInvalid: true,
+      isDropdown: true,
     });
-    expect(numberClass).toEqual('euiFormControlLayout--4icons');
+    expect(numberClass).toEqual('euiFormControlLayout--5icons');
   });
 });

@@ -8,7 +8,7 @@
   $iconPadding: $euiFormControlPadding;
   $marginBetweenIcons: $euiFormControlPadding / 2;
 
-  // The `.euiFormControlLayout-{num}icons` selector string is also declared in `src/components/form/_numIcons.ts`.
+  // The `.euiFormControlLayout-{num}icons` selector string is also declared in `src/components/form/form_control_layout/_num_icons.test.ts`.
   // It is the same for all form controls so as to lessen the total classes exported,
   // we use a form control layout class on all form controls.
   @for $i from 1 through 5 {
