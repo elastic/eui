@@ -21,13 +21,13 @@ const timelineSnippet = `<EuiTimeline
 
 import TimelineItem from './timeline_item';
 const timelineItemSource = require('!!raw-loader!./timeline_item');
-const timelineItemSnippet = `<EuiTimelineItem icon="user">
+const timelineItemSnippet = `<EuiTimelineItem icon={icon}>
   {content}
 </EuiTimeline>`;
 
 import TimelineItemEvent from './timeline_item_event';
 const timelineItemEventSource = require('!!raw-loader!./timeline_item_event');
-const timelineItemEventSnippet = `<EuiTimelineItem icon="user">
+const timelineItemEventSnippet = `<EuiTimelineItem icon={icon}>
   <EuiPanel paddingSize="none" color="transparent">
     <EuiText size="s">
       <p>
