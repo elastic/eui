@@ -1,3 +1,19 @@
+.euiTimelineItemIcon {
+  position: relative;
+  flex-grow: 0;
+  margin-right: $euiSize;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: $euiSizeXXL / 2;
+    top: $euiSize;
+    width: $euiSizeXS / 2;
+    background-color: $euiColorLightShade;
+    height: calc(100% + #{$euiSize});
+  }
+}
+
 .euiTimelineItemIcon__content {
   min-width: $euiSizeXXL;
   display: flex;

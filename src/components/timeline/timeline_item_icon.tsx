@@ -7,10 +7,8 @@
  */
 
 import React, { FunctionComponent, ReactNode } from 'react';
-import classNames from 'classnames';
-import { CommonProps } from '../common';
 
-export type EuiTimelineItemIconProps = CommonProps & {
+export type EuiTimelineItemIconProps = {
   /**
    * Any node, but preferably a `EuiAvatar`
    */
@@ -18,13 +16,10 @@ export type EuiTimelineItemIconProps = CommonProps & {
 };
 
 export const EuiTimelineItemIcon: FunctionComponent<EuiTimelineItemIconProps> = ({
-  className,
   icon,
 }) => {
-  const classes = classNames('euiTimelineItemIcon', className);
-
   return (
-    <div className={classes}>
+    <div className="euiTimelineItemIcon">
       <div className="euiTimelineItemIcon__content">{icon}</div>
     </div>
   );

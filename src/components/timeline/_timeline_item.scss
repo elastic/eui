@@ -3,30 +3,6 @@
   display: flex;
   padding-bottom: $euiSize;
   min-height: $euiSize * 3.5;
-
-  .euiTimelineItemEvent {
-    flex-grow: 1;
-  }
-
-  .euiTimelineItemIcon {
-    position: relative;
-    flex-grow: 0;
-    margin-right: $euiSize;
-
-    &::before {
-      content: '';
-      position: absolute;
-      left: $euiSizeXXL / 2;
-      top: $euiSize;
-      width: $euiSizeXS / 2;
-      background-color: $euiColorLightShade;
-      height: calc(100% + #{$euiSize});
-    }
-  }
-}
-
-.euiTimelineItem--hasHeader:not(.euiTimelineItem--hasBody) {
-  align-items: center;
 }
 
 .euiTimelineItem:last-of-type {
@@ -35,4 +11,22 @@
       display: none;
     }
   }
+}
+
+
+// Align Items
+.euiTimelineItem--alignItemsFlexStart {
+  align-items: flex-start;
+}
+
+.euiTimelineItem--alignItemsCenter {
+  align-items: center;
+}
+
+.euiTimelineItem--alignItemsFlexEnd {
+  align-items: flex-end;
+}
+
+.euiTimelineItem--alignItemsBaseline {
+  align-items: baseline;
 }

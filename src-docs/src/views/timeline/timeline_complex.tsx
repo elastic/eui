@@ -8,9 +8,10 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiSpacer,
-  EuiPanel,
   EuiBadge,
   EuiTitle,
+  EuiSplitPanel,
+  EuiPanel,
 } from '../../../../src/components';
 
 import {
@@ -51,11 +52,6 @@ export default () => {
     avatarColor: string
   ) => (
     <EuiTimelineItem
-      panelProps={{
-        hasBorder: true,
-        paddingSize: 'm',
-        headerColor: 'subdued',
-      }}
       icon={
         checked ? (
           <EuiAvatar
@@ -68,25 +64,27 @@ export default () => {
           <EuiAvatar size="s" name={title} iconType="dot" color="subdued" />
         )
       }
-      header={
-        <EuiFlexGroup alignItems="center" gutterSize="s">
-          <EuiFlexItem grow={false}>
-            <EuiSwitch
-              showLabel={false}
-              label={checked ? `${title} is on` : `${title} is off`}
-              checked={checked}
-              onChange={onChange}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiTitle size="s">
-              <h2>{title}</h2>
-            </EuiTitle>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      }
-      body={
-        <>
+    >
+      <EuiSplitPanel.Outer color="transparent" hasBorder grow>
+        <EuiSplitPanel.Inner color="subdued">
+          <EuiFlexGroup alignItems="center" gutterSize="s">
+            <EuiFlexItem grow={false}>
+              <EuiSwitch
+                showLabel={false}
+                label={checked ? `${title} is on` : `${title} is off`}
+                checked={checked}
+                onChange={onChange}
+              />
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <EuiTitle size="s">
+                <h2>{title}</h2>
+              </EuiTitle>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiSplitPanel.Inner>
+
+        <EuiSplitPanel.Inner>
           <EuiText size="s" grow={false}>
             <p>
               Move data to the cold tier when you are searching it less often
@@ -103,26 +101,21 @@ export default () => {
                 buttonElement="div"
                 buttonContent="Advanced settings"
               >
-                <EuiPanel color="subdued">
+                <EuiPanel color="transparent">
                   Any content inside of <strong>EuiAccordion</strong> will
                   appear here.
                 </EuiPanel>
               </EuiAccordion>
             </>
           )}
-        </>
-      }
-    />
+        </EuiSplitPanel.Inner>
+      </EuiSplitPanel.Outer>
+    </EuiTimelineItem>
   );
 
   return (
     <div>
       <EuiTimelineItem
-        panelProps={{
-          hasBorder: true,
-          paddingSize: 'm',
-          headerColor: 'subdued',
-        }}
         icon={
           <EuiAvatar
             size="m"
@@ -131,23 +124,27 @@ export default () => {
             color={euiPaletteColorBlind()[0]}
           />
         }
-        header={
-          <EuiTitle size="s">
-            <h2>
-              Hot phase <EuiBadge color="warning">Required</EuiBadge>
-            </h2>
-          </EuiTitle>
-        }
-        body={
-          <EuiText grow={false} size="s">
-            <p>
-              Store your most recent, most frequently-searched data in the hot
-              tier. The hot tier provides the best indexing and search
-              performance by using the most powerful, expensive hardware.
-            </p>
-          </EuiText>
-        }
-      />
+      >
+        <EuiSplitPanel.Outer color="transparent" hasBorder grow>
+          <EuiSplitPanel.Inner color="subdued">
+            <EuiTitle size="s">
+              <h2>
+                Hot phase <EuiBadge color="warning">Required</EuiBadge>
+              </h2>
+            </EuiTitle>
+          </EuiSplitPanel.Inner>
+
+          <EuiSplitPanel.Inner>
+            <EuiText grow={false} size="s">
+              <p>
+                Store your most recent, most frequently-searched data in the hot
+                tier. The hot tier provides the best indexing and search
+                performance by using the most powerful, expensive hardware.
+              </p>
+            </EuiText>
+          </EuiSplitPanel.Inner>
+        </EuiSplitPanel.Outer>
+      </EuiTimelineItem>
 
       {phase('Warm phase', checked1, onChange1, euiPaletteColorBlind()[1])}
 

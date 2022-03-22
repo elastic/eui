@@ -7,7 +7,6 @@ import {
   EuiTimeline,
   EuiTimelineItem,
 } from '../../../../src/components';
-import { EuiTimelineItemEventPanel } from './_props';
 
 import Timeline from './timeline';
 const timelineSource = require('!!raw-loader!./timeline');
@@ -15,7 +14,7 @@ const timelineSnippet = `<EuiTimeline
   timelines={[
     {
       icon: icon,
-      children: body,
+      children: content,
     },
 ]}
 />`;
@@ -23,14 +22,20 @@ const timelineSnippet = `<EuiTimeline
 import TimelineItem from './timeline_item';
 const timelineItemSource = require('!!raw-loader!./timeline_item');
 const timelineItemSnippet = `<EuiTimelineItem icon="user">
-  {body}
+  {content}
 </EuiTimeline>`;
 
 import TimelineItemEvent from './timeline_item_event';
 const timelineItemEventSource = require('!!raw-loader!./timeline_item_event');
-const timelineItemEventSnippet = `<EuiTimelineItemEvent hasBorder header={header}>
-  {body}
-</EuiTimelineItemEvent>`;
+const timelineItemEventSnippet = `<EuiTimelineItem icon="user">
+  <EuiPanel paddingSize="none" color="transparent">
+    <EuiText size="s">
+      <p>
+        <strong>Janet</strong> edited the dashboard 4 days ago
+      </p>
+    </EuiText>
+  </EuiPanel>
+</EuiTimeline>`;
 
 import TimelineComplex from './timeline_complex';
 const TimelineComplexSource = require('!!raw-loader!./timeline_complex');
@@ -54,7 +59,7 @@ export const TimelineExample = {
           <strong>EuiTimeline</strong> will generate a timeline thread.
         </div>
       ),
-      props: { EuiTimeline, EuiTimelineItem, EuiTimelineItemEventPanel },
+      props: { EuiTimeline, EuiTimelineItem },
       snippet: timelineSnippet,
       demo: <Timeline />,
     },
@@ -79,15 +84,8 @@ export const TimelineExample = {
               <EuiCode>icon</EuiCode>: main icon that appears on the left side.
             </li>
             <li>
-              <EuiCode>header</EuiCode>: the most important part of an event
-              (e.g. a title, username, metadata). The content should be in one
-              line. When no <EuiCode>body</EuiCode> is passed it vertically
-              center aligns with the icon.
-            </li>
-            <li>
-              <EuiCode>body</EuiCode>: additional event content. You can also
-              use this prop to pass more complex components (e.g. editors, code
-              blocks or any custom component).
+              <EuiCode>children</EuiCode>: event content. You can pass any type
+              of node.
             </li>
           </ul>
         </>
@@ -107,13 +105,18 @@ export const TimelineExample = {
       text: (
         <>
           <p>
-            An event is basically the right side of the{' '}
-            <strong>EuiTimelineItem</strong> and it&apos;s built on top of the{' '}
+            Although any node is allowed as a <EuiCode>children</EuiCode> the
+            recommendation is to use a{' '}
             <Link to="/layout/panel">
               <strong>EuiPanel</strong>
-            </Link>
-            . This example demonstrates how you can use{' '}
-            <EuiCode>panelProps</EuiCode> to customize an event.
+            </Link>{' '}
+            or a{' '}
+            <Link to="/layout/panel#split-panels">
+              <strong>EuiSplitPanel</strong>
+            </Link>{' '}
+            when you content is text based. For other type of components like
+            editors, the recommendation is to pass as a children without any
+            wrapper.
           </p>
         </>
       ),
@@ -138,8 +141,6 @@ export const TimelineExample = {
       ),
       props: {
         EuiTimeline,
-        EuiTimelineItem,
-        EuiTimelineItemEventPanel,
         EuiTimelineItem,
       },
       demo: <TimelineComplex />,

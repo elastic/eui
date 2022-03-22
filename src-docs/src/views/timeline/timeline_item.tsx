@@ -2,30 +2,23 @@ import React from 'react';
 import {
   EuiTimelineItem,
   EuiText,
-  EuiTitle,
   EuiCode,
   EuiAvatar,
+  EuiPanel,
 } from '../../../../src/components';
 
 export default () => (
-  <div>
-    <EuiTimelineItem
-      icon={<EuiAvatar size="s" name="dot" iconType="dot" color="subdued" />}
-      header={
-        <EuiTitle size="xs">
-          <h2>
-            I&apos;m an event <EuiCode>header</EuiCode>
-          </h2>
-        </EuiTitle>
-      }
-      body={
-        <EuiText size="s">
-          <p>
-            I&apos;m an event <EuiCode>body</EuiCode> and you can find the{' '}
-            <EuiCode>icon</EuiCode> on the left side.
-          </p>
-        </EuiText>
-      }
-    />
-  </div>
+  <EuiTimelineItem
+    icon={<EuiAvatar size="s" name="dot" iconType="dot" color="subdued" />}
+    alignItems="center"
+  >
+    <EuiPanel paddingSize="none" color="transparent">
+      <EuiText size="s">
+        <p>
+          I&apos;m a <EuiCode>children</EuiCode> and you can find the{' '}
+          <EuiCode>icon</EuiCode> on the left side.
+        </p>
+      </EuiText>
+    </EuiPanel>
+  </EuiTimelineItem>
 );

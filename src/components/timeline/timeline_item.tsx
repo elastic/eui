@@ -6,34 +6,49 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import {
-  EuiTimelineItemEvent,
-  EuiTimelineItemEventProps,
-} from './timeline_item_event';
+import { EuiTimelineItemEvent } from './timeline_item_event';
 import {
   EuiTimelineItemIcon,
   EuiTimelineItemIconProps,
 } from './timeline_item_icon';
-export type EuiTimelineItemProps = EuiTimelineItemEventProps &
-  EuiTimelineItemIconProps;
+
+import { keysOf } from '../common';
+
+const alignItemsToClassNameMap = {
+  stretch: null,
+  flexStart: 'euiTimelineItem--alignItemsFlexStart',
+  flexEnd: 'euiTimelineItem--alignItemsFlexEnd',
+  center: 'euiTimelineItem--alignItemsCenter',
+  baseline: 'euiTimelineItem--alignItemsBaseline',
+};
+
+export const ALIGN_ITEMS = keysOf(alignItemsToClassNameMap);
+
+export type EuiTimelineItemAlignItems = keyof typeof alignItemsToClassNameMap;
+
+export type EuiTimelineItemProps = EuiTimelineItemIconProps & {
+  alignItems?: EuiTimelineItemAlignItems;
+} & HTMLAttributes<HTMLDivElement>;
 
 export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
   className,
+  children,
+  alignItems,
   ...rest
 }) => {
   const classes = classNames(
     'euiTimelineItem',
-    { 'euiTimelineItem--hasHeader': rest.header },
-    { 'euiTimelineItem--hasBody': rest.body },
+    alignItemsToClassNameMap[alignItems as EuiTimelineItemAlignItems],
     className
   );
 
   return (
     <div className={classes}>
       <EuiTimelineItemIcon {...(rest as EuiTimelineItemIconProps)} />
-      <EuiTimelineItemEvent {...(rest as EuiTimelineItemEventProps)} />
+
+      <EuiTimelineItemEvent>{children}</EuiTimelineItemEvent>
     </div>
   );
 };
