@@ -137,7 +137,7 @@ export const DisplayToggles = ({
                       compressed{' '}
                       <EuiToolTip content="Compressed usages are very specific. Click to view full compressed documentation">
                         <a href="#/forms/compressed-forms">
-                          <EuiIcon type="help" />
+                          <EuiIcon type="help" aria-label="help" />
                         </a>
                       </EuiToolTip>
                     </span>

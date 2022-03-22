@@ -77,6 +77,7 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
   prepend,
   append,
   onMouseUp,
+  disabled,
   ...rest
 }) => {
   // if this is injecting an empty option for `hasNoInitialSelection` then
@@ -133,10 +134,11 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
 
   return (
     <EuiFormControlLayout
-      icon={icon}
+      isDropdown={true}
       fullWidth={fullWidth}
       isLoading={isLoading}
       isInvalid={isInvalid}
+      isDisabled={disabled}
       compressed={compressed}
       prepend={prepend}
       append={append}
@@ -151,6 +153,7 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
           defaultValue={selectDefaultValue}
           value={value}
           onMouseUp={handleMouseUp}
+          disabled={disabled}
           {...rest}
         >
           {emptyOptionNode}

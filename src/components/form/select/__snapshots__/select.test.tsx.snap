@@ -4,8 +4,8 @@ exports[`EuiSelect is rendered 1`] = `
 <eui-form-control-layout
   compressed="false"
   fullwidth="false"
-  icon="[object Object]"
   inputid="id"
+  isdropdown="true"
   isloading="false"
 >
   <eui-validatable-control>
@@ -24,7 +24,7 @@ exports[`EuiSelect props disabled options are rendered 1`] = `
 <eui-form-control-layout
   compressed="false"
   fullwidth="false"
-  icon="[object Object]"
+  isdropdown="true"
   isloading="false"
 >
   <eui-validatable-control>
@@ -51,7 +51,7 @@ exports[`EuiSelect props fullWidth is rendered 1`] = `
 <eui-form-control-layout
   compressed="false"
   fullwidth="true"
-  icon="[object Object]"
+  isdropdown="true"
   isloading="false"
 >
   <eui-validatable-control>
@@ -66,7 +66,7 @@ exports[`EuiSelect props isInvalid is rendered 1`] = `
 <eui-form-control-layout
   compressed="false"
   fullwidth="false"
-  icon="[object Object]"
+  isdropdown="true"
   isinvalid="true"
   isloading="false"
 >
@@ -84,7 +84,7 @@ exports[`EuiSelect props isLoading is rendered 1`] = `
 <eui-form-control-layout
   compressed="false"
   fullwidth="false"
-  icon="[object Object]"
+  isdropdown="true"
   isloading="true"
 >
   <eui-validatable-control>
@@ -99,7 +99,7 @@ exports[`EuiSelect props options are rendered 1`] = `
 <eui-form-control-layout
   compressed="false"
   fullwidth="false"
-  icon="[object Object]"
+  isdropdown="true"
   isloading="false"
 >
   <eui-validatable-control>
@@ -125,7 +125,7 @@ exports[`EuiSelect props value option is rendered 1`] = `
 <eui-form-control-layout
   compressed="false"
   fullwidth="false"
-  icon="[object Object]"
+  isdropdown="true"
   isloading="false"
 >
   <eui-validatable-control>

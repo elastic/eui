@@ -22,6 +22,7 @@ export type _EuiFormControlLayoutNumIcons = {
   clear?: boolean;
   isLoading?: boolean;
   isInvalid?: boolean;
+  isDropdown?: boolean;
 };
 
 export function getFormControlClassNameForIconCount({
@@ -29,8 +30,9 @@ export function getFormControlClassNameForIconCount({
   clear,
   isLoading,
   isInvalid,
+  isDropdown,
 }: _EuiFormControlLayoutNumIcons): string | undefined {
-  const numIcons = [icon, clear, isInvalid, isLoading].filter(
+  const numIcons = [icon, clear, isInvalid, isLoading, isDropdown].filter(
     (item) => item === true
   ).length;
 
