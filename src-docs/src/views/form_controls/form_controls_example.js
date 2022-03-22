@@ -189,7 +189,7 @@ export const FormControlsExample = {
         <EuiSpacer />
 
         <p>
-          <strong>Placeholders</strong> should never replace a label but used as
+          <strong>Placeholders should never replace a label</strong> but used as
           a hint in addition to the label. Use the{' '}
           <EuiCode>placeholder</EuiCode> prop to describe the expected value of
           the input.
