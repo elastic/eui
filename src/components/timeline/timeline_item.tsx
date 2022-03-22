@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 import { EuiTimelineItemEvent } from './timeline_item_event';
 import {
@@ -14,39 +14,30 @@ import {
   EuiTimelineItemIconProps,
 } from './timeline_item_icon';
 
-import { keysOf } from '../common';
-
-const alignItemsToClassNameMap = {
-  stretch: null,
-  flexStart: 'euiTimelineItem--alignItemsFlexStart',
-  flexEnd: 'euiTimelineItem--alignItemsFlexEnd',
-  center: 'euiTimelineItem--alignItemsCenter',
-  baseline: 'euiTimelineItem--alignItemsBaseline',
-};
-
-export const ALIGN_ITEMS = keysOf(alignItemsToClassNameMap);
-
-export type EuiTimelineItemAlignItems = keyof typeof alignItemsToClassNameMap;
-
-export type EuiTimelineItemProps = EuiTimelineItemIconProps & {
-  alignItems?: EuiTimelineItemAlignItems;
-} & HTMLAttributes<HTMLDivElement>;
+export type EuiTimelineItemProps = EuiTimelineItemIconProps &
+  Omit<HTMLAttributes<HTMLDivElement>, 'aria-label' | 'className'> & {
+    /**
+     * Center aligns the event with the icon
+     */
+    isCenterAligned?: boolean;
+    /**
+     * Accepts any node.
+     */
+    children: ReactNode;
+  };
 
 export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
-  className,
   children,
-  alignItems,
-  ...rest
+  isCenterAligned,
+  icon,
 }) => {
-  const classes = classNames(
-    'euiTimelineItem',
-    alignItemsToClassNameMap[alignItems as EuiTimelineItemAlignItems],
-    className
-  );
+  const classes = classNames('euiTimelineItem', {
+    'euiTimelineItem--alignItemsCenter': isCenterAligned,
+  });
 
   return (
     <div className={classes}>
-      <EuiTimelineItemIcon {...(rest as EuiTimelineItemIconProps)} />
+      <EuiTimelineItemIcon icon={icon} />
 
       <EuiTimelineItemEvent>{children}</EuiTimelineItemEvent>
     </div>

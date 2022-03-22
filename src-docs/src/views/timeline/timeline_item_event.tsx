@@ -14,7 +14,7 @@ export default () => (
   <div>
     <EuiTimelineItem
       icon={<EuiAvatar name="Checked" iconType="pencil" color="subdued" />}
-      alignItems="center"
+      isCenterAligned
     >
       <EuiPanel paddingSize="none" color="transparent">
         <EuiText size="s">
@@ -29,7 +29,7 @@ export default () => (
       icon={
         <EuiAvatar name="system" iconType="editorComment" color="subdued" />
       }
-      alignItems="center"
+      isCenterAligned
     >
       <EuiPanel paddingSize="none" color="transparent">
         <EuiText size="s">

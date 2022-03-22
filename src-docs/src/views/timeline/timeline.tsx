@@ -16,7 +16,7 @@ const wrapper = (children: ReactElement) => (
 const items: EuiTimelineProps['items'] = [
   {
     icon: <EuiAvatar name="email" iconType="email" color="subdued" />,
-    alignItems: 'center',
+    isCenterAligned: true,
     children: wrapper(
       <p>
         <strong>janet@elastic.co</strong> was invited to the project
@@ -25,7 +25,7 @@ const items: EuiTimelineProps['items'] = [
   },
   {
     icon: <EuiAvatar name="pencil" iconType="pencil" color="subdued" />,
-    alignItems: 'center',
+    isCenterAligned: true,
     children: wrapper(
       <p>
         The project was renamed to <strong>Revenue Dashboard</strong>
@@ -36,7 +36,7 @@ const items: EuiTimelineProps['items'] = [
     icon: (
       <EuiAvatar name="folder closed" iconType="folderClosed" color="subdued" />
     ),
-    alignItems: 'center',
+    isCenterAligned: true,
     children: wrapper(<p>The project was archived</p>),
   },
 ];

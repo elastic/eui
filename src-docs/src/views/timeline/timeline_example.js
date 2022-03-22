@@ -84,8 +84,7 @@ export const TimelineExample = {
               <EuiCode>icon</EuiCode>: main icon that appears on the left side.
             </li>
             <li>
-              <EuiCode>children</EuiCode>: event content. You can pass any type
-              of node.
+              <EuiCode>children</EuiCode>: event content. You can pass any node.
             </li>
           </ul>
         </>
