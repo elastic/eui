@@ -48,7 +48,7 @@ export type EuiTimelineItemEventPanelProps = {
 export type EuiTimelineItemEventProps = {
   /**
    * The most important part of the event (e.g. a title, username, metadata).
-   * It should be one line. When no body is passed it vertically center aligns with the icon.
+   * The content should be in one line. When no body is passed it vertically center aligns with the icon.
    */
   header?: ReactNode;
   /**

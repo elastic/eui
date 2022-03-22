@@ -80,10 +80,9 @@ export const TimelineExample = {
             </li>
             <li>
               <EuiCode>header</EuiCode>: the most important part of an event
-              (e.g. a title, username, metadata). All the content should be in
-              one line. When no <EuiCode>body</EuiCode> is present the{' '}
-              <EuiCode>header</EuiCode>
-              vertically center aligns with the left side icon.
+              (e.g. a title, username, metadata). The content should be in one
+              line. When no <EuiCode>body</EuiCode> is passed it vertically
+              center aligns with the icon.
             </li>
             <li>
               <EuiCode>body</EuiCode>: additional event content. You can also
