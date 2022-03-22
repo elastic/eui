@@ -4,12 +4,13 @@ import {
   EuiText,
   EuiTitle,
   EuiCode,
+  EuiAvatar,
 } from '../../../../src/components';
 
 export default () => (
   <div>
     <EuiTimelineItem
-      icon="editorComment"
+      icon={<EuiAvatar size="s" name="dot" iconType="dot" color="subdued" />}
       header={
         <EuiTitle size="xs">
           <h2>

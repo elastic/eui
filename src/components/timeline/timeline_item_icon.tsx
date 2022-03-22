@@ -9,30 +9,23 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-import { EuiIcon, IconType } from '../icon';
 
 export type EuiTimelineItemIconProps = CommonProps & {
   /**
-   * Main icon. To customize, pass a `string` as an `EuiIcon['type']` or any `ReactNode`.
+   * Any node, but preferably a `EuiAvatar`
    */
-  icon: ReactNode | IconType;
+  icon: ReactNode;
 };
 
 export const EuiTimelineItemIcon: FunctionComponent<EuiTimelineItemIconProps> = ({
-  icon,
   className,
+  icon,
 }) => {
-  const iconRender = typeof icon === 'string' ? <EuiIcon type={icon} /> : icon;
   const classes = classNames('euiTimelineItemIcon', className);
-  const iconClasses = classNames({
-    euiTimelineItemIcon__iconBackground: typeof icon === 'string',
-  });
 
   return (
     <div className={classes}>
-      <div className="euiTimelineItemIcon__content">
-        <div className={iconClasses}>{iconRender}</div>
-      </div>
+      <div className="euiTimelineItemIcon__content">{icon}</div>
     </div>
   );
 };

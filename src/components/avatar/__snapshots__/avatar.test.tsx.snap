@@ -64,11 +64,12 @@ exports[`EuiAvatar props color as plain is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiAvatar props color as shade is rendered 1`] = `
+exports[`EuiAvatar props color as string is rendered 1`] = `
 <div
   aria-label="name"
-  class="euiAvatar euiAvatar--m euiAvatar--user euiAvatar--shade"
+  class="euiAvatar euiAvatar--m euiAvatar--user"
   role="img"
+  style="background-color:#000;color:#FFFFFF"
   title="name"
 >
   <span
@@ -79,12 +80,11 @@ exports[`EuiAvatar props color as shade is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiAvatar props color as string is rendered 1`] = `
+exports[`EuiAvatar props color as subdued is rendered 1`] = `
 <div
   aria-label="name"
-  class="euiAvatar euiAvatar--m euiAvatar--user"
+  class="euiAvatar euiAvatar--m euiAvatar--user euiAvatar--subdued"
   role="img"
-  style="background-color:#000;color:#FFFFFF"
   title="name"
 >
   <span

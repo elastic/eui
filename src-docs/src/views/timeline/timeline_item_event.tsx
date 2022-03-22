@@ -11,7 +11,7 @@ import {
 export default () => (
   <div>
     <EuiTimelineItem
-      icon={<EuiAvatar name="Checked" iconType="pencil" color="shade" />}
+      icon={<EuiAvatar name="Checked" iconType="pencil" color="subdued" />}
       header={
         <EuiText size="s">
           <p>
@@ -22,7 +22,9 @@ export default () => (
     />
 
     <EuiTimelineItem
-      icon={<EuiAvatar name="system" iconType="editorComment" color="shade" />}
+      icon={
+        <EuiAvatar name="system" iconType="editorComment" color="subdued" />
+      }
       header={
         <EuiText size="s">
           <p>
@@ -34,7 +36,7 @@ export default () => (
     />
 
     <EuiTimelineItem
-      icon={<EuiAvatar name="system" iconType="alert" color="shade" />}
+      icon={<EuiAvatar name="system" iconType="alert" color="subdued" />}
       header={
         <EuiText size="s">
           <p>Error detected in dashboard 5 minutes ago</p>
@@ -53,7 +55,7 @@ export default () => (
         headerColor: 'subdued',
       }}
       icon={
-        <EuiAvatar name="system" iconType="editorCodeBlock" color="shade" />
+        <EuiAvatar name="system" iconType="editorCodeBlock" color="subdued" />
       }
       header={
         <EuiText size="s">
@@ -76,7 +78,7 @@ export default () => (
     />
 
     <EuiTimelineItem
-      icon={<EuiAvatar name="system" iconType="alert" color="shade" />}
+      icon={<EuiAvatar name="system" iconType="alert" color="subdued" />}
       body={
         <EuiMarkdownEditor
           aria-label="Markdown editor"

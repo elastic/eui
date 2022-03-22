@@ -65,7 +65,7 @@ export default () => {
             color={avatarColor}
           />
         ) : (
-          <EuiAvatar size="s" name={title} iconType="dot" color="shade" />
+          <EuiAvatar size="s" name={title} iconType="dot" color="subdued" />
         )
       }
       header={

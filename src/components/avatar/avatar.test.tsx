@@ -121,8 +121,8 @@ describe('EuiAvatar', () => {
         expect(component).toMatchSnapshot();
       });
 
-      it('as shade is rendered', () => {
-        const component = render(<EuiAvatar name="name" color="shade" />);
+      it('as subdued is rendered', () => {
+        const component = render(<EuiAvatar name="name" color="subdued" />);
 
         expect(component).toMatchSnapshot();
       });

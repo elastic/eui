@@ -3,13 +3,14 @@ import {
   EuiTimeline,
   EuiTimelineProps,
   EuiText,
+  EuiAvatar,
 } from '../../../../src/components';
 
 const items: EuiTimelineProps['items'] = [
   {
-    icon: 'email',
+    icon: <EuiAvatar name="email" iconType="email" color="subdued" />,
     header: (
-      <EuiText size="s">
+      <EuiText>
         <p>
           <strong>janet@elastic.co</strong> was invited to the project
         </p>
@@ -17,9 +18,9 @@ const items: EuiTimelineProps['items'] = [
     ),
   },
   {
-    icon: 'pencil',
+    icon: <EuiAvatar name="pencil" iconType="pencil" color="subdued" />,
     header: (
-      <EuiText size="s">
+      <EuiText>
         <p>
           The project was renamed to <strong>Revenue Dashboard</strong>
         </p>
@@ -27,9 +28,11 @@ const items: EuiTimelineProps['items'] = [
     ),
   },
   {
-    icon: 'folderClosed',
+    icon: (
+      <EuiAvatar name="folder closed" iconType="folderClosed" color="subdued" />
+    ),
     header: (
-      <EuiText size="s">
+      <EuiText>
         <p>The project was archived</p>
       </EuiText>
     ),
