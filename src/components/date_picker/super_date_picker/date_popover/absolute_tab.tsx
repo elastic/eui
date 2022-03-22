@@ -25,12 +25,12 @@ export interface EuiAbsoluteTabProps {
   onChange: EuiDatePopoverContentProps['onChange'];
   roundUp: boolean;
   position: 'start' | 'end';
+  labelPrefix: string;
   utcOffset?: number;
 }
 
 interface EuiAbsoluteTabState {
   isTextInvalid: boolean;
-  sentenceCasedPosition: string;
   textInputValue: string;
   valueAsMoment: Moment | null;
 }
@@ -44,8 +44,6 @@ export class EuiAbsoluteTab extends Component<
   constructor(props: EuiAbsoluteTabProps) {
     super(props);
 
-    const sentenceCasedPosition = toSentenceCase(props.position);
-
     const parsedValue = dateMath.parse(props.value, { roundUp: props.roundUp });
     const valueAsMoment =
       parsedValue && parsedValue.isValid() ? parsedValue : moment();
@@ -56,7 +54,6 @@ export class EuiAbsoluteTab extends Component<
 
     this.state = {
       isTextInvalid: false,
-      sentenceCasedPosition,
       textInputValue,
       valueAsMoment,
     };
@@ -96,13 +93,14 @@ export class EuiAbsoluteTab extends Component<
   };
 
   render() {
-    const { dateFormat, timeFormat, locale, utcOffset } = this.props;
     const {
-      valueAsMoment,
-      isTextInvalid,
-      textInputValue,
-      sentenceCasedPosition,
-    } = this.state;
+      dateFormat,
+      timeFormat,
+      locale,
+      utcOffset,
+      labelPrefix,
+    } = this.props;
+    const { valueAsMoment, isTextInvalid, textInputValue } = this.state;
 
     return (
       <div>
@@ -128,7 +126,7 @@ export class EuiAbsoluteTab extends Component<
             value={textInputValue}
             onChange={this.handleTextChange}
             data-test-subj={'superDatePickerAbsoluteDateInput'}
-            prepend={<EuiFormLabel>{sentenceCasedPosition} date</EuiFormLabel>}
+            prepend={<EuiFormLabel>{labelPrefix}</EuiFormLabel>}
           />
         </EuiFormRow>
       </div>

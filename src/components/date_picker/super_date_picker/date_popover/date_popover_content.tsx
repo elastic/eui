@@ -89,6 +89,7 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
           onChange={onChange}
           roundUp={roundUp}
           position={position}
+          labelPrefix={labelPrefix}
           utcOffset={utcOffset}
         />
       ),
@@ -106,6 +107,7 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
           onChange={onChange}
           roundUp={roundUp}
           position={position}
+          labelPrefix={labelPrefix}
         />
       ),
       'data-test-subj': 'superDatePickerRelativeTab',
