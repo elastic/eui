@@ -1,3 +1,5 @@
+@import '../../icon/variables';
+
 .euiFormControlLayout {
   // Let the height expand as needed
   @include euiFormControlSize($includeAlternates: true);
@@ -9,7 +11,7 @@
   // The `.euiFormControlLayout-{num}icons` selector string is also declared in `src/components/form/_numIcons.ts`.
   // It is the same for all form controls so as to lessen the total classes exported,
   // we use a form control layout class on all form controls.
-  @for $i from 1 through 4 {
+  @for $i from 1 through 5 {
     &--#{$i}icons {
       padding-right: $iconPadding + ($iconSize + $marginBetweenIcons) * $i;
 
