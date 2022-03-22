@@ -18,7 +18,7 @@
 }
 
 .euiPanel--hasBorder {
-  > .euiTimelineItemEvent__header {
+  > .euiTimelineItemEvent__inner .euiTimelineItemEvent__header {
     border-bottom: $euiBorderThin;
   }
 }

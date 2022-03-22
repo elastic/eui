@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import {
   EuiTimelineItemEvent,
@@ -16,9 +16,7 @@ import {
   EuiTimelineItemIcon,
   EuiTimelineItemIconProps,
 } from './timeline_item_icon';
-
-export type EuiTimelineItemProps = HTMLAttributes<HTMLDivElement> &
-  EuiTimelineItemEventProps &
+export type EuiTimelineItemProps = EuiTimelineItemEventProps &
   EuiTimelineItemIconProps;
 
 export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
@@ -33,7 +31,7 @@ export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
   );
 
   return (
-    <div className={classes} {...(rest as HTMLAttributes<HTMLDivElement>)}>
+    <div className={classes}>
       <EuiTimelineItemIcon {...(rest as EuiTimelineItemIconProps)} />
       <EuiTimelineItemEvent {...(rest as EuiTimelineItemEventProps)} />
     </div>
