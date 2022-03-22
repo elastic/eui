@@ -6,7 +6,7 @@
   "main": "lib",
   "module": "es",
   "types": "eui.d.ts",
-  "docker_image": "node:16.13.1",
+  "docker_image": "node:16.14.2",
   "sideEffects": [
     "*.css",
     "*.scss"
