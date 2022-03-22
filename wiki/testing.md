@@ -44,6 +44,13 @@ A good test will document:
 
 ```jsx
 describe('YourComponent', () => {
+  // Snapshot will be generated at the end of the snap file
+  renderWithStyles(
+    <YourComponent {...requiredProps}>
+      Hello
+    </YourComponent>
+  ));
+
   describe('props', () => {
     describe('color', () => {
       test('is rendered', () => {
@@ -89,17 +96,6 @@ describe('YourComponent', () => {
 
       expect(findTestSubject(component, 'button').getDOMNode()).toBe(document.activeElement);
     });
-  });
-
-  // At the end of the file because `renderWithStyles` modifies `expect`.
-  test('is rendered', () => {
-    const component = renderWithStyles(
-      <YourComponent {...requiredProps}>
-        Hello
-      </YourComponent>
-    );
-
-    expect(component).toMatchSnapshot();
   });
 });
 

@@ -11,11 +11,18 @@ import { ReactElement } from 'react';
 import { createSerializer } from '@emotion/jest';
 
 /**
- * Use this function to add the `@emotion` Jest serializer to a given test.
- * The result will include the styles of elements in the component that use `@emotion` for styling.
+ * Use this function to add the `@emotion` Jest serializer to a single test.
+ * The resulting snapshot will include the styles of elements in the component that use `@emotion` for styling.
  *
- * Because `expect` is modified for the entire file after using,
- * it's recommended that this util be used in the last test in the file.
+ * This function must be run outside of a `test` block:
+ 
+  ```
+  describe('EuiMark', () => {
+    renderWithStyles(<EuiMark>Marked</EuiMark>);
+
+    test('is rendered', () => {});
+  });
+  ```
  */
 export const renderWithStyles = (component: ReactElement) => {
   afterAll(() => {
@@ -26,6 +33,6 @@ export const renderWithStyles = (component: ReactElement) => {
         },
       })
     );
-    expect(render(component)).toMatchSnapshot('renderWithStyles');
+    expect(render(component)).toMatchSnapshot('renders with emotion styles');
   });
 };
