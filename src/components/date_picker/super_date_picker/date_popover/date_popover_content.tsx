@@ -8,6 +8,7 @@
 
 import React, { FunctionComponent } from 'react';
 
+import { EuiI18n, useEuiI18n } from '../../../i18n';
 import { EuiTabbedContent, EuiTabbedContentProps } from '../../../tabs';
 import { EuiText } from '../../../text';
 import { EuiButton } from '../../../button';
@@ -55,12 +56,30 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
     }
   };
 
-  const ariaLabel = `${position === 'start' ? 'Start' : 'End'} date:`;
+  const startDateLabel = useEuiI18n(
+    'euiDatePopoverContent.startDateLabel',
+    'Start date'
+  );
+  const endDateLabel = useEuiI18n(
+    'euiDatePopoverContent.endDateLabel',
+    'End date'
+  );
+  const labelPrefix = position === 'start' ? startDateLabel : endDateLabel;
+
+  const absoluteLabel = useEuiI18n(
+    'euiDatePopoverContent.absoluteTabLabel',
+    'Absolute'
+  );
+  const relativeLabel = useEuiI18n(
+    'euiDatePopoverContent.relativeTabLabel',
+    'Relative'
+  );
+  const nowLabel = useEuiI18n('euiDatePopoverContent.nowTabLabel', 'Now');
 
   const renderTabs = [
     {
       id: DATE_MODES.ABSOLUTE,
-      name: 'Absolute',
+      name: absoluteLabel,
       content: (
         <EuiAbsoluteTab
           dateFormat={dateFormat}
@@ -74,11 +93,11 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
         />
       ),
       'data-test-subj': 'superDatePickerAbsoluteTab',
-      'aria-label': `${ariaLabel} Absolute`,
+      'aria-label': `${labelPrefix}: ${absoluteLabel}`,
     },
     {
       id: DATE_MODES.RELATIVE,
-      name: 'Relative',
+      name: relativeLabel,
       content: (
         <EuiRelativeTab
           dateFormat={dateFormat}
@@ -90,11 +109,11 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
         />
       ),
       'data-test-subj': 'superDatePickerRelativeTab',
-      'aria-label': `${ariaLabel} Relative`,
+      'aria-label': `${labelPrefix}: ${relativeLabel}`,
     },
     {
       id: DATE_MODES.NOW,
-      name: 'Now',
+      name: nowLabel,
       content: (
         <EuiText
           size="s"
@@ -119,7 +138,7 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
         </EuiText>
       ),
       'data-test-subj': 'superDatePickerNowTab',
-      'aria-label': `${ariaLabel} Now`,
+      'aria-label': `${labelPrefix}: ${nowLabel}`,
     },
   ];
 
