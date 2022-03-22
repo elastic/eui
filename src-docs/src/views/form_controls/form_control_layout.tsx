@@ -6,9 +6,12 @@ import {
   EuiButtonEmpty,
   EuiText,
   useGeneratedHtmlId,
+  useEuiTheme,
+  EuiFieldText,
 } from '../../../../src';
 
 export default () => {
+  const { euiTheme } = useEuiTheme();
   const labelInputId = useGeneratedHtmlId({ prefix: 'labelInput' });
   const readOnlyInputId = useGeneratedHtmlId({ prefix: 'readOnlyInput' });
 
@@ -17,99 +20,66 @@ export default () => {
       css={{
         display: 'inline-flex',
         flexWrap: 'wrap',
-        gap: 24,
+        gap: euiTheme.size.l,
       }}
     >
-      <EuiFormControlLayout icon="search" isInvalid>
-        <input
-          type="text"
-          className="euiFieldText"
+      <EuiFormControlLayout icon="search">
+        <EuiFieldText
+          type="search"
+          controlOnly
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
 
       <EuiFormControlLayout isLoading>
-        <input
+        <EuiFieldText
           type="text"
-          className="euiFieldText"
+          controlOnly
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
 
       <EuiFormControlLayout clear={{ onClick: () => {} }}>
-        <input
+        <EuiFieldText
           type="text"
-          className="euiFieldText"
+          controlOnly
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
 
-      <EuiFormControlLayout isLoading clear={{ onClick: () => {} }}>
-        <input
+      <EuiFormControlLayout isInvalid>
+        <EuiFieldText
           type="text"
-          className="euiFieldText"
-          aria-label="Use aria labels when no actual label is in use"
-        />
-      </EuiFormControlLayout>
-
-      <EuiFormControlLayout isLoading icon="search">
-        <input
-          type="text"
-          className="euiFieldText"
-          aria-label="Use aria labels when no actual label is in use"
-        />
-      </EuiFormControlLayout>
-
-      <EuiFormControlLayout
-        isLoading
-        icon={{ type: 'arrowDown', side: 'right' }}
-      >
-        <input
-          type="text"
-          className="euiFieldText"
+          controlOnly
+          isInvalid
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
 
       <EuiFormControlLayout clear={{ onClick: () => {} }} icon="search">
-        <input
+        <EuiFieldText
+          type="search"
+          controlOnly
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      </EuiFormControlLayout>
+
+      <EuiFormControlLayout isLoading isDropdown>
+        <EuiFieldText
           type="text"
-          className="euiFieldText"
+          controlOnly
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
 
       <EuiFormControlLayout
         clear={{ onClick: () => {} }}
-        icon={{ type: 'arrowDown', side: 'right' }}
+        isDropdown
+        icon={{ type: 'stopFilled', color: 'success', side: 'left' }}
       >
-        <input
+        <EuiFieldText
           type="text"
-          className="euiFieldText"
-          aria-label="Use aria labels when no actual label is in use"
-        />
-      </EuiFormControlLayout>
-
-      <EuiFormControlLayout
-        isLoading
-        clear={{ onClick: () => {} }}
-        icon="search"
-      >
-        <input
-          type="text"
-          className="euiFieldText"
-          aria-label="Use aria labels when no actual label is in use"
-        />
-      </EuiFormControlLayout>
-
-      <EuiFormControlLayout
-        isLoading
-        clear={{ onClick: () => {} }}
-        icon={{ type: 'arrowDown', side: 'right' }}
-      >
-        <input
-          type="text"
-          className="euiFieldText"
+          controlOnly
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
@@ -117,11 +87,12 @@ export default () => {
       <EuiFormControlLayout
         isLoading
         clear={{ onClick: () => {} }}
-        icon="search"
+        icon={{ type: 'bolt', side: 'right' }}
+        isDropdown
       >
-        <input
+        <EuiFieldText
           type="text"
-          className="euiFieldText"
+          controlOnly
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
@@ -129,9 +100,10 @@ export default () => {
       <EuiFormControlLayout
         prepend={<EuiFormLabel htmlFor={labelInputId}>Label</EuiFormLabel>}
       >
-        <input
+        <EuiFieldText
           type="text"
-          className="euiFieldText euiFieldText--inGroup"
+          className="euiFieldText--inGroup"
+          controlOnly
           id={labelInputId}
         />
       </EuiFormControlLayout>
@@ -143,10 +115,11 @@ export default () => {
         }
         append={<EuiButtonEmpty size="xs">Button</EuiButtonEmpty>}
       >
-        <input
+        <EuiFieldText
           type="text"
-          className="euiFieldText euiFieldText--inGroup"
+          className="euiFieldText--inGroup"
           id={readOnlyInputId}
+          controlOnly
           readOnly
         />
       </EuiFormControlLayout>
@@ -158,9 +131,10 @@ export default () => {
           </EuiText>
         }
       >
-        <input
+        <EuiFieldText
           type="number"
-          className="euiFieldNumber euiFieldNumber--inGroup"
+          className="euiFieldNumber--inGroup"
+          controlOnly
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
@@ -174,9 +148,10 @@ export default () => {
           </EuiButtonEmpty>
         }
       >
-        <input
+        <EuiFieldText
           type="text"
-          className="euiFieldText euiFieldText--inGroup"
+          className="euiFieldText--inGroup"
+          controlOnly
           aria-label="Use aria labels when no actual label is in use"
         />
       </EuiFormControlLayout>
