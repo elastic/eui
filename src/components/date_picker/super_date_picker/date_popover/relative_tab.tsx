@@ -23,7 +23,6 @@ import {
 import { EuiSpacer } from '../../../spacer';
 
 import { TimeOptions } from '../time_options';
-import { relativeOptions } from '../relative_options';
 import {
   parseRelativeParts,
   toRelativeStringFromParts,
@@ -106,7 +105,7 @@ export class EuiRelativeTab extends Component<
   };
 
   render() {
-    const { timeUnits } = this.props.timeOptions;
+    const { timeUnits, relativeOptions } = this.props.timeOptions;
     const { count, unit } = this.state;
     const invalidDate = this.props.value === INVALID_DATE;
     const invalidValue = count === undefined || count < 0;

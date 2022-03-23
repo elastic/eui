@@ -10,7 +10,12 @@ import { keysOf } from '../../common';
 import { useEuiI18n } from '../../i18n';
 import { EuiSelectOption } from '../../form';
 
-import { TimeUnitId, TimeUnitLabel, TimeUnitLabelPlural } from '../types';
+import {
+  TimeUnitId,
+  TimeUnitLabel,
+  TimeUnitLabelPlural,
+  RelativeOption,
+} from '../types';
 
 export const LAST = 'last';
 export const NEXT = 'next';
@@ -20,6 +25,7 @@ export type TimeOptions = {
   timeUnits: { [id in TimeUnitId]: TimeUnitLabel };
   timeUnitsOptions: EuiSelectOption[];
   timeUnitsPlural: { [id in TimeUnitId]: TimeUnitLabelPlural };
+  relativeOptions: RelativeOption[];
 };
 
 export const useI18nTimeOptions = () => {
@@ -57,11 +63,71 @@ export const useI18nTimeOptions = () => {
     y: useEuiI18n('euiTimeOptions.years', 'years'),
   };
 
+  const relativeOptions: RelativeOption[] = [
+    {
+      text: useEuiI18n('euiTimeOptions.secondsAgo', 'Seconds ago'),
+      value: 's',
+    },
+    {
+      text: useEuiI18n('euiTimeOptions.minutesAgo', 'Minutes ago'),
+      value: 'm',
+    },
+    {
+      text: useEuiI18n('euiTimeOptions.hoursAgo', 'Hours ago'),
+      value: 'h',
+    },
+    {
+      text: useEuiI18n('euiTimeOptions.daysAgo', 'Days ago'),
+      value: 'd',
+    },
+    {
+      text: useEuiI18n('euiTimeOptions.weeksAgo', 'Weeks ago'),
+      value: 'w',
+    },
+    {
+      text: useEuiI18n('euiTimeOptions.monthsAgo', 'Months ago'),
+      value: 'M',
+    },
+    {
+      text: useEuiI18n('euiTimeOptions.yearsAgo', 'Years ago'),
+      value: 'y',
+    },
+    {
+      text: useEuiI18n('euiTimeOptions.secondsFromNow', 'Seconds from now'),
+      value: 's+',
+    },
+    {
+      text: useEuiI18n('euiTimeOptions.minutesFromNow', 'Minutes from now'),
+      value: 'm+',
+    },
+    {
+      text: useEuiI18n('euiTimeOptions.hoursFromNow', 'Hours from now'),
+      value: 'h+',
+    },
+    {
+      text: useEuiI18n('euiTimeOptions.daysFromNow', 'Days from now'),
+      value: 'd+',
+    },
+    {
+      text: useEuiI18n('euiTimeOptions.weeksFromNow', 'Weeks from now'),
+      value: 'w+',
+    },
+    {
+      text: useEuiI18n('euiTimeOptions.monthsFromNow', 'Months from now'),
+      value: 'M+',
+    },
+    {
+      text: useEuiI18n('euiTimeOptions.yearsFromNow', 'Years from now'),
+      value: 'y+',
+    },
+  ];
+
   return {
     timeTenseOptions,
     timeUnits,
     timeUnitsOptions,
     timeUnitsPlural,
+    relativeOptions,
   };
 };
 
