@@ -9,7 +9,7 @@ import {
 
 export default () => (
   <EuiTimelineItem
-    icon={<EuiAvatar size="s" name="dot" iconType="dot" color="subdued" />}
+    icon={<EuiAvatar size="s" name="dot icon" iconType="dot" color="subdued" />}
     verticalAlign="center"
   >
     <EuiPanel paddingSize="none" color="transparent">

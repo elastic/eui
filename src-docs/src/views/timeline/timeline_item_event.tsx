@@ -14,10 +14,10 @@ import {
 export default () => (
   <div>
     <EuiTimelineItem
-      icon={<EuiAvatar name="Checked" iconType="pencil" color="subdued" />}
+      icon={<EuiAvatar name="pencil icon" iconType="pencil" color="subdued" />}
       verticalAlign="center"
     >
-      <EuiPanel paddingSize="none" color="transparent">
+      <EuiPanel paddingSize="none" color="transparent" grow={false}>
         <EuiText size="s">
           <p>
             <strong>Janet</strong> edited the dashboard 4 days ago
@@ -28,7 +28,11 @@ export default () => (
 
     <EuiTimelineItem
       icon={
-        <EuiAvatar name="system" iconType="editorComment" color="subdued" />
+        <EuiAvatar
+          name="comment icon"
+          iconType="editorComment"
+          color="subdued"
+        />
       }
       verticalAlign="center"
     >
@@ -43,9 +47,9 @@ export default () => (
     </EuiTimelineItem>
 
     <EuiTimelineItem
-      icon={<EuiAvatar name="system" iconType="alert" color="subdued" />}
+      icon={<EuiAvatar name="alert icon" iconType="alert" color="subdued" />}
     >
-      <EuiPanel color="danger" paddingSize="s">
+      <EuiPanel color="danger" paddingSize="s" grow={false}>
         <EuiText size="s">
           <p>Error detected in dashboard 5 minutes ago</p>
         </EuiText>
@@ -54,7 +58,11 @@ export default () => (
 
     <EuiTimelineItem
       icon={
-        <EuiAvatar name="system" iconType="editorCodeBlock" color="subdued" />
+        <EuiAvatar
+          name="code block icon"
+          iconType="editorCodeBlock"
+          color="subdued"
+        />
       }
     >
       <EuiSplitPanel.Outer hasBorder grow>
@@ -81,7 +89,7 @@ export default () => (
     </EuiTimelineItem>
 
     <EuiTimelineItem
-      icon={<EuiAvatar name="system" iconType="alert" color="subdued" />}
+      icon={<EuiAvatar name="alert icon" iconType="alert" color="subdued" />}
     >
       <EuiMarkdownEditor
         aria-label="Markdown editor"

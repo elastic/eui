@@ -57,12 +57,12 @@ export default () => {
         checked ? (
           <EuiAvatar
             size="m"
-            name={title}
+            name="check icon"
             iconType="check"
             color={avatarColor}
           />
         ) : (
-          <EuiAvatar size="s" name={title} iconType="dot" color="subdued" />
+          <EuiAvatar size="s" name="dot icon" iconType="dot" color="subdued" />
         )
       }
     >
@@ -120,7 +120,7 @@ export default () => {
         icon={
           <EuiAvatar
             size="m"
-            name="Checked"
+            name="check icon"
             iconType="check"
             color={euiPaletteColorBlind()[0]}
           />
