@@ -10,7 +10,7 @@ import {
 export default () => (
   <EuiTimelineItem
     icon={<EuiAvatar size="s" name="dot" iconType="dot" color="subdued" />}
-    isCenterAligned
+    verticalAlign="center"
   >
     <EuiPanel paddingSize="none" color="transparent">
       <EuiText size="s">

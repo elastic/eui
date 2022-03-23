@@ -13,6 +13,28 @@
   }
 }
 
-.euiTimelineItem--alignItemsCenter {
-  align-items: center;
+// Vertical align items
+.euiTimelineItem--verticalAlignTop {
+  .euiTimelineItemIcon {
+    align-items: flex-start;
+  }
+
+  .euiTimelineItemEvent {
+    align-self: flex-start;
+  }
+}
+
+.euiTimelineItem--verticalAlignCenter {
+  .euiTimelineItemIcon {
+    align-items: center;
+
+    // when the vertical alignment is center the vertical line starts in the middle of the container
+    &::before {
+      top: 50%;
+    }
+  }
+
+  .euiTimelineItemEvent {
+    align-self: center;
+  }
 }

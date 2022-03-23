@@ -6,34 +6,47 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { EuiTimelineItemEvent } from './timeline_item_event';
+import {
+  EuiTimelineItemEvent,
+  EuiTimelineItemEventProps,
+} from './timeline_item_event';
 import {
   EuiTimelineItemIcon,
   EuiTimelineItemIconProps,
 } from './timeline_item_icon';
+import { CommonProps, keysOf } from '../common';
+
+const verticalAlignToClassNameMap = {
+  top: 'euiTimelineItem--verticalAlignTop',
+  center: 'euiTimelineItem--verticalAlignCenter',
+};
+
+export const VERTICAL_ALIGN = keysOf(verticalAlignToClassNameMap);
+
+export type EuiTimelineItemVerticalAlign = keyof typeof verticalAlignToClassNameMap;
 
 export type EuiTimelineItemProps = EuiTimelineItemIconProps &
-  Omit<HTMLAttributes<HTMLDivElement>, 'aria-label' | 'className'> & {
+  EuiTimelineItemEventProps & {
     /**
-     * Center aligns the event with the icon
+     * Vertical aligns the event with the icon
      */
-    isCenterAligned?: boolean;
-    /**
-     * Accepts any node.
-     */
-    children: ReactNode;
-  };
+    verticalAlign?: EuiTimelineItemVerticalAlign;
+  } & CommonProps &
+  HTMLAttributes<HTMLDivElement>;
 
 export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
   children,
-  isCenterAligned,
+  verticalAlign = 'top',
   icon,
+  className,
 }) => {
-  const classes = classNames('euiTimelineItem', {
-    'euiTimelineItem--alignItemsCenter': isCenterAligned,
-  });
+  const classes = classNames(
+    'euiTimelineItem',
+    verticalAlignToClassNameMap[verticalAlign as EuiTimelineItemVerticalAlign],
+    className
+  );
 
   return (
     <div className={classes}>

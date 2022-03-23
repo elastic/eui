@@ -1,8 +1,10 @@
 .euiTimelineItemIcon {
+  display: flex;
   position: relative;
   flex-grow: 0;
   margin-right: $euiSize;
 
+  // timeline vertical line
   &::before {
     content: '';
     position: absolute;

@@ -6,8 +6,17 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 
-export const EuiTimelineItemEvent: FunctionComponent = ({ children }) => {
+export type EuiTimelineItemEventProps = {
+  /**
+   * Accepts any node.
+   */
+  children: ReactNode;
+};
+
+export const EuiTimelineItemEvent: FunctionComponent<EuiTimelineItemEventProps> = ({
+  children,
+}) => {
   return <div className="euiTimelineItemEvent">{children}</div>;
 };
