@@ -26,17 +26,6 @@ import { ApplyTime, QuickSelect, TimeUnitId } from '../../types';
 import { keysOf } from '../../../common';
 import { parseTimeParts } from './quick_select_utils';
 
-const LAST = 'last';
-const NEXT = 'next';
-
-const timeTenseOptions = [
-  { value: LAST, text: 'Last' },
-  { value: NEXT, text: 'Next' },
-];
-const timeUnitsOptions = keysOf(timeUnits).map((key) => {
-  return { value: key, text: `${timeUnits[key]}s` };
-});
-
 type EuiQuickSelectState = QuickSelect;
 
 export interface EuiQuickSelectProps {
