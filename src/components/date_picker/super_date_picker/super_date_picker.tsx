@@ -26,6 +26,7 @@ import {
   QuickSelectPanel,
 } from '../types';
 
+import { TimeOptions, RenderI18nTimeOptions } from './time_options';
 import {
   prettyDuration,
   showPrettyDuration,
@@ -58,21 +59,21 @@ export interface OnRefreshProps extends DurationRange {
 }
 
 export type EuiSuperDatePickerProps = CommonProps & {
-  commonlyUsedRanges: DurationRange[];
+  commonlyUsedRanges?: DurationRange[];
   customQuickSelectPanels?: QuickSelectPanel[];
 
   /**
    * Specifies the formatted used when displaying dates and/or datetimes
    */
-  dateFormat: string;
+  dateFormat?: string;
 
   /**
    * Set isAutoRefreshOnly to true to limit the component to only display auto refresh content.
    */
-  isAutoRefreshOnly: boolean;
-  isDisabled: boolean;
+  isAutoRefreshOnly?: boolean;
+  isDisabled?: boolean;
   isLoading?: boolean;
-  isPaused: boolean;
+  isPaused?: boolean;
 
   /**
    * Sets the overall width by adding sensible min and max widths.
@@ -110,26 +111,26 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * Callback for when the time changes.
    */
   onTimeChange: (props: OnTimeChangeProps) => void;
-  recentlyUsedRanges: DurationRange[];
+  recentlyUsedRanges?: DurationRange[];
 
   /**
    * Refresh interval in milliseconds
    */
-  refreshInterval: Milliseconds;
+  refreshInterval?: Milliseconds;
 
-  start: ShortDate;
-  end: ShortDate;
+  start?: ShortDate;
+  end?: ShortDate;
 
   /**
    * Specifies the formatted used when displaying times
    */
-  timeFormat: string;
+  timeFormat?: string;
   utcOffset?: number;
 
   /**
    * Set showUpdateButton to false to immediately invoke onTimeChange for all start and end changes.
    */
-  showUpdateButton: boolean | 'iconOnly';
+  showUpdateButton?: boolean | 'iconOnly';
 
   /**
    * Hides the actual input reducing to just the quick select button.
@@ -140,6 +141,20 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * Props passed to the update button #EuiSuperUpdateButtonProps
    */
   updateButtonProps?: EuiSuperUpdateButtonProps;
+};
+
+type EuiSuperDatePickerInternalProps = EuiSuperDatePickerProps & {
+  timeOptions: TimeOptions;
+  // The below options are marked as required because they have default fallbacks
+  commonlyUsedRanges: DurationRange[];
+  recentlyUsedRanges: DurationRange[];
+  start: ShortDate;
+  end: ShortDate;
+  refreshInterval: Milliseconds;
+  dateFormat: string;
+  timeFormat: string;
+  isPaused: boolean;
+  isDisabled: boolean;
 };
 
 interface EuiSuperDatePickerState {
@@ -176,8 +191,8 @@ function isRangeInvalid(start: ShortDate, end: ShortDate) {
   return isInvalid;
 }
 
-export class EuiSuperDatePicker extends Component<
-  EuiSuperDatePickerProps,
+export class EuiSuperDatePickerInternal extends Component<
+  EuiSuperDatePickerInternalProps,
   EuiSuperDatePickerState
 > {
   static defaultProps = {
@@ -216,7 +231,7 @@ export class EuiSuperDatePicker extends Component<
   };
 
   static getDerivedStateFromProps(
-    nextProps: EuiSuperDatePickerProps,
+    nextProps: EuiSuperDatePickerInternalProps,
     prevState: EuiSuperDatePickerState
   ) {
     if (
@@ -599,3 +614,15 @@ export class EuiSuperDatePicker extends Component<
     );
   }
 }
+
+// Because EuiSuperDatePicker is a class component and not a functional component,
+// we have to use a render prop here in order for us to pass i18n'd strings/objects/etc
+// to all underlying usages of our timeOptions constants. If someday we convert
+// EuiSuperDatePicker to an FC, we can likely get rid of this wrapper.
+export const EuiSuperDatePicker = (props: EuiSuperDatePickerProps) => (
+  <RenderI18nTimeOptions>
+    {(timeOptions) => (
+      <EuiSuperDatePickerInternal {...props} timeOptions={timeOptions} />
+    )}
+  </RenderI18nTimeOptions>
+);

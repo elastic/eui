@@ -64,3 +64,10 @@ export const useI18nTimeOptions = () => {
     timeUnitsPlural,
   };
 };
+
+export const RenderI18nTimeOptions = (props: {
+  children: (args: TimeOptions) => any;
+}) => {
+  const timeOptions = useI18nTimeOptions();
+  return props.children(timeOptions);
+};
