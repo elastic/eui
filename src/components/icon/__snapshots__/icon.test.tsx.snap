@@ -1037,7 +1037,6 @@ exports[`EuiIcon props type branchUser is rendered 1`] = `
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
   data-icon-type="branchUser"
-  fill="none"
   focusable="false"
   height="16"
   role="img"
@@ -1045,56 +1044,14 @@ exports[`EuiIcon props type branchUser is rendered 1`] = `
   width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
-  <g
-    clip-path="url(#branchUser_generated-id_clip0_1210_934)"
-  >
-    <path
-      d="M3.188 8.482a3.053 3.053 0 012.187-.92h.875c1.077 0 1.972-.351 2.154-1.376a1.75 1.75 0 11.883.015C9.09 7.704 7.806 8.438 6.25 8.438h-.875c-1.084 0-1.985.789-2.157 2.25a1.75 1.75 0 11-.905-.008V4.445a1.75 1.75 0 11.874 0v4.037zM2.75 3.625a.875.875 0 100-1.75.875.875 0 000 1.75zm0 9.625a.875.875 0 100-1.75.875.875 0 000 1.75zm6.125-7.875a.875.875 0 100-1.75.875.875 0 000 1.75z"
-    />
-  </g>
-  <g
-    clip-path="url(#branchUser_generated-id_clip1_1210_934)"
-  >
-    <circle
-      cx="11.938"
-      cy="10.406"
-      r="1.531"
-    />
-    <g
-      clip-path="url(#branchUser_generated-id_clip2_1210_934)"
-    >
-      <path
-        clip-rule="evenodd"
-        d="M15 15H8.875c.29-1.248 1.55-2.188 3.063-2.188 1.511 0 2.772.94 3.062 2.188zm-3.058 3.281h-.009.009z"
-      />
-    </g>
-  </g>
-  <defs>
-    <clipPath
-      id="branchUser_generated-id_clip0_1210_934"
-    >
-      <path
-        d="M0 0h9.625v13.125H0z"
-        transform="translate(1 1)"
-      />
-    </clipPath>
-    <clipPath
-      id="branchUser_generated-id_clip1_1210_934"
-    >
-      <path
-        d="M0 0h6.125v6.125H0z"
-        transform="translate(8.875 8.875)"
-      />
-    </clipPath>
-    <clipPath
-      id="branchUser_generated-id_clip2_1210_934"
-    >
-      <path
-        d="M0 0h6.125v2.625H0z"
-        transform="translate(8.875 12.375)"
-      />
-    </clipPath>
-  </defs>
+  <path
+    clip-rule="evenodd"
+    d="M6 7.987a3.49 3.49 0 00-2.5 1.05v-4.1a2 2 0 10-1 0v6.126a2 2 0 101.034.01A2.5 2.5 0 016 8.986h1a3.5 3.5 0 003.47-3.043 2 2 0 10-1.009-.017A2.5 2.5 0 017 7.987H6zM4 3a1 1 0 11-2 0 1 1 0 012 0zm0 10a1 1 0 11-2 0 1 1 0 012 0zm7-9a1 1 0 11-2 0 1 1 0 012 0z"
+    fill-rule="evenodd"
+  />
+  <path
+    d="M13.5 10.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM9 15c.284-1.223 1.519-2.143 3-2.143s2.716.92 3 2.143H9z"
+  />
 </svg>
 `;
 
@@ -1906,11 +1863,11 @@ exports[`EuiIcon props type desktop is rendered 1`] = `
 >
   <path
     clip-rule="evenodd"
-    d="M14.125 2.867H1.875v7.8h12.25v-7.8zM1.875 2A.87.87 0 001 2.867v7.8a.87.87 0 00.875.866h12.25a.87.87 0 00.875-.866v-7.8A.87.87 0 0014.125 2H1.875z"
+    d="M2 2a1 1 0 00-1 1v7a1 1 0 001 1h4l-1 3H3.5a.5.5 0 000 1h9a.5.5 0 000-1H11l-1-3h4a1 1 0 001-1V3a1 1 0 00-1-1H2zm0 8V3h12v7H2zm5 1h2l1 3H6l1-3z"
     fill-rule="evenodd"
   />
   <path
-    d="M3.625 14.567c0-.24.196-.434.438-.434h7.875c.241 0 .437.194.437.434a.436.436 0 01-.438.433H4.064a.435.435 0 01-.438-.433zm2.625-3.034h.875l-.875 2.6h-.875l.875-2.6zm2.625 0h.875l.875 2.6H9.75l-.875-2.6zM4 7a.5.5 0 01.5-.5h1a.5.5 0 010 1h-1A.5.5 0 014 7zm3 0a.5.5 0 01.5-.5h1a.5.5 0 010 1h-1A.5.5 0 017 7zm3 0a.5.5 0 01.5-.5h1a.5.5 0 010 1h-1A.5.5 0 0110 7z"
+    d="M4.5 6a.5.5 0 000 1h1a.5.5 0 000-1h-1zm3 0a.5.5 0 000 1h1a.5.5 0 000-1h-1zm2.5.5a.5.5 0 01.5-.5h1a.5.5 0 010 1h-1a.5.5 0 01-.5-.5z"
   />
 </svg>
 `;
@@ -8116,12 +8073,12 @@ exports[`EuiIcon props type sessionViewer is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    clip-rule="evenodd"
-    d="M14.125 2.75H1.875v10.5h12.25V2.75zm-12.25-.875A.875.875 0 001 2.75v10.5c0 .483.392.875.875.875h12.25A.875.875 0 0015 13.25V2.75a.875.875 0 00-.875-.875H1.875z"
-    fill-rule="evenodd"
+    d="M4 6h1v1H4V6zm2 2H5V7h1v1zm0 1V8h1v1H6zm-1 1V9h1v1H5zm0 0v1H4v-1h1zm2 0h4v1H7v-1z"
   />
   <path
-    d="M1.875 2.75h12.25V4.5H1.875zm4.375 7.875h3.5v.875h-3.5zM3.625 6.25H4.5v.875h-.875zm.875.875h.875V8H4.5zM5.375 8h.875v.875h-.875zm-.875.875h.875v.875H4.5zm-.875.875H4.5v.875h-.875z"
+    clip-rule="evenodd"
+    d="M1 3a1 1 0 011-1h12a1 1 0 011 1v10a1 1 0 01-1 1H2a1 1 0 01-1-1V3zm1 1h12v9H2V4z"
+    fill-rule="evenodd"
   />
 </svg>
 `;
