@@ -389,6 +389,7 @@ export class EuiSuperDatePickerInternal extends Component<
     } = this.state;
     const {
       commonlyUsedRanges,
+      timeOptions,
       dateFormat,
       isDisabled,
       locale,
@@ -448,6 +449,7 @@ export class EuiSuperDatePickerInternal extends Component<
                 isOpen={this.state.isStartDatePopoverOpen}
                 onPopoverToggle={this.onStartDatePopoverToggle}
                 onPopoverClose={this.onStartDatePopoverClose}
+                timeOptions={timeOptions}
               />
             }
             endDateControl={
@@ -467,6 +469,7 @@ export class EuiSuperDatePickerInternal extends Component<
                 isOpen={this.state.isEndDatePopoverOpen}
                 onPopoverToggle={this.onEndDatePopoverToggle}
                 onPopoverClose={this.onEndDatePopoverClose}
+                timeOptions={timeOptions}
               />
             }
           />
@@ -518,6 +521,7 @@ export class EuiSuperDatePickerInternal extends Component<
   render() {
     const {
       commonlyUsedRanges,
+      timeOptions,
       customQuickSelectPanels,
       dateFormat,
       end,
@@ -564,6 +568,7 @@ export class EuiSuperDatePickerInternal extends Component<
         recentlyUsedRanges={recentlyUsedRanges}
         refreshInterval={refreshInterval}
         start={start}
+        timeOptions={timeOptions}
       />
     );
 

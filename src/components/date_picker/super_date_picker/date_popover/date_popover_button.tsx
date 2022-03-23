@@ -17,6 +17,7 @@ import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 import { useEuiI18n } from '../../../i18n';
 import { EuiPopover, EuiPopoverProps } from '../../../popover';
 
+import { TimeOptions } from '../time_options';
 import { formatTimeString } from '../pretty_duration';
 import {
   EuiDatePopoverContent,
@@ -130,6 +131,7 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
         locale={locale}
         position={position}
         utcOffset={utcOffset}
+        timeOptions={timeOptions}
       />
     </EuiPopover>
   );

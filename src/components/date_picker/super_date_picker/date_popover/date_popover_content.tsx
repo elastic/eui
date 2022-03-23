@@ -16,6 +16,7 @@ import { EuiButton } from '../../../button';
 import { EuiAbsoluteTab } from './absolute_tab';
 import { EuiRelativeTab } from './relative_tab';
 
+import { TimeOptions } from '../time_options';
 import {
   getDateMode,
   DATE_MODES,
@@ -33,6 +34,7 @@ export interface EuiDatePopoverContentProps {
   locale?: LocaleSpecifier;
   position: 'start' | 'end';
   utcOffset?: number;
+  timeOptions: TimeOptions;
 }
 
 export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps> = ({
@@ -44,6 +46,7 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
   locale,
   position,
   utcOffset,
+  timeOptions,
 }) => {
   const onTabClick: EuiTabbedContentProps['onTabClick'] = (selectedTab) => {
     switch (selectedTab.id) {
@@ -108,6 +111,7 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
           roundUp={roundUp}
           position={position}
           labelPrefix={labelPrefix}
+          timeOptions={timeOptions}
         />
       ),
       'data-test-subj': 'superDatePickerRelativeTab',

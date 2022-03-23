@@ -20,10 +20,9 @@ import { EuiSpacer } from '../../../spacer';
 import { EuiSelect, EuiFieldNumber } from '../../../form';
 import { EuiToolTip } from '../../../tool_tip';
 import { EuiI18n } from '../../../i18n';
-import { timeUnits } from '../time_units';
 import { EuiScreenReaderOnly } from '../../../accessibility';
 import { ApplyTime, QuickSelect, TimeUnitId } from '../../types';
-import { keysOf } from '../../../common';
+import { TimeOptions, NEXT } from '../time_options';
 import { parseTimeParts } from './quick_select_utils';
 
 type EuiQuickSelectState = QuickSelect;
@@ -33,6 +32,7 @@ export interface EuiQuickSelectProps {
   start: string;
   end: string;
   prevQuickSelect?: EuiQuickSelectState;
+  timeOptions: TimeOptions;
 }
 
 export class EuiQuickSelect extends Component<
@@ -150,6 +150,8 @@ export class EuiQuickSelect extends Component<
 
   render() {
     const { timeTense, timeValue, timeUnits } = this.state;
+    const { timeTenseOptions, timeUnitsOptions } = this.props.timeOptions;
+
     const matchedTimeUnit = timeUnitsOptions.find(
       ({ value }) => value === timeUnits
     );

@@ -22,7 +22,7 @@ import {
 } from '../../../form';
 import { EuiSpacer } from '../../../spacer';
 
-import { timeUnits } from '../time_units';
+import { TimeOptions } from '../time_options';
 import { relativeOptions } from '../relative_options';
 import {
   parseRelativeParts,
@@ -44,6 +44,7 @@ export interface EuiRelativeTabProps {
   roundUp?: boolean;
   position: 'start' | 'end';
   labelPrefix: string;
+  timeOptions: TimeOptions;
 }
 
 interface EuiRelativeTabState
@@ -105,6 +106,7 @@ export class EuiRelativeTab extends Component<
   };
 
   render() {
+    const { timeUnits } = this.props.timeOptions;
     const { count, unit } = this.state;
     const invalidDate = this.props.value === INVALID_DATE;
     const invalidValue = count === undefined || count < 0;
