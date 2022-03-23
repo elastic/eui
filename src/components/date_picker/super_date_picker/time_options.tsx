@@ -15,6 +15,7 @@ import {
   TimeUnitLabel,
   TimeUnitLabelPlural,
   RelativeOption,
+  DurationRange,
 } from '../types';
 
 export const LAST = 'last';
@@ -28,6 +29,7 @@ export type TimeOptions = {
   relativeOptions: RelativeOption[];
   refreshUnitsOptions: RelativeOption[];
   refreshUnitsShorthand: { [id: string]: string };
+  commonDurationRanges: DurationRange[];
 };
 
 export const useI18nTimeOptions = () => {
@@ -137,6 +139,49 @@ export const useI18nTimeOptions = () => {
     d: useEuiI18n('euiTimeOptions.daysShorthand', 'd'),
   };
 
+  const commonDurationRanges = [
+    {
+      start: 'now/d',
+      end: 'now/d',
+      label: useEuiI18n('euiTimeOptions.today', 'Today'),
+    },
+    {
+      start: 'now/w',
+      end: 'now/w',
+      label: useEuiI18n('euiTimeOptions.thisWeek', 'This week'),
+    },
+    {
+      start: 'now/M',
+      end: 'now/M',
+      label: useEuiI18n('euiTimeOptions.thisMonth', 'This month'),
+    },
+    {
+      start: 'now/y',
+      end: 'now/y',
+      label: useEuiI18n('euiTimeOptions.thisYear', 'This year'),
+    },
+    {
+      start: 'now-1d/d',
+      end: 'now-1d/d',
+      label: useEuiI18n('euiTimeOptions.yesterday', 'Yesterday'),
+    },
+    {
+      start: 'now/w',
+      end: 'now',
+      label: useEuiI18n('euiTimeOptions.weekToDate', 'Week to date'),
+    },
+    {
+      start: 'now/M',
+      end: 'now',
+      label: useEuiI18n('euiTimeOptions.monthToDate', 'Month to date'),
+    },
+    {
+      start: 'now/y',
+      end: 'now',
+      label: useEuiI18n('euiTimeOptions.yearToDate', 'Year to date'),
+    },
+  ];
+
   return {
     timeTenseOptions,
     timeUnits,
@@ -145,6 +190,7 @@ export const useI18nTimeOptions = () => {
     relativeOptions,
     refreshUnitsOptions,
     refreshUnitsShorthand,
+    commonDurationRanges,
   };
 };
 

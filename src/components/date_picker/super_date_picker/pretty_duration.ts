@@ -15,17 +15,6 @@ import { DurationRange, TimeUnitId, ShortDate } from '../types';
 
 const ISO_FORMAT = 'YYYY-MM-DDTHH:mm:ss.SSSZ';
 
-export const commonDurationRanges: DurationRange[] = [
-  { start: 'now/d', end: 'now/d', label: 'Today' },
-  { start: 'now/w', end: 'now/w', label: 'This week' },
-  { start: 'now/M', end: 'now/M', label: 'This month' },
-  { start: 'now/y', end: 'now/y', label: 'This year' },
-  { start: 'now-1d/d', end: 'now-1d/d', label: 'Yesterday' },
-  { start: 'now/w', end: 'now', label: 'Week to date' },
-  { start: 'now/M', end: 'now', label: 'Month to date' },
-  { start: 'now/y', end: 'now', label: 'Year to date' },
-];
-
 function cantLookup(timeFrom: string, timeTo: string, dateFormat: string) {
   const displayFrom = formatTimeString(timeFrom, dateFormat);
   const displayTo = formatTimeString(timeTo, dateFormat, true);

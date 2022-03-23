@@ -196,7 +196,6 @@ export class EuiSuperDatePickerInternal extends Component<
   EuiSuperDatePickerState
 > {
   static defaultProps = {
-    commonlyUsedRanges: commonDurationRanges,
     dateFormat: 'MMM D, YYYY @ HH:mm:ss.SSS',
     end: 'now',
     isAutoRefreshOnly: false,
@@ -627,7 +626,13 @@ export class EuiSuperDatePickerInternal extends Component<
 export const EuiSuperDatePicker = (props: EuiSuperDatePickerProps) => (
   <RenderI18nTimeOptions>
     {(timeOptions) => (
-      <EuiSuperDatePickerInternal {...props} timeOptions={timeOptions} />
+      <EuiSuperDatePickerInternal
+        {...props}
+        timeOptions={timeOptions}
+        commonlyUsedRanges={
+          props.commonlyUsedRanges || timeOptions.commonDurationRanges
+        }
+      />
     )}
   </RenderI18nTimeOptions>
 );
