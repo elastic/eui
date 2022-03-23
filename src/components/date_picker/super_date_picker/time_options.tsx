@@ -26,6 +26,7 @@ export type TimeOptions = {
   timeUnitsOptions: EuiSelectOption[];
   timeUnitsPlural: { [id in TimeUnitId]: TimeUnitLabelPlural };
   relativeOptions: RelativeOption[];
+  refreshUnitsOptions: RelativeOption[];
 };
 
 export const useI18nTimeOptions = () => {
@@ -122,12 +123,19 @@ export const useI18nTimeOptions = () => {
     },
   ];
 
+  const refreshUnitsOptions = keysOf(timeUnits)
+    .filter(
+      (timeUnit) => timeUnit === 'h' || timeUnit === 'm' || timeUnit === 's'
+    )
+    .map((timeUnit) => ({ value: timeUnit, text: timeUnitsPlural[timeUnit] }));
+
   return {
     timeTenseOptions,
     timeUnits,
     timeUnitsOptions,
     timeUnitsPlural,
     relativeOptions,
+    refreshUnitsOptions,
   };
 };
 
