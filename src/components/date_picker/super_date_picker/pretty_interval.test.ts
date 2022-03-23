@@ -6,40 +6,77 @@
  * Side Public License, v 1.
  */
 
-import { prettyInterval } from './pretty_interval';
+import { testCustomHook } from '../../../test/test_custom_hook.test_helper';
+
+import { usePrettyInterval } from './pretty_interval';
 
 const IS_NOT_PAUSED = false;
 const IS_PAUSED = true;
 const SHORT_HAND = true;
 
-test('Off', () => {
-  expect(prettyInterval(IS_NOT_PAUSED, 0)).toBe('Off');
-  expect(prettyInterval(IS_PAUSED, 1000)).toBe('Off');
-});
+describe('usePrettyInterval', () => {
+  test('off', () => {
+    expect(
+      testCustomHook(() => usePrettyInterval(IS_NOT_PAUSED, 0)).return
+    ).toBe('Off');
+    expect(
+      testCustomHook(() => usePrettyInterval(IS_PAUSED, 1000)).return
+    ).toBe('Off');
+  });
 
-test('seconds', () => {
-  expect(prettyInterval(IS_NOT_PAUSED, 1000)).toBe('1 second');
-  expect(prettyInterval(IS_NOT_PAUSED, 15000)).toBe('15 seconds');
-});
+  test('seconds', () => {
+    expect(
+      testCustomHook(() => usePrettyInterval(IS_NOT_PAUSED, 1000)).return
+    ).toBe('1 second');
+    expect(
+      testCustomHook(() => usePrettyInterval(IS_NOT_PAUSED, 15000)).return
+    ).toBe('15 seconds');
+    expect(
+      testCustomHook(() => usePrettyInterval(IS_NOT_PAUSED, 15000, SHORT_HAND))
+        .return
+    ).toBe('15 s');
+  });
 
-test('minutes', () => {
-  expect(prettyInterval(IS_NOT_PAUSED, 60000)).toBe('1 minute');
-  expect(prettyInterval(IS_NOT_PAUSED, 1800000)).toBe('30 minutes');
-});
+  test('minutes', () => {
+    expect(
+      testCustomHook(() => usePrettyInterval(IS_NOT_PAUSED, 60000)).return
+    ).toBe('1 minute');
+    expect(
+      testCustomHook(() => usePrettyInterval(IS_NOT_PAUSED, 1800000)).return
+    ).toBe('30 minutes');
+    expect(
+      testCustomHook(() =>
+        usePrettyInterval(IS_NOT_PAUSED, 1800000, SHORT_HAND)
+      ).return
+    ).toBe('30 m');
+  });
 
-test('hours', () => {
-  expect(prettyInterval(IS_NOT_PAUSED, 3600000)).toBe('1 hour');
-  expect(prettyInterval(IS_NOT_PAUSED, 43200000)).toBe('12 hours');
-});
+  test('hours', () => {
+    expect(
+      testCustomHook(() => usePrettyInterval(IS_NOT_PAUSED, 3600000)).return
+    ).toBe('1 hour');
+    expect(
+      testCustomHook(() => usePrettyInterval(IS_NOT_PAUSED, 43200000)).return
+    ).toBe('12 hours');
+    expect(
+      testCustomHook(() =>
+        usePrettyInterval(IS_NOT_PAUSED, 43200000, SHORT_HAND)
+      ).return
+    ).toBe('12 h');
+  });
 
-test('days', () => {
-  expect(prettyInterval(IS_NOT_PAUSED, 86400000)).toBe('1 day');
-  expect(prettyInterval(IS_NOT_PAUSED, 86400000 * 2)).toBe('2 days');
-});
-
-test('shortHand', () => {
-  expect(prettyInterval(IS_NOT_PAUSED, 86400000, SHORT_HAND)).toBe('1 d');
-  expect(prettyInterval(IS_NOT_PAUSED, 43200000, SHORT_HAND)).toBe('12 h');
-  expect(prettyInterval(IS_NOT_PAUSED, 1800000, SHORT_HAND)).toBe('30 m');
-  expect(prettyInterval(IS_NOT_PAUSED, 15000, SHORT_HAND)).toBe('15 s');
+  test('days', () => {
+    expect(
+      testCustomHook(() => usePrettyInterval(IS_NOT_PAUSED, 86400000)).return
+    ).toBe('1 day');
+    expect(
+      testCustomHook(() => usePrettyInterval(IS_NOT_PAUSED, 86400000 * 2))
+        .return
+    ).toBe('2 days');
+    expect(
+      testCustomHook(() =>
+        usePrettyInterval(IS_NOT_PAUSED, 86400000, SHORT_HAND)
+      ).return
+    ).toBe('1 d');
+  });
 });

@@ -27,6 +27,7 @@ export type TimeOptions = {
   timeUnitsPlural: { [id in TimeUnitId]: TimeUnitLabelPlural };
   relativeOptions: RelativeOption[];
   refreshUnitsOptions: RelativeOption[];
+  refreshUnitsShorthand: { [id: string]: string };
 };
 
 export const useI18nTimeOptions = () => {
@@ -129,6 +130,13 @@ export const useI18nTimeOptions = () => {
     )
     .map((timeUnit) => ({ value: timeUnit, text: timeUnitsPlural[timeUnit] }));
 
+  const refreshUnitsShorthand = {
+    s: useEuiI18n('euiTimeOptions.secondsShorthand', 's'),
+    m: useEuiI18n('euiTimeOptions.monthsShorthand', 'm'),
+    h: useEuiI18n('euiTimeOptions.monthsShorthand', 'h'),
+    d: useEuiI18n('euiTimeOptions.daysShorthand', 'd'),
+  };
+
   return {
     timeTenseOptions,
     timeUnits,
@@ -136,6 +144,7 @@ export const useI18nTimeOptions = () => {
     timeUnitsPlural,
     relativeOptions,
     refreshUnitsOptions,
+    refreshUnitsShorthand,
   };
 };
 
