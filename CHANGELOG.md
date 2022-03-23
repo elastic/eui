@@ -1,8 +1,19 @@
-## [`main`](https://github.com/elastic/eui/tree/main)
+## [`52.1.0`](https://github.com/elastic/eui/tree/v52.1.0)
 
-- Added `compressed` prop to `EuiFilterGroup` and reduced the size of the `EuiFilterButton` notification badge ([#5717](https://github.com/elastic/eui/pull/5717))
-- Updated `testenv` mock for `EuiIcon` to render `aria-label` as text ([#5709](https://github.com/elastic/eui/pull/5709))
+- Added `anchor` prop to `EuiTourStep` to allow for DOM selector attachment ([#5696](https://github.com/elastic/eui/pull/5696))
+- `EuiDataGrid` now forces `isExpandable` to be true if any `cellActions` are passed, as keyboard users are otherwise unable to access cell actions without the expansion popover ([#5710](https://github.com/elastic/eui/pull/5710))
+
+**Bug fixes**
+
+- Fixed EuiDataGrid not rerendering correctly on row heights change ([#5712](https://github.com/elastic/eui/pull/5712))
+- Fixed `EuiContextMenu` requiring two tab keypresses to advance to the next focusable menu item ([#5719](https://github.com/elastic/eui/pull/5719))
+- Fixed `EuiDataGrid` footer cell focus bugging out after moving its column ([#5720](https://github.com/elastic/eui/pull/5720))
+
+## [`52.0.0`](https://github.com/elastic/eui/tree/v52.0.0)
+
 - Added `editorChecklist` glyph to `EuiIcon` ([#5705](https://github.com/elastic/eui/pull/5705))
+- Updated `testenv` mock for `EuiIcon` to render `aria-label` as text ([#5709](https://github.com/elastic/eui/pull/5709))
+- Added `compressed` prop to `EuiFilterGroup` and reduced the size of the `EuiFilterButton` notification badge ([#5717](https://github.com/elastic/eui/pull/5717))
 - Increased contrast of `EuiSelectableTemplateSitewide` input text when in dark header ([#5724](https://github.com/elastic/eui/pull/5724))
 
 **Breaking changes**

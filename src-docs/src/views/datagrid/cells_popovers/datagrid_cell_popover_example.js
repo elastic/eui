@@ -4,7 +4,7 @@ import { GuideSectionTypes } from '../../../components';
 import { EuiCode, EuiCallOut, EuiSpacer } from '../../../../../src';
 
 import IsDetailsPopover from './cell_popover_is_details';
-const IsDetailsPopoverSource = require('!!raw-loader!./cell_popover_is_details');
+const isDetailsPopoverSource = require('!!raw-loader!./cell_popover_is_details');
 
 import RenderCellPopover from './cell_popover_rendercellpopover';
 const renderCellPopoverSource = require('!!raw-loader!./cell_popover_rendercellpopover');
@@ -19,7 +19,6 @@ import {
 } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
 export const DataGridCellPopoverExample = {
-  title: 'Data grid cell popovers',
   sections: [
     {
       title: 'Conditionally customizing cell popover content',
@@ -48,7 +47,7 @@ export const DataGridCellPopoverExample = {
       source: [
         {
           type: GuideSectionTypes.TSX,
-          code: IsDetailsPopoverSource,
+          code: isDetailsPopoverSource,
         },
       ],
       props: {
@@ -137,10 +136,10 @@ export const DataGridCellPopoverExample = {
       text: (
         <>
           <p>
-            Popovers can sometimes be unnecessary for short form content. In the
-            example below we&apos;ve turned them off by setting{' '}
-            <EuiCode>isExpandable=false</EuiCode> on specific{' '}
-            <EuiCode>columns</EuiCode>.
+            Popovers can sometimes be unnecessary for short form content, and
+            can be disabled by setting <EuiCode>columns.isExpandable</EuiCode>{' '}
+            to <EuiCode>false</EuiCode>. In the example below, we&apos;ve turned
+            off expansion on the suffix column.
           </p>
           <p>
             To set <EuiCode>isExpandable</EuiCode> at a per-cell level instead
@@ -149,6 +148,16 @@ export const DataGridCellPopoverExample = {
             example conditionally disables the expansion popover for boolean
             cells that are &apos;false&apos;.
           </p>
+          <EuiCallOut
+            color="warning"
+            iconType="alert"
+            title="Cells with actions are always expandable"
+          >
+            If <EuiCode>columns.cellActions</EuiCode> is defined,{' '}
+            <EuiCode>isExpandable</EuiCode> will always be forced to true. This
+            ensures that keyboard and screen reader users have access to all
+            cell actions.
+          </EuiCallOut>
         </>
       ),
       demo: <IsExpandablePopover />,

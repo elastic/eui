@@ -20,21 +20,23 @@ import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiPopoverFooter } from '../../popover';
 
 export const EuiDataGridCellActions = ({
-  isExpandable,
   closePopover,
   onExpandClick,
   column,
   rowIndex,
   colIndex,
 }: {
-  isExpandable: boolean;
   closePopover: () => void;
   onExpandClick: () => void;
   column?: EuiDataGridColumn;
   rowIndex: number;
   colIndex: number;
 }) => {
-  const expandButton = isExpandable ? (
+  // Note: The cell expand button/expansion popover is *always* rendered if
+  // column.cellActions is present (regardless of column.isExpandable).
+  // This is because cell actions are not otherwise accessible to keyboard
+  // or screen reader users
+  const expandButton = (
     <EuiI18n
       key={'expand'}
       token="euiDataGridCellActions.expandButtonTitle"
@@ -54,7 +56,7 @@ export const EuiDataGridCellActions = ({
         />
       )}
     </EuiI18n>
-  ) : null;
+  );
 
   const additionalButtons = useMemo(() => {
     const ButtonComponent = (props: EuiButtonIconProps) => (

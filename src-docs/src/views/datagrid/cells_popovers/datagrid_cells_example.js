@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../../components';
 import {
@@ -7,6 +8,7 @@ import {
   EuiCallOut,
   EuiBasicTable,
   EuiSpacer,
+  EuiText,
   EuiListGroupItem,
 } from '../../../../../src';
 
@@ -27,6 +29,28 @@ import {
 
 export const DataGridCellsExample = {
   title: 'Data grid cells & popovers',
+  intro: (
+    <EuiText>
+      <p>
+        Data grid cells are rendered using the{' '}
+        <EuiCode>renderCellValue</EuiCode> prop. This prop accepts a function
+        which is treated as a React component behind the scenes. This means the
+        data grid passes cell-specific props (e.g. row index, column/schema
+        info, etc.) to your render function, which can ouput anything from a
+        string to any JSX element.
+      </p>
+      <p>
+        Each data grid cell will automatically render an expand action button
+        and an expansion popover (
+        <Link to="#disabling-cell-expansion-popovers">
+          which can be disabled
+        </Link>
+        ). For cells with overflowing or truncated content, this expansion
+        popover helps display the full amount of content, or can be customized
+        to show extra details.
+      </p>
+    </EuiText>
+  ),
   sections: [
     {
       source: [
