@@ -944,10 +944,6 @@ Array [
               <div
                 class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
               >
-                <span
-                  color="danger"
-                  data-euiicon-type="alert"
-                />
                 <button
                   aria-label="Clear input"
                   class="euiFormControlLayoutClearButton euiFormControlLayoutClearButton--small"
@@ -959,6 +955,10 @@ Array [
                     data-euiicon-type="cross"
                   />
                 </button>
+                <span
+                  color="danger"
+                  data-euiicon-type="alert"
+                />
               </div>
             </div>
           </div>

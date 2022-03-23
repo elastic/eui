@@ -77,9 +77,9 @@ export class EuiFormControlLayoutIcons extends Component<
     ) {
       rightIcons = (
         <div className="euiFormControlLayoutIcons euiFormControlLayoutIcons--right">
-          {invalidIcon}
           {clearButton}
           {loadingSpinner}
+          {invalidIcon}
           {iconSide === 'right' ? customIcon : undefined}
           {dropdownIcon}
         </div>
