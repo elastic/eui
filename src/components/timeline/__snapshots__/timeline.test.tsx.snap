@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiTimeline is rendered with items 1`] = `
+<div
+  class="euiTimeline"
+>
+  <div
+    class="euiTimelineItem euiTimelineItem--verticalAlignCenter"
+  >
+    <div
+      class="euiTimelineItemIcon"
+    >
+      <div
+        class="euiTimelineItemIcon__content"
+      >
+        <div
+          aria-label="email"
+          class="euiAvatar euiAvatar--m euiAvatar--user euiAvatar--subdued"
+          role="img"
+          title="email"
+        >
+          <span
+            class="euiAvatar__icon"
+            data-euiicon-type="email"
+          >
+            email
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="euiTimelineItemEvent"
+    >
+      <p>
+        <strong>
+          janet@elastic.co
+        </strong>
+         was invited to the project
+      </p>
+    </div>
+  </div>
+  <div
+    class="euiTimelineItem euiTimelineItem--verticalAlignCenter"
+  >
+    <div
+      class="euiTimelineItemIcon"
+    >
+      <div
+        class="euiTimelineItemIcon__content"
+      >
+        <div
+          aria-label="email"
+          class="euiAvatar euiAvatar--m euiAvatar--user euiAvatar--subdued"
+          role="img"
+          title="email"
+        >
+          <span
+            class="euiAvatar__icon"
+            data-euiicon-type="email"
+          >
+            email
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="euiTimelineItemEvent"
+    >
+      <p>
+        <strong>
+          janet@elastic.co
+        </strong>
+         was invited to the project
+      </p>
+    </div>
+  </div>
+</div>
+`;

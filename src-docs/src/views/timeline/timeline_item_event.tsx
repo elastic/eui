@@ -8,6 +8,7 @@ import {
   EuiMarkdownEditor,
   EuiSplitPanel,
   EuiPanel,
+  EuiHorizontalRule,
 } from '../../../../src/components';
 
 export default () => (
@@ -64,6 +65,7 @@ export default () => (
             </p>
           </EuiText>
         </EuiSplitPanel.Inner>
+        <EuiHorizontalRule margin="none" />
         <EuiSplitPanel.Inner paddingSize="s" color="plain">
           <EuiCodeBlock
             language="html"

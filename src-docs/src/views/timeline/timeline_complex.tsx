@@ -12,6 +12,7 @@ import {
   EuiTitle,
   EuiSplitPanel,
   EuiPanel,
+  EuiHorizontalRule,
 } from '../../../../src/components';
 
 import {
@@ -66,7 +67,7 @@ export default () => {
       }
     >
       <EuiSplitPanel.Outer color="transparent" hasBorder grow>
-        <EuiSplitPanel.Inner color="subdued">
+        <EuiSplitPanel.Inner color={checked ? 'transparent' : 'subdued'}>
           <EuiFlexGroup alignItems="center" gutterSize="s">
             <EuiFlexItem grow={false}>
               <EuiSwitch
@@ -83,7 +84,7 @@ export default () => {
             </EuiFlexItem>
           </EuiFlexGroup>
         </EuiSplitPanel.Inner>
-
+        <EuiHorizontalRule margin="none" />
         <EuiSplitPanel.Inner>
           <EuiText size="s" grow={false}>
             <p>
@@ -126,14 +127,14 @@ export default () => {
         }
       >
         <EuiSplitPanel.Outer color="transparent" hasBorder grow>
-          <EuiSplitPanel.Inner color="subdued">
+          <EuiSplitPanel.Inner>
             <EuiTitle size="s">
               <h2>
                 Hot phase <EuiBadge color="warning">Required</EuiBadge>
               </h2>
             </EuiTitle>
           </EuiSplitPanel.Inner>
-
+          <EuiHorizontalRule margin="none" />
           <EuiSplitPanel.Inner>
             <EuiText grow={false} size="s">
               <p>

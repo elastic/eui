@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiTimelineItem is rendered 1`] = `
+<div
+  class="euiTimelineItem euiTimelineItem--verticalAlignTop"
+>
+  <div
+    class="euiTimelineItemIcon"
+  >
+    <div
+      class="euiTimelineItemIcon__content"
+    >
+      <div
+        aria-label="dot"
+        class="euiAvatar euiAvatar--s euiAvatar--user euiAvatar--subdued"
+        role="img"
+        title="dot"
+      >
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="dot"
+        >
+          dot
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiTimelineItemEvent"
+  >
+    <p>
+      I'm the children
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
+<div
+  class="euiTimelineItem euiTimelineItem--verticalAlignCenter"
+>
+  <div
+    class="euiTimelineItemIcon"
+  >
+    <div
+      class="euiTimelineItemIcon__content"
+    >
+      <div
+        aria-label="dot"
+        class="euiAvatar euiAvatar--s euiAvatar--user euiAvatar--subdued"
+        role="img"
+        title="dot"
+      >
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="dot"
+        >
+          dot
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiTimelineItemEvent"
+  >
+    <p>
+      I'm the children
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiTimelineItem props verticalAlign top is rendered 1`] = `
+<div
+  class="euiTimelineItem euiTimelineItem--verticalAlignTop"
+>
+  <div
+    class="euiTimelineItemIcon"
+  >
+    <div
+      class="euiTimelineItemIcon__content"
+    >
+      <div
+        aria-label="dot"
+        class="euiAvatar euiAvatar--s euiAvatar--user euiAvatar--subdued"
+        role="img"
+        title="dot"
+      >
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="dot"
+        >
+          dot
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiTimelineItemEvent"
+  >
+    <p>
+      I'm the children
+    </p>
+  </div>
+</div>
+`;

@@ -6,12 +6,15 @@
  * Side Public License, v 1.
  */
 
-export type { EuiTimelineItemProps } from './timeline_item';
+export type { EuiTimelineProps } from './timeline';
+export { EuiTimeline } from './timeline';
+
+export type {
+  EuiTimelineItemProps,
+  EuiTimelineItemVerticalAlign,
+} from './timeline_item';
 export { EuiTimelineItem } from './timeline_item';
 
 export { EuiTimelineItemEvent } from './timeline_item_event';
 
 export { EuiTimelineItemIcon } from './timeline_item_icon';
-
-export type { EuiTimelineProps } from './timeline';
-export { EuiTimeline } from './timeline';

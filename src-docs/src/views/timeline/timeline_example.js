@@ -53,8 +53,7 @@ export const TimelineExample = {
       text: (
         <div>
           The <strong>EuiTimeline</strong> is a component that standardizes the
-          way a timeline thread is displayed. But it gives the ability to add
-          custom components and icons. Pass an array of{' '}
+          way a timeline thread is displayed. Pass an array of{' '}
           <strong>EuiTimelineItem</strong> objects and{' '}
           <strong>EuiTimeline</strong> will generate a timeline thread.
         </div>
@@ -113,9 +112,9 @@ export const TimelineExample = {
             <Link to="/layout/panel#split-panels">
               <strong>EuiSplitPanel</strong>
             </Link>{' '}
-            when you content is text based. For other type of components like
-            editors, the recommendation is to pass as a children without any
-            wrapper.
+            when your content is text-based. For other types of components like
+            editors, the recommendation is to pass the{' '}
+            <EuiCode>children</EuiCode> without any wrapper.
           </p>
         </>
       ),
