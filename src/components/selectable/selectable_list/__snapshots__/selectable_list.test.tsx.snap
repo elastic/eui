@@ -2135,18 +2135,15 @@ exports[`EuiSelectableListItem props searchValue 1`] = `
 
 .emotion-0:before,
 .emotion-0:after {
+  content: ' [highlight start] ';
   -webkit-clip-path: inset(100%);
   clip-path: inset(100%);
-  cli: rect(1px, 1px, 1px, 1px);
+  clip: rect(1px, 1px, 1px, 1px);
   height: 1px;
   overflow: hidden;
   position: absolute;
   white-space: nowrap;
   width: 1px;
-}
-
-.emotion-0:before {
-  content: ' [highlight start] ';
 }
 
 .emotion-0:after {
@@ -2356,18 +2353,15 @@ exports[`EuiSelectableListItem props searchValue 2`] = `
 
 .emotion-0:before,
 .emotion-0:after {
+  content: ' [highlight start] ';
   -webkit-clip-path: inset(100%);
   clip-path: inset(100%);
-  cli: rect(1px, 1px, 1px, 1px);
+  clip: rect(1px, 1px, 1px, 1px);
   height: 1px;
   overflow: hidden;
   position: absolute;
   white-space: nowrap;
   width: 1px;
-}
-
-.emotion-0:before {
-  content: ' [highlight start] ';
 }
 
 .emotion-0:after {

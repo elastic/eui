@@ -9,18 +9,15 @@ exports[`EuiMark is rendered 1`] = `
 
 .emotion-0:before,
 .emotion-0:after {
+  content: ' [highlight start] ';
   -webkit-clip-path: inset(100%);
   clip-path: inset(100%);
-  cli: rect(1px, 1px, 1px, 1px);
+  clip: rect(1px, 1px, 1px, 1px);
   height: 1px;
   overflow: hidden;
   position: absolute;
   white-space: nowrap;
   width: 1px;
-}
-
-.emotion-0:before {
-  content: ' [highlight start] ';
 }
 
 .emotion-0:after {
@@ -31,5 +28,19 @@ exports[`EuiMark is rendered 1`] = `
   class="euiMark emotion-0"
 >
   Marked
+</mark>
+`;
+
+exports[`EuiMark is rendered without CSS :before and :after text 1`] = `
+.emotion-0 {
+  background-color: rgba(0,119,204,0.1);
+  font-weight: 700;
+  color: #343741;
+}
+
+<mark
+  class="euiMark emotion-0"
+>
+  Market
 </mark>
 `;

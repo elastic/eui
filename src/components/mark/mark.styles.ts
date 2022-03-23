@@ -9,7 +9,13 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme, transparentize } from '../../services';
 
-export const euiMarkStyles = ({ euiTheme, colorMode }: UseEuiTheme) => {
+export const euiMarkStyles = ({
+  euiTheme,
+  colorMode,
+  hasHighlightText,
+  highlightStart,
+  highlightEnd,
+}: UseEuiTheme) => {
   // TODO: Was $euiFocusBackgroundColor
   const transparency = { LIGHT: 0.1, DARK: 0.3 };
 
@@ -23,15 +29,24 @@ export const euiMarkStyles = ({ euiTheme, colorMode }: UseEuiTheme) => {
     // Can't use 'inherit' because the text to background color contrast may not be sufficient
     color: ${euiTheme.colors.text};
 
-    &:before,
-    &:after {
-      clip-path: inset(100%);
-      cli: rect(1px, 1px, 1px, 1px);
-      height: 1px;
-      overflow: hidden;
-      position: absolute;
-      white-space: nowrap;
-      width: 1px;
-    }
+    // https://seanconnolly.dev/emotion-conditionals
+    ${hasHighlightText === true &&
+    `
+      &:before,
+      &:after {
+        content: ' [${highlightStart}] ';
+        clip-path: inset(100%);
+        clip: rect(1px, 1px, 1px, 1px);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+      }
+
+      &:after {
+        content: ' [${highlightEnd}] ';
+      }
+    `}
   `;
 };
