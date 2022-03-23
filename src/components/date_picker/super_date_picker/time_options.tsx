@@ -134,8 +134,8 @@ export const useI18nTimeOptions = () => {
 
   const refreshUnitsShorthand = {
     s: useEuiI18n('euiTimeOptions.secondsShorthand', 's'),
-    m: useEuiI18n('euiTimeOptions.monthsShorthand', 'm'),
-    h: useEuiI18n('euiTimeOptions.monthsShorthand', 'h'),
+    m: useEuiI18n('euiTimeOptions.minutesShorthand', 'm'),
+    h: useEuiI18n('euiTimeOptions.hoursShorthand', 'h'),
     d: useEuiI18n('euiTimeOptions.daysShorthand', 'd'),
   };
 
