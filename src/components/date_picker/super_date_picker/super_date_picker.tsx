@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component } from 'react';
+import React, { Component, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import moment, { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 import dateMath from '@elastic/datemath';
@@ -626,7 +626,9 @@ export class EuiSuperDatePickerInternal extends Component<
 // we have to use a render prop here in order for us to pass i18n'd strings/objects/etc
 // to all underlying usages of our timeOptions constants. If someday we convert
 // EuiSuperDatePicker to an FC, we can likely get rid of this wrapper.
-export const EuiSuperDatePicker = (props: EuiSuperDatePickerProps) => (
+export const EuiSuperDatePicker: FunctionComponent<EuiSuperDatePickerProps> = (
+  props
+) => (
   <RenderI18nTimeOptions>
     {(timeOptions) => (
       <EuiSuperDatePickerInternal
