@@ -18,9 +18,8 @@
       &[class*='compressed'] {
         $iconSizeCompressed: map-get($euiIconSizes, 'small');
         $iconPaddingCompressed: $euiFormControlCompressedPadding;
-        $marginBetweenIconsCompressed: $euiFormControlCompressedPadding / 2;
 
-        padding-right: $iconPaddingCompressed + ($iconSizeCompressed + $marginBetweenIconsCompressed) * $i;
+        padding-right: $iconPaddingCompressed + ($iconSizeCompressed + $marginBetweenIcons) * $i;
       }
     }
   }
