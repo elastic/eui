@@ -27,11 +27,7 @@ import {
 } from '../types';
 
 import { TimeOptions, RenderI18nTimeOptions } from './time_options';
-import {
-  prettyDuration,
-  showPrettyDuration,
-  commonDurationRanges,
-} from './pretty_duration';
+import { PrettyDuration, showPrettyDuration } from './pretty_duration';
 import { AsyncInterval } from './async_interval';
 
 import {
@@ -46,8 +42,6 @@ import {
   EuiAutoRefresh,
   EuiAutoRefreshButton,
 } from '../auto_refresh/auto_refresh';
-
-export { prettyDuration, commonDurationRanges };
 
 export interface OnTimeChangeProps extends DurationRange {
   isInvalid: boolean;
@@ -315,7 +309,11 @@ export class EuiSuperDatePickerInternal extends Component<
 
   applyQuickTime: ApplyTime = ({ start, end }) => {
     this.setState({
-      showPrettyDuration: showPrettyDuration(start, end, commonDurationRanges),
+      showPrettyDuration: showPrettyDuration(
+        start,
+        end,
+        this.props.commonlyUsedRanges
+      ),
     });
     this.props.onTimeChange({
       start,
@@ -418,7 +416,12 @@ export class EuiSuperDatePickerInternal extends Component<
             disabled={isDisabled}
             onClick={this.hidePrettyDuration}
           >
-            {prettyDuration(start, end, commonlyUsedRanges, dateFormat)}
+            <PrettyDuration
+              timeFrom={start}
+              timeTo={end}
+              quickRanges={commonlyUsedRanges}
+              dateFormat={dateFormat}
+            />
           </button>
         </EuiDatePickerRange>
       );

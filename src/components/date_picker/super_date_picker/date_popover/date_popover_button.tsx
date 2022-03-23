@@ -18,7 +18,7 @@ import { useEuiI18n } from '../../../i18n';
 import { EuiPopover, EuiPopoverProps } from '../../../popover';
 
 import { TimeOptions } from '../time_options';
-import { formatTimeString } from '../pretty_duration';
+import { useFormatTimeString } from '../pretty_duration';
 import {
   EuiDatePopoverContent,
   EuiDatePopoverContentProps,
@@ -42,6 +42,7 @@ export interface EuiDatePopoverButtonProps {
   value: string;
   utcOffset?: number;
   compressed?: boolean;
+  timeOptions: TimeOptions;
 }
 
 export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> = (
@@ -64,6 +65,7 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
     onPopoverToggle,
     onPopoverClose,
     compressed,
+    timeOptions,
     ...rest
   } = props;
 
@@ -79,7 +81,12 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
     },
   ]);
 
-  const formattedValue = formatTimeString(value, dateFormat, roundUp, locale);
+  const formattedValue = useFormatTimeString(
+    value,
+    dateFormat,
+    roundUp,
+    locale
+  );
   let title = formattedValue;
 
   const invalidTitle = useEuiI18n(

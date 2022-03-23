@@ -6,7 +6,15 @@
  * Side Public License, v 1.
  */
 
-import { prettyDuration, showPrettyDuration } from './pretty_duration';
+import React from 'react';
+import { shallow } from 'enzyme';
+import { testCustomHook } from '../../../test/test_custom_hook.test_helper';
+
+import {
+  usePrettyDuration,
+  PrettyDuration,
+  showPrettyDuration,
+} from './pretty_duration';
 
 const dateFormat = 'MMMM Do YYYY, HH:mm:ss.SSS';
 const quickRanges = [
@@ -17,45 +25,73 @@ const quickRanges = [
   },
 ];
 
-describe('prettyDuration', () => {
+describe('usePrettyDuration', () => {
   test('quick range', () => {
     const timeFrom = 'now-15m';
     const timeTo = 'now';
-    expect(prettyDuration(timeFrom, timeTo, quickRanges, dateFormat)).toBe(
-      'quick range 15 minutes custom display'
-    );
+    expect(
+      testCustomHook(() =>
+        usePrettyDuration({ timeFrom, timeTo, quickRanges, dateFormat })
+      ).return
+    ).toBe('quick range 15 minutes custom display');
   });
 
   test('last', () => {
     const timeFrom = 'now-16m';
     const timeTo = 'now';
-    expect(prettyDuration(timeFrom, timeTo, quickRanges, dateFormat)).toBe(
-      'Last 16 minutes'
-    );
+    expect(
+      testCustomHook(() =>
+        usePrettyDuration({ timeFrom, timeTo, quickRanges, dateFormat })
+      ).return
+    ).toBe('Last 16 minutes');
   });
 
   test('last that is rounded', () => {
     const timeFrom = 'now-1M/w';
     const timeTo = 'now';
-    expect(prettyDuration(timeFrom, timeTo, quickRanges, dateFormat)).toBe(
-      'Last 1 month rounded to the week'
-    );
+    expect(
+      testCustomHook(() =>
+        usePrettyDuration({ timeFrom, timeTo, quickRanges, dateFormat })
+      ).return
+    ).toBe('Last 1 month rounded to the week');
   });
 
   test('next', () => {
     const timeFrom = 'now';
     const timeTo = 'now+16m';
-    expect(prettyDuration(timeFrom, timeTo, quickRanges, dateFormat)).toBe(
-      'Next 16 minutes'
-    );
+    expect(
+      testCustomHook(() =>
+        usePrettyDuration({ timeFrom, timeTo, quickRanges, dateFormat })
+      ).return
+    ).toBe('Next 16 minutes');
   });
 
   test('from is in past', () => {
     const timeFrom = 'now-17m';
     const timeTo = 'now-15m';
-    expect(prettyDuration(timeFrom, timeTo, quickRanges, dateFormat)).toBe(
-      '~ 17 minutes ago to ~ 15 minutes ago'
+    expect(
+      testCustomHook(() =>
+        usePrettyDuration({ timeFrom, timeTo, quickRanges, dateFormat })
+      ).return
+    ).toBe('~ 17 minutes ago to ~ 15 minutes ago');
+  });
+});
+
+describe('PrettyDuration', () => {
+  it('renders the returned string from usePrettyDuration', () => {
+    const component = shallow(
+      <PrettyDuration
+        timeFrom="now"
+        timeTo="now+15m"
+        quickRanges={quickRanges}
+        dateFormat={dateFormat}
+      />
     );
+    expect(component).toMatchInlineSnapshot(`
+      <Fragment>
+        Next 15 minutes
+      </Fragment>
+    `);
   });
 });
 
