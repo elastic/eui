@@ -1,3 +1,7 @@
+## [`52.2.0`](https://github.com/elastic/eui/tree/v52.2.0)
+
+- Added `branchUser`, `desktop` and `sessionViewer` glyphs to `EuiIcon` ([#5740](https://github.com/elastic/eui/pull/5740))
+
 ## [`52.1.0`](https://github.com/elastic/eui/tree/v52.1.0)
 
 - Added `anchor` prop to `EuiTourStep` to allow for DOM selector attachment ([#5696](https://github.com/elastic/eui/pull/5696))

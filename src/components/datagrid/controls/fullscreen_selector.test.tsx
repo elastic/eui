@@ -10,7 +10,7 @@ import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { shallow } from 'enzyme';
 import { keys } from '../../../services';
-import { testCustomHook } from '../../../test/test_custom_hook.test_helper';
+import { testCustomHook } from '../../../test/internal';
 import { useDataGridFullScreenSelector } from './fullscreen_selector';
 
 describe('useDataGridFullScreenSelector', () => {

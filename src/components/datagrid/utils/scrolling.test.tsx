@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { render } from 'enzyme';
-import { testCustomHook } from '../../../test/test_custom_hook.test_helper';
+import { testCustomHook } from '../../../test/internal';
 import { useScrollCellIntoView, useScrollBars } from './scrolling';
 
 // see scrolling.spec.tsx for E2E useScroll tests
