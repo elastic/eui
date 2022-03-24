@@ -19,7 +19,7 @@ describe('EuiMark', () => {
 
   test('is rendered without CSS :before and :after text', () => {
     const component = render(
-      <EuiMark hasHighlightText={false}>Market</EuiMark>
+      <EuiMark hasScreenReaderHelpText={false}>Market</EuiMark>
     );
     expect(component).toMatchSnapshot();
   });

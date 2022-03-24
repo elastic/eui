@@ -18,7 +18,7 @@ export type EuiMarkProps = HTMLAttributes<HTMLElement> &
      * Set to `false` to remove the CSS :before and :after
      * screen reader helper text
      */
-    hasHighlightText?: boolean;
+    hasScreenReaderHelpText?: boolean;
     /**
      * ReactNode to render as this component's content
      */
@@ -28,7 +28,7 @@ export type EuiMarkProps = HTMLAttributes<HTMLElement> &
 export const EuiMark: FunctionComponent<EuiMarkProps> = ({
   children,
   className,
-  hasHighlightText = true,
+  hasScreenReaderHelpText = true,
   ...rest
 }) => {
   const useTheme = useEuiTheme();
@@ -38,7 +38,7 @@ export const EuiMark: FunctionComponent<EuiMarkProps> = ({
   );
   const highlightEnd = useEuiI18n('euiMark.highlightEnd', 'highlight end');
   const styles = euiMarkStyles(useTheme, {
-    hasHighlightText,
+    hasScreenReaderHelpText,
     highlightStart,
     highlightEnd,
   });

@@ -12,10 +12,14 @@ import { UseEuiTheme, transparentize } from '../../services';
 export const euiMarkStyles = (
   { euiTheme, colorMode }: UseEuiTheme,
   {
-    hasHighlightText,
+    hasScreenReaderHelpText,
     highlightStart,
     highlightEnd,
-  }: { hasHighlightText: boolean; highlightStart: string; highlightEnd: string }
+  }: {
+    hasScreenReaderHelpText: boolean;
+    highlightStart: string;
+    highlightEnd: string;
+  }
 ) => {
   // TODO: Was $euiFocusBackgroundColor
   const transparency = { LIGHT: 0.1, DARK: 0.3 };
@@ -31,11 +35,10 @@ export const euiMarkStyles = (
     color: ${euiTheme.colors.text};
 
     // https://seanconnolly.dev/emotion-conditionals
-    ${hasHighlightText === true &&
+    ${hasScreenReaderHelpText === true &&
     `
       &:before,
       &:after {
-        content: ' [${highlightStart}] ';
         clip-path: inset(100%);
         clip: rect(1px, 1px, 1px, 1px);
         height: 1px;
@@ -43,6 +46,10 @@ export const euiMarkStyles = (
         position: absolute;
         white-space: nowrap;
         width: 1px;
+      }
+
+      &:before {
+        content: ' [${highlightStart}] ';
       }
 
       &:after {

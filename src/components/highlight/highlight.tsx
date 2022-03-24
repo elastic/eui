@@ -46,13 +46,19 @@ export type EuiHighlightProps = HTMLAttributes<HTMLSpanElement> &
      * Should highlight all matches
      */
     highlightAll?: boolean;
+    /**
+     * Set to `false` to remove the CSS :before and :after
+     * screen reader helper text
+     */
+    hasScreenReaderHelpText?: boolean;
   };
 
 const highlight = (
   searchSubject: string,
   searchValue: string,
   isStrict: boolean,
-  highlightAll: boolean
+  highlightAll: boolean,
+  hasScreenReaderHelpText: boolean
 ) => {
   if (!searchValue) {
     return searchSubject;
@@ -70,7 +76,14 @@ const highlight = (
           const { end, highlight, start } = chunk;
           const value = searchSubject.substr(start, end - start);
           if (highlight) {
-            return <EuiMark key={start}>{value}</EuiMark>;
+            return (
+              <EuiMark
+                key={start}
+                hasScreenReaderHelpText={hasScreenReaderHelpText}
+              >
+                {value}
+              </EuiMark>
+            );
           }
           return value;
         })}
@@ -101,7 +114,9 @@ const highlight = (
   return (
     <Fragment>
       {preMatch}
-      <EuiMark>{match}</EuiMark>
+      <EuiMark hasScreenReaderHelpText={hasScreenReaderHelpText}>
+        {match}
+      </EuiMark>
       {postMatch}
     </Fragment>
   );
@@ -158,11 +173,18 @@ export const EuiHighlight: FunctionComponent<EuiHighlightProps> = ({
   search,
   strict = false,
   highlightAll = false,
+  hasScreenReaderHelpText = true,
   ...rest
 }) => {
   return (
     <span className={className} {...rest}>
-      {highlight(children, search, strict, highlightAll)}
+      {highlight(
+        children,
+        search,
+        strict,
+        highlightAll,
+        hasScreenReaderHelpText
+      )}
     </span>
   );
 };
