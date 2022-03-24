@@ -7,7 +7,6 @@
  */
 
 import { useEuiI18n } from '../../i18n';
-import { useI18nTimeOptions } from './time_options';
 
 const MS_IN_SECOND = 1000;
 const MS_IN_MINUTE = 60 * MS_IN_SECOND;
@@ -15,6 +14,49 @@ const MS_IN_HOUR = 60 * MS_IN_MINUTE;
 const MS_IN_DAY = 24 * MS_IN_HOUR;
 
 type IntervalUnitId = 's' | 'm' | 'h' | 'd';
+
+/**
+ * Pretty interval i18n strings
+ *
+ * Units should not be simply concatenated because different languages
+ * will have different grammar/positions for time than English
+ */
+const usePrettyIntervalI18n = (interval: number) => ({
+  s: useEuiI18n(
+    'euiPrettyInterval.seconds',
+    ({ interval }) => `${interval} second${interval > 1 ? 's' : ''}`,
+    { interval }
+  ),
+  m: useEuiI18n(
+    'euiPrettyInterval.minutes',
+    ({ interval }) => `${interval} minute${interval > 1 ? 's' : ''}`,
+    { interval }
+  ),
+  h: useEuiI18n(
+    'euiPrettyInterval.hours',
+    ({ interval }) => `${interval} hour${interval > 1 ? 's' : ''}`,
+    { interval }
+  ),
+  d: useEuiI18n(
+    'euiPrettyInterval.days',
+    ({ interval }) => `${interval} day${interval > 1 ? 's' : ''}`,
+    { interval }
+  ),
+  shorthand: {
+    s: useEuiI18n('euiPrettyInterval.secondsShorthand', '{interval} s', {
+      interval,
+    }),
+    m: useEuiI18n('euiPrettyInterval.minutesShorthand', '{interval} m', {
+      interval,
+    }),
+    h: useEuiI18n('euiPrettyInterval.hoursShorthand', '{interval} h', {
+      interval,
+    }),
+    d: useEuiI18n('euiPrettyInterval.daysShorthand', '{interval} d', {
+      interval,
+    }),
+  },
+});
 
 export const usePrettyInterval = (
   isPaused: boolean,
@@ -38,7 +80,10 @@ export const usePrettyInterval = (
     interval = Math.round(intervalInMs / MS_IN_DAY);
     unitId = 'd';
   }
-  prettyInterval = useI18nUnits(interval, unitId, shortHand);
+  const prettyIntervalI18n = usePrettyIntervalI18n(interval);
+  prettyInterval = shortHand
+    ? prettyIntervalI18n.shorthand[unitId]
+    : prettyIntervalI18n[unitId];
 
   const off = useEuiI18n('euiPrettyInterval.off', 'Off');
   if (isPaused || intervalInMs === 0) {
@@ -46,28 +91,4 @@ export const usePrettyInterval = (
   }
 
   return prettyInterval;
-};
-
-const useI18nUnits = (
-  interval: number,
-  unitId: IntervalUnitId,
-  shortHand: boolean
-) => {
-  const {
-    timeUnits,
-    timeUnitsPlural,
-    refreshUnitsShorthand,
-  } = useI18nTimeOptions();
-
-  let units = '';
-
-  if (shortHand) {
-    units = refreshUnitsShorthand[unitId];
-  } else if (interval > 1) {
-    units = timeUnitsPlural[unitId];
-  } else {
-    units = timeUnits[unitId];
-  }
-
-  return `${interval} ${units}`;
 };

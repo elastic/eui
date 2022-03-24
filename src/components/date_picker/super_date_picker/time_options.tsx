@@ -20,7 +20,6 @@ export type TimeOptions = {
   relativeOptions: RelativeOption[];
   relativeRoundingLabels: { [id in TimeUnitId]: string };
   refreshUnitsOptions: EuiSelectOption[];
-  refreshUnitsShorthand: { [id: string]: string };
   commonDurationRanges: DurationRange[];
 };
 
@@ -126,13 +125,6 @@ export const useI18nTimeOptions = (): TimeOptions => {
     ({ value }) => value === 'h' || value === 'm' || value === 's'
   );
 
-  const refreshUnitsShorthand = {
-    s: useEuiI18n('euiTimeOptions.secondsShorthand', 's'),
-    m: useEuiI18n('euiTimeOptions.minutesShorthand', 'm'),
-    h: useEuiI18n('euiTimeOptions.hoursShorthand', 'h'),
-    d: useEuiI18n('euiTimeOptions.daysShorthand', 'd'),
-  };
-
   /**
    * Used by both Quick Select ('Commonly used') and by PrettyDuration
    */
@@ -185,7 +177,6 @@ export const useI18nTimeOptions = (): TimeOptions => {
     relativeOptions,
     relativeRoundingLabels,
     refreshUnitsOptions,
-    refreshUnitsShorthand,
     commonDurationRanges,
   };
 };

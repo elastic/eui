@@ -74,12 +74,6 @@ describe('useI18nTimeOptions', () => {
             "value": "h",
           },
         ],
-        "refreshUnitsShorthand": Object {
-          "d": "d",
-          "h": "h",
-          "m": "m",
-          "s": "s",
-        },
         "relativeOptions": Array [
           Object {
             "text": "Seconds ago",
