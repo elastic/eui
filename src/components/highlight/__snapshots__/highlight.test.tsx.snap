@@ -1,36 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiHighlight behavior loose matching matches strings with different casing 1`] = `
-.emotion-0 {
-  background-color: rgba(0,119,204,0.1);
-  font-weight: 700;
-  color: #343741;
-}
-
-.emotion-0:before,
-.emotion-0:after {
-  -webkit-clip-path: inset(100%);
-  clip-path: inset(100%);
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.emotion-0:before {
-  content: ' [highlight start] ';
-}
-
-.emotion-0:after {
-  content: ' [highlight end] ';
-}
-
 <span>
   different 
   <mark
-    class="euiMark emotion-0"
+    class="euiMark css-b9vly9-euiMarkStyles-EuiMark"
   >
     case
   </mark>
@@ -39,47 +13,21 @@ exports[`EuiHighlight behavior loose matching matches strings with different cas
 `;
 
 exports[`EuiHighlight behavior matching applies to all matches 1`] = `
-.emotion-0 {
-  background-color: rgba(0,119,204,0.1);
-  font-weight: 700;
-  color: #343741;
-}
-
-.emotion-0:before,
-.emotion-0:after {
-  -webkit-clip-path: inset(100%);
-  clip-path: inset(100%);
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.emotion-0:before {
-  content: ' [highlight start] ';
-}
-
-.emotion-0:after {
-  content: ' [highlight end] ';
-}
-
 <span>
   <mark
-    class="euiMark emotion-0"
+    class="euiMark css-b9vly9-euiMarkStyles-EuiMark"
   >
     match
   </mark>
    
   <mark
-    class="euiMark emotion-0"
+    class="euiMark css-b9vly9-euiMarkStyles-EuiMark"
   >
     match
   </mark>
    
   <mark
-    class="euiMark emotion-0"
+    class="euiMark css-b9vly9-euiMarkStyles-EuiMark"
   >
     match
   </mark>
@@ -87,27 +35,21 @@ exports[`EuiHighlight behavior matching applies to all matches 1`] = `
 `;
 
 exports[`EuiHighlight behavior matching is rendered without CSS :before and :after text 1`] = `
-.emotion-0 {
-  background-color: rgba(0,119,204,0.1);
-  font-weight: 700;
-  color: #343741;
-}
-
 <span>
   <mark
-    class="euiMark emotion-0"
+    class="euiMark css-dtzpxu-euiMarkStyles-EuiMark"
   >
     match
   </mark>
    
   <mark
-    class="euiMark emotion-0"
+    class="euiMark css-dtzpxu-euiMarkStyles-EuiMark"
   >
     match
   </mark>
    
   <mark
-    class="euiMark emotion-0"
+    class="euiMark css-dtzpxu-euiMarkStyles-EuiMark"
   >
     match
   </mark>
@@ -115,35 +57,9 @@ exports[`EuiHighlight behavior matching is rendered without CSS :before and :aft
 `;
 
 exports[`EuiHighlight behavior matching only applies to first match 1`] = `
-.emotion-0 {
-  background-color: rgba(0,119,204,0.1);
-  font-weight: 700;
-  color: #343741;
-}
-
-.emotion-0:before,
-.emotion-0:after {
-  -webkit-clip-path: inset(100%);
-  clip-path: inset(100%);
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.emotion-0:before {
-  content: ' [highlight start] ';
-}
-
-.emotion-0:after {
-  content: ' [highlight end] ';
-}
-
 <span>
   <mark
-    class="euiMark emotion-0"
+    class="euiMark css-b9vly9-euiMarkStyles-EuiMark"
   >
     match
   </mark>

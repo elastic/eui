@@ -8,13 +8,18 @@
 
 import React from 'react';
 import { render } from 'enzyme';
+import { renderWithStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
 
 import { EuiMark } from './mark';
 
 describe('EuiMark', () => {
+  renderWithStyles(<EuiMark>Marked</EuiMark>);
+
   test('is rendered', () => {
-    const component = render(<EuiMark>Marked</EuiMark>);
-    expect(component).toMatchSnapshot();
+    expect(
+      render(<EuiMark {...requiredProps}>Marked</EuiMark>)
+    ).toMatchSnapshot();
   });
 
   test('is rendered without CSS :before and :after text', () => {

@@ -2127,32 +2127,6 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
 `;
 
 exports[`EuiSelectableListItem props searchValue 1`] = `
-.emotion-0 {
-  background-color: rgba(0,119,204,0.1);
-  font-weight: 700;
-  color: #343741;
-}
-
-.emotion-0:before,
-.emotion-0:after {
-  -webkit-clip-path: inset(100%);
-  clip-path: inset(100%);
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.emotion-0:before {
-  content: ' [highlight start] ';
-}
-
-.emotion-0:after {
-  content: ' [highlight end] ';
-}
-
 <div
   class="euiSelectableList testClass1 testClass2"
   data-test-subj="test subject string"
@@ -2248,7 +2222,7 @@ exports[`EuiSelectableListItem props searchValue 1`] = `
             >
               <span>
                 <mark
-                  class="euiMark emotion-0"
+                  class="euiMark css-b9vly9-euiMarkStyles-EuiMark"
                 >
                   Mi
                 </mark>
@@ -2348,32 +2322,6 @@ exports[`EuiSelectableListItem props searchValue 1`] = `
 `;
 
 exports[`EuiSelectableListItem props searchValue 2`] = `
-.emotion-0 {
-  background-color: rgba(0,119,204,0.1);
-  font-weight: 700;
-  color: #343741;
-}
-
-.emotion-0:before,
-.emotion-0:after {
-  -webkit-clip-path: inset(100%);
-  clip-path: inset(100%);
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.emotion-0:before {
-  content: ' [highlight start] ';
-}
-
-.emotion-0:after {
-  content: ' [highlight end] ';
-}
-
 <div
   class="euiSelectableList testClass1 testClass2"
   data-test-subj="test subject string"
@@ -2469,7 +2417,7 @@ exports[`EuiSelectableListItem props searchValue 2`] = `
             >
               <span>
                 <mark
-                  class="euiMark emotion-0"
+                  class="euiMark css-b9vly9-euiMarkStyles-EuiMark"
                 >
                   Mi
                 </mark>

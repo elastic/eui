@@ -1,14 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiMark is rendered 1`] = `
-.emotion-0 {
+<mark
+  aria-label="aria-label"
+  class="euiMark testClass1 testClass2 css-b9vly9-euiMarkStyles-EuiMark"
+  data-test-subj="test subject string"
+>
+  Marked
+</mark>
+`;
+
+exports[`EuiMark is rendered without CSS :before and :after text 1`] = `
+<mark
+  class="euiMark css-dtzpxu-euiMarkStyles-EuiMark"
+>
+  Market
+</mark>
+`;
+
+exports[`EuiMark is rendered without CSS :before and :after text: renders with emotion styles 1`] = `
+.css-b9vly9-euiMarkStyles-EuiMark {
   background-color: rgba(0,119,204,0.1);
   font-weight: 700;
   color: #343741;
 }
 
-.emotion-0:before,
-.emotion-0:after {
+.css-b9vly9-euiMarkStyles-EuiMark:before,
+.css-b9vly9-euiMarkStyles-EuiMark:after {
   -webkit-clip-path: inset(100%);
   clip-path: inset(100%);
   clip: rect(1px, 1px, 1px, 1px);
@@ -19,31 +37,17 @@ exports[`EuiMark is rendered 1`] = `
   width: 1px;
 }
 
-.emotion-0:before {
+.css-b9vly9-euiMarkStyles-EuiMark:before {
   content: ' [highlight start] ';
 }
 
-.emotion-0:after {
+.css-b9vly9-euiMarkStyles-EuiMark:after {
   content: ' [highlight end] ';
 }
 
 <mark
-  class="euiMark emotion-0"
+  class="euiMark css-b9vly9-euiMarkStyles-EuiMark"
 >
   Marked
-</mark>
-`;
-
-exports[`EuiMark is rendered without CSS :before and :after text 1`] = `
-.emotion-0 {
-  background-color: rgba(0,119,204,0.1);
-  font-weight: 700;
-  color: #343741;
-}
-
-<mark
-  class="euiMark emotion-0"
->
-  Market
 </mark>
 `;
