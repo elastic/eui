@@ -105,7 +105,7 @@ export class EuiRelativeTab extends Component<
   };
 
   render() {
-    const { timeUnits, relativeOptions } = this.props.timeOptions;
+    const { relativeOptions, relativeRoundingLabels } = this.props.timeOptions;
     const { count, unit } = this.state;
     const invalidDate = this.props.value === INVALID_DATE;
     const invalidValue = count === undefined || count < 0;
@@ -216,20 +216,12 @@ export class EuiRelativeTab extends Component<
           </EuiScreenReaderOnly>
         </EuiForm>
         <EuiPopoverFooter paddingSize="s">
-          <EuiI18n
-            token="euiRelativeTab.roundingLabel"
-            default="Round to the {unit}"
-            values={{ unit: timeUnits[unit.substring(0, 1) as TimeUnitId] }}
-          >
-            {(roundingLabel: string) => (
-              <EuiSwitch
-                data-test-subj={'superDatePickerRelativeDateRoundSwitch'}
-                label={roundingLabel}
-                checked={this.state.round}
-                onChange={this.onRoundChange}
-              />
-            )}
-          </EuiI18n>
+          <EuiSwitch
+            data-test-subj={'superDatePickerRelativeDateRoundSwitch'}
+            label={relativeRoundingLabels[unit.substring(0, 1) as TimeUnitId]}
+            checked={this.state.round}
+            onChange={this.onRoundChange}
+          />
         </EuiPopoverFooter>
       </>
     );

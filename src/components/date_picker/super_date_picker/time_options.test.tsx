@@ -138,6 +138,15 @@ describe('useI18nTimeOptions', () => {
             "value": "y+",
           },
         ],
+        "relativeRoundingLabels": Object {
+          "M": "Round to the month",
+          "d": "Round to the day",
+          "h": "Round to the hour",
+          "m": "Round to the minute",
+          "s": "Round to the second",
+          "w": "Round to the week",
+          "y": "Round to the year",
+        },
         "timeTenseOptions": Array [
           Object {
             "text": "Last",

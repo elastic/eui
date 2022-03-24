@@ -18,6 +18,7 @@ export type TimeOptions = {
   timeTenseOptions: EuiSelectOption[];
   timeUnitsOptions: EuiSelectOption[];
   relativeOptions: RelativeOption[];
+  relativeRoundingLabels: { [id in TimeUnitId]: string };
   refreshUnitsOptions: EuiSelectOption[];
   refreshUnitsShorthand: { [id: string]: string };
   commonDurationRanges: DurationRange[];
@@ -108,6 +109,16 @@ export const useI18nTimeOptions = (): TimeOptions => {
     },
   ];
 
+  const relativeRoundingLabels = {
+    s: useEuiI18n('euiTimeOptions.roundToSecond', 'Round to the second'),
+    m: useEuiI18n('euiTimeOptions.roundToMinute', 'Round to the minute'),
+    h: useEuiI18n('euiTimeOptions.roundToHour', 'Round to the hour'),
+    d: useEuiI18n('euiTimeOptions.roundToDay', 'Round to the day'),
+    w: useEuiI18n('euiTimeOptions.roundToWeek', 'Round to the week'),
+    M: useEuiI18n('euiTimeOptions.roundToMonth', 'Round to the month'),
+    y: useEuiI18n('euiTimeOptions.roundToYear', 'Round to the year'),
+  };
+
   /**
    * Auto Refresh
    */
@@ -172,6 +183,7 @@ export const useI18nTimeOptions = (): TimeOptions => {
     timeTenseOptions,
     timeUnitsOptions,
     relativeOptions,
+    relativeRoundingLabels,
     refreshUnitsOptions,
     refreshUnitsShorthand,
     commonDurationRanges,
