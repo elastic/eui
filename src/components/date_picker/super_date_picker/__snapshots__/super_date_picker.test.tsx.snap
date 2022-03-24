@@ -110,24 +110,18 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
               ],
               "refreshUnitsOptions": Array [
                 Object {
-                  "text": "seconds",
+                  "text": "Seconds",
                   "value": "s",
                 },
                 Object {
-                  "text": "minutes",
+                  "text": "Minutes",
                   "value": "m",
                 },
                 Object {
-                  "text": "hours",
+                  "text": "Hours",
                   "value": "h",
                 },
               ],
-              "refreshUnitsShorthand": Object {
-                "d": "d",
-                "h": "h",
-                "m": "m",
-                "s": "s",
-              },
               "relativeOptions": Array [
                 Object {
                   "text": "Seconds ago",
@@ -186,6 +180,15 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
                   "value": "y+",
                 },
               ],
+              "relativeRoundingLabels": Object {
+                "M": "Round to the month",
+                "d": "Round to the day",
+                "h": "Round to the hour",
+                "m": "Round to the minute",
+                "s": "Round to the second",
+                "w": "Round to the week",
+                "y": "Round to the year",
+              },
               "timeTenseOptions": Array [
                 Object {
                   "text": "Last",
@@ -196,54 +199,36 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
                   "value": "next",
                 },
               ],
-              "timeUnits": Object {
-                "M": "month",
-                "d": "day",
-                "h": "hour",
-                "m": "minute",
-                "s": "second",
-                "w": "week",
-                "y": "year",
-              },
               "timeUnitsOptions": Array [
                 Object {
-                  "text": "seconds",
+                  "text": "Seconds",
                   "value": "s",
                 },
                 Object {
-                  "text": "minutes",
+                  "text": "Minutes",
                   "value": "m",
                 },
                 Object {
-                  "text": "hours",
+                  "text": "Hours",
                   "value": "h",
                 },
                 Object {
-                  "text": "days",
+                  "text": "Days",
                   "value": "d",
                 },
                 Object {
-                  "text": "weeks",
+                  "text": "Weeks",
                   "value": "w",
                 },
                 Object {
-                  "text": "months",
+                  "text": "Months",
                   "value": "M",
                 },
                 Object {
-                  "text": "years",
+                  "text": "Years",
                   "value": "y",
                 },
               ],
-              "timeUnitsPlural": Object {
-                "M": "months",
-                "d": "days",
-                "h": "hours",
-                "m": "minutes",
-                "s": "seconds",
-                "w": "weeks",
-                "y": "years",
-              },
             }
           }
         />
@@ -450,24 +435,18 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
               ],
               "refreshUnitsOptions": Array [
                 Object {
-                  "text": "seconds",
+                  "text": "Seconds",
                   "value": "s",
                 },
                 Object {
-                  "text": "minutes",
+                  "text": "Minutes",
                   "value": "m",
                 },
                 Object {
-                  "text": "hours",
+                  "text": "Hours",
                   "value": "h",
                 },
               ],
-              "refreshUnitsShorthand": Object {
-                "d": "d",
-                "h": "h",
-                "m": "m",
-                "s": "s",
-              },
               "relativeOptions": Array [
                 Object {
                   "text": "Seconds ago",
@@ -526,6 +505,15 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
                   "value": "y+",
                 },
               ],
+              "relativeRoundingLabels": Object {
+                "M": "Round to the month",
+                "d": "Round to the day",
+                "h": "Round to the hour",
+                "m": "Round to the minute",
+                "s": "Round to the second",
+                "w": "Round to the week",
+                "y": "Round to the year",
+              },
               "timeTenseOptions": Array [
                 Object {
                   "text": "Last",
@@ -536,54 +524,36 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
                   "value": "next",
                 },
               ],
-              "timeUnits": Object {
-                "M": "month",
-                "d": "day",
-                "h": "hour",
-                "m": "minute",
-                "s": "second",
-                "w": "week",
-                "y": "year",
-              },
               "timeUnitsOptions": Array [
                 Object {
-                  "text": "seconds",
+                  "text": "Seconds",
                   "value": "s",
                 },
                 Object {
-                  "text": "minutes",
+                  "text": "Minutes",
                   "value": "m",
                 },
                 Object {
-                  "text": "hours",
+                  "text": "Hours",
                   "value": "h",
                 },
                 Object {
-                  "text": "days",
+                  "text": "Days",
                   "value": "d",
                 },
                 Object {
-                  "text": "weeks",
+                  "text": "Weeks",
                   "value": "w",
                 },
                 Object {
-                  "text": "months",
+                  "text": "Months",
                   "value": "M",
                 },
                 Object {
-                  "text": "years",
+                  "text": "Years",
                   "value": "y",
                 },
               ],
-              "timeUnitsPlural": Object {
-                "M": "months",
-                "d": "days",
-                "h": "hours",
-                "m": "minutes",
-                "s": "seconds",
-                "w": "weeks",
-                "y": "years",
-              },
             }
           }
         />
@@ -790,24 +760,18 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
               ],
               "refreshUnitsOptions": Array [
                 Object {
-                  "text": "seconds",
+                  "text": "Seconds",
                   "value": "s",
                 },
                 Object {
-                  "text": "minutes",
+                  "text": "Minutes",
                   "value": "m",
                 },
                 Object {
-                  "text": "hours",
+                  "text": "Hours",
                   "value": "h",
                 },
               ],
-              "refreshUnitsShorthand": Object {
-                "d": "d",
-                "h": "h",
-                "m": "m",
-                "s": "s",
-              },
               "relativeOptions": Array [
                 Object {
                   "text": "Seconds ago",
@@ -866,6 +830,15 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
                   "value": "y+",
                 },
               ],
+              "relativeRoundingLabels": Object {
+                "M": "Round to the month",
+                "d": "Round to the day",
+                "h": "Round to the hour",
+                "m": "Round to the minute",
+                "s": "Round to the second",
+                "w": "Round to the week",
+                "y": "Round to the year",
+              },
               "timeTenseOptions": Array [
                 Object {
                   "text": "Last",
@@ -876,54 +849,36 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
                   "value": "next",
                 },
               ],
-              "timeUnits": Object {
-                "M": "month",
-                "d": "day",
-                "h": "hour",
-                "m": "minute",
-                "s": "second",
-                "w": "week",
-                "y": "year",
-              },
               "timeUnitsOptions": Array [
                 Object {
-                  "text": "seconds",
+                  "text": "Seconds",
                   "value": "s",
                 },
                 Object {
-                  "text": "minutes",
+                  "text": "Minutes",
                   "value": "m",
                 },
                 Object {
-                  "text": "hours",
+                  "text": "Hours",
                   "value": "h",
                 },
                 Object {
-                  "text": "days",
+                  "text": "Days",
                   "value": "d",
                 },
                 Object {
-                  "text": "weeks",
+                  "text": "Weeks",
                   "value": "w",
                 },
                 Object {
-                  "text": "months",
+                  "text": "Months",
                   "value": "M",
                 },
                 Object {
-                  "text": "years",
+                  "text": "Years",
                   "value": "y",
                 },
               ],
-              "timeUnitsPlural": Object {
-                "M": "months",
-                "d": "days",
-                "h": "hours",
-                "m": "minutes",
-                "s": "seconds",
-                "w": "weeks",
-                "y": "years",
-              },
             }
           }
         />
@@ -1166,24 +1121,18 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
               ],
               "refreshUnitsOptions": Array [
                 Object {
-                  "text": "seconds",
+                  "text": "Seconds",
                   "value": "s",
                 },
                 Object {
-                  "text": "minutes",
+                  "text": "Minutes",
                   "value": "m",
                 },
                 Object {
-                  "text": "hours",
+                  "text": "Hours",
                   "value": "h",
                 },
               ],
-              "refreshUnitsShorthand": Object {
-                "d": "d",
-                "h": "h",
-                "m": "m",
-                "s": "s",
-              },
               "relativeOptions": Array [
                 Object {
                   "text": "Seconds ago",
@@ -1242,6 +1191,15 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
                   "value": "y+",
                 },
               ],
+              "relativeRoundingLabels": Object {
+                "M": "Round to the month",
+                "d": "Round to the day",
+                "h": "Round to the hour",
+                "m": "Round to the minute",
+                "s": "Round to the second",
+                "w": "Round to the week",
+                "y": "Round to the year",
+              },
               "timeTenseOptions": Array [
                 Object {
                   "text": "Last",
@@ -1252,54 +1210,36 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
                   "value": "next",
                 },
               ],
-              "timeUnits": Object {
-                "M": "month",
-                "d": "day",
-                "h": "hour",
-                "m": "minute",
-                "s": "second",
-                "w": "week",
-                "y": "year",
-              },
               "timeUnitsOptions": Array [
                 Object {
-                  "text": "seconds",
+                  "text": "Seconds",
                   "value": "s",
                 },
                 Object {
-                  "text": "minutes",
+                  "text": "Minutes",
                   "value": "m",
                 },
                 Object {
-                  "text": "hours",
+                  "text": "Hours",
                   "value": "h",
                 },
                 Object {
-                  "text": "days",
+                  "text": "Days",
                   "value": "d",
                 },
                 Object {
-                  "text": "weeks",
+                  "text": "Weeks",
                   "value": "w",
                 },
                 Object {
-                  "text": "months",
+                  "text": "Months",
                   "value": "M",
                 },
                 Object {
-                  "text": "years",
+                  "text": "Years",
                   "value": "y",
                 },
               ],
-              "timeUnitsPlural": Object {
-                "M": "months",
-                "d": "days",
-                "h": "hours",
-                "m": "minutes",
-                "s": "seconds",
-                "w": "weeks",
-                "y": "years",
-              },
             }
           }
         />
@@ -1440,24 +1380,18 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
               ],
               "refreshUnitsOptions": Array [
                 Object {
-                  "text": "seconds",
+                  "text": "Seconds",
                   "value": "s",
                 },
                 Object {
-                  "text": "minutes",
+                  "text": "Minutes",
                   "value": "m",
                 },
                 Object {
-                  "text": "hours",
+                  "text": "Hours",
                   "value": "h",
                 },
               ],
-              "refreshUnitsShorthand": Object {
-                "d": "d",
-                "h": "h",
-                "m": "m",
-                "s": "s",
-              },
               "relativeOptions": Array [
                 Object {
                   "text": "Seconds ago",
@@ -1516,6 +1450,15 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
                   "value": "y+",
                 },
               ],
+              "relativeRoundingLabels": Object {
+                "M": "Round to the month",
+                "d": "Round to the day",
+                "h": "Round to the hour",
+                "m": "Round to the minute",
+                "s": "Round to the second",
+                "w": "Round to the week",
+                "y": "Round to the year",
+              },
               "timeTenseOptions": Array [
                 Object {
                   "text": "Last",
@@ -1526,54 +1469,36 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
                   "value": "next",
                 },
               ],
-              "timeUnits": Object {
-                "M": "month",
-                "d": "day",
-                "h": "hour",
-                "m": "minute",
-                "s": "second",
-                "w": "week",
-                "y": "year",
-              },
               "timeUnitsOptions": Array [
                 Object {
-                  "text": "seconds",
+                  "text": "Seconds",
                   "value": "s",
                 },
                 Object {
-                  "text": "minutes",
+                  "text": "Minutes",
                   "value": "m",
                 },
                 Object {
-                  "text": "hours",
+                  "text": "Hours",
                   "value": "h",
                 },
                 Object {
-                  "text": "days",
+                  "text": "Days",
                   "value": "d",
                 },
                 Object {
-                  "text": "weeks",
+                  "text": "Weeks",
                   "value": "w",
                 },
                 Object {
-                  "text": "months",
+                  "text": "Months",
                   "value": "M",
                 },
                 Object {
-                  "text": "years",
+                  "text": "Years",
                   "value": "y",
                 },
               ],
-              "timeUnitsPlural": Object {
-                "M": "months",
-                "d": "days",
-                "h": "hours",
-                "m": "minutes",
-                "s": "seconds",
-                "w": "weeks",
-                "y": "years",
-              },
             }
           }
         />
@@ -1758,24 +1683,18 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
               ],
               "refreshUnitsOptions": Array [
                 Object {
-                  "text": "seconds",
+                  "text": "Seconds",
                   "value": "s",
                 },
                 Object {
-                  "text": "minutes",
+                  "text": "Minutes",
                   "value": "m",
                 },
                 Object {
-                  "text": "hours",
+                  "text": "Hours",
                   "value": "h",
                 },
               ],
-              "refreshUnitsShorthand": Object {
-                "d": "d",
-                "h": "h",
-                "m": "m",
-                "s": "s",
-              },
               "relativeOptions": Array [
                 Object {
                   "text": "Seconds ago",
@@ -1834,6 +1753,15 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
                   "value": "y+",
                 },
               ],
+              "relativeRoundingLabels": Object {
+                "M": "Round to the month",
+                "d": "Round to the day",
+                "h": "Round to the hour",
+                "m": "Round to the minute",
+                "s": "Round to the second",
+                "w": "Round to the week",
+                "y": "Round to the year",
+              },
               "timeTenseOptions": Array [
                 Object {
                   "text": "Last",
@@ -1844,54 +1772,36 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
                   "value": "next",
                 },
               ],
-              "timeUnits": Object {
-                "M": "month",
-                "d": "day",
-                "h": "hour",
-                "m": "minute",
-                "s": "second",
-                "w": "week",
-                "y": "year",
-              },
               "timeUnitsOptions": Array [
                 Object {
-                  "text": "seconds",
+                  "text": "Seconds",
                   "value": "s",
                 },
                 Object {
-                  "text": "minutes",
+                  "text": "Minutes",
                   "value": "m",
                 },
                 Object {
-                  "text": "hours",
+                  "text": "Hours",
                   "value": "h",
                 },
                 Object {
-                  "text": "days",
+                  "text": "Days",
                   "value": "d",
                 },
                 Object {
-                  "text": "weeks",
+                  "text": "Weeks",
                   "value": "w",
                 },
                 Object {
-                  "text": "months",
+                  "text": "Months",
                   "value": "M",
                 },
                 Object {
-                  "text": "years",
+                  "text": "Years",
                   "value": "y",
                 },
               ],
-              "timeUnitsPlural": Object {
-                "M": "months",
-                "d": "days",
-                "h": "hours",
-                "m": "minutes",
-                "s": "seconds",
-                "w": "weeks",
-                "y": "years",
-              },
             }
           }
         />
@@ -2097,24 +2007,18 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
               ],
               "refreshUnitsOptions": Array [
                 Object {
-                  "text": "seconds",
+                  "text": "Seconds",
                   "value": "s",
                 },
                 Object {
-                  "text": "minutes",
+                  "text": "Minutes",
                   "value": "m",
                 },
                 Object {
-                  "text": "hours",
+                  "text": "Hours",
                   "value": "h",
                 },
               ],
-              "refreshUnitsShorthand": Object {
-                "d": "d",
-                "h": "h",
-                "m": "m",
-                "s": "s",
-              },
               "relativeOptions": Array [
                 Object {
                   "text": "Seconds ago",
@@ -2173,6 +2077,15 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
                   "value": "y+",
                 },
               ],
+              "relativeRoundingLabels": Object {
+                "M": "Round to the month",
+                "d": "Round to the day",
+                "h": "Round to the hour",
+                "m": "Round to the minute",
+                "s": "Round to the second",
+                "w": "Round to the week",
+                "y": "Round to the year",
+              },
               "timeTenseOptions": Array [
                 Object {
                   "text": "Last",
@@ -2183,54 +2096,36 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
                   "value": "next",
                 },
               ],
-              "timeUnits": Object {
-                "M": "month",
-                "d": "day",
-                "h": "hour",
-                "m": "minute",
-                "s": "second",
-                "w": "week",
-                "y": "year",
-              },
               "timeUnitsOptions": Array [
                 Object {
-                  "text": "seconds",
+                  "text": "Seconds",
                   "value": "s",
                 },
                 Object {
-                  "text": "minutes",
+                  "text": "Minutes",
                   "value": "m",
                 },
                 Object {
-                  "text": "hours",
+                  "text": "Hours",
                   "value": "h",
                 },
                 Object {
-                  "text": "days",
+                  "text": "Days",
                   "value": "d",
                 },
                 Object {
-                  "text": "weeks",
+                  "text": "Weeks",
                   "value": "w",
                 },
                 Object {
-                  "text": "months",
+                  "text": "Months",
                   "value": "M",
                 },
                 Object {
-                  "text": "years",
+                  "text": "Years",
                   "value": "y",
                 },
               ],
-              "timeUnitsPlural": Object {
-                "M": "months",
-                "d": "days",
-                "h": "hours",
-                "m": "minutes",
-                "s": "seconds",
-                "w": "weeks",
-                "y": "years",
-              },
             }
           }
         />
@@ -2436,24 +2331,18 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
               ],
               "refreshUnitsOptions": Array [
                 Object {
-                  "text": "seconds",
+                  "text": "Seconds",
                   "value": "s",
                 },
                 Object {
-                  "text": "minutes",
+                  "text": "Minutes",
                   "value": "m",
                 },
                 Object {
-                  "text": "hours",
+                  "text": "Hours",
                   "value": "h",
                 },
               ],
-              "refreshUnitsShorthand": Object {
-                "d": "d",
-                "h": "h",
-                "m": "m",
-                "s": "s",
-              },
               "relativeOptions": Array [
                 Object {
                   "text": "Seconds ago",
@@ -2512,6 +2401,15 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
                   "value": "y+",
                 },
               ],
+              "relativeRoundingLabels": Object {
+                "M": "Round to the month",
+                "d": "Round to the day",
+                "h": "Round to the hour",
+                "m": "Round to the minute",
+                "s": "Round to the second",
+                "w": "Round to the week",
+                "y": "Round to the year",
+              },
               "timeTenseOptions": Array [
                 Object {
                   "text": "Last",
@@ -2522,54 +2420,36 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
                   "value": "next",
                 },
               ],
-              "timeUnits": Object {
-                "M": "month",
-                "d": "day",
-                "h": "hour",
-                "m": "minute",
-                "s": "second",
-                "w": "week",
-                "y": "year",
-              },
               "timeUnitsOptions": Array [
                 Object {
-                  "text": "seconds",
+                  "text": "Seconds",
                   "value": "s",
                 },
                 Object {
-                  "text": "minutes",
+                  "text": "Minutes",
                   "value": "m",
                 },
                 Object {
-                  "text": "hours",
+                  "text": "Hours",
                   "value": "h",
                 },
                 Object {
-                  "text": "days",
+                  "text": "Days",
                   "value": "d",
                 },
                 Object {
-                  "text": "weeks",
+                  "text": "Weeks",
                   "value": "w",
                 },
                 Object {
-                  "text": "months",
+                  "text": "Months",
                   "value": "M",
                 },
                 Object {
-                  "text": "years",
+                  "text": "Years",
                   "value": "y",
                 },
               ],
-              "timeUnitsPlural": Object {
-                "M": "months",
-                "d": "days",
-                "h": "hours",
-                "m": "minutes",
-                "s": "seconds",
-                "w": "weeks",
-                "y": "years",
-              },
             }
           }
         />
