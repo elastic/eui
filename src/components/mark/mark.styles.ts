@@ -9,13 +9,14 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme, transparentize } from '../../services';
 
-export const euiMarkStyles = ({
-  euiTheme,
-  colorMode,
-  hasHighlightText,
-  highlightStart,
-  highlightEnd,
-}: UseEuiTheme) => {
+export const euiMarkStyles = (
+  { euiTheme, colorMode }: UseEuiTheme,
+  {
+    hasHighlightText,
+    highlightStart,
+    highlightEnd,
+  }: { hasHighlightText: boolean; highlightStart: string; highlightEnd: string }
+) => {
   // TODO: Was $euiFocusBackgroundColor
   const transparency = { LIGHT: 0.1, DARK: 0.3 };
 

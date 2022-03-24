@@ -32,20 +32,17 @@ export const EuiMark: FunctionComponent<EuiMarkProps> = ({
   ...rest
 }) => {
   const useTheme = useEuiTheme();
-  const classes = classNames('euiMark', className);
   const highlightStart = useEuiI18n(
     'euiMark.highlightStart',
     'highlight start'
   );
   const highlightEnd = useEuiI18n('euiMark.highlightEnd', 'highlight end');
-  const styles = euiMarkStyles({
-    euiTheme: useTheme.euiTheme,
-    colorMode: useTheme.colorMode,
-    modifications: {},
-    hasHighlightText: hasHighlightText,
-    highlightStart: highlightStart,
-    highlightEnd: highlightEnd,
+  const styles = euiMarkStyles(useTheme, {
+    hasHighlightText,
+    highlightStart,
+    highlightEnd,
   });
+  const classes = classNames('euiMark', className);
 
   return (
     <mark css={[styles]} className={classes} {...rest}>

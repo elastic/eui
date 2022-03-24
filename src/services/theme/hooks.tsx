@@ -7,6 +7,7 @@
  */
 
 import React, { forwardRef, useContext } from 'react';
+
 import {
   EuiThemeContext,
   EuiModificationsContext,
@@ -22,9 +23,6 @@ export interface UseEuiTheme<T extends {} = {}> {
   euiTheme: EuiThemeComputed<T>;
   colorMode: EuiThemeColorModeStandard;
   modifications: EuiThemeModifications<T>;
-  hasHighlightText?: boolean;
-  highlightStart?: string;
-  highlightEnd?: string;
 }
 
 export const useEuiTheme = <T extends {} = {}>(): UseEuiTheme<T> => {
