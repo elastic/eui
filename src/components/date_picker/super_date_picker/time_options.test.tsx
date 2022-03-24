@@ -62,15 +62,15 @@ describe('useI18nTimeOptions', () => {
         ],
         "refreshUnitsOptions": Array [
           Object {
-            "text": "seconds",
+            "text": "Seconds",
             "value": "s",
           },
           Object {
-            "text": "minutes",
+            "text": "Minutes",
             "value": "m",
           },
           Object {
-            "text": "hours",
+            "text": "Hours",
             "value": "h",
           },
         ],
@@ -148,54 +148,36 @@ describe('useI18nTimeOptions', () => {
             "value": "next",
           },
         ],
-        "timeUnits": Object {
-          "M": "month",
-          "d": "day",
-          "h": "hour",
-          "m": "minute",
-          "s": "second",
-          "w": "week",
-          "y": "year",
-        },
         "timeUnitsOptions": Array [
           Object {
-            "text": "seconds",
+            "text": "Seconds",
             "value": "s",
           },
           Object {
-            "text": "minutes",
+            "text": "Minutes",
             "value": "m",
           },
           Object {
-            "text": "hours",
+            "text": "Hours",
             "value": "h",
           },
           Object {
-            "text": "days",
+            "text": "Days",
             "value": "d",
           },
           Object {
-            "text": "weeks",
+            "text": "Weeks",
             "value": "w",
           },
           Object {
-            "text": "months",
+            "text": "Months",
             "value": "M",
           },
           Object {
-            "text": "years",
+            "text": "Years",
             "value": "y",
           },
         ],
-        "timeUnitsPlural": Object {
-          "M": "months",
-          "d": "days",
-          "h": "hours",
-          "m": "minutes",
-          "s": "seconds",
-          "w": "weeks",
-          "y": "years",
-        },
       }
     `);
   });
@@ -205,13 +187,13 @@ describe('RenderI18nTimeOptions', () => {
   it('is a render function that passes the underlying children timeOptions as an arg', () => {
     const component = shallow(
       <RenderI18nTimeOptions>
-        {({ timeUnits }) => <>{timeUnits.m}</>}
+        {({ timeUnitsOptions }) => <>{timeUnitsOptions[0].text}</>}
       </RenderI18nTimeOptions>
     );
 
     expect(component).toMatchInlineSnapshot(`
       <Fragment>
-        minute
+        Seconds
       </Fragment>
     `);
   });

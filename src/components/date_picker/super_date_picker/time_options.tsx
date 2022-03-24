@@ -6,67 +6,49 @@
  * Side Public License, v 1.
  */
 
-import { keysOf } from '../../common';
 import { useEuiI18n } from '../../i18n';
 import { EuiSelectOption } from '../../form';
 
-import {
-  TimeUnitId,
-  TimeUnitLabel,
-  TimeUnitLabelPlural,
-  RelativeOption,
-  DurationRange,
-} from '../types';
+import { TimeUnitId, RelativeOption, DurationRange } from '../types';
 
 export const LAST = 'last';
 export const NEXT = 'next';
 
 export type TimeOptions = {
   timeTenseOptions: EuiSelectOption[];
-  timeUnits: { [id in TimeUnitId]: TimeUnitLabel };
   timeUnitsOptions: EuiSelectOption[];
-  timeUnitsPlural: { [id in TimeUnitId]: TimeUnitLabelPlural };
   relativeOptions: RelativeOption[];
-  refreshUnitsOptions: RelativeOption[];
+  refreshUnitsOptions: EuiSelectOption[];
   refreshUnitsShorthand: { [id: string]: string };
   commonDurationRanges: DurationRange[];
 };
 
-export const useI18nTimeOptions = () => {
+/**
+ * i18n'd time options, mostly used in EuiSelects (except for a few cases)
+ * used in EuiSuperDatePicker child sub-components
+ */
+export const useI18nTimeOptions = (): TimeOptions => {
+  /**
+   * Quick select panel
+   */
   const timeTenseOptions = [
-    {
-      value: LAST,
-      text: useEuiI18n('euiTimeOptions.last', 'Last'),
-    },
-    {
-      value: NEXT,
-      text: useEuiI18n('euiTimeOptions.next', 'Next'),
-    },
+    { value: LAST, text: useEuiI18n('euiTimeOptions.last', 'Last') },
+    { value: NEXT, text: useEuiI18n('euiTimeOptions.next', 'Next') },
   ];
 
-  const timeUnits = {
-    s: useEuiI18n('euiTimeOptions.second', 'second'),
-    m: useEuiI18n('euiTimeOptions.minute', 'minute'),
-    h: useEuiI18n('euiTimeOptions.hour', 'hour'),
-    d: useEuiI18n('euiTimeOptions.day', 'day'),
-    w: useEuiI18n('euiTimeOptions.week', 'week'),
-    M: useEuiI18n('euiTimeOptions.month', 'month'),
-    y: useEuiI18n('euiTimeOptions.year', 'year'),
-  };
-  const timeUnitsOptions = keysOf(timeUnits).map((key) => {
-    return { value: key, text: `${timeUnits[key]}s` };
-  });
+  const timeUnitsOptions = [
+    { value: 's', text: useEuiI18n('euiTimeOptions.seconds', 'Seconds') },
+    { value: 'm', text: useEuiI18n('euiTimeOptions.minutes', 'Minutes') },
+    { value: 'h', text: useEuiI18n('euiTimeOptions.hours', 'Hours') },
+    { value: 'd', text: useEuiI18n('euiTimeOptions.days', 'Days') },
+    { value: 'w', text: useEuiI18n('euiTimeOptions.weeks', 'Weeks') },
+    { value: 'M', text: useEuiI18n('euiTimeOptions.months', 'Months') },
+    { value: 'y', text: useEuiI18n('euiTimeOptions.years', 'Years') },
+  ];
 
-  const timeUnitsPlural = {
-    s: useEuiI18n('euiTimeOptions.seconds', 'seconds'),
-    m: useEuiI18n('euiTimeOptions.minutes', 'minutes'),
-    h: useEuiI18n('euiTimeOptions.hours', 'hours'),
-    d: useEuiI18n('euiTimeOptions.days', 'days'),
-    w: useEuiI18n('euiTimeOptions.weeks', 'weeks'),
-    M: useEuiI18n('euiTimeOptions.months', 'months'),
-    y: useEuiI18n('euiTimeOptions.years', 'years'),
-  };
-
+  /**
+   * Relative tab
+   */
   const relativeOptions: RelativeOption[] = [
     {
       text: useEuiI18n('euiTimeOptions.secondsAgo', 'Seconds ago'),
@@ -126,11 +108,12 @@ export const useI18nTimeOptions = () => {
     },
   ];
 
-  const refreshUnitsOptions = keysOf(timeUnits)
-    .filter(
-      (timeUnit) => timeUnit === 'h' || timeUnit === 'm' || timeUnit === 's'
-    )
-    .map((timeUnit) => ({ value: timeUnit, text: timeUnitsPlural[timeUnit] }));
+  /**
+   * Auto Refresh
+   */
+  const refreshUnitsOptions = timeUnitsOptions.filter(
+    ({ value }) => value === 'h' || value === 'm' || value === 's'
+  );
 
   const refreshUnitsShorthand = {
     s: useEuiI18n('euiTimeOptions.secondsShorthand', 's'),
@@ -139,6 +122,9 @@ export const useI18nTimeOptions = () => {
     d: useEuiI18n('euiTimeOptions.daysShorthand', 'd'),
   };
 
+  /**
+   * Used by both Quick Select ('Commonly used') and by PrettyDuration
+   */
   const commonDurationRanges = [
     {
       start: 'now/d',
@@ -184,9 +170,7 @@ export const useI18nTimeOptions = () => {
 
   return {
     timeTenseOptions,
-    timeUnits,
     timeUnitsOptions,
-    timeUnitsPlural,
     relativeOptions,
     refreshUnitsOptions,
     refreshUnitsShorthand,
@@ -194,6 +178,7 @@ export const useI18nTimeOptions = () => {
   };
 };
 
+// Render function of the above, used by class components that can't use hooks
 export const RenderI18nTimeOptions = (props: {
   children: (args: TimeOptions) => any;
 }) => {
