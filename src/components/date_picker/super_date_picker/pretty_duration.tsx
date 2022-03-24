@@ -13,7 +13,133 @@ import { useEuiI18n } from '../../i18n';
 import { getDateMode, DATE_MODES } from './date_modes';
 import { parseRelativeParts } from './relative_utils';
 import { useI18nTimeOptions } from './time_options';
-import { DurationRange, TimeUnitId, ShortDate, RelativeParts } from '../types';
+import {
+  DurationRange,
+  TimeUnitAllId,
+  ShortDate,
+  RelativeParts,
+} from '../types';
+
+/**
+ * Pretty duration i18n strings
+ * Units should not be simply concatenated because different languages
+ * will have different grammar/positions for time than English
+ */
+
+const useRelativeDurationI18n = (duration: number) => ({
+  s: useEuiI18n(
+    'euiPrettyDuration.lastDurationSeconds',
+    ({ duration }) => `Last ${duration} second${duration === 1 ? '' : 's'}`,
+    { duration }
+  ),
+  's+': useEuiI18n(
+    'euiPrettyDuration.nextDurationSeconds',
+    ({ duration }) => `Next ${duration} second${duration === 1 ? '' : 's'}`,
+    { duration }
+  ),
+  m: useEuiI18n(
+    'euiPrettyDuration.lastDurationMinutes',
+    ({ duration }) => `Last ${duration} minute${duration === 1 ? '' : 's'}`,
+    { duration }
+  ),
+  'm+': useEuiI18n(
+    'euiPrettyDuration.nextDurationMinutes',
+    ({ duration }) => `Next ${duration} minute${duration === 1 ? '' : 's'}`,
+    { duration }
+  ),
+  h: useEuiI18n(
+    'euiPrettyDuration.lastDurationHours',
+    ({ duration }) => `Last ${duration} hour${duration === 1 ? '' : 's'}`,
+    { duration }
+  ),
+  'h+': useEuiI18n(
+    'euiPrettyDuration.nextDurationHours',
+    ({ duration }) => `Next ${duration} hour${duration === 1 ? '' : 's'}`,
+    { duration }
+  ),
+  d: useEuiI18n(
+    'euiPrettyDuration.lastDurationDays',
+    ({ duration }) => `Last ${duration} day${duration === 1 ? '' : 's'}`,
+    { duration }
+  ),
+  'd+': useEuiI18n(
+    'euiPrettyDuration.nexttDurationDays',
+    ({ duration }) => `Next ${duration} day${duration === 1 ? '' : 's'}`,
+    { duration }
+  ),
+  w: useEuiI18n(
+    'euiPrettyDuration.lastDurationWeeks',
+    ({ duration }) => `Last ${duration} week${duration === 1 ? '' : 's'}`,
+    { duration }
+  ),
+  'w+': useEuiI18n(
+    'euiPrettyDuration.nextDurationWeeks',
+    ({ duration }) => `Next ${duration} week${duration === 1 ? '' : 's'}`,
+    { duration }
+  ),
+  M: useEuiI18n(
+    'euiPrettyDuration.lastDurationMonths',
+    ({ duration }) => `Last ${duration} month${duration === 1 ? '' : 's'}`,
+    { duration }
+  ),
+  'M+': useEuiI18n(
+    'euiPrettyDuration.nextDurationMonths',
+    ({ duration }) => `Next ${duration} month${duration === 1 ? '' : 's'}`,
+    { duration }
+  ),
+  y: useEuiI18n(
+    'euiPrettyDuration.lastDurationYears',
+    ({ duration }) => `Last ${duration} year${duration === 1 ? '' : 's'}`,
+    { duration }
+  ),
+  'y+': useEuiI18n(
+    'euiPrettyDuration.nextDurationYears',
+    ({ duration }) => `Next ${duration} year${duration === 1 ? '' : 's'}`,
+    { duration }
+  ),
+});
+
+const useRelativeDurationRoundedI18n = (prettyDuration: string) => ({
+  s: useEuiI18n(
+    'euiPrettyDuration.durationRoundedToSecond',
+    '{prettyDuration} rounded to the second',
+    { prettyDuration }
+  ),
+  m: useEuiI18n(
+    'euiPrettyDuration.durationRoundedToMinute',
+    '{prettyDuration} rounded to the minute',
+    { prettyDuration }
+  ),
+  h: useEuiI18n(
+    'euiPrettyDuration.durationRoundedToHour',
+    '{prettyDuration} rounded to the hour',
+    { prettyDuration }
+  ),
+  d: useEuiI18n(
+    'euiPrettyDuration.durationRoundedToDay',
+    '{prettyDuration} rounded to the day',
+    { prettyDuration }
+  ),
+  w: useEuiI18n(
+    'euiPrettyDuration.durationRoundedToWeek',
+    '{prettyDuration} rounded to the week',
+    { prettyDuration }
+  ),
+  M: useEuiI18n(
+    'euiPrettyDuration.durationRoundedToMonth',
+    '{prettyDuration} rounded to the month',
+    { prettyDuration }
+  ),
+  y: useEuiI18n(
+    'euiPrettyDuration.durationRoundedToYear',
+    '{prettyDuration} rounded to the year',
+    { prettyDuration }
+  ),
+});
+
+/**
+ * Reusable format time string util
+ */
 
 const ISO_FORMAT = 'YYYY-MM-DDTHH:mm:ss.SSSZ';
 
@@ -70,14 +196,10 @@ export const usePrettyDuration = ({
 }: PrettyDurationProps) => {
   let prettyDuration: string = '';
 
-  const timeOptions = useI18nTimeOptions();
-  const {
-    timeUnits,
-    timeUnitsPlural,
-    timeTenseOptions,
-    commonDurationRanges,
-  } = timeOptions;
-
+  /**
+   * If it's a quick range, use the quick range label
+   */
+  const { commonDurationRanges } = useI18nTimeOptions();
   const matchingQuickRange = hasRangeMatch(
     timeFrom,
     timeTo,
@@ -87,39 +209,42 @@ export const usePrettyDuration = ({
     prettyDuration = matchingQuickRange.label;
   }
 
-  let relativeDuration = '';
+  /**
+   * Otherwise if it's a relative (possibly rounded) duration, figure out
+   * a pretty i18n'd duration to display
+   */
+  let relativeDuration: number = 0;
   let relativeParts = {} as RelativeParts;
+
   if (isRelativeToNow(timeFrom, timeTo)) {
-    let timeTense;
     if (getDateMode(timeTo) === DATE_MODES.NOW) {
-      timeTense = timeTenseOptions[0].text; // Last
       relativeParts = parseRelativeParts(timeFrom);
     } else {
-      timeTense = timeTenseOptions[1].text; // Next
       relativeParts = parseRelativeParts(timeTo);
     }
-
-    const countTimeUnit = relativeParts.unit.substring(0, 1) as TimeUnitId;
-    const countTimeUnitFullName =
-      relativeParts.count > 1
-        ? timeUnitsPlural[countTimeUnit]
-        : timeUnits[countTimeUnit];
-
-    relativeDuration = `${timeTense} ${relativeParts.count} ${countTimeUnitFullName}`;
+    relativeDuration = relativeParts.count;
   }
-  const roundedRelativeDuration = useEuiI18n(
-    'euiPrettyDuration.roundedRelativeDuration',
-    '{time} rounded to the {unit}',
-    { time: relativeDuration, unit: timeUnits[relativeParts.roundUnit!] }
+
+  const relativeDurationI18n = useRelativeDurationI18n(relativeDuration);
+  const relativeDurationString = relativeParts.unit
+    ? relativeDurationI18n[relativeParts.unit as TimeUnitAllId]
+    : '';
+
+  const roundedDurationI18n = useRelativeDurationRoundedI18n(
+    relativeDurationString
   );
-  if (relativeParts.round && relativeParts.roundUnit) {
-    relativeDuration = roundedRelativeDuration;
-  }
+  const roundedDurationString =
+    relativeParts.round && relativeParts.roundUnit
+      ? roundedDurationI18n[relativeParts.roundUnit]
+      : '';
+
   if (!prettyDuration) {
-    prettyDuration = relativeDuration;
+    prettyDuration = roundedDurationString || relativeDurationString;
   }
 
-  // Can't look up the returned value, display a fallback text
+  /**
+   * If it's none of the above, display basic fallback copy
+   */
   const displayFrom = useFormatTimeString(timeFrom, dateFormat);
   const displayTo = useFormatTimeString(timeTo, dateFormat, true);
   const fallbackDuration = useEuiI18n(
