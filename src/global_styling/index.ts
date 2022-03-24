@@ -7,3 +7,4 @@
  */
 
 export * from './reset/global_styles';
+export * from './mixins';

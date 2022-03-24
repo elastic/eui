@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { Global, css } from '@emotion/react';
-import { useScrollBar } from '../mixins/_helpers';
+import { mixinScrollBarStyles } from '../mixins';
 import { shade, tint, transparentize } from '../../services/color';
 import { useEuiTheme } from '../../services/theme';
 import { resetStyles as reset } from './reset';
@@ -16,16 +16,14 @@ import { resetStyles as reset } from './reset';
 export interface EuiGlobalStylesProps {}
 
 export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
-  const {
-    euiTheme: { base, border, colors, font },
-    colorMode,
-  } = useEuiTheme();
+  const { euiTheme, colorMode } = useEuiTheme();
+  const { base, border, colors, font } = euiTheme;
 
   /**
    * Declaring the top level scrollbar colors to match the theme also requires setting the sizes on Chrome
    * so that it knows to use custom styles. Therefore, we just reuse the same scrollbar mixin with thick size.
    */
-  const scrollbarStyles = useScrollBar({
+  const scrollbarStyles = mixinScrollBarStyles(euiTheme, {
     trackColor:
       colorMode === 'LIGHT'
         ? shade(colors.body, 0.03)

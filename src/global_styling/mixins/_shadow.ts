@@ -7,40 +7,35 @@
  */
 
 import chroma from 'chroma-js';
-import { useEuiTheme } from '../../services/theme/hooks';
+import { UseEuiTheme, useEuiTheme } from '../../services/theme';
 import { lightness, tint, transparentize } from '../../services/color';
 
-/**
- * NOTE: These were quick conversions of their Sass counterparts.
- *       They have yet to be used/tested.
- */
-
-export const useSlightShadow = ({
-  color,
-  opacity,
-}: {
+export interface MixinSlightShadowStyles {
   color?: string;
   opacity?: number;
-} = {}) => {
-  const {
-    euiTheme: { colors },
-  } = useEuiTheme();
+}
+export const mixinSlightShadowStyles = (
+  { colors }: UseEuiTheme['euiTheme'],
+  { color, opacity }: MixinSlightShadowStyles = {}
+) => {
   const rgba = chroma(color || colors.shadow)
     .alpha(opacity || 0.3)
     .css();
   return `box-shadow: 0 2px 2px -1px ${rgba};`;
 };
+export const useSlightShadowStyles = (options?: MixinSlightShadowStyles) => {
+  const { euiTheme } = useEuiTheme();
+  return mixinSlightShadowStyles(euiTheme, options);
+};
 
-export const useBottomShadowSmall = ({
-  color,
-  opacity,
-}: {
+export interface MixinBottomShadowSmallStyles {
   color?: string;
   opacity?: number;
-} = {}) => {
-  const {
-    euiTheme: { colors },
-  } = useEuiTheme();
+}
+export const mixinBottomShadowSmallStyles = (
+  { colors }: UseEuiTheme['euiTheme'],
+  { color, opacity }: MixinBottomShadowSmallStyles = {}
+) => {
   const rgba = chroma(color || colors.shadow)
     .alpha(opacity || 0.3)
     .css();
@@ -50,17 +45,21 @@ export const useBottomShadowSmall = ({
     0 1px 5px -2px ${rgba};
   `;
 };
+export const useBottomShadowSmallStyles = (
+  options?: MixinBottomShadowSmallStyles
+) => {
+  const { euiTheme } = useEuiTheme();
+  return mixinBottomShadowSmallStyles(euiTheme, options);
+};
 
-export const useBottomShadowMedium = ({
-  color,
-  opacity,
-}: {
+export interface MixinBottomShadowMediumStyles {
   color?: string;
   opacity?: number;
-} = {}) => {
-  const {
-    euiTheme: { colors },
-  } = useEuiTheme();
+}
+export const mixinBottomShadowMediumStyles = (
+  { colors }: UseEuiTheme['euiTheme'],
+  { color, opacity }: MixinBottomShadowSmallStyles = {}
+) => {
   const rgba = chroma(color || colors.shadow)
     .alpha(opacity || 0.2)
     .css();
@@ -71,19 +70,23 @@ export const useBottomShadowMedium = ({
     0 2px 2px 0 ${rgba};
   `;
 };
+export const useBottomShadowMediumStyles = (
+  options?: MixinBottomShadowSmallStyles
+) => {
+  const { euiTheme } = useEuiTheme();
+  return mixinBottomShadowMediumStyles(euiTheme, options);
+};
 
 // Similar to shadow medium but without the bottom depth. Useful for popovers
 // that drop UP rather than DOWN.
-export const useBottomShadowFlat = ({
-  color,
-  opacity,
-}: {
+export interface MixinBottomShadowFlatStyles {
   color?: string;
   opacity?: number;
-} = {}) => {
-  const {
-    euiTheme: { colors },
-  } = useEuiTheme();
+}
+export const mixinBottomShadowFlatStyles = (
+  { colors }: UseEuiTheme['euiTheme'],
+  { color, opacity }: MixinBottomShadowSmallStyles = {}
+) => {
   const rgba = chroma(color || colors.shadow)
     .alpha(opacity || 0.2)
     .css();
@@ -94,21 +97,24 @@ export const useBottomShadowFlat = ({
     0 0 2px 0 ${rgba};
   `;
 };
+export const useBottomShadowFlatStyles = (
+  options?: MixinBottomShadowFlatStyles
+) => {
+  const { euiTheme } = useEuiTheme();
+  return mixinBottomShadowFlatStyles(euiTheme, options);
+};
 
 // adjustBorder allows the border color to match the drop shadow better so that there's better
 // distinction between element bounds and the shadow (crisper borders)
-export const useBottomShadow = ({
-  color: _color,
-  opacity,
-  adjustBorders,
-}: {
+export interface MixinBottomShadowStyles {
   color?: string;
   opacity?: number;
   adjustBorders?: boolean;
-} = {}) => {
-  const {
-    euiTheme: { border, colors },
-  } = useEuiTheme();
+}
+export const mixinBottomShadowStyles = (
+  { border, colors }: UseEuiTheme['euiTheme'],
+  { color: _color, opacity, adjustBorders }: MixinBottomShadowStyles = {}
+) => {
   const color = _color || colors.shadow;
   const rgba = chroma(color)
     .alpha(opacity || 0.2)
@@ -132,21 +138,26 @@ export const useBottomShadow = ({
   ${adjustedBorders}
   `;
 };
+export const useBottomShadowStyles = (options?: MixinBottomShadowStyles) => {
+  const { euiTheme } = useEuiTheme();
+  return mixinBottomShadowStyles(euiTheme, options);
+};
 
-export const useBottomShadowLarge = ({
-  color: _color,
-  opacity,
-  adjustBorders,
-  reverse,
-}: {
+export interface MixinBottomShadowLargeStyles {
   color?: string;
   opacity?: number;
   adjustBorders?: boolean;
   reverse?: boolean;
-} = {}) => {
-  const {
-    euiTheme: { border, colors },
-  } = useEuiTheme();
+}
+export const mixinBottomShadowLargeStyles = (
+  { border, colors }: UseEuiTheme['euiTheme'],
+  {
+    color: _color,
+    opacity,
+    adjustBorders,
+    reverse,
+  }: MixinBottomShadowLargeStyles = {}
+) => {
   const color = _color || colors.shadow;
   const rgba = chroma(color)
     .alpha(opacity || 0.1)
@@ -184,17 +195,21 @@ export const useBottomShadowLarge = ({
     `;
   }
 };
+export const useBottomShadowLargeStyles = (
+  options?: MixinBottomShadowLargeStyles
+) => {
+  const { euiTheme } = useEuiTheme();
+  return mixinBottomShadowLargeStyles(euiTheme, options);
+};
 
-export const useSlightShadowHover = ({
-  color,
-  opacity: _opacity,
-}: {
+export interface MixinSlightShadowHoverStyles {
   color?: string;
   opacity?: number;
-} = {}) => {
-  const {
-    euiTheme: { colors },
-  } = useEuiTheme();
+}
+export const mixinSlightShadowHoverStyles = (
+  { colors }: UseEuiTheme['euiTheme'],
+  { color, opacity: _opacity }: MixinSlightShadowHoverStyles = {}
+) => {
   const opacity = _opacity || 0.3;
   const rgba1 = chroma(color || colors.shadow)
     .alpha(opacity)
@@ -208,21 +223,26 @@ export const useSlightShadowHover = ({
     0 2px 2px -1px ${rgba1};
   `;
 };
+export const useSlightShadowHoverStyles = (
+  options?: MixinSlightShadowHoverStyles
+) => {
+  const { euiTheme } = useEuiTheme();
+  return mixinSlightShadowHoverStyles(euiTheme, options);
+};
 
-export const useSlightShadowActive = useSlightShadowHover;
+export const mixinSlightShadowActiveStyles = mixinSlightShadowHoverStyles;
+export const useSlightShadowActiveStyles = useSlightShadowHoverStyles;
 
-export const useOverflowShadow = ({
-  direction: _direction,
-  side: _side,
-}: {
+export interface MixinOverflowShadowStyles {
   direction?: 'y' | 'x';
   side?: 'both' | 'start' | 'end';
-} = {}) => {
+}
+export const mixinOverflowShadowStyles = (
+  { size }: UseEuiTheme['euiTheme'],
+  { direction: _direction, side: _side }: MixinOverflowShadowStyles = {}
+) => {
   const direction = _direction || 'y';
   const side = _side || 'both';
-  const {
-    euiTheme: { size },
-  } = useEuiTheme();
   const hideHeight = `calc(${size.base} * 0.75 * 1.25)`;
   const gradientStart = `
   ${transparentize('red', 0.9)} 0%,
@@ -248,4 +268,10 @@ export const useOverflowShadow = ({
   } else {
     return `mask-image: linear-gradient(to right, ${gradient})`;
   }
+};
+export const useOverflowShadowStyles = (
+  options?: MixinOverflowShadowStyles
+) => {
+  const { euiTheme } = useEuiTheme();
+  return mixinOverflowShadowStyles(euiTheme, options);
 };
