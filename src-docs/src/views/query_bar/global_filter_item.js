@@ -7,7 +7,6 @@ import {
   EuiPopover,
   EuiContextMenu,
 } from '../../../../src/components';
-import GlobalFilterForm from './global_filter_form';
 
 function flattenPanelTree(tree, array = []) {
   array.push(tree);
@@ -100,6 +99,8 @@ export const GlobalFilterItem = (props) => {
       values: [{ label: filter.value }],
     };
 
+    console.log(selectedObject);
+
     const panelTree = {
       id: 0,
       items: [
@@ -116,15 +117,7 @@ export const GlobalFilterItem = (props) => {
           panel: {
             id: 1,
             width: 400,
-            content: (
-              <div style={{ padding: 16 }}>
-                <GlobalFilterForm
-                  selectedObject={selectedObject}
-                  onAdd={closePopover}
-                  onCancel={closePopover}
-                />
-              </div>
-            ),
+            content: <div style={{ padding: 16 }}>TBD</div>,
           },
         },
         {

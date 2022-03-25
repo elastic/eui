@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { GuideSectionTypes } from '../../components';
 
 import {
-  EuiCallOut,
   EuiCode,
   EuiSpacer,
   EuiSuggest,
@@ -14,9 +13,6 @@ import {
 import Suggest from './suggest';
 const suggestSource = require('!!raw-loader!./suggest');
 import { suggestConfig } from './playground';
-
-import SavedQueries from './saved_queries';
-const savedQueriesSource = require('!!raw-loader!./saved_queries');
 
 import SuggestItem from './suggest_item_example';
 const suggestItemSnippet = [
@@ -133,29 +129,6 @@ export const SuggestExample = {
         </>
       ),
       snippet: suggestItemSnippet,
-    },
-    {
-      title: 'Saved queries and filters',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: savedQueriesSource,
-        },
-      ],
-      text: (
-        <>
-          <EuiCallOut color="warning" title="Demo of visual pattern only">
-            <p>
-              This documents a <strong>visual</strong> pattern for Kibana&apos;s
-              global query and filter bars. The filter bar has been broken down
-              into multiple components. There are still bugs and not all the
-              logic is well-formed.
-            </p>
-          </EuiCallOut>
-        </>
-      ),
-      props: { EuiSuggest },
-      demo: <SavedQueries />,
     },
   ],
 };

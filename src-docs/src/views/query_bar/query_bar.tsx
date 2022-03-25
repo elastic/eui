@@ -1,53 +1,21 @@
 import React, { useState } from 'react';
 
 import {
-  EuiButtonEmpty,
+  EuiButton,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiSuggest,
   EuiSuperDatePicker,
-} from '../../../../src/components';
+  EuiSuperUpdateButton,
+} from '../../../../src';
 
+// @ts-ignore to convert
 import { GlobalFilterBar } from './global_filter_bar';
-import GlobalFilterOptions from './global_filter_options';
-import HashtagPopover from './hashtag_popover';
 
-const shortDescription = 'This is the description';
-
-const sampleItems = [
-  {
-    type: { iconType: 'kqlField', color: 'tint4' },
-    label: 'Field sample',
-    description: shortDescription,
-  },
-  {
-    type: { iconType: 'kqlValue', color: 'tint0' },
-    label: 'Value sample',
-    description: shortDescription,
-  },
-  {
-    type: { iconType: 'kqlSelector', color: 'tint2' },
-    label: 'Conjunction sample',
-    description: shortDescription,
-  },
-  {
-    type: { iconType: 'kqlOperand', color: 'tint1' },
-    label: 'Operator sample',
-    description: shortDescription,
-  },
-  {
-    type: { iconType: 'search', color: 'tint8' },
-    label: 'Recent search',
-  },
-  {
-    type: { iconType: 'save', color: 'tint3' },
-    label: 'Saved search',
-  },
-];
+import QueryBarFilterButton from './query_bar_filter_menu';
+import GlobalFilterAdd from './global_filter_add';
+import QueryBarInput from './query_bar_input';
 
 export default () => {
-  const status = 'unchanged';
-  const [value, setValue] = useState('');
   const [hideDatepicker, setHide] = useState(false);
   const filters = [
     {
@@ -97,42 +65,41 @@ export default () => {
     setHide(false);
   };
 
-  const getInputValue = (val) => {
-    setValue(val);
-  };
-
-  const onItemClick = (item) => {
-    console.log(item);
-  };
-
-  const onTimeChange = (dateRange) => {
+  const onTimeChange = (dateRange: any) => {
     console.log(dateRange);
   };
-
-  const append = <EuiButtonEmpty>KQL</EuiButtonEmpty>;
 
   return (
     <div className="savedQueriesInput">
       <EuiFlexGroup gutterSize="s">
+        <EuiFlexItem grow={false}>
+          <EuiButton iconType={'arrowDown'} iconSide="right">
+            Data view selector
+          </EuiButton>
+        </EuiFlexItem>
         <EuiFlexItem>
-          <EuiSuggest
-            status={status}
-            onFocus={onFieldFocus}
-            onBlur={onFieldBlur}
-            prepend={<HashtagPopover value={value} />}
-            append={append}
-            aria-label="Filter"
-            suggestions={sampleItems}
-            onItemClick={onItemClick}
-            onInputChange={getInputValue}
-          />
+          <EuiFlexGroup gutterSize="s">
+            <EuiFlexItem grow={false}>
+              <QueryBarFilterButton />
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <QueryBarInput onFocus={onFieldFocus} onBlur={onFieldBlur} />
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <GlobalFilterAdd />
+            </EuiFlexItem>
+          </EuiFlexGroup>
         </EuiFlexItem>
         <EuiFlexItem grow={false} className="savedQueriesInput__datepicker">
           <EuiSuperDatePicker
             width="auto"
             isQuickSelectOnly={hideDatepicker}
             onTimeChange={onTimeChange}
+            showUpdateButton={false}
           />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSuperUpdateButton onClick={onTimeChange} iconOnly />
         </EuiFlexItem>
       </EuiFlexGroup>
       <EuiFlexGroup
@@ -141,9 +108,6 @@ export default () => {
         alignItems="flexStart"
         responsive={false}
       >
-        <EuiFlexItem className="globalFilterGroup__branch" grow={false}>
-          <GlobalFilterOptions />
-        </EuiFlexItem>
         <EuiFlexItem className="globalFilterGroup__filterFlexItem">
           <GlobalFilterBar
             className="globalFilterGroup__filterBar"

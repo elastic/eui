@@ -29,8 +29,8 @@ import {
 // Templates
 
 import { PageTemplateExample } from './views/page/page_template_example';
-
 import { SitewideSearchExample } from './views/selectable/selectable_sitewide_template_example';
+import { QueryBarExample } from './views/query_bar/query_bar_example';
 
 // Services
 
@@ -449,6 +449,7 @@ const navigation = [
     name: 'Templates',
     items: [
       PageTemplateExample,
+      QueryBarExample,
       SitewideSearchExample,
       SuperDatePickerExample,
     ].map((example) => createExample(example)),

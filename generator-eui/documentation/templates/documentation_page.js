@@ -15,7 +15,7 @@ const <%= componentExamplePrefix %>Source = require('!!raw-loader!./<%= fileName
 export const <%= componentExampleName %>Example = {
   title: '<%= componentExampleName %>',
   intro: (
-    <><EuiText></EuiText></>
+    <><EuiText><p></p></EuiText></>
   ),
   sections: [{
     title: '<%= componentExampleName %>',
@@ -27,7 +27,7 @@ export const <%= componentExampleName %>Example = {
       </>
     ),
     source: [{
-      type: GuideSectionTypes.JS,
+      type: GuideSectionTypes.TSX,
       code: <%= componentExamplePrefix %>Source,
     }],
     demo: <<%= componentExampleName %> />,
