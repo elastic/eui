@@ -31,3 +31,9 @@ exports[`EuiLoadingSpinner size xl is rendered 1`] = `
   class="euiLoadingSpinner euiLoadingSpinner--xLarge"
 />
 `;
+
+exports[`EuiLoadingSpinner size xxl is rendered 1`] = `
+<span
+  class="euiLoadingSpinner euiLoadingSpinner--xxLarge"
+/>
+`;

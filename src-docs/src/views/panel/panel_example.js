@@ -134,8 +134,9 @@ export const PanelExample = {
           <p>
             <strong>EuiPanel</strong> can give depth to your container with{' '}
             <EuiCode>hasShadow</EuiCode> while <EuiCode>hasBorder</EuiCode> can
-            add containment. Just be sure not to include too many nested panels
-            with these settings.
+            add containment. Just be sure not to include too many{' '}
+            <Link to="/layout/panel/guidelines">nested panels</Link> with these
+            settings.
           </p>
           <EuiCallOut
             color="warning"
@@ -143,11 +144,9 @@ export const PanelExample = {
           >
             <p>
               For instance, only plain or transparent panels can have a border
-              and/or shadow. The Amsterdam theme doesn&apos;t allow combining
-              the <EuiCode>hasBorder</EuiCode> option with{' '}
-              <EuiCode>hasShadow</EuiCode>. The default theme only allows
-              removing the border if both <EuiCode>hasShadow</EuiCode> and{' '}
-              <EuiCode>hasBorder</EuiCode> are set to <EuiCode>false</EuiCode>.
+              and/or shadow. The default theme doesn&apos;t allow combining the{' '}
+              <EuiCode>hasBorder</EuiCode> option with{' '}
+              <EuiCode>hasShadow</EuiCode>.
             </p>
           </EuiCallOut>
         </>

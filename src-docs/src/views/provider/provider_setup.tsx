@@ -1,19 +1,16 @@
 import React from 'react';
 
-import { EuiCodeBlock, useEuiTheme, isLegacyTheme } from '../../../../src';
+import { EuiCodeBlock, useEuiTheme } from '../../../../src';
 
 export default () => {
-  const { euiTheme, colorMode } = useEuiTheme();
-  const isLegacy = isLegacyTheme(euiTheme.themeName);
+  const { colorMode } = useEuiTheme();
 
   return (
     <EuiCodeBlock language="tsx" fontSize="m" isCopyable>
       {`import { EuiProvider } from '@elastic/eui';
 
 const MyApp = () => (
-  <EuiProvider${isLegacy ? ' theme={null}' : ''}${
-        colorMode === 'DARK' ? ' colorMode="dark"' : ''
-      }>
+  <EuiProvider${colorMode === 'DARK' ? ' colorMode="dark"' : ''}>
     {/* Content */}
   </EuiProvider>
 );`}

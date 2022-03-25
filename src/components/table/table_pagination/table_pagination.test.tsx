@@ -31,7 +31,20 @@ describe('EuiTablePagination', () => {
       <EuiTablePagination
         {...requiredProps}
         {...paginationProps}
-        hidePerPageOptions={true}
+        showPerPageOptions={false}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('renders a "show all" itemsPerPage option', () => {
+    const component = render(
+      <EuiTablePagination
+        {...requiredProps}
+        {...paginationProps}
+        itemsPerPage={0}
+        itemsPerPageOptions={[10, 50, 0]}
       />
     );
 

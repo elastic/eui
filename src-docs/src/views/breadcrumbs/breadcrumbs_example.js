@@ -25,6 +25,9 @@ import Max from './max';
 import { EuiCallOut } from '../../../../src/components/call_out';
 const maxSource = require('!!raw-loader!./max');
 
+import Color from './color';
+const colorSource = require('!!raw-loader!./color');
+
 const breadcrumpProps = {
   EuiBreadcrumbs,
   EuiBreadcrumb: BreadcrumbProps,
@@ -240,6 +243,31 @@ export const BreadcrumbsExample = {
 />`,
       ],
       demo: <ResponsiveCustom />,
+    },
+    {
+      title: 'Color for emphasis',
+      text: (
+        <>
+          <p>
+            Each breadcrumb extends the color options from{' '}
+            <Link to="/navigation/link">
+              <strong>EuiLink</strong>
+            </Link>{' '}
+            when either an <EuiCode>href</EuiCode> or <EuiCode>onClick</EuiCode>{' '}
+            is applied . You can change the default color of a breadcrumb to add
+            emphasis or indicate state like <EuiCode>{"'danger'"}</EuiCode> for
+            an error. However, use caution not to use color alone.
+          </p>
+        </>
+      ),
+      props: breadcrumpProps,
+      demo: <Color />,
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: colorSource,
+        },
+      ],
     },
   ],
 };

@@ -10,16 +10,14 @@ const urls = [
   'javascript:alert()',
 ];
 
-export const LinkValidation = () => {
-  return (
-    <EuiText>
-      {urls.map((url) => (
-        <p key={url}>
-          <EuiLink color="success" href={url}>
-            {url}
-          </EuiLink>
-        </p>
-      ))}
-    </EuiText>
-  );
-};
+export default () => (
+  <EuiText>
+    {urls.map((url) => (
+      <p key={url}>
+        <EuiLink color="success" href={url}>
+          {url}
+        </EuiLink>
+      </p>
+    ))}
+  </EuiText>
+);

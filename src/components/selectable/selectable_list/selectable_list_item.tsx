@@ -74,6 +74,11 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
      * other ARIA attributes such as `aria-checked` will not be automatically configured.
      */
     role?: LiHTMLAttributes<HTMLLIElement>['role'];
+    /**
+     * How to handle long text within the item.
+     * Wrapping only works if virtualization is off.
+     */
+    textWrap?: 'truncate' | 'wrap';
   };
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -83,6 +88,7 @@ export class EuiSelectableListItem extends Component<
   static defaultProps = {
     showIcons: true,
     onFocusBadge: true,
+    textWrap: 'truncate',
   };
 
   constructor(props: EuiSelectableListItemProps) {
@@ -104,6 +110,7 @@ export class EuiSelectableListItem extends Component<
       paddingSize = 's',
       role = 'option',
       searchable,
+      textWrap,
       ...rest
     } = this.props;
 
@@ -115,6 +122,10 @@ export class EuiSelectableListItem extends Component<
       paddingSizeToClassNameMap[paddingSize],
       className
     );
+
+    const textClasses = classNames('euiSelectableListItem__text', {
+      [`euiSelectableListItem__text--${textWrap}`]: textWrap,
+    });
 
     let optionIcon: React.ReactNode;
     if (showIcons) {
@@ -245,28 +256,22 @@ export class EuiSelectableListItem extends Component<
     return (
       <li
         role={role}
+        data-test-selected={isChecked} // Whether the item is checked/selected
         aria-checked={role === 'option' ? isChecked : undefined} // Whether the item is "checked"
-        aria-selected={!disabled && isFocused} // Whether the item has keybord focus
+        aria-selected={!disabled && isFocused} // Whether the item has keyboard focus per W3 spec
         className={classes}
         aria-disabled={disabled}
         {...rest}
       >
-        {optionIcon || prependNode || appendNode ? (
-          <span className="euiSelectableListItem__content">
-            {optionIcon}
-            {prependNode}
-            <span className="euiSelectableListItem__text">
-              {children}
-              {instructions}
-            </span>
-            {appendNode}
-          </span>
-        ) : (
-          <>
+        <span className="euiSelectableListItem__content">
+          {optionIcon}
+          {prependNode}
+          <span className={textClasses}>
             {children}
             {instructions}
-          </>
-        )}
+          </span>
+          {appendNode}
+        </span>
       </li>
     );
   }

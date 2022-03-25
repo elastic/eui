@@ -76,6 +76,8 @@ export * from './console';
 
 export { copyToClipboard } from './copy_to_clipboard';
 
+export * from './findElement';
+
 export {
   formatAuto,
   formatBoolean,

@@ -28,6 +28,15 @@ The latest changes have now been pushed to GitHub, a new `git` tag now exists on
 
 <sup>_\* GitHub Pages sites are cached aggressively and can sometimes take a couple of minutes to update._</sup>
 
+### Deploying to eui.elastic.co
+
+In addition to the GitHub pages deployment, we need to manually deploy to the EUI Bekitzur environment (which will eventually be the canonical home of the EUI docs).
+
+* Go to [the Jenkins job page](https://kibana-ci.elastic.co/job/elastic+eui+deploy-docs/build)
+* Log in (uses Elastic SSO)
+* Change the `branch_specifier` parameter to the new version tag name (e.g., `v48.0.0`)
+* Click "Build"
+
 ### Tag the release in GitHub
 
 We also update the [release's tag in github](https://github.com/elastic/eui/tags) by _creating a release_ for the version and copying over its _CHANGELOG.md_ entries. (TODO: screencast this next time to include a GIF here)

@@ -41,7 +41,7 @@ export default () => {
     <GuidePage
       title="Sizing"
       isBeta={!showSass}
-      notice={!showSass && <ThemeNotice />}
+      notice={<ThemeNotice />}
       showThemeLanguageToggle
     >
       <EuiSpacer size="xl" />

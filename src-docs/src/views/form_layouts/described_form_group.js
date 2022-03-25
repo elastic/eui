@@ -97,7 +97,7 @@ export default () => {
         >
           <EuiSwitch
             name="switch"
-            label="Should we do this?"
+            label="Setting name"
             checked={isSwitchChecked}
             onChange={onSwitchChange}
           />

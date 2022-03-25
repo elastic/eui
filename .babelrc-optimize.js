@@ -4,7 +4,7 @@ const baseConfig = require('./.babelrc.js');
 // Skip `propType` generation.
 baseConfig.plugins.splice(
   baseConfig.plugins.indexOf(
-    './scripts/babel/proptypes-from-ts-props'
+    `${__dirname}/scripts/babel/proptypes-from-ts-props`
   ),
   1
 );

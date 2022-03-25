@@ -18,7 +18,6 @@ describe('EuiDataGridFooterRow', () => {
     trailingControlColumns: [],
     columns: [{ id: 'someColumn' }, { id: 'someColumnWithoutSchema' }],
     schema: { someColumn: { columnType: 'string' } },
-    popoverContents: {},
     columnWidths: { someColumn: 30 },
     renderCellValue: () => <div />,
     interactiveCellId: 'someId',
@@ -40,8 +39,7 @@ describe('EuiDataGridFooterRow', () => {
           columnType="string"
           interactiveCellId="someId"
           isExpandable={true}
-          key="someColumn-10"
-          popoverContent={[Function]}
+          key="0,10"
           popoverContext={
             Object {
               "cellLocation": Object {
@@ -67,8 +65,7 @@ describe('EuiDataGridFooterRow', () => {
           columnType={null}
           interactiveCellId="someId"
           isExpandable={true}
-          key="someColumnWithoutSchema-10"
-          popoverContent={[Function]}
+          key="1,10"
           popoverContext={
             Object {
               "cellLocation": Object {
@@ -119,7 +116,6 @@ describe('EuiDataGridFooterRow', () => {
           interactiveCellId="someId"
           isExpandable={true}
           key="someLeadingColumn-10"
-          popoverContent={[Function]}
           popoverContext={
             Object {
               "cellLocation": Object {
@@ -176,7 +172,6 @@ describe('EuiDataGridFooterRow', () => {
           interactiveCellId="someId"
           isExpandable={true}
           key="someTrailingColumn-10"
-          popoverContent={[Function]}
           popoverContext={
             Object {
               "cellLocation": Object {

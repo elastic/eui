@@ -1,5 +1,107 @@
 [
   {
+    "version": "51.1.0",
+    "changes": [
+      {
+        "token": "euiDataGridToolbar.fullScreenButton",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridToolbar.fullScreenButtonActive",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiImage.closeImage",
+        "changeType": "modified",
+        "value": "Close fullscreen {alt} image"
+      },
+      {
+        "token": "euiImage.openImage",
+        "changeType": "modified",
+        "value": "Open fullscreen {alt} image"
+      },
+      {
+        "token": "euiFullscreenSelector.fullscreenButton",
+        "changeType": "added",
+        "value": "Enter fullscreen"
+      },
+      {
+        "token": "euiFullscreenSelector.fullscreenButtonActive",
+        "changeType": "added",
+        "value": "Exit fullscreen"
+      }
+    ]
+  },
+  {
+    "version": "50.0.0",
+    "changes": [
+      {
+        "token": "euiComboBox.listboxAriaLabel",
+        "changeType": "added",
+        "value": "Choose from the following options"
+      }
+    ]
+  },
+  {
+    "version": "49.0.0",
+    "changes": [
+      {
+        "token": "euiTablePagination.allRows",
+        "changeType": "added",
+        "value": "Showing all rows"
+      },
+      {
+        "token": "euiTablePagination.rowsPerPageOptionShowAllRows",
+        "changeType": "added",
+        "value": "Show all rows"
+      }
+    ]
+  },
+  {
+    "version": "48.0.0",
+    "changes": [
+      {
+        "token": "euiDataGridCellButtons.expandButtonTitle",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridCellActions.expandButtonTitle",
+        "changeType": "added",
+        "value": "Click or hit enter to interact with cell content"
+      },
+      {
+        "token": "euiSuggest.stateSavedTooltip",
+        "changeType": "added",
+        "value": "Saved."
+      },
+      {
+        "token": "euiSuggest.stateUnsavedTooltip",
+        "changeType": "added",
+        "value": "Changes have not been saved."
+      },
+      {
+        "token": "euiSuggest.stateLoading",
+        "changeType": "added",
+        "value": "State: loading."
+      },
+      {
+        "token": "euiSuggest.stateSaved",
+        "changeType": "added",
+        "value": "State: saved."
+      },
+      {
+        "token": "euiSuggest.stateUnsaved",
+        "changeType": "added",
+        "value": "State: unsaved."
+      },
+      {
+        "token": "euiSuggest.stateUnchanged",
+        "changeType": "added",
+        "value": "State: unchanged."
+      }
+    ]
+  },
+  {
     "version": "47.0.0",
     "changes": [
       {

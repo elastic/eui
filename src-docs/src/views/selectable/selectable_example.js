@@ -15,7 +15,6 @@ import {
   EuiSelectableOptionsList,
   EuiSelectableSearchProps,
 } from './props';
-
 import Selectable from './selectable';
 const selectableSource = require('!!raw-loader!./selectable');
 
@@ -216,11 +215,16 @@ export const SelectableExample = {
           <h3>Width and height</h3>
           <p>
             The width has been made to always be 100% of its container,
-            including stretching the search input. By default, the height is
-            capped at showing up to 7.5 items. It shows half of the last one to
-            help indicate that there are more options to scroll to. To stretch
-            the box to fill its container, pass &apos;full&apos; to the{' '}
-            <EuiCode>height</EuiCode> prop.
+            including stretching the search input. When used inside of{' '}
+            <Link to="layout/popover">
+              <strong>EuiPopover</strong>
+            </Link>
+            , we recommend setting a width (or min/max values) via CSS on the
+            element containing the list to avoid expansion and contraction. By
+            default, the height is capped at showing up to 7.5 items. It shows
+            half of the last one to help indicate that there are more options to
+            scroll to. To stretch the box to fill its container, pass
+            &apos;full&apos; to the <EuiCode>height</EuiCode> prop.
           </p>
           <h3>Flexbox</h3>
           <p>
@@ -319,7 +323,7 @@ export const SelectableExample = {
         <Fragment>
           <p>
             There are two object properties you can add to enhance the content
-            of you options, <EuiCode>option.prepend</EuiCode> and{' '}
+            of your options, <EuiCode>option.prepend</EuiCode> and{' '}
             <EuiCode>option.append</EuiCode>. These will add nodes before and
             after the option label respectively. They will not be included in
             the searchable content as this only matches against the label
@@ -352,7 +356,9 @@ export const SelectableExample = {
             If <EuiCode>listProps.isVirtualized</EuiCode> is set to{' '}
             <EuiCode>false</EuiCode>, each row will fit its contents and removes
             all scrolling. Therefore, we recommend having a large enough
-            container to accomodate all optons.
+            container to accommodate all options. You can also remove truncation
+            by setting <EuiCode>{'textWrap="wrap"'}</EuiCode> when
+            virtualization is off.
           </p>
           <h3>Custom content</h3>
           <p>

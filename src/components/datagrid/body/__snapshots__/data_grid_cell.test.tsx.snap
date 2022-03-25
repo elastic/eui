@@ -6,7 +6,6 @@ exports[`EuiDataGridCell renders 1`] = `
   columnId="someColumn"
   interactiveCellId="someId"
   isExpandable={true}
-  popoverContent={[Function]}
   popoverContext={
     Object {
       "cellLocation": Object {
@@ -173,7 +172,7 @@ exports[`EuiDataGridCell renders 1`] = `
 exports[`EuiDataGridCell componentDidUpdate handles the cell popover by forwarding the cell's DOM node and contents to the parent popover context 1`] = `
 Array [
   <div
-    data-test-subj="popover-test"
+    class="euiText euiText--medium"
   >
     <div>
       <button

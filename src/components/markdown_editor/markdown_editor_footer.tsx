@@ -12,6 +12,7 @@ import React, {
   Fragment,
   ReactChild,
   forwardRef,
+  useContext,
 } from 'react';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiButton, EuiButtonEmpty, EuiButtonIcon } from '../button';
@@ -37,6 +38,8 @@ import MarkdownLogo from './icons/markdown_logo';
 import { EuiHorizontalRule } from '../horizontal_rule';
 
 import { EuiLink } from '../link';
+
+import { EuiMarkdownContext } from './markdown_context';
 
 interface EuiMarkdownEditorFooterProps {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
@@ -110,12 +113,15 @@ export const EuiMarkdownEditorFooter = forwardRef<
     'Syntax help'
   );
 
+  const { readOnly } = useContext(EuiMarkdownContext);
+
   if (isUploadingFiles) {
     uploadButton = (
       <EuiButtonIcon
         size="s"
         iconType={EuiLoadingSpinner}
         aria-label={ariaLabels.uploadingFiles}
+        isDisabled={readOnly}
       />
     );
   } else if (dropHandlers.length > 0 && hasUnacceptedItems) {
@@ -129,6 +135,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
           color="danger"
           aria-label={`${ariaLabels.unsupportedFileType}. ${ariaLabels.supportedFileTypes}. ${ariaLabels.uploadingFiles}`}
           onClick={openFiles}
+          isDisabled={readOnly}
         >
           {ariaLabels.unsupportedFileType}
         </EuiButtonEmpty>
@@ -142,6 +149,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
         color="text"
         aria-label={ariaLabels.openUploadModal}
         onClick={openFiles}
+        isDisabled={readOnly}
       />
     );
   }
@@ -157,6 +165,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
             color="danger"
             aria-label={ariaLabels.showSyntaxErrors}
             onClick={onButtonClick}
+            isDisabled={readOnly}
           >
             {errors.length}
           </EuiButtonEmpty>
@@ -211,6 +220,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
             color="text"
             aria-label={ariaLabels.showMarkdownHelp}
             onClick={() => setIsShowingHelpModal(!isShowingHelpModal)}
+            isDisabled={readOnly}
           />
         </EuiToolTip>
 

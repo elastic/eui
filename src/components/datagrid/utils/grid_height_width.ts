@@ -7,7 +7,7 @@
  */
 
 import { useEffect, useState, useContext, MutableRefObject } from 'react';
-import { IS_JEST_ENVIRONMENT } from '../../../test';
+import { IS_JEST_ENVIRONMENT } from '../../../utils';
 import { useUpdateEffect, useForceRender } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
 import { EuiDataGridRowHeightsOptions } from '../data_grid_types';
@@ -32,7 +32,7 @@ export const useFinalGridDimensions = ({
   // Used if the grid needs to scroll
   const [height, setHeight] = useState<number | undefined>(undefined);
   const [width, setWidth] = useState<number | undefined>(undefined);
-  // Tracking full screen height separately is necessary to correctly restore the grid back to non-full-screen height
+  // Tracking fullscreen height separately is necessary to correctly restore the grid back to non-fullscreen height
   const [fullScreenHeight, setFullScreenHeight] = useState(0);
 
   // Set the wrapper height on load, whenever the grid wrapper resizes, and whenever rowCount changes
@@ -99,12 +99,6 @@ export const useUnconstrainedHeight = ({
 }) => {
   const { getCorrectRowIndex } = useContext(DataGridSortingContext);
 
-  // when a row height is updated, force a re-render of the grid body to update the unconstrained height
-  const forceRender = useForceRender();
-  useEffect(() => {
-    rowHeightUtils.setRerenderGridBody(forceRender);
-  }, [rowHeightUtils, forceRender]);
-
   let knownHeight = 0; // tracks the pixel height of rows we know the size of
   let knownRowCount = 0; // how many rows we know the size of
   for (let i = startRow; i < endRow; i++) {
@@ -137,6 +131,7 @@ export const useUnconstrainedHeight = ({
     innerGridRef.current,
     'width'
   );
+  const forceRender = useForceRender();
   useUpdateEffect(forceRender, [innerWidth]);
 
   const unconstrainedHeight =

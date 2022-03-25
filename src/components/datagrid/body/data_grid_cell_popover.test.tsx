@@ -10,10 +10,10 @@ import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { shallow } from 'enzyme';
 import { keys } from '../../../services';
-import { testCustomHook } from '../../../test/test_custom_hook.test_helper';
+import { testCustomHook } from '../../../test/internal';
 
 import { DataGridCellPopoverContextShape } from '../data_grid_types';
-import { useCellPopover } from './data_grid_cell_popover';
+import { useCellPopover, DefaultCellPopover } from './data_grid_cell_popover';
 
 describe('useCellPopover', () => {
   describe('openCellPopover', () => {
@@ -95,13 +95,13 @@ describe('useCellPopover', () => {
       populateCellPopover(cellPopoverContext);
       expect(getUpdatedState().cellPopover).toMatchInlineSnapshot(`
         <EuiWrappingPopover
-          anchorClassName="euiDataGridRowCell__expand"
           button={<div />}
           closePopover={[Function]}
           display="block"
           hasArrow={false}
           isOpen={true}
           onKeyDown={[Function]}
+          onTrapDeactivation={[Function]}
           panelClassName="euiDataGridRowCell__popover"
           panelPaddingSize="s"
           panelProps={
@@ -201,5 +201,57 @@ describe('useCellPopover', () => {
         expect(event.stopPropagation).not.toHaveBeenCalled();
       });
     });
+  });
+});
+
+describe('popover content renderers', () => {
+  const cellContentsElement = document.createElement('div');
+  cellContentsElement.innerText = '{ "hello": "world" }';
+  const props = {
+    rowIndex: 0,
+    colIndex: 0,
+    columnId: 'someId',
+    schema: null,
+    children: <div data-test-subj="mockCellValue">Content</div>,
+    cellActions: <div data-test-subj="mockCellActions">Action</div>,
+    cellContentsElement,
+    DefaultCellPopover,
+  };
+
+  test('default cell popover', () => {
+    const component = shallow(<DefaultCellPopover {...props} />);
+    expect(component).toMatchInlineSnapshot(`
+      <Fragment>
+        <EuiText>
+          <div
+            data-test-subj="mockCellValue"
+          >
+            Content
+          </div>
+        </EuiText>
+        <div
+          data-test-subj="mockCellActions"
+        >
+          Action
+        </div>
+      </Fragment>
+    `);
+  });
+
+  test('JSON schema popover', () => {
+    const component = shallow(<DefaultCellPopover {...props} schema="json" />);
+    const codeBlock = component.find('JsonPopoverContent').dive();
+    expect(codeBlock).toMatchInlineSnapshot(`
+      <EuiCodeBlock
+        isCopyable={true}
+        language="json"
+        paddingSize="none"
+        transparentBackground={true}
+      >
+        {
+        "hello": "world"
+      }
+      </EuiCodeBlock>
+    `);
   });
 });

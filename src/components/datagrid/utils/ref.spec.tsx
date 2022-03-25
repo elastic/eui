@@ -65,7 +65,7 @@ describe('useImperativeGridRef', () => {
   });
 
   describe('setIsFullScreen', () => {
-    it('allows the consumer to manually toggle full screen mode', () => {
+    it('allows the consumer to manually toggle fullscreen mode', () => {
       ref.current.setIsFullScreen(true);
       cy.get('[data-test-subj="euiDataGrid"]').should(
         'have.class',

@@ -172,7 +172,7 @@ export const CodeExample = {
         <p>
           For long content, you can set an <EuiCode>overflowHeight</EuiCode>{' '}
           which will scroll if the text exceeds that height, and allows users to
-          view the code in full-screen mode.
+          view the code in fullscreen mode.
         </p>
       ),
       source: [

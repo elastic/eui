@@ -11,7 +11,6 @@ import { mount, render, shallow } from 'enzyme';
 
 import { mockRowHeightUtils } from '../utils/__mocks__/row_heights';
 import { schemaDetectors } from '../utils/data_grid_schema';
-import { providedPopoverContents } from './popover_utils';
 
 import { EuiDataGridBody, Cell } from './data_grid_body';
 
@@ -40,7 +39,6 @@ describe('EuiDataGridBody', () => {
     setVisibleColumns: jest.fn(),
     switchColumnPos: jest.fn(),
     schemaDetectors,
-    popoverContents: providedPopoverContents,
     rowHeightUtils: mockRowHeightUtils,
     isFullScreen: false,
     gridStyles: {},
@@ -122,7 +120,6 @@ describe('Cell', () => {
       defaultColumnWidth: 30,
       schema: {},
       schemaDetectors,
-      popoverContents: {},
       interactiveCellId: '',
       renderCellValue: jest.fn(),
     },
