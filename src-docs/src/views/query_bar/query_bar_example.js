@@ -2,7 +2,7 @@ import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCallOut } from '../../../../src';
+import { EuiCallOut, EuiPageTemplate } from '../../../../src';
 
 import QueryBar from './query_bar';
 const queryBarSource = require('!!raw-loader!./query_bar');
@@ -25,7 +25,6 @@ export const QueryBarExample = {
     {
       title: 'Saved queries and filters',
       text: <></>,
-      // props: { EuiSuggest },
       demo: <QueryBar />,
       source: [
         {
@@ -33,6 +32,16 @@ export const QueryBarExample = {
           code: queryBarSource,
         },
       ],
+    },
+    {
+      fullScreen: {
+        slug: 'query-bar',
+        demo: (
+          <EuiPageTemplate template="empty">
+            <QueryBar />
+          </EuiPageTemplate>
+        ),
+      },
     },
   ],
 };

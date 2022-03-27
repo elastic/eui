@@ -8,7 +8,11 @@
 
 import { useState, useEffect } from 'react';
 
-import { isWithinBreakpoints, EuiBreakpointSize } from '../breakpoint';
+import {
+  isWithinBreakpoints,
+  EuiBreakpointSize,
+  getBreakpoint,
+} from '../breakpoint';
 
 /**
  * Given the current window.innerWidth and an array of breakpoint keys,
@@ -44,4 +48,29 @@ export function useIsWithinBreakpoints(
   }, [sizes, isActive]);
 
   return isWithinBreakpointsValue;
+}
+
+export function useGetCurrentBreakpoint(
+  isActive: boolean = true,
+  width: number
+) {
+  const [currentBreakpoint, setCurrentBreakpoint] = useState<
+    EuiBreakpointSize | undefined
+  >('s');
+
+  useEffect(() => {
+    function handleResize() {
+      setCurrentBreakpoint(getBreakpoint(width || window.innerWidth));
+    }
+
+    if (isActive) {
+      window.removeEventListener('resize', handleResize);
+      window.addEventListener('resize', handleResize);
+      handleResize();
+    }
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isActive, width]);
+
+  return currentBreakpoint;
 }
