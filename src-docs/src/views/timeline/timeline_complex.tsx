@@ -17,7 +17,7 @@ import {
 
 import {
   useGeneratedHtmlId,
-  euiPaletteColorBlind,
+  euiPaletteColorBlindBehindText,
 } from '../../../../src/services';
 
 export default () => {
@@ -26,6 +26,13 @@ export default () => {
   const [checked3, setChecked3] = useState(false);
   const buttonElementAccordionId = useGeneratedHtmlId({
     prefix: 'buttonElementAccordion',
+  });
+
+  // We could use the `euiPaletteColorBlind` for coloring the avatars
+  // But because we're placing an icon on top of these colors
+  // The `euiPaletteColorBlindBehindText` is a better choice to ensure better contrast
+  const colorBlindBehindText = euiPaletteColorBlindBehindText({
+    sortBy: 'natural',
   });
 
   const onChange1 = (e: {
@@ -122,7 +129,7 @@ export default () => {
             size="m"
             name="check icon"
             iconType="check"
-            color={euiPaletteColorBlind()[0]}
+            color={colorBlindBehindText[0]}
           />
         }
       >
@@ -147,11 +154,11 @@ export default () => {
         </EuiSplitPanel.Outer>
       </EuiTimelineItem>
 
-      {phase('Warm phase', checked1, onChange1, euiPaletteColorBlind()[1])}
+      {phase('Warm phase', checked1, onChange1, colorBlindBehindText[1])}
 
-      {phase('Cold phase', checked2, onChange2, euiPaletteColorBlind()[2])}
+      {phase('Cold phase', checked2, onChange2, colorBlindBehindText[2])}
 
-      {phase('Frozen phase', checked3, onChange3, euiPaletteColorBlind()[3])}
+      {phase('Frozen phase', checked3, onChange3, colorBlindBehindText[3])}
     </div>
   );
 };
