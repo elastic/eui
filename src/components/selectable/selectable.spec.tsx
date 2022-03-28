@@ -9,6 +9,8 @@
 import React from 'react';
 
 import { EuiSelectable, EuiSelectableProps } from './selectable';
+import { EuiPopover } from '../popover';
+import { EuiButton } from '../button';
 
 const options: EuiSelectableProps['options'] = [
   {
@@ -189,7 +191,7 @@ describe('EuiSelectable', () => {
 
       cy.get('li[role=option]')
         .first()
-        .click()
+        .realClick()
         .then(() => {
           expect(onChange).to.have.been.calledWith([
             { ...options[0], checked: 'on' },
@@ -254,6 +256,117 @@ describe('EuiSelectable', () => {
           { ...options[2], checked: 'on' },
         ]);
       });
+    });
+  });
+
+  describe('nested inside a popover', () => {
+    it('navigates with arrow keys', () => {
+      const onChange = cy.stub();
+      const closePopover = cy.stub();
+      const togglePopover = cy.stub();
+      const button = (
+        <EuiButton
+          iconType="arrowDown"
+          iconSide="right"
+          onClick={togglePopover}
+        >
+          Show popover
+        </EuiButton>
+      );
+
+      cy.realMount(
+        <EuiPopover
+          id="data-cy-popover-1"
+          panelPaddingSize="s"
+          button={button}
+          isOpen={true}
+          closePopover={closePopover}
+        >
+          <EuiSelectable options={options} onChange={onChange}>
+            {(list) => <>{list}</>}
+          </EuiSelectable>
+        </EuiPopover>
+      );
+      cy.realPress('Tab');
+      cy.focused().contains('Show popover');
+      cy.get('button')
+        .realClick()
+        .then(() => {
+          expect(togglePopover).to.have.been.calledOnce;
+        });
+      cy.get('li[role=option]')
+        .first()
+        .realClick()
+        .then(() => {
+          expect(onChange).to.have.been.calledWith([
+            { ...options[0], checked: 'on' },
+            options[1],
+            options[2],
+          ]);
+        });
+      cy.realPress('ArrowDown')
+        .realPress('Enter')
+        .then(() => {
+          expect(onChange).to.have.been.calledWith([
+            options[0], // FYI: doesn't remain `on` because `options` is not controlled to remember state
+            { ...options[1], checked: 'on' },
+            options[2],
+          ]);
+        });
+      cy.realPress('ArrowDown')
+        .realPress('Enter')
+        .then(() => {
+          expect(onChange).to.have.been.calledWith([
+            options[0],
+            options[1],
+            { ...options[2], checked: 'on' },
+          ]);
+        });
+    });
+
+    it('has no accessibility errors', () => {
+      const onChange = cy.stub();
+      const closePopover = cy.stub();
+      const togglePopover = cy.stub();
+      const button = (
+        <EuiButton
+          iconType="arrowDown"
+          iconSide="right"
+          onClick={togglePopover}
+        >
+          Show popover
+        </EuiButton>
+      );
+
+      cy.realMount(
+        <EuiPopover
+          id="data-cy-popover-1"
+          panelPaddingSize="s"
+          button={button}
+          isOpen={true}
+          closePopover={closePopover}
+        >
+          <EuiSelectable options={options} onChange={onChange}>
+            {(list) => <>{list}</>}
+          </EuiSelectable>
+        </EuiPopover>
+      );
+      cy.get('button')
+        .realClick()
+        .then(() => {
+          expect(togglePopover).to.have.been.calledOnce;
+        });
+      cy.get('li[role=option]')
+        .first()
+        .realClick()
+        .then(() => {
+          expect(onChange).to.have.been.calledWith([
+            { ...options[0], checked: 'on' },
+            options[1],
+            options[2],
+          ]);
+        });
+      cy.checkAxe();
     });
   });
 });
