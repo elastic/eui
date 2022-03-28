@@ -90,7 +90,6 @@ export default () => {
         end={end}
         onTimeChange={onTimeChange}
         onRefresh={onRefresh}
-        locale="ja"
       />
     </>
   );
