@@ -7,7 +7,7 @@ export default () => {
   const simpleAccordionId = useGeneratedHtmlId({ prefix: 'simpleAccordion' });
 
   return (
-    <div>
+    <div css={{ color: 'coral' }}>
       <EuiAccordion id={simpleAccordionId} buttonContent="Click me to toggle">
         <EuiPanel color="subdued">
           Any content inside of <strong>EuiAccordion</strong> will appear here.
