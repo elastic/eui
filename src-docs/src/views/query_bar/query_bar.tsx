@@ -26,6 +26,7 @@ export default () => {
 
   const [showDatePicker, setShowDatePicker] = useState(true);
   const [showDataViewPicker, setShowDataViewPicker] = useState(true);
+  const [isReadOnly, setIsReadOnly] = useState(false);
 
   // Responsive helpers
   const [resizeRef, setResizeRef] = useState<HTMLElement | null>(null);
@@ -33,6 +34,7 @@ export default () => {
   const currentBreakpoint = useGetCurrentBreakpoint(true, dimensions.width);
   const isMobile = currentBreakpoint === 'xs' || currentBreakpoint === 's';
   const isMedium = currentBreakpoint === 'm';
+  const isLargePlus = currentBreakpoint === 'l' || currentBreakpoint === 'xl';
 
   // console.log({ currentBreakpoint, isMobile, resizeRef });
 
@@ -124,17 +126,42 @@ export default () => {
     </EuiFlexItem>
   );
 
+  const filterBar = (
+    <EuiFlexItem
+      style={{
+        overflow: 'hidden',
+        minWidth: isReadOnly && isLargePlus ? 'auto' : '100%',
+      }}
+    >
+      <GlobalFilterBar
+        filterMenu={
+          isReadOnly ? (
+            <QueryBarFilterButton
+              buttonProps={isReadOnly ? { size: 's' } : undefined}
+            />
+          ) : undefined
+        }
+      />
+    </EuiFlexItem>
+  );
+
   let elementOrder;
   switch (currentBreakpoint) {
     case 'xs':
-      elementOrder = [dataViewSelector, datePicker, queryBar];
+      elementOrder = isReadOnly
+        ? [datePicker, filterBar]
+        : [dataViewSelector, datePicker, queryBar, filterBar];
       break;
     case 's':
     case 'm':
-      elementOrder = [dataViewSelector, datePicker, queryBar];
+      elementOrder = isReadOnly
+        ? [datePicker, filterBar]
+        : [dataViewSelector, datePicker, queryBar, filterBar];
       break;
     default:
-      elementOrder = [dataViewSelector, queryBar, datePicker];
+      elementOrder = isReadOnly
+        ? [filterBar, datePicker]
+        : [dataViewSelector, queryBar, datePicker, filterBar];
       break;
   }
 
@@ -156,6 +183,13 @@ export default () => {
               onChange={(e) => setShowDataViewPicker(e.target.checked)}
             />
           </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiSwitch
+              label="Read only"
+              checked={isReadOnly}
+              onChange={(e) => setIsReadOnly(e.target.checked)}
+            />
+          </EuiFlexItem>
         </EuiFlexGroup>
       </EuiPanel>
 
@@ -169,17 +203,6 @@ export default () => {
         ref={setResizeRef}
       >
         {elementOrder}
-      </EuiFlexGroup>
-
-      <EuiFlexGroup
-        className="globalFilterGroup"
-        gutterSize="none"
-        alignItems="flexStart"
-        responsive={false}
-      >
-        <EuiFlexItem className="globalFilterGroup__filterFlexItem">
-          <GlobalFilterBar className="globalFilterGroup__filterBar" />
-        </EuiFlexItem>
       </EuiFlexGroup>
     </div>
   );

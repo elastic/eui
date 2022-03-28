@@ -5,9 +5,14 @@ import {
   EuiPopover,
   EuiPopoverTitle,
   EuiText,
+  EuiButtonIconProps,
 } from '../../../../src/components';
 
-export default () => {
+export default ({
+  buttonProps,
+}: {
+  buttonProps?: Partial<EuiButtonIconProps>;
+}) => {
   const [isPopoverOpen, setPopover] = useState(false);
 
   const togglePopover = () => {
@@ -24,6 +29,7 @@ export default () => {
       size="m"
       iconType="filter"
       aria-label="Saved Queries popover"
+      {...buttonProps}
       onClick={togglePopover}
     />
   );
