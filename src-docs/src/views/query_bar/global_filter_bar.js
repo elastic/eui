@@ -10,9 +10,7 @@ const filters = [
     field: '@tags.keyword',
     operator: 'IS',
     value: 'value',
-    isDisabled: false,
     isPinned: true,
-    isExcluded: false,
   },
   {
     id: 'filter1',
@@ -21,15 +19,12 @@ const filters = [
     operator: 'IS',
     value: 'value',
     isDisabled: true,
-    isPinned: false,
-    isExcluded: false,
   },
   {
     id: 'filter2',
     field: '@tags.keyword',
     operator: 'IS NOT',
     value: 'value',
-    isDisabled: false,
     isPinned: true,
     isExcluded: true,
   },
@@ -38,9 +33,13 @@ const filters = [
     field: '@tags.keyword',
     operator: 'IS',
     value: 'value',
-    isDisabled: false,
-    isPinned: false,
-    isExcluded: false,
+  },
+  {
+    id: 'filter4',
+    field: '@tags.keyword',
+    operator: 'IS NOT',
+    value: 'value',
+    isExcluded: true,
   },
 ];
 

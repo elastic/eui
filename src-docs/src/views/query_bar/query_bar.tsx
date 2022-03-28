@@ -38,14 +38,14 @@ export default () => {
 
   // console.log({ currentBreakpoint, isMobile, resizeRef });
 
-  const [hideDatepicker, setHide] = useState(false);
+  const [hideDatepicker, setHideDatepicker] = useState(false);
 
   const onFieldFocus = () => {
-    setHide(true);
+    setHideDatepicker(true);
   };
 
   const onFieldBlur = () => {
-    setHide(false);
+    setHideDatepicker(false);
   };
 
   const onTimeChange = (dateRange: any) => {
@@ -78,7 +78,7 @@ export default () => {
     <EuiFlexItem grow={isMobile || isMedium}>
       <EuiSuperDatePicker
         width={currentBreakpoint === 'xs' ? 'full' : 'auto'}
-        isQuickSelectOnly={hideDatepicker}
+        isQuickSelectOnly={isLargePlus && hideDatepicker}
         onTimeChange={onTimeChange}
         showUpdateButton={false}
       />
