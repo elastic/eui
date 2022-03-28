@@ -7,8 +7,9 @@
  */
 
 import chroma from 'chroma-js';
-import { UseEuiTheme, useEuiTheme } from '../../../../services/theme';
+import { UseEuiTheme } from '../../../../services/theme';
 import { shadowOpacity } from '../functions';
+import { createStyleHookFromMixin } from '../../../../global_styling/utils';
 
 /**
  * slightShadow
@@ -18,8 +19,8 @@ export interface MixinSlightShadowStyles {
 }
 export const mixinSlightShadowStyles = (
   { colors }: UseEuiTheme['euiTheme'],
-  colorMode: UseEuiTheme['colorMode'],
-  { color: _color }: MixinSlightShadowStyles = {}
+  { color: _color }: MixinSlightShadowStyles = {},
+  colorMode: UseEuiTheme['colorMode']
 ) => {
   const color = chroma(_color || colors.shadow);
   return `
@@ -28,10 +29,9 @@ box-shadow:
   0 2.3px 2px ${color.alpha(shadowOpacity(0.03, colorMode)).css()};
 `;
 };
-export const useSlightShadowStyles = (options?: MixinSlightShadowStyles) => {
-  const { euiTheme, colorMode } = useEuiTheme();
-  return mixinSlightShadowStyles(euiTheme, colorMode, options);
-};
+export const useSlightShadowStyles = createStyleHookFromMixin(
+  mixinSlightShadowStyles
+);
 
 /**
  * bottomShadowSmall
@@ -41,8 +41,8 @@ export interface MixinBottomShadowSmallStyles {
 }
 export const mixinBottomShadowSmallStyles = (
   { colors }: UseEuiTheme['euiTheme'],
-  colorMode: UseEuiTheme['colorMode'],
-  { color: _color }: MixinBottomShadowSmallStyles = {}
+  { color: _color }: MixinBottomShadowSmallStyles = {},
+  colorMode: UseEuiTheme['colorMode']
 ) => {
   const color = chroma(_color || colors.shadow);
   return `
@@ -52,12 +52,9 @@ box-shadow:
   0 4.5px 10px ${color.alpha(shadowOpacity(0.05, colorMode)).css()};
 `;
 };
-export const useBottomShadowSmallStyles = (
-  options?: MixinBottomShadowSmallStyles
-) => {
-  const { euiTheme, colorMode } = useEuiTheme();
-  return mixinBottomShadowSmallStyles(euiTheme, colorMode, options);
-};
+export const useBottomShadowSmallStyles = createStyleHookFromMixin(
+  mixinBottomShadowSmallStyles
+);
 
 /**
  * bottomShadowMedium
@@ -67,8 +64,8 @@ export interface MixinBottomShadowMediumStyles {
 }
 export const mixinBottomShadowMediumStyles = (
   { colors }: UseEuiTheme['euiTheme'],
-  colorMode: UseEuiTheme['colorMode'],
-  { color: _color }: MixinBottomShadowSmallStyles = {}
+  { color: _color }: MixinBottomShadowSmallStyles = {},
+  colorMode: UseEuiTheme['colorMode']
 ) => {
   const color = chroma(_color || colors.shadow);
   return `
@@ -79,12 +76,9 @@ box-shadow:
   0 15px 15px -1px ${color.alpha(shadowOpacity(0.04, colorMode)).css()};
 `;
 };
-export const useBottomShadowMediumStyles = (
-  options?: MixinBottomShadowSmallStyles
-) => {
-  const { euiTheme, colorMode } = useEuiTheme();
-  return mixinBottomShadowMediumStyles(euiTheme, colorMode, options);
-};
+export const useBottomShadowMediumStyles = createStyleHookFromMixin(
+  mixinBottomShadowMediumStyles
+);
 
 /**
  * bottomShadowFlat
@@ -97,8 +91,8 @@ export interface MixinBottomShadowFlatStyles {
 }
 export const mixinBottomShadowFlatStyles = (
   { colors }: UseEuiTheme['euiTheme'],
-  colorMode: UseEuiTheme['colorMode'],
-  { color: _color }: MixinBottomShadowSmallStyles = {}
+  { color: _color }: MixinBottomShadowSmallStyles = {},
+  colorMode: UseEuiTheme['colorMode']
 ) => {
   const color = chroma(_color || colors.shadow);
   return `
@@ -109,12 +103,9 @@ box-shadow:
   0 0 17px ${color.alpha(shadowOpacity(0.03, colorMode)).css()};
 `;
 };
-export const useBottomShadowFlatStyles = (
-  options?: MixinBottomShadowFlatStyles
-) => {
-  const { euiTheme, colorMode } = useEuiTheme();
-  return mixinBottomShadowFlatStyles(euiTheme, colorMode, options);
-};
+export const useBottomShadowFlatStyles = createStyleHookFromMixin(
+  mixinBottomShadowFlatStyles
+);
 
 /**
  * bottomShadow
@@ -127,8 +118,8 @@ export interface MixinBottomShadowStyles {
 }
 export const mixinBottomShadowStyles = (
   { colors }: UseEuiTheme['euiTheme'],
-  colorMode: UseEuiTheme['colorMode'],
-  { color: _color }: MixinBottomShadowStyles = {}
+  { color: _color }: MixinBottomShadowStyles = {},
+  colorMode: UseEuiTheme['colorMode']
 ) => {
   const color = chroma(_color || colors.shadow);
 
@@ -140,10 +131,9 @@ box-shadow:
   0 23px 35px ${color.alpha(shadowOpacity(0.05, colorMode)).css()};
 `;
 };
-export const useBottomShadowStyles = (options?: MixinBottomShadowStyles) => {
-  const { euiTheme, colorMode } = useEuiTheme();
-  return mixinBottomShadowStyles(euiTheme, colorMode, options);
-};
+export const useBottomShadowStyles = createStyleHookFromMixin(
+  mixinBottomShadowStyles
+);
 
 /**
  * bottomShadowLarge
@@ -154,8 +144,8 @@ export interface MixinBottomShadowLargeStyles {
 }
 export const mixinBottomShadowLargeStyles = (
   { colors }: UseEuiTheme['euiTheme'],
-  colorMode: UseEuiTheme['colorMode'],
-  { color: _color, reverse }: MixinBottomShadowLargeStyles = {}
+  { color: _color, reverse }: MixinBottomShadowLargeStyles = {},
+  colorMode: UseEuiTheme['colorMode']
 ) => {
   const color = chroma(_color || colors.shadow);
 
@@ -172,12 +162,9 @@ box-shadow:
     .css()};
 `;
 };
-export const useBottomShadowLargeStyles = (
-  options?: MixinBottomShadowLargeStyles
-) => {
-  const { euiTheme, colorMode } = useEuiTheme();
-  return mixinBottomShadowLargeStyles(euiTheme, colorMode, options);
-};
+export const useBottomShadowLargeStyles = createStyleHookFromMixin(
+  mixinBottomShadowLargeStyles
+);
 
 /**
  * slightShadowHover
@@ -187,8 +174,8 @@ export interface MixinSlightShadowHoverStyles {
 }
 export const mixinSlightShadowHoverStyles = (
   { colors }: UseEuiTheme['euiTheme'],
-  colorMode: UseEuiTheme['colorMode'],
-  { color: _color }: MixinSlightShadowHoverStyles = {}
+  { color: _color }: MixinSlightShadowHoverStyles = {},
+  colorMode: UseEuiTheme['colorMode']
 ) => {
   const color = chroma(_color || colors.shadow);
   return `
@@ -199,12 +186,9 @@ box-shadow:
   0 23px 35px ${color.alpha(shadowOpacity(0.05, colorMode)).css()};
 `;
 };
-export const useSlightShadowHoverStyles = (
-  options?: MixinSlightShadowHoverStyles
-) => {
-  const { euiTheme, colorMode } = useEuiTheme();
-  return mixinSlightShadowHoverStyles(euiTheme, colorMode, options);
-};
+export const useSlightShadowHoverStyles = createStyleHookFromMixin(
+  mixinSlightShadowHoverStyles
+);
 
 /**
  * slightShadowActive

@@ -6,8 +6,9 @@
  * Side Public License, v 1.
  */
 
-import { UseEuiTheme, useEuiTheme } from '../../services/theme';
+import { UseEuiTheme } from '../../services/theme';
 import { transparentize } from '../../services/color';
+import { createStyleHookFromMixin } from '../utils';
 
 /**
  * overflowShadow
@@ -48,9 +49,6 @@ export const mixinOverflowShadowStyles = (
     return `mask-image: linear-gradient(to right, ${gradient})`;
   }
 };
-export const useOverflowShadowStyles = (
-  options?: MixinOverflowShadowStyles
-) => {
-  const { euiTheme } = useEuiTheme();
-  return mixinOverflowShadowStyles(euiTheme, options);
-};
+export const useOverflowShadowStyles = createStyleHookFromMixin(
+  mixinOverflowShadowStyles
+);

@@ -6,11 +6,12 @@
  * Side Public License, v 1.
  */
 
-import chroma from 'chroma-js';
-import { useEuiTheme, UseEuiTheme } from '../../services/theme';
-import { transparentize } from '../../services/color';
-import { mixinOverflowShadowStyles, useOverflowShadowStyles } from './_shadow';
 import { CSSProperties } from 'react';
+import chroma from 'chroma-js';
+import { UseEuiTheme } from '../../services/theme';
+import { transparentize } from '../../services/color';
+import { mixinOverflowShadowStyles } from './_shadow';
+import { createStyleHookFromMixin } from '../utils';
 
 /**
  * Set scroll bar appearance on Chrome (and firefox).
@@ -75,10 +76,9 @@ export const mixinScrollBarStyles = (
     ${firefoxSupport}
   `;
 };
-export const useScrollBarStyles = (options?: MixinScrollBarStyles) => {
-  const { euiTheme } = useEuiTheme();
-  return mixinScrollBarStyles(euiTheme, options);
-};
+export const useScrollBarStyles = createStyleHookFromMixin(
+  mixinScrollBarStyles
+);
 
 export interface MixinInnerBorderStyles {
   type?: 'light' | 'dark';
@@ -112,10 +112,9 @@ export const mixinInnerBorderStyles = (
     }
   `;
 };
-export const useInnerBorderStyles = (options: MixinInnerBorderStyles) => {
-  const { euiTheme } = useEuiTheme();
-  return mixinInnerBorderStyles(euiTheme, options);
-};
+export const useInnerBorderStyles = createStyleHookFromMixin(
+  mixinInnerBorderStyles
+);
 
 /**
  * 1. Focus rings shouldn't be visible on scrollable regions, but a11y requires them to be focusable.
@@ -124,23 +123,8 @@ export const useInnerBorderStyles = (options: MixinInnerBorderStyles) => {
  */
 
 // Just overflow and scrollbars
-const yScrollStyles = `
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  &:focus {
-    outline: none; /* 1 */
-  }
-`;
 export const mixinYScrollStyles = (euiTheme: UseEuiTheme['euiTheme']) => `
   ${mixinScrollBarStyles(euiTheme)}
-  ${yScrollStyles}
-`;
-export const useYScrollStyles = () => `
-  ${useScrollBarStyles()}
-  ${yScrollStyles}
-`;
-const xScrollStyles = `
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
@@ -148,14 +132,18 @@ const xScrollStyles = `
     outline: none; /* 1 */
   }
 `;
+export const useYScrollStyles = createStyleHookFromMixin(mixinYScrollStyles);
+
 export const mixinXScrollStyles = (euiTheme: UseEuiTheme['euiTheme']) => `
   ${mixinScrollBarStyles(euiTheme)}
-  ${xScrollStyles}
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  &:focus {
+    outline: none; /* 1 */
+  }
 `;
-export const useXScrollStyles = () => `
-  ${useScrollBarStyles()}
-  ${xScrollStyles}
-`;
+export const useXScrollStyles = createStyleHookFromMixin(mixinXScrollStyles);
 
 // // The full overflow with shadow
 export const mixinYScrollWithShadowsStyles = (
@@ -164,10 +152,9 @@ export const mixinYScrollWithShadowsStyles = (
   ${mixinYScrollStyles(euiTheme)}
   ${mixinOverflowShadowStyles(euiTheme, { direction: 'y' })}
 `;
-export const useYScrollWithShadows = () => `
-  ${useYScrollStyles()}
-  ${useOverflowShadowStyles({ direction: 'y' })}
-`;
+export const useYScrollWithShadows = createStyleHookFromMixin(
+  mixinYScrollWithShadowsStyles
+);
 
 export const mixinXScrollWithShadowsStyles = (
   euiTheme: UseEuiTheme['euiTheme']
@@ -175,10 +162,9 @@ export const mixinXScrollWithShadowsStyles = (
   ${mixinXScrollStyles(euiTheme)}
   ${mixinOverflowShadowStyles(euiTheme, { direction: 'x' })}
 `;
-export const useXScrollWithShadows = () => `
-  ${useXScrollStyles()}
-  ${useOverflowShadowStyles({ direction: 'x' })}
-`;
+export const useXScrollWithShadows = createStyleHookFromMixin(
+  mixinXScrollWithShadowsStyles
+);
 
 // Hiding elements offscreen to only be read by screen reader
 export const mixinScreenReaderOnlyStyles = () => `
