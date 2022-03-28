@@ -10,7 +10,7 @@ import {
 } from '../../../../src/components';
 
 export default () => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   return (
     <>
@@ -39,35 +39,6 @@ export default () => {
           values={{
             count,
           }}
-        />
-      </p>
-
-      <EuiSpacer size="l" />
-
-      <EuiTitle size="xs">
-        <h3>useEuiI18n with function interpolation</h3>
-      </EuiTitle>
-      <p>
-        {useEuiI18n(
-          'euiI18nInterpolation.clickedCount',
-          ({ count }) =>
-            `Clicked on button ${count} time${count === 1 ? '' : 's'}.`,
-          { count }
-        )}
-      </p>
-
-      <EuiSpacer size="l" />
-
-      <EuiTitle size="xs">
-        <h3>EuiI18n with function interpolation</h3>
-      </EuiTitle>
-      <p>
-        <EuiI18n
-          token="euiI18nInterpolation.clickedCount"
-          default={({ count }) =>
-            `Clicked on button ${count} time${count === 1 ? '' : 's'}.`
-          }
-          values={{ count }}
         />
       </p>
 
