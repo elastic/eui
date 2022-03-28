@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import { EuiSelectable, EuiSelectableProps } from './selectable';
 import { EuiPopover } from '../popover';
@@ -218,154 +218,61 @@ describe('EuiSelectable', () => {
           ]);
         });
     });
-  });
-
-  describe('without a `searchable` configuration', () => {
-    it('allows pressing the Enter key to select an item', () => {
-      const onChange = cy.stub();
-      cy.realMount(
-        <EuiSelectable options={options} onChange={onChange}>
-          {(list) => <>{list}</>}
-        </EuiSelectable>
-      );
-
-      cy.realPress('Tab');
-      cy.realPress('ArrowDown');
-      cy.realPress('Enter').then(() => {
-        expect(onChange).to.have.been.calledWith([
-          options[0],
-          { ...options[1], checked: 'on' },
-          options[2],
-        ]);
-      });
-    });
-
-    it('allows pressing the Space key to select an item', () => {
-      const onChange = cy.stub();
-      cy.realMount(
-        <EuiSelectable options={options} onChange={onChange}>
-          {(list) => <>{list}</>}
-        </EuiSelectable>
-      );
-      cy.realPress('Tab');
-      cy.repeatRealPress('ArrowDown', 2);
-      cy.realPress('Space').then(() => {
-        expect(onChange).to.have.been.calledWith([
-          options[0],
-          options[1],
-          { ...options[2], checked: 'on' },
-        ]);
-      });
-    });
-  });
-
-  describe('nested inside a popover', () => {
-    it('navigates with arrow keys', () => {
-      const onChange = cy.stub();
-      const closePopover = cy.stub();
-      const togglePopover = cy.stub();
-      const button = (
-        <EuiButton
-          iconType="arrowDown"
-          iconSide="right"
-          onClick={togglePopover}
-        >
-          Show popover
-        </EuiButton>
-      );
-
-      cy.realMount(
-        <EuiPopover
-          id="data-cy-popover-1"
-          panelPaddingSize="s"
-          button={button}
-          isOpen={true}
-          closePopover={closePopover}
-        >
-          <EuiSelectable options={options} onChange={onChange}>
-            {(list) => <>{list}</>}
-          </EuiSelectable>
-        </EuiPopover>
-      );
-      cy.realPress('Tab');
-      cy.focused().contains('Show popover');
-      cy.get('button')
-        .realClick()
-        .then(() => {
-          expect(togglePopover).to.have.been.calledOnce;
-        });
-      cy.get('li[role=option]')
-        .first()
-        .realClick()
-        .then(() => {
-          expect(onChange).to.have.been.calledWith([
-            { ...options[0], checked: 'on' },
-            options[1],
-            options[2],
-          ]);
-        });
-      cy.realPress('ArrowDown')
-        .realPress('Enter')
-        .then(() => {
-          expect(onChange).to.have.been.calledWith([
-            options[0], // FYI: doesn't remain `on` because `options` is not controlled to remember state
-            { ...options[1], checked: 'on' },
-            options[2],
-          ]);
-        });
-      cy.realPress('ArrowDown')
-        .realPress('Enter')
-        .then(() => {
-          expect(onChange).to.have.been.calledWith([
-            options[0],
-            options[1],
-            { ...options[2], checked: 'on' },
-          ]);
-        });
-    });
 
     it('has no accessibility errors', () => {
       const onChange = cy.stub();
-      const closePopover = cy.stub();
-      const togglePopover = cy.stub();
+      cy.realMount(
+        <EuiSelectable searchable options={options} onChange={onChange}>
+          {(list, search) => (
+            <>
+              {search}
+              {list}
+            </>
+          )}
+        </EuiSelectable>
+      );
+      cy.checkAxe();
+    });
+  });
+
+  describe('nested in `EuiPopover` component', () => {
+    const NestedSelectable = () => {
+      const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+      const onChange = () => {};
+      const onClosePopover = () => {};
+      const onButtonClick = () => {
+        setIsPopoverOpen(!isPopoverOpen);
+      };
+
       const button = (
         <EuiButton
           iconType="arrowDown"
           iconSide="right"
-          onClick={togglePopover}
+          onClick={onButtonClick}
         >
           Show popover
         </EuiButton>
       );
 
-      cy.realMount(
+      return (
         <EuiPopover
           id="data-cy-popover-1"
           panelPaddingSize="s"
           button={button}
-          isOpen={true}
-          closePopover={closePopover}
+          isOpen={isPopoverOpen}
+          closePopover={onClosePopover}
         >
           <EuiSelectable options={options} onChange={onChange}>
             {(list) => <>{list}</>}
           </EuiSelectable>
         </EuiPopover>
       );
-      cy.get('button')
-        .realClick()
-        .then(() => {
-          expect(togglePopover).to.have.been.calledOnce;
-        });
-      cy.get('li[role=option]')
-        .first()
-        .realClick()
-        .then(() => {
-          expect(onChange).to.have.been.calledWith([
-            { ...options[0], checked: 'on' },
-            options[1],
-            options[2],
-          ]);
-        });
+    };
+
+    it('has no accessibility errors', () => {
+      cy.realMount(<NestedSelectable />);
+      cy.get('button').realClick();
       cy.checkAxe();
     });
   });
