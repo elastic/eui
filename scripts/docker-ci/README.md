@@ -25,7 +25,7 @@ To start, you'll need to setup a local Docker environment. See [Docker's "Get st
 
 ### Build a new image
 
-From this directory:
+From the `scripts/docker-ci` directory:
 
 ```bash
 docker build [--no-cache] [--tag ci:x.x] .
@@ -33,6 +33,15 @@ docker build [--no-cache] [--tag ci:x.x] .
 
 * Use the `--no-cache` option if attempting the upgrade environment installations, like `node.js`, for instance.
 * Use the `--tag` option to give the image a reference name. Helpful if you plan on running the image locally (see next step).
+
+> :warning: If you receive a `Cannot connect to Docker daemon` error, you can use `docker-machine` (despite its deprecated status) to start a daemon.
+
+```bash
+brew install docker-machine
+docker-machine create --driver virtualbox default # `docker-machine restart` if you've already set up docker-machine
+eval "$(docker-machine env default)"
+docker ps
+```
 
 ### Test a new image locally
 
@@ -60,7 +69,9 @@ docker tag IMAGE_ID docker.elastic.co/eui/ci:x.x
 docker push docker.elastic.co/eui/ci:x.x
 ```
 
-> :warning: If you receive a `unauthorized: authentication required` error after `docker push`, try running `docker logout docker.elastic.co` and then obtaining a new login command from the above `docker login` link again.
+> :warning: There is a ~3 minute JWT timeout for docker image uploads (set by Elastic for security reasons and cannot be changed). If you receive a `unauthorized: authentication required` error after `docker push`, this means that your upload has timed out. Since docker uploads images in concurrent layers, it should still have uploaded a portion of the image.
+> 
+> Simply repeat your `docker push` command until the image has fully uploaded (which may take 2-3+ attempts), or consider uploading via wired ethernet for faster upload speeds.
 
 ### Use a published image
 
