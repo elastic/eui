@@ -14,6 +14,10 @@ import { EuiI18n, useEuiI18n } from './i18n';
 /* eslint-disable local/i18n */
 
 describe('EuiI18n', () => {
+  const mockMappingFunc = jest.fn((string: string) => string.toUpperCase());
+
+  beforeEach(() => jest.clearAllMocks());
+
   describe('default rendering', () => {
     describe('rendering to dom', () => {
       it('renders a basic string to the dom', () => {
@@ -247,7 +251,7 @@ describe('EuiI18n', () => {
               mapping: {
                 test1: 'This is the mapped value.',
               },
-              mappingFunc: (value: string) => value.toUpperCase(),
+              mappingFunc: mockMappingFunc,
             }}
           >
             <EuiI18n token="test1" default="This is the basic string.">
@@ -256,6 +260,7 @@ describe('EuiI18n', () => {
           </EuiContext>
         );
         expect(component).toMatchSnapshot();
+        expect(mockMappingFunc).toHaveBeenCalledTimes(1);
       });
     });
   });
@@ -400,7 +405,7 @@ describe('EuiI18n', () => {
               mapping: {
                 test1: 'This is the mapped value.',
               },
-              mappingFunc: (value: string) => value.toUpperCase(),
+              mappingFunc: mockMappingFunc,
             }}
           >
             <Component />

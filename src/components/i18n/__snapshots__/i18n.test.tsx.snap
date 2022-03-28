@@ -249,7 +249,19 @@ exports[`EuiI18n mapped tokens mappingFunc calls the mapping function with the s
       "mapping": Object {
         "test1": "This is the mapped value.",
       },
-      "mappingFunc": [Function],
+      "mappingFunc": [MockFunction] {
+        "calls": Array [
+          Array [
+            "placeholder",
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": "PLACEHOLDER",
+          },
+        ],
+      },
     }
   }
 >
@@ -270,7 +282,19 @@ exports[`EuiI18n reading values from context mappingFunc calls the mapping funct
       "mapping": Object {
         "test1": "This is the mapped value.",
       },
-      "mappingFunc": [Function],
+      "mappingFunc": [MockFunction] {
+        "calls": Array [
+          Array [
+            "This is the basic string.",
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": "THIS IS THE BASIC STRING.",
+          },
+        ],
+      },
     }
   }
 >
