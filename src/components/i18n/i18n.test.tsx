@@ -214,32 +214,48 @@ describe('EuiI18n', () => {
     });
 
     describe('render prop with multiple tokens', () => {
+      const multipleTokens = (
+        <EuiI18n
+          tokens={['test1', 'test2']}
+          defaults={[
+            'This is the first basic string.',
+            'This is the second basic string.',
+          ]}
+        >
+          {([one, two]: ReactChild[]) => (
+            <div>
+              {one} {two}
+            </div>
+          )}
+        </EuiI18n>
+      );
+      const multipleTokensMapping = {
+        test1: 'This is the first mapped value.',
+        test2: 'This is the second mapped value.',
+      };
+
       it('renders mapped render prop result to the dom', () => {
         const component = mount(
-          <EuiContext
-            i18n={{
-              mapping: {
-                test1: 'This is the first mapped value.',
-                test2: 'This is the second mapped value.',
-              },
-            }}
-          >
-            <EuiI18n
-              tokens={['test1', 'test2']}
-              defaults={[
-                'This is the first basic string.',
-                'This is the second basic string.',
-              ]}
-            >
-              {([one, two]: ReactChild[]) => (
-                <div>
-                  {one} {two}
-                </div>
-              )}
-            </EuiI18n>
+          <EuiContext i18n={{ mapping: multipleTokensMapping }}>
+            {multipleTokens}
           </EuiContext>
         );
         expect(component).toMatchSnapshot();
+      });
+
+      it('uses the mapping function if one is provided', () => {
+        const component = mount(
+          <EuiContext
+            i18n={{
+              mapping: multipleTokensMapping,
+              mappingFunc: mockMappingFunc,
+            }}
+          >
+            {multipleTokens}
+          </EuiContext>
+        );
+        expect(component).toMatchSnapshot();
+        expect(mockMappingFunc).toHaveBeenCalledTimes(2);
       });
     });
 

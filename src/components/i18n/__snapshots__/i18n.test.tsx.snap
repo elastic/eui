@@ -345,6 +345,60 @@ exports[`EuiI18n reading values from context render prop with multiple tokens re
 </EuiContext>
 `;
 
+exports[`EuiI18n reading values from context render prop with multiple tokens uses the mapping function if one is provided 1`] = `
+<EuiContext
+  i18n={
+    Object {
+      "mapping": Object {
+        "test1": "This is the first mapped value.",
+        "test2": "This is the second mapped value.",
+      },
+      "mappingFunc": [MockFunction] {
+        "calls": Array [
+          Array [
+            "This is the first basic string.",
+          ],
+          Array [
+            "This is the second basic string.",
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": "THIS IS THE FIRST BASIC STRING.",
+          },
+          Object {
+            "type": "return",
+            "value": "THIS IS THE SECOND BASIC STRING.",
+          },
+        ],
+      },
+    }
+  }
+>
+  <EuiI18n
+    defaults={
+      Array [
+        "This is the first basic string.",
+        "This is the second basic string.",
+      ]
+    }
+    tokens={
+      Array [
+        "test1",
+        "test2",
+      ]
+    }
+  >
+    <div>
+      THIS IS THE FIRST BASIC STRING.
+       
+      THIS IS THE SECOND BASIC STRING.
+    </div>
+  </EuiI18n>
+</EuiContext>
+`;
+
 exports[`EuiI18n reading values from context render prop with single token calls a mapped function and renders render prop result to the dom 1`] = `
 <EuiContext
   i18n={

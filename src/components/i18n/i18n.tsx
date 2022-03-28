@@ -133,6 +133,7 @@ const EuiI18n = <
             lookupToken({
               token,
               i18nMapping: mapping,
+              i18nMappingFunc: mappingFunc,
               valueDefault: props.defaults[idx],
               render,
             })
