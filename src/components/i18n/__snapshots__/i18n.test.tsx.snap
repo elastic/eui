@@ -584,7 +584,7 @@ exports[`EuiI18n reading values from context rendering to dom renders a mapped s
 </EuiContext>
 `;
 
-exports[`EuiI18n useEuiI18n unmapped calls a function and renders the result to the dom 1`] = `
+exports[`EuiI18n useEuiI18n unmapped calls a function that returns JSX and renders the result to the dom 1`] = `
 <Component>
   <div>
     <p>
@@ -596,6 +596,34 @@ exports[`EuiI18n useEuiI18n unmapped calls a function and renders the result to 
     </p>
   </div>
 </Component>
+`;
+
+exports[`EuiI18n useEuiI18n unmapped calls a function that returns a string and the i18n mapping function 1`] = `
+<EuiContext
+  i18n={
+    Object {
+      "mappingFunc": [MockFunction] {
+        "calls": Array [
+          Array [
+            "This is a callback with values",
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": "THIS IS A CALLBACK WITH VALUES",
+          },
+        ],
+      },
+    }
+  }
+>
+  <Component>
+    <div>
+      THIS IS A CALLBACK WITH VALUES
+    </div>
+  </Component>
+</EuiContext>
 `;
 
 exports[`EuiI18n useEuiI18n unmapped handles multiple tokens 1`] = `

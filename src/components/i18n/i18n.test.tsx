@@ -321,7 +321,7 @@ describe('EuiI18n', () => {
         expect(component).toMatchSnapshot();
       });
 
-      it('calls a function and renders the result to the dom', () => {
+      it('calls a function that returns JSX and renders the result to the dom', () => {
         const values = { type: 'callback', special: 'values' };
         const renderCallback = jest.fn(({ type, special }) => (
           <p>
@@ -335,6 +335,26 @@ describe('EuiI18n', () => {
         expect(component).toMatchSnapshot();
 
         expect(renderCallback).toHaveBeenCalledWith(values);
+      });
+
+      it('calls a function that returns a string and the i18n mapping function', () => {
+        const values = { type: 'callback', special: 'values' };
+        const renderCallback = jest.fn(
+          ({ type, special }) => `This is a ${type} with ${special}`
+        );
+        const Component = () => (
+          <div>{useEuiI18n('test', renderCallback, values)}</div>
+        );
+
+        const component = mount(
+          <EuiContext i18n={{ mappingFunc: mockMappingFunc }}>
+            <Component />
+          </EuiContext>
+        );
+
+        expect(component).toMatchSnapshot();
+        expect(renderCallback).toHaveBeenCalledWith(values);
+        expect(mockMappingFunc).toHaveBeenCalledTimes(1);
       });
     });
   });

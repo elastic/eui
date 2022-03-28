@@ -61,7 +61,10 @@ function lookupToken<
       return errorOnMissingValues(token);
     }
     // @ts-ignore TypeScript complains that `DEFAULT` doesn't have a call signature but we verified `renderable` is a function
-    return renderable(values);
+    const rendered = renderable(values);
+    return (i18nMappingFunc && typeof rendered === 'string'
+      ? i18nMappingFunc(rendered)
+      : rendered) as RESOLVED;
   } else if (values === undefined || typeof renderable !== 'string') {
     if (i18nMappingFunc && typeof valueDefault === 'string') {
       renderable = i18nMappingFunc(valueDefault);
