@@ -1749,11 +1749,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 185,
+        "line": 178,
         "column": 6
       },
       "end": {
-        "line": 192,
+        "line": 185,
         "column": 8
       }
     },
@@ -1765,11 +1765,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 194,
+        "line": 187,
         "column": 6
       },
       "end": {
-        "line": 201,
+        "line": 194,
         "column": 8
       }
     },
@@ -1781,15 +1781,31 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 221,
-        "column": 18
+        "line": 227,
+        "column": 22
       },
       "end": {
-        "line": 224,
-        "column": 20
+        "line": 230,
+        "column": 24
       }
     },
     "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
+  },
+  {
+    "token": "euiAbsoluteTab.dateFormatError",
+    "defString": "Expected format: {dateFormat}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 118,
+        "column": 8
+      },
+      "end": {
+        "line": 122,
+        "column": 9
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/absolute_tab.tsx"
   },
   {
     "token": "euiDatePopoverButton.invalidTitle",
@@ -1797,11 +1813,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 84,
+        "line": 92,
         "column": 23
       },
       "end": {
-        "line": 88,
+        "line": 96,
         "column": 3
       }
     },
@@ -1813,15 +1829,143 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 89,
+        "line": 97,
         "column": 24
       },
       "end": {
-        "line": 93,
+        "line": 101,
         "column": 3
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_button.tsx"
+  },
+  {
+    "token": "euiDatePopoverContent.startDateLabel",
+    "defString": "Start date",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 62,
+        "column": 25
+      },
+      "end": {
+        "line": 65,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
+  },
+  {
+    "token": "euiDatePopoverContent.endDateLabel",
+    "defString": "End date",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 66,
+        "column": 23
+      },
+      "end": {
+        "line": 69,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
+  },
+  {
+    "token": "euiDatePopoverContent.absoluteTabLabel",
+    "defString": "Absolute",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 72,
+        "column": 24
+      },
+      "end": {
+        "line": 75,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
+  },
+  {
+    "token": "euiDatePopoverContent.relativeTabLabel",
+    "defString": "Relative",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 76,
+        "column": 24
+      },
+      "end": {
+        "line": 79,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
+  },
+  {
+    "token": "euiDatePopoverContent.nowTabLabel",
+    "defString": "Now",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 80,
+        "column": 19
+      },
+      "end": {
+        "line": 80,
+        "column": 73
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
+  },
+  {
+    "token": "euiDatePopoverContent.nowTabContent",
+    "defString": "Setting the time to \"now\" means that on every refresh this\n            time will be set to the time of the refresh.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 130,
+        "column": 12
+      },
+      "end": {
+        "line": 134,
+        "column": 14
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
+  },
+  {
+    "token": "euiDatePopoverContent.nowTabButtonStart",
+    "defString": "Set start date and time to now",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 146,
+        "column": 14
+      },
+      "end": {
+        "line": 149,
+        "column": 16
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
+  },
+  {
+    "token": "euiDatePopoverContent.nowTabButtonEnd",
+    "defString": "Set end date and time to now",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 151,
+        "column": 14
+      },
+      "end": {
+        "line": 154,
+        "column": 16
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
   },
   {
     "token": "euiRelativeTab.numberInputError",
@@ -1829,11 +1973,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 143,
+        "line": 142,
         "column": 14
       },
       "end": {
-        "line": 154,
+        "line": 153,
         "column": 15
       }
     },
@@ -1845,11 +1989,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 143,
+        "line": 142,
         "column": 14
       },
       "end": {
-        "line": 154,
+        "line": 153,
         "column": 15
       }
     },
@@ -1861,11 +2005,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 143,
+        "line": 142,
         "column": 14
       },
       "end": {
-        "line": 154,
+        "line": 153,
         "column": 15
       }
     },
@@ -1877,28 +2021,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 183,
+        "line": 182,
         "column": 14
       },
       "end": {
-        "line": 186,
+        "line": 185,
         "column": 15
-      }
-    },
-    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
-  },
-  {
-    "token": "euiRelativeTab.relativeDate",
-    "defString": "{position} date",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 209,
-        "column": 16
-      },
-      "end": {
-        "line": 213,
-        "column": 18
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
@@ -1909,31 +2037,543 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 219,
+        "line": 210,
         "column": 14
       },
       "end": {
-        "line": 223,
+        "line": 214,
         "column": 16
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
   },
   {
-    "token": "euiRelativeTab.roundingLabel",
-    "defString": "Round to the {unit}",
+    "token": "euiPrettyDuration.lastDurationSeconds",
+    "defString": "({\n  duration\n}) => `Last ${duration} second${duration === 1 ? '' : 's'}`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 30,
+        "column": 5
+      },
+      "end": {
+        "line": 34,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.nextDurationSeconds",
+    "defString": "({\n  duration\n}) => `Next ${duration} second${duration === 1 ? '' : 's'}`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 35,
+        "column": 8
+      },
+      "end": {
+        "line": 39,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.lastDurationMinutes",
+    "defString": "({\n  duration\n}) => `Last ${duration} minute${duration === 1 ? '' : 's'}`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 40,
+        "column": 5
+      },
+      "end": {
+        "line": 44,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.nextDurationMinutes",
+    "defString": "({\n  duration\n}) => `Next ${duration} minute${duration === 1 ? '' : 's'}`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 45,
+        "column": 8
+      },
+      "end": {
+        "line": 49,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.lastDurationHours",
+    "defString": "({\n  duration\n}) => `Last ${duration} hour${duration === 1 ? '' : 's'}`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 50,
+        "column": 5
+      },
+      "end": {
+        "line": 54,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.nextDurationHours",
+    "defString": "({\n  duration\n}) => `Next ${duration} hour${duration === 1 ? '' : 's'}`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 55,
+        "column": 8
+      },
+      "end": {
+        "line": 59,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.lastDurationDays",
+    "defString": "({\n  duration\n}) => `Last ${duration} day${duration === 1 ? '' : 's'}`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 60,
+        "column": 5
+      },
+      "end": {
+        "line": 64,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.nexttDurationDays",
+    "defString": "({\n  duration\n}) => `Next ${duration} day${duration === 1 ? '' : 's'}`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 65,
+        "column": 8
+      },
+      "end": {
+        "line": 69,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.lastDurationWeeks",
+    "defString": "({\n  duration\n}) => `Last ${duration} week${duration === 1 ? '' : 's'}`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 70,
+        "column": 5
+      },
+      "end": {
+        "line": 74,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.nextDurationWeeks",
+    "defString": "({\n  duration\n}) => `Next ${duration} week${duration === 1 ? '' : 's'}`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 75,
+        "column": 8
+      },
+      "end": {
+        "line": 79,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.lastDurationMonths",
+    "defString": "({\n  duration\n}) => `Last ${duration} month${duration === 1 ? '' : 's'}`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 80,
+        "column": 5
+      },
+      "end": {
+        "line": 84,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.nextDurationMonths",
+    "defString": "({\n  duration\n}) => `Next ${duration} month${duration === 1 ? '' : 's'}`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 85,
+        "column": 8
+      },
+      "end": {
+        "line": 89,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.lastDurationYears",
+    "defString": "({\n  duration\n}) => `Last ${duration} year${duration === 1 ? '' : 's'}`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 90,
+        "column": 5
+      },
+      "end": {
+        "line": 94,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.nextDurationYears",
+    "defString": "({\n  duration\n}) => `Next ${duration} year${duration === 1 ? '' : 's'}`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 95,
+        "column": 8
+      },
+      "end": {
+        "line": 99,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.durationRoundedToSecond",
+    "defString": "{prettyDuration} rounded to the second",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 228,
-        "column": 10
+        "line": 103,
+        "column": 5
       },
       "end": {
-        "line": 232,
-        "column": 11
+        "line": 107,
+        "column": 3
       }
     },
-    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.durationRoundedToMinute",
+    "defString": "{prettyDuration} rounded to the minute",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 108,
+        "column": 5
+      },
+      "end": {
+        "line": 112,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.durationRoundedToHour",
+    "defString": "{prettyDuration} rounded to the hour",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 113,
+        "column": 5
+      },
+      "end": {
+        "line": 117,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.durationRoundedToDay",
+    "defString": "{prettyDuration} rounded to the day",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 118,
+        "column": 5
+      },
+      "end": {
+        "line": 122,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.durationRoundedToWeek",
+    "defString": "{prettyDuration} rounded to the week",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 123,
+        "column": 5
+      },
+      "end": {
+        "line": 127,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.durationRoundedToMonth",
+    "defString": "{prettyDuration} rounded to the month",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 128,
+        "column": 5
+      },
+      "end": {
+        "line": 132,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.durationRoundedToYear",
+    "defString": "{prettyDuration} rounded to the year",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 133,
+        "column": 5
+      },
+      "end": {
+        "line": 137,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.now",
+    "defString": "now",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 153,
+        "column": 21
+      },
+      "end": {
+        "line": 153,
+        "column": 63
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.invalid",
+    "defString": "Invalid date",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 154,
+        "column": 29
+      },
+      "end": {
+        "line": 157,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyDuration.fallbackDuration",
+    "defString": "{displayFrom} to {displayTo}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 250,
+        "column": 27
+      },
+      "end": {
+        "line": 254,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_duration.tsx"
+  },
+  {
+    "token": "euiPrettyInterval.seconds",
+    "defString": "({\n  interval\n}) => `${interval} second${interval > 1 ? 's' : ''}`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 25,
+        "column": 5
+      },
+      "end": {
+        "line": 29,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_interval.ts"
+  },
+  {
+    "token": "euiPrettyInterval.minutes",
+    "defString": "({\n  interval\n}) => `${interval} minute${interval > 1 ? 's' : ''}`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 30,
+        "column": 5
+      },
+      "end": {
+        "line": 34,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_interval.ts"
+  },
+  {
+    "token": "euiPrettyInterval.hours",
+    "defString": "({\n  interval\n}) => `${interval} hour${interval > 1 ? 's' : ''}`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 35,
+        "column": 5
+      },
+      "end": {
+        "line": 39,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_interval.ts"
+  },
+  {
+    "token": "euiPrettyInterval.days",
+    "defString": "({\n  interval\n}) => `${interval} day${interval > 1 ? 's' : ''}`;",
+    "highlighting": "code",
+    "loc": {
+      "start": {
+        "line": 40,
+        "column": 5
+      },
+      "end": {
+        "line": 44,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_interval.ts"
+  },
+  {
+    "token": "euiPrettyInterval.secondsShorthand",
+    "defString": "{interval} s",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 46,
+        "column": 7
+      },
+      "end": {
+        "line": 48,
+        "column": 6
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_interval.ts"
+  },
+  {
+    "token": "euiPrettyInterval.minutesShorthand",
+    "defString": "{interval} m",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 49,
+        "column": 7
+      },
+      "end": {
+        "line": 51,
+        "column": 6
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_interval.ts"
+  },
+  {
+    "token": "euiPrettyInterval.hoursShorthand",
+    "defString": "{interval} h",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 52,
+        "column": 7
+      },
+      "end": {
+        "line": 54,
+        "column": 6
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_interval.ts"
+  },
+  {
+    "token": "euiPrettyInterval.daysShorthand",
+    "defString": "{interval} d",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 55,
+        "column": 7
+      },
+      "end": {
+        "line": 57,
+        "column": 6
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_interval.ts"
+  },
+  {
+    "token": "euiPrettyInterval.off",
+    "defString": "Off",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 88,
+        "column": 14
+      },
+      "end": {
+        "line": 88,
+        "column": 56
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/pretty_interval.ts"
   },
   {
     "token": "euiCommonlyUsedTimeRanges.legend",
@@ -1957,11 +2597,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 171,
+        "line": 162,
         "column": 8
       },
       "end": {
-        "line": 174,
+        "line": 165,
         "column": 9
       }
     },
@@ -1973,11 +2613,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 192,
+        "line": 183,
         "column": 12
       },
       "end": {
-        "line": 195,
+        "line": 186,
         "column": 13
       }
     },
@@ -1989,11 +2629,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 206,
+        "line": 197,
         "column": 16
       },
       "end": {
-        "line": 209,
+        "line": 200,
         "column": 17
       }
     },
@@ -2005,11 +2645,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 222,
+        "line": 213,
         "column": 16
       },
       "end": {
-        "line": 225,
+        "line": 216,
         "column": 17
       }
     },
@@ -2021,11 +2661,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 243,
+        "line": 234,
         "column": 12
       },
       "end": {
-        "line": 243,
+        "line": 234,
         "column": 76
       }
     },
@@ -2037,11 +2677,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 258,
+        "line": 249,
         "column": 12
       },
       "end": {
-        "line": 258,
+        "line": 249,
         "column": 76
       }
     },
@@ -2053,11 +2693,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 272,
+        "line": 263,
         "column": 12
       },
       "end": {
-        "line": 272,
+        "line": 263,
         "column": 74
       }
     },
@@ -2069,11 +2709,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 294,
+        "line": 285,
         "column": 14
       },
       "end": {
-        "line": 294,
+        "line": 285,
         "column": 76
       }
     },
@@ -2085,11 +2725,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 300,
+        "line": 291,
         "column": 12
       },
       "end": {
-        "line": 308,
+        "line": 299,
         "column": 14
       }
     },
@@ -2101,11 +2741,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 57,
+        "line": 62,
         "column": 10
       },
       "end": {
-        "line": 60,
+        "line": 65,
         "column": 12
       }
     },
@@ -2190,6 +2830,614 @@
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
+  },
+  {
+    "token": "euiTimeOptions.last",
+    "defString": "Last",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 35,
+        "column": 25
+      },
+      "end": {
+        "line": 35,
+        "column": 66
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.next",
+    "defString": "Next",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 36,
+        "column": 25
+      },
+      "end": {
+        "line": 36,
+        "column": 66
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.seconds",
+    "defString": "Seconds",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 40,
+        "column": 24
+      },
+      "end": {
+        "line": 40,
+        "column": 71
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.minutes",
+    "defString": "Minutes",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 41,
+        "column": 24
+      },
+      "end": {
+        "line": 41,
+        "column": 71
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.hours",
+    "defString": "Hours",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 42,
+        "column": 24
+      },
+      "end": {
+        "line": 42,
+        "column": 67
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.days",
+    "defString": "Days",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 43,
+        "column": 24
+      },
+      "end": {
+        "line": 43,
+        "column": 65
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.weeks",
+    "defString": "Weeks",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 44,
+        "column": 24
+      },
+      "end": {
+        "line": 44,
+        "column": 67
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.months",
+    "defString": "Months",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 45,
+        "column": 24
+      },
+      "end": {
+        "line": 45,
+        "column": 69
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.years",
+    "defString": "Years",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 46,
+        "column": 24
+      },
+      "end": {
+        "line": 46,
+        "column": 67
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.secondsAgo",
+    "defString": "Seconds ago",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 54,
+        "column": 12
+      },
+      "end": {
+        "line": 54,
+        "column": 66
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.minutesAgo",
+    "defString": "Minutes ago",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 58,
+        "column": 12
+      },
+      "end": {
+        "line": 58,
+        "column": 66
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.hoursAgo",
+    "defString": "Hours ago",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 62,
+        "column": 12
+      },
+      "end": {
+        "line": 62,
+        "column": 62
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.daysAgo",
+    "defString": "Days ago",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 66,
+        "column": 12
+      },
+      "end": {
+        "line": 66,
+        "column": 60
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.weeksAgo",
+    "defString": "Weeks ago",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 70,
+        "column": 12
+      },
+      "end": {
+        "line": 70,
+        "column": 62
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.monthsAgo",
+    "defString": "Months ago",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 74,
+        "column": 12
+      },
+      "end": {
+        "line": 74,
+        "column": 64
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.yearsAgo",
+    "defString": "Years ago",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 78,
+        "column": 12
+      },
+      "end": {
+        "line": 78,
+        "column": 62
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.secondsFromNow",
+    "defString": "Seconds from now",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 82,
+        "column": 12
+      },
+      "end": {
+        "line": 82,
+        "column": 75
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.minutesFromNow",
+    "defString": "Minutes from now",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 86,
+        "column": 12
+      },
+      "end": {
+        "line": 86,
+        "column": 75
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.hoursFromNow",
+    "defString": "Hours from now",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 90,
+        "column": 12
+      },
+      "end": {
+        "line": 90,
+        "column": 71
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.daysFromNow",
+    "defString": "Days from now",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 94,
+        "column": 12
+      },
+      "end": {
+        "line": 94,
+        "column": 69
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.weeksFromNow",
+    "defString": "Weeks from now",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 98,
+        "column": 12
+      },
+      "end": {
+        "line": 98,
+        "column": 71
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.monthsFromNow",
+    "defString": "Months from now",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 102,
+        "column": 12
+      },
+      "end": {
+        "line": 102,
+        "column": 73
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.yearsFromNow",
+    "defString": "Years from now",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 106,
+        "column": 12
+      },
+      "end": {
+        "line": 106,
+        "column": 71
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.roundToSecond",
+    "defString": "Round to the second",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 112,
+        "column": 7
+      },
+      "end": {
+        "line": 112,
+        "column": 72
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.roundToMinute",
+    "defString": "Round to the minute",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 113,
+        "column": 7
+      },
+      "end": {
+        "line": 113,
+        "column": 72
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.roundToHour",
+    "defString": "Round to the hour",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 114,
+        "column": 7
+      },
+      "end": {
+        "line": 114,
+        "column": 68
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.roundToDay",
+    "defString": "Round to the day",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 115,
+        "column": 7
+      },
+      "end": {
+        "line": 115,
+        "column": 66
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.roundToWeek",
+    "defString": "Round to the week",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 116,
+        "column": 7
+      },
+      "end": {
+        "line": 116,
+        "column": 68
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.roundToMonth",
+    "defString": "Round to the month",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 117,
+        "column": 7
+      },
+      "end": {
+        "line": 117,
+        "column": 70
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.roundToYear",
+    "defString": "Round to the year",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 118,
+        "column": 7
+      },
+      "end": {
+        "line": 118,
+        "column": 68
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.today",
+    "defString": "Today",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 135,
+        "column": 13
+      },
+      "end": {
+        "line": 135,
+        "column": 56
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.thisWeek",
+    "defString": "This week",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 140,
+        "column": 13
+      },
+      "end": {
+        "line": 140,
+        "column": 63
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.thisMonth",
+    "defString": "This month",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 145,
+        "column": 13
+      },
+      "end": {
+        "line": 145,
+        "column": 65
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.thisYear",
+    "defString": "This year",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 150,
+        "column": 13
+      },
+      "end": {
+        "line": 150,
+        "column": 63
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.yesterday",
+    "defString": "Yesterday",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 155,
+        "column": 13
+      },
+      "end": {
+        "line": 155,
+        "column": 64
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.weekToDate",
+    "defString": "Week to date",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 160,
+        "column": 13
+      },
+      "end": {
+        "line": 160,
+        "column": 68
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.monthToDate",
+    "defString": "Month to date",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 165,
+        "column": 13
+      },
+      "end": {
+        "line": 165,
+        "column": 70
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
+  },
+  {
+    "token": "euiTimeOptions.yearToDate",
+    "defString": "Year to date",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 170,
+        "column": 13
+      },
+      "end": {
+        "line": 170,
+        "column": 68
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/time_options.tsx"
   },
   {
     "token": "euiErrorBoundary.error",
