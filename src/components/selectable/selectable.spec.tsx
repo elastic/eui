@@ -266,14 +266,17 @@ describe('EuiSelectable', () => {
 
       return (
         <EuiPopover
-          aria-label="With popover"
           id="data-cy-popover-1"
           panelPaddingSize="s"
           button={button}
           isOpen={isPopoverOpen}
           closePopover={onClosePopover}
         >
-          <EuiSelectableWithSearchInput options={options} onChange={onChange}>
+          <EuiSelectableWithSearchInput
+            aria-label="With popover"
+            options={options}
+            onChange={onChange}
+          >
             {(list) => <>{list}</>}
           </EuiSelectableWithSearchInput>
         </EuiPopover>
