@@ -691,8 +691,8 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
 
     // These icons are a little special and get some extra CSS flexibility
     const isAppIcon =
-      type &&
       typeof type === 'string' &&
+      !/^data:/.test(type) && // Don't further test data URIs (https://github.com/elastic/eui/issues/5741)
       (/.+App$/.test(type) || /.+Job$/.test(type) || type === 'dataVisualizer');
 
     const appIconHasColor = color && color !== 'default';
