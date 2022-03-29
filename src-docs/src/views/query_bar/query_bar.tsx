@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import {
-  EuiButton,
   EuiFlexGroup,
   EuiFlexItem,
   EuiPanel,
@@ -9,9 +8,9 @@ import {
   EuiSuperDatePicker,
   EuiSuperUpdateButton,
   EuiSwitch,
-  useEuiTheme,
   useGetCurrentBreakpoint,
   useResizeObserver,
+  EuiTitle,
 } from '../../../../src';
 
 // @ts-ignore to convert
@@ -20,25 +19,35 @@ import { GlobalFilterBar } from './global_filter_bar';
 import QueryBarFilterButton from './query_bar_filter_menu';
 import GlobalFilterAdd from './global_filter_add';
 import QueryBarInput from './query_bar_input';
+import { DataViewSelector } from './global_data_view';
+
+const MAX_WIDTH_DATA_VIEW = 260;
 
 export default () => {
-  const { euiTheme } = useEuiTheme();
+  const [showAutoRefreshOnly, setShowAutoRefreshOnly] = useState(false);
 
-  const [showDatePicker, setShowDatePicker] = useState(true);
   const [showDataViewPicker, setShowDataViewPicker] = useState(true);
-  const [isReadOnly, setIsReadOnly] = useState(false);
+  const [showQueryBar, setShowQueryBar] = useState(true);
+  const [showDatePicker, setShowDatePicker] = useState(true);
+  const [showFilterBar, setShowFilterBar] = useState(true);
 
   // Responsive helpers
   const [resizeRef, setResizeRef] = useState<HTMLElement | null>(null);
   const dimensions = useResizeObserver(resizeRef);
   const currentBreakpoint = useGetCurrentBreakpoint(true, dimensions.width);
   const isMobile = currentBreakpoint === 'xs' || currentBreakpoint === 's';
-  const isMedium = currentBreakpoint === 'm';
   const isLargePlus = currentBreakpoint === 'l' || currentBreakpoint === 'xl';
 
-  // console.log({ currentBreakpoint, isMobile, resizeRef });
-
   const [hideDatepicker, setHideDatepicker] = useState(false);
+
+  const onShowAutoRefreshOnly = (
+    checked: boolean | ((prevState: boolean) => boolean)
+  ) => {
+    setShowAutoRefreshOnly(checked);
+    setShowDataViewPicker(!checked);
+    setShowQueryBar(!checked);
+    setShowFilterBar(!checked);
+  };
 
   const onFieldFocus = () => {
     setHideDatepicker(true);
@@ -52,65 +61,23 @@ export default () => {
     console.log(dateRange);
   };
 
-  const shouldStack =
-    currentBreakpoint === 'xs' || (isMobile && !showDatePicker);
-
-  const dataViewSelector = showDataViewPicker && (
-    <EuiFlexItem
-      grow={shouldStack}
-      style={{
-        maxWidth: shouldStack ? '100%' : 260,
-      }}
-    >
-      <EuiButton iconType={'arrowDown'} iconSide="right" fullWidth>
-        Data view selector with a really long name to make sure it truncates
-      </EuiButton>
-    </EuiFlexItem>
-  );
-
   const superUpdateButton = (
     <EuiFlexItem grow={false}>
       <EuiSuperUpdateButton onClick={onTimeChange} iconOnly />
     </EuiFlexItem>
   );
 
-  const superDatePicker = (
-    <EuiFlexItem grow={isMobile || isMedium}>
-      <EuiSuperDatePicker
-        width={currentBreakpoint === 'xs' ? 'full' : 'auto'}
-        isQuickSelectOnly={isLargePlus && hideDatepicker}
-        onTimeChange={onTimeChange}
-        showUpdateButton={false}
-      />
+  const dataViewSelector = showDataViewPicker && (
+    <EuiFlexItem
+      style={{ maxWidth: isMobile ? '100%' : MAX_WIDTH_DATA_VIEW }}
+      grow={isMobile}
+    >
+      <DataViewSelector />
     </EuiFlexItem>
   );
 
-  const datePicker = showDatePicker && (
-    <EuiFlexItem
-      grow={isMobile || isMedium}
-      style={{
-        minWidth: currentBreakpoint === 'xs' ? '100%' : 'auto',
-        maxWidth: '100%',
-      }}
-    >
-      <EuiFlexGroup
-        gutterSize="none"
-        responsive={false}
-        style={{ gap: euiTheme.size.m }}
-      >
-        {superDatePicker}
-        {superUpdateButton}
-      </EuiFlexGroup>
-    </EuiFlexItem>
-  );
-
-  const queryBar = (
-    <EuiFlexItem
-      style={{
-        minWidth: isMobile || (isMedium && showDatePicker) ? '100%' : 'auto',
-        maxWidth: '100%',
-      }}
-    >
+  const queryBar = showQueryBar && (
+    <EuiFlexItem style={{ minWidth: 'min(400px, 100%)' }}>
       <EuiFlexGroup gutterSize="s" responsive={false}>
         <EuiFlexItem grow={false}>
           <QueryBarFilterButton />
@@ -126,53 +93,82 @@ export default () => {
     </EuiFlexItem>
   );
 
-  const filterBar = (
-    <EuiFlexItem
-      style={{
-        overflow: 'hidden',
-        minWidth: isReadOnly && isLargePlus ? 'auto' : '100%',
-      }}
-    >
-      <GlobalFilterBar
-        filterMenu={
-          isReadOnly ? (
-            <QueryBarFilterButton
-              buttonProps={isReadOnly ? { size: 's' } : undefined}
-            />
-          ) : undefined
-        }
-      />
+  const datePicker = showDatePicker && showQueryBar && (
+    <EuiFlexItem grow={false}>
+      <EuiFlexGroup responsive={false} gutterSize="s">
+        <EuiFlexItem
+          grow={isMobile}
+          style={{
+            maxWidth: '100%',
+          }}
+        >
+          <EuiSuperDatePicker
+            width={isMobile ? 'full' : 'auto'}
+            isQuickSelectOnly={isLargePlus && hideDatepicker}
+            onTimeChange={onTimeChange}
+            showUpdateButton={false}
+          />
+        </EuiFlexItem>
+        {superUpdateButton}
+      </EuiFlexGroup>
     </EuiFlexItem>
   );
 
-  let elementOrder;
-  switch (currentBreakpoint) {
-    case 'xs':
-      elementOrder = isReadOnly
-        ? [datePicker, filterBar]
-        : [dataViewSelector, datePicker, queryBar, filterBar];
-      break;
-    case 's':
-    case 'm':
-      elementOrder = isReadOnly
-        ? [datePicker, filterBar]
-        : [dataViewSelector, datePicker, queryBar, filterBar];
-      break;
-    default:
-      elementOrder = isReadOnly
-        ? [filterBar, datePicker]
-        : [dataViewSelector, queryBar, datePicker, filterBar];
-      break;
-  }
+  const filterBar = (
+    <GlobalFilterBar
+      timeBadge={
+        !showQueryBar && showDatePicker ? (
+          <EuiSuperDatePicker
+            width={'auto'}
+            onTimeChange={onTimeChange}
+            showUpdateButton={false}
+            compressed
+          />
+        ) : undefined
+      }
+      filterMenu={
+        !showQueryBar ? (
+          <QueryBarFilterButton buttonProps={{ size: 's' }} />
+        ) : undefined
+      }
+    />
+  );
 
   return (
     <div>
+      <EuiTitle>
+        <h1>EUI Docs</h1>
+      </EuiTitle>
       <EuiPanel>
         <EuiFlexGroup>
           <EuiFlexItem>
             <EuiSwitch
+              label="autoRefreshOnly"
+              checked={showAutoRefreshOnly}
+              onChange={(e) => onShowAutoRefreshOnly(e.target.checked)}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiSwitch
+              label="showQueryBar"
+              checked={showQueryBar}
+              disabled={showAutoRefreshOnly}
+              onChange={(e) => setShowQueryBar(e.target.checked)}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiSwitch
+              label="showFilterBar"
+              checked={showFilterBar}
+              disabled={showAutoRefreshOnly}
+              onChange={(e) => onShowAutoRefreshOnly(e.target.checked)}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiSwitch
               label="Date picker"
               checked={showDatePicker}
+              disabled={showAutoRefreshOnly}
               onChange={(e) => setShowDatePicker(e.target.checked)}
             />
           </EuiFlexItem>
@@ -180,14 +176,8 @@ export default () => {
             <EuiSwitch
               label="Data view picker"
               checked={showDataViewPicker}
+              disabled={showAutoRefreshOnly}
               onChange={(e) => setShowDataViewPicker(e.target.checked)}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiSwitch
-              label="Read only"
-              checked={isReadOnly}
-              onChange={(e) => setIsReadOnly(e.target.checked)}
             />
           </EuiFlexItem>
         </EuiFlexGroup>
@@ -196,14 +186,20 @@ export default () => {
       <EuiSpacer />
 
       <EuiFlexGroup
-        gutterSize="none"
-        wrap
+        direction={isMobile ? 'column' : 'row'}
         responsive={false}
-        style={{ gap: euiTheme.size.m }}
+        gutterSize="s"
+        justifyContent="flexEnd"
         ref={setResizeRef}
+        wrap
       >
-        {elementOrder}
+        {dataViewSelector}
+        {queryBar}
+        {datePicker}
       </EuiFlexGroup>
+
+      {showFilterBar && <EuiSpacer size="s" />}
+      {filterBar}
     </div>
   );
 };

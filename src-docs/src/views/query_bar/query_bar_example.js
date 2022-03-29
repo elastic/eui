@@ -2,7 +2,12 @@ import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCallOut, EuiPageTemplate } from '../../../../src';
+import {
+  EuiCallOut,
+  EuiPageTemplate,
+  EuiSpacer,
+  EuiAspectRatio,
+} from '../../../../src';
 
 import QueryBar from './query_bar';
 const queryBarSource = require('!!raw-loader!./query_bar');
@@ -37,8 +42,20 @@ export const QueryBarExample = {
       fullScreen: {
         slug: 'query-bar',
         demo: (
-          <EuiPageTemplate template="empty">
+          <EuiPageTemplate template="empty" restrictWidth={false}>
             <QueryBar />
+            <EuiSpacer />
+            <EuiAspectRatio width={4} height={3}>
+              <iframe
+                title="Elastic is a search company"
+                height="600"
+                width="800"
+                src="http://localhost:5601/tjd/app/dashboards#/view/7adfa750-4c81-11e8-b3d7-01146121b73d?embed=true&_g=()&show-top-menu=true&hide-filter-bar=true"
+                frameBorder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </EuiAspectRatio>
           </EuiPageTemplate>
         ),
       },

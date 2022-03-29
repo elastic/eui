@@ -43,7 +43,12 @@ const filters = [
   },
 ];
 
-export const GlobalFilterBar = ({ className, filterMenu, ...rest }) => {
+export const GlobalFilterBar = ({
+  className,
+  filterMenu,
+  timeBadge,
+  ...rest
+}) => {
   const classes = classNames('globalFilterBar', className);
 
   const pinnedFilters = filters
@@ -60,10 +65,11 @@ export const GlobalFilterBar = ({ className, filterMenu, ...rest }) => {
 
   return (
     <EuiBadgeGroup className={classes} {...rest}>
-      {/* Show pinned filters first and in a specific group */}
       {filterMenu}
+      {/* Show pinned filters first and in a specific group */}
       {pinnedFilters}
       {unpinnedFilters}
+      {timeBadge}
     </EuiBadgeGroup>
   );
 };
