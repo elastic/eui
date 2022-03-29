@@ -78,7 +78,9 @@ export const CodeSandboxLinkComponent = ({
     /* 2 */
     demoContent = `import React from 'react';
 
-export const Demo = () => (<div css={{ color: 'coral' }}>Hello world!</div>);
+import { EuiButton } from '@elastic/eui';
+
+export const Demo = () => (<EuiButton>Hello world!</EuiButton>);
 `;
   } else {
     /** This cleans the Demo JS example for Code Sanbox.
