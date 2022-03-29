@@ -23,10 +23,12 @@ import { htmlIdGenerator } from '../../services';
 import { colorToClassMap, isNamedColor, NamedColor } from './named_colors';
 
 // String starts with 'data:'
-const isDataUri = (type: string) => type.indexOf('data:') === 0;
+const isDataUri = (iconType: string) => iconType.indexOf('data:') === 0;
 // String is 'dataVisualizer', or ends with with 'App' or 'Job'
-const isSpecialIconType = (type: string) =>
-  type === 'dataVisualizer' || type.endsWith('App') || type.endsWith('Job');
+const isSpecialIconType = (iconType: string) =>
+  iconType === 'dataVisualizer' ||
+  iconType.endsWith('App') ||
+  iconType.endsWith('Job');
 
 const typeToPathMap = {
   accessibility: 'accessibility',
