@@ -108,9 +108,11 @@ export const Demo = () => (<div css={{ color: 'coral' }}>Hello world!</div>);
 
   // Prepend the `@emotion/react` JSX pragma to enable the `css` prop on non-EUI elements/components
   // https://emotion.sh/docs/css-prop#jsx-pragma
-  demoContent = `/** @jsxImportSource @emotion/react */
+  if (demoContent.includes('css=')) {
+    demoContent = `/** @jsxImportSource @emotion/react */
 ${demoContent}
 `;
+  }
 
   const demoContentDeps = listExtraDeps(demoContent);
   let mergedDeps = demoContentDeps;
