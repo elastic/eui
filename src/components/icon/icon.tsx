@@ -22,6 +22,12 @@ import { enqueueStateChange } from '../../services/react';
 import { htmlIdGenerator } from '../../services';
 import { colorToClassMap, isNamedColor, NamedColor } from './named_colors';
 
+// String starts with 'data:'
+const isDataUri = (type: string) => type.indexOf('data:') === 0;
+// String is 'dataVisualizer', or ends with with 'App' or 'Job'
+const isSpecialIconType = (type: string) =>
+  type === 'dataVisualizer' || type.endsWith('App') || type.endsWith('Job');
+
 const typeToPathMap = {
   accessibility: 'accessibility',
   addDataApp: 'app_add_data',
@@ -691,9 +697,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
 
     // These icons are a little special and get some extra CSS flexibility
     const isAppIcon =
-      typeof type === 'string' &&
-      !/^data:/.test(type) && // Don't further test data URIs (https://github.com/elastic/eui/issues/5741)
-      (/.+App$/.test(type) || /.+Job$/.test(type) || type === 'dataVisualizer');
+      typeof type === 'string' && !isDataUri(type) && isSpecialIconType(type);
 
     const appIconHasColor = color && color !== 'default';
 
