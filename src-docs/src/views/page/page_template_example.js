@@ -94,8 +94,8 @@ export const PageTemplateExample = {
       >
         <p>
           You&apos;ll find the code for each in their own tab and if you go to
-          full screen, you can see how they would behave in a typical
-          application layout.
+          fullscreen, you can see how they would behave in a typical application
+          layout.
         </p>
       </EuiCallOut>
       <EuiSpacer />
