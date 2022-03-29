@@ -28,37 +28,6 @@ const options: EuiSelectableProps['options'] = [
   },
 ];
 
-const EuiSelectableNested = () => {
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-
-  const onChange = () => {};
-  const onClosePopover = () => {};
-  const onButtonClick = () => {
-    setIsPopoverOpen(!isPopoverOpen);
-  };
-
-  const button = (
-    <EuiButton iconType="arrowDown" iconSide="right" onClick={onButtonClick}>
-      Show popover
-    </EuiButton>
-  );
-
-  return (
-    <EuiPopover
-      aria-label="With popover"
-      id="data-cy-popover-1"
-      panelPaddingSize="s"
-      button={button}
-      isOpen={isPopoverOpen}
-      closePopover={onClosePopover}
-    >
-      <EuiSelectable options={options} onChange={onChange}>
-        {(list) => <>{list}</>}
-      </EuiSelectable>
-    </EuiPopover>
-  );
-};
-
 const EuiSelectableListboxOnly = (args) => {
   return (
     <EuiSelectable options={options} {...args}>
@@ -276,6 +245,41 @@ describe('EuiSelectable', () => {
   });
 
   describe('nested in `EuiPopover` component', () => {
+    const EuiSelectableNested = () => {
+      const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+      const onChange = () => {};
+      const onClosePopover = () => {};
+      const onButtonClick = () => {
+        setIsPopoverOpen(!isPopoverOpen);
+      };
+
+      const button = (
+        <EuiButton
+          iconType="arrowDown"
+          iconSide="right"
+          onClick={onButtonClick}
+        >
+          Show popover
+        </EuiButton>
+      );
+
+      return (
+        <EuiPopover
+          aria-label="With popover"
+          id="data-cy-popover-1"
+          panelPaddingSize="s"
+          button={button}
+          isOpen={isPopoverOpen}
+          closePopover={onClosePopover}
+        >
+          <EuiSelectableWithSearchInput options={options} onChange={onChange}>
+            {(list) => <>{list}</>}
+          </EuiSelectableWithSearchInput>
+        </EuiPopover>
+      );
+    };
+
     it('allows pressing the Enter key to show listbox', () => {
       cy.realMount(<EuiSelectableNested />);
       cy.realPress('Tab');
