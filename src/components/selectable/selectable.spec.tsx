@@ -6,11 +6,13 @@
  * Side Public License, v 1.
  */
 
+/// <reference types="../../../cypress/support"/>
+
 import React, { useState } from 'react';
 
-import { EuiSelectable, EuiSelectableProps } from './selectable';
-import { EuiPopover } from '../popover';
 import { EuiButton } from '../button';
+import { EuiPopover } from '../popover';
+import { EuiSelectable, EuiSelectableProps } from './selectable';
 
 const options: EuiSelectableProps['options'] = [
   {
@@ -26,19 +28,62 @@ const options: EuiSelectableProps['options'] = [
   },
 ];
 
+const EuiSelectableNested = () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+  const onChange = () => {};
+  const onClosePopover = () => {};
+  const onButtonClick = () => {
+    setIsPopoverOpen(!isPopoverOpen);
+  };
+
+  const button = (
+    <EuiButton iconType="arrowDown" iconSide="right" onClick={onButtonClick}>
+      Show popover
+    </EuiButton>
+  );
+
+  return (
+    <EuiPopover
+      aria-label="With popover"
+      id="data-cy-popover-1"
+      panelPaddingSize="s"
+      button={button}
+      isOpen={isPopoverOpen}
+      closePopover={onClosePopover}
+    >
+      <EuiSelectable options={options} onChange={onChange}>
+        {(list) => <>{list}</>}
+      </EuiSelectable>
+    </EuiPopover>
+  );
+};
+
+const EuiSelectableListboxOnly = (args) => {
+  return (
+    <EuiSelectable options={options} {...args}>
+      {(list) => <>{list}</>}
+    </EuiSelectable>
+  );
+};
+
+const EuiSelectableWithSearchInput = (args) => {
+  return (
+    <EuiSelectable searchable options={options} {...args}>
+      {(list, search) => (
+        <>
+          {search}
+          {list}
+        </>
+      )}
+    </EuiSelectable>
+  );
+};
+
 describe('EuiSelectable', () => {
   describe('with a `searchable` configuration', () => {
     it('filters the list with search', () => {
-      cy.realMount(
-        <EuiSelectable searchable options={options}>
-          {(list, search) => (
-            <>
-              {search}
-              {list}
-            </>
-          )}
-        </EuiSelectable>
-      );
+      cy.realMount(<EuiSelectableWithSearchInput />);
 
       // Focus the second option
       cy.get('input')
@@ -76,17 +121,9 @@ describe('EuiSelectable', () => {
     });
 
     it('can clear the input', () => {
-      cy.realMount(
-        <EuiSelectable searchable options={options}>
-          {(list, search) => (
-            <>
-              {search}
-              {list}
-            </>
-          )}
-        </EuiSelectable>
-      );
+      cy.realMount(<EuiSelectableWithSearchInput />);
 
+      // Focus the second option
       cy.get('input')
         .realClick()
         .realType('enc')
@@ -106,6 +143,7 @@ describe('EuiSelectable', () => {
             .should('have.attr', 'title', 'Titan');
         });
 
+      // Focus the second option
       cy.get('input')
         .realClick()
         .realType('enc')
@@ -128,17 +166,7 @@ describe('EuiSelectable', () => {
 
     it('allows pressing the Enter key to select an item', () => {
       const onChange = cy.stub();
-      cy.realMount(
-        <EuiSelectable searchable options={options} onChange={onChange}>
-          {(list, search) => (
-            <>
-              {search}
-              {list}
-            </>
-          )}
-        </EuiSelectable>
-      );
-
+      cy.realMount(<EuiSelectableWithSearchInput onChange={onChange} />);
       cy.realPress('Tab');
       cy.realPress('Enter').then(() => {
         expect(onChange).to.have.been.calledWith([
@@ -153,21 +181,11 @@ describe('EuiSelectable', () => {
       const onItemChange = cy.stub();
       const onSearchChange = cy.stub();
       cy.realMount(
-        <EuiSelectable
-          searchable
-          options={options}
+        <EuiSelectableWithSearchInput
           onChange={onItemChange}
           searchProps={{ onChange: onSearchChange }}
-        >
-          {(list, search) => (
-            <>
-              {search}
-              {list}
-            </>
-          )}
-        </EuiSelectable>
+        />
       );
-
       cy.realPress('Tab');
       cy.realPress('Space').then(() => {
         expect(onItemChange).not.have.been.called;
@@ -178,17 +196,7 @@ describe('EuiSelectable', () => {
     // mouse+keyboard combo users
     it('allows users to click into an list item and still press Enter or Space to toggle list items', () => {
       const onChange = cy.stub();
-      cy.realMount(
-        <EuiSelectable searchable options={options} onChange={onChange}>
-          {(list, search) => (
-            <>
-              {search}
-              {list}
-            </>
-          )}
-        </EuiSelectable>
-      );
-
+      cy.realMount(<EuiSelectableWithSearchInput onChange={onChange} />);
       cy.get('li[role=option]')
         .first()
         .realClick()
@@ -221,58 +229,64 @@ describe('EuiSelectable', () => {
 
     it('has no accessibility errors', () => {
       const onChange = cy.stub();
+      cy.realMount(<EuiSelectableWithSearchInput onChange={onChange} />);
+      cy.checkAxe();
+    });
+  });
+
+  describe('without a `searchable` configuration', () => {
+    it('allows pressing the Enter key to select an item', () => {
+      const onChange = cy.stub();
+      cy.realMount(<EuiSelectableListboxOnly onChange={onChange} />);
+      cy.realPress('Tab');
+      cy.realPress('ArrowDown');
+      cy.realPress('Enter').then(() => {
+        expect(onChange).to.have.been.calledWith([
+          options[0],
+          { ...options[1], checked: 'on' },
+          options[2],
+        ]);
+      });
+    });
+
+    it('allows pressing the Space key to select an item', () => {
+      const onChange = cy.stub();
+      cy.realMount(<EuiSelectableListboxOnly onChange={onChange} />);
+      cy.realPress('Tab');
+      cy.repeatRealPress('ArrowDown', 2);
+      cy.realPress('Space').then(() => {
+        expect(onChange).to.have.been.calledWith([
+          options[0],
+          options[1],
+          { ...options[2], checked: 'on' },
+        ]);
+      });
+    });
+
+    it('has no accessibility errors', () => {
+      const onChange = cy.stub();
       cy.realMount(
-        <EuiSelectable searchable options={options} onChange={onChange}>
-          {(list, search) => (
-            <>
-              {search}
-              {list}
-            </>
-          )}
-        </EuiSelectable>
+        <EuiSelectableListboxOnly
+          aria-label="No search box"
+          onChange={onChange}
+        />
       );
       cy.checkAxe();
     });
   });
 
   describe('nested in `EuiPopover` component', () => {
-    const NestedSelectable = () => {
-      const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-
-      const onChange = () => {};
-      const onClosePopover = () => {};
-      const onButtonClick = () => {
-        setIsPopoverOpen(!isPopoverOpen);
-      };
-
-      const button = (
-        <EuiButton
-          iconType="arrowDown"
-          iconSide="right"
-          onClick={onButtonClick}
-        >
-          Show popover
-        </EuiButton>
-      );
-
-      return (
-        <EuiPopover
-          id="data-cy-popover-1"
-          panelPaddingSize="s"
-          button={button}
-          isOpen={isPopoverOpen}
-          closePopover={onClosePopover}
-        >
-          <EuiSelectable options={options} onChange={onChange}>
-            {(list) => <>{list}</>}
-          </EuiSelectable>
-        </EuiPopover>
-      );
-    };
+    it('allows pressing the Enter key to show listbox', () => {
+      cy.realMount(<EuiSelectableNested />);
+      cy.realPress('Tab');
+      cy.realPress('Enter');
+      expect(cy.get('ul[role=listbox]')).to.exist;
+    });
 
     it('has no accessibility errors', () => {
-      cy.realMount(<NestedSelectable />);
+      cy.realMount(<EuiSelectableNested />);
       cy.get('button').realClick();
+      cy.get('li[role=option]').first(); // Make sure the EuiSelectable is rendered before a11y check
       cy.checkAxe();
     });
   });
