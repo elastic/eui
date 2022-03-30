@@ -9,12 +9,10 @@
 import moment from 'moment';
 import dateMath from '@elastic/datemath';
 import { isString } from '../../../../services/predicate';
-import { relativeUnitsFromLargestToSmallest } from '../relative_options';
 import { DATE_MODES } from '../date_modes';
 import { QuickSelect, TimeUnitId } from '../../types';
-
-const LAST = 'last';
-const NEXT = 'next';
+import { LAST, NEXT } from '../time_options';
+import { relativeUnitsFromLargestToSmallest } from '../relative_utils';
 
 const isNow = (value: string) => value === DATE_MODES.NOW;
 

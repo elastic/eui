@@ -1,3 +1,19 @@
+## [`53.0.1`](https://github.com/elastic/eui/tree/v53.0.1)
+
+**Bug fixes**
+
+- Fixed `EuiContext.i18n`'s `mappingFunc` not being called for `EuiI18n`s with multiple tokens or function callbacks ([#5748](https://github.com/elastic/eui/pull/5748))
+- Fixed poor rendering performance of `EuiIcon` when using a custom data URI `type` ([#5751](https://github.com/elastic/eui/pull/5751))
+
+## [`53.0.0`](https://github.com/elastic/eui/tree/v53.0.0)
+
+- Added all remaining missing i18n tokens for `EuiSuperDatePicker` ([#5743](https://github.com/elastic/eui/pull/5743))
+
+**Breaking changes**
+
+- Removed `prettyDuration` utility exported by `EuiSuperDatePicker` - this util was converted to a `PrettyDuration` component and `usePrettyDuration` hook which should be used instead ([#5743](https://github.com/elastic/eui/pull/5743))
+- Removed `commonDurationRanges` exported by `EuiSuperDatePicker`. The new pretty duration utils will fall back to `commonDurationRanges` by default if no `quickRanges` are passed ([#5743](https://github.com/elastic/eui/pull/5743))
+
 ## [`52.2.0`](https://github.com/elastic/eui/tree/v52.2.0)
 
 - Added `branchUser`, `desktop` and `sessionViewer` glyphs to `EuiIcon` ([#5740](https://github.com/elastic/eui/pull/5740))
