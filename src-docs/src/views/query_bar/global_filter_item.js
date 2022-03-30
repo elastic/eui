@@ -47,6 +47,7 @@ export const GlobalFilterItem = (props) => {
     isDisabled,
     isPinned,
     isExcluded,
+    canEdit = true,
     ...rest
   } = props;
 
@@ -105,22 +106,6 @@ export const GlobalFilterItem = (props) => {
       id: 0,
       items: [
         {
-          name: `${filter.isPinned ? 'Unpin' : 'Pin across all apps'}`,
-          icon: 'pin',
-          onClick: () => {
-            closePopover();
-          },
-        },
-        {
-          name: 'Edit filter query',
-          icon: 'pencil',
-          panel: {
-            id: 1,
-            width: 400,
-            content: <div style={{ padding: 16 }}>TBD</div>,
-          },
-        },
-        {
           name: `${filter.isExcluded ? 'Include results' : 'Exclude results'}`,
           icon: `${filter.isExcluded ? 'plusInCircle' : 'minusInCircle'}`,
           onClick: () => {
@@ -143,6 +128,18 @@ export const GlobalFilterItem = (props) => {
         },
       ],
     };
+
+    if (canEdit) {
+      panelTree.items.splice(0, 0, {
+        name: 'Edit filter query',
+        icon: 'pencil',
+        panel: {
+          id: 1,
+          width: 400,
+          content: <div style={{ padding: 16 }}>TBD</div>,
+        },
+      });
+    }
 
     return (
       <EuiPopover
@@ -174,4 +171,5 @@ GlobalFilterItem.propTypes = {
   isDisabled: PropTypes.bool.isRequired,
   isPinned: PropTypes.bool.isRequired,
   isExcluded: PropTypes.bool.isRequired,
+  canEdit: PropTypes.bool,
 };

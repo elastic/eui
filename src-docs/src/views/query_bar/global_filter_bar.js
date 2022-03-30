@@ -47,6 +47,7 @@ export const GlobalFilterBar = ({
   className,
   filterMenu,
   timeBadge,
+  canEdit,
   ...rest
 }) => {
   const classes = classNames('globalFilterBar', className);
@@ -54,13 +55,13 @@ export const GlobalFilterBar = ({
   const pinnedFilters = filters
     .filter((filter) => filter.isPinned)
     .map((filter) => {
-      return <GlobalFilterItem key={filter.id} {...filter} />;
+      return <GlobalFilterItem key={filter.id} canEdit={canEdit} {...filter} />;
     });
 
   const unpinnedFilters = filters
     .filter((filter) => !filter.isPinned)
     .map((filter) => {
-      return <GlobalFilterItem key={filter.id} {...filter} />;
+      return <GlobalFilterItem key={filter.id} canEdit={canEdit} {...filter} />;
     });
 
   return (

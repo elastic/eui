@@ -45,23 +45,23 @@ export const QueryBarExample = {
         demo: (
           <EuiPageTemplate template="empty" restrictWidth={false}>
             <EuiTitle>
-              <h1>EUI Docs</h1>
+              <h1>Kibana-like</h1>
             </EuiTitle>
 
             <EuiSpacer />
             <QueryBar />
+            {/* Uncomment this to test out an embedded dashboard (you'll need to replace the src with your own local instance)
             <EuiSpacer />
             <EuiAspectRatio width={4} height={3}>
               <iframe
                 title="Elastic is a search company"
                 height="600"
                 width="800"
-                src="http://localhost:5601/tjd/app/dashboards#/view/7adfa750-4c81-11e8-b3d7-01146121b73d?embed=true&_g=()&show-top-menu=true&hide-filter-bar=true&show-time-filter=true"
+                src="http://localhost:5601/tjd/app/dashboards#/view/7adfa750-4c81-11e8-b3d7-01146121b73d?embed=true&_g=()&hide-filter-bar=true"
                 frameBorder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
               />
             </EuiAspectRatio>
+             */}
           </EuiPageTemplate>
         ),
       },

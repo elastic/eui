@@ -23,10 +23,8 @@ import { DataViewSelector } from './global_data_view';
 const MAX_WIDTH_DATA_VIEW = 260;
 
 export default () => {
-  const [showAutoRefreshOnly, setShowAutoRefreshOnly] = useState(false);
-
   const [showDataViewPicker, setShowDataViewPicker] = useState(true);
-  const [showQueryBar, setShowQueryBar] = useState(true);
+  const [canQuery, setShowQueryBar] = useState(true);
   const [showDatePicker, setShowDatePicker] = useState(true);
   const [showFilterBar, setShowFilterBar] = useState(true);
 
@@ -38,15 +36,6 @@ export default () => {
   const isLargePlus = currentBreakpoint === 'l' || currentBreakpoint === 'xl';
 
   const [hideDatepicker, setHideDatepicker] = useState(false);
-
-  const onShowAutoRefreshOnly = (
-    checked: boolean | ((prevState: boolean) => boolean)
-  ) => {
-    setShowAutoRefreshOnly(checked);
-    setShowDataViewPicker(!checked);
-    setShowQueryBar(!checked);
-    setShowFilterBar(!checked);
-  };
 
   const onFieldFocus = () => {
     setHideDatepicker(true);
@@ -66,7 +55,7 @@ export default () => {
     </EuiFlexItem>
   );
 
-  const dataViewSelector = showDataViewPicker && (
+  const dataViewSelector = showDataViewPicker && canQuery && (
     <EuiFlexItem
       style={{ maxWidth: isMobile ? '100%' : MAX_WIDTH_DATA_VIEW }}
       grow={isMobile}
@@ -75,7 +64,7 @@ export default () => {
     </EuiFlexItem>
   );
 
-  const queryBar = showQueryBar && (
+  const queryBar = canQuery && (
     <EuiFlexItem style={{ minWidth: 'min(400px, 100%)' }}>
       <EuiFlexGroup gutterSize="s" responsive={false}>
         <EuiFlexItem grow={false}>
@@ -84,15 +73,17 @@ export default () => {
         <EuiFlexItem>
           <QueryBarInput onFocus={onFieldFocus} onBlur={onFieldBlur} />
         </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <GlobalFilterAdd />
-        </EuiFlexItem>
+        {showFilterBar && (
+          <EuiFlexItem grow={false}>
+            <GlobalFilterAdd />
+          </EuiFlexItem>
+        )}
         {!showDatePicker && superUpdateButton}
       </EuiFlexGroup>
     </EuiFlexItem>
   );
 
-  const datePicker = showDatePicker && showQueryBar && (
+  const datePicker = showDatePicker && (canQuery || !showFilterBar) && (
     <EuiFlexItem grow={false}>
       <EuiFlexGroup responsive={false} gutterSize="s">
         <EuiFlexItem
@@ -113,10 +104,11 @@ export default () => {
     </EuiFlexItem>
   );
 
-  const filterBar = (
+  const filterBar = showFilterBar && (
     <GlobalFilterBar
+      canEdit={canQuery}
       timeBadge={
-        !showQueryBar && showDatePicker ? (
+        !canQuery && showDatePicker ? (
           <EuiSuperDatePicker
             width={'auto'}
             onTimeChange={onTimeChange}
@@ -126,7 +118,7 @@ export default () => {
         ) : undefined
       }
       filterMenu={
-        !showQueryBar ? (
+        !canQuery ? (
           <QueryBarFilterButton buttonProps={{ size: 's' }} />
         ) : undefined
       }
@@ -139,41 +131,31 @@ export default () => {
         <EuiFlexGroup>
           <EuiFlexItem>
             <EuiSwitch
-              label="autoRefreshOnly"
-              checked={showAutoRefreshOnly}
-              onChange={(e) => onShowAutoRefreshOnly(e.target.checked)}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiSwitch
-              label="showQueryBar"
-              checked={showQueryBar}
-              disabled={showAutoRefreshOnly}
+              label="Can query"
+              checked={showFilterBar ? canQuery : false}
               onChange={(e) => setShowQueryBar(e.target.checked)}
             />
           </EuiFlexItem>
           <EuiFlexItem>
             <EuiSwitch
-              label="showFilterBar"
-              checked={showFilterBar}
-              disabled={showAutoRefreshOnly}
-              onChange={(e) => onShowAutoRefreshOnly(e.target.checked)}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiSwitch
-              label="Date picker"
-              checked={showDatePicker}
-              disabled={showAutoRefreshOnly}
-              onChange={(e) => setShowDatePicker(e.target.checked)}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiSwitch
-              label="Data view picker"
-              checked={showDataViewPicker}
-              disabled={showAutoRefreshOnly}
+              label="Show data view"
+              checked={canQuery ? showDataViewPicker : false}
+              disabled={!canQuery}
               onChange={(e) => setShowDataViewPicker(e.target.checked)}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiSwitch
+              label="Show filter bar"
+              checked={showFilterBar}
+              onChange={(e) => setShowFilterBar(e.target.checked)}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiSwitch
+              label="Show date picker"
+              checked={showDatePicker}
+              onChange={(e) => setShowDatePicker(e.target.checked)}
             />
           </EuiFlexItem>
         </EuiFlexGroup>
