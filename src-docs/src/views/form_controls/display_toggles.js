@@ -28,13 +28,13 @@ export const DisplayToggles = ({
 }) => {
   const [disabled, setDisabled] = useState(false);
   const [readOnly, setReadOnly] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [compressed, setCompressed] = useState(false);
   const [fullWidth, setFullWidth] = useState(false);
-  const [prepend, setPrepend] = useState(true);
-  const [append, setAppend] = useState(true);
+  const [prepend, setPrepend] = useState(false);
+  const [append, setAppend] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [invalid, setInvalid] = useState(true);
+  const [invalid, setInvalid] = useState(false);
   const [isClearable, setIsClearable] = useState(false);
 
   const canProps = {};
