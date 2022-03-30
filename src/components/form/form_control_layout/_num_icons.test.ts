@@ -36,7 +36,7 @@ describe('getFormControlClassNameForIconCount', () => {
     expect(numberClass).toEqual('euiFormControlLayout--2icons');
   });
 
-  it('should return 4 if all are true', () => {
+  it('should return 5 if all are true', () => {
     const numberClass = getFormControlClassNameForIconCount({
       icon: true,
       clear: true,
