@@ -9,18 +9,11 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 
-const _avatarSize = ({
-  size,
-  fontSize,
-}: {
-  size: string;
-  fontSize: string;
-}) => {
+const _avatarSize = (size: string) => {
   return css`
     width: ${size};
     height: ${size};
     line-height: ${size};
-    font-size: ${fontSize};
   `;
 };
 
@@ -55,20 +48,20 @@ export const euiAvatarStyles = ({ euiTheme }: UseEuiTheme) => ({
     filter: grayscale(100%);
   `,
   // Sizes
-  s: _avatarSize({
-    size: euiTheme.size.l,
-    fontSize: euiTheme.size.m,
-  }),
-  m: _avatarSize({
-    size: euiTheme.size.xl,
-    fontSize: `calc(${euiTheme.size.base} * 0.9)`,
-  }),
-  l: _avatarSize({
-    size: euiTheme.size.xxl,
-    fontSize: `calc(${euiTheme.size.l} * 0.8)`,
-  }),
-  xl: _avatarSize({
-    size: `calc(${euiTheme.size.base} * 4)`,
-    fontSize: `calc(${euiTheme.size.xl} * 0.8)`,
-  }),
+  s: css`
+    ${_avatarSize(euiTheme.size.l)};
+    font-size: ${euiTheme.size.m};
+  `,
+  m: css`
+    ${_avatarSize(euiTheme.size.xl)};
+    font-size: calc(${euiTheme.size.base} * 0.9);
+  `,
+  l: css`
+    ${_avatarSize(euiTheme.size.xxl)};
+    font-size: calc(${euiTheme.size.l} * 0.8);
+  `,
+  xl: css`
+    ${_avatarSize(`calc(${euiTheme.size.base} * 4)`)};
+    font-size: calc(${euiTheme.size.xl} * 0.8);
+  `,
 });
