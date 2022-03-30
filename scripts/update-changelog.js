@@ -131,8 +131,9 @@ const updateChangelog = (upcomingChangelog) => {
   // Delete upcoming changelogs
   rimraf.sync('upcoming_changelogs/!(_template).md');
 
-  // This will get committed with the `npm version` step in release.js
   execSync('git add CHANGELOG.md upcoming_changelogs/');
+  execSync('git commit -m "Updated changelog." -n');
+  execSync('git push upstream');
 };
 
 module.exports = { collateChangelogFiles, updateChangelog };

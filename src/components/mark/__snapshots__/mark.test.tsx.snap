@@ -1,14 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiMark is rendered 1`] = `
-.emotion-0 {
+<mark
+  aria-label="aria-label"
+  class="euiMark testClass1 testClass2 css-1izqibv-euiMarkStyles-EuiMark"
+  data-test-subj="test subject string"
+>
+  Marked
+</mark>
+`;
+
+exports[`EuiMark is rendered: renders with emotion styles 1`] = `
+.css-1izqibv-euiMarkStyles-EuiMark {
   background-color: rgba(0,119,204,0.1);
   font-weight: 700;
   color: #343741;
 }
 
 <mark
-  class="euiMark emotion-0"
+  class="euiMark css-1izqibv-euiMarkStyles-EuiMark"
 >
   Marked
 </mark>
