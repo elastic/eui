@@ -575,12 +575,17 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     buttonOrInput = (
       <EuiFormControlLayout
         icon={
-          !readOnly
+          chromaColor
             ? {
-                type: 'arrowDown',
-                side: 'right',
+                type: 'swatchInput',
+                side: 'left',
+                color: colorStyle,
               }
-            : undefined
+            : {
+                type: 'stopSlash',
+                side: 'left',
+                color: 'subdued',
+              }
         }
         clear={
           isClearable && color && !readOnly && !disabled
@@ -593,34 +598,31 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
         onKeyDown={handleToggleOnKeyDown}
         prepend={prepend}
         append={append}
+        isInvalid={isInvalid}
+        isDisabled={disabled}
+        isDropdown
       >
-        <div
-          // Used to pass the chosen color through to form layout SVG using currentColor
-          style={{
-            color: colorStyle,
-          }}
-        >
-          <EuiFieldText
-            className={inputClasses}
-            onClick={handleInputActivity}
-            onKeyDown={handleInputActivity}
-            onBlur={handleOnBlur}
-            value={color ? color.toUpperCase() : HEX_FALLBACK}
-            placeholder={!color ? placeholder || transparent : undefined}
-            id={id}
-            onChange={handleColorInput}
-            icon={chromaColor ? 'swatchInput' : 'stopSlash'}
-            inputRef={setInputRef}
-            isInvalid={isInvalid}
-            compressed={compressed}
-            disabled={disabled}
-            readOnly={readOnly}
-            fullWidth={fullWidth}
-            autoComplete="off"
-            data-test-subj={testSubjAnchor}
-            aria-label={isColorSelectorShown ? openLabel : closeLabel}
-          />
-        </div>
+        <EuiFieldText
+          className={inputClasses}
+          onClick={handleInputActivity}
+          onKeyDown={handleInputActivity}
+          onBlur={handleOnBlur}
+          value={color ? color.toUpperCase() : HEX_FALLBACK}
+          placeholder={!color ? placeholder || transparent : undefined}
+          id={id}
+          icon="empty" // Required to make space (left padding) for the color swatch icon
+          onChange={handleColorInput}
+          inputRef={setInputRef}
+          isInvalid={isInvalid}
+          compressed={compressed}
+          disabled={disabled}
+          readOnly={readOnly}
+          fullWidth={fullWidth}
+          autoComplete="off"
+          data-test-subj={testSubjAnchor}
+          aria-label={isColorSelectorShown ? openLabel : closeLabel}
+          controlOnly // Don't need two EuiFormControlwrappers
+        />
       </EuiFormControlLayout>
     );
   }
