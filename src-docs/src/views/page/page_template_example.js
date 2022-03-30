@@ -82,9 +82,8 @@ export const PageTemplateExample = {
         <p>
           Page layouts are modular and fit together in a precise manner, though
           certain parts can also be added or removed as needed. EUI provides
-          both the{' '}
-          <Link to="/layout/page-components">individual page components</Link>{' '}
-          and an over-arching <strong>template</strong> for easily creating some
+          both the <strong>individual page components</strong> and an
+          over-arching <strong>template</strong> for easily creating some
           pre-defined layouts.
         </p>
       </EuiText>
@@ -95,8 +94,8 @@ export const PageTemplateExample = {
       >
         <p>
           You&apos;ll find the code for each in their own tab and if you go to
-          full screen, you can see how they would behave in a typical
-          application layout.
+          fullscreen, you can see how they would behave in a typical application
+          layout.
         </p>
       </EuiCallOut>
       <EuiSpacer />

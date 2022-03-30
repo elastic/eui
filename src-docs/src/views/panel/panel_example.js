@@ -88,7 +88,7 @@ export const PanelExample = {
           <strong>EuiPanel</strong> is a building block component. Use it as a
           layout helper for containing content. It is also commonly used as a
           base for other larger components like{' '}
-          <Link to="/layout/page-components">
+          <Link to="/templates/page-template">
             <strong>EuiPage</strong>
           </Link>
           ,{' '}
