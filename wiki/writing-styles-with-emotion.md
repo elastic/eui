@@ -25,10 +25,11 @@ import { euiComponentNameStyles } from './{component name}.styles.ts';
 
 export const EuiComponent = () => {
   const theme = useEuiTheme();
-  const styles = euiComponentStyles(theme);
+  const componentStyles = euiComponentStyles(theme);
+  const styles = [componentStyles]
 
   return (
-    <div css={[styles]} />
+    <div css={styles} />
   );
 };
 ```
@@ -57,5 +58,8 @@ _Work in progress_
 * Use an array inside of the `css` prop for optimal style composition and class name generation. This is relevant even if only a single style object is passed.
 
 ```tsx
-<EuiComponent css={[styles.default, styles.stateful]} />
+const styles = [componentStyles.default, componentStyles.stateful];
+return (
+  <EuiComponent css={styles} />
+);
 ```
