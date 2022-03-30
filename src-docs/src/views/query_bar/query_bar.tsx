@@ -10,7 +10,6 @@ import {
   EuiSwitch,
   useGetCurrentBreakpoint,
   useResizeObserver,
-  EuiTitle,
 } from '../../../../src';
 
 // @ts-ignore to convert
@@ -136,9 +135,6 @@ export default () => {
 
   return (
     <div>
-      <EuiTitle>
-        <h1>EUI Docs</h1>
-      </EuiTitle>
       <EuiPanel>
         <EuiFlexGroup>
           <EuiFlexItem>
