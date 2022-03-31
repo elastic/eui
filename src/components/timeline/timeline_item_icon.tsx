@@ -8,12 +8,12 @@
 
 import React, { FunctionComponent, ReactNode } from 'react';
 
-export type EuiTimelineItemIconProps = {
+export interface EuiTimelineItemIconProps {
   /**
    * Any node, but preferably a `EuiAvatar`
    */
   icon: ReactNode;
-};
+}
 
 export const EuiTimelineItemIcon: FunctionComponent<EuiTimelineItemIconProps> = ({
   icon,
