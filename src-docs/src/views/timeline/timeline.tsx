@@ -1,44 +1,41 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import {
   EuiTimeline,
   EuiTimelineProps,
   EuiText,
-  EuiAvatar,
 } from '../../../../src/components';
-
-const wrapper = (children: ReactElement) => (
-  <EuiText size="s">{children}</EuiText>
-);
 
 const items: EuiTimelineProps['items'] = [
   {
-    icon: <EuiAvatar name="Invitation" iconType="email" color="subdued" />,
+    icon: 'email',
     verticalAlign: 'center',
-    children: wrapper(
-      <p>
-        <strong>janet@elastic.co</strong> was invited to the project
-      </p>
+    children: (
+      <EuiText size="s">
+        <p>
+          <strong>janet@elastic.co</strong> was invited to the project
+        </p>
+      </EuiText>
     ),
   },
   {
-    icon: <EuiAvatar name="Project edited" iconType="pencil" color="subdued" />,
+    icon: 'pencil',
     verticalAlign: 'center',
-    children: wrapper(
-      <p>
-        The project was renamed to <strong>Revenue Dashboard</strong>
-      </p>
+    children: (
+      <EuiText size="s">
+        <p>
+          The project was renamed to <strong>Revenue Dashboard</strong>
+        </p>
+      </EuiText>
     ),
   },
   {
-    icon: (
-      <EuiAvatar
-        name="Project closed"
-        iconType="folderClosed"
-        color="subdued"
-      />
-    ),
+    icon: 'folderClosed',
     verticalAlign: 'center',
-    children: wrapper(<p>The project was archived</p>),
+    children: (
+      <EuiText size="s">
+        <p>The project was archived</p>
+      </EuiText>
+    ),
   },
 ];
 

@@ -7,6 +7,7 @@ import {
   EuiTimeline,
   EuiTimelineItem,
 } from '../../../../src/components';
+import timelineItemConfig from './playground';
 
 import Timeline from './timeline';
 const timelineSource = require('!!raw-loader!./timeline');
@@ -93,6 +94,7 @@ export const TimelineExample = {
       props: { EuiTimelineItem },
       snippet: timelineItemSnippet,
       demo: <TimelineItem />,
+      playground: timelineItemConfig,
     },
     {
       title: 'A timeline thread with timeline items',
@@ -134,7 +136,6 @@ export const TimelineExample = {
         </>
       ),
       props: {
-        EuiTimeline,
         EuiTimelineItem,
       },
       snippet: timelineItemEventSnippet,

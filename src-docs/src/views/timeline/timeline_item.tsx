@@ -1,16 +1,8 @@
 import React from 'react';
-import {
-  EuiTimelineItem,
-  EuiText,
-  EuiCode,
-  EuiAvatar,
-} from '../../../../src/components';
+import { EuiTimelineItem, EuiText, EuiCode } from '../../../../src/components';
 
 export default () => (
-  <EuiTimelineItem
-    icon={<EuiAvatar size="s" name="dot icon" iconType="dot" color="subdued" />}
-    verticalAlign="center"
-  >
+  <EuiTimelineItem icon="dot" verticalAlign="center">
     <EuiText size="s">
       <p>
         I&apos;m a <EuiCode>children</EuiCode> and you can find the{' '}
