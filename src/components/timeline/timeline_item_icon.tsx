@@ -9,6 +9,8 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import { IconType } from '../icon';
 import { EuiAvatar } from '../avatar';
+import { useEuiTheme } from '../../services';
+import { euiTimelineItemIconStyles } from './timeline_item_icon.styles';
 
 export type EuiTimelineItemIconProps = {
   /**
@@ -20,6 +22,13 @@ export type EuiTimelineItemIconProps = {
 export const EuiTimelineItemIcon: FunctionComponent<EuiTimelineItemIconProps> = ({
   icon,
 }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiTimelineItemIconStyles(euiTheme);
+
+  const cssStyles = styles.euiTimelineItemIcon;
+
+  const cssContentStyles = styles.euiTimelineItemIconContent;
+
   const iconRender =
     typeof icon === 'string' ? (
       <EuiAvatar color="subdued" name={icon} iconType={icon} />
@@ -28,8 +37,10 @@ export const EuiTimelineItemIcon: FunctionComponent<EuiTimelineItemIconProps> = 
     );
 
   return (
-    <div className="euiTimelineItemIcon">
-      <div className="euiTimelineItemIcon__content">{iconRender}</div>
+    <div className="euiTimelineItemIcon" css={cssStyles}>
+      <div className="euiTimelineItemIcon__content" css={cssContentStyles}>
+        {iconRender}
+      </div>
     </div>
   );
 };

@@ -17,6 +17,8 @@ import {
   EuiTimelineItemIconProps,
 } from './timeline_item_icon';
 import { CommonProps, keysOf } from '../common';
+import { useEuiTheme } from '../../services';
+import { euiTimelineItemStyles } from './timeline_item.styles';
 
 const verticalAlignToClassNameMap = {
   top: 'euiTimelineItem--verticalAlignTop',
@@ -41,15 +43,21 @@ export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
   verticalAlign = 'top',
   icon,
   className,
+  ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiTimelineItemStyles(euiTheme);
+
   const classes = classNames(
     'euiTimelineItem',
     verticalAlignToClassNameMap[verticalAlign as EuiTimelineItemVerticalAlign],
     className
   );
 
+  const cssStyles = [styles.euiTimelineItem, styles[verticalAlign]];
+
   return (
-    <div className={classes}>
+    <div className={classes} css={cssStyles} {...rest}>
       <EuiTimelineItemIcon icon={icon} />
 
       <EuiTimelineItemEvent>{children}</EuiTimelineItemEvent>

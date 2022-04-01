@@ -5,13 +5,13 @@ exports[`EuiTimeline is rendered with items 1`] = `
   class="euiTimeline"
 >
   <div
-    class="euiTimelineItem euiTimelineItem--verticalAlignCenter"
+    class="euiTimelineItem euiTimelineItem--verticalAlignCenter css-il1lt8-euiTimelineItem-center"
   >
     <div
-      class="euiTimelineItemIcon"
+      class="euiTimelineItemIcon css-1rezr3l-euiTimelineItemIcon"
     >
       <div
-        class="euiTimelineItemIcon__content"
+        class="euiTimelineItemIcon__content css-jvs3tc-euiTimelineItemIconContent"
       >
         <div
           aria-label="email"
@@ -29,7 +29,7 @@ exports[`EuiTimeline is rendered with items 1`] = `
       </div>
     </div>
     <div
-      class="euiTimelineItemEvent"
+      class="euiTimelineItemEvent css-ty0s8l-euiTimelineItemEvent"
     >
       <p>
         <strong>
@@ -40,13 +40,13 @@ exports[`EuiTimeline is rendered with items 1`] = `
     </div>
   </div>
   <div
-    class="euiTimelineItem euiTimelineItem--verticalAlignCenter"
+    class="euiTimelineItem euiTimelineItem--verticalAlignCenter css-il1lt8-euiTimelineItem-center"
   >
     <div
-      class="euiTimelineItemIcon"
+      class="euiTimelineItemIcon css-1rezr3l-euiTimelineItemIcon"
     >
       <div
-        class="euiTimelineItemIcon__content"
+        class="euiTimelineItemIcon__content css-jvs3tc-euiTimelineItemIconContent"
       >
         <div
           aria-label="email"
@@ -64,7 +64,7 @@ exports[`EuiTimeline is rendered with items 1`] = `
       </div>
     </div>
     <div
-      class="euiTimelineItemEvent"
+      class="euiTimelineItemEvent css-ty0s8l-euiTimelineItemEvent"
     >
       <p>
         <strong>

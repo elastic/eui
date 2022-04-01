@@ -7,6 +7,7 @@
  */
 
 import React, { FunctionComponent, ReactNode } from 'react';
+import { euiTimelineItemEventStyles } from './timeline_item_event.styles';
 
 export type EuiTimelineItemEventProps = {
   /**
@@ -18,5 +19,12 @@ export type EuiTimelineItemEventProps = {
 export const EuiTimelineItemEvent: FunctionComponent<EuiTimelineItemEventProps> = ({
   children,
 }) => {
-  return <div className="euiTimelineItemEvent">{children}</div>;
+  const styles = euiTimelineItemEventStyles();
+  const cssStyles = [styles.euiTimelineItemEvent];
+
+  return (
+    <div className="euiTimelineItemEvent" css={cssStyles}>
+      {children}
+    </div>
+  );
 };
