@@ -40,7 +40,7 @@ describe('EuiDescribedFormGroup', () => {
     };
 
     const tree = mount(
-      <EuiDescribedFormGroup {...requiredProps} {...props}>
+      <EuiDescribedFormGroup {...props}>
         <EuiFormRow {...formRowProps}>
           <input />
         </EuiFormRow>
@@ -52,16 +52,20 @@ describe('EuiDescribedFormGroup', () => {
 
   describe('props', () => {
     test('fullWidth is rendered', () => {
-      const describedFormGroupProps = {
-        fullWidth: true,
-      };
-
       const component = mount(
-        <EuiDescribedFormGroup
-          {...requiredProps}
-          {...props}
-          {...describedFormGroupProps}
-        >
+        <EuiDescribedFormGroup fullWidth {...props}>
+          <EuiFormRow fullWidth>
+            <input />
+          </EuiFormRow>
+        </EuiDescribedFormGroup>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('third is rendered', () => {
+      const component = mount(
+        <EuiDescribedFormGroup ratio="third" {...props}>
           <EuiFormRow fullWidth>
             <input />
           </EuiFormRow>
@@ -73,7 +77,7 @@ describe('EuiDescribedFormGroup', () => {
 
     test('gutterSize is rendered', () => {
       const component = mount(
-        <EuiDescribedFormGroup gutterSize="s" {...requiredProps} {...props}>
+        <EuiDescribedFormGroup gutterSize="s" {...props}>
           <EuiFormRow>
             <input />
           </EuiFormRow>
@@ -85,7 +89,7 @@ describe('EuiDescribedFormGroup', () => {
 
     test('titleSize is rendered', () => {
       const component = mount(
-        <EuiDescribedFormGroup titleSize="l" {...requiredProps} {...props}>
+        <EuiDescribedFormGroup titleSize="l" {...props}>
           <EuiFormRow>
             <input />
           </EuiFormRow>
@@ -97,7 +101,7 @@ describe('EuiDescribedFormGroup', () => {
 
     test("description is not rendered when it's not provided", () => {
       const component = mount(
-        <EuiDescribedFormGroup {...requiredProps} title={<h3>Title</h3>}>
+        <EuiDescribedFormGroup title={<h3>Title</h3>}>
           <EuiFormRow>
             <input />
           </EuiFormRow>
@@ -110,7 +114,6 @@ describe('EuiDescribedFormGroup', () => {
     test('props for the flex item containers are passed down', () => {
       const component = mount(
         <EuiDescribedFormGroup
-          {...requiredProps}
           {...props}
           descriptionFlexItemProps={{ grow: 2 }}
           fieldFlexItemProps={{ component: 'section' }}
