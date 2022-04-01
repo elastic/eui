@@ -29,7 +29,7 @@ exports[`EuiTimeline is rendered with items 1`] = `
       </div>
     </div>
     <div
-      class="euiTimelineItemEvent css-ty0s8l-euiTimelineItemEvent"
+      class="euiTimelineItemEvent css-1ozjlze-euiTimelineItemEvent"
     >
       <p>
         <strong>
@@ -64,7 +64,7 @@ exports[`EuiTimeline is rendered with items 1`] = `
       </div>
     </div>
     <div
-      class="euiTimelineItemEvent css-ty0s8l-euiTimelineItemEvent"
+      class="euiTimelineItemEvent css-1ozjlze-euiTimelineItemEvent"
     >
       <p>
         <strong>

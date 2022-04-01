@@ -26,7 +26,7 @@ exports[`EuiTimelineItem is rendered 1`] = `
     </div>
   </div>
   <div
-    class="euiTimelineItemEvent css-ty0s8l-euiTimelineItemEvent"
+    class="euiTimelineItemEvent css-1ozjlze-euiTimelineItemEvent"
   >
     <p>
       I'm the children
@@ -61,7 +61,7 @@ exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
     </div>
   </div>
   <div
-    class="euiTimelineItemEvent css-ty0s8l-euiTimelineItemEvent"
+    class="euiTimelineItemEvent css-1ozjlze-euiTimelineItemEvent"
   >
     <p>
       I'm the children
@@ -96,7 +96,7 @@ exports[`EuiTimelineItem props verticalAlign top is rendered 1`] = `
     </div>
   </div>
   <div
-    class="euiTimelineItemEvent css-ty0s8l-euiTimelineItemEvent"
+    class="euiTimelineItemEvent css-1ozjlze-euiTimelineItemEvent"
   >
     <p>
       I'm the children
