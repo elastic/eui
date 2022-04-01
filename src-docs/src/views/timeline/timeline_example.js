@@ -16,7 +16,7 @@ const timelineSnippet = `<EuiTimeline
       icon: icon,
       children: content,
     },
-]}
+  ]}
 />`;
 
 import TimelineItem from './timeline_item';
@@ -28,17 +28,17 @@ const timelineItemSnippet = `<EuiTimelineItem icon={icon}>
 import TimelineItemEvent from './timeline_item_event';
 const timelineItemEventSource = require('!!raw-loader!./timeline_item_event');
 const timelineItemEventSnippet = `<EuiTimelineItem icon={icon}>
-  <EuiPanel paddingSize="none" color="transparent">
-    <EuiText size="s">
-      <p>
-        <strong>Janet</strong> edited the dashboard 4 days ago
-      </p>
-    </EuiText>
-  </EuiPanel>
-</EuiTimeline>`;
-
-import TimelineComplex from './timeline_complex';
-const TimelineComplexSource = require('!!raw-loader!./timeline_complex');
+  <EuiSplitPanel.Outer color="transparent" hasBorder grow>
+    <EuiSplitPanel.Inner color="subdued">
+      <!-- Top panel content -->
+    </EuiSplitPanel.Inner>
+    <EuiHorizontalRule margin="none" />
+    <EuiSplitPanel.Inner >
+      <!-- Bottom panel content -->
+    </EuiSplitPanel.Inner>
+  </EuiSplitPanel.Outer>
+</EuiTimelineItem>
+`;
 
 export const TimelineExample = {
   title: 'Timeline',
@@ -85,7 +85,7 @@ export const TimelineExample = {
               <EuiCode>icon</EuiCode>: main icon that appears on the left side.
             </li>
             <li>
-              <EuiCode>children</EuiCode>: event content. You can pass any node.
+              <EuiCode>children</EuiCode>: any node as the event content.
             </li>
           </ul>
         </>
@@ -95,7 +95,7 @@ export const TimelineExample = {
       demo: <TimelineItem />,
     },
     {
-      title: 'Customizing an event',
+      title: 'A timeline thread with timeline items',
       source: [
         {
           type: GuideSectionTypes.TSX,
@@ -105,8 +105,16 @@ export const TimelineExample = {
       text: (
         <>
           <p>
-            Although any node is allowed as a <EuiCode>children</EuiCode> the
-            recommendation is to use a{' '}
+            You can create a timeline thread by rendering multiple{' '}
+            <strong>EuiTimelineItem</strong>. Wrapping these components with a{' '}
+            <strong>EuiTimeline</strong> is not required, but we recommend
+            having all the <strong>EuiTimelineItem</strong> nested in the same
+            container. This way, we ensure that timeline styles are applied
+            correctly.
+          </p>
+          <p>
+            Although any node is allowed as a <EuiCode>children</EuiCode> in a{' '}
+            <strong>EuiTimelineItem</strong>, the recommendation is to use a{' '}
             <Link to="/layout/panel">
               <strong>EuiPanel</strong>
             </Link>{' '}
@@ -118,32 +126,19 @@ export const TimelineExample = {
             editors, the recommendation is to pass the{' '}
             <EuiCode>children</EuiCode> without any wrapper.
           </p>
-        </>
-      ),
-      snippet: timelineItemEventSnippet,
-      demo: <TimelineItemEvent />,
-    },
-    {
-      title: 'Complex example',
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: TimelineComplexSource,
-        },
-      ],
-      text: (
-        <div>
           <p>
-            This is an example of how you can customize and display multiple{' '}
-            <strong>EuiTimelineItem</strong>.
+            The following example shows how to display multiple{' '}
+            <strong>EuiTimelineItem</strong> and how you can use a{' '}
+            <strong>EuiSplitPanel</strong> to customize an event.
           </p>
-        </div>
+        </>
       ),
       props: {
         EuiTimeline,
         EuiTimelineItem,
       },
-      demo: <TimelineComplex />,
+      snippet: timelineItemEventSnippet,
+      demo: <TimelineItemEvent />,
     },
   ],
 };

@@ -4,18 +4,15 @@ import {
   EuiTimelineProps,
   EuiText,
   EuiAvatar,
-  EuiPanel,
 } from '../../../../src/components';
 
 const wrapper = (children: ReactElement) => (
-  <EuiPanel paddingSize="none" color="transparent">
-    <EuiText size="s">{children}</EuiText>
-  </EuiPanel>
+  <EuiText size="s">{children}</EuiText>
 );
 
 const items: EuiTimelineProps['items'] = [
   {
-    icon: <EuiAvatar name="email" iconType="email" color="subdued" />,
+    icon: <EuiAvatar name="Invitation" iconType="email" color="subdued" />,
     verticalAlign: 'center',
     children: wrapper(
       <p>
@@ -24,7 +21,7 @@ const items: EuiTimelineProps['items'] = [
     ),
   },
   {
-    icon: <EuiAvatar name="pencil" iconType="pencil" color="subdued" />,
+    icon: <EuiAvatar name="Project edited" iconType="pencil" color="subdued" />,
     verticalAlign: 'center',
     children: wrapper(
       <p>
@@ -34,7 +31,11 @@ const items: EuiTimelineProps['items'] = [
   },
   {
     icon: (
-      <EuiAvatar name="folder closed" iconType="folderClosed" color="subdued" />
+      <EuiAvatar
+        name="Project closed"
+        iconType="folderClosed"
+        color="subdued"
+      />
     ),
     verticalAlign: 'center',
     children: wrapper(<p>The project was archived</p>),

@@ -1,106 +1,153 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   EuiTimelineItem,
   EuiAvatar,
   EuiText,
-  EuiCodeBlock,
-  EuiLink,
-  EuiMarkdownEditor,
+  EuiSwitch,
+  EuiSwitchEvent,
+  EuiAccordion,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiBadge,
+  EuiTitle,
   EuiSplitPanel,
   EuiPanel,
   EuiHorizontalRule,
 } from '../../../../src/components';
 
-export default () => (
-  <div>
-    <EuiTimelineItem
-      icon={<EuiAvatar name="pencil icon" iconType="pencil" color="subdued" />}
-      verticalAlign="center"
-    >
-      <EuiPanel paddingSize="none" color="transparent" grow={false}>
-        <EuiText size="s">
-          <p>
-            <strong>Janet</strong> edited the dashboard 4 days ago
-          </p>
-        </EuiText>
-      </EuiPanel>
-    </EuiTimelineItem>
+import {
+  useGeneratedHtmlId,
+  euiPaletteColorBlindBehindText,
+} from '../../../../src/services';
 
+export default () => {
+  const [checked1, setChecked1] = useState(false);
+  const [checked2, setChecked2] = useState(false);
+  const [checked3, setChecked3] = useState(false);
+  const buttonElementAccordionId = useGeneratedHtmlId({
+    prefix: 'buttonElementAccordion',
+  });
+
+  // We could use the `euiPaletteColorBlind` for coloring the avatars
+  // But because we're placing an icon on top of these colors
+  // The `euiPaletteColorBlindBehindText` is a better choice to ensure better contrast
+  const colorBlindBehindText = euiPaletteColorBlindBehindText({
+    sortBy: 'natural',
+  });
+
+  const onChange1 = (e: EuiSwitchEvent) => setChecked1(e.target.checked);
+
+  const onChange2 = (e: EuiSwitchEvent) => setChecked2(e.target.checked);
+
+  const onChange3 = (e: EuiSwitchEvent) => setChecked3(e.target.checked);
+
+  const phase = (
+    title: string,
+    checked: boolean,
+    onChange: (e: EuiSwitchEvent) => void,
+    avatarColor: string
+  ) => (
     <EuiTimelineItem
       icon={
-        <EuiAvatar
-          name="comment icon"
-          iconType="editorComment"
-          color="subdued"
-        />
-      }
-      verticalAlign="center"
-    >
-      <EuiPanel paddingSize="none" color="transparent">
-        <EuiText size="s">
-          <p>
-            <strong>Nicole</strong> mentioned this dashboard in{' '}
-            <EuiLink href="#">case/comment#021</EuiLink> 2 days ago
-          </p>
-        </EuiText>
-      </EuiPanel>
-    </EuiTimelineItem>
-
-    <EuiTimelineItem
-      icon={<EuiAvatar name="alert icon" iconType="alert" color="subdued" />}
-    >
-      <EuiPanel color="danger" paddingSize="s" grow={false}>
-        <EuiText size="s">
-          <p>Error detected in dashboard 5 minutes ago</p>
-        </EuiText>
-      </EuiPanel>
-    </EuiTimelineItem>
-
-    <EuiTimelineItem
-      icon={
-        <EuiAvatar
-          name="code block icon"
-          iconType="editorCodeBlock"
-          color="subdued"
-        />
+        checked ? (
+          <EuiAvatar
+            size="m"
+            name="check icon"
+            iconType="check"
+            color={avatarColor}
+          />
+        ) : (
+          <EuiAvatar size="s" name="dot icon" iconType="dot" color="subdued" />
+        )
       }
     >
-      <EuiSplitPanel.Outer hasBorder grow>
-        <EuiSplitPanel.Inner color="subdued" paddingSize="s">
-          <EuiText size="s">
-            <p>
-              <strong>Nicole</strong> generated a new iframe 2 minutes ago
-            </p>
-          </EuiText>
+      <EuiSplitPanel.Outer color="transparent" hasBorder grow>
+        <EuiSplitPanel.Inner color={checked ? 'transparent' : 'subdued'}>
+          <EuiFlexGroup alignItems="center" gutterSize="s">
+            <EuiFlexItem grow={false}>
+              <EuiSwitch
+                showLabel={false}
+                label={checked ? `${title} is on` : `${title} is off`}
+                checked={checked}
+                onChange={onChange}
+              />
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <EuiTitle size="s">
+                <h2>{title}</h2>
+              </EuiTitle>
+            </EuiFlexItem>
+          </EuiFlexGroup>
         </EuiSplitPanel.Inner>
         <EuiHorizontalRule margin="none" />
-        <EuiSplitPanel.Inner paddingSize="s" color="plain">
-          <EuiCodeBlock
-            language="html"
-            isCopyable
-            transparentBackground
-            paddingSize="none"
-          >
-            {`<!-- Your dashboard iframe -->
-<iframe src="#" width="560" height="315" allowfullscreen="allowfullscreen"></iframe>`}
-          </EuiCodeBlock>
+        <EuiSplitPanel.Inner>
+          <EuiText size="s" grow={false}>
+            <p>
+              Move data to the cold tier when you are searching it less often
+              and don&apos;t need to update it. The cold tier is optimized for
+              cost savings over search performance.
+            </p>
+          </EuiText>
+
+          {checked && (
+            <>
+              <EuiSpacer />
+              <EuiAccordion
+                id={buttonElementAccordionId}
+                buttonElement="div"
+                buttonContent="Advanced settings"
+              >
+                <EuiPanel color="transparent">
+                  Any content inside of <strong>EuiAccordion</strong> will
+                  appear here.
+                </EuiPanel>
+              </EuiAccordion>
+            </>
+          )}
         </EuiSplitPanel.Inner>
       </EuiSplitPanel.Outer>
     </EuiTimelineItem>
+  );
 
-    <EuiTimelineItem
-      icon={<EuiAvatar name="alert icon" iconType="alert" color="subdued" />}
-    >
-      <EuiMarkdownEditor
-        aria-label="Markdown editor"
-        value={
-          'Just a markdown editor passed in the `body` prop without any panel customization :tada:'
+  return (
+    <div>
+      <EuiTimelineItem
+        icon={
+          <EuiAvatar
+            size="m"
+            name="check icon"
+            iconType="check"
+            color={colorBlindBehindText[0]}
+          />
         }
-        onChange={() => {}}
-        initialViewMode="viewing"
-        markdownFormatProps={{ textSize: 's' }}
-        height={280}
-      />
-    </EuiTimelineItem>
-  </div>
-);
+      >
+        <EuiSplitPanel.Outer color="transparent" hasBorder grow>
+          <EuiSplitPanel.Inner>
+            <EuiTitle size="s">
+              <h2>
+                Hot phase <EuiBadge color="warning">Required</EuiBadge>
+              </h2>
+            </EuiTitle>
+          </EuiSplitPanel.Inner>
+          <EuiHorizontalRule margin="none" />
+          <EuiSplitPanel.Inner>
+            <EuiText grow={false} size="s">
+              <p>
+                Store your most recent, most frequently-searched data in the hot
+                tier. The hot tier provides the best indexing and search
+                performance by using the most powerful, expensive hardware.
+              </p>
+            </EuiText>
+          </EuiSplitPanel.Inner>
+        </EuiSplitPanel.Outer>
+      </EuiTimelineItem>
+
+      {phase('Warm phase', checked1, onChange1, colorBlindBehindText[1])}
+
+      {phase('Cold phase', checked2, onChange2, colorBlindBehindText[2])}
+
+      {phase('Frozen phase', checked3, onChange3, colorBlindBehindText[3])}
+    </div>
+  );
+};

@@ -4,7 +4,6 @@ import {
   EuiText,
   EuiCode,
   EuiAvatar,
-  EuiPanel,
 } from '../../../../src/components';
 
 export default () => (
@@ -12,13 +11,11 @@ export default () => (
     icon={<EuiAvatar size="s" name="dot icon" iconType="dot" color="subdued" />}
     verticalAlign="center"
   >
-    <EuiPanel paddingSize="none" color="transparent">
-      <EuiText size="s">
-        <p>
-          I&apos;m a <EuiCode>children</EuiCode> and you can find the{' '}
-          <EuiCode>icon</EuiCode> on the left side.
-        </p>
-      </EuiText>
-    </EuiPanel>
+    <EuiText size="s">
+      <p>
+        I&apos;m a <EuiCode>children</EuiCode> and you can find the{' '}
+        <EuiCode>icon</EuiCode> on the left side.
+      </p>
+    </EuiText>
   </EuiTimelineItem>
 );

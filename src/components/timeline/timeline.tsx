@@ -23,6 +23,7 @@ export interface EuiTimelineProps
 export const EuiTimeline: FunctionComponent<EuiTimelineProps> = ({
   className,
   items = [],
+  children,
   ...rest
 }) => {
   const classes = classNames('euiTimeline', className);
@@ -32,6 +33,7 @@ export const EuiTimeline: FunctionComponent<EuiTimelineProps> = ({
       {items.map((item, index) => (
         <EuiTimelineItem key={index} {...item} />
       ))}
+      {children}
     </div>
   );
 };
