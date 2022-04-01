@@ -8,12 +8,12 @@
 
 import React, { FunctionComponent, ReactNode } from 'react';
 
-export type EuiTimelineItemEventProps = {
+export interface EuiTimelineItemEventProps {
   /**
    * Accepts any node.
    */
   children: ReactNode;
-};
+}
 
 export const EuiTimelineItemEvent: FunctionComponent<EuiTimelineItemEventProps> = ({
   children,

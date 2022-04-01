@@ -46,7 +46,7 @@ export const TimelineExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: timelineSource,
         },
       ],
@@ -66,7 +66,7 @@ export const TimelineExample = {
       title: 'Timeline item',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: timelineItemSource,
         },
       ],
@@ -96,7 +96,7 @@ export const TimelineExample = {
       title: 'Customizing an event',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: timelineItemEventSource,
         },
       ],
@@ -125,7 +125,7 @@ export const TimelineExample = {
       title: 'Complex example',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: TimelineComplexSource,
         },
       ],
