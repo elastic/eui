@@ -12,12 +12,12 @@ export default () => {
   return (
     <EuiForm component="form">
       <EuiDescribedFormGroup
-        fullWidth
-        title={<h2>Full width</h2>}
+        ratio="third"
+        title={<h2>Ratio of thirds</h2>}
         description={
           <Fragment>
-            The title and description will grow to fill the left side column at
-            any width. Be mindful that it doesn&apos;t get too wide.
+            The title and description will shrink to fit inside the left side
+            but retains a readable minimum width.
           </Fragment>
         }
       >

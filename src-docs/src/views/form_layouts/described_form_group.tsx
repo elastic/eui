@@ -23,12 +23,12 @@ export default () => {
         title={<h3>Single text field</h3>}
         description={
           <p>
-            A single text field that can be used to display additional text. It
-            can have{' '}
-            <EuiLink href="http://www.elastic.co" target="_blank">
-              links
-            </EuiLink>{' '}
-            or any other type of content.
+            Descriptions are wrapped in a small, subdued{' '}
+            <EuiLink href="#/display/text">
+              <strong>EuiTextBlock</strong>
+            </EuiLink>
+            . It can have links or any other type of content. Be sure to wrap
+            nodes in a paragraph tag.
           </p>
         }
       >
