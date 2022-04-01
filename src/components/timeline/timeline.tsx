@@ -14,7 +14,7 @@ import { EuiTimelineItem, EuiTimelineItemProps } from './timeline_item';
 export type EuiTimelineProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
     /**
-     * List of timelines to render. See #EuiTimeline
+     * List of timeline items to render. See #EuiTimelineItem
      */
     items?: EuiTimelineItemProps[];
   };

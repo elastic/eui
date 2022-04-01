@@ -10,7 +10,7 @@ import React, { FunctionComponent, ReactNode } from 'react';
 
 export type EuiTimelineItemEventProps = {
   /**
-   * Accepts any node.
+   * Accepts any node. But preferably `EuiPanel`
    */
   children: ReactNode;
 };

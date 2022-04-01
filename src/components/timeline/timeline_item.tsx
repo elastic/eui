@@ -30,7 +30,7 @@ export type EuiTimelineItemVerticalAlign = keyof typeof verticalAlignToClassName
 export type EuiTimelineItemProps = EuiTimelineItemIconProps &
   EuiTimelineItemEventProps & {
     /**
-     * Vertical aligns the event with the icon
+     * Vertical alignment of the event with the icon
      */
     verticalAlign?: EuiTimelineItemVerticalAlign;
   } & CommonProps &

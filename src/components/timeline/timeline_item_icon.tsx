@@ -7,20 +7,29 @@
  */
 
 import React, { FunctionComponent, ReactNode } from 'react';
+import { IconType } from '../icon';
+import { EuiAvatar } from '../avatar';
 
 export type EuiTimelineItemIconProps = {
   /**
-   * Any node, but preferably a `EuiAvatar`
+   * Any `ReactNode`, but preferably `EuiAvatar`, or a `string` as an `EuiIcon['type']`.
    */
-  icon: ReactNode;
+  icon: ReactNode | IconType;
 };
 
 export const EuiTimelineItemIcon: FunctionComponent<EuiTimelineItemIconProps> = ({
   icon,
 }) => {
+  const iconRender =
+    typeof icon === 'string' ? (
+      <EuiAvatar color="subdued" name={icon} iconType={icon} />
+    ) : (
+      icon
+    );
+
   return (
     <div className="euiTimelineItemIcon">
-      <div className="euiTimelineItemIcon__content">{icon}</div>
+      <div className="euiTimelineItemIcon__content">{iconRender}</div>
     </div>
   );
 };

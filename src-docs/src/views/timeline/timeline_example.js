@@ -42,6 +42,8 @@ const TimelineComplexSource = require('!!raw-loader!./timeline_complex');
 
 export const TimelineExample = {
   title: 'Timeline',
+  isBeta: true,
+  isNew: true,
   sections: [
     {
       source: [
