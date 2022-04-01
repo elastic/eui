@@ -54,12 +54,35 @@ export const TimelineExample = {
         },
       ],
       text: (
-        <div>
-          The <strong>EuiTimeline</strong> is a component that standardizes the
-          way a timeline thread is displayed. Pass an array of{' '}
-          <strong>EuiTimelineItem</strong> objects and{' '}
-          <strong>EuiTimeline</strong> will generate a timeline thread.
-        </div>
+        <>
+          <p>
+            The <strong>EuiTimeline</strong> is a component that standardizes
+            the way a timeline thread is displayed. Pass an array of{' '}
+            <strong>EuiTimelineItem</strong> objects and{' '}
+            <strong>EuiTimeline</strong> will generate a timeline thread.
+          </p>
+          <p>
+            This component allows you to create any type of timeline, but for
+            more specific use cases you should consider:
+          </p>
+          <ul>
+            <li>
+              <Link to="/navigation/steps">
+                <strong>EuiSteps</strong>
+              </Link>
+              : a timeline that allows you to present instructional content that
+              must be conducted in a particular order and might contain progress
+              indications.
+            </li>
+            <li>
+              <Link to="/display/comment-list">
+                <strong>EuiCommentList</strong>
+              </Link>
+              : a timeline that allows you to display comments or logging
+              actions that either a user or a system has performed.
+            </li>
+          </ul>
+        </>
       ),
       props: { EuiTimeline, EuiTimelineItem },
       snippet: timelineSnippet,

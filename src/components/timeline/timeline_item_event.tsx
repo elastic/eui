@@ -20,7 +20,7 @@ export const EuiTimelineItemEvent: FunctionComponent<EuiTimelineItemEventProps> 
   children,
 }) => {
   const styles = euiTimelineItemEventStyles();
-  const cssStyles = [styles.euiTimelineItemEvent];
+  const cssStyles = styles.euiTimelineItemEvent;
 
   return (
     <div className="euiTimelineItemEvent" css={cssStyles}>

@@ -23,7 +23,7 @@ export const euiTimelineItemStyles = ({ euiTheme }: UseEuiTheme) => ({
       }
     }
   `,
-  //  Vertical alignments: css`
+  //  Vertical alignments
   top: css`
     .euiTimelineItemIcon {
       align-items: flex-start;
