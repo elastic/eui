@@ -10,24 +10,11 @@ import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 
 import classNames from 'classnames';
 
-import { CommonProps, keysOf, PropsOf } from '../../common';
+import { CommonProps, PropsOf } from '../../common';
 
 import { EuiTitle, EuiTitleSize, EuiTitleProps } from '../../title';
 import { EuiText } from '../../text';
 import { EuiFlexGroup, EuiFlexItem, EuiFlexGroupGutterSize } from '../../flex';
-
-const paddingSizeToClassNameMap = {
-  xxxs: 'euiDescribedFormGroup__fieldPadding--xxxsmall',
-  xxs: 'euiDescribedFormGroup__fieldPadding--xxsmall',
-  xs: 'euiDescribedFormGroup__fieldPadding--xsmall',
-  s: 'euiDescribedFormGroup__fieldPadding--small',
-  m: 'euiDescribedFormGroup__fieldPadding--medium',
-  l: 'euiDescribedFormGroup__fieldPadding--large',
-};
-
-export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
-
-export type EuiDescribedFormGroupPaddingSize = keyof typeof paddingSizeToClassNameMap;
 
 export type EuiDescribedFormGroupProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
@@ -81,13 +68,17 @@ export const EuiDescribedFormGroup: FunctionComponent<EuiDescribedFormGroupProps
 
   const fieldClasses = classNames(
     'euiDescribedFormGroup__fields',
-    paddingSizeToClassNameMap[titleSize],
     fieldFlexItemProps && fieldFlexItemProps.className
   );
 
   let renderedDescription: ReactNode;
 
   if (description) {
+    // If the description is just a string, wrap it in a paragraph element
+    if (typeof description === 'string') {
+      description = <p>{description}</p>;
+    }
+
     renderedDescription = (
       <EuiText
         size="s"
@@ -101,7 +92,7 @@ export const EuiDescribedFormGroup: FunctionComponent<EuiDescribedFormGroupProps
 
   return (
     <div role="group" className={classes} {...rest}>
-      <EuiFlexGroup gutterSize={gutterSize}>
+      <EuiFlexGroup alignItems="baseline" gutterSize={gutterSize}>
         <EuiFlexItem {...descriptionFlexItemProps}>
           <EuiTitle size={titleSize} className="euiDescribedFormGroup__title">
             {title}

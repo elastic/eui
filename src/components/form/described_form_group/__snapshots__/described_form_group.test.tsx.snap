@@ -19,10 +19,11 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
     role="group"
   >
     <EuiFlexGroup
+      alignItems="baseline"
       gutterSize="l"
     >
       <div
-        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive"
+        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive"
       >
         <EuiFlexItem>
           <div
@@ -54,7 +55,9 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
                     className="euiTextColor euiTextColor--subdued"
                     style={Object {}}
                   >
-                    Test description
+                    <p>
+                      Test description
+                    </p>
                   </div>
                 </EuiTextColor>
               </div>
@@ -62,10 +65,10 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
           </div>
         </EuiFlexItem>
         <EuiFlexItem
-          className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+          className="euiDescribedFormGroup__fields"
         >
           <div
-            className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+            className="euiFlexItem euiDescribedFormGroup__fields"
           >
             <EuiFormRow
               describedByIds={Array []}
@@ -116,10 +119,11 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
     role="group"
   >
     <EuiFlexGroup
+      alignItems="baseline"
       gutterSize="l"
     >
       <div
-        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive"
+        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive"
       >
         <EuiFlexItem>
           <div
@@ -138,10 +142,10 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
           </div>
         </EuiFlexItem>
         <EuiFlexItem
-          className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+          className="euiDescribedFormGroup__fields"
         >
           <div
-            className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+            className="euiFlexItem euiDescribedFormGroup__fields"
           >
             <EuiFormRow
               describedByIds={Array []}
@@ -194,10 +198,11 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
     role="group"
   >
     <EuiFlexGroup
+      alignItems="baseline"
       gutterSize="l"
     >
       <div
-        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive"
+        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive"
       >
         <EuiFlexItem>
           <div
@@ -229,7 +234,9 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
                     className="euiTextColor euiTextColor--subdued"
                     style={Object {}}
                   >
-                    Test description
+                    <p>
+                      Test description
+                    </p>
                   </div>
                 </EuiTextColor>
               </div>
@@ -237,10 +244,10 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
           </div>
         </EuiFlexItem>
         <EuiFlexItem
-          className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+          className="euiDescribedFormGroup__fields"
         >
           <div
-            className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+            className="euiFlexItem euiDescribedFormGroup__fields"
           >
             <EuiFormRow
               describedByIds={Array []}
@@ -293,10 +300,11 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
     role="group"
   >
     <EuiFlexGroup
+      alignItems="baseline"
       gutterSize="s"
     >
       <div
-        className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--directionRow euiFlexGroup--responsive"
+        className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive"
       >
         <EuiFlexItem>
           <div
@@ -328,7 +336,9 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
                     className="euiTextColor euiTextColor--subdued"
                     style={Object {}}
                   >
-                    Test description
+                    <p>
+                      Test description
+                    </p>
                   </div>
                 </EuiTextColor>
               </div>
@@ -336,10 +346,10 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
           </div>
         </EuiFlexItem>
         <EuiFlexItem
-          className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+          className="euiDescribedFormGroup__fields"
         >
           <div
-            className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+            className="euiFlexItem euiDescribedFormGroup__fields"
           >
             <EuiFormRow
               describedByIds={Array []}
@@ -401,10 +411,11 @@ exports[`EuiDescribedFormGroup props props for the flex item containers are pass
     role="group"
   >
     <EuiFlexGroup
+      alignItems="baseline"
       gutterSize="l"
     >
       <div
-        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive"
+        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive"
       >
         <EuiFlexItem
           grow={2}
@@ -438,7 +449,9 @@ exports[`EuiDescribedFormGroup props props for the flex item containers are pass
                     className="euiTextColor euiTextColor--subdued"
                     style={Object {}}
                   >
-                    Test description
+                    <p>
+                      Test description
+                    </p>
                   </div>
                 </EuiTextColor>
               </div>
@@ -446,11 +459,11 @@ exports[`EuiDescribedFormGroup props props for the flex item containers are pass
           </div>
         </EuiFlexItem>
         <EuiFlexItem
-          className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+          className="euiDescribedFormGroup__fields"
           component="section"
         >
           <section
-            className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+            className="euiFlexItem euiDescribedFormGroup__fields"
           >
             <EuiFormRow
               describedByIds={Array []}
@@ -503,10 +516,11 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
     role="group"
   >
     <EuiFlexGroup
+      alignItems="baseline"
       gutterSize="l"
     >
       <div
-        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive"
+        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive"
       >
         <EuiFlexItem>
           <div
@@ -538,7 +552,9 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
                     className="euiTextColor euiTextColor--subdued"
                     style={Object {}}
                   >
-                    Test description
+                    <p>
+                      Test description
+                    </p>
                   </div>
                 </EuiTextColor>
               </div>
@@ -546,10 +562,10 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
           </div>
         </EuiFlexItem>
         <EuiFlexItem
-          className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--large"
+          className="euiDescribedFormGroup__fields"
         >
           <div
-            className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--large"
+            className="euiFlexItem euiDescribedFormGroup__fields"
           >
             <EuiFormRow
               describedByIds={Array []}
@@ -601,10 +617,11 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
     role="group"
   >
     <EuiFlexGroup
+      alignItems="baseline"
       gutterSize="l"
     >
       <div
-        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive"
+        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive"
       >
         <EuiFlexItem>
           <div
@@ -636,7 +653,9 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
                     className="euiTextColor euiTextColor--subdued"
                     style={Object {}}
                   >
-                    Test description
+                    <p>
+                      Test description
+                    </p>
                   </div>
                 </EuiTextColor>
               </div>
@@ -644,10 +663,10 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
           </div>
         </EuiFlexItem>
         <EuiFlexItem
-          className="euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+          className="euiDescribedFormGroup__fields"
         >
           <div
-            className="euiFlexItem euiDescribedFormGroup__fields euiDescribedFormGroup__fieldPadding--xsmall"
+            className="euiFlexItem euiDescribedFormGroup__fields"
           >
             <EuiFormRow
               describedByIds={Array []}
@@ -667,7 +686,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
               labelType="label"
             >
               <div
-                className="euiFormRow"
+                className="euiFormRow euiFormRow--hasLabel"
                 id="generated-id-row"
               >
                 <div
