@@ -1,7 +1,6 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 
 import {
-  EuiCode,
   EuiFieldText,
   EuiForm,
   EuiFormRow,
@@ -9,18 +8,11 @@ import {
   EuiFilePicker,
   EuiRange,
   EuiSelect,
-  EuiSwitch,
   EuiLink,
 } from '../../../../src/components';
 import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
-  const [isSwitchChecked, setIsSwitchChecked] = useState(false);
-
-  const onSwitchChange = () => {
-    setIsSwitchChecked(!isSwitchChecked);
-  };
-
   const describedFormRangeId = useGeneratedHtmlId({
     prefix: 'describedFormRange',
   });
@@ -74,40 +66,12 @@ export default () => {
         </EuiFormRow>
 
         <EuiFormRow label="Range">
-          <EuiRange min={0} max={100} name="range" id={describedFormRangeId} />
-        </EuiFormRow>
-      </EuiDescribedFormGroup>
-      <EuiDescribedFormGroup
-        title={<h2>Full width</h2>}
-        titleSize="xxxs"
-        description={
-          <Fragment>
-            By default, <strong>EuiDescribedFormGroup</strong> will be double
-            the default width of form elements. However, you can pass{' '}
-            <EuiCode>fullWidth</EuiCode> prop to this, the individual field and
-            row components to expand to their container.
-          </Fragment>
-        }
-        fullWidth
-      >
-        <EuiFormRow
-          label="Use a switch instead of a single checkbox"
-          hasChildLabel={false}
-          fullWidth
-        >
-          <EuiSwitch
-            name="switch"
-            label="Setting name"
-            checked={isSwitchChecked}
-            onChange={onSwitchChange}
-          />
-        </EuiFormRow>
-
-        <EuiFormRow fullWidth>
-          <EuiFieldText
-            name="second"
-            fullWidth
-            aria-label="An example of EuiTextField with fullWidth"
+          <EuiRange
+            min={0}
+            value={50}
+            max={100}
+            name="range"
+            id={describedFormRangeId}
           />
         </EuiFormRow>
       </EuiDescribedFormGroup>

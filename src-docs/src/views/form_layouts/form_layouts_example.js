@@ -17,6 +17,8 @@ const formRowsSource = require('!!raw-loader!./form_rows');
 
 import DescribedFormGroup from './described_form_group';
 const describedFormGroupSource = require('!!raw-loader!./described_form_group');
+import DescribedFormGroupWidth from './described_form_group_width';
+const describedFormGroupWidthSource = require('!!raw-loader!./described_form_group_width');
 
 import FullWidth from './full_width';
 const fullWidthSource = require('!!raw-loader!./full_width');
@@ -107,18 +109,64 @@ export const FormLayoutsExample = {
         },
       ],
       text: (
-        <p>
-          Use <strong>EuiDescribedFormGroup</strong> component to associate
-          multiple <strong>EuiFormRows</strong>. It can also simply be used with
-          one <strong>EuiFormRow</strong> as a way to display additional text
-          next to the field (on mobile, it will revert to being stacked).
-        </p>
+        <>
+          <p>
+            Use <strong>EuiDescribedFormGroup</strong> component to associate
+            multiple <strong>EuiFormRows</strong>. It can also simply be used
+            with one <strong>EuiFormRow</strong> as a way to display additional
+            text next to the field (on mobile, it will revert to being stacked).
+          </p>
+          <p>
+            Read more about appropriate layout usage of{' '}
+            <strong>EuiDescribedFormGroup</strong> in the{' '}
+            <Link to="/forms/form-layouts/guidelines">
+              forms usage guidelines
+            </Link>
+            .
+          </p>
+        </>
       ),
       props: {
         EuiDescribedFormGroup,
       },
       demo: <DescribedFormGroup />,
       snippet: `<EuiDescribedFormGroup
+  title={<h3>Set heading level based on context</h3>}
+  description={
+    <Fragment>
+      Will be wrapped in a small, subdued EuiText block.
+    </Fragment>
+  }
+>
+  <EuiFormRow
+    label="Text field"
+  >
+    <EuiFieldText />
+  </EuiFormRow>
+</EuiDescribedFormGroup>`,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: describedFormGroupWidthSource,
+        },
+      ],
+      text: (
+        <p>
+          By default, <strong>EuiDescribedFormGroup</strong> has a max-width of
+          800px for best readability. To expand the group to 100%, add the{' '}
+          <EuiCode>fullWidth</EuiCode> prop to this, the{' '}
+          <strong>EuiFormRow</strong>, <strong>and</strong> the individual
+          fields.
+        </p>
+      ),
+      props: {
+        EuiDescribedFormGroup,
+      },
+      demo: <DescribedFormGroupWidth />,
+      snippet: `<EuiDescribedFormGroup
+  fullWidth
   title={<h3>Set heading level based on context</h3>}
   description={
     <Fragment>
