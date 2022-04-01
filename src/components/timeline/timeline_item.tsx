@@ -29,14 +29,16 @@ export const VERTICAL_ALIGN = keysOf(verticalAlignToClassNameMap);
 
 export type EuiTimelineItemVerticalAlign = keyof typeof verticalAlignToClassNameMap;
 
-export type EuiTimelineItemProps = EuiTimelineItemIconProps &
-  EuiTimelineItemEventProps & {
-    /**
-     * Vertical alignment of the event with the icon
-     */
-    verticalAlign?: EuiTimelineItemVerticalAlign;
-  } & CommonProps &
-  HTMLAttributes<HTMLDivElement>;
+export interface EuiTimelineItemProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, 'children'>,
+    CommonProps,
+    EuiTimelineItemIconProps,
+    EuiTimelineItemEventProps {
+  /**
+   * Vertical aligns the event with the icon
+   */
+  verticalAlign?: EuiTimelineItemVerticalAlign;
+}
 
 export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
   children,
@@ -50,7 +52,7 @@ export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
 
   const classes = classNames(
     'euiTimelineItem',
-    verticalAlignToClassNameMap[verticalAlign as EuiTimelineItemVerticalAlign],
+    verticalAlignToClassNameMap[verticalAlign],
     className
   );
 

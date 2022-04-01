@@ -4,6 +4,7 @@ import {
   EuiAvatar,
   EuiText,
   EuiSwitch,
+  EuiSwitchEvent,
   EuiAccordion,
   EuiFlexGroup,
   EuiFlexItem,
@@ -35,28 +36,16 @@ export default () => {
     sortBy: 'natural',
   });
 
-  const onChange1 = (e: {
-    target: { checked: React.SetStateAction<boolean> };
-  }) => {
-    setChecked1(e.target.checked);
-  };
+  const onChange1 = (e: EuiSwitchEvent) => setChecked1(e.target.checked);
 
-  const onChange2 = (e: {
-    target: { checked: React.SetStateAction<boolean> };
-  }) => {
-    setChecked2(e.target.checked);
-  };
+  const onChange2 = (e: EuiSwitchEvent) => setChecked2(e.target.checked);
 
-  const onChange3 = (e: {
-    target: { checked: React.SetStateAction<boolean> };
-  }) => {
-    setChecked3(e.target.checked);
-  };
+  const onChange3 = (e: EuiSwitchEvent) => setChecked3(e.target.checked);
 
   const phase = (
     title: string,
     checked: boolean,
-    onChange: any,
+    onChange: (e: EuiSwitchEvent) => void,
     avatarColor: string
   ) => (
     <EuiTimelineItem
@@ -96,8 +85,8 @@ export default () => {
           <EuiText size="s" grow={false}>
             <p>
               Move data to the cold tier when you are searching it less often
-              and don’t need to update it. The cold tier is optimized for cost
-              savings over search performance.
+              and don&apos;t need to update it. The cold tier is optimized for
+              cost savings over search performance.
             </p>
           </EuiText>
 

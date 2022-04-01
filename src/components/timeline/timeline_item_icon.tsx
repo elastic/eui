@@ -12,12 +12,12 @@ import { EuiAvatar } from '../avatar';
 import { useEuiTheme } from '../../services';
 import { euiTimelineItemIconStyles } from './timeline_item_icon.styles';
 
-export type EuiTimelineItemIconProps = {
+export interface EuiTimelineItemIconProps {
   /**
    * Any `ReactNode`, but preferably `EuiAvatar`, or a `string` as an `EuiIcon['type']`.
    */
   icon: ReactNode | IconType;
-};
+}
 
 export const EuiTimelineItemIcon: FunctionComponent<EuiTimelineItemIconProps> = ({
   icon,

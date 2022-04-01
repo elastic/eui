@@ -9,12 +9,12 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import { euiTimelineItemEventStyles } from './timeline_item_event.styles';
 
-export type EuiTimelineItemEventProps = {
+export interface EuiTimelineItemEventProps {
   /**
    * Accepts any node. But preferably `EuiPanel`
    */
   children: ReactNode;
-};
+}
 
 export const EuiTimelineItemEvent: FunctionComponent<EuiTimelineItemEventProps> = ({
   children,
