@@ -26,6 +26,12 @@ import {
   writingExamplesSections,
 } from './views/guidelines/writing_examples';
 
+// Templates
+
+import { PageTemplateExample } from './views/page/page_template_example';
+
+import { SitewideSearchExample } from './views/selectable/selectable_sitewide_template_example';
+
 // Services
 
 import { ColorPaletteExample } from './views/color_palette/color_palette_example';
@@ -162,8 +168,6 @@ import { NotificationEventExample } from './views/notification_event/notificatio
 import { OutsideClickDetectorExample } from './views/outside_click_detector/outside_click_detector_example';
 
 import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
-
-import { PageExample } from './views/page/page_example';
 
 import { PageHeaderExample } from './views/page_header/page_header_example';
 
@@ -442,6 +446,14 @@ const navigation = [
     ],
   },
   {
+    name: 'Templates',
+    items: [
+      PageTemplateExample,
+      SitewideSearchExample,
+      SuperDatePickerExample,
+    ].map((example) => createExample(example)),
+  },
+  {
     name: 'Layout',
     items: [
       AccordionExample,
@@ -451,7 +463,6 @@ const navigation = [
       HeaderExample,
       HorizontalRuleExample,
       ModalExample,
-      PageExample,
       PageHeaderExample,
       PanelExample,
       PopoverExample,
@@ -523,7 +534,6 @@ const navigation = [
       SearchBarExample,
       SelectableExample,
       SuggestExample,
-      SuperDatePickerExample,
       SuperSelectExample,
     ].map((example) => createExample(example)),
   },

@@ -17,7 +17,7 @@ import {
   EuiFormControlLayoutCustomIcon,
   EuiFormControlLayoutCustomIconProps,
 } from './form_control_layout_custom_icon';
-import { IconType } from '../../icon';
+import { EuiIcon, IconColor, IconType } from '../../icon';
 import { DistributiveOmit } from '../../common';
 
 export const ICON_SIDES: ['left', 'right'] = ['left', 'right'];
@@ -28,6 +28,7 @@ type IconShape = DistributiveOmit<
 > & {
   type: IconType;
   side?: typeof ICON_SIDES[number];
+  color?: IconColor;
   ref?: EuiFormControlLayoutCustomIconProps['iconRef'];
 };
 
@@ -41,6 +42,8 @@ export interface EuiFormControlLayoutIconsProps {
   icon?: IconType | IconShape;
   clear?: EuiFormControlLayoutClearButtonProps;
   isLoading?: boolean;
+  isInvalid?: boolean;
+  isDropdown?: boolean;
   compressed?: boolean;
 }
 
@@ -48,11 +51,13 @@ export class EuiFormControlLayoutIcons extends Component<
   EuiFormControlLayoutIconsProps
 > {
   render() {
-    const { icon } = this.props;
+    const { icon, isInvalid, isDropdown } = this.props;
     const iconSide = isIconShape(icon) && icon.side ? icon.side : 'left';
     const customIcon = this.renderCustomIcon();
     const loadingSpinner = this.renderLoadingSpinner();
     const clearButton = this.renderClearButton();
+    const invalidIcon = this.renderInvalidIcon();
+    const dropdownIcon = this.renderDropdownIcon();
 
     let leftIcons;
 
@@ -63,12 +68,20 @@ export class EuiFormControlLayoutIcons extends Component<
     let rightIcons;
 
     // If the icon is on the right, it should be placed after the clear button in the DOM.
-    if (clearButton || loadingSpinner || (customIcon && iconSide === 'right')) {
+    if (
+      clearButton ||
+      loadingSpinner ||
+      isInvalid ||
+      isDropdown ||
+      (customIcon && iconSide === 'right')
+    ) {
       rightIcons = (
         <div className="euiFormControlLayoutIcons euiFormControlLayoutIcons--right">
           {clearButton}
           {loadingSpinner}
+          {invalidIcon}
           {iconSide === 'right' ? customIcon : undefined}
+          {dropdownIcon}
         </div>
       );
     }
@@ -105,6 +118,21 @@ export class EuiFormControlLayoutIcons extends Component<
     );
   }
 
+  renderDropdownIcon() {
+    const { isDropdown, compressed } = this.props;
+
+    if (!isDropdown) {
+      return null;
+    }
+
+    return (
+      <EuiFormControlLayoutCustomIcon
+        size={compressed ? 's' : 'm'}
+        type="arrowDown"
+      />
+    );
+  }
+
   renderLoadingSpinner() {
     const { isLoading, compressed } = this.props;
 
@@ -126,6 +154,17 @@ export class EuiFormControlLayoutIcons extends Component<
         size={compressed ? 's' : 'm'}
         {...clear}
       />
+    );
+  }
+
+  renderInvalidIcon() {
+    const { isInvalid, compressed } = this.props;
+    if (!isInvalid) {
+      return null;
+    }
+
+    return (
+      <EuiIcon size={compressed ? 's' : 'm'} color="danger" type="alert" />
     );
   }
 }

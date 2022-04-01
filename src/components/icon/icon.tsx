@@ -22,6 +22,13 @@ import { enqueueStateChange } from '../../services/react';
 import { htmlIdGenerator } from '../../services';
 import { colorToClassMap, isNamedColor, NamedColor } from './named_colors';
 
+const getIsAppIcon = (iconType: IconType) => {
+  if (typeof iconType !== 'string') return false;
+  if (iconType === 'dataVisualizer') return true; // Special case
+  if (iconType.indexOf('data:') === 0) return false; // Inline data URIs should be short-circuited for performance
+  return iconType.endsWith('App') || iconType.endsWith('Job');
+};
+
 const typeToPathMap = {
   accessibility: 'accessibility',
   addDataApp: 'app_add_data',
@@ -690,10 +697,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     }
 
     // These icons are a little special and get some extra CSS flexibility
-    const isAppIcon =
-      type &&
-      typeof type === 'string' &&
-      (/.+App$/.test(type) || /.+Job$/.test(type) || type === 'dataVisualizer');
+    const isAppIcon = getIsAppIcon(type);
 
     const appIconHasColor = color && color !== 'default';
 

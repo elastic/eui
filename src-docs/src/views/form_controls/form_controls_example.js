@@ -189,7 +189,7 @@ export const FormControlsExample = {
         <EuiSpacer />
 
         <p>
-          <strong>Placeholders</strong> should never replace a label but used as
+          <strong>Placeholders should never replace a label</strong> but used as
           a hint in addition to the label. Use the{' '}
           <EuiCode>placeholder</EuiCode> prop to describe the expected value of
           the input.
@@ -467,7 +467,7 @@ export const FormControlsExample = {
       title: 'Form control layout',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: formControlLayoutSource,
         },
       ],
@@ -481,7 +481,9 @@ export const FormControlsExample = {
             <strong>EuiFormControlLayout</strong> is generally used internally
             to consistently style form controls, but it&rsquo;s published in
             case you want to create your own form control which matches those of
-            EUI. The examples below demonstrate its various states.
+            EUI. The examples below demonstrate its various states and utilize
+            the <EuiCode>controlOnly</EuiCode> and <EuiCode>type</EuiCode> props
+            of <strong>EuiFieldText</strong> as the wrapped control.
           </p>
 
           <EuiCallOut title="Additional padding required" color="warning">
@@ -504,7 +506,7 @@ export const FormControlsExample = {
       title: 'Form control layout delimited',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: formControlLayoutRangeSource,
         },
       ],

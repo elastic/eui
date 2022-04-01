@@ -24,6 +24,7 @@ import { EuiValidatableControl } from '../validatable_control';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../../button';
 import { useEuiI18n } from '../../i18n';
 import { useCombinedRefs } from '../../../services';
+import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
 
 export type EuiFieldPasswordProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -135,14 +136,20 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
 
   const finalAppend = appends.length ? appends : undefined;
 
+  const numIconsClass = getFormControlClassNameForIconCount({
+    isInvalid,
+    isLoading,
+  });
+
   const classes = classNames(
     'euiFieldPassword',
+    numIconsClass,
     {
       'euiFieldPassword--fullWidth': fullWidth,
       'euiFieldPassword--compressed': compressed,
-      'euiFieldPassword-isLoading': isLoading,
       'euiFieldPassword--inGroup': prepend || finalAppend,
       'euiFieldPassword--withToggle': type === 'dual',
+      'euiFieldPassword-isLoading': isLoading,
     },
     className
   );
@@ -152,6 +159,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
       icon="lock"
       fullWidth={fullWidth}
       isLoading={isLoading}
+      isInvalid={isInvalid}
       compressed={compressed}
       prepend={prepend}
       append={finalAppend}
