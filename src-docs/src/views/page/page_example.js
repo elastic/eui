@@ -8,12 +8,15 @@ import {
   EuiCallOut,
   EuiCode,
   EuiPage,
+  EuiPageBody,
 } from '../../../../src';
 
 import { pageConfig } from './components/playground';
 
 import { PageComponentDemo } from './components/page_demo';
 const PageSource = require('!!raw-loader!./components/page');
+import { PageBodyDemo } from './components/page_body_demo';
+const PageBodySource = require('!!raw-loader!./components/page_body');
 
 export const PageExample = {
   title: 'Page components',
@@ -72,6 +75,30 @@ export const PageExample = {
         EuiPage,
       },
       playground: pageConfig,
+    },
+    {
+      title: 'Page body',
+      text: (
+        <p>
+          Typically you&apos;ll want to wrap all your page contents in{' '}
+          <strong>EuiPageBody</strong> and set{' '}
+          <EuiCode>{'panelled={true}'}</EuiCode> when you have a side bar.
+        </p>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: PageBodySource,
+        },
+      ],
+      demo: <PageBodyDemo />,
+      demoPanelProps: {
+        paddingSize: 'none',
+        style: { overflow: 'hidden' },
+      },
+      props: {
+        EuiPageBody,
+      },
     },
   ],
 };
