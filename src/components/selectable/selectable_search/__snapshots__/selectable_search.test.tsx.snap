@@ -8,6 +8,39 @@ exports[`EuiSelectableSearch is rendered 1`] = `
     class="euiFormControlLayout__childrenWrapper"
   >
     <input
+      aria-haspopup="listbox"
+      aria-label="aria-label"
+      autocomplete="off"
+      class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
+      data-test-subj="test subject string"
+      type="search"
+      value=""
+    />
+    <div
+      class="euiFormControlLayoutIcons"
+    >
+      <span
+        class="euiFormControlLayoutCustomIcon"
+      >
+        <span
+          aria-hidden="true"
+          class="euiFormControlLayoutCustomIcon__icon"
+          data-euiicon-type="search"
+        />
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiSelectableSearch renders aria props if a listId is present 1`] = `
+<div
+  class="euiFormControlLayout euiFormControlLayout--fullWidth"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <input
       aria-autocomplete="list"
       aria-controls="list"
       aria-expanded="true"
@@ -38,7 +71,7 @@ exports[`EuiSelectableSearch is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiSelectableSearch props defaultValue 1`] = `
+exports[`EuiSelectableSearch renders placeholder, value, name, and other remaining EuiFieldSearch props 1`] = `
 <div
   class="euiFormControlLayout euiFormControlLayout--fullWidth"
 >
@@ -46,16 +79,16 @@ exports[`EuiSelectableSearch props defaultValue 1`] = `
     class="euiFormControlLayout__childrenWrapper"
   >
     <input
-      aria-autocomplete="list"
-      aria-controls="list"
-      aria-expanded="true"
       aria-haspopup="listbox"
-      aria-owns="list"
+      aria-label="aria-label"
       autocomplete="off"
-      class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isClearable euiSelectableSearch"
-      role="combobox"
+      class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch--fullWidth euiFieldSearch-isClearable euiSelectableSearch testClass"
+      data-test-subj="test subject string"
+      id="testId"
+      name="testName"
+      placeholder="start typing"
       type="search"
-      value="Mi"
+      value="typed"
     />
     <div
       class="euiFormControlLayoutIcons"
@@ -76,6 +109,7 @@ exports[`EuiSelectableSearch props defaultValue 1`] = `
       <button
         aria-label="Clear input"
         class="euiFormControlLayoutClearButton"
+        data-test-subj="clearSearchButton"
         type="button"
       >
         <span

@@ -10,6 +10,7 @@ import {
 } from '../../../../src/components';
 
 import Step from './step';
+import StepDom from './step_dom';
 import Tour from './tour';
 import Managed from './managed';
 import ManagedHook from './managed_hook';
@@ -39,6 +40,7 @@ const stepSnippet = `
   </EuiText>
 </EuiTourStep>
 `;
+const stepDomSource = require('!!raw-loader!./step_dom');
 const tourSource = require('!!raw-loader!./tour');
 const managedSource = require('!!raw-loader!./managed');
 const managedHookSource = require('!!raw-loader!./managed_hook');
@@ -47,6 +49,7 @@ const fullSource = require('!!raw-loader!./fullscreen');
 
 export const TourExample = {
   title: 'Tour',
+  guidelines: <Guidelines />,
   intro: (
     <EuiText>
       <p>
@@ -89,6 +92,26 @@ export const TourExample = {
       props: { EuiTourStep },
       demo: <Step />,
       snippet: stepSnippet,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: stepDomSource,
+        },
+      ],
+      text: (
+        <>
+          <h3>Using DOM selector as anchor location</h3>
+          <p>
+            Instead of wrapping the target element, use the{' '}
+            <EuiCode>anchor</EuiCode> prop to specify a DOM node. Accepted
+            values include an HTML element, a function returning an HTML
+            element, or a DOM query selector.
+          </p>
+        </>
+      ),
+      demo: <StepDom />,
     },
     {
       title: 'Standalone steps',
@@ -148,7 +171,7 @@ export const TourExample = {
       demo: <Managed />,
     },
     {
-      title: 'Full screen demo',
+      title: 'Fullscreen demo',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -162,10 +185,9 @@ export const TourExample = {
         </p>
       ),
       fullScreen: {
-        slug: 'full-screen',
+        slug: 'fullscreen',
         demo: <FullScreen />,
       },
     },
   ],
-  guidelines: <Guidelines />,
 };

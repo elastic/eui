@@ -5,7 +5,6 @@ import {
   hasDisplayToggles,
   listExtraDeps,
 } from '../../services';
-import { LEGACY_NAME_KEY } from '../../../../src/themes';
 
 import { ThemeContext } from '../with_theme';
 
@@ -25,7 +24,7 @@ const getVersion = (packageName) => {
  * 1. A `content` prop is passed containing the src-doc example code we need to manipulate for CS.
  * 2. If no content exists (like the homepage link), we'll make a hello world file bundled with EUI and call it a day.
  * 3. If content exists, we build an `demo.js/tsx` (depending on the passed source type) file with a <Demo> component based on the original content.
- * 4. If the default theme is in use, create an `index.html file in `./public` and an `index.js` file alongside to provide global styles.
+ * 4. Create an `index.html file in `./public` and an `index.js` file alongside to provide global styles.
  * 5. If content contains `DisplayToggles`, we also generate a `display_toggles.js` file alongside to import.
  * 6. Through regex we read the dependencies of both `content` and `display_toggles` and pass that to CS.
  * 7. We pass the files, dependencies, and queries as params to CS through a POST call.
@@ -52,12 +51,6 @@ export const CodeSandboxLinkComponent = ({
 }) => {
   let cssFile;
   switch (context.theme) {
-    case `${LEGACY_NAME_KEY}_light`:
-      cssFile = '@elastic/eui/dist/eui_legacy_light.css';
-      break;
-    case `${LEGACY_NAME_KEY}_dark`:
-      cssFile = '@elastic/eui/dist/eui_legacy_dark.css';
-      break;
     case 'dark':
       cssFile = '@elastic/eui/dist/eui_theme_dark.css';
       break;
@@ -65,8 +58,6 @@ export const CodeSandboxLinkComponent = ({
       cssFile = '@elastic/eui/dist/eui_theme_light.css';
       break;
   }
-
-  const isLegacyTheme = context.theme.includes(LEGACY_NAME_KEY);
 
   const providerPropsObject = {};
   // Only add configuration if it isn't the default
@@ -117,6 +108,14 @@ export const Demo = () => (<EuiButton>Hello world!</EuiButton>);
     );
   }
 
+  // Prepend the `@emotion/react` JSX pragma to enable the `css` prop on non-EUI elements/components
+  // https://emotion.sh/docs/css-prop#jsx-pragma
+  if (demoContent.includes('css=')) {
+    demoContent = `/** @jsxImportSource @emotion/react */
+${demoContent}
+`;
+  }
+
   const demoContentDeps = listExtraDeps(demoContent);
   let mergedDeps = demoContentDeps;
 
@@ -159,35 +158,20 @@ export const Demo = () => (<EuiButton>Hello world!</EuiButton>);
         content: `import '${cssFile}';
 import ReactDOM from 'react-dom';
 import React from 'react';
-${
-  /* 4 */
-  !isLegacyTheme
-    ? `import createCache from '@emotion/cache';
+import createCache from '@emotion/cache';
 import { EuiProvider } from '@elastic/eui';
-`
-    : ''
-}
+
 import { Demo } from './demo';
-${
-  /* 4 */
-  !isLegacyTheme
-    ? `
+
 const cache = createCache({
   key: 'codesandbox',
   container: document.querySelector('meta[name="global-styles"]'),
 });
-`
-    : ''
-}
+
 ReactDOM.render(
-  ${
-    /* 4 */
-    isLegacyTheme
-      ? '<Demo />'
-      : `<EuiProvider cache={cache} ${providerProps}>
+  <EuiProvider cache={cache} ${providerProps}>
     <Demo />
-  </EuiProvider>`
-  },
+  </EuiProvider>,
   document.getElementById('root')
 );`,
       },
@@ -231,7 +215,7 @@ ReactDOM.render(
     >
       {/* 7 */}
       <input type="hidden" name="parameters" value={params} />
-      <input type="hidden" name="query" value="file=/demo.js" />
+      <input type="hidden" name="query" value={`file=/demo.${type}`} />
       {childWithSubmit}
     </form>
   );

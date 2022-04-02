@@ -49,6 +49,7 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     'data-test-subj': string;
     activeOptionIndex?: number;
     areAllOptionsSelected?: boolean;
+    listboxAriaLabel: string;
     /**
      * Creates a custom text option. You can use `{searchValue}` inside your string to better customize your text.
      * It won't show if there's no onCreateOption.
@@ -194,8 +195,9 @@ export class EuiComboBoxOptionsList<T> extends Component<
     this.listBoxRef = ref;
 
     if (ref) {
+      ref.setAttribute('aria-label', this.props.listboxAriaLabel);
       ref.setAttribute('id', this.props.rootId('listbox'));
-      ref.setAttribute('role', 'listBox');
+      ref.setAttribute('role', 'listbox');
       ref.setAttribute('tabIndex', '0');
     }
   };
@@ -307,6 +309,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       delimiter,
       zIndex,
       style,
+      listboxAriaLabel,
       ...rest
     } = this.props;
 

@@ -10,7 +10,6 @@ import classnames from 'classnames';
 import React, { forwardRef, memo, useContext } from 'react';
 import { EuiDataGridCell } from './data_grid_cell';
 import { DataGridCellPopoverContext } from './data_grid_cell_popover';
-import { DefaultColumnFormatter } from './popover_utils';
 import { EuiDataGridFooterRowProps } from '../data_grid_types';
 
 const EuiDataGridFooterRow = memo(
@@ -21,11 +20,11 @@ const EuiDataGridFooterRow = memo(
         trailingControlColumns,
         columns,
         schema,
-        popoverContents,
         columnWidths,
         defaultColumnWidth,
         className,
         renderCellValue,
+        renderCellPopover,
         rowIndex,
         interactiveCellId,
         'data-test-subj': _dataTestSubj,
@@ -69,7 +68,6 @@ const EuiDataGridFooterRow = memo(
               key={`${id}-${rowIndex}`}
               colIndex={i}
               columnId={id}
-              popoverContent={DefaultColumnFormatter}
               width={width}
               renderCellValue={() => null}
               className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"
@@ -77,23 +75,19 @@ const EuiDataGridFooterRow = memo(
           ))}
           {columns.map(({ id }, i) => {
             const columnType = schema[id] ? schema[id].columnType : null;
-            const popoverContent =
-              (columnType && popoverContents[columnType]) ||
-              DefaultColumnFormatter;
-
             const width = columnWidths[id] || defaultColumnWidth;
             const columnPosition = i + leadingControlColumns.length;
 
             return (
               <EuiDataGridCell
                 {...sharedCellProps}
-                key={`${id}-${rowIndex}`}
+                key={`${columnPosition},${visibleRowIndex}`} // Note: this key should use cell position to match react-window/data cell behavior. See #5720
                 colIndex={columnPosition}
                 columnId={id}
                 columnType={columnType}
-                popoverContent={popoverContent}
                 width={width || undefined}
                 renderCellValue={renderCellValue}
+                renderCellPopover={renderCellPopover}
                 className="euiDataGridFooterCell"
               />
             );
@@ -107,7 +101,6 @@ const EuiDataGridFooterRow = memo(
                 key={`${id}-${rowIndex}`}
                 colIndex={colIndex}
                 columnId={id}
-                popoverContent={DefaultColumnFormatter}
                 width={width}
                 renderCellValue={() => null}
                 className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"

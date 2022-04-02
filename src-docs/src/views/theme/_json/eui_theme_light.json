@@ -257,6 +257,13 @@
   },
   "euiGradientStartStop": "#f0f2f6",
   "euiGradientMiddle": "#f6f8fa",
+  "euiLoadingSpinnerSizes": {
+    "small": "12px",
+    "medium": "16px",
+    "large": "24px",
+    "xLarge": "32px",
+    "xxLarge": "40px"
+  },
   "euiMarkdownEditorMinHeight": "150px",
   "euiPopoverArrowSize": "12px",
   "euiPopoverTranslateDistance": "8px",

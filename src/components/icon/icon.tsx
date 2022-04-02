@@ -22,6 +22,13 @@ import { enqueueStateChange } from '../../services/react';
 import { htmlIdGenerator } from '../../services';
 import { colorToClassMap, isNamedColor, NamedColor } from './named_colors';
 
+const getIsAppIcon = (iconType: IconType) => {
+  if (typeof iconType !== 'string') return false;
+  if (iconType === 'dataVisualizer') return true; // Special case
+  if (iconType.indexOf('data:') === 0) return false; // Inline data URIs should be short-circuited for performance
+  return iconType.endsWith('App') || iconType.endsWith('Job');
+};
+
 const typeToPathMap = {
   accessibility: 'accessibility',
   addDataApp: 'app_add_data',
@@ -50,6 +57,7 @@ const typeToPathMap = {
   boxesHorizontal: 'boxes_horizontal',
   boxesVertical: 'boxes_vertical',
   branch: 'branch',
+  branchUser: 'branchUser',
   broom: 'broom',
   brush: 'brush',
   bug: 'bug',
@@ -90,6 +98,7 @@ const typeToPathMap = {
   dashboardApp: 'app_dashboard',
   dataVisualizer: 'ml_data_visualizer',
   database: 'database',
+  desktop: 'desktop',
   devToolsApp: 'app_devtools',
   discoverApp: 'app_discover',
   document: 'document',
@@ -104,6 +113,7 @@ const typeToPathMap = {
   editorAlignLeft: 'editor_align_left',
   editorAlignRight: 'editor_align_right',
   editorBold: 'editor_bold',
+  editorChecklist: 'editor_checklist',
   editorCodeBlock: 'editor_code_block',
   editorComment: 'editor_comment',
   editorDistributeHorizontal: 'editorDistributeHorizontal',
@@ -196,6 +206,9 @@ const typeToPathMap = {
   layers: 'layers',
   lensApp: 'app_lens',
   lettering: 'lettering',
+  lineDashed: 'lineDashed',
+  lineDotted: 'lineDotted',
+  lineSolid: 'lineSolid',
   link: 'link',
   list: 'list',
   listAdd: 'list_add',
@@ -332,6 +345,7 @@ const typeToPathMap = {
   securitySignal: 'securitySignal',
   securitySignalDetected: 'securitySignalDetected',
   securitySignalResolved: 'securitySignalResolved',
+  sessionViewer: 'sessionViewer',
   shard: 'shard',
   share: 'share',
   snowflake: 'snowflake',
@@ -683,10 +697,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
     }
 
     // These icons are a little special and get some extra CSS flexibility
-    const isAppIcon =
-      type &&
-      typeof type === 'string' &&
-      (/.+App$/.test(type) || /.+Job$/.test(type) || type === 'dataVisualizer');
+    const isAppIcon = getIsAppIcon(type);
 
     const appIconHasColor = color && color !== 'default';
 

@@ -14,4 +14,3 @@ export {
   stopThrowingReactWarnings,
 } from './react_warnings';
 export { sleep } from './sleep';
-export { IS_JEST_ENVIRONMENT } from './is_jest';

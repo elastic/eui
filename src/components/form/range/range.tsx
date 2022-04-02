@@ -26,7 +26,7 @@ import { EuiRangeWrapper } from './range_wrapper';
 
 export interface EuiRangeProps
   extends CommonProps,
-    Omit<EuiRangeInputProps, 'onChange' | 'digitTolerance'> {
+    Omit<EuiRangeInputProps, 'onChange' | 'digitTolerance' | 'isLoading'> {
   compressed?: boolean;
   readOnly?: boolean;
   fullWidth?: boolean;
@@ -73,6 +73,10 @@ export interface EuiRangeProps
    * Prepends to the tooltip
    */
   valuePrepend?: ReactNode;
+  /**
+   * Will only show if `showInput = inputWithPopover`
+   */
+  isLoading?: boolean;
 
   onChange?: (
     event:

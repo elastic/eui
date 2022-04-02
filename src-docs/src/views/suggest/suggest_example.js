@@ -13,6 +13,7 @@ import {
 
 import Suggest from './suggest';
 const suggestSource = require('!!raw-loader!./suggest');
+import { suggestConfig } from './playground';
 
 import SavedQueries from './saved_queries';
 const savedQueriesSource = require('!!raw-loader!./saved_queries');
@@ -95,6 +96,7 @@ export const SuggestExample = {
       props: { EuiSuggest },
       snippet: suggestSnippet,
       demo: <Suggest />,
+      playground: suggestConfig,
     },
     {
       title: 'Suggest item',
@@ -117,11 +119,10 @@ export const SuggestExample = {
               <EuiCode>iconType</EuiCode> and <EuiCode>color</EuiCode>.
             </p>
             <p>
-              Set <EuiCode>truncate</EuiCode> to false to force line-wrapping of
-              both the label and description. Note that wrapping text is not
-              compatible with the virtualized setting on{' '}
-              <strong>EuiSuggest</strong>. See{' '}
-              <Link to="forms/selectable#rendering-the-options">
+              Set <EuiCode>truncate</EuiCode> to false to encourage
+              line-wrapping of both the label and description. Note that when
+              the virtualized setting on, truncation will be enforced. See{' '}
+              <Link to="/forms/selectable#rendering-the-options">
                 EuiSelectable
               </Link>{' '}
               for more information on rendering items virtually.

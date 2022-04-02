@@ -48,6 +48,10 @@ export const GuideSectionCodeTypesMap = {
     name: 'demoTSX',
     displayName: 'Demo TS',
   },
+  STRING_JS: {
+    name: 'demoJS',
+    displayName: 'Demo JS',
+  },
   SNIPPET: {
     name: 'snippet',
     displayName: 'Snippet',
@@ -202,7 +206,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
                     iconType="fullScreen"
                     href={`#${path}/${fullScreen.slug}`}
                   >
-                    Full screen demo
+                    Fullscreen demo
                   </EuiButton>
                 ) : (
                   demo

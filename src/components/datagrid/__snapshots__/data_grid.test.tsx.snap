@@ -2,7 +2,7 @@
 
 exports[`EuiDataGrid pagination renders 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow eui-xScroll"
+  class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--wrap eui-xScroll"
 >
   <div
     class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -191,6 +191,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
     </li>
   </EuiListGroupItem>
   <EuiListGroupItem
+    className=""
     color="text"
     iconType="sortUp"
     isDisabled={false}
@@ -273,6 +274,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
     </li>
   </EuiListGroupItem>
   <EuiListGroupItem
+    className=""
     color="text"
     iconType="sortDown"
     isDisabled={false}
@@ -496,6 +498,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
   data-test-subj="dataGridHeaderCellActionGroup-D"
 >
   <EuiListGroupItem
+    className=""
     color="text"
     iconType="sortUp"
     isDisabled={false}
@@ -578,6 +581,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
     </li>
   </EuiListGroupItem>
   <EuiListGroupItem
+    className=""
     color="text"
     iconType="sortDown"
     isDisabled={false}
@@ -732,6 +736,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
     </li>
   </EuiListGroupItem>
   <EuiListGroupItem
+    className=""
     color="text"
     iconType="sortUp"
     isDisabled={false}
@@ -772,6 +777,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
     </li>
   </EuiListGroupItem>
   <EuiListGroupItem
+    className=""
     color="text"
     iconType="sortDown"
     isDisabled={false}
@@ -1012,7 +1018,7 @@ Array [
             class="euiToolTipAnchor"
           >
             <button
-              aria-label="Full screen"
+              aria-label="Enter fullscreen"
               class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
               data-test-subj="dataGridFullScreenButton"
               type="button"
@@ -1079,12 +1085,13 @@ Array [
                         A
                       </div>
                       <span
-                        aria-label="Header actions"
                         class="euiDataGridHeaderCell__icon"
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-A"
-                      />
+                      >
+                        Header actions
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -1121,12 +1128,13 @@ Array [
                         B
                       </div>
                       <span
-                        aria-label="Header actions"
                         class="euiDataGridHeaderCell__icon"
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-B"
-                      />
+                      >
+                        Header actions
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -1436,7 +1444,7 @@ Array [
             class="euiToolTipAnchor"
           >
             <button
-              aria-label="Full screen"
+              aria-label="Enter fullscreen"
               class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
               data-test-subj="dataGridFullScreenButton"
               type="button"
@@ -1522,12 +1530,13 @@ Array [
                         A
                       </div>
                       <span
-                        aria-label="Header actions"
                         class="euiDataGridHeaderCell__icon"
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-A"
-                      />
+                      >
+                        Header actions
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -1564,12 +1573,13 @@ Array [
                         B
                       </div>
                       <span
-                        aria-label="Header actions"
                         class="euiDataGridHeaderCell__icon"
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-B"
-                      />
+                      >
+                        Header actions
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -2201,7 +2211,7 @@ Array [
             class="euiToolTipAnchor"
           >
             <button
-              aria-label="Full screen"
+              aria-label="Enter fullscreen"
               class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
               data-test-subj="dataGridFullScreenButton"
               type="button"
@@ -2268,12 +2278,13 @@ Array [
                         Column A
                       </div>
                       <span
-                        aria-label="Header actions"
                         class="euiDataGridHeaderCell__icon"
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-A"
-                      />
+                      >
+                        Header actions
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -2312,12 +2323,13 @@ Array [
                         </div>
                       </div>
                       <span
-                        aria-label="Header actions"
                         class="euiDataGridHeaderCell__icon"
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-B"
-                      />
+                      >
+                        Header actions
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -2624,7 +2636,7 @@ Array [
             class="euiToolTipAnchor"
           >
             <button
-              aria-label="Full screen"
+              aria-label="Enter fullscreen"
               class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
               data-test-subj="dataGridFullScreenButton"
               type="button"
@@ -2691,12 +2703,13 @@ Array [
                         A
                       </div>
                       <span
-                        aria-label="Header actions"
                         class="euiDataGridHeaderCell__icon"
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-A"
-                      />
+                      >
+                        Header actions
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -2733,12 +2746,13 @@ Array [
                         B
                       </div>
                       <span
-                        aria-label="Header actions"
                         class="euiDataGridHeaderCell__icon"
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-B"
-                      />
+                      >
+                        Header actions
+                      </span>
                     </button>
                   </div>
                 </div>

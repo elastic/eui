@@ -7,8 +7,10 @@
  */
 
 import React, { HTMLAttributes, FunctionComponent, ReactNode } from 'react';
-import { CommonProps } from '../common';
 import classNames from 'classnames';
+import { CommonProps } from '../common';
+import { useEuiTheme } from '../../services';
+import { euiMarkStyles } from './mark.styles';
 export type EuiMarkProps = HTMLAttributes<HTMLElement> &
   CommonProps & {
     /**
@@ -22,10 +24,12 @@ export const EuiMark: FunctionComponent<EuiMarkProps> = ({
   className,
   ...rest
 }) => {
+  const useTheme = useEuiTheme();
+  const styles = euiMarkStyles(useTheme);
   const classes = classNames('euiMark', className);
 
   return (
-    <mark className={classes} {...rest}>
+    <mark css={[styles]} className={classes} {...rest}>
       {children}
     </mark>
   );

@@ -135,7 +135,7 @@ export const useSortPageCheck = (
         : rowIndex;
 
       // Account for pagination
-      if (pagination) {
+      if (pagination && pagination.pageSize > 0) {
         const pageIndex = Math.floor(visibleRowIndex / pagination.pageSize);
         // If the targeted row is on a different page than the current page,
         // we should automatically navigate the user to the correct page

@@ -6,9 +6,10 @@ exports[`EuiToken is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <span
-    aria-label="aria-label"
     data-euiicon-type="dot"
-  />
+  >
+    aria-label
+  </span>
 </span>
 `;
 

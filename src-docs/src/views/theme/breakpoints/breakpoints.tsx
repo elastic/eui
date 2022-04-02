@@ -26,7 +26,7 @@ export default () => {
     <GuidePage
       isBeta={!showSass}
       title="Breakpoints"
-      notice={!showSass && <ThemeNotice />}
+      notice={<ThemeNotice />}
       showThemeLanguageToggle
       description={
         <>

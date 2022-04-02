@@ -5,7 +5,8 @@ import { EuiCodeBlock, EuiCode, EuiText, EuiSpacer } from '../../../../../src';
 
 import { AppSetup } from './_app_setup';
 import { Tokens } from './_tokens';
-import { CustomizeTokens } from './_customize_tokens';
+import { Customizing } from './_customizing';
+import { ThemeNotice } from '../../../views/theme/_components/_theme_notice.tsx';
 
 export const GettingStarted = {
   title: 'Getting started',
@@ -85,21 +86,22 @@ export const GettingStarted = {
           <EuiSpacer />
 
           <EuiText grow={false}>
-            <h3>Customizing the style tokens with Sass</h3>
+            <h3>Customizing the style tokens</h3>
             <p>
               EUI can be slightly customized to fit your branding needs by
-              altering the base tokens like color and typography. Currently, it
-              is only supported using the Sass method and requires a full
-              re-compile of all EUI component styles.
+              altering the base tokens like color and typography. Simply declare
+              your token overrides before importing the whole EUI theme. This
+              will re-compile all of the EUI components with your colors.
             </p>
             <p>
-              Simply declare your token overrides before importing the whole EUI
-              theme. This will re-compile all of the EUI components with your
-              colors.
+              For a full list of global tokens visit{' '}
+              <Link to="/theming/customizing-themes">Customizing theme</Link>.
             </p>
           </EuiText>
           <EuiSpacer />
-          <CustomizeTokens />
+          <ThemeNotice />
+          <EuiSpacer />
+          <Customizing />
           <EuiSpacer />
           <EuiText grow={false}>
             <h4>Do not use in conjunction with the compiled CSS.</h4>
@@ -143,7 +145,7 @@ export const GettingStarted = {
 
           <EuiCodeBlock language="scss" isCopyable fontSize="m">
             {
-              "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');"
+              "@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@300;400;500;600;700&family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');"
             }
           </EuiCodeBlock>
           <EuiSpacer />
@@ -156,7 +158,7 @@ export const GettingStarted = {
           <EuiSpacer />
           <EuiCodeBlock language="scss" isCopyable fontSize="m">
             {
-              "@import url('https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10,300..700;0,300..700&family=Roboto+Mono:ital,wght@0,400..700;1,400..700&display=swap');"
+              "@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@-10,300..700;0,300..700&family=Roboto+Mono:ital,wght@0,400..700;1,400..700&display=swap');"
             }
           </EuiCodeBlock>
 

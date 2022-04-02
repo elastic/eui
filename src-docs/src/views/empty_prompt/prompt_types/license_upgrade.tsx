@@ -1,15 +1,15 @@
 import React from 'react';
-
 import {
   EuiEmptyPrompt,
   EuiButton,
   EuiButtonEmpty,
-  EuiLink,
   EuiTitle,
+  EuiLink,
 } from '../../../../../src/components';
 
 export default () => (
   <EuiEmptyPrompt
+    color="subdued"
     iconType="logoKibana"
     title={<h2>Do more with Kibana!</h2>}
     layout="vertical"
@@ -31,7 +31,7 @@ export default () => (
           <h3>Want to learn more?</h3>
         </EuiTitle>
         <EuiLink href="#" target="_blank">
-          Read documentation
+          Read the docs
         </EuiLink>
       </>
     }

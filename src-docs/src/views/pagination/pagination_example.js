@@ -8,9 +8,11 @@ import {
   EuiPagination,
   EuiText,
   EuiCallOut,
+  EuiTablePagination,
 } from '../../../../src/components';
 
-import { paginationConfig } from './playground';
+import Guidelines from './guidelines';
+import { paginationConfig, tablePaginationConfig } from './playground';
 
 import ManyPages from './many_pages';
 const manyPagesSource = require('!!raw-loader!./many_pages');
@@ -74,8 +76,12 @@ const indeterminateSnippet = `<EuiPagination
   onPageClick={(activePage) => goToPage(activePage)}
 />`;
 
+import TablePagination from './table_pagination';
+const tablePaginationSource = require('!!raw-loader!./table_pagination');
+
 export const PaginationExample = {
   title: 'Pagination',
+  guidelines: <Guidelines />,
   intro: (
     <EuiText>
       <p>
@@ -217,6 +223,31 @@ export const PaginationExample = {
       props: { EuiPagination },
     },
     {
+      title: 'Table pagination',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: tablePaginationSource,
+        },
+      ],
+      text: (
+        <p>
+          You can use <strong>EuiTablePagination</strong> to create a
+          combination &quot;Rows per page&quot; and pagination set, commonly
+          used with{' '}
+          <Link to="/tabular-content/tables#adding-pagination-to-a-table">
+            tables
+          </Link>
+          . If you pass <EuiCode>0</EuiCode> in as one of the{' '}
+          <EuiCode>itemsPerPageOptions</EuiCode>, it will create a &quot;Show
+          all&quot; option and hide the pagination.
+        </p>
+      ),
+      demo: <TablePagination />,
+      props: { EuiTablePagination },
+      playground: tablePaginationConfig,
+    },
+    {
       title: 'Customizable pagination',
       source: [
         {
@@ -226,7 +257,7 @@ export const PaginationExample = {
       ],
       text: (
         <p>
-          You can use{' '}
+          Or you can use{' '}
           <Link to="/layout/flex">
             <strong>EuiFlexGroup</strong>
           </Link>{' '}
@@ -234,8 +265,7 @@ export const PaginationExample = {
           <Link to="/navigation/context-menu#with-single-panel">
             <strong>EuiContextMenu</strong>
           </Link>{' '}
-          to set up this pagination layout, commonly used with{' '}
-          <Link to="/tabular-content/tables">tables</Link>.
+          to set up your own custom pagination layout.
         </p>
       ),
       demo: <CustomizablePagination />,

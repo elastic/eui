@@ -7,18 +7,12 @@
  */
 
 import classNames from 'classnames';
-import React, {
-  forwardRef,
-  KeyboardEvent,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { forwardRef, useMemo, useRef, useState } from 'react';
 import {
   VariableSizeGrid as Grid,
   GridOnItemsRenderedProps,
 } from 'react-window';
-import { useGeneratedHtmlId, keys } from '../../services';
+import { useGeneratedHtmlId } from '../../services';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiI18n, useEuiI18n } from '../i18n';
 import { useMutationObserver } from '../observer/mutation_observer';
@@ -29,6 +23,7 @@ import {
   useDataGridColumnSorting,
   useDataGridDisplaySelector,
   startingStyles,
+  useDataGridFullScreenSelector,
   checkOrDefaultToolBarDisplayOptions,
   EuiDataGridToolbar,
 } from './controls';
@@ -48,7 +43,6 @@ import {
   DataGridCellPopoverContext,
   useCellPopover,
 } from './body/data_grid_cell_popover';
-import { providedPopoverContents } from './body/popover_utils';
 import { computeVisibleRows } from './utils/row_count';
 import { EuiDataGridPaginationRenderer } from './utils/data_grid_pagination';
 import {
@@ -117,6 +111,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
       schemaDetectors,
       rowCount,
       renderCellValue,
+      renderCellPopover,
       renderFooterCellValue,
       className,
       gridStyle,
@@ -124,7 +119,6 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
       pagination,
       sorting,
       inMemory,
-      popoverContents,
       onColumnResize,
       minSizeForControls,
       height,
@@ -140,14 +134,6 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     const gridStyleWithDefaults = useMemo(
       () => ({ ...startingStyles, ...gridStyle }),
       [gridStyle]
-    );
-
-    const mergedPopoverContents = useMemo(
-      () => ({
-        ...providedPopoverContents,
-        ...popoverContents,
-      }),
-      [popoverContents]
     );
 
     const [inMemoryValues, onCellRender] = useInMemoryValues(
@@ -285,21 +271,16 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     const { cellPopoverContext, cellPopover } = useCellPopover();
 
     /**
-     * Toolbar & full-screen
+     * Toolbar & fullscreen
      */
     const showToolbar = !!toolbarVisibility;
 
-    const [isFullScreen, setIsFullScreen] = useState(false);
-    const handleGridKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-      switch (event.key) {
-        case keys.ESCAPE:
-          if (isFullScreen) {
-            event.preventDefault();
-            setIsFullScreen(false);
-          }
-          break;
-      }
-    };
+    const {
+      isFullScreen,
+      setIsFullScreen,
+      fullScreenSelector,
+      handleGridKeyDown,
+    } = useDataGridFullScreenSelector();
 
     /**
      * Expose certain internal APIs as ref to consumer
@@ -342,10 +323,6 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
       className
     );
 
-    const controlBtnClasses = classNames('euiDataGrid__controlBtn', {
-      'euiDataGrid__controlBtn--active': isFullScreen,
-    });
-
     /**
      * Accessibility
      */
@@ -353,23 +330,19 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     const interactiveCellId = useGeneratedHtmlId();
     const ariaLabelledById = useGeneratedHtmlId();
 
+    const ariaPage = pagination ? pagination.pageIndex + 1 : 1;
+    const ariaPageCount = pagination?.pageSize
+      ? Math.ceil(rowCount / pagination.pageSize)
+      : 1;
     const ariaLabel = useEuiI18n(
       'euiDataGrid.ariaLabel',
       '{label}; Page {page} of {pageCount}.',
-      {
-        label: rest['aria-label'],
-        page: pagination ? pagination.pageIndex + 1 : 0,
-        pageCount: pagination ? Math.ceil(rowCount / pagination.pageSize) : 0,
-      }
+      { label: rest['aria-label'], page: ariaPage, pageCount: ariaPageCount }
     );
-
     const ariaLabelledBy = useEuiI18n(
       'euiDataGrid.ariaLabelledBy',
       'Page {page} of {pageCount}.',
-      {
-        page: pagination ? pagination.pageIndex + 1 : 0,
-        pageCount: pagination ? Math.ceil(rowCount / pagination.pageSize) : 0,
-      }
+      { page: ariaPage, pageCount: ariaPageCount }
     );
 
     // extract aria-label and/or aria-labelledby from `rest`
@@ -408,10 +381,9 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                     gridWidth={gridWidth}
                     minSizeForControls={minSizeForControls}
                     toolbarVisibility={toolbarVisibility}
-                    displaySelector={displaySelector}
                     isFullScreen={isFullScreen}
-                    setIsFullScreen={setIsFullScreen}
-                    controlBtnClasses={controlBtnClasses}
+                    fullScreenSelector={fullScreenSelector}
+                    displaySelector={displaySelector}
                     columnSelector={columnSelector}
                     columnSorting={columnSorting}
                   />
@@ -464,9 +436,9 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                     headerIsInteractive={headerIsInteractive}
                     handleHeaderMutation={handleHeaderMutation}
                     schemaDetectors={allSchemaDetectors}
-                    popoverContents={mergedPopoverContents}
                     pagination={pagination}
                     renderCellValue={renderCellValue}
+                    renderCellPopover={renderCellPopover}
                     renderFooterCellValue={renderFooterCellValue}
                     rowCount={rowCount}
                     visibleRows={visibleRows}

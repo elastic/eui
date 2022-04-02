@@ -201,6 +201,41 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
   <div
     class="euiPageHeaderContent"
   >
+    <nav
+      aria-label="aria-label"
+      class="euiBreadcrumbs testClass1 testClass2 euiBreadcrumbs--truncate"
+      data-test-subj="test subject string"
+    >
+      <ol
+        class="euiBreadcrumbs__list"
+      >
+        <li
+          class="euiBreadcrumb"
+        >
+          <a
+            class="euiLink euiLink--primary euiBreadcrumb__content customClass"
+            data-test-subj="breadcrumbsAnimals"
+            href="#"
+            rel="noreferrer"
+          >
+            Animals
+          </a>
+        </li>
+        <li
+          class="euiBreadcrumb euiBreadcrumb--last"
+        >
+          <span
+            aria-current="page"
+            class="euiBreadcrumb__content"
+          >
+            Edit
+          </span>
+        </li>
+      </ol>
+    </nav>
+    <div
+      class="euiSpacer euiSpacer--s"
+    />
     <div
       class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
     >
@@ -213,11 +248,12 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           data-test-subj="test subject string"
         >
           <span
-            aria-label="aria-label"
             class="euiPageHeaderContent__titleIcon testClass1 testClass2"
             data-euiicon-type="logoKibana"
             data-test-subj="test subject string"
-          />
+          >
+            aria-label
+          </span>
           Page title
         </h1>
         <div

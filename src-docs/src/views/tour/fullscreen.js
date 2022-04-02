@@ -173,7 +173,7 @@ export default () => {
           <ExampleContext.Consumer>
             {({ parentPath }) => (
               <EuiButton fill href={`#${parentPath}`} iconType="exit">
-                Exit full screen demo
+                Exit fullscreen demo
               </EuiButton>
             )}
           </ExampleContext.Consumer>,

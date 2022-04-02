@@ -83,9 +83,14 @@ export type EuiSelectableOptionsListProps = CommonProps &
      */
     onFocusBadge?: EuiSelectableListItemProps['onFocusBadge'];
     /**
-     * See #EuiSelectableListItemProps
+     * Padding for the list items.
      */
     paddingSize?: EuiSelectableListItemProps['paddingSize'];
+    /**
+     * How to handle long text within the item.
+     * Wrapping only works if virtualization is off.
+     */
+    textWrap?: EuiSelectableListItemProps['textWrap'];
   } & EuiSelectableOptionsListVirtualizedProps;
 
 export type EuiSelectableListProps<T> = EuiSelectableOptionsListProps & {
@@ -238,6 +243,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       renderOption,
       setActiveOptionIndex,
       searchable,
+      textWrap,
     } = this.props;
 
     if (isGroupLabel) {
@@ -282,6 +288,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
         showIcons={showIcons}
         paddingSize={paddingSize}
         searchable={searchable}
+        textWrap={textWrap}
         {...(optionRest as EuiSelectableListItemProps)}
       >
         {renderOption ? (
@@ -324,6 +331,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       'aria-describedby': ariaDescribedby,
       role,
       isVirtualized,
+      textWrap,
       ...rest
     } = this.props;
 

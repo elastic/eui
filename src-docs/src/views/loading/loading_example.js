@@ -82,7 +82,7 @@ export const LoadingExample = {
           <Link to="/display/icons#elastic-logos">
             <strong>EuiIcon</strong>
           </Link>{' '}
-          logos. It should only be used in very large panels, like full screen
+          logos. It should only be used in very large panels, like fullscreen
           pages.
         </p>
       ),

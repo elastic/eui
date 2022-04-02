@@ -73,7 +73,7 @@ export default () => {
     <GuidePage
       title="Borders"
       isBeta={!showSass}
-      notice={!showSass && <ThemeNotice />}
+      notice={<ThemeNotice />}
       description="The border tokens contain both individual border property values and full shorthand border properties."
       showThemeLanguageToggle
     >

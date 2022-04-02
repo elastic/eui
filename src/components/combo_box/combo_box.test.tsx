@@ -459,7 +459,7 @@ describe('behavior', () => {
     >(<EuiComboBox options={options} inputRef={inputRefCallback} />);
 
     expect(inputRefCallback).toHaveBeenCalledTimes(1);
-    expect(component.find('input[role="textbox"]').getDOMNode()).toBe(
+    expect(component.find('input[role="combobox"]').getDOMNode()).toBe(
       inputRefCallback.mock.calls[0][0]
     );
   });

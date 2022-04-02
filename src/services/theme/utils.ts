@@ -8,6 +8,8 @@
 
 import {
   EuiThemeColorMode,
+  EuiThemeColorModeInverse,
+  EuiThemeColorModeStandard,
   EuiThemeModifications,
   EuiThemeSystem,
   EuiThemeShape,
@@ -28,7 +30,9 @@ const isObject = (obj: any) => obj && typeof obj === 'object';
  * Returns whether the provided color mode is `inverse`
  * @param {string} colorMode - `light`, `dark`, or `inverse`
  */
-export const isInverseColorMode = (colorMode?: EuiThemeColorMode) => {
+export const isInverseColorMode = (
+  colorMode?: string
+): colorMode is EuiThemeColorModeInverse => {
   return colorMode === COLOR_MODES_INVERSE;
 };
 
@@ -36,16 +40,19 @@ export const isInverseColorMode = (colorMode?: EuiThemeColorMode) => {
  * Returns the color mode configured in the current EuiThemeProvider.
  * Returns the parent color mode if none is explicity set.
  * @param {string} coloMode - `light`, `dark`, or `inverse`
- * @param {string} parentColorMode - `light`, `dark`, or `inverse`; used as the fallback
+ * @param {string} parentColorMode - `LIGHT` or `DARK`; used as the fallback
  */
 export const getColorMode = (
   colorMode?: EuiThemeColorMode,
-  parentColorMode?: EuiThemeColorMode
-) => {
-  const mode = colorMode?.toUpperCase();
-  if (mode == null) {
+  parentColorMode?: EuiThemeColorModeStandard
+): EuiThemeColorModeStandard => {
+  if (colorMode == null) {
     return parentColorMode || DEFAULT_COLOR_MODE;
-  } else if (isInverseColorMode(mode)) {
+  }
+  const mode = colorMode.toUpperCase() as
+    | EuiThemeColorModeInverse
+    | EuiThemeColorModeStandard;
+  if (isInverseColorMode(mode)) {
     return parentColorMode === COLOR_MODES_STANDARD.dark ||
       parentColorMode === undefined
       ? COLOR_MODES_STANDARD.light
@@ -65,7 +72,7 @@ export const getColorMode = (
 export const getOn = (
   model: { [key: string]: any },
   _path: string,
-  colorMode?: EuiThemeColorMode
+  colorMode?: EuiThemeColorModeStandard
 ) => {
   const path = _path.split('.');
   let node = model;
@@ -150,7 +157,7 @@ export class Computed<T> {
     base: EuiThemeSystem | EuiThemeShape,
     modifications: EuiThemeModifications = {},
     working: EuiThemeComputed,
-    colorMode: EuiThemeColorMode
+    colorMode: EuiThemeColorModeStandard
   ) {
     if (!this.dependencies.length) {
       return this.computer(working);
@@ -208,7 +215,7 @@ export function computed<T>(
 export const getComputed = <T = EuiThemeShape>(
   base: EuiThemeSystem<T>,
   over: Partial<EuiThemeSystem<T>>,
-  colorMode: EuiThemeColorMode
+  colorMode: EuiThemeColorModeStandard
 ): EuiThemeComputed<T> => {
   const output = { themeName: base.key };
 
@@ -220,6 +227,7 @@ export const getComputed = <T = EuiThemeShape>(
   ) {
     Object.keys(base).forEach((key) => {
       let newPath = path ? `${path}.${key}` : `${key}`;
+      // @ts-expect-error `key` is not necessarily a colorMode key
       if ([...Object.values(COLOR_MODES_STANDARD), colorMode].includes(key)) {
         if (key !== colorMode) {
           return;

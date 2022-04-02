@@ -22,6 +22,7 @@ import {
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
 import { EuiI18n } from '../../i18n';
+import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
 
 export interface EuiSuperSelectOption<T> {
   value: T;
@@ -73,16 +74,25 @@ export const EuiSuperSelectControl: <T extends string>(
   fullWidth = false,
   isLoading = false,
   isInvalid = false,
+  readOnly,
   defaultValue,
   compressed = false,
   value,
   prepend,
   append,
   screenReaderId,
+  disabled,
   ...rest
 }) => {
+  const numIconsClass = getFormControlClassNameForIconCount({
+    isInvalid,
+    isLoading,
+    isDropdown: true,
+  });
+
   const classes = classNames(
     'euiSuperSelectControl',
+    numIconsClass,
     {
       'euiSuperSelectControl--fullWidth': fullWidth,
       'euiSuperSelectControl--compressed': compressed,
@@ -108,11 +118,6 @@ export const EuiSuperSelectControl: <T extends string>(
       : selectedValue;
   }
 
-  const icon: EuiFormControlLayoutProps['icon'] = {
-    type: 'arrowDown',
-    side: 'right',
-  };
-
   return (
     <Fragment>
       <input
@@ -121,12 +126,16 @@ export const EuiSuperSelectControl: <T extends string>(
         name={name}
         defaultValue={selectDefaultValue}
         value={value}
+        readOnly={readOnly}
       />
 
       <EuiFormControlLayout
-        icon={icon}
+        isDropdown
         fullWidth={fullWidth}
         isLoading={isLoading}
+        isInvalid={isInvalid}
+        isDisabled={disabled}
+        readOnly={readOnly}
         compressed={compressed}
         prepend={prepend}
         append={append}
@@ -148,6 +157,9 @@ export const EuiSuperSelectControl: <T extends string>(
           type="button"
           className={classes}
           aria-haspopup="listbox"
+          disabled={disabled || readOnly}
+          // @ts-ignore Using as a selector only for mixin use
+          readOnly={readOnly}
           {...rest}
         >
           {selectedValue}

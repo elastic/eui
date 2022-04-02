@@ -24,9 +24,7 @@ const createComputedSource = require('!!raw-loader!./create_computed');
 
 export const ThemeExample = {
   title: 'Theme provider',
-  isNew: true,
-  beta: true,
-  notice: <ThemeNotice type="support" />,
+  notice: <ThemeNotice />,
   intro: (
     <>
       <EuiText>
@@ -88,7 +86,7 @@ export const ThemeExample = {
           <p>
             The concept for each prop is explained in subsequent sections. More
             information on the full shape of an EUI theme, see the{' '}
-            <EuiLink href="#/theming/global-values">Global Values</EuiLink>{' '}
+            <EuiLink href="#/theming/customizing-themes">Global Values</EuiLink>{' '}
             page.
           </p>
         </>
