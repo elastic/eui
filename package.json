@@ -1,12 +1,12 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "53.0.0",
+  "version": "53.0.1",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
   "types": "eui.d.ts",
-  "docker_image": "node:16.13.1",
+  "docker_image": "node:16.14.2",
   "sideEffects": [
     "*.css",
     "*.scss"
