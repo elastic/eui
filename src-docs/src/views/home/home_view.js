@@ -18,71 +18,63 @@ import {
   EuiSpacer,
   EuiText,
   EuiTitle,
-  EuiPanel,
   EuiIcon,
   EuiFlexGrid,
-  EuiPageContent,
-  EuiPageContentBody,
-} from '../../../../src/components';
+  EuiPageSection,
+} from '../../../../src';
 import { HomeFooterElasticLogo } from './home_footer_elastic_logo';
 
 export const HomeView = () => (
-  <EuiPageContent
-    hasShadow={false}
-    hasBorder={false}
-    paddingSize="none"
-    color="transparent"
-    borderRadius="none"
-  >
-    <EuiPageContentBody restrictWidth>
-      <EuiPanel color="subdued" hasShadow={false} paddingSize="none">
-        <EuiFlexGroup
-          alignItems="center"
-          gutterSize="none"
-          className="guideHome__hero"
-        >
-          <EuiFlexItem>
-            <EuiTitle size="l">
-              <h1>Elastic UI</h1>
-            </EuiTitle>
-            <EuiSpacer />
-            <EuiSpacer />
-            <EuiTitle size="s">
-              <h2>The framework powering the Elastic Stack</h2>
-            </EuiTitle>
-            <EuiSpacer size="s" />
-            <EuiText grow={false}>
-              <p>
-                The Elastic UI framework (EUI) is a design library in use at
-                Elastic to build internal products that need to share our
-                aesthetics. It distributes UI React components and static assets
-                for use in building web layouts.
-              </p>
-              <EuiFlexGroup gutterSize="xl" wrap responsive={false}>
-                <EuiFlexItem grow={false}>
-                  <Link to="/guidelines/getting-started">
-                    <strong>Getting started</strong>
-                  </Link>
-                </EuiFlexItem>
-                <EuiFlexItem grow={false}>
-                  <Link to="/package/changelog">
-                    <strong>What&apos;s new</strong>
-                  </Link>
-                </EuiFlexItem>
-                <EuiFlexItem grow={false}>
-                  <EuiLink href="https://github.com/elastic/eui/blob/main/CONTRIBUTING.md">
-                    <strong>Contributing</strong>
-                  </EuiLink>
-                </EuiFlexItem>
-              </EuiFlexGroup>
-            </EuiText>
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <HomeIllustration />
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      </EuiPanel>
-      <EuiSpacer size="xxl" />
+  <>
+    <EuiPageSection color="subdued" restrictWidth>
+      <EuiFlexGroup
+        alignItems="center"
+        gutterSize="none"
+        className="guideHome__hero"
+      >
+        <EuiFlexItem>
+          <EuiTitle size="l">
+            <h1>Elastic UI</h1>
+          </EuiTitle>
+          <EuiSpacer />
+          <EuiSpacer />
+          <EuiTitle size="s">
+            <h2>The framework powering the Elastic Stack</h2>
+          </EuiTitle>
+          <EuiSpacer size="s" />
+          <EuiText grow={false}>
+            <p>
+              The Elastic UI framework (EUI) is a design library in use at
+              Elastic to build internal products that need to share our
+              aesthetics. It distributes UI React components and static assets
+              for use in building web layouts.
+            </p>
+            <EuiFlexGroup gutterSize="xl" wrap responsive={false}>
+              <EuiFlexItem grow={false}>
+                <Link to="/guidelines/getting-started">
+                  <strong>Getting started</strong>
+                </Link>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <Link to="/package/changelog">
+                  <strong>What&apos;s new</strong>
+                </Link>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiLink href="https://github.com/elastic/eui/blob/main/CONTRIBUTING.md">
+                  <strong>Contributing</strong>
+                </EuiLink>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiText>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <HomeIllustration />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </EuiPageSection>
+    <EuiSpacer size="xxl" />
+    <EuiPageSection restrictWidth>
       <EuiFlexGrid columns={3}>
         <EuiFlexItem>
           <EuiCard
@@ -242,6 +234,6 @@ export const HomeView = () => (
           </p>
         </EuiText>
       </div>
-    </EuiPageContentBody>
-  </EuiPageContent>
+    </EuiPageSection>
+  </>
 );

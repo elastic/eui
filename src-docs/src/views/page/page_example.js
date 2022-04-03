@@ -9,14 +9,18 @@ import {
   EuiCode,
   EuiPage,
   EuiPageBody,
+  EuiPageSection,
+  EuiPageContentBody,
 } from '../../../../src';
 
-import { pageConfig } from './components/playground';
+import { pageConfig, pageSectionConfig } from './components/playground';
 
 import { PageComponentDemo } from './components/page_demo';
 const PageSource = require('!!raw-loader!./components/page');
 import { PageBodyDemo } from './components/page_body_demo';
 const PageBodySource = require('!!raw-loader!./components/page_body');
+import { PageSectionDemo } from './components/page_section_demo';
+const PageSectionSource = require('!!raw-loader!./components/page_section');
 
 export const PageExample = {
   title: 'Page components',
@@ -99,6 +103,42 @@ export const PageExample = {
       props: {
         EuiPageBody,
       },
+    },
+    {
+      title: 'Page section',
+      text: (
+        <>
+          <p>
+            <strong>EuiPageSection</strong> is a stackable component that is
+            essentially an <strong>EuiPanel</strong> with props for quickly
+            creating common usages. Use <EuiCode>panelled</EuiCode> to quickly
+            turn on/off the panel background and other attributes. You&apos;ll
+            need to set <EuiCode>{'grow={false}'}</EuiCode> to any content that
+            you don&apos;t want to stretch within the page.
+          </p>
+          <p>
+            To create dividers between contents, use the{' '}
+            <EuiCode>bottomBorder</EuiCode> prop. The{' '}
+            <EuiCode>{"'extended'"}</EuiCode> version ensures the border touches
+            the sides of the parent. It also supports{' '}
+            <EuiCode>restrictWidth</EuiCode> and <EuiCode>alignment</EuiCode> to
+            align with common usages.
+          </p>
+        </>
+      ),
+      demoPanelProps: { paddingSize: 'none', color: 'subdued' },
+      demo: <PageSectionDemo />,
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: PageSectionSource,
+        },
+      ],
+      props: {
+        EuiPageSection,
+        EuiPageContentBody,
+      },
+      playground: pageSectionConfig,
     },
   ],
 };

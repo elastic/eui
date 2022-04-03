@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 
 import {
   EuiPage,
-  EuiPageContent,
+  EuiPageSection,
   EuiPageSideBar,
   EuiPageBody,
   EuiPageBodyProps,
@@ -19,11 +19,7 @@ export default ({
   <EuiPage>
     {sideBar && <EuiPageSideBar paddingSize="l">{sideBar}</EuiPageSideBar>}
     <EuiPageBody panelled={!!sideBar} {...rest}>
-      <EuiPageContent
-      // panelled={false} TBD
-      >
-        {content}
-      </EuiPageContent>
+      <EuiPageSection>{content}</EuiPageSection>
     </EuiPageBody>
   </EuiPage>
 );

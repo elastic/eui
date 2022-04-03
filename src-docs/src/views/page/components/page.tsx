@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 import {
   EuiPage,
   EuiPageProps,
-  EuiPageContent,
+  EuiPageSection,
   EuiPageSideBar,
   EuiPageBody,
 } from '../../../../../src';
@@ -19,9 +19,7 @@ export default ({
   <EuiPage paddingSize="none" {...rest}>
     <EuiPageSideBar paddingSize="l">{sideBar}</EuiPageSideBar>
     <EuiPageBody panelled>
-      <EuiPageContent paddingSize="none" color="transparent">
-        {content}
-      </EuiPageContent>
+      <EuiPageSection>{content}</EuiPageSection>
     </EuiPageBody>
   </EuiPage>
 );
