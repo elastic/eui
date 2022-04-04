@@ -20,7 +20,6 @@ import {
   EuiFlexGroupGutterSize,
   EuiFlexItemProps,
 } from '../../flex';
-import { css } from '@emotion/react';
 
 export type EuiDescribedFormGroupProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
@@ -126,19 +125,16 @@ export const EuiDescribedFormGroup: FunctionComponent<EuiDescribedFormGroupProps
       break;
   }
 
-  const euiDescribedFormGroupStyle = {
-    descriptionItem: css`
-      min-width: min(20rem, 50%);
-    `,
-  };
-
   return (
     <div role="group" className={classes} {...rest}>
       <EuiFlexGroup alignItems="baseline" gutterSize={gutterSize}>
         <EuiFlexItem
-          css={[euiDescribedFormGroupStyle.descriptionItem]}
           grow={1}
           {...descriptionFlexItemProps}
+          className={classNames(
+            'euiDescribedFormGroup__descriptionColumn',
+            descriptionFlexItemProps?.className
+          )}
         >
           <EuiTitle size={titleSize} className="euiDescribedFormGroup__title">
             {title}
