@@ -9,7 +9,7 @@ import {
   EuiFlexItem,
   EuiPanel,
   EuiSpacer,
-} from '../../../../src/components';
+} from '../../../../../src';
 
 export default ({ button = <></>, content }) => (
   <EuiPage paddingSize="none" className="eui-fullHeight">

@@ -2,22 +2,20 @@ import React from 'react';
 
 import {
   EuiPageTemplate,
-  EuiButton,
   EuiFlexGrid,
   EuiFlexItem,
   EuiPanel,
-} from '../../../../src/components';
+  EuiCallOut,
+  EuiPageHeader,
+  EuiSpacer,
+} from '../../../../../src';
 
-export default ({ button = <></> }) => (
-  <EuiPageTemplate
-    restrictWidth={false}
-    template="empty"
-    pageHeader={{
-      iconType: 'logoElastic',
-      pageTitle: 'Page title',
-      rightSideItems: [button, <EuiButton>Do something</EuiButton>],
-    }}
-  >
+export default ({ pageHeader, template }) => (
+  <EuiPageTemplate restrictWidth={false} template={template}>
+    <EuiCallOut title="This callout is placed before the EuiPageHeader." />
+    <EuiSpacer />
+    <EuiPageHeader {...pageHeader} bottomBorder />
+    <EuiSpacer />
     <EuiFlexGrid columns={2}>
       <EuiFlexItem>
         <EuiPanel style={{ height: 200 }} />

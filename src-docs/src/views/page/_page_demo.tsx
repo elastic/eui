@@ -16,7 +16,12 @@ import {
   EuiFlexItem,
   EuiHeader,
   EuiPageHeaderProps,
+  EuiEmptyPrompt,
 } from '../../../../src';
+import {
+  EuiPageTemplateProps,
+  TEMPLATES,
+} from '../../../../src/components/page/page_template';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
 import { useExitPath } from '../../services/routing/routing';
 
@@ -25,9 +30,10 @@ import contentCenterSvg from '../../images/content_center.svg';
 import sideNavSvg from '../../images/side_nav.svg';
 import singleSvg from '../../images/single.svg';
 
-const templates = ['default', 'centeredBody', 'centeredContent', 'empty'];
 // @ts-ignore Importing from JS
 import ComposedDemo from './composed/_composed_demo';
+// @ts-ignore Importing from JS
+import TemplateDemo from './templates/page_template';
 
 const ExitFullscreenDemoButton = () => {
   const exitPath = useExitPath();
@@ -46,12 +52,15 @@ const ExitFullscreenDemoButton = () => {
  */
 const demosAsIndividualComponents = new Set<string>();
 
+type TEMPLATE = typeof TEMPLATES[number];
+
 export const PageDemo: FunctionComponent<{
   slug: string;
   fullscreen?: boolean;
   sidebar?: boolean;
-  showTemplates?: boolean;
-  pattern: ComponentType<{
+  showTemplates?: TEMPLATE[];
+  toggleSidebar?: boolean;
+  composed: ComponentType<{
     button: ReactElement;
     content: ReactElement;
     sideNav?: ReactElement;
@@ -67,15 +76,14 @@ export const PageDemo: FunctionComponent<{
     pageHeader?: EuiPageHeaderProps;
     template: string;
   }>;
-  centered?: boolean;
 }> = ({
   slug,
   fullscreen,
-  showTemplates = false,
+  toggleSidebar = false,
+  showTemplates = TEMPLATES,
   sidebar = true,
-  pattern,
-  template,
-  centered: _centered,
+  composed = ComposedDemo,
+  template = TemplateDemo,
 }) => {
   const { path } = useRouteMatch();
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
@@ -90,8 +98,13 @@ export const PageDemo: FunctionComponent<{
     });
   };
 
-  const [templateValue, setTemplateValue] = useState<string>('default');
-  const centered = _centered || templateValue.includes('center');
+  const [showSidebar, setShowSidebar] = useState<boolean>(sidebar);
+
+  const [templateValue, setTemplateValue] = useState<TEMPLATE>(
+    showTemplates[0]
+  );
+
+  const centered = templateValue.includes('center');
 
   const button = fullscreen ? (
     <ExitFullscreenDemoButton />
@@ -109,7 +122,7 @@ export const PageDemo: FunctionComponent<{
     />
   );
 
-  const content = (
+  let content = (
     <>
       <EuiImage
         size={centered ? 'l' : 'fullWidth'}
@@ -135,7 +148,7 @@ export const PageDemo: FunctionComponent<{
     </EuiButton>
   );
 
-  const pageHeaderProps = {
+  let pageHeaderProps: EuiPageTemplateProps['pageHeader'] = {
     iconType: 'logoElastic',
     pageTitle: 'Page title',
     rightSideItems: [button],
@@ -147,28 +160,55 @@ export const PageDemo: FunctionComponent<{
     ],
   };
 
+  if (templateValue === 'centeredBody') {
+    pageHeaderProps = undefined;
+    content = (
+      <EuiEmptyPrompt
+        title={<span>No spice</span>}
+        body={content}
+        actions={button}
+      />
+    );
+  } else if (centered) {
+    content = (
+      <EuiEmptyPrompt
+        color="subdued"
+        title={<span>No spice</span>}
+        body={content}
+      />
+    );
+  }
+
   const controls = (
     <EuiFlexGroup alignItems="center">
       <EuiFlexItem>
-        {showTemplates && (
-          <EuiSelect
-            compressed
-            prepend="Template"
-            aria-label="Template"
-            options={templates.map((option) => {
-              return {
-                value: option,
-                text: option,
-              };
-            })}
-            onChange={(e) => setTemplateValue(e.target.value)}
-            value={templateValue}
-          />
-        )}
+        <EuiSelect
+          compressed
+          prepend="Template"
+          aria-label="Template"
+          options={showTemplates.map((option) => {
+            return {
+              value: option,
+              text: option,
+            };
+          })}
+          onChange={(e) => setTemplateValue(e.target.value as TEMPLATE)}
+          value={templateValue}
+          disabled={showTemplates.length < 2}
+        />
       </EuiFlexItem>
+      {toggleSidebar && (
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Show with sidebar"
+            checked={showSidebar}
+            onChange={() => setShowSidebar((showing) => !showing)}
+          />
+        </EuiFlexItem>
+      )}
       <EuiFlexItem grow={false}>
         <EuiSwitch
-          label="Show with individual components"
+          label="Show with composed components"
           checked={!showTemplate}
           onChange={() => setShowTemplate((showing) => !showing)}
         />
@@ -176,8 +216,7 @@ export const PageDemo: FunctionComponent<{
     </EuiFlexGroup>
   );
 
-  let Child = showTemplate ? template : pattern;
-  if (!showTemplate && showTemplates) Child = ComposedDemo;
+  const Child = showTemplate ? template : composed;
 
   return fullscreen ? (
     <>
@@ -187,7 +226,7 @@ export const PageDemo: FunctionComponent<{
       <Child
         button={button}
         content={content}
-        sideNav={sidebar ? sideNav : undefined}
+        sideNav={showSidebar ? sideNav : undefined}
         bottomBar={bottomBar}
         template={templateValue}
         pageHeader={pageHeaderProps}
@@ -199,7 +238,7 @@ export const PageDemo: FunctionComponent<{
         <Child
           button={button}
           content={content}
-          sideNav={sidebar ? sideNav : undefined}
+          sideNav={showSidebar ? sideNav : undefined}
           bottomBar={bottomBar}
           template={templateValue}
           pageHeader={pageHeaderProps}

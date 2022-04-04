@@ -2,12 +2,12 @@ import React from 'react';
 
 import { EuiPageTemplate } from '../../../../../src';
 
-export default ({ pageHeader, content, sideNav, template }) => {
+export default ({ pageHeader, content, sideNav, bottomBar }) => {
   return (
     <EuiPageTemplate
-      template={template}
       pageSideBar={sideNav}
       pageHeader={pageHeader}
+      bottomBar={bottomBar}
     >
       {content}
     </EuiPageTemplate>

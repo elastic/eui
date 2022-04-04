@@ -16,15 +16,19 @@ export default ({ pageHeader, content, sideNav }) => (
       </EuiPageSideBar>
     )}
 
-    <EuiPageBody paddingSize="l" panelled={!!sideNav}>
-      <EuiPageHeader {...pageHeader} restrictWidth bottomBorder />
+    <EuiPageBody panelled={!!sideNav}>
+      <EuiPageHeader
+        {...pageHeader}
+        restrictWidth
+        bottomBorder
+        paddingSize="l"
+      />
 
       <EuiPageContent
+        paddingSize="l"
         verticalPosition="center"
         horizontalPosition="center"
-        paddingSize="l"
-        color="subdued"
-        hasShadow={false}
+        color="transparent"
       >
         {content}
       </EuiPageContent>

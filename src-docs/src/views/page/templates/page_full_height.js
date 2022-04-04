@@ -6,7 +6,7 @@ import {
   EuiFlexItem,
   EuiPanel,
   EuiSpacer,
-} from '../../../../src/components';
+} from '../../../../../src';
 
 export default ({ button = <></>, content }) => (
   <EuiPageTemplate fullHeight template="empty">

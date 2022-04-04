@@ -18,7 +18,9 @@ export default ({ pageHeader, content, sideNav }) => {
       )}
 
       <EuiPageBody paddingSize="l">
-        <EuiPageHeader {...pageHeader} restrictWidth bottomBorder />
+        {pageHeader && (
+          <EuiPageHeader {...pageHeader} restrictWidth bottomBorder />
+        )}
         <EuiPageContent
           verticalPosition="center"
           horizontalPosition="center"

@@ -7,9 +7,9 @@ import {
   EuiPageHeader,
   EuiPageSideBar,
   EuiPageBody,
-} from '../../../../src/components';
+} from '../../../../../src';
 
-export default ({ button = <></>, content, sideNav }) => {
+export default ({ pageHeader, content, sideNav }) => {
   return (
     <EuiPage paddingSize="none">
       <EuiPageSideBar paddingSize="l" sticky>
@@ -18,17 +18,17 @@ export default ({ button = <></>, content, sideNav }) => {
 
       <EuiPageBody panelled>
         <EuiPageHeader
+          {...pageHeader}
           restrictWidth={'75%'}
-          iconType="logoElastic"
-          pageTitle="Page title"
-          rightSideItems={[button]}
           description="Restricting the width to 75%."
+          paddingSize="l"
+          bottomBorder
         />
 
         <EuiPageContent
           hasBorder={false}
           hasShadow={false}
-          paddingSize="none"
+          paddingSize="l"
           color="transparent"
           borderRadius="none"
         >

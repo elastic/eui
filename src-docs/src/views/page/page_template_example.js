@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
-import { pageTemplateConfig } from './playground';
 import { PageDemo } from './_page_demo';
 
 import {
@@ -21,55 +20,25 @@ import {
   EuiBottomBar,
 } from '../../../../src/components';
 
-import PageNew from './composed/page_default';
-const pageNewSource = require('!!raw-loader!./composed/page_default');
-import PageTemplate from './templates/page_template';
-const PageTemplateSource = require('!!raw-loader!./templates/page_template');
+import PageBottomBar from './composed/page_bottom_bar';
+const pageBottomBarSource = require('!!raw-loader!./composed/page_bottom_bar');
+import PageBottomBarTemplate from './templates/page_bottom_bar';
+const PageBottomBarTemplateSource = require('!!raw-loader!./templates/page_bottom_bar');
 
-import PageBottomBar from './page_bottom_bar';
-const pageBottomBarSource = require('!!raw-loader!./page_bottom_bar');
-import PageBottomBarTemplate from './page_bottom_bar_template';
-const PageBottomBarTemplateSource = require('!!raw-loader!./page_bottom_bar_template');
+import PageRestrictingWidth from './composed/page_restricting_width';
+const PageRestrictingWidthSource = require('!!raw-loader!./composed/page_restricting_width');
+import PageRestrictingWidthTemplate from './templates/page_restricting_width';
+const PageRestrictingWidthTemplateSource = require('!!raw-loader!./templates/page_restricting_width');
 
-import PageRestrictingWidth from './page_restricting_width';
-const PageRestrictingWidthSource = require('!!raw-loader!./page_restricting_width');
-import PageRestrictingWidthTemplate from './page_restricting_width_template';
-const PageRestrictingWidthTemplateSource = require('!!raw-loader!./page_restricting_width_template');
+import PageFullHeight from './composed/page_full_height';
+const PageFullHeightSource = require('!!raw-loader!./composed/page_full_height');
+import PageFullHeightTemplate from './templates/page_full_height';
+const PageFullHeightTemplateSource = require('!!raw-loader!./templates/page_full_height');
 
-import PageCenteredBody from './page_centered_body';
-const PageCenteredBodySource = require('!!raw-loader!./page_centered_body');
-import PageCenteredBodyTemplate from './page_centered_body_template';
-const PageCenteredBodyTemplateSource = require('!!raw-loader!./page_centered_body_template');
-
-import PageCenteredContent from './page_centered_content';
-const PageCenteredContentSource = require('!!raw-loader!./page_centered_content');
-import PageCenteredContentTemplate from './page_centered_content_template';
-const PageCenteredContentTemplateSource = require('!!raw-loader!./page_centered_content_template');
-
-import PageSimple from './page_simple';
-const PageSimpleSource = require('!!raw-loader!./page_simple');
-import PageSimpleTemplate from './page_simple_template';
-const PageSimpleTemplateSource = require('!!raw-loader!./page_simple_template');
-
-import PageFullHeight from './page_full_height';
-const PageFullHeightSource = require('!!raw-loader!./page_full_height');
-import PageFullHeightTemplate from './page_full_height_template';
-const PageFullHeightTemplateSource = require('!!raw-loader!./page_full_height_template');
-
-import PageSimpleCenteredBody from './page_simple_content_body';
-const PageSimpleCenteredBodySource = require('!!raw-loader!./page_simple_content_body');
-import PageSimpleCenteredBodyTemplate from './page_simple_content_body_template';
-const PageSimpleCenteredBodyTemplateSource = require('!!raw-loader!./page_simple_content_body_template');
-
-import PageSimpleEmptyContent from './page_simple_empty_content';
-const PageSimpleEmptyContentSource = require('!!raw-loader!./page_simple_empty_content');
-import PageSimpleEmptyContentTemplate from './page_simple_empty_content_template';
-const PageSimpleEmptyContentTemplateSource = require('!!raw-loader!./page_simple_empty_content_template');
-
-import PageCustomContent from './page_custom_content';
-const PageCustomContentSource = require('!!raw-loader!./page_custom_content');
-import PageCustomContentTemplate from './page_custom_content_template';
-const PageCustomContentTemplateSource = require('!!raw-loader!./page_custom_content_template');
+import PageCustomContent from './composed/page_custom_content';
+const PageCustomContentSource = require('!!raw-loader!./composed/page_custom_content');
+import PageCustomContentTemplate from './templates/page_custom_content';
+const PageCustomContentTemplateSource = require('!!raw-loader!./templates/page_custom_content');
 
 import PageLegacy from './page';
 const PageLegacySource = require('!!raw-loader!./page');
@@ -80,11 +49,12 @@ export const PageTemplateExample = {
     <>
       <EuiText>
         <p>
-          Page layouts are modular and fit together in a precise manner, though
-          certain parts can also be added or removed as needed. EUI provides
-          both the <strong>individual page components</strong> and an
-          over-arching <strong>template</strong> for easily creating some
-          pre-defined layouts.
+          You can use the provided <strong>EuiPageTemplate</strong> as a
+          shortcut for creating the different types of page layout patterns
+          described in these docs. It is somewhat opinionated, but still has the
+          ability to customize most of the inner components with props like{' '}
+          <EuiCode>pageSideBarProps</EuiCode> and{' '}
+          <EuiCode>pageContentProps</EuiCode>.
         </p>
       </EuiText>
       <EuiSpacer />
@@ -117,68 +87,76 @@ export const PageTemplateExample = {
       text: (
         <>
           <p>
-            For ease of placing as specfic page title using{' '}
+            For ease of placing as specific page title using{' '}
             <strong>EuiPageHeader</strong> within your page layouts,{' '}
             <strong>EuiPageTemplate</strong> provides passing the{' '}
             <strong>EuiPageHeader</strong> props directly to the{' '}
             <EuiCode>pageHeader</EuiCode> prop.
           </p>
+          <p>
+            When a page header is provided this way, it will always be the first
+            content displayed within the page contents. For full customization,
+            we suggest providing the <EuiCode>{'<EuiPageHeader />'}</EuiCode>{' '}
+            component directly as a child.
+          </p>
         </>
       ),
       demoPanelProps: {
         paddingSize: 'none',
         style: { overflow: 'hidden' },
       },
-      demo: (
-        <PageDemo
-          slug="full-page"
-          pattern={PageNew}
-          template={PageTemplate}
-          showTemplates
-          sidebar={false}
-        />
-      ),
+      demo: <PageDemo slug="full-page" sidebar={false} />,
       fullScreen: {
         slug: 'full-page',
-        demo: (
-          <PageDemo
-            slug="full-page"
-            pattern={PageNew}
-            template={PageTemplate}
-            fullscreen
-            showTemplates
-            sidebar={false}
-          />
-        ),
+        demo: <PageDemo slug="full-page" fullscreen sidebar={false} />,
       },
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageTemplateSource,
-          displayName: 'Template JS',
-        },
-        {
-          type: GuideSectionTypes.JS,
-          code: pageNewSource,
-          displayName: 'Components JS',
-        },
-      ],
       props: {
         EuiPageTemplate,
         EuiPageHeader,
       },
     },
     {
-      title: 'Page template with sidebar and header',
+      title: 'Providing a sidebar',
       text: (
         <>
           <p>
-            You can use the provided <strong>EuiPageTemplate</strong> as a
-            shortcut for creating the different types of page layout patterns
-            described in these docs. It is somewhat opinionated, but still has
-            the ability to customize most of the inner components with props
-            like <EuiCode>pageSideBarProps</EuiCode> and{' '}
-            <EuiCode>pageContentProps</EuiCode>.
+            If your application requires the use of side navigation or other
+            sidebar content, you can pass that content directly to{' '}
+            <EuiCode>pageSideBar</EuiCode>. The template will automatically
+            adjust the layout when this content is provided.
+          </p>
+          <p>
+            You can make further adjustments to this portion of the template
+            through the <EuiCode>pageSideBarProps</EuiCode> prop which is an
+            object <strong>EuiPageSideBar</strong> props.
+          </p>
+        </>
+      ),
+      demoPanelProps: {
+        paddingSize: 'none',
+        style: { overflow: 'hidden' },
+      },
+      demo: <PageDemo slug="full-page" />,
+      fullScreen: {
+        slug: 'full-page',
+        demo: <PageDemo slug="full-page" fullscreen />,
+      },
+      props: {
+        EuiPageTemplate,
+        EuiPageSideBar,
+      },
+    },
+    {
+      title: 'Restricting page width',
+      text: (
+        <>
+          <p>
+            Most content does not scale well to the full width of the window.
+            You can restrict this to EUI&apos;s default max-width and center the
+            page by setting the <EuiCode>restrictWidth</EuiCode> prop to{' '}
+            <EuiCode>true</EuiCode>. You can also pass an integer to this
+            property to set the max-width to a custom pixel value or a string
+            with a custom measurement.
           </p>
         </>
       ),
@@ -188,50 +166,24 @@ export const PageTemplateExample = {
       },
       demo: (
         <PageDemo
-          slug="full-page"
-          pattern={PageNew}
-          template={PageTemplate}
-          showTemplates
+          slug="restricting-page-width"
+          composed={PageRestrictingWidth}
+          template={PageRestrictingWidthTemplate}
+          showTemplates={['default']}
         />
       ),
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageTemplateSource,
-          displayName: 'Template JS',
-        },
-        {
-          type: GuideSectionTypes.JS,
-          code: pageNewSource,
-          displayName: 'Components JS',
-        },
-      ],
       fullScreen: {
-        slug: 'full-page',
+        slug: 'restricting-page-width',
         demo: (
           <PageDemo
-            slug="full-page"
-            pattern={PageNew}
-            template={PageTemplate}
+            slug="restricting-page-width"
+            composed={PageRestrictingWidth}
+            template={PageRestrictingWidthTemplate}
+            showTemplates={['default']}
             fullscreen
-            showTemplates
           />
         ),
       },
-      props: {
-        EuiPageTemplate,
-        EuiPage,
-        EuiPageBody,
-        EuiPageSideBar,
-        EuiPageHeader,
-        EuiPageContent,
-        EuiPageContentBody,
-        EuiBottomBar,
-      },
-      playground: pageTemplateConfig,
-    },
-    {
-      title: 'Restricting page width',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -244,50 +196,69 @@ export const PageTemplateExample = {
           displayName: 'Components JS',
         },
       ],
+      props: {
+        EuiPageTemplate,
+      },
+    },
+    {
+      title: 'Showing a bottom bar',
       text: (
         <>
           <p>
-            Most content does not scale well to the full width of the window.
-            You can restrict this to a typical width and center the page by
-            setting the <EuiCode>restrictWidth</EuiCode> prop to{' '}
-            <EuiCode>true</EuiCode> on <strong>EuiPageHeader</strong> and{' '}
-            <strong>EuiPageContent</strong>. You can also pass an integer to
-            this property to max out the width at a custom pixel value or a
-            string with a custom measurement.
+            Adding an{' '}
+            <Link to="/layout/bottom-bar">
+              <strong>EuiBottomBar</strong>
+            </Link>{' '}
+            can be tricky to use and account for any sidebars.{' '}
+            <strong>EuiPageTemplate</strong> handles this nicely by supplying a{' '}
+            <EuiCode>bottomBar</EuiCode> prop for passing the contents of your
+            bottom bar, and <EuiCode>bottomBarProps</EuiCode> that extends{' '}
+            <strong>EuiBottomBar</strong>.
+          </p>
+          <p>
+            It uses the <EuiCode>sticky</EuiCode> position so that it sticks to
+            the bottom of and remains within the bounds of page body. This way
+            it will never overlap the sidebar, no matter the screen size. It
+            also means not needing to accommodate for the height of the bar in
+            the body element.
           </p>
           <EuiCallOut
-            size="s"
+            color="warning"
             title={
               <>
-                The <strong>EuiPageTemplate</strong> allows setting this
-                property at the top level and defaults to{' '}
-                <EuiCode>true</EuiCode>.
+                <strong>EuiPageTemplate</strong> only supports bottom bars in
+                the <EuiCode>default</EuiCode> template.
               </>
             }
           />
         </>
       ),
+      demoPanelProps: {
+        paddingSize: 'none',
+        style: { overflow: 'hidden' },
+      },
       demo: (
         <PageDemo
-          slug="restricting-page-width"
-          pattern={PageRestrictingWidth}
-          template={PageRestrictingWidthTemplate}
+          slug="bottom-bar"
+          composed={PageBottomBar}
+          template={PageBottomBarTemplate}
+          showTemplates={['default']}
+          toggleSidebar
         />
       ),
       fullScreen: {
-        slug: 'restricting-page-width',
+        slug: 'bottom-bar',
         demo: (
           <PageDemo
-            slug="restricting-page-width"
-            pattern={PageRestrictingWidth}
-            template={PageRestrictingWidthTemplate}
+            slug="bottom-bar"
+            composed={PageBottomBar}
+            template={PageBottomBarTemplate}
+            showTemplates={['default']}
+            toggleSidebar
             fullscreen
           />
         ),
       },
-    },
-    {
-      title: 'Showing a bottom bar',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -300,100 +271,42 @@ export const PageTemplateExample = {
           displayName: 'Components JS',
         },
       ],
-      text: (
-        <>
-          <p>
-            Adding an{' '}
-            <Link to="/layout/bottom-bar">
-              <strong>EuiBottomBar</strong>
-            </Link>{' '}
-            can be tricky to use and account for any side bars.{' '}
-            <strong>EuiPageTemplate</strong> handles this nicely by supplying a{' '}
-            <EuiCode>bottomBar</EuiCode> prop for passing the contents of your
-            bottom bar, and <EuiCode>bottomBarProps</EuiCode> that extends{' '}
-            <strong>EuiBottomBar</strong>.
-          </p>
-          <p>
-            It uses the <EuiCode>sticky</EuiCode> position so that it sticks to
-            the bottom of and remains within the bounds of{' '}
-            <strong>EuiPageBody</strong>. This way it will never overlap the{' '}
-            <strong>EuiPageSideBar</strong>, no matter the screen size. It also
-            means not needing to accommodate for the height of the bar in the
-            body element.
-          </p>
-          <EuiCallOut
-            size="s"
-            color="warning"
-            title={
-              <>
-                <strong>EuiPageTemplate</strong> only supports bottom bars in
-                the <EuiCode>default</EuiCode> template.
-              </>
-            }
-          />
-        </>
-      ),
-      demo: (
-        <PageDemo
-          slug="bottom-bar"
-          pattern={PageBottomBar}
-          template={PageBottomBarTemplate}
-        />
-      ),
-      fullScreen: {
-        slug: 'bottom-bar',
-        demo: (
-          <PageDemo
-            slug="bottom-bar"
-            pattern={PageBottomBar}
-            template={PageBottomBarTemplate}
-            fullscreen
-          />
-        ),
+      props: {
+        EuiPageTemplate,
+        EuiBottomBar,
       },
     },
     {
-      title: 'Centered body',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageCenteredBodyTemplateSource,
-          displayName: 'Template JS',
-        },
-        {
-          type: GuideSectionTypes.JS,
-          code: PageCenteredBodySource,
-          displayName: 'Components JS',
-        },
-      ],
+      title: 'Empty pages or content',
       text: (
         <>
           <p>
-            When the content for the page is minimal or in an empty/pre-setup
-            state, the page content can be centered vertically and horizontally.
-            We recommend then using the{' '}
+            When the content is in an empty/pre-setup state, we recommend then
+            using an{' '}
             <Link to="/display/empty-prompt">
               <strong>EuiEmptyPrompt</strong>
             </Link>{' '}
-            for the content.
+            to direct users on next steps. This prompt can be centered
+            vertically and horizontally by using{' '}
+            <EuiCode>{'template="centeredBody"'}</EuiCode>.
           </p>
-          <EuiCallOut
-            size="s"
-            title={
-              <>
-                This layout can be achieved in <strong>EuiPageTemplate</strong>{' '}
-                by setting <EuiCode>{'template="centeredBody"'}</EuiCode>.
-              </>
-            }
-          />
+          <p>
+            We do not typically recommend this template when used in conjunction
+            with a page header. Instead, we recommend using{' '}
+            <EuiCode>{'template="centeredContent"'}</EuiCode> with a{' '}
+            <EuiCode>subdued</EuiCode> <strong>EuiEmptyPrompt</strong> color.
+          </p>
         </>
       ),
+      demoPanelProps: {
+        paddingSize: 'none',
+        style: { overflow: 'hidden' },
+      },
       demo: (
         <PageDemo
           slug="centered-body"
-          centered
-          pattern={PageCenteredBody}
-          template={PageCenteredBodyTemplate}
+          toggleSidebar
+          showTemplates={['centeredBody', 'centeredContent']}
         />
       ),
       fullScreen: {
@@ -401,121 +314,13 @@ export const PageTemplateExample = {
         demo: (
           <PageDemo
             slug="centered-body"
-            centered
-            pattern={PageCenteredBody}
-            template={PageCenteredBodyTemplate}
+            toggleSidebar
+            showTemplates={['centeredBody', 'centeredContent']}
             fullscreen
           />
         ),
       },
       props: { EuiPageTemplate, EuiEmptyPrompt },
-    },
-    {
-      title: 'Centered content',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageCenteredContentTemplateSource,
-          displayName: 'Template JS',
-        },
-        {
-          type: GuideSectionTypes.JS,
-          code: PageCenteredContentSource,
-          displayName: 'Components JS',
-        },
-      ],
-      text: (
-        <>
-          <p>
-            Similar to the previous example, you can create a centered panel to
-            emphasize incompleteness even with a page header. For this setup, we
-            recommend setting <strong>EuiPageContent</strong> to use the{' '}
-            <EuiCode>subdued</EuiCode> color as to not have nested shadows.
-          </p>
-          <EuiCallOut
-            size="s"
-            title={
-              <>
-                This layout can be achieved in <strong>EuiPageTemplate</strong>{' '}
-                by setting <EuiCode>{'template="centeredContent"'}</EuiCode>.
-              </>
-            }
-          />
-        </>
-      ),
-      demo: (
-        <PageDemo
-          slug="centered-content"
-          centered
-          pattern={PageCenteredContent}
-          template={PageCenteredContentTemplate}
-        />
-      ),
-      fullScreen: {
-        slug: 'centered-content',
-        demo: (
-          <PageDemo
-            slug="centered-content"
-            centered
-            pattern={PageCenteredContent}
-            template={PageCenteredContentTemplate}
-            fullscreen
-          />
-        ),
-      },
-    },
-    {
-      title: 'A simple page with tabs',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageSimpleTemplateSource,
-          displayName: 'Template JS',
-        },
-        {
-          type: GuideSectionTypes.JS,
-          code: PageSimpleSource,
-          displayName: 'Components JS',
-        },
-      ],
-      text: (
-        <>
-          <p>
-            When leaving off the <strong>EuiPageSideBar</strong>, we recommend a
-            slightly different configuration by pulling the page header out of
-            the <strong>EuiPageContent</strong> and removing the shadow from{' '}
-            <strong>EuiPageContent</strong>.
-          </p>
-          <EuiCallOut
-            size="s"
-            title={
-              <>
-                This layout will automatically be achieved through{' '}
-                <strong>EuiPageTemplate</strong> by leaving{' '}
-                <EuiCode>pageSideBar</EuiCode> as <EuiCode>undefined</EuiCode>.
-              </>
-            }
-          />
-        </>
-      ),
-      demo: (
-        <PageDemo
-          slug="tabs"
-          pattern={PageSimple}
-          template={PageSimpleTemplate}
-        />
-      ),
-      fullScreen: {
-        slug: 'tabs',
-        demo: (
-          <PageDemo
-            slug="tabs"
-            pattern={PageSimple}
-            template={PageSimpleTemplate}
-            fullscreen
-          />
-        ),
-      },
     },
     {
       title: 'Full height layout',
@@ -590,11 +395,16 @@ export const PageTemplateExample = {
           />
         </>
       ),
+      demoPanelProps: {
+        paddingSize: 'none',
+        style: { overflow: 'hidden' },
+      },
       demo: (
         <PageDemo
           slug="full-height"
-          pattern={PageFullHeight}
+          composed={PageFullHeight}
           template={PageFullHeightTemplate}
+          showTemplates={['empty']}
         />
       ),
       fullScreen: {
@@ -602,104 +412,51 @@ export const PageTemplateExample = {
         demo: (
           <PageDemo
             slug="full-height"
-            pattern={PageFullHeight}
+            composed={PageFullHeight}
             template={PageFullHeightTemplate}
+            showTemplates={['empty']}
             fullscreen
           />
         ),
       },
     },
     {
-      title: 'Simple layout with centered body',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageSimpleCenteredBodyTemplateSource,
-          displayName: 'Template JS',
-        },
-        {
-          type: GuideSectionTypes.JS,
-          code: PageSimpleCenteredBodySource,
-          displayName: 'Components JS',
-        },
-      ],
+      title: 'Custom content',
       text: (
-        <p>
-          Similar to the version with a side bar, when the content for the page
-          is minimal or in an empty/pre-setup state, the page content can be
-          centered vertically and horizontally. We recommend then using the{' '}
-          <Link to="/display/empty-prompt">
-            <strong>EuiEmptyPrompt</strong>
-          </Link>{' '}
-          for the content.
-        </p>
+        <>
+          <p>
+            You can ignore most of the configurations of{' '}
+            <strong>EuiPageTemplate</strong> and pass your own completely custom
+            content, with or without a custom page header. This allows you to
+            create dashboard style layouts with lots of panels or prepend the
+            page contents with a callout.
+          </p>
+        </>
       ),
+      demoPanelProps: {
+        paddingSize: 'none',
+        style: { overflow: 'hidden' },
+      },
       demo: (
         <PageDemo
-          slug="simple-centered-body"
-          centered
-          pattern={PageSimpleCenteredBody}
-          template={PageSimpleCenteredBodyTemplate}
+          slug="simple-custom-content"
+          composed={PageCustomContent}
+          template={PageCustomContentTemplate}
+          showTemplates={['empty']}
         />
       ),
       fullScreen: {
-        slug: 'simple-centered-body',
+        slug: 'simple-custom-content',
         demo: (
           <PageDemo
-            slug="simple-centered-body"
-            centered
-            pattern={PageSimpleCenteredBody}
-            template={PageSimpleCenteredBodyTemplate}
+            slug="simple-custom-content"
+            composed={PageCustomContent}
+            template={PageCustomContentTemplate}
+            showTemplates={['empty']}
             fullscreen
           />
         ),
       },
-    },
-    {
-      title: 'Simple layout with centered content',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageSimpleEmptyContentTemplateSource,
-          displayName: 'Template JS',
-        },
-        {
-          type: GuideSectionTypes.JS,
-          code: PageSimpleEmptyContentSource,
-          displayName: 'Components JS',
-        },
-      ],
-      text: (
-        <p>
-          Also similar to the previous examples, you can create a centered panel
-          to emphasize incompleteness even with a page header. For this setup,
-          You will need to use nested <strong>EuiPageContent</strong> components
-          in order for the centering to work.
-        </p>
-      ),
-      demo: (
-        <PageDemo
-          slug="simple-centered-content"
-          centered
-          pattern={PageSimpleEmptyContent}
-          template={PageSimpleEmptyContentTemplate}
-        />
-      ),
-      fullScreen: {
-        slug: 'simple-centered-content',
-        demo: (
-          <PageDemo
-            slug="simple-centered-content"
-            centered
-            pattern={PageSimpleEmptyContent}
-            template={PageSimpleEmptyContentTemplate}
-            fullscreen
-          />
-        ),
-      },
-    },
-    {
-      title: 'A simple page layout with custom content',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -712,43 +469,6 @@ export const PageTemplateExample = {
           displayName: 'Components JS',
         },
       ],
-      text: (
-        <>
-          <p>
-            You can replace the inner parts of <strong>EuiPageBody</strong> with
-            your own content, with or without a page header. This allows you to
-            create dashboard style layouts with lots of panels. It is not
-            recommended, however, to use this setup when you also have side bar.
-          </p>
-          <EuiCallOut
-            size="s"
-            title={
-              <>
-                This layout can be achieved in <strong>EuiPageTemplate</strong>{' '}
-                by setting <EuiCode>{'template="empty"'}</EuiCode>.
-              </>
-            }
-          />
-        </>
-      ),
-      demo: (
-        <PageDemo
-          slug="simple-custom-content"
-          pattern={PageCustomContent}
-          template={PageCustomContentTemplate}
-        />
-      ),
-      fullScreen: {
-        slug: 'simple-custom-content',
-        demo: (
-          <PageDemo
-            slug="simple-custom-content"
-            pattern={PageCustomContent}
-            template={PageCustomContentTemplate}
-            fullscreen
-          />
-        ),
-      },
     },
     {
       title: 'Legacy layout',

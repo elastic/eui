@@ -1,16 +1,14 @@
 import React from 'react';
 
-import { EuiPageTemplate } from '../../../../src/components';
+import { EuiPageTemplate } from '../../../../../src';
 
-export default ({ button = <></>, content, sideNav }) => {
+export default ({ pageHeader, content, sideNav }) => {
   return (
     <EuiPageTemplate
       pageSideBar={sideNav}
       restrictWidth="75%"
       pageHeader={{
-        iconType: 'logoElastic',
-        pageTitle: 'Page title',
-        rightSideItems: [button],
+        ...pageHeader,
         description: 'Restricting the width to 75%.',
       }}
     >
