@@ -21,10 +21,10 @@ import {
   EuiBottomBar,
 } from '../../../../src/components';
 
-import PageNew from './page_new';
-const pageNewSource = require('!!raw-loader!./page_new');
-import PageTemplate from './page_template';
-const PageTemplateSource = require('!!raw-loader!./page_template');
+import PageNew from './composed/page_default';
+const pageNewSource = require('!!raw-loader!./composed/page_default');
+import PageTemplate from './templates/page_template';
+const PageTemplateSource = require('!!raw-loader!./templates/page_template');
 
 import PageBottomBar from './page_bottom_bar';
 const pageBottomBarSource = require('!!raw-loader!./page_bottom_bar');
@@ -113,7 +113,31 @@ export const PageTemplateExample = {
   ),
   sections: [
     {
-      title: 'A full page with everything',
+      title: 'Page template with sidebar and header',
+      text: (
+        <>
+          <p>
+            You can use the provided <strong>EuiPageTemplate</strong> as a
+            shortcut for creating the different types of page layout patterns
+            described in these docs. It is somewhat opinionated, but still has
+            the ability to customize most of the inner components with props
+            like <EuiCode>pageSideBarProps</EuiCode> and{' '}
+            <EuiCode>pageContentProps</EuiCode>.
+          </p>
+        </>
+      ),
+      demoPanelProps: {
+        paddingSize: 'none',
+        style: { overflow: 'hidden' },
+      },
+      demo: (
+        <PageDemo
+          slug="full-page"
+          pattern={PageNew}
+          template={PageTemplate}
+          showTemplates
+        />
+      ),
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -126,57 +150,18 @@ export const PageTemplateExample = {
           displayName: 'Components JS',
         },
       ],
-      text: (
-        <div>
-          <p>
-            EUI provides a family of components using the{' '}
-            <EuiCode>EuiPage</EuiCode> prefix that work together to build
-            consistent page layouts that work responsively.
-          </p>
-          <ul>
-            <li>
-              <strong>EuiPage</strong> and <strong>EuiPageBody</strong> provide
-              the overall wrapper with a column flex display.
-            </li>
-            <li>
-              <strong>EuiPageSideBar</strong> provides a way to add side
-              navigation that can be made <EuiCode>sticky</EuiCode> to scroll
-              independent of the page content. See{' '}
-              <Link to="/navigation/side-nav">
-                <strong>EuiSideNav</strong>
-              </Link>{' '}
-              for contents.
-            </li>
-            <li>
-              <Link to="/layout/page-header">
-                <strong>EuiPageHeader</strong>
-              </Link>{' '}
-              provides a title, description, section for actions and possible
-              tabs.
-            </li>
-            <li>
-              <strong>EuiPageContent</strong> provides the main content
-              container and extends{' '}
-              <Link to="/layout/panel">
-                <strong>EuiPanel</strong>
-              </Link>
-              .
-            </li>
-            <li>
-              <strong>EuiPageContentBody</strong> wraps the content that comes
-              after the page header.
-            </li>
-          </ul>
-          <p>
-            Or you can use the provided <strong>EuiPageTemplate</strong>, which
-            is simply a shortcut for creating the different types of page layout
-            patterns described in these docs. It is somewhat opinionated, but
-            still has the ability to customize most of the inner components with
-            props like <EuiCode>pageSideBarProps</EuiCode> and{' '}
-            <EuiCode>pageContentProps</EuiCode>.
-          </p>
-        </div>
-      ),
+      fullScreen: {
+        slug: 'full-page',
+        demo: (
+          <PageDemo
+            slug="full-page"
+            pattern={PageNew}
+            template={PageTemplate}
+            fullscreen
+            showTemplates
+          />
+        ),
+      },
       props: {
         EuiPageTemplate,
         EuiPage,
@@ -188,20 +173,6 @@ export const PageTemplateExample = {
         EuiBottomBar,
       },
       playground: pageTemplateConfig,
-      demo: (
-        <PageDemo slug="full-page" pattern={PageNew} template={PageTemplate} />
-      ),
-      fullScreen: {
-        slug: 'full-page',
-        demo: (
-          <PageDemo
-            slug="full-page"
-            pattern={PageNew}
-            template={PageTemplate}
-            fullscreen
-          />
-        ),
-      },
     },
     {
       title: 'Restricting page width',

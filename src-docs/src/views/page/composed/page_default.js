@@ -7,7 +7,7 @@ import {
   EuiPageHeader,
   EuiPageSideBar,
   EuiPageBody,
-} from '../../../../src/components';
+} from '../../../../../src';
 
 export default ({ button = <></>, content, sideNav }) => (
   <EuiPage paddingSize="none">
@@ -18,6 +18,8 @@ export default ({ button = <></>, content, sideNav }) => (
     <EuiPageBody panelled>
       <EuiPageHeader
         restrictWidth
+        paddingSize="l"
+        bottomBorder
         iconType="logoElastic"
         pageTitle="Page title"
         rightSideItems={[button]}
@@ -26,7 +28,7 @@ export default ({ button = <></>, content, sideNav }) => (
       <EuiPageContent
         hasBorder={false}
         hasShadow={false}
-        paddingSize="none"
+        paddingSize="l"
         color="transparent"
         borderRadius="none"
       >

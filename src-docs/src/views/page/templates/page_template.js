@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { EuiPageTemplate } from '../../../../src/components';
+import { EuiPageTemplate } from '../../../../../src';
 
 export default ({ button = <></>, content, sideNav, template }) => {
-  const [showBottomBar, setshowBottomBar] = useState(false);
-
   return (
     <EuiPageTemplate
       template={template}
       pageSideBar={sideNav}
-      bottomBar={showBottomBar ? 'Bottom bar' : undefined}
       pageHeader={{
         iconType: 'logoElastic',
         pageTitle: 'Page title',
@@ -18,7 +15,6 @@ export default ({ button = <></>, content, sideNav, template }) => {
           { label: 'Tab 1', isSelected: true },
           {
             label: 'Tab 2',
-            onClick: () => setshowBottomBar((showing) => !showing),
           },
         ],
       }}

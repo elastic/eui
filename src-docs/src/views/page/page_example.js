@@ -46,6 +46,47 @@ export const PageExample = {
           and use this page to modify the props of each part of the template.
         </p>
       </EuiCallOut>
+      <EuiText>
+        <p>
+          EUI provides a family of components using the{' '}
+          <EuiCode>EuiPage</EuiCode> prefix that work together to build
+          consistent page layouts that work responsively.
+        </p>
+        <ul>
+          <li>
+            <strong>EuiPage</strong> and <strong>EuiPageBody</strong> provide
+            the overall wrapper with a column flex display.
+          </li>
+          <li>
+            <strong>EuiPageSideBar</strong> provides a way to add side
+            navigation that can be made <EuiCode>sticky</EuiCode> to scroll
+            independent of the page content. See{' '}
+            <Link to="/navigation/side-nav">
+              <strong>EuiSideNav</strong>
+            </Link>{' '}
+            for contents.
+          </li>
+          <li>
+            <Link to="/layout/page-header">
+              <strong>EuiPageHeader</strong>
+            </Link>{' '}
+            provides a title, description, section for actions and possible
+            tabs.
+          </li>
+          <li>
+            <strong>EuiPageContent</strong> provides the main content container
+            and extends{' '}
+            <Link to="/layout/panel">
+              <strong>EuiPanel</strong>
+            </Link>
+            .
+          </li>
+          <li>
+            <strong>EuiPageContentBody</strong> wraps the content that comes
+            after the page header.
+          </li>
+        </ul>
+      </EuiText>
     </>
   ),
   sections: [

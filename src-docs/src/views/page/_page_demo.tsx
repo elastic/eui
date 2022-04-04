@@ -5,11 +5,17 @@ import React, {
   FunctionComponent,
 } from 'react';
 import { useRouteMatch } from 'react-router';
-import { EuiImage } from '../../../../src/components/image';
-import { EuiButton } from '../../../../src/components/button';
-import { EuiSpacer } from '../../../../src/components/spacer';
-import { EuiSelect, EuiSwitch } from '../../../../src/components/form';
-import { EuiTextAlign } from '../../../../src/components/text';
+import {
+  EuiImage,
+  EuiButton,
+  EuiSpacer,
+  EuiSelect,
+  EuiSwitch,
+  EuiPanel,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiHeader,
+} from '../../../../src';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
 import { useExitPath } from '../../services/routing/routing';
 
@@ -19,6 +25,8 @@ import sideNavSvg from '../../images/side_nav.svg';
 import singleSvg from '../../images/single.svg';
 
 const templates = ['default', 'centeredBody', 'centeredContent', 'empty'];
+// @ts-ignore Importing from JS
+import ComposedDemo from './composed/_composed_demo';
 
 const ExitFullscreenDemoButton = () => {
   const exitPath = useExitPath();
@@ -40,6 +48,7 @@ const demosAsIndividualComponents = new Set<string>();
 export const PageDemo: FunctionComponent<{
   slug: string;
   fullscreen?: boolean;
+  showTemplates?: boolean;
   pattern: ComponentType<{
     button: ReactElement;
     content: ReactElement;
@@ -55,7 +64,14 @@ export const PageDemo: FunctionComponent<{
     template: string;
   }>;
   centered?: boolean;
-}> = ({ slug, fullscreen, pattern, template, centered }) => {
+}> = ({
+  slug,
+  fullscreen,
+  showTemplates = false,
+  pattern,
+  template,
+  centered,
+}) => {
   const { path } = useRouteMatch();
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
   const [showTemplate, _setShowTemplate] = useState(
@@ -113,18 +129,56 @@ export const PageDemo: FunctionComponent<{
     </EuiButton>
   );
 
-  const Child = showTemplate ? template : pattern;
+  const controls = (
+    <EuiFlexGroup alignItems="center">
+      <EuiFlexItem>
+        {showTemplates && (
+          <EuiSelect
+            compressed
+            prepend="Template"
+            aria-label="Template"
+            options={templates.map((option) => {
+              return {
+                value: option,
+                text: option,
+              };
+            })}
+            onChange={(e) => setTemplateValue(e.target.value)}
+            value={templateValue}
+            // Temporarily disable this control when showing the component breakdown
+            disabled={!showTemplate}
+          />
+        )}
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiSwitch
+          label="Show with individual components"
+          checked={!showTemplate}
+          onChange={() => setShowTemplate((showing) => !showing)}
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+
+  let Child = showTemplate ? template : pattern;
+  if (!showTemplate && showTemplates) Child = ComposedDemo;
+
   return fullscreen ? (
-    <Child
-      button={button}
-      content={content}
-      sideNav={sideNav}
-      bottomBar={bottomBar}
-      template={templateValue}
-    />
+    <>
+      <EuiHeader theme="dark" position="fixed" style={{ color: 'white' }}>
+        {controls}
+      </EuiHeader>
+      <Child
+        button={button}
+        content={content}
+        sideNav={sideNav}
+        bottomBar={bottomBar}
+        template={templateValue}
+      />
+    </>
   ) : (
     <>
-      <div className={'guideDemo__highlightLayout'}>
+      <div className={fullscreen ? undefined : 'guideDemo__highlightLayout'}>
         <Child
           button={button}
           content={content}
@@ -133,27 +187,14 @@ export const PageDemo: FunctionComponent<{
           template={templateValue}
         />
       </div>
-      <EuiTextAlign textAlign="right">
-        <EuiSpacer />
-        <EuiSwitch
-          label="Show with individual components"
-          checked={!showTemplate}
-          onChange={() => setShowTemplate((showing) => !showing)}
-        />
-        <EuiSelect
-          compressed
-          prepend="Template"
-          aria-label="Template"
-          options={templates.map((option) => {
-            return {
-              value: option,
-              text: option.charAt(0).toUpperCase() + option.slice(1),
-            };
-          })}
-          onChange={(e) => setTemplateValue(e.target.value)}
-          value={templateValue}
-        />
-      </EuiTextAlign>
+      <EuiPanel
+        grow={false}
+        style={{ borderWidth: '1px 0' }}
+        hasBorder
+        borderRadius="none"
+      >
+        {controls}
+      </EuiPanel>
     </>
   );
 };
