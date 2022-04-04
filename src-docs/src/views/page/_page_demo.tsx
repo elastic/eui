@@ -8,7 +8,7 @@ import { useRouteMatch } from 'react-router';
 import { EuiImage } from '../../../../src/components/image';
 import { EuiButton } from '../../../../src/components/button';
 import { EuiSpacer } from '../../../../src/components/spacer';
-import { EuiSwitch } from '../../../../src/components/form';
+import { EuiSelect, EuiSwitch } from '../../../../src/components/form';
 import { EuiTextAlign } from '../../../../src/components/text';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
 import { useExitPath } from '../../services/routing/routing';
@@ -17,6 +17,8 @@ import contentSvg from '../../images/content.svg';
 import contentCenterSvg from '../../images/content_center.svg';
 import sideNavSvg from '../../images/side_nav.svg';
 import singleSvg from '../../images/single.svg';
+
+const templates = ['default', 'centeredBody', 'centeredContent', 'empty'];
 
 const ExitFullscreenDemoButton = () => {
   const exitPath = useExitPath();
@@ -43,12 +45,14 @@ export const PageDemo: FunctionComponent<{
     content: ReactElement;
     sideNav: ReactElement;
     bottomBar: ReactElement;
+    template: string;
   }>;
   template: ComponentType<{
     button: ReactElement;
     content: ReactElement;
     sideNav: ReactElement;
     bottomBar: ReactElement;
+    template: string;
   }>;
   centered?: boolean;
 }> = ({ slug, fullscreen, pattern, template, centered }) => {
@@ -64,6 +68,8 @@ export const PageDemo: FunctionComponent<{
       return nextValue;
     });
   };
+
+  const [templateValue, setTemplateValue] = useState<string>('default');
 
   const button = fullscreen ? (
     <ExitFullscreenDemoButton />
@@ -114,6 +120,7 @@ export const PageDemo: FunctionComponent<{
       content={content}
       sideNav={sideNav}
       bottomBar={bottomBar}
+      template={templateValue}
     />
   ) : (
     <>
@@ -123,6 +130,7 @@ export const PageDemo: FunctionComponent<{
           content={content}
           sideNav={sideNav}
           bottomBar={bottomBar}
+          template={templateValue}
         />
       </div>
       <EuiTextAlign textAlign="right">
@@ -131,6 +139,19 @@ export const PageDemo: FunctionComponent<{
           label="Show with individual components"
           checked={!showTemplate}
           onChange={() => setShowTemplate((showing) => !showing)}
+        />
+        <EuiSelect
+          compressed
+          prepend="Template"
+          aria-label="Template"
+          options={templates.map((option) => {
+            return {
+              value: option,
+              text: option.charAt(0).toUpperCase() + option.slice(1),
+            };
+          })}
+          onChange={(e) => setTemplateValue(e.target.value)}
+          value={templateValue}
         />
       </EuiTextAlign>
     </>

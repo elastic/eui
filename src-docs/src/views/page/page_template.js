@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 
 import { EuiPageTemplate } from '../../../../src/components';
 
-export default ({ button = <></>, content, sideNav }) => {
+export default ({ button = <></>, content, sideNav, template }) => {
   const [showBottomBar, setshowBottomBar] = useState(false);
 
   return (
     <EuiPageTemplate
+      template={template}
       pageSideBar={sideNav}
       bottomBar={showBottomBar ? 'Bottom bar' : undefined}
       pageHeader={{
