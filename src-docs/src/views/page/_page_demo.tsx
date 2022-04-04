@@ -15,6 +15,7 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiHeader,
+  EuiPageHeaderProps,
 } from '../../../../src';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
 import { useExitPath } from '../../services/routing/routing';
@@ -48,19 +49,22 @@ const demosAsIndividualComponents = new Set<string>();
 export const PageDemo: FunctionComponent<{
   slug: string;
   fullscreen?: boolean;
+  sidebar?: boolean;
   showTemplates?: boolean;
   pattern: ComponentType<{
     button: ReactElement;
     content: ReactElement;
-    sideNav: ReactElement;
+    sideNav?: ReactElement;
     bottomBar: ReactElement;
+    pageHeader?: EuiPageHeaderProps;
     template: string;
   }>;
   template: ComponentType<{
     button: ReactElement;
     content: ReactElement;
-    sideNav: ReactElement;
+    sideNav?: ReactElement;
     bottomBar: ReactElement;
+    pageHeader?: EuiPageHeaderProps;
     template: string;
   }>;
   centered?: boolean;
@@ -68,9 +72,10 @@ export const PageDemo: FunctionComponent<{
   slug,
   fullscreen,
   showTemplates = false,
+  sidebar = true,
   pattern,
   template,
-  centered,
+  centered: _centered,
 }) => {
   const { path } = useRouteMatch();
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
@@ -86,6 +91,7 @@ export const PageDemo: FunctionComponent<{
   };
 
   const [templateValue, setTemplateValue] = useState<string>('default');
+  const centered = _centered || templateValue.includes('center');
 
   const button = fullscreen ? (
     <ExitFullscreenDemoButton />
@@ -106,7 +112,7 @@ export const PageDemo: FunctionComponent<{
   const content = (
     <>
       <EuiImage
-        size="fullWidth"
+        size={centered ? 'l' : 'fullWidth'}
         alt="Fake paragraph"
         url={centered ? contentCenterSvg : contentSvg}
       />
@@ -129,6 +135,18 @@ export const PageDemo: FunctionComponent<{
     </EuiButton>
   );
 
+  const pageHeaderProps = {
+    iconType: 'logoElastic',
+    pageTitle: 'Page title',
+    rightSideItems: [button],
+    tabs: [
+      { label: 'Tab 1', isSelected: true },
+      {
+        label: 'Tab 2',
+      },
+    ],
+  };
+
   const controls = (
     <EuiFlexGroup alignItems="center">
       <EuiFlexItem>
@@ -145,8 +163,6 @@ export const PageDemo: FunctionComponent<{
             })}
             onChange={(e) => setTemplateValue(e.target.value)}
             value={templateValue}
-            // Temporarily disable this control when showing the component breakdown
-            disabled={!showTemplate}
           />
         )}
       </EuiFlexItem>
@@ -171,9 +187,10 @@ export const PageDemo: FunctionComponent<{
       <Child
         button={button}
         content={content}
-        sideNav={sideNav}
+        sideNav={sidebar ? sideNav : undefined}
         bottomBar={bottomBar}
         template={templateValue}
+        pageHeader={pageHeaderProps}
       />
     </>
   ) : (
@@ -182,9 +199,10 @@ export const PageDemo: FunctionComponent<{
         <Child
           button={button}
           content={content}
-          sideNav={sideNav}
+          sideNav={sidebar ? sideNav : undefined}
           bottomBar={bottomBar}
           template={templateValue}
+          pageHeader={pageHeaderProps}
         />
       </div>
       <EuiPanel

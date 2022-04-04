@@ -3,12 +3,46 @@ import React from 'react';
 import { EuiPageTemplate } from '../../../../../src';
 
 import ComposedDefault from './page_default';
+import ComposedCenteredBody from './page_centered_body';
+import ComposedCenteredContent from './page_centered_content';
+import ComposedCustom from './page_custom_content';
 
-export default ({ button = <></>, content, sideNav, template }) => {
+export default ({ content, sideNav, template, pageHeader }) => {
   switch (template) {
     case 'default':
       return (
-        <ComposedDefault button={button} content={content} sideNav={sideNav} />
+        <ComposedDefault
+          pageHeader={pageHeader}
+          content={content}
+          sideNav={sideNav}
+        />
+      );
+      break;
+    case 'centeredBody':
+      return (
+        <ComposedCenteredBody
+          pageHeader={pageHeader}
+          content={content}
+          sideNav={sideNav}
+        />
+      );
+      break;
+    case 'centeredContent':
+      return (
+        <ComposedCenteredContent
+          pageHeader={pageHeader}
+          content={content}
+          sideNav={sideNav}
+        />
+      );
+      break;
+    case 'empty':
+      return (
+        <ComposedCustom
+          pageHeader={pageHeader}
+          content={content}
+          sideNav={sideNav}
+        />
       );
       break;
 
@@ -17,17 +51,7 @@ export default ({ button = <></>, content, sideNav, template }) => {
         <EuiPageTemplate
           template={template}
           pageSideBar={sideNav}
-          pageHeader={{
-            iconType: 'logoElastic',
-            pageTitle: 'Page title',
-            rightSideItems: [button],
-            tabs: [
-              { label: 'Tab 1', isSelected: true },
-              {
-                label: 'Tab 2',
-              },
-            ],
-          }}
+          pageHeader={pageHeader}
         >
           {content}
         </EuiPageTemplate>

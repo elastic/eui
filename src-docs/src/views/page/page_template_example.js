@@ -113,6 +113,62 @@ export const PageTemplateExample = {
   ),
   sections: [
     {
+      title: 'Simple page with header',
+      text: (
+        <>
+          <p>
+            For ease of placing as specfic page title using{' '}
+            <strong>EuiPageHeader</strong> within your page layouts,{' '}
+            <strong>EuiPageTemplate</strong> provides passing the{' '}
+            <strong>EuiPageHeader</strong> props directly to the{' '}
+            <EuiCode>pageHeader</EuiCode> prop.
+          </p>
+        </>
+      ),
+      demoPanelProps: {
+        paddingSize: 'none',
+        style: { overflow: 'hidden' },
+      },
+      demo: (
+        <PageDemo
+          slug="full-page"
+          pattern={PageNew}
+          template={PageTemplate}
+          showTemplates
+          sidebar={false}
+        />
+      ),
+      fullScreen: {
+        slug: 'full-page',
+        demo: (
+          <PageDemo
+            slug="full-page"
+            pattern={PageNew}
+            template={PageTemplate}
+            fullscreen
+            showTemplates
+            sidebar={false}
+          />
+        ),
+      },
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: PageTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
+          code: pageNewSource,
+          displayName: 'Components JS',
+        },
+      ],
+      props: {
+        EuiPageTemplate,
+        EuiPageHeader,
+      },
+    },
+    {
       title: 'Page template with sidebar and header',
       text: (
         <>

@@ -3,7 +3,6 @@ import React from 'react';
 import {
   EuiPage,
   EuiPageContent,
-  EuiPageContentBody,
   EuiPageHeader,
   EuiPageSideBar,
   EuiPageBody,
@@ -17,21 +16,17 @@ export default ({ pageHeader, content, sideNav }) => (
       </EuiPageSideBar>
     )}
 
-    <EuiPageBody panelled={!!sideNav}>
-      <EuiPageHeader
-        paddingSize="l"
-        {...pageHeader}
-        restrictWidth
-        bottomBorder
-      />
+    <EuiPageBody paddingSize="l" panelled={!!sideNav}>
+      <EuiPageHeader {...pageHeader} restrictWidth bottomBorder />
+
       <EuiPageContent
-        hasBorder={false}
-        hasShadow={false}
+        verticalPosition="center"
+        horizontalPosition="center"
         paddingSize="l"
-        color={sideNav ? 'transparent' : 'plain'}
-        borderRadius="none"
+        color="subdued"
+        hasShadow={false}
       >
-        <EuiPageContentBody restrictWidth>{content}</EuiPageContentBody>
+        {content}
       </EuiPageContent>
     </EuiPageBody>
   </EuiPage>
