@@ -148,8 +148,12 @@ export const TimelineExample = {
               better visual consistency.
             </li>
             <li>
-              <EuiCode>children</EuiCode>: when your content is text-based the
-              recommendation is to use a{' '}
+              <EuiCode>children</EuiCode>: when your content is just one line of
+              text, the recommendation is to use a a{' '}
+              <Link to="/display/text">
+                <strong>EuiText</strong>
+              </Link>{' '}
+              as a wrapper. For multi-line content consider using a{' '}
               <Link to="/layout/panel">
                 <strong>EuiPanel</strong>
               </Link>{' '}
@@ -157,7 +161,7 @@ export const TimelineExample = {
               <Link to="/layout/panel#split-panels">
                 <strong>EuiSplitPanel</strong>
               </Link>{' '}
-              as a wrapper. For other types of components like editors, the
+              instead. For other types of components like editors, the
               recommendation is to pass the children without any wrapper.
             </li>
           </ul>
