@@ -137,7 +137,6 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
     typeToClassNameMap[type],
     {
       'euiAvatar-isDisabled': isDisabled,
-      'euiAvatar--plain': isPlain,
     },
     className
   );

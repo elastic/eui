@@ -52,7 +52,7 @@ exports[`EuiAvatar props color as null is rendered 1`] = `
 exports[`EuiAvatar props color as plain is rendered 1`] = `
 <div
   aria-label="name"
-  class="euiAvatar euiAvatar--m euiAvatar--user euiAvatar--plain css-16zsvx6-euiAvatar-m-user-plain"
+  class="euiAvatar euiAvatar--m euiAvatar--user css-16zsvx6-euiAvatar-m-user-plain"
   role="img"
   title="name"
 >
