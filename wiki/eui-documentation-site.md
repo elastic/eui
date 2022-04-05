@@ -86,7 +86,7 @@ export const ComponentExample = {
 | source | object array | An array of code samples and file types that belong to a component example
 | type | string | The type of file used to create the component (i.e. `js`, `tsx`, etc.). Use `GuideSectionTypes` (found at `src-docs/src/components/guide_section/guide_section_types.tsx`) for this configuration
 | code | string | The source code for the code sample. This will likely be the variable defined to store the component's source code via Webpack's `raw-loader` as explained in [required imports and variables](#required-imports-and-variables)
-| text | `jsx` element | Text to fully explain and document the component and example being showcased
+| text | `jsx` element | Text to fully explain and document the component and example being showcased. This is automatically wrapped in `<EuiText>` so be sure to wrap your text with `<p>` tags.
 | demo | React component | The example component created to document and showcase specific features
 | playground | function | (Optional) The function used to configure the playground testing area for the component.
 | props | React component | The EUI component being documented (the original component, not examples of the component)
