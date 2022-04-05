@@ -6,33 +6,32 @@ import {
   EuiSwitch,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiPageProps,
-  EuiPage,
-  EuiPageBody,
   EuiPageSideBar,
 } from '../../../../../src';
 
 import contentSvg from '../../../images/content.svg';
 import sideNavSvg from '../../../images/side_nav.svg';
+import contentCenterSvg from '../../../images/content_center.svg';
 
-import Page from './page';
+import PageConfigurations from './page_configurations';
 import { GuideSection } from '../../../components/guide_section/guide_section';
 import { GuideSectionTypes } from '../../../components/guide_section/guide_section_types';
 
-const PageSource = require('!!raw-loader!./page');
+const PageConfigurationsSource = require('!!raw-loader!./page_configurations');
 // @ts-ignore Importing from JS
-import { pageConfig } from './playground';
+// import { pageConfig } from './playground';
 
-export const PageComponentDemo: FunctionComponent = () => {
+export const PageConfigurationsDemo: FunctionComponent = () => {
   const [showSideBar, setShowSideBar] = useState(true);
-  const [horizontal, setHorizontal] = useState(true);
-  const [restrictWidth, setRestrictWidth] = useState<
-    EuiPageProps['restrictWidth']
-  >(false);
-  const [grow, setGrow] = useState(true);
+  const [showPageHeader, setShowPageHeader] = useState(true);
+  const [centeredContent, setCenteredContent] = useState(false);
 
   const content = (
-    <EuiImage alt="Fake paragraph" url={contentSvg} size={'fullWidth'} />
+    <EuiImage
+      alt="Fake paragraph"
+      url={centeredContent ? contentCenterSvg : contentSvg}
+      size={centeredContent ? 'l' : 'fullWidth'}
+    />
   );
 
   const sideBar = showSideBar ? (
@@ -47,27 +46,24 @@ export const PageComponentDemo: FunctionComponent = () => {
       }}
       demo={
         <div className={classNames('guideDemo__highlightLayout')}>
-          <Page
+          <PageConfigurations
             content={content}
             sideBar={sideBar}
-            restrictWidth={restrictWidth}
-            grow={grow}
-            direction={horizontal ? 'row' : 'column'}
+            emptyPrompt={centeredContent}
+            pageHeader={showPageHeader}
           />
         </div>
       }
       source={[
         {
           type: GuideSectionTypes.JS,
-          code: PageSource,
+          code: PageConfigurationsSource,
         },
       ]}
       props={{
-        EuiPage,
-        EuiPageBody,
         EuiPageSideBar,
       }}
-      playground={pageConfig}
+      // playground={pageConfig}
       exampleToggles={
         <EuiFlexGroup wrap responsive={false}>
           <EuiFlexItem grow={false}>
@@ -80,27 +76,17 @@ export const PageComponentDemo: FunctionComponent = () => {
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiSwitch
-              label="Grow"
-              checked={grow}
-              onChange={() => setGrow((g) => !g)}
+              label="Page header"
+              checked={showPageHeader}
+              onChange={() => setShowPageHeader((c) => !c)}
               compressed
             />
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiSwitch
-              label="Column"
-              checked={!horizontal}
-              onChange={() => setHorizontal((s) => !s)}
-              compressed
-            />
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiSwitch
-              label="Restrict width"
-              checked={!!restrictWidth}
-              onChange={(e) =>
-                setRestrictWidth(e.target.checked ? '75%' : false)
-              }
+              label="Empty prompt"
+              checked={centeredContent}
+              onChange={() => setCenteredContent((c) => !c)}
               compressed
             />
           </EuiFlexItem>

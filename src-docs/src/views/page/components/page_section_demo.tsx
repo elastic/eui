@@ -38,9 +38,9 @@ export const PageSectionDemo: FunctionComponent = () => {
     <>
       <GuideSection
         demoPanelProps={{
+          color: 'subdued',
           paddingSize: 'none',
           style: { overflow: 'hidden' },
-          color: 'subdued',
         }}
         demo={
           <div className={classNames('guideDemo__highlightLayout')}>

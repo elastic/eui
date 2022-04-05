@@ -1,10 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { EuiText, EuiSpacer, EuiCallOut, EuiCode } from '../../../../src';
+import {
+  EuiText,
+  EuiSpacer,
+  EuiCallOut,
+  EuiCode,
+  EuiTable,
+  EuiTableHeader,
+  EuiTableHeaderCell,
+  EuiTableBody,
+  EuiTableRow,
+  EuiTableRowCell,
+  EuiIcon,
+} from '../../../../src';
 
 import { PageComponentDemo } from './components/page_demo';
 import { PageSectionDemo } from './components/page_section_demo';
+import { PageConfigurationsDemo } from './components/page_configurations_demo';
 
 export const PageExample = {
   title: 'Page components',
@@ -34,7 +47,7 @@ export const PageExample = {
   ),
   sections: [
     {
-      title: 'Page and page body',
+      title: 'Page, body, and sidebar',
       wrapText: false,
       text: (
         <div>
@@ -49,9 +62,12 @@ export const PageExample = {
               <EuiCode>true</EuiCode>).
             </p>
             <p>
-              Typically you&apos;ll want to wrap all your page contents in{' '}
-              <strong>EuiPageBody</strong> and set{' '}
-              <EuiCode>{'panelled={true}'}</EuiCode> when you have a side bar.
+              <strong>EuiPageSidebar</strong> doesn&apos;t contain many
+              configurations itself, but it does dictate how the rest of the
+              page contents should be displayed. Typically you&apos;ll want to
+              wrap all your page contents in <strong>EuiPageBody</strong> and
+              set <EuiCode>{'panelled={true}'}</EuiCode> when you have a side
+              bar.
             </p>
           </EuiText>
           <PageComponentDemo />
@@ -82,6 +98,136 @@ export const PageExample = {
             </p>
           </EuiText>
           <PageSectionDemo />
+        </div>
+      ),
+    },
+    {
+      title: 'Page configurations',
+      wrapText: false,
+      text: (
+        <div>
+          <EuiText>
+            <p>
+              When piecing all of the different page components together, the
+              state of your application will dictate how best to configure each
+              component. Ideally, your main content should always live within a{' '}
+              <EuiCode>{"'plain'"}</EuiCode> colored body or section.
+            </p>
+            <p>
+              The counter to that is when using{' '}
+              <Link to="/display/empty-prompt">
+                <strong>EuiEmptyPrompt</strong>
+              </Link>{' '}
+              to replace the main contents of your page. For example:
+            </p>
+          </EuiText>
+
+          <EuiSpacer />
+
+          <EuiTable>
+            <EuiTableHeader>
+              <EuiTableHeaderCell width={120}>
+                EuiPageSidebar
+              </EuiTableHeaderCell>
+              <EuiTableHeaderCell width={120}>EuiPageHeader</EuiTableHeaderCell>
+              <EuiTableHeaderCell>
+                EuiPageHeader & EuiPageSection
+              </EuiTableHeaderCell>
+              <EuiTableHeaderCell>EuiEmptyPrompt settings</EuiTableHeaderCell>
+            </EuiTableHeader>
+
+            <EuiTableBody>
+              <EuiTableRow>
+                <EuiTableRowCell>
+                  <EuiIcon
+                    type="checkInCircleFilled"
+                    color="green"
+                    title="yes"
+                  />
+                </EuiTableRowCell>
+                <EuiTableRowCell>
+                  <EuiIcon
+                    type="minusInCircle"
+                    color="subdued"
+                    title="doesn't matter"
+                  />
+                </EuiTableRowCell>
+
+                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
+                  <EuiCode>{'bottomBorder={true}'}</EuiCode>
+                </EuiTableRowCell>
+
+                <EuiTableRowCell>
+                  <EuiCode language="tsx">{'color="subdued"'}</EuiCode>
+                </EuiTableRowCell>
+              </EuiTableRow>
+
+              <EuiTableRow>
+                <EuiTableRowCell>
+                  <EuiIcon
+                    type="crossInACircleFilled"
+                    color="danger"
+                    title="no"
+                  />
+                </EuiTableRowCell>
+                <EuiTableRowCell>
+                  <EuiIcon
+                    type="checkInCircleFilled"
+                    color="green"
+                    title="yes"
+                  />
+                </EuiTableRowCell>
+
+                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
+                  <EuiCode>{'bottomBorder="extended"'}</EuiCode>
+                </EuiTableRowCell>
+
+                <EuiTableRowCell>
+                  <EuiCode language="tsx">{'color="subdued"'}</EuiCode>
+                </EuiTableRowCell>
+              </EuiTableRow>
+
+              <EuiTableRow>
+                <EuiTableRowCell>
+                  <EuiIcon
+                    type="crossInACircleFilled"
+                    color="danger"
+                    title="no"
+                  />
+                </EuiTableRowCell>
+                <EuiTableRowCell>
+                  <EuiIcon
+                    type="crossInACircleFilled"
+                    color="danger"
+                    title="no"
+                  />
+                </EuiTableRowCell>
+
+                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
+                  <EuiCode>{'bottomBorder="extended"'}</EuiCode>
+                </EuiTableRowCell>
+
+                <EuiTableRowCell>
+                  <EuiCode language="tsx">{'color="plain"'}</EuiCode>
+                </EuiTableRowCell>
+              </EuiTableRow>
+            </EuiTableBody>
+          </EuiTable>
+          <EuiSpacer />
+
+          <EuiCallOut
+            title={
+              <>
+                Reminder:{' '}
+                <Link to="/templates/page-template">
+                  <strong>EuiPageTemplate</strong>
+                </Link>{' '}
+                can handle all these configurations for you.
+              </>
+            }
+          />
+
+          <PageConfigurationsDemo />
         </div>
       ),
     },
