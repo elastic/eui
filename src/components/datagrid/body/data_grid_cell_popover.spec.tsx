@@ -30,7 +30,7 @@ describe('EuiDataGridCellPopover', () => {
       cy.realMount(<EuiDataGrid {...baseProps} />);
       cy.get(
         '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
-      ).click();
+      ).realClick();
 
       cy.realPress('Enter');
       cy.focused().should(
@@ -49,11 +49,9 @@ describe('EuiDataGridCellPopover', () => {
       cy.realMount(<EuiDataGrid {...baseProps} />);
       cy.get(
         '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
-      ).click();
+      ).realClick();
 
-      cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click({
-        force: true,
-      });
+      cy.get('[data-test-subj="euiDataGridCellExpandButton"]').realClick();
       cy.focused().should(
         'have.attr',
         'data-test-subj',
@@ -70,11 +68,9 @@ describe('EuiDataGridCellPopover', () => {
       cy.realMount(<EuiDataGrid {...baseProps} />);
       cy.get(
         '[data-gridcell-row-index="1"][data-gridcell-column-index="1"]'
-      ).click();
+      ).realClick();
 
-      cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click({
-        force: true,
-      });
+      cy.get('[data-test-subj="euiDataGridCellExpandButton"]').realClick();
       cy.focused().should(
         'have.attr',
         'data-test-subj',
