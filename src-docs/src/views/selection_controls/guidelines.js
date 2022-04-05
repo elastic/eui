@@ -89,6 +89,80 @@ export default () => {
     },
   ];
 
+  const positiveDo = [
+    {
+      id: 'positive_do_one',
+      label: 'Use logs',
+    },
+    {
+      id: 'positive_do_two',
+      label: 'Use metrics',
+    },
+  ];
+
+  const positiveDont = [
+    {
+      id: 'positive_dont_one',
+      label: 'Do not include logs',
+    },
+    {
+      id: 'positive_dont_two',
+      label: 'Do not include metrics',
+    },
+  ];
+
+  const groupTitleDo = [
+    {
+      id: 'group_title_do_one',
+      label: 'Logs',
+    },
+    {
+      id: 'group_title_do_two',
+      label: 'Metrics',
+    },
+  ];
+
+  const groupTitleDont = [
+    {
+      id: 'group_title_dont_one',
+      label: 'Use Logs',
+    },
+    {
+      id: 'group_title_dont_two',
+      label: 'Metrics',
+    },
+  ];
+
+  const consistentDo = [
+    {
+      id: 'consistent_do_one',
+      label: '1 zone',
+    },
+    {
+      id: 'consistent_do_two',
+      label: '2 zones',
+    },
+    {
+      id: 'consistent_do_three',
+      label: '3 zones',
+    },
+  ];
+
+  const consistentDont = [
+    {
+      id: 'consistent_dont_one',
+      label: 'One zone',
+    },
+    {
+      id: 'consistent_dont_two',
+      label: '2 zones.',
+    },
+    {
+      id: 'consistent_dont_three',
+      label: '3 zones',
+    },
+  ];
+
   const items = [
     {
       id: '1',
@@ -150,7 +224,7 @@ export default () => {
       </EuiTitle>
 
       <GuideRule
-        heading="Make it easy to scan the options"
+        heading="Checkbox and radio button labels"
         description={
           <p>
             A label should be succinct, short, and descriptive with one to two
@@ -158,10 +232,7 @@ export default () => {
           </p>
         }
       >
-        <GuideRuleExample
-          type="do"
-          text="A label should be succinct, short, and descriptive with one to two words."
-        >
+        <GuideRuleExample type="do" text="Use one to two descriptive words.">
           <EuiRadioGroup
             options={easyScanDo}
             onChange={() => {}}
@@ -171,7 +242,7 @@ export default () => {
 
         <GuideRuleExample
           type="dont"
-          text="Long labels makes it difficult to scan."
+          text="Repeat the same words. They make labels difficult to scan."
         >
           <EuiRadioGroup
             options={easyScanDont}
@@ -181,10 +252,33 @@ export default () => {
         </GuideRuleExample>
       </GuideRule>
 
+      <GuideRule description={<p>Use positive and active wording.</p>}>
+        <GuideRuleExample
+          type="do"
+          text="Tell users what happens when the selection control is on."
+        >
+          <EuiCheckboxGroup
+            options={positiveDo}
+            onChange={() => {}}
+            idToSelectedMap={
+              ({ positive_do_one: true }, { positive_do_two: true })
+            }
+          />
+        </GuideRuleExample>
+        <GuideRuleExample
+          type="dont"
+          text="Use negatives. They're unnatural and confusing."
+        >
+          <EuiCheckboxGroup
+            options={positiveDont}
+            onChange={() => {}}
+            idToSelectedMap={{ positive_dont_one: true }}
+          />
+        </GuideRuleExample>
+      </GuideRule>
+
       <GuideRule
-        description={
-          <p>Always prefer sentence cases (capitalize the first word).</p>
-        }
+        description={<p>Use sentence case (capitalize the first word).</p>}
       >
         <GuideRuleExample
           type="do"
@@ -210,11 +304,116 @@ export default () => {
       </GuideRule>
 
       <GuideRule
+        description={
+          <p>
+            Use consistent label structures for options within the same group.
+          </p>
+        }
+      >
+        <GuideRuleExample
+          type="do"
+          text="Use sentences only or fragments only."
+        >
+          <EuiCheckboxGroup
+            options={groupTitleDo}
+            onChange={() => {}}
+            idToSelectedMap={{ group_title_do_one: true }}
+            legend={{
+              children: <span>Data to ship</span>,
+            }}
+          />
+        </GuideRuleExample>
+        <GuideRuleExample
+          type="dont"
+          text="Mix label structure within the same group of options."
+        >
+          <EuiCheckboxGroup
+            options={groupTitleDont}
+            onChange={() => {}}
+            idToSelectedMap={{ group_title_dont_one: true }}
+            legend={{
+              children: <span>Data to ship</span>,
+            }}
+          />
+        </GuideRuleExample>
+      </GuideRule>
+
+      <GuideRule>
+        <GuideRuleExample
+          type="do"
+          text="Start all with a verb, all with a noun, or all with a number."
+        >
+          <EuiRadioGroup
+            options={consistentDo}
+            idSelected={{ consistent_do_one: true }}
+            onChange={() => {}}
+            name="radio group"
+            legend={{
+              children: <span>Availability zones</span>,
+            }}
+          />
+        </GuideRuleExample>
+        <GuideRuleExample
+          type="dont"
+          text="Use ending punctuation. 
+          Exception: Question marks can be used if they add clarity."
+        >
+          <EuiRadioGroup
+            options={consistentDont}
+            idSelected={{ consistent_dont_one: true }}
+            onChange={() => {}}
+            name="radio group"
+            legend={{
+              children: <span>Availability zones</span>,
+            }}
+          />
+        </GuideRuleExample>
+      </GuideRule>
+
+      <GuideRule
+        heading="Legends"
+        description={
+          <p>
+            For groups of options, add a legend that gives meaning to the
+            options. Legends appear like a title.
+          </p>
+        }
+      >
+        <GuideRuleExample
+          type="do"
+          text="Use nouns that describe the choices to make."
+        >
+          <EuiCheckboxGroup
+            options={groupTitleDo}
+            onChange={() => {}}
+            idToSelectedMap={{ group_title_do_one: true }}
+            legend={{
+              children: <span>Data to ship</span>,
+            }}
+          />
+        </GuideRuleExample>
+        <GuideRuleExample
+          type="dont"
+          text="Repeat choices or use the title as instructions."
+        >
+          <EuiCheckboxGroup
+            options={groupTitleDo}
+            onChange={() => {}}
+            idToSelectedMap={{ group_title_do_one: true }}
+            legend={{
+              children: <span>Choose to ship logs and/or metrics</span>,
+            }}
+          />
+        </GuideRuleExample>
+      </GuideRule>
+
+      <GuideRule
         heading="Switch labels"
         description={
           <p>
-            The label should be static, action-oriented and describe the
-            feature.
+            The label should be static, action-oriented, and describe the
+            feature. Avoid verbs that are less conversational such as
+            &quot;enable&quot; unless they are your only option.
           </p>
         }
       >
@@ -259,7 +458,7 @@ export default () => {
         </GuideRuleExample>
         <GuideRuleExample
           type="dont"
-          text='Use only a verb, such as "Enable".'
+          text="Use only a verb. Generic verbs alone make options unclear."
           minHeight={80}
         >
           <EuiSwitch checked={false} onChange={() => {}} label="Enable" />

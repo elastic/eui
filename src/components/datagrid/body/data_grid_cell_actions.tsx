@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { JSXElementConstructor, useMemo } from 'react';
+import React, { JSXElementConstructor, useMemo, useCallback } from 'react';
 import {
   EuiDataGridColumn,
   EuiDataGridColumnCellAction,
@@ -57,6 +57,8 @@ export const EuiDataGridCellActions = ({
   );
 
   const additionalButtons = useMemo(() => {
+    if (!column || !Array.isArray(column?.cellActions)) return [];
+
     const ButtonComponent = (props: EuiButtonIconProps) => (
       <EuiButtonIcon
         {...props}
@@ -65,26 +67,28 @@ export const EuiDataGridCellActions = ({
         iconSize="s"
       />
     );
-    return column && Array.isArray(column.cellActions)
-      ? column.cellActions.map(
-          (Action: EuiDataGridColumnCellAction, idx: number) => {
-            // React is more permissible than the TS types indicate
-            const ActionButtonElement = Action as JSXElementConstructor<
-              EuiDataGridColumnCellActionProps
-            >;
-            return (
-              <ActionButtonElement
-                key={idx}
-                rowIndex={rowIndex}
-                colIndex={colIndex}
-                columnId={column.id}
-                Component={ButtonComponent}
-                isExpanded={false}
-              />
-            );
-          }
-        )
-      : [];
+    const [visibleCellActions] = getVisibleCellActions(
+      column?.cellActions,
+      column?.visibleCellActions
+    );
+    return visibleCellActions.map(
+      (Action: EuiDataGridColumnCellAction, idx: number) => {
+        // React is more permissible than the TS types indicate
+        const ActionButtonElement = Action as JSXElementConstructor<
+          EuiDataGridColumnCellActionProps
+        >;
+        return (
+          <ActionButtonElement
+            key={idx}
+            rowIndex={rowIndex}
+            colIndex={colIndex}
+            columnId={column.id}
+            Component={ButtonComponent}
+            isExpanded={false}
+          />
+        );
+      }
+    );
   }, [column, colIndex, rowIndex]);
 
   return (
@@ -103,32 +107,70 @@ export const EuiDataGridCellPopoverActions = ({
   colIndex: number;
   rowIndex: number;
 }) => {
-  if (!column?.cellActions?.length) return null;
+  const [primaryActions, secondaryActions] = getVisibleCellActions(
+    column?.cellActions,
+    column?.visibleCellActions
+  );
+
+  const renderActions = useCallback(
+    (Action: EuiDataGridColumnCellAction, idx: number) => {
+      const ActionButtonElement = Action as JSXElementConstructor<
+        EuiDataGridColumnCellActionProps
+      >;
+      return (
+        <EuiFlexItem key={idx}>
+          <div>
+            <ActionButtonElement
+              rowIndex={rowIndex}
+              colIndex={colIndex}
+              columnId={column!.id}
+              Component={(props: EuiButtonEmptyProps) => (
+                <EuiButtonEmpty {...props} size="s" />
+              )}
+              isExpanded={true}
+            />
+          </div>
+        </EuiFlexItem>
+      );
+    },
+    [column, colIndex, rowIndex]
+  );
 
   return (
-    <EuiPopoverFooter>
-      <EuiFlexGroup gutterSize="s" responsive={false} wrap>
-        {column.cellActions.map(
-          (Action: EuiDataGridColumnCellAction, idx: number) => {
-            const ActionButtonElement = Action as JSXElementConstructor<
-              EuiDataGridColumnCellActionProps
-            >;
-            return (
-              <EuiFlexItem key={idx}>
-                <ActionButtonElement
-                  rowIndex={rowIndex}
-                  colIndex={colIndex}
-                  columnId={column.id}
-                  Component={(props: EuiButtonEmptyProps) => (
-                    <EuiButtonEmpty {...props} size="s" />
-                  )}
-                  isExpanded={true}
-                />
-              </EuiFlexItem>
-            );
-          }
-        )}
-      </EuiFlexGroup>
-    </EuiPopoverFooter>
+    <>
+      {primaryActions.length > 0 && (
+        <EuiPopoverFooter>
+          <EuiFlexGroup gutterSize="s" responsive={false} wrap>
+            {primaryActions.map(renderActions)}
+          </EuiFlexGroup>
+        </EuiPopoverFooter>
+      )}
+      {secondaryActions.length > 0 && (
+        <EuiPopoverFooter>
+          <EuiFlexGroup
+            gutterSize="s"
+            direction="column"
+            alignItems="flexStart"
+          >
+            {secondaryActions.map(renderActions)}
+          </EuiFlexGroup>
+        </EuiPopoverFooter>
+      )}
+    </>
   );
+};
+
+// Util helper to separate primary actions (columns.visibleCellActions, defaults to 2)
+// and secondary actions (all remaning actions)
+const getVisibleCellActions = (
+  cellActions?: EuiDataGridColumnCellAction[],
+  visibleCellActions = 2
+): [EuiDataGridColumnCellAction[], EuiDataGridColumnCellAction[]] => {
+  if (!cellActions) return [[], []];
+  if (cellActions.length <= visibleCellActions) return [cellActions, []];
+
+  const primaryCellActions = cellActions.slice(0, visibleCellActions);
+  const remainingCellActions = cellActions.slice(visibleCellActions);
+
+  return [primaryCellActions, remainingCellActions];
 };

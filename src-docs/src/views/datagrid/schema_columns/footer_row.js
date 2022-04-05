@@ -66,17 +66,24 @@ const columns = [
 ];
 
 const footerCellValues = {
-  amount: `Total: $${raw_data.reduce(
-    (acc, { amount }) => acc + Number(amount.split('$')[1]),
-    0
-  )}`,
+  amount: `Total: ${raw_data
+    .reduce((acc, { amount }) => acc + Number(amount.split('$')[1]), 0)
+    .toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`,
   version: `Latest: ${
     raw_data.map(({ version }) => version).sort()[raw_data.length - 1]
   }`,
 };
 
-const renderFooterCellValue = ({ columnId }) =>
-  footerCellValues[columnId] || null;
+const RenderFooterCellValue = ({ columnId, setCellProps }) => {
+  const value = footerCellValues[columnId];
+
+  useEffect(() => {
+    // Turn off the cell expansion button if the footer cell is empty
+    if (!value) setCellProps({ isExpandable: false });
+  }, [value, setCellProps]);
+
+  return value || null;
+};
 
 export default () => {
   // Pagination
@@ -121,7 +128,7 @@ export default () => {
           rowCount={raw_data.length}
           renderCellValue={RenderCellValue}
           renderFooterCellValue={
-            showFooterRow ? renderFooterCellValue : undefined
+            showFooterRow ? RenderFooterCellValue : undefined
           }
           pagination={{
             ...pagination,

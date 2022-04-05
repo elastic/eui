@@ -15,6 +15,9 @@ import {
 import DataGridColumnCellActions from './column_cell_actions';
 const dataGridColumnCellActionsSource = require('!!raw-loader!./column_cell_actions');
 
+import VisibleCellActions from './visible_cell_actions';
+const visibleCellActionsSource = require('!!raw-loader!./visible_cell_actions');
+
 import { DataGridCellPopoverExample } from './datagrid_cell_popover_example';
 
 import DataGridFocus from './focus';
@@ -63,17 +66,23 @@ export const DataGridCellsExample = {
       text: (
         <Fragment>
           <p>
-            On top of making a cell expandable, you can add more custom actions
-            by setting <EuiCode>cellActions</EuiCode>. This contains functions
-            called to render additional buttons in the cell and in the popover
-            when expanded. Behind the scenes those are treated as a React
+            In addition to making a cell expandable, you can add more custom
+            actions by setting <EuiCode>columns.cellActions</EuiCode>. These
+            actions will render as icon buttons in the cell on hover/focus, and
+            render as full buttons in the cell expansion popover. Note that once
+            any <EuiCode>cellActions</EuiCode> are passed, the cell becomes
+            automatically expandable - this ensures keyboard and screen reader
+            users have access to all cell actions.
+          </p>
+          <p>
+            <EuiCode>columns.cellActions</EuiCode> accepts an array of render
+            functions. Behind the scenes, the functions are treated as a React
             components allowing hooks, context, and other React concepts to be
-            used. The functions receives an argument of type
-            <code>EuiDataGridColumnCellActionProps</code>. The icons of these
-            actions are displayed on mouse over, and also appear in the popover
-            when the cell is expanded. Note that once you&apos;ve defined the{' '}
-            <EuiCode>cellAction</EuiCode> property, the cell&apos;s
-            automatically expandable.
+            used. Because different button types are used between the cell and
+            the cell popover, we pass your render function a{' '}
+            <EuiCode>Component</EuiCode> prop which you must render in order for
+            your cell actions to switch correctly between button icons and
+            buttons.
           </p>
           <p>
             To close a cell&apos;s expansion popover upon clicking an action,
@@ -84,7 +93,7 @@ export const DataGridCellsExample = {
             API available via the <EuiCode>ref</EuiCode> prop.
           </p>
           <p>
-            Below, the email and city columns provide 1{' '}
+            In the below example, the email and city columns provide 1{' '}
             <EuiCode>cellAction</EuiCode> each, while the country column
             provides 2 <EuiCode>cellAction</EuiCode>s.
           </p>
@@ -99,6 +108,42 @@ export const DataGridCellsExample = {
         EuiListGroupItem,
       },
       demo: <DataGridColumnCellActions />,
+    },
+    {
+      title: 'Visible cell actions and cell popovers',
+      text: (
+        <>
+          <p>
+            By default, only the first 2 cell actions of a cell will be
+            displayed to the left of the expand action button, and remaining
+            actions will be displayed in the footer of the cell expansion
+            popover.
+          </p>
+          <p>
+            This number is configurable by setting{' '}
+            <EuiCode>columns.visibleCellActions</EuiCode>, should you need to
+            display more cell actions immediately. However, we advise caution
+            when increasing this limit - the default is set to ensure cell
+            action buttons do not crowd out content.
+          </p>
+          <p>
+            The below example shows an increasing number of{' '}
+            <EuiCode>cellActions</EuiCode> in each column. The third column
+            shows <EuiCode>visibleCellActions</EuiCode> set to 3, and the fourth
+            column shows excess actions overflowing into the popover.
+          </p>
+        </>
+      ),
+      demo: <VisibleCellActions />,
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: visibleCellActionsSource,
+        },
+      ],
+      props: {
+        EuiDataGridColumn,
+      },
     },
 
     ...DataGridCellPopoverExample.sections,

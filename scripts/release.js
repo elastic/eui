@@ -62,11 +62,11 @@ if (args.dry_run) {
     // to i18ntokens_changelog.json, comitting both to the workspace before running `npm version`
     execSync(`npm run update-token-changelog -- ${versionTarget}`, execOptions);
 
-    // Update CHANGELOG.md
-    updateChangelog(changelog);
-
     // update package.json & package-lock.json version, git commit, git tag
     execSync(`npm version ${versionTarget}`, execOptions);
+
+    // Update CHANGELOG.md
+    updateChangelog(changelog);
   }
 
   if (args.steps.indexOf('tag') > -1) {

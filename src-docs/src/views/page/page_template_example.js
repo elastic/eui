@@ -74,27 +74,39 @@ const PageCustomContentTemplateSource = require('!!raw-loader!./page_custom_cont
 import PageLegacy from './page';
 const PageLegacySource = require('!!raw-loader!./page');
 
-export const PageExample = {
-  title: 'Page',
+export const PageTemplateExample = {
+  title: 'Page template',
   intro: (
     <>
       <EuiText>
         <p>
           Page layouts are modular and fit together in a precise manner, though
           certain parts can also be added or removed as needed. EUI provides
-          both the indivdual page components and an over-arching template for
-          easily creating some pre-defined layouts.
+          both the <strong>individual page components</strong> and an
+          over-arching <strong>template</strong> for easily creating some
+          pre-defined layouts.
         </p>
       </EuiText>
       <EuiSpacer />
       <EuiCallOut
-        iconType="document"
+        iconType="documentation"
         title="The following examples showcase the both the template and custom built usages of the page components."
       >
         <p>
           You&apos;ll find the code for each in their own tab and if you go to
           fullscreen, you can see how they would behave in a typical application
           layout.
+        </p>
+      </EuiCallOut>
+      <EuiSpacer />
+      <EuiCallOut
+        color="danger"
+        iconType="alert"
+        title="Do not nest multiple EuiPageTemplate components."
+      >
+        <p>
+          The template is a very fragile component that will cause unexpected
+          results if nested.
         </p>
       </EuiCallOut>
     </>
@@ -390,7 +402,7 @@ export const PageExample = {
           <p>
             Similar to the previous example, you can create a centered panel to
             emphasize incompleteness even with a page header. For this setup, we
-            recommend using setting <strong>EuiPageContent</strong> to use the{' '}
+            recommend setting <strong>EuiPageContent</strong> to use the{' '}
             <EuiCode>subdued</EuiCode> color as to not have nested shadows.
           </p>
           <EuiCallOut
@@ -495,7 +507,7 @@ export const PageExample = {
       text: (
         <>
           <p>
-            Though it is not recomended for most layouts, some require the
+            Though it is not recommended for most layouts, some require the
             control of scrolling to be handled through child components. You can
             achieve this through nested flex groups and overflow properties;
             adding certain combinations of{' '}
@@ -633,7 +645,7 @@ export const PageExample = {
       text: (
         <p>
           Also similar to the previous examples, you can create a centered panel
-          to emphasis incompleteness even with a page header. For this setup,
+          to emphasize incompleteness even with a page header. For this setup,
           You will need to use nested <strong>EuiPageContent</strong> components
           in order for the centering to work.
         </p>

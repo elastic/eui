@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -18,6 +18,8 @@ import {
   EuiLink,
   EuiSelect,
   EuiTextArea,
+  EuiText,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import {
@@ -129,6 +131,72 @@ const formControlLayoutRangeSource = require('!!raw-loader!./form_control_layout
 
 export const FormControlsExample = {
   title: 'Form controls',
+  intro: (
+    <>
+      <EuiText>
+        <p>
+          EUI provides different types of basic form controls:{' '}
+          <Link to="#text-field">
+            <strong>EuiFieldText</strong>
+          </Link>
+          ,{' '}
+          <Link to="#search-field">
+            <strong>EuiFieldSearch</strong>
+          </Link>
+          ,{' '}
+          <Link to="#number-field">
+            <strong>EuiFieldNumber</strong>
+          </Link>
+          ,{' '}
+          <Link to="#password-field">
+            <strong>EuiFieldPassword</strong>
+          </Link>
+          ,{' '}
+          <Link to="#select">
+            <strong>EuiSelect</strong>
+          </Link>
+          ,{' '}
+          <Link to="#textarea">
+            <strong>EuiTextArea</strong>
+          </Link>
+          , and{' '}
+          <Link to="#file-picker">
+            <strong>EuiFilePicker</strong>
+          </Link>
+          .
+        </p>
+        <EuiCallOut
+          color="warning"
+          iconType="accessibility"
+          title={
+            <>
+              Wrap each of your from controls in a <strong>EuiFormRow</strong>
+            </>
+          }
+        >
+          <p>
+            Use the{' '}
+            <Link to="/forms/form-layouts#form-and-form-rows">
+              <strong>EuiFormRow</strong>
+            </Link>{' '}
+            component to easily associate form components with labels, help
+            text, and error text. For accessibility, you must provide a{' '}
+            <EuiCode>label</EuiCode>, <EuiCode>aria-label</EuiCode> , or a text
+            node ID of an external label to the{' '}
+            <EuiCode>aria-labelledby</EuiCode> prop.
+          </p>
+        </EuiCallOut>
+        <EuiSpacer />
+
+        <p>
+          <strong>Placeholders should never replace a label</strong> but used as
+          a hint in addition to the label. Use the{' '}
+          <EuiCode>placeholder</EuiCode> prop to describe the expected value of
+          the input.
+        </p>
+      </EuiText>
+    </>
+  ),
   sections: [
     {
       title: 'Text field',
@@ -138,6 +206,16 @@ export const FormControlsExample = {
           code: fieldTextSource,
         },
       ],
+      text: (
+        <>
+          <p>
+            This component renders a basic HTML{' '}
+            <EuiCode language="html">{'<input type="text">'}</EuiCode> element.
+            Use a <strong>EuiFieldText</strong> to allow users to enter or edit
+            text.
+          </p>
+        </>
+      ),
       snippet: fieldTextSnippet,
       props: {
         EuiFieldText,
@@ -153,6 +231,16 @@ export const FormControlsExample = {
           code: fieldSearchSource,
         },
       ],
+      text: (
+        <>
+          <p>
+            This component renders a basic HTML{' '}
+            <EuiCode language="html">{'<input type="search">'}</EuiCode>{' '}
+            element. Use a <strong>EuiFieldSearch</strong> to allow users to
+            enter search queries.
+          </p>
+        </>
+      ),
       snippet: fieldSearchSnippet,
       props: {
         EuiFieldSearch,
@@ -168,6 +256,16 @@ export const FormControlsExample = {
           code: fieldNumberSource,
         },
       ],
+      text: (
+        <>
+          <p>
+            This component renders a basic HTML{' '}
+            <EuiCode language="html">{'<input type="number">'}</EuiCode>{' '}
+            element. Use a <strong>EuiFieldNumber</strong> to allow users to
+            enter numbers.
+          </p>
+        </>
+      ),
       snippet: fieldNumberSnippet,
       props: {
         EuiFieldNumber,
@@ -183,6 +281,24 @@ export const FormControlsExample = {
           code: fieldPasswordSource,
         },
       ],
+
+      text: (
+        <>
+          <p>
+            Use a <strong>EuiFieldPassword</strong> to allow users to enter a
+            password. By default, it renders a basic HTML{' '}
+            <EuiCode language="html">{'<input type="password">'}</EuiCode> where
+            the content is obfuscated. When users type in the field the
+            characters are presented as asterisks.
+          </p>
+          <p>
+            You can change this default behavior by passing{' '}
+            <EuiCode language="html">{'type="dual"'}</EuiCode> so that users can
+            toggle between showing and obfuscating the content. This option
+            makes the experience more user-friendly and accessible.
+          </p>
+        </>
+      ),
       snippet: fieldPasswordSnippet,
       props: {
         EuiFieldPassword,
@@ -199,21 +315,31 @@ export const FormControlsExample = {
         },
       ],
       text: (
-        <p>
-          This component renders a basic HTML{' '}
-          <EuiCode language="html">&lt;select&gt;</EuiCode> element. If you need
-          more customization for how the options and/or selected values render,
-          use the{' '}
-          <Link to="/forms/super-select">
-            <strong>EuiSuperSelect</strong>
-          </Link>
-          . Another option is to use the{' '}
-          <Link to="/forms/combo-box">
-            <strong>EuiComboBox</strong>
-          </Link>
-          , which has search and multi-select capabilities, but also has
-          restrictions on how items are rendered.
-        </p>
+        <>
+          <p>
+            This component renders a basic HTML{' '}
+            <EuiCode language="html">&lt;select&gt;</EuiCode> element. Use{' '}
+            <strong>EuiSelect</strong> to allow users to choose from a list of 7
+            to 12 options. When there are less than 7 options consider using a{' '}
+            <Link to="/forms/selection-controls#radio-group">
+              <strong>EuiRadioGroup</strong>
+            </Link>
+            .
+          </p>
+          <p>
+            If you need more customization for how the options and/or selected
+            values render, you can use an{' '}
+            <Link to="/forms/super-select">
+              <strong>EuiSuperSelect</strong>
+            </Link>{' '}
+            instead. For long lists of options use an{' '}
+            <Link to="/forms/combo-box">
+              <strong>EuiComboBox</strong>
+            </Link>
+            , which has search and multi-select capabilities, but also has
+            restrictions on how items are rendered.
+          </p>
+        </>
       ),
       snippet: selectSnippet,
       props: {
@@ -229,6 +355,16 @@ export const FormControlsExample = {
           code: textAreaSource,
         },
       ],
+      text: (
+        <>
+          <p>
+            This component renders a basic HTML{' '}
+            <EuiCode language="html">{'<textarea />'}</EuiCode> element. Use{' '}
+            <strong>EuiTextArea</strong> to allow users to enter multi-line
+            text.
+          </p>
+        </>
+      ),
       snippet: textAreaSnippet,
       props: {
         EuiTextArea,
@@ -290,7 +426,7 @@ export const FormControlsExample = {
     {
       title: 'Prepend and Append',
       text: (
-        <Fragment>
+        <>
           <p>
             Most form controls accept a <EuiCode>prepend</EuiCode> and{' '}
             <EuiCode>append</EuiCode> prop that allows passing a single
@@ -307,7 +443,7 @@ export const FormControlsExample = {
             </EuiCode>
             .
           </p>
-        </Fragment>
+        </>
       ),
       source: [
         {
@@ -331,12 +467,12 @@ export const FormControlsExample = {
       title: 'Form control layout',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: formControlLayoutSource,
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             <EuiBadge color={'warning'}>Building block only</EuiBadge>
           </p>
@@ -345,7 +481,9 @@ export const FormControlsExample = {
             <strong>EuiFormControlLayout</strong> is generally used internally
             to consistently style form controls, but it&rsquo;s published in
             case you want to create your own form control which matches those of
-            EUI. The examples below demonstrate its various states.
+            EUI. The examples below demonstrate its various states and utilize
+            the <EuiCode>controlOnly</EuiCode> and <EuiCode>type</EuiCode> props
+            of <strong>EuiFieldText</strong> as the wrapped control.
           </p>
 
           <EuiCallOut title="Additional padding required" color="warning">
@@ -357,7 +495,7 @@ export const FormControlsExample = {
               for its own padding.
             </p>
           </EuiCallOut>
-        </Fragment>
+        </>
       ),
       props: {
         EuiFormControlLayout,
@@ -368,12 +506,12 @@ export const FormControlsExample = {
       title: 'Form control layout delimited',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: formControlLayoutRangeSource,
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             <EuiBadge color={'warning'}>Building block only</EuiBadge>
           </p>
@@ -393,7 +531,7 @@ export const FormControlsExample = {
             optionally change the center content to a different string or node
             (like an EuiIcon).
           </p>
-        </Fragment>
+        </>
       ),
       props: {
         EuiFormControlLayoutDelimited,

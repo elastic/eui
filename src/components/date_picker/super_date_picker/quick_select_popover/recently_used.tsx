@@ -7,7 +7,7 @@
  */
 
 import React, { FunctionComponent } from 'react';
-import { prettyDuration } from '../pretty_duration';
+import { PrettyDuration } from '../pretty_duration';
 
 import { EuiI18n } from '../../../i18n';
 import { useGeneratedHtmlId } from '../../../../services';
@@ -44,7 +44,12 @@ export const EuiRecentlyUsed: FunctionComponent<EuiRecentlyUsedProps> = ({
         key={`${start}-${end}`}
       >
         <EuiLink onClick={applyRecentlyUsed}>
-          {prettyDuration(start, end, commonlyUsedRanges, dateFormat)}
+          <PrettyDuration
+            timeFrom={start}
+            timeTo={end}
+            quickRanges={commonlyUsedRanges}
+            dateFormat={dateFormat}
+          />
         </EuiLink>
       </li>
     );

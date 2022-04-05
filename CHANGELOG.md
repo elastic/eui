@@ -1,3 +1,34 @@
+## [`53.0.1`](https://github.com/elastic/eui/tree/v53.0.1)
+
+**Bug fixes**
+
+- Fixed `EuiContext.i18n`'s `mappingFunc` not being called for `EuiI18n`s with multiple tokens or function callbacks ([#5748](https://github.com/elastic/eui/pull/5748))
+- Fixed poor rendering performance of `EuiIcon` when using a custom data URI `type` ([#5751](https://github.com/elastic/eui/pull/5751))
+
+## [`53.0.0`](https://github.com/elastic/eui/tree/v53.0.0)
+
+- Added all remaining missing i18n tokens for `EuiSuperDatePicker` ([#5743](https://github.com/elastic/eui/pull/5743))
+
+**Breaking changes**
+
+- Removed `prettyDuration` utility exported by `EuiSuperDatePicker` - this util was converted to a `PrettyDuration` component and `usePrettyDuration` hook which should be used instead ([#5743](https://github.com/elastic/eui/pull/5743))
+- Removed `commonDurationRanges` exported by `EuiSuperDatePicker`. The new pretty duration utils will fall back to `commonDurationRanges` by default if no `quickRanges` are passed ([#5743](https://github.com/elastic/eui/pull/5743))
+
+## [`52.2.0`](https://github.com/elastic/eui/tree/v52.2.0)
+
+- Added `branchUser`, `desktop` and `sessionViewer` glyphs to `EuiIcon` ([#5740](https://github.com/elastic/eui/pull/5740))
+
+## [`52.1.0`](https://github.com/elastic/eui/tree/v52.1.0)
+
+- Added `anchor` prop to `EuiTourStep` to allow for DOM selector attachment ([#5696](https://github.com/elastic/eui/pull/5696))
+- `EuiDataGrid` now forces `isExpandable` to be true if any `cellActions` are passed, as keyboard users are otherwise unable to access cell actions without the expansion popover ([#5710](https://github.com/elastic/eui/pull/5710))
+
+**Bug fixes**
+
+- Fixed EuiDataGrid not rerendering correctly on row heights change ([#5712](https://github.com/elastic/eui/pull/5712))
+- Fixed `EuiContextMenu` requiring two tab keypresses to advance to the next focusable menu item ([#5719](https://github.com/elastic/eui/pull/5719))
+- Fixed `EuiDataGrid` footer cell focus bugging out after moving its column ([#5720](https://github.com/elastic/eui/pull/5720))
+
 ## [`52.0.0`](https://github.com/elastic/eui/tree/v52.0.0)
 
 - Added `editorChecklist` glyph to `EuiIcon` ([#5705](https://github.com/elastic/eui/pull/5705))
