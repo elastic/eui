@@ -55,23 +55,23 @@ After importing and storing the values for each component code sample, combine t
 #### Object structure
 
 ```
-export const ComponentExample = {
-    title: string,
-    intro: jsx element,
+export const AccordionExample = {
+    title: 'Accordions',
+    intro: <EuiText><p>Optional introduction to the general component.</p></EuiTex>,
     sections: [
         {
-            title: string,
+            title: 'Loading accordions',
+            text: <><p>Description of the specific example.</p></>,
+            demo: <AccordionIsLoading />,
             source: [
                 {
-                    type: string,
-                    code: string
+                    type: GuideSectionTypes.JS,
+                    code: accordionSource
                 }
             ],
-            text: jsx element,
-            demo: React component,
-            playground: function,
-            props: React component,
-            snippet: string
+            playground: accordionPlaygroundConfig,
+            props: { EuiAccordion },
+            snippet: isLoadingSnippet
         }
     ]
 }
