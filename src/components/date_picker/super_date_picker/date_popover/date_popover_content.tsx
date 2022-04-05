@@ -8,6 +8,7 @@
 
 import React, { FunctionComponent } from 'react';
 
+import { EuiI18n, useEuiI18n } from '../../../i18n';
 import { EuiTabbedContent, EuiTabbedContentProps } from '../../../tabs';
 import { EuiText } from '../../../text';
 import { EuiButton } from '../../../button';
@@ -15,6 +16,7 @@ import { EuiButton } from '../../../button';
 import { EuiAbsoluteTab } from './absolute_tab';
 import { EuiRelativeTab } from './relative_tab';
 
+import { TimeOptions } from '../time_options';
 import {
   getDateMode,
   DATE_MODES,
@@ -32,6 +34,7 @@ export interface EuiDatePopoverContentProps {
   locale?: LocaleSpecifier;
   position: 'start' | 'end';
   utcOffset?: number;
+  timeOptions: TimeOptions;
 }
 
 export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps> = ({
@@ -43,6 +46,7 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
   locale,
   position,
   utcOffset,
+  timeOptions,
 }) => {
   const onTabClick: EuiTabbedContentProps['onTabClick'] = (selectedTab) => {
     switch (selectedTab.id) {
@@ -55,12 +59,30 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
     }
   };
 
-  const ariaLabel = `${position === 'start' ? 'Start' : 'End'} date:`;
+  const startDateLabel = useEuiI18n(
+    'euiDatePopoverContent.startDateLabel',
+    'Start date'
+  );
+  const endDateLabel = useEuiI18n(
+    'euiDatePopoverContent.endDateLabel',
+    'End date'
+  );
+  const labelPrefix = position === 'start' ? startDateLabel : endDateLabel;
+
+  const absoluteLabel = useEuiI18n(
+    'euiDatePopoverContent.absoluteTabLabel',
+    'Absolute'
+  );
+  const relativeLabel = useEuiI18n(
+    'euiDatePopoverContent.relativeTabLabel',
+    'Relative'
+  );
+  const nowLabel = useEuiI18n('euiDatePopoverContent.nowTabLabel', 'Now');
 
   const renderTabs = [
     {
       id: DATE_MODES.ABSOLUTE,
-      name: 'Absolute',
+      name: absoluteLabel,
       content: (
         <EuiAbsoluteTab
           dateFormat={dateFormat}
@@ -70,15 +92,16 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
           onChange={onChange}
           roundUp={roundUp}
           position={position}
+          labelPrefix={labelPrefix}
           utcOffset={utcOffset}
         />
       ),
       'data-test-subj': 'superDatePickerAbsoluteTab',
-      'aria-label': `${ariaLabel} Absolute`,
+      'aria-label': `${labelPrefix}: ${absoluteLabel}`,
     },
     {
       id: DATE_MODES.RELATIVE,
-      name: 'Relative',
+      name: relativeLabel,
       content: (
         <EuiRelativeTab
           dateFormat={dateFormat}
@@ -87,14 +110,16 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
           onChange={onChange}
           roundUp={roundUp}
           position={position}
+          labelPrefix={labelPrefix}
+          timeOptions={timeOptions}
         />
       ),
       'data-test-subj': 'superDatePickerRelativeTab',
-      'aria-label': `${ariaLabel} Relative`,
+      'aria-label': `${labelPrefix}: ${relativeLabel}`,
     },
     {
       id: DATE_MODES.NOW,
-      name: 'Now',
+      name: nowLabel,
       content: (
         <EuiText
           size="s"
@@ -102,8 +127,11 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
           className="euiDatePopoverContent__padded--large"
         >
           <p>
-            Setting the time to &quot;now&quot; means that on every refresh this
-            time will be set to the time of the refresh.
+            <EuiI18n
+              token="euiDatePopoverContent.nowTabContent"
+              default='Setting the time to "now" means that on every refresh this
+            time will be set to the time of the refresh.'
+            />
           </p>
           <EuiButton
             data-test-subj="superDatePickerNowButton"
@@ -114,12 +142,22 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
             size="s"
             fill
           >
-            Set {position} date and time to now
+            {position === 'start' ? (
+              <EuiI18n
+                token="euiDatePopoverContent.nowTabButtonStart"
+                default="Set start date and time to now"
+              />
+            ) : (
+              <EuiI18n
+                token="euiDatePopoverContent.nowTabButtonEnd"
+                default="Set end date and time to now"
+              />
+            )}
           </EuiButton>
         </EuiText>
       ),
       'data-test-subj': 'superDatePickerNowTab',
-      'aria-label': `${ariaLabel} Now`,
+      'aria-label': `${labelPrefix}: ${nowLabel}`,
     },
   ];
 

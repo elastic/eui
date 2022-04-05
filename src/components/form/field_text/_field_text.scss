@@ -1,7 +1,6 @@
 .euiFieldText {
   @include euiFormControlStyle;
-  @include euiFormControlWithIcon($isIconOptional: true);
-  @include euiFormControlIsLoading;
+  @include euiFormControlWithIcon($isIconOptional: true, $side: 'left');
 
   /* Invalid state normally comes from :invalid, but several components
   /* like EuiDatePicker need it toggled through an extra class.
@@ -13,12 +12,4 @@
 
 .euiFieldText--withIcon.euiFieldText--compressed {
   @include euiFormControlWithIcon($isIconOptional: false, $side: 'left', $compressed: true);
-}
-
-.euiFieldText--isClearable {
-  @include euiFormControlWithIcon($isIconOptional: false, $side: 'right', $compressed: false);
-}
-
-.euiFieldText--isClearable.euiFieldText--compressed {
-  @include euiFormControlWithIcon($isIconOptional: false, $side: 'right', $compressed: true);
 }
