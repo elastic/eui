@@ -14,7 +14,7 @@ import React, {
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
-import tabbable from 'tabbable';
+import { tabbable } from 'tabbable';
 
 import { CommonProps, NoArgCallback, keysOf } from '../common';
 import { EuiIcon } from '../icon';
