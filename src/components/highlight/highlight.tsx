@@ -8,7 +8,7 @@
 
 import React, { Fragment, HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps } from '../common';
-import { EuiMark } from '../mark';
+import { EuiMark, EuiMarkProps } from '../mark';
 
 interface EuiHighlightChunk {
   /**
@@ -25,8 +25,10 @@ interface EuiHighlightChunk {
   highlight?: boolean;
 }
 
+type EuiMarkPropHelpText = Pick<EuiMarkProps, "hasScreenReaderHelpText">;
+
 export type EuiHighlightProps = HTMLAttributes<HTMLSpanElement> &
-  CommonProps & {
+EuiMarkPropHelpText & CommonProps & {
     /**
      * string to highlight as this component's content
      */
@@ -46,11 +48,6 @@ export type EuiHighlightProps = HTMLAttributes<HTMLSpanElement> &
      * Should highlight all matches
      */
     highlightAll?: boolean;
-    /**
-     * Set to `false` to remove the CSS :before and :after
-     * screen reader helper text
-     */
-    hasScreenReaderHelpText?: boolean;
   };
 
 const highlight = (

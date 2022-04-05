@@ -21,11 +21,14 @@ describe('EuiMark', () => {
       render(<EuiMark {...requiredProps}>Marked</EuiMark>)
     ).toMatchSnapshot();
   });
+});
+
+describe('No screen reader helper text', () => {
+  renderWithStyles(<EuiMark>Marked</EuiMark>);
 
   test('is rendered without CSS :before and :after text', () => {
-    const component = render(
-      <EuiMark hasScreenReaderHelpText={false}>Market</EuiMark>
-    );
-    expect(component).toMatchSnapshot();
+    expect(
+      render(<EuiMark hasScreenReaderHelpText={false} {...requiredProps}>Marked</EuiMark>)
+    ).toMatchSnapshot();
   });
 });
