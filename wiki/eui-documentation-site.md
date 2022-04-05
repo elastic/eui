@@ -4,7 +4,7 @@ Code for the Elastic UI [documentation site](https://elastic.github.io/eui/#/) c
 
 ## Documenting new components
 
-There are two ways to document components. To create automated documentation for components with `Yeoman`, refer to [Creating components with Yeoman](./creating-components-yeoman.md). To document components manually, see the documentation checklist below.
+There are two ways to document components. To create automated documentation for components with `Yeoman`, refer to [Creating components with Yeoman](./creating-components-yeoman.md#documenting-the-component-with-examples). To document components manually, see the documentation checklist below.
 
 - [ ] In `src-docs/src/views`, create a directory with the [snake_case](https://en.wikipedia.org/wiki/Snake_case) name of the component being documented.
 - [ ] Define examples which demonstrate the component and describe its role from a UI perspective. File names should follow the `{component}_{example name}.js/.tsx` naming structure (i.e. `accordion_isLoading.js`).
