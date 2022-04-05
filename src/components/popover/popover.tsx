@@ -16,7 +16,7 @@ import React, {
   RefCallback,
 } from 'react';
 import classNames from 'classnames';
-import { tabbable } from 'tabbable';
+import { tabbable, focusable } from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
 import { FocusTarget, EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
@@ -666,6 +666,17 @@ export class EuiPopover extends Component<Props, State> {
     this.props.buttonRef && this.props.buttonRef(node);
   };
 
+  refocusButtonOnClose = () => {
+    if (this.button) {
+      const focusableItems = focusable(this.button);
+      if (focusableItems.length) {
+        const toggleButton = focusableItems[0];
+        requestAnimationFrame(() => toggleButton.focus(returnFocusConfig));
+      }
+    }
+    this.props.onTrapDeactivation?.();
+  };
+
   render() {
     const {
       anchorClassName,
@@ -776,7 +787,7 @@ export class EuiPopover extends Component<Props, State> {
             {...focusTrapProps}
             returnFocus={returnFocus} // Ignore temporary state of indecisive focus
             initialFocus={initialFocus}
-            onDeactivation={onTrapDeactivation}
+            onDeactivation={this.refocusButtonOnClose}
             onClickOutside={this.onClickOutside}
             onEscapeKey={this.onEscapeKey}
             disabled={

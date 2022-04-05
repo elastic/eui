@@ -439,6 +439,74 @@ describe('EuiPopover', () => {
       jest.advanceTimersByTime(10);
     });
   });
+
+  describe('refocusButtonOnClose', () => {
+    let rafSpy: jest.SpyInstance;
+    beforeAll(() => {
+      rafSpy = jest
+        .spyOn(window, 'requestAnimationFrame')
+        .mockImplementation((cb: Function) => cb());
+    });
+    afterAll(() => {
+      rafSpy.mockRestore();
+    });
+
+    it('refocuses the toggle button on focus trap deactivation', () => {
+      const toggleButtonEl = React.createRef<HTMLButtonElement>();
+      const toggleButton = <button ref={toggleButtonEl} />;
+
+      const component = mount(
+        <EuiPopover
+          button={toggleButton}
+          isOpen={true}
+          closePopover={() => {}}
+          {...requiredProps}
+        />
+      );
+      (component.find('EuiFocusTrap').prop('onDeactivation') as Function)();
+
+      expect(document.activeElement).toEqual(toggleButtonEl.current);
+    });
+
+    it('refocuses the first nested toggle button on focus trap deactivation', () => {
+      const toggleButtonEl = React.createRef<HTMLButtonElement>();
+      const toggleDiv = (
+        <div>
+          <button ref={toggleButtonEl} tabIndex={-1} />
+          <button tabIndex={-1} />
+        </div>
+      );
+
+      const component = mount(
+        <EuiPopover
+          button={toggleDiv}
+          isOpen={true}
+          closePopover={() => {}}
+          {...requiredProps}
+        />
+      );
+      (component.find('EuiFocusTrap').prop('onDeactivation') as Function)();
+
+      expect(document.activeElement).toEqual(toggleButtonEl.current);
+    });
+
+    it('does not refocus if the toggle button is not focusable', () => {
+      const toggleDivEl = React.createRef<HTMLDivElement>();
+      const toggleDiv = <div ref={toggleDivEl} />;
+
+      const component = mount(
+        <EuiPopover
+          button={toggleDiv}
+          isOpen={true}
+          closePopover={() => {}}
+          {...requiredProps}
+        />
+      );
+      (component.find('EuiFocusTrap').prop('onDeactivation') as Function)();
+
+      expect(document.activeElement).not.toEqual(toggleDivEl.current);
+    });
+  });
 });
 
 describe('getPopoverPositionFromAnchorPosition', () => {
