@@ -14,7 +14,7 @@ There are two ways to document components. To create automated documentation for
 ## Documenting existing components with new examples
 
 - [ ] Locate the desired component directory in `src-docs/src/views` and define new examples which demonstrate the component and describe its role from a UI perspective. File names should follow the `{component}_{example name}.tsx` naming structure (i.e. `accordion_isLoading.tsx`).
-- [ ] Locate the `example` file in the directory. It should be named `{component name}_example.js`. Configure the new example component by importing it, adding new code snippets, and creating a new entry in the documentation object. To learn more about the configuration for `example.js`, see [creating the component example file](#creating-the-component-example-file) below.
+- [ ] Locate the `example` file in the directory. It should be named `{component}_example.js`. Configure the new example component by importing it, adding new code snippets, and creating a new entry in the documentation object. To learn more about the configuration for `example.js`, see [creating the component example file](#creating-the-component-example-file) below.
 
 ## Creating the component `example` file
 
