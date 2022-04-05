@@ -80,7 +80,7 @@ export const ComponentExample = {
 | Key | Type | Description |
 | --- | ---- | ----------- |
 | title | string | The name of the component and the title that will be used as the header of the documentation page
-| intro | `jsx` element | A quick intro about the component
+| intro | `jsx` element | (Optional) A quick intro about the component. Must be wrapped in an `EuiText` block.
 | sections | object array | An array of all examples and code snippets relevant to this component. There should be one object per component example
 | title | string | Title for the component example
 | source | object array | An array of code samples and file types that belong to a component example
