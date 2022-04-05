@@ -25,10 +25,11 @@ interface EuiHighlightChunk {
   highlight?: boolean;
 }
 
-type EuiMarkPropHelpText = Pick<EuiMarkProps, "hasScreenReaderHelpText">;
+type EuiMarkPropHelpText = Pick<EuiMarkProps, 'hasScreenReaderHelpText'>;
 
 export type EuiHighlightProps = HTMLAttributes<HTMLSpanElement> &
-EuiMarkPropHelpText & CommonProps & {
+  EuiMarkPropHelpText &
+  CommonProps & {
     /**
      * string to highlight as this component's content
      */

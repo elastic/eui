@@ -28,7 +28,11 @@ describe('No screen reader helper text', () => {
 
   test('is rendered without CSS :before and :after text', () => {
     expect(
-      render(<EuiMark hasScreenReaderHelpText={false} {...requiredProps}>Marked</EuiMark>)
+      render(
+        <EuiMark hasScreenReaderHelpText={false} {...requiredProps}>
+          Marked
+        </EuiMark>
+      )
     ).toMatchSnapshot();
   });
 });

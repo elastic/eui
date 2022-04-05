@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiMark, EuiMarkProps } from './mark';
+export type { EuiMarkProps } from './mark';
+export { EuiMark } from './mark';
