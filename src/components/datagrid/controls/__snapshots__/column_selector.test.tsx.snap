@@ -361,7 +361,6 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
             initialFocus={[Function]}
             noIsolation={true}
             onClickOutside={[Function]}
-            onDeactivation={[Function]}
             onEscapeKey={[Function]}
             returnFocus={false}
             scrollLock={false}
@@ -371,7 +370,6 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
               initialFocus={[Function]}
               noIsolation={true}
               onClickOutside={[Function]}
-              onDeactivation={[Function]}
               onEscapeKey={[Function]}
               returnFocus={false}
               scrollLock={false}
@@ -381,7 +379,6 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                 initialFocus={[Function]}
                 noIsolation={true}
                 onClickOutside={[Function]}
-                onDeactivation={[Function]}
                 onEscapeKey={[Function]}
                 returnFocus={false}
                 scrollLock={false}

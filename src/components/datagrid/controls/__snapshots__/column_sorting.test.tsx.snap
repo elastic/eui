@@ -372,7 +372,6 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
             initialFocus={[Function]}
             noIsolation={true}
             onClickOutside={[Function]}
-            onDeactivation={[Function]}
             onEscapeKey={[Function]}
             returnFocus={false}
             scrollLock={false}
@@ -382,7 +381,6 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
               initialFocus={[Function]}
               noIsolation={true}
               onClickOutside={[Function]}
-              onDeactivation={[Function]}
               onEscapeKey={[Function]}
               returnFocus={false}
               scrollLock={false}
@@ -392,7 +390,6 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                 initialFocus={[Function]}
                 noIsolation={true}
                 onClickOutside={[Function]}
-                onDeactivation={[Function]}
                 onEscapeKey={[Function]}
                 returnFocus={false}
                 scrollLock={false}
