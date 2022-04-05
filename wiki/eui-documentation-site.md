@@ -80,6 +80,7 @@ export const AccordionExample = {
 | Key | Type | Description |
 | --- | ---- | ----------- |
 | title | string | The name of the component and the title that will be used as the header of the documentation page
+| isNew | boolean | (Optional) A flag that adds a badge titled "new" next to the component name in the documentation site navigation 
 | intro | `jsx` element | (Optional) A quick intro about the component. Must be wrapped in an `EuiText` block.
 | sections | object array | An array of all examples and code snippets relevant to this component. There should be one object per component example
 | title | string | Title for the component example
