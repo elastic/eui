@@ -41,7 +41,7 @@ Each component and code sample should have the following elements:
 
    **Example**
 ```
-   <EuiAccordion
+const isLoadingSnippet =  `<EuiAccordion
      id={accordionId1}
      buttonContent="Clickable title">
      <!-- Content to show when expanded -->
