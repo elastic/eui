@@ -103,7 +103,7 @@ exports[`EuiComment props timelineIcon is rendered 1`] = `
       >
         <div
           aria-label="Mario"
-          class="euiAvatar euiAvatar--l euiAvatar--user css-1geg2f0-euiAvatar-l-user"
+          class="euiAvatar euiAvatar--l euiAvatar--user css-d4s9pe-euiAvatar-l-user"
           role="img"
           style="background-color:#f1d86f;color:#000000"
           title="Mario"

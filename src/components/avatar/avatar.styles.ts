@@ -16,7 +16,7 @@ const _avatarSize = ({
   size: string;
   fontSize: string;
 }) => {
-  return css`
+  return `
     width: ${size};
     height: ${size};
     line-height: ${size};
@@ -55,28 +55,28 @@ export const euiAvatarStyles = ({ euiTheme }: UseEuiTheme) => ({
     filter: grayscale(100%);
   `,
   // Sizes
-  s: css`
-    ${_avatarSize({
+  s: css(
+    _avatarSize({
       size: euiTheme.size.l,
       fontSize: euiTheme.size.m,
-    })}
-  `,
-  m: css`
-    ${_avatarSize({
+    })
+  ),
+  m: css(
+    _avatarSize({
       size: euiTheme.size.xl,
       fontSize: `calc(${euiTheme.size.base} * 0.9)`,
-    })}
-  `,
-  l: css`
-    ${_avatarSize({
+    })
+  ),
+  l: css(
+    _avatarSize({
       size: euiTheme.size.xxl,
       fontSize: `calc(${euiTheme.size.l} * 0.8)`,
-    })}
-  `,
-  xl: css`
-    ${_avatarSize({
+    })
+  ),
+  xl: css(
+    _avatarSize({
       size: `calc(${euiTheme.size.base} * 4)`,
       fontSize: `calc(${euiTheme.size.xl} * 0.8)`,
-    })}
-  `,
+    })
+  ),
 });
