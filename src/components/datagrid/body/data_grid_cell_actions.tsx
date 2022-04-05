@@ -67,6 +67,7 @@ export const EuiDataGridCellActions = ({
         iconSize="s"
       />
     );
+
     const [visibleCellActions] = getVisibleCellActions(
       column?.cellActions,
       column?.visibleCellActions
