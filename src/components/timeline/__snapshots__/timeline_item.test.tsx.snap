@@ -2,7 +2,7 @@
 
 exports[`EuiTimelineItem is rendered 1`] = `
 <div
-  class="euiTimelineItem euiTimelineItem--verticalAlignTop css-1ai1cgh-euiTimelineItem-top"
+  class="euiTimelineItem euiTimelineItem--verticalAlignTop css-gkpeil-euiTimelineItem-top"
 >
   <div
     class="euiTimelineItemIcon css-1rezr3l-euiTimelineItemIcon"
@@ -37,7 +37,7 @@ exports[`EuiTimelineItem is rendered 1`] = `
 
 exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
 <div
-  class="euiTimelineItem euiTimelineItem--verticalAlignCenter css-il1lt8-euiTimelineItem-center"
+  class="euiTimelineItem euiTimelineItem--verticalAlignCenter css-wclane-euiTimelineItem-center"
 >
   <div
     class="euiTimelineItemIcon css-1rezr3l-euiTimelineItemIcon"
@@ -72,7 +72,7 @@ exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
 
 exports[`EuiTimelineItem props verticalAlign top is rendered 1`] = `
 <div
-  class="euiTimelineItem euiTimelineItem--verticalAlignTop css-1ai1cgh-euiTimelineItem-top"
+  class="euiTimelineItem euiTimelineItem--verticalAlignTop css-gkpeil-euiTimelineItem-top"
 >
   <div
     class="euiTimelineItemIcon css-1rezr3l-euiTimelineItemIcon"

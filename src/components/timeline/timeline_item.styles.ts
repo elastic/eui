@@ -17,10 +17,8 @@ export const euiTimelineItemStyles = ({ euiTheme }: UseEuiTheme) => ({
     min-height: calc(${euiTheme.size.base} * 3.5);
 
     &:last-of-type {
-      .euiTimelineItemIcon {
-        &::before {
-          display: none;
-        }
+      .euiTimelineItemIcon::before {
+        display: none;
       }
     }
   `,
