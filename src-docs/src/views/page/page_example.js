@@ -1,26 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { GuideSectionTypes } from '../../components';
 
 import {
   EuiText,
   EuiSpacer,
   EuiCallOut,
   EuiCode,
-  EuiPage,
   EuiPageBody,
   EuiPageSection,
   EuiPageContentBody,
 } from '../../../../src';
 
-import { pageConfig, pageSectionConfig } from './components/playground';
+import { pageSectionConfig } from './components/playground';
+
+import { PageBodyDemo } from './components/page_body_demo';
+// const PageBodySource = require('!!raw-loader!./components/page_body');
+import { PageSectionDemo } from './components/page_section_demo';
+// const PageSectionSource = require('!!raw-loader!./components/page_section');
 
 import { PageComponentDemo } from './components/page_demo';
-const PageSource = require('!!raw-loader!./components/page');
-import { PageBodyDemo } from './components/page_body_demo';
-const PageBodySource = require('!!raw-loader!./components/page_body');
-import { PageSectionDemo } from './components/page_section_demo';
-const PageSectionSource = require('!!raw-loader!./components/page_section');
 
 export const PageExample = {
   title: 'Page components',
@@ -51,34 +49,23 @@ export const PageExample = {
   sections: [
     {
       title: 'Page',
+      wrapText: false,
       text: (
         <>
-          <p>
-            <strong>EuiPage</strong> is simply a flex wrapper that will
-            automatically <EuiCode>grow</EuiCode> to fill the height of a flex
-            container. You can also control the flex{' '}
-            <EuiCode>direction</EuiCode> and the maximum width using
-            <EuiCode>restrictWidth</EuiCode> which centers the page when it
-            reaches the provided value (or <EuiCode>1200px</EuiCode> if set to{' '}
-            <EuiCode>true</EuiCode>).
-          </p>
+          <EuiText>
+            <p>
+              <strong>EuiPage</strong> is simply a flex wrapper that will
+              automatically <EuiCode>grow</EuiCode> to fill the height of a flex
+              container. You can also control the flex{' '}
+              <EuiCode>direction</EuiCode> and the maximum width using
+              <EuiCode>restrictWidth</EuiCode> which centers the page when it
+              reaches the provided value (or <EuiCode>1200px</EuiCode> if set to{' '}
+              <EuiCode>true</EuiCode>).
+            </p>
+          </EuiText>
+          <PageComponentDemo />
         </>
       ),
-      demo: <PageComponentDemo />,
-      demoPanelProps: {
-        paddingSize: 'none',
-        style: { overflow: 'hidden' },
-      },
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: PageSource,
-        },
-      ],
-      props: {
-        EuiPage,
-      },
-      playground: pageConfig,
     },
     {
       title: 'Page body',
@@ -89,12 +76,12 @@ export const PageExample = {
           <EuiCode>{'panelled={true}'}</EuiCode> when you have a side bar.
         </p>
       ),
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: PageBodySource,
-        },
-      ],
+      // source: [
+      //   {
+      //     type: GuideSectionTypes.TSX,
+      //     code: PageBodySource,
+      //   },
+      // ],
       demo: <PageBodyDemo />,
       demoPanelProps: {
         paddingSize: 'none',
@@ -128,12 +115,12 @@ export const PageExample = {
       ),
       demoPanelProps: { paddingSize: 'none', color: 'subdued' },
       demo: <PageSectionDemo />,
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: PageSectionSource,
-        },
-      ],
+      // source: [
+      //   {
+      //     type: GuideSectionTypes.TSX,
+      //     code: PageSectionSource,
+      //   },
+      // ],
       props: {
         EuiPageSection,
         EuiPageContentBody,
