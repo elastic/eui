@@ -18,7 +18,7 @@ There are two ways to document components. To create automated documentation for
 
 ## Creating the component `example` file
 
-Each component documented in `src-docs/src/views` should have one `{component name}_example.js` file. This file is responsible for combining all code snippets and documentation copy, then renders the examples and copy together on one page. 
+Each component documented in `src-docs/src/views` should have one `{component}_example.js` file. This file is responsible for combining all code snippets and documentation copy, then renders the examples and copy together on one page. 
 
 ### Required imports and variables
 
