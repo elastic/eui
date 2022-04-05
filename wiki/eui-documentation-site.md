@@ -1,4 +1,4 @@
-# Elastic UI documentation site
+# Creating documentation example pages
 
 Code for the Elastic UI [documentation site](https://elastic.github.io/eui/#/) can be found in the `src-docs` directory.
 
