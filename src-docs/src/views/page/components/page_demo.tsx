@@ -4,16 +4,22 @@ import classNames from 'classnames';
 import {
   EuiImage,
   EuiSwitch,
-  EuiPanel,
   EuiFlexGroup,
   EuiFlexItem,
   EuiPageProps,
+  EuiPage,
 } from '../../../../../src';
 
 import contentSvg from '../../../images/content.svg';
 import sideNavSvg from '../../../images/side_nav.svg';
 
 import Page from './page';
+import { GuideSection } from '../../../components/guide_section/guide_section';
+import { GuideSectionTypes } from '../../../components/guide_section/guide_section_types';
+
+const PageSource = require('!!raw-loader!./page');
+// @ts-ignore Importing from JS
+import { pageConfig } from './playground';
 
 export const PageComponentDemo: FunctionComponent = () => {
   const [horizontal, setHorizontal] = useState(true);
@@ -32,42 +38,63 @@ export const PageComponentDemo: FunctionComponent = () => {
 
   return (
     <>
-      <div className={classNames('guideDemo__highlightLayout')}>
-        <Page
-          content={content}
-          sideBar={sideBar}
-          restrictWidth={restrictWidth}
-          grow={grow}
-          direction={horizontal ? 'row' : 'column'}
-        />
-      </div>
-      <EuiPanel style={{ borderWidth: '1px 0' }} hasBorder borderRadius="none">
-        <EuiFlexGroup>
-          <EuiFlexItem grow={false}>
-            <EuiSwitch
-              label="Grow"
-              checked={grow}
-              onChange={() => setGrow((g) => !g)}
+      <GuideSection
+        demoPanelProps={{
+          paddingSize: 'none',
+          style: { overflow: 'hidden' },
+        }}
+        demo={
+          <div className={classNames('guideDemo__highlightLayout')}>
+            <Page
+              content={content}
+              sideBar={sideBar}
+              restrictWidth={restrictWidth}
+              grow={grow}
+              direction={horizontal ? 'row' : 'column'}
             />
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiSwitch
-              label="Horizontal"
-              checked={horizontal}
-              onChange={() => setHorizontal((s) => !s)}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiSwitch
-              label="Restrict width"
-              checked={!!restrictWidth}
-              onChange={(e) =>
-                setRestrictWidth(e.target.checked ? '75%' : false)
-              }
-            />
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      </EuiPanel>
+          </div>
+        }
+        source={[
+          {
+            type: GuideSectionTypes.JS,
+            code: PageSource,
+          },
+        ]}
+        props={{
+          EuiPage,
+        }}
+        playground={pageConfig}
+        exampleToggles={
+          <EuiFlexGroup wrap responsive={false}>
+            <EuiFlexItem grow={false}>
+              <EuiSwitch
+                label="Grow"
+                checked={grow}
+                onChange={() => setGrow((g) => !g)}
+                compressed
+              />
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiSwitch
+                label="Column"
+                checked={!horizontal}
+                onChange={() => setHorizontal((s) => !s)}
+                compressed
+              />
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiSwitch
+                label="Restrict width"
+                checked={!!restrictWidth}
+                onChange={(e) =>
+                  setRestrictWidth(e.target.checked ? '75%' : false)
+                }
+                compressed
+              />
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        }
+      />
     </>
   );
 };
