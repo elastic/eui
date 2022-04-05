@@ -281,6 +281,7 @@ function getElementFromInitialFocus(
 }
 
 const returnFocusConfig = { preventScroll: true };
+const closingTransitionTime = 250; // TODO: DRY out var when converting to CSS-in-JS
 
 export type Props = CommonProps &
   HTMLAttributes<HTMLDivElement> &
@@ -383,18 +384,24 @@ export class EuiPopover extends Component<Props, State> {
       event.preventDefault();
       event.stopPropagation();
       this.closePopover();
-      this.refocusButtonOnClose();
+      this.handleStrandedFocus();
     }
   };
 
-  refocusButtonOnClose = () => {
-    if (this.button) {
-      const focusableItems = focusable(this.button);
-      if (focusableItems.length) {
+  handleStrandedFocus = () => {
+    setTimeout(() => {
+      // If `returnFocus` failed and focus was stranded on the body,
+      // attempt to manually restore focus to the toggle button
+      if (document.activeElement === document.body) {
+        if (!this.button) return;
+
+        const focusableItems = focusable(this.button);
+        if (!focusableItems.length) return;
+
         const toggleButton = focusableItems[0];
-        requestAnimationFrame(() => toggleButton.focus(returnFocusConfig));
+        toggleButton.focus(returnFocusConfig);
       }
-    }
+    }, closingTransitionTime);
   };
 
   onKeyDown = (event: KeyboardEvent) => {
@@ -552,7 +559,7 @@ export class EuiPopover extends Component<Props, State> {
         this.setState({
           isClosing: false,
         });
-      }, 250);
+      }, closingTransitionTime);
     }
   }
 

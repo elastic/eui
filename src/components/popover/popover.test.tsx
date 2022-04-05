@@ -443,20 +443,19 @@ describe('EuiPopover', () => {
 
   describe('onEscapeKey', () => {
     const closePopover = jest.fn();
+    const closingTransitionTime = 250; // TODO: DRY out var when converting to CSS-in-JS
 
     const mockEvent = {
       preventDefault: () => {},
       stopPropagation: () => {},
     } as Event;
 
-    let rafSpy: jest.SpyInstance;
-    beforeAll(() => {
-      rafSpy = jest
-        .spyOn(window, 'requestAnimationFrame')
-        .mockImplementation((cb: Function) => cb());
+    beforeAll(() => jest.useFakeTimers());
+    beforeEach(() => {
+      jest.clearAllMocks();
+      (document.activeElement as HTMLElement)?.blur(); // Reset focus between tests
     });
-    beforeEach(() => jest.clearAllMocks());
-    afterAll(() => rafSpy.mockRestore());
+    afterAll(() => jest.useRealTimers());
 
     it('closes the popover and refocuses the toggle button', () => {
       const toggleButtonEl = React.createRef<HTMLButtonElement>();
@@ -471,6 +470,8 @@ describe('EuiPopover', () => {
         />
       );
       component.find(EuiFocusTrap).invoke('onEscapeKey')!(mockEvent);
+      component.setProps({ isOpen: false });
+      jest.advanceTimersByTime(closingTransitionTime);
 
       expect(closePopover).toHaveBeenCalled();
       expect(document.activeElement).toEqual(toggleButtonEl.current);
@@ -494,6 +495,8 @@ describe('EuiPopover', () => {
         />
       );
       component.find(EuiFocusTrap).invoke('onEscapeKey')!(mockEvent);
+      component.setProps({ isOpen: false });
+      jest.advanceTimersByTime(closingTransitionTime);
 
       expect(closePopover).toHaveBeenCalled();
       expect(document.activeElement).toEqual(toggleButtonEl.current);
@@ -512,6 +515,8 @@ describe('EuiPopover', () => {
         />
       );
       component.find(EuiFocusTrap).invoke('onEscapeKey')!(mockEvent);
+      component.setProps({ isOpen: false });
+      jest.advanceTimersByTime(closingTransitionTime);
 
       expect(closePopover).toHaveBeenCalled();
       expect(document.activeElement).not.toEqual(toggleDivEl.current);
