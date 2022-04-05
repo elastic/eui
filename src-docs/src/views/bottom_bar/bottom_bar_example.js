@@ -23,7 +23,7 @@ export const BottomBarExample = {
     <EuiCallOut>
       <p>
         <strong>EuiPageTemplate</strong> offers a quick way to{' '}
-        <Link to="/layout/page#showing-a-bottom-bar">
+        <Link to="/templates/page-template#showing-a-bottom-bar">
           apply a bottom bar to your page layouts
         </Link>
         .

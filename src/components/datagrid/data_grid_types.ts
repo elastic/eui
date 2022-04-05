@@ -576,6 +576,12 @@ export interface EuiDataGridColumn {
    * Additional actions displayed as icon on hover / focus, and in the expanded view of the cell containing the value
    */
   cellActions?: EuiDataGridColumnCellAction[];
+  /**
+   * Configures the amount of cell action buttons immediately visible on a cell.
+   * Any cell actions above this number will only display in the cell expansion popover.
+   * Defaults to 2.
+   */
+  visibleCellActions?: number;
 }
 
 export type EuiDataGridColumnCellAction =
@@ -631,11 +637,6 @@ export interface EuiDataGridColumnCellActionProps {
    * Determines whether the cell's action is displayed expanded (in the Popover)
    */
   isExpanded: boolean;
-  /**
-   * Closes the popover if a cell is expanded.
-   * The prop is provided for an expanded cell only.
-   */
-  closePopover?: () => void;
 }
 
 export interface EuiDataGridColumnVisibility {

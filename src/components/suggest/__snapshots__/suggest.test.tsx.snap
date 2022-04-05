@@ -917,9 +917,10 @@ Array [
               <input
                 aria-activedescendant=""
                 aria-haspopup="listbox"
+                aria-invalid="true"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--compressed euiFieldSearch-isClearable euiSelectableSearch testClass1 testClass2"
+                class="euiFieldSearch euiFormControlLayout--2icons euiFieldSearch--compressed euiFieldSearch-isClearable euiFieldSearch-isInvalid euiSelectableSearch testClass1 testClass2"
                 data-test-subj="test subject string"
                 id="testId"
                 name="testName"
@@ -954,6 +955,10 @@ Array [
                     data-euiicon-type="cross"
                   />
                 </button>
+                <span
+                  color="danger"
+                  data-euiicon-type="alert"
+                />
               </div>
             </div>
           </div>
@@ -993,7 +998,7 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isLoading euiSelectableSearch testClass1 testClass2"
+                class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch--fullWidth euiFieldSearch-isLoading euiSelectableSearch testClass1 testClass2"
                 data-test-subj="test subject string"
                 placeholder="Filter options"
                 type="search"
@@ -1246,7 +1251,7 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isLoading euiSelectableSearch testClass1 testClass2"
+                class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch--fullWidth euiFieldSearch-isLoading euiSelectableSearch testClass1 testClass2"
                 data-test-subj="test subject string"
                 placeholder="Filter options"
                 type="search"

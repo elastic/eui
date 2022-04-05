@@ -1,14 +1,39 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import {
   EuiFormControlLayoutDelimited,
-  EuiSpacer,
   EuiFormLabel,
   EuiIcon,
 } from '../../../../src/components';
 
 export default () => (
-  <Fragment>
+  <div
+    css={{
+      display: 'inline-flex',
+      flexWrap: 'wrap',
+      gap: 24,
+    }}
+  >
+    <EuiFormControlLayoutDelimited
+      fullWidth
+      startControl={
+        <input
+          type="number"
+          placeholder="0"
+          className="euiFieldNumber"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+      endControl={
+        <input
+          type="number"
+          placeholder="100"
+          className="euiFieldNumber"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+    />
+
     <EuiFormControlLayoutDelimited
       startControl={
         <input
@@ -28,7 +53,6 @@ export default () => (
       }
     />
 
-    <EuiSpacer size="m" />
     <EuiFormControlLayoutDelimited
       append={<EuiFormLabel>px</EuiFormLabel>}
       startControl={
@@ -49,7 +73,6 @@ export default () => (
       }
     />
 
-    <EuiSpacer size="m" />
     <EuiFormControlLayoutDelimited
       icon="vector"
       startControl={
@@ -70,7 +93,6 @@ export default () => (
       }
     />
 
-    <EuiSpacer size="m" />
     <EuiFormControlLayoutDelimited
       clear={{ onClick: () => {} }}
       isLoading
@@ -92,28 +114,6 @@ export default () => (
       }
     />
 
-    <EuiSpacer size="m" />
-    <EuiFormControlLayoutDelimited
-      fullWidth
-      startControl={
-        <input
-          type="number"
-          placeholder="0"
-          className="euiFieldNumber"
-          aria-label="Use aria labels when no actual label is in use"
-        />
-      }
-      endControl={
-        <input
-          type="number"
-          placeholder="100"
-          className="euiFieldNumber"
-          aria-label="Use aria labels when no actual label is in use"
-        />
-      }
-    />
-
-    <EuiSpacer size="m" />
     <EuiFormControlLayoutDelimited
       isLoading
       startControl={
@@ -134,7 +134,6 @@ export default () => (
       }
     />
 
-    <EuiSpacer size="m" />
     <EuiFormControlLayoutDelimited
       compressed
       startControl={
@@ -154,8 +153,6 @@ export default () => (
         />
       }
     />
-
-    <EuiSpacer size="m" />
 
     <EuiFormControlLayoutDelimited
       prepend={<EuiFormLabel>Add</EuiFormLabel>}
@@ -178,8 +175,6 @@ export default () => (
       }
     />
 
-    <EuiSpacer size="m" />
-
     <EuiFormControlLayoutDelimited
       prepend={<EuiFormLabel>Merge</EuiFormLabel>}
       startControl={
@@ -200,8 +195,6 @@ export default () => (
         />
       }
     />
-
-    <EuiSpacer size="m" />
 
     <EuiFormControlLayoutDelimited
       readOnly
@@ -225,5 +218,5 @@ export default () => (
         />
       }
     />
-  </Fragment>
+  </div>
 );

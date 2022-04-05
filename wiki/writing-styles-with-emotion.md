@@ -25,13 +25,63 @@ import { euiComponentNameStyles } from './{component name}.styles.ts';
 
 export const EuiComponent = () => {
   const theme = useEuiTheme();
-  const styles = euiComponentStyles(theme);
+  const componentStyles = euiComponentStyles(theme);
+  const styles = [componentStyles]
 
   return (
-    <div css={[styles]} />
+    <div css={styles} />
   );
 };
 ```
+
+## Style helpers
+
+EUI components often have style variants that use a similar patterns. In these cases, consider creating a helper function to create repetitive styles.
+
+```ts
+const _componentSize = ({
+  size,
+  fontSize,
+}: {
+  size: string;
+  fontSize: string;
+}) => {
+  return `
+    width: ${size};
+    height: ${size};
+    line-height: ${size};
+    font-size: ${fontSize};
+  `;
+};
+```
+
+The helper function can then be used in the exported style block:
+
+```ts
+export const euiComponentStyles = ({ euiTheme }: UseEuiTheme) => ({
+  // Sizes
+  s: css(
+    _componentSize({
+      size: euiTheme.size.l,
+      fontSize: euiTheme.size.m,
+    })
+  ),
+  m: css(
+    _componentSize({
+      size: euiTheme.size.xl,
+      fontSize: `calc(${euiTheme.size.base} * 0.9)`,
+    })
+  ),
+  l: css(
+    _componentSize({
+      size: euiTheme.size.xxl,
+      fontSize: `calc(${euiTheme.size.l} * 0.8)`,
+    })
+  ),
+});
+```
+
+Note that the helper function returns a string literal instead of a `css` method from `@emotion/react`. This reduces the serialization work at runtime and makes the helper more flexible (e.g., could be used with a `style` attribute). Also note that the `css` method from `@emotion/react` can be [called as a normal function](https://emotion.sh/docs/@emotion/css#css) instead of as a template literal.
 
 ## Conditional styles
 
@@ -57,5 +107,8 @@ _Work in progress_
 * Use an array inside of the `css` prop for optimal style composition and class name generation. This is relevant even if only a single style object is passed.
 
 ```tsx
-<EuiComponent css={[styles.default, styles.stateful]} />
+const styles = [componentStyles.default, componentStyles.stateful];
+return (
+  <EuiComponent css={styles} />
+);
 ```
