@@ -75,7 +75,7 @@ export const PageExample = {
       ),
     },
     {
-      title: 'Page section',
+      title: 'Page sections',
       wrapText: false,
       text: (
         <div>
@@ -114,11 +114,12 @@ export const PageExample = {
               <EuiCode>{"'plain'"}</EuiCode> colored body or section.
             </p>
             <p>
-              The counter to that is when using{' '}
+              When using{' '}
               <Link to="/display/empty-prompt">
                 <strong>EuiEmptyPrompt</strong>
               </Link>{' '}
-              to replace the main contents of your page. For example:
+              to replace the main contents of your page you will want to use a
+              panel color opposite that of the section color. For example:
             </p>
           </EuiText>
 
@@ -130,9 +131,9 @@ export const PageExample = {
                 EuiPageSidebar
               </EuiTableHeaderCell>
               <EuiTableHeaderCell width={120}>EuiPageHeader</EuiTableHeaderCell>
-              <EuiTableHeaderCell>
-                EuiPageHeader & EuiPageSection
-              </EuiTableHeaderCell>
+              <EuiTableHeaderCell>EuiPageBody</EuiTableHeaderCell>
+              <EuiTableHeaderCell>EuiPageHeader</EuiTableHeaderCell>
+              <EuiTableHeaderCell>EuiPageSection</EuiTableHeaderCell>
               <EuiTableHeaderCell>EuiEmptyPrompt settings</EuiTableHeaderCell>
             </EuiTableHeader>
 
@@ -154,7 +155,15 @@ export const PageExample = {
                 </EuiTableRowCell>
 
                 <EuiTableRowCell mobileOptions={{ width: '100%' }}>
-                  <EuiCode>{'bottomBorder={true}'}</EuiCode>
+                  <EuiCode language="tsx">{'color="plain"'}</EuiCode>
+                </EuiTableRowCell>
+
+                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
+                  <EuiCode language="tsx">{'bottomBorder={true}'}</EuiCode>
+                </EuiTableRowCell>
+
+                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
+                  <EuiCode language="tsx">{'color="plain"'}</EuiCode>
                 </EuiTableRowCell>
 
                 <EuiTableRowCell>
@@ -179,7 +188,15 @@ export const PageExample = {
                 </EuiTableRowCell>
 
                 <EuiTableRowCell mobileOptions={{ width: '100%' }}>
-                  <EuiCode>{'bottomBorder="extended"'}</EuiCode>
+                  <EuiCode language="tsx">{'color="transparent"'}</EuiCode>
+                </EuiTableRowCell>
+
+                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
+                  <EuiCode language="tsx">{'bottomBorder="extended"'}</EuiCode>
+                </EuiTableRowCell>
+
+                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
+                  <EuiCode language="tsx">{'color="plain"'}</EuiCode>
                 </EuiTableRowCell>
 
                 <EuiTableRowCell>
@@ -204,7 +221,15 @@ export const PageExample = {
                 </EuiTableRowCell>
 
                 <EuiTableRowCell mobileOptions={{ width: '100%' }}>
-                  <EuiCode>{'bottomBorder="extended"'}</EuiCode>
+                  <EuiCode language="tsx">{'color="transparent"'}</EuiCode>
+                </EuiTableRowCell>
+
+                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
+                  <EuiCode>{'n/a'}</EuiCode>
+                </EuiTableRowCell>
+
+                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
+                  <EuiCode language="tsx">{'color="transparent"'}</EuiCode>
                 </EuiTableRowCell>
 
                 <EuiTableRowCell>
