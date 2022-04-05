@@ -12,7 +12,7 @@ exports[`EuiTimelineItem is rendered 1`] = `
     >
       <div
         aria-label="dot"
-        class="euiAvatar euiAvatar--s euiAvatar--user euiAvatar--subdued"
+        class="euiAvatar euiAvatar--s euiAvatar--user css-ifcftd-euiAvatar-s-user-subdued"
         role="img"
         title="dot"
       >
@@ -47,7 +47,7 @@ exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
     >
       <div
         aria-label="dot"
-        class="euiAvatar euiAvatar--s euiAvatar--user euiAvatar--subdued"
+        class="euiAvatar euiAvatar--s euiAvatar--user css-ifcftd-euiAvatar-s-user-subdued"
         role="img"
         title="dot"
       >
@@ -82,7 +82,7 @@ exports[`EuiTimelineItem props verticalAlign top is rendered 1`] = `
     >
       <div
         aria-label="dot"
-        class="euiAvatar euiAvatar--s euiAvatar--user euiAvatar--subdued"
+        class="euiAvatar euiAvatar--s euiAvatar--user css-ifcftd-euiAvatar-s-user-subdued"
         role="img"
         title="dot"
       >

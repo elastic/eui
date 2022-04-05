@@ -11,8 +11,14 @@ import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import classNames from 'classnames';
 
 import { isColorDark, hexToRgb, isValidHex } from '../../services/color';
-import { euiPaletteColorBlindBehindText, toInitials } from '../../services';
+import {
+  euiPaletteColorBlindBehindText,
+  toInitials,
+  useEuiTheme,
+} from '../../services';
 import { IconType, EuiIcon, IconSize, IconColor } from '../icon';
+
+import { euiAvatarStyles } from './avatar.styles';
 
 const sizeToClassNameMap = {
   s: 'euiAvatar--s',
@@ -118,7 +124,13 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   style,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiAvatarStyles(euiTheme);
+
   const visColors = euiPaletteColorBlindBehindText();
+
+  const isPlain = color === 'plain';
+  const isSubdued = color === 'subdued';
 
   const classes = classNames(
     'euiAvatar',
@@ -126,11 +138,18 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
     typeToClassNameMap[type],
     {
       'euiAvatar-isDisabled': isDisabled,
-      'euiAvatar--plain': color === 'plain',
-      'euiAvatar--subdued': color === 'subdued',
     },
     className
   );
+
+  const cssStyles = [
+    styles.euiAvatar,
+    styles[size],
+    styles[type],
+    isPlain && styles.plain,
+    isSubdued && styles.subdued,
+    isDisabled && styles.isDisabled,
+  ];
 
   checkValidInitials(initials);
 
@@ -139,6 +158,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
 
   const isNamedColor =
     color === 'plain' || color === 'subdued' || color === null;
+
   if (!isNamedColor) {
     checkValidColor(color);
 
@@ -179,6 +199,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
 
   return (
     <div
+      css={cssStyles}
       className={classes}
       style={avatarStyle}
       aria-label={isDisabled ? undefined : name}
