@@ -120,7 +120,7 @@ export const TimelineExample = {
       playground: timelineItemConfig,
     },
     {
-      title: 'A timeline thread with timeline items',
+      title: 'A timeline thread with multiple items',
       source: [
         {
           type: GuideSectionTypes.TSX,
@@ -138,23 +138,33 @@ export const TimelineExample = {
             correctly.
           </p>
           <p>
-            Although any node is allowed as a <EuiCode>children</EuiCode> in a{' '}
-            <strong>EuiTimelineItem</strong>, the recommendation is to use a{' '}
-            <Link to="/layout/panel">
-              <strong>EuiPanel</strong>
-            </Link>{' '}
-            or a{' '}
-            <Link to="/layout/panel#split-panels">
-              <strong>EuiSplitPanel</strong>
-            </Link>{' '}
-            when your content is text-based. For other types of components like
-            editors, the recommendation is to pass the{' '}
-            <EuiCode>children</EuiCode> without any wrapper.
+            When passing an <EuiCode>icon</EuiCode> and{' '}
+            <EuiCode>children</EuiCode> props to each item, there are some
+            design considerations to take into account:
           </p>
+          <ul>
+            <li>
+              <EuiCode>icon</EuiCode>: use icons of the same size to create a
+              better visual consistency.
+            </li>
+            <li>
+              <EuiCode>children</EuiCode>: when your content is text-based the
+              recommendation is to use a{' '}
+              <Link to="/layout/panel">
+                <strong>EuiPanel</strong>
+              </Link>{' '}
+              or a{' '}
+              <Link to="/layout/panel#split-panels">
+                <strong>EuiSplitPanel</strong>
+              </Link>{' '}
+              as a wrapper. For other types of components like editors, the
+              recommendation is to pass the children without any wrapper.
+            </li>
+          </ul>
           <p>
             The following example shows how to display multiple{' '}
             <strong>EuiTimelineItem</strong> and how you can use a{' '}
-            <strong>EuiSplitPanel</strong> to customize an event.
+            <strong>EuiSplitPanel</strong> as the content wrapper.
           </p>
         </>
       ),

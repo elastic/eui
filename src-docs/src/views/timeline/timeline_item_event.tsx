@@ -51,14 +51,9 @@ export default () => {
     <EuiTimelineItem
       icon={
         checked ? (
-          <EuiAvatar
-            size="m"
-            name="Checked"
-            iconType="check"
-            color={avatarColor}
-          />
+          <EuiAvatar name="Checked" iconType="check" color={avatarColor} />
         ) : (
-          <EuiAvatar size="s" name="Unchecked" iconType="dot" color="subdued" />
+          <EuiAvatar name="Unchecked" iconType="dot" color="subdued" />
         )
       }
     >
@@ -115,7 +110,6 @@ export default () => {
       <EuiTimelineItem
         icon={
           <EuiAvatar
-            size="m"
             name="Checked"
             iconType="check"
             color={colorBlindBehindText[0]}
