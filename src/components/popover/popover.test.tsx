@@ -9,6 +9,7 @@
 import React, { ReactNode } from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { EuiFocusTrap } from '../';
 
 import {
   EuiPopover,
@@ -440,31 +441,38 @@ describe('EuiPopover', () => {
     });
   });
 
-  describe('refocusButtonOnClose', () => {
+  describe('onEscapeKey', () => {
+    const closePopover = jest.fn();
+
+    const mockEvent = {
+      preventDefault: () => {},
+      stopPropagation: () => {},
+    } as Event;
+
     let rafSpy: jest.SpyInstance;
     beforeAll(() => {
       rafSpy = jest
         .spyOn(window, 'requestAnimationFrame')
         .mockImplementation((cb: Function) => cb());
     });
-    afterAll(() => {
-      rafSpy.mockRestore();
-    });
+    beforeEach(() => jest.clearAllMocks());
+    afterAll(() => rafSpy.mockRestore());
 
-    it('refocuses the toggle button on focus trap deactivation', () => {
+    it('closes the popover and refocuses the toggle button', () => {
       const toggleButtonEl = React.createRef<HTMLButtonElement>();
       const toggleButton = <button ref={toggleButtonEl} />;
 
       const component = mount(
         <EuiPopover
-          button={toggleButton}
           isOpen={true}
-          closePopover={() => {}}
+          button={toggleButton}
+          closePopover={closePopover}
           {...requiredProps}
         />
       );
-      (component.find('EuiFocusTrap').prop('onDeactivation') as Function)();
+      component.find(EuiFocusTrap).invoke('onEscapeKey')!(mockEvent);
 
+      expect(closePopover).toHaveBeenCalled();
       expect(document.activeElement).toEqual(toggleButtonEl.current);
     });
 
@@ -479,14 +487,15 @@ describe('EuiPopover', () => {
 
       const component = mount(
         <EuiPopover
-          button={toggleDiv}
           isOpen={true}
-          closePopover={() => {}}
+          button={toggleDiv}
+          closePopover={closePopover}
           {...requiredProps}
         />
       );
-      (component.find('EuiFocusTrap').prop('onDeactivation') as Function)();
+      component.find(EuiFocusTrap).invoke('onEscapeKey')!(mockEvent);
 
+      expect(closePopover).toHaveBeenCalled();
       expect(document.activeElement).toEqual(toggleButtonEl.current);
     });
 
@@ -498,12 +507,13 @@ describe('EuiPopover', () => {
         <EuiPopover
           button={toggleDiv}
           isOpen={true}
-          closePopover={() => {}}
+          closePopover={closePopover}
           {...requiredProps}
         />
       );
-      (component.find('EuiFocusTrap').prop('onDeactivation') as Function)();
+      component.find(EuiFocusTrap).invoke('onEscapeKey')!(mockEvent);
 
+      expect(closePopover).toHaveBeenCalled();
       expect(document.activeElement).not.toEqual(toggleDivEl.current);
     });
   });

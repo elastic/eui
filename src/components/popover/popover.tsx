@@ -383,6 +383,17 @@ export class EuiPopover extends Component<Props, State> {
       event.preventDefault();
       event.stopPropagation();
       this.closePopover();
+      this.refocusButtonOnClose();
+    }
+  };
+
+  refocusButtonOnClose = () => {
+    if (this.button) {
+      const focusableItems = focusable(this.button);
+      if (focusableItems.length) {
+        const toggleButton = focusableItems[0];
+        requestAnimationFrame(() => toggleButton.focus(returnFocusConfig));
+      }
     }
   };
 
@@ -666,17 +677,6 @@ export class EuiPopover extends Component<Props, State> {
     this.props.buttonRef && this.props.buttonRef(node);
   };
 
-  refocusButtonOnClose = () => {
-    if (this.button) {
-      const focusableItems = focusable(this.button);
-      if (focusableItems.length) {
-        const toggleButton = focusableItems[0];
-        requestAnimationFrame(() => toggleButton.focus(returnFocusConfig));
-      }
-    }
-    this.props.onTrapDeactivation?.();
-  };
-
   render() {
     const {
       anchorClassName,
@@ -787,7 +787,6 @@ export class EuiPopover extends Component<Props, State> {
             {...focusTrapProps}
             returnFocus={returnFocus} // Ignore temporary state of indecisive focus
             initialFocus={initialFocus}
-            onDeactivation={this.refocusButtonOnClose}
             onClickOutside={this.onClickOutside}
             onEscapeKey={this.onEscapeKey}
             disabled={
