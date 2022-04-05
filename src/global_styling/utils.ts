@@ -8,6 +8,15 @@
 
 import { useEuiTheme, UseEuiTheme } from '../services';
 
+/**
+ * Creates a React hook from a style mixin factory.
+ * The resulting hook accepts a single option property
+ * in the shape of the mixin's options
+ *
+ * `const useStyle = createStyleHook((euiTheme, {color: string}, colorMode) => {})`
+ * Results in the following with `euiTheme` and `colorMode` values automatically applied
+ * `const styles = useStyle({color: string}) => void`
+ */
 export function createStyleHookFromMixin<T>(
   mixinFactory: (
     theme: UseEuiTheme['euiTheme'],

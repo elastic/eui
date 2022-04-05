@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import chroma from 'chroma-js';
 import {
   COLOR_MODES_STANDARD,
   EuiThemeColorModeStandard,
@@ -20,3 +21,10 @@ export const shadowOpacity = (
 ) => {
   return colorMode === COLOR_MODES_STANDARD.dark ? opacity * 2.5 : opacity * 1;
 };
+
+// Create a CSS color value using `shadowOpacity`
+export const getShadowColor = (
+  color: string,
+  opacity: number,
+  colorMode: EuiThemeColorModeStandard
+) => chroma(color).alpha(shadowOpacity(opacity, colorMode)).css();
