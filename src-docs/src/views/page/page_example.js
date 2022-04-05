@@ -1,18 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import {
-  EuiText,
-  EuiSpacer,
-  EuiCallOut,
-  EuiCode,
-  EuiPageSection,
-  EuiPageContentBody,
-} from '../../../../src';
-
-import { pageSectionConfig } from './components/playground';
-
-// const PageSectionSource = require('!!raw-loader!./components/page_section');
+import { EuiText, EuiSpacer, EuiCallOut, EuiCode } from '../../../../src';
 
 import { PageComponentDemo } from './components/page_demo';
 import { PageSectionDemo } from './components/page_section_demo';
@@ -71,39 +60,30 @@ export const PageExample = {
     },
     {
       title: 'Page section',
+      wrapText: false,
       text: (
-        <>
-          <p>
-            <strong>EuiPageSection</strong> is a stackable component that is
-            essentially an <strong>EuiPanel</strong> with props for quickly
-            creating common usages. Use <EuiCode>panelled</EuiCode> to quickly
-            turn on/off the panel background and other attributes. You&apos;ll
-            need to set <EuiCode>{'grow={false}'}</EuiCode> to any content that
-            you don&apos;t want to stretch within the page.
-          </p>
-          <p>
-            To create dividers between contents, use the{' '}
-            <EuiCode>bottomBorder</EuiCode> prop. The{' '}
-            <EuiCode>{"'extended'"}</EuiCode> version ensures the border touches
-            the sides of the parent. It also supports{' '}
-            <EuiCode>restrictWidth</EuiCode> and <EuiCode>alignment</EuiCode> to
-            align with common usages.
-          </p>
-        </>
+        <div>
+          <EuiText>
+            <p>
+              <strong>EuiPageSection</strong> is a stackable component that is
+              essentially an <strong>EuiPanel</strong> with props for quickly
+              creating common usages. Use <EuiCode>panelled</EuiCode> to quickly
+              turn on/off the panel background and other attributes. You&apos;ll
+              need to set <EuiCode>{'grow={false}'}</EuiCode> to any content
+              that you don&apos;t want to stretch within the page.
+            </p>
+            <p>
+              To create dividers between contents, use the{' '}
+              <EuiCode>bottomBorder</EuiCode> prop. The{' '}
+              <EuiCode>{"'extended'"}</EuiCode> version ensures the border
+              touches the sides of the parent. It also supports{' '}
+              <EuiCode>restrictWidth</EuiCode> and <EuiCode>alignment</EuiCode>{' '}
+              to align with common usages.
+            </p>
+          </EuiText>
+          <PageSectionDemo />
+        </div>
       ),
-      demoPanelProps: { paddingSize: 'none', color: 'subdued' },
-      demo: <PageSectionDemo />,
-      // source: [
-      //   {
-      //     type: GuideSectionTypes.TSX,
-      //     code: PageSectionSource,
-      //   },
-      // ],
-      props: {
-        EuiPageSection,
-        EuiPageContentBody,
-      },
-      playground: pageSectionConfig,
     },
   ],
 };
