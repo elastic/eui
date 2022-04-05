@@ -89,6 +89,8 @@ export const useCellPopover = (): {
           event.preventDefault();
           event.stopPropagation();
           closeCellPopover();
+          // Ensure focus is returned to the parent cell
+          requestAnimationFrame(() => popoverAnchor.parentElement!.focus());
         }
       }}
     >
