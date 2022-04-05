@@ -6,19 +6,16 @@ import {
   EuiSpacer,
   EuiCallOut,
   EuiCode,
-  EuiPageBody,
   EuiPageSection,
   EuiPageContentBody,
 } from '../../../../src';
 
 import { pageSectionConfig } from './components/playground';
 
-import { PageBodyDemo } from './components/page_body_demo';
-// const PageBodySource = require('!!raw-loader!./components/page_body');
-import { PageSectionDemo } from './components/page_section_demo';
 // const PageSectionSource = require('!!raw-loader!./components/page_section');
 
 import { PageComponentDemo } from './components/page_demo';
+import { PageSectionDemo } from './components/page_section_demo';
 
 export const PageExample = {
   title: 'Page components',
@@ -48,10 +45,10 @@ export const PageExample = {
   ),
   sections: [
     {
-      title: 'Page',
+      title: 'Page and page body',
       wrapText: false,
       text: (
-        <>
+        <div>
           <EuiText>
             <p>
               <strong>EuiPage</strong> is simply a flex wrapper that will
@@ -62,34 +59,15 @@ export const PageExample = {
               reaches the provided value (or <EuiCode>1200px</EuiCode> if set to{' '}
               <EuiCode>true</EuiCode>).
             </p>
+            <p>
+              Typically you&apos;ll want to wrap all your page contents in{' '}
+              <strong>EuiPageBody</strong> and set{' '}
+              <EuiCode>{'panelled={true}'}</EuiCode> when you have a side bar.
+            </p>
           </EuiText>
           <PageComponentDemo />
-        </>
+        </div>
       ),
-    },
-    {
-      title: 'Page body',
-      text: (
-        <p>
-          Typically you&apos;ll want to wrap all your page contents in{' '}
-          <strong>EuiPageBody</strong> and set{' '}
-          <EuiCode>{'panelled={true}'}</EuiCode> when you have a side bar.
-        </p>
-      ),
-      // source: [
-      //   {
-      //     type: GuideSectionTypes.TSX,
-      //     code: PageBodySource,
-      //   },
-      // ],
-      demo: <PageBodyDemo />,
-      demoPanelProps: {
-        paddingSize: 'none',
-        style: { overflow: 'hidden' },
-      },
-      props: {
-        EuiPageBody,
-      },
     },
     {
       title: 'Page section',

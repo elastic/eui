@@ -10,15 +10,15 @@ import {
 
 export default ({
   content = <></>,
-  sideBar = <></>,
+  sideBar,
   ...rest
 }: EuiPageProps & {
   content: ReactElement;
-  sideBar: ReactElement;
+  sideBar?: ReactElement;
 }) => (
   <EuiPage paddingSize="none" {...rest}>
-    <EuiPageSideBar paddingSize="l">{sideBar}</EuiPageSideBar>
-    <EuiPageBody panelled>
+    {sideBar && <EuiPageSideBar paddingSize="l">{sideBar}</EuiPageSideBar>}
+    <EuiPageBody panelled={!!sideBar}>
       <EuiPageSection>{content}</EuiPageSection>
     </EuiPageBody>
   </EuiPage>
