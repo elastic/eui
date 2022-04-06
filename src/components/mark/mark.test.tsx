@@ -8,7 +8,6 @@
 
 import React from 'react';
 import { render } from 'enzyme';
-import { css } from '@emotion/react';
 import { renderWithStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 
@@ -19,16 +18,7 @@ describe('EuiMark', () => {
 
   test('is rendered', () => {
     expect(
-      render(
-        <EuiMark
-          css={css`
-            color: coral;
-          `}
-          {...requiredProps}
-        >
-          Marked
-        </EuiMark>
-      )
+      render(<EuiMark {...requiredProps}>Marked</EuiMark>)
     ).toMatchSnapshot();
   });
 });
