@@ -7,6 +7,9 @@ import { EuiCopy, EuiCode } from '../../../../src/components';
 import Copy from './copy';
 const copySource = require('!!raw-loader!./copy');
 
+import CopyToClipboard from './copy_to_clipboard';
+const copyToClipboardSource = require('!!raw-loader!./copy_to_clipboard');
+
 export const CopyExample = {
   title: 'Copy',
   sections: [
@@ -32,6 +35,23 @@ export const CopyExample = {
     <EuiButton onClick={copy}>Click to copy</EuiButton>
   )}
 </EuiCopy>`,
+    },
+    {
+      title: 'Copy to clipboard function',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: copyToClipboardSource,
+        },
+      ],
+      text: (
+        <p>
+          The function <EuiCode>copyToClipboard</EuiCode> allows you to copy
+          text to the clipboard. It receives an argument of type{' '}
+          <EuiCode>string</EuiCode>.
+        </p>
+      ),
+      demo: <CopyToClipboard />,
     },
   ],
 };

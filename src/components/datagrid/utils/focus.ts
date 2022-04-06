@@ -215,7 +215,7 @@ export const createKeyDownHandler = ({
         setFocusedCell([x + 1, y]);
       }
     } else if (key === keys.PAGE_DOWN) {
-      if (pagination) {
+      if (pagination && pagination.pageSize > 0) {
         event.preventDefault();
         const pageSize = pagination.pageSize;
         const pageCount = Math.ceil(rowCount / pageSize);
@@ -226,7 +226,7 @@ export const createKeyDownHandler = ({
         setFocusedCell([focusedCell[0], 0]);
       }
     } else if (key === keys.PAGE_UP) {
-      if (pagination) {
+      if (pagination && pagination.pageSize > 0) {
         event.preventDefault();
         const pageIndex = pagination.pageIndex;
         if (pageIndex > 0) {
@@ -272,10 +272,7 @@ export const preventTabbing = (records: MutationRecord[]) => {
       const tabbables = tabbable(cell);
       for (let i = 0; i < tabbables.length; i++) {
         const element = tabbables[i];
-        if (
-          element.getAttribute('role') !== 'gridcell' &&
-          !element.dataset['euigrid-tab-managed']
-        ) {
+        if (!element.hasAttribute('data-euigrid-tab-managed')) {
           element.setAttribute('tabIndex', '-1');
           element.setAttribute('data-datagrid-interactable', 'true');
         }

@@ -109,19 +109,18 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   }, [className, headerZindexLocation]);
 
   useEffect(() => {
-    if (!overlayMaskNode.current || !onClick) return;
     const portalTarget = overlayMaskNode.current;
+    if (!portalTarget || !onClick) return;
+
     const listener = (e: Event) => {
-      if (e.target === overlayMaskNode.current) {
+      if (e.target === portalTarget) {
         onClick();
       }
     };
-    overlayMaskNode.current.addEventListener('click', listener);
+    portalTarget.addEventListener('click', listener);
 
     return () => {
-      if (portalTarget && onClick) {
-        portalTarget.removeEventListener('click', listener);
-      }
+      portalTarget.removeEventListener('click', listener);
     };
   }, [onClick]);
 

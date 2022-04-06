@@ -78,6 +78,11 @@ type CommonMarkdownEditorProps = Omit<
     onChange: (value: string) => void;
 
     /**
+     * Sets the current display mode to a read-only state. All editing gets resctricted.
+     */
+    readOnly?: ContextShape['readOnly'];
+
+    /**
      * Sets the `height` in pixels of the editor/preview area or pass `full` to allow
      * the EuiMarkdownEditor to fill the height of its container.
      * When in `full` mode the vertical resize is not allowed.
@@ -209,6 +214,7 @@ export const EuiMarkdownEditor = forwardRef<
       dropHandlers = [],
       markdownFormatProps,
       placeholder,
+      readOnly,
       ...rest
     },
     ref
@@ -254,7 +260,7 @@ export const EuiMarkdownEditor = forwardRef<
         const parsed = parser.processSync(value);
         return [parsed, null];
       } catch (e) {
-        return [null, e];
+        return [null, e as EuiMarkdownParseError];
       }
     }, [parser, value]);
 
@@ -272,11 +278,14 @@ export const EuiMarkdownEditor = forwardRef<
 
     const contextValue = useMemo<ContextShape>(
       () => ({
-        openPluginEditor: (plugin: EuiMarkdownEditorUiPlugin) =>
-          setPluginEditorPlugin(() => plugin),
-        replaceNode,
+        openPluginEditor: readOnly
+          ? () => {}
+          : (plugin: EuiMarkdownEditorUiPlugin) =>
+              setPluginEditorPlugin(() => plugin),
+        replaceNode: readOnly ? () => {} : replaceNode,
+        readOnly: readOnly,
       }),
-      [replaceNode]
+      [replaceNode, readOnly]
     );
 
     const [selectedNode, setSelectedNode] = useState<EuiMarkdownAstNode>();
@@ -354,6 +363,10 @@ export const EuiMarkdownEditor = forwardRef<
       className
     );
 
+    const classesPreview = classNames('euiMarkdownEditorPreview', {
+      'euiMarkdownEditorPreview-isReadOnly': readOnly,
+    });
+
     const onResize = () => {
       if (textarea && isEditing && height !== 'full') {
         const resizedTextareaHeight =
@@ -423,7 +436,7 @@ export const EuiMarkdownEditor = forwardRef<
           {isPreviewing && (
             <div
               ref={previewRef}
-              className="euiMarkdownEditorPreview"
+              className={classesPreview}
               style={{ height: previewHeight }}
             >
               <EuiMarkdownFormat
@@ -481,6 +494,7 @@ export const EuiMarkdownEditor = forwardRef<
                       value={value}
                       onFocus={() => setHasUnacceptedItems(false)}
                       placeholder={placeholder}
+                      readOnly={readOnly}
                       {...{
                         'aria-label': ariaLabel,
                         'aria-labelledby': ariaLabelledBy,

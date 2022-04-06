@@ -8,7 +8,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { mount, ReactWrapper, render } from 'enzyme';
-import { EuiDataGrid, EuiDataGridProps } from './';
+import { EuiDataGrid } from './';
+import { EuiDataGridProps } from './data_grid_types';
 import {
   findTestSubject,
   requiredProps,
@@ -17,6 +18,14 @@ import {
 import { EuiDataGridColumnResizer } from './body/header/data_grid_column_resizer';
 import { keys } from '../../services';
 import { act } from 'react-dom/test-utils';
+
+// Mock the cell popover (TODO: Move failing tests to Cypress and remove need for mock?)
+jest.mock('../popover', () => ({
+  ...jest.requireActual('../popover'),
+  EuiWrappingPopover: ({ children }: { children: React.ReactNode }) => (
+    <div data-test-subj="euiDataGridExpansionPopover">{children}</div>
+  ),
+}));
 
 function getFocusableCell(component: ReactWrapper) {
   return findTestSubject(component, 'dataGridRowCell').find('[tabIndex=0]');
@@ -443,6 +452,11 @@ function moveColumnToIndex(
 }
 
 describe('EuiDataGrid', () => {
+  // Mock requestAnimationFrame to run immediately
+  jest
+    .spyOn(window, 'requestAnimationFrame')
+    .mockImplementation((cb: any) => cb());
+
   describe('rendering', () => {
     const getBoundingClientRect =
       window.Element.prototype.getBoundingClientRect;
@@ -547,7 +561,8 @@ describe('EuiDataGrid', () => {
               "left": 0,
               "lineHeight": undefined,
               "position": "absolute",
-              "top": "100px",
+              "right": undefined,
+              "top": 0,
               "width": 100,
             },
             "tabIndex": -1,
@@ -572,13 +587,14 @@ describe('EuiDataGrid', () => {
               "left": 100,
               "lineHeight": undefined,
               "position": "absolute",
-              "top": "100px",
+              "right": undefined,
+              "top": 0,
               "width": 100,
             },
             "tabIndex": -1,
           },
           Object {
-            "className": "euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn customClass",
+            "className": "euiDataGridRowCell euiDataGridRowCell--firstColumn customClass",
             "data-gridcell-column-id": "A",
             "data-gridcell-column-index": 0,
             "data-gridcell-id": "0,1",
@@ -597,13 +613,14 @@ describe('EuiDataGrid', () => {
               "left": 0,
               "lineHeight": undefined,
               "position": "absolute",
-              "top": "134px",
+              "right": undefined,
+              "top": 0,
               "width": 100,
             },
             "tabIndex": -1,
           },
           Object {
-            "className": "euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn customClass",
+            "className": "euiDataGridRowCell euiDataGridRowCell--lastColumn customClass",
             "data-gridcell-column-id": "B",
             "data-gridcell-column-index": 1,
             "data-gridcell-id": "1,1",
@@ -622,7 +639,8 @@ describe('EuiDataGrid', () => {
               "left": 100,
               "lineHeight": undefined,
               "position": "absolute",
-              "top": "134px",
+              "right": undefined,
+              "top": 0,
               "width": 100,
             },
             "tabIndex": -1,
@@ -773,9 +791,9 @@ describe('EuiDataGrid', () => {
       });
 
       // fullscreen selector
-      expect(findTestSubject(component, 'dataGridFullScrenButton').length).toBe(
-        0
-      );
+      expect(
+        findTestSubject(component, 'dataGridFullScreenButton').length
+      ).toBe(0);
 
       // sort selector
       expect(
@@ -823,10 +841,10 @@ describe('EuiDataGrid', () => {
             "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell--lastColumn",
             "euiDataGridRowCell euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--customFormatName euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
             "euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell--lastColumn",
@@ -866,9 +884,9 @@ describe('EuiDataGrid', () => {
             "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell euiDataGridRowCell--boolean",
             "euiDataGridRowCell euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--boolean euiDataGridRowCell--stripe",
-            "euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--boolean",
+            "euiDataGridRowCell euiDataGridRowCell--lastColumn",
           ]
         `);
       });
@@ -897,8 +915,8 @@ describe('EuiDataGrid', () => {
           Array [
             "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell euiDataGridRowCell--alphanumeric euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alphanumeric euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn",
+            "euiDataGridRowCell euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
+            "euiDataGridRowCell euiDataGridRowCell--alphanumeric euiDataGridRowCell--lastColumn",
           ]
         `);
       });

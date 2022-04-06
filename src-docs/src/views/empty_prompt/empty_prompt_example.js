@@ -163,12 +163,12 @@ export const EmptyPromptExample = {
               <EuiCode>color</EuiCode> prop will also attempt to adjust the{' '}
               <EuiCode>iconColor</EuiCode> and <EuiCode>footer</EuiCode> color.
             </p>
-            {/* Commenting out for now, as the Guidelines don't yet specify.
+
             <p>
               Read the{' '}
               <Link to="/guidelines/empty-prompt">usage guidelines</Link> to
               better understand when to use certain panel props.
-            </p> */}
+            </p>
           </EuiText>
           <EuiSpacer />
           <Panel />
@@ -317,10 +317,11 @@ export const EmptyPromptExample = {
         <>
           <p>
             When using a <strong>EuiEmptyPrompt</strong> in a{' '}
-            <Link to="/layout/page">EuiPageTemplate</Link>, pay attention to the
-            template you’re passing. The template will determine which{' '}
-            <EuiCode>color</EuiCode> and <EuiCode>hasBorder</EuiCode> prop you
-            should use to ensure consistency across our Elastic products.
+            <Link to="/templates/page-template">EuiPageTemplate</Link>, pay
+            attention to the template you’re passing. The template will
+            determine which <EuiCode>color</EuiCode> and{' '}
+            <EuiCode>hasBorder</EuiCode> prop you should use to ensure
+            consistency across our Elastic products.
           </p>
           <PageTemplateTable />
 
@@ -348,7 +349,7 @@ export const EmptyPromptExample = {
             You can then tie multiple types of empty states together to create a
             seamless loading to empty or loading to error experience. The
             following example shows how to encorprate these states with{' '}
-            <Link to="/layout/page#simple-layout-with-centered-content">
+            <Link to="/templates/page-template#simple-layout-with-centered-content">
               <strong>EuiPageTemplate</strong>
             </Link>{' '}
             using <EuiCode>{'template="centeredContent"'}</EuiCode>.

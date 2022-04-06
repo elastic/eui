@@ -6,13 +6,27 @@
  * Side Public License, v 1.
  */
 
+/// <reference types="../../../cypress/support"/>
+
 import React from 'react';
 
 import { EuiContextMenuItem } from './context_menu_item';
 import { EuiContextMenuPanel } from './context_menu_panel';
 
+const items = [
+  <EuiContextMenuItem key="A" data-test-subj="itemA">
+    Option A
+  </EuiContextMenuItem>,
+  <EuiContextMenuItem key="B" data-test-subj="itemB">
+    Option B
+  </EuiContextMenuItem>,
+  <EuiContextMenuItem key="C" data-test-subj="itemC">
+    Option C
+  </EuiContextMenuItem>,
+];
+
 describe('EuiContextMenuPanel', () => {
-  describe('focus behavior', () => {
+  describe('Focus behavior', () => {
     it('is set on the first focusable element by default if there are no items and hasFocus is true', () => {
       cy.mount(
         <EuiContextMenuPanel>
@@ -32,20 +46,8 @@ describe('EuiContextMenuPanel', () => {
     });
   });
 
-  describe('keyboard navigation of items', () => {
-    const items = [
-      <EuiContextMenuItem key="A" data-test-subj="itemA">
-        Option A
-      </EuiContextMenuItem>,
-      <EuiContextMenuItem key="B" data-test-subj="itemB">
-        Option B
-      </EuiContextMenuItem>,
-      <EuiContextMenuItem key="C" data-test-subj="itemC">
-        Option C
-      </EuiContextMenuItem>,
-    ];
-
-    describe('up/down keys', () => {
+  describe('Keyboard navigation of items', () => {
+    describe('Up/down keys', () => {
       beforeEach(() => {
         cy.mount(<EuiContextMenuPanel items={items} />);
       });
@@ -85,7 +87,7 @@ describe('EuiContextMenuPanel', () => {
       });
     });
 
-    describe('left/right arrow keys', () => {
+    describe('Left/right arrow keys', () => {
       it("right arrow key shows next panel with focused item's index", () => {
         const showNextPanelHandler = cy.stub();
         cy.mount(
@@ -113,6 +115,45 @@ describe('EuiContextMenuPanel', () => {
           expect(showPreviousPanelHandler).to.be.called;
         });
       });
+    });
+
+    describe('tab key', () => {
+      beforeEach(() => {
+        cy.mount(<EuiContextMenuPanel items={items} />);
+      });
+
+      it('tab key focuses the first menu item', () => {
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.realPress('Tab');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+      });
+
+      it('subsequently, tab key focuses the next menu item', () => {
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.repeatRealPress('Tab');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemB');
+      });
+
+      it('shift+tab key focuses the previous menu item', () => {
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.repeatRealPress('Tab');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemB');
+        cy.realPress(['Shift', 'Tab']);
+        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+      });
+    });
+  });
+
+  describe('Automated accessibility check', () => {
+    it('has zero violations', () => {
+      const showNextPanelHandler = cy.stub();
+      cy.mount(
+        <EuiContextMenuPanel
+          items={items}
+          showNextPanel={showNextPanelHandler}
+        />
+      );
+      cy.checkAxe();
     });
   });
 });

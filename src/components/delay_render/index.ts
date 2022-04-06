@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiDelayRender, EuiDelayRenderProps } from './delay_render';
+export type { EuiDelayRenderProps } from './delay_render';
+export { EuiDelayRender } from './delay_render';

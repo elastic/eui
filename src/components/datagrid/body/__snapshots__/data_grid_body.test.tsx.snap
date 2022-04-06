@@ -45,12 +45,13 @@ exports[`EuiDataGridBody renders 1`] = `
                 columnA
               </div>
               <span
-                aria-label="Header actions"
                 class="euiDataGridHeaderCell__icon"
                 color="text"
                 data-euiicon-type="arrowDown"
                 data-test-subj="dataGridHeaderCellActionButton-columnA"
-              />
+              >
+                Header actions
+              </span>
             </button>
           </div>
         </div>
@@ -87,12 +88,13 @@ exports[`EuiDataGridBody renders 1`] = `
                 columnB
               </div>
               <span
-                aria-label="Header actions"
                 class="euiDataGridHeaderCell__icon"
                 color="text"
                 data-euiicon-type="arrowDown"
                 data-test-subj="dataGridHeaderCellActionButton-columnB"
-              />
+              >
+                Header actions
+              </span>
             </button>
           </div>
         </div>
@@ -107,7 +109,7 @@ exports[`EuiDataGridBody renders 1`] = `
       data-gridcell-visible-row-index="0"
       data-test-subj="dataGridRowCell"
       role="gridcell"
-      style="position:absolute;left:0;top:0px;height:34px;width:100px"
+      style="position:absolute;left:0;top:0;height:34px;width:100px"
       tabindex="-1"
     >
       <div
@@ -141,7 +143,7 @@ exports[`EuiDataGridBody renders 1`] = `
       data-gridcell-visible-row-index="0"
       data-test-subj="dataGridRowCell"
       role="gridcell"
-      style="position:absolute;left:100px;top:0px;height:34px;width:100px"
+      style="position:absolute;left:100px;top:0;height:34px;width:100px"
       tabindex="-1"
     >
       <div

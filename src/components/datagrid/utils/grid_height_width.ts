@@ -7,7 +7,7 @@
  */
 
 import { useEffect, useState, useContext, MutableRefObject } from 'react';
-import { IS_JEST_ENVIRONMENT } from '../../../test';
+import { IS_JEST_ENVIRONMENT } from '../../../utils';
 import { useUpdateEffect, useForceRender } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
 import { EuiDataGridRowHeightsOptions } from '../data_grid_types';
@@ -19,24 +19,32 @@ export const useFinalGridDimensions = ({
   unconstrainedWidth,
   wrapperDimensions,
   wrapperRef,
+  isFullScreen,
   rowCount,
 }: {
   unconstrainedHeight: number;
   unconstrainedWidth: number;
   wrapperDimensions: { width: number; height: number };
   wrapperRef: MutableRefObject<HTMLDivElement | null>;
+  isFullScreen: boolean;
   rowCount: number;
 }) => {
   // Used if the grid needs to scroll
   const [height, setHeight] = useState<number | undefined>(undefined);
   const [width, setWidth] = useState<number | undefined>(undefined);
+  // Tracking fullscreen height separately is necessary to correctly restore the grid back to non-fullscreen height
+  const [fullScreenHeight, setFullScreenHeight] = useState(0);
 
   // Set the wrapper height on load, whenever the grid wrapper resizes, and whenever rowCount changes
   useEffect(() => {
     const boundingRect = wrapperRef.current!.getBoundingClientRect();
 
-    if (boundingRect.height !== unconstrainedHeight) {
-      setHeight(boundingRect.height);
+    if (isFullScreen) {
+      setFullScreenHeight(boundingRect.height);
+    } else {
+      if (boundingRect.height !== unconstrainedHeight) {
+        setHeight(boundingRect.height);
+      }
     }
     if (boundingRect.width !== unconstrainedWidth) {
       setWidth(boundingRect.width);
@@ -44,6 +52,7 @@ export const useFinalGridDimensions = ({
   }, [
     // Effects that should cause recalculations
     rowCount,
+    isFullScreen,
     wrapperDimensions,
     // Dependencies
     wrapperRef,
@@ -51,14 +60,17 @@ export const useFinalGridDimensions = ({
     unconstrainedWidth,
   ]);
 
-  const finalHeight = IS_JEST_ENVIRONMENT
-    ? Number.MAX_SAFE_INTEGER
+  const finalHeight = isFullScreen
+    ? fullScreenHeight
     : height || unconstrainedHeight;
-  const finalWidth = IS_JEST_ENVIRONMENT
-    ? Number.MAX_SAFE_INTEGER
-    : width || unconstrainedWidth;
+  const finalWidth = width || unconstrainedWidth;
 
-  return { finalHeight, finalWidth };
+  return IS_JEST_ENVIRONMENT
+    ? {
+        finalHeight: Number.MAX_SAFE_INTEGER,
+        finalWidth: Number.MAX_SAFE_INTEGER,
+      }
+    : { finalHeight, finalWidth };
 };
 
 /**
@@ -86,12 +98,6 @@ export const useUnconstrainedHeight = ({
   innerGridRef: React.MutableRefObject<HTMLDivElement | null>;
 }) => {
   const { getCorrectRowIndex } = useContext(DataGridSortingContext);
-
-  // when a row height is updated, force a re-render of the grid body to update the unconstrained height
-  const forceRender = useForceRender();
-  useEffect(() => {
-    rowHeightUtils.setRerenderGridBody(forceRender);
-  }, [rowHeightUtils, forceRender]);
 
   let knownHeight = 0; // tracks the pixel height of rows we know the size of
   let knownRowCount = 0; // how many rows we know the size of
@@ -125,6 +131,7 @@ export const useUnconstrainedHeight = ({
     innerGridRef.current,
     'width'
   );
+  const forceRender = useForceRender();
   useUpdateEffect(forceRender, [innerWidth]);
 
   const unconstrainedHeight =

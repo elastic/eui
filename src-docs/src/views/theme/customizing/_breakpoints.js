@@ -8,11 +8,12 @@ import {
   EuiTitle,
 } from '../../../../../src';
 
+import { getPropsFromComponent } from '../../../services/props/get_props';
 import { useDebouncedUpdate } from '../hooks';
 
 import { ThemeValue } from './_values';
 
-import { getPropsFromThemeKey, _EuiThemeBreakpoint } from '../_props';
+import { _EuiThemeBreakpoint } from '../_props';
 
 export default ({ onThemeUpdate }) => {
   const { euiTheme } = useEuiTheme();
@@ -23,7 +24,7 @@ export default ({ onThemeUpdate }) => {
     onUpdate: onThemeUpdate,
   });
 
-  const breakpointTypes = getPropsFromThemeKey(_EuiThemeBreakpoint);
+  const breakpointTypes = getPropsFromComponent(_EuiThemeBreakpoint);
 
   return (
     <div>

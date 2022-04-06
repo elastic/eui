@@ -6,24 +6,23 @@
  * Side Public License, v 1.
  */
 
-export { EuiHeader, EuiHeaderProps, EuiHeaderSections } from './header';
+export type { EuiHeaderProps, EuiHeaderSections } from './header';
+export { EuiHeader } from './header';
 
-export { EuiHeaderAlert, EuiHeaderAlertProps } from './header_alert';
+export type { EuiHeaderAlertProps } from './header_alert';
+export { EuiHeaderAlert } from './header_alert';
 
 export { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
 
-export {
-  EuiHeaderLink,
-  EuiHeaderLinkProps,
-  EuiHeaderLinks,
-  EuiHeaderLinksProps,
-} from './header_links';
+export type { EuiHeaderLinkProps, EuiHeaderLinksProps } from './header_links';
+export { EuiHeaderLink, EuiHeaderLinks } from './header_links';
 
-export { EuiHeaderLogo, EuiHeaderLogoProps } from './header_logo';
+export type { EuiHeaderLogoProps } from './header_logo';
+export { EuiHeaderLogo } from './header_logo';
 
+export type { EuiHeaderSectionItemButtonProps } from './header_section';
 export {
   EuiHeaderSection,
   EuiHeaderSectionItem,
   EuiHeaderSectionItemButton,
-  EuiHeaderSectionItemButtonProps,
 } from './header_section';

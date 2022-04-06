@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiSwitch, EuiSwitchProps, EuiSwitchEvent } from './switch';
+export type { EuiSwitchProps, EuiSwitchEvent } from './switch';
+export { EuiSwitch } from './switch';

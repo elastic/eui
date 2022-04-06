@@ -169,7 +169,10 @@ export class EuiSearchBar extends Component<EuiSearchBarProps, State> {
       this.notifyControllingParent({ query, queryText, error: null });
       this.setState({ query, queryText, error: null });
     } catch (e) {
-      const error: Error = { name: e.name, message: e.message };
+      const error: Error =
+        e instanceof Error
+          ? { name: e.name, message: e.message }
+          : { name: 'Unexpected error', message: String(e) };
       this.notifyControllingParent({ query: null, queryText, error });
       this.setState({ queryText, error });
     }

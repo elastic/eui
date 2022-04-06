@@ -1,5 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiFilterButton does not render a badge or count if numFilters is not passed 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiButtonEmpty euiButtonEmpty--text euiFilterButton testClass1 testClass2"
+  data-test-subj="test subject string"
+  type="button"
+>
+  <span
+    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+  >
+    <span
+      class="euiButtonEmpty__text"
+    >
+      <span
+        class="euiFilterButton__textShift"
+      />
+    </span>
+  </span>
+</button>
+`;
+
 exports[`EuiFilterButton is rendered 1`] = `
 <button
   aria-label="aria-label"
@@ -119,7 +140,7 @@ exports[`EuiFilterButton props numActiveFilters and hasActiveFilters is rendered
       />
       <span
         aria-label="5 active filters"
-        class="euiNotificationBadge euiNotificationBadge--medium euiFilterButton__notification"
+        class="euiNotificationBadge euiFilterButton__notification"
       >
         5
       </span>
@@ -144,7 +165,7 @@ exports[`EuiFilterButton props numFilters is rendered 1`] = `
       />
       <span
         aria-label="5 available filters"
-        class="euiNotificationBadge euiNotificationBadge--medium euiNotificationBadge--subdued euiFilterButton__notification"
+        class="euiNotificationBadge euiNotificationBadge--subdued euiFilterButton__notification"
       >
         5
       </span>
@@ -209,31 +230,10 @@ exports[`EuiFilterButton renders zero properly 1`] = `
       />
       <span
         aria-label="0 available filters"
-        class="euiNotificationBadge euiNotificationBadge--medium euiNotificationBadge--subdued euiFilterButton__notification"
+        class="euiNotificationBadge euiNotificationBadge--subdued euiFilterButton__notification"
       >
         0
       </span>
-    </span>
-  </span>
-</button>
-`;
-
-exports[`EuiFilterButton does not render a badge or count if numFilters is not passed 1`] = `
-<button
-  aria-label="aria-label"
-  class="euiButtonEmpty euiButtonEmpty--text euiFilterButton testClass1 testClass2"
-  data-test-subj="test subject string"
-  type="button"
->
-  <span
-    class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
-  >
-    <span
-      class="euiButtonEmpty__text"
-    >
-      <span
-        class="euiFilterButton__textShift"
-      />
     </span>
   </span>
 </button>

@@ -6,9 +6,10 @@
  * Side Public License, v 1.
  */
 
-import React, { TextareaHTMLAttributes, forwardRef } from 'react';
-
+import React, { TextareaHTMLAttributes, forwardRef, useContext } from 'react';
+import classNames from 'classnames';
 import { CommonProps } from '../common';
+import { EuiMarkdownContext } from './markdown_context';
 
 export type EuiMarkdownEditorTextAreaProps = TextareaHTMLAttributes<
   HTMLTextAreaElement
@@ -40,16 +41,22 @@ export const EuiMarkdownEditorTextArea = forwardRef<
     },
     ref
   ) => {
+    const { readOnly } = useContext(EuiMarkdownContext);
+    const classes = classNames('euiMarkdownEditorTextArea', {
+      'euiMarkdownEditorTextArea-isReadOnly': readOnly,
+    });
+
     return (
       <textarea
         ref={ref}
         style={{ height, maxHeight }}
-        className="euiMarkdownEditorTextArea"
+        className={classes}
         {...rest}
         rows={6}
         name={name}
         id={id}
         placeholder={placeholder}
+        readOnly={readOnly}
       >
         {children}
       </textarea>

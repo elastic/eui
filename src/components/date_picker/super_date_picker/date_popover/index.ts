@@ -6,13 +6,11 @@
  * Side Public License, v 1.
  */
 
-export { EuiAbsoluteTab, EuiAbsoluteTabProps } from './absolute_tab';
-export {
-  EuiDatePopoverButton,
-  EuiDatePopoverButtonProps,
-} from './date_popover_button';
-export {
-  EuiDatePopoverContent,
-  EuiDatePopoverContentProps,
-} from './date_popover_content';
-export { EuiRelativeTab, EuiRelativeTabProps } from './relative_tab';
+export type { EuiAbsoluteTabProps } from './absolute_tab';
+export { EuiAbsoluteTab } from './absolute_tab';
+export type { EuiDatePopoverButtonProps } from './date_popover_button';
+export { EuiDatePopoverButton } from './date_popover_button';
+export type { EuiDatePopoverContentProps } from './date_popover_content';
+export { EuiDatePopoverContent } from './date_popover_content';
+export type { EuiRelativeTabProps } from './relative_tab';
+export { EuiRelativeTab } from './relative_tab';

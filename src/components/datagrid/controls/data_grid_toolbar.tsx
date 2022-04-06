@@ -6,10 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useEffect } from 'react';
-import { EuiToolTip } from '../../tool_tip';
-import { EuiButtonIcon } from '../../button';
-import { useEuiI18n } from '../../i18n';
+import React from 'react';
 import {
   EuiDataGridProps,
   EuiDataGridToolbarProps,
@@ -17,72 +14,25 @@ import {
   EuiDataGridToolBarAdditionalControlsOptions,
   EuiDataGridToolBarAdditionalControlsLeftOptions,
 } from '../data_grid_types';
-import { IS_JEST_ENVIRONMENT } from '../../../test';
+import { IS_JEST_ENVIRONMENT } from '../../../utils';
 
-// When below this number the grid only shows the full screen button
+// When below this number the grid only shows the right control icon buttons
 const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
-
-// When data grid is full screen, we add a class to the body to remove the extra scrollbar
-const GRID_IS_FULLSCREEN_CLASSNAME = 'euiDataGrid__restrictBody';
 
 export const EuiDataGridToolbar = ({
   gridWidth,
   minSizeForControls = MINIMUM_WIDTH_FOR_GRID_CONTROLS,
   toolbarVisibility,
   isFullScreen,
-  controlBtnClasses,
+  fullScreenSelector,
   displaySelector,
   columnSelector,
   columnSorting,
-  setIsFullScreen,
 }: EuiDataGridToolbarProps) => {
-  const [fullScreenButton, fullScreenButtonActive] = useEuiI18n(
-    [
-      'euiDataGridToolbar.fullScreenButton',
-      'euiDataGridToolbar.fullScreenButtonActive',
-    ],
-    ['Full screen', 'Exit full screen']
-  );
   // Enables/disables grid controls based on available width
   const hasRoomForGridControls = IS_JEST_ENVIRONMENT
     ? true
     : gridWidth > minSizeForControls || isFullScreen;
-
-  useEffect(() => {
-    // When data grid is full screen, we add a class to the body to remove the extra scrollbar and stay above any fixed headers
-    if (isFullScreen) {
-      document.body.classList.add(GRID_IS_FULLSCREEN_CLASSNAME);
-
-      return () => {
-        document.body.classList.remove(GRID_IS_FULLSCREEN_CLASSNAME);
-      };
-    }
-  }, [isFullScreen]);
-
-  const fullScreenSelector = (
-    <EuiToolTip
-      content={
-        isFullScreen ? (
-          <>
-            {fullScreenButtonActive} (<kbd>esc</kbd>)
-          </>
-        ) : (
-          fullScreenButton
-        )
-      }
-      delay="long"
-    >
-      <EuiButtonIcon
-        size="xs"
-        iconType={isFullScreen ? 'fullScreenExit' : 'fullScreen'}
-        color="text"
-        className={controlBtnClasses}
-        data-test-subj="dataGridFullScreenButton"
-        onClick={() => setIsFullScreen(!isFullScreen)}
-        aria-label={isFullScreen ? fullScreenButtonActive : fullScreenButton}
-      />
-    </EuiToolTip>
-  );
 
   return (
     <div className="euiDataGrid__controls" data-test-sub="dataGridControls">

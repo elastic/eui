@@ -1,5 +1,560 @@
 [
   {
+    "version": "53.0.0",
+    "changes": [
+      {
+        "token": "euiRelativeTab.relativeDate",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiRelativeTab.roundingLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiAbsoluteTab.dateFormatError",
+        "changeType": "added",
+        "value": "Expected format: {dateFormat}"
+      },
+      {
+        "token": "euiDatePopoverContent.startDateLabel",
+        "changeType": "added",
+        "value": "Start date"
+      },
+      {
+        "token": "euiDatePopoverContent.endDateLabel",
+        "changeType": "added",
+        "value": "End date"
+      },
+      {
+        "token": "euiDatePopoverContent.absoluteTabLabel",
+        "changeType": "added",
+        "value": "Absolute"
+      },
+      {
+        "token": "euiDatePopoverContent.relativeTabLabel",
+        "changeType": "added",
+        "value": "Relative"
+      },
+      {
+        "token": "euiDatePopoverContent.nowTabLabel",
+        "changeType": "added",
+        "value": "Now"
+      },
+      {
+        "token": "euiDatePopoverContent.nowTabContent",
+        "changeType": "added",
+        "value": "Setting the time to \"now\" means that on every refresh this\n            time will be set to the time of the refresh."
+      },
+      {
+        "token": "euiDatePopoverContent.nowTabButtonStart",
+        "changeType": "added",
+        "value": "Set start date and time to now"
+      },
+      {
+        "token": "euiDatePopoverContent.nowTabButtonEnd",
+        "changeType": "added",
+        "value": "Set end date and time to now"
+      },
+      {
+        "token": "euiPrettyDuration.lastDurationSeconds",
+        "changeType": "added",
+        "value": "({\n  duration\n}) => `Last ${duration} second${duration === 1 ? '' : 's'}`;"
+      },
+      {
+        "token": "euiPrettyDuration.nextDurationSeconds",
+        "changeType": "added",
+        "value": "({\n  duration\n}) => `Next ${duration} second${duration === 1 ? '' : 's'}`;"
+      },
+      {
+        "token": "euiPrettyDuration.lastDurationMinutes",
+        "changeType": "added",
+        "value": "({\n  duration\n}) => `Last ${duration} minute${duration === 1 ? '' : 's'}`;"
+      },
+      {
+        "token": "euiPrettyDuration.nextDurationMinutes",
+        "changeType": "added",
+        "value": "({\n  duration\n}) => `Next ${duration} minute${duration === 1 ? '' : 's'}`;"
+      },
+      {
+        "token": "euiPrettyDuration.lastDurationHours",
+        "changeType": "added",
+        "value": "({\n  duration\n}) => `Last ${duration} hour${duration === 1 ? '' : 's'}`;"
+      },
+      {
+        "token": "euiPrettyDuration.nextDurationHours",
+        "changeType": "added",
+        "value": "({\n  duration\n}) => `Next ${duration} hour${duration === 1 ? '' : 's'}`;"
+      },
+      {
+        "token": "euiPrettyDuration.lastDurationDays",
+        "changeType": "added",
+        "value": "({\n  duration\n}) => `Last ${duration} day${duration === 1 ? '' : 's'}`;"
+      },
+      {
+        "token": "euiPrettyDuration.nexttDurationDays",
+        "changeType": "added",
+        "value": "({\n  duration\n}) => `Next ${duration} day${duration === 1 ? '' : 's'}`;"
+      },
+      {
+        "token": "euiPrettyDuration.lastDurationWeeks",
+        "changeType": "added",
+        "value": "({\n  duration\n}) => `Last ${duration} week${duration === 1 ? '' : 's'}`;"
+      },
+      {
+        "token": "euiPrettyDuration.nextDurationWeeks",
+        "changeType": "added",
+        "value": "({\n  duration\n}) => `Next ${duration} week${duration === 1 ? '' : 's'}`;"
+      },
+      {
+        "token": "euiPrettyDuration.lastDurationMonths",
+        "changeType": "added",
+        "value": "({\n  duration\n}) => `Last ${duration} month${duration === 1 ? '' : 's'}`;"
+      },
+      {
+        "token": "euiPrettyDuration.nextDurationMonths",
+        "changeType": "added",
+        "value": "({\n  duration\n}) => `Next ${duration} month${duration === 1 ? '' : 's'}`;"
+      },
+      {
+        "token": "euiPrettyDuration.lastDurationYears",
+        "changeType": "added",
+        "value": "({\n  duration\n}) => `Last ${duration} year${duration === 1 ? '' : 's'}`;"
+      },
+      {
+        "token": "euiPrettyDuration.nextDurationYears",
+        "changeType": "added",
+        "value": "({\n  duration\n}) => `Next ${duration} year${duration === 1 ? '' : 's'}`;"
+      },
+      {
+        "token": "euiPrettyDuration.durationRoundedToSecond",
+        "changeType": "added",
+        "value": "{prettyDuration} rounded to the second"
+      },
+      {
+        "token": "euiPrettyDuration.durationRoundedToMinute",
+        "changeType": "added",
+        "value": "{prettyDuration} rounded to the minute"
+      },
+      {
+        "token": "euiPrettyDuration.durationRoundedToHour",
+        "changeType": "added",
+        "value": "{prettyDuration} rounded to the hour"
+      },
+      {
+        "token": "euiPrettyDuration.durationRoundedToDay",
+        "changeType": "added",
+        "value": "{prettyDuration} rounded to the day"
+      },
+      {
+        "token": "euiPrettyDuration.durationRoundedToWeek",
+        "changeType": "added",
+        "value": "{prettyDuration} rounded to the week"
+      },
+      {
+        "token": "euiPrettyDuration.durationRoundedToMonth",
+        "changeType": "added",
+        "value": "{prettyDuration} rounded to the month"
+      },
+      {
+        "token": "euiPrettyDuration.durationRoundedToYear",
+        "changeType": "added",
+        "value": "{prettyDuration} rounded to the year"
+      },
+      {
+        "token": "euiPrettyDuration.now",
+        "changeType": "added",
+        "value": "now"
+      },
+      {
+        "token": "euiPrettyDuration.invalid",
+        "changeType": "added",
+        "value": "Invalid date"
+      },
+      {
+        "token": "euiPrettyDuration.fallbackDuration",
+        "changeType": "added",
+        "value": "{displayFrom} to {displayTo}"
+      },
+      {
+        "token": "euiPrettyInterval.seconds",
+        "changeType": "added",
+        "value": "({\n  interval\n}) => `${interval} second${interval > 1 ? 's' : ''}`;"
+      },
+      {
+        "token": "euiPrettyInterval.minutes",
+        "changeType": "added",
+        "value": "({\n  interval\n}) => `${interval} minute${interval > 1 ? 's' : ''}`;"
+      },
+      {
+        "token": "euiPrettyInterval.hours",
+        "changeType": "added",
+        "value": "({\n  interval\n}) => `${interval} hour${interval > 1 ? 's' : ''}`;"
+      },
+      {
+        "token": "euiPrettyInterval.days",
+        "changeType": "added",
+        "value": "({\n  interval\n}) => `${interval} day${interval > 1 ? 's' : ''}`;"
+      },
+      {
+        "token": "euiPrettyInterval.secondsShorthand",
+        "changeType": "added",
+        "value": "{interval} s"
+      },
+      {
+        "token": "euiPrettyInterval.minutesShorthand",
+        "changeType": "added",
+        "value": "{interval} m"
+      },
+      {
+        "token": "euiPrettyInterval.hoursShorthand",
+        "changeType": "added",
+        "value": "{interval} h"
+      },
+      {
+        "token": "euiPrettyInterval.daysShorthand",
+        "changeType": "added",
+        "value": "{interval} d"
+      },
+      {
+        "token": "euiPrettyInterval.off",
+        "changeType": "added",
+        "value": "Off"
+      },
+      {
+        "token": "euiTimeOptions.last",
+        "changeType": "added",
+        "value": "Last"
+      },
+      {
+        "token": "euiTimeOptions.next",
+        "changeType": "added",
+        "value": "Next"
+      },
+      {
+        "token": "euiTimeOptions.seconds",
+        "changeType": "added",
+        "value": "Seconds"
+      },
+      {
+        "token": "euiTimeOptions.minutes",
+        "changeType": "added",
+        "value": "Minutes"
+      },
+      {
+        "token": "euiTimeOptions.hours",
+        "changeType": "added",
+        "value": "Hours"
+      },
+      {
+        "token": "euiTimeOptions.days",
+        "changeType": "added",
+        "value": "Days"
+      },
+      {
+        "token": "euiTimeOptions.weeks",
+        "changeType": "added",
+        "value": "Weeks"
+      },
+      {
+        "token": "euiTimeOptions.months",
+        "changeType": "added",
+        "value": "Months"
+      },
+      {
+        "token": "euiTimeOptions.years",
+        "changeType": "added",
+        "value": "Years"
+      },
+      {
+        "token": "euiTimeOptions.secondsAgo",
+        "changeType": "added",
+        "value": "Seconds ago"
+      },
+      {
+        "token": "euiTimeOptions.minutesAgo",
+        "changeType": "added",
+        "value": "Minutes ago"
+      },
+      {
+        "token": "euiTimeOptions.hoursAgo",
+        "changeType": "added",
+        "value": "Hours ago"
+      },
+      {
+        "token": "euiTimeOptions.daysAgo",
+        "changeType": "added",
+        "value": "Days ago"
+      },
+      {
+        "token": "euiTimeOptions.weeksAgo",
+        "changeType": "added",
+        "value": "Weeks ago"
+      },
+      {
+        "token": "euiTimeOptions.monthsAgo",
+        "changeType": "added",
+        "value": "Months ago"
+      },
+      {
+        "token": "euiTimeOptions.yearsAgo",
+        "changeType": "added",
+        "value": "Years ago"
+      },
+      {
+        "token": "euiTimeOptions.secondsFromNow",
+        "changeType": "added",
+        "value": "Seconds from now"
+      },
+      {
+        "token": "euiTimeOptions.minutesFromNow",
+        "changeType": "added",
+        "value": "Minutes from now"
+      },
+      {
+        "token": "euiTimeOptions.hoursFromNow",
+        "changeType": "added",
+        "value": "Hours from now"
+      },
+      {
+        "token": "euiTimeOptions.daysFromNow",
+        "changeType": "added",
+        "value": "Days from now"
+      },
+      {
+        "token": "euiTimeOptions.weeksFromNow",
+        "changeType": "added",
+        "value": "Weeks from now"
+      },
+      {
+        "token": "euiTimeOptions.monthsFromNow",
+        "changeType": "added",
+        "value": "Months from now"
+      },
+      {
+        "token": "euiTimeOptions.yearsFromNow",
+        "changeType": "added",
+        "value": "Years from now"
+      },
+      {
+        "token": "euiTimeOptions.roundToSecond",
+        "changeType": "added",
+        "value": "Round to the second"
+      },
+      {
+        "token": "euiTimeOptions.roundToMinute",
+        "changeType": "added",
+        "value": "Round to the minute"
+      },
+      {
+        "token": "euiTimeOptions.roundToHour",
+        "changeType": "added",
+        "value": "Round to the hour"
+      },
+      {
+        "token": "euiTimeOptions.roundToDay",
+        "changeType": "added",
+        "value": "Round to the day"
+      },
+      {
+        "token": "euiTimeOptions.roundToWeek",
+        "changeType": "added",
+        "value": "Round to the week"
+      },
+      {
+        "token": "euiTimeOptions.roundToMonth",
+        "changeType": "added",
+        "value": "Round to the month"
+      },
+      {
+        "token": "euiTimeOptions.roundToYear",
+        "changeType": "added",
+        "value": "Round to the year"
+      },
+      {
+        "token": "euiTimeOptions.today",
+        "changeType": "added",
+        "value": "Today"
+      },
+      {
+        "token": "euiTimeOptions.thisWeek",
+        "changeType": "added",
+        "value": "This week"
+      },
+      {
+        "token": "euiTimeOptions.thisMonth",
+        "changeType": "added",
+        "value": "This month"
+      },
+      {
+        "token": "euiTimeOptions.thisYear",
+        "changeType": "added",
+        "value": "This year"
+      },
+      {
+        "token": "euiTimeOptions.yesterday",
+        "changeType": "added",
+        "value": "Yesterday"
+      },
+      {
+        "token": "euiTimeOptions.weekToDate",
+        "changeType": "added",
+        "value": "Week to date"
+      },
+      {
+        "token": "euiTimeOptions.monthToDate",
+        "changeType": "added",
+        "value": "Month to date"
+      },
+      {
+        "token": "euiTimeOptions.yearToDate",
+        "changeType": "added",
+        "value": "Year to date"
+      }
+    ]
+  },
+  {
+    "version": "51.1.0",
+    "changes": [
+      {
+        "token": "euiDataGridToolbar.fullScreenButton",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridToolbar.fullScreenButtonActive",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiImage.closeImage",
+        "changeType": "modified",
+        "value": "Close fullscreen {alt} image"
+      },
+      {
+        "token": "euiImage.openImage",
+        "changeType": "modified",
+        "value": "Open fullscreen {alt} image"
+      },
+      {
+        "token": "euiFullscreenSelector.fullscreenButton",
+        "changeType": "added",
+        "value": "Enter fullscreen"
+      },
+      {
+        "token": "euiFullscreenSelector.fullscreenButtonActive",
+        "changeType": "added",
+        "value": "Exit fullscreen"
+      }
+    ]
+  },
+  {
+    "version": "50.0.0",
+    "changes": [
+      {
+        "token": "euiComboBox.listboxAriaLabel",
+        "changeType": "added",
+        "value": "Choose from the following options"
+      }
+    ]
+  },
+  {
+    "version": "49.0.0",
+    "changes": [
+      {
+        "token": "euiTablePagination.allRows",
+        "changeType": "added",
+        "value": "Showing all rows"
+      },
+      {
+        "token": "euiTablePagination.rowsPerPageOptionShowAllRows",
+        "changeType": "added",
+        "value": "Show all rows"
+      }
+    ]
+  },
+  {
+    "version": "48.0.0",
+    "changes": [
+      {
+        "token": "euiDataGridCellButtons.expandButtonTitle",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridCellActions.expandButtonTitle",
+        "changeType": "added",
+        "value": "Click or hit enter to interact with cell content"
+      },
+      {
+        "token": "euiSuggest.stateSavedTooltip",
+        "changeType": "added",
+        "value": "Saved."
+      },
+      {
+        "token": "euiSuggest.stateUnsavedTooltip",
+        "changeType": "added",
+        "value": "Changes have not been saved."
+      },
+      {
+        "token": "euiSuggest.stateLoading",
+        "changeType": "added",
+        "value": "State: loading."
+      },
+      {
+        "token": "euiSuggest.stateSaved",
+        "changeType": "added",
+        "value": "State: saved."
+      },
+      {
+        "token": "euiSuggest.stateUnsaved",
+        "changeType": "added",
+        "value": "State: unsaved."
+      },
+      {
+        "token": "euiSuggest.stateUnchanged",
+        "changeType": "added",
+        "value": "State: unchanged."
+      }
+    ]
+  },
+  {
+    "version": "47.0.0",
+    "changes": [
+      {
+        "token": "euiSelectableListItem.includedOption",
+        "changeType": "modified",
+        "value": "Selected option."
+      },
+      {
+        "token": "euiSelectableListItem.excludedOptionInstructions",
+        "changeType": "modified",
+        "value": "To uncheck this option, press enter."
+      },
+      {
+        "token": "euiSelectableListItem.unckeckedOptionInstructions",
+        "changeType": "added",
+        "value": "To select this option, press enter."
+      },
+      {
+        "token": "euiSelectableListItem.checkedOption",
+        "changeType": "added",
+        "value": "Checked option."
+      },
+      {
+        "token": "euiSelectableListItem.checkedOptionInstructions",
+        "changeType": "added",
+        "value": "To uncheck this option, press enter."
+      },
+      {
+        "token": "euiSelectable.searchResults",
+        "changeType": "added",
+        "value": "({\n  resultsLength\n}) => `${resultsLength} result${resultsLength === 1 ? '' : 's'} available`;"
+      },
+      {
+        "token": "euiSelectable.screenReaderInstructions",
+        "changeType": "added",
+        "value": "Use up and down arrows to move focus over options. Enter to select. Escape to collapse options."
+      }
+    ]
+  },
+  {
     "version": "43.0.0",
     "changes": [
       {

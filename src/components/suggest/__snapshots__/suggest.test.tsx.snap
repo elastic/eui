@@ -1,31 +1,1482 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiSuggest is rendered 1`] = `
-<div>
+Array [
   <div
-    class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+    class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover__anchor"
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
     >
-      <div>
-        <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
-        >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
-            <input
-              aria-label="aria-label"
-              class="euiFieldText euiFieldText--fullWidth"
-              data-test-subj="test subject string"
-              type="text"
-              value=""
-            />
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-haspopup="listbox"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
+              <div
+                class="euiFormControlLayoutIcons"
+              >
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </div>,
+  <p
+    class="euiScreenReaderOnly"
+    id="generated-id"
+  >
+    State: unchanged.
+  </p>,
+]
+`;
+
+exports[`EuiSuggest props append 1`] = `
+Array [
+  <div
+    class="euiSelectable euiSelectable-fullHeight"
+  >
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-haspopup="listbox"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
+              <div
+                class="euiFormControlLayoutIcons"
+              >
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
+              </div>
+            </div>
+            <span
+              class="euiFormControlLayout__append"
+            >
+              Appended
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <p
+    class="euiScreenReaderOnly"
+    id="generated-id"
+  >
+    State: unchanged.
+  </p>,
+]
+`;
+
+exports[`EuiSuggest props isVirtualized 1`] = `
+<EuiSuggest
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  data-test-subj="test subject string"
+  isVirtualized={true}
+  suggestions={
+    Array [
+      Object {
+        "description": "Description",
+        "label": "Field sample",
+        "type": Object {
+          "color": "tint4",
+          "iconType": "kqlField",
+        },
+      },
+      Object {
+        "description": "Description",
+        "label": "Value sample",
+        "type": Object {
+          "color": "tint0",
+          "iconType": "kqlValue",
+        },
+      },
+    ]
+  }
+>
+  <EuiSelectable
+    isPreFiltered={false}
+    listProps={
+      Object {
+        "bordered": false,
+        "isVirtualized": true,
+        "onFocusBadge": false,
+        "paddingSize": "none",
+        "showIcons": false,
+        "textWrap": "truncate",
+      }
+    }
+    onChange={[Function]}
+    options={
+      Array [
+        Object {
+          "className": "euiSuggestItemOption",
+          "data": Object {
+            "description": "Description",
+            "label": "Field sample",
+            "type": Object {
+              "color": "tint4",
+              "iconType": "kqlField",
+            },
+          },
+          "label": "Field sample",
+          "truncate": true,
+        },
+        Object {
+          "className": "euiSuggestItemOption",
+          "data": Object {
+            "description": "Description",
+            "label": "Value sample",
+            "type": Object {
+              "color": "tint0",
+              "iconType": "kqlValue",
+            },
+          },
+          "label": "Value sample",
+          "truncate": true,
+        },
+      ]
+    }
+    renderOption={[Function]}
+    searchProps={
+      Object {
+        "append": undefined,
+        "aria-describedby": "generated-id",
+        "aria-label": "aria-label",
+        "aria-labelledby": undefined,
+        "className": "testClass1 testClass2",
+        "data-test-subj": "test subject string",
+        "fullWidth": true,
+        "id": undefined,
+        "isLoading": false,
+        "onBlur": [Function],
+        "onChange": [Function],
+        "onFocus": [Function],
+        "onInput": [Function],
+      }
+    }
+    searchable={true}
+    singleSelection={true}
+  >
+    <div
+      className="euiSelectable"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseDown={[Function]}
+    >
+      <EuiInputPopover
+        anchorPosition="downLeft"
+        attachToAnchor={true}
+        className="euiInputPopover euiInputPopover--fullWidth"
+        closePopover={[Function]}
+        disableFocusTrap={true}
+        display="block"
+        fullWidth={true}
+        input={
+          <React.Fragment>
+            <EuiI18n
+              default="Filter options"
+              token="euiSelectable.placeholderName"
+            >
+              [Function]
+            </EuiI18n>
+          </React.Fragment>
+        }
+        isOpen={false}
+        panelPaddingSize="none"
+        panelProps={
+          Object {
+            "aria-live": undefined,
+            "aria-modal": false,
+            "role": undefined,
+          }
+        }
+        panelRef={[Function]}
+      >
+        <EuiPopover
+          anchorPosition="downLeft"
+          attachToAnchor={true}
+          button={
+            <EuiResizeObserver
+              onResize={[Function]}
+            >
+              [Function]
+            </EuiResizeObserver>
+          }
+          buttonRef={[Function]}
+          className="euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+          closePopover={[Function]}
+          display="block"
+          hasArrow={true}
+          isOpen={false}
+          ownFocus={false}
+          panelPaddingSize="none"
+          panelProps={
+            Object {
+              "aria-live": undefined,
+              "aria-modal": false,
+              "role": undefined,
+            }
+          }
+          panelRef={[Function]}
+        >
+          <EuiOutsideClickDetector
+            onOutsideClick={[Function]}
+          >
+            <div
+              className="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+              onKeyDown={[Function]}
+              onMouseDown={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
+            >
+              <div
+                className="euiPopover__anchor"
+              >
+                <EuiResizeObserver
+                  onResize={[Function]}
+                >
+                  <div>
+                    <EuiI18n
+                      default="Filter options"
+                      token="euiSelectable.placeholderName"
+                    >
+                      <EuiSelectableSearch
+                        aria-activedescendant=""
+                        aria-label="aria-label"
+                        className="testClass1 testClass2"
+                        data-test-subj="test subject string"
+                        fullWidth={true}
+                        inputRef={[Function]}
+                        isLoading={false}
+                        isPreFiltered={false}
+                        key="listSearch"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                        options={
+                          Array [
+                            Object {
+                              "className": "euiSuggestItemOption",
+                              "data": Object {
+                                "description": "Description",
+                                "label": "Field sample",
+                                "type": Object {
+                                  "color": "tint4",
+                                  "iconType": "kqlField",
+                                },
+                              },
+                              "label": "Field sample",
+                              "truncate": true,
+                            },
+                            Object {
+                              "className": "euiSuggestItemOption",
+                              "data": Object {
+                                "description": "Description",
+                                "label": "Value sample",
+                                "type": Object {
+                                  "color": "tint0",
+                                  "iconType": "kqlValue",
+                                },
+                              },
+                              "label": "Value sample",
+                              "truncate": true,
+                            },
+                          ]
+                        }
+                        placeholder="Filter options"
+                        value=""
+                      >
+                        <EuiFieldSearch
+                          aria-activedescendant=""
+                          aria-haspopup="listbox"
+                          aria-label="aria-label"
+                          autoComplete="off"
+                          className="euiSelectableSearch testClass1 testClass2"
+                          compressed={false}
+                          data-test-subj="test subject string"
+                          fullWidth={true}
+                          incremental={true}
+                          inputRef={[Function]}
+                          isClearable={true}
+                          isLoading={false}
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onFocus={[Function]}
+                          onInput={[Function]}
+                          placeholder="Filter options"
+                          value=""
+                        >
+                          <EuiFormControlLayout
+                            compressed={false}
+                            fullWidth={true}
+                            icon="search"
+                            isLoading={false}
+                          >
+                            <div
+                              className="euiFormControlLayout euiFormControlLayout--fullWidth"
+                            >
+                              <div
+                                className="euiFormControlLayout__childrenWrapper"
+                              >
+                                <EuiValidatableControl>
+                                  <input
+                                    aria-activedescendant=""
+                                    aria-haspopup="listbox"
+                                    aria-label="aria-label"
+                                    autoComplete="off"
+                                    className="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
+                                    data-test-subj="test subject string"
+                                    onBlur={[Function]}
+                                    onChange={[Function]}
+                                    onFocus={[Function]}
+                                    onInput={[Function]}
+                                    onKeyUp={[Function]}
+                                    placeholder="Filter options"
+                                    type="search"
+                                    value=""
+                                  />
+                                </EuiValidatableControl>
+                                <EuiFormControlLayoutIcons
+                                  compressed={false}
+                                  icon="search"
+                                  isLoading={false}
+                                >
+                                  <div
+                                    className="euiFormControlLayoutIcons"
+                                  >
+                                    <EuiFormControlLayoutCustomIcon
+                                      size="m"
+                                      type="search"
+                                    >
+                                      <span
+                                        className="euiFormControlLayoutCustomIcon"
+                                      >
+                                        <EuiIcon
+                                          aria-hidden="true"
+                                          className="euiFormControlLayoutCustomIcon__icon"
+                                          size="m"
+                                          type="search"
+                                        >
+                                          <span
+                                            aria-hidden="true"
+                                            className="euiFormControlLayoutCustomIcon__icon"
+                                            data-euiicon-type="search"
+                                            size="m"
+                                          />
+                                        </EuiIcon>
+                                      </span>
+                                    </EuiFormControlLayoutCustomIcon>
+                                  </div>
+                                </EuiFormControlLayoutIcons>
+                              </div>
+                            </div>
+                          </EuiFormControlLayout>
+                        </EuiFieldSearch>
+                      </EuiSelectableSearch>
+                    </EuiI18n>
+                  </div>
+                </EuiResizeObserver>
+              </div>
+            </div>
+          </EuiOutsideClickDetector>
+        </EuiPopover>
+      </EuiInputPopover>
+    </div>
+  </EuiSelectable>
+  <EuiScreenReaderOnly>
+    <p
+      className="euiScreenReaderOnly"
+      id="generated-id"
+    >
+      State: unchanged.
+    </p>
+  </EuiScreenReaderOnly>
+</EuiSuggest>
+`;
+
+exports[`EuiSuggest props maxHeight 1`] = `
+<EuiSuggest
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  data-test-subj="test subject string"
+  maxHeight="50vh"
+  suggestions={
+    Array [
+      Object {
+        "description": "Description",
+        "label": "Field sample",
+        "type": Object {
+          "color": "tint4",
+          "iconType": "kqlField",
+        },
+      },
+      Object {
+        "description": "Description",
+        "label": "Value sample",
+        "type": Object {
+          "color": "tint0",
+          "iconType": "kqlValue",
+        },
+      },
+    ]
+  }
+>
+  <EuiSelectable
+    height="full"
+    isPreFiltered={false}
+    listProps={
+      Object {
+        "bordered": false,
+        "isVirtualized": false,
+        "onFocusBadge": false,
+        "paddingSize": "none",
+        "showIcons": false,
+        "textWrap": "wrap",
+      }
+    }
+    onChange={[Function]}
+    options={
+      Array [
+        Object {
+          "className": "euiSuggestItemOption",
+          "data": Object {
+            "description": "Description",
+            "label": "Field sample",
+            "type": Object {
+              "color": "tint4",
+              "iconType": "kqlField",
+            },
+          },
+          "label": "Field sample",
+          "truncate": undefined,
+        },
+        Object {
+          "className": "euiSuggestItemOption",
+          "data": Object {
+            "description": "Description",
+            "label": "Value sample",
+            "type": Object {
+              "color": "tint0",
+              "iconType": "kqlValue",
+            },
+          },
+          "label": "Value sample",
+          "truncate": undefined,
+        },
+      ]
+    }
+    renderOption={[Function]}
+    searchProps={
+      Object {
+        "append": undefined,
+        "aria-describedby": "generated-id",
+        "aria-label": "aria-label",
+        "aria-labelledby": undefined,
+        "className": "testClass1 testClass2",
+        "data-test-subj": "test subject string",
+        "fullWidth": true,
+        "id": undefined,
+        "isLoading": false,
+        "onBlur": [Function],
+        "onChange": [Function],
+        "onFocus": [Function],
+        "onInput": [Function],
+      }
+    }
+    searchable={true}
+    singleSelection={true}
+  >
+    <div
+      className="euiSelectable euiSelectable-fullHeight"
+      onBlur={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseDown={[Function]}
+    >
+      <EuiInputPopover
+        anchorPosition="downLeft"
+        attachToAnchor={true}
+        className="euiInputPopover euiInputPopover--fullWidth"
+        closePopover={[Function]}
+        disableFocusTrap={true}
+        display="block"
+        fullWidth={true}
+        input={
+          <React.Fragment>
+            <EuiI18n
+              default="Filter options"
+              token="euiSelectable.placeholderName"
+            >
+              [Function]
+            </EuiI18n>
+          </React.Fragment>
+        }
+        isOpen={false}
+        panelPaddingSize="none"
+        panelProps={
+          Object {
+            "aria-live": undefined,
+            "aria-modal": false,
+            "role": undefined,
+          }
+        }
+        panelRef={[Function]}
+      >
+        <EuiPopover
+          anchorPosition="downLeft"
+          attachToAnchor={true}
+          button={
+            <EuiResizeObserver
+              onResize={[Function]}
+            >
+              [Function]
+            </EuiResizeObserver>
+          }
+          buttonRef={[Function]}
+          className="euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+          closePopover={[Function]}
+          display="block"
+          hasArrow={true}
+          isOpen={false}
+          ownFocus={false}
+          panelPaddingSize="none"
+          panelProps={
+            Object {
+              "aria-live": undefined,
+              "aria-modal": false,
+              "role": undefined,
+            }
+          }
+          panelRef={[Function]}
+        >
+          <EuiOutsideClickDetector
+            onOutsideClick={[Function]}
+          >
+            <div
+              className="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+              onKeyDown={[Function]}
+              onMouseDown={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchStart={[Function]}
+            >
+              <div
+                className="euiPopover__anchor"
+              >
+                <EuiResizeObserver
+                  onResize={[Function]}
+                >
+                  <div>
+                    <EuiI18n
+                      default="Filter options"
+                      token="euiSelectable.placeholderName"
+                    >
+                      <EuiSelectableSearch
+                        aria-activedescendant=""
+                        aria-label="aria-label"
+                        className="testClass1 testClass2"
+                        data-test-subj="test subject string"
+                        fullWidth={true}
+                        inputRef={[Function]}
+                        isLoading={false}
+                        isPreFiltered={false}
+                        key="listSearch"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        onInput={[Function]}
+                        options={
+                          Array [
+                            Object {
+                              "className": "euiSuggestItemOption",
+                              "data": Object {
+                                "description": "Description",
+                                "label": "Field sample",
+                                "type": Object {
+                                  "color": "tint4",
+                                  "iconType": "kqlField",
+                                },
+                              },
+                              "label": "Field sample",
+                              "truncate": undefined,
+                            },
+                            Object {
+                              "className": "euiSuggestItemOption",
+                              "data": Object {
+                                "description": "Description",
+                                "label": "Value sample",
+                                "type": Object {
+                                  "color": "tint0",
+                                  "iconType": "kqlValue",
+                                },
+                              },
+                              "label": "Value sample",
+                              "truncate": undefined,
+                            },
+                          ]
+                        }
+                        placeholder="Filter options"
+                        value=""
+                      >
+                        <EuiFieldSearch
+                          aria-activedescendant=""
+                          aria-haspopup="listbox"
+                          aria-label="aria-label"
+                          autoComplete="off"
+                          className="euiSelectableSearch testClass1 testClass2"
+                          compressed={false}
+                          data-test-subj="test subject string"
+                          fullWidth={true}
+                          incremental={true}
+                          inputRef={[Function]}
+                          isClearable={true}
+                          isLoading={false}
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onFocus={[Function]}
+                          onInput={[Function]}
+                          placeholder="Filter options"
+                          value=""
+                        >
+                          <EuiFormControlLayout
+                            compressed={false}
+                            fullWidth={true}
+                            icon="search"
+                            isLoading={false}
+                          >
+                            <div
+                              className="euiFormControlLayout euiFormControlLayout--fullWidth"
+                            >
+                              <div
+                                className="euiFormControlLayout__childrenWrapper"
+                              >
+                                <EuiValidatableControl>
+                                  <input
+                                    aria-activedescendant=""
+                                    aria-haspopup="listbox"
+                                    aria-label="aria-label"
+                                    autoComplete="off"
+                                    className="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
+                                    data-test-subj="test subject string"
+                                    onBlur={[Function]}
+                                    onChange={[Function]}
+                                    onFocus={[Function]}
+                                    onInput={[Function]}
+                                    onKeyUp={[Function]}
+                                    placeholder="Filter options"
+                                    type="search"
+                                    value=""
+                                  />
+                                </EuiValidatableControl>
+                                <EuiFormControlLayoutIcons
+                                  compressed={false}
+                                  icon="search"
+                                  isLoading={false}
+                                >
+                                  <div
+                                    className="euiFormControlLayoutIcons"
+                                  >
+                                    <EuiFormControlLayoutCustomIcon
+                                      size="m"
+                                      type="search"
+                                    >
+                                      <span
+                                        className="euiFormControlLayoutCustomIcon"
+                                      >
+                                        <EuiIcon
+                                          aria-hidden="true"
+                                          className="euiFormControlLayoutCustomIcon__icon"
+                                          size="m"
+                                          type="search"
+                                        >
+                                          <span
+                                            aria-hidden="true"
+                                            className="euiFormControlLayoutCustomIcon__icon"
+                                            data-euiicon-type="search"
+                                            size="m"
+                                          />
+                                        </EuiIcon>
+                                      </span>
+                                    </EuiFormControlLayoutCustomIcon>
+                                  </div>
+                                </EuiFormControlLayoutIcons>
+                              </div>
+                            </div>
+                          </EuiFormControlLayout>
+                        </EuiFieldSearch>
+                      </EuiSelectableSearch>
+                    </EuiI18n>
+                  </div>
+                </EuiResizeObserver>
+              </div>
+            </div>
+          </EuiOutsideClickDetector>
+        </EuiPopover>
+      </EuiInputPopover>
+    </div>
+  </EuiSelectable>
+  <EuiScreenReaderOnly>
+    <p
+      className="euiScreenReaderOnly"
+      id="generated-id"
+    >
+      State: unchanged.
+    </p>
+  </EuiScreenReaderOnly>
+</EuiSuggest>
+`;
+
+exports[`EuiSuggest props options common 1`] = `
+Array [
+  <div
+    class="euiSelectable euiSelectable-fullHeight"
+  >
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-haspopup="listbox"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
+              <div
+                class="euiFormControlLayoutIcons"
+              >
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <p
+    class="euiScreenReaderOnly"
+    id="generated-id"
+  >
+    State: unchanged.
+  </p>,
+]
+`;
+
+exports[`EuiSuggest props options standard 1`] = `
+Array [
+  <div
+    class="euiSelectable euiSelectable-fullHeight"
+  >
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-haspopup="listbox"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
+              <div
+                class="euiFormControlLayoutIcons"
+              >
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <p
+    class="euiScreenReaderOnly"
+    id="generated-id"
+  >
+    State: unchanged.
+  </p>,
+]
+`;
+
+exports[`EuiSuggest props remaining EuiFieldSearch props are spread to the search input 1`] = `
+Array [
+  <div
+    class="euiSelectable euiSelectable-fullHeight"
+  >
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover"
+    >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--compressed"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-haspopup="listbox"
+                aria-invalid="true"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldSearch euiFormControlLayout--2icons euiFieldSearch--compressed euiFieldSearch-isClearable euiFieldSearch-isInvalid euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
+                id="testId"
+                name="testName"
+                placeholder="Start typing"
+                type="search"
+                value="Controlled value"
+              />
+              <div
+                class="euiFormControlLayoutIcons"
+              >
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
+              </div>
+              <div
+                class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+              >
+                <button
+                  aria-label="Clear input"
+                  class="euiFormControlLayoutClearButton euiFormControlLayoutClearButton--small"
+                  data-test-subj="clearSearchButton"
+                  type="button"
+                >
+                  <span
+                    class="euiFormControlLayoutClearButton__icon"
+                    data-euiicon-type="cross"
+                  />
+                </button>
+                <span
+                  color="danger"
+                  data-euiicon-type="alert"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <p
+    class="euiScreenReaderOnly"
+    id="testId_generated-id"
+  >
+    State: unchanged.
+  </p>,
+]
+`;
+
+exports[`EuiSuggest props status status: loading is rendered 1`] = `
+Array [
+  <div
+    class="euiSelectable euiSelectable-fullHeight"
+  >
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-haspopup="listbox"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch--fullWidth euiFieldSearch-isLoading euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
+              <div
+                class="euiFormControlLayoutIcons"
+              >
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
+              </div>
+              <div
+                class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+              >
+                <span
+                  class="euiLoadingSpinner euiLoadingSpinner--medium"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <p
+    class="euiScreenReaderOnly"
+    id="generated-id"
+  >
+    State: loading.
+  </p>,
+]
+`;
+
+exports[`EuiSuggest props status status: saved is rendered 1`] = `
+Array [
+  <div
+    class="euiSelectable euiSelectable-fullHeight"
+  >
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-haspopup="listbox"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
+              <div
+                class="euiFormControlLayoutIcons"
+              >
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
+              </div>
+            </div>
+            <span
+              class="euiToolTipAnchor"
+            >
+              <span
+                class="euiSuggestInput__statusIcon"
+                color="success"
+                data-euiicon-type="checkInCircleFilled"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <p
+    class="euiScreenReaderOnly"
+    id="generated-id"
+  >
+    State: saved.
+  </p>,
+]
+`;
+
+exports[`EuiSuggest props status status: unchanged is rendered 1`] = `
+Array [
+  <div
+    class="euiSelectable euiSelectable-fullHeight"
+  >
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-haspopup="listbox"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
+              <div
+                class="euiFormControlLayoutIcons"
+              >
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <p
+    class="euiScreenReaderOnly"
+    id="generated-id"
+  >
+    State: unchanged.
+  </p>,
+]
+`;
+
+exports[`EuiSuggest props status status: unsaved is rendered 1`] = `
+Array [
+  <div
+    class="euiSelectable euiSelectable-fullHeight"
+  >
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-haspopup="listbox"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
+              <div
+                class="euiFormControlLayoutIcons"
+              >
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
+              </div>
+            </div>
+            <span
+              class="euiToolTipAnchor"
+            >
+              <span
+                class="euiSuggestInput__statusIcon"
+                color="accent"
+                data-euiicon-type="dot"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <p
+    class="euiScreenReaderOnly"
+    id="generated-id"
+  >
+    State: unsaved.
+  </p>,
+]
+`;
+
+exports[`EuiSuggest props tooltipContent tooltipContent for status: loading is rendered 1`] = `
+Array [
+  <div
+    class="euiSelectable euiSelectable-fullHeight"
+  >
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-haspopup="listbox"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch--fullWidth euiFieldSearch-isLoading euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
+              <div
+                class="euiFormControlLayoutIcons"
+              >
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
+              </div>
+              <div
+                class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+              >
+                <span
+                  class="euiLoadingSpinner euiLoadingSpinner--medium"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <p
+    class="euiScreenReaderOnly"
+    id="generated-id"
+  >
+    State: loading.
+  </p>,
+]
+`;
+
+exports[`EuiSuggest props tooltipContent tooltipContent for status: saved is rendered 1`] = `
+Array [
+  <div
+    class="euiSelectable euiSelectable-fullHeight"
+  >
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-haspopup="listbox"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
+              <div
+                class="euiFormControlLayoutIcons"
+              >
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
+              </div>
+            </div>
+            <span
+              class="euiToolTipAnchor"
+            >
+              <span
+                class="euiSuggestInput__statusIcon"
+                color="success"
+                data-euiicon-type="checkInCircleFilled"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <p
+    class="euiScreenReaderOnly"
+    id="generated-id"
+  >
+    State: saved.
+  </p>,
+]
+`;
+
+exports[`EuiSuggest props tooltipContent tooltipContent for status: unchanged is rendered 1`] = `
+Array [
+  <div
+    class="euiSelectable euiSelectable-fullHeight"
+  >
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-haspopup="listbox"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
+              <div
+                class="euiFormControlLayoutIcons"
+              >
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <p
+    class="euiScreenReaderOnly"
+    id="generated-id"
+  >
+    State: unchanged.
+  </p>,
+]
+`;
+
+exports[`EuiSuggest props tooltipContent tooltipContent for status: unsaved is rendered 1`] = `
+Array [
+  <div
+    class="euiSelectable euiSelectable-fullHeight"
+  >
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-haspopup="listbox"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch testClass1 testClass2"
+                data-test-subj="test subject string"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
+              <div
+                class="euiFormControlLayoutIcons"
+              >
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
+              </div>
+            </div>
+            <span
+              class="euiToolTipAnchor"
+            >
+              <span
+                class="euiSuggestInput__statusIcon"
+                color="accent"
+                data-euiicon-type="dot"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <p
+    class="euiScreenReaderOnly"
+    id="generated-id"
+  >
+    State: unsaved.
+  </p>,
+]
 `;

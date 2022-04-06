@@ -20,7 +20,8 @@ export interface Pagination {
    */
   pageIndex: number;
   /**
-   * The maximum number of items that can be shown in a single page
+   * The maximum number of items that can be shown in a single page.
+   * Pass `0` to display the selected "Show all" option and hide the pagination.
    */
   pageSize: number;
   /**
@@ -28,13 +29,14 @@ export interface Pagination {
    */
   totalItemCount: number;
   /**
-   * Configures the page size dropdown options
+   * Configures the page size dropdown options.
+   * Pass `0` as one of the options to create a "Show all" option.
    */
   pageSizeOptions?: number[];
   /**
    * Hides the page size dropdown
    */
-  hidePerPageOptions?: boolean;
+  showPerPageOptions?: boolean;
 }
 
 export interface PaginationBarProps {
@@ -62,11 +64,13 @@ export const PaginationBar = ({
   const pageSizeOptions = pagination.pageSizeOptions
     ? pagination.pageSizeOptions
     : defaults.pageSizeOptions;
-  const pageCount = Math.ceil(pagination.totalItemCount / pagination.pageSize);
+  const pageCount = pagination.pageSize
+    ? Math.ceil(pagination.totalItemCount / pagination.pageSize)
+    : 1;
 
   useEffect(() => {
     if (pageCount < pagination.pageIndex + 1) {
-      onPageChange(pageCount - 1);
+      onPageChange?.(pageCount - 1);
     }
   }, [pageCount, onPageChange, pagination]);
 
@@ -75,7 +79,7 @@ export const PaginationBar = ({
       <EuiSpacer size="m" />
       <EuiTablePagination
         activePage={pagination.pageIndex}
-        hidePerPageOptions={pagination.hidePerPageOptions}
+        showPerPageOptions={pagination.showPerPageOptions}
         itemsPerPage={pagination.pageSize}
         itemsPerPageOptions={pageSizeOptions}
         pageCount={pageCount}

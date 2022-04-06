@@ -1,12 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiDataGridCell componentDidUpdate handles the cell popover by forwarding the cell's DOM node and contents to the parent popover context 1`] = `
+Array [
+  <div
+    class="euiText euiText--medium"
+  >
+    <div>
+      <button
+        data-datagrid-interactable="true"
+      >
+        hello
+      </button>
+      <button
+        data-datagrid-interactable="true"
+      >
+        world
+      </button>
+    </div>
+  </div>,
+  <div
+    class="euiPopoverFooter"
+  >
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--directionRow euiFlexGroup--wrap"
+    >
+      <div
+        class="euiFlexItem"
+      >
+        <div>
+          <button />
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
+
 exports[`EuiDataGridCell renders 1`] = `
 <EuiDataGridCell
   colIndex={0}
   columnId="someColumn"
   interactiveCellId="someId"
   isExpandable={true}
-  popoverContent={[Function]}
+  popoverContext={
+    Object {
+      "cellLocation": Object {
+        "colIndex": 0,
+        "rowIndex": 0,
+      },
+      "closeCellPopover": [MockFunction],
+      "openCellPopover": [MockFunction],
+      "popoverIsOpen": false,
+      "setPopoverAnchor": [MockFunction],
+      "setPopoverContent": [MockFunction],
+    }
+  }
   renderCellValue={[Function]}
   rowHeightUtils={
     Object {
@@ -58,6 +106,7 @@ exports[`EuiDataGridCell renders 1`] = `
     style={
       Object {
         "lineHeight": undefined,
+        "top": 0,
         "width": undefined,
       }
     }
@@ -118,6 +167,7 @@ exports[`EuiDataGridCell renders 1`] = `
             style={Object {}}
           >
             <renderCellValue
+              colIndex={0}
               columnId="someColumn"
               data-test-subj="cell-content"
               isDetails={false}

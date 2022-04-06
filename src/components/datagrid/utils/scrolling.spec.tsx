@@ -6,8 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+/// <reference types="../../../../cypress/support"/>
+
+import React, { createRef } from 'react';
 import { EuiDataGrid, EuiDataGridProps } from '../';
+import { EuiDataGridRefProps } from '../data_grid_types';
 
 const baseProps: EuiDataGridProps = {
   'aria-label': 'useScroll test',
@@ -31,7 +34,7 @@ const baseProps: EuiDataGridProps = {
 };
 
 describe('useScroll', () => {
-  describe('on cell focus', () => {
+  describe('cell focus', () => {
     it('fully scrolls cells into view (accounting for sticky headers, rows, and scrollbars)', () => {
       cy.realMount(<EuiDataGrid {...baseProps} />);
       cy.repeatRealPress('Tab', 3);
@@ -56,6 +59,36 @@ describe('useScroll', () => {
       cy.focused()
         .should('have.attr', 'data-gridcell-column-index', '0')
         .should('have.attr', 'data-gridcell-visible-row-index', '0');
+    });
+
+    it('handles setFocusedCell being called manually on cells out of view', () => {
+      const ref = createRef<EuiDataGridRefProps>();
+      cy.mount(<EuiDataGrid {...baseProps} ref={ref} />);
+
+      // Wait for the grid to finish rendering and pass back the ref
+      cy.get('[data-test-subj="euiDataGridBody"]').then(() => {
+        ref.current.setFocusedCell({ rowIndex: 14, colIndex: 5 });
+        cy.focused()
+          .should('have.attr', 'data-gridcell-visible-row-index', '14')
+          .should('have.attr', 'data-gridcell-column-index', '5');
+      });
+    });
+  });
+
+  describe('cell popover', () => {
+    it('handles openCellPopover being called manually on cells out of view', () => {
+      const ref = createRef<EuiDataGridRefProps>();
+      cy.mount(<EuiDataGrid {...baseProps} ref={ref} />);
+
+      // Wait for the grid to finish rendering and pass back the ref
+      cy.get('[data-test-subj="euiDataGridBody"]').then(() => {
+        ref.current.openCellPopover({ rowIndex: 14, colIndex: 5 });
+        cy.focused().should(
+          'have.attr',
+          'data-test-subj',
+          'euiDataGridExpansionPopover'
+        );
+      });
     });
   });
 });

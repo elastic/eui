@@ -61,25 +61,25 @@ describe('getOn', () => {
     },
   };
   it('gets values at the given path', () => {
-    expect(getOn(obj, 'parent', '')).toEqual({
+    expect(getOn(obj, 'parent')).toEqual({
       child: 'childVal',
     });
-    expect(getOn(obj, 'parent.child', '')).toEqual('childVal');
-    expect(getOn(obj, 'other.thing.string', '')).toEqual('stringVal');
+    expect(getOn(obj, 'parent.child')).toEqual('childVal');
+    expect(getOn(obj, 'other.thing.string')).toEqual('stringVal');
   });
   it('gets values of various kinds', () => {
-    expect(getOn(obj, 'other.thing.nested', '')).toEqual(['array']);
-    expect(getOn(obj, 'other.thing.number', '')).toEqual(0);
-    expect(getOn(obj, 'other.thing.func', '')).toBeInstanceOf(Function);
+    expect(getOn(obj, 'other.thing.nested')).toEqual(['array']);
+    expect(getOn(obj, 'other.thing.number')).toEqual(0);
+    expect(getOn(obj, 'other.thing.func')).toBeInstanceOf(Function);
   });
   it('can shortcut color modes', () => {
     expect(getOn(obj, 'colors.primary', 'LIGHT')).toEqual('#000');
     expect(getOn(obj, 'colors.primary', 'DARK')).toEqual('#FFF');
   });
   it('will not error', () => {
-    expect(getOn(obj, 'nope', '')).toBe(undefined);
-    expect(getOn(obj, 'other.nope', '')).toBe(undefined);
-    expect(getOn(obj, 'other.thing.nope', '')).toBe(undefined);
+    expect(getOn(obj, 'nope')).toBe(undefined);
+    expect(getOn(obj, 'other.nope')).toBe(undefined);
+    expect(getOn(obj, 'other.thing.nope')).toBe(undefined);
   });
 });
 

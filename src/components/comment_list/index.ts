@@ -6,10 +6,13 @@
  * Side Public License, v 1.
  */
 
-export { EuiComment, EuiCommentProps } from './comment';
+export type { EuiCommentProps } from './comment';
+export { EuiComment } from './comment';
 
-export { EuiCommentEvent, EuiCommentType } from './comment_event';
+export type { EuiCommentType } from './comment_event';
+export { EuiCommentEvent } from './comment_event';
 
 export { EuiCommentTimeline } from './comment_timeline';
 
-export { EuiCommentList, EuiCommentListProps } from './comment_list';
+export type { EuiCommentListProps } from './comment_list';
+export { EuiCommentList } from './comment_list';

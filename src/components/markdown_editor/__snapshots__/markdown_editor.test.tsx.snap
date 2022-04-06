@@ -54,7 +54,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
           "components": Object {
             "a": Object {
               "$$typeof": Symbol(react.forward_ref),
-              "displayName": "EuiLink",
               "propTypes": Object {
                 "aria-label": [Function],
                 "className": [Function],
@@ -225,7 +224,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                 <button
                   aria-label="Bold"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -274,7 +272,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                 <button
                   aria-label="Italic"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -326,7 +323,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                 <button
                   aria-label="Unordered list"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -375,7 +371,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                 <button
                   aria-label="Ordered list"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -415,7 +410,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
               <EuiButtonIcon
                 aria-label="Task list"
                 color="text"
-                iconType={[Function]}
+                iconType="editorChecklist"
                 isDisabled={false}
                 onBlur={[Function]}
                 onClick={[Function]}
@@ -424,7 +419,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                 <button
                   aria-label="Task list"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -435,13 +429,13 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                     className="euiButtonIcon__icon"
                     color="inherit"
                     size="m"
-                    type={[Function]}
+                    type="editorChecklist"
                   >
                     <span
                       aria-hidden="true"
                       className="euiButtonIcon__icon"
                       color="inherit"
-                      data-euiicon-type="MarkdownCheckmark"
+                      data-euiicon-type="editorChecklist"
                       size="m"
                     />
                   </EuiIcon>
@@ -476,7 +470,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                 <button
                   aria-label="Quote"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -525,7 +518,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                 <button
                   aria-label="Code"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -574,7 +566,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                 <button
                   aria-label="Link"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -765,7 +756,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                       <button
                         aria-label="Show markdown help"
                         className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--small euiMarkdownEditorFooter__helpButton"
-                        disabled={false}
                         onClick={[Function]}
                         title="Syntax help"
                         type="button"
@@ -837,10 +827,11 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                                   >
                                     GitHub flavored markdown
                                     <span
-                                      aria-label="External link"
                                       class="euiLink__externalIcon"
                                       data-euiicon-type="popout"
-                                    />
+                                    >
+                                      External link
+                                    </span>
                                     <span
                                       class="euiScreenReaderOnly"
                                     >
@@ -889,7 +880,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                             scrollLock={false}
                             sideCar={[Function]}
                           >
-                            <ForwardRef
+                            <ForwardRef(FocusLockUI)
                               as={
                                 Object {
                                   "$$typeof": Symbol(react.forward_ref),
@@ -1080,11 +1071,12 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                                                     type="popout"
                                                   >
                                                     <span
-                                                      aria-label="External link"
                                                       className="euiLink__externalIcon"
                                                       data-euiicon-type="popout"
                                                       size="s"
-                                                    />
+                                                    >
+                                                      External link
+                                                    </span>
                                                   </EuiIcon>
                                                   <EuiScreenReaderOnly>
                                                     <span
@@ -1124,7 +1116,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                                 }
                                 tabIndex={-1}
                               />
-                            </ForwardRef>
+                            </ForwardRef(FocusLockUI)>
                           </ForwardRef>
                         </ForwardRef>
                       </EuiFocusTrap>
@@ -1244,7 +1236,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="MarkdownCheckmark"
+            data-euiicon-type="editorChecklist"
           />
         </button>
       </span>
@@ -1583,7 +1575,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 <button
                   aria-label="Bold"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -1632,7 +1623,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 <button
                   aria-label="Italic"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -1684,7 +1674,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 <button
                   aria-label="Unordered list"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -1733,7 +1722,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 <button
                   aria-label="Ordered list"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -1773,7 +1761,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
               <EuiButtonIcon
                 aria-label="Task list"
                 color="text"
-                iconType={[Function]}
+                iconType="editorChecklist"
                 isDisabled={false}
                 onBlur={[Function]}
                 onClick={[Function]}
@@ -1782,7 +1770,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 <button
                   aria-label="Task list"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -1793,13 +1780,13 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                     className="euiButtonIcon__icon"
                     color="inherit"
                     size="m"
-                    type={[Function]}
+                    type="editorChecklist"
                   >
                     <span
                       aria-hidden="true"
                       className="euiButtonIcon__icon"
                       color="inherit"
-                      data-euiicon-type="MarkdownCheckmark"
+                      data-euiicon-type="editorChecklist"
                       size="m"
                     />
                   </EuiIcon>
@@ -1834,7 +1821,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 <button
                   aria-label="Quote"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -1883,7 +1869,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 <button
                   aria-label="Code"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -1932,7 +1917,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 <button
                   aria-label="Link"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -1984,7 +1968,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 <button
                   aria-label="Tooltip"
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onFocus={[Function]}
@@ -2205,7 +2188,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                     <button
                       aria-label="Show markdown help"
                       className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--small euiMarkdownEditorFooter__helpButton"
-                      disabled={false}
                       onBlur={[Function]}
                       onClick={[Function]}
                       onFocus={[Function]}
@@ -2304,10 +2286,11 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                       >
                                         GitHub flavored markdown
                                         <span
-                                          aria-label="External link"
                                           class="euiLink__externalIcon"
                                           data-euiicon-type="popout"
-                                        />
+                                        >
+                                          External link
+                                        </span>
                                         <span
                                           class="euiScreenReaderOnly"
                                         >
@@ -2412,7 +2395,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                           scrollLock={false}
                           sideCar={[Function]}
                         >
-                          <ForwardRef
+                          <ForwardRef(FocusLockUI)
                             as={
                               Object {
                                 "$$typeof": Symbol(react.forward_ref),
@@ -2540,10 +2523,11 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                               >
                                                 GitHub flavored markdown
                                                 <span
-                                                  aria-label="External link"
                                                   class="euiLink__externalIcon"
                                                   data-euiicon-type="popout"
-                                                />
+                                                >
+                                                  External link
+                                                </span>
                                                 <span
                                                   class="euiScreenReaderOnly"
                                                 >
@@ -2692,10 +2676,11 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                                 >
                                                   GitHub flavored markdown
                                                   <span
-                                                    aria-label="External link"
                                                     class="euiLink__externalIcon"
                                                     data-euiicon-type="popout"
-                                                  />
+                                                  >
+                                                    External link
+                                                  </span>
                                                   <span
                                                     class="euiScreenReaderOnly"
                                                   >
@@ -2844,10 +2829,11 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                                   >
                                                     GitHub flavored markdown
                                                     <span
-                                                      aria-label="External link"
                                                       class="euiLink__externalIcon"
                                                       data-euiicon-type="popout"
-                                                    />
+                                                    >
+                                                      External link
+                                                    </span>
                                                     <span
                                                       class="euiScreenReaderOnly"
                                                     >
@@ -2984,10 +2970,11 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                                     >
                                                       GitHub flavored markdown
                                                       <span
-                                                        aria-label="External link"
                                                         class="euiLink__externalIcon"
                                                         data-euiicon-type="popout"
-                                                      />
+                                                      >
+                                                        External link
+                                                      </span>
                                                       <span
                                                         class="euiScreenReaderOnly"
                                                       >
@@ -3110,7 +3097,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                       <button
                                         aria-label="Closes this modal window"
                                         className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiModal__closeIcon"
-                                        disabled={false}
                                         onClick={[Function]}
                                         type="button"
                                       >
@@ -3199,11 +3185,12 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                                         type="popout"
                                                       >
                                                         <span
-                                                          aria-label="External link"
                                                           className="euiLink__externalIcon"
                                                           data-euiicon-type="popout"
                                                           size="s"
-                                                        />
+                                                        >
+                                                          External link
+                                                        </span>
                                                       </EuiIcon>
                                                       <EuiScreenReaderOnly>
                                                         <span
@@ -3371,7 +3358,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                               }
                               tabIndex={0}
                             />
-                          </ForwardRef>
+                          </ForwardRef(FocusLockUI)>
                           <RequireSideCar
                             noIsolation={true}
                             onClickOutside={[Function]}
@@ -3541,7 +3528,7 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="MarkdownCheckmark"
+            data-euiicon-type="editorChecklist"
           />
         </button>
       </span>
@@ -3775,7 +3762,7 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="MarkdownCheckmark"
+            data-euiicon-type="editorChecklist"
           />
         </button>
       </span>
@@ -4009,7 +3996,7 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="MarkdownCheckmark"
+            data-euiicon-type="editorChecklist"
           />
         </button>
       </span>
@@ -4243,7 +4230,7 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
             aria-hidden="true"
             class="euiButtonIcon__icon"
             color="inherit"
-            data-euiicon-type="MarkdownCheckmark"
+            data-euiicon-type="editorChecklist"
           />
         </button>
       </span>
@@ -4364,6 +4351,252 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
           <button
             aria-label="Show markdown help"
             class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--small euiMarkdownEditorFooter__helpButton"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="MarkdownLogo"
+            />
+          </button>
+        </span>
+      </div>
+      <input
+        autocomplete="off"
+        multiple=""
+        style="display:none"
+        tabindex="-1"
+        type="file"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
+<div
+  class="euiMarkdownEditor testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiMarkdownEditorToolbar"
+  >
+    <div
+      class="euiMarkdownEditorToolbar__buttons"
+    >
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Bold"
+          class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          disabled=""
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorBold"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Italic"
+          class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          disabled=""
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorItalic"
+          />
+        </button>
+      </span>
+      <span
+        class="euiMarkdownEditorToolbar__divider"
+      />
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Unordered list"
+          class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          disabled=""
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorUnorderedList"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Ordered list"
+          class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          disabled=""
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorOrderedList"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Task list"
+          class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          disabled=""
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorChecklist"
+          />
+        </button>
+      </span>
+      <span
+        class="euiMarkdownEditorToolbar__divider"
+      />
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Quote"
+          class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          disabled=""
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="quote"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Code"
+          class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          disabled=""
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorCodeBlock"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Link"
+          class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          disabled=""
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorLink"
+          />
+        </button>
+      </span>
+      <span
+        class="euiMarkdownEditorToolbar__divider"
+      />
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Tooltip"
+          class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          disabled=""
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorComment"
+          />
+        </button>
+      </span>
+    </div>
+    <button
+      class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiButtonEmpty-isDisabled"
+      disabled=""
+      type="button"
+    >
+      <span
+        class="euiButtonContent euiButtonEmpty__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="eye"
+        />
+        <span
+          class="euiButtonEmpty__text"
+        >
+          Preview
+        </span>
+      </span>
+    </button>
+  </div>
+  <div
+    class="euiMarkdownEditor__toggleContainer"
+    style="height:calc(100% - 0px)"
+  >
+    <div
+      class="euiMarkdownEditorDropZone"
+    >
+      <textarea
+        aria-label="aria-label"
+        class="euiMarkdownEditorTextArea euiMarkdownEditorTextArea-isReadOnly"
+        id="editorId"
+        readonly=""
+        rows="6"
+        style="height:calc(250px);max-height:500px"
+      />
+      <div
+        class="euiMarkdownEditorFooter"
+      >
+        <div
+          class="euiMarkdownEditorFooter__actions"
+        />
+        <span
+          class="euiToolTipAnchor"
+        >
+          <button
+            aria-label="Show markdown help"
+            class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--small euiMarkdownEditorFooter__helpButton"
+            disabled=""
             type="button"
           >
             <span

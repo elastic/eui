@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiFieldPassword, EuiFieldPasswordProps } from './field_password';
+export type { EuiFieldPasswordProps } from './field_password';
+export { EuiFieldPassword } from './field_password';

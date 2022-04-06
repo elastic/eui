@@ -11,7 +11,6 @@ import { mount, render, shallow } from 'enzyme';
 
 import { mockRowHeightUtils } from '../utils/__mocks__/row_heights';
 import { schemaDetectors } from '../utils/data_grid_schema';
-import { providedPopoverContents } from './popover_utils';
 
 import { EuiDataGridBody, Cell } from './data_grid_body';
 
@@ -40,8 +39,8 @@ describe('EuiDataGridBody', () => {
     setVisibleColumns: jest.fn(),
     switchColumnPos: jest.fn(),
     schemaDetectors,
-    popoverContents: providedPopoverContents,
     rowHeightUtils: mockRowHeightUtils,
+    isFullScreen: false,
     gridStyles: {},
     gridWidth: 300,
     gridRef: {
@@ -121,7 +120,6 @@ describe('Cell', () => {
       defaultColumnWidth: 30,
       schema: {},
       schemaDetectors,
-      popoverContents: {},
       interactiveCellId: '',
       renderCellValue: jest.fn(),
     },
@@ -130,15 +128,5 @@ describe('Cell', () => {
   it('is a light wrapper around EuiDataGridCell', () => {
     const component = shallow(<Cell {...requiredProps} />);
     expect(component.find('EuiDataGridCell').exists()).toBe(true);
-  });
-
-  describe('stripes', () => {
-    it('renders odd rows with .euiDataGridRowCell--stripe', () => {
-      const component = shallow(<Cell {...requiredProps} rowIndex={3} />);
-      expect(component.hasClass('euiDataGridRowCell--stripe')).toBe(true);
-
-      component.setProps({ rowIndex: 4 });
-      expect(component.hasClass('euiDataGridRowCell--stripe')).toBe(false);
-    });
   });
 });

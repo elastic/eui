@@ -6,31 +6,28 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiSelectable,
+export type {
   EuiSelectableProps,
   EuiSelectableSearchableSearchProps,
 } from './selectable';
-export {
-  EuiSelectableList,
+export { EuiSelectable } from './selectable';
+export type {
   EuiSelectableListProps,
-  EuiSelectableListItem,
   EuiSelectableListItemProps,
   EuiSelectableOptionsListProps,
 } from './selectable_list';
-export {
-  EuiSelectableMessage,
-  EuiSelectableMessageProps,
-} from './selectable_message';
-export { EuiSelectableOption } from './selectable_option';
-export {
-  EuiSelectableSearch,
-  EuiSelectableSearchProps,
-} from './selectable_search';
-export {
-  EuiSelectableTemplateSitewide,
+export { EuiSelectableList, EuiSelectableListItem } from './selectable_list';
+export type { EuiSelectableMessageProps } from './selectable_message';
+export { EuiSelectableMessage } from './selectable_message';
+export type { EuiSelectableOption } from './selectable_option';
+export type { EuiSelectableSearchProps } from './selectable_search';
+export { EuiSelectableSearch } from './selectable_search';
+export type {
   EuiSelectableTemplateSitewideProps,
   EuiSelectableTemplateSitewideOption,
   EuiSelectableTemplateSitewideMetaData,
+} from './selectable_templates';
+export {
+  EuiSelectableTemplateSitewide,
   euiSelectableTemplateSitewideRenderOptions,
 } from './selectable_templates';

@@ -69,11 +69,12 @@ exports[`EuiControlBar is rendered 1`] = `
       class="euiControlBar__divider"
     />
     <span
-      aria-label="Sample Icon"
       class="euiControlBar__icon"
       color="danger"
       data-euiicon-type="alert"
-    />
+    >
+      Sample Icon
+    </span>
     <div
       class="euiControlBar__spacer"
     />
@@ -214,11 +215,12 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                 class="euiControlBar__divider"
               />
               <span
-                aria-label="Sample Icon"
                 class="euiControlBar__icon"
                 color="danger"
                 data-euiicon-type="alert"
-              />
+              >
+                Sample Icon
+              </span>
               <div
                 class="euiControlBar__spacer"
               />
@@ -387,11 +389,12 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
               type="alert"
             >
               <span
-                aria-label="Sample Icon"
                 className="euiControlBar__icon"
                 color="danger"
                 data-euiicon-type="alert"
-              />
+              >
+                Sample Icon
+              </span>
             </EuiIcon>
             <div
               className="euiControlBar__spacer"
@@ -554,11 +557,12 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                 class="euiControlBar__divider"
               />
               <span
-                aria-label="Sample Icon"
                 class="euiControlBar__icon"
                 color="danger"
                 data-euiicon-type="alert"
-              />
+              >
+                Sample Icon
+              </span>
               <div
                 class="euiControlBar__spacer"
               />
@@ -727,11 +731,12 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
               type="alert"
             >
               <span
-                aria-label="Sample Icon"
                 className="euiControlBar__icon"
                 color="danger"
                 data-euiicon-type="alert"
-              />
+              >
+                Sample Icon
+              </span>
             </EuiIcon>
             <div
               className="euiControlBar__spacer"
@@ -893,11 +898,12 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                 class="euiControlBar__divider"
               />
               <span
-                aria-label="Sample Icon"
                 class="euiControlBar__icon"
                 color="danger"
                 data-euiicon-type="alert"
-              />
+              >
+                Sample Icon
+              </span>
               <div
                 class="euiControlBar__spacer"
               />
@@ -1066,11 +1072,12 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
               type="alert"
             >
               <span
-                aria-label="Sample Icon"
                 className="euiControlBar__icon"
                 color="danger"
                 data-euiicon-type="alert"
-              />
+              >
+                Sample Icon
+              </span>
             </EuiIcon>
             <div
               className="euiControlBar__spacer"
@@ -1310,11 +1317,12 @@ exports[`EuiControlBar props position is rendered 1`] = `
           type="alert"
         >
           <span
-            aria-label="Sample Icon"
             className="euiControlBar__icon"
             color="danger"
             data-euiicon-type="alert"
-          />
+          >
+            Sample Icon
+          </span>
         </EuiIcon>
         <div
           className="euiControlBar__spacer"
@@ -1461,11 +1469,12 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                 class="euiControlBar__divider"
               />
               <span
-                aria-label="Sample Icon"
                 class="euiControlBar__icon"
                 color="danger"
                 data-euiicon-type="alert"
-              />
+              >
+                Sample Icon
+              </span>
               <div
                 class="euiControlBar__spacer"
               />
@@ -1634,11 +1643,12 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
               type="alert"
             >
               <span
-                aria-label="Sample Icon"
                 className="euiControlBar__icon"
                 color="danger"
                 data-euiicon-type="alert"
-              />
+              >
+                Sample Icon
+              </span>
             </EuiIcon>
             <div
               className="euiControlBar__spacer"
@@ -1800,11 +1810,12 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                 class="euiControlBar__divider"
               />
               <span
-                aria-label="Sample Icon"
                 class="euiControlBar__icon"
                 color="danger"
                 data-euiicon-type="alert"
-              />
+              >
+                Sample Icon
+              </span>
               <div
                 class="euiControlBar__spacer"
               />
@@ -1978,11 +1989,12 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
               type="alert"
             >
               <span
-                aria-label="Sample Icon"
                 className="euiControlBar__icon"
                 color="danger"
                 data-euiicon-type="alert"
-              />
+              >
+                Sample Icon
+              </span>
             </EuiIcon>
             <div
               className="euiControlBar__spacer"
@@ -2149,11 +2161,12 @@ exports[`EuiControlBar props size is rendered 1`] = `
                 class="euiControlBar__divider"
               />
               <span
-                aria-label="Sample Icon"
                 class="euiControlBar__icon"
                 color="danger"
                 data-euiicon-type="alert"
-              />
+              >
+                Sample Icon
+              </span>
               <div
                 class="euiControlBar__spacer"
               />
@@ -2322,11 +2335,12 @@ exports[`EuiControlBar props size is rendered 1`] = `
               type="alert"
             >
               <span
-                aria-label="Sample Icon"
                 className="euiControlBar__icon"
                 color="danger"
                 data-euiicon-type="alert"
-              />
+              >
+                Sample Icon
+              </span>
             </EuiIcon>
             <div
               className="euiControlBar__spacer"

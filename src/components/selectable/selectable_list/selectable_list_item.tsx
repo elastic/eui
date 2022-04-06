@@ -8,7 +8,7 @@
 
 import classNames from 'classnames';
 import React, { Component, LiHTMLAttributes } from 'react';
-import { CommonProps } from '../../common';
+import { CommonProps, keysOf } from '../../common';
 import { EuiI18n } from '../../i18n';
 import { EuiIcon, IconColor, IconType } from '../../icon';
 import { EuiSelectableOptionCheckedType } from '../selectable_option';
@@ -25,6 +25,13 @@ function resolveIconAndColor(
     ? { icon: 'check', color: 'text' }
     : { icon: 'cross', color: 'text' };
 }
+
+const paddingSizeToClassNameMap = {
+  none: null,
+  s: 'euiSelectableListItem--paddingSmall',
+};
+export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
+export type EuiSelectablePaddingSize = typeof PADDING_SIZES[number];
 
 export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
   CommonProps & {
@@ -51,6 +58,27 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
      * The default content when `true` is `↩ to select/deselect/include/exclude`
      */
     onFocusBadge?: boolean | EuiBadgeProps;
+    /**
+     * Padding for the list items.
+     */
+    paddingSize?: EuiSelectablePaddingSize;
+    /**
+     * Whether the `EuiSelectable` instance is searchable.
+     * When true, the Space key will not toggle selection, as it will type into the search box instead. Screen reader instructions will be added instructing users to use the Enter key to select items.
+     * When false, the Space key will toggle item selection. No extra screen reader instructions will be added, as Space to toggle is a generally standard for most select/checked elements.
+     */
+    searchable?: boolean;
+    /**
+     * Attribute applied the option `<li>`.
+     * If configured to something besides the default value of `option`,
+     * other ARIA attributes such as `aria-checked` will not be automatically configured.
+     */
+    role?: LiHTMLAttributes<HTMLLIElement>['role'];
+    /**
+     * How to handle long text within the item.
+     * Wrapping only works if virtualization is off.
+     */
+    textWrap?: 'truncate' | 'wrap';
   };
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -60,6 +88,7 @@ export class EuiSelectableListItem extends Component<
   static defaultProps = {
     showIcons: true,
     onFocusBadge: true,
+    textWrap: 'truncate',
   };
 
   constructor(props: EuiSelectableListItemProps) {
@@ -78,6 +107,10 @@ export class EuiSelectableListItem extends Component<
       append,
       allowExclusions,
       onFocusBadge,
+      paddingSize = 's',
+      role = 'option',
+      searchable,
+      textWrap,
       ...rest
     } = this.props;
 
@@ -86,8 +119,13 @@ export class EuiSelectableListItem extends Component<
       {
         'euiSelectableListItem-isFocused': isFocused,
       },
+      paddingSizeToClassNameMap[paddingSize],
       className
     );
+
+    const textClasses = classNames('euiSelectableListItem__text', {
+      [`euiSelectableListItem__text--${textWrap}`]: textWrap,
+    });
 
     let optionIcon: React.ReactNode;
     if (showIcons) {
@@ -105,46 +143,53 @@ export class EuiSelectableListItem extends Component<
     let instruction: React.ReactNode;
     if (allowExclusions && checked === 'on') {
       state = (
-        <EuiScreenReaderOnly>
-          <span>
-            <EuiI18n
-              token="euiSelectableListItem.includedOption"
-              default="Included option."
-            />
-          </span>
-        </EuiScreenReaderOnly>
+        <EuiI18n
+          token="euiSelectableListItem.includedOption"
+          default="Selected option."
+        />
       );
       instruction = (
-        <EuiScreenReaderOnly>
-          <span>
-            <EuiI18n
-              token="euiSelectableListItem.includedOptionInstructions"
-              default="To exclude this option, press enter."
-            />
-          </span>
-        </EuiScreenReaderOnly>
+        <EuiI18n
+          token="euiSelectableListItem.includedOptionInstructions"
+          default="To exclude this option, press enter."
+        />
       );
     } else if (allowExclusions && checked === 'off') {
       state = (
-        <EuiScreenReaderOnly>
-          <span>
-            <EuiI18n
-              token="euiSelectableListItem.excludedOption"
-              default="Excluded option."
-            />
-          </span>
-        </EuiScreenReaderOnly>
+        <EuiI18n
+          token="euiSelectableListItem.excludedOption"
+          default="Excluded option."
+        />
       );
       instruction = (
-        <EuiScreenReaderOnly>
-          <span>
-            <EuiI18n
-              token="euiSelectableListItem.excludedOptionInstructions"
-              default="To deselect this option, press enter."
-            />
-          </span>
-        </EuiScreenReaderOnly>
+        <EuiI18n
+          token="euiSelectableListItem.excludedOptionInstructions"
+          default="To uncheck this option, press enter."
+        />
       );
+    } else if (allowExclusions && !checked) {
+      instruction = (
+        <EuiI18n
+          token="euiSelectableListItem.unckeckedOptionInstructions"
+          default="To select this option, press enter."
+        />
+      );
+    }
+
+    const isChecked = !disabled && typeof checked === 'string';
+    if (!allowExclusions && isChecked) {
+      state = (
+        <EuiI18n
+          token="euiSelectableListItem.checkedOption"
+          default="Checked option."
+        />
+      );
+      instruction = searchable ? (
+        <EuiI18n
+          token="euiSelectableListItem.checkedOptionInstructions"
+          default="To uncheck this option, press enter."
+        />
+      ) : undefined;
     }
 
     let prependNode: React.ReactNode;
@@ -197,11 +242,23 @@ export class EuiSelectableListItem extends Component<
       }
     }
 
+    const instructions = (instruction || state) && (
+      <EuiScreenReaderOnly>
+        <div>
+          {state || instruction ? ' - ' : null}
+          {state}
+          {state && instruction ? ' ' : null}
+          {instruction}
+        </div>
+      </EuiScreenReaderOnly>
+    );
+
     return (
       <li
-        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
-        role="option"
-        aria-selected={!disabled && typeof checked === 'string'}
+        role={role}
+        data-test-selected={isChecked} // Whether the item is checked/selected
+        aria-checked={role === 'option' ? isChecked : undefined} // Whether the item is "checked"
+        aria-selected={!disabled && isFocused} // Whether the item has keyboard focus per W3 spec
         className={classes}
         aria-disabled={disabled}
         {...rest}
@@ -209,10 +266,9 @@ export class EuiSelectableListItem extends Component<
         <span className="euiSelectableListItem__content">
           {optionIcon}
           {prependNode}
-          <span className="euiSelectableListItem__text">
-            {state}
+          <span className={textClasses}>
             {children}
-            {instruction}
+            {instructions}
           </span>
           {appendNode}
         </span>

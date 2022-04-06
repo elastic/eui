@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiImage } from '../../../../src/components';
+import { EuiCode, EuiCallOut, EuiImage } from '../../../../src/components';
 EuiImage.__docgenInfo.props.src.required = true;
 
 import imageConfig from './playground';
@@ -34,8 +34,6 @@ const imageZoomSnippet = `<EuiImage
 `;
 
 import ImageFloat from './float';
-import { EuiCallOut } from '../../../../src/components/call_out';
-import { Fragment } from 'react-is';
 const imageFloatSource = require('!!raw-loader!./float');
 const imageFloatSnippet = `<EuiImage
   alt={description}
@@ -69,7 +67,7 @@ export const ImageExample = {
       playground: imageConfig,
     },
     {
-      title: 'Click an image for a full screen version',
+      title: 'Click an image for a fullscreen version',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -79,7 +77,7 @@ export const ImageExample = {
       text: (
         <p>
           Apply the <EuiCode>allowFullScreen</EuiCode> prop to make the image
-          clickable and show a full screen version. Note that the second image
+          clickable and show a fullscreen version. Note that the second image
           also passes{' '}
           <EuiCode language="js">fullScreenIconColor=&quot;dark&quot;</EuiCode>{' '}
           to change icon color to better contrast against the light background

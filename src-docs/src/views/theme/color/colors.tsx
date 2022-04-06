@@ -101,9 +101,7 @@ export default () => {
     <GuidePage
       isBeta={!showSass && !selectedTabId.includes('contrast')}
       title="Colors"
-      notice={
-        !showSass && !selectedTabId.includes('contrast') && <ThemeNotice />
-      }
+      notice={<ThemeNotice />}
       showThemeLanguageToggle
       tabs={tabs.map((tab) => {
         return {

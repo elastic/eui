@@ -6,8 +6,5 @@
  * Side Public License, v 1.
  */
 
-export {
-  useColorPickerState,
-  useColorStopsState,
-  EuiSetColorMethod,
-} from './color_picker';
+export type { EuiSetColorMethod } from './color_picker';
+export { useColorPickerState, useColorStopsState } from './color_picker';

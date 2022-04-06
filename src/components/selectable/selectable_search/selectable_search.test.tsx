@@ -7,39 +7,59 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render, mount, shallow } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiSelectableSearch } from './selectable_search';
 
 describe('EuiSelectableSearch', () => {
-  test('is rendered', () => {
-    const component = render(
-      <EuiSelectableSearch
-        options={[]}
-        listId="list"
-        onChange={() => {}}
-        isPreFiltered={false}
-        {...requiredProps}
-      />
-    );
+  const onChange = jest.fn();
+  const baseProps = {
+    ...requiredProps,
+    onChange,
+    options: [{ label: 'hello' }, { label: 'world' }],
+    value: '',
+    isPreFiltered: false,
+  };
 
+  beforeEach(() => jest.clearAllMocks());
+
+  test('is rendered', () => {
+    const component = render(<EuiSelectableSearch {...baseProps} />);
     expect(component).toMatchSnapshot();
   });
 
-  describe('props', () => {
-    test('defaultValue', () => {
-      const component = render(
-        <EuiSelectableSearch
-          options={[]}
-          listId="list"
-          onChange={() => {}}
-          isPreFiltered={false}
-          defaultValue="Mi"
-        />
-      );
+  it('renders aria props if a listId is present', () => {
+    const component = render(
+      <EuiSelectableSearch {...baseProps} listId="list" />
+    );
+    expect(component).toMatchSnapshot();
+  });
 
-      expect(component).toMatchSnapshot();
-    });
+  it('renders placeholder, value, name, and other remaining EuiFieldSearch props', () => {
+    const component = render(
+      <EuiSelectableSearch
+        {...baseProps}
+        placeholder="start typing"
+        value="typed"
+        name="testName"
+        id="testId"
+        className="testClass"
+      />
+    );
+    expect(component).toMatchSnapshot();
+  });
+
+  it('calls the onChange callback on mount', () => {
+    mount(<EuiSelectableSearch {...baseProps} value="w" />);
+    expect(onChange).toHaveBeenCalledWith('w', [{ label: 'world' }]);
+  });
+
+  it("calls the onChange callback when the EuiFieldSearch's change event fires", () => {
+    const component = shallow(<EuiSelectableSearch {...baseProps} />);
+    component
+      .find('EuiFieldSearch')
+      .simulate('change', { target: { value: 'h' } });
+    expect(onChange).toHaveBeenCalledWith('h', [{ label: 'hello' }]);
   });
 });

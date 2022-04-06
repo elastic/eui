@@ -26,6 +26,12 @@ import {
   writingExamplesSections,
 } from './views/guidelines/writing_examples';
 
+// Templates
+
+import { PageTemplateExample } from './views/page/page_template_example';
+
+import { SitewideSearchExample } from './views/selectable/selectable_sitewide_template_example';
+
 // Services
 
 import { ColorPaletteExample } from './views/color_palette/color_palette_example';
@@ -80,15 +86,12 @@ import { ControlBarExample } from './views/control_bar/control_bar_example';
 
 import { CopyExample } from './views/copy/copy_example';
 
-import { DataGridExample } from './views/datagrid/datagrid_example';
-import { DataGridMemoryExample } from './views/datagrid/datagrid_memory_example';
-import { DataGridSchemaExample } from './views/datagrid/datagrid_schema_example';
-import { DataGridFocusExample } from './views/datagrid/datagrid_focus_example';
-import { DataGridStylingExample } from './views/datagrid/datagrid_styling_example';
-import { DataGridControlColumnsExample } from './views/datagrid/datagrid_controlcolumns_example';
-import { DataGridFooterRowExample } from './views/datagrid/datagrid_footer_row_example';
-import { DataGridVirtualizationExample } from './views/datagrid/datagrid_virtualization_example';
-import { DataGridRowHeightOptionsExample } from './views/datagrid/datagrid_height_options_example';
+import { DataGridExample } from './views/datagrid/basics/datagrid_example';
+import { DataGridCellsExample } from './views/datagrid/cells_popovers/datagrid_cells_example';
+import { DataGridToolbarExample } from './views/datagrid/toolbar/datagrid_toolbar_example';
+import { DataGridColumnsExample } from './views/datagrid/schema_columns/datagrid_columns_example';
+import { DataGridStylingExample } from './views/datagrid/styling/datagrid_styling_example';
+import { DataGridAdvancedExample } from './views/datagrid/advanced/datagrid_advanced_example';
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
@@ -115,6 +118,8 @@ import { FlyoutExample } from './views/flyout/flyout_example';
 import { FocusTrapExample } from './views/focus_trap/focus_trap_example';
 
 import { FormControlsExample } from './views/form_controls/form_controls_example';
+
+import { SelectionControlsExample } from './views/selection_controls/selection_controls_example';
 
 import { FormLayoutsExample } from './views/form_layouts/form_layouts_example';
 
@@ -163,8 +168,6 @@ import { NotificationEventExample } from './views/notification_event/notificatio
 import { OutsideClickDetectorExample } from './views/outside_click_detector/outside_click_detector_example';
 
 import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
-
-import { PageExample } from './views/page/page_example';
 
 import { PageHeaderExample } from './views/page_header/page_header_example';
 
@@ -437,9 +440,16 @@ const navigation = [
       {
         name: 'Customizing themes',
         component: ThemeValues,
-        isNew: true,
       },
     ],
+  },
+  {
+    name: 'Templates',
+    items: [
+      PageTemplateExample,
+      SitewideSearchExample,
+      SuperDatePickerExample,
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Layout',
@@ -451,7 +461,6 @@ const navigation = [
       HeaderExample,
       HorizontalRuleExample,
       ModalExample,
-      PageExample,
       PageHeaderExample,
       PanelExample,
       PopoverExample,
@@ -475,22 +484,6 @@ const navigation = [
       StepsExample,
       TabsExample,
       TreeViewExample,
-    ].map((example) => createExample(example)),
-  },
-  {
-    name: 'Tabular content',
-    items: [
-      DataGridExample,
-      DataGridMemoryExample,
-      DataGridSchemaExample,
-      DataGridFocusExample,
-      DataGridStylingExample,
-      DataGridControlColumnsExample,
-      DataGridFooterRowExample,
-      DataGridVirtualizationExample,
-      DataGridRowHeightOptionsExample,
-      TableExample,
-      TableInMemoryExample,
     ].map((example) => createExample(example)),
   },
   {
@@ -524,6 +517,7 @@ const navigation = [
     name: 'Forms',
     items: [
       FormControlsExample,
+      SelectionControlsExample,
       FormLayoutsExample,
       FormCompressedExample,
       FormValidationExample,
@@ -537,8 +531,20 @@ const navigation = [
       SearchBarExample,
       SelectableExample,
       SuggestExample,
-      SuperDatePickerExample,
       SuperSelectExample,
+    ].map((example) => createExample(example)),
+  },
+  {
+    name: 'Tabular content',
+    items: [
+      DataGridExample,
+      DataGridColumnsExample,
+      DataGridCellsExample,
+      DataGridToolbarExample,
+      DataGridStylingExample,
+      DataGridAdvancedExample,
+      TableExample,
+      TableInMemoryExample,
     ].map((example) => createExample(example)),
   },
   {

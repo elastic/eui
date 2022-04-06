@@ -4,7 +4,7 @@ Provide a detailed summary of your PR. Explain how you arrived at your solution.
 
 ### Checklist
 
-- [ ] Check against **all themes** for compatibility in both light and dark modes
+- [ ] Checked in both **light and dark** modes
 - [ ] Checked in **mobile**
 - [ ] Checked in **Chrome**, **Safari**, **Edge**, and **Firefox**
 - [ ] Props have proper **autodocs** and **[playground toggles](https://github.com/elastic/eui/blob/main/wiki/documentation-guidelines.md#adding-playground-toggles)**
@@ -13,4 +13,5 @@ Provide a detailed summary of your PR. Explain how you arrived at your solution.
 - [ ] Added or updated **[jest](https://github.com/elastic/eui/blob/main/wiki/testing.md) and [cypress](https://github.com/elastic/eui/blob/main/wiki/cypress-testing.md) tests**
 - [ ] Checked for **breaking changes** and labeled appropriately
 - [ ] Checked for **accessibility** including keyboard-only and screenreader modes
+- [ ] Updated the **[Figma](https://www.figma.com/community/file/964536385682658129)** library counterpart
 - [ ] A **[changelog](https://github.com/elastic/eui/blob/main/wiki/documentation-guidelines.md#changelog)** entry exists and is marked appropriately

@@ -6,13 +6,11 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiSearchBar,
+export type {
   EuiSearchBarProps,
   EuiSearchBarOnChangeArgs,
   QueryType,
-  Query,
-  Ast,
 } from './search_bar';
-export { SearchFilterConfig } from './search_filters';
-export { FieldValueOptionType } from './filters/field_value_selection_filter';
+export { EuiSearchBar, Query, Ast } from './search_bar';
+export type { SearchFilterConfig } from './search_filters';
+export type { FieldValueOptionType } from './filters/field_value_selection_filter';

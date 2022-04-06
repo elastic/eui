@@ -2514,163 +2514,35 @@ let something: any;
 
         expect(result.code).toBe('let something;');
       });
-    });
 
-    it('can be disabled', () => {
-      const configuredBabelOptions = JSON.parse(JSON.stringify(babelOptions));
-      configuredBabelOptions.plugins[0] = ['./scripts/babel/proptypes-from-ts-props', { generatePropTypes: false }];
-
-      const result = transform(
-        `
-import React from 'react';
-interface IFooProps {bar: string}
-const FooComponent: React.SFC<IFooProps> = () => {
-  return (<div>Hello World</div>);
-}`,
-        configuredBabelOptions
-      );
-
-      expect(result.code).toBe(`import React from 'react';
-const FooComponent = () => {
-  return <div>Hello World</div>;
-};`);
-    });
-  });
-
-  describe('remove types from exports', () => {
-    it('removes sole type export from ExportNamedDeclaration', () => {
-      const result = transform(
-        `
-type Foo = string;
-export { Foo };
+      it('skips non-typescript imports', () => {
+        const result = transform(
+          `
+import something from './somewhere.txt';
 `,
-        babelOptions
-      );
-
-      expect(result.code).toBe('');
-    });
-
-    it('removes multiple type export from ExportNamedDeclaration', () => {
-      const result = transform(
-        `
-type Foo = string;
-type Bar = number | Foo;
-export { Foo, Bar };
-`,
-        babelOptions
-      );
-
-      expect(result.code).toBe('');
-    });
-
-    it('removes type exports from ExportNamedDeclaration, leaving legitimate exports', () => {
-      const result = transform(
-        `
-type Foo = string;
-type Bar = Foo | boolean;
-const A = 500;
-const B = { bar: A };
-export { Foo, A, Bar, B };
-`,
-        babelOptions
-      );
-
-      expect(result.code).toBe(`const A = 500;
-const B = {
-  bar: A
-};
-export { A, B };`);
-    });
-
-    it('removes type exports from ExportNamedDeclaration with a source', () => {
-      const result = transform(
-        `
-export { Foo, A } from './foo';
-`,
-        {
-          ...babelOptions,
-          plugins: [
-            [
-              './scripts/babel/proptypes-from-ts-props',
-              {
-                fs: {
-                  existsSync: () => true,
-                  statSync: () => ({ isDirectory: () => false }),
-                  readFileSync: filepath => {
-                    if (filepath.endsWith(`${path.sep}foo`)) {
+          {
+            ...babelOptions,
+            plugins: [
+              [
+                './scripts/babel/proptypes-from-ts-props',
+                {
+                  fs: {
+                    existsSync: () => true,
+                    statSync: () => ({ isDirectory: () => false }),
+                    readFileSync: () => {
                       return Buffer.from(`
-                        export type Foo = string;
+                        this is not valid javascript
                       `);
-                    }
-
-                    throw new Error(`Test tried to import from ${filepath}`);
+                    },
                   },
                 },
-              },
+              ],
             ],
-          ],
-        }
-      );
+          }
+        );
 
-      expect(result.code).toBe("export { A } from './foo';");
-    });
-
-    it('removes type exports from ExportNamedDeclaration when the imported name differs from the exported one', () => {
-      const result = transform(
-        `
-export { Foo as Bar, A as B } from './foo';
-`,
-        {
-          ...babelOptions,
-          plugins: [
-            [
-              './scripts/babel/proptypes-from-ts-props',
-              {
-                fs: {
-                  existsSync: () => true,
-                  statSync: () => ({ isDirectory: () => false }),
-                  readFileSync: filepath => {
-                    if (filepath.endsWith(`${path.sep}foo`)) {
-                      return Buffer.from(`
-                        export const A = 5;
-                        export type Foo = string;
-                      `);
-                    }
-
-                    throw new Error(`Test tried to import from ${filepath}`);
-                  },
-                },
-              },
-            ],
-          ],
-        }
-      );
-
-      expect(result.code).toBe("export { A as B } from './foo';");
-    });
-
-    it('removes type export statements', () => {
-      const result = transform(
-        `
-export type Foo = string;
-`,
-        babelOptions
-      );
-
-      expect(result.code).toBe('');
-    });
-
-    it('removes 3rd-party type exports', () => {
-      const result = transform(
-        `
-export { DraggableLocation, Draggable, DragDropContextProps } from 'react-beautiful-dnd';
-`,
-        babelOptions
-      );
-
-      expect(result.code).toBe(
-        "export { Draggable } from 'react-beautiful-dnd';"
-      );
+        expect(result.code).toBe("export {};");
+      });
     });
   });
 });
