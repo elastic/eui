@@ -21,7 +21,7 @@ import {
   GuideSectionExampleTabsProps,
 } from './guide_section_parts/guide_section_tabs';
 
-export interface GuideSection
+export interface GuideSectionProps
   extends Pick<
     GuideSectionExample,
     'exampleToggles' | 'demoPanelProps' | 'ghostBackground'
@@ -34,6 +34,7 @@ export interface GuideSection
   fullScreen?: {
     slug: string;
     demo: ReactNode;
+    showButton?: boolean;
   };
   props?: object;
   playground?: any;
@@ -68,7 +69,7 @@ export const GuideSectionCodeTypesMap = {
   },
 };
 
-export const GuideSection: FunctionComponent<GuideSection> = ({
+export const GuideSection: FunctionComponent<GuideSectionProps> = ({
   id,
   title,
   text,
@@ -195,7 +196,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
         </EuiFlyout>
       )}
 
-      {(demo || fullScreen) && (
+      {(demo || (fullScreen && fullScreen.showButton !== false)) && (
         <>
           <EuiSpacer />
           <GuideSectionExample
