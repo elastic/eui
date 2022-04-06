@@ -9,10 +9,13 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { renderWithStyles } from '../../test/internal';
 
 import { EuiAvatar, SIZES } from './avatar';
 
 describe('EuiAvatar', () => {
+  renderWithStyles(<EuiAvatar name="name" />);
+
   test('is rendered', () => {
     const component = render(<EuiAvatar name="name" {...requiredProps} />);
 

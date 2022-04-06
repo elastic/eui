@@ -1,26 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { GuideSectionTypes } from '../../components';
 
 import {
   EuiText,
   EuiSpacer,
   EuiCallOut,
   EuiCode,
-  EuiPage,
-  EuiPageBody,
-  EuiPageSection,
-  EuiPageContentBody,
+  EuiTable,
+  EuiTableHeader,
+  EuiTableHeaderCell,
+  EuiTableBody,
+  EuiTableRow,
+  EuiTableRowCell,
+  EuiIcon,
 } from '../../../../src';
 
-import { pageConfig, pageSectionConfig } from './components/playground';
-
 import { PageComponentDemo } from './components/page_demo';
-const PageSource = require('!!raw-loader!./components/page');
-import { PageBodyDemo } from './components/page_body_demo';
-const PageBodySource = require('!!raw-loader!./components/page_body');
 import { PageSectionDemo } from './components/page_section_demo';
-const PageSectionSource = require('!!raw-loader!./components/page_section');
+import { PageConfigurationsDemo } from './components/page_configurations_demo';
 
 export const PageExample = {
   title: 'Page components',
@@ -91,95 +88,214 @@ export const PageExample = {
   ),
   sections: [
     {
-      title: 'Page',
+      title: 'Page, body, and sidebar',
+      wrapText: false,
       text: (
-        <>
-          <p>
-            <strong>EuiPage</strong> is simply a flex wrapper that will
-            automatically <EuiCode>grow</EuiCode> to fill the height of a flex
-            container. You can also control the flex{' '}
-            <EuiCode>direction</EuiCode> and the maximum width using
-            <EuiCode>restrictWidth</EuiCode> which centers the page when it
-            reaches the provided value (or <EuiCode>1200px</EuiCode> if set to{' '}
-            <EuiCode>true</EuiCode>).
-          </p>
-        </>
+        <div>
+          <EuiText>
+            <p>
+              <strong>EuiPage</strong> is simply a flex wrapper that will
+              automatically <EuiCode>grow</EuiCode> to fill the height of a flex
+              container. You can also control the flex{' '}
+              <EuiCode>direction</EuiCode> and the maximum width using
+              <EuiCode>restrictWidth</EuiCode> which centers the page when it
+              reaches the provided value (or <EuiCode>1200px</EuiCode> if set to{' '}
+              <EuiCode>true</EuiCode>).
+            </p>
+            <p>
+              <strong>EuiPageSidebar</strong> doesn&apos;t contain many
+              configurations itself, but it does dictate how the rest of the
+              page contents should be displayed. Typically you&apos;ll want to
+              wrap all your page contents in <strong>EuiPageBody</strong> and
+              set <EuiCode>{'panelled={true}'}</EuiCode> when you have a side
+              bar.
+            </p>
+          </EuiText>
+          <PageComponentDemo />
+        </div>
       ),
-      demo: <PageComponentDemo />,
-      demoPanelProps: {
-        paddingSize: 'none',
-        style: { overflow: 'hidden' },
-      },
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: PageSource,
-        },
-      ],
-      props: {
-        EuiPage,
-      },
-      playground: pageConfig,
     },
     {
-      title: 'Page body',
+      title: 'Page sections',
+      wrapText: false,
       text: (
-        <p>
-          Typically you&apos;ll want to wrap all your page contents in{' '}
-          <strong>EuiPageBody</strong> and set{' '}
-          <EuiCode>{'panelled={true}'}</EuiCode> when you have a side bar.
-        </p>
+        <div>
+          <EuiText>
+            <p>
+              <strong>EuiPageSection</strong> is a stackable component that is
+              essentially an <strong>EuiPanel</strong> with props for quickly
+              creating common usages. Use <EuiCode>panelled</EuiCode> to quickly
+              turn on/off the panel background and other attributes. You&apos;ll
+              need to set <EuiCode>{'grow={false}'}</EuiCode> to any content
+              that you don&apos;t want to stretch within the page.
+            </p>
+            <p>
+              To create dividers between contents, use the{' '}
+              <EuiCode>bottomBorder</EuiCode> prop. The{' '}
+              <EuiCode>{"'extended'"}</EuiCode> version ensures the border
+              touches the sides of the parent. It also supports{' '}
+              <EuiCode>restrictWidth</EuiCode> and <EuiCode>alignment</EuiCode>{' '}
+              to align with common usages.
+            </p>
+          </EuiText>
+          <PageSectionDemo />
+        </div>
       ),
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: PageBodySource,
-        },
-      ],
-      demo: <PageBodyDemo />,
-      demoPanelProps: {
-        paddingSize: 'none',
-        style: { overflow: 'hidden' },
-      },
-      props: {
-        EuiPageBody,
-      },
     },
     {
-      title: 'Page section',
+      title: 'Page configurations',
+      wrapText: false,
       text: (
-        <>
-          <p>
-            <strong>EuiPageSection</strong> is a stackable component that is
-            essentially an <strong>EuiPanel</strong> with props for quickly
-            creating common usages. Use <EuiCode>panelled</EuiCode> to quickly
-            turn on/off the panel background and other attributes. You&apos;ll
-            need to set <EuiCode>{'grow={false}'}</EuiCode> to any content that
-            you don&apos;t want to stretch within the page.
-          </p>
-          <p>
-            To create dividers between contents, use the{' '}
-            <EuiCode>bottomBorder</EuiCode> prop. The{' '}
-            <EuiCode>{"'extended'"}</EuiCode> version ensures the border touches
-            the sides of the parent. It also supports{' '}
-            <EuiCode>restrictWidth</EuiCode> and <EuiCode>alignment</EuiCode> to
-            align with common usages.
-          </p>
-        </>
+        <div>
+          <EuiText>
+            <p>
+              When piecing all of the different page components together, the
+              state of your application will dictate how best to configure each
+              component. Ideally, your main content should always live within a{' '}
+              <EuiCode>{"'plain'"}</EuiCode> colored body or section.
+            </p>
+            <p>
+              When using{' '}
+              <Link to="/display/empty-prompt">
+                <strong>EuiEmptyPrompt</strong>
+              </Link>{' '}
+              to replace the main contents of your page you will want to use a
+              panel color opposite that of the section color. For example:
+            </p>
+          </EuiText>
+
+          <EuiSpacer />
+
+          <EuiTable>
+            <EuiTableHeader>
+              <EuiTableHeaderCell width={120}>
+                EuiPageSidebar
+              </EuiTableHeaderCell>
+              <EuiTableHeaderCell width={120}>EuiPageHeader</EuiTableHeaderCell>
+              <EuiTableHeaderCell>EuiPageBody</EuiTableHeaderCell>
+              <EuiTableHeaderCell>EuiPageHeader</EuiTableHeaderCell>
+              <EuiTableHeaderCell>EuiPageSection</EuiTableHeaderCell>
+              <EuiTableHeaderCell>EuiEmptyPrompt settings</EuiTableHeaderCell>
+            </EuiTableHeader>
+
+            <EuiTableBody>
+              <EuiTableRow>
+                <EuiTableRowCell>
+                  <EuiIcon
+                    type="checkInCircleFilled"
+                    color="green"
+                    title="yes"
+                  />
+                </EuiTableRowCell>
+                <EuiTableRowCell>
+                  <EuiIcon
+                    type="minusInCircle"
+                    color="subdued"
+                    title="doesn't matter"
+                  />
+                </EuiTableRowCell>
+
+                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
+                  <EuiCode language="tsx">{'color="plain"'}</EuiCode>
+                </EuiTableRowCell>
+
+                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
+                  <EuiCode language="tsx">{'bottomBorder={true}'}</EuiCode>
+                </EuiTableRowCell>
+
+                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
+                  <EuiCode language="tsx">{'color="plain"'}</EuiCode>
+                </EuiTableRowCell>
+
+                <EuiTableRowCell>
+                  <EuiCode language="tsx">{'color="subdued"'}</EuiCode>
+                </EuiTableRowCell>
+              </EuiTableRow>
+
+              <EuiTableRow>
+                <EuiTableRowCell>
+                  <EuiIcon
+                    type="crossInACircleFilled"
+                    color="danger"
+                    title="no"
+                  />
+                </EuiTableRowCell>
+                <EuiTableRowCell>
+                  <EuiIcon
+                    type="checkInCircleFilled"
+                    color="green"
+                    title="yes"
+                  />
+                </EuiTableRowCell>
+
+                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
+                  <EuiCode language="tsx">{'color="transparent"'}</EuiCode>
+                </EuiTableRowCell>
+
+                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
+                  <EuiCode language="tsx">{'bottomBorder="extended"'}</EuiCode>
+                </EuiTableRowCell>
+
+                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
+                  <EuiCode language="tsx">{'color="plain"'}</EuiCode>
+                </EuiTableRowCell>
+
+                <EuiTableRowCell>
+                  <EuiCode language="tsx">{'color="subdued"'}</EuiCode>
+                </EuiTableRowCell>
+              </EuiTableRow>
+
+              <EuiTableRow>
+                <EuiTableRowCell>
+                  <EuiIcon
+                    type="crossInACircleFilled"
+                    color="danger"
+                    title="no"
+                  />
+                </EuiTableRowCell>
+                <EuiTableRowCell>
+                  <EuiIcon
+                    type="crossInACircleFilled"
+                    color="danger"
+                    title="no"
+                  />
+                </EuiTableRowCell>
+
+                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
+                  <EuiCode language="tsx">{'color="transparent"'}</EuiCode>
+                </EuiTableRowCell>
+
+                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
+                  <EuiCode>{'n/a'}</EuiCode>
+                </EuiTableRowCell>
+
+                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
+                  <EuiCode language="tsx">{'color="transparent"'}</EuiCode>
+                </EuiTableRowCell>
+
+                <EuiTableRowCell>
+                  <EuiCode language="tsx">{'color="plain"'}</EuiCode>
+                </EuiTableRowCell>
+              </EuiTableRow>
+            </EuiTableBody>
+          </EuiTable>
+          <EuiSpacer />
+
+          <EuiCallOut
+            title={
+              <>
+                Reminder:{' '}
+                <Link to="/templates/page-template">
+                  <strong>EuiPageTemplate</strong>
+                </Link>{' '}
+                can handle all these configurations for you.
+              </>
+            }
+          />
+
+          <PageConfigurationsDemo />
+        </div>
       ),
-      demoPanelProps: { paddingSize: 'none', color: 'subdued' },
-      demo: <PageSectionDemo />,
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: PageSectionSource,
-        },
-      ],
-      props: {
-        EuiPageSection,
-        EuiPageContentBody,
-      },
-      playground: pageSectionConfig,
     },
   ],
 };
