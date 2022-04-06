@@ -797,6 +797,7 @@ export class EuiPopover extends Component<Props, State> {
             {...focusTrapProps}
             returnFocus={returnFocus} // Ignore temporary state of indecisive focus
             initialFocus={initialFocus}
+            onDeactivation={onTrapDeactivation}
             onClickOutside={this.onClickOutside}
             onEscapeKey={this.onEscapeKey}
             disabled={
