@@ -100,7 +100,7 @@
     "vfile": "^4.2.0"
   },
   "devDependencies": {
-    "@axe-core/puppeteer": "^4.3.2",
+    "@axe-core/puppeteer": "^4.4.2",
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.4",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
@@ -176,7 +176,7 @@
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jest": "^24.1.0",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-local": "^1.0.0",
     "eslint-plugin-mocha": "^8.0.0",
     "eslint-plugin-prefer-object-spread": "^1.2.1",
