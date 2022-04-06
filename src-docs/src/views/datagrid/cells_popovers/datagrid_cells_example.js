@@ -85,12 +85,17 @@ export const DataGridCellsExample = {
             buttons.
           </p>
           <p>
+            To close a cell&apos;s expansion popover upon clicking an action,
+            use the{' '}
+            <Link to="/tabular-content/data-grid-advanced#ref-methods">
+              closeCellPopover
+            </Link>{' '}
+            API available via the <EuiCode>ref</EuiCode> prop.
+          </p>
+          <p>
             In the below example, the email and city columns provide 1{' '}
             <EuiCode>cellAction</EuiCode> each, while the country column
             provides 2 <EuiCode>cellAction</EuiCode>s.
-            <br />
-            The email column cell action closes the popover if it&apos;s
-            expanded through the <EuiCode>closePopover</EuiCode> prop.
           </p>
         </Fragment>
       ),

@@ -75,8 +75,6 @@ describe('EuiDataGridCell', () => {
     });
     (getCellActions().prop('onExpandClick') as Function)();
     expect(mockPopoverContext.closeCellPopover).toHaveBeenCalledTimes(1);
-    (getCellActions().prop('closePopover') as Function)();
-    expect(mockPopoverContext.closeCellPopover).toHaveBeenCalledTimes(2);
   });
 
   describe('shouldComponentUpdate', () => {
