@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 import {
   EuiPageTemplate,
@@ -8,7 +8,13 @@ import {
   EuiSpacer,
 } from '../../../../../src';
 
-export default ({ button = <></>, content }) => (
+export default ({
+  content,
+  button,
+}: {
+  content?: ReactElement;
+  button?: ReactElement;
+}) => (
   <EuiPageTemplate fullHeight template="empty">
     <EuiFlexGroup
       className="eui-fullHeight"
