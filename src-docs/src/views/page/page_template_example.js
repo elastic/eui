@@ -121,62 +121,69 @@ export const PageTemplateExample = {
     },
     {
       title: 'Providing a sidebar',
+      wrapText: false,
       text: (
         <>
-          <p>
-            If your application requires the use of side navigation or other
-            sidebar content, you can pass that content directly to{' '}
-            <EuiCode>pageSideBar</EuiCode>. The template will automatically
-            adjust the layout when this content is provided.
-          </p>
-          <p>
-            You can make further adjustments to this portion of the template
-            through the <EuiCode>pageSideBarProps</EuiCode> prop which is an
-            object <strong>EuiPageSideBar</strong> props.
-          </p>
+          <EuiText>
+            <p>
+              If your application requires the use of side navigation or other
+              sidebar content, you can pass that content directly to{' '}
+              <EuiCode>pageSideBar</EuiCode>. The template will automatically
+              adjust the layout when this content is provided.
+            </p>
+            <p>
+              You can make further adjustments to this portion of the template
+              through the <EuiCode>pageSideBarProps</EuiCode> prop which is an
+              object <strong>EuiPageSideBar</strong> props.
+            </p>
+          </EuiText>
+          <PageDemo
+            slug="sidebar"
+            props={{
+              EuiPageTemplate,
+              EuiPageSideBar,
+            }}
+          />
         </>
       ),
-      demoPanelProps: {
-        paddingSize: 'none',
-        style: { overflow: 'hidden' },
-      },
-      demo: <PageDemo slug="full-page" />,
       fullScreen: {
-        slug: 'full-page',
-        demo: <PageDemo slug="full-page" fullscreen />,
-      },
-      props: {
-        EuiPageTemplate,
-        EuiPageSideBar,
+        slug: 'sidebar',
+        demo: <PageDemo slug="sidebar" fullscreen />,
+        showButton: false,
       },
     },
     {
       title: 'Restricting page width',
+      wrapText: false,
       text: (
         <>
-          <p>
-            Most content does not scale well to the full width of the window.
-            You can restrict this to EUI&apos;s default max-width and center the
-            page by setting the <EuiCode>restrictWidth</EuiCode> prop to{' '}
-            <EuiCode>true</EuiCode>. You can also pass an integer to this
-            property to set the max-width to a custom pixel value or a string
-            with a custom measurement.
-          </p>
+          <EuiText>
+            <p>
+              Most content does not scale well to the full width of the window.
+              You can restrict this to EUI&apos;s default max-width and center
+              the page by setting the <EuiCode>restrictWidth</EuiCode> prop to{' '}
+              <EuiCode>true</EuiCode>. You can also pass an integer to this
+              property to set the max-width to a custom pixel value or a string
+              with a custom measurement.
+            </p>
+          </EuiText>
+          <PageDemo
+            slug="restricting-page-width"
+            showTemplates={['default']}
+            composed={PageRestrictingWidth}
+            template={PageRestrictingWidthTemplate}
+            source={{
+              template: PageRestrictingWidthTemplateSource,
+              composed: PageRestrictingWidthSource,
+            }}
+            props={{
+              EuiPageTemplate,
+            }}
+          />
         </>
       ),
-      demoPanelProps: {
-        paddingSize: 'none',
-        style: { overflow: 'hidden' },
-      },
-      demo: (
-        <PageDemo
-          slug="restricting-page-width"
-          composed={PageRestrictingWidth}
-          template={PageRestrictingWidthTemplate}
-          showTemplates={['default']}
-        />
-      ),
       fullScreen: {
+        showButton: false,
         slug: 'restricting-page-width',
         demo: (
           <PageDemo
@@ -188,44 +195,32 @@ export const PageTemplateExample = {
           />
         ),
       },
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageRestrictingWidthTemplateSource,
-          displayName: 'Template JS',
-        },
-        {
-          type: GuideSectionTypes.JS,
-          code: PageRestrictingWidthSource,
-          displayName: 'Components JS',
-        },
-      ],
-      props: {
-        EuiPageTemplate,
-      },
     },
     {
       title: 'Showing a bottom bar',
       text: (
         <>
-          <p>
-            Adding an{' '}
-            <Link to="/layout/bottom-bar">
-              <strong>EuiBottomBar</strong>
-            </Link>{' '}
-            can be tricky to use and account for any sidebars.{' '}
-            <strong>EuiPageTemplate</strong> handles this nicely by supplying a{' '}
-            <EuiCode>bottomBar</EuiCode> prop for passing the contents of your
-            bottom bar, and <EuiCode>bottomBarProps</EuiCode> that extends{' '}
-            <strong>EuiBottomBar</strong>.
-          </p>
-          <p>
-            It uses the <EuiCode>sticky</EuiCode> position so that it sticks to
-            the bottom of and remains within the bounds of page body. This way
-            it will never overlap the sidebar, no matter the screen size. It
-            also means not needing to accommodate for the height of the bar in
-            the body element.
-          </p>
+          <EuiText>
+            <p>
+              Adding an{' '}
+              <Link to="/layout/bottom-bar">
+                <strong>EuiBottomBar</strong>
+              </Link>{' '}
+              can be tricky to use and account for any sidebars.{' '}
+              <strong>EuiPageTemplate</strong> handles this nicely by supplying
+              a <EuiCode>bottomBar</EuiCode> prop for passing the contents of
+              your bottom bar, and <EuiCode>bottomBarProps</EuiCode> that
+              extends <strong>EuiBottomBar</strong>.
+            </p>
+            <p>
+              It uses the <EuiCode>sticky</EuiCode> position so that it sticks
+              to the bottom of and remains within the bounds of page body. This
+              way it will never overlap the sidebar, no matter the screen size.
+              It also means not needing to accommodate for the height of the bar
+              in the body element.
+            </p>
+          </EuiText>
+          <EuiSpacer />
           <EuiCallOut
             color="warning"
             title={
@@ -235,22 +230,25 @@ export const PageTemplateExample = {
               </>
             }
           />
+          <PageDemo
+            slug="bottom-bar"
+            showTemplates={['default']}
+            toggleSidebar
+            composed={PageBottomBar}
+            template={PageBottomBarTemplate}
+            source={{
+              template: PageBottomBarTemplateSource,
+              composed: pageBottomBarSource,
+            }}
+            props={{
+              EuiPageTemplate,
+              EuiBottomBar,
+            }}
+          />
         </>
       ),
-      demoPanelProps: {
-        paddingSize: 'none',
-        style: { overflow: 'hidden' },
-      },
-      demo: (
-        <PageDemo
-          slug="bottom-bar"
-          composed={PageBottomBar}
-          template={PageBottomBarTemplate}
-          showTemplates={['default']}
-          toggleSidebar
-        />
-      ),
       fullScreen: {
+        showButton: false,
         slug: 'bottom-bar',
         demo: (
           <PageDemo
@@ -263,57 +261,39 @@ export const PageTemplateExample = {
           />
         ),
       },
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageBottomBarTemplateSource,
-          displayName: 'Template JS',
-        },
-        {
-          type: GuideSectionTypes.JS,
-          code: pageBottomBarSource,
-          displayName: 'Components JS',
-        },
-      ],
-      props: {
-        EuiPageTemplate,
-        EuiBottomBar,
-      },
     },
     {
       title: 'Empty pages or content',
       text: (
         <>
-          <p>
-            When the content is in an empty/pre-setup state, we recommend then
-            using an{' '}
-            <Link to="/display/empty-prompt">
-              <strong>EuiEmptyPrompt</strong>
-            </Link>{' '}
-            to direct users on next steps. This prompt can be centered
-            vertically and horizontally by using{' '}
-            <EuiCode>{'template="centeredBody"'}</EuiCode>.
-          </p>
-          <p>
-            We do not typically recommend this template when used in conjunction
-            with a page header. Instead, we recommend using{' '}
-            <EuiCode>{'template="centeredContent"'}</EuiCode> with a{' '}
-            <EuiCode>subdued</EuiCode> <strong>EuiEmptyPrompt</strong> color.
-          </p>
+          <EuiText>
+            <p>
+              When the content is in an empty/pre-setup state, we recommend then
+              using an{' '}
+              <Link to="/display/empty-prompt">
+                <strong>EuiEmptyPrompt</strong>
+              </Link>{' '}
+              to direct users on next steps. This prompt can be centered
+              vertically and horizontally by using{' '}
+              <EuiCode>{'template="centeredBody"'}</EuiCode>.
+            </p>
+            <p>
+              We do not typically recommend this template when used in
+              conjunction with a page header. Instead, we recommend using{' '}
+              <EuiCode>{'template="centeredContent"'}</EuiCode> with a{' '}
+              <EuiCode>subdued</EuiCode> <strong>EuiEmptyPrompt</strong> color.
+            </p>
+          </EuiText>
+          <PageDemo
+            slug="centered-body"
+            toggleSidebar
+            showTemplates={['centeredBody', 'centeredContent']}
+            props={{ EuiPageTemplate, EuiEmptyPrompt }}
+          />
         </>
       ),
-      demoPanelProps: {
-        paddingSize: 'none',
-        style: { overflow: 'hidden' },
-      },
-      demo: (
-        <PageDemo
-          slug="centered-body"
-          toggleSidebar
-          showTemplates={['centeredBody', 'centeredContent']}
-        />
-      ),
       fullScreen: {
+        showButton: false,
         slug: 'centered-body',
         demo: (
           <PageDemo
@@ -324,67 +304,58 @@ export const PageTemplateExample = {
           />
         ),
       },
-      props: { EuiPageTemplate, EuiEmptyPrompt },
     },
     {
       title: 'Full height layout',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageFullHeightTemplateSource,
-          displayName: 'Template JS',
-        },
-        {
-          type: GuideSectionTypes.JS,
-          code: PageFullHeightSource,
-          displayName: 'Components JS',
-        },
-      ],
+      wrapText: false,
       text: (
         <>
-          <p>
-            Though it is not recommended for most layouts, some require the
-            control of scrolling to be handled through child components. You can
-            achieve this through nested flex groups and overflow properties;
-            adding certain combinations of{' '}
-            <Link to="/utilities/css-utility-classes#overflows">
-              CSS overflow utility classes
-            </Link>{' '}
-            to these children. There are a few <strong>caveats</strong> to
-            understand when trying to achieve full height layouts with{' '}
-            <strong>EuiPageTemplate</strong>.
-          </p>
-          <ol>
-            <li>
-              Using the <EuiCode>{'fullHeight'}</EuiCode> prop adds an extra
-              layer of{' '}
-              <Link to="/layout/flex">
-                <strong>EuiFlexGroup</strong> and <strong>EuiFlexItem</strong>
+          <EuiText>
+            <p>
+              Though it is not recommended for most layouts, some require the
+              control of scrolling to be handled through child components. You
+              can achieve this through nested flex groups and overflow
+              properties; adding certain combinations of{' '}
+              <Link to="/utilities/css-utility-classes#overflows">
+                CSS overflow utility classes
               </Link>{' '}
-              around the template children to negate the negative margins.
-            </li>
-            <li>
-              Using <EuiCode>{'fullHeight=true'}</EuiCode> will automatically
-              add scrolling behavior to the <strong>EuiFlexItem</strong> that
-              wraps the children.
-            </li>
-            <li>
-              Using <EuiCode>{'fullHeight="noscroll"'}</EuiCode> removes all
-              scrolling behavior and your layouts will break if you do not
-              manually add them.
-            </li>
-            <li>
-              When using either values for <EuiCode>{'fullHeight'}</EuiCode>,
-              there will always be a minimum height of <EuiCode>460px</EuiCode>{' '}
-              to the page contents.
-            </li>
-            <li>
-              Full height layouts are restricted to{' '}
-              <strong>medium breakpoints</strong> and above. We recommend
-              retaining any responsive behavior and allowing normal page scroll
-              on smaller screens.
-            </li>
-          </ol>
+              to these children. There are a few <strong>caveats</strong> to
+              understand when trying to achieve full height layouts with{' '}
+              <strong>EuiPageTemplate</strong>.
+            </p>
+            <ol>
+              <li>
+                Using the <EuiCode>{'fullHeight'}</EuiCode> prop adds an extra
+                layer of{' '}
+                <Link to="/layout/flex">
+                  <strong>EuiFlexGroup</strong> and <strong>EuiFlexItem</strong>
+                </Link>{' '}
+                around the template children to negate the negative margins.
+              </li>
+              <li>
+                Using <EuiCode>{'fullHeight=true'}</EuiCode> will automatically
+                add scrolling behavior to the <strong>EuiFlexItem</strong> that
+                wraps the children.
+              </li>
+              <li>
+                Using <EuiCode>{'fullHeight="noscroll"'}</EuiCode> removes all
+                scrolling behavior and your layouts will break if you do not
+                manually add them.
+              </li>
+              <li>
+                When using either values for <EuiCode>{'fullHeight'}</EuiCode>,
+                there will always be a minimum height of{' '}
+                <EuiCode>460px</EuiCode> to the page contents.
+              </li>
+              <li>
+                Full height layouts are restricted to{' '}
+                <strong>medium breakpoints</strong> and above. We recommend
+                retaining any responsive behavior and allowing normal page
+                scroll on smaller screens.
+              </li>
+            </ol>
+          </EuiText>
+          <EuiSpacer />
           <EuiCallOut
             color="warning"
             iconType="accessibility"
@@ -397,21 +368,20 @@ export const PageTemplateExample = {
               </>
             }
           />
+          <PageDemo
+            slug="full-height"
+            composed={PageFullHeight}
+            template={PageFullHeightTemplate}
+            showTemplates={['empty']}
+            source={{
+              template: PageFullHeightTemplateSource,
+              composed: PageFullHeightSource,
+            }}
+          />
         </>
       ),
-      demoPanelProps: {
-        paddingSize: 'none',
-        style: { overflow: 'hidden' },
-      },
-      demo: (
-        <PageDemo
-          slug="full-height"
-          composed={PageFullHeight}
-          template={PageFullHeightTemplate}
-          showTemplates={['empty']}
-        />
-      ),
       fullScreen: {
+        showButton: false,
         slug: 'full-height',
         demo: (
           <PageDemo
@@ -428,28 +398,30 @@ export const PageTemplateExample = {
       title: 'Custom content',
       text: (
         <>
-          <p>
-            You can ignore most of the configurations of{' '}
-            <strong>EuiPageTemplate</strong> and pass your own completely custom
-            content, with or without a custom page header. This allows you to
-            create dashboard style layouts with lots of panels or prepend the
-            page contents with a callout.
-          </p>
+          <EuiText>
+            <p>
+              You can ignore most of the configurations of{' '}
+              <strong>EuiPageTemplate</strong> and pass your own completely
+              custom content, with or without a custom page header. This allows
+              you to create dashboard style layouts with lots of panels or
+              prepend the page contents with a callout.
+            </p>
+          </EuiText>
+          <PageDemo
+            slug="simple-custom-content"
+            composed={PageCustomContent}
+            template={PageCustomContentTemplate}
+            showTemplates={['empty']}
+            pageHeaderTabs={false}
+            source={{
+              template: PageCustomContentTemplateSource,
+              composed: PageCustomContentSource,
+            }}
+          />
         </>
       ),
-      demoPanelProps: {
-        paddingSize: 'none',
-        style: { overflow: 'hidden' },
-      },
-      demo: (
-        <PageDemo
-          slug="simple-custom-content"
-          composed={PageCustomContent}
-          template={PageCustomContentTemplate}
-          showTemplates={['empty']}
-        />
-      ),
       fullScreen: {
+        showButton: false,
         slug: 'simple-custom-content',
         demo: (
           <PageDemo
@@ -457,22 +429,11 @@ export const PageTemplateExample = {
             composed={PageCustomContent}
             template={PageCustomContentTemplate}
             showTemplates={['empty']}
+            pageHeaderTabs={false}
             fullscreen
           />
         ),
       },
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageCustomContentTemplateSource,
-          displayName: 'Template JS',
-        },
-        {
-          type: GuideSectionTypes.JS,
-          code: PageCustomContentSource,
-          displayName: 'Components JS',
-        },
-      ],
     },
     {
       title: 'Legacy layout',

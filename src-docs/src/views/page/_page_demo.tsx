@@ -59,12 +59,13 @@ const demosAsIndividualComponents = new Set<string>();
 type TEMPLATE = typeof TEMPLATES[number];
 
 export const PageDemo: FunctionComponent<
-  GuideSectionProps & {
+  Pick<GuideSectionProps, 'props'> & {
     slug: string;
     fullscreen?: boolean;
     sidebar?: boolean;
     showTemplates?: TEMPLATE[];
     toggleSidebar?: boolean;
+    pageHeaderTabs?: boolean;
     composed: ComponentType<{
       button: ReactElement;
       content: ReactElement;
@@ -81,16 +82,22 @@ export const PageDemo: FunctionComponent<
       pageHeader?: EuiPageHeaderProps;
       template: string;
     }>;
+    source?: {
+      template: string;
+      composed: string;
+    };
   }
 > = ({
   slug,
   fullscreen,
   toggleSidebar = false,
   showTemplates = TEMPLATES,
+  pageHeaderTabs = true,
   sidebar = true,
   composed = ComposedDemo,
   template = TemplateExample,
   props,
+  source,
 }) => {
   const { path } = useRouteMatch();
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
@@ -159,12 +166,14 @@ export const PageDemo: FunctionComponent<
     iconType: 'logoElastic',
     pageTitle: 'Page title',
     rightSideItems: [button],
-    tabs: [
-      { label: 'Tab 1', isSelected: true },
-      {
-        label: 'Tab 2',
-      },
-    ],
+    tabs: pageHeaderTabs
+      ? [
+          { label: 'Tab 1', isSelected: true },
+          {
+            label: 'Tab 2',
+          },
+        ]
+      : undefined,
   };
 
   if (templateValue === 'centeredBody') {
@@ -226,6 +235,8 @@ export const PageDemo: FunctionComponent<
   );
 
   const Child = showTemplate ? template : composed;
+  const templateSource = source?.template || TemplateExampleSource;
+  const composedSource = source?.composed || composedSources[templateValue];
 
   return fullscreen ? (
     <>
@@ -262,13 +273,10 @@ export const PageDemo: FunctionComponent<
       source={[
         {
           type: GuideSectionTypes.TSX,
-          code: showTemplate
-            ? TemplateExampleSource
-            : composedSources[templateValue],
+          code: showTemplate ? templateSource : composedSource,
         },
       ]}
       props={props}
-      // playground={pageConfig}
       exampleToggles={controls}
     />
   );

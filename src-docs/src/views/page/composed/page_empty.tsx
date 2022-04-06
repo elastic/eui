@@ -26,7 +26,7 @@ export default ({
       </EuiPageSideBar>
     )}
 
-    <EuiPageBody panelled={!!sideNav}>
+    <EuiPageBody panelled={false}>
       <EuiPageHeader
         paddingSize="l"
         {...pageHeader}

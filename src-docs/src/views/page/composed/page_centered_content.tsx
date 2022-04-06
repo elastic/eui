@@ -2,11 +2,11 @@ import React, { ReactElement } from 'react';
 
 import {
   EuiPage,
-  EuiPageContent,
   EuiPageHeader,
   EuiPageSideBar,
   EuiPageBody,
   EuiPageHeaderProps,
+  EuiPageSection,
 } from '../../../../../src';
 
 export default ({
@@ -33,14 +33,12 @@ export default ({
         paddingSize="l"
       />
 
-      <EuiPageContent
-        paddingSize="l"
-        verticalPosition="center"
-        horizontalPosition="center"
-        color="transparent"
+      <EuiPageSection
+        color={sideNav ? 'transparent' : 'plain'}
+        alignment="center"
       >
         {content}
-      </EuiPageContent>
+      </EuiPageSection>
     </EuiPageBody>
   </EuiPage>
 );
