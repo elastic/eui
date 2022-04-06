@@ -1,3 +1,26 @@
+## [`54.0.0`](https://github.com/elastic/eui/tree/v54.0.0)
+
+- `EuiDataGrid` now allows limiting the number of visible cell actions with a new `columns.visibleCellActions` prop (defaults to 2). All additional actions will be shown in the cell expansion popover. ([#5675](https://github.com/elastic/eui/pull/5675))
+- Added a new `gridStyle.rowClasses` API to `EuiDataGrid`, which allows adding custom classes/styling to specific row indices, primarily for the purpose of highlighting rows ([#5732](https://github.com/elastic/eui/pull/5732))
+- Added `alert` icon indicator and `aria-invalid` when the following form controls are `isInvalid`: `EuiFieldNumber`, `EuiFieldPassword`, `EuiFieldText`, `EuiSelect`, `EuiSuperSelect`, `EuiFieldSearch`, `EuiColorPicker` ([#5738](https://github.com/elastic/eui/pull/5738))
+- Added `isInvalid` prop to `EuiFormControlLayout` to render the `alert` icon ([#5738](https://github.com/elastic/eui/pull/5738))
+- Added `isDropdown` prop to `EuiFormControlLayout` to create and control an `arrowDown` icon ([#5738](https://github.com/elastic/eui/pull/5738))
+- Added `color` as to `EuiFormControlLayout`'s `icon` object ([#5738](https://github.com/elastic/eui/pull/5738))
+
+**Bug fixes**
+
+- Fixed `EuiSuperSelect` border-radius with `append` or `prepend` ([#5738](https://github.com/elastic/eui/pull/5738))
+- Fixed `EuiSuperSelect` not respecting `readOnly` ([#5738](https://github.com/elastic/eui/pull/5738))
+- Fixed `EuiDataGrid` cell focus sometimes not being restored for keyboard users when cell expansion popovers were closed ([#5761](https://github.com/elastic/eui/pull/5761))
+
+**Breaking changes**
+
+- Removed the `closePopover()` callback passed to `EuiDataGrid`'s `cellActions` render functions. Use `closeCellPopover()` passed by `EuiDataGrid`'s `ref` prop instead. ([#5734](https://github.com/elastic/eui/pull/5734))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiAvatar` to CSS-in-JS styling ([#5670](https://github.com/elastic/eui/pull/5670))
+
 ## [`53.0.1`](https://github.com/elastic/eui/tree/v53.0.1)
 
 **Bug fixes**
