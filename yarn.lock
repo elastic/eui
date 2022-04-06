@@ -2428,10 +2428,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@elastic/charts@^41.0.1":
-  version "41.0.1"
-  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-41.0.1.tgz#28bd722d86366f799668e1e79c36b3977c1a9710"
-  integrity sha512-oqNcWG6qkJCsSk+DcXWIOgvz7SpfY4AsOG6moTD/i5LnON9mteVsMdRm1Tw4PZV6JWDgGQnSH3gmQhQrb0wONQ==
+"@elastic/charts@^45.1.1":
+  version "45.1.1"
+  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-45.1.1.tgz#d65b51ee296138a7e6b3d954fcf9fa41ba379492"
+  integrity sha512-gVk8ZbCBh8fUKxM6Rd61qwhSCgt1zU0wt3y3ZMUe+MdaTFG9I+0SceYrltJR+bf0ycK0wb1yg+WEw0LoN8bEIg==
   dependencies:
     "@popperjs/core" "^2.4.0"
     chroma-js "^2.1.0"
