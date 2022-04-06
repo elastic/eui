@@ -11,7 +11,6 @@ import {
   EuiSpacer,
   EuiSelect,
   EuiSwitch,
-  EuiPanel,
   EuiFlexGroup,
   EuiFlexItem,
   EuiHeader,
@@ -24,16 +23,21 @@ import {
 } from '../../../../src/components/page/page_template';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
 import { useExitPath } from '../../services/routing/routing';
+import {
+  GuideSectionProps,
+  GuideSection,
+} from '../../components/guide_section/guide_section';
 
 import contentSvg from '../../images/content.svg';
 import contentCenterSvg from '../../images/content_center.svg';
 import sideNavSvg from '../../images/side_nav.svg';
 import singleSvg from '../../images/single.svg';
 
+import ComposedDemo, { composedSources } from './composed/_composed_demo';
 // @ts-ignore Importing from JS
-import ComposedDemo from './composed/_composed_demo';
-// @ts-ignore Importing from JS
-import TemplateDemo from './templates/page_template';
+import TemplateExample from './templates/page_template';
+import { GuideSectionTypes } from '../../components/guide_section/guide_section_types';
+const TemplateExampleSource = require('!!raw-loader!./templates/page_template');
 
 const ExitFullscreenDemoButton = () => {
   const exitPath = useExitPath();
@@ -54,36 +58,39 @@ const demosAsIndividualComponents = new Set<string>();
 
 type TEMPLATE = typeof TEMPLATES[number];
 
-export const PageDemo: FunctionComponent<{
-  slug: string;
-  fullscreen?: boolean;
-  sidebar?: boolean;
-  showTemplates?: TEMPLATE[];
-  toggleSidebar?: boolean;
-  composed: ComponentType<{
-    button: ReactElement;
-    content: ReactElement;
-    sideNav?: ReactElement;
-    bottomBar: ReactElement;
-    pageHeader?: EuiPageHeaderProps;
-    template: string;
-  }>;
-  template: ComponentType<{
-    button: ReactElement;
-    content: ReactElement;
-    sideNav?: ReactElement;
-    bottomBar: ReactElement;
-    pageHeader?: EuiPageHeaderProps;
-    template: string;
-  }>;
-}> = ({
+export const PageDemo: FunctionComponent<
+  GuideSectionProps & {
+    slug: string;
+    fullscreen?: boolean;
+    sidebar?: boolean;
+    showTemplates?: TEMPLATE[];
+    toggleSidebar?: boolean;
+    composed: ComponentType<{
+      button: ReactElement;
+      content: ReactElement;
+      sideNav?: ReactElement;
+      bottomBar: ReactElement;
+      pageHeader?: EuiPageHeaderProps;
+      template: string;
+    }>;
+    template: ComponentType<{
+      button: ReactElement;
+      content: ReactElement;
+      sideNav?: ReactElement;
+      bottomBar: ReactElement;
+      pageHeader?: EuiPageHeaderProps;
+      template: string;
+    }>;
+  }
+> = ({
   slug,
   fullscreen,
   toggleSidebar = false,
   showTemplates = TEMPLATES,
   sidebar = true,
   composed = ComposedDemo,
-  template = TemplateDemo,
+  template = TemplateExample,
+  props,
 }) => {
   const { path } = useRouteMatch();
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
@@ -203,6 +210,7 @@ export const PageDemo: FunctionComponent<{
             label="Show with sidebar"
             checked={showSidebar}
             onChange={() => setShowSidebar((showing) => !showing)}
+            compressed
           />
         </EuiFlexItem>
       )}
@@ -211,6 +219,7 @@ export const PageDemo: FunctionComponent<{
           label="Show with composed components"
           checked={!showTemplate}
           onChange={() => setShowTemplate((showing) => !showing)}
+          compressed
         />
       </EuiFlexItem>
     </EuiFlexGroup>
@@ -233,25 +242,34 @@ export const PageDemo: FunctionComponent<{
       />
     </>
   ) : (
-    <>
-      <div className={fullscreen ? undefined : 'guideDemo__highlightLayout'}>
-        <Child
-          button={button}
-          content={content}
-          sideNav={showSidebar ? sideNav : undefined}
-          bottomBar={bottomBar}
-          template={templateValue}
-          pageHeader={pageHeaderProps}
-        />
-      </div>
-      <EuiPanel
-        grow={false}
-        style={{ borderWidth: '1px 0' }}
-        hasBorder
-        borderRadius="none"
-      >
-        {controls}
-      </EuiPanel>
-    </>
+    <GuideSection
+      demoPanelProps={{
+        paddingSize: 'none',
+        style: { overflow: 'hidden' },
+      }}
+      demo={
+        <div className={'guideDemo__highlightLayout'}>
+          <Child
+            button={button}
+            content={content}
+            sideNav={showSidebar ? sideNav : undefined}
+            bottomBar={bottomBar}
+            template={templateValue}
+            pageHeader={pageHeaderProps}
+          />
+        </div>
+      }
+      source={[
+        {
+          type: GuideSectionTypes.TSX,
+          code: showTemplate
+            ? TemplateExampleSource
+            : composedSources[templateValue],
+        },
+      ]}
+      props={props}
+      // playground={pageConfig}
+      exampleToggles={controls}
+    />
   );
 };

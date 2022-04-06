@@ -84,35 +84,39 @@ export const PageTemplateExample = {
   sections: [
     {
       title: 'Simple page with header',
+      wrapText: false,
       text: (
         <>
-          <p>
-            For ease of placing as specific page title using{' '}
-            <strong>EuiPageHeader</strong> within your page layouts,{' '}
-            <strong>EuiPageTemplate</strong> provides passing the{' '}
-            <strong>EuiPageHeader</strong> props directly to the{' '}
-            <EuiCode>pageHeader</EuiCode> prop.
-          </p>
-          <p>
-            When a page header is provided this way, it will always be the first
-            content displayed within the page contents. For full customization,
-            we suggest providing the <EuiCode>{'<EuiPageHeader />'}</EuiCode>{' '}
-            component directly as a child.
-          </p>
+          <EuiText>
+            <p>
+              For ease of placing as specific page title using{' '}
+              <strong>EuiPageHeader</strong> within your page layouts,{' '}
+              <strong>EuiPageTemplate</strong> provides passing the{' '}
+              <strong>EuiPageHeader</strong> props directly to the{' '}
+              <EuiCode>pageHeader</EuiCode> prop.
+            </p>
+            <p>
+              When a page header is provided this way, it will always be the
+              first content displayed within the page contents. For full
+              customization, we suggest providing the{' '}
+              <EuiCode>{'<EuiPageHeader />'}</EuiCode> component directly as a
+              child.
+            </p>
+          </EuiText>
+          <PageDemo
+            slug="full-page"
+            sidebar={false}
+            props={{
+              EuiPageTemplate,
+              EuiPageHeader,
+            }}
+          />
         </>
       ),
-      demoPanelProps: {
-        paddingSize: 'none',
-        style: { overflow: 'hidden' },
-      },
-      demo: <PageDemo slug="full-page" sidebar={false} />,
       fullScreen: {
         slug: 'full-page',
         demo: <PageDemo slug="full-page" fullscreen sidebar={false} />,
-      },
-      props: {
-        EuiPageTemplate,
-        EuiPageHeader,
+        showButton: false,
       },
     },
     {

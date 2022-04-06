@@ -7,9 +7,20 @@ import {
 } from '../../../../../src';
 
 import ComposedDefault from './page_default';
+const ComposedDefaultSource = require('!!raw-loader!./page_default');
 import ComposedCenteredBody from './page_centered_body';
+const ComposedCenteredBodSource = require('!!raw-loader!./page_centered_body');
 import ComposedCenteredContent from './page_centered_content';
-import ComposedCustom from './page_custom_content';
+const ComposedCenteredContentSource = require('!!raw-loader!./page_centered_content');
+import ComposedCustom from './page_empty';
+const ComposedCustomSource = require('!!raw-loader!./page_empty');
+
+export const composedSources = {
+  default: ComposedDefaultSource,
+  centeredBody: ComposedCenteredBodSource,
+  centeredContent: ComposedCenteredContentSource,
+  empty: ComposedCustomSource,
+};
 
 export default ({
   template,
@@ -51,7 +62,13 @@ export default ({
       );
       break;
     case 'empty':
-      return <ComposedCustom pageHeader={pageHeader} />;
+      return (
+        <ComposedCustom
+          pageHeader={pageHeader}
+          content={content}
+          sideNav={sideNav}
+        />
+      );
       break;
 
     default:
