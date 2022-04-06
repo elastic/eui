@@ -10,9 +10,10 @@ import {
   EuiFlexItem,
   EuiPanel,
   EuiSpacer,
-} from '../../../../../src/components';
+  EuiPageHeaderProps,
+} from '../../../../../src';
 
-export default ({ pageHeader }) => (
+export default ({ pageHeader }: { pageHeader?: EuiPageHeaderProps }) => (
   <EuiPage paddingSize="l">
     <EuiPageBody>
       <EuiCallOut title="This callout is placed before the EuiPageHeader." />

@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
-import { EuiPageTemplate } from '../../../../../src';
+import {
+  EuiPageHeaderProps,
+  EuiPageTemplate,
+  EuiPageTemplateProps,
+} from '../../../../../src';
 
 import ComposedDefault from './page_default';
 import ComposedCenteredBody from './page_centered_body';
 import ComposedCenteredContent from './page_centered_content';
 import ComposedCustom from './page_custom_content';
 
-export default ({ content, sideNav, template, pageHeader }) => {
+export default ({
+  template,
+  content = <></>,
+  sideNav,
+  pageHeader,
+}: {
+  template: EuiPageTemplateProps['template'];
+  content: ReactElement;
+  sideNav?: ReactElement;
+  pageHeader?: EuiPageHeaderProps;
+}) => {
   switch (template) {
     case 'default':
       return (
@@ -37,13 +51,7 @@ export default ({ content, sideNav, template, pageHeader }) => {
       );
       break;
     case 'empty':
-      return (
-        <ComposedCustom
-          pageHeader={pageHeader}
-          content={content}
-          sideNav={sideNav}
-        />
-      );
+      return <ComposedCustom pageHeader={pageHeader} />;
       break;
 
     default:
