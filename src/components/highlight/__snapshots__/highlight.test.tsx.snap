@@ -4,7 +4,7 @@ exports[`EuiHighlight behavior loose matching matches strings with different cas
 <span>
   different 
   <mark
-    class="euiMark"
+    class="euiMark css-1izqibv-euiMarkStyles-EuiMark"
   >
     case
   </mark>
@@ -15,19 +15,19 @@ exports[`EuiHighlight behavior loose matching matches strings with different cas
 exports[`EuiHighlight behavior matching applies to all matches 1`] = `
 <span>
   <mark
-    class="euiMark"
+    class="euiMark css-1izqibv-euiMarkStyles-EuiMark"
   >
     match
   </mark>
    
   <mark
-    class="euiMark"
+    class="euiMark css-1izqibv-euiMarkStyles-EuiMark"
   >
     match
   </mark>
    
   <mark
-    class="euiMark"
+    class="euiMark css-1izqibv-euiMarkStyles-EuiMark"
   >
     match
   </mark>
@@ -37,7 +37,7 @@ exports[`EuiHighlight behavior matching applies to all matches 1`] = `
 exports[`EuiHighlight behavior matching only applies to first match 1`] = `
 <span>
   <mark
-    class="euiMark"
+    class="euiMark css-1izqibv-euiMarkStyles-EuiMark"
   >
     match
   </mark>

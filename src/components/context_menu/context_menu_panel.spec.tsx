@@ -116,6 +116,32 @@ describe('EuiContextMenuPanel', () => {
         });
       });
     });
+
+    describe('tab key', () => {
+      beforeEach(() => {
+        cy.mount(<EuiContextMenuPanel items={items} />);
+      });
+
+      it('tab key focuses the first menu item', () => {
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.realPress('Tab');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+      });
+
+      it('subsequently, tab key focuses the next menu item', () => {
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.repeatRealPress('Tab');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemB');
+      });
+
+      it('shift+tab key focuses the previous menu item', () => {
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.repeatRealPress('Tab');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemB');
+        cy.realPress(['Shift', 'Tab']);
+        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+      });
+    });
   });
 
   describe('Automated accessibility check', () => {

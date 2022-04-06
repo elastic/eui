@@ -6,7 +6,8 @@ import { EuiCode, EuiLink, keysOf } from '../../../../../src/components';
 
 import { ThemeExample } from '../_components/_theme_example';
 
-import { getPropsFromThemeKey, _EuiThemeSize } from '../_props';
+import { _EuiThemeSize } from '../_props';
+import { getPropsFromComponent } from '../../../services/props/get_props';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 
 export const BaseJS = () => {
@@ -45,7 +46,7 @@ export const BaseJS = () => {
 export default () => {
   const { euiTheme } = useEuiTheme();
   const sizes = euiTheme.size;
-  const themeSizeProps = getPropsFromThemeKey(_EuiThemeSize);
+  const themeSizeProps = getPropsFromComponent(_EuiThemeSize);
 
   const wrappingExampleStyle = {
     background: euiTheme.colors.highlight,

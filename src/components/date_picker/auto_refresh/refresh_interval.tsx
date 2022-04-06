@@ -12,24 +12,15 @@ import React, {
   KeyboardEventHandler,
 } from 'react';
 import { EuiI18n } from '../../i18n';
-import { keysOf } from '../../common';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiSelect, EuiFieldNumber, EuiFormLabel, EuiSwitch } from '../../form';
 import { htmlIdGenerator } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import {
-  Milliseconds,
-  TimeUnitId,
-  RelativeOption,
-  ApplyRefreshInterval,
-} from '../types';
-import { timeUnits, timeUnitsPlural } from '../super_date_picker/time_units';
-
-const refreshUnitsOptions: RelativeOption[] = keysOf(timeUnits)
-  .filter(
-    (timeUnit) => timeUnit === 'h' || timeUnit === 'm' || timeUnit === 's'
-  )
-  .map((timeUnit) => ({ value: timeUnit, text: timeUnitsPlural[timeUnit] }));
+  RenderI18nTimeOptions,
+  TimeOptions,
+} from '../super_date_picker/time_options';
+import { Milliseconds, TimeUnitId, ApplyRefreshInterval } from '../types';
 
 const MILLISECONDS_IN_SECOND = 1000;
 const MILLISECONDS_IN_MINUTE = MILLISECONDS_IN_SECOND * 60;
@@ -174,7 +165,9 @@ export class EuiRefreshInterval extends Component<
     });
   };
 
-  render() {
+  renderScreenReaderText = (
+    refreshUnitsOptions: TimeOptions['refreshUnitsOptions']
+  ) => {
     const { isPaused } = this.props;
     const { value, units } = this.state;
 
@@ -202,63 +195,76 @@ export class EuiRefreshInterval extends Component<
     );
 
     return (
-      <fieldset>
-        <EuiFlexGroup
-          alignItems="center"
-          gutterSize="s"
-          responsive={false}
-          wrap
-        >
-          <EuiFlexItem grow={false}>
-            <EuiSwitch
-              data-test-subj="superDatePickerToggleRefreshButton"
-              aria-describedby={this.refreshSelectionId}
-              checked={!isPaused}
-              onChange={this.toggleRefresh}
-              compressed
-              label={
-                <EuiFormLabel type="legend" id={this.legendId}>
-                  <EuiI18n
-                    token="euiRefreshInterval.legend"
-                    default="Refresh every"
-                  />
-                </EuiFormLabel>
-              }
-            />
-          </EuiFlexItem>
-          <EuiFlexItem style={{ minWidth: 60 }}>
-            <EuiFieldNumber
-              compressed
-              fullWidth
-              value={value}
-              onChange={this.onValueChange}
-              onKeyDown={this.handleKeyDown}
-              isInvalid={!isPaused && (value === '' || value <= 0)}
-              disabled={isPaused}
-              aria-label="Refresh interval value"
-              aria-describedby={`${this.refreshSelectionId} ${this.legendId}`}
-              data-test-subj="superDatePickerRefreshIntervalInput"
-            />
-          </EuiFlexItem>
-          <EuiFlexItem style={{ minWidth: 100 }} grow={2}>
-            <EuiSelect
-              compressed
-              fullWidth
-              aria-label="Refresh interval units"
-              aria-describedby={`${this.refreshSelectionId} ${this.legendId}`}
-              value={units}
-              disabled={isPaused}
-              options={refreshUnitsOptions}
-              onChange={this.onUnitsChange}
-              onKeyDown={this.handleKeyDown}
-              data-test-subj="superDatePickerRefreshIntervalUnitsSelect"
-            />
-          </EuiFlexItem>
-        </EuiFlexGroup>
-        <EuiScreenReaderOnly>
-          <p id={this.refreshSelectionId}>{fullDescription}</p>
-        </EuiScreenReaderOnly>
-      </fieldset>
+      <EuiScreenReaderOnly>
+        <p id={this.refreshSelectionId}>{fullDescription}</p>
+      </EuiScreenReaderOnly>
+    );
+  };
+
+  render() {
+    const { isPaused } = this.props;
+    const { value, units } = this.state;
+
+    return (
+      <RenderI18nTimeOptions>
+        {({ refreshUnitsOptions }) => (
+          <fieldset>
+            <EuiFlexGroup
+              alignItems="center"
+              gutterSize="s"
+              responsive={false}
+              wrap
+            >
+              <EuiFlexItem grow={false}>
+                <EuiSwitch
+                  data-test-subj="superDatePickerToggleRefreshButton"
+                  aria-describedby={this.refreshSelectionId}
+                  checked={!isPaused}
+                  onChange={this.toggleRefresh}
+                  compressed
+                  label={
+                    <EuiFormLabel type="legend" id={this.legendId}>
+                      <EuiI18n
+                        token="euiRefreshInterval.legend"
+                        default="Refresh every"
+                      />
+                    </EuiFormLabel>
+                  }
+                />
+              </EuiFlexItem>
+              <EuiFlexItem style={{ minWidth: 60 }}>
+                <EuiFieldNumber
+                  compressed
+                  fullWidth
+                  value={value}
+                  onChange={this.onValueChange}
+                  onKeyDown={this.handleKeyDown}
+                  isInvalid={!isPaused && (value === '' || value <= 0)}
+                  disabled={isPaused}
+                  aria-label="Refresh interval value"
+                  aria-describedby={`${this.refreshSelectionId} ${this.legendId}`}
+                  data-test-subj="superDatePickerRefreshIntervalInput"
+                />
+              </EuiFlexItem>
+              <EuiFlexItem style={{ minWidth: 100 }} grow={2}>
+                <EuiSelect
+                  compressed
+                  fullWidth
+                  aria-label="Refresh interval units"
+                  aria-describedby={`${this.refreshSelectionId} ${this.legendId}`}
+                  value={units}
+                  disabled={isPaused}
+                  options={refreshUnitsOptions}
+                  onChange={this.onUnitsChange}
+                  onKeyDown={this.handleKeyDown}
+                  data-test-subj="superDatePickerRefreshIntervalUnitsSelect"
+                />
+              </EuiFlexItem>
+            </EuiFlexGroup>
+            {this.renderScreenReaderText(refreshUnitsOptions)}
+          </fieldset>
+        )}
+      </RenderI18nTimeOptions>
     );
   }
 }

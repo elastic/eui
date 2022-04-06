@@ -11,10 +11,19 @@ import moment from 'moment';
 
 import { get } from '../../../services/objects';
 import { isString } from '../../../services/predicate';
-import { relativeUnitsFromLargestToSmallest } from './relative_options';
 import { TimeUnitId, RelativeParts } from '../types';
 
 const ROUND_DELIMETER = '/';
+
+export const relativeUnitsFromLargestToSmallest: TimeUnitId[] = [
+  'y',
+  'M',
+  'w',
+  'd',
+  'h',
+  'm',
+  's',
+];
 
 export function parseRelativeParts(value: string): RelativeParts {
   const matches =
