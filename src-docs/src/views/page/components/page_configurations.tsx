@@ -33,7 +33,9 @@ export default ({
 
       <EuiPageBody panelled={Boolean(sideBar)}>
         {pageHeader && (
-          <EuiPageHeader bottomBorder paddingSize="l" pageTitle="Page title" />
+          <EuiPageSection bottomBorder={sideBar ? true : 'extended'}>
+            <EuiPageHeader pageTitle="Page title" />
+          </EuiPageSection>
         )}
 
         {emptyPrompt ? (

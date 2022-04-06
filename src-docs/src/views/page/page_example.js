@@ -132,7 +132,6 @@ export const PageExample = {
               </EuiTableHeaderCell>
               <EuiTableHeaderCell width={120}>EuiPageHeader</EuiTableHeaderCell>
               <EuiTableHeaderCell>EuiPageBody</EuiTableHeaderCell>
-              <EuiTableHeaderCell>EuiPageHeader</EuiTableHeaderCell>
               <EuiTableHeaderCell>EuiPageSection</EuiTableHeaderCell>
               <EuiTableHeaderCell>EuiEmptyPrompt settings</EuiTableHeaderCell>
             </EuiTableHeader>
@@ -159,11 +158,9 @@ export const PageExample = {
                 </EuiTableRowCell>
 
                 <EuiTableRowCell mobileOptions={{ width: '100%' }}>
-                  <EuiCode language="tsx">{'bottomBorder={true}'}</EuiCode>
-                </EuiTableRowCell>
-
-                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
                   <EuiCode language="tsx">{'color="plain"'}</EuiCode>
+                  <br />
+                  <EuiCode language="tsx">{'bottomBorder={true}'}</EuiCode>
                 </EuiTableRowCell>
 
                 <EuiTableRowCell>
@@ -192,11 +189,9 @@ export const PageExample = {
                 </EuiTableRowCell>
 
                 <EuiTableRowCell mobileOptions={{ width: '100%' }}>
-                  <EuiCode language="tsx">{'bottomBorder="extended"'}</EuiCode>
-                </EuiTableRowCell>
-
-                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
                   <EuiCode language="tsx">{'color="plain"'}</EuiCode>
+                  <br />
+                  <EuiCode language="tsx">{'bottomBorder="extended"'}</EuiCode>
                 </EuiTableRowCell>
 
                 <EuiTableRowCell>
@@ -225,11 +220,9 @@ export const PageExample = {
                 </EuiTableRowCell>
 
                 <EuiTableRowCell mobileOptions={{ width: '100%' }}>
-                  <EuiCode>{'n/a'}</EuiCode>
-                </EuiTableRowCell>
-
-                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
                   <EuiCode language="tsx">{'color="transparent"'}</EuiCode>
+                  <br />
+                  <EuiCode language="tsx">{'bottomBorder="extended"'}</EuiCode>
                 </EuiTableRowCell>
 
                 <EuiTableRowCell>
