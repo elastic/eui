@@ -11,23 +11,26 @@ import { IconType } from '../icon';
 import { EuiAvatar } from '../avatar';
 import { useEuiTheme } from '../../services';
 import { euiTimelineItemIconStyles } from './timeline_item_icon.styles';
+import { EuiTimelineItemVerticalAlign } from './';
 
 export interface EuiTimelineItemIconProps {
   /**
    * Any `ReactNode`, but preferably `EuiAvatar`, or a `string` as an `EuiIcon['type']`.
    */
   icon: ReactNode | IconType;
+  verticalAlign?: EuiTimelineItemVerticalAlign;
 }
 
 export const EuiTimelineItemIcon: FunctionComponent<EuiTimelineItemIconProps> = ({
   icon,
+  verticalAlign = 'top',
 }) => {
   const euiTheme = useEuiTheme();
   const styles = euiTimelineItemIconStyles(euiTheme);
 
-  const cssStyles = styles.euiTimelineItemIcon;
+  const cssStyles = [styles.euiTimelineItemIcon, styles[verticalAlign]];
 
-  const cssContentStyles = styles.euiTimelineItemIconContent;
+  const cssContentStyles = styles.euiTimelineItemIcon__content;
 
   const iconRender =
     typeof icon === 'string' ? (
@@ -37,10 +40,8 @@ export const EuiTimelineItemIcon: FunctionComponent<EuiTimelineItemIconProps> = 
     );
 
   return (
-    <div className="euiTimelineItemIcon" css={cssStyles}>
-      <div className="euiTimelineItemIcon__content" css={cssContentStyles}>
-        {iconRender}
-      </div>
+    <div css={cssStyles}>
+      <div css={cssContentStyles}>{iconRender}</div>
     </div>
   );
 };

@@ -12,4 +12,11 @@ export const euiTimelineItemEventStyles = () => ({
   euiTimelineItemEvent: css`
     flex: 1;
   `,
+  //  Vertical alignments
+  top: css`
+    align-self: flex-start;
+  `,
+  center: css`
+    align-self: center;
+  `,
 });

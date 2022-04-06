@@ -2,13 +2,13 @@
 
 exports[`EuiTimelineItem is rendered 1`] = `
 <div
-  class="euiTimelineItem euiTimelineItem--verticalAlignTop css-gkpeil-euiTimelineItem-top"
+  class="css-nrp69m-euiTimelineItem"
 >
   <div
-    class="euiTimelineItemIcon css-1rezr3l-euiTimelineItemIcon"
+    class="css-u1yi78-euiTimelineItemIcon-top"
   >
     <div
-      class="euiTimelineItemIcon__content css-jvs3tc-euiTimelineItemIconContent"
+      class="css-irfkcc-euiTimelineItemIcon__content"
     >
       <div
         aria-label="dot"
@@ -26,7 +26,7 @@ exports[`EuiTimelineItem is rendered 1`] = `
     </div>
   </div>
   <div
-    class="euiTimelineItemEvent css-1ozjlze-euiTimelineItemEvent"
+    class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <p>
       I'm the children
@@ -37,13 +37,13 @@ exports[`EuiTimelineItem is rendered 1`] = `
 
 exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
 <div
-  class="euiTimelineItem euiTimelineItem--verticalAlignCenter css-wclane-euiTimelineItem-center"
+  class="css-nrp69m-euiTimelineItem"
 >
   <div
-    class="euiTimelineItemIcon css-1rezr3l-euiTimelineItemIcon"
+    class="css-5shjh3-euiTimelineItemIcon-center"
   >
     <div
-      class="euiTimelineItemIcon__content css-jvs3tc-euiTimelineItemIconContent"
+      class="css-irfkcc-euiTimelineItemIcon__content"
     >
       <div
         aria-label="dot"
@@ -61,7 +61,7 @@ exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
     </div>
   </div>
   <div
-    class="euiTimelineItemEvent css-1ozjlze-euiTimelineItemEvent"
+    class="css-1a9m88x-euiTimelineItemEvent-center"
   >
     <p>
       I'm the children
@@ -72,13 +72,13 @@ exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
 
 exports[`EuiTimelineItem props verticalAlign top is rendered 1`] = `
 <div
-  class="euiTimelineItem euiTimelineItem--verticalAlignTop css-gkpeil-euiTimelineItem-top"
+  class="css-nrp69m-euiTimelineItem"
 >
   <div
-    class="euiTimelineItemIcon css-1rezr3l-euiTimelineItemIcon"
+    class="css-u1yi78-euiTimelineItemIcon-top"
   >
     <div
-      class="euiTimelineItemIcon__content css-jvs3tc-euiTimelineItemIconContent"
+      class="css-irfkcc-euiTimelineItemIcon__content"
     >
       <div
         aria-label="dot"
@@ -96,7 +96,7 @@ exports[`EuiTimelineItem props verticalAlign top is rendered 1`] = `
     </div>
   </div>
   <div
-    class="euiTimelineItemEvent css-1ozjlze-euiTimelineItemEvent"
+    class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <p>
       I'm the children

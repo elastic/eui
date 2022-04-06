@@ -27,11 +27,23 @@ export const euiTimelineItemIconStyles = ({ euiTheme }: UseEuiTheme) => ({
       height: calc(100% + ${euiTheme.size.base});
     }
   `,
-  euiTimelineItemIconContent: css`
+  euiTimelineItemIcon__content: css`
     min-width: ${euiTheme.size.xxl};
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+  `,
+  //  Vertical alignments
+  top: css`
+    align-items: flex-start;
+  `,
+  center: css`
+    align-items: center;
+
+    // when the vertical alignment is center the vertical line starts in the middle of the container
+    &::before {
+      top: 50%;
+    }
   `,
 });

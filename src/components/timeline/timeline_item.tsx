@@ -7,7 +7,6 @@
  */
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
-import classNames from 'classnames';
 import {
   EuiTimelineItemEvent,
   EuiTimelineItemEventProps,
@@ -16,24 +15,18 @@ import {
   EuiTimelineItemIcon,
   EuiTimelineItemIconProps,
 } from './timeline_item_icon';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 import { euiTimelineItemStyles } from './timeline_item.styles';
 
-const verticalAlignToClassNameMap = {
-  top: 'euiTimelineItem--verticalAlignTop',
-  center: 'euiTimelineItem--verticalAlignCenter',
-};
-
-export const VERTICAL_ALIGN = keysOf(verticalAlignToClassNameMap);
-
-export type EuiTimelineItemVerticalAlign = keyof typeof verticalAlignToClassNameMap;
+export const VERTICAL_ALIGN = ['top', 'center'] as const;
+export type EuiTimelineItemVerticalAlign = typeof VERTICAL_ALIGN[number];
 
 export interface EuiTimelineItemProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'children'>,
     CommonProps,
-    EuiTimelineItemIconProps,
-    EuiTimelineItemEventProps {
+    Omit<EuiTimelineItemIconProps, 'verticalAlign'>,
+    Omit<EuiTimelineItemEventProps, 'verticalAlign'> {
   /**
    * Vertical alignment of the event with the icon
    */
@@ -50,19 +43,15 @@ export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
   const euiTheme = useEuiTheme();
   const styles = euiTimelineItemStyles(euiTheme);
 
-  const classes = classNames(
-    'euiTimelineItem',
-    verticalAlignToClassNameMap[verticalAlign],
-    className
-  );
-
-  const cssStyles = [styles.euiTimelineItem, styles[verticalAlign]];
+  const cssStyles = [styles.euiTimelineItem];
 
   return (
-    <div className={classes} css={cssStyles} {...rest}>
-      <EuiTimelineItemIcon icon={icon} />
+    <div css={cssStyles} {...rest}>
+      <EuiTimelineItemIcon icon={icon} verticalAlign={verticalAlign} />
 
-      <EuiTimelineItemEvent>{children}</EuiTimelineItemEvent>
+      <EuiTimelineItemEvent verticalAlign={verticalAlign}>
+        {children}
+      </EuiTimelineItemEvent>
     </div>
   );
 };

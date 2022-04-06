@@ -8,23 +8,22 @@
 
 import React, { FunctionComponent, ReactNode } from 'react';
 import { euiTimelineItemEventStyles } from './timeline_item_event.styles';
+import { EuiTimelineItemVerticalAlign } from './';
 
 export interface EuiTimelineItemEventProps {
   /**
    * Accepts any node. But preferably `EuiPanel`
    */
   children: ReactNode;
+  verticalAlign?: EuiTimelineItemVerticalAlign;
 }
 
 export const EuiTimelineItemEvent: FunctionComponent<EuiTimelineItemEventProps> = ({
   children,
+  verticalAlign = 'top',
 }) => {
   const styles = euiTimelineItemEventStyles();
-  const cssStyles = styles.euiTimelineItemEvent;
+  const cssStyles = [styles.euiTimelineItemEvent, styles[verticalAlign]];
 
-  return (
-    <div className="euiTimelineItemEvent" css={cssStyles}>
-      {children}
-    </div>
-  );
+  return <div css={cssStyles}>{children}</div>;
 };
