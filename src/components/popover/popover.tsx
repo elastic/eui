@@ -347,6 +347,7 @@ export class EuiPopover extends Component<Props, State> {
   }
 
   private respositionTimeout: number | undefined;
+  private strandedFocusTimeout: number | undefined;
   private closingTransitionTimeout: number | undefined;
   private closingTransitionAnimationFrame: number | undefined;
   private updateFocusAnimationFrame: number | undefined;
@@ -389,7 +390,7 @@ export class EuiPopover extends Component<Props, State> {
   };
 
   handleStrandedFocus = () => {
-    setTimeout(() => {
+    this.strandedFocusTimeout = window.setTimeout(() => {
       // If `returnFocus` failed and focus was stranded on the body,
       // attempt to manually restore focus to the toggle button
       if (document.activeElement === document.body) {
@@ -481,6 +482,7 @@ export class EuiPopover extends Component<Props, State> {
   }
 
   onOpenPopover = () => {
+    clearTimeout(this.strandedFocusTimeout);
     clearTimeout(this.closingTransitionTimeout);
     if (this.closingTransitionAnimationFrame) {
       cancelAnimationFrame(this.closingTransitionAnimationFrame);
@@ -566,6 +568,7 @@ export class EuiPopover extends Component<Props, State> {
   componentWillUnmount() {
     window.removeEventListener('scroll', this.positionPopoverFixed, true);
     clearTimeout(this.respositionTimeout);
+    clearTimeout(this.strandedFocusTimeout);
     clearTimeout(this.closingTransitionTimeout);
     cancelAnimationFrame(this.closingTransitionAnimationFrame!);
     cancelAnimationFrame(this.updateFocusAnimationFrame!);
