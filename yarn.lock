@@ -2472,25 +2472,7 @@
   dependencies:
     "@babel/plugin-syntax-jsx" "^7.2.0"
 
-"@emotion/babel-plugin@^11.2.0":
-  version "11.7.1"
-  resolved "https://registry.yarnpkg.com/@emotion/babel-plugin/-/babel-plugin-11.7.1.tgz#853fc4985d89dab0ea8e17af2858473d1b11be7e"
-  integrity sha512-K3/6Y+J/sIAjplf3uIteWLhPuOyuMNnE+iyYnTF/m294vc6IL90kTHp7y8ldZYbpKlP17rpOWDKM9DvTcrOmNQ==
-  dependencies:
-    "@babel/helper-module-imports" "^7.12.13"
-    "@babel/plugin-syntax-jsx" "^7.12.13"
-    "@babel/runtime" "^7.13.10"
-    "@emotion/hash" "^0.8.0"
-    "@emotion/memoize" "^0.7.5"
-    "@emotion/serialize" "^1.0.2"
-    babel-plugin-macros "^2.6.1"
-    convert-source-map "^1.5.0"
-    escape-string-regexp "^4.0.0"
-    find-root "^1.1.0"
-    source-map "^0.5.7"
-    stylis "4.0.13"
-
-"@emotion/babel-plugin@^11.7.1":
+"@emotion/babel-plugin@^11.2.0", "@emotion/babel-plugin@^11.7.1":
   version "11.7.2"
   resolved "https://registry.yarnpkg.com/@emotion/babel-plugin/-/babel-plugin-11.7.2.tgz#fec75f38a6ab5b304b0601c74e2a5e77c95e5fa0"
   integrity sha512-6mGSCWi9UzXut/ZAN6lGFu33wGR3SJisNl3c0tvlmb8XChH1b2SUvxvnOh7hvLpqyRdHHU9AiazV3Cwbk5SXKQ==
