@@ -8,13 +8,21 @@
 
 import React from 'react';
 import { render } from 'enzyme';
+import { css } from '@emotion/react';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiLoadingLogo, SIZES } from './loading_logo';
 
 describe('EuiLoadingLogo', () => {
   test('is rendered', () => {
-    const component = render(<EuiLoadingLogo {...requiredProps} />);
+    const component = render(
+      <EuiLoadingLogo
+        css={css`
+          color: coral;
+        `}
+        {...requiredProps}
+      />
+    );
 
     expect(component).toMatchSnapshot();
   });
