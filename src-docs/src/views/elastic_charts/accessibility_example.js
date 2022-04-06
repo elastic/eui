@@ -221,7 +221,7 @@ export const ElasticChartsAccessibilityExample = {
             For the provided example, a visually hidden data table is rendered
             with the caption we passed on <EuiCode>ariaTableCaption</EuiCode>.
           </p>
-          <EuiCode language="jsx" inline={false}>
+          <EuiCodeBlock language="jsx">
             {`<p>There is a great variety of reported favorite fruit</p>
 
 <dl>
@@ -254,7 +254,7 @@ export const ElasticChartsAccessibilityExample = {
     </tr>
   </tbody>
 </table>`}
-          </EuiCode>
+          </EuiCodeBlock>
         </>
       ),
     },
