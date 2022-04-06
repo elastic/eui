@@ -4,9 +4,7 @@ const { AxePuppeteer } = require('@axe-core/puppeteer');
 
 const docsPages = async (root, page) => {
   const pagesToSkip = [
-    `${root}#/templates/page-template`, // Has duplicate `<main>` element
-    `${root}#/layout/page-header`, // Has duplicate `<header>` element
-    `${root}#/forms/combo-box`,
+    `${root}#/layout/accordion` // Has an issue with ARIA attributes
   ];
 
   return [
@@ -72,7 +70,7 @@ const printResult = (violations) => {
         rules: {
           'color-contrast': { enabled: false },
           'scrollable-region-focusable': { enabled: false },
-          'frame-title': { enabled: false }, // axe reports 12 page violations, but no <iframe> or <frame> on pages
+          'frame-title': { enabled: false }, // axe reports 18 page violations, but no <iframe> or <frame> on pages
         },
       })
       .analyze();
