@@ -34,7 +34,7 @@ exports[`EuiHighlight behavior matching applies to all matches 1`] = `
 </span>
 `;
 
-exports[`EuiHighlight behavior matching is rendered without CSS :before and :after text 1`] = `
+exports[`EuiHighlight behavior matching hasScreenReaderHelpText can be false 1`] = `
 <span>
   <mark
     class="euiMark css-dtzpxu-euiMarkStyles-EuiMark"

@@ -43,7 +43,7 @@ describe('EuiHighlight', () => {
         expect(component).toMatchSnapshot();
       });
 
-      test('is rendered without CSS :before and :after text', () => {
+      test('hasScreenReaderHelpText can be false', () => {
         const component = render(
           <EuiHighlight
             search="match"
