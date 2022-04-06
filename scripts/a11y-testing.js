@@ -72,7 +72,7 @@ const printResult = (violations) => {
         rules: {
           'color-contrast': { enabled: false },
           'scrollable-region-focusable': { enabled: false },
-          // 'frame-title': { enabled: false }, // axe reports 12 page violations, but no <iframe> or <frame> on pages
+          'frame-title': { enabled: false }, // axe reports 12 page violations, but no <iframe> or <frame> on pages
         },
       })
       .analyze();
