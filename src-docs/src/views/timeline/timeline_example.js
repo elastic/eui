@@ -167,7 +167,7 @@ export const TimelineExample = {
           </ul>
           <p>
             The following example shows how to display multiple{' '}
-            <strong>EuiTimelineItem</strong> and how you can use a{' '}
+            <strong>EuiTimelineItem</strong>s and how you can use a{' '}
             <strong>EuiSplitPanel</strong> as the content wrapper.
           </p>
         </>
