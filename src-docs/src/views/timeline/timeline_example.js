@@ -106,7 +106,7 @@ export const TimelineExample = {
           </p>
           <ul>
             <li>
-              <EuiCode>icon</EuiCode>: main icon that appears on the left side.
+              <EuiCode>icon</EuiCode>: main icon that appears on the left side. Can be passed as any <EuiCode>IconType</EuiCode> string or custom node.
             </li>
             <li>
               <EuiCode>children</EuiCode>: any node as the event content.
