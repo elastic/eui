@@ -107,7 +107,11 @@ export const TimelineExample = {
             <li>
               <EuiCode>icon</EuiCode>: main icon that appears on the left side.
               Can be passed as any <EuiCode>IconType</EuiCode> string or custom
-              node.
+              node (e.g.{' '}
+              <Link to="/display/avatar">
+                <strong>EuiAvatar</strong>
+              </Link>
+              ). It is recommended not to use an element larger than 40x40.
             </li>
             <li>
               <EuiCode>children</EuiCode>: any node as the event content.
