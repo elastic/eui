@@ -5,7 +5,7 @@ exports[`EuiTimeline is rendered with items 1`] = `
   class="euiTimeline"
 >
   <div
-    class="css-nrp69m-euiTimelineItem"
+    class="css-1tw3o1a-euiTimelineItem"
   >
     <div
       class="css-5shjh3-euiTimelineItemIcon-center"
@@ -40,7 +40,7 @@ exports[`EuiTimeline is rendered with items 1`] = `
     </div>
   </div>
   <div
-    class="css-nrp69m-euiTimelineItem"
+    class="css-1tw3o1a-euiTimelineItem"
   >
     <div
       class="css-u1yi78-euiTimelineItemIcon-top"

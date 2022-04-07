@@ -12,8 +12,10 @@ import { UseEuiTheme } from '../../services';
 export const euiTimelineItemStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiTimelineItem: css`
     display: flex;
-    padding-bottom: ${euiTheme.size.base};
-    min-height: calc(${euiTheme.size.base} * 3.5);
+
+    &:not(:last-of-type) {
+      padding-bottom: ${euiTheme.size.xl};
+    }
 
     &:last-of-type {
       > [class*='euiTimelineItemIcon']::before {
