@@ -43,28 +43,28 @@ exports[`EuiTimeline is rendered with items 1`] = `
     class="css-nrp69m-euiTimelineItem"
   >
     <div
-      class="css-5shjh3-euiTimelineItemIcon-center"
+      class="css-u1yi78-euiTimelineItemIcon-top"
     >
       <div
         class="css-irfkcc-euiTimelineItemIcon__content"
       >
         <div
-          aria-label="email"
+          aria-label="bolt"
           class="euiAvatar euiAvatar--m euiAvatar--user css-rdwecc-euiAvatar-m-user-subdued"
           role="img"
-          title="email"
+          title="bolt"
         >
           <span
             class="euiAvatar__icon"
-            data-euiicon-type="email"
+            data-euiicon-type="bolt"
           >
-            email
+            bolt
           </span>
         </div>
       </div>
     </div>
     <div
-      class="css-1a9m88x-euiTimelineItemEvent-center"
+      class="css-1waxxmm-euiTimelineItemEvent-top"
     >
       <p>
         <strong>

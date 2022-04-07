@@ -24,8 +24,8 @@ describe('EuiTimeline', () => {
         ),
       },
       {
-        icon: <EuiAvatar name="email" iconType="email" color="subdued" />,
-        verticalAlign: 'center',
+        icon: 'bolt',
+        verticalAlign: 'top',
         children: (
           <p>
             <strong>janet@elastic.co</strong> was invited to the project
