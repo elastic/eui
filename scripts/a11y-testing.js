@@ -4,6 +4,7 @@ const { AxePuppeteer } = require('@axe-core/puppeteer');
 
 const docsPages = async (root, page) => {
   const pagesToSkip = [
+    `${root}#/display/aspect-ratio`, // Has issues with the embedded audio player
     `${root}#/layout/accordion` // Has an issue with ARIA attributes
   ];
 

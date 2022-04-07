@@ -28,13 +28,15 @@ Not as nice of a experience though potentially more direct, in `scripts/a11y-tes
 
 ## Deconstructing an error message
 
+We have updated how accessibility violations appear in your terminal or CI logs. Each URL with violations will write a table like the one shown here.
+
 | index | id | impact | description | nodes |
 | :---: | :---: | :---: | :---: | :---: |
 | 0 | 'aria-valid-attr-value' | 'critical' | 'ARIA attributes must conform to valid values' | 1 | 
 | 1 | 'nested-interactive' | 'serious' | 'Nested interactive elements are not announced by screen readers' | 3 |
 
 All error messages follow this same structure:
-* The `index` is a 0-based array that counts pages (unique URLs) with violations
+* The `index` is a 0-based count of accessibility violations on a page.
 * The `id` maps to an [axe-core rule description](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md) on GitHub. These rules link to more information on the Deque University site.
 * The `impact` describes how much a violation will prevent or degrade the user experience.
 * The `description` will give a one sentence explanation of the problem.
