@@ -49,6 +49,7 @@ export default () => {
     avatarColor: string
   ) => (
     <EuiTimelineItem
+      verticalAlign="top"
       icon={
         checked ? (
           <EuiAvatar name="Checked" iconType="check" color={avatarColor} />
@@ -108,6 +109,7 @@ export default () => {
   return (
     <div>
       <EuiTimelineItem
+        verticalAlign="top"
         icon={
           <EuiAvatar
             name="Checked"

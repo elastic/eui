@@ -20,7 +20,7 @@ export interface EuiTimelineItemEventProps {
 
 export const EuiTimelineItemEvent: FunctionComponent<EuiTimelineItemEventProps> = ({
   children,
-  verticalAlign = 'top',
+  verticalAlign = 'center',
 }) => {
   const styles = euiTimelineItemEventStyles();
   const cssStyles = [styles.euiTimelineItemEvent, styles[verticalAlign]];

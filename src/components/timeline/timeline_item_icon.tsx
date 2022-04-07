@@ -23,7 +23,7 @@ export interface EuiTimelineItemIconProps {
 
 export const EuiTimelineItemIcon: FunctionComponent<EuiTimelineItemIconProps> = ({
   icon,
-  verticalAlign = 'top',
+  verticalAlign = 'center',
 }) => {
   const euiTheme = useEuiTheme();
   const styles = euiTimelineItemIconStyles(euiTheme);

@@ -20,11 +20,12 @@ export const euiTimelineItemIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     &::before {
       content: '';
       position: absolute;
+      top: 0;
       left: calc(${euiTheme.size.xxl} / 2);
-      top: ${euiTheme.size.base};
       width: calc(${euiTheme.size.xs} / 2);
+      // Adding to the height the padding bottom from the parent container
+      height: calc(100% + ${euiTheme.size.xl});
       background-color: ${euiTheme.colors.lightShade};
-      height: calc(100% + ${euiTheme.size.base});
     }
   `,
   euiTimelineItemIcon__content: css`
@@ -40,10 +41,5 @@ export const euiTimelineItemIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
   center: css`
     align-items: center;
-
-    // when the vertical alignment is center the vertical line starts in the middle of the container
-    &::before {
-      top: 50%;
-    }
   `,
 });
