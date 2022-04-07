@@ -23,7 +23,7 @@ const items: EuiTimelineProps['items'] = [
     children: (
       <EuiText size="s">
         <p>
-          The project was renamed to <strong>Revenue Dashboard</strong>
+          The project was renamed to <strong>Revenue Dashboard</strong>.
         </p>
       </EuiText>
     ),
