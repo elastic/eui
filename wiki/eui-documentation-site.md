@@ -54,7 +54,7 @@ After importing and storing the values for each component code sample, combine t
 
 #### Object structure
 
-```
+```tsx
 export const AccordionExample = {
     title: 'Accordions',
     intro: <EuiText><p>Optional introduction to the general component.</p></EuiTex>,
