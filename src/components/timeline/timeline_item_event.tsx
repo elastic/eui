@@ -8,7 +8,7 @@
 
 import React, { FunctionComponent, ReactNode } from 'react';
 import { euiTimelineItemEventStyles } from './timeline_item_event.styles';
-import { EuiTimelineItemVerticalAlign } from './';
+import { EuiTimelineItemVerticalAlign } from './timeline_item';
 
 export interface EuiTimelineItemEventProps {
   /**
