@@ -99,7 +99,7 @@ export const TimelineExample = {
       text: (
         <>
           <p>
-            Use <strong>EuiTimelineItem</strong> to display timeline items. Each{' '}
+            Each{' '}
             <strong>EuiTimelineItem</strong> has two parts: an icon on the left
             side and an event on the right side. To create an item you basically
             need the following props:
