@@ -56,7 +56,7 @@ export const TimelineExample = {
       text: (
         <>
           <p>
-            The <strong>EuiTimeline</strong> is a component that standardizes
+            The <strong>EuiTimeline</strong> component standardizes
             the way a timeline thread is displayed. Pass an array of{' '}
             <strong>EuiTimelineItem</strong> objects and{' '}
             <strong>EuiTimeline</strong> will generate a timeline thread.
