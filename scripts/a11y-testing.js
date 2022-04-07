@@ -4,13 +4,8 @@ const { AxePuppeteer } = require('@axe-core/puppeteer');
 
 const docsPages = async (root, page) => {
   const pagesToSkip = [
-    `${root}#/templates/page-template`, // Has duplicate `<main>` element
-    `${root}#/layout/page-header`, // Has duplicate `<header>` element
-    `${root}#/display/aspect-ratio`,
-    `${root}#/forms/combo-box`,
-    `${root}#/forms/color-selection`,
-    `${root}#/forms/date-picker`,
-    `${root}#/templates/super-date-picker`,
+    `${root}#/display/aspect-ratio`, // Has issues with the embedded audio player
+    `${root}#/layout/accordion` // Has an issue with ARIA attributes
   ];
 
   return [
@@ -19,11 +14,16 @@ const docsPages = async (root, page) => {
   ].filter((link) => !pagesToSkip.includes(link));
 };
 
-const printResult = (result) =>
-  console.log(`[${result.id}]: ${result.description}
-  Help: ${chalk.blue(result.helpUrl)}
-  Elements:
-    - ${result.nodes.map((node) => node.target).join('\n    - ')}`);
+const printResult = (violations) => {
+  const violationData = violations.map(
+    ({ id, impact, description, nodes }) => ({
+      id,
+      impact,
+      description,
+      nodes: nodes.length
+    }));
+  console.table(violationData);
+}
 
 (async () => {
   let totalViolationsCount = 0;
@@ -63,19 +63,16 @@ const printResult = (result) =>
     await page.goto(link);
 
     const { violations } = await new AxePuppeteer(page)
-      .configure({
-        rules: [
-          { id: 'color-contrast', enabled: false },
-          {
-            id: 'scrollable-region-focusable',
-            selector: '[data-skip-axe="scrollable-region-focusable"]',
-          },
-          {
-            // can remove after https://github.com/dequelabs/axe-core/issues/2690 is resolved
-            id: 'region',
-            selector: 'iframe, #player,',
-          },
-        ],
+      .options({
+        runOnly: {
+          type: 'tag',
+          values: ['section508', 'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']
+        },
+        rules: {
+          'color-contrast': { enabled: false },
+          'scrollable-region-focusable': { enabled: false },
+          'frame-title': { enabled: false }, // axe reports 18 page violations, but no <iframe> or <frame> on pages
+        },
       })
       .analyze();
 
@@ -84,11 +81,8 @@ const printResult = (result) =>
 
       const pageName = link.length > 24 ? link.substr(2) : 'the home page';
       console.log(chalk.red(`Errors on ${pageName}`));
+      printResult(violations);
     }
-
-    violations.forEach((result) => {
-      printResult(result);
-    });
   }
 
   await page.close();
