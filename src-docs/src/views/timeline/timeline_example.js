@@ -139,7 +139,7 @@ export const TimelineExample = {
           </p>
           <p>
             When passing an <EuiCode>icon</EuiCode> and{' '}
-            <EuiCode>children</EuiCode> props to each item, there are some
+            <EuiCode>children</EuiCode> prop to each item, there are some
             design considerations to take into account:
           </p>
           <ul>
