@@ -2,7 +2,7 @@ import React from 'react';
 import { EuiTimelineItem, EuiText, EuiCode } from '../../../../src/components';
 
 export default () => (
-  <EuiTimelineItem icon="dot" verticalAlign="center">
+  <EuiTimelineItem icon="dot">
     <EuiText size="s">
       <p>
         I&apos;m the <EuiCode>children</EuiCode> and you can find the{' '}
