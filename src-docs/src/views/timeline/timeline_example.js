@@ -133,7 +133,7 @@ export const TimelineExample = {
             You can create a timeline thread by rendering multiple{' '}
             <strong>EuiTimelineItem</strong> components. Wrapping these with an{' '}
             <strong>EuiTimeline</strong> is not required, but we recommend
-            having all the <strong>EuiTimelineItem</strong> nested in the same
+            having all the <strong>EuiTimelineItem</strong>s nested in the same
             container. This way, we ensure that timeline styles are applied
             correctly.
           </p>
