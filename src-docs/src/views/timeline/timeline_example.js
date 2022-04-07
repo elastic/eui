@@ -56,8 +56,8 @@ export const TimelineExample = {
       text: (
         <>
           <p>
-            The <strong>EuiTimeline</strong> component standardizes
-            the way a timeline thread is displayed. Pass an array of{' '}
+            The <strong>EuiTimeline</strong> component standardizes the way a
+            timeline thread is displayed. Pass an array of{' '}
             <strong>EuiTimelineItem</strong> objects and{' '}
             <strong>EuiTimeline</strong> will generate a timeline thread.
           </p>
@@ -99,14 +99,15 @@ export const TimelineExample = {
       text: (
         <>
           <p>
-            Each{' '}
-            <strong>EuiTimelineItem</strong> has two parts: an icon on the left
-            side and an event on the right side. To create an item you
-            need the following props:
+            Each <strong>EuiTimelineItem</strong> has two parts: an icon on the
+            left side and an event on the right side. To create an item you need
+            the following props:
           </p>
           <ul>
             <li>
-              <EuiCode>icon</EuiCode>: main icon that appears on the left side. Can be passed as any <EuiCode>IconType</EuiCode> string or custom node.
+              <EuiCode>icon</EuiCode>: main icon that appears on the left side.
+              Can be passed as any <EuiCode>IconType</EuiCode> string or custom
+              node.
             </li>
             <li>
               <EuiCode>children</EuiCode>: any node as the event content.
@@ -139,8 +140,8 @@ export const TimelineExample = {
           </p>
           <p>
             When passing an <EuiCode>icon</EuiCode> and{' '}
-            <EuiCode>children</EuiCode> prop to each item, there are some
-            design considerations to take into account:
+            <EuiCode>children</EuiCode> prop to each item, there are some design
+            considerations to take into account:
           </p>
           <ul>
             <li>

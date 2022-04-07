@@ -33,7 +33,7 @@ const items: EuiTimelineProps['items'] = [
     verticalAlign: 'center',
     children: (
       <EuiText size="s">
-        <p>The project was archived</p>.
+        <p>The project was archived.</p>
       </EuiText>
     ),
   },
