@@ -43,19 +43,3 @@ exports[`EuiMark is rendered: renders with emotion styles 1`] = `
   Marked
 </mark>
 `;
-
-exports[`No screen reader helper text is rendered without CSS :before and :after text 1`] = `
-.css-dtzpxu-euiMarkStyles-EuiMark {
-  background-color: rgba(0,119,204,0.1);
-  font-weight: 700;
-  color: #343741;
-}
-
-<mark
-  aria-label="aria-label"
-  class="euiMark testClass1 testClass2 css-dtzpxu-euiMarkStyles-EuiMark"
-  data-test-subj="test subject string"
->
-  Marked
-</mark>
-`;
