@@ -12,13 +12,6 @@ import {
 } from '../../../../global_styling/variables/_typography';
 
 /**
- * Amsterdam theme just changes the main font from the beta Inter UI to Inter
+ * With the removal of the Legacy theme, Amsterdam's overrides have moved to the default
  */
-export const font_ams: EuiThemeFont = {
-  ...font,
-  family: "'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif",
-  body: {
-    scale: 's',
-    weight: 'regular',
-  },
-};
+export const font_ams: EuiThemeFont = font;

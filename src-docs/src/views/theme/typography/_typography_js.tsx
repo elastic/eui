@@ -6,9 +6,15 @@ import { EuiCode } from '../../../../../src/components';
 import {
   fontWeight,
   _EuiThemeFontWeight,
+  FONT_SCALES,
 } from '../../../../../src/global_styling/variables/_typography';
 
-import { EuiThemeFontBase, EuiThemeFontWeight, ThemeRowType } from '../_props';
+import {
+  EuiThemeFontBase,
+  EuiThemeFontScale,
+  EuiThemeFontWeight,
+  ThemeRowType,
+} from '../_props';
 import { getPropsFromComponent } from '../../../services/props/get_props';
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
@@ -115,6 +121,37 @@ export const FontWeightJS: FunctionComponent<ThemeRowType> = ({
           <div
             css={css`
               font-weight: ${item.value};
+            `}
+          >
+            Aa
+          </div>
+        )}
+      />
+    </>
+  );
+};
+
+const scaleKeys = FONT_SCALES;
+
+export const FontScaleJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const scaleProps = getPropsFromComponent(EuiThemeFontScale);
+
+  return (
+    <>
+      <ThemeValuesTable
+        items={scaleKeys.map((scale) => {
+          return {
+            id: scale,
+            token: `font.scale.${scale}`,
+            type: scaleProps[scale],
+            value: `${euiTheme.font.scale[scale] * euiTheme.base}px`,
+          };
+        })}
+        render={(item) => (
+          <div
+            css={css`
+              font-size: ${item.value};
             `}
           >
             Aa

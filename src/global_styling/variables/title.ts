@@ -8,7 +8,7 @@
 
 import { CSSProperties } from 'react';
 import { computed } from '../../services/theme/utils';
-import { _EuiThemeFontScale, SCALES } from './_typography';
+import { _EuiThemeFontScale, FONT_SCALES } from './_typography';
 
 /**
  * NOTE: These were quick conversions of their Sass counterparts.
@@ -65,7 +65,7 @@ const titlesPartial: {
   },
 };
 
-export const title: EuiThemeTitle = SCALES.reduce((acc, size) => {
+export const title: EuiThemeTitle = FONT_SCALES.reduce((acc, size) => {
   acc[size] = {
     fontSize: computed(([{ fontSize }]) => fontSize, [`font.size.${size}`]),
     lineHeight: computed(([{ lineHeight }]) => lineHeight, [

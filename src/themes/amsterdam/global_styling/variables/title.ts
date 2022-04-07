@@ -15,12 +15,12 @@ import {
   title,
   EuiThemeTitle,
 } from '../../../../global_styling/variables/title';
-import { SCALES } from '../../../../global_styling/variables/_typography';
+import { FONT_SCALES } from '../../../../global_styling/variables/_typography';
 import { computed } from '../../../../services/theme/utils';
 
 // For Amsterdam, change all font-weights to bold and remove letter-spacing
 
-export const title_ams: EuiThemeTitle = SCALES.reduce((acc, elem) => {
+export const title_ams: EuiThemeTitle = FONT_SCALES.reduce((acc, elem) => {
   acc[elem] = {
     ...title[elem],
     fontWeight: computed(([fontWeight]) => fontWeight, ['font.weight.bold']),

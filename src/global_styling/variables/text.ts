@@ -8,7 +8,7 @@
 
 import { CSSProperties } from 'react';
 import { computed, lineHeightFromBaseline } from '../../services/theme';
-import { _EuiThemeFontScale, SCALES } from './_typography';
+import { _EuiThemeFontScale, FONT_SCALES } from './_typography';
 
 /**
  * NOTE: These were quick conversions of their Sass counterparts.
@@ -22,7 +22,7 @@ export type EuiThemeFontSize = {
   };
 };
 
-export const fontSize: EuiThemeFontSize = SCALES.reduce((acc, elem) => {
+export const fontSize: EuiThemeFontSize = FONT_SCALES.reduce((acc, elem) => {
   acc[elem] = {
     fontSize: computed(([scale]) => `${scale}rem`, [`font.scale.${elem}`]),
     lineHeight: computed(

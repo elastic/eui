@@ -16,12 +16,11 @@ import {
   EuiLink,
   EuiRange,
   EuiCode,
-  EuiCallOut,
 } from '../../../../../src';
 
 import { ThemeExample } from '../_components/_theme_example';
 
-import { FontJS, FontWeightJS } from './_typography_js';
+import { FontJS, FontScaleJS, FontWeightJS } from './_typography_js';
 import {
   FontSass,
   FontWeightSass,
@@ -83,7 +82,7 @@ export default () => {
             >{`${typographySections[2].title}`}</h2>
           </EuiText>
           <EuiSpacer />
-          <EuiCallOut title="Coming soon" />
+          <FontScaleJS />
         </>
       );
     }

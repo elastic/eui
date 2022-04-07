@@ -21,12 +21,12 @@ export const fontScale = {
   xs: 0.75,
   s: 0.875,
   m: 1,
-  l: 1.25,
-  xl: 1.75,
+  l: 1.375,
+  xl: 1.6875,
   xxl: 2.125,
 };
 
-export const SCALES = keysOf(fontScale);
+export const FONT_SCALES = keysOf(fontScale);
 export type _EuiThemeFontScale = keyof typeof fontScale;
 
 /*
@@ -60,7 +60,7 @@ export type _EuiThemeFontBase = {
 
 // Families & base font settings
 export const fontBase: _EuiThemeFontBase = {
-  family: "'Inter UI', BlinkMacSystemFont, Helvetica, Arial, sans-serif",
+  family: "'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif",
   familyCode: "'Roboto Mono', Menlo, Courier, monospace",
 
   // Careful using ligatures. Code editors like ACE will often error because of width calculations
@@ -108,8 +108,7 @@ export const font: EuiThemeFont = {
   scale: fontScale,
   weight: fontWeight,
   body: {
-    scale: 'm',
+    scale: 's',
     weight: 'regular',
-    letterSpacing: '-.005em',
   },
 };
