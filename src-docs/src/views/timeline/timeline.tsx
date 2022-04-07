@@ -12,7 +12,7 @@ const items: EuiTimelineProps['items'] = [
     children: (
       <EuiText size="s">
         <p>
-          <strong>janet@elastic.co</strong> was invited to the project
+          <strong>janet@elastic.co</strong> was invited to the project.
         </p>
       </EuiText>
     ),
