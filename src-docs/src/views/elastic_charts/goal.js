@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Chart, Settings, Goal } from '@elastic/charts';
-import { EuiSpacer, EuiTitle, EuiCode } from '../../../../src/components';
+import { EuiSpacer, EuiTitle, EuiCodeBlock } from '../../../../src/components';
 import {
   htmlIdGenerator,
   useIsWithinBreakpoints,
@@ -79,7 +79,7 @@ export const GoalChart = () => {
           <h3>Visually hidden content for chart</h3>
         </EuiTitle>
         <EuiSpacer />
-        <EuiCode language="jsx" inline={false}>
+        <EuiCodeBlock language="jsx">
           {`<p>Temperature</p>
 <p>Celsius</p>
 <p>This goal chart has a target of 22.</p>
@@ -105,7 +105,7 @@ export const GoalChart = () => {
   <dt>250 - 300</dt>
   <dd>hot</dd>
 </dl>`}
-        </EuiCode>
+        </EuiCodeBlock>
       </EuiFlexItem>
     </EuiFlexGrid>
   );
