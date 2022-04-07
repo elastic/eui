@@ -191,8 +191,8 @@ export const ElasticChartsAccessibilityExample = {
             iconType="visPie"
           >
             <p>
-              Partition charts include: sunburst, treemap, icicle, flame, and
-              mosaic.
+              Partition charts include: sunburst, treemap, icicle, flame,
+              mosaic, and waffle.
             </p>
           </EuiCallOut>
         </>
@@ -275,10 +275,7 @@ export const ElasticChartsAccessibilityExample = {
             }
             iconType="visAreaStacked"
           >
-            <p>
-              XY charts include: area, bar, bubble, histogram, line, and
-              heatmap.
-            </p>
+            <p>XY charts include: area, bar, and histogram.</p>
           </EuiCallOut>
         </>
       ),
