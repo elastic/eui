@@ -101,7 +101,7 @@ export const TimelineExample = {
           <p>
             Each{' '}
             <strong>EuiTimelineItem</strong> has two parts: an icon on the left
-            side and an event on the right side. To create an item you basically
+            side and an event on the right side. To create an item you
             need the following props:
           </p>
           <ul>
