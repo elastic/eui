@@ -7,6 +7,9 @@
  */
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
+import { CommonProps } from '../common';
+import { useEuiTheme } from '../../services';
+
 import {
   EuiTimelineItemEvent,
   EuiTimelineItemEventProps,
@@ -15,8 +18,6 @@ import {
   EuiTimelineItemIcon,
   EuiTimelineItemIconProps,
 } from './timeline_item_icon';
-import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
 import { euiTimelineItemStyles } from './timeline_item.styles';
 
 export const VERTICAL_ALIGN = ['top', 'center'] as const;

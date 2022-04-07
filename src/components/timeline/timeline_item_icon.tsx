@@ -11,7 +11,7 @@ import { IconType } from '../icon';
 import { EuiAvatar } from '../avatar';
 import { useEuiTheme } from '../../services';
 import { euiTimelineItemIconStyles } from './timeline_item_icon.styles';
-import { EuiTimelineItemVerticalAlign } from './';
+import { EuiTimelineItemVerticalAlign } from './timeline_item';
 
 export interface EuiTimelineItemIconProps {
   /**

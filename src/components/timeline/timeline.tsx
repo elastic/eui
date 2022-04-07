@@ -12,7 +12,7 @@ import classNames from 'classnames';
 import { EuiTimelineItem, EuiTimelineItemProps } from './timeline_item';
 
 export interface EuiTimelineProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, 'children'>,
+  extends HTMLAttributes<HTMLDivElement>,
     CommonProps {
   /**
    * List of timeline items to render. See #EuiTimelineItem
