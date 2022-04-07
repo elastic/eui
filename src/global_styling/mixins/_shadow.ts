@@ -25,12 +25,12 @@ export const mixinOverflowShadowStyles = (
   const side = _side || 'both';
   const hideHeight = `calc(${size.base} * 0.75 * 1.25)`;
   const gradientStart = `
-  ${transparentize('red', 0.9)} 0%,
-  ${transparentize('red', 0)} ${hideHeight};
+  ${transparentize('red', 0.1)} 0%,
+  ${transparentize('red', 1)} ${hideHeight}
   `;
   const gradientEnd = `
-  ${transparentize('red', 0)} calc(100% - ${hideHeight}),
-  ${transparentize('red', 0.9)} 100%;
+  ${transparentize('red', 1)} calc(100% - ${hideHeight}),
+  ${transparentize('red', 0.1)} 100%
   `;
   let gradient = '';
   if (side) {
@@ -44,9 +44,9 @@ export const mixinOverflowShadowStyles = (
   }
 
   if (direction === 'y') {
-    return `mask-image: linear-gradient(to bottom, ${gradient})`;
+    return `mask-image: linear-gradient(to bottom, ${gradient});`;
   } else {
-    return `mask-image: linear-gradient(to right, ${gradient})`;
+    return `mask-image: linear-gradient(to right, ${gradient});`;
   }
 };
 export const useOverflowShadowStyles = createStyleHookFromMixin(

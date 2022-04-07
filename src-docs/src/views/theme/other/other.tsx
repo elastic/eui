@@ -10,6 +10,7 @@ import { ThemeNotice } from '../_components/_theme_notice';
 
 import AnimationJS from './_animation_js';
 import AnimationSass from './_animation_sass';
+import ShadowJs from './_shadow_js';
 import ShadowSass from './_shadow_sass';
 import LevelsSass from './_levels_sass';
 
@@ -76,7 +77,7 @@ export default () => {
     } else {
       return (
         <>
-          <EuiCallOut title="Coming soon" />
+          <ShadowJs />
         </>
       );
     }

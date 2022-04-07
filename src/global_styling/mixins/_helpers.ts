@@ -136,9 +136,7 @@ export const useYScrollStyles = createStyleHookFromMixin(mixinYScrollStyles);
 
 export const mixinXScrollStyles = (euiTheme: UseEuiTheme['euiTheme']) => `
   ${mixinScrollBarStyles(euiTheme)}
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: auto;
   &:focus {
     outline: none; /* 1 */
   }
@@ -152,7 +150,7 @@ export const mixinYScrollWithShadowsStyles = (
   ${mixinYScrollStyles(euiTheme)}
   ${mixinOverflowShadowStyles(euiTheme, { direction: 'y' })}
 `;
-export const useYScrollWithShadows = createStyleHookFromMixin(
+export const useYScrollWithShadowsStyles = createStyleHookFromMixin(
   mixinYScrollWithShadowsStyles
 );
 
@@ -162,7 +160,7 @@ export const mixinXScrollWithShadowsStyles = (
   ${mixinXScrollStyles(euiTheme)}
   ${mixinOverflowShadowStyles(euiTheme, { direction: 'x' })}
 `;
-export const useXScrollWithShadows = createStyleHookFromMixin(
+export const useXScrollWithShadowsStyles = createStyleHookFromMixin(
   mixinXScrollWithShadowsStyles
 );
 
