@@ -5,7 +5,7 @@ export default () => (
   <EuiTimelineItem icon="dot" verticalAlign="center">
     <EuiText size="s">
       <p>
-        I&apos;m a <EuiCode>children</EuiCode> and you can find the{' '}
+        I&apos;m the <EuiCode>children</EuiCode> and you can find the{' '}
         <EuiCode>icon</EuiCode> on the left side.
       </p>
     </EuiText>
