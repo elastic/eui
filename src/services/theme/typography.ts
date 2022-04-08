@@ -28,7 +28,8 @@ export const LINE_HEIGHT_MULTIPLIER_L = 1.25;
 export function lineHeightFromBaseline(
   base: number,
   font: EuiThemeFont,
-  scale: number
+  scale: number,
+  measurement: 'px' | 'rem' = 'rem'
 ) {
   const { baseline, body } = font;
   const numerator = base * scale;
@@ -40,7 +41,9 @@ export function lineHeightFromBaseline(
   const pixelValue =
     Math.floor(Math.round(numerator * _lineHeightMultiplier) / baseline) *
     baseline;
-  return `${pixelValue / denominator}rem`;
+  return measurement === 'px'
+    ? `${pixelValue}px`
+    : `${(pixelValue / denominator).toFixed(4)}rem`;
 }
 
 /**
@@ -58,10 +61,13 @@ export function fontSizeFromScale(
   base: number,
   scale: { [key in _EuiThemeFontScale]: number },
   bodyScale: _EuiThemeFontScale,
-  size: _EuiThemeFontScale
+  size: _EuiThemeFontScale,
+  measurement: 'px' | 'rem' = 'rem'
 ) {
   const numerator = base * scale[size];
   const denominator = base * scale[bodyScale];
 
-  return `${(numerator / denominator).toFixed(4)}rem`;
+  return measurement === 'px'
+    ? `${numerator}px`
+    : `${(numerator / denominator).toFixed(4)}rem`;
 }

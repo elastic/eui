@@ -24,10 +24,22 @@ export type EuiThemeFontSize = {
  */
 export const euiFontSize = (
   scale: _EuiThemeFontScale,
-  { base, font }: UseEuiTheme['euiTheme']
+  { base, font }: UseEuiTheme['euiTheme'],
+  measurement: 'px' | 'rem' = 'rem'
 ): EuiThemeFontSize => {
   return {
-    fontSize: fontSizeFromScale(base, font.scale, font.body.scale, scale),
-    lineHeight: lineHeightFromBaseline(base, font, font.scale[scale]),
+    fontSize: fontSizeFromScale(
+      base,
+      font.scale,
+      font.body.scale,
+      scale,
+      measurement
+    ),
+    lineHeight: lineHeightFromBaseline(
+      base,
+      font,
+      font.scale[scale],
+      measurement
+    ),
   };
 };

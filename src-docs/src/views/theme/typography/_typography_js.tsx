@@ -1,7 +1,12 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { css } from '@emotion/react';
 import { useEuiTheme } from '../../../../../src/services';
-import { EuiCode } from '../../../../../src/components';
+import {
+  EuiBasicTable,
+  EuiCode,
+  EuiSpacer,
+  EuiSwitch,
+} from '../../../../../src/components';
 
 import {
   fontWeight,
@@ -10,12 +15,7 @@ import {
 } from '../../../../../src/global_styling/variables/_typography';
 import { euiFontSize } from '../../../../../src/global_styling/variables/text';
 
-import {
-  EuiThemeFontBase,
-  EuiThemeFontScale,
-  EuiThemeFontWeight,
-  ThemeRowType,
-} from '../_props';
+import { EuiThemeFontBase, EuiThemeFontWeight, ThemeRowType } from '../_props';
 import { getPropsFromComponent } from '../../../services/props/get_props';
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
@@ -136,30 +136,81 @@ const scaleKeys = FONT_SCALES;
 
 export const FontScaleJS = () => {
   const { euiTheme } = useEuiTheme();
-  const scaleProps = getPropsFromComponent(EuiThemeFontScale);
+  const [measurement, setMeasurement] = useState<'px' | 'rem'>('rem');
 
   return (
     <>
-      <ThemeValuesTable
-        items={scaleKeys.map((scale) => {
+      <EuiSwitch
+        label="Show pixels"
+        checked={measurement === 'px'}
+        onChange={(e) => setMeasurement(e.target.checked ? 'px' : 'rem')}
+      />
+      <EuiSpacer />
+      <EuiBasicTable
+        tableLayout="auto"
+        items={scaleKeys.map((scale, index) => {
           return {
             id: scale,
-            token: `euiFontSize('${scale}')`,
-            type: scaleProps[scale],
-            value: `${euiFontSize(scale, euiTheme).fontSize}`,
+            value: `euiFontSize('${scale}')`,
+            size: `${euiFontSize(scale, euiTheme, measurement).fontSize}`,
+            lineHeight: `${
+              euiFontSize(scale, euiTheme, measurement).lineHeight
+            }`,
+            index,
           };
         })}
-        sampleColumnProps={{ width: '50%', align: 'left' }}
-        tokenColumnProps={{ width: 'auto', align: 'left' }}
-        render={(item) => (
-          <div
-            css={css`
-              ${euiFontSize(item.id, euiTheme)}
-            `}
-          >
-            The quick brown fox jumped over the blue moon to catch a snail
-          </div>
-        )}
+        columns={[
+          {
+            field: 'sample',
+            name: 'Sample',
+            valign: 'baseline',
+            render: (sample, item) => (
+              <div
+                css={css`
+                  ${euiFontSize(item.id, euiTheme)}
+                `}
+              >
+                The quick brown fox jumped over the blue moon to catch a snail
+              </div>
+            ),
+            mobileOptions: {
+              width: '100%',
+            },
+          },
+          {
+            field: 'value',
+            name: 'Function',
+            width: '200px',
+            valign: 'baseline',
+            render: (value: React.ReactNode) => (
+              <EuiCode language="css">{value}</EuiCode>
+            ),
+          },
+          {
+            field: 'size',
+            name: 'Font size',
+            width: '100px',
+            valign: 'baseline',
+            align: 'right',
+            render: (size: string) => (
+              <small>
+                <code>{size}</code>
+              </small>
+            ),
+          },
+          {
+            field: 'lineHeight',
+            name: 'Line height',
+            width: '100px',
+            valign: 'baseline',
+            align: 'right',
+            render: (lineHeight: string) => (
+              <small>
+                <code>{lineHeight}</code>
+              </small>
+            ),
+          },
+        ]}
       />
     </>
   );
