@@ -11,17 +11,14 @@ import { getShadowColor } from '../functions';
 import { createStyleHookFromMixin } from '../../../../global_styling/utils';
 import { _EuiShadowSizes } from '../../../../global_styling/variables/_shadow';
 
-/**
- * Very subtle shadow used on small components, ya heard the type!
- */
 export interface EuiShadowCustomColor {
   color?: string;
 }
 
 /**
- * Very subtle shadow used on small components, ya heard!
+ * euiSlightShadow
  */
-export const euiSlightShadow = (
+export const euiShadowXSmall = (
   { colors }: UseEuiTheme['euiTheme'],
   { color: _color }: EuiShadowCustomColor = {},
   colorMode: UseEuiTheme['colorMode']
@@ -33,12 +30,11 @@ box-shadow:
   0 2.3px 2px ${getShadowColor(color, 0.03, colorMode)};
 `;
 };
-export const useEuiSlightShadow = createStyleHookFromMixin(euiSlightShadow);
 
 /**
  * bottomShadowSmall
  */
-export const euiBottomShadowSmall = (
+export const euiShadowSmall = (
   { colors }: UseEuiTheme['euiTheme'],
   { color: _color }: EuiShadowCustomColor = {},
   colorMode: UseEuiTheme['colorMode']
@@ -51,14 +47,11 @@ box-shadow:
   0 4.5px 10px ${getShadowColor(color, 0.05, colorMode)};
 `;
 };
-export const useEuiBottomShadowSmall = createStyleHookFromMixin(
-  euiBottomShadowSmall
-);
 
 /**
  * bottomShadowMedium
  */
-export const euiBottomShadowMedium = (
+export const euiShadowMedium = (
   { colors }: UseEuiTheme['euiTheme'],
   { color: _color }: EuiShadowCustomColor = {},
   colorMode: UseEuiTheme['colorMode']
@@ -72,14 +65,11 @@ box-shadow:
   0 15px 15px -1px ${getShadowColor(color, 0.04, colorMode)};
 `;
 };
-export const useEuiBottomShadowMedium = createStyleHookFromMixin(
-  euiBottomShadowMedium
-);
 
 /**
  * bottomShadow
  */
-export const euiBottomShadow = (
+export const euiShadowLarge = (
   { colors }: UseEuiTheme['euiTheme'],
   { color: _color }: EuiShadowCustomColor = {},
   colorMode: UseEuiTheme['colorMode']
@@ -94,17 +84,16 @@ box-shadow:
   0 23px 35px ${getShadowColor(color, 0.05, colorMode)};
 `;
 };
-export const useEuiBottomShadow = createStyleHookFromMixin(euiBottomShadow);
 
 /**
  * bottomShadowLarge
  */
-export interface EuiBottomShadowLarge extends EuiShadowCustomColor {
+export interface EuiShadowXLarge extends EuiShadowCustomColor {
   reverse?: boolean;
 }
-export const euiBottomShadowLarge = (
+export const euiShadowXLarge = (
   { colors }: UseEuiTheme['euiTheme'],
-  { color: _color, reverse }: EuiBottomShadowLarge = {},
+  { color: _color, reverse }: EuiShadowXLarge = {},
   colorMode: UseEuiTheme['colorMode']
 ) => {
   const color = _color || colors.shadow;
@@ -116,12 +105,10 @@ box-shadow:
   0 ${reverse ? '-' : ''}21.8px 43px ${getShadowColor(color, 0.08, colorMode)};
 `;
 };
-export const useEuiBottomShadowLarge = createStyleHookFromMixin(
-  euiBottomShadowLarge
-);
 
 /**
  * slightShadowHover
+ * TODO: I think this is only used by panels/cards in the Amsterdam theme, move there
  */
 export const euiSlightShadowHover = (
   { colors }: UseEuiTheme['euiTheme'],
@@ -174,20 +161,15 @@ export const useEuiShadow = (
 
   switch (size) {
     case 'xs':
-      return euiSlightShadow(euiTheme, { color }, colorMode);
-      break;
+      return euiShadowXSmall(euiTheme, { color }, colorMode);
     case 's':
-      return euiBottomShadowSmall(euiTheme, { color }, colorMode);
-      break;
+      return euiShadowSmall(euiTheme, { color }, colorMode);
     case 'm':
-      return euiBottomShadowMedium(euiTheme, { color }, colorMode);
-      break;
+      return euiShadowMedium(euiTheme, { color }, colorMode);
     case 'l':
-      return euiBottomShadow(euiTheme, { color }, colorMode);
-      break;
+      return euiShadowLarge(euiTheme, { color }, colorMode);
     case 'xl':
-      return euiBottomShadowLarge(euiTheme, { color }, colorMode);
-      break;
+      return euiShadowXLarge(euiTheme, { color }, colorMode);
 
     default:
       console.warn('Please provide a valid size option to useEuiShadow');
