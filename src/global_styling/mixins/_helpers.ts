@@ -163,16 +163,3 @@ export const mixinXScrollWithShadowsStyles = (
 export const useXScrollWithShadowsStyles = createStyleHookFromMixin(
   mixinXScrollWithShadowsStyles
 );
-
-// TODO: Conver EuiScreenReaderOnly to Emotion then tell consumers to
-// use the `euiScreenReaderOnlyStyles` export instead.
-// Hiding elements offscreen to only be read by screen reader
-export const mixinScreenReaderOnlyStyles = () => `
-  position: absolute;
-  left: -10000px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-`;
-export const useScreenReaderOnlyStyles = mixinScreenReaderOnlyStyles;
