@@ -139,7 +139,7 @@ export default ({ onThemeUpdate }) => {
           onUpdate={(value) => updateFont('baseline', value)}
         />
 
-        <EuiSpacer />
+        {/* <EuiSpacer />
 
         <ThemeValue
           property={'font'}
@@ -148,7 +148,7 @@ export default ({ onThemeUpdate }) => {
           value={font.lineHeightMultiplier}
           onUpdate={(value) => updateFont('lineHeightMultiplier', value)}
           numberProps={{ step: 0.1 }}
-        />
+        /> */}
       </EuiPanel>
 
       <EuiSpacer size="xl" />

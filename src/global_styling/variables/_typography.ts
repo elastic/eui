@@ -55,7 +55,7 @@ export type _EuiThemeFontBase = {
   /**
    * Establishes the ideal line-height percentage, but it is the `baseline` integer that establishes the final pixel/rem value
    */
-  lineHeightMultiplier: number;
+  // lineHeightMultiplier: number;
 };
 
 // Families & base font settings
@@ -67,7 +67,7 @@ export const fontBase: _EuiThemeFontBase = {
   featureSettings: "'calt' 1, 'kern' 1, 'liga' 1",
 
   baseline: computed(([base]) => base / 4, ['base']),
-  lineHeightMultiplier: 1.5,
+  // lineHeightMultiplier: 1.5,
 };
 
 /*

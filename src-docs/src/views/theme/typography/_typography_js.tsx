@@ -8,6 +8,7 @@ import {
   _EuiThemeFontWeight,
   FONT_SCALES,
 } from '../../../../../src/global_styling/variables/_typography';
+import { euiFontSize } from '../../../../../src/global_styling/variables/text';
 
 import {
   EuiThemeFontBase,
@@ -143,18 +144,20 @@ export const FontScaleJS = () => {
         items={scaleKeys.map((scale) => {
           return {
             id: scale,
-            token: `font.scale.${scale}`,
+            token: `euiFontSize('${scale}')`,
             type: scaleProps[scale],
-            value: `${euiTheme.font.scale[scale] * euiTheme.base}px`,
+            value: `${euiFontSize(scale, euiTheme).fontSize}`,
           };
         })}
+        sampleColumnProps={{ width: '50%', align: 'left' }}
+        tokenColumnProps={{ width: 'auto', align: 'left' }}
         render={(item) => (
           <div
             css={css`
-              font-size: ${item.value};
+              ${euiFontSize(item.id, euiTheme)}
             `}
           >
-            Aa
+            The quick brown fox jumped over the blue moon to catch a snail
           </div>
         )}
       />

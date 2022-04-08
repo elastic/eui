@@ -7,28 +7,27 @@
  */
 
 import { CSSProperties } from 'react';
-import { computed, lineHeightFromBaseline } from '../../services/theme';
-import { _EuiThemeFontScale, FONT_SCALES } from './_typography';
-
-/**
- * NOTE: These were quick conversions of their Sass counterparts.
- *       They have yet to be used/tested.
- */
+import {
+  lineHeightFromBaseline,
+  fontSizeFromScale,
+} from '../../services/theme/typography';
+import { UseEuiTheme } from '../../services/theme/hooks';
+import { _EuiThemeFontScale } from './_typography';
 
 export type EuiThemeFontSize = {
-  [mapType in _EuiThemeFontScale]: {
-    fontSize: CSSProperties['fontSize'];
-    lineHeight: CSSProperties['lineHeight'];
-  };
+  fontSize: CSSProperties['fontSize'];
+  lineHeight: CSSProperties['lineHeight'];
 };
 
-export const fontSize: EuiThemeFontSize = FONT_SCALES.reduce((acc, elem) => {
-  acc[elem] = {
-    fontSize: computed(([scale]) => `${scale}rem`, [`font.scale.${elem}`]),
-    lineHeight: computed(
-      ([base, font]) => lineHeightFromBaseline(base, font, font.scale[elem]),
-      ['base', 'font']
-    ),
+/**
+ * Returns font-size and line-height
+ */
+export const euiFontSize = (
+  scale: _EuiThemeFontScale,
+  { base, font }: UseEuiTheme['euiTheme']
+): EuiThemeFontSize => {
+  return {
+    fontSize: fontSizeFromScale(base, font.scale, font.body.scale, scale),
+    lineHeight: lineHeightFromBaseline(base, font, font.scale[scale]),
   };
-  return acc;
-}, {} as EuiThemeFontSize);
+};
