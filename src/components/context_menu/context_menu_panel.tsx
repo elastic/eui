@@ -40,7 +40,6 @@ const titleSizeToClassNameMap = {
 export const SIZES = keysOf(titleSizeToClassNameMap);
 
 export interface EuiContextMenuPanelProps {
-  hasFocus?: boolean;
   initialFocusedItemIndex?: number;
   items?: ReactElement[];
   onClose?: NoArgCallback<void>;
@@ -89,7 +88,6 @@ interface State {
 
 export class EuiContextMenuPanel extends Component<Props, State> {
   static defaultProps: Partial<Props> = {
-    hasFocus: true,
     items: [],
   };
 
@@ -220,17 +218,13 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         return;
       }
 
-      // If this panel has lost focus, then none of its content should be focused.
-      if (!this.props.hasFocus) {
-        if (this.panel && this.panel.contains(document.activeElement)) {
-          (document.activeElement as HTMLElement).blur();
-        }
-        return;
-      }
-
       // Setting focus while transitioning causes the animation to glitch, so we have to wait
       // until it's finished before we focus anything.
       if (this.props.transitionType) {
+        // If the panel is transitioning, set focus to the panel so that users using
+        // arrow keys that are fast clickers don't accidentally get stranded focus
+        // or trigger keystrokes when it shouldn't
+        this.panel?.focus({ preventScroll: true });
         return;
       }
 
@@ -348,10 +342,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
   shouldComponentUpdate(nextProps: Props, nextState: State) {
     // Prevent calling `this.updateFocus()` below if we don't have to.
-    if (nextProps.hasFocus !== this.props.hasFocus) {
-      return true;
-    }
-
     if (nextProps.transitionType !== this.props.transitionType) {
       return true;
     }
@@ -429,7 +419,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       transitionDirection,
       onTransitionComplete,
       onUseKeyboardToNavigate,
-      hasFocus,
       items,
       watchedItemProps,
       initialFocusedItemIndex,

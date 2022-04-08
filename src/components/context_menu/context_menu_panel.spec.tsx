@@ -10,6 +10,7 @@
 
 import React from 'react';
 
+import { EuiContextMenu } from './context_menu';
 import { EuiContextMenuItem } from './context_menu_item';
 import { EuiContextMenuPanel } from './context_menu_panel';
 
@@ -34,15 +35,6 @@ describe('EuiContextMenuPanel', () => {
         </EuiContextMenuPanel>
       );
       cy.focused().should('have.attr', 'data-test-subj', 'button');
-    });
-
-    it('is not set on anything if hasFocus is false', () => {
-      cy.mount(
-        <EuiContextMenuPanel hasFocus={false}>
-          <button data-test-subj="button">Hello world</button>
-        </EuiContextMenuPanel>
-      );
-      cy.focused().should('not.exist');
     });
   });
 
@@ -114,6 +106,60 @@ describe('EuiContextMenuPanel', () => {
         cy.realPress('{leftarrow}').then(() => {
           expect(showPreviousPanelHandler).to.be.called;
         });
+      });
+
+      it('does not lose focus while using left/right arrow navigation between panels', () => {
+        const panels = [
+          {
+            id: 0,
+            title: 'First panel',
+            items: [
+              {
+                name: 'Go to second panel',
+                panel: 1,
+                'data-test-subj': 'itemA',
+              },
+            ],
+          },
+          {
+            id: 1,
+            title: 'Second panel',
+            items: [
+              {
+                name: 'Go to third panel',
+                panel: 2,
+                'data-test-subj': 'itemB',
+              },
+            ],
+            initialFocusedItemIndex: 0,
+          },
+          {
+            id: 2,
+            title: 'Third panel',
+            items: [
+              {
+                name: 'End',
+                'data-test-subj': 'itemC',
+              },
+            ],
+            initialFocusedItemIndex: 0,
+          },
+        ];
+        cy.mount(<EuiContextMenu panels={panels} initialPanelId={0} />);
+        cy.realPress('{downarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+        cy.realPress('{rightarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemB');
+        cy.realPress('{rightarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemC');
+
+        // Test extremely rapid left/right arrow usage
+        cy.repeatRealPress('{leftarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+        cy.repeatRealPress('{rightarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemC');
+        cy.repeatRealPress('{leftarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
       });
     });
 

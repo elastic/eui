@@ -559,7 +559,7 @@ exports[`EuiContextMenuPanel props transitionDirection previous with transitionT
 `;
 
 exports[`EuiContextMenuPanel updating items and content updates to items should not re-render if any items's watchedItemProps did not change 1`] = `
-"<EuiContextMenuPanel items={{...}} hasFocus={true}>
+"<EuiContextMenuPanel items={{...}}>
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex={-1} onAnimationEnd={[Function]}>
     <div>
       <EuiResizeObserver onResize={[Function: onResize]}>
@@ -590,7 +590,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
 `;
 
 exports[`EuiContextMenuPanel updating items and content updates to items should not re-render if any items's watchedItemProps did not change 2`] = `
-"<EuiContextMenuPanel items={{...}} hasFocus={true}>
+"<EuiContextMenuPanel items={{...}}>
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex={-1} onAnimationEnd={[Function]}>
     <div>
       <EuiResizeObserver onResize={[Function: onResize]}>
@@ -621,7 +621,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
 `;
 
 exports[`EuiContextMenuPanel updating items and content updates to items should re-render at all times when children exists 1`] = `
-"<EuiContextMenuPanel hasFocus={true} items={{...}}>
+"<EuiContextMenuPanel items={{...}}>
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex={-1} onAnimationEnd={[Function]}>
     <div>
       <EuiResizeObserver onResize={[Function: onResize]}>
@@ -635,7 +635,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
 `;
 
 exports[`EuiContextMenuPanel updating items and content updates to items should re-render at all times when children exists 2`] = `
-"<EuiContextMenuPanel hasFocus={true} items={{...}}>
+"<EuiContextMenuPanel items={{...}}>
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex={-1} onAnimationEnd={[Function]}>
     <div>
       <EuiResizeObserver onResize={[Function: onResize]}>
@@ -649,7 +649,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
 `;
 
 exports[`EuiContextMenuPanel updating items and content updates to items should re-render if any items's watchedItemProps did change 1`] = `
-"<EuiContextMenuPanel watchedItemProps={{...}} items={{...}} hasFocus={true}>
+"<EuiContextMenuPanel watchedItemProps={{...}} items={{...}}>
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex={-1} onAnimationEnd={[Function]}>
     <div>
       <EuiResizeObserver onResize={[Function: onResize]}>
@@ -680,7 +680,7 @@ exports[`EuiContextMenuPanel updating items and content updates to items should 
 `;
 
 exports[`EuiContextMenuPanel updating items and content updates to items should re-render if any items's watchedItemProps did change 2`] = `
-"<EuiContextMenuPanel watchedItemProps={{...}} items={{...}} hasFocus={true}>
+"<EuiContextMenuPanel watchedItemProps={{...}} items={{...}}>
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex={-1} onAnimationEnd={[Function]}>
     <div>
       <EuiResizeObserver onResize={[Function: onResize]}>

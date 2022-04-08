@@ -392,7 +392,6 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
             ? this.state.transitionDirection
             : undefined
         }
-        hasFocus={transitionType === 'in'}
         items={this.state.idToRenderedItemsMap[panelId]}
         initialFocusedItemIndex={
           this.state.isUsingKeyboardToNavigate
