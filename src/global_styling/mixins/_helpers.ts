@@ -9,7 +9,6 @@
 import { CSSProperties } from 'react';
 import { UseEuiTheme } from '../../services/theme';
 import { transparentize } from '../../services/color';
-import { mixinOverflowShadowStyles } from './_shadow';
 import { createStyleHookFromMixin } from '../utils';
 
 /**
@@ -78,6 +77,47 @@ export const euiScrollBarStyles = (
 export const useEuiScrollBar = createStyleHookFromMixin(euiScrollBarStyles);
 
 /**
+ * *INTERNAL*
+ * Overflow shadow masks for use in YScroll and XScroll helpers
+ */
+interface EuiOverflowShadowStyles {
+  direction?: 'y' | 'x';
+  side?: 'both' | 'start' | 'end';
+}
+const euiOverflowShadowStyles = (
+  { size }: UseEuiTheme['euiTheme'],
+  { direction: _direction, side: _side }: EuiOverflowShadowStyles = {}
+) => {
+  const direction = _direction || 'y';
+  const side = _side || 'both';
+  const hideHeight = `calc(${size.base} * 0.75 * 1.25)`;
+  const gradientStart = `
+  ${transparentize('red', 0.1)} 0%,
+  ${transparentize('red', 1)} ${hideHeight}
+  `;
+  const gradientEnd = `
+  ${transparentize('red', 1)} calc(100% - ${hideHeight}),
+  ${transparentize('red', 0.1)} 100%
+  `;
+  let gradient = '';
+  if (side) {
+    if (side === 'both') {
+      gradient = `${gradientStart}, ${gradientEnd}`;
+    } else if (side === 'start') {
+      gradient = `${gradientStart}`;
+    } else {
+      gradient = `${gradientEnd}`;
+    }
+  }
+
+  if (direction === 'y') {
+    return `mask-image: linear-gradient(to bottom, ${gradient});`;
+  } else {
+    return `mask-image: linear-gradient(to right, ${gradient});`;
+  }
+};
+
+/**
  * 1. Focus rings shouldn't be visible on scrollable regions, but a11y requires them to be focusable.
  *    Browser's supporting `:focus-visible` will still show outline on keyboard focus only.
  *    Others like Safari, won't show anything at all.
@@ -97,7 +137,7 @@ export const useEuiYScroll = createStyleHookFromMixin(euiYScroll);
 
 export const euiYScrollWithShadows = (euiTheme: UseEuiTheme['euiTheme']) => `
   ${euiYScroll(euiTheme)}
-  ${mixinOverflowShadowStyles(euiTheme, { direction: 'y' })}
+  ${euiOverflowShadowStyles(euiTheme, { direction: 'y' })}
 `;
 export const useEuiYScrollWithShadows = createStyleHookFromMixin(
   euiYScrollWithShadows
@@ -114,7 +154,7 @@ export const useEuiXScroll = createStyleHookFromMixin(euiXScroll);
 
 export const euiXScrollWithShadows = (euiTheme: UseEuiTheme['euiTheme']) => `
   ${euiXScroll(euiTheme)}
-  ${mixinOverflowShadowStyles(euiTheme, { direction: 'x' })}
+  ${euiOverflowShadowStyles(euiTheme, { direction: 'x' })}
 `;
 export const useEuiXScrollWithShadows = createStyleHookFromMixin(
   euiXScrollWithShadows
