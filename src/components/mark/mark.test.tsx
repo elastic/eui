@@ -21,18 +21,24 @@ describe('EuiMark', () => {
       render(<EuiMark {...requiredProps}>Marked</EuiMark>)
     ).toMatchSnapshot();
   });
-});
 
-describe('No screen reader helper text', () => {
-  renderWithStyles(<EuiMark>Marked</EuiMark>);
-
-  test('is rendered without CSS :before and :after text', () => {
+  test('is rendered without CSS :before', () => {
     expect(
       render(
         <EuiMark hasScreenReaderHelpText={false} {...requiredProps}>
           Marked
         </EuiMark>
       )
-    ).toMatchSnapshot();
+    ).not.toHaveStyleRule('content', "' [highlight start] '");
+  });
+
+  test('is rendered without CSS :after', () => {
+    expect(
+      render(
+        <EuiMark hasScreenReaderHelpText={false} {...requiredProps}>
+          Marked
+        </EuiMark>
+      )
+    ).not.toHaveStyleRule('content', "' [highlight end] '");
   });
 });
