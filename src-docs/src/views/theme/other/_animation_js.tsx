@@ -61,6 +61,7 @@ export default ({
             value: animation[speed],
           };
         })}
+        tokenColumnProps={{ width: 'auto' }}
         sampleColumnProps={{ width: '80px', align: 'left' }}
         render={(item) => (
           <div className={'guideSass__animRow'}>
@@ -110,8 +111,8 @@ export default ({
           };
         })}
         sampleColumnProps={{ width: '80px', align: 'left' }}
-        typeColumnProps={{ width: '70px' }}
         valueColumnProps={{ width: '260px' }}
+        tokenColumnProps={{ width: 'auto' }}
         render={(item) => (
           <div className={'guideSass__animRow'}>
             <div className={'guideSass__animParent'}>
