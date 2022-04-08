@@ -34,22 +34,15 @@
 
 // Similar to shadow medium but without the bottom depth. Useful for popovers
 // that drop UP rather than DOWN.
-@mixin euiBottomShadowFlat($color: $euiShadowColor, $opacity: 0) {
+@mixin euiBottomShadowFlat($color: $euiShadowColor) {
   box-shadow:
     0 0 .8px rgba($color, shadowOpacity(.06)),
     0 0 2px rgba($color, shadowOpacity(.04)),
     0 0 5px rgba($color, shadowOpacity(.04)),
     0 0 17px rgba($color, shadowOpacity(.03));
-
-  @if ($opacity > 0) {
-    @warn 'The $opacity variable of euiBottomShadowFlat() will be deprecated in a future version of EUI.';
-  }
 }
 
-@mixin euiBottomShadow(
-  $color: $euiShadowColor,
-  $opacity: 0,
-) {
+@mixin euiBottomShadow($color: $euiShadowColor) {
   box-shadow:
     0 1px 5px rgba($color, shadowOpacity(.1)),
     0 3.6px 13px rgba($color, shadowOpacity(.07)),
@@ -60,7 +53,6 @@
 @mixin euiBottomShadowLarge(
   $color: $euiShadowColor,
   $opacity: 0,
-  $adjustBorders: false, // Deprecated in Amsterdam but left for BWC
   $reverse: false
 ) {
   @if ($reverse) {
@@ -82,10 +74,6 @@
     0 3.6px 13px rgba($color, shadowOpacity(.07)),
     0 8.4px 23px rgba($color, shadowOpacity(.06)),
     0 23px 35px rgba($color, shadowOpacity(.05));
-}
-
-@mixin euiSlightShadowActive($color: $euiShadowColor, $opacity: .3) {
-  @include euiSlightShadowHover($color, $opacity);
 }
 
 @mixin euiOverflowShadow($direction: 'y', $side: 'both') {

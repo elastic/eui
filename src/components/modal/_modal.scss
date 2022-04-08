@@ -8,7 +8,7 @@
 .euiModal {
   border: $euiBorderThin;
   // This mixin overwrites some of the border above
-  @include euiBottomShadowLarge($adjustBorders: true); // sass-lint:disable-line mixins-before-declarations
+  @include euiBottomShadowLarge; // sass-lint:disable-line mixins-before-declarations
   display: flex; /* 1 */
 
   position: relative;
@@ -131,7 +131,7 @@
     border: none;
 
     &.euiModal--confirmation {
-      @include euiBottomShadowLarge($euiShadowColor, $reverse: true);
+      @include euiBottomShadowLarge($reverse: true);
       top: auto;
     }
 
