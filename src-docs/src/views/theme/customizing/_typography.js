@@ -200,8 +200,8 @@ export default ({ onThemeUpdate }) => {
         <EuiText size="s" grow={false}>
           <p>
             This typographic scale is used to calculate the font sizes which are
-            multiplied against the <EuiCode>base</EuiCode> value and convertd to
-            pixel and/or rem values.
+            multiplied against the <EuiCode>base</EuiCode> value and converted
+            to pixel and/or rem values.
           </p>
         </EuiText>
 
@@ -225,6 +225,36 @@ export default ({ onThemeUpdate }) => {
             groupProps={{ alignItems: 'center' }}
           />
         ))}
+
+        <EuiSpacer />
+
+        <EuiText size="s" grow={false}>
+          <p>
+            The <EuiCode>body.scale</EuiCode> value determines the base
+            font-size at which every font-size is calculated against.
+          </p>
+        </EuiText>
+
+        <EuiSpacer />
+
+        <ThemeValue
+          property="font.body"
+          // type={scaleProps[key]}
+          name={'scale'}
+          value={fontClone.body.scale}
+          buttonStyle={css`
+            font-size: ${scaleClone.scale[fontClone.body.scale] *
+            euiTheme.base}px;
+            min-width: calc(${euiTheme.size.xxl} * 3);
+            text-align: left;
+          `}
+          example={`${
+            scaleClone.scale[fontClone.body.scale] * euiTheme.base
+          }px`}
+          // onUpdate={(value) => updateScale(key, value)}
+          // numberProps={{ step: 0.1, style: { width: '6em' } }}
+          groupProps={{ alignItems: 'center' }}
+        />
       </EuiPanel>
     </div>
   );

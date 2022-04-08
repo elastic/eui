@@ -140,6 +140,29 @@ export const FontScaleJS = () => {
 
   return (
     <>
+      <ThemeExample
+        title={'Functions'}
+        description={
+          <p>
+            Font sizing is provided through React hooks and not the global
+            theme. It returns both the <EuiCode>font-size</EuiCode> and{' '}
+            <EuiCode>line-height</EuiCode> for the provided{' '}
+            <EuiCode>scale</EuiCode>. But you can still grab an individual
+            property via the returned object.
+          </p>
+        }
+        example={
+          <p
+            css={css`
+              ${euiFontSize('l', euiTheme, measurement)}
+            `}
+          >
+            The quick brown fox jumped over the blue moon to catch a snail
+          </p>
+        }
+        snippet="euiFontSize('l');"
+      />
+      <EuiSpacer />
       <EuiSwitch
         label="Show pixels"
         checked={measurement === 'px'}
