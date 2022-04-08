@@ -7,7 +7,6 @@
  */
 
 import { CSSProperties } from 'react';
-import chroma from 'chroma-js';
 import { UseEuiTheme } from '../../services/theme';
 import { transparentize } from '../../services/color';
 import { mixinOverflowShadowStyles } from './_shadow';
@@ -77,42 +76,6 @@ export const euiScrollBarStyles = (
   `;
 };
 export const useEuiScrollBar = createStyleHookFromMixin(euiScrollBarStyles);
-
-export interface MixinInnerBorderStyles {
-  type?: 'light' | 'dark';
-  borderRadius?: number;
-  alpha?: number;
-}
-// Useful border shade when dealing with images of unknown color.
-export const mixinInnerBorderStyles = (
-  { colors }: UseEuiTheme['euiTheme'],
-  { type = 'dark', borderRadius = 0, alpha = 0.1 }: MixinInnerBorderStyles = {}
-) => {
-  const color = chroma(
-    type === 'dark' ? colors.darkestShade : colors.emptyShade
-  )
-    .alpha(alpha)
-    .css();
-
-  return `
-    position: relative;
-
-    &:after {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: ${borderRadius};
-      content: '';
-      pointer-events: none;
-      border: 1px solid ${color};
-    }
-  `;
-};
-export const useInnerBorderStyles = createStyleHookFromMixin(
-  mixinInnerBorderStyles
-);
 
 /**
  * 1. Focus rings shouldn't be visible on scrollable regions, but a11y requires them to be focusable.

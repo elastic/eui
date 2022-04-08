@@ -5,17 +5,12 @@ import {
   EuiCode,
   EuiSpacer,
   EuiPanel,
-  EuiFlexGroup,
-  useEuiXScrollWithShadows,
-  useEuiTheme,
   EuiLink,
   useEuiYScrollWithShadows,
 } from '../../../../src';
 import { ThemeExample } from '../theme/_components/_theme_example';
 
 export default () => {
-  const { euiTheme } = useEuiTheme();
-
   const scrollingContent = (
     <>
       <EuiPanel className="guideSass__shadow" color="primary" />
