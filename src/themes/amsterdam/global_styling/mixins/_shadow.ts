@@ -147,7 +147,7 @@ export const useEuiSlightShadowHover = createStyleHookFromMixin(
  * Similar to shadow medium but without the bottom depth.
  * Useful for popovers that drop UP rather than DOWN.
  */
-export const euiBottomShadowFlat = (
+export const euiShadowFlat = (
   { colors }: UseEuiTheme['euiTheme'],
   color: EuiShadowCustomColor['color'] = undefined,
   colorMode: UseEuiTheme['colorMode']
@@ -161,9 +161,7 @@ box-shadow:
   0 0 17px ${getShadowColor(_color, 0.03, colorMode)};
 `;
 };
-export const useEuiBottomShadowFlat = createStyleHookFromMixin(
-  euiBottomShadowFlat
-);
+export const useEuiShadowFlat = createStyleHookFromMixin(euiShadowFlat);
 
 /**
  * One hook to rule them all
