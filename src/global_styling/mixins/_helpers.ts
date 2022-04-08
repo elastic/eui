@@ -164,6 +164,8 @@ export const useXScrollWithShadowsStyles = createStyleHookFromMixin(
   mixinXScrollWithShadowsStyles
 );
 
+// TODO: Conver EuiScreenReaderOnly to Emotion then tell consumers to
+// use the `euiScreenReaderOnlyStyles` export instead.
 // Hiding elements offscreen to only be read by screen reader
 export const mixinScreenReaderOnlyStyles = () => `
   position: absolute;
@@ -174,11 +176,3 @@ export const mixinScreenReaderOnlyStyles = () => `
   overflow: hidden;
 `;
 export const useScreenReaderOnlyStyles = mixinScreenReaderOnlyStyles;
-
-// Doesn't have reduced motion turned on
-export const mixinCanAnimateStyles = (content: string) => `
-  @media screen and (prefers-reduced-motion: no-preference) {
-    ${content}
-  }
-`;
-export const useCanAnimateStyles = mixinCanAnimateStyles;
