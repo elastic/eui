@@ -1,16 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { css } from '@emotion/react';
 import {
-  EuiCode,
-  EuiFlexGroup,
-  EuiLink,
   EuiPanel,
   EuiSpacer,
-  EuiText,
   useEuiTheme,
-  useXScrollWithShadowsStyles,
-  useYScrollWithShadowsStyles,
   _EuiShadowSizesDescriptions,
   _EuiShadowSizes,
   SHADOW_SIZE,
@@ -193,101 +186,6 @@ export default () => {
           )
         }
       />
-
-      <ThemeExample
-        title={<code>useYScrollWithShadowsStyles();</code>}
-        description={
-          <>
-            <p>
-              Primarily used in modals and flyouts, the overflow shadow masks
-              the edges to indicate there is more content.
-            </p>
-            <p>
-              It requires a wrapping element to control the height with{' '}
-              <EuiCode>overflow-y: hidden;</EuiCode> and the content to use
-              <EuiCode>useYScrollWithShadows();</EuiCode> hook or use the{' '}
-              <Link to="/utilities/css-utility-classes">CSS utility class</Link>{' '}
-              <EuiCode>.eui-yScrollWithShadows</EuiCode>.
-            </p>
-          </>
-        }
-        examplePanel={{
-          paddingSize: 'none',
-        }}
-        example={
-          <div
-            css={css`
-              overflow-y: hidden;
-              height: 160px;
-            `}
-          >
-            <div
-              css={css`
-                ${useYScrollWithShadowsStyles()}
-                padding: ${euiTheme.size.base};
-              `}
-            >
-              <EuiPanel className="guideSass__shadow" color="primary" />
-              <EuiPanel className="guideSass__shadow" color="primary" />
-              <EuiPanel className="guideSass__shadow" color="primary" />
-            </div>
-          </div>
-        }
-        snippet={'useYScrollWithShadowsStyles()'}
-        snippetLanguage="scss"
-      />
-
-      <ThemeExample
-        title={<code>useXScrollWithShadowsStyles();</code>}
-        description={
-          <>
-            <p>
-              The horizontal equivalent should be used sparingly and usually
-              only in full-height layouts or a grid of items.
-            </p>
-            <p>
-              You may want to add at least <EuiCode>euiTheme.size.base</EuiCode>
-              &apos;s worth of padding to the sides of your content so the mask
-              doesn&apos;t overlay it.
-            </p>
-          </>
-        }
-        examplePanel={{
-          paddingSize: 'none',
-        }}
-        example={
-          <div
-            css={css`
-              ${useXScrollWithShadowsStyles()}
-              padding: ${euiTheme.size.base};
-            `}
-          >
-            <EuiFlexGroup
-              css={css`
-                width: 150%;
-              `}
-              responsive={false}
-            >
-              <EuiPanel className="guideSass__shadow" color="primary" />
-              <EuiPanel className="guideSass__shadow" color="primary" />
-              <EuiPanel className="guideSass__shadow" color="primary" />
-            </EuiFlexGroup>
-          </div>
-        }
-        snippet={'useXScrollWithShadowsStyles();'}
-        snippetLanguage="scss"
-      />
-
-      <EuiText>
-        <p>
-          If you need to further customize the position or side of the overflow
-          shadow use the <EuiCode>useOverflowShadowStyles</EuiCode>{' '}
-          <EuiLink href="https://github.com/elastic/eui/blob/main/src/global_styling/mixins/_shadow.ts">
-            hook
-          </EuiLink>
-          .
-        </p>
-      </EuiText>
       <EuiSpacer size="xl" />
     </>
   );

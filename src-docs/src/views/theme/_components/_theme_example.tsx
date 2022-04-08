@@ -16,7 +16,7 @@ import {
 
 import { GuideSectionExample } from '../../../components/guide_section/guide_section_parts/guide_section_example';
 
-type ThemeExample = {
+export type ThemeExample = {
   color?: _EuiSplitPanelOuterProps['color'];
   title?: ReactNode;
   description?: ReactNode;
@@ -72,6 +72,7 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
             {description}
           </EuiText>
         </EuiSplitPanel.Inner>
+
         {(example || snippet) && (
           <EuiSplitPanel.Inner>
             <EuiSplitPanel.Outer

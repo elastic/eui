@@ -17,7 +17,7 @@ import { createStyleHookFromMixin } from '../utils';
  * Set scroll bar appearance on Chrome (and firefox).
  * All parameters are optional and default to specific global settings.
  */
-export interface MixinScrollBarStyles {
+export interface EuiScrollBarStyles {
   thumbColor?: CSSProperties['backgroundColor'];
   trackColor?: CSSProperties['backgroundColor'];
   /**
@@ -34,7 +34,7 @@ export interface MixinScrollBarStyles {
    */
   corner?: CSSProperties['borderWidth'];
 }
-export const mixinScrollBarStyles = (
+export const euiScrollBarStyles = (
   { colors, size }: UseEuiTheme['euiTheme'],
   {
     thumbColor: _thumbColor,
@@ -42,7 +42,7 @@ export const mixinScrollBarStyles = (
     width = 'thin',
     size: _size,
     corner: _corner,
-  }: MixinScrollBarStyles = {}
+  }: EuiScrollBarStyles = {}
 ) => {
   // Set defaults from theme
   const thumbColor = _thumbColor || transparentize(colors.darkShade, 0.5);
@@ -76,9 +76,7 @@ export const mixinScrollBarStyles = (
     ${firefoxSupport}
   `;
 };
-export const useScrollBarStyles = createStyleHookFromMixin(
-  mixinScrollBarStyles
-);
+export const useEuiScrollBar = createStyleHookFromMixin(euiScrollBarStyles);
 
 export interface MixinInnerBorderStyles {
   type?: 'light' | 'dark';
@@ -122,9 +120,9 @@ export const useInnerBorderStyles = createStyleHookFromMixin(
  *    Others like Safari, won't show anything at all.
  */
 
-// Just overflow and scrollbars
-export const mixinYScrollStyles = (euiTheme: UseEuiTheme['euiTheme']) => `
-  ${mixinScrollBarStyles(euiTheme)}
+// TODO: How do we use Emotion to output the CSS class utilities instead?
+export const euiYScroll = (euiTheme: UseEuiTheme['euiTheme']) => `
+  ${euiScrollBarStyles(euiTheme)}
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
@@ -132,34 +130,29 @@ export const mixinYScrollStyles = (euiTheme: UseEuiTheme['euiTheme']) => `
     outline: none; /* 1 */
   }
 `;
-export const useYScrollStyles = createStyleHookFromMixin(mixinYScrollStyles);
+export const useEuiYScroll = createStyleHookFromMixin(euiYScroll);
 
-export const mixinXScrollStyles = (euiTheme: UseEuiTheme['euiTheme']) => `
-  ${mixinScrollBarStyles(euiTheme)}
+export const euiYScrollWithShadows = (euiTheme: UseEuiTheme['euiTheme']) => `
+  ${euiYScroll(euiTheme)}
+  ${mixinOverflowShadowStyles(euiTheme, { direction: 'y' })}
+`;
+export const useEuiYScrollWithShadows = createStyleHookFromMixin(
+  euiYScrollWithShadows
+);
+
+export const euiXScroll = (euiTheme: UseEuiTheme['euiTheme']) => `
+  ${euiScrollBarStyles(euiTheme)}
   overflow-x: auto;
   &:focus {
     outline: none; /* 1 */
   }
 `;
-export const useXScrollStyles = createStyleHookFromMixin(mixinXScrollStyles);
+export const useEuiXScroll = createStyleHookFromMixin(euiXScroll);
 
-// // The full overflow with shadow
-export const mixinYScrollWithShadowsStyles = (
-  euiTheme: UseEuiTheme['euiTheme']
-) => `
-  ${mixinYScrollStyles(euiTheme)}
-  ${mixinOverflowShadowStyles(euiTheme, { direction: 'y' })}
-`;
-export const useYScrollWithShadowsStyles = createStyleHookFromMixin(
-  mixinYScrollWithShadowsStyles
-);
-
-export const mixinXScrollWithShadowsStyles = (
-  euiTheme: UseEuiTheme['euiTheme']
-) => `
-  ${mixinXScrollStyles(euiTheme)}
+export const euiXScrollWithShadows = (euiTheme: UseEuiTheme['euiTheme']) => `
+  ${euiXScroll(euiTheme)}
   ${mixinOverflowShadowStyles(euiTheme, { direction: 'x' })}
 `;
-export const useXScrollWithShadowsStyles = createStyleHookFromMixin(
-  mixinXScrollWithShadowsStyles
+export const useEuiXScrollWithShadows = createStyleHookFromMixin(
+  euiXScrollWithShadows
 );
