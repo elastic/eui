@@ -12,19 +12,15 @@ import {
   EuiThemeColorModeStandard,
 } from '../../../../services';
 
-// Use a function to determine shadow opacity based
+// Create a CSS color value using whose opacity is determined based
 // on either a light or dark theme. We use a multiplier
 // of 1 for light themes and 2.5 for dark themes
-export const shadowOpacity = (
-  opacity: number,
-  colorMode: EuiThemeColorModeStandard
-) => {
-  return colorMode === COLOR_MODES_STANDARD.dark ? opacity * 2.5 : opacity * 1;
-};
-
-// Create a CSS color value using `shadowOpacity`
 export const getShadowColor = (
   color: string,
   opacity: number,
   colorMode: EuiThemeColorModeStandard
-) => chroma(color).alpha(shadowOpacity(opacity, colorMode)).css();
+) => {
+  const themeOpacity =
+    colorMode === COLOR_MODES_STANDARD.dark ? opacity * 2.5 : opacity * 1;
+  return chroma(color).alpha(themeOpacity).css();
+};

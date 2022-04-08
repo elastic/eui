@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/react';
 import {
@@ -9,74 +9,82 @@ import {
   EuiSpacer,
   EuiText,
   useEuiTheme,
-  keysOf,
   useXScrollWithShadowsStyles,
   useYScrollWithShadowsStyles,
+  _EuiShadowSizesDescriptions,
+  _EuiShadowSizes,
+  SHADOW_SIZE,
+  EuiSwitch,
+  EuiTextAlign,
 } from '../../../../../src';
 
 // TODO: Update imports
 import {
-  useSlightShadowStyles,
-  mixinSlightShadowStyles,
-  // useBottomShadowSmallStyles,
-  mixinBottomShadowSmallStyles,
-  // useBottomShadowMediumStyles,
-  mixinBottomShadowMediumStyles,
-  // useBottomShadowStyles,
-  mixinBottomShadowStyles,
-  // useBottomShadowLargeStyles,
-  mixinBottomShadowLargeStyles,
-  // useBottomShadowFlatStyles,
-  mixinBottomShadowFlatStyles,
+  useEuiShadow,
+  useEuiBottomShadowFlat,
 } from '../../../../../src/themes/amsterdam/global_styling/mixins/_shadow';
 
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 
-const shadows = {
-  euiSlightShadow: {
-    description: 'Very subtle shadow used on small components.',
-    hook: 'useSlightShadowStyles',
-    mixin: 'mixinSlightShadowStyles',
-    fn: mixinSlightShadowStyles,
-  },
-  euiBottomShadowSmall: {
-    description:
-      'Adds subtle depth, usually used in conjunction with a border.',
-    hook: 'useBottomShadowSmallStyles',
-    mixin: 'mixinBottomShadowSmallStyles',
-    fn: mixinBottomShadowSmallStyles,
-  },
-  euiBottomShadowMedium: {
-    description: 'Used on small sized portalled content like popovers.',
-    hook: 'useBottomShadowMediumStyles',
-    mixin: 'mixinBottomShadowMediumStyles',
-    fn: mixinBottomShadowMediumStyles,
-  },
-  euiBottomShadow: {
-    description: 'Primary shadow used in most cases to add visible depth.',
-    hook: 'useBottomShadowStyles',
-    mixin: 'mixinBottomShadowStyles',
-    fn: mixinBottomShadowStyles,
-  },
-  euiBottomShadowLarge: {
-    description:
-      'Very large shadows used for large portalled style containers like modals and flyouts.',
-    hook: 'useBottomShadowLargeStyles',
-    mixin: 'mixinBottomShadowLargeStyles',
-    fn: mixinBottomShadowLargeStyles,
-  },
-  euiBottomShadowFlat: {
-    description:
-      'Subtle shadow on all sides but is usually used for popovers that pop in the up direction.',
-    hook: 'useBottomShadowFlatStyles',
-    mixin: 'mixinBottomShadowFlatStyles',
-    fn: mixinBottomShadowFlatStyles,
-  },
+const RenderShadow = ({
+  size,
+  color,
+}: {
+  size: _EuiShadowSizes;
+  color?: boolean;
+}) => {
+  const customColor = color ? 'red' : undefined;
+  const style = useEuiShadow(size, customColor);
+  return (
+    <div
+      className="guideSass__shadow"
+      css={css`
+        ${style}
+      `}
+    />
+  );
+};
+
+const RenderFlatShadow = ({ color }: { color?: boolean }) => {
+  const customColor = color ? 'red' : undefined;
+  const style = useEuiBottomShadowFlat(customColor);
+  return (
+    <div
+      className="guideSass__shadow"
+      css={css`
+        ${style}
+      `}
+    />
+  );
 };
 
 export default () => {
-  const { euiTheme, colorMode } = useEuiTheme();
+  const { euiTheme } = useEuiTheme();
+  const [customColor, setCustomColor] = useState(false);
+
+  const shadowItems = SHADOW_SIZE.map((shadow) => {
+    return {
+      id: shadow,
+      token: customColor
+        ? `useEuiShadow('${shadow}', 'red');`
+        : `useEuiShadow('${shadow}');`,
+      description: _EuiShadowSizesDescriptions[shadow],
+    };
+  });
+
+  const allShadows = shadowItems.concat([
+    {
+      // @ts-ignore TODO
+      id: 'flat',
+      token: customColor
+        ? "useEuiBottomShadowFlat('red');"
+        : 'useEuiBottomShadowFlat();',
+      description:
+        'Similar to shadow medium but without the bottom depth. Useful for popovers that drop UP rather than DOWN.',
+    },
+  ]);
+
   return (
     <>
       <ThemeExample
@@ -98,29 +106,40 @@ export default () => {
           color: 'subdued',
         }}
         example={
-          <div className="guideSass__shadow" css={css(useSlightShadowStyles())}>
-            <strong>Works best on differently shaded backgrounds.</strong>
+          <div className="guideSass__shadow" css={css(useEuiShadow())}>
+            <strong>
+              Shadows work best on differently shaded backgrounds.
+            </strong>
           </div>
         }
-        snippet={'useSlightShadowStyles();'}
-        snippetLanguage="scss"
+        snippet={'css(useEuiShadow())'}
+        snippetLanguage="tsx"
       />
 
+      <EuiTextAlign textAlign="right">
+        <EuiSwitch
+          label="Show with custom color"
+          checked={customColor}
+          onChange={(e) => setCustomColor(e.target.checked)}
+        />
+      </EuiTextAlign>
+
+      <EuiSpacer />
+
       <ThemeValuesTable
-        items={keysOf(shadows).map((shadow) => {
-          return {
-            id: shadow,
-            token: `${shadows[shadow].hook}();`,
-            styleFn: shadows[shadow].fn,
-            description: shadows[shadow].description,
-          };
-        })}
-        render={(item) => (
-          <div
-            className="guideSass__shadow"
-            css={css(item.styleFn!(euiTheme, {}, colorMode))}
-          />
-        )}
+        valign="middle"
+        items={allShadows}
+        tokenColumnProps={{ name: 'Hook' }}
+        render={(item) =>
+          item.id === 'flat' ? (
+            <RenderFlatShadow color={customColor} />
+          ) : (
+            <RenderShadow
+              size={item.id as _EuiShadowSizes}
+              color={customColor}
+            />
+          )
+        }
       />
 
       <ThemeExample

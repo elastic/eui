@@ -6,19 +6,24 @@
  * Side Public License, v 1.
  */
 
-import { UseEuiTheme } from '../../../../services/theme';
+import { useEuiTheme, UseEuiTheme } from '../../../../services/theme';
 import { getShadowColor } from '../functions';
 import { createStyleHookFromMixin } from '../../../../global_styling/utils';
+import { _EuiShadowSizes } from '../../../../global_styling/mixins/_shadow';
 
 /**
- * slightShadow
+ * Very subtle shadow used on small components, ya heard the type!
  */
-export interface MixinSlightShadowStyles {
+export interface EuiShadowCustomColor {
   color?: string;
 }
-export const mixinSlightShadowStyles = (
+
+/**
+ * Very subtle shadow used on small components, ya heard!
+ */
+export const euiSlightShadow = (
   { colors }: UseEuiTheme['euiTheme'],
-  { color: _color }: MixinSlightShadowStyles = {},
+  { color: _color }: EuiShadowCustomColor = {},
   colorMode: UseEuiTheme['colorMode']
 ) => {
   const color = _color || colors.shadow;
@@ -28,19 +33,14 @@ box-shadow:
   0 2.3px 2px ${getShadowColor(color, 0.03, colorMode)};
 `;
 };
-export const useSlightShadowStyles = createStyleHookFromMixin(
-  mixinSlightShadowStyles
-);
+export const useEuiSlightShadow = createStyleHookFromMixin(euiSlightShadow);
 
 /**
  * bottomShadowSmall
  */
-export interface MixinBottomShadowSmallStyles {
-  color?: string;
-}
-export const mixinBottomShadowSmallStyles = (
+export const euiBottomShadowSmall = (
   { colors }: UseEuiTheme['euiTheme'],
-  { color: _color }: MixinBottomShadowSmallStyles = {},
+  { color: _color }: EuiShadowCustomColor = {},
   colorMode: UseEuiTheme['colorMode']
 ) => {
   const color = _color || colors.shadow;
@@ -51,19 +51,16 @@ box-shadow:
   0 4.5px 10px ${getShadowColor(color, 0.05, colorMode)};
 `;
 };
-export const useBottomShadowSmallStyles = createStyleHookFromMixin(
-  mixinBottomShadowSmallStyles
+export const useEuiBottomShadowSmall = createStyleHookFromMixin(
+  euiBottomShadowSmall
 );
 
 /**
  * bottomShadowMedium
  */
-export interface MixinBottomShadowMediumStyles {
-  color?: string;
-}
-export const mixinBottomShadowMediumStyles = (
+export const euiBottomShadowMedium = (
   { colors }: UseEuiTheme['euiTheme'],
-  { color: _color }: MixinBottomShadowSmallStyles = {},
+  { color: _color }: EuiShadowCustomColor = {},
   colorMode: UseEuiTheme['colorMode']
 ) => {
   const color = _color || colors.shadow;
@@ -75,49 +72,16 @@ box-shadow:
   0 15px 15px -1px ${getShadowColor(color, 0.04, colorMode)};
 `;
 };
-export const useBottomShadowMediumStyles = createStyleHookFromMixin(
-  mixinBottomShadowMediumStyles
-);
-
-/**
- * bottomShadowFlat
- *
- * Similar to shadow medium but without the bottom depth.
- * Useful for popovers that drop UP rather than DOWN.
- */
-export interface MixinBottomShadowFlatStyles {
-  color?: string;
-}
-export const mixinBottomShadowFlatStyles = (
-  { colors }: UseEuiTheme['euiTheme'],
-  { color: _color }: MixinBottomShadowSmallStyles = {},
-  colorMode: UseEuiTheme['colorMode']
-) => {
-  const color = _color || colors.shadow;
-  return `
-box-shadow:
-  0 0 .8px ${getShadowColor(color, 0.06, colorMode)},
-  0 0 2px ${getShadowColor(color, 0.04, colorMode)},
-  0 0 5px ${getShadowColor(color, 0.04, colorMode)},
-  0 0 17px ${getShadowColor(color, 0.03, colorMode)};
-`;
-};
-export const useBottomShadowFlatStyles = createStyleHookFromMixin(
-  mixinBottomShadowFlatStyles
+export const useEuiBottomShadowMedium = createStyleHookFromMixin(
+  euiBottomShadowMedium
 );
 
 /**
  * bottomShadow
- *
- * adjustBorder allows the border color to match the drop shadow better so that there's better
- * distinction between element bounds and the shadow (crisper borders)
  */
-export interface MixinBottomShadowStyles {
-  color?: string;
-}
-export const mixinBottomShadowStyles = (
+export const euiBottomShadow = (
   { colors }: UseEuiTheme['euiTheme'],
-  { color: _color }: MixinBottomShadowStyles = {},
+  { color: _color }: EuiShadowCustomColor = {},
   colorMode: UseEuiTheme['colorMode']
 ) => {
   const color = _color || colors.shadow;
@@ -130,20 +94,17 @@ box-shadow:
   0 23px 35px ${getShadowColor(color, 0.05, colorMode)};
 `;
 };
-export const useBottomShadowStyles = createStyleHookFromMixin(
-  mixinBottomShadowStyles
-);
+export const useEuiBottomShadow = createStyleHookFromMixin(euiBottomShadow);
 
 /**
  * bottomShadowLarge
  */
-export interface MixinBottomShadowLargeStyles {
-  color?: string;
+export interface EuiBottomShadowLarge extends EuiShadowCustomColor {
   reverse?: boolean;
 }
-export const mixinBottomShadowLargeStyles = (
+export const euiBottomShadowLarge = (
   { colors }: UseEuiTheme['euiTheme'],
-  { color: _color, reverse }: MixinBottomShadowLargeStyles = {},
+  { color: _color, reverse }: EuiBottomShadowLarge = {},
   colorMode: UseEuiTheme['colorMode']
 ) => {
   const color = _color || colors.shadow;
@@ -155,19 +116,16 @@ box-shadow:
   0 ${reverse ? '-' : ''}21.8px 43px ${getShadowColor(color, 0.08, colorMode)};
 `;
 };
-export const useBottomShadowLargeStyles = createStyleHookFromMixin(
-  mixinBottomShadowLargeStyles
+export const useEuiBottomShadowLarge = createStyleHookFromMixin(
+  euiBottomShadowLarge
 );
 
 /**
  * slightShadowHover
  */
-export interface MixinSlightShadowHoverStyles {
-  color?: string;
-}
-export const mixinSlightShadowHoverStyles = (
+export const euiSlightShadowHover = (
   { colors }: UseEuiTheme['euiTheme'],
-  { color: _color }: MixinSlightShadowHoverStyles = {},
+  { color: _color }: EuiShadowCustomColor = {},
   colorMode: UseEuiTheme['colorMode']
 ) => {
   const color = _color || colors.shadow;
@@ -179,12 +137,62 @@ box-shadow:
   0 23px 35px ${getShadowColor(color, 0.05, colorMode)};
 `;
 };
-export const useSlightShadowHoverStyles = createStyleHookFromMixin(
-  mixinSlightShadowHoverStyles
+export const useEuiSlightShadowHover = createStyleHookFromMixin(
+  euiSlightShadowHover
 );
 
 /**
- * slightShadowActive
+ * bottomShadowFlat
+ *
+ * Similar to shadow medium but without the bottom depth.
+ * Useful for popovers that drop UP rather than DOWN.
  */
-export const mixinSlightShadowActiveStyles = mixinSlightShadowHoverStyles;
-export const useSlightShadowActiveStyles = useSlightShadowHoverStyles;
+export const euiBottomShadowFlat = (
+  { colors }: UseEuiTheme['euiTheme'],
+  color: EuiShadowCustomColor['color'] = undefined,
+  colorMode: UseEuiTheme['colorMode']
+) => {
+  const _color = color || colors.shadow;
+  return `
+box-shadow:
+  0 0 .8px ${getShadowColor(_color, 0.06, colorMode)},
+  0 0 2px ${getShadowColor(_color, 0.04, colorMode)},
+  0 0 5px ${getShadowColor(_color, 0.04, colorMode)},
+  0 0 17px ${getShadowColor(_color, 0.03, colorMode)};
+`;
+};
+export const useEuiBottomShadowFlat = createStyleHookFromMixin(
+  euiBottomShadowFlat
+);
+
+/**
+ * One hook to rule them all
+ */
+export const useEuiShadow = (
+  size: _EuiShadowSizes = 'l',
+  color: EuiShadowCustomColor['color'] = undefined
+) => {
+  const { euiTheme, colorMode } = useEuiTheme();
+
+  switch (size) {
+    case 'xs':
+      return euiSlightShadow(euiTheme, { color }, colorMode);
+      break;
+    case 's':
+      return euiBottomShadowSmall(euiTheme, { color }, colorMode);
+      break;
+    case 'm':
+      return euiBottomShadowMedium(euiTheme, { color }, colorMode);
+      break;
+    case 'l':
+      return euiBottomShadow(euiTheme, { color }, colorMode);
+      break;
+    case 'xl':
+      return euiBottomShadowLarge(euiTheme, { color }, colorMode);
+      break;
+
+    default:
+      console.warn('Please provide a valid size option to useEuiShadow');
+      break;
+  }
+};
