@@ -131,7 +131,7 @@
     border: none;
 
     &.euiModal--confirmation {
-      @include euiBottomShadowLarge($euiShadowColorLarge, $reverse: true);
+      @include euiBottomShadowLarge($euiShadowColor, $reverse: true);
       top: auto;
     }
 

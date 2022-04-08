@@ -1,5 +1,5 @@
 .euiBottomBar {
-  @include euiBottomShadowFlat($euiShadowColorLarge);
+  @include euiBottomShadowFlat($euiShadowColor);
   background: $euiHeaderDarkBackgroundColor;
   color: $euiColorGhost;
 

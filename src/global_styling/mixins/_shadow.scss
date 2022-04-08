@@ -3,83 +3,85 @@
 
 // sass-lint:disable no-color-literals, no-color-keywords, indentation, quotes
 
-@mixin euiSlightShadow($color: $euiShadowColor, $opacity: .3) {
-  box-shadow: 0 2px 2px -1px rgba($color, $opacity);
+@function shadowOpacity($opacity) {
+  @if (lightness($euiTextColor) < 50) {
+    @return $opacity * 1;
+  } @else {
+    @return $opacity * 2.5;
+  }
 }
 
-@mixin euiBottomShadowSmall($color: $euiShadowColor, $opacity: .3) {
+@mixin euiSlightShadow($color: $euiShadowColor) {
   box-shadow:
-    0 2px 2px -1px rgba($color, $opacity),
-    0 1px 5px -2px rgba($color, $opacity);
+    0 .8px .8px rgba($color, shadowOpacity(.04)),
+    0 2.3px 2px rgba($color, shadowOpacity(.03));
 }
 
-@mixin euiBottomShadowMedium($color: $euiShadowColor, $opacity: .2) {
+@mixin euiBottomShadowSmall($color: $euiShadowColor) {
   box-shadow:
-    0 6px 12px -1px rgba($color, $opacity),
-    0 4px 4px -1px rgba($color, $opacity),
-    0 2px 2px 0 rgba($color, $opacity);
+    0 .7px 1.4px rgba($color, shadowOpacity(.07)),
+    0 1.9px 4px rgba($color, shadowOpacity(.05)),
+    0 4.5px 10px rgba($color, shadowOpacity(.05));
+}
+
+@mixin euiBottomShadowMedium($color: $euiShadowColor) {
+  box-shadow:
+    0 .9px 4px -1px rgba($color, shadowOpacity(.08)),
+    0 2.6px 8px -1px rgba($color, shadowOpacity(.06)),
+    0 5.7px 12px -1px rgba($color, shadowOpacity(.05)),
+    0 15px 15px -1px rgba($color, shadowOpacity(.04));
 }
 
 // Similar to shadow medium but without the bottom depth. Useful for popovers
 // that drop UP rather than DOWN.
-@mixin euiBottomShadowFlat($color: $euiShadowColor, $opacity: .2) {
+@mixin euiBottomShadowFlat($color: $euiShadowColor, $opacity: 0) {
   box-shadow:
-    0 0 12px -1px rgba($color, $opacity),
-    0 0 4px -1px rgba($color, $opacity),
-    0 0 2px 0 rgba($color, $opacity);
-}
+    0 0 .8px rgba($color, shadowOpacity(.06)),
+    0 0 2px rgba($color, shadowOpacity(.04)),
+    0 0 5px rgba($color, shadowOpacity(.04)),
+    0 0 17px rgba($color, shadowOpacity(.03));
 
-// adjustBorder allows the border color to match the drop shadow better so that there's better
-// distinction between element bounds and the shadow (crisper borders)
-@mixin euiBottomShadow($color: $euiShadowColorLarge, $opacity: .1, $adjustBorders: false) {
-  box-shadow:
-    0 12px 24px 0 rgba($color, $opacity),
-    0 6px 12px 0 rgba($color, $opacity),
-    0 4px 4px 0 rgba($color, $opacity),
-    0 2px 2px 0 rgba($color, $opacity);
-
-  // Never adjust borders if the border color is already on the dark side (dark theme)
-  @if ($adjustBorders and not (lightness($euiBorderColor) < 50)) {
-    border-color: tint($color, 75%);
-    border-top-color: tint($color, 80%);
-    border-bottom-color: tint($color, 55%);
+  @if ($opacity > 0) {
+    @warn 'The $opacity variable of euiBottomShadowFlat() will be deprecated in a future version of EUI.';
   }
 }
 
+@mixin euiBottomShadow(
+  $color: $euiShadowColor,
+  $opacity: 0,
+) {
+  box-shadow:
+    0 1px 5px rgba($color, shadowOpacity(.1)),
+    0 3.6px 13px rgba($color, shadowOpacity(.07)),
+    0 8.4px 23px rgba($color, shadowOpacity(.06)),
+    0 23px 35px rgba($color, shadowOpacity(.05));
+}
+
 @mixin euiBottomShadowLarge(
-  $color: $euiShadowColorLarge,
-  $opacity: .1,
-  $adjustBorders: false,
+  $color: $euiShadowColor,
+  $opacity: 0,
+  $adjustBorders: false, // Deprecated in Amsterdam but left for BWC
   $reverse: false
 ) {
   @if ($reverse) {
     box-shadow:
-      0 -40px 64px 0 rgba($color, $opacity),
-      0 -24px 32px 0 rgba($color, $opacity),
-      0 -16px 16px 0 rgba($color, $opacity),
-      0 -8px 8px 0 rgba($color, $opacity);
+      0 -2.7px 9px rgba($color, shadowOpacity(.13)),
+      0 -9.4px 24px rgba($color, shadowOpacity(.09)),
+      0 -21.8px 43px rgba($color, shadowOpacity(.08));
   } @else {
     box-shadow:
-      0 40px 64px 0 rgba($color, $opacity),
-      0 24px 32px 0 rgba($color, $opacity),
-      0 16px 16px 0 rgba($color, $opacity),
-      0 8px 8px 0 rgba($color, $opacity),
-      0 4px 4px 0 rgba($color, $opacity),
-      0 2px 2px 0 rgba($color, $opacity);
-  }
-
-  // Never adjust borders if the border color is already on the dark side (dark theme)
-  @if ($adjustBorders and not (lightness($euiBorderColor) < 50)) {
-    border-color: tint($color, 70%);
-    border-top-color: tint($color, 85%);
-    border-bottom-color: tint($color, 55%);
+      0 2.7px 9px rgba($color, shadowOpacity(.13)),
+      0 9.4px 24px rgba($color, shadowOpacity(.09)),
+      0 21.8px 43px rgba($color, shadowOpacity(.08));
   }
 }
 
-@mixin euiSlightShadowHover($color: $euiShadowColor, $opacity: .3) {
+@mixin euiSlightShadowHover($color: $euiShadowColor) {
   box-shadow:
-    0 4px 8px 0 rgba($color, $opacity/2),
-    0 2px 2px -1px rgba($color, $opacity);
+    0 1px 5px rgba($color, shadowOpacity(.1)),
+    0 3.6px 13px rgba($color, shadowOpacity(.07)),
+    0 8.4px 23px rgba($color, shadowOpacity(.06)),
+    0 23px 35px rgba($color, shadowOpacity(.05));
 }
 
 @mixin euiSlightShadowActive($color: $euiShadowColor, $opacity: .3) {
