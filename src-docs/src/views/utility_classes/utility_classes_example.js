@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { EuiSpacer, EuiText } from '../../../../src/components';
 import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
@@ -14,6 +15,8 @@ export const UtilityClassesExample = {
       <p>
         The following CSS-only classes are provided as helper utilities. They
         are useful for making micro-adjustments to existing React components.
+        For overflow and scrolling specific utilities, go to the{' '}
+        <Link to="/utilities/scroll">Scroll documentation page</Link>.
       </p>
     </EuiText>
   ),

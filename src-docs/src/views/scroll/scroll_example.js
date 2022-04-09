@@ -15,6 +15,7 @@ import ScrollY from './scroll_y';
 
 export const ScrollExample = {
   title: 'Scroll',
+  showThemeLanguageToggle: true,
   intro: (
     <>
       <EuiCallOut

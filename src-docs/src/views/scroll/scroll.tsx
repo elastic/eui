@@ -1,5 +1,7 @@
 import { css } from '@emotion/react';
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { ThemeContext } from '../../components/with_theme';
 
 import {
   EuiCode,
@@ -10,7 +12,12 @@ import {
 import { ThemeExample } from '../theme/_components/_theme_example';
 
 export default () => {
+  const themeContext = useContext(ThemeContext);
+  const currentLanguage = themeContext.themeLanguage;
+  const showSass = currentLanguage.includes('sass');
+
   const { euiTheme } = useEuiTheme();
+
   const scrollingContent = (
     <>
       <EuiPanel className="guideSass__shadow" color="primary" />
@@ -61,76 +68,80 @@ export default () => {
 </ScrollRegion>`}
       />
 
-      <ThemeExample
-        title={<code>useEuiScrollBar()</code>}
-        description={
-          <>
-            <p>
-              Use this style function to style the browser&apos;s scrollbar in a
-              minimal aesthetic. This is best used on small, inner-page contents
-              like panels.
-            </p>
-            <p>
-              All parameters are optional and default to specific global
-              settings.
-            </p>
-          </>
-        }
-        examplePanel={{
-          paddingSize: 'none',
-        }}
-        example={
-          <div
-            tabIndex={0}
-            role="region"
-            aria-label="Example of useEuiScrollBar region"
-            css={css`
-              ${useEuiScrollBar()}
-              overflow-y: auto;
-              height: ${euiTheme.base * 10}px;
-            `}
-          >
-            {scrollingContent}
-          </div>
-        }
-        snippet={'useEuiScrollBar()'}
-      />
+      {!showSass && (
+        <ThemeExample
+          title={<code>useEuiScrollBar()</code>}
+          description={
+            <>
+              <p>
+                Use this style function to style the browser&apos;s scrollbar in
+                a minimal aesthetic. This is best used on small, inner-page
+                contents like panels.
+              </p>
+              <p>
+                All parameters are optional and default to specific global
+                settings.
+              </p>
+            </>
+          }
+          examplePanel={{
+            paddingSize: 'none',
+          }}
+          example={
+            <div
+              tabIndex={0}
+              role="region"
+              aria-label="Example of useEuiScrollBar region"
+              css={css`
+                ${useEuiScrollBar()}
+                overflow-y: auto;
+                height: ${euiTheme.base * 10}px;
+              `}
+            >
+              {scrollingContent}
+            </div>
+          }
+          snippet={'useEuiScrollBar()'}
+        />
+      )}
 
-      <ThemeExample
-        title={<code>@mixin euiScrollBar;</code>}
-        description={
-          <>
-            <p>
-              Use this Sass mixin to style the browser&apos;s scrollbar in a
-              minimal aesthetic. This is best used on small, inner-page contents
-              like panels.
-            </p>
-            <p>
-              All parameters are optional and default to specific global
-              settings.
-            </p>
-          </>
-        }
-        examplePanel={{
-          paddingSize: 'none',
-        }}
-        example={
-          <div
-            tabIndex={0}
-            role="region"
-            aria-label="Example of euiScrollBar region"
-            className="guideSass__euiScrollBar"
-          >
-            {scrollingContent}
-          </div>
-        }
-        snippetLanguage="scss"
-        snippet={`.scrollBarRegion {
+      {showSass && (
+        <ThemeExample
+          title={<code>@mixin euiScrollBar;</code>}
+          description={
+            <>
+              <p>
+                Use this Sass mixin to style the browser&apos;s scrollbar in a
+                minimal aesthetic. This is best used on small, inner-page
+                contents like panels.
+              </p>
+              <p>
+                All parameters are optional and default to specific global
+                settings.
+              </p>
+            </>
+          }
+          examplePanel={{
+            paddingSize: 'none',
+          }}
+          example={
+            <div
+              tabIndex={0}
+              role="region"
+              aria-label="Example of euiScrollBar region"
+              className="guideSass__euiScrollBar"
+            >
+              {scrollingContent}
+            </div>
+          }
+          snippetLanguage="scss"
+          snippet={`.scrollBarRegion {
   @include euiScrollBar;
   overflow-y: auto;
   height: $euiSize * 10;
 }`}
-      />
+        />
+      )}
     </>
   );
 };

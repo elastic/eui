@@ -13,7 +13,7 @@ export default () => {
   return (
     <>
       <UtilityClassesSection
-        code="eui-fullHeight"
+        code=".eui-fullHeight"
         description={
           <>
             <p>
