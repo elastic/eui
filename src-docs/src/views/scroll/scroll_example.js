@@ -55,7 +55,8 @@ export const ScrollExample = {
           <EuiText>
             <p>
               These utilities allow for quickly applying vertical scrolling to a
-              container. If you do not want your content to stretch to{' '}
+              container. They also automatically apply the minimal scroll bar
+              styles as well. If you do not want your content to stretch to{' '}
               <EuiCode>100%</EuiCode> height, you will need to manually add a
               <EuiCode>height</EuiCode> (or <EuiCode>max-height</EuiCode>) to
               the container.

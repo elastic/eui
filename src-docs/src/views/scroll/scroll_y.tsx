@@ -132,11 +132,11 @@ export default () => {
             {scrollingContent}
           </div>
         }
+        snippetLanguage="scss"
         snippet={`.overflowShadowsY {
   @include euiYScrollWithShadows;
   height: 180px;
 }`}
-        snippetLanguage="scss"
       />
     </>
   );
