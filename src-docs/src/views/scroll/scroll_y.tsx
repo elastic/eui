@@ -3,26 +3,14 @@ import { css } from '@emotion/react';
 
 import { ThemeContext } from '../../components/with_theme';
 
-import {
-  EuiCode,
-  EuiPanel,
-  EuiLink,
-  useEuiYScrollWithShadows,
-} from '../../../../src';
+import { EuiCode, EuiLink, useEuiYScrollWithShadows } from '../../../../src';
 import { ThemeExample } from '../theme/_components/_theme_example';
+import { ScrollContent } from './_scroll_content';
 
 export default () => {
   const themeContext = useContext(ThemeContext);
   const currentLanguage = themeContext.themeLanguage;
   const showSass = currentLanguage.includes('sass');
-
-  const scrollingContent = (
-    <>
-      <EuiPanel className="guideSass__shadow" color="primary" />
-      <EuiPanel className="guideSass__shadow" color="primary" />
-      <EuiPanel className="guideSass__shadow" color="primary" />
-    </>
-  );
 
   return (
     <>
@@ -46,7 +34,7 @@ export default () => {
             className="eui-yScrollWithShadows"
             style={{ height: 180 }}
           >
-            {scrollingContent}
+            <ScrollContent />
           </div>
         }
         snippetLanguage="tsx"
@@ -90,7 +78,7 @@ export default () => {
                 height: 180px;
               `}
             >
-              {scrollingContent}
+              <ScrollContent />
             </div>
           }
           snippetLanguage="tsx"
@@ -135,7 +123,7 @@ export default () => {
               aria-label="Example of euiYScrollWithShadows region"
               className="guideSass__overflowShadowsY"
             >
-              {scrollingContent}
+              <ScrollContent />
             </div>
           }
           snippetLanguage="scss"

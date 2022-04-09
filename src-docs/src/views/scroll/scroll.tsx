@@ -3,13 +3,9 @@ import React, { useContext } from 'react';
 
 import { ThemeContext } from '../../components/with_theme';
 
-import {
-  EuiCode,
-  EuiPanel,
-  useEuiScrollBar,
-  useEuiTheme,
-} from '../../../../src';
+import { EuiCode, useEuiScrollBar, useEuiTheme } from '../../../../src';
 import { ThemeExample } from '../theme/_components/_theme_example';
+import { ScrollContent } from './_scroll_content';
 
 export default () => {
   const themeContext = useContext(ThemeContext);
@@ -17,14 +13,6 @@ export default () => {
   const showSass = currentLanguage.includes('sass');
 
   const { euiTheme } = useEuiTheme();
-
-  const scrollingContent = (
-    <>
-      <EuiPanel className="guideSass__shadow" color="primary" />
-      <EuiPanel className="guideSass__shadow" color="primary" />
-      <EuiPanel className="guideSass__shadow" color="primary" />
-    </>
-  );
 
   return (
     <>
@@ -54,7 +42,7 @@ export default () => {
               height: euiTheme.base * 10,
             }}
           >
-            {scrollingContent}
+            <ScrollContent />
           </div>
         }
         snippetLanguage="tsx"
@@ -98,7 +86,7 @@ export default () => {
                 height: ${euiTheme.base * 10}px;
               `}
             >
-              {scrollingContent}
+              <ScrollContent />
             </div>
           }
           snippet={'useEuiScrollBar()'}
@@ -131,7 +119,7 @@ export default () => {
               aria-label="Example of euiScrollBar region"
               className="guideSass__euiScrollBar"
             >
-              {scrollingContent}
+              <ScrollContent />
             </div>
           }
           snippetLanguage="scss"

@@ -5,13 +5,13 @@ import { ThemeContext } from '../../components/with_theme';
 
 import {
   EuiCode,
-  EuiPanel,
   EuiFlexGroup,
   useEuiXScrollWithShadows,
   useEuiTheme,
   EuiLink,
 } from '../../../../src';
 import { ThemeExample } from '../theme/_components/_theme_example';
+import { ScrollContent } from './_scroll_content';
 
 export default () => {
   const themeContext = useContext(ThemeContext);
@@ -27,9 +27,7 @@ export default () => {
       `}
       responsive={false}
     >
-      <EuiPanel className="guideSass__shadow" color="primary" />
-      <EuiPanel className="guideSass__shadow" color="primary" />
-      <EuiPanel className="guideSass__shadow" color="primary" />
+      <ScrollContent />
     </EuiFlexGroup>
   );
 
