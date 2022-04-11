@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 
 import { ThemeContext } from '../../components/with_theme';
 
-import { EuiCode, EuiLink, useEuiYScrollWithShadows } from '../../../../src';
+import { EuiCode, EuiLink, useEuiOverflowScroll } from '../../../../src';
 import { ThemeExample } from '../theme/_components/_theme_example';
 import { ScrollContent } from './_scroll_content';
 
@@ -50,18 +50,17 @@ export default () => {
 
       {!showSass && (
         <ThemeExample
-          title={<code>useEuiYScroll();</code>}
+          title={<code>{"useEuiOverflowScroll('y');"}</code>}
           description={
             <>
-              <p>Styles hook for adding horizontal scrolling to a container.</p>
+              <p>Styles hook for adding vertical scrolling to a container.</p>
               <p>
-                If you need to further customize the position or side of the
-                overflow shadow use the{' '}
-                <EuiCode>useEuiYScrollWithShadows</EuiCode>{' '}
-                <EuiLink href="https://github.com/elastic/eui/blob/main/src/global_styling/mixins/_shadow.ts">
-                  hook
-                </EuiLink>
-                .
+                To mask the top and bottom of the scrolled content, indicating
+                visually that there is more content below, pass in true to the
+                second paremeter <EuiCode>mask</EuiCode>.
+              </p>
+              <p>
+                <EuiCode>{"useEuiOverflowScroll('y', true);"}</EuiCode>
               </p>
             </>
           }
@@ -72,9 +71,9 @@ export default () => {
             <div
               tabIndex={0}
               role="region"
-              aria-label="Example of useEuiYScrollWithShadows region"
+              aria-label="Example of useEuiOverflowScroll(y) region"
               css={css`
-                ${useEuiYScrollWithShadows()};
+                ${useEuiOverflowScroll('y', true)};
                 height: 180px;
               `}
             >
@@ -88,7 +87,7 @@ export default () => {
   role="region"
   aria-label=""
   css={css` +
-            '`${useEuiYScrollWithShadows()}; ' +
+            "`${useEuiOverflowScroll('y', true)}; " +
             'height: 180px;' +
             ` }}>
   <ScrollContent />

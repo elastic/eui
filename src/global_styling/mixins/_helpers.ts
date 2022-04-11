@@ -7,7 +7,7 @@
  */
 
 import { CSSProperties } from 'react';
-import { UseEuiTheme } from '../../services/theme';
+import { useEuiTheme, UseEuiTheme } from '../../services/theme';
 import { transparentize } from '../../services/color';
 import { createStyleHookFromMixin } from '../utils';
 
@@ -159,3 +159,24 @@ export const euiXScrollWithShadows = (euiTheme: UseEuiTheme['euiTheme']) => `
 export const useEuiXScrollWithShadows = createStyleHookFromMixin(
   euiXScrollWithShadows
 );
+
+// One hook to rule them all
+export const useEuiOverflowScroll = (
+  direction: 'y' | 'x',
+  mask: boolean = false
+) => {
+  const { euiTheme } = useEuiTheme();
+
+  switch (direction) {
+    case 'y':
+      return mask ? euiYScrollWithShadows(euiTheme) : euiYScroll(euiTheme);
+    case 'x':
+      return mask ? euiXScrollWithShadows(euiTheme) : euiXScroll(euiTheme);
+
+    default:
+      console.warn(
+        'Please provide a valid direction option to useEuiOverflowScroll'
+      );
+      break;
+  }
+};

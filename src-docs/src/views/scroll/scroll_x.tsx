@@ -6,9 +6,9 @@ import { ThemeContext } from '../../components/with_theme';
 import {
   EuiCode,
   EuiFlexGroup,
-  useEuiXScrollWithShadows,
   useEuiTheme,
   EuiLink,
+  useEuiOverflowScroll,
 } from '../../../../src';
 import { ThemeExample } from '../theme/_components/_theme_example';
 import { ScrollContent } from './_scroll_content';
@@ -74,18 +74,17 @@ export default () => {
 
       {!showSass && (
         <ThemeExample
-          title={<code>useEuiXScroll();</code>}
+          title={<code>{"useEuiOverflowScroll('x');"}</code>}
           description={
             <>
               <p>Styles hook for adding horizontal scrolling to a container.</p>
               <p>
-                If you need to further customize the position or side of the
-                overflow shadow use the{' '}
-                <EuiCode>useEuiXScrollWithShadows</EuiCode>{' '}
-                <EuiLink href="https://github.com/elastic/eui/blob/main/src/global_styling/mixins/_shadow.ts">
-                  hook
-                </EuiLink>
-                .
+                To mask the top and bottom of the scrolled content, indicating
+                visually that there is more content below, pass in true to the
+                second paremeter <EuiCode>mask</EuiCode>.
+              </p>
+              <p>
+                <EuiCode>{"useEuiOverflowScroll('x', true);"}</EuiCode>
               </p>
             </>
           }
@@ -96,9 +95,9 @@ export default () => {
             <div
               tabIndex={0}
               role="region"
-              aria-label="Example of useEuiXScrollWithShadows region"
+              aria-label="Example of useEuiOverflowScroll(x) region"
               css={css`
-                ${useEuiXScrollWithShadows()};
+                ${useEuiOverflowScroll('x', true)};
                 padding: ${euiTheme.size.base};
               `}
             >
@@ -112,7 +111,7 @@ export default () => {
   role="region"
   aria-label=""
   css={css` +
-            '`${useEuiXScrollWithShadows()}; ' +
+            "`${useEuiOverflowScroll('x', true)}; " +
             'padding: ${euiTheme.size.base};`' +
             ` }}>
   <ScrollContent />
