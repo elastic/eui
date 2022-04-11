@@ -34,6 +34,10 @@ export interface EuiPageContentBodyProps
   paddingSize?: typeof PADDING_SIZES[number];
 }
 
+/**
+ * **DEPRECATED**
+ * Use EuiPageSection instead
+ */
 export const EuiPageContentBody: FunctionComponent<EuiPageContentBodyProps> = ({
   children,
   restrictWidth = false,
