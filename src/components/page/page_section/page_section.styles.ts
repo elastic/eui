@@ -7,8 +7,8 @@
  */
 
 import { css } from '@emotion/react';
-import { shade, tint, UseEuiTheme } from '../../../services';
-import { _EuiPageRestrictWidth } from '../_restrict_width';
+import { UseEuiTheme } from '../../../services';
+import { PAGE_MAX_WIDTH, _EuiPageRestrictWidth } from '../_restrict_width';
 
 export const euiPageSectionWidth = (
   restrictWidth: _EuiPageRestrictWidth,
@@ -21,7 +21,7 @@ export const euiPageSectionWidth = (
       margin-left: auto;
       margin-right: auto;
       width: ${width};
-      max-width: 1200px; // TODO
+      max-width: ${PAGE_MAX_WIDTH};
     `;
   } else if (restrictWidth !== undefined) {
     return css`
@@ -31,70 +31,6 @@ export const euiPageSectionWidth = (
       max-width: ${restrictWidth};
     `;
   }
-};
-
-// TODO Can be made a global function
-export const PADDING_SIZES = ['none', 's', 'm', 'l'] as const;
-export const euiPaddingStyles = ({ euiTheme }: UseEuiTheme, side: string) => {
-  return {
-    none: null,
-    s: css`
-      padding-${side}: ${euiTheme.size.s};
-    `,
-    m: css`
-      padding-${side}: ${euiTheme.size.m};
-    `,
-    l: css`
-      padding-${side}: ${euiTheme.size.l};
-    `,
-  };
-};
-
-// TODO Can be made a global function
-export const BACKGROUND_COLORS = [
-  'transparent',
-  'plain',
-  'subdued',
-  'accent',
-  'primary',
-  'success',
-  'warning',
-  'danger',
-] as const;
-export const euiBackgroundColorStyles = ({
-  euiTheme,
-  colorMode,
-}: UseEuiTheme) => {
-  function tintOrShade(color: string) {
-    return colorMode === 'DARK' ? shade(color, 0.7) : tint(color, 0.9);
-  }
-
-  return {
-    transparent: css`
-      background-color: transparent;
-    `,
-    plain: css`
-      background-color: ${euiTheme.colors.emptyShade};
-    `,
-    subdued: css`
-      background-color: ${euiTheme.colors.body};
-    `,
-    accent: css`
-      background-color: ${tintOrShade(euiTheme.colors.accent)};
-    `,
-    primary: css`
-      background-color: ${tintOrShade(euiTheme.colors.primary)};
-    `,
-    success: css`
-      background-color: ${tintOrShade(euiTheme.colors.success)};
-    `,
-    warning: css`
-      background-color: ${tintOrShade(euiTheme.colors.warning)};
-    `,
-    danger: css`
-      background-color: ${tintOrShade(euiTheme.colors.danger)};
-    `,
-  };
 };
 
 export const ALIGNMENTS = ['top', 'center', 'horizontalCenter'] as const;

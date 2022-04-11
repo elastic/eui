@@ -11,11 +11,8 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiPageSection } from './page_section';
-import {
-  ALIGNMENTS,
-  BACKGROUND_COLORS,
-  PADDING_SIZES,
-} from './page_section.styles';
+import { ALIGNMENTS } from './page_section.styles';
+import { PADDING_SIZES, BACKGROUND_COLORS } from '../../../global_styling';
 
 describe('EuiPageSection', () => {
   test('is rendered', () => {

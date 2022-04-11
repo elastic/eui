@@ -16,13 +16,16 @@ import { _EuiPageBottomBorder } from '../_bottom_border';
 import { useEuiTheme } from '../../../services';
 import {
   ALIGNMENTS,
-  BACKGROUND_COLORS,
-  euiBackgroundColorStyles,
-  euiPaddingStyles,
   euiPageSectionStyles,
   euiPageSectionWidth,
-  PADDING_SIZES,
 } from './page_section.styles';
+
+import {
+  euiPaddingStyles,
+  PADDING_SIZES,
+  BACKGROUND_COLORS,
+  euiBackgroundColorStyles,
+} from '../../../global_styling';
 
 export type EuiPageSectionProps = CommonProps &
   _EuiPageRestrictWidth &
