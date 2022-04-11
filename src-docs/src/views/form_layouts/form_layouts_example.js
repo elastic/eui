@@ -260,13 +260,13 @@ export const FormLayoutsExample = {
         <>
           <p>
             You can also change the ratio of the width of the description column
-            versus the field column. By defualt it is{' '}
+            versus the field column. By default it is{' '}
             <EuiCode>{"'half'"}</EuiCode>, but you can also change to{' '}
             <EuiCode>{"'third'"}</EuiCode> or <EuiCode>{"'quarter'"}</EuiCode>{' '}
             which prioritizes the field column. You will most likely still need
             to apply <EuiCode>fullWidth</EuiCode> to all the components. The
             description column does have a minimum readable width applied to it
-            so that it cannnot shrink too far.
+            so that it cannot shrink too far.
           </p>
           <p>
             Both the description and field columns are simply{' '}
