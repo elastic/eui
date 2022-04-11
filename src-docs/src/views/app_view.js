@@ -79,7 +79,9 @@ export const AppView = ({ children, currentRoute }) => {
           />
         </EuiErrorBoundary>
 
-        <EuiPageBody panelled>{children({ theme })}</EuiPageBody>
+        <EuiPageBody paddingSize="none" panelled>
+          {children({ theme })}
+        </EuiPageBody>
       </EuiPage>
     </LinkWrapper>
   );

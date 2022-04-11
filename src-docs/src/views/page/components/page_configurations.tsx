@@ -31,7 +31,7 @@ export default ({
         </EuiPageSideBar>
       )}
 
-      <EuiPageBody panelled={Boolean(sideBar)}>
+      <EuiPageBody paddingSize="none" panelled={Boolean(sideBar)}>
         {pageHeader && (
           <EuiPageSection bottomBorder={sideBar ? true : 'extended'}>
             <EuiPageHeader pageTitle="Page title" />

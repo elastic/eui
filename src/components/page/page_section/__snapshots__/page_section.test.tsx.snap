@@ -3,7 +3,7 @@
 exports[`EuiPageSection is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageSection testClass1 testClass2 css-5knble-base-l-transparent-EuiPageSection"
+  class="testClass1 testClass2 css-5knble-base-l-transparent-EuiPageSection"
   data-test-subj="test subject string"
 >
   <div
@@ -14,7 +14,7 @@ exports[`EuiPageSection is rendered 1`] = `
 
 exports[`EuiPageSection props alignment center is rendered 1`] = `
 <div
-  class="euiPageSection css-ehc4iu-base-l-center-transparent-EuiPageSection"
+  class="css-ehc4iu-base-l-center-transparent-EuiPageSection"
 >
   <div
     class="css-vmivyf-l-euiPageSectionWidth-EuiPageSection"
@@ -24,7 +24,7 @@ exports[`EuiPageSection props alignment center is rendered 1`] = `
 
 exports[`EuiPageSection props alignment horizontalCenter is rendered 1`] = `
 <div
-  class="euiPageSection css-zgne1y-base-l-horizontalCenter-transparent-EuiPageSection"
+  class="css-zgne1y-base-l-horizontalCenter-transparent-EuiPageSection"
 >
   <div
     class="css-vmivyf-l-euiPageSectionWidth-EuiPageSection"
@@ -34,7 +34,7 @@ exports[`EuiPageSection props alignment horizontalCenter is rendered 1`] = `
 
 exports[`EuiPageSection props alignment top is rendered 1`] = `
 <div
-  class="euiPageSection css-5knble-base-l-transparent-EuiPageSection"
+  class="css-5knble-base-l-transparent-EuiPageSection"
 >
   <div
     class="css-t14ecr-l-euiPageSectionWidth-EuiPageSection"
@@ -44,7 +44,7 @@ exports[`EuiPageSection props alignment top is rendered 1`] = `
 
 exports[`EuiPageSection props bottomBorder can be true 1`] = `
 <div
-  class="euiPageSection css-5knble-base-l-transparent-EuiPageSection"
+  class="css-5knble-base-l-transparent-EuiPageSection"
 >
   <div
     class="css-1pmiwis-l-border-euiPageSectionWidth-EuiPageSection"
@@ -54,7 +54,7 @@ exports[`EuiPageSection props bottomBorder can be true 1`] = `
 
 exports[`EuiPageSection props color accent is rendered 1`] = `
 <div
-  class="euiPageSection css-3ln4zr-base-l-accent-EuiPageSection"
+  class="css-3ln4zr-base-l-accent-EuiPageSection"
 >
   <div
     class="css-t14ecr-l-euiPageSectionWidth-EuiPageSection"
@@ -64,7 +64,7 @@ exports[`EuiPageSection props color accent is rendered 1`] = `
 
 exports[`EuiPageSection props color danger is rendered 1`] = `
 <div
-  class="euiPageSection css-a9afjs-base-l-danger-EuiPageSection"
+  class="css-a9afjs-base-l-danger-EuiPageSection"
 >
   <div
     class="css-t14ecr-l-euiPageSectionWidth-EuiPageSection"
@@ -74,7 +74,7 @@ exports[`EuiPageSection props color danger is rendered 1`] = `
 
 exports[`EuiPageSection props color plain is rendered 1`] = `
 <div
-  class="euiPageSection css-11pfzw5-base-l-plain-EuiPageSection"
+  class="css-11pfzw5-base-l-plain-EuiPageSection"
 >
   <div
     class="css-t14ecr-l-euiPageSectionWidth-EuiPageSection"
@@ -84,7 +84,7 @@ exports[`EuiPageSection props color plain is rendered 1`] = `
 
 exports[`EuiPageSection props color primary is rendered 1`] = `
 <div
-  class="euiPageSection css-120z2my-base-l-primary-EuiPageSection"
+  class="css-120z2my-base-l-primary-EuiPageSection"
 >
   <div
     class="css-t14ecr-l-euiPageSectionWidth-EuiPageSection"
@@ -94,7 +94,7 @@ exports[`EuiPageSection props color primary is rendered 1`] = `
 
 exports[`EuiPageSection props color subdued is rendered 1`] = `
 <div
-  class="euiPageSection css-1qsqjwr-base-l-subdued-EuiPageSection"
+  class="css-1qsqjwr-base-l-subdued-EuiPageSection"
 >
   <div
     class="css-t14ecr-l-euiPageSectionWidth-EuiPageSection"
@@ -104,7 +104,7 @@ exports[`EuiPageSection props color subdued is rendered 1`] = `
 
 exports[`EuiPageSection props color success is rendered 1`] = `
 <div
-  class="euiPageSection css-1y96cak-base-l-success-EuiPageSection"
+  class="css-1y96cak-base-l-success-EuiPageSection"
 >
   <div
     class="css-t14ecr-l-euiPageSectionWidth-EuiPageSection"
@@ -114,7 +114,7 @@ exports[`EuiPageSection props color success is rendered 1`] = `
 
 exports[`EuiPageSection props color transparent is rendered 1`] = `
 <div
-  class="euiPageSection css-5knble-base-l-transparent-EuiPageSection"
+  class="css-5knble-base-l-transparent-EuiPageSection"
 >
   <div
     class="css-t14ecr-l-euiPageSectionWidth-EuiPageSection"
@@ -124,7 +124,7 @@ exports[`EuiPageSection props color transparent is rendered 1`] = `
 
 exports[`EuiPageSection props color warning is rendered 1`] = `
 <div
-  class="euiPageSection css-1gasdpx-base-l-warning-EuiPageSection"
+  class="css-1gasdpx-base-l-warning-EuiPageSection"
 >
   <div
     class="css-t14ecr-l-euiPageSectionWidth-EuiPageSection"
@@ -134,7 +134,7 @@ exports[`EuiPageSection props color warning is rendered 1`] = `
 
 exports[`EuiPageSection props contentProps are passed down 1`] = `
 <div
-  class="euiPageSection css-5knble-base-l-transparent-EuiPageSection"
+  class="css-5knble-base-l-transparent-EuiPageSection"
 >
   <div
     aria-label="aria-label"
@@ -146,7 +146,7 @@ exports[`EuiPageSection props contentProps are passed down 1`] = `
 
 exports[`EuiPageSection props grow can be true 1`] = `
 <div
-  class="euiPageSection css-xds71t-base-grow-l-transparent-EuiPageSection"
+  class="css-xds71t-base-grow-l-transparent-EuiPageSection"
 >
   <div
     class="css-t14ecr-l-euiPageSectionWidth-EuiPageSection"
@@ -156,7 +156,7 @@ exports[`EuiPageSection props grow can be true 1`] = `
 
 exports[`EuiPageSection props paddingSize l is rendered 1`] = `
 <div
-  class="euiPageSection css-5knble-base-l-transparent-EuiPageSection"
+  class="css-5knble-base-l-transparent-EuiPageSection"
 >
   <div
     class="css-t14ecr-l-euiPageSectionWidth-EuiPageSection"
@@ -166,7 +166,7 @@ exports[`EuiPageSection props paddingSize l is rendered 1`] = `
 
 exports[`EuiPageSection props paddingSize m is rendered 1`] = `
 <div
-  class="euiPageSection css-agqje8-base-m-transparent-EuiPageSection"
+  class="css-agqje8-base-m-transparent-EuiPageSection"
 >
   <div
     class="css-10tmy5d-m-euiPageSectionWidth-EuiPageSection"
@@ -176,7 +176,7 @@ exports[`EuiPageSection props paddingSize m is rendered 1`] = `
 
 exports[`EuiPageSection props paddingSize none is rendered 1`] = `
 <div
-  class="euiPageSection css-ybl4ms-base-transparent-EuiPageSection"
+  class="css-ybl4ms-base-transparent-EuiPageSection"
 >
   <div
     class="css-dbuvc0-euiPageSectionWidth-EuiPageSection"
@@ -186,7 +186,7 @@ exports[`EuiPageSection props paddingSize none is rendered 1`] = `
 
 exports[`EuiPageSection props paddingSize s is rendered 1`] = `
 <div
-  class="euiPageSection css-6zpx68-base-s-transparent-EuiPageSection"
+  class="css-6zpx68-base-s-transparent-EuiPageSection"
 >
   <div
     class="css-168320g-s-euiPageSectionWidth-EuiPageSection"
@@ -196,7 +196,7 @@ exports[`EuiPageSection props paddingSize s is rendered 1`] = `
 
 exports[`EuiPageSection props restrictWidth can be true 1`] = `
 <div
-  class="euiPageSection css-5knble-base-l-transparent-EuiPageSection"
+  class="css-5knble-base-l-transparent-EuiPageSection"
 >
   <div
     class="css-1diorln-l-euiPageSectionWidth-EuiPageSection"

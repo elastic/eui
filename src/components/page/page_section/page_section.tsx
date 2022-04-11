@@ -7,7 +7,6 @@
  */
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
-import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 import { _EuiPageRestrictWidth } from '../_restrict_width';
@@ -75,11 +74,9 @@ export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
     alignment
   );
 
-  const classes = classNames('euiPageSection', className);
-
   return (
     <div
-      className={classes}
+      className={className}
       css={[
         styles.base,
         grow && styles.grow,
