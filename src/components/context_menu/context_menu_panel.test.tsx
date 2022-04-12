@@ -206,12 +206,13 @@ describe('EuiContextMenuPanel', () => {
       });
 
       describe('left arrow', () => {
-        it('calls handler if showPreviousPanel exists', () => {
+        it('calls handler if onClose and showPreviousPanel exists', () => {
           const onUseKeyboardToNavigateHandler = jest.fn();
 
           const component = mount(
             <EuiContextMenuPanel
               items={items}
+              onClose={() => {}}
               showPreviousPanel={() => {}}
               onUseKeyboardToNavigate={onUseKeyboardToNavigateHandler}
             />

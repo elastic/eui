@@ -104,7 +104,10 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         items: this.props.items,
       },
       menuItems: [],
-      focusedItemIndex: props.initialFocusedItemIndex,
+      focusedItemIndex:
+        props.onClose && props.initialFocusedItemIndex != null
+          ? props.initialFocusedItemIndex + 1 // Account for panel title back button
+          : props.initialFocusedItemIndex,
       currentHeight: undefined,
     };
   }
@@ -136,12 +139,13 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     // But if it doesn't contain items, then you have to focus on the back button specifically,
     // since there could be content inside the panel which requires use of the left arrow key,
     // e.g. text inputs.
-    const { items, showPreviousPanel } = this.props;
+    const { items, onClose, showPreviousPanel } = this.props;
 
     if (
-      (items && items.length) ||
-      document.activeElement === this.backButton ||
-      document.activeElement === this.panel
+      onClose &&
+      (items?.length ||
+        document.activeElement === this.backButton ||
+        document.activeElement === this.panel)
     ) {
       if (event.key === cascadingMenuKeys.ARROW_LEFT) {
         if (showPreviousPanel) {
@@ -156,7 +160,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       }
     }
 
-    if (this.props.items && this.props.items.length) {
+    if (items?.length) {
       switch (event.key) {
         case cascadingMenuKeys.TAB:
           requestAnimationFrame(() => {
@@ -197,7 +201,11 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         case cascadingMenuKeys.ARROW_RIGHT:
           if (this.props.showNextPanel) {
             event.preventDefault();
-            this.props.showNextPanel(this.state.focusedItemIndex);
+            this.props.showNextPanel(
+              onClose && this.state.focusedItemIndex
+                ? this.state.focusedItemIndex - 1 // Account for panel title back button
+                : this.state.focusedItemIndex
+            );
 
             if (this.props.onUseKeyboardToNavigate) {
               this.props.onUseKeyboardToNavigate();
@@ -229,17 +237,23 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       }
 
       // If menuItems has been cleared, iterate through and set menuItems from tabbableItems
-      if (!this.state.menuItems.length && this.content) {
-        const tabbableItems = tabbable(this.content);
+      if (!this.state.menuItems.length && this.panel) {
+        const tabbableItems = tabbable(this.panel);
         if (tabbableItems.length) {
           this.setState({ menuItems: tabbableItems });
         }
       }
 
-      // If an item is focused, focus it
       if (this.state.menuItems.length) {
+        // If an item is focused, focus it
         if (this.state.focusedItemIndex != null) {
           this.state.menuItems[this.state.focusedItemIndex].focus();
+          return;
+        }
+        // Otherwise, if the back button panel title is present, focus it
+        if (this.props.onClose) {
+          this.setState({ focusedItemIndex: 0 });
+          this.state.menuItems[0].focus();
           return;
         }
       }

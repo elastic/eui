@@ -75,6 +75,52 @@ describe('EuiContextMenuPanel', () => {
         cy.focused().should('have.attr', 'data-test-subj', 'itemA');
       });
     });
+
+    describe('with `panels`', () => {
+      const panels = [
+        {
+          id: 'A',
+          title: 'Panel A',
+          items: [
+            { name: 'Lorem' },
+            { name: 'Go to Panel B', panel: 'B', 'data-test-subj': 'panelA' },
+            { name: 'Ipsum' },
+          ],
+        },
+        {
+          id: 'B',
+          title: 'Panel B',
+          items: [
+            { name: 'Go to Panel C', panel: 'C', 'data-test-subj': 'panelB' },
+            { name: 'Lorem' },
+            { name: 'Ipsum' },
+          ],
+          initialFocusedItemIndex: 0,
+        },
+        {
+          id: 'C',
+          title: 'Panel C',
+          content: <>Hello world</>,
+        },
+      ];
+
+      it('focuses the back button panel title by default when no initialFocusedItemIndex is passed', () => {
+        cy.mount(<EuiContextMenu panels={panels} initialPanelId="A" />);
+        cy.realPress('{downarrow}');
+        cy.realPress('{downarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'panelA');
+        cy.realPress('{rightarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'panelB'); // has initialFocusedItemIndex
+        cy.realPress('{rightarrow}');
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanelTitle');
+      });
+
+      it('focuses the correct toggling item when using the left arrow key to navigate to the previous panel', () => {
+        cy.mount(<EuiContextMenu panels={panels} initialPanelId="B" />);
+        cy.realPress('{leftarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'panelA');
+      });
+    });
   });
 
   describe('Keyboard navigation of items', () => {
@@ -138,6 +184,7 @@ describe('EuiContextMenuPanel', () => {
         cy.mount(
           <EuiContextMenuPanel
             items={items}
+            onClose={() => {}}
             showPreviousPanel={showPreviousPanelHandler}
           />
         );
