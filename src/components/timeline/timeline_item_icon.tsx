@@ -20,7 +20,7 @@ export interface EuiTimelineItemIconProps {
   icon: ReactNode | IconType;
   verticalAlign?: EuiTimelineItemVerticalAlign;
   /**
-   * Specify an `aria-label` for the icon when passed as an `IconType`
+   * Specify an `aria-label` for the icon when passed as an `IconType`.
    * If no `aria-label` is passed we assume the icon is purely decorative.
    */
   iconAriaLabel?: string;
