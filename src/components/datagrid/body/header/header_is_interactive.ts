@@ -7,7 +7,7 @@
  */
 
 import { useCallback, useEffect, useState } from 'react';
-import tabbable from 'tabbable';
+import { tabbable } from 'tabbable';
 
 export const useHeaderIsInteractive = (gridElement: HTMLElement | null) => {
   const [headerIsInteractive, setHeaderIsInteractive] = useState(false);

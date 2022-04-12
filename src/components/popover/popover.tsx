@@ -16,7 +16,7 @@ import React, {
   RefCallback,
 } from 'react';
 import classNames from 'classnames';
-import tabbable from 'tabbable';
+import { tabbable, focusable } from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
 import { FocusTarget, EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
@@ -281,6 +281,7 @@ function getElementFromInitialFocus(
 }
 
 const returnFocusConfig = { preventScroll: true };
+const closingTransitionTime = 250; // TODO: DRY out var when converting to CSS-in-JS
 
 export type Props = CommonProps &
   HTMLAttributes<HTMLDivElement> &
@@ -346,6 +347,7 @@ export class EuiPopover extends Component<Props, State> {
   }
 
   private respositionTimeout: number | undefined;
+  private strandedFocusTimeout: number | undefined;
   private closingTransitionTimeout: number | undefined;
   private closingTransitionAnimationFrame: number | undefined;
   private updateFocusAnimationFrame: number | undefined;
@@ -383,7 +385,24 @@ export class EuiPopover extends Component<Props, State> {
       event.preventDefault();
       event.stopPropagation();
       this.closePopover();
+      this.handleStrandedFocus();
     }
+  };
+
+  handleStrandedFocus = () => {
+    this.strandedFocusTimeout = window.setTimeout(() => {
+      // If `returnFocus` failed and focus was stranded on the body,
+      // attempt to manually restore focus to the toggle button
+      if (document.activeElement === document.body) {
+        if (!this.button) return;
+
+        const focusableItems = focusable(this.button);
+        if (!focusableItems.length) return;
+
+        const toggleButton = focusableItems[0];
+        toggleButton.focus(returnFocusConfig);
+      }
+    }, closingTransitionTime);
   };
 
   onKeyDown = (event: KeyboardEvent) => {
@@ -463,6 +482,7 @@ export class EuiPopover extends Component<Props, State> {
   }
 
   onOpenPopover = () => {
+    clearTimeout(this.strandedFocusTimeout);
     clearTimeout(this.closingTransitionTimeout);
     if (this.closingTransitionAnimationFrame) {
       cancelAnimationFrame(this.closingTransitionAnimationFrame);
@@ -541,13 +561,14 @@ export class EuiPopover extends Component<Props, State> {
         this.setState({
           isClosing: false,
         });
-      }, 250);
+      }, closingTransitionTime);
     }
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.positionPopoverFixed, true);
     clearTimeout(this.respositionTimeout);
+    clearTimeout(this.strandedFocusTimeout);
     clearTimeout(this.closingTransitionTimeout);
     cancelAnimationFrame(this.closingTransitionAnimationFrame!);
     cancelAnimationFrame(this.updateFocusAnimationFrame!);
