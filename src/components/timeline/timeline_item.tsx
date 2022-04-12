@@ -38,6 +38,7 @@ export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
   children,
   verticalAlign = 'center',
   icon,
+  iconAriaLabel,
   className,
   ...rest
 }) => {
@@ -48,7 +49,11 @@ export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
 
   return (
     <div css={cssStyles} {...rest}>
-      <EuiTimelineItemIcon icon={icon} verticalAlign={verticalAlign} />
+      <EuiTimelineItemIcon
+        icon={icon}
+        iconAriaLabel={iconAriaLabel}
+        verticalAlign={verticalAlign}
+      />
 
       <EuiTimelineItemEvent verticalAlign={verticalAlign}>
         {children}

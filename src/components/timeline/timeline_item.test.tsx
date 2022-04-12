@@ -14,9 +14,7 @@ import { EuiTimelineItem, VERTICAL_ALIGN } from './timeline_item';
 describe('EuiTimelineItem', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiTimelineItem
-        icon={<EuiAvatar size="s" name="dot" iconType="dot" color="subdued" />}
-      >
+      <EuiTimelineItem icon="dot">
         <p>I&apos;m the children</p>
       </EuiTimelineItem>
     );
@@ -29,12 +27,7 @@ describe('EuiTimelineItem', () => {
       VERTICAL_ALIGN.forEach((alignment) => {
         test(`${alignment} is rendered`, () => {
           const component = render(
-            <EuiTimelineItem
-              icon={
-                <EuiAvatar size="s" name="dot" iconType="dot" color="subdued" />
-              }
-              verticalAlign={alignment}
-            >
+            <EuiTimelineItem icon="dot" verticalAlign={alignment}>
               <p>I&apos;m the children</p>
             </EuiTimelineItem>
           );
@@ -42,6 +35,28 @@ describe('EuiTimelineItem', () => {
           expect(component).toMatchSnapshot();
         });
       });
+    });
+
+    test('iconAriaLabel is rendered', () => {
+      const component = render(
+        <EuiTimelineItem icon="dot" iconAriaLabel="icon aria label">
+          <p>I&apos;m the children</p>
+        </EuiTimelineItem>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('EuiAvatar is passed as an icon', () => {
+      const component = render(
+        <EuiTimelineItem
+          icon={<EuiAvatar name="dot" iconType="dot" color="subdued" />}
+        >
+          <p>I&apos;m the children</p>
+        </EuiTimelineItem>
+      );
+
+      expect(component).toMatchSnapshot();
     });
   });
 });

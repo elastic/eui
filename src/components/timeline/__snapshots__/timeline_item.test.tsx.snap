@@ -11,8 +11,41 @@ exports[`EuiTimelineItem is rendered 1`] = `
       class="css-irfkcc-euiTimelineItemIcon__content"
     >
       <div
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user css-rdwecc-euiAvatar-m-user-subdued"
+        role="img"
+        title=""
+      >
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="dot"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-1a9m88x-euiTimelineItemEvent-center"
+  >
+    <p>
+      I'm the children
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiTimelineItem props EuiAvatar is passed as an icon 1`] = `
+<div
+  class="css-88d0w-euiTimelineItem"
+>
+  <div
+    class="css-1grznaw-euiTimelineItemIcon-center"
+  >
+    <div
+      class="css-irfkcc-euiTimelineItemIcon__content"
+    >
+      <div
         aria-label="dot"
-        class="euiAvatar euiAvatar--s euiAvatar--user css-ifcftd-euiAvatar-s-user-subdued"
+        class="euiAvatar euiAvatar--m euiAvatar--user css-rdwecc-euiAvatar-m-user-subdued"
         role="img"
         title="dot"
       >
@@ -21,6 +54,41 @@ exports[`EuiTimelineItem is rendered 1`] = `
           data-euiicon-type="dot"
         >
           dot
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-1a9m88x-euiTimelineItemEvent-center"
+  >
+    <p>
+      I'm the children
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiTimelineItem props iconAriaLabel is rendered 1`] = `
+<div
+  class="css-88d0w-euiTimelineItem"
+>
+  <div
+    class="css-1grznaw-euiTimelineItemIcon-center"
+  >
+    <div
+      class="css-irfkcc-euiTimelineItemIcon__content"
+    >
+      <div
+        aria-label="icon aria label"
+        class="euiAvatar euiAvatar--m euiAvatar--user css-rdwecc-euiAvatar-m-user-subdued"
+        role="img"
+        title="icon aria label"
+      >
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="dot"
+        >
+          icon aria label
         </span>
       </div>
     </div>
@@ -46,17 +114,15 @@ exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
       class="css-irfkcc-euiTimelineItemIcon__content"
     >
       <div
-        aria-label="dot"
-        class="euiAvatar euiAvatar--s euiAvatar--user css-ifcftd-euiAvatar-s-user-subdued"
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user css-rdwecc-euiAvatar-m-user-subdued"
         role="img"
-        title="dot"
+        title=""
       >
         <span
           class="euiAvatar__icon"
           data-euiicon-type="dot"
-        >
-          dot
-        </span>
+        />
       </div>
     </div>
   </div>
@@ -81,17 +147,15 @@ exports[`EuiTimelineItem props verticalAlign top is rendered 1`] = `
       class="css-irfkcc-euiTimelineItemIcon__content"
     >
       <div
-        aria-label="dot"
-        class="euiAvatar euiAvatar--s euiAvatar--user css-ifcftd-euiAvatar-s-user-subdued"
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user css-rdwecc-euiAvatar-m-user-subdued"
         role="img"
-        title="dot"
+        title=""
       >
         <span
           class="euiAvatar__icon"
           data-euiicon-type="dot"
-        >
-          dot
-        </span>
+        />
       </div>
     </div>
   </div>

@@ -19,22 +19,29 @@ export interface EuiTimelineItemIconProps {
    */
   icon: ReactNode | IconType;
   verticalAlign?: EuiTimelineItemVerticalAlign;
+  /**
+   * Specify an `aria-label` for the icon when passed as an `IconType`
+   * If no `aria-label` is passed we assume the icon is purely decorative.
+   */
+  iconAriaLabel?: string;
 }
 
 export const EuiTimelineItemIcon: FunctionComponent<EuiTimelineItemIconProps> = ({
   icon,
   verticalAlign = 'center',
+  iconAriaLabel,
 }) => {
   const euiTheme = useEuiTheme();
   const styles = euiTimelineItemIconStyles(euiTheme);
 
   const cssStyles = [styles.euiTimelineItemIcon, styles[verticalAlign]];
-
   const cssContentStyles = styles.euiTimelineItemIcon__content;
+
+  const ariaLabel = iconAriaLabel ? iconAriaLabel : '';
 
   const iconRender =
     typeof icon === 'string' ? (
-      <EuiAvatar color="subdued" name={icon} iconType={icon} />
+      <EuiAvatar color="subdued" name={ariaLabel} iconType={icon} />
     ) : (
       icon
     );

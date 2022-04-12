@@ -8,6 +8,7 @@ import {
 const items: EuiTimelineProps['items'] = [
   {
     icon: 'email',
+    iconAriaLabel: 'Invitation',
     children: (
       <EuiText size="s">
         <p>
@@ -18,6 +19,7 @@ const items: EuiTimelineProps['items'] = [
   },
   {
     icon: 'pencil',
+    iconAriaLabel: 'Edited',
     children: (
       <EuiText size="s">
         <p>
@@ -28,6 +30,7 @@ const items: EuiTimelineProps['items'] = [
   },
   {
     icon: 'folderClosed',
+    iconAriaLabel: 'Project closed',
     children: (
       <EuiText size="s">
         <p>The project was archived.</p>

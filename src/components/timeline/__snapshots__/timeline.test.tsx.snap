@@ -49,17 +49,15 @@ exports[`EuiTimeline is rendered with items 1`] = `
         class="css-irfkcc-euiTimelineItemIcon__content"
       >
         <div
-          aria-label="bolt"
+          aria-label=""
           class="euiAvatar euiAvatar--m euiAvatar--user css-rdwecc-euiAvatar-m-user-subdued"
           role="img"
-          title="bolt"
+          title=""
         >
           <span
             class="euiAvatar__icon"
             data-euiicon-type="bolt"
-          >
-            bolt
-          </span>
+          />
         </div>
       </div>
     </div>
