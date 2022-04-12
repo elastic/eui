@@ -93,7 +93,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
   private _isMounted = false;
   private backButton?: HTMLElement | null = null;
-  private content?: HTMLElement | null = null;
   private panel?: HTMLElement | null = null;
 
   constructor(props: Props) {
@@ -394,10 +393,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     this.updateHeight();
   };
 
-  contentRef = (node: HTMLElement | null) => {
-    this.content = node;
-  };
-
   render() {
     const {
       children,
@@ -492,11 +487,9 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       >
         {panelTitle}
 
-        <div ref={this.contentRef}>
-          <EuiResizeObserver onResize={() => this.updateHeight()}>
-            {(resizeRef) => <div ref={resizeRef}>{content}</div>}
-          </EuiResizeObserver>
-        </div>
+        <EuiResizeObserver onResize={() => this.updateHeight()}>
+          {(resizeRef) => <div ref={resizeRef}>{content}</div>}
+        </EuiResizeObserver>
       </div>
     );
   }
