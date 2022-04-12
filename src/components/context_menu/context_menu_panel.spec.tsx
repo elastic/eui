@@ -26,15 +26,54 @@ const items = [
   </EuiContextMenuItem>,
 ];
 
+const children = (
+  <>
+    <button data-test-subj="itemA">Item A</button>
+    <button data-test-subj="itemB">Item B</button>
+    <button data-test-subj="itemC">Item C</button>
+  </>
+);
+
 describe('EuiContextMenuPanel', () => {
   describe('Focus behavior', () => {
-    it('is set on the first focusable element by default if there are no items and hasFocus is true', () => {
+    it('focuses the panel by default', () => {
+      cy.mount(<EuiContextMenuPanel>{children}</EuiContextMenuPanel>);
+      cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+    });
+
+    it('sets initial focus from `initialFocusedItemIndex`', () => {
       cy.mount(
-        <EuiContextMenuPanel>
-          <button data-test-subj="button">Hello world</button>
+        <EuiContextMenuPanel initialFocusedItemIndex={2}>
+          {children}
         </EuiContextMenuPanel>
       );
-      cy.focused().should('have.attr', 'data-test-subj', 'button');
+      cy.focused().should('have.attr', 'data-test-subj', 'itemC');
+    });
+
+    describe('with `children`', () => {
+      it('ignores arrow key navigation, which only toggles for `items`', () => {
+        cy.mount(<EuiContextMenuPanel>{children}</EuiContextMenuPanel>);
+        cy.realPress('{downarrow}');
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+      });
+    });
+
+    describe('with `items`', () => {
+      it('focuses and registers any tabbable child as navigable menu items', () => {
+        cy.mount(
+          <EuiContextMenuPanel
+            items={[
+              <button data-test-subj="itemA">A</button>,
+              <button data-test-subj="itemB">B</button>,
+              <a href="#" data-test-subj="itemC">
+                C
+              </a>,
+            ]}
+          />
+        );
+        cy.realPress('{downarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+      });
     });
   });
 

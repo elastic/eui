@@ -14,7 +14,7 @@ import React, {
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
-import { tabbable } from 'tabbable';
+import { tabbable, FocusableElement } from 'tabbable';
 
 import { CommonProps, NoArgCallback, keysOf } from '../common';
 import { EuiIcon } from '../icon';
@@ -80,7 +80,7 @@ interface State {
   prevProps: {
     items: Props['items'];
   };
-  menuItems: HTMLElement[];
+  menuItems: FocusableElement[];
   focusedItemIndex?: number;
   currentHeight?: number;
   height?: number;
@@ -236,27 +236,20 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         return;
       }
 
-      // If there aren't any items then this is probably a form or something.
-      if (!this.state.menuItems.length) {
-        // If we've already focused on something inside the panel, everything's fine.
-        if (this.panel && this.panel.contains(document.activeElement)) {
-          return;
+      // If menuItems has been cleared, iterate through and set menuItems from tabbableItems
+      if (!this.state.menuItems.length && this.content) {
+        const tabbableItems = tabbable(this.content);
+        if (tabbableItems.length) {
+          this.setState({ menuItems: tabbableItems });
         }
-
-        // Otherwise let's focus the first tabbable item and expedite input from the user.
-        if (this.content) {
-          const tabbableItems = tabbable(this.content);
-          if (tabbableItems.length) {
-            tabbableItems[0].focus();
-          }
-        }
-        return;
       }
 
-      // If an item is focused, focus it.
-      if (this.state.focusedItemIndex !== undefined) {
-        this.state.menuItems[this.state.focusedItemIndex].focus();
-        return;
+      // If an item is focused, focus it
+      if (this.state.menuItems.length) {
+        if (this.state.focusedItemIndex != null) {
+          this.state.menuItems[this.state.focusedItemIndex].focus();
+          return;
+        }
       }
 
       // Focus on the panel as a last resort.
@@ -389,15 +382,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     this.updateFocus();
   }
 
-  menuItemRef = (index: number, node: HTMLElement | null) => {
-    // There's a weird bug where if you navigate to a panel without items, then this callback
-    // is still invoked, so we have to do a truthiness check.
-    if (node) {
-      // Store all menu items.
-      this.state.menuItems[index] = node;
-    }
-  };
-
   panelRef = (node: HTMLElement | null) => {
     this.panel = node;
 
@@ -480,10 +464,8 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
     const content =
       items && items.length
-        ? items.map((MenuItem, index) => {
-            const cloneProps: Partial<EuiContextMenuItemProps> = {
-              buttonRef: (node) => this.menuItemRef(index, node),
-            };
+        ? items.map((MenuItem) => {
+            const cloneProps: Partial<EuiContextMenuItemProps> = {};
             if (size) {
               cloneProps.size = size;
             }
