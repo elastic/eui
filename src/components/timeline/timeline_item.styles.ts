@@ -26,11 +26,11 @@ export const euiTimelineItemStyles = ({ euiTheme }: UseEuiTheme) => ({
     }
 
     &:last-of-type {
-      > [class*='euiTimelineItemIcon-top']::before {
+      > [class*='euiTimelineItemIcon']::before {
         display: none;
       }
 
-      > [class*='euiTimelineItemIcon-center']::before {
+      &:not(:only-child) > [class*='euiTimelineItemIcon-center']::before {
         top: 0;
         height: 50%;
       }
