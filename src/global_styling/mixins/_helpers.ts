@@ -7,17 +7,15 @@
  */
 
 import { CSSProperties } from 'react';
-import chroma from 'chroma-js';
-import { UseEuiTheme } from '../../services/theme';
+import { useEuiTheme, UseEuiTheme } from '../../services/theme';
 import { transparentize } from '../../services/color';
-import { mixinOverflowShadowStyles } from './_shadow';
 import { createStyleHookFromMixin } from '../utils';
 
 /**
  * Set scroll bar appearance on Chrome (and firefox).
  * All parameters are optional and default to specific global settings.
  */
-export interface MixinScrollBarStyles {
+export interface EuiScrollBarStyles {
   thumbColor?: CSSProperties['backgroundColor'];
   trackColor?: CSSProperties['backgroundColor'];
   /**
@@ -34,7 +32,7 @@ export interface MixinScrollBarStyles {
    */
   corner?: CSSProperties['borderWidth'];
 }
-export const mixinScrollBarStyles = (
+export const euiScrollBarStyles = (
   { colors, size }: UseEuiTheme['euiTheme'],
   {
     thumbColor: _thumbColor,
@@ -42,7 +40,7 @@ export const mixinScrollBarStyles = (
     width = 'thin',
     size: _size,
     corner: _corner,
-  }: MixinScrollBarStyles = {}
+  }: EuiScrollBarStyles = {}
 ) => {
   // Set defaults from theme
   const thumbColor = _thumbColor || transparentize(colors.darkShade, 0.5);
@@ -76,45 +74,48 @@ export const mixinScrollBarStyles = (
     ${firefoxSupport}
   `;
 };
-export const useScrollBarStyles = createStyleHookFromMixin(
-  mixinScrollBarStyles
-);
+export const useEuiScrollBar = createStyleHookFromMixin(euiScrollBarStyles);
 
-export interface MixinInnerBorderStyles {
-  type?: 'light' | 'dark';
-  borderRadius?: number;
-  alpha?: number;
+/**
+ * *INTERNAL*
+ * Overflow shadow masks for use in YScroll and XScroll helpers
+ */
+interface EuiOverflowShadowStyles {
+  direction?: 'y' | 'x';
+  side?: 'both' | 'start' | 'end';
 }
-// Useful border shade when dealing with images of unknown color.
-export const mixinInnerBorderStyles = (
-  { colors }: UseEuiTheme['euiTheme'],
-  { type = 'dark', borderRadius = 0, alpha = 0.1 }: MixinInnerBorderStyles = {}
+const euiOverflowShadowStyles = (
+  { size }: UseEuiTheme['euiTheme'],
+  { direction: _direction, side: _side }: EuiOverflowShadowStyles = {}
 ) => {
-  const color = chroma(
-    type === 'dark' ? colors.darkestShade : colors.emptyShade
-  )
-    .alpha(alpha)
-    .css();
-
-  return `
-    position: relative;
-
-    &:after {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: ${borderRadius};
-      content: '';
-      pointer-events: none;
-      border: 1px solid ${color};
-    }
+  const direction = _direction || 'y';
+  const side = _side || 'both';
+  const hideHeight = `calc(${size.base} * 0.75 * 1.25)`;
+  const gradientStart = `
+  ${transparentize('red', 0.1)} 0%,
+  ${transparentize('red', 1)} ${hideHeight}
   `;
+  const gradientEnd = `
+  ${transparentize('red', 1)} calc(100% - ${hideHeight}),
+  ${transparentize('red', 0.1)} 100%
+  `;
+  let gradient = '';
+  if (side) {
+    if (side === 'both') {
+      gradient = `${gradientStart}, ${gradientEnd}`;
+    } else if (side === 'start') {
+      gradient = `${gradientStart}`;
+    } else {
+      gradient = `${gradientEnd}`;
+    }
+  }
+
+  if (direction === 'y') {
+    return `mask-image: linear-gradient(to bottom, ${gradient});`;
+  } else {
+    return `mask-image: linear-gradient(to right, ${gradient});`;
+  }
 };
-export const useInnerBorderStyles = createStyleHookFromMixin(
-  mixinInnerBorderStyles
-);
 
 /**
  * 1. Focus rings shouldn't be visible on scrollable regions, but a11y requires them to be focusable.
@@ -122,9 +123,9 @@ export const useInnerBorderStyles = createStyleHookFromMixin(
  *    Others like Safari, won't show anything at all.
  */
 
-// Just overflow and scrollbars
-export const mixinYScrollStyles = (euiTheme: UseEuiTheme['euiTheme']) => `
-  ${mixinScrollBarStyles(euiTheme)}
+// TODO: How do we use Emotion to output the CSS class utilities instead?
+export const euiYScroll = (euiTheme: UseEuiTheme['euiTheme']) => `
+  ${euiScrollBarStyles(euiTheme)}
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
@@ -132,53 +133,50 @@ export const mixinYScrollStyles = (euiTheme: UseEuiTheme['euiTheme']) => `
     outline: none; /* 1 */
   }
 `;
-export const useYScrollStyles = createStyleHookFromMixin(mixinYScrollStyles);
+export const useEuiYScroll = createStyleHookFromMixin(euiYScroll);
 
-export const mixinXScrollStyles = (euiTheme: UseEuiTheme['euiTheme']) => `
-  ${mixinScrollBarStyles(euiTheme)}
+export const euiYScrollWithShadows = (euiTheme: UseEuiTheme['euiTheme']) => `
+  ${euiYScroll(euiTheme)}
+  ${euiOverflowShadowStyles(euiTheme, { direction: 'y' })}
+`;
+export const useEuiYScrollWithShadows = createStyleHookFromMixin(
+  euiYScrollWithShadows
+);
+
+export const euiXScroll = (euiTheme: UseEuiTheme['euiTheme']) => `
+  ${euiScrollBarStyles(euiTheme)}
   overflow-x: auto;
   &:focus {
     outline: none; /* 1 */
   }
 `;
-export const useXScrollStyles = createStyleHookFromMixin(mixinXScrollStyles);
+export const useEuiXScroll = createStyleHookFromMixin(euiXScroll);
 
-// // The full overflow with shadow
-export const mixinYScrollWithShadowsStyles = (
-  euiTheme: UseEuiTheme['euiTheme']
-) => `
-  ${mixinYScrollStyles(euiTheme)}
-  ${mixinOverflowShadowStyles(euiTheme, { direction: 'y' })}
+export const euiXScrollWithShadows = (euiTheme: UseEuiTheme['euiTheme']) => `
+  ${euiXScroll(euiTheme)}
+  ${euiOverflowShadowStyles(euiTheme, { direction: 'x' })}
 `;
-export const useYScrollWithShadowsStyles = createStyleHookFromMixin(
-  mixinYScrollWithShadowsStyles
+export const useEuiXScrollWithShadows = createStyleHookFromMixin(
+  euiXScrollWithShadows
 );
 
-export const mixinXScrollWithShadowsStyles = (
-  euiTheme: UseEuiTheme['euiTheme']
-) => `
-  ${mixinXScrollStyles(euiTheme)}
-  ${mixinOverflowShadowStyles(euiTheme, { direction: 'x' })}
-`;
-export const useXScrollWithShadowsStyles = createStyleHookFromMixin(
-  mixinXScrollWithShadowsStyles
-);
+// One hook to rule them all
+export const useEuiOverflowScroll = (
+  direction: 'y' | 'x',
+  mask: boolean = false
+) => {
+  const { euiTheme } = useEuiTheme();
 
-// Hiding elements offscreen to only be read by screen reader
-export const mixinScreenReaderOnlyStyles = () => `
-  position: absolute;
-  left: -10000px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-`;
-export const useScreenReaderOnlyStyles = mixinScreenReaderOnlyStyles;
+  switch (direction) {
+    case 'y':
+      return mask ? euiYScrollWithShadows(euiTheme) : euiYScroll(euiTheme);
+    case 'x':
+      return mask ? euiXScrollWithShadows(euiTheme) : euiXScroll(euiTheme);
 
-// Doesn't have reduced motion turned on
-export const mixinCanAnimateStyles = (content: string) => `
-  @media screen and (prefers-reduced-motion: no-preference) {
-    ${content}
+    default:
+      console.warn(
+        'Please provide a valid direction option to useEuiOverflowScroll'
+      );
+      break;
   }
-`;
-export const useCanAnimateStyles = mixinCanAnimateStyles;
+};

@@ -124,7 +124,7 @@
   &:hover,
   &:focus,
   &:focus-within {
-    @include euiSlightShadow($euiColorInk);
+    @include euiSlightShadow;
     color: $euiButtonColorGhostDisabled;
     border-color: $euiButtonColorGhostDisabled;
   }

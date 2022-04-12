@@ -1,84 +1,121 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import {
-  EuiCode,
-  EuiFlexGroup,
-  EuiLink,
   EuiPanel,
   EuiSpacer,
-  EuiText,
   useEuiTheme,
-  keysOf,
-  useXScrollWithShadowsStyles,
-  useYScrollWithShadowsStyles,
+  _EuiShadowSizesDescriptions,
+  _EuiShadowSizes,
+  SHADOW_SIZE,
+  EuiSwitch,
+  transparentize,
+  EuiDescribedFormGroup,
+  EuiFormRow,
 } from '../../../../../src';
+import { getPropsFromComponent } from '../../../services/props/get_props';
+import { getDescription } from '../../../services/props/get_description';
 
 // TODO: Update imports
 import {
-  useSlightShadowStyles,
-  mixinSlightShadowStyles,
-  // useBottomShadowSmallStyles,
-  mixinBottomShadowSmallStyles,
-  // useBottomShadowMediumStyles,
-  mixinBottomShadowMediumStyles,
-  // useBottomShadowStyles,
-  mixinBottomShadowStyles,
-  // useBottomShadowLargeStyles,
-  mixinBottomShadowLargeStyles,
-  // useBottomShadowFlatStyles,
-  mixinBottomShadowFlatStyles,
+  useEuiShadow,
+  useEuiShadowFlat,
 } from '../../../../../src/themes/amsterdam/global_styling/mixins/_shadow';
 
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
+import { EuiThemeColors } from '../_props';
 
-const shadows = {
-  euiSlightShadow: {
-    description: 'Very subtle shadow used on small components.',
-    hook: 'useSlightShadowStyles',
-    mixin: 'mixinSlightShadowStyles',
-    fn: mixinSlightShadowStyles,
-  },
-  euiBottomShadowSmall: {
-    description:
-      'Adds subtle depth, usually used in conjunction with a border.',
-    hook: 'useBottomShadowSmallStyles',
-    mixin: 'mixinBottomShadowSmallStyles',
-    fn: mixinBottomShadowSmallStyles,
-  },
-  euiBottomShadowMedium: {
-    description: 'Used on small sized portalled content like popovers.',
-    hook: 'useBottomShadowMediumStyles',
-    mixin: 'mixinBottomShadowMediumStyles',
-    fn: mixinBottomShadowMediumStyles,
-  },
-  euiBottomShadow: {
-    description: 'Primary shadow used in most cases to add visible depth.',
-    hook: 'useBottomShadowStyles',
-    mixin: 'mixinBottomShadowStyles',
-    fn: mixinBottomShadowStyles,
-  },
-  euiBottomShadowLarge: {
-    description:
-      'Very large shadows used for large portalled style containers like modals and flyouts.',
-    hook: 'useBottomShadowLargeStyles',
-    mixin: 'mixinBottomShadowLargeStyles',
-    fn: mixinBottomShadowLargeStyles,
-  },
-  euiBottomShadowFlat: {
-    description:
-      'Subtle shadow on all sides but is usually used for popovers that pop in the up direction.',
-    hook: 'useBottomShadowFlatStyles',
-    mixin: 'mixinBottomShadowFlatStyles',
-    fn: mixinBottomShadowFlatStyles,
-  },
+const RenderShadow = ({
+  size,
+  color,
+}: {
+  size: _EuiShadowSizes;
+  color?: string;
+}) => {
+  const style = useEuiShadow(size, color);
+  return (
+    <div
+      className="guideSass__shadow"
+      css={css`
+        ${style}
+      `}
+    />
+  );
+};
+
+const RenderFlatShadow = ({ color }: { color?: string }) => {
+  const style = useEuiShadowFlat(color);
+  return (
+    <div
+      className="guideSass__shadow"
+      css={css`
+        ${style}
+      `}
+    />
+  );
 };
 
 export default () => {
-  const { euiTheme, colorMode } = useEuiTheme();
+  const { euiTheme } = useEuiTheme();
+  const [customColor, setCustomColor] = useState(false);
+  const colorProps = getPropsFromComponent(EuiThemeColors);
+
+  const shadowItems = SHADOW_SIZE.map((shadow) => {
+    return {
+      id: shadow,
+      token: customColor
+        ? `useEuiShadow('${shadow}', euiTheme.colors.accent);`
+        : `useEuiShadow('${shadow}');`,
+      description: _EuiShadowSizesDescriptions[shadow],
+    };
+  });
+
+  const allShadows = shadowItems.concat([
+    {
+      // @ts-ignore TODO
+      id: 'flat',
+      token: customColor
+        ? 'useEuiShadowFlat(euiTheme.colors.accent);'
+        : 'useEuiShadowFlat();',
+      description:
+        'Similar to shadow medium but without the bottom depth. Useful for popovers that drop UP rather than DOWN.',
+    },
+  ]);
+
   return (
     <>
+      <ThemeExample
+        title={<code>euiTheme.colors.shadow</code>}
+        description={
+          <>
+            <p>{getDescription(colorProps.shadow)}</p>
+            <p>
+              Use this token when creating your own specific box-shadow styles.
+              Otherwise, we recommend using the provided React hooks.
+            </p>
+          </>
+        }
+        examplePanel={{
+          color: 'subdued',
+        }}
+        example={
+          <div
+            className="guideSass__shadow"
+            css={css`
+              box-shadow: 0 ${euiTheme.size.xs} ${euiTheme.size.xs}
+                ${transparentize(euiTheme.colors.shadow, 0.04)};
+            `}
+          >
+            <strong>
+              Shadows work best on differently shaded backgrounds.
+            </strong>
+          </div>
+        }
+        snippet={
+          'box-shadow: 0 ${euiTheme.size.xs} ${euiTheme.size.xs} ${transparentize(euiTheme.colors.shadow, 0.04)};'
+        }
+      />
+
       <ThemeExample
         title="Hooks"
         description={
@@ -98,137 +135,57 @@ export default () => {
           color: 'subdued',
         }}
         example={
-          <div className="guideSass__shadow" css={css(useSlightShadowStyles())}>
-            <strong>Works best on differently shaded backgrounds.</strong>
+          <div className="guideSass__shadow" css={css(useEuiShadow())}>
+            <strong>
+              Shadows work best on differently shaded backgrounds.
+            </strong>
           </div>
         }
-        snippet={'useSlightShadowStyles();'}
-        snippetLanguage="scss"
+        snippet={'css(useEuiShadow())'}
+        snippetLanguage="tsx"
       />
+
+      <EuiPanel color="accent">
+        <EuiDescribedFormGroup
+          fullWidth
+          title={<h3>Colorizing shadows</h3>}
+          description={
+            <p>
+              Shadow functions and hooks accept passing through a custom color.
+              This color will still get transparentized at the normal opacity
+              value, so be sure to pass in a fully opaque color.
+            </p>
+          }
+        >
+          <EuiFormRow fullWidth>
+            <EuiSwitch
+              label="Show samples using custom color"
+              checked={customColor}
+              onChange={(e) => setCustomColor(e.target.checked)}
+            />
+          </EuiFormRow>
+        </EuiDescribedFormGroup>
+      </EuiPanel>
+
+      <EuiSpacer />
 
       <ThemeValuesTable
-        items={keysOf(shadows).map((shadow) => {
-          return {
-            id: shadow,
-            token: `${shadows[shadow].hook}();`,
-            styleFn: shadows[shadow].fn,
-            description: shadows[shadow].description,
-          };
-        })}
-        render={(item) => (
-          <div
-            className="guideSass__shadow"
-            css={css(item.styleFn!(euiTheme, {}, colorMode))}
-          />
-        )}
+        valign="middle"
+        items={allShadows}
+        tokenColumnProps={{ name: 'Hook' }}
+        render={(item) =>
+          item.id === 'flat' ? (
+            <RenderFlatShadow
+              color={customColor ? euiTheme.colors.accent : undefined}
+            />
+          ) : (
+            <RenderShadow
+              size={item.id as _EuiShadowSizes}
+              color={customColor ? euiTheme.colors.accent : undefined}
+            />
+          )
+        }
       />
-
-      <ThemeExample
-        title={<code>useYScrollWithShadowsStyles();</code>}
-        description={
-          <>
-            <p>
-              Primarily used in modals and flyouts, the overflow shadow masks
-              the edges to indicate there is more content.
-            </p>
-            <p>
-              It requires a wrapping element to control the height with{' '}
-              <EuiCode>overflow-y: hidden;</EuiCode> and the content to use
-              <EuiCode>useYScrollWithShadows();</EuiCode> hook or use the{' '}
-              <Link to="/utilities/css-utility-classes">CSS utility class</Link>{' '}
-              <EuiCode>.eui-yScrollWithShadows</EuiCode>.
-            </p>
-          </>
-        }
-        examplePanel={{
-          paddingSize: 'none',
-        }}
-        example={
-          <div
-            css={css`
-              overflow-y: hidden;
-              height: 160px;
-            `}
-          >
-            <EuiText
-              css={css`
-                ${useYScrollWithShadowsStyles()}
-                padding: ${euiTheme.size.base};
-              `}
-              size="s"
-            >
-              <p>
-                Consequuntur atque nulla atque nemo tenetur numquam. Assumenda
-                aspernatur qui aut sit. Aliquam doloribus iure sint id. Possimus
-                dolor qui soluta cum id tempore ea illum. Facilis voluptatem aut
-                aut ut similique ut. Sed repellendus commodi iure officiis
-                exercitationem praesentium dolor. Ratione non ut nulla accusamus
-                et. Optio laboriosam id incidunt. Ipsam voluptate ab quia
-                necessitatibus sequi earum voluptate. Porro tempore et veritatis
-                quo omnis. Eaque ut libero tempore sit placeat maxime
-                laudantium. Mollitia tempore minus qui autem modi adipisci ad.
-                Iste reprehenderit accusamus voluptatem velit. Quidem delectus
-                eos veritatis et vitae et nisi. Doloribus ut corrupti voluptates
-                qui exercitationem dolores.
-              </p>
-            </EuiText>
-          </div>
-        }
-        snippet={'useYScrollWithShadowsStyles()'}
-        snippetLanguage="scss"
-      />
-
-      <ThemeExample
-        title={<code>useXScrollWithShadowsStyles();</code>}
-        description={
-          <>
-            <p>
-              The horizontal equivalent should be used sparingly and usually
-              only in full-height layouts or a grid of items.
-            </p>
-            <p>
-              You may want to add at least <EuiCode>euiTheme.size.base</EuiCode>
-              &apos;s worth of padding to the sides of your content so the mask
-              doesn&apos;t overlay it.
-            </p>
-          </>
-        }
-        examplePanel={{
-          paddingSize: 'none',
-        }}
-        example={
-          <div
-            css={css`
-              ${useXScrollWithShadowsStyles()}
-              padding: ${euiTheme.size.base};
-            `}
-          >
-            <EuiFlexGroup
-              css={css`
-                width: 150%;
-              `}
-              responsive={false}
-            >
-              <EuiPanel className="guideSass__shadow" color="primary" />
-              <EuiPanel className="guideSass__shadow" color="primary" />
-              <EuiPanel className="guideSass__shadow" color="primary" />
-            </EuiFlexGroup>
-          </div>
-        }
-        snippet={'useXScrollWithShadowsStyles();'}
-        snippetLanguage="scss"
-      />
-
-      <EuiText>
-        <p>
-          If you need to further customize the position or side of the overflow
-          shadow use the <EuiCode>useOverflowShadowStyles</EuiCode>{' '}
-          <EuiLink href="https://github.com/elastic/eui/blob/main/src/global_styling/mixins/_shadow.ts">
-            hook
-          </EuiLink>
-          .
-        </p>
-      </EuiText>
       <EuiSpacer size="xl" />
     </>
   );
