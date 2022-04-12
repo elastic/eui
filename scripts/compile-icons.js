@@ -40,6 +40,7 @@ iconFiles.forEach((filePath) => {
             { cleanupIDs: true },
             { prefixIds: false },
             { removeViewBox: false },
+            { removeUselessStrokeAndFill: false },
           ],
         },
         svgProps: {
