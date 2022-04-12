@@ -228,14 +228,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         return;
       }
 
-      // `focusedItemIndex={-1}` specifies that the panel itself should be focused.
-      // This should only be used when the panel does not have `item`s
-      // and preventing autofocus is desired, which is an uncommon case.
-      if (this.panel && this.state.focusedItemIndex === -1) {
-        this.panel.focus();
-        return;
-      }
-
       // If menuItems has been cleared, iterate through and set menuItems from tabbableItems
       if (!this.state.menuItems.length && this.content) {
         const tabbableItems = tabbable(this.content);

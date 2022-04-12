@@ -174,16 +174,6 @@ describe('EuiContextMenuPanel', () => {
           document.activeElement
         );
       });
-
-      it('sets focus on the panel when set to `-1`', async () => {
-        const component = mount(
-          <EuiContextMenuPanel items={items} initialFocusedItemIndex={-1} />
-        );
-
-        await tick(20);
-
-        expect(component.getDOMNode()).toBe(document.activeElement);
-      });
     });
 
     describe('onUseKeyboardToNavigate', () => {
