@@ -161,12 +161,14 @@ export const useEuiXScrollWithShadows = createStyleHookFromMixin(
 );
 
 // One hook to rule them all
-export const useEuiOverflowScroll = (
-  direction: 'y' | 'x',
-  mask: boolean = false
+interface EuiScrollOverflowStyles {
+  direction?: 'y' | 'x';
+  mask?: boolean;
+}
+export const euiOverflowScroll = (
+  euiTheme: UseEuiTheme['euiTheme'],
+  { direction, mask = false }: EuiScrollOverflowStyles = {}
 ) => {
-  const { euiTheme } = useEuiTheme();
-
   switch (direction) {
     case 'y':
       return mask ? euiYScrollWithShadows(euiTheme) : euiYScroll(euiTheme);
@@ -177,6 +179,13 @@ export const useEuiOverflowScroll = (
       console.warn(
         'Please provide a valid direction option to useEuiOverflowScroll'
       );
-      break;
+      return '';
   }
+};
+export const useEuiOverflowScroll = (
+  direction: EuiScrollOverflowStyles['direction'],
+  mask: EuiScrollOverflowStyles['mask'] = false
+) => {
+  const { euiTheme } = useEuiTheme();
+  return euiOverflowScroll(euiTheme, { direction, mask });
 };

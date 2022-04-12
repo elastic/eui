@@ -150,15 +150,16 @@ box-shadow:
 };
 export const useEuiShadowFlat = createStyleHookFromMixin(euiShadowFlat);
 
-/**
- * One hook to rule them all
- */
-export const useEuiShadow = (
-  size: _EuiShadowSizes = 'l',
-  color: EuiShadowCustomColor['color'] = undefined
+// One hook to rule them all
+interface EuiShadowStyles {
+  size?: _EuiShadowSizes;
+  color?: EuiShadowCustomColor['color'];
+}
+export const euiShadow = (
+  euiTheme: UseEuiTheme['euiTheme'],
+  { size = 'l', color = undefined }: EuiShadowStyles = {},
+  colorMode: UseEuiTheme['colorMode']
 ) => {
-  const { euiTheme, colorMode } = useEuiTheme();
-
   switch (size) {
     case 'xs':
       return euiShadowXSmall(euiTheme, { color }, colorMode);
@@ -173,6 +174,13 @@ export const useEuiShadow = (
 
     default:
       console.warn('Please provide a valid size option to useEuiShadow');
-      break;
+      return '';
   }
+};
+export const useEuiShadow = (
+  size: EuiShadowStyles['size'] = 'l',
+  color?: EuiShadowStyles['color']
+) => {
+  const { euiTheme, colorMode } = useEuiTheme();
+  return euiShadow(euiTheme, { size, color }, colorMode);
 };
