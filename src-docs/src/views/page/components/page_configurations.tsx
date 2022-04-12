@@ -21,8 +21,6 @@ export default ({
   pageHeader?: boolean;
   emptyPrompt?: boolean;
 }) => {
-  // const bottomBorder = sideBar ? true : 'extended'; TBD
-
   return (
     <EuiPage paddingSize="none">
       {sideBar && (

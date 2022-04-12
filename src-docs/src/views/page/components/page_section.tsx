@@ -29,7 +29,7 @@ export default ({
         color="subdued"
         bottomBorder={bottomBorder}
       >
-        NESTED
+        Secondary content
       </EuiPageSection>
       <EuiPageSection
         restrictWidth={width}
