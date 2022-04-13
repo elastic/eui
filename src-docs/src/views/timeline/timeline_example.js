@@ -12,7 +12,7 @@ import timelineItemConfig from './playground';
 import Timeline from './timeline';
 const timelineSource = require('!!raw-loader!./timeline');
 const timelineSnippet = `<EuiTimeline
-  timelines={[
+  items={[
     {
       icon: icon,
       children: content,
