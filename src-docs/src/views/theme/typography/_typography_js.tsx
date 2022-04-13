@@ -15,7 +15,7 @@ import {
   FONT_SCALES,
 } from '../../../../../src/global_styling/variables/_typography';
 import { euiFontSize } from '../../../../../src/global_styling/mixins/_typography';
-import { EuiThemeFontSizeMeasurement } from '../../../../../src/global_styling/functions/typography';
+import { _EuiThemeFontSizeMeasurement } from '../../../../../src/global_styling/local_functions/typography';
 import { fontWeight } from '../../../../../src/themes/amsterdam/global_styling/variables/_typography';
 
 import { EuiThemeFontBase, EuiThemeFontWeight, ThemeRowType } from '../_props';
@@ -140,7 +140,7 @@ const scaleKeys = FONT_SCALES;
 export const FontScaleJS = () => {
   const { euiTheme } = useEuiTheme();
 
-  const measurements: EuiThemeFontSizeMeasurement[] = ['rem', 'px', 'em'];
+  const measurements: _EuiThemeFontSizeMeasurement[] = ['rem', 'px', 'em'];
 
   const measurementButtons = measurements.map((m) => {
     return {
@@ -150,7 +150,7 @@ export const FontScaleJS = () => {
   });
 
   const [measurementSelected, setMeasurementSelected] = useState<
-    EuiThemeFontSizeMeasurement
+    _EuiThemeFontSizeMeasurement
   >(measurementButtons[0].id);
 
   return (
@@ -195,7 +195,7 @@ export const FontScaleJS = () => {
             options={measurementButtons}
             idSelected={measurementSelected}
             onChange={(id) =>
-              setMeasurementSelected(id as EuiThemeFontSizeMeasurement)
+              setMeasurementSelected(id as _EuiThemeFontSizeMeasurement)
             }
             color="accent"
             isFullWidth

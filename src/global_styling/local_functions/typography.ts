@@ -6,10 +6,11 @@
  * Side Public License, v 1.
  */
 
-import { _EuiThemeFontScale } from '../variables/_typography';
+import {
+  _EuiThemeFontScale,
+  _EuiThemeFontSizeMeasurement,
+} from '../variables/_typography';
 import { UseEuiTheme } from '../../services/theme/hooks';
-
-export type EuiThemeFontSizeMeasurement = 'px' | 'rem' | 'em';
 
 /**
  *
@@ -26,7 +27,7 @@ export type EuiThemeFontSizeMeasurement = 'px' | 'rem' | 'em';
 export function fontSizeFromScale(
   scale: _EuiThemeFontScale,
   { base, font }: UseEuiTheme['euiTheme'],
-  measurement: EuiThemeFontSizeMeasurement = 'rem'
+  measurement: _EuiThemeFontSizeMeasurement = 'rem'
 ) {
   if (measurement === 'em') {
     return `${font.scale[scale]}em`;
@@ -56,7 +57,7 @@ export function fontSizeFromScale(
 export function lineHeightFromBaseline(
   scale: _EuiThemeFontScale,
   { base, font }: UseEuiTheme['euiTheme'],
-  measurement: EuiThemeFontSizeMeasurement = 'rem'
+  measurement: _EuiThemeFontSizeMeasurement = 'rem'
 ) {
   const { baseline, body, lineHeightMultiplier } = font;
   const numerator = base * font.scale[scale];

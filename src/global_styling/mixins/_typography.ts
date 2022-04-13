@@ -8,12 +8,14 @@
 
 import { CSSProperties } from 'react';
 import {
-  EuiThemeFontSizeMeasurement,
   lineHeightFromBaseline,
   fontSizeFromScale,
-} from '../functions/typography';
+} from '../local_functions/typography';
 import { UseEuiTheme } from '../../services/theme/hooks';
-import { _EuiThemeFontScale } from '../variables/_typography';
+import {
+  _EuiThemeFontScale,
+  _EuiThemeFontSizeMeasurement,
+} from '../variables/_typography';
 
 export type EuiThemeFontSize = {
   fontSize: CSSProperties['fontSize'];
@@ -26,7 +28,7 @@ export type EuiThemeFontSize = {
 export const euiFontSize = (
   scale: _EuiThemeFontScale,
   euiTheme: UseEuiTheme['euiTheme'],
-  measurement: EuiThemeFontSizeMeasurement = 'rem'
+  measurement: _EuiThemeFontSizeMeasurement = 'rem'
 ): EuiThemeFontSize => {
   return {
     fontSize: fontSizeFromScale(scale, euiTheme, measurement),
