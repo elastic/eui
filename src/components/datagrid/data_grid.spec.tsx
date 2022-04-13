@@ -371,7 +371,10 @@ describe('EuiDataGrid', () => {
           '[data-gridcell-column-index="3"][data-gridcell-row-index="0"]'
         ).click();
         cy.focused().type('{enter}');
-        cy.focused().should('have.attr', 'data-test-subj', 'focusOnMe'); // focus trap focuses the link
+        // Get the link that should receive focus after Enter key is pressed
+        cy.get('[data-test-subj="focusOnMe"]')
+          .focused()
+          .should('have.attr', 'data-test-subj', 'focusOnMe'); // focus trap focuses the link
         cy.focused().type('{esc}');
         cy.focused()
           .should('have.attr', 'data-gridcell-column-index', '3')
