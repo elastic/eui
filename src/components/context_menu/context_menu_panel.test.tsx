@@ -163,6 +163,9 @@ describe('EuiContextMenuPanel', () => {
     });
 
     describe('initialFocusedItemIndex', () => {
+      // Reset focus between tests
+      beforeEach(() => (document.activeElement as HTMLElement)?.blur());
+
       it('sets focus on the item occupying that index', async () => {
         const component = mount(
           <EuiContextMenuPanel items={items} initialFocusedItemIndex={1} />
@@ -170,8 +173,8 @@ describe('EuiContextMenuPanel', () => {
 
         await tick(20);
 
-        expect(findTestSubject(component, 'itemB').getDOMNode()).toBe(
-          document.activeElement
+        expect(document.activeElement).toBe(
+          findTestSubject(component, 'itemB').getDOMNode()
         );
       });
     });
