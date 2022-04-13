@@ -11,6 +11,8 @@ import {
   _EuiThemeFontScale,
 } from '../../global_styling/variables/_typography';
 
+export type EuiThemeFontSizeMeasurement = 'px' | 'rem' | 'em';
+
 export const LINE_HEIGHT_MULTIPLIER_S = 1.5;
 export const LINE_HEIGHT_MULTIPLIER_L = 1.25;
 
@@ -22,14 +24,15 @@ export const LINE_HEIGHT_MULTIPLIER_L = 1.25;
  * @param base - Theme base unit
  * @param font - Requires the `body` and `baseline` values
  * @param scale - The font scale multiplier
+ * @param measurement - The returned string measurement
  * *
- * @returns string - Rem unit aligned to baseline
+ * @returns string - Calculated line-height value aligned to baseline
  */
 export function lineHeightFromBaseline(
   base: number,
   font: EuiThemeFont,
   scale: number,
-  measurement: 'px' | 'rem' = 'rem'
+  measurement: EuiThemeFontSizeMeasurement = 'rem'
 ) {
   const { baseline, body } = font;
   const numerator = base * scale;
@@ -37,6 +40,12 @@ export function lineHeightFromBaseline(
 
   const _lineHeightMultiplier =
     numerator <= base ? LINE_HEIGHT_MULTIPLIER_S : LINE_HEIGHT_MULTIPLIER_L;
+
+  if (measurement === 'em') {
+    // Even though the line-height via `em` cannot be determined against the pixel baseline grid;
+    // we will assume that typically larger scale font-sizes should have a shorter line-height;
+    return _lineHeightMultiplier.toString();
+  }
 
   const pixelValue =
     Math.floor(Math.round(numerator * _lineHeightMultiplier) / baseline) *
@@ -53,8 +62,9 @@ export function lineHeightFromBaseline(
  * @param base = 16
  * @param scale = full scale
  * @param bodyScale = 's'
- * @param scale = 'm'
- * @returns
+ * @param size = 'm'
+ * @param measurement - The returned string measurement
+ * @returns string - Calculated font-size value
  */
 
 export function fontSizeFromScale(
@@ -62,8 +72,12 @@ export function fontSizeFromScale(
   scale: { [key in _EuiThemeFontScale]: number },
   bodyScale: _EuiThemeFontScale,
   size: _EuiThemeFontScale,
-  measurement: 'px' | 'rem' = 'rem'
+  measurement: EuiThemeFontSizeMeasurement = 'rem'
 ) {
+  if (measurement === 'em') {
+    return `${scale[size]}em`;
+  }
+
   const numerator = base * scale[size];
   const denominator = base * scale[bodyScale];
 

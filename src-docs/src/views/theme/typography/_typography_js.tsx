@@ -3,9 +3,11 @@ import { css } from '@emotion/react';
 import { useEuiTheme } from '../../../../../src/services';
 import {
   EuiBasicTable,
+  EuiButtonGroup,
   EuiCode,
+  EuiDescribedFormGroup,
+  EuiPanel,
   EuiSpacer,
-  EuiSwitch,
 } from '../../../../../src/components';
 
 import {
@@ -14,6 +16,7 @@ import {
   FONT_SCALES,
 } from '../../../../../src/global_styling/variables/_typography';
 import { euiFontSize } from '../../../../../src/global_styling/variables/text';
+import { EuiThemeFontSizeMeasurement } from '../../../../../src/services/theme/typography';
 
 import { EuiThemeFontBase, EuiThemeFontWeight, ThemeRowType } from '../_props';
 import { getPropsFromComponent } from '../../../services/props/get_props';
@@ -136,7 +139,19 @@ const scaleKeys = FONT_SCALES;
 
 export const FontScaleJS = () => {
   const { euiTheme } = useEuiTheme();
-  const [measurement, setMeasurement] = useState<'px' | 'rem'>('rem');
+
+  const measurements: EuiThemeFontSizeMeasurement[] = ['rem', 'px', 'em'];
+
+  const measurementButtons = measurements.map((m) => {
+    return {
+      id: m,
+      label: m,
+    };
+  });
+
+  const [measurementSelected, setMeasurementSelected] = useState<
+    EuiThemeFontSizeMeasurement
+  >(measurementButtons[0].id);
 
   return (
     <>
@@ -154,7 +169,7 @@ export const FontScaleJS = () => {
         example={
           <p
             css={css`
-              ${euiFontSize('l', euiTheme, measurement)}
+              ${euiFontSize('l', euiTheme, measurementSelected)}
             `}
           >
             The quick brown fox jumped over the blue moon to catch a snail
@@ -162,22 +177,50 @@ export const FontScaleJS = () => {
         }
         snippet="euiFontSize('l');"
       />
-      <EuiSpacer />
-      <EuiSwitch
-        label="Show pixels"
-        checked={measurement === 'px'}
-        onChange={(e) => setMeasurement(e.target.checked ? 'px' : 'rem')}
-      />
+      <EuiPanel color="accent">
+        <EuiDescribedFormGroup
+          fullWidth
+          title={<h3>Value measurements</h3>}
+          description={
+            <p>
+              The font sizing function also supports the three main measurements
+              for font-size, <EuiCode>rem | px | em</EuiCode>, with{' '}
+              <EuiCode>rem</EuiCode> being default for all EUI components.
+            </p>
+          }
+        >
+          <EuiButtonGroup
+            buttonSize="m"
+            legend="Value measurement to show in table"
+            options={measurementButtons}
+            idSelected={measurementSelected}
+            onChange={(id) =>
+              setMeasurementSelected(id as EuiThemeFontSizeMeasurement)
+            }
+            color="accent"
+            isFullWidth
+          />
+        </EuiDescribedFormGroup>
+      </EuiPanel>
       <EuiSpacer />
       <EuiBasicTable
+        css={css`
+          & table {
+            font-size: ${euiTheme.base}px;
+          }
+        `}
         tableLayout="auto"
         items={scaleKeys.map((scale, index) => {
           return {
             id: scale,
-            value: `euiFontSize('${scale}')`,
-            size: `${euiFontSize(scale, euiTheme, measurement).fontSize}`,
+            value: `euiFontSize('${scale}'${
+              measurementSelected !== 'rem' ? `, '${measurementSelected}'` : ''
+            })`,
+            size: `${
+              euiFontSize(scale, euiTheme, measurementSelected).fontSize
+            }`,
             lineHeight: `${
-              euiFontSize(scale, euiTheme, measurement).lineHeight
+              euiFontSize(scale, euiTheme, measurementSelected).lineHeight
             }`,
             index,
           };
@@ -187,10 +230,11 @@ export const FontScaleJS = () => {
             field: 'sample',
             name: 'Sample',
             valign: 'baseline',
+            width: '50%',
             render: (sample, item) => (
               <div
                 css={css`
-                  ${euiFontSize(item.id, euiTheme)}
+                  ${euiFontSize(item.id, euiTheme, measurementSelected)}
                 `}
               >
                 The quick brown fox jumped over the blue moon to catch a snail
@@ -203,7 +247,7 @@ export const FontScaleJS = () => {
           {
             field: 'value',
             name: 'Function',
-            width: '200px',
+            width: 'auto',
             valign: 'baseline',
             render: (value: React.ReactNode) => (
               <EuiCode language="css">{value}</EuiCode>

@@ -73,6 +73,7 @@ export const fontBase: _EuiThemeFontBase = {
 /*
  * Font weights
  */
+
 export interface _EuiThemeFontWeight {
   light: CSSProperties['fontWeight'];
   regular: CSSProperties['fontWeight'];
@@ -89,6 +90,21 @@ export const fontWeight: _EuiThemeFontWeight = {
   bold: 700,
 };
 
+/**
+ * Body / Base styles
+ */
+
+export interface _EuiThemeBody {
+  /**
+   * A sizing key from one of the font scales to set as the base body font-size
+   */
+  scale: _EuiThemeFontScale;
+  /**
+   * A font weight key for setting the base body weight
+   */
+  weight: keyof _EuiThemeFontWeight;
+}
+
 /*
  * Font
  */
@@ -96,11 +112,7 @@ export const fontWeight: _EuiThemeFontWeight = {
 export type EuiThemeFont = _EuiThemeFontBase & {
   scale: { [key in _EuiThemeFontScale]: number };
   weight: _EuiThemeFontWeight;
-  body: {
-    scale: _EuiThemeFontScale;
-    weight: keyof _EuiThemeFontWeight;
-    letterSpacing?: CSSProperties['letterSpacing'];
-  };
+  body: _EuiThemeBody;
 };
 
 export const font: EuiThemeFont = {
