@@ -57,7 +57,7 @@ describe('EuiDataGridFooterRow', () => {
 
     cy.get(
       '[data-gridcell-column-index="0"][data-gridcell-row-index="3"]'
-    ).click();
+    ).click('topLeft');
     cy.get('[data-test-subj="euiDataGridCellExpandButton"]').should(
       'not.exist'
     );
@@ -70,23 +70,25 @@ describe('EuiDataGridFooterRow', () => {
     cy.get(
       '[data-gridcell-column-index="1"][data-gridcell-row-index="-1"]'
     ).click();
-    cy.contains('Move left').click();
 
-    cy.get('[data-gridcell-column-index="0"][data-gridcell-row-index="3"]')
+    cy.get('[data-test-subj="dataGridHeaderCellActionGroup-b"]')
+      .contains('Move left')
       .click()
-      .contains('45')
-      .click();
+      .wait(50);
 
     // Note that the wait/timeout and multiple focused assertions are required for
     // for this specific bug which bounces focus rapidly between cells, as otherwise
     // Cypress re-tries until it happens to be on the cell with correct attributes
-    cy.wait(50);
     const checkFocusedCell = () => {
-      cy.wait(1);
-      cy.focused({ timeout: 0 })
+      cy.get('[data-gridcell-column-index="0"][data-gridcell-row-index="3"]')
+        .click()
+        .wait(50)
+        .contains('45')
+        .focused()
         .should('have.attr', 'data-gridcell-column-index', '0')
         .should('not.have.attr', 'data-gridcell-column-index', '1');
     };
+
     checkFocusedCell();
     checkFocusedCell();
     checkFocusedCell();
