@@ -102,11 +102,15 @@ export const MarkdownFormatExample = {
       text: (
         <>
           <p>
-            Markdown content often comes from untrusted sources like user generated content. To help with potential security issues, <EuiCode>EuiMarkdownRenderer</EuiCode> only renders links if they begin with <EuiCode>https:</EuiCode>, <EuiCode>https</EuiCode>, or <EuiCode>/</EuiCode>. Links that do not meet these requirements are rendered in the markdown link format, with the exception of <EuiCode>mailto:</EuiCode> where only the link copy is kept.
+            Markdown content often comes from untrusted sources like user
+            generated content. To help with potential security issues,{' '}
+            <EuiCode>EuiMarkdownRenderer</EuiCode> only renders links if they
+            begin with <EuiCode>https:</EuiCode>, <EuiCode>https</EuiCode>, or{' '}
+            <EuiCode>/</EuiCode>. Links that do not meet these requirements are
+            rendered in the markdown link format, with the exception of{' '}
+            <EuiCode>mailto:</EuiCode> where only the link copy is kept.
           </p>
-          <EuiCodeBlock language="markdown">
-            {markdownContent}
-          </EuiCodeBlock>
+          <EuiCodeBlock language="markdown">{markdownContent}</EuiCodeBlock>
         </>
       ),
       props: {
