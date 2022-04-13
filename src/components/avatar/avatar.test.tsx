@@ -123,6 +123,12 @@ describe('EuiAvatar', () => {
 
         expect(component).toMatchSnapshot();
       });
+
+      it('as subdued is rendered', () => {
+        const component = render(<EuiAvatar name="name" color="subdued" />);
+
+        expect(component).toMatchSnapshot();
+      });
     });
 
     describe('isDisabled', () => {
