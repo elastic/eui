@@ -8,3 +8,4 @@
 
 export * from './reset/global_styles';
 export * from './mixins/_typography';
+export * from './variables/_typography';

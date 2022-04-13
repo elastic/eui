@@ -9,6 +9,8 @@
 import { CSSProperties } from 'react';
 import { keysOf } from '../../components/common';
 
+export type _EuiThemeFontSizeMeasurement = 'px' | 'rem' | 'em';
+
 /*
  * Font scale
  */

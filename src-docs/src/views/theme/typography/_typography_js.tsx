@@ -12,17 +12,16 @@ import {
 
 import {
   _EuiThemeFontWeight,
-  FONT_SCALES,
-} from '../../../../../src/global_styling/variables/_typography';
-import { euiFontSize } from '../../../../../src/global_styling/mixins/_typography';
-import { _EuiThemeFontSizeMeasurement } from '../../../../../src/global_styling/local_functions/typography';
-import { fontWeight } from '../../../../../src/themes/amsterdam/global_styling/variables/_typography';
+  _EuiThemeFontSizeMeasurement,
+  _EuiThemeFontScale,
+  euiFontSize,
+} from '../../../../../src/global_styling';
 
 import { EuiThemeFontBase, EuiThemeFontWeight, ThemeRowType } from '../_props';
 import { getPropsFromComponent } from '../../../services/props/get_props';
+import { getDescription } from '../../../services/props/get_description';
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
-import { getDescription } from '../../../services/props/get_description';
 
 export const FontJS = () => {
   const { euiTheme } = useEuiTheme();
@@ -87,13 +86,14 @@ export const FontJS = () => {
   );
 };
 
-const weightKeys = Object.keys(fontWeight) as Array<keyof _EuiThemeFontWeight>;
-
 export const FontWeightJS: FunctionComponent<ThemeRowType> = ({
   description,
 }) => {
   const { euiTheme } = useEuiTheme();
   const weightProps = getPropsFromComponent(EuiThemeFontWeight);
+  const weightKeys = Object.keys(euiTheme.font.weight) as Array<
+    keyof _EuiThemeFontWeight
+  >;
 
   return (
     <>
@@ -135,10 +135,9 @@ export const FontWeightJS: FunctionComponent<ThemeRowType> = ({
   );
 };
 
-const scaleKeys = FONT_SCALES;
-
 export const FontScaleJS = () => {
   const { euiTheme } = useEuiTheme();
+  const scaleKeys = Object.keys(euiTheme.font.scale) as _EuiThemeFontScale[];
 
   const measurements: _EuiThemeFontSizeMeasurement[] = ['rem', 'px', 'em'];
 
