@@ -6,6 +6,7 @@ import {
   EuiMarkdownFormat,
   EuiText,
   EuiCode,
+  EuiCodeBlock,
 } from '../../../../src/components';
 
 import { Link } from 'react-router-dom';
@@ -15,6 +16,9 @@ const markdownFormatSource = require('!!raw-loader!./markdown_format');
 
 import MarkdownFormatStyles from './markdown_format_styles';
 const markdownFormatStylesSource = require('!!raw-loader!./markdown_format_styles');
+
+import MarkdownFormatLinks, { markdownContent } from './markdown_format_links';
+const markdownFormatLinksSource = require('!!raw-loader!./markdown_format_links');
 
 import MarkdownFormatSink from './markdown_format_sink';
 const markdownFormatSinkSource = require('!!raw-loader!./markdown_format_sink');
@@ -86,6 +90,29 @@ export const MarkdownFormatExample = {
         EuiMarkdownFormat,
       },
       demo: <MarkdownFormatStyles />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: markdownFormatLinksSource,
+        },
+      ],
+      title: 'Link validation for security',
+      text: (
+        <>
+          <p>
+            Markdown content often comes from untrusted sources like user generated content. To help with potential security issues, <EuiCode>EuiMarkdownRenderer</EuiCode> only renders links if they begin with <EuiCode>https:</EuiCode>, <EuiCode>https</EuiCode>, or <EuiCode>/</EuiCode>. Links that do not meet these requirements are rendered in the markdown link format, with the exception of <EuiCode>mailto:</EuiCode> where only the link copy is kept.
+          </p>
+          <EuiCodeBlock language="markdown">
+            {markdownContent}
+          </EuiCodeBlock>
+        </>
+      ),
+      props: {
+        EuiMarkdownFormat,
+      },
+      demo: <MarkdownFormatLinks />,
     },
     {
       source: [
