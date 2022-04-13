@@ -10,6 +10,7 @@
 
 import React from 'react';
 
+import { EuiPopover } from '../popover';
 import { EuiContextMenuItem } from './context_menu_item';
 import { EuiContextMenuPanel } from './context_menu_panel';
 
@@ -43,6 +44,19 @@ describe('EuiContextMenuPanel', () => {
         </EuiContextMenuPanel>
       );
       cy.focused().should('not.exist');
+    });
+
+    describe('when inside an EuiPopover', () => {
+      it('reclaims focus from the parent popover panel', () => {
+        cy.mount(
+          <EuiPopover isOpen={true} button={<button />}>
+            <EuiContextMenuPanel items={items} />
+          </EuiPopover>
+        );
+        cy.wait(400); // EuiPopover's updateFocus() takes ~350ms to run
+        cy.focused().should('not.have.attr', 'class', 'euiPopover__panel');
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+      });
     });
   });
 
