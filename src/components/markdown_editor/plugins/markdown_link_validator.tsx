@@ -30,7 +30,15 @@ export function markdownLinkValidator() {
 
 export function mutateLinkToText(node: LinkOrTextNode) {
   node.type = 'text';
-  node.value = `[${node.children![0]?.value || ''}](${node.url})`;
+
+  // https://github.com/elastic/eui/issues/5770
+  // if this is a `mailto:` link only keep the target address
+  if (node.url?.startsWith('mailto:')) {
+    node.value = node.children![0]?.value;
+  } else {
+    node.value = `[${node.children![0]?.value || ''}](${node.url})`;
+  }
+
   delete node.children;
   delete node.title;
   delete node.url;

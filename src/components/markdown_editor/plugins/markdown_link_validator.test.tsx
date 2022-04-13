@@ -72,4 +72,19 @@ describe('mutateLinkToText', () => {
       }
     `);
   });
+  it('keeps only the email address when handling mailto: links', () => {
+    expect(
+      mutateLinkToText({
+        type: 'link',
+        url: 'mailto:someone@elastic.co',
+        title: null,
+        children: [{ value: 'someone@elastic.co' }],
+      })
+    ).toMatchInlineSnapshot(`
+      Object {
+        "type": "text",
+        "value": "someone@elastic.co",
+      }
+    `);
+  });
 });
