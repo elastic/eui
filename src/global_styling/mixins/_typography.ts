@@ -11,7 +11,7 @@ import {
   lineHeightFromBaseline,
   fontSizeFromScale,
 } from '../local_functions/typography';
-import { UseEuiTheme } from '../../services/theme/hooks';
+import { useEuiTheme, UseEuiTheme } from '../../services/theme/hooks';
 import {
   _EuiThemeFontScale,
   _EuiThemeFontSizeMeasurement,
@@ -34,4 +34,13 @@ export const euiFontSize = (
     fontSize: fontSizeFromScale(scale, euiTheme, measurement),
     lineHeight: lineHeightFromBaseline(scale, euiTheme, measurement),
   };
+};
+
+// Hook version
+export const useEuiFontSize = (
+  scale: _EuiThemeFontScale = 'm',
+  measurement: _EuiThemeFontSizeMeasurement = 'rem'
+): EuiThemeFontSize => {
+  const { euiTheme } = useEuiTheme();
+  return euiFontSize(scale, euiTheme, measurement);
 };

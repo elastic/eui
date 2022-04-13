@@ -15,6 +15,7 @@ import {
   _EuiThemeFontSizeMeasurement,
   _EuiThemeFontScale,
   euiFontSize,
+  useEuiFontSize,
 } from '../../../../../src/global_styling';
 
 import { EuiThemeFontBase, EuiThemeFontWeight, ThemeRowType } from '../_props';
@@ -155,26 +156,26 @@ export const FontScaleJS = () => {
   return (
     <>
       <ThemeExample
-        title={'Functions'}
+        title={<code>useEuiFontSize()</code>}
         description={
           <p>
-            Font sizing is provided through React hooks and not the global
-            theme. It returns both the <EuiCode>font-size</EuiCode> and{' '}
-            <EuiCode>line-height</EuiCode> for the provided{' '}
-            <EuiCode>scale</EuiCode>. But you can still grab an individual
-            property via the returned object.
+            Font sizing is provided through this React hook (or function
+            version) and not the global theme. It returns both the{' '}
+            <EuiCode>font-size</EuiCode> and <EuiCode>line-height</EuiCode> for
+            the provided <EuiCode>scale</EuiCode>. But you can still grab an
+            individual property via the returned object.
           </p>
         }
         example={
           <p
             css={css`
-              ${euiFontSize('l', euiTheme, measurementSelected)}
+              ${useEuiFontSize('l')}
             `}
           >
             The quick brown fox jumped over the blue moon to catch a snail
           </p>
         }
-        snippet="euiFontSize('l');"
+        snippet="useEuiFontSize('l');"
       />
       <EuiPanel color="accent">
         <EuiDescribedFormGroup
@@ -207,7 +208,7 @@ export const FontScaleJS = () => {
         items={scaleKeys.map((scale, index) => {
           return {
             id: scale,
-            value: `euiFontSize('${scale}'${
+            value: `useEuiFontSize('${scale}'${
               measurementSelected !== 'rem' ? `, '${measurementSelected}'` : ''
             })`,
             size: `${
