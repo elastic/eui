@@ -589,7 +589,12 @@ export class EuiComboBox<T> extends Component<
     } else if (focusedInOptionsList) {
       // https://github.com/elastic/eui/issues/5179
       // need to restore focus to the input box when clicking non-interactive elements
-      this.searchInputRefInstance?.focus();
+
+      // firefox doesn't support calling .focus() during a blur event
+      // https://bugzilla.mozilla.org/show_bug.cgi?id=53579
+      requestAnimationFrame(() => {
+        this.searchInputRefInstance?.focus();
+      });
     }
   };
 
