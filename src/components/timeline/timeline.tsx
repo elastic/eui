@@ -12,7 +12,7 @@ import classNames from 'classnames';
 import { EuiTimelineItem, EuiTimelineItemProps } from './timeline_item';
 
 export interface EuiTimelineProps
-  extends HTMLAttributes<HTMLDivElement>,
+  extends HTMLAttributes<HTMLOListElement>,
     CommonProps {
   /**
    * List of timeline items to render. See #EuiTimelineItem
@@ -29,11 +29,11 @@ export const EuiTimeline: FunctionComponent<EuiTimelineProps> = ({
   const classes = classNames('euiTimeline', className);
 
   return (
-    <div className={classes} {...rest}>
+    <ol className={classes} {...rest}>
       {items.map((item, index) => (
         <EuiTimelineItem key={index} {...item} />
       ))}
       {children}
-    </div>
+    </ol>
   );
 };

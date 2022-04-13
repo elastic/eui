@@ -39,4 +39,4 @@ const items: EuiTimelineProps['items'] = [
   },
 ];
 
-export default () => <EuiTimeline items={items} />;
+export default () => <EuiTimeline items={items} aria-label="Project" />;
