@@ -6,12 +6,51 @@
  * Side Public License, v 1.
  */
 
+import { computed } from '../../../../services/theme/utils';
 import {
   EuiThemeFont,
-  font,
+  _EuiThemeFontBase,
+  _EuiThemeFontWeight,
 } from '../../../../global_styling/variables/_typography';
 
-/**
- * With the removal of the Legacy theme, Amsterdam's overrides have moved to the default
- */
-export const font_ams: EuiThemeFont = font;
+// Typographic scale -- loosely based on Major Third (1.250)
+export const fontScale = {
+  xxxs: 0.5625,
+  xxs: 0.6875,
+  xs: 0.75,
+  s: 0.875,
+  m: 1,
+  l: 1.375,
+  xl: 1.6875,
+  xxl: 2.125,
+};
+
+// Families & base font settings
+export const fontBase: _EuiThemeFontBase = {
+  family: "'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif",
+  familyCode: "'Roboto Mono', Menlo, Courier, monospace",
+
+  // Careful using ligatures. Code editors like ACE will often error because of width calculations
+  featureSettings: "'calt' 1, 'kern' 1, 'liga' 1",
+
+  baseline: computed(([base]) => base / 4, ['base']),
+  lineHeightMultiplier: 1.5,
+};
+
+export const fontWeight: _EuiThemeFontWeight = {
+  light: 300,
+  regular: 400,
+  medium: 500,
+  semiBold: 600,
+  bold: 700,
+};
+
+export const font: EuiThemeFont = {
+  ...fontBase,
+  scale: fontScale,
+  weight: fontWeight,
+  body: {
+    scale: 's',
+    weight: 'regular',
+  },
+};

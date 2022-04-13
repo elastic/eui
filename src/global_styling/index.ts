@@ -7,3 +7,5 @@
  */
 
 export * from './reset/global_styles';
+export * from './functions/typography';
+export * from './mixins/_typography';

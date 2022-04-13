@@ -13,7 +13,7 @@ import {
 import {
   fontWeight,
   fontScale,
-} from '../../../../../src/global_styling/variables/_typography';
+} from '../../../../../src/themes/amsterdam/global_styling/variables/_typography';
 
 import { getPropsFromComponent } from '../../../services/props/get_props';
 import { ThemeValue } from './_values';

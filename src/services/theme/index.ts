@@ -37,5 +37,4 @@ export type {
   EuiThemeSystem,
 } from './types';
 export { COLOR_MODES_STANDARD } from './types';
-export { lineHeightFromBaseline } from './typography';
 export { sizeToPixel } from './size';

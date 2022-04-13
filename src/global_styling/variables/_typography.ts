@@ -8,13 +8,12 @@
 
 import { CSSProperties } from 'react';
 import { keysOf } from '../../components/common';
-import { computed } from '../../services/theme/utils';
 
 /*
  * Font scale
  */
 
-// Typographic scale -- loosely based on Major Third (1.250)
+// TODO: How to reduce to just the array
 export const fontScale = {
   xxxs: 0.5625,
   xxs: 0.6875,
@@ -55,19 +54,7 @@ export type _EuiThemeFontBase = {
   /**
    * Establishes the ideal line-height percentage, but it is the `baseline` integer that establishes the final pixel/rem value
    */
-  // lineHeightMultiplier: number;
-};
-
-// Families & base font settings
-export const fontBase: _EuiThemeFontBase = {
-  family: "'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif",
-  familyCode: "'Roboto Mono', Menlo, Courier, monospace",
-
-  // Careful using ligatures. Code editors like ACE will often error because of width calculations
-  featureSettings: "'calt' 1, 'kern' 1, 'liga' 1",
-
-  baseline: computed(([base]) => base / 4, ['base']),
-  // lineHeightMultiplier: 1.5,
+  lineHeightMultiplier: number;
 };
 
 /*
@@ -81,14 +68,6 @@ export interface _EuiThemeFontWeight {
   semiBold: CSSProperties['fontWeight'];
   bold: CSSProperties['fontWeight'];
 }
-
-export const fontWeight: _EuiThemeFontWeight = {
-  light: 300,
-  regular: 400,
-  medium: 500,
-  semiBold: 600,
-  bold: 700,
-};
 
 /**
  * Body / Base styles
@@ -113,14 +92,4 @@ export type EuiThemeFont = _EuiThemeFontBase & {
   scale: { [key in _EuiThemeFontScale]: number };
   weight: _EuiThemeFontWeight;
   body: _EuiThemeBody;
-};
-
-export const font: EuiThemeFont = {
-  ...fontBase,
-  scale: fontScale,
-  weight: fontWeight,
-  body: {
-    scale: 's',
-    weight: 'regular',
-  },
 };

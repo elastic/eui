@@ -11,12 +11,12 @@ import {
 } from '../../../../../src/components';
 
 import {
-  fontWeight,
   _EuiThemeFontWeight,
   FONT_SCALES,
 } from '../../../../../src/global_styling/variables/_typography';
-import { euiFontSize } from '../../../../../src/global_styling/variables/text';
-import { EuiThemeFontSizeMeasurement } from '../../../../../src/services/theme/typography';
+import { euiFontSize } from '../../../../../src/global_styling/mixins/_typography';
+import { EuiThemeFontSizeMeasurement } from '../../../../../src/global_styling/functions/typography';
+import { fontWeight } from '../../../../../src/themes/amsterdam/global_styling/variables/_typography';
 
 import { EuiThemeFontBase, EuiThemeFontWeight, ThemeRowType } from '../_props';
 import { getPropsFromComponent } from '../../../services/props/get_props';
@@ -204,11 +204,6 @@ export const FontScaleJS = () => {
       </EuiPanel>
       <EuiSpacer />
       <EuiBasicTable
-        css={css`
-          & table {
-            font-size: ${euiTheme.base}px;
-          }
-        `}
         tableLayout="auto"
         items={scaleKeys.map((scale, index) => {
           return {
