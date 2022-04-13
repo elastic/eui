@@ -64,7 +64,7 @@ describe('EuiDataGridFooterRow', () => {
   });
 
   // Regression test for #5720
-  it('does not bug focus when moving a column and then clicking its footer cell', () => {
+  it.skip('does not bug focus when moving a column and then clicking its footer cell', () => {
     cy.mount(<GridTest />);
 
     cy.get(
