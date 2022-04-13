@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiTimeline is rendered with items 1`] = `
+<div
+  class="euiTimeline"
+>
+  <div
+    class="css-1noe449-euiTimelineItem"
+  >
+    <div
+      class="css-1grznaw-euiTimelineItemIcon-center"
+    >
+      <div
+        class="css-irfkcc-euiTimelineItemIcon__content"
+      >
+        <div
+          aria-label="email"
+          class="euiAvatar euiAvatar--m euiAvatar--user css-rdwecc-euiAvatar-m-user-subdued"
+          role="img"
+          title="email"
+        >
+          <span
+            class="euiAvatar__icon"
+            data-euiicon-type="email"
+          >
+            email
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-1a9m88x-euiTimelineItemEvent-center"
+    >
+      <p>
+        <strong>
+          janet@elastic.co
+        </strong>
+         was invited to the project
+      </p>
+    </div>
+  </div>
+  <div
+    class="css-1noe449-euiTimelineItem"
+  >
+    <div
+      class="css-1t86e7q-euiTimelineItemIcon-top"
+    >
+      <div
+        class="css-irfkcc-euiTimelineItemIcon__content"
+      >
+        <div
+          aria-label=""
+          class="euiAvatar euiAvatar--m euiAvatar--user css-rdwecc-euiAvatar-m-user-subdued"
+          role="img"
+          title=""
+        >
+          <span
+            class="euiAvatar__icon"
+            data-euiicon-type="bolt"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-1waxxmm-euiTimelineItemEvent-top"
+    >
+      <p>
+        <strong>
+          janet@elastic.co
+        </strong>
+         was invited to the project
+      </p>
+    </div>
+  </div>
+</div>
+`;
