@@ -397,6 +397,11 @@ export class EuiDataGridCell extends Component<
             interactables[0].focus();
             this.setState({ disableCellTabIndex: true });
           }
+
+          // Close the cell popover if the popover was open and the user clicked the cell
+          if (this.props.popoverContext.popoverIsOpen) {
+            this.props.popoverContext.closeCellPopover();
+          }
         },
         0
       );
