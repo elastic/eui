@@ -53,11 +53,11 @@ describe('EuiDataGridFooterRow', () => {
   });
 
   it('does not render an expansion button for the empty footer cell', () => {
-    cy.mount(<GridTest />);
+    cy.realMount(<GridTest />);
 
     cy.get(
       '[data-gridcell-column-index="0"][data-gridcell-row-index="3"]'
-    ).click();
+    ).realClick();
     cy.get('[data-test-subj="euiDataGridCellExpandButton"]').should(
       'not.exist'
     );
@@ -65,17 +65,16 @@ describe('EuiDataGridFooterRow', () => {
 
   // Regression test for #5720
   it('does not bug focus when moving a column and then clicking its footer cell', () => {
-    cy.mount(<GridTest />);
+    cy.realMount(<GridTest />);
 
     cy.get(
       '[data-gridcell-column-index="1"][data-gridcell-row-index="-1"]'
     ).click();
     cy.contains('Move left').click();
 
-    cy.get('[data-gridcell-column-index="0"][data-gridcell-row-index="3"]')
-      .click()
-      .contains('45')
-      .click();
+    cy.get(
+      '[data-gridcell-column-index="0"][data-gridcell-row-index="3"]'
+    ).realClick();
 
     // Note that the wait/timeout and multiple focused assertions are required for
     // for this specific bug which bounces focus rapidly between cells, as otherwise
