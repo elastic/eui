@@ -8,7 +8,7 @@ import {
   EuiSwitch,
 } from '../../../../src/components';
 
-export function Highlight() {
+export default () => {
   const [searchValue, setSearchValue] = useState('jumped over');
   const [isHighlightAll, setHighlightAll] = useState(false);
 
@@ -42,4 +42,4 @@ export function Highlight() {
       </EuiHighlight>
     </Fragment>
   );
-}
+};
