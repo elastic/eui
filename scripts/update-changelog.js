@@ -160,8 +160,28 @@ const getUpcomingVersion = (versionTarget) => {
   return [major, minor, patch].join('.');
 };
 
+/**
+ * Command to manually update the changelog (standalone from release.js).
+ * Primarily used for backports. Usage from project root:
+ *
+ * npm run update-changelog-manual --release=patch|minor|major (must be `npm` and not `yarn` to specify the release arg)
+ * OR
+ * node -e "require('./scripts/update-changelog').manualChangelog('patch|minor|major')"
+ */
+const manualChangelog = (release) => {
+  versionTarget = release || 'patch'; // Unfortunately can't be a = fallback, because the package.json script passes an empty string
+  console.log(
+    chalk.magenta(
+      `Manually updating CHANGELOG.md to next ${versionTarget} version.`
+    )
+  );
+  const { changelog } = collateChangelogFiles();
+  updateChangelog(changelog, versionTarget);
+};
+
 module.exports = {
   collateChangelogFiles,
   updateChangelog,
   getUpcomingVersion,
+  manualChangelog,
 };
