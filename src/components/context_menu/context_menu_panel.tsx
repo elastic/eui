@@ -14,7 +14,7 @@ import React, {
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
-import { tabbable } from 'tabbable';
+import { tabbable, FocusableElement } from 'tabbable';
 
 import { CommonProps, NoArgCallback, keysOf } from '../common';
 import { EuiIcon } from '../icon';
@@ -40,7 +40,6 @@ const titleSizeToClassNameMap = {
 export const SIZES = keysOf(titleSizeToClassNameMap);
 
 export interface EuiContextMenuPanelProps {
-  hasFocus?: boolean;
   initialFocusedItemIndex?: number;
   items?: ReactElement[];
   onClose?: NoArgCallback<void>;
@@ -81,7 +80,7 @@ interface State {
   prevProps: {
     items: Props['items'];
   };
-  menuItems: HTMLElement[];
+  menuItems: FocusableElement[];
   focusedItemIndex?: number;
   currentHeight?: number;
   height?: number;
@@ -89,13 +88,11 @@ interface State {
 
 export class EuiContextMenuPanel extends Component<Props, State> {
   static defaultProps: Partial<Props> = {
-    hasFocus: true,
     items: [],
   };
 
   private _isMounted = false;
   private backButton?: HTMLElement | null = null;
-  private content?: HTMLElement | null = null;
   private panel?: HTMLElement | null = null;
 
   constructor(props: Props) {
@@ -106,7 +103,10 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         items: this.props.items,
       },
       menuItems: [],
-      focusedItemIndex: props.initialFocusedItemIndex,
+      focusedItemIndex:
+        props.onClose && props.initialFocusedItemIndex != null
+          ? props.initialFocusedItemIndex + 1 // Account for panel title back button
+          : props.initialFocusedItemIndex,
       currentHeight: undefined,
     };
   }
@@ -138,12 +138,13 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     // But if it doesn't contain items, then you have to focus on the back button specifically,
     // since there could be content inside the panel which requires use of the left arrow key,
     // e.g. text inputs.
-    const { items, showPreviousPanel } = this.props;
+    const { items, onClose, showPreviousPanel } = this.props;
 
     if (
-      (items && items.length) ||
-      document.activeElement === this.backButton ||
-      document.activeElement === this.panel
+      onClose &&
+      (items?.length ||
+        document.activeElement === this.backButton ||
+        document.activeElement === this.panel)
     ) {
       if (event.key === cascadingMenuKeys.ARROW_LEFT) {
         if (showPreviousPanel) {
@@ -158,7 +159,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       }
     }
 
-    if (this.props.items && this.props.items.length) {
+    if (items?.length) {
       switch (event.key) {
         case cascadingMenuKeys.TAB:
           requestAnimationFrame(() => {
@@ -199,7 +200,11 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         case cascadingMenuKeys.ARROW_RIGHT:
           if (this.props.showNextPanel) {
             event.preventDefault();
-            this.props.showNextPanel(this.state.focusedItemIndex);
+            this.props.showNextPanel(
+              onClose && this.state.focusedItemIndex
+                ? this.state.focusedItemIndex - 1 // Account for panel title back button
+                : this.state.focusedItemIndex
+            );
 
             if (this.props.onUseKeyboardToNavigate) {
               this.props.onUseKeyboardToNavigate();
@@ -220,49 +225,36 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         return;
       }
 
-      // If this panel has lost focus, then none of its content should be focused.
-      if (!this.props.hasFocus) {
-        if (this.panel && this.panel.contains(document.activeElement)) {
-          (document.activeElement as HTMLElement).blur();
-        }
-        return;
-      }
-
       // Setting focus while transitioning causes the animation to glitch, so we have to wait
       // until it's finished before we focus anything.
       if (this.props.transitionType) {
+        // If the panel is transitioning, set focus to the panel so that users using
+        // arrow keys that are fast clickers don't accidentally get stranded focus
+        // or trigger keystrokes when it shouldn't
+        this.panel?.focus({ preventScroll: true });
         return;
       }
 
-      // `focusedItemIndex={-1}` specifies that the panel itself should be focused.
-      // This should only be used when the panel does not have `item`s
-      // and preventing autofocus is desired, which is an uncommon case.
-      if (this.panel && this.state.focusedItemIndex === -1) {
-        this.panel.focus();
-        return;
+      // If menuItems has been cleared, iterate through and set menuItems from tabbableItems
+      if (!this.state.menuItems.length && this.panel) {
+        const tabbableItems = tabbable(this.panel);
+        if (tabbableItems.length) {
+          this.setState({ menuItems: tabbableItems });
+        }
       }
 
-      // If there aren't any items then this is probably a form or something.
-      if (!this.state.menuItems.length) {
-        // If we've already focused on something inside the panel, everything's fine.
-        if (this.panel && this.panel.contains(document.activeElement)) {
+      if (this.state.menuItems.length) {
+        // If an item is focused, focus it
+        if (this.state.focusedItemIndex != null) {
+          this.state.menuItems[this.state.focusedItemIndex].focus();
           return;
         }
-
-        // Otherwise let's focus the first tabbable item and expedite input from the user.
-        if (this.content) {
-          const tabbableItems = tabbable(this.content);
-          if (tabbableItems.length) {
-            tabbableItems[0].focus();
-          }
+        // Otherwise, if the back button panel title is present, focus it
+        if (this.props.onClose) {
+          this.setState({ focusedItemIndex: 0 });
+          this.state.menuItems[0].focus();
+          return;
         }
-        return;
-      }
-
-      // If an item is focused, focus it.
-      if (this.state.focusedItemIndex !== undefined) {
-        this.state.menuItems[this.state.focusedItemIndex].focus();
-        return;
       }
 
       // Focus on the panel as a last resort.
@@ -378,10 +370,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
   shouldComponentUpdate(nextProps: Props, nextState: State) {
     // Prevent calling `this.updateFocus()` below if we don't have to.
-    if (nextProps.hasFocus !== this.props.hasFocus) {
-      return true;
-    }
-
     if (nextProps.transitionType !== this.props.transitionType) {
       return true;
     }
@@ -429,23 +417,10 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     this.updateFocus();
   }
 
-  menuItemRef = (index: number, node: HTMLElement | null) => {
-    // There's a weird bug where if you navigate to a panel without items, then this callback
-    // is still invoked, so we have to do a truthiness check.
-    if (node) {
-      // Store all menu items.
-      this.state.menuItems[index] = node;
-    }
-  };
-
   panelRef = (node: HTMLElement | null) => {
     this.panel = node;
 
     this.updateHeight();
-  };
-
-  contentRef = (node: HTMLElement | null) => {
-    this.content = node;
   };
 
   render() {
@@ -459,7 +434,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       transitionDirection,
       onTransitionComplete,
       onUseKeyboardToNavigate,
-      hasFocus,
       items,
       watchedItemProps,
       initialFocusedItemIndex,
@@ -521,10 +495,8 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
     const content =
       items && items.length
-        ? items.map((MenuItem, index) => {
-            const cloneProps: Partial<EuiContextMenuItemProps> = {
-              buttonRef: (node) => this.menuItemRef(index, node),
-            };
+        ? items.map((MenuItem) => {
+            const cloneProps: Partial<EuiContextMenuItemProps> = {};
             if (size) {
               cloneProps.size = size;
             }
@@ -545,11 +517,9 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       >
         {panelTitle}
 
-        <div ref={this.contentRef}>
-          <EuiResizeObserver onResize={() => this.updateHeight()}>
-            {(resizeRef) => <div ref={resizeRef}>{content}</div>}
-          </EuiResizeObserver>
-        </div>
+        <EuiResizeObserver onResize={() => this.updateHeight()}>
+          {(resizeRef) => <div ref={resizeRef}>{content}</div>}
+        </EuiResizeObserver>
       </div>
     );
   }

@@ -6,8 +6,8 @@ import { EuiCode, EuiHighlight, EuiMark } from '../../../../src/components';
 
 import { highlightConfig, markConfig } from './playground';
 
-import { Highlight } from './highlight';
-import { Mark } from './mark';
+import Highlight from './highlight';
+import Mark from './mark';
 
 const highlightSource = require('!!raw-loader!./highlight');
 const highlightSnippet = `<EuiHighlight search={searchValue} highlightAll={isHighlightAll}>
