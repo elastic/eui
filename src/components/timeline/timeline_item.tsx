@@ -37,7 +37,7 @@ export interface EuiTimelineItemProps
    * By default, the element renders as a `<li/>`.
    * Only change the HTML element when it is not wrapped in a `EuiTimeline` that renders as a `<ol/>`.
    */
-  as?: ElementType;
+  component?: ElementType;
 }
 
 export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
@@ -46,7 +46,7 @@ export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
   icon,
   iconAriaLabel,
   className,
-  as,
+  component = 'li',
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -54,7 +54,7 @@ export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
 
   const cssStyles = [styles.euiTimelineItem];
 
-  const Element = as || 'li';
+  const Element = component;
 
   return (
     <Element css={cssStyles} {...rest}>
