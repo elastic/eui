@@ -400,6 +400,10 @@ export class EuiDataGridCell extends Component<
         },
         0
       );
+      // Close the cell popover if the popover was open and the user clicked the cell
+      if (this.props.popoverContext.popoverIsOpen) {
+        this.props.popoverContext.closeCellPopover();
+      }
     }
   };
 
