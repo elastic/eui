@@ -33,6 +33,14 @@
 
 - Converted `EuiAvatar` to CSS-in-JS styling ([#5670](https://github.com/elastic/eui/pull/5670))
 
+## [`53.0.2`](https://github.com/elastic/eui/tree/v53.0.2)
+
+**Note: this release is a backport containing changes originally made in `55.0.0`**
+
+**Bug fixes**
+
+- Fixed an `EuiDataGrid` bug occurring when closing cell popovers on clicking the originating cell. The original fix was unintentionally affecting cell popovers with nested modals, popovers, etc. ([#5797](https://github.com/elastic/eui/pull/5797))
+
 ## [`53.0.1`](https://github.com/elastic/eui/tree/v53.0.1)
 
 **Bug fixes**
