@@ -62,6 +62,9 @@ if (args.dry_run) {
     // to i18ntokens_changelog.json, comitting both to the workspace before running `npm version`
     execSync(`npm run update-token-changelog -- ${versionTarget}`, execOptions);
 
+    // Clear any local tags
+    execSync('git fetch upstream --tags --prune --prune-tags');
+
     // update package.json & package-lock.json version, git commit, git tag
     execSync(`npm version ${versionTarget}`, execOptions);
 
