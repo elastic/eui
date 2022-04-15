@@ -15,3 +15,9 @@
           nvm install ${NODE_VERSION}
           nvm use ${NODE_VERSION} --delete-prefix
           npm run test-docker
+    publishers:
+      - archive:
+          artifacts: 'cypress/screenshots/**/*.png'
+          latest-only: false
+          allow-empty: true
+          only-if-success: false
