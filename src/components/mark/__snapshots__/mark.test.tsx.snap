@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiMark is rendered with screen reader helper text is rendered 1`] = `
+exports[`EuiMark is rendered 1`] = `
 <mark
   aria-label="aria-label"
   class="euiMark testClass1 testClass2 css-b9vly9-euiMarkStyles-EuiMark"

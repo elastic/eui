@@ -16,12 +16,10 @@ import { EuiMark } from './mark';
 describe('EuiMark', () => {
   renderWithStyles(<EuiMark>Marked</EuiMark>);
 
-  describe('is rendered with screen reader helper text', () => {
-    test('is rendered', () => {
-      expect(
-        render(<EuiMark {...requiredProps}>Marked</EuiMark>)
-      ).toMatchSnapshot();
-    });
+  test('is rendered', () => {
+    expect(
+      render(<EuiMark {...requiredProps}>Marked</EuiMark>)
+    ).toMatchSnapshot();
   });
 
   describe('No screen reader helper text', () => {
