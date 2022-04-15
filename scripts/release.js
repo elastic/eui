@@ -38,16 +38,16 @@ if (args.dry_run) {
   }
 
   // ensure git is on the main branch
-  await ensureMainBranch();
+  // await ensureMainBranch();
 
   // run linting and unit tests
   if (args.steps.indexOf('test') > -1) {
-    execSync('npm test', execOptions);
+    // execSync('npm test', execOptions);
   }
 
   // (trans|com)pile `src` into `lib` and `dist`
   if (args.steps.indexOf('build') > -1) {
-    execSync('npm run build', execOptions);
+    // execSync('npm run build', execOptions);
   }
 
 
@@ -66,7 +66,7 @@ if (args.dry_run) {
     updateChangelog(changelog, versionTarget);
 
     // Clear any local tags
-    execSync('git fetch upstream --tags --prune --prune-tags');
+    // execSync('git fetch upstream --tags --prune --prune-tags');
 
     // update package.json & package-lock.json version, git commit, git tag
     execSync(`npm version ${versionTarget}`, execOptions);
@@ -74,20 +74,20 @@ if (args.dry_run) {
 
   if (args.steps.indexOf('tag') > -1) {
     // push the version commit & tag to upstream
-    execSync('git push upstream --tags', execOptions);
+    // execSync('git push upstream --tags', execOptions);
   }
 
   if (args.steps.indexOf('publish') > -1) {
-    // prompt user for npm 2FA
-    const otp = await getOneTimePassword();
+    // // prompt user for npm 2FA
+    // const otp = await getOneTimePassword();
 
-    // publish new version to npm
-    execSync(`npm publish --otp=${otp}`, execOptions);
+    // // publish new version to npm
+    // execSync(`npm publish --otp=${otp}`, execOptions);
   }
 
   if (args.steps.indexOf('docs') > -1) {
     // update docs, git commit, git push
-    execSync('npm run sync-docs', execOptions);
+    // execSync('npm run sync-docs', execOptions);
   }
 }()).catch(e => console.error(e));
 
