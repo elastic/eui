@@ -1,4 +1,7 @@
-const { collateChangelogFiles } = require('../update-changelog');
+const {
+  collateChangelogFiles,
+  getUpcomingVersion,
+} = require('../update-changelog');
 
 // Mock files
 jest.mock('fs', () => ({
@@ -106,5 +109,21 @@ describe('collateChangelogFiles', () => {
     expect(() => collateChangelogFiles()).toThrowError(
       /No upcoming changelog files/
     );
+  });
+});
+
+describe('getUpcomingVersion', () => {
+  jest.mock('../../package.json', () => ({
+    version: '1.2.3',
+  }));
+
+  test('patch', () => {
+    expect(getUpcomingVersion('patch')).toEqual('1.2.4');
+  });
+  test('major', () => {
+    expect(getUpcomingVersion('minor')).toEqual('1.3.0');
+  });
+  test('major', () => {
+    expect(getUpcomingVersion('major')).toEqual('2.0.0');
   });
 });
