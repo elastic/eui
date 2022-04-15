@@ -120,7 +120,7 @@ describe('getUpcomingVersion', () => {
   test('patch', () => {
     expect(getUpcomingVersion('patch')).toEqual('1.2.4');
   });
-  test('major', () => {
+  test('minor', () => {
     expect(getUpcomingVersion('minor')).toEqual('1.3.0');
   });
   test('major', () => {
