@@ -30,3 +30,4 @@ npm-debug.log
 yarn-error.log
 tsconfig.json
 tsconfig-builttypes.json
+.ci
