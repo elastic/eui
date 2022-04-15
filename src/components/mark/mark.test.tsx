@@ -16,29 +16,33 @@ import { EuiMark } from './mark';
 describe('EuiMark', () => {
   renderWithStyles(<EuiMark>Marked</EuiMark>);
 
-  test('is rendered', () => {
-    expect(
-      render(<EuiMark {...requiredProps}>Marked</EuiMark>)
-    ).toMatchSnapshot();
+  describe('is rendered with screen reader helper text', () => {
+    test('is rendered', () => {
+      expect(
+        render(<EuiMark {...requiredProps}>Marked</EuiMark>)
+      ).toMatchSnapshot();
+    });
   });
 
-  test('is rendered without CSS :before', () => {
-    expect(
-      render(
-        <EuiMark hasScreenReaderHelpText={false} {...requiredProps}>
-          Marked
-        </EuiMark>
-      )
-    ).not.toHaveStyleRule('content', "' [highlight start] '");
-  });
+  describe('No screen reader helper text', () => {
+    test('is rendered without CSS :before', () => {
+      expect(
+        render(
+          <EuiMark hasScreenReaderHelpText={false} {...requiredProps}>
+            Marked
+          </EuiMark>
+        )
+      ).not.toHaveStyleRule('content', "' [highlight start] '");
+    });
 
-  test('is rendered without CSS :after', () => {
-    expect(
-      render(
-        <EuiMark hasScreenReaderHelpText={false} {...requiredProps}>
-          Marked
-        </EuiMark>
-      )
-    ).not.toHaveStyleRule('content', "' [highlight end] '");
+    test('is rendered without CSS :after', () => {
+      expect(
+        render(
+          <EuiMark hasScreenReaderHelpText={false} {...requiredProps}>
+            Marked
+          </EuiMark>
+        )
+      ).not.toHaveStyleRule('content', "' [highlight end] '");
+    });
   });
 });
