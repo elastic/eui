@@ -252,5 +252,18 @@
     "react": "^16.12 || ^17.0",
     "react-dom": "^16.12 || ^17.0",
     "typescript": "~4.5.3"
-  }
+  },
+  "files": [
+    "dist",
+    "es",
+    "lib",
+    "licenses",
+    "optimize",
+    "scripts/postinstall.js",
+    "src/**/*.scss",
+    "test-env",
+    "eui.d.ts",
+    "i18ntokens.json",
+    "NOTICE.txt"
+  ]
 }
