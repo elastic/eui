@@ -192,7 +192,7 @@ describe('useImperativeGridRef', () => {
         ref.current.closeCellPopover();
         cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should(
           'have.length',
-          1
+          0
         );
       });
     });
