@@ -1,0 +1,170 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiTimelineItem is rendered 1`] = `
+<div
+  class="css-1noe449-euiTimelineItem"
+>
+  <div
+    class="css-1grznaw-euiTimelineItemIcon-center"
+  >
+    <div
+      class="css-irfkcc-euiTimelineItemIcon__content"
+    >
+      <div
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user css-rdwecc-euiAvatar-m-user-subdued"
+        role="img"
+        title=""
+      >
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="dot"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-1a9m88x-euiTimelineItemEvent-center"
+  >
+    <p>
+      I'm the children
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiTimelineItem props EuiAvatar is passed as an icon 1`] = `
+<div
+  class="css-1noe449-euiTimelineItem"
+>
+  <div
+    class="css-1grznaw-euiTimelineItemIcon-center"
+  >
+    <div
+      class="css-irfkcc-euiTimelineItemIcon__content"
+    >
+      <div
+        aria-label="dot"
+        class="euiAvatar euiAvatar--m euiAvatar--user css-rdwecc-euiAvatar-m-user-subdued"
+        role="img"
+        title="dot"
+      >
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="dot"
+        >
+          dot
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-1a9m88x-euiTimelineItemEvent-center"
+  >
+    <p>
+      I'm the children
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiTimelineItem props iconAriaLabel is rendered 1`] = `
+<div
+  class="css-1noe449-euiTimelineItem"
+>
+  <div
+    class="css-1grznaw-euiTimelineItemIcon-center"
+  >
+    <div
+      class="css-irfkcc-euiTimelineItemIcon__content"
+    >
+      <div
+        aria-label="icon aria label"
+        class="euiAvatar euiAvatar--m euiAvatar--user css-rdwecc-euiAvatar-m-user-subdued"
+        role="img"
+        title="icon aria label"
+      >
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="dot"
+        >
+          icon aria label
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-1a9m88x-euiTimelineItemEvent-center"
+  >
+    <p>
+      I'm the children
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
+<div
+  class="css-1noe449-euiTimelineItem"
+>
+  <div
+    class="css-1grznaw-euiTimelineItemIcon-center"
+  >
+    <div
+      class="css-irfkcc-euiTimelineItemIcon__content"
+    >
+      <div
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user css-rdwecc-euiAvatar-m-user-subdued"
+        role="img"
+        title=""
+      >
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="dot"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-1a9m88x-euiTimelineItemEvent-center"
+  >
+    <p>
+      I'm the children
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiTimelineItem props verticalAlign top is rendered 1`] = `
+<div
+  class="css-1noe449-euiTimelineItem"
+>
+  <div
+    class="css-1t86e7q-euiTimelineItemIcon-top"
+  >
+    <div
+      class="css-irfkcc-euiTimelineItemIcon__content"
+    >
+      <div
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user css-rdwecc-euiAvatar-m-user-subdued"
+        role="img"
+        title=""
+      >
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="dot"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-1waxxmm-euiTimelineItemEvent-top"
+  >
+    <p>
+      I'm the children
+    </p>
+  </div>
+</div>
+`;

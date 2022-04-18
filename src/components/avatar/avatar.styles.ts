@@ -43,6 +43,9 @@ export const euiAvatarStyles = ({ euiTheme }: UseEuiTheme) => ({
   plain: css`
     background-color: ${euiTheme.colors.emptyShade};
   `,
+  subdued: css`
+    background-color: ${euiTheme.colors.lightestShade};
+  `,
   user: css`
     border-radius: 50%;
   `,

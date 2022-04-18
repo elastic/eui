@@ -3792,6 +3792,38 @@
     "filepath": "src/components/list_group/pinnable_list_group/pinnable_list_group.tsx"
   },
   {
+    "token": "euiMark.highlightStart",
+    "defString": "highlight start",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 35,
+        "column": 25
+      },
+      "end": {
+        "line": 38,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/mark/mark.tsx"
+  },
+  {
+    "token": "euiMark.highlightEnd",
+    "defString": "highlight end",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 39,
+        "column": 23
+      },
+      "end": {
+        "line": 39,
+        "column": 74
+      }
+    },
+    "filepath": "src/components/mark/mark.tsx"
+  },
+  {
     "token": "euiMarkdownEditorFooter.uploadingFiles",
     "defString": "Click to upload files",
     "highlighting": "string",
@@ -4469,11 +4501,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 756,
+        "line": 777,
         "column": 14
       },
       "end": {
-        "line": 759,
+        "line": 780,
         "column": 16
       }
     },

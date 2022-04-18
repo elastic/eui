@@ -10,6 +10,7 @@
 
 import React from 'react';
 
+import { EuiContextMenu } from './context_menu';
 import { EuiContextMenuItem } from './context_menu_item';
 import { EuiContextMenuPanel } from './context_menu_panel';
 
@@ -25,24 +26,100 @@ const items = [
   </EuiContextMenuItem>,
 ];
 
+const children = (
+  <>
+    <button data-test-subj="itemA">Item A</button>
+    <button data-test-subj="itemB">Item B</button>
+    <button data-test-subj="itemC">Item C</button>
+  </>
+);
+
 describe('EuiContextMenuPanel', () => {
   describe('Focus behavior', () => {
-    it('is set on the first focusable element by default if there are no items and hasFocus is true', () => {
-      cy.mount(
-        <EuiContextMenuPanel>
-          <button data-test-subj="button">Hello world</button>
-        </EuiContextMenuPanel>
-      );
-      cy.focused().should('have.attr', 'data-test-subj', 'button');
+    it('focuses the panel by default', () => {
+      cy.mount(<EuiContextMenuPanel>{children}</EuiContextMenuPanel>);
+      cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
     });
 
-    it('is not set on anything if hasFocus is false', () => {
+    it('sets initial focus from `initialFocusedItemIndex`', () => {
       cy.mount(
-        <EuiContextMenuPanel hasFocus={false}>
-          <button data-test-subj="button">Hello world</button>
+        <EuiContextMenuPanel initialFocusedItemIndex={2}>
+          {children}
         </EuiContextMenuPanel>
       );
-      cy.focused().should('not.exist');
+      cy.focused().should('have.attr', 'data-test-subj', 'itemC');
+    });
+
+    describe('with `children`', () => {
+      it('ignores arrow key navigation, which only toggles for `items`', () => {
+        cy.mount(<EuiContextMenuPanel>{children}</EuiContextMenuPanel>);
+        cy.realPress('{downarrow}');
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+      });
+    });
+
+    describe('with `items`', () => {
+      it('focuses and registers any tabbable child as navigable menu items', () => {
+        cy.mount(
+          <EuiContextMenuPanel
+            items={[
+              <button data-test-subj="itemA">A</button>,
+              <button data-test-subj="itemB">B</button>,
+              <a href="#" data-test-subj="itemC">
+                C
+              </a>,
+            ]}
+          />
+        );
+        cy.realPress('{downarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+      });
+    });
+
+    describe('with `panels`', () => {
+      const panels = [
+        {
+          id: 'A',
+          title: 'Panel A',
+          items: [
+            { name: 'Lorem' },
+            { name: 'Go to Panel B', panel: 'B', 'data-test-subj': 'panelA' },
+            { name: 'Ipsum' },
+          ],
+        },
+        {
+          id: 'B',
+          title: 'Panel B',
+          items: [
+            { name: 'Go to Panel C', panel: 'C', 'data-test-subj': 'panelB' },
+            { name: 'Lorem' },
+            { name: 'Ipsum' },
+          ],
+          initialFocusedItemIndex: 0,
+        },
+        {
+          id: 'C',
+          title: 'Panel C',
+          content: <>Hello world</>,
+        },
+      ];
+
+      it('focuses the back button panel title by default when no initialFocusedItemIndex is passed', () => {
+        cy.mount(<EuiContextMenu panels={panels} initialPanelId="A" />);
+        cy.realPress('{downarrow}');
+        cy.realPress('{downarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'panelA');
+        cy.realPress('{rightarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'panelB'); // has initialFocusedItemIndex
+        cy.realPress('{rightarrow}');
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanelTitle');
+      });
+
+      it('focuses the correct toggling item when using the left arrow key to navigate to the previous panel', () => {
+        cy.mount(<EuiContextMenu panels={panels} initialPanelId="B" />);
+        cy.realPress('{leftarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'panelA');
+      });
     });
   });
 
@@ -107,6 +184,7 @@ describe('EuiContextMenuPanel', () => {
         cy.mount(
           <EuiContextMenuPanel
             items={items}
+            onClose={() => {}}
             showPreviousPanel={showPreviousPanelHandler}
           />
         );
@@ -114,6 +192,60 @@ describe('EuiContextMenuPanel', () => {
         cy.realPress('{leftarrow}').then(() => {
           expect(showPreviousPanelHandler).to.be.called;
         });
+      });
+
+      it('does not lose focus while using left/right arrow navigation between panels', () => {
+        const panels = [
+          {
+            id: 0,
+            title: 'First panel',
+            items: [
+              {
+                name: 'Go to second panel',
+                panel: 1,
+                'data-test-subj': 'itemA',
+              },
+            ],
+          },
+          {
+            id: 1,
+            title: 'Second panel',
+            items: [
+              {
+                name: 'Go to third panel',
+                panel: 2,
+                'data-test-subj': 'itemB',
+              },
+            ],
+            initialFocusedItemIndex: 0,
+          },
+          {
+            id: 2,
+            title: 'Third panel',
+            items: [
+              {
+                name: 'End',
+                'data-test-subj': 'itemC',
+              },
+            ],
+            initialFocusedItemIndex: 0,
+          },
+        ];
+        cy.mount(<EuiContextMenu panels={panels} initialPanelId={0} />);
+        cy.realPress('{downarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+        cy.realPress('{rightarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemB');
+        cy.realPress('{rightarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemC');
+
+        // Test extremely rapid left/right arrow usage
+        cy.repeatRealPress('{leftarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+        cy.repeatRealPress('{rightarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemC');
+        cy.repeatRealPress('{leftarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
       });
     });
 
