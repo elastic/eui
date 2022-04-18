@@ -6,6 +6,15 @@
  * Side Public License, v 1.
  */
 
-export * from './reset/global_styles';
-export * from './variables/_shadow';
-export * from './mixins';
+import { css } from '@emotion/react';
+
+export const euiScreenReaderOnlyStyles = () => {
+  return css`
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  `;
+};

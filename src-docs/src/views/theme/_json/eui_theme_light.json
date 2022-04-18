@@ -623,7 +623,6 @@
   },
   "euiBreakpointKeys": "'xs', 's', 'm', 'l', 'xl'",
   "euiShadowColor": "#000000",
-  "euiShadowColorLarge": "#000000",
   "euiSize": "16px",
   "euiSizeXS": "4px",
   "euiSizeS": "8px",

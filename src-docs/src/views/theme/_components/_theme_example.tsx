@@ -9,11 +9,15 @@ import {
   EuiTitle,
   useEuiTheme,
 } from '../../../../../src';
-import { _EuiSplitPanelInnerProps } from '../../../../../src/components/panel/split_panel';
+import {
+  _EuiSplitPanelInnerProps,
+  _EuiSplitPanelOuterProps,
+} from '../../../../../src/components/panel/split_panel';
 
 import { GuideSectionExample } from '../../../components/guide_section/guide_section_parts/guide_section_example';
 
-type ThemeExample = {
+export type ThemeExample = {
+  color?: _EuiSplitPanelOuterProps['color'];
   title?: ReactNode;
   description?: ReactNode;
   property?: string;
@@ -28,6 +32,7 @@ type ThemeExample = {
 };
 
 export const ThemeExample: FunctionComponent<ThemeExample> = ({
+  color = 'subdued',
   title,
   description,
   example,
@@ -46,7 +51,7 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
   return (
     <>
       <EuiSplitPanel.Outer
-        color="subdued"
+        color={color}
         direction="row"
         css={css`
           margin-bottom: ${euiTheme.size.xl};
@@ -67,6 +72,7 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
             {description}
           </EuiText>
         </EuiSplitPanel.Inner>
+
         {(example || snippet) && (
           <EuiSplitPanel.Inner>
             <EuiSplitPanel.Outer
