@@ -142,7 +142,8 @@ export type _EuiThemeSpecialColors = {
    */
   disabledText: ColorModeSwitch;
   /**
-   * Base color for shadows that gets `transparentized`
+   * The base color for shadows that gets `transparentized`
+   * at a value based on the `colorMode` and then layered.
    */
   shadow: ColorModeSwitch;
 };
