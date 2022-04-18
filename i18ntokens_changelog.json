@@ -1,5 +1,20 @@
 [
   {
+    "version": "54.1.0",
+    "changes": [
+      {
+        "token": "euiMark.highlightStart",
+        "changeType": "added",
+        "value": "highlight start"
+      },
+      {
+        "token": "euiMark.highlightEnd",
+        "changeType": "added",
+        "value": "highlight end"
+      }
+    ]
+  },
+  {
     "version": "53.0.0",
     "changes": [
       {

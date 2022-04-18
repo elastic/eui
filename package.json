@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "54.0.0",
+  "version": "54.1.0",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
@@ -38,6 +38,7 @@
     "start-test-server": "BABEL_MODULES=false NODE_ENV=puppeteer NODE_OPTIONS=--max-old-space-size=4096 webpack-dev-server --config src-docs/webpack.config.js --port 9999",
     "yo-component": "yo ./generator-eui/app/component.js",
     "update-token-changelog": "node ./scripts/update-token-changelog.js",
+    "update-changelog-manual": "node -e \"require('./scripts/update-changelog').manualChangelog('${npm_config_release}')\"",
     "start-test-server-and-a11y-test": "cross-env WAIT_ON_TIMEOUT=600000 start-server-and-test start-test-server http-get://localhost:9999 test-a11y",
     "yo-doc": "yo ./generator-eui/app/documentation.js",
     "yo-changelog": "yo ./generator-eui/changelog/index.js",
@@ -161,10 +162,10 @@
     "cross-env": "^7.0.2",
     "css-loader": "^4.2.2",
     "cssnano": "^4.1.10",
-    "cypress": "^9.1.1",
+    "cypress": "^9.5.4",
     "cypress-axe": "^0.14.0",
     "cypress-plugin-tab": "^1.0.5",
-    "cypress-real-events": "^1.6.0",
+    "cypress-real-events": "^1.7.0",
     "deasync": "^0.1.20",
     "dedent": "^0.7.0",
     "dts-generator": "^3.0.0",
@@ -252,5 +253,18 @@
     "react": "^16.12 || ^17.0",
     "react-dom": "^16.12 || ^17.0",
     "typescript": "~4.5.3"
-  }
+  },
+  "files": [
+    "dist",
+    "es",
+    "lib",
+    "licenses",
+    "optimize",
+    "scripts/postinstall.js",
+    "src/**/*.scss",
+    "test-env",
+    "eui.d.ts",
+    "i18ntokens.json",
+    "NOTICE.txt"
+  ]
 }

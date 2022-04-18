@@ -163,6 +163,9 @@ describe('EuiContextMenuPanel', () => {
     });
 
     describe('initialFocusedItemIndex', () => {
+      // Reset focus between tests
+      beforeEach(() => (document.activeElement as HTMLElement)?.blur());
+
       it('sets focus on the item occupying that index', async () => {
         const component = mount(
           <EuiContextMenuPanel items={items} initialFocusedItemIndex={1} />
@@ -170,19 +173,9 @@ describe('EuiContextMenuPanel', () => {
 
         await tick(20);
 
-        expect(findTestSubject(component, 'itemB').getDOMNode()).toBe(
-          document.activeElement
+        expect(document.activeElement).toBe(
+          findTestSubject(component, 'itemB').getDOMNode()
         );
-      });
-
-      it('sets focus on the panel when set to `-1`', async () => {
-        const component = mount(
-          <EuiContextMenuPanel items={items} initialFocusedItemIndex={-1} />
-        );
-
-        await tick(20);
-
-        expect(component.getDOMNode()).toBe(document.activeElement);
       });
     });
 
@@ -216,12 +209,13 @@ describe('EuiContextMenuPanel', () => {
       });
 
       describe('left arrow', () => {
-        it('calls handler if showPreviousPanel exists', () => {
+        it('calls handler if onClose and showPreviousPanel exists', () => {
           const onUseKeyboardToNavigateHandler = jest.fn();
 
           const component = mount(
             <EuiContextMenuPanel
               items={items}
+              onClose={() => {}}
               showPreviousPanel={() => {}}
               onUseKeyboardToNavigate={onUseKeyboardToNavigateHandler}
             />
