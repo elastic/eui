@@ -88,7 +88,7 @@ describe('EuiFlyout', () => {
 
     it('does not close the flyout when the overlay mask is only the target of mouseup', () => {
       cy.mount(<Flyout />);
-      cy.get('[data-test-subj="itemD"]').realMouseDown();
+      cy.get('[data-test-subj="itemD"]').realMouseDown().realMouseMove(-100, 0);
       cy.get('.euiOverlayMask')
         .realMouseUp()
         .then(() => {
