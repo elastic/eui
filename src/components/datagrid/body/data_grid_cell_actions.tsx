@@ -20,13 +20,11 @@ import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiPopoverFooter } from '../../popover';
 
 export const EuiDataGridCellActions = ({
-  closePopover,
   onExpandClick,
   column,
   rowIndex,
   colIndex,
 }: {
-  closePopover: () => void;
   onExpandClick: () => void;
   column?: EuiDataGridColumn;
   rowIndex: number;
@@ -88,12 +86,11 @@ export const EuiDataGridCellActions = ({
             columnId={column.id}
             Component={ButtonComponent}
             isExpanded={false}
-            closePopover={closePopover}
           />
         );
       }
     );
-  }, [column, colIndex, rowIndex, closePopover]);
+  }, [column, colIndex, rowIndex]);
 
   return (
     <div className="euiDataGridRowCell__expandActions">

@@ -637,11 +637,6 @@ export interface EuiDataGridColumnCellActionProps {
    * Determines whether the cell's action is displayed expanded (in the Popover)
    */
   isExpanded: boolean;
-  /**
-   * Closes the popover if a cell is expanded.
-   * The prop is provided for an expanded cell only.
-   */
-  closePopover?: () => void;
 }
 
 export interface EuiDataGridColumnVisibility {
@@ -672,6 +667,10 @@ export interface EuiDataGridStyle {
    */
   fontSize?: EuiDataGridStyleFontSizes;
   /**
+   * Defines the padding with the row and column cells
+   */
+  cellPadding?: EuiDataGridStyleCellPaddings;
+  /**
    * Border uses for the row and column cells
    */
   border?: EuiDataGridStyleBorders;
@@ -688,17 +687,17 @@ export interface EuiDataGridStyle {
    */
   footer?: EuiDataGridStyleFooter;
   /**
+   * If set to true, the footer row will be sticky
+   */
+  stickyFooter?: boolean;
+  /**
    * Will define what visual style to show on row hover
    */
   rowHover?: EuiDataGridStyleRowHover;
   /**
-   * Defines the padding with the row and column cells
+   * Optionally pass custom classes to highlight or customize certain rows
    */
-  cellPadding?: EuiDataGridStyleCellPaddings;
-  /**
-   * If set to true, the footer row will be sticky
-   */
-  stickyFooter?: boolean;
+  rowClasses?: { [rowIndex: number]: string };
   /**
    * Optional callback returning the current `gridStyle` config when changes occur from user input (e.g. toolbar display controls).
    * Can be used for, e.g. storing user `gridStyle` in a local storage object.

@@ -18,7 +18,7 @@ import React, {
   MutableRefObject,
 } from 'react';
 import { createPortal } from 'react-dom';
-import tabbable from 'tabbable';
+import { tabbable } from 'tabbable';
 import { keys } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiFocusTrap } from '../../focus_trap';
@@ -400,6 +400,10 @@ export class EuiDataGridCell extends Component<
         },
         0
       );
+      // Close the cell popover if the popover was open and the user clicked the cell
+      if (this.props.popoverContext.popoverIsOpen) {
+        this.props.popoverContext.closeCellPopover();
+      }
     }
   };
 
@@ -666,7 +670,6 @@ export class EuiDataGridCell extends Component<
               rowIndex={rowIndex}
               colIndex={colIndex}
               column={column}
-              closePopover={closeCellPopover}
               onExpandClick={() => {
                 if (popoverIsOpen) {
                   closeCellPopover();

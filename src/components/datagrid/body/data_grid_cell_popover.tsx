@@ -83,12 +83,13 @@ export const useCellPopover = (): {
         'data-test-subj': 'euiDataGridExpansionPopover',
       }}
       closePopover={closeCellPopover}
-      onTrapDeactivation={closeCellPopover}
       onKeyDown={(event) => {
         if (event.key === keys.F2 || event.key === keys.ESCAPE) {
           event.preventDefault();
           event.stopPropagation();
           closeCellPopover();
+          // Ensure focus is returned to the parent cell
+          requestAnimationFrame(() => popoverAnchor.parentElement!.focus());
         }
       }}
     >

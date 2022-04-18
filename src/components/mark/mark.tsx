@@ -8,11 +8,17 @@
 
 import React, { HTMLAttributes, FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
+import { useEuiI18n } from '../i18n';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 import { euiMarkStyles } from './mark.styles';
 export type EuiMarkProps = HTMLAttributes<HTMLElement> &
   CommonProps & {
+    /**
+     * Set to `false` to remove the CSS :before and :after
+     * screen reader helper text
+     */
+    hasScreenReaderHelpText?: boolean;
     /**
      * ReactNode to render as this component's content
      */
@@ -22,10 +28,20 @@ export type EuiMarkProps = HTMLAttributes<HTMLElement> &
 export const EuiMark: FunctionComponent<EuiMarkProps> = ({
   children,
   className,
+  hasScreenReaderHelpText = true,
   ...rest
 }) => {
   const useTheme = useEuiTheme();
-  const styles = euiMarkStyles(useTheme);
+  const highlightStart = useEuiI18n(
+    'euiMark.highlightStart',
+    'highlight start'
+  );
+  const highlightEnd = useEuiI18n('euiMark.highlightEnd', 'highlight end');
+  const styles = euiMarkStyles(useTheme, {
+    hasScreenReaderHelpText,
+    highlightStart,
+    highlightEnd,
+  });
   const classes = classNames('euiMark', className);
 
   return (

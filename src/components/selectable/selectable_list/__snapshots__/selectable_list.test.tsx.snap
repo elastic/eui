@@ -2222,7 +2222,7 @@ exports[`EuiSelectableListItem props searchValue 1`] = `
             >
               <span>
                 <mark
-                  class="euiMark css-1izqibv-euiMarkStyles-EuiMark"
+                  class="euiMark css-b9vly9-euiMarkStyles-EuiMark"
                 >
                   Mi
                 </mark>
@@ -2417,7 +2417,7 @@ exports[`EuiSelectableListItem props searchValue 2`] = `
             >
               <span>
                 <mark
-                  class="euiMark css-1izqibv-euiMarkStyles-EuiMark"
+                  class="euiMark css-b9vly9-euiMarkStyles-EuiMark"
                 >
                   Mi
                 </mark>
