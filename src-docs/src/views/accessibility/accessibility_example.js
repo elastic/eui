@@ -211,7 +211,7 @@ export const AccessibilityExample = {
                 </p>
               </EuiText>
             }
-            snippet={'css(euiScreenReaderOnlyStyles())'}
+            snippet={'<p css={css(euiScreenReaderOnlyStyles())} />'}
             snippetLanguage="ts"
           />
           <ThemeExample
