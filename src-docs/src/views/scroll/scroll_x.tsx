@@ -59,7 +59,7 @@ export default () => {
         }
         snippetLanguage="tsx"
         snippet={
-          `<ScrollRegion
+          `<div
   tabIndex={0}
   role="region"
   aria-label=""
@@ -67,8 +67,10 @@ export default () => {
   style={{ padding: ` +
           '`${euiTheme.size.base}`' +
           ` }}>
-  <ScrollContent />
-</ScrollRegion>`
+  <EuiPanel />
+  <EuiPanel />
+  <EuiPanel />
+</div>`
         }
       />
 
@@ -106,7 +108,7 @@ export default () => {
           }
           snippetLanguage="tsx"
           snippet={
-            `<ScrollRegion
+            `<div
   tabIndex={0}
   role="region"
   aria-label=""
@@ -114,8 +116,10 @@ export default () => {
             "`${useEuiOverflowScroll('x', true)}; " +
             'padding: ${euiTheme.size.base};`' +
             ` }}>
-  <ScrollContent />
-</ScrollRegion>`
+  <EuiPanel />
+  <EuiPanel />
+  <EuiPanel />
+</div>`
           }
         />
       )}

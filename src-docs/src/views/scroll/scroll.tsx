@@ -46,14 +46,16 @@ export default () => {
           </div>
         }
         snippetLanguage="tsx"
-        snippet={`<ScrollRegion
+        snippet={`<div
   tabIndex={0}
   role="region"
   aria-label=""
   className="eui-scrollBar"
   style={{ overflowY: 'auto', euiTheme.base * 10 }}>
-  <ScrollContent />
-</ScrollRegion>`}
+  <EuiPanel />
+  <EuiPanel />
+  <EuiPanel />
+</div>`}
       />
 
       {!showSass && (

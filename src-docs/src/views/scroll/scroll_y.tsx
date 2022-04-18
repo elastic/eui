@@ -38,14 +38,16 @@ export default () => {
           </div>
         }
         snippetLanguage="tsx"
-        snippet={`<ScrollRegion
+        snippet={`<div
   tabIndex={0}
   role="region"
   aria-label=""
   className="eui-yScrollWithShadows"
   style={{ height: 180 }}>
-  <ScrollContent />
-</ScrollRegion>`}
+  <EuiPanel />
+  <EuiPanel />
+  <EuiPanel />
+</div>`}
       />
 
       {!showSass && (
@@ -82,7 +84,7 @@ export default () => {
           }
           snippetLanguage="tsx"
           snippet={
-            `<ScrollRegion
+            `<div
   tabIndex={0}
   role="region"
   aria-label=""
@@ -90,8 +92,10 @@ export default () => {
             "`${useEuiOverflowScroll('y', true)}; " +
             'height: 180px;' +
             ` }}>
-  <ScrollContent />
-</ScrollRegion>`
+  <EuiPanel />
+  <EuiPanel />
+  <EuiPanel />
+</div>`
           }
         />
       )}

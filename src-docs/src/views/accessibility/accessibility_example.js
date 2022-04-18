@@ -196,25 +196,6 @@ export const AccessibilityExample = {
       text: (
         <>
           <ThemeExample
-            title={<code>euiScreenReaderOnlyStyles()</code>}
-            description={
-              <p>
-                This function allows you to apply the screen reader only CSS
-                styles directly to your component.
-              </p>
-            }
-            example={
-              <EuiText size="s">
-                <p>The next paragraph is hidden except for screen readers.</p>
-                <p css={css(euiScreenReaderOnlyStyles())}>
-                  I am hidden except for screen readers
-                </p>
-              </EuiText>
-            }
-            snippet={'<p css={css(euiScreenReaderOnlyStyles())} />'}
-            snippetLanguage="ts"
-          />
-          <ThemeExample
             title={<code>.euiScreenReaderOnly</code>}
             description={
               <p>
@@ -232,6 +213,25 @@ export const AccessibilityExample = {
             }
             snippet={'<p className="euiScreenReaderOnly" />'}
             snippetLanguage="html"
+          />
+          <ThemeExample
+            title={<code>euiScreenReaderOnlyStyles()</code>}
+            description={
+              <p>
+                This function allows you to apply the screen reader only CSS
+                styles directly to your component.
+              </p>
+            }
+            example={
+              <EuiText size="s">
+                <p>The next paragraph is hidden except for screen readers.</p>
+                <p css={css(euiScreenReaderOnlyStyles())}>
+                  I am hidden except for screen readers
+                </p>
+              </EuiText>
+            }
+            snippet={'<p css={css(euiScreenReaderOnlyStyles())} />'}
+            snippetLanguage="ts"
           />
         </>
       ),
