@@ -6,42 +6,42 @@
  * Side Public License, v 1.
  */
 
-import { css } from '@emotion/react';
+import { keyframes, css } from '@emotion/react';
 import { euiPaletteColorBlind } from '../../services';
 
 const visColors = euiPaletteColorBlind();
 
-// const euiBeaconPulseLarge = keyframes`
-//  0% {
-//     transform: scale(.1);
-//     opacity: 1;
-//   }
+const euiBeaconPulseLarge = keyframes`
+ 0% {
+    transform: scale(.1);
+    opacity: 1;
+  }
 
-//   70% {
-//     transform: scale(3);
-//     opacity: 0;
-//   }
+  70% {
+    transform: scale(3);
+    opacity: 0;
+  }
 
-//   100% {
-//     opacity: 0;
-//   }
-// `;
+  100% {
+    opacity: 0;
+  }
+`;
 
-// const euiBeaconPulseSmall = keyframes`
-//    0% {
-//     transform: scale(.1);
-//     opacity: 1;
-//   }
+const euiBeaconPulseSmall = keyframes`
+   0% {
+    transform: scale(.1);
+    opacity: 1;
+  }
 
-//   70% {
-//     transform: scale(2);
-//     opacity: 0;
-//   }
+  70% {
+    transform: scale(2);
+    opacity: 0;
+  }
 
-//   100% {
-//     opacity: 0;
-//   }
-// `;
+  100% {
+    opacity: 0;
+  }
+`;
 
 export const euiBeaconStyles = () => ({
   // Base
@@ -62,14 +62,13 @@ export const euiBeaconStyles = () => ({
       border-radius: 50%;
       box-shadow: 0 0 1px 1px ${visColors[0]};
     }
-  `,
-});
 
-// TODO add this after line 64
-/* &:before {
+    &:before {
       animation: ${euiBeaconPulseLarge} 2.5s infinite ease-out;
     }
 
     &:after {
       animation: ${euiBeaconPulseSmall} 2.5s infinite ease-out 0.25s;
-    } */
+    }
+  `,
+});

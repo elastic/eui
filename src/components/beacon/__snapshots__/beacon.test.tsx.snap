@@ -3,7 +3,7 @@
 exports[`EuiBeacon accepts size 1`] = `
 <div
   aria-label="aria-label"
-  class="css-1fo4apo-euiBeacon"
+  class="euiBeacon testClass1 testClass2 css-1xvpwap-euiBeacon"
   data-test-subj="test subject string"
   style="height:14px;width:14px"
 />
@@ -12,7 +12,7 @@ exports[`EuiBeacon accepts size 1`] = `
 exports[`EuiBeacon is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="css-1fo4apo-euiBeacon"
+  class="euiBeacon testClass1 testClass2 css-1xvpwap-euiBeacon"
   data-test-subj="test subject string"
   style="height:12px;width:12px"
 />

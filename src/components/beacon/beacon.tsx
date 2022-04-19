@@ -8,6 +8,7 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../common';
+import classNames from 'classnames';
 
 import { euiBeaconStyles } from './beacon.styles';
 
@@ -25,6 +26,7 @@ export const EuiBeacon: FunctionComponent<EuiBeaconProps> = ({
   style,
   ...rest
 }) => {
+  const classes = classNames('euiBeacon', className);
   const styles = euiBeaconStyles();
   const cssStyles = [styles.euiBeacon];
 
@@ -34,5 +36,7 @@ export const EuiBeacon: FunctionComponent<EuiBeaconProps> = ({
     width: size,
   };
 
-  return <div css={cssStyles} style={beaconStyle} {...rest} />;
+  return (
+    <div className={classes} css={cssStyles} style={beaconStyle} {...rest} />
+  );
 };

@@ -9,10 +9,13 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { renderWithStyles } from '../../test/internal';
 
 import { EuiBeacon } from './beacon';
 
 describe('EuiBeacon', () => {
+  renderWithStyles(<EuiBeacon />);
+
   test('is rendered', () => {
     const component = render(<EuiBeacon {...requiredProps} />);
 
