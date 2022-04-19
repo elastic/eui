@@ -5,6 +5,7 @@ exports[`EuiLoadingChart is rendered 1`] = `
   aria-label="aria-label"
   class="euiLoadingChart testClass1 testClass2 euiLoadingChart--medium css-1ho1qj7-euiLoadingChart-m"
   data-test-subj="test subject string"
+  role="progressbar"
 >
   <span
     class="css-1th8mu7-euiLoadingChart__bar-m-euiCanAnimate"
@@ -23,7 +24,9 @@ exports[`EuiLoadingChart is rendered 1`] = `
 
 exports[`EuiLoadingChart mono is rendered 1`] = `
 <span
+  aria-label="Loading"
   class="euiLoadingChart euiLoadingChart--mono euiLoadingChart--medium css-1ho1qj7-euiLoadingChart-m"
+  role="progressbar"
 >
   <span
     class="css-1rjdlrm-euiLoadingChart__bar-m-euiCanAnimate"
@@ -42,7 +45,9 @@ exports[`EuiLoadingChart mono is rendered 1`] = `
 
 exports[`EuiLoadingChart size l is rendered 1`] = `
 <span
+  aria-label="Loading"
   class="euiLoadingChart euiLoadingChart--large css-1xdgh7e-euiLoadingChart-l"
+  role="progressbar"
 >
   <span
     class="css-17mln21-euiLoadingChart__bar-l-euiCanAnimate"
@@ -61,7 +66,9 @@ exports[`EuiLoadingChart size l is rendered 1`] = `
 
 exports[`EuiLoadingChart size m is rendered 1`] = `
 <span
+  aria-label="Loading"
   class="euiLoadingChart euiLoadingChart--medium css-1ho1qj7-euiLoadingChart-m"
+  role="progressbar"
 >
   <span
     class="css-1th8mu7-euiLoadingChart__bar-m-euiCanAnimate"
@@ -80,7 +87,9 @@ exports[`EuiLoadingChart size m is rendered 1`] = `
 
 exports[`EuiLoadingChart size xl is rendered 1`] = `
 <span
+  aria-label="Loading"
   class="euiLoadingChart euiLoadingChart--xLarge css-wh2pju-euiLoadingChart-xl"
+  role="progressbar"
 >
   <span
     class="css-10nwhuu-euiLoadingChart__bar-xl-euiCanAnimate"

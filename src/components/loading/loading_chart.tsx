@@ -16,6 +16,7 @@ import {
   euiLoadingChartBarStyles,
   _barIndex,
 } from './loading_chart.styles';
+import { useEuiI18n } from '../i18n';
 
 const sizeToClassNameMap = {
   m: 'euiLoadingChart--medium',
@@ -37,8 +38,10 @@ export const EuiLoadingChart: FunctionComponent<EuiLoadingChartProps> = ({
   size = 'm',
   mono = false,
   className,
+  'aria-label': ariaLabel,
   ...rest
 }) => {
+  const defaultAriaLabel = useEuiI18n('euiLoadingChart.ariaLabel', 'Loading');
   const euiTheme = useEuiTheme();
   const styles = euiLoadingChartStyles(euiTheme);
   const barStyles = euiLoadingChartBarStyles(euiTheme);
@@ -65,7 +68,13 @@ export const EuiLoadingChart: FunctionComponent<EuiLoadingChartProps> = ({
   }
 
   return (
-    <span className={classes} css={cssStyles} {...rest}>
+    <span
+      className={classes}
+      css={cssStyles}
+      role="progressbar"
+      aria-label={ariaLabel || defaultAriaLabel}
+      {...rest}
+    >
       {bars}
     </span>
   );
