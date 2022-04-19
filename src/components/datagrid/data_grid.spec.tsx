@@ -366,12 +366,17 @@ describe('EuiDataGrid', () => {
         cy.focused().type('{enter}');
         cy.focused().should('have.attr', 'data-test-subj', 'focusOnMe');
 
-        // fourth cell is non-expandable with multiple interactives, click should focus on the cell
+        // fourth cell is expandable & interactive, click should focus on the popover
         cy.get(
           '[data-gridcell-column-index="3"][data-gridcell-row-index="0"]'
         ).click();
         cy.focused().type('{enter}');
-        cy.focused().should('have.attr', 'data-test-subj', 'focusOnMe'); // focus trap focuses the link
+        // focus trap focuses the popover
+        cy.focused().should(
+          'have.attr',
+          'data-test-subj',
+          'euiDataGridExpansionPopover'
+        );
         cy.focused().type('{esc}');
         cy.focused()
           .should('have.attr', 'data-gridcell-column-index', '3')
@@ -404,10 +409,14 @@ describe('EuiDataGrid', () => {
           .should('have.attr', 'data-gridcell-column-index', '5')
           .should('have.attr', 'data-gridcell-row-index', '0');
         cy.focused().type('{enter}'); // trigger expansion popover
-        cy.focused().should('have.attr', 'data-test-subj', 'btn-yes'); // focus trap should move focus to the first button
-        cy.focused().parentsUntil(
-          '[data-test-subj="euiDataGridExpansionPopover"]'
-        ); // ensure focus is in the popover
+        // focus trap focuses the popover
+        cy.focused().should(
+          'have.attr',
+          'data-test-subj',
+          'euiDataGridExpansionPopover'
+        );
+        cy.realPress('Tab');
+        cy.focused().should('have.attr', 'data-test-subj', 'btn-yes');
         cy.realPress('Tab');
         cy.focused().should('have.attr', 'data-test-subj', 'btn-no');
         cy.realPress('Tab');
