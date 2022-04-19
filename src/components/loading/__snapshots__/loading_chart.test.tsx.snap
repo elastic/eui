@@ -7,16 +7,16 @@ exports[`EuiLoadingChart is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <span
-    class="euiLoadingChart__bar css-1th8mu7-euiLoadingChart__bar-m-euiCanAnimate"
+    class="css-1th8mu7-euiLoadingChart__bar-m-euiCanAnimate"
   />
   <span
-    class="euiLoadingChart__bar css-1h0t0ot-euiLoadingChart__bar-m-euiCanAnimate"
+    class="css-1h0t0ot-euiLoadingChart__bar-m-euiCanAnimate"
   />
   <span
-    class="euiLoadingChart__bar css-uodvp1-euiLoadingChart__bar-m-euiCanAnimate"
+    class="css-uodvp1-euiLoadingChart__bar-m-euiCanAnimate"
   />
   <span
-    class="euiLoadingChart__bar css-tt9vi3-euiLoadingChart__bar-m-euiCanAnimate"
+    class="css-tt9vi3-euiLoadingChart__bar-m-euiCanAnimate"
   />
 </span>
 `;
@@ -26,16 +26,16 @@ exports[`EuiLoadingChart mono is rendered 1`] = `
   class="euiLoadingChart euiLoadingChart--mono euiLoadingChart--medium css-1ho1qj7-euiLoadingChart-m"
 >
   <span
-    class="euiLoadingChart__bar css-1rjdlrm-euiLoadingChart__bar-m-euiCanAnimate"
+    class="css-1rjdlrm-euiLoadingChart__bar-m-euiCanAnimate"
   />
   <span
-    class="euiLoadingChart__bar css-1psa3pr-euiLoadingChart__bar-m-euiCanAnimate"
+    class="css-1psa3pr-euiLoadingChart__bar-m-euiCanAnimate"
   />
   <span
-    class="euiLoadingChart__bar css-ii216z-euiLoadingChart__bar-m-euiCanAnimate"
+    class="css-ii216z-euiLoadingChart__bar-m-euiCanAnimate"
   />
   <span
-    class="euiLoadingChart__bar css-eldpjp-euiLoadingChart__bar-m-euiCanAnimate"
+    class="css-eldpjp-euiLoadingChart__bar-m-euiCanAnimate"
   />
 </span>
 `;
@@ -45,16 +45,16 @@ exports[`EuiLoadingChart size l is rendered 1`] = `
   class="euiLoadingChart euiLoadingChart--large css-1xdgh7e-euiLoadingChart-l"
 >
   <span
-    class="euiLoadingChart__bar css-17mln21-euiLoadingChart__bar-l-euiCanAnimate"
+    class="css-17mln21-euiLoadingChart__bar-l-euiCanAnimate"
   />
   <span
-    class="euiLoadingChart__bar css-owe0jo-euiLoadingChart__bar-l-euiCanAnimate"
+    class="css-owe0jo-euiLoadingChart__bar-l-euiCanAnimate"
   />
   <span
-    class="euiLoadingChart__bar css-15sf8ua-euiLoadingChart__bar-l-euiCanAnimate"
+    class="css-15sf8ua-euiLoadingChart__bar-l-euiCanAnimate"
   />
   <span
-    class="euiLoadingChart__bar css-10zon6n-euiLoadingChart__bar-l-euiCanAnimate"
+    class="css-10zon6n-euiLoadingChart__bar-l-euiCanAnimate"
   />
 </span>
 `;
@@ -64,16 +64,16 @@ exports[`EuiLoadingChart size m is rendered 1`] = `
   class="euiLoadingChart euiLoadingChart--medium css-1ho1qj7-euiLoadingChart-m"
 >
   <span
-    class="euiLoadingChart__bar css-1th8mu7-euiLoadingChart__bar-m-euiCanAnimate"
+    class="css-1th8mu7-euiLoadingChart__bar-m-euiCanAnimate"
   />
   <span
-    class="euiLoadingChart__bar css-1h0t0ot-euiLoadingChart__bar-m-euiCanAnimate"
+    class="css-1h0t0ot-euiLoadingChart__bar-m-euiCanAnimate"
   />
   <span
-    class="euiLoadingChart__bar css-uodvp1-euiLoadingChart__bar-m-euiCanAnimate"
+    class="css-uodvp1-euiLoadingChart__bar-m-euiCanAnimate"
   />
   <span
-    class="euiLoadingChart__bar css-tt9vi3-euiLoadingChart__bar-m-euiCanAnimate"
+    class="css-tt9vi3-euiLoadingChart__bar-m-euiCanAnimate"
   />
 </span>
 `;
@@ -83,16 +83,16 @@ exports[`EuiLoadingChart size xl is rendered 1`] = `
   class="euiLoadingChart euiLoadingChart--xLarge css-wh2pju-euiLoadingChart-xl"
 >
   <span
-    class="euiLoadingChart__bar css-10nwhuu-euiLoadingChart__bar-xl-euiCanAnimate"
+    class="css-10nwhuu-euiLoadingChart__bar-xl-euiCanAnimate"
   />
   <span
-    class="euiLoadingChart__bar css-191l3dt-euiLoadingChart__bar-xl-euiCanAnimate"
+    class="css-191l3dt-euiLoadingChart__bar-xl-euiCanAnimate"
   />
   <span
-    class="euiLoadingChart__bar css-riztfw-euiLoadingChart__bar-xl-euiCanAnimate"
+    class="css-riztfw-euiLoadingChart__bar-xl-euiCanAnimate"
   />
   <span
-    class="euiLoadingChart__bar css-fvdwz7-euiLoadingChart__bar-xl-euiCanAnimate"
+    class="css-fvdwz7-euiLoadingChart__bar-xl-euiCanAnimate"
   />
 </span>
 `;

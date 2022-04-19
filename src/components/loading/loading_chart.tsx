@@ -59,12 +59,14 @@ export const EuiLoadingChart: FunctionComponent<EuiLoadingChartProps> = ({
     ];
   };
 
+  const bars = [];
+  for (let index = 0; index < 4; index++) {
+    bars.push(<span key={index} css={cssBarStyles(index)} />);
+  }
+
   return (
     <span className={classes} css={cssStyles} {...rest}>
-      <span className="euiLoadingChart__bar" css={cssBarStyles(0)} />
-      <span className="euiLoadingChart__bar" css={cssBarStyles(1)} />
-      <span className="euiLoadingChart__bar" css={cssBarStyles(2)} />
-      <span className="euiLoadingChart__bar" css={cssBarStyles(3)} />
+      {bars}
     </span>
   );
 };
