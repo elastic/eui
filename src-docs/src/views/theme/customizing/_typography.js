@@ -22,6 +22,7 @@ import {
   EuiThemeFontBase,
   EuiThemeFontWeight,
   EuiThemeFontScale,
+  EuiThemeBody,
 } from '../_props';
 
 import { useDebouncedUpdate } from '../hooks';
@@ -52,6 +53,7 @@ export default ({ onThemeUpdate }) => {
   const baseProps = getPropsFromComponent(EuiThemeFontBase);
   const weightProps = getPropsFromComponent(EuiThemeFontWeight);
   const scaleProps = getPropsFromComponent(EuiThemeFontScale);
+  const bodyProps = getPropsFromComponent(EuiThemeBody);
 
   const fontFamilies = fontClone.family.split(',');
   const codeFontFamilies = fontClone.familyCode.split(',');
@@ -139,7 +141,7 @@ export default ({ onThemeUpdate }) => {
           onUpdate={(value) => updateFont('baseline', value)}
         />
 
-        {/* <EuiSpacer />
+        <EuiSpacer />
 
         <ThemeValue
           property={'font'}
@@ -148,7 +150,7 @@ export default ({ onThemeUpdate }) => {
           value={font.lineHeightMultiplier}
           onUpdate={(value) => updateFont('lineHeightMultiplier', value)}
           numberProps={{ step: 0.1 }}
-        /> */}
+        />
       </EuiPanel>
 
       <EuiSpacer size="xl" />
@@ -225,9 +227,17 @@ export default ({ onThemeUpdate }) => {
             groupProps={{ alignItems: 'center' }}
           />
         ))}
+      </EuiPanel>
 
-        <EuiSpacer />
+      <EuiSpacer size="xl" />
 
+      <EuiPanel color="subdued">
+        <EuiTitle size="xs">
+          <h3>
+            <code>_EuiThemeFontBody</code>
+          </h3>
+        </EuiTitle>
+        <EuiSpacer size="s" />
         <EuiText size="s" grow={false}>
           <p>
             The <EuiCode>body.scale</EuiCode> value determines the base
@@ -239,7 +249,7 @@ export default ({ onThemeUpdate }) => {
 
         <ThemeValue
           property="font.body"
-          // type={scaleProps[key]}
+          type={bodyProps.scale}
           name={'scale'}
           value={fontClone.body.scale}
           buttonStyle={css`
@@ -251,6 +261,23 @@ export default ({ onThemeUpdate }) => {
           example={`${
             scaleClone.scale[fontClone.body.scale] * euiTheme.base
           }px`}
+          // onUpdate={(value) => updateScale(key, value)}
+          // numberProps={{ step: 0.1, style: { width: '6em' } }}
+          groupProps={{ alignItems: 'center' }}
+        />
+        <EuiSpacer />
+
+        <ThemeValue
+          property="font.body"
+          type={bodyProps.weight}
+          name={'weight'}
+          value={fontClone.body.weight}
+          buttonStyle={css`
+            font-weight: ${weightClone.weight[fontClone.body.weight]};
+            min-width: calc(${euiTheme.size.xxl} * 3);
+            text-align: left;
+          `}
+          example={weightClone.weight[fontClone.body.weight]}
           // onUpdate={(value) => updateScale(key, value)}
           // numberProps={{ step: 0.1, style: { width: '6em' } }}
           groupProps={{ alignItems: 'center' }}
