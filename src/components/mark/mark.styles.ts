@@ -6,26 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { keyframes, css } from '@emotion/react';
+import { css } from '@emotion/react';
 import { UseEuiTheme, transparentize } from '../../services';
-
-const bounce = keyframes`
-  from, 20%, 53%, 80%, to {
-    transform: translate3d(0,0,0);
-  }
-
-  40%, 43% {
-    transform: translate3d(0, -30px, 0);
-  }
-
-  70% {
-    transform: translate3d(0, -15px, 0);
-  }
-
-  90% {
-    transform: translate3d(0,-4px,0);
-  }
-`;
 
 export const euiMarkStyles = (
   { euiTheme, colorMode }: UseEuiTheme,
@@ -43,9 +25,6 @@ export const euiMarkStyles = (
   const transparency = { LIGHT: 0.1, DARK: 0.3 };
 
   return css`
-    display: inline-block;
-    animation: ${bounce} 1s ease infinite;
-
     background-color: ${transparentize(
       euiTheme.colors.primary,
       transparency[colorMode]
