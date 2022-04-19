@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiLoadingChart } from '../../../../src/components/loading';
+import { EuiLoadingChart } from '../../../../src';
 
 export default () => (
   <div>
