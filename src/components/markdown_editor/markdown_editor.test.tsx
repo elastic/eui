@@ -141,11 +141,14 @@ describe('EuiMarkdownEditor', () => {
         {...requiredProps}
       />
     );
+
+    expect(component.find('EuiModal').length).toBe(0);
+
     component
       .find('EuiButtonIcon.euiMarkdownEditorFooter__helpButton')
       .simulate('click');
 
-    expect(component).toMatchSnapshot();
+    expect(component.find('EuiModal').length).toBe(1);
   });
 
   test('custom plugins are excluded and popover is rendered', () => {
