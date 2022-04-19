@@ -340,8 +340,79 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
               size="m"
             >
               <div
-                className="euiSpacer euiSpacer--m"
-              />
+                css="unknown styles"
+              >
+                <Insertion
+                  cache={
+                    Object {
+                      "insert": [Function],
+                      "inserted": Object {
+                        "hg1jdf-euiSpacer-m": true,
+                        "jz428s-euiSpacer-l": true,
+                      },
+                      "key": "css",
+                      "nonce": undefined,
+                      "registered": Object {},
+                      "sheet": StyleSheet {
+                        "_alreadyInsertedOrderInsensitiveRule": true,
+                        "_insertTag": [Function],
+                        "before": null,
+                        "container": <head>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-hg1jdf-euiSpacer-m{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;height:16px;}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNwYWNlci5zdHlsZXMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBdUJRIiwiZmlsZSI6InNwYWNlci5zdHlsZXMudHMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuICogQ29weXJpZ2h0IEVsYXN0aWNzZWFyY2ggQi5WLiBhbmQvb3IgbGljZW5zZWQgdG8gRWxhc3RpY3NlYXJjaCBCLlYuIHVuZGVyIG9uZVxuICogb3IgbW9yZSBjb250cmlidXRvciBsaWNlbnNlIGFncmVlbWVudHMuIExpY2Vuc2VkIHVuZGVyIHRoZSBFbGFzdGljIExpY2Vuc2VcbiAqIDIuMCBhbmQgdGhlIFNlcnZlciBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDE7IHlvdSBtYXkgbm90IHVzZSB0aGlzIGZpbGUgZXhjZXB0XG4gKiBpbiBjb21wbGlhbmNlIHdpdGgsIGF0IHlvdXIgZWxlY3Rpb24sIHRoZSBFbGFzdGljIExpY2Vuc2UgMi4wIG9yIHRoZSBTZXJ2ZXJcbiAqIFNpZGUgUHVibGljIExpY2Vuc2UsIHYgMS5cbiAqL1xuXG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCc7XG5pbXBvcnQgeyBVc2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcblxuZXhwb3J0IGNvbnN0IGV1aVNwYWNlclN0eWxlcyA9ICh7IGV1aVRoZW1lIH06IFVzZUV1aVRoZW1lKSA9PiAoe1xuICAvLyBiYXNlXG4gIGV1aVNwYWNlcjogY3NzYFxuICAgIGZsZXgtc2hyaW5rOiAwOyAvLyBkb24ndCBldmVyIGxldCB0aGlzIHNocmluayBpbiBoZWlnaHQgaWYgZGlyZWN0IGRlc2NlbmRlbnQgb2YgZmxleDtcbiAgYCxcbiAgLy8gdmFyaWFudHNcbiAgeHM6IGNzc2BcbiAgICBoZWlnaHQ6ICR7ZXVpVGhlbWUuc2l6ZS54c307XG4gIGAsXG4gIHM6IGNzc2BcbiAgICBoZWlnaHQ6ICR7ZXVpVGhlbWUuc2l6ZS5zfTtcbiAgYCxcbiAgbTogY3NzYFxuICAgIGhlaWdodDogJHtldWlUaGVtZS5zaXplLmJhc2V9O1xuICBgLFxuICBsOiBjc3NgXG4gICAgaGVpZ2h0OiAke2V1aVRoZW1lLnNpemUubH07XG4gIGAsXG4gIHhsOiBjc3NgXG4gICAgaGVpZ2h0OiAke2V1aVRoZW1lLnNpemUueGx9O1xuICBgLFxuICB4eGw6IGNzc2BcbiAgICBoZWlnaHQ6ICR7ZXVpVGhlbWUuc2l6ZS54eGx9O1xuICBgLFxufSk7XG4iXX0= */
+                          </style>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-jz428s-euiSpacer-l{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;height:24px;}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNwYWNlci5zdHlsZXMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBMEJRIiwiZmlsZSI6InNwYWNlci5zdHlsZXMudHMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuICogQ29weXJpZ2h0IEVsYXN0aWNzZWFyY2ggQi5WLiBhbmQvb3IgbGljZW5zZWQgdG8gRWxhc3RpY3NlYXJjaCBCLlYuIHVuZGVyIG9uZVxuICogb3IgbW9yZSBjb250cmlidXRvciBsaWNlbnNlIGFncmVlbWVudHMuIExpY2Vuc2VkIHVuZGVyIHRoZSBFbGFzdGljIExpY2Vuc2VcbiAqIDIuMCBhbmQgdGhlIFNlcnZlciBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDE7IHlvdSBtYXkgbm90IHVzZSB0aGlzIGZpbGUgZXhjZXB0XG4gKiBpbiBjb21wbGlhbmNlIHdpdGgsIGF0IHlvdXIgZWxlY3Rpb24sIHRoZSBFbGFzdGljIExpY2Vuc2UgMi4wIG9yIHRoZSBTZXJ2ZXJcbiAqIFNpZGUgUHVibGljIExpY2Vuc2UsIHYgMS5cbiAqL1xuXG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCc7XG5pbXBvcnQgeyBVc2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcblxuZXhwb3J0IGNvbnN0IGV1aVNwYWNlclN0eWxlcyA9ICh7IGV1aVRoZW1lIH06IFVzZUV1aVRoZW1lKSA9PiAoe1xuICAvLyBiYXNlXG4gIGV1aVNwYWNlcjogY3NzYFxuICAgIGZsZXgtc2hyaW5rOiAwOyAvLyBkb24ndCBldmVyIGxldCB0aGlzIHNocmluayBpbiBoZWlnaHQgaWYgZGlyZWN0IGRlc2NlbmRlbnQgb2YgZmxleDtcbiAgYCxcbiAgLy8gdmFyaWFudHNcbiAgeHM6IGNzc2BcbiAgICBoZWlnaHQ6ICR7ZXVpVGhlbWUuc2l6ZS54c307XG4gIGAsXG4gIHM6IGNzc2BcbiAgICBoZWlnaHQ6ICR7ZXVpVGhlbWUuc2l6ZS5zfTtcbiAgYCxcbiAgbTogY3NzYFxuICAgIGhlaWdodDogJHtldWlUaGVtZS5zaXplLmJhc2V9O1xuICBgLFxuICBsOiBjc3NgXG4gICAgaGVpZ2h0OiAke2V1aVRoZW1lLnNpemUubH07XG4gIGAsXG4gIHhsOiBjc3NgXG4gICAgaGVpZ2h0OiAke2V1aVRoZW1lLnNpemUueGx9O1xuICBgLFxuICB4eGw6IGNzc2BcbiAgICBoZWlnaHQ6ICR7ZXVpVGhlbWUuc2l6ZS54eGx9O1xuICBgLFxufSk7XG4iXX0= */
+                          </style>
+                        </head>,
+                        "ctr": 2,
+                        "insertionPoint": undefined,
+                        "isSpeedy": false,
+                        "key": "css",
+                        "nonce": undefined,
+                        "prepend": undefined,
+                        "tags": Array [
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-hg1jdf-euiSpacer-m{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;height:16px;}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNwYWNlci5zdHlsZXMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBdUJRIiwiZmlsZSI6InNwYWNlci5zdHlsZXMudHMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuICogQ29weXJpZ2h0IEVsYXN0aWNzZWFyY2ggQi5WLiBhbmQvb3IgbGljZW5zZWQgdG8gRWxhc3RpY3NlYXJjaCBCLlYuIHVuZGVyIG9uZVxuICogb3IgbW9yZSBjb250cmlidXRvciBsaWNlbnNlIGFncmVlbWVudHMuIExpY2Vuc2VkIHVuZGVyIHRoZSBFbGFzdGljIExpY2Vuc2VcbiAqIDIuMCBhbmQgdGhlIFNlcnZlciBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDE7IHlvdSBtYXkgbm90IHVzZSB0aGlzIGZpbGUgZXhjZXB0XG4gKiBpbiBjb21wbGlhbmNlIHdpdGgsIGF0IHlvdXIgZWxlY3Rpb24sIHRoZSBFbGFzdGljIExpY2Vuc2UgMi4wIG9yIHRoZSBTZXJ2ZXJcbiAqIFNpZGUgUHVibGljIExpY2Vuc2UsIHYgMS5cbiAqL1xuXG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCc7XG5pbXBvcnQgeyBVc2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcblxuZXhwb3J0IGNvbnN0IGV1aVNwYWNlclN0eWxlcyA9ICh7IGV1aVRoZW1lIH06IFVzZUV1aVRoZW1lKSA9PiAoe1xuICAvLyBiYXNlXG4gIGV1aVNwYWNlcjogY3NzYFxuICAgIGZsZXgtc2hyaW5rOiAwOyAvLyBkb24ndCBldmVyIGxldCB0aGlzIHNocmluayBpbiBoZWlnaHQgaWYgZGlyZWN0IGRlc2NlbmRlbnQgb2YgZmxleDtcbiAgYCxcbiAgLy8gdmFyaWFudHNcbiAgeHM6IGNzc2BcbiAgICBoZWlnaHQ6ICR7ZXVpVGhlbWUuc2l6ZS54c307XG4gIGAsXG4gIHM6IGNzc2BcbiAgICBoZWlnaHQ6ICR7ZXVpVGhlbWUuc2l6ZS5zfTtcbiAgYCxcbiAgbTogY3NzYFxuICAgIGhlaWdodDogJHtldWlUaGVtZS5zaXplLmJhc2V9O1xuICBgLFxuICBsOiBjc3NgXG4gICAgaGVpZ2h0OiAke2V1aVRoZW1lLnNpemUubH07XG4gIGAsXG4gIHhsOiBjc3NgXG4gICAgaGVpZ2h0OiAke2V1aVRoZW1lLnNpemUueGx9O1xuICBgLFxuICB4eGw6IGNzc2BcbiAgICBoZWlnaHQ6ICR7ZXVpVGhlbWUuc2l6ZS54eGx9O1xuICBgLFxufSk7XG4iXX0= */
+                          </style>,
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-jz428s-euiSpacer-l{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;height:24px;}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNwYWNlci5zdHlsZXMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBMEJRIiwiZmlsZSI6InNwYWNlci5zdHlsZXMudHMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuICogQ29weXJpZ2h0IEVsYXN0aWNzZWFyY2ggQi5WLiBhbmQvb3IgbGljZW5zZWQgdG8gRWxhc3RpY3NlYXJjaCBCLlYuIHVuZGVyIG9uZVxuICogb3IgbW9yZSBjb250cmlidXRvciBsaWNlbnNlIGFncmVlbWVudHMuIExpY2Vuc2VkIHVuZGVyIHRoZSBFbGFzdGljIExpY2Vuc2VcbiAqIDIuMCBhbmQgdGhlIFNlcnZlciBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDE7IHlvdSBtYXkgbm90IHVzZSB0aGlzIGZpbGUgZXhjZXB0XG4gKiBpbiBjb21wbGlhbmNlIHdpdGgsIGF0IHlvdXIgZWxlY3Rpb24sIHRoZSBFbGFzdGljIExpY2Vuc2UgMi4wIG9yIHRoZSBTZXJ2ZXJcbiAqIFNpZGUgUHVibGljIExpY2Vuc2UsIHYgMS5cbiAqL1xuXG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCc7XG5pbXBvcnQgeyBVc2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcblxuZXhwb3J0IGNvbnN0IGV1aVNwYWNlclN0eWxlcyA9ICh7IGV1aVRoZW1lIH06IFVzZUV1aVRoZW1lKSA9PiAoe1xuICAvLyBiYXNlXG4gIGV1aVNwYWNlcjogY3NzYFxuICAgIGZsZXgtc2hyaW5rOiAwOyAvLyBkb24ndCBldmVyIGxldCB0aGlzIHNocmluayBpbiBoZWlnaHQgaWYgZGlyZWN0IGRlc2NlbmRlbnQgb2YgZmxleDtcbiAgYCxcbiAgLy8gdmFyaWFudHNcbiAgeHM6IGNzc2BcbiAgICBoZWlnaHQ6ICR7ZXVpVGhlbWUuc2l6ZS54c307XG4gIGAsXG4gIHM6IGNzc2BcbiAgICBoZWlnaHQ6ICR7ZXVpVGhlbWUuc2l6ZS5zfTtcbiAgYCxcbiAgbTogY3NzYFxuICAgIGhlaWdodDogJHtldWlUaGVtZS5zaXplLmJhc2V9O1xuICBgLFxuICBsOiBjc3NgXG4gICAgaGVpZ2h0OiAke2V1aVRoZW1lLnNpemUubH07XG4gIGAsXG4gIHhsOiBjc3NgXG4gICAgaGVpZ2h0OiAke2V1aVRoZW1lLnNpemUueGx9O1xuICBgLFxuICB4eGw6IGNzc2BcbiAgICBoZWlnaHQ6ICR7ZXVpVGhlbWUuc2l6ZS54eGx9O1xuICBgLFxufSk7XG4iXX0= */
+                          </style>,
+                        ],
+                      },
+                    }
+                  }
+                  isStringTag={true}
+                  serialized={
+                    Object {
+                      "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNwYWNlci5zdHlsZXMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBdUJRIiwiZmlsZSI6InNwYWNlci5zdHlsZXMudHMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuICogQ29weXJpZ2h0IEVsYXN0aWNzZWFyY2ggQi5WLiBhbmQvb3IgbGljZW5zZWQgdG8gRWxhc3RpY3NlYXJjaCBCLlYuIHVuZGVyIG9uZVxuICogb3IgbW9yZSBjb250cmlidXRvciBsaWNlbnNlIGFncmVlbWVudHMuIExpY2Vuc2VkIHVuZGVyIHRoZSBFbGFzdGljIExpY2Vuc2VcbiAqIDIuMCBhbmQgdGhlIFNlcnZlciBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDE7IHlvdSBtYXkgbm90IHVzZSB0aGlzIGZpbGUgZXhjZXB0XG4gKiBpbiBjb21wbGlhbmNlIHdpdGgsIGF0IHlvdXIgZWxlY3Rpb24sIHRoZSBFbGFzdGljIExpY2Vuc2UgMi4wIG9yIHRoZSBTZXJ2ZXJcbiAqIFNpZGUgUHVibGljIExpY2Vuc2UsIHYgMS5cbiAqL1xuXG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9yZWFjdCc7XG5pbXBvcnQgeyBVc2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcblxuZXhwb3J0IGNvbnN0IGV1aVNwYWNlclN0eWxlcyA9ICh7IGV1aVRoZW1lIH06IFVzZUV1aVRoZW1lKSA9PiAoe1xuICAvLyBiYXNlXG4gIGV1aVNwYWNlcjogY3NzYFxuICAgIGZsZXgtc2hyaW5rOiAwOyAvLyBkb24ndCBldmVyIGxldCB0aGlzIHNocmluayBpbiBoZWlnaHQgaWYgZGlyZWN0IGRlc2NlbmRlbnQgb2YgZmxleDtcbiAgYCxcbiAgLy8gdmFyaWFudHNcbiAgeHM6IGNzc2BcbiAgICBoZWlnaHQ6ICR7ZXVpVGhlbWUuc2l6ZS54c307XG4gIGAsXG4gIHM6IGNzc2BcbiAgICBoZWlnaHQ6ICR7ZXVpVGhlbWUuc2l6ZS5zfTtcbiAgYCxcbiAgbTogY3NzYFxuICAgIGhlaWdodDogJHtldWlUaGVtZS5zaXplLmJhc2V9O1xuICBgLFxuICBsOiBjc3NgXG4gICAgaGVpZ2h0OiAke2V1aVRoZW1lLnNpemUubH07XG4gIGAsXG4gIHhsOiBjc3NgXG4gICAgaGVpZ2h0OiAke2V1aVRoZW1lLnNpemUueGx9O1xuICBgLFxuICB4eGw6IGNzc2BcbiAgICBoZWlnaHQ6ICR7ZXVpVGhlbWUuc2l6ZS54eGx9O1xuICBgLFxufSk7XG4iXX0= */",
+                      "name": "hg1jdf-euiSpacer-m",
+                      "next": undefined,
+                      "styles": "flex-shrink:0;label:euiSpacer;;;height:16px;;label:m;;;",
+                      "toString": [Function],
+                    }
+                  }
+                />
+                <div
+                  className="euiSpacer euiSpacer--m css-hg1jdf-euiSpacer-m"
+                />
+              </div>
             </EuiSpacer>
             <EuiTablePagination
               activePage={1}
@@ -1832,7 +1903,7 @@ exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
   </div>
   <div>
     <div
-      class="euiSpacer euiSpacer--m"
+      class="euiSpacer euiSpacer--m css-hg1jdf-euiSpacer-m"
     />
     <div
       class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--wrap eui-xScroll"
