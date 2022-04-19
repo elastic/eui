@@ -264,6 +264,35 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     });
   }
 
+  // If EuiContextMenu is used within an EuiPopover, EuiPopover's own
+  // `updateFocus()` method hijacks EuiContextMenuPanel's `updateFocus()`
+  // 350ms after the popover finishes transitioning in. This workaround
+  // reclaims focus from parent EuiPopovers that do not set an `initialFocus`
+  reclaimPopoverFocus() {
+    if (!this.panel) return;
+
+    const parent = this.panel.parentNode as HTMLElement;
+    if (!parent) return;
+    const hasEuiContextMenuParent = parent.classList.contains('euiContextMenu');
+
+    // It's possible to use an EuiContextMenuPanel directly in a popover without
+    // an EuiContextMenu, so we need to account for that when searching parent nodes
+    const popoverParent = hasEuiContextMenuParent
+      ? (parent?.parentNode?.parentNode as HTMLElement)
+      : (parent?.parentNode as HTMLElement);
+    if (!popoverParent) return;
+
+    const hasPopoverParent = popoverParent.classList.contains(
+      'euiPopover__panel'
+    );
+    if (!hasPopoverParent) return;
+
+    // If the popover panel gains focus, switch it to the context menu panel instead
+    popoverParent.addEventListener('focus', () => {
+      this.updateFocus();
+    });
+  }
+
   onTransitionComplete = () => {
     if (this.props.onTransitionComplete) {
       this.props.onTransitionComplete();
@@ -272,6 +301,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
   componentDidMount() {
     this.updateFocus();
+    this.reclaimPopoverFocus();
     this._isMounted = true;
   }
 
