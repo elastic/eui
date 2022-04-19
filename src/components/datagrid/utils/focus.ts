@@ -19,7 +19,7 @@ import {
   MutableRefObject,
 } from 'react';
 import { GridOnItemsRenderedProps } from 'react-window';
-import tabbable from 'tabbable';
+import { tabbable } from 'tabbable';
 import { keys } from '../../../services';
 import {
   DataGridFocusContextShape,

@@ -64,6 +64,7 @@ const typeToPathMap = {
   bullseye: 'bullseye',
   calendar: 'calendar',
   canvasApp: 'app_canvas',
+  casesApp: 'app_cases',
   check: 'check',
   checkInCircleFilled: 'checkInCircleFilled',
   cheer: 'cheer',

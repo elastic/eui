@@ -192,6 +192,7 @@ import { ResizeObserverExample } from './views/resize_observer/resize_observer_e
 import { ResizableContainerExample } from './views/resizable_container/resizable_container_example';
 
 import { ResponsiveExample } from './views/responsive/responsive_example';
+import { ScrollExample } from './views/scroll/scroll_example';
 
 import { SearchBarExample } from './views/search_bar/search_bar_example';
 
@@ -218,6 +219,8 @@ import { TabsExample } from './views/tabs/tabs_example';
 import { TextDiffExample } from './views/text_diff/text_diff_example';
 
 import { TextExample } from './views/text/text_example';
+
+import { TimelineExample } from './views/timeline/timeline_example';
 
 import { TitleExample } from './views/title/title_example';
 
@@ -507,6 +510,7 @@ const navigation = [
       ProgressExample,
       StatExample,
       TextExample,
+      TimelineExample,
       TitleExample,
       ToastExample,
       ToolTipExample,
@@ -592,6 +596,7 @@ const navigation = [
       ProviderExample,
       ResizeObserverExample,
       ResponsiveExample,
+      ScrollExample,
       TextDiffExample,
       WindowEventExample,
     ].map((example) => createExample(example)),

@@ -21,4 +21,26 @@ describe('EuiMark', () => {
       render(<EuiMark {...requiredProps}>Marked</EuiMark>)
     ).toMatchSnapshot();
   });
+
+  describe('No screen reader helper text', () => {
+    test('is rendered without CSS :before', () => {
+      expect(
+        render(
+          <EuiMark hasScreenReaderHelpText={false} {...requiredProps}>
+            Marked
+          </EuiMark>
+        )
+      ).not.toHaveStyleRule('content', "' [highlight start] '");
+    });
+
+    test('is rendered without CSS :after', () => {
+      expect(
+        render(
+          <EuiMark hasScreenReaderHelpText={false} {...requiredProps}>
+            Marked
+          </EuiMark>
+        )
+      ).not.toHaveStyleRule('content', "' [highlight end] '");
+    });
+  });
 });

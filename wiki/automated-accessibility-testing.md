@@ -28,21 +28,23 @@ Not as nice of a experience though potentially more direct, in `scripts/a11y-tes
 
 ## Deconstructing an error message
 
-```js
-`[${id}]: ${description}
-  Help: ${helpURL}
-  Elements:
-    - ${nodePath}
-`);
-```
+We have updated how accessibility violations appear in your terminal or CI logs. Each URL with violations will write a table like the one shown here.
+
+| index | id | impact | description | nodes |
+| :---: | :---: | :---: | :---: | :---: |
+| 0 | 'aria-valid-attr-value' | 'critical' | 'ARIA attributes must conform to valid values' | 1 | 
+| 1 | 'nested-interactive' | 'serious' | 'Nested interactive elements are not announced by screen readers' | 3 |
 
 All error messages follow this same structure:
-* The `id` will always map to the same `description` and `helpURL`.
+* The `index` is a 0-based count of accessibility violations on a page.
+* The `id` maps to an [axe-core rule description](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md) on GitHub. These rules link to more information on the Deque University site.
+* The `impact` describes how much a violation will prevent or degrade the user experience.
 * The `description` will give a one sentence explanation of the problem.
-* The `helpURL` will take you to axe's documentation about the problem. The documentation is generally pretty strong and will walk you through different possible problems and remediation steps.
-* The `nodePath` is the only thing that doesn't come directly from axe and is an attempt to lead you to the element that's triggering an error. (See `printResult()` in `scripts/a11y-testing.js` to see exactly how it's generated.)
+* The `nodes` will tell you how many violations of this type are on the page.
 
-The **set** of failures for each page will be denoted by a line with the URL of the page being tested.
+The test runner will give you a total count of issues at the end of the run.
+
+Any violations should be confirmed using the [axe browser plugin](https://deque.com/axe) in the [EUI design system site](https://eui.elastic.co), or running a server locally. The axe browser plugin is available for Chrome, Firefox, and Edge.
 
 ## Testing environment
 

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { testCustomHook } from '../../../test/test_custom_hook.test_helper';
+import { testCustomHook } from '../../../test/internal';
 
 import { EuiDataGridRowManager } from '../data_grid_types';
 import { useRowManager } from './data_grid_row_manager';
