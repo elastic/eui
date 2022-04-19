@@ -8,7 +8,8 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../common';
-import classNames from 'classnames';
+
+import { euiBeaconStyles } from './beacon.styles';
 
 export type EuiBeaconProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'> &
   CommonProps & {
@@ -24,13 +25,14 @@ export const EuiBeacon: FunctionComponent<EuiBeaconProps> = ({
   style,
   ...rest
 }) => {
-  const classes = classNames('euiBeacon', className);
+  const styles = euiBeaconStyles();
+  const cssStyles = [styles.euiBeacon];
 
-  const styles = {
+  const beaconStyle = {
     ...style,
     height: size,
     width: size,
   };
 
-  return <div className={classes} style={styles} {...rest} />;
+  return <div css={cssStyles} style={beaconStyle} {...rest} />;
 };
