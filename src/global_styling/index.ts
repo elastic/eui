@@ -7,5 +7,6 @@
  */
 
 export * from './reset/global_styles';
-export * from './mixins/_typography';
 export * from './variables/_typography';
+export * from './variables/_shadow';
+export * from './mixins';

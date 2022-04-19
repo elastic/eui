@@ -9,7 +9,18 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme, transparentize } from '../../services';
 
-export const euiMarkStyles = ({ euiTheme, colorMode }: UseEuiTheme) => {
+export const euiMarkStyles = (
+  { euiTheme, colorMode }: UseEuiTheme,
+  {
+    hasScreenReaderHelpText,
+    highlightStart,
+    highlightEnd,
+  }: {
+    hasScreenReaderHelpText: boolean;
+    highlightStart: string;
+    highlightEnd: string;
+  }
+) => {
   // TODO: Was $euiFocusBackgroundColor
   const transparency = { LIGHT: 0.1, DARK: 0.3 };
 
@@ -22,5 +33,28 @@ export const euiMarkStyles = ({ euiTheme, colorMode }: UseEuiTheme) => {
     // Override the browser's black color.
     // Can't use 'inherit' because the text to background color contrast may not be sufficient
     color: ${euiTheme.colors.text};
+
+    // https://seanconnolly.dev/emotion-conditionals
+    ${hasScreenReaderHelpText === true &&
+    `
+      &:before,
+      &:after {
+        clip-path: inset(100%);
+        clip: rect(1px, 1px, 1px, 1px);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+      }
+
+      &:before {
+        content: ' [${highlightStart}] ';
+      }
+
+      &:after {
+        content: ' [${highlightEnd}] ';
+      }
+    `}
   `;
 };

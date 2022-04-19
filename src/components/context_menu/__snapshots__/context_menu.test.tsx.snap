@@ -18,11 +18,9 @@ exports[`EuiContextMenu can pass-through horizontal rule props 1`] = `
       </span>
     </div>
     <div>
-      <div>
-        <hr
-          class="euiHorizontalRule euiHorizontalRule--half euiHorizontalRule--marginSmall"
-        />
-      </div>
+      <hr
+        class="euiHorizontalRule euiHorizontalRule--half euiHorizontalRule--marginSmall"
+      />
     </div>
   </div>
 </div>
@@ -54,39 +52,37 @@ exports[`EuiContextMenu panel item can be a separator line 1`] = `
       </span>
     </div>
     <div>
-      <div>
-        <button
-          class="euiContextMenuItem"
-          type="button"
+      <button
+        class="euiContextMenuItem"
+        type="button"
+      >
+        <span
+          class="euiContextMenu__itemLayout"
         >
           <span
-            class="euiContextMenu__itemLayout"
+            class="euiContextMenuItem__text"
           >
-            <span
-              class="euiContextMenuItem__text"
-            >
-              Foo
-            </span>
+            Foo
           </span>
-        </button>
-        <hr
-          class="euiHorizontalRule euiHorizontalRule--full"
-        />
-        <button
-          class="euiContextMenuItem"
-          type="button"
+        </span>
+      </button>
+      <hr
+        class="euiHorizontalRule euiHorizontalRule--full"
+      />
+      <button
+        class="euiContextMenuItem"
+        type="button"
+      >
+        <span
+          class="euiContextMenu__itemLayout"
         >
           <span
-            class="euiContextMenu__itemLayout"
+            class="euiContextMenuItem__text"
           >
-            <span
-              class="euiContextMenuItem__text"
-            >
-              Bar
-            </span>
+            Bar
           </span>
-        </button>
-      </div>
+        </span>
+      </button>
     </div>
   </div>
 </div>
@@ -110,26 +106,24 @@ exports[`EuiContextMenu panel item can contain JSX 1`] = `
       </span>
     </div>
     <div>
-      <div>
-        <button
-          class="euiContextMenuItem"
-          type="button"
+      <button
+        class="euiContextMenuItem"
+        type="button"
+      >
+        <span
+          class="euiContextMenu__itemLayout"
         >
           <span
-            class="euiContextMenu__itemLayout"
+            class="euiContextMenuItem__text"
           >
             <span
-              class="euiContextMenuItem__text"
+              style="color:tomato"
             >
-              <span
-                style="color:tomato"
-              >
-                foo
-              </span>
+              foo
             </span>
           </span>
-        </button>
-      </div>
+        </span>
+      </button>
     </div>
   </div>
 </div>
@@ -165,9 +159,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
     </button>
     <div>
       <div>
-        <div>
-          2
-        </div>
+        2
       </div>
     </div>
   </div>
@@ -204,9 +196,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
     </button>
     <div>
       <div>
-        <div>
-          2
-        </div>
+        2
       </div>
     </div>
   </div>
@@ -234,62 +224,60 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
       </span>
     </button>
     <div>
-      <div>
-        <button
-          class="euiContextMenuItem"
-          type="button"
+      <button
+        class="euiContextMenuItem"
+        type="button"
+      >
+        <span
+          class="euiContextMenu__itemLayout"
         >
           <span
-            class="euiContextMenu__itemLayout"
+            class="euiContextMenuItem__text"
           >
-            <span
-              class="euiContextMenuItem__text"
-            >
-              2a
-            </span>
-            <span
-              class="euiContextMenu__arrow"
-              data-euiicon-type="arrowRight"
-            />
+            2a
           </span>
-        </button>
-        <button
-          class="euiContextMenuItem"
-          type="button"
+          <span
+            class="euiContextMenu__arrow"
+            data-euiicon-type="arrowRight"
+          />
+        </span>
+      </button>
+      <button
+        class="euiContextMenuItem"
+        type="button"
+      >
+        <span
+          class="euiContextMenu__itemLayout"
         >
           <span
-            class="euiContextMenu__itemLayout"
+            class="euiContextMenuItem__text"
           >
-            <span
-              class="euiContextMenuItem__text"
-            >
-              2b
-            </span>
-            <span
-              class="euiContextMenu__arrow"
-              data-euiicon-type="arrowRight"
-            />
+            2b
           </span>
-        </button>
-        <button
-          class="euiContextMenuItem"
-          type="button"
+          <span
+            class="euiContextMenu__arrow"
+            data-euiicon-type="arrowRight"
+          />
+        </span>
+      </button>
+      <button
+        class="euiContextMenuItem"
+        type="button"
+      >
+        <span
+          class="euiContextMenu__itemLayout"
         >
           <span
-            class="euiContextMenu__itemLayout"
+            class="euiContextMenuItem__text"
           >
-            <span
-              class="euiContextMenuItem__text"
-            >
-              2c
-            </span>
-            <span
-              class="euiContextMenu__arrow"
-              data-euiicon-type="arrowRight"
-            />
+            2c
           </span>
-        </button>
-      </div>
+          <span
+            class="euiContextMenu__arrow"
+            data-euiicon-type="arrowRight"
+          />
+        </span>
+      </button>
     </div>
   </div>
 </div>
@@ -324,9 +312,7 @@ exports[`EuiContextMenu props panels and initialPanelId renders the referenced p
     </button>
     <div>
       <div>
-        <div>
-          2
-        </div>
+        2
       </div>
     </div>
   </div>
@@ -362,9 +348,7 @@ exports[`EuiContextMenu props size m is rendered 1`] = `
     </button>
     <div>
       <div>
-        <div>
-          2
-        </div>
+        2
       </div>
     </div>
   </div>
@@ -400,9 +384,7 @@ exports[`EuiContextMenu props size s is rendered 1`] = `
     </button>
     <div>
       <div>
-        <div>
-          2
-        </div>
+        2
       </div>
     </div>
   </div>

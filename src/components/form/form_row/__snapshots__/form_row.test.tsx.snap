@@ -15,7 +15,7 @@ exports[`EuiFormRow behavior onBlur is called in child 1`] = `
   labelType="label"
 >
   <div
-    className="euiFormRow"
+    className="euiFormRow euiFormRow--hasLabel"
     id="generated-id-row"
   >
     <div
@@ -67,7 +67,7 @@ exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
   labelType="label"
 >
   <div
-    className="euiFormRow"
+    className="euiFormRow euiFormRow--hasLabel"
     id="generated-id-row"
   >
     <div
@@ -119,7 +119,7 @@ exports[`EuiFormRow behavior onFocus is called in child 1`] = `
   labelType="label"
 >
   <div
-    className="euiFormRow"
+    className="euiFormRow euiFormRow--hasLabel"
     id="generated-id-row"
   >
     <div
@@ -171,7 +171,7 @@ exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = 
   labelType="label"
 >
   <div
-    className="euiFormRow"
+    className="euiFormRow euiFormRow--hasLabel"
     id="generated-id-row"
   >
     <div
@@ -519,7 +519,7 @@ exports[`EuiFormRow props isDisabled is passed as disabled to child 1`] = `
 
 exports[`EuiFormRow props isInvalid is rendered 1`] = `
 <div
-  class="euiFormRow"
+  class="euiFormRow euiFormRow--hasLabel"
   id="generated-id-row"
 >
   <div
@@ -546,7 +546,7 @@ exports[`EuiFormRow props isInvalid is rendered 1`] = `
 
 exports[`EuiFormRow props label append is rendered 1`] = `
 <div
-  className="euiFormRow"
+  className="euiFormRow euiFormRow--hasLabel"
   id="generated-id-row"
 >
   <div
@@ -578,7 +578,7 @@ exports[`EuiFormRow props label append is rendered 1`] = `
 
 exports[`EuiFormRow props label is rendered 1`] = `
 <div
-  className="euiFormRow"
+  className="euiFormRow euiFormRow--hasLabel"
   id="generated-id-row"
 >
   <div
@@ -608,7 +608,7 @@ exports[`EuiFormRow props label is rendered 1`] = `
 
 exports[`EuiFormRow props label renders as a legend and subsquently a fieldset wrapper 1`] = `
 <fieldset
-  className="euiFormRow"
+  className="euiFormRow euiFormRow--hasLabel"
   id="generated-id-row"
 >
   <div
