@@ -8,7 +8,7 @@
 
 import { CSSProperties } from 'react';
 import { computed } from '../../services/theme/utils';
-import { _EuiThemeFontScale, FONT_SCALES } from './_typography';
+import { _EuiThemeFontScale, FONT_SCALES } from './typography';
 
 /**
  * NOTE: These were quick conversions of their Sass counterparts.

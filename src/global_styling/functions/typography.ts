@@ -9,22 +9,19 @@
 import {
   _EuiThemeFontScale,
   _EuiThemeFontSizeMeasurement,
-} from '../variables/_typography';
+} from '../variables/typography';
 import { UseEuiTheme } from '../../services/theme/hooks';
 
 /**
- *
- *
- *
- * @param base = 16
- * @param scale = full scale
- * @param bodyScale = 's'
- * @param size = 'm'
+ * Calculates the font-size value based on the provided scale key
+ * @param scale - The font scale key
+ * @param theme - Requires the `base` and `font` keys
  * @param measurement - The returned string measurement
+ * *
  * @returns string - Calculated font-size value
  */
 
-export function fontSizeFromScale(
+export function euiFontSizeFromScale(
   scale: _EuiThemeFontScale,
   { base, font }: UseEuiTheme['euiTheme'],
   measurement: _EuiThemeFontSizeMeasurement = 'rem'
@@ -46,15 +43,14 @@ export function fontSizeFromScale(
  * EX: A proper line-height for text is 1.5 times the font-size.
  *     If our base font size (euiFontSize) is 16, and our baseline is 4. To ensure the
  *     text stays on the baseline, we pass a multiplier to calculate a line-height.
- * @param base - Theme base unit
- * @param font - Requires the `body` and `baseline` values
- * @param scale - The font scale multiplier
+ * @param scale - The font scale key
+ * @param theme - Requires the `base` and `font` keys
  * @param measurement - The returned string measurement
  * *
  * @returns string - Calculated line-height value aligned to baseline
  */
 
-export function lineHeightFromBaseline(
+export function euiLineHeightFromBaseline(
   scale: _EuiThemeFontScale,
   { base, font }: UseEuiTheme['euiTheme'],
   measurement: _EuiThemeFontSizeMeasurement = 'rem'

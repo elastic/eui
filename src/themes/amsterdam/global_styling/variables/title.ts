@@ -14,8 +14,8 @@
 import {
   title,
   EuiThemeTitle,
-} from '../../../../global_styling/variables/title';
-import { FONT_SCALES } from '../../../../global_styling/variables/_typography';
+} from '../../../../global_styling/variables/_title';
+import { FONT_SCALES } from '../../../../global_styling/variables/typography';
 import { computed } from '../../../../services/theme/utils';
 
 // For Amsterdam, change all font-weights to bold and remove letter-spacing

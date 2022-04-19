@@ -11,7 +11,7 @@ import {
   EuiThemeFont,
   _EuiThemeFontBase,
   _EuiThemeFontWeight,
-} from '../../../../global_styling/variables/_typography';
+} from '../../../../global_styling/variables/typography';
 
 // Typographic scale -- loosely based on Major Third (1.250)
 export const fontScale = {

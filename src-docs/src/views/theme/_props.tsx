@@ -30,7 +30,7 @@ import {
   _EuiThemeFontBase,
   _EuiThemeFontWeight,
   _EuiThemeFontScale,
-} from '../../../../src/global_styling/variables/_typography';
+} from '../../../../src/global_styling/variables/typography';
 
 export const EuiThemeFontBase: FunctionComponent<_EuiThemeFontBase> = () => (
   <div />
