@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import { css } from '@emotion/react';
 import { CSSProperties } from 'react';
 
 /**
@@ -13,10 +14,10 @@ import { CSSProperties } from 'react';
  * `prefers-reduced-motion` media query so that when it is turn off,
  * animations are not run.
  * @param content
- * @returns string
+ * @returns css Emotion object
  */
-export const euiCanAnimate = (content: string) => `
-@media screen and (prefers-reduced-motion: no-preference) {
+export const euiCanAnimate = (content: any) => css`
+  @media screen and (prefers-reduced-motion: no-preference) {
     ${content}
   }
 `;
@@ -26,10 +27,10 @@ export const euiCanAnimate = (content: string) => `
  * `prefers-reduced-motion` media query that will only run the content if
  * the setting is off (reduce).
  * @param content
- * @returns string
+ * @returns css Emotion object
  */
-export const euiCantAnimate = (content: string) => `
-@media screen and (prefers-reduced-motion: reduce) {
+export const euiCantAnimate = (content: any) => css`
+  @media screen and (prefers-reduced-motion: reduce) {
     ${content}
   }
 `;

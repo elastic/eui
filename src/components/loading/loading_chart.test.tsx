@@ -9,12 +9,12 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
-import { renderWithStyles } from '../../test/internal';
+// import { renderWithStyles } from '../../test/internal';
 
 import { EuiLoadingChart, SIZES } from './loading_chart';
 
 describe('EuiLoadingChart', () => {
-  renderWithStyles(<EuiLoadingChart />);
+  // renderWithStyles(<EuiLoadingChart />);
 
   test('is rendered', () => {
     const component = render(<EuiLoadingChart {...requiredProps} />);

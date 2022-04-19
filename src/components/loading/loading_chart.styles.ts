@@ -6,12 +6,9 @@
  * Side Public License, v 1.
  */
 
-import { css } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 import { euiPaletteColorBlind, shadeOrTint, UseEuiTheme } from '../../services';
-import {
-  euiCanAnimate,
-  euiCantAnimate,
-} from '../../global_styling/variables/_animations';
+import { euiCanAnimate } from '../../global_styling/variables/_animations';
 
 export const euiLoadingChartStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiLoadingChart: css`
@@ -51,6 +48,20 @@ export const euiLoadingChartBarStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
 });
 
+const barAnimation = keyframes`
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(66%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+`;
+
 export const _barIndex = (
   index: number,
   mono: boolean,
@@ -62,8 +73,14 @@ export const _barIndex = (
 
   return css`
     background-color: ${backgroundColor};
-    ${euiCanAnimate(`animation: euiLoadingChart 1s ${`.${index}s`} infinite;`)}
-    // Without the animation, the bars are all the same height, so we apply transforms only if they can't animate
-    ${euiCantAnimate(`transform: translateY(${22 * index}%);`)}
+    // Without the animation, the bars are all the same height,
+    // so we apply transforms which are overridden by the animation if animations are allowed
+    transform: translateY(${22 * index}%);
+
+    ${euiCanAnimate(
+      css`
+        animation: ${barAnimation} 1s ${`.${index}s`} infinite;
+      `
+    )}
   `;
 };
