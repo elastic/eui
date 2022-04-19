@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
   EuiButton,
@@ -13,15 +13,6 @@ import { useGeneratedHtmlId } from '../../../../src/services';
 export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-  const trapFocusFormRowId__1 = useGeneratedHtmlId({
-    prefix: 'trapFocusFormRow',
-    suffix: 'first',
-  });
-  const trapFocusFormRowId__2 = useGeneratedHtmlId({
-    prefix: 'trapFocusFormRow',
-    suffix: 'second',
-  });
-
   const onButtonClick = () =>
     setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
   const closePopover = () => setIsPopoverOpen(false);
@@ -32,17 +23,24 @@ export default () => {
     </EuiButton>
   );
 
+  // Since `hasFocus={false}` disables popover auto focus, we need to manually set it ourselves
+  const focusId = useGeneratedHtmlId();
+  useEffect(() => {
+    if (isPopoverOpen) {
+      document.getElementById(focusId).focus({ preventScroll: true });
+    }
+  }, [isPopoverOpen, focusId]);
+
   return (
     <EuiPopover
       ownFocus={false}
       button={button}
       isOpen={isPopoverOpen}
       closePopover={closePopover}
-      initialFocus={`[id=${trapFocusFormRowId__1}]`}
     >
       <EuiFormRow
         label="Generate a public snapshot?"
-        id={trapFocusFormRowId__1}
+        id={focusId}
         hasChildLabel={false}
       >
         <EuiSwitch
@@ -53,10 +51,7 @@ export default () => {
         />
       </EuiFormRow>
 
-      <EuiFormRow
-        label="Include the following in the embed"
-        id={trapFocusFormRowId__2}
-      >
+      <EuiFormRow label="Include the following in the embed">
         <EuiSwitch
           name="switch"
           label="Current time range"
