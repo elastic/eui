@@ -22,7 +22,7 @@ export const euiSpacerStyles = ({ euiTheme }: UseEuiTheme) => ({
     height: ${euiTheme.size.s};
   `,
   m: css`
-    height: ${euiTheme.size.m};
+    height: ${euiTheme.size.base};
   `,
   l: css`
     height: ${euiTheme.size.l};
