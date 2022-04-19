@@ -9,6 +9,13 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
+import { useEuiTheme } from '../../services';
+
+import {
+  euiLoadingChartStyles,
+  euiLoadingChartBarStyles,
+  _barIndex,
+} from './loading_chart.styles';
 
 const sizeToClassNameMap = {
   m: 'euiLoadingChart--medium',
@@ -32,6 +39,10 @@ export const EuiLoadingChart: FunctionComponent<EuiLoadingChartProps> = ({
   className,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiLoadingChartStyles(euiTheme);
+  const barStyles = euiLoadingChartBarStyles(euiTheme);
+
   const classes = classNames(
     'euiLoadingChart',
     { 'euiLoadingChart--mono': mono },
@@ -39,12 +50,21 @@ export const EuiLoadingChart: FunctionComponent<EuiLoadingChartProps> = ({
     sizeToClassNameMap[size]
   );
 
+  const cssStyles = [styles.euiLoadingChart, styles[size]];
+  const cssBarStyles = (index: number) => {
+    return [
+      barStyles.euiLoadingChart__bar,
+      barStyles[size],
+      _barIndex(index, mono, euiTheme),
+    ];
+  };
+
   return (
-    <span className={classes} {...rest}>
-      <span className="euiLoadingChart__bar" />
-      <span className="euiLoadingChart__bar" />
-      <span className="euiLoadingChart__bar" />
-      <span className="euiLoadingChart__bar" />
+    <span className={classes} css={cssStyles} {...rest}>
+      <span className="euiLoadingChart__bar" css={cssBarStyles(0)} />
+      <span className="euiLoadingChart__bar" css={cssBarStyles(1)} />
+      <span className="euiLoadingChart__bar" css={cssBarStyles(2)} />
+      <span className="euiLoadingChart__bar" css={cssBarStyles(3)} />
     </span>
   );
 };

@@ -7,6 +7,8 @@
  */
 
 import chroma, { Color } from 'chroma-js';
+// TODO: Getting circular dependency
+// import { COLOR_MODES_STANDARD, EuiThemeColorModeStandard } from '../theme';
 import { isValidHex } from './is_valid_hex';
 
 const inOriginalFormat = (originalColor: string, newColor: Color) => {
@@ -39,6 +41,26 @@ export const tint = (color: string, ratio: number) => {
 export const shade = (color: string, ratio: number) => {
   const shade = chroma.mix(color, '#000', ratio, 'rgb');
   return inOriginalFormat(color, shade);
+};
+
+/**
+ * Returns the tinted color for light mode and shaded color for dark mode
+ * @param color - Color to mix with white
+ * @param ratio - Mix weight. From 0-1. Larger value indicates more white.
+ * @param colorMode - Light or dark only
+ */
+export const tintOrShade = (color: string, ratio: number, colorMode: any) => {
+  return colorMode === 'dark' ? shade(color, ratio) : tint(color, ratio);
+};
+
+/**
+ * Returns the shaded color for light mode and tinted color for dark mode
+ * @param color - Color to mix with white
+ * @param ratio - Mix weight. From 0-1. Larger value indicates more white.
+ * @param colorMode - Light or dark only
+ */
+export const shadeOrTint = (color: string, ratio: number, colorMode: any) => {
+  return colorMode === 'dark' ? tint(color, ratio) : shade(color, ratio);
 };
 
 /**

@@ -3,96 +3,96 @@
 exports[`EuiLoadingChart is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiLoadingChart testClass1 testClass2 euiLoadingChart--medium"
+  class="euiLoadingChart testClass1 testClass2 euiLoadingChart--medium css-1ho1qj7-euiLoadingChart-m"
   data-test-subj="test subject string"
 >
   <span
-    class="euiLoadingChart__bar"
+    class="euiLoadingChart__bar css-1c6g1ck-euiLoadingChart__bar-m"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="euiLoadingChart__bar css-13peo0y-euiLoadingChart__bar-m"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="euiLoadingChart__bar css-r4lbgq-euiLoadingChart__bar-m"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="euiLoadingChart__bar css-21609o-euiLoadingChart__bar-m"
   />
 </span>
 `;
 
 exports[`EuiLoadingChart mono is rendered 1`] = `
 <span
-  class="euiLoadingChart euiLoadingChart--mono euiLoadingChart--medium"
+  class="euiLoadingChart euiLoadingChart--mono euiLoadingChart--medium css-1ho1qj7-euiLoadingChart-m"
 >
   <span
-    class="euiLoadingChart__bar"
+    class="euiLoadingChart__bar css-wbnr6j-euiLoadingChart__bar-m"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="euiLoadingChart__bar css-vfsby6-euiLoadingChart__bar-m"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="euiLoadingChart__bar css-rtse0o-euiLoadingChart__bar-m"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="euiLoadingChart__bar css-1xmotyx-euiLoadingChart__bar-m"
   />
 </span>
 `;
 
 exports[`EuiLoadingChart size l is rendered 1`] = `
 <span
-  class="euiLoadingChart euiLoadingChart--large"
+  class="euiLoadingChart euiLoadingChart--large css-1xdgh7e-euiLoadingChart-l"
 >
   <span
-    class="euiLoadingChart__bar"
+    class="euiLoadingChart__bar css-o269pe-euiLoadingChart__bar-l"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="euiLoadingChart__bar css-1cz78kr-euiLoadingChart__bar-l"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="euiLoadingChart__bar css-iwe4vv-euiLoadingChart__bar-l"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="euiLoadingChart__bar css-1ahkij-euiLoadingChart__bar-l"
   />
 </span>
 `;
 
 exports[`EuiLoadingChart size m is rendered 1`] = `
 <span
-  class="euiLoadingChart euiLoadingChart--medium"
+  class="euiLoadingChart euiLoadingChart--medium css-1ho1qj7-euiLoadingChart-m"
 >
   <span
-    class="euiLoadingChart__bar"
+    class="euiLoadingChart__bar css-1c6g1ck-euiLoadingChart__bar-m"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="euiLoadingChart__bar css-13peo0y-euiLoadingChart__bar-m"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="euiLoadingChart__bar css-r4lbgq-euiLoadingChart__bar-m"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="euiLoadingChart__bar css-21609o-euiLoadingChart__bar-m"
   />
 </span>
 `;
 
 exports[`EuiLoadingChart size xl is rendered 1`] = `
 <span
-  class="euiLoadingChart euiLoadingChart--xLarge"
+  class="euiLoadingChart euiLoadingChart--xLarge css-wh2pju-euiLoadingChart-xl"
 >
   <span
-    class="euiLoadingChart__bar"
+    class="euiLoadingChart__bar css-1l8wtec-euiLoadingChart__bar-xl"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="euiLoadingChart__bar css-1nfhkvn-euiLoadingChart__bar-xl"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="euiLoadingChart__bar css-1qxrm6h-euiLoadingChart__bar-xl"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="euiLoadingChart__bar css-16sgejr-euiLoadingChart__bar-xl"
   />
 </span>
 `;
