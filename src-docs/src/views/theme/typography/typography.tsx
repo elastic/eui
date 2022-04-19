@@ -182,6 +182,18 @@ export default () => {
           </EuiLink>
           .
         </p>
+        <p>
+          While these functions and hooks exist to get precise font sizing and
+          associated line-height, we still highly recommend using the{' '}
+          <Link to="/display/text">
+            <strong>EuiText</strong>
+          </Link>{' '}
+          and{' '}
+          <Link to="/display/title">
+            <strong>EuiTitle</strong>
+          </Link>{' '}
+          components as wrappers of your content instead.
+        </p>
       </EuiText>
       <EuiSpacer size="xl" />
 
