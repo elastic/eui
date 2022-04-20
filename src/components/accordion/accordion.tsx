@@ -35,7 +35,6 @@ export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 export type EuiAccordionSize = keyof typeof paddingSizeToClassNameMap;
 
 export type EuiAccordionProps = CommonProps &
-  WithEuiThemeProps &
   Omit<HTMLAttributes<HTMLElement>, 'id'> & {
     id: string;
     /**
@@ -77,7 +76,7 @@ export type EuiAccordionProps = CommonProps &
     /**
      * The accordion will start in the open state.
      */
-    initialIsOpen: boolean;
+    initialIsOpen?: boolean;
     /**
      * Optional callback method called on open and close with a single `isOpen` parameter
      */
@@ -124,7 +123,7 @@ class EuiAccordionClass extends Component<
   state = {
     isOpen: this.props.forceState
       ? this.props.forceState === 'open'
-      : this.props.initialIsOpen,
+      : this.props.initialIsOpen!,
   };
 
   setChildContentHeight = () => {

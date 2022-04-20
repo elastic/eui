@@ -17,9 +17,7 @@ const getId = () => `${id++}`;
 
 describe('EuiAccordion', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiAccordion id={getId()} initialIsOpen={false} {...requiredProps} />
-    );
+    const component = render(<EuiAccordion id={getId()} {...requiredProps} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -28,7 +26,7 @@ describe('EuiAccordion', () => {
     describe('element', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiAccordion id={getId()} initialIsOpen={false} element="fieldset" />
+          <EuiAccordion id={getId()} element="fieldset" />
         );
 
         expect(component).toMatchSnapshot();
@@ -40,7 +38,6 @@ describe('EuiAccordion', () => {
         const component = render(
           <EuiAccordion
             id={getId()}
-            initialIsOpen={false}
             buttonContentClassName="button content class name"
           />
         );
@@ -54,7 +51,6 @@ describe('EuiAccordion', () => {
         const component = render(
           <EuiAccordion
             id={getId()}
-            initialIsOpen={false}
             buttonContent={<div>Button content</div>}
           />
         );
@@ -66,11 +62,7 @@ describe('EuiAccordion', () => {
     describe('buttonProps', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiAccordion
-            id={getId()}
-            initialIsOpen={false}
-            buttonProps={requiredProps}
-          />
+          <EuiAccordion id={getId()} buttonProps={requiredProps} />
         );
 
         expect(component).toMatchSnapshot();
@@ -80,11 +72,7 @@ describe('EuiAccordion', () => {
     describe('buttonElement', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiAccordion
-            id={getId()}
-            initialIsOpen={false}
-            buttonElement="div"
-          />
+          <EuiAccordion id={getId()} buttonElement="div" />
         );
 
         expect(component).toMatchSnapshot();
@@ -96,7 +84,6 @@ describe('EuiAccordion', () => {
         const component = render(
           <EuiAccordion
             id={getId()}
-            initialIsOpen={false}
             extraAction={<button>Extra action</button>}
           />
         );
@@ -120,11 +107,7 @@ describe('EuiAccordion', () => {
     describe('arrowDisplay', () => {
       it('right is rendered', () => {
         const component = render(
-          <EuiAccordion
-            id={getId()}
-            initialIsOpen={false}
-            arrowDisplay="right"
-          />
+          <EuiAccordion id={getId()} arrowDisplay="right" />
         );
 
         expect(component).toMatchSnapshot();
@@ -132,11 +115,7 @@ describe('EuiAccordion', () => {
 
       it('none is rendered', () => {
         const component = render(
-          <EuiAccordion
-            id={getId()}
-            initialIsOpen={false}
-            arrowDisplay="none"
-          />
+          <EuiAccordion id={getId()} arrowDisplay="none" />
         );
 
         expect(component).toMatchSnapshot();
@@ -146,11 +125,7 @@ describe('EuiAccordion', () => {
     describe('arrowProps', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiAccordion
-            id={getId()}
-            initialIsOpen={false}
-            arrowProps={requiredProps}
-          />
+          <EuiAccordion id={getId()} arrowProps={requiredProps} />
         );
 
         expect(component).toMatchSnapshot();
@@ -160,7 +135,7 @@ describe('EuiAccordion', () => {
     describe('forceState', () => {
       it('closed is rendered', () => {
         const component = render(
-          <EuiAccordion id={getId()} initialIsOpen={false} forceState="closed">
+          <EuiAccordion id={getId()} forceState="closed">
             <p>You can not see me</p>
           </EuiAccordion>
         );
@@ -170,7 +145,7 @@ describe('EuiAccordion', () => {
 
       it('open is rendered', () => {
         const component = render(
-          <EuiAccordion id={getId()} initialIsOpen={false} forceState="open">
+          <EuiAccordion id={getId()} forceState="open">
             <p>You can see me</p>
           </EuiAccordion>
         );
@@ -183,7 +158,6 @@ describe('EuiAccordion', () => {
         const component = mount(
           <EuiAccordion
             id={getId()}
-            initialIsOpen={false}
             onToggle={onToggleHandler}
             forceState="closed"
           />
@@ -197,9 +171,7 @@ describe('EuiAccordion', () => {
 
     describe('isLoading', () => {
       it('is rendered', () => {
-        const component = render(
-          <EuiAccordion id={getId()} initialIsOpen={false} isLoading />
-        );
+        const component = render(<EuiAccordion id={getId()} isLoading />);
 
         expect(component).toMatchSnapshot();
       });
@@ -208,12 +180,7 @@ describe('EuiAccordion', () => {
     describe('isLoadingMessage', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiAccordion
-            id={getId()}
-            initialIsOpen={false}
-            isLoadingMessage="Please wait"
-            isLoading
-          />
+          <EuiAccordion id={getId()} isLoadingMessage="Please wait" isLoading />
         );
 
         expect(component).toMatchSnapshot();
@@ -224,7 +191,7 @@ describe('EuiAccordion', () => {
   describe('behavior', () => {
     it('opens when clicked once', () => {
       const component = mount(
-        <EuiAccordion initialIsOpen={false} id={getId()}>
+        <EuiAccordion id={getId()}>
           <p>You can see me.</p>
         </EuiAccordion>
       );
@@ -236,7 +203,7 @@ describe('EuiAccordion', () => {
 
     it('opens when div is clicked if element is a div', () => {
       const component = mount(
-        <EuiAccordion id={getId()} initialIsOpen={false} element="div">
+        <EuiAccordion id={getId()} element="div">
           <p>You can see me.</p>
         </EuiAccordion>
       );
@@ -248,7 +215,7 @@ describe('EuiAccordion', () => {
 
     it('closes when clicked twice', () => {
       const component = mount(
-        <EuiAccordion id={getId()} initialIsOpen={false}>
+        <EuiAccordion id={getId()}>
           <p>You can not see me.</p>
         </EuiAccordion>
       );
@@ -262,11 +229,7 @@ describe('EuiAccordion', () => {
     it('accepts and calls an optional callback on open and close', () => {
       const onToggleHandler = jest.fn();
       const component = mount(
-        <EuiAccordion
-          id={getId()}
-          initialIsOpen={false}
-          onToggle={onToggleHandler}
-        />
+        <EuiAccordion id={getId()} onToggle={onToggleHandler} />
       );
 
       component.find('button').at(0).simulate('click');
@@ -279,9 +242,7 @@ describe('EuiAccordion', () => {
     });
 
     it('moves focus to the content when expanded', () => {
-      const component = mount(
-        <EuiAccordion id={getId()} initialIsOpen={false} />
-      );
+      const component = mount(<EuiAccordion id={getId()} />);
       const childWrapper = component.find('div[role="region"]').getDOMNode();
 
       expect(childWrapper).not.toBeFalsy();

@@ -3,7 +3,6 @@
 exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 <WithEuiTheme(EuiAccordionClass)
   id="18"
-  initialIsOpen={false}
 >
   <EuiAccordionClass
     arrowDisplay="left"
@@ -1525,7 +1524,6 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 exports[`EuiAccordion behavior opens when clicked once 1`] = `
 <WithEuiTheme(EuiAccordionClass)
   id="16"
-  initialIsOpen={false}
 >
   <EuiAccordionClass
     arrowDisplay="left"
@@ -3054,7 +3052,6 @@ exports[`EuiAccordion behavior opens when div is clicked if element is a div 1`]
 <WithEuiTheme(EuiAccordionClass)
   element="div"
   id="17"
-  initialIsOpen={false}
 >
   <EuiAccordionClass
     arrowDisplay="left"
