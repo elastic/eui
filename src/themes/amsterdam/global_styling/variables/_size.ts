@@ -9,10 +9,10 @@
 import {
   _EuiThemeBase,
   _EuiThemeSizes,
-} from '../../../../global_styling';
+} from '../../../../global_styling/variables';
+import { sizeToPixel } from '../../../../global_styling/functions';
 
 import { computed } from '../../../../services/theme/utils';
-import { sizeToPixel } from '../functions';
 
 export const base: _EuiThemeBase = 16;
 

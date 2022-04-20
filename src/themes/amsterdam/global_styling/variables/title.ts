@@ -14,7 +14,7 @@
 import {
   title,
   EuiThemeTitle,
-} from '../../../../global_styling/variables/title';
+} from '../../../../global_styling/variables/_title';
 import { SCALES } from '../../../../global_styling/variables/_typography';
 import { computed } from '../../../../services/theme/utils';
 

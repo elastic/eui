@@ -9,18 +9,17 @@
 import { useEuiTheme, UseEuiTheme } from '../../../../services/theme';
 import { getShadowColor } from '../functions';
 import { createStyleHookFromMixin } from '../../../../global_styling/utils';
-import { _EuiShadowSizes } from '../../../../global_styling/variables/_shadow';
-
-export interface EuiShadowCustomColor {
-  color?: string;
-}
+import {
+  _EuiThemeShadowSize,
+  _EuiThemeShadowCustomColor,
+} from '../../../../global_styling/variables/shadow';
 
 /**
  * euiSlightShadow
  */
 export const euiShadowXSmall = (
   { colors }: UseEuiTheme['euiTheme'],
-  { color: _color }: EuiShadowCustomColor = {},
+  { color: _color }: _EuiThemeShadowCustomColor = {},
   colorMode: UseEuiTheme['colorMode']
 ) => {
   const color = _color || colors.shadow;
@@ -36,7 +35,7 @@ box-shadow:
  */
 export const euiShadowSmall = (
   { colors }: UseEuiTheme['euiTheme'],
-  { color: _color }: EuiShadowCustomColor = {},
+  { color: _color }: _EuiThemeShadowCustomColor = {},
   colorMode: UseEuiTheme['colorMode']
 ) => {
   const color = _color || colors.shadow;
@@ -53,7 +52,7 @@ box-shadow:
  */
 export const euiShadowMedium = (
   { colors }: UseEuiTheme['euiTheme'],
-  { color: _color }: EuiShadowCustomColor = {},
+  { color: _color }: _EuiThemeShadowCustomColor = {},
   colorMode: UseEuiTheme['colorMode']
 ) => {
   const color = _color || colors.shadow;
@@ -71,7 +70,7 @@ box-shadow:
  */
 export const euiShadowLarge = (
   { colors }: UseEuiTheme['euiTheme'],
-  { color: _color }: EuiShadowCustomColor = {},
+  { color: _color }: _EuiThemeShadowCustomColor = {},
   colorMode: UseEuiTheme['colorMode']
 ) => {
   const color = _color || colors.shadow;
@@ -88,7 +87,7 @@ box-shadow:
 /**
  * bottomShadowLarge
  */
-export interface EuiShadowXLarge extends EuiShadowCustomColor {
+export interface EuiShadowXLarge extends _EuiThemeShadowCustomColor {
   reverse?: boolean;
 }
 export const euiShadowXLarge = (
@@ -112,7 +111,7 @@ box-shadow:
  */
 export const euiSlightShadowHover = (
   { colors }: UseEuiTheme['euiTheme'],
-  { color: _color }: EuiShadowCustomColor = {},
+  { color: _color }: _EuiThemeShadowCustomColor = {},
   colorMode: UseEuiTheme['colorMode']
 ) => {
   const color = _color || colors.shadow;
@@ -136,7 +135,7 @@ export const useEuiSlightShadowHover = createStyleHookFromMixin(
  */
 export const euiShadowFlat = (
   { colors }: UseEuiTheme['euiTheme'],
-  color: EuiShadowCustomColor['color'] = undefined,
+  color: _EuiThemeShadowCustomColor['color'] = undefined,
   colorMode: UseEuiTheme['colorMode']
 ) => {
   const _color = color || colors.shadow;
@@ -152,8 +151,8 @@ export const useEuiShadowFlat = createStyleHookFromMixin(euiShadowFlat);
 
 // One hook to rule them all
 interface EuiShadowStyles {
-  size?: _EuiShadowSizes;
-  color?: EuiShadowCustomColor['color'];
+  size?: _EuiThemeShadowSize;
+  color?: _EuiThemeShadowCustomColor['color'];
 }
 export const euiShadow = (
   euiTheme: UseEuiTheme['euiTheme'],

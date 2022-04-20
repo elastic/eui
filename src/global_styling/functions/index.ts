@@ -6,4 +6,4 @@
  * Side Public License, v 1.
  */
 
-export * from './shadow';
+export * from './size';

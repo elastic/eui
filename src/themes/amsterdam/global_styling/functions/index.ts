@@ -7,4 +7,3 @@
  */
 
 export * from './shadows';
-export * from './size';
