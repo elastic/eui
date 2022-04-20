@@ -9,18 +9,15 @@
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps, keysOf } from '../common';
 import classNames from 'classnames';
+import { useEuiTheme } from '../..//services';
+import {
+  euiLoadingSpinnerStyles,
+  spinnerSizes,
+} from './loading_spinner.styles';
 
-const sizeToClassNameMap = {
-  s: 'euiLoadingSpinner--small',
-  m: 'euiLoadingSpinner--medium',
-  l: 'euiLoadingSpinner--large',
-  xl: 'euiLoadingSpinner--xLarge',
-  xxl: 'euiLoadingSpinner--xxLarge',
-};
+export const SIZES = keysOf(spinnerSizes);
 
-export const SIZES = keysOf(sizeToClassNameMap);
-
-export type EuiLoadingSpinnerSize = keyof typeof sizeToClassNameMap;
+export type EuiLoadingSpinnerSize = keyof typeof spinnerSizes;
 
 export type EuiLoadingSpinnerProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
@@ -32,11 +29,10 @@ export const EuiLoadingSpinner: FunctionComponent<EuiLoadingSpinnerProps> = ({
   className,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiLoadingSpinner',
-    sizeToClassNameMap[size],
-    className
-  );
+  const euiTheme = useEuiTheme();
+  const styles = euiLoadingSpinnerStyles(euiTheme);
+  const cssStyles = [styles.euiLoadingSpinner, styles[size]];
+  const classes = classNames('euiLoadingSpinner', className);
 
-  return <span className={classes} {...rest} />;
+  return <span className={classes} css={cssStyles} {...rest} />;
 };
