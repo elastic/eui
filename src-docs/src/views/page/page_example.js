@@ -82,11 +82,14 @@ export const PageExample = {
           <EuiText>
             <p>
               <strong>EuiPageSection</strong> is a stackable component that is
-              essentially an <strong>EuiPanel</strong> with props for quickly
-              creating common usages. Use <EuiCode>panelled</EuiCode> to quickly
-              turn on/off the panel background and other attributes. You&apos;ll
-              need to set <EuiCode>{'grow={false}'}</EuiCode> to any content
-              that you don&apos;t want to stretch within the page.
+              essentially an{' '}
+              <Link to="/layout/panel">
+                <strong>EuiPanel</strong>
+              </Link>{' '}
+              with props for quickly creating common usages. It is meant to be a
+              direct descendent of <strong>EuiPageBody</strong> You&apos;ll need
+              to set <EuiCode>{'grow={false}'}</EuiCode> to any content that you
+              don&apos;t want to stretch within the page.
             </p>
             <p>
               To create dividers between contents, use the{' '}

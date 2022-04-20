@@ -5,7 +5,6 @@ import {
   EuiBetaBadge,
   EuiPageHeader,
   EuiPageSection,
-  EuiPageContentBody,
   EuiSpacer,
 } from '../../../../src/components';
 
@@ -90,9 +89,14 @@ const GuidePageComponent = ({
     if (notice) {
       return (
         <>
-          <EuiPageContentBody role="region" aria-label="Notice" restrictWidth>
+          <EuiPageSection
+            paddingSize="none"
+            role="region"
+            aria-label="Notice"
+            restrictWidth
+          >
             {notice}
-          </EuiPageContentBody>
+          </EuiPageSection>
           <EuiSpacer size="l" />
         </>
       );
@@ -118,6 +122,7 @@ const GuidePageComponent = ({
           tabs={renderTabs() || _tabs}
           description={description}
           rightSideItems={rightSideItems}
+          role="none"
         >
           {intro}
         </EuiPageHeader>

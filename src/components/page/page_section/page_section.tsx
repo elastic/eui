@@ -78,22 +78,20 @@ export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
     <div
       className={className}
       css={[
-        styles.base,
+        styles.euiPageSection,
         grow && styles.grow,
         inlinePadding[paddingSize],
         bottomBorder === 'extended' && styles.border,
-        // @ts-ignore HELP
         alignment && styles[alignment],
-        // @ts-ignore HELP
         colors[color],
       ]}
       {...rest}
     >
       <div
         css={[
+          width,
           blockPadding[paddingSize],
           bottomBorder === true && styles.border,
-          width,
         ]}
         {...contentProps}
       >

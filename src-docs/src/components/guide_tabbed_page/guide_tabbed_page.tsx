@@ -135,6 +135,7 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
           tabs={renderTabs()}
           description={description}
           rightSideItems={rightSideItems}
+          role="none"
         />
       </EuiPageSection>
 
