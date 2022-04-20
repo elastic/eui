@@ -8,16 +8,12 @@
 
 import React from 'react';
 import { render } from 'enzyme';
-import {
-  renderWithStyles,
-  shouldRenderCustomStyles,
-} from '../../test/internal';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiMark } from './mark';
 
 describe('EuiMark', () => {
-  renderWithStyles(<EuiMark>Marked</EuiMark>);
   shouldRenderCustomStyles(<EuiMark>Marked</EuiMark>);
 
   test('is rendered', () => {
