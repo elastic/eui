@@ -1,10 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiTimeline is rendered with items 1`] = `
-<div
+<ol
   class="euiTimeline"
+  role="list"
 >
-  <div
+  <li
     class="css-1noe449-euiTimelineItem"
   >
     <div
@@ -38,8 +39,8 @@ exports[`EuiTimeline is rendered with items 1`] = `
          was invited to the project
       </p>
     </div>
-  </div>
-  <div
+  </li>
+  <li
     class="css-1noe449-euiTimelineItem"
   >
     <div
@@ -71,6 +72,6 @@ exports[`EuiTimeline is rendered with items 1`] = `
          was invited to the project
       </p>
     </div>
-  </div>
-</div>
+  </li>
+</ol>
 `;
