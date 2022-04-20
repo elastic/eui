@@ -8,3 +8,4 @@
 
 export * from './size';
 export * from './shadow';
+export * from './borders';

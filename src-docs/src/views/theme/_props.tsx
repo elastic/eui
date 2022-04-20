@@ -47,7 +47,7 @@ import {
   _EuiThemeBorderTypes,
   _EuiThemeBorderRadiusValues,
   _EuiThemeBorderWidthValues,
-} from '../../../../src/global_styling/variables/_borders';
+} from '../../../../src/global_styling/variables/borders';
 
 export const EuiThemeBorderRadiusValues: FunctionComponent<_EuiThemeBorderRadiusValues> = () => (
   <div />
