@@ -1,3 +1,9 @@
+## [`55.0.1`](https://github.com/elastic/eui/tree/v55.0.1)
+
+**Bug fixes**
+
+- Fixed missing Sass variable file import ([#5820](https://github.com/elastic/eui/pull/5820))
+
 ## [`55.0.0`](https://github.com/elastic/eui/tree/v55.0.0)
 
 - Added JS function versions of Sass style mixins (a11y, animation, scroll, shadows) ([#5754](https://github.com/elastic/eui/pull/5754))
