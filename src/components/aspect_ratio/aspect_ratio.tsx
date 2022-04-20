@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, ReactElement } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  ReactElement,
+  CSSProperties,
+} from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
 
@@ -23,7 +28,7 @@ export type EuiAspectRatioProps = HTMLAttributes<HTMLDivElement> &
     /**
      * The maximum width you want the child to stretch to.
      */
-    maxWidth?: number;
+    maxWidth?: CSSProperties['width'];
     children: ReactElement<any>;
   };
 
