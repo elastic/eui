@@ -177,7 +177,7 @@ exports[`EuiProvider applying modifications propagates \`modify\` 1`] = `
             ],
           },
           "lightShade": "#D3DAE6",
-          "lightestShade": "#f0f4fb",
+          "lightestShade": "#F0F4FB",
           "link": Computed {
             "computer": [Function],
             "dependencies": Array [
@@ -472,7 +472,7 @@ exports[`EuiProvider changing color modes propagates \`colorMode\` 1`] = `
             ],
           },
           "lightShade": "#D3DAE6",
-          "lightestShade": "#f0f4fb",
+          "lightestShade": "#F0F4FB",
           "link": Computed {
             "computer": [Function],
             "dependencies": Array [
@@ -766,7 +766,7 @@ exports[`EuiProvider is rendered 1`] = `
             ],
           },
           "lightShade": "#D3DAE6",
-          "lightestShade": "#f0f4fb",
+          "lightestShade": "#F0F4FB",
           "link": Computed {
             "computer": [Function],
             "dependencies": Array [
@@ -1060,7 +1060,7 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to glo
             ],
           },
           "lightShade": "#D3DAE6",
-          "lightestShade": "#f0f4fb",
+          "lightestShade": "#F0F4FB",
           "link": Computed {
             "computer": [Function],
             "dependencies": Array [

@@ -9,7 +9,7 @@
 import { buildTheme } from '../../services/theme/utils';
 import { EuiThemeShape } from '../../services/theme/types';
 
-import { colors_ams } from './global_styling/variables/_colors';
+import { colors } from './global_styling/variables/_colors';
 import { animation } from './global_styling/variables/_animation';
 import { breakpoint } from './global_styling/variables/_breakpoint';
 import { base, size } from './global_styling/variables/_size';
@@ -19,7 +19,7 @@ import { font_ams } from './global_styling/variables/_typography';
 export const AMSTERDAM_NAME_KEY = 'EUI_THEME_AMSTERDAM';
 
 export const euiThemeAmsterdam: EuiThemeShape = {
-  colors: colors_ams,
+  colors: colors,
   base,
   size,
   font: font_ams,

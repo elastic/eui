@@ -15,7 +15,7 @@ import {
   shade_colors,
   special_colors,
   text_colors,
-} from '../../../../../src/global_styling/variables/_colors';
+} from '../../../../../src/themes/amsterdam/global_styling/variables/_colors';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 
 export const brandKeys = Object.keys(brand_colors);

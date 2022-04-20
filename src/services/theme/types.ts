@@ -10,7 +10,7 @@ import { RecursivePartial, ValueOf } from '../../components/common';
 import { _EuiThemeAnimation } from '../../global_styling/variables/animations';
 import { _EuiThemeBreakpoints } from '../../global_styling/variables/breakpoint';
 import { _EuiThemeBorder } from '../../global_styling/variables/borders';
-import { EuiThemeColors } from '../../global_styling/variables/_colors';
+import { _EuiThemeColors } from '../../global_styling/variables/colors';
 import {
   _EuiThemeBase,
   _EuiThemeSizes,
@@ -44,7 +44,7 @@ export type StrictColorModeSwitch<T = string> = {
 };
 
 export type EuiThemeShape = {
-  colors: EuiThemeColors;
+  colors: _EuiThemeColors;
   base: _EuiThemeBase;
   size: _EuiThemeSizes;
   font: EuiThemeFont;

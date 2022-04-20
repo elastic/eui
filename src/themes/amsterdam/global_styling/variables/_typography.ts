@@ -14,6 +14,7 @@ import {
 /**
  * Amsterdam theme just changes the main font from the beta Inter UI to Inter
  */
+
 export const font_ams: EuiThemeFont = {
   ...font,
   family: "'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif",

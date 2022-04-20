@@ -12,11 +12,13 @@ import { EuiThemeComputed, EuiThemeShape } from '../../../../src/services';
 export const EuiTheme: FunctionComponent<EuiThemeShape> = () => <div />;
 
 import {
-  _EuiThemeColors,
+  _EuiThemeColorsMode,
   _EuiThemeConstantColors,
-} from '../../../../src/global_styling/variables/_colors';
+} from '../../../../src/global_styling/variables/colors';
 
-export const EuiThemeColors: FunctionComponent<_EuiThemeColors> = () => <div />;
+export const EuiThemeColors: FunctionComponent<_EuiThemeColorsMode> = () => (
+  <div />
+);
 
 export const EuiThemeConstantColors: FunctionComponent<_EuiThemeConstantColors> = () => (
   <div />

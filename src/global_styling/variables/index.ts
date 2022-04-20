@@ -9,5 +9,6 @@
 export * from './animations';
 export * from './borders';
 export * from './breakpoint';
+export * from './colors';
 export * from './size';
 export * from './shadow';
