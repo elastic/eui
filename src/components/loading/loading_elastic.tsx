@@ -10,7 +10,9 @@ import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 import { EuiIcon } from '../icon';
+import { euiLoadingElasticStyles } from './loading_elastic.styles';
 
+// TODO
 const sizeToClassNameMap = {
   m: 'euiLoadingElastic--medium',
   l: 'euiLoadingElastic--large',
@@ -27,6 +29,9 @@ export interface EuiLoadingElasticProps {
 export const EuiLoadingElastic: FunctionComponent<
   CommonProps & HTMLAttributes<HTMLDivElement> & EuiLoadingElasticProps
 > = ({ size = 'm', className, ...rest }) => {
+  const styles = euiLoadingElasticStyles();
+  const cssStyles = [styles.euiLoadingElastic];
+
   const classes = classNames(
     'euiLoadingElastic',
     sizeToClassNameMap[size],
@@ -34,7 +39,7 @@ export const EuiLoadingElastic: FunctionComponent<
   );
 
   return (
-    <span className={classes} {...rest}>
+    <span className={classes} css={cssStyles} {...rest}>
       <EuiIcon type="logoElastic" size={size} />
     </span>
   );
