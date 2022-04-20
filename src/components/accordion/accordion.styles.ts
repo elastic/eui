@@ -46,11 +46,11 @@ export const euiAccordionStyles = (
     height: 0;
     opacity: 0;
     overflow: hidden;
-    transform: translatez(0);
     transition: height ${euiTheme.animation.normal}
         ${euiTheme.animation.resistance},
       opacity ${euiTheme.animation.normal} ${euiTheme.animation.resistance};
     visibility: hidden;
+    will-change: opacity, visibility, height;
 
     &:focus {
       outline: none; // Hide focus ring because of tabindex=-1 on Safari

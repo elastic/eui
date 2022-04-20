@@ -548,7 +548,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
         </div>
         <div
           aria-labelledby="generated-id"
-          class="css-ighb01-euiAccordion__childWrapper"
+          class="css-n3rdhr-euiAccordion__childWrapper"
           id="euiNotificationEventMessagesAccordion_generated-id"
           role="region"
           tabindex="-1"

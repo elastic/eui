@@ -251,7 +251,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
   </div>
   <div
     aria-labelledby="generated-id"
-    class="css-ighb01-euiAccordion__childWrapper"
+    class="css-n3rdhr-euiAccordion__childWrapper"
     id="id"
     role="region"
     tabindex="-1"
@@ -316,7 +316,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
   </div>
   <div
     aria-labelledby="generated-id"
-    class="css-ighb01-euiAccordion__childWrapper"
+    class="css-n3rdhr-euiAccordion__childWrapper"
     id="id"
     role="region"
     tabindex="-1"
