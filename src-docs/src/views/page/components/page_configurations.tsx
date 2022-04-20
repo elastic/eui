@@ -21,8 +21,6 @@ export default ({
   pageHeader?: boolean;
   emptyPrompt?: boolean;
 }) => {
-  // const bottomBorder = sideBar ? true : 'extended'; TBD
-
   return (
     <EuiPage paddingSize="none">
       {sideBar && (
@@ -31,9 +29,11 @@ export default ({
         </EuiPageSideBar>
       )}
 
-      <EuiPageBody panelled={Boolean(sideBar)}>
+      <EuiPageBody paddingSize="none" panelled={Boolean(sideBar)}>
         {pageHeader && (
-          <EuiPageHeader bottomBorder paddingSize="l" pageTitle="Page title" />
+          <EuiPageSection bottomBorder={sideBar ? true : 'extended'}>
+            <EuiPageHeader pageTitle="Page title" />
+          </EuiPageSection>
         )}
 
         {emptyPrompt ? (

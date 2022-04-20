@@ -109,7 +109,7 @@ const collateChangelogFiles = () => {
 /**
  * Write to CHANGELOG.md, delete individual upcoming changelog files, & stage changes
  */
-const updateChangelog = (upcomingChangelog) => {
+const updateChangelog = (upcomingChangelog, versionTarget) => {
   if (!upcomingChangelog) {
     throwError('Cannot update CHANGELOG.md - no changes found');
   }
@@ -117,8 +117,7 @@ const updateChangelog = (upcomingChangelog) => {
   const pathToChangelog = path.resolve(rootDir, 'CHANGELOG.md');
   const changelogArchive = fs.readFileSync(pathToChangelog).toString();
 
-  const pathToPackage = path.resolve(rootDir, 'package.json');
-  const { version } = require(pathToPackage);
+  const version = getUpcomingVersion(versionTarget);
   const latestVersionHeading = `## [\`${version}\`](https://github.com/elastic/eui/tree/v${version})`;
 
   if (changelogArchive.startsWith(latestVersionHeading)) {
@@ -133,7 +132,55 @@ const updateChangelog = (upcomingChangelog) => {
 
   execSync('git add CHANGELOG.md upcoming_changelogs/');
   execSync('git commit -m "Updated changelog." -n');
-  execSync('git push upstream');
 };
 
-module.exports = { collateChangelogFiles, updateChangelog };
+/**
+ * Get the current EUI version and increment it based on the
+ * user-input versionTarget (major/minor/patch)
+ */
+const getUpcomingVersion = (versionTarget) => {
+  const pathToPackage = path.resolve(rootDir, 'package.json');
+  const { version } = require(pathToPackage);
+  let [major, minor, patch] = version.split('.').map(Number);
+  switch (versionTarget) {
+    case 'major':
+      major += 1;
+      minor = 0;
+      patch = 0;
+      break;
+    case 'minor':
+      minor += 1;
+      patch = 0;
+      break;
+    case 'patch':
+      patch += 1;
+      break;
+  }
+  return [major, minor, patch].join('.');
+};
+
+/**
+ * Command to manually update the changelog (standalone from release.js).
+ * Primarily used for backports. Usage from project root:
+ *
+ * npm run update-changelog-manual --release=patch|minor|major (must be `npm` and not `yarn` to specify the release arg)
+ * OR
+ * node -e "require('./scripts/update-changelog').manualChangelog('patch|minor|major')"
+ */
+const manualChangelog = (release) => {
+  versionTarget = release || 'patch'; // Unfortunately can't be a = fallback, because the package.json script passes an empty string
+  console.log(
+    chalk.magenta(
+      `Manually updating CHANGELOG.md to next ${versionTarget} version.`
+    )
+  );
+  const { changelog } = collateChangelogFiles();
+  updateChangelog(changelog, versionTarget);
+};
+
+module.exports = {
+  collateChangelogFiles,
+  updateChangelog,
+  getUpcomingVersion,
+  manualChangelog,
+};

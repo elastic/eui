@@ -7,7 +7,6 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiPageSection,
-  EuiPageContentBody,
 } from '../../../../../src';
 
 import contentSvg from '../../../images/content.svg';
@@ -60,7 +59,6 @@ export const PageSectionDemo: FunctionComponent = () => {
         ]}
         props={{
           EuiPageSection,
-          EuiPageContentBody,
         }}
         playground={pageSectionConfig}
         exampleToggles={

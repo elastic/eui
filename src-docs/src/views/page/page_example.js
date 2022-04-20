@@ -43,47 +43,6 @@ export const PageExample = {
           and use this page to modify the props of each part of the template.
         </p>
       </EuiCallOut>
-      <EuiText>
-        <p>
-          EUI provides a family of components using the{' '}
-          <EuiCode>EuiPage</EuiCode> prefix that work together to build
-          consistent page layouts that work responsively.
-        </p>
-        <ul>
-          <li>
-            <strong>EuiPage</strong> and <strong>EuiPageBody</strong> provide
-            the overall wrapper with a column flex display.
-          </li>
-          <li>
-            <strong>EuiPageSideBar</strong> provides a way to add side
-            navigation that can be made <EuiCode>sticky</EuiCode> to scroll
-            independent of the page content. See{' '}
-            <Link to="/navigation/side-nav">
-              <strong>EuiSideNav</strong>
-            </Link>{' '}
-            for contents.
-          </li>
-          <li>
-            <Link to="/layout/page-header">
-              <strong>EuiPageHeader</strong>
-            </Link>{' '}
-            provides a title, description, section for actions and possible
-            tabs.
-          </li>
-          <li>
-            <strong>EuiPageContent</strong> provides the main content container
-            and extends{' '}
-            <Link to="/layout/panel">
-              <strong>EuiPanel</strong>
-            </Link>
-            .
-          </li>
-          <li>
-            <strong>EuiPageContentBody</strong> wraps the content that comes
-            after the page header.
-          </li>
-        </ul>
-      </EuiText>
     </>
   ),
   sections: [
@@ -123,11 +82,14 @@ export const PageExample = {
           <EuiText>
             <p>
               <strong>EuiPageSection</strong> is a stackable component that is
-              essentially an <strong>EuiPanel</strong> with props for quickly
-              creating common usages. Use <EuiCode>panelled</EuiCode> to quickly
-              turn on/off the panel background and other attributes. You&apos;ll
-              need to set <EuiCode>{'grow={false}'}</EuiCode> to any content
-              that you don&apos;t want to stretch within the page.
+              essentially an{' '}
+              <Link to="/layout/panel">
+                <strong>EuiPanel</strong>
+              </Link>{' '}
+              with props for quickly creating common usages. It is meant to be a
+              direct descendent of <strong>EuiPageBody</strong> You&apos;ll need
+              to set <EuiCode>{'grow={false}'}</EuiCode> to any content that you
+              don&apos;t want to stretch within the page.
             </p>
             <p>
               To create dividers between contents, use the{' '}
@@ -173,7 +135,6 @@ export const PageExample = {
               </EuiTableHeaderCell>
               <EuiTableHeaderCell width={120}>EuiPageHeader</EuiTableHeaderCell>
               <EuiTableHeaderCell>EuiPageBody</EuiTableHeaderCell>
-              <EuiTableHeaderCell>EuiPageHeader</EuiTableHeaderCell>
               <EuiTableHeaderCell>EuiPageSection</EuiTableHeaderCell>
               <EuiTableHeaderCell>EuiEmptyPrompt settings</EuiTableHeaderCell>
             </EuiTableHeader>
@@ -200,11 +161,9 @@ export const PageExample = {
                 </EuiTableRowCell>
 
                 <EuiTableRowCell mobileOptions={{ width: '100%' }}>
-                  <EuiCode language="tsx">{'bottomBorder={true}'}</EuiCode>
-                </EuiTableRowCell>
-
-                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
                   <EuiCode language="tsx">{'color="plain"'}</EuiCode>
+                  <br />
+                  <EuiCode language="tsx">{'bottomBorder={true}'}</EuiCode>
                 </EuiTableRowCell>
 
                 <EuiTableRowCell>
@@ -233,11 +192,9 @@ export const PageExample = {
                 </EuiTableRowCell>
 
                 <EuiTableRowCell mobileOptions={{ width: '100%' }}>
-                  <EuiCode language="tsx">{'bottomBorder="extended"'}</EuiCode>
-                </EuiTableRowCell>
-
-                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
                   <EuiCode language="tsx">{'color="plain"'}</EuiCode>
+                  <br />
+                  <EuiCode language="tsx">{'bottomBorder="extended"'}</EuiCode>
                 </EuiTableRowCell>
 
                 <EuiTableRowCell>
@@ -266,11 +223,9 @@ export const PageExample = {
                 </EuiTableRowCell>
 
                 <EuiTableRowCell mobileOptions={{ width: '100%' }}>
-                  <EuiCode>{'n/a'}</EuiCode>
-                </EuiTableRowCell>
-
-                <EuiTableRowCell mobileOptions={{ width: '100%' }}>
                   <EuiCode language="tsx">{'color="transparent"'}</EuiCode>
+                  <br />
+                  <EuiCode language="tsx">{'bottomBorder="extended"'}</EuiCode>
                 </EuiTableRowCell>
 
                 <EuiTableRowCell>

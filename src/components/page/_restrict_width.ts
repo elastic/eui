@@ -19,6 +19,9 @@
 
 import { CSSProperties } from 'react';
 
+// TODO: Decide how to make this a global value but still isolated to the page component
+export const PAGE_MAX_WIDTH: CSSProperties['maxWidth'] = '1200px';
+
 export type _EuiPageRestrictWidth = {
   /**
    * Sets the max-width of the page,

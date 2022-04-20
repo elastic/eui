@@ -7,7 +7,6 @@
  */
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
-import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 import { _EuiPageRestrictWidth } from '../_restrict_width';
@@ -16,13 +15,16 @@ import { _EuiPageBottomBorder } from '../_bottom_border';
 import { useEuiTheme } from '../../../services';
 import {
   ALIGNMENTS,
-  BACKGROUND_COLORS,
-  euiBackgroundColorStyles,
-  euiPaddingStyles,
   euiPageSectionStyles,
   euiPageSectionWidth,
-  PADDING_SIZES,
 } from './page_section.styles';
+
+import {
+  euiPaddingStyles,
+  PADDING_SIZES,
+  BACKGROUND_COLORS,
+  euiBackgroundColorStyles,
+} from '../../../global_styling';
 
 export type EuiPageSectionProps = CommonProps &
   _EuiPageRestrictWidth &
@@ -72,28 +74,24 @@ export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
     alignment
   );
 
-  const classes = classNames('euiPageSection', className);
-
   return (
     <div
-      className={classes}
+      className={className}
       css={[
-        styles.base,
+        styles.euiPageSection,
         grow && styles.grow,
         inlinePadding[paddingSize],
         bottomBorder === 'extended' && styles.border,
-        // @ts-ignore HELP
         alignment && styles[alignment],
-        // @ts-ignore HELP
         colors[color],
       ]}
       {...rest}
     >
       <div
         css={[
+          width,
           blockPadding[paddingSize],
           bottomBorder === true && styles.border,
-          width,
         ]}
         {...contentProps}
       >
