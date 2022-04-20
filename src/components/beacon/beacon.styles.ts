@@ -65,19 +65,24 @@ export const euiBeaconStyles = () => ({
     }
 
     &:before {
-      ${euiCanAnimate(
-        css`
-          animation: ${euiBeaconPulseLarge} 2.5s infinite ease-out;
-        `
-      )}
+      transform: scale(1.6);
+      opacity: 0.4;
     }
 
     &:after {
-      ${euiCanAnimate(
-        css`
-          animation: ${euiBeaconPulseSmall} 2.5s infinite ease-out 0.25s;
-        `
-      )}
+      opacity: 0;
     }
+
+    ${euiCanAnimate(
+      css`
+        &:before {
+          animation: ${euiBeaconPulseLarge} 2.5s infinite ease-out;
+        }
+
+        &:after {
+          animation: ${euiBeaconPulseSmall} 2.5s infinite ease-out 0.25s;
+        }
+      `
+    )}
   `,
 });
