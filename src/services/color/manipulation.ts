@@ -7,8 +7,7 @@
  */
 
 import chroma, { Color } from 'chroma-js';
-// TODO: Getting circular dependency
-// import { COLOR_MODES_STANDARD, EuiThemeColorModeStandard } from '../theme';
+import { EuiThemeColorModeStandard } from '../theme';
 import { isValidHex } from './is_valid_hex';
 
 const inOriginalFormat = (originalColor: string, newColor: Color) => {
@@ -49,8 +48,12 @@ export const shade = (color: string, ratio: number) => {
  * @param ratio - Mix weight. From 0-1. Larger value indicates more white.
  * @param colorMode - Light or dark only
  */
-export const tintOrShade = (color: string, ratio: number, colorMode: any) => {
-  return colorMode === 'dark' ? shade(color, ratio) : tint(color, ratio);
+export const tintOrShade = (
+  color: string,
+  ratio: number,
+  colorMode: EuiThemeColorModeStandard
+) => {
+  return colorMode === 'DARK' ? shade(color, ratio) : tint(color, ratio);
 };
 
 /**
@@ -59,8 +62,12 @@ export const tintOrShade = (color: string, ratio: number, colorMode: any) => {
  * @param ratio - Mix weight. From 0-1. Larger value indicates more white.
  * @param colorMode - Light or dark only
  */
-export const shadeOrTint = (color: string, ratio: number, colorMode: any) => {
-  return colorMode === 'dark' ? tint(color, ratio) : shade(color, ratio);
+export const shadeOrTint = (
+  color: string,
+  ratio: number,
+  colorMode: EuiThemeColorModeStandard
+) => {
+  return colorMode === 'DARK' ? tint(color, ratio) : shade(color, ratio);
 };
 
 /**
