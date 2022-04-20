@@ -80,6 +80,7 @@ export default () => {
   const styles = css`
     color: ${euiTheme.colors.primary};
     border: ${euiTheme.border.thin};
+    padding: ${euiTheme.size.s};
   `;
   return (
   <div css={styles} />
