@@ -17,6 +17,7 @@ import {
 } from '../../global_styling/variables/size';
 import { EuiThemeFont } from '../../global_styling/variables/_typography';
 import { _EuiThemeFocus } from '../../global_styling/variables/states';
+import { _EuiThemeLevels } from '../../global_styling/variables/levels';
 
 export const COLOR_MODES_STANDARD = {
   light: 'LIGHT',
@@ -52,6 +53,7 @@ export type EuiThemeShape = {
   focus?: _EuiThemeFocus;
   animation: _EuiThemeAnimation;
   breakpoint: _EuiThemeBreakpoints;
+  levels: _EuiThemeLevels;
 };
 
 export type EuiThemeSystem<T = {}> = {

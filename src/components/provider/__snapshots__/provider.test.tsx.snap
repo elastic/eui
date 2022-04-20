@@ -257,6 +257,17 @@ exports[`EuiProvider applying modifications propagates \`modify\` 1`] = `
           "semiBold": 600,
         },
       },
+      "levels": Object {
+        "content": 0,
+        "flyout": 1000,
+        "header": 1000,
+        "mask": 6000,
+        "maskBelowHeader": 1000,
+        "menu": 2000,
+        "modal": 8000,
+        "navigation": 6000,
+        "toast": 9000,
+      },
       "size": Object {
         "base": Computed {
           "computer": [Function],
@@ -552,6 +563,17 @@ exports[`EuiProvider changing color modes propagates \`colorMode\` 1`] = `
           "semiBold": 600,
         },
       },
+      "levels": Object {
+        "content": 0,
+        "flyout": 1000,
+        "header": 1000,
+        "mask": 6000,
+        "maskBelowHeader": 1000,
+        "menu": 2000,
+        "modal": 8000,
+        "navigation": 6000,
+        "toast": 9000,
+      },
       "size": Object {
         "base": Computed {
           "computer": [Function],
@@ -846,6 +868,17 @@ exports[`EuiProvider is rendered 1`] = `
           "semiBold": 600,
         },
       },
+      "levels": Object {
+        "content": 0,
+        "flyout": 1000,
+        "header": 1000,
+        "mask": 6000,
+        "maskBelowHeader": 1000,
+        "menu": 2000,
+        "modal": 8000,
+        "navigation": 6000,
+        "toast": 9000,
+      },
       "size": Object {
         "base": Computed {
           "computer": [Function],
@@ -1139,6 +1172,17 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to glo
           "regular": 400,
           "semiBold": 600,
         },
+      },
+      "levels": Object {
+        "content": 0,
+        "flyout": 1000,
+        "header": 1000,
+        "mask": 6000,
+        "maskBelowHeader": 1000,
+        "menu": 2000,
+        "modal": 8000,
+        "navigation": 6000,
+        "toast": 9000,
       },
       "size": Object {
         "base": Computed {

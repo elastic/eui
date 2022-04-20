@@ -6,11 +6,16 @@
  * Side Public License, v 1.
  */
 
-export * from './animations';
-export * from './borders';
-export * from './breakpoint';
-export * from './colors';
-export * from './levels';
-export * from './size';
-export * from './shadow';
-export * from './states';
+import { _EuiThemeLevels } from '../../../../global_styling/variables';
+
+export const levels: _EuiThemeLevels = {
+  toast: 9000,
+  modal: 8000,
+  mask: 6000,
+  navigation: 6000,
+  menu: 2000,
+  header: 1000,
+  flyout: 1000,
+  maskBelowHeader: 1000,
+  content: 0,
+};

@@ -86,6 +86,12 @@ export const EuiThemeBreakpoints: FunctionComponent<_EuiThemeBreakpoints> = () =
   <div />
 );
 
+import { _EuiThemeLevels } from '../../../../src/global_styling/variables/levels';
+
+export const EuiThemeLevelsProps: FunctionComponent<_EuiThemeLevels> = () => (
+  <div />
+);
+
 export function getType(type: any, euiTheme: EuiThemeComputed<{}>) {
   let typeRender: ReactNode;
   if (type?.custom?.origin?.type) {

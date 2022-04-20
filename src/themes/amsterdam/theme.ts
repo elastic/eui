@@ -14,6 +14,7 @@ import { animation } from './global_styling/variables/_animation';
 import { breakpoint } from './global_styling/variables/_breakpoint';
 import { base, size } from './global_styling/variables/_size';
 import { border } from './global_styling/variables/_borders';
+import { levels } from './global_styling/variables/_levels';
 import { font_ams } from './global_styling/variables/_typography';
 
 export const AMSTERDAM_NAME_KEY = 'EUI_THEME_AMSTERDAM';
@@ -26,6 +27,7 @@ export const euiThemeAmsterdam: EuiThemeShape = {
   border: border,
   animation,
   breakpoint,
+  levels,
 };
 
 export const EuiThemeAmsterdam = buildTheme(
