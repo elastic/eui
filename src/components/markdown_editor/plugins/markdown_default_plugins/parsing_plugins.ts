@@ -28,6 +28,7 @@ import breaks from 'remark-breaks';
 import highlight from '../remark/remark_prismjs';
 import * as MarkdownTooltip from '../markdown_tooltip';
 import * as MarkdownCheckbox from '../markdown_checkbox';
+import * as MarkdownMentions from '../markdown_mentions';
 import { markdownLinkValidator } from '../markdown_link_validator';
 
 export type DefaultEuiMarkdownParsingPlugins = PluggableList;
@@ -43,6 +44,7 @@ export const getDefaultEuiMarkdownParsingPlugins = ({
     [breaks, {}],
     [markdownLinkValidator, {}],
     [MarkdownCheckbox.parser, {}],
+    [MarkdownMentions.parser, {}],
   ];
 
   if (!excludeSet.has('tooltip'))

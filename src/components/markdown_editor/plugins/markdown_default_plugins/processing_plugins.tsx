@@ -30,6 +30,7 @@ import rehype2react from 'rehype-react';
 import remark2rehype from 'remark-rehype';
 import * as MarkdownTooltip from '../markdown_tooltip';
 import * as MarkdownCheckbox from '../markdown_checkbox';
+import * as MarkdownMentions from '../markdown_mentions';
 import { FENCED_CLASS } from '../remark/remark_prismjs';
 import { EuiLink } from '../../../link';
 import { EuiCodeBlock, EuiCode } from '../../../code';
@@ -52,7 +53,7 @@ export type DefaultEuiMarkdownProcessingPlugins = [
 
 export const getDefaultEuiMarkdownProcessingPlugins = ({
   exclude,
-}: { exclude?: Array<'tooltip'> } = {}) => {
+}: { exclude?: Array<'mentions' | 'tooltip'> } = {}) => {
   const excludeSet = new Set(exclude);
 
   const plugins: DefaultEuiMarkdownProcessingPlugins = [
@@ -98,6 +99,7 @@ export const getDefaultEuiMarkdownProcessingPlugins = ({
           ),
           hr: (props) => <EuiHorizontalRule {...props} />,
           checkboxPlugin: MarkdownCheckbox.renderer,
+          metionsPlugin: MarkdownMentions.renderer,
         },
       },
     ],
@@ -105,6 +107,8 @@ export const getDefaultEuiMarkdownProcessingPlugins = ({
 
   if (!excludeSet.has('tooltip'))
     plugins[1][1].components.tooltipPlugin = MarkdownTooltip.renderer;
+  if (!excludeSet.has('mentions'))
+    plugins[1][1].components.mentionsPlugin = MarkdownMentions.renderer;
 
   return plugins;
 };

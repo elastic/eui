@@ -10,20 +10,7 @@ import {
   EuiFlexItem,
 } from '../../../../src/components';
 
-const initialContent = `## Hello world!
-
-Basic "GitHub flavored" markdown will work as you'd expect.
-
-The editor also ships with some built in plugins. For example it can handle checkboxes. Notice how they toggle state even in the preview mode.
-
-- [ ] Checkboxes
-- [x] Can be filled
-- [ ] Or empty
-
-It can also handle emojis! :smile:
-
-And it can render !{tooltip[tooltips like this](Look! I'm a very helpful tooltip content!)}
-`;
+const initialContent = `@someone`;
 
 const dropHandlers = [
   {
@@ -72,7 +59,7 @@ export default () => {
         errors={messages}
         dropHandlers={dropHandlers}
         readOnly={isReadOnly}
-        initialViewMode="viewing"
+        // initialViewMode="viewing"
       />
       <EuiSpacer size="s" />
       <EuiFlexGroup alignItems="center">
