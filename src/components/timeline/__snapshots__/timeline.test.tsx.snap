@@ -3,6 +3,7 @@
 exports[`EuiTimeline is rendered with items 1`] = `
 <ol
   class="euiTimeline"
+  role="list"
 >
   <li
     class="css-1noe449-euiTimelineItem"

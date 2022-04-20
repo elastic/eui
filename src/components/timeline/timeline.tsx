@@ -29,7 +29,8 @@ export const EuiTimeline: FunctionComponent<EuiTimelineProps> = ({
   const classes = classNames('euiTimeline', className);
 
   return (
-    <ol className={classes} {...rest}>
+    // eslint-disable-next-line jsx-a11y/no-redundant-roles
+    <ol className={classes} role="list" {...rest}>
       {items.map((item, index) => (
         <EuiTimelineItem key={index} {...item} />
       ))}
