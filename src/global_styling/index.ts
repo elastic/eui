@@ -7,5 +7,5 @@
  */
 
 export * from './reset/global_styles';
-export { PADDING_SIZES, euiPaddingStyles } from './mixins/_padding';
-export { BACKGROUND_COLORS, euiBackgroundColorStyles } from './mixins/_color';
+export * from './variables/_shadow';
+export * from './mixins';

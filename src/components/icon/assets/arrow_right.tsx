@@ -30,6 +30,7 @@ const EuiIconArrowRight = ({
   >
     {title ? <title id={titleId}>{title}</title> : null}
     <path
+      fillRule="evenodd"
       clipRule="evenodd"
       d="M4.982 14.043a.75.75 0 01-.025-1.06l4.591-4.81a.25.25 0 000-.346l-4.59-4.81a.75.75 0 011.085-1.035l4.59 4.81a1.75 1.75 0 010 2.416l-4.59 4.81a.75.75 0 01-1.06.024z"
     />

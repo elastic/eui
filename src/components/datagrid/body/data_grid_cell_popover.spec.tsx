@@ -83,4 +83,21 @@ describe('EuiDataGridCellPopover', () => {
         .should('have.attr', 'data-gridcell-row-index', '1');
     });
   });
+
+  it('closes the cell popover when the originating cell is clicked', () => {
+    cy.realMount(<EuiDataGrid {...baseProps} />);
+    cy.get(
+      '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
+    ).realClick();
+
+    cy.get('[data-test-subj="euiDataGridCellExpandButton"]').realClick();
+    cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should('exist');
+
+    cy.get(
+      '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
+    ).realClick();
+    cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should(
+      'not.exist'
+    );
+  });
 });
