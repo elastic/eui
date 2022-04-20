@@ -55,7 +55,7 @@ export const EuiPage: FunctionComponent<EuiPageProps> = ({
   restrictWidth = false,
   style,
   className,
-  paddingSize = 'm',
+  paddingSize = 'none',
   grow = true,
   direction = 'row',
   ...rest

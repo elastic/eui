@@ -36,6 +36,9 @@ export {
   EuiPageHeaderSection,
 } from './page_header';
 
+export type { EuiPageSectionProps } from './page_section';
+export { EuiPageSection } from './page_section';
+
 export type { EuiPageSideBarProps } from './page_side_bar';
 export { EuiPageSideBar } from './page_side_bar';
 

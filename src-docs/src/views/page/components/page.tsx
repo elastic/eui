@@ -3,25 +3,23 @@ import React, { ReactElement } from 'react';
 import {
   EuiPage,
   EuiPageProps,
-  EuiPageContent,
+  EuiPageSection,
   EuiPageSideBar,
   EuiPageBody,
 } from '../../../../../src';
 
 export default ({
   content = <></>,
-  sideBar = <></>,
+  sideBar,
   ...rest
 }: EuiPageProps & {
   content: ReactElement;
-  sideBar: ReactElement;
+  sideBar?: ReactElement;
 }) => (
   <EuiPage paddingSize="none" {...rest}>
-    <EuiPageSideBar paddingSize="l">{sideBar}</EuiPageSideBar>
-    <EuiPageBody panelled>
-      <EuiPageContent paddingSize="none" color="transparent">
-        {content}
-      </EuiPageContent>
+    {sideBar && <EuiPageSideBar paddingSize="l">{sideBar}</EuiPageSideBar>}
+    <EuiPageBody paddingSize="none" panelled={!!sideBar}>
+      <EuiPageSection>{content}</EuiPageSection>
     </EuiPageBody>
   </EuiPage>
 );

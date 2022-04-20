@@ -4,8 +4,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import {
   EuiBetaBadge,
   EuiPageHeader,
-  EuiPageContent,
-  EuiPageContentBody,
+  EuiPageSection,
   EuiSpacer,
 } from '../../../../src/components';
 
@@ -90,9 +89,14 @@ const GuidePageComponent = ({
     if (notice) {
       return (
         <>
-          <EuiPageContentBody role="region" aria-label="Notice" restrictWidth>
+          <EuiPageSection
+            paddingSize="none"
+            role="region"
+            aria-label="Notice"
+            restrictWidth
+          >
             {notice}
-          </EuiPageContentBody>
+          </EuiPageSection>
           <EuiSpacer size="l" />
         </>
       );
@@ -107,40 +111,34 @@ const GuidePageComponent = ({
   return (
     <>
       {renderNotice()}
-      <EuiPageHeader
-        restrictWidth
-        pageTitle={
-          <>
-            {title} {betaBadge}
-          </>
-        }
-        tabs={renderTabs() || _tabs}
-        description={description}
-        rightSideItems={rightSideItems}
-      >
-        {intro}
-      </EuiPageHeader>
+      <EuiPageSection restrictWidth bottomBorder>
+        <EuiPageHeader
+          restrictWidth
+          pageTitle={
+            <>
+              {title} {betaBadge}
+            </>
+          }
+          tabs={renderTabs() || _tabs}
+          description={description}
+          rightSideItems={rightSideItems}
+          role="none"
+        >
+          {intro}
+        </EuiPageHeader>
+      </EuiPageSection>
 
-      <EuiPageContent
-        role="main"
-        hasShadow={false}
-        paddingSize="none"
-        color="transparent"
-        hasBorder={false}
-        borderRadius="none"
-      >
-        <EuiPageContentBody restrictWidth>
-          <Switch>
-            {playground && (
-              <Route path={`${match.path}/playground`}>{playground}</Route>
-            )}
-            {guidelines && (
-              <Route path={`${match.path}/guidelines`}>{guidelines}</Route>
-            )}
-            <Route path="">{children}</Route>
-          </Switch>
-        </EuiPageContentBody>
-      </EuiPageContent>
+      <EuiPageSection restrictWidth>
+        <Switch>
+          {playground && (
+            <Route path={`${match.path}/playground`}>{playground}</Route>
+          )}
+          {guidelines && (
+            <Route path={`${match.path}/guidelines`}>{guidelines}</Route>
+          )}
+          <Route path="">{children}</Route>
+        </Switch>
+      </EuiPageSection>
     </>
   );
 };

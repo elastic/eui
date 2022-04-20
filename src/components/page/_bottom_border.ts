@@ -6,6 +6,10 @@
  * Side Public License, v 1.
  */
 
-export * from './_padding';
-export * from './_color';
-export * from './_helpers';
+export type _EuiPageBottomBorder = {
+  /**
+   * Adds a bottom border to separate it from the content after;
+   * Passing `extended` will ensure the border touches the sides of the parent container.
+   */
+  bottomBorder?: boolean | 'extended';
+};

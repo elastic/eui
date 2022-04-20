@@ -6,6 +6,5 @@
  * Side Public License, v 1.
  */
 
-export * from './_padding';
-export * from './_color';
-export * from './_helpers';
+export type { EuiPageSectionProps } from './page_section';
+export { EuiPageSection } from './page_section';

@@ -3,10 +3,10 @@ import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { slugify } from '../../../../src/services/string/slugify';
 import {
   EuiPageHeader,
-  EuiPageContent,
   EuiPageContentBody,
   EuiSpacer,
   EuiBetaBadge,
+  EuiPageSection,
 } from '../../../../src/components';
 
 import { LanguageSelector, ThemeContext } from '../with_theme';
@@ -125,30 +125,23 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
   return (
     <>
       {renderNotice()}
-      <EuiPageHeader
-        restrictWidth
-        pageTitle={
-          <>
-            {title} {betaBadge}
-          </>
-        }
-        tabs={renderTabs()}
-        description={description}
-        rightSideItems={rightSideItems}
-      />
+      <EuiPageSection restrictWidth bottomBorder>
+        <EuiPageHeader
+          pageTitle={
+            <>
+              {title} {betaBadge}
+            </>
+          }
+          tabs={renderTabs()}
+          description={description}
+          rightSideItems={rightSideItems}
+          role="none"
+        />
+      </EuiPageSection>
 
-      <EuiPageContent
-        role="main"
-        hasShadow={false}
-        paddingSize="none"
-        color="transparent"
-        hasBorder={false}
-        borderRadius="none"
-      >
-        <EuiPageContentBody restrictWidth>
-          <Switch>{pagesRoutes}</Switch>
-        </EuiPageContentBody>
-      </EuiPageContent>
+      <EuiPageSection restrictWidth>
+        <Switch>{pagesRoutes}</Switch>
+      </EuiPageSection>
     </>
   );
 };

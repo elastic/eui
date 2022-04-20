@@ -2,20 +2,20 @@
 
 exports[`EuiPage direction can be row 1`] = `
 <div
-  class="euiPage euiPage--paddingMedium euiPage--grow"
+  class="euiPage euiPage--grow"
 />
 `;
 
 exports[`EuiPage grow can be false 1`] = `
 <div
-  class="euiPage euiPage--paddingMedium"
+  class="euiPage"
 />
 `;
 
 exports[`EuiPage is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPage euiPage--paddingMedium euiPage--grow testClass1 testClass2"
+  class="euiPage euiPage--grow testClass1 testClass2"
   data-test-subj="test subject string"
 />
 `;
@@ -46,20 +46,20 @@ exports[`EuiPage paddingSize s is rendered 1`] = `
 
 exports[`EuiPage restrict width can be set to a custom number 1`] = `
 <div
-  class="euiPage euiPage--paddingMedium euiPage--grow euiPage--restrictWidth-custom"
+  class="euiPage euiPage--grow euiPage--restrictWidth-custom"
   style="max-width:1024px"
 />
 `;
 
 exports[`EuiPage restrict width can be set to a custom value and does not override custom style 1`] = `
 <div
-  class="euiPage euiPage--paddingMedium euiPage--grow euiPage--restrictWidth-custom"
+  class="euiPage euiPage--grow euiPage--restrictWidth-custom"
   style="color:red;max-width:24rem"
 />
 `;
 
 exports[`EuiPage restrict width can be set to a default 1`] = `
 <div
-  class="euiPage euiPage--paddingMedium euiPage--grow euiPage--restrictWidth-default"
+  class="euiPage euiPage--grow euiPage--restrictWidth-default"
 />
 `;

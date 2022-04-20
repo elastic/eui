@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiPageSection is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="testClass1 testClass2 css-1dt9ogx-euiPageSection-l-top-transparent-EuiPageSection"
+  data-test-subj="test subject string"
+>
+  <div
+    class="css-z3mza7-euiPageSectionWidth-l-EuiPageSection"
+  />
+</div>
+`;
+
+exports[`EuiPageSection props alignment center is rendered 1`] = `
+<div
+  class="css-p65od4-euiPageSection-l-center-transparent-EuiPageSection"
+>
+  <div
+    class="css-z4d76m-euiPageSectionWidth-l-EuiPageSection"
+  />
+</div>
+`;
+
+exports[`EuiPageSection props alignment horizontalCenter is rendered 1`] = `
+<div
+  class="css-po9xr2-euiPageSection-l-horizontalCenter-transparent-EuiPageSection"
+>
+  <div
+    class="css-z4d76m-euiPageSectionWidth-l-EuiPageSection"
+  />
+</div>
+`;
+
+exports[`EuiPageSection props alignment top is rendered 1`] = `
+<div
+  class="css-1dt9ogx-euiPageSection-l-top-transparent-EuiPageSection"
+>
+  <div
+    class="css-z3mza7-euiPageSectionWidth-l-EuiPageSection"
+  />
+</div>
+`;
+
+exports[`EuiPageSection props bottomBorder can be true 1`] = `
+<div
+  class="css-1dt9ogx-euiPageSection-l-top-transparent-EuiPageSection"
+>
+  <div
+    class="css-j9mdqt-euiPageSectionWidth-l-border-EuiPageSection"
+  />
+</div>
+`;
+
+exports[`EuiPageSection props color accent is rendered 1`] = `
+<div
+  class="css-1a60029-euiPageSection-l-top-accent-EuiPageSection"
+>
+  <div
+    class="css-z3mza7-euiPageSectionWidth-l-EuiPageSection"
+  />
+</div>
+`;
+
+exports[`EuiPageSection props color danger is rendered 1`] = `
+<div
+  class="css-l3sixr-euiPageSection-l-top-danger-EuiPageSection"
+>
+  <div
+    class="css-z3mza7-euiPageSectionWidth-l-EuiPageSection"
+  />
+</div>
+`;
+
+exports[`EuiPageSection props color plain is rendered 1`] = `
+<div
+  class="css-9erces-euiPageSection-l-top-plain-EuiPageSection"
+>
+  <div
+    class="css-z3mza7-euiPageSectionWidth-l-EuiPageSection"
+  />
+</div>
+`;
+
+exports[`EuiPageSection props color primary is rendered 1`] = `
+<div
+  class="css-84dvzt-euiPageSection-l-top-primary-EuiPageSection"
+>
+  <div
+    class="css-z3mza7-euiPageSectionWidth-l-EuiPageSection"
+  />
+</div>
+`;
+
+exports[`EuiPageSection props color subdued is rendered 1`] = `
+<div
+  class="css-e5ezuj-euiPageSection-l-top-subdued-EuiPageSection"
+>
+  <div
+    class="css-z3mza7-euiPageSectionWidth-l-EuiPageSection"
+  />
+</div>
+`;
+
+exports[`EuiPageSection props color success is rendered 1`] = `
+<div
+  class="css-1d2fmm4-euiPageSection-l-top-success-EuiPageSection"
+>
+  <div
+    class="css-z3mza7-euiPageSectionWidth-l-EuiPageSection"
+  />
+</div>
+`;
+
+exports[`EuiPageSection props color transparent is rendered 1`] = `
+<div
+  class="css-1dt9ogx-euiPageSection-l-top-transparent-EuiPageSection"
+>
+  <div
+    class="css-z3mza7-euiPageSectionWidth-l-EuiPageSection"
+  />
+</div>
+`;
+
+exports[`EuiPageSection props color warning is rendered 1`] = `
+<div
+  class="css-1he2mkn-euiPageSection-l-top-warning-EuiPageSection"
+>
+  <div
+    class="css-z3mza7-euiPageSectionWidth-l-EuiPageSection"
+  />
+</div>
+`;
+
+exports[`EuiPageSection props contentProps are passed down 1`] = `
+<div
+  class="css-1dt9ogx-euiPageSection-l-top-transparent-EuiPageSection"
+>
+  <div
+    aria-label="aria-label"
+    class="testClass1 testClass2 css-z3mza7-euiPageSectionWidth-l-EuiPageSection"
+    data-test-subj="test subject string"
+  />
+</div>
+`;
+
+exports[`EuiPageSection props grow can be true 1`] = `
+<div
+  class="css-12m0f83-euiPageSection-grow-l-top-transparent-EuiPageSection"
+>
+  <div
+    class="css-z3mza7-euiPageSectionWidth-l-EuiPageSection"
+  />
+</div>
+`;
+
+exports[`EuiPageSection props paddingSize l is rendered 1`] = `
+<div
+  class="css-1dt9ogx-euiPageSection-l-top-transparent-EuiPageSection"
+>
+  <div
+    class="css-z3mza7-euiPageSectionWidth-l-EuiPageSection"
+  />
+</div>
+`;
+
+exports[`EuiPageSection props paddingSize m is rendered 1`] = `
+<div
+  class="css-hm0jp5-euiPageSection-m-top-transparent-EuiPageSection"
+>
+  <div
+    class="css-91wpc3-euiPageSectionWidth-m-EuiPageSection"
+  />
+</div>
+`;
+
+exports[`EuiPageSection props paddingSize none is rendered 1`] = `
+<div
+  class="css-mijn67-euiPageSection-top-transparent-EuiPageSection"
+>
+  <div
+    class="css-1gtmf2a-euiPageSectionWidth-EuiPageSection"
+  />
+</div>
+`;
+
+exports[`EuiPageSection props paddingSize s is rendered 1`] = `
+<div
+  class="css-fnmmn9-euiPageSection-s-top-transparent-EuiPageSection"
+>
+  <div
+    class="css-lv8xf6-euiPageSectionWidth-s-EuiPageSection"
+  />
+</div>
+`;
+
+exports[`EuiPageSection props restrictWidth can be true 1`] = `
+<div
+  class="css-1dt9ogx-euiPageSection-l-top-transparent-EuiPageSection"
+>
+  <div
+    class="css-1s65o72-euiPageSectionWidth-l-EuiPageSection"
+  />
+</div>
+`;
