@@ -11,11 +11,12 @@ import {
 } from '../../../../../src/components';
 
 import {
-  _EuiThemeFontWeight,
-  _EuiThemeFontSizeMeasurement,
-  _EuiThemeFontScale,
   euiFontSize,
   useEuiFontSize,
+  EuiThemeFontWeights,
+  EuiThemeFontScales,
+  EuiThemeFontSizeMeasurements,
+  _EuiThemeFontSizeMeasurement,
 } from '../../../../../src/global_styling';
 
 import { EuiThemeFontBase, EuiThemeFontWeight, ThemeRowType } from '../_props';
@@ -92,9 +93,7 @@ export const FontWeightJS: FunctionComponent<ThemeRowType> = ({
 }) => {
   const { euiTheme } = useEuiTheme();
   const weightProps = getPropsFromComponent(EuiThemeFontWeight);
-  const weightKeys = Object.keys(euiTheme.font.weight) as Array<
-    keyof _EuiThemeFontWeight
-  >;
+  const weightKeys = EuiThemeFontWeights;
 
   return (
     <>
@@ -138,20 +137,18 @@ export const FontWeightJS: FunctionComponent<ThemeRowType> = ({
 
 export const FontScaleJS = () => {
   const { euiTheme } = useEuiTheme();
-  const scaleKeys = Object.keys(euiTheme.font.scale) as _EuiThemeFontScale[];
+  const scaleKeys = EuiThemeFontScales;
 
-  const measurements: _EuiThemeFontSizeMeasurement[] = ['rem', 'px', 'em'];
-
-  const measurementButtons = measurements.map((m) => {
+  const measurementButtons = EuiThemeFontSizeMeasurements.map((m) => {
     return {
       id: m,
       label: m,
     };
   });
 
-  const [measurementSelected, setMeasurementSelected] = useState<
-    _EuiThemeFontSizeMeasurement
-  >(measurementButtons[0].id);
+  const [measurementSelected, setMeasurementSelected] = useState(
+    measurementButtons[0].id
+  );
 
   return (
     <>

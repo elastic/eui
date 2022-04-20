@@ -10,11 +10,12 @@ import { computed } from '../../../../services/theme/utils';
 import {
   EuiThemeFont,
   _EuiThemeFontBase,
-  _EuiThemeFontWeight,
+  _EuiThemeFontScales,
+  _EuiThemeFontWeights,
 } from '../../../../global_styling/variables/typography';
 
 // Typographic scale -- loosely based on Major Third (1.250)
-export const fontScale = {
+export const fontScale: _EuiThemeFontScales = {
   xxxs: 0.5625,
   xxs: 0.6875,
   xs: 0.75,
@@ -37,7 +38,7 @@ export const fontBase: _EuiThemeFontBase = {
   lineHeightMultiplier: 1.5,
 };
 
-export const fontWeight: _EuiThemeFontWeight = {
+export const fontWeight: _EuiThemeFontWeights = {
   light: 300,
   regular: 400,
   medium: 500,

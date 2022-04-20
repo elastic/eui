@@ -7,28 +7,33 @@
  */
 
 import { CSSProperties } from 'react';
-import { keysOf } from '../../components/common';
 
-export type _EuiThemeFontSizeMeasurement = 'px' | 'rem' | 'em';
+/**
+ * Font units of measure
+ */
+
+export const EuiThemeFontSizeMeasurements = ['px', 'rem', 'em'] as const;
+
+export type _EuiThemeFontSizeMeasurement = typeof EuiThemeFontSizeMeasurements[number];
 
 /*
  * Font scale
  */
 
-// TODO: How to reduce to just the array
-export const fontScale = {
-  xxxs: 0.5625,
-  xxs: 0.6875,
-  xs: 0.75,
-  s: 0.875,
-  m: 1,
-  l: 1.375,
-  xl: 1.6875,
-  xxl: 2.125,
-};
+export const EuiThemeFontScales = [
+  'xxxs',
+  'xxs',
+  'xs',
+  's',
+  'm',
+  'l',
+  'xl',
+  'xxl',
+] as const;
 
-export const FONT_SCALES = keysOf(fontScale);
-export type _EuiThemeFontScale = keyof typeof fontScale;
+export type _EuiThemeFontScale = typeof EuiThemeFontScales[number];
+
+export type _EuiThemeFontScales = Record<_EuiThemeFontScale, number>;
 
 /*
  * Font base settings
@@ -63,13 +68,20 @@ export type _EuiThemeFontBase = {
  * Font weights
  */
 
-export interface _EuiThemeFontWeight {
-  light: CSSProperties['fontWeight'];
-  regular: CSSProperties['fontWeight'];
-  medium: CSSProperties['fontWeight'];
-  semiBold: CSSProperties['fontWeight'];
-  bold: CSSProperties['fontWeight'];
-}
+export const EuiThemeFontWeights = [
+  'light',
+  'regular',
+  'medium',
+  'semiBold',
+  'bold',
+] as const;
+
+export type _EuiThemeFontWeight = typeof EuiThemeFontWeights[number];
+
+export type _EuiThemeFontWeights = Record<
+  _EuiThemeFontWeight,
+  CSSProperties['fontWeight']
+>;
 
 /**
  * Body / Base styles
@@ -83,7 +95,7 @@ export interface _EuiThemeBody {
   /**
    * A font weight key for setting the base body weight
    */
-  weight: keyof _EuiThemeFontWeight;
+  weight: keyof _EuiThemeFontWeights;
 }
 
 /*
@@ -91,7 +103,7 @@ export interface _EuiThemeBody {
  */
 
 export type EuiThemeFont = _EuiThemeFontBase & {
-  scale: { [key in _EuiThemeFontScale]: number };
-  weight: _EuiThemeFontWeight;
+  scale: _EuiThemeFontScales;
+  weight: _EuiThemeFontWeights;
   body: _EuiThemeBody;
 };
