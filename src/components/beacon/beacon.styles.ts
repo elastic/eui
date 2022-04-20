@@ -57,8 +57,8 @@ export const euiBeaconStyles = () => ({
       content: '';
       height: 100%;
       width: 100%;
-      left: 0;
-      top: 0;
+      inset-inline-start: 0;
+      inset-block-start: 0;
       background-color: transparent;
       border-radius: 50%;
       box-shadow: 0 0 1px 1px ${visColors[0]};
