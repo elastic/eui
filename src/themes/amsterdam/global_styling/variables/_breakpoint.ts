@@ -6,16 +6,9 @@
  * Side Public License, v 1.
  */
 
-export type _EuiBreakpointSize = 'xs' | 's' | 'm' | 'l' | 'xl';
+import { _EuiThemeBreakpoints } from '../../../../global_styling/variables';
 
-export type EuiThemeBreakpoint = {
-  /**
-   * Set the minimum window width at which to start to the breakpoint
-   */
-  [key in _EuiBreakpointSize]: number;
-};
-
-export const breakpoint: EuiThemeBreakpoint = {
+export const breakpoint: _EuiThemeBreakpoints = {
   xl: 1200,
   l: 992,
   m: 768,

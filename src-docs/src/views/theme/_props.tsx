@@ -78,9 +78,9 @@ export const EuiThemeAnimationEasing: FunctionComponent<_EuiThemeAnimationEasing
   <div />
 );
 
-import { EuiThemeBreakpoint } from '../../../../src/global_styling/variables/_breakpoint';
+import { _EuiThemeBreakpoints } from '../../../../src/global_styling/variables/breakpoint';
 
-export const _EuiThemeBreakpoint: FunctionComponent<EuiThemeBreakpoint> = () => (
+export const EuiThemeBreakpoints: FunctionComponent<_EuiThemeBreakpoints> = () => (
   <div />
 );
 
