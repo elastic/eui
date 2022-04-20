@@ -12,3 +12,4 @@ export * from './breakpoint';
 export * from './colors';
 export * from './size';
 export * from './shadow';
+export * from './states';

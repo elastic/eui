@@ -16,7 +16,7 @@ import {
   _EuiThemeSizes,
 } from '../../global_styling/variables/size';
 import { EuiThemeFont } from '../../global_styling/variables/_typography';
-import { _EuiThemeFocus } from '../../global_styling/variables/_states';
+import { _EuiThemeFocus } from '../../global_styling/variables/states';
 
 export const COLOR_MODES_STANDARD = {
   light: 'LIGHT',

@@ -64,7 +64,7 @@ export const EuiThemeBorderTypes: FunctionComponent<_EuiThemeBorderTypes> = () =
   <div />
 );
 
-import { _EuiThemeFocus } from '../../../../src/global_styling/variables/_states';
+import { _EuiThemeFocus } from '../../../../src/global_styling/variables/states';
 
 export const EuiThemeFocus: FunctionComponent<_EuiThemeFocus> = () => <div />;
 
