@@ -11,10 +11,6 @@
  * This is file contains the type specific to that prop and a helper
  * function for creating the corresponding classNames and style tags
  * based on the consumer's configuration
- *
- * @param {restrictWidth} boolean | number | string The prop value
- * @param {style} CSSProperties An object of style attributes if provided
- * @returns {{widthClassName: string, newStyle: CSSProperties}} Returns an object with keys for the class name to append to the component's class and the updated style props
  */
 
 import { CSSProperties } from 'react';
@@ -33,18 +29,26 @@ export type _EuiPageRestrictWidth = {
   restrictWidth?: boolean | number | string;
 };
 
+/**
+ * This function calculates the correct class name and combined styles
+ * based on the `restrictWidth` value passed in
+ *
+ * @param restrictWidth `boolean | number | string` The prop value
+ * @param style `CSSProperties` An object of style attributes if provided
+ * @returns An object with keys for the `widthClassName` to append to the component's class and the updated `newStyle` props
+ */
 export function setPropsForRestrictedPageWidth(
   restrictWidth: _EuiPageRestrictWidth['restrictWidth'],
   style?: CSSProperties
-): { widthClassName?: string; newStyle?: CSSProperties } {
+): { widthClassName?: string; newStyle: CSSProperties } {
   let widthClassName;
-  let newStyle;
+  const newStyle = { ...style };
 
   if (restrictWidth === true) {
     widthClassName = 'restrictWidth-default';
   } else if (restrictWidth !== false) {
     widthClassName = 'restrictWidth-custom';
-    newStyle = { ...style, maxWidth: restrictWidth };
+    newStyle.maxWidth = restrictWidth;
   }
 
   return { widthClassName, newStyle };
