@@ -60,6 +60,7 @@ import * as euiVars from '@elastic/eui/dist/eui_theme_light.json';
 const styles = {
   color: euiVars.euiColorPrimary,
   border: euiVars.euiBorderThin
+  padding: euiVars.euiPanelPaddingModifiers.paddingSmall
 };
 
 export default () => (
