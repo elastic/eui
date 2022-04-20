@@ -28,7 +28,7 @@ export const euiCanAnimate = (content: any) => css`
  * @param content
  * @returns string
  */
-export const euiCantAnimate = (content: string) => css`
+export const euiCantAnimate = (content: any) => css`
   @media screen and (prefers-reduced-motion: reduce) {
     ${content}
   }
