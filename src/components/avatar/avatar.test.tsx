@@ -9,15 +9,11 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
-import {
-  renderWithStyles,
-  shouldRenderCustomStyles,
-} from '../../test/internal';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiAvatar, SIZES } from './avatar';
 
 describe('EuiAvatar', () => {
-  renderWithStyles(<EuiAvatar name="name" />);
   shouldRenderCustomStyles(<EuiAvatar name="name" />);
 
   test('is rendered', () => {
