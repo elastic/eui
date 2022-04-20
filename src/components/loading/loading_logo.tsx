@@ -10,7 +10,13 @@ import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 import { EuiIcon, IconType } from '../icon';
+import { useEuiTheme } from '../../services';
+import {
+  euiLoadingLogoStyles,
+  euiLoadingLogoIconStyles,
+} from './loading_logo.styles';
 
+// TODO
 const sizeToClassNameMap = {
   m: 'euiLoadingLogo--medium',
   l: 'euiLoadingLogo--large',
@@ -34,6 +40,12 @@ export const EuiLoadingLogo: FunctionComponent<EuiLoadingLogoProps> = ({
   className,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiLoadingLogoStyles(euiTheme);
+  const iconStyles = euiLoadingLogoIconStyles(euiTheme);
+  const cssStyles = [styles.euiLoadingLogo, styles[size]];
+  const iconCssStyles = [iconStyles.euiLoadingLogo__icon, iconStyles[size]];
+
   const classes = classNames(
     'euiLoadingLogo',
     sizeToClassNameMap[size],
@@ -41,10 +53,8 @@ export const EuiLoadingLogo: FunctionComponent<EuiLoadingLogoProps> = ({
   );
 
   return (
-    <span className={classes} {...rest}>
-      <span className="euiLoadingLogo__icon">
-        <EuiIcon type={logo} size={size} />
-      </span>
+    <span className={classes} css={cssStyles} {...rest}>
+      <EuiIcon css={iconCssStyles} type={logo} size={size} />
     </span>
   );
 };

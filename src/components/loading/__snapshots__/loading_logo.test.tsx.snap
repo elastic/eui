@@ -3,73 +3,58 @@
 exports[`EuiLoadingLogo is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiLoadingLogo euiLoadingLogo--medium testClass1 testClass2"
+  class="euiLoadingLogo euiLoadingLogo--medium testClass1 testClass2 css-6lp3yt-euiLoadingLogo-m"
   data-test-subj="test subject string"
 >
   <span
-    class="euiLoadingLogo__icon"
-  >
-    <span
-      data-euiicon-type="logoKibana"
-    />
-  </span>
+    class="css-ytp54n-euiLoadingLogo__icon-m"
+    data-euiicon-type="logoKibana"
+  />
 </span>
 `;
 
 exports[`EuiLoadingLogo logo is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiLoadingLogo euiLoadingLogo--medium testClass1 testClass2"
+  class="euiLoadingLogo euiLoadingLogo--medium testClass1 testClass2 css-6lp3yt-euiLoadingLogo-m"
   data-test-subj="test subject string"
 >
   <span
-    class="euiLoadingLogo__icon"
-  >
-    <span
-      data-euiicon-type="logoElastic"
-    />
-  </span>
+    class="css-ytp54n-euiLoadingLogo__icon-m"
+    data-euiicon-type="logoElastic"
+  />
 </span>
 `;
 
 exports[`EuiLoadingLogo size l is rendered 1`] = `
 <span
-  class="euiLoadingLogo euiLoadingLogo--large"
+  class="euiLoadingLogo euiLoadingLogo--large css-1xfawa5-euiLoadingLogo-l"
 >
   <span
-    class="euiLoadingLogo__icon"
-  >
-    <span
-      data-euiicon-type="logoKibana"
-    />
-  </span>
+    class="css-1mtxh22-euiLoadingLogo__icon-l"
+    data-euiicon-type="logoKibana"
+  />
 </span>
 `;
 
 exports[`EuiLoadingLogo size m is rendered 1`] = `
 <span
-  class="euiLoadingLogo euiLoadingLogo--medium"
+  class="euiLoadingLogo euiLoadingLogo--medium css-6lp3yt-euiLoadingLogo-m"
 >
   <span
-    class="euiLoadingLogo__icon"
-  >
-    <span
-      data-euiicon-type="logoKibana"
-    />
-  </span>
+    class="css-ytp54n-euiLoadingLogo__icon-m"
+    data-euiicon-type="logoKibana"
+  />
 </span>
 `;
 
 exports[`EuiLoadingLogo size xl is rendered 1`] = `
 <span
-  class="euiLoadingLogo euiLoadingLogo--xLarge"
+  class="euiLoadingLogo euiLoadingLogo--xLarge css-tfd6v0-euiLoadingLogo-xl"
 >
   <span
-    class="euiLoadingLogo__icon"
-  >
-    <span
-      data-euiicon-type="logoKibana"
-    />
-  </span>
+    class="css-1sd6gfb-euiLoadingLogo__icon-xl"
+    data-euiicon-type="logoKibana"
+  />
 </span>
 `;
