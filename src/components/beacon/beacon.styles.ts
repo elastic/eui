@@ -64,6 +64,8 @@ export const euiBeaconStyles = () => ({
       box-shadow: 0 0 1px 1px ${visColors[0]};
     }
 
+    // Without the animation, we only display one ring around the circle
+    // If the animation is allowed the transform and opacity are overriden
     &:before {
       transform: scale(1.6);
       opacity: 0.4;
