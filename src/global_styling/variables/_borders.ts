@@ -9,7 +9,7 @@
 import { CSSProperties } from 'react';
 import { ColorModeSwitch } from '../../services/theme/types';
 import { computed } from '../../services/theme/utils';
-import { sizeToPixel } from '../../services/theme/size';
+import { sizeToPixel } from '../../themes/amsterdam/global_styling/functions';
 
 export interface _EuiThemeBorderWidthValues {
   /**

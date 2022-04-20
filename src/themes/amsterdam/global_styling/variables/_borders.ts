@@ -7,7 +7,7 @@
  */
 
 import { computed } from '../../../../services/theme/utils';
-import { sizeToPixel } from '../../../../services/theme/size';
+import { sizeToPixel } from '../functions';
 import {
   border,
   EuiThemeBorder,

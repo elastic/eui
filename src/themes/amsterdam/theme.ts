@@ -10,9 +10,9 @@ import { buildTheme } from '../../services/theme/utils';
 import { EuiThemeShape } from '../../services/theme/types';
 import { animation } from '../../global_styling/variables/_animations';
 import { breakpoint } from '../../global_styling/variables/_breakpoint';
-import { base, size } from '../../global_styling/variables/_size';
 
 import { colors_ams } from './global_styling/variables/_colors';
+import { base, size } from './global_styling/variables/_size';
 import { font_ams } from './global_styling/variables/_typography';
 import { border_ams } from './global_styling/variables/_borders';
 

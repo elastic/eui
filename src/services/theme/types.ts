@@ -12,9 +12,9 @@ import { EuiThemeBreakpoint } from '../../global_styling/variables/_breakpoint';
 import { EuiThemeBorder } from '../../global_styling/variables/_borders';
 import { EuiThemeColors } from '../../global_styling/variables/_colors';
 import {
-  EuiThemeBase,
-  EuiThemeSize,
-} from '../../global_styling/variables/_size';
+  _EuiThemeBase,
+  _EuiThemeSizes,
+} from '../../global_styling/variables/size';
 import { EuiThemeFont } from '../../global_styling/variables/_typography';
 import { _EuiThemeFocus } from '../../global_styling/variables/_states';
 
@@ -45,8 +45,8 @@ export type StrictColorModeSwitch<T = string> = {
 
 export type EuiThemeShape = {
   colors: EuiThemeColors;
-  base: EuiThemeBase;
-  size: EuiThemeSize;
+  base: _EuiThemeBase;
+  size: _EuiThemeSizes;
   font: EuiThemeFont;
   border: EuiThemeBorder;
   focus?: _EuiThemeFocus;

@@ -6,6 +6,5 @@
  * Side Public License, v 1.
  */
 
-export * from './reset/global_styles';
-export * from './variables';
-export * from './mixins';
+export * from './size';
+export * from './shadow';

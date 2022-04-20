@@ -8,7 +8,7 @@
 
 import { ColorModeSwitch } from '../../services/theme/types';
 import { computed } from '../../services/theme/utils';
-import { sizeToPixel } from '../../services/theme/size';
+import { sizeToPixel } from '../../themes/amsterdam/global_styling/functions';
 import { shade, tint, transparentize } from '../../services/color';
 import { CSSProperties } from 'react';
 

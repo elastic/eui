@@ -22,9 +22,9 @@ export const EuiThemeConstantColors: FunctionComponent<_EuiThemeConstantColors> 
   <div />
 );
 
-import { EuiThemeSize } from '../../../../src/global_styling/variables/_size';
+import { _EuiThemeSizes } from '../../../../src/global_styling/variables/size';
 
-export const _EuiThemeSize: FunctionComponent<EuiThemeSize> = () => <div />;
+export const EuiThemeSize: FunctionComponent<_EuiThemeSizes> = () => <div />;
 
 import {
   _EuiThemeFontBase,

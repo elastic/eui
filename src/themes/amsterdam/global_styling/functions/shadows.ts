@@ -10,7 +10,7 @@ import chroma from 'chroma-js';
 import {
   COLOR_MODES_STANDARD,
   EuiThemeColorModeStandard,
-} from '../../../../services';
+} from '../../../../services/theme/types';
 
 // Create a CSS color value using whose opacity is determined based
 // on either a light or dark theme. We use a multiplier
