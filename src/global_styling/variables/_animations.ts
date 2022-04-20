@@ -5,7 +5,7 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
-
+import { css } from '@emotion/react';
 import { CSSProperties } from 'react';
 
 /**
@@ -15,8 +15,8 @@ import { CSSProperties } from 'react';
  * @param content
  * @returns string
  */
-export const euiCanAnimate = (content: string) => `
-@media screen and (prefers-reduced-motion: no-preference) {
+export const euiCanAnimate = (content: any) => css`
+  @media screen and (prefers-reduced-motion: no-preference) {
     ${content}
   }
 `;
@@ -28,8 +28,8 @@ export const euiCanAnimate = (content: string) => `
  * @param content
  * @returns string
  */
-export const euiCantAnimate = (content: string) => `
-@media screen and (prefers-reduced-motion: reduce) {
+export const euiCantAnimate = (content: string) => css`
+  @media screen and (prefers-reduced-motion: reduce) {
     ${content}
   }
 `;

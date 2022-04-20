@@ -8,6 +8,7 @@
 
 import { keyframes, css } from '@emotion/react';
 import { euiPaletteColorBlind } from '../../services';
+import { euiCanAnimate } from '../../global_styling/variables/_animations';
 
 const visColors = euiPaletteColorBlind();
 
@@ -64,11 +65,19 @@ export const euiBeaconStyles = () => ({
     }
 
     &:before {
-      animation: ${euiBeaconPulseLarge} 2.5s infinite ease-out;
+      ${euiCanAnimate(
+        css`
+          animation: ${euiBeaconPulseLarge} 2.5s infinite ease-out;
+        `
+      )}
     }
 
     &:after {
-      animation: ${euiBeaconPulseSmall} 2.5s infinite ease-out 0.25s;
+      ${euiCanAnimate(
+        css`
+          animation: ${euiBeaconPulseSmall} 2.5s infinite ease-out 0.25s;
+        `
+      )}
     }
   `,
 });
