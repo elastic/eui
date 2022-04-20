@@ -51,7 +51,7 @@ exports[`EuiButtonContent props isLoading is rendered 1`] = `
   class="euiButtonContent"
 >
   <span
-    class="euiLoadingSpinner euiLoadingSpinner--medium euiButtonContent__spinner"
+    class="euiLoadingSpinner euiButtonContent__spinner css-zd4oi4-euiLoadingSpinner-m"
   />
   <span />
 </span>
@@ -62,7 +62,7 @@ exports[`EuiButtonContent props isLoading replaces iconType with spinner 1`] = `
   class="euiButtonContent"
 >
   <span
-    class="euiLoadingSpinner euiLoadingSpinner--medium euiButtonContent__spinner"
+    class="euiLoadingSpinner euiButtonContent__spinner css-zd4oi4-euiLoadingSpinner-m"
   />
   <span />
 </span>

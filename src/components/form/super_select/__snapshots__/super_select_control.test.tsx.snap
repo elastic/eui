@@ -272,7 +272,7 @@ Array [
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
       >
         <span
-          class="euiLoadingSpinner euiLoadingSpinner--medium"
+          class="euiLoadingSpinner css-zd4oi4-euiLoadingSpinner-m"
         />
         <span
           class="euiFormControlLayoutCustomIcon"

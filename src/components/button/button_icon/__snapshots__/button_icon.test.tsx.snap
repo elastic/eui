@@ -254,7 +254,7 @@ exports[`EuiButtonIcon props isLoading is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiLoadingSpinner euiLoadingSpinner--medium"
+    class="euiLoadingSpinner css-zd4oi4-euiLoadingSpinner-m"
   />
 </button>
 `;

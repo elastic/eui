@@ -1025,7 +1025,7 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
         class="euiAccordion__children-isLoading"
       >
         <span
-          class="euiLoadingSpinner euiLoadingSpinner--medium euiAccordion__spinner"
+          class="euiLoadingSpinner euiAccordion__spinner css-zd4oi4-euiLoadingSpinner-m"
         />
         <span>
           Please wait

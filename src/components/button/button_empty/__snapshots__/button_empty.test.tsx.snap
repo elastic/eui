@@ -312,7 +312,7 @@ exports[`EuiButtonEmpty props isLoading is rendered 1`] = `
     class="euiButtonContent euiButtonEmpty__content"
   >
     <span
-      class="euiLoadingSpinner euiLoadingSpinner--medium euiButtonContent__spinner"
+      class="euiLoadingSpinner euiButtonContent__spinner css-zd4oi4-euiLoadingSpinner-m"
     />
     <span
       class="euiButtonEmpty__text"
