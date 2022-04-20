@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiLoadingElastic is rendered 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiLoadingElastic euiLoadingElastic--medium testClass1 testClass2 css-1e4qkkk-euiLoadingElastic"
+  data-test-subj="test subject string"
+>
+  <span
+    data-euiicon-type="logoElastic"
+  />
+</span>
+`;
+
+exports[`EuiLoadingElastic size l is rendered 1`] = `
+<span
+  class="euiLoadingElastic euiLoadingElastic--large css-1e4qkkk-euiLoadingElastic"
+>
+  <span
+    data-euiicon-type="logoElastic"
+  />
+</span>
+`;
+
+exports[`EuiLoadingElastic size m is rendered 1`] = `
+<span
+  class="euiLoadingElastic euiLoadingElastic--medium css-1e4qkkk-euiLoadingElastic"
+>
+  <span
+    data-euiicon-type="logoElastic"
+  />
+</span>
+`;
+
+exports[`EuiLoadingElastic size xl is rendered 1`] = `
+<span
+  class="euiLoadingElastic euiLoadingElastic--xLarge css-1e4qkkk-euiLoadingElastic"
+>
+  <span
+    data-euiicon-type="logoElastic"
+  />
+</span>
+`;
+
+exports[`EuiLoadingElastic size xxl is rendered 1`] = `
+<span
+  class="euiLoadingElastic euiLoadingElastic--xxLarge css-1e4qkkk-euiLoadingElastic"
+>
+  <span
+    data-euiicon-type="logoElastic"
+  />
+</span>
+`;
