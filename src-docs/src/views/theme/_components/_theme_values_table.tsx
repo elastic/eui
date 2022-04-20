@@ -18,6 +18,7 @@ interface BasicItem {
   token: string;
   type?: any;
   value?: any;
+  styleFn?: (...args: any[]) => any;
   /**
    * Requires a Markdown style string
    */

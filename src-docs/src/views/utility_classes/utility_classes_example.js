@@ -1,13 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { EuiSpacer, EuiText } from '../../../../src/components';
 import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
-import { EuiCallOut } from '../../../../src/components/call_out';
-import { EuiCode } from '../../../../src/components/code';
-import { EuiLink } from '../../../../src/components/link';
 import UtilityClassesDisplay from './utility_classes';
 import UtilityClassesText from './utility_classes_text';
-import UtilityClassesOverflows from './utility_classes_overflow';
 import UtilityClassesVertAlign from './utility_classes_vert_align';
 import UtilityClassesResponsive from './utility_classes_responsive';
 
@@ -18,6 +15,8 @@ export const UtilityClassesExample = {
       <p>
         The following CSS-only classes are provided as helper utilities. They
         are useful for making micro-adjustments to existing React components.
+        For overflow and scrolling specific utilities, go to the{' '}
+        <Link to="/utilities/scroll">Scroll documentation page</Link>.
       </p>
     </EuiText>
   ),
@@ -41,36 +40,6 @@ export const UtilityClassesExample = {
         <>
           <EuiSpacer />
           <UtilityClassesText />
-          <EuiSpacer />
-          <EuiHorizontalRule />
-        </>
-      ),
-    },
-    {
-      title: 'Overflows',
-      wrapText: false,
-      text: (
-        <>
-          <EuiCallOut
-            color="warning"
-            iconType="accessibility"
-            title="Scrollable regions must be focusable, promoted to region and with the right aria-label"
-          >
-            <p>
-              To ensure keyboard-only users have access to the scrollable
-              regions, the optimal solution is to apply{' '}
-              <EuiCode>{'tabIndex="0"'}</EuiCode> to the region. Add{' '}
-              <EuiCode language="html">{'role="region"'}</EuiCode> and supply an
-              accessible name by using{' '}
-              <EuiCode language="html">aria-label</EuiCode> or another method.
-              <EuiLink href="https://dequeuniversity.com/rules/axe/4.1/scrollable-region-focusable">
-                Learn more about the{' '}
-                <EuiCode>scrollable-region-focusable</EuiCode> rule at Deque.
-              </EuiLink>
-            </p>
-          </EuiCallOut>
-          <EuiSpacer />
-          <UtilityClassesOverflows />
           <EuiSpacer />
           <EuiHorizontalRule />
         </>

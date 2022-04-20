@@ -6,23 +6,16 @@
  * Side Public License, v 1.
  */
 
-import chroma from 'chroma-js';
-import { useEuiTheme } from '../../services/theme/hooks';
-import { transparentize } from '../../services/color';
-import { useOverflowShadow } from './_shadow';
 import { CSSProperties } from 'react';
+import { useEuiTheme, UseEuiTheme } from '../../services/theme';
+import { transparentize } from '../../services/color';
+import { createStyleHookFromMixin } from '../utils';
 
 /**
  * Set scroll bar appearance on Chrome (and firefox).
  * All parameters are optional and default to specific global settings.
  */
-export const useScrollBar = ({
-  thumbColor: _thumbColor,
-  trackColor = 'transparent',
-  width = 'thin',
-  size: _size,
-  corner: _corner,
-}: {
+export interface EuiScrollBarStyles {
   thumbColor?: CSSProperties['backgroundColor'];
   trackColor?: CSSProperties['backgroundColor'];
   /**
@@ -38,11 +31,17 @@ export const useScrollBar = ({
    * are used as an inset border and therefore a smaller corner size means a larger thumb
    */
   corner?: CSSProperties['borderWidth'];
-} = {}) => {
-  const {
-    euiTheme: { colors, size },
-  } = useEuiTheme();
-
+}
+export const euiScrollBarStyles = (
+  { colors, size }: UseEuiTheme['euiTheme'],
+  {
+    thumbColor: _thumbColor,
+    trackColor = 'transparent',
+    width = 'thin',
+    size: _size,
+    corner: _corner,
+  }: EuiScrollBarStyles = {}
+) => {
   // Set defaults from theme
   const thumbColor = _thumbColor || transparentize(colors.darkShade, 0.5);
   const scrollBarSize = _size || size.base;
@@ -75,46 +74,47 @@ export const useScrollBar = ({
     ${firefoxSupport}
   `;
 };
+export const useEuiScrollBar = createStyleHookFromMixin(euiScrollBarStyles);
 
 /**
- * NOTE: The ones below this comment were quick conversions of their Sass counterparts.
- *       They have yet to be used/tested.
+ * *INTERNAL*
+ * Overflow shadow masks for use in YScroll and XScroll helpers
  */
-
-// Useful border shade when dealing with images of unknown color.
-export const useInnerBorder = ({
-  type = 'dark',
-  borderRadius = 0,
-  alpha = 0.1,
-}: {
-  type?: 'light' | 'dark';
-  borderRadius?: number;
-  alpha?: number;
-}) => {
-  const {
-    euiTheme: { colors },
-  } = useEuiTheme();
-  const color = chroma(
-    type === 'dark' ? colors.darkestShade : colors.emptyShade
-  )
-    .alpha(alpha)
-    .css();
-
-  return `
-    position: relative;
-
-    &:after {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: ${borderRadius};
-      content: '';
-      pointer-events: none;
-      border: 1px solid ${color};
-    }
+interface EuiOverflowShadowStyles {
+  direction?: 'y' | 'x';
+  side?: 'both' | 'start' | 'end';
+}
+const euiOverflowShadowStyles = (
+  { size }: UseEuiTheme['euiTheme'],
+  { direction: _direction, side: _side }: EuiOverflowShadowStyles = {}
+) => {
+  const direction = _direction || 'y';
+  const side = _side || 'both';
+  const hideHeight = `calc(${size.base} * 0.75 * 1.25)`;
+  const gradientStart = `
+  ${transparentize('red', 0.1)} 0%,
+  ${transparentize('red', 1)} ${hideHeight}
   `;
+  const gradientEnd = `
+  ${transparentize('red', 1)} calc(100% - ${hideHeight}),
+  ${transparentize('red', 0.1)} 100%
+  `;
+  let gradient = '';
+  if (side) {
+    if (side === 'both') {
+      gradient = `${gradientStart}, ${gradientEnd}`;
+    } else if (side === 'start') {
+      gradient = `${gradientStart}`;
+    } else {
+      gradient = `${gradientEnd}`;
+    }
+  }
+
+  if (direction === 'y') {
+    return `mask-image: linear-gradient(to bottom, ${gradient});`;
+  } else {
+    return `mask-image: linear-gradient(to right, ${gradient});`;
+  }
 };
 
 /**
@@ -123,9 +123,9 @@ export const useInnerBorder = ({
  *    Others like Safari, won't show anything at all.
  */
 
-// Just overflow and scrollbars
-export const useYScroll = () => `
-  ${useScrollBar()}
+// TODO: How do we use Emotion to output the CSS class utilities instead?
+export const euiYScroll = (euiTheme: UseEuiTheme['euiTheme']) => `
+  ${euiScrollBarStyles(euiTheme)}
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
@@ -133,39 +133,59 @@ export const useYScroll = () => `
     outline: none; /* 1 */
   }
 `;
-export const useXScroll = () => `
-  ${useScrollBar()}
-  overflow-x: auto;
+export const useEuiYScroll = createStyleHookFromMixin(euiYScroll);
 
+export const euiYScrollWithShadows = (euiTheme: UseEuiTheme['euiTheme']) => `
+  ${euiYScroll(euiTheme)}
+  ${euiOverflowShadowStyles(euiTheme, { direction: 'y' })}
+`;
+export const useEuiYScrollWithShadows = createStyleHookFromMixin(
+  euiYScrollWithShadows
+);
+
+export const euiXScroll = (euiTheme: UseEuiTheme['euiTheme']) => `
+  ${euiScrollBarStyles(euiTheme)}
+  overflow-x: auto;
   &:focus {
     outline: none; /* 1 */
   }
 `;
+export const useEuiXScroll = createStyleHookFromMixin(euiXScroll);
 
-// // The full overflow with shadow
-export const useYScrollWithShadows = () => `
-  ${useYScroll()}
-  ${useOverflowShadow({ direction: 'y' })}
+export const euiXScrollWithShadows = (euiTheme: UseEuiTheme['euiTheme']) => `
+  ${euiXScroll(euiTheme)}
+  ${euiOverflowShadowStyles(euiTheme, { direction: 'x' })}
 `;
+export const useEuiXScrollWithShadows = createStyleHookFromMixin(
+  euiXScrollWithShadows
+);
 
-export const useXScrollWithShadows = () => `
-  ${useXScroll()}
-  ${useOverflowShadow({ direction: 'x' })}
-`;
+// One hook to rule them all
+interface EuiScrollOverflowStyles {
+  direction?: 'y' | 'x';
+  mask?: boolean;
+}
+export const euiOverflowScroll = (
+  euiTheme: UseEuiTheme['euiTheme'],
+  { direction, mask = false }: EuiScrollOverflowStyles = {}
+) => {
+  switch (direction) {
+    case 'y':
+      return mask ? euiYScrollWithShadows(euiTheme) : euiYScroll(euiTheme);
+    case 'x':
+      return mask ? euiXScrollWithShadows(euiTheme) : euiXScroll(euiTheme);
 
-// Hiding elements offscreen to only be read by screen reader
-export const useScreenReaderOnly = () => `
-  position: absolute;
-  left: -10000px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-`;
-
-// Doesn't have reduced motion turned on
-export const useCanAnimate = (content: string) => `
-  @media screen and (prefers-reduced-motion: no-preference) {
-    ${content}
+    default:
+      console.warn(
+        'Please provide a valid direction option to useEuiOverflowScroll'
+      );
+      return '';
   }
-`;
+};
+export const useEuiOverflowScroll = (
+  direction: EuiScrollOverflowStyles['direction'],
+  mask: EuiScrollOverflowStyles['mask'] = false
+) => {
+  const { euiTheme } = useEuiTheme();
+  return euiOverflowScroll(euiTheme, { direction, mask });
+};

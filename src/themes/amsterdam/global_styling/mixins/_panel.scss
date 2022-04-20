@@ -37,7 +37,7 @@ $euiPanelBorderRadiusModifiers: (
 
         &:hover,
         &:focus {
-          @include euiBottomShadow($color: $euiShadowColor);
+          @include euiBottomShadow;
           transform: translateY(-2px);
           cursor: pointer;
         }

@@ -15,6 +15,9 @@ import {
 import Popover from './popover';
 const popoverSource = require('!!raw-loader!./popover');
 
+import InitialFocus from './initial_focus';
+const initialFocusSource = require('!!raw-loader!./initial_focus');
+
 import TrapFocus from './trap_focus';
 const trapFocusSource = require('!!raw-loader!./trap_focus');
 
@@ -54,6 +57,14 @@ const popOverSnippet = `<EuiPopover
 
 const trapFocusSnippet = `<EuiPopover
   ownFocus={false}
+  button={button}
+  isOpen={isPopoverOpen}
+  closePopover={closePopover}>
+  <!-- Popover content -->
+</EuiPopover>`;
+
+const initialFocusSnippet = `<EuiPopover
+  initialFocus=".someSelector"
   button={button}
   isOpen={isPopoverOpen}
   closePopover={closePopover}>
@@ -355,6 +366,40 @@ export const PopoverExample = {
       props: { EuiInputPopover },
       snippet: inputPopoverSnippet,
       demo: <InputPopover />,
+    },
+    {
+      title: 'Setting an initial focus',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: initialFocusSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            If you want a specific child element of the popover to immediately
+            gain focus when the popover is open, use the{' '}
+            <EuiCode language="ts">initialFocus</EuiCode> prop to pass either a
+            selector or DOM node.
+          </p>
+          <EuiCallOut
+            iconType="accessibility"
+            color="warning"
+            title={
+              <>
+                It can be jarring for keyboard and screen reader users to
+                immediately land on an element with no other context. To
+                alleviate this, ensure that your initial focus target makes
+                sense alone or is the primary goal of the popover.
+              </>
+            }
+          />
+        </>
+      ),
+      props: { EuiPopover },
+      snippet: initialFocusSnippet,
+      demo: <InitialFocus />,
     },
     {
       title: 'Removing the focus trap',

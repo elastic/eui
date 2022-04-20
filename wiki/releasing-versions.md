@@ -84,6 +84,7 @@ This provides a walkthrough of the patching & backport release process; examples
   * Run the unit tests again - `npm test`
   * Create the release builds - `npm run build`
   * Update the I18n tokens - `npm run update-token-changelog -- patch`
+  * Update the changelog - `npm run update-changelog-manual --release=patch`
   * Use npm to update package.json & package-lock.json version, git commit, and git tag - `npm version patch`
   * Push the version commit & tag to upstream - `git push upstream --tags`
   * Publish the new version to npm
