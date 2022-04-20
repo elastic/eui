@@ -1097,7 +1097,7 @@ exports[`EuiPageTemplate with bottomBar is rendered 1`] = `
     </div>
     <section
       aria-label="Page level controls"
-      class="euiBottomBar euiBottomBar--sticky"
+      class="euiBottomBar euiBottomBar--sticky css-3pmoi0-euiBottomBar"
       style="left:0;right:0;bottom:0"
     >
       <h2
