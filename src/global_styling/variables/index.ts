@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+export * from './animations';
+export * from './borders';
 export * from './size';
 export * from './shadow';
-export * from './borders';

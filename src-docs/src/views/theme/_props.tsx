@@ -67,14 +67,14 @@ import { _EuiThemeFocus } from '../../../../src/global_styling/variables/_states
 export const EuiThemeFocus: FunctionComponent<_EuiThemeFocus> = () => <div />;
 
 import {
-  _EuiThemeAnimationSpeed,
-  _EuiThemeAnimationEasing,
-} from '../../../../src/global_styling/variables/_animations';
+  _EuiThemeAnimationSpeeds,
+  _EuiThemeAnimationEasings,
+} from '../../../../src/global_styling/variables/animations';
 
-export const EuiThemeAnimationSpeed: FunctionComponent<_EuiThemeAnimationSpeed> = () => (
+export const EuiThemeAnimationSpeed: FunctionComponent<_EuiThemeAnimationSpeeds> = () => (
   <div />
 );
-export const EuiThemeAnimationEasing: FunctionComponent<_EuiThemeAnimationEasing> = () => (
+export const EuiThemeAnimationEasing: FunctionComponent<_EuiThemeAnimationEasings> = () => (
   <div />
 );
 

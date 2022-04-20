@@ -4,9 +4,9 @@ import { keysOf, useEuiTheme, transparentize } from '../../../../../src';
 
 import {
   euiCanAnimate,
-  _EuiThemeAnimationEasing,
-  _EuiThemeAnimationSpeed,
-} from '../../../../../src/global_styling/variables/_animations';
+  _EuiThemeAnimationEasings,
+  _EuiThemeAnimationSpeeds,
+} from '../../../../../src/global_styling/variables/animations';
 
 import { EuiThemeAnimationSpeed, EuiThemeAnimationEasing } from '../_props';
 import { getPropsFromComponent } from '../../../services/props/get_props';
@@ -25,11 +25,11 @@ export default ({
 
   const speedTypes = (getPropsFromComponent(
     EuiThemeAnimationSpeed
-  ) as unknown) as _EuiThemeAnimationSpeed;
+  ) as unknown) as _EuiThemeAnimationSpeeds;
   const speeds = keysOf(speedTypes);
   const easingTypes = (getPropsFromComponent(
     EuiThemeAnimationEasing
-  ) as unknown) as _EuiThemeAnimationEasing;
+  ) as unknown) as _EuiThemeAnimationEasings;
   const eases = keysOf(easingTypes);
 
   return (

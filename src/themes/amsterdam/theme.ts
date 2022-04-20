@@ -8,10 +8,10 @@
 
 import { buildTheme } from '../../services/theme/utils';
 import { EuiThemeShape } from '../../services/theme/types';
-import { animation } from '../../global_styling/variables/_animations';
 import { breakpoint } from '../../global_styling/variables/_breakpoint';
 
 import { colors_ams } from './global_styling/variables/_colors';
+import { animation } from './global_styling/variables/_animation';
 import { base, size } from './global_styling/variables/_size';
 import { border } from './global_styling/variables/_borders';
 import { font_ams } from './global_styling/variables/_typography';

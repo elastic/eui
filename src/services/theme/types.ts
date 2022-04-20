@@ -7,7 +7,7 @@
  */
 
 import { RecursivePartial, ValueOf } from '../../components/common';
-import { EuiThemeAnimation } from '../../global_styling/variables/_animations';
+import { _EuiThemeAnimation } from '../../global_styling/variables/animations';
 import { EuiThemeBreakpoint } from '../../global_styling/variables/_breakpoint';
 import { _EuiThemeBorder } from '../../global_styling/variables/borders';
 import { EuiThemeColors } from '../../global_styling/variables/_colors';
@@ -50,7 +50,7 @@ export type EuiThemeShape = {
   font: EuiThemeFont;
   border: _EuiThemeBorder;
   focus?: _EuiThemeFocus;
-  animation: EuiThemeAnimation;
+  animation: _EuiThemeAnimation;
   breakpoint: EuiThemeBreakpoint;
 };
 
