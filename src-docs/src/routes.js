@@ -192,6 +192,7 @@ import { ResizeObserverExample } from './views/resize_observer/resize_observer_e
 import { ResizableContainerExample } from './views/resizable_container/resizable_container_example';
 
 import { ResponsiveExample } from './views/responsive/responsive_example';
+import { ScrollExample } from './views/scroll/scroll_example';
 
 import { SearchBarExample } from './views/search_bar/search_bar_example';
 
@@ -595,6 +596,7 @@ const navigation = [
       ProviderExample,
       ResizeObserverExample,
       ResponsiveExample,
+      ScrollExample,
       TextDiffExample,
       WindowEventExample,
     ].map((example) => createExample(example)),

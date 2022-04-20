@@ -1,4 +1,5 @@
 import React from 'react';
+import { css } from '@emotion/react';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -10,7 +11,11 @@ import {
   EuiScreenReaderLive,
   EuiScreenReaderOnly,
   EuiSpacer,
-} from '../../../../src/components';
+  euiScreenReaderOnlyStyles,
+  EuiText,
+} from '../../../../src';
+
+import { ThemeExample } from '../theme/_components/_theme_example';
 
 import ScreenReaderLive from './screen_reader_live';
 import ScreenReaderOnly from './screen_reader';
@@ -184,6 +189,52 @@ export const AccessibilityExample = {
       props: { EuiSkipLink },
       snippet: skipLinkSnippet,
       demo: <SkipLink />,
+    },
+    {
+      title: 'Styles helpers',
+      wrapText: false,
+      text: (
+        <>
+          <ThemeExample
+            title={<code>.euiScreenReaderOnly</code>}
+            description={
+              <p>
+                This utility class allows you to apply the screen reader only
+                CSS styles directly to your component.
+              </p>
+            }
+            example={
+              <EuiText size="s">
+                <p>The next paragraph is hidden except for screen readers.</p>
+                <p className="euiScreenReaderOnly">
+                  I am hidden except for screen readers
+                </p>
+              </EuiText>
+            }
+            snippet={'<p className="euiScreenReaderOnly" />'}
+            snippetLanguage="html"
+          />
+          <ThemeExample
+            title={<code>euiScreenReaderOnlyStyles()</code>}
+            description={
+              <p>
+                This function allows you to apply the screen reader only CSS
+                styles directly to your component.
+              </p>
+            }
+            example={
+              <EuiText size="s">
+                <p>The next paragraph is hidden except for screen readers.</p>
+                <p css={css(euiScreenReaderOnlyStyles())}>
+                  I am hidden except for screen readers
+                </p>
+              </EuiText>
+            }
+            snippet={'<p css={css(euiScreenReaderOnlyStyles())} />'}
+            snippetLanguage="ts"
+          />
+        </>
+      ),
     },
   ],
 };
