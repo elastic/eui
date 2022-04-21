@@ -11,7 +11,7 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { COLORS } from '../icon/icon';
-import { TEXT_SIZES, EuiHealth } from './health';
+import { EuiHealth } from './health';
 
 describe('EuiHealth', () => {
   test('is rendered', () => {
@@ -24,7 +24,7 @@ describe('EuiHealth', () => {
 
   describe('props', () => {
     describe('textSize', () => {
-      TEXT_SIZES.forEach((textSize) => {
+      ['xs', 's', 'm', 'inherit'].forEach((textSize: any) => {
         test(`${textSize} is rendered`, () => {
           const component = render(
             <EuiHealth textSize={textSize} color="success" />

@@ -11,18 +11,9 @@ import classNames from 'classnames';
 import { useEuiTheme } from '../../services';
 import { euiHealthStyles } from './health.styles';
 
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import { EuiIcon, IconColor } from '../icon';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-
-const sizeToClassNameMap = {
-  xs: 'euiHealth--textSizeXS',
-  s: 'euiHealth--textSizeS',
-  m: 'euiHealth--textSizeM',
-  inherit: 'euiHealth--textSizeInherit',
-};
-
-export const TEXT_SIZES = keysOf(sizeToClassNameMap);
 
 export type EuiHealthProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
@@ -36,7 +27,7 @@ export type EuiHealthProps = CommonProps &
      * Matches the text scales of EuiText.
      * The `inherit` style will get its font size from the parent element
      */
-    textSize?: typeof TEXT_SIZES[number];
+    textSize?: 'xs' | 's' | 'm' | 'inherit';
   };
 
 export const EuiHealth: FunctionComponent<EuiHealthProps> = ({
@@ -49,11 +40,7 @@ export const EuiHealth: FunctionComponent<EuiHealthProps> = ({
   const euiTheme = useEuiTheme();
   const styles = euiHealthStyles(euiTheme);
   const cssStyles = [styles.euiHealth, styles[textSize]];
-  const classes = classNames(
-    'euiHealth',
-    textSize ? sizeToClassNameMap[textSize] : null,
-    className
-  );
+  const classes = classNames('euiHealth', className);
 
   return (
     <div css={cssStyles} className={classes} {...rest}>
