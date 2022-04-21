@@ -14,6 +14,10 @@ import {
   _EuiThemeShadowCustomColor,
 } from '../../../../global_styling/variables/shadow';
 
+export interface EuiShadowCustomColor {
+  color?: string;
+}
+
 /**
  * euiSlightShadow
  */

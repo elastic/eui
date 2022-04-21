@@ -15,16 +15,16 @@ import { breakpoint } from './global_styling/variables/_breakpoint';
 import { base, size } from './global_styling/variables/_size';
 import { border } from './global_styling/variables/_borders';
 import { levels } from './global_styling/variables/_levels';
-import { font_ams } from './global_styling/variables/_typography';
+import { font } from './global_styling/variables/_typography';
 
 export const AMSTERDAM_NAME_KEY = 'EUI_THEME_AMSTERDAM';
 
 export const euiThemeAmsterdam: EuiThemeShape = {
-  colors: colors,
+  colors,
   base,
   size,
-  font: font_ams,
-  border: border,
+  border,
+  font,
   animation,
   breakpoint,
   levels,

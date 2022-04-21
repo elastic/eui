@@ -14,3 +14,4 @@ export * from './levels';
 export * from './size';
 export * from './shadow';
 export * from './states';
+export * from './typography';

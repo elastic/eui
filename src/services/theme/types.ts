@@ -15,7 +15,7 @@ import {
   _EuiThemeBase,
   _EuiThemeSizes,
 } from '../../global_styling/variables/size';
-import { EuiThemeFont } from '../../global_styling/variables/_typography';
+import { _EuiThemeFont } from '../../global_styling/variables/typography';
 import { _EuiThemeFocus } from '../../global_styling/variables/states';
 import { _EuiThemeLevels } from '../../global_styling/variables/levels';
 
@@ -48,7 +48,7 @@ export type EuiThemeShape = {
   colors: _EuiThemeColors;
   base: _EuiThemeBase;
   size: _EuiThemeSizes;
-  font: EuiThemeFont;
+  font: _EuiThemeFont;
   border: _EuiThemeBorder;
   focus?: _EuiThemeFocus;
   animation: _EuiThemeAnimation;

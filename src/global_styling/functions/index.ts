@@ -7,3 +7,4 @@
  */
 
 export * from './size';
+export * from './typography';
