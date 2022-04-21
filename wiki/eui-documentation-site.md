@@ -8,8 +8,8 @@ There are two ways to document components. To create automated documentation for
 
 - [ ] In `src-docs/src/views`, create a directory with the [snake_case](https://en.wikipedia.org/wiki/Snake_case) name of the component being documented.
 - [ ] Define examples which demonstrate the component and describe its role from a UI perspective. File names should follow the `{component}_{example name}.tsx` naming structure (i.e. `accordion_isLoading.tsx`).
-- [ ] Create a `{component name}_example.js` file in the new directory. It will combine the code snippets, examples, and documentation copy into one file that will be used to generate the full page for the new component. To learn more about the configuration for `example.js`, see [creating the component example file](#creating-the-component-example-file) below.
-- [ ] Create a route for the component's documentation by importing the `example` component from `{component name}_example.js` in `src-docs/src/routes.js`. After importing, locate the `navigation` array and add the component to the most appropriate section.
+- [ ] Create a `{component}_example.js` file in the new directory. It will combine the code snippets, examples, and documentation copy into one file that will be used to generate the full page for the new component. To learn more about the configuration for `example.js`, see [creating the component example file](#creating-the-component-example-file) below.
+- [ ] Create a route for the component's documentation by importing the `example` component from `{component}_example.js` in `src-docs/src/routes.js`. After importing, locate the `navigation` array and add the component to the most appropriate section.
  
 ## Documenting existing components with new examples
 
@@ -26,26 +26,26 @@ Each component and code sample should have the following elements:
 - An import from the component example file. This should come from `src-docs/src/views/{component}`.
 
    **Example**
-```
+```tsx
    import AccordionIsLoading from './accordion_isLoading'; 
 ```
 
 - A variable to employ Webpack's `raw-loader` to store the example's source code as a string. This will be rendered in the Demo JS tab.
 
    **Example**
-```
+```tsx
    const accordionSource = require('!!raw-loader!./accordion');
 ```
 
 - A simplified code sample without imports/exports, additional functions, and variable declarations to highlight specific component props and functionality. Code snippets should use (but not define) variables to prompt users to implement their own context. This will be used in the Snippet tab.
 
    **Example**
-```
+```tsx
 const isLoadingSnippet =  `<EuiAccordion
-     id={accordionId1}
-     buttonContent="Clickable title">
-     <!-- Content to show when expanded -->
-   </EuiAccordion>
+   id={accordionId1}
+   buttonContent="Clickable title">
+   <!-- Content to show when expanded -->
+</EuiAccordion>`;
 ```
 
 ### Composing the documentation object

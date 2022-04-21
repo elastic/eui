@@ -228,4 +228,4 @@ Documentation-only changes (e.g. changes to **only** `wiki/` or `src-docs/`) do 
 
 [docs]: https://elastic.github.io/eui/
 
-### Refer to [Elastic EUI documentation site](./eui-documentation-site.md) for information on the process of documenting components.
+### Refer to [Creating documentation example pages](./eui-documentation-site.md) for information on the process of documenting components.
