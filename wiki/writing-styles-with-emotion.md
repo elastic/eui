@@ -78,6 +78,9 @@ export const EuiAvatar: export const EuiAvatar: FunctionComponent<EuiAvatarProps
   return (
     <div
       css={cssStyles}
+    />
+  )
+}
 ```
 
 ### If a prop's value renders no styles
