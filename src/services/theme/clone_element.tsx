@@ -13,6 +13,8 @@ import { jsx } from '@emotion/react';
  * React.cloneElement does not work if the cloned element does not already have the
  * `css` prop - as a result, we need to use `jsx()` to manually clone the element
  * See https://github.com/emotion-js/emotion/issues/1404
+ *
+ * NOTE: We're still using/testing this utility internally, so this is not yet a public API
  */
 export const cloneElementWithCss = (
   element: any,

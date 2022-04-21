@@ -38,4 +38,3 @@ export type {
 } from './types';
 export { COLOR_MODES_STANDARD } from './types';
 export { sizeToPixel } from './size';
-export { cloneElementWithCss } from './clone_element';
