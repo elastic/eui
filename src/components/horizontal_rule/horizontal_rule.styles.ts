@@ -31,7 +31,7 @@ export const euiHorizontalRuleStyles = ({ euiTheme }: UseEuiTheme) => ({
     margin-inline: auto;
   `,
 
-  // margin
+  // Margins
   none: '',
   xs: css`
     margin-block: ${euiTheme.size.s};
