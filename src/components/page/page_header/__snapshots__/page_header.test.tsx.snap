@@ -7,7 +7,7 @@ exports[`EuiPageHeader is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiPageHeader css-r7h80b-euiPageHeaderWidth"
+    class="css-1m5byka-euiPageHeaderContent-euiPageHeaderWidth-flex"
   >
     Anything
   </div>
@@ -19,7 +19,7 @@ exports[`EuiPageHeader props alignItems bottom is rendered 1`] = `
   class="euiPageHeader euiPageHeader--responsive euiPageHeader--bottom css-3arji0-euiPageHeader-EuiPageHeader"
 >
   <div
-    class="euiPageHeaderContent css-r7h80b-euiPageHeaderWidth"
+    class="euiPageHeaderContent css-8hff4w-euiPageHeaderContent-euiPageHeaderWidth"
   >
     <div
       class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexEnd euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
@@ -37,7 +37,7 @@ exports[`EuiPageHeader props alignItems bottom is rendered 1`] = `
         class="euiFlexItem euiFlexItem--flexGrowZero"
       >
         <div
-          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--wrap euiPageHeaderContent__rightSideItems"
+          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--wrap css-dl3a9l-rightSideFlexItem"
         >
           <div
             class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -65,7 +65,7 @@ exports[`EuiPageHeader props alignItems center is rendered 1`] = `
   class="euiPageHeader euiPageHeader--responsive euiPageHeader--center css-3arji0-euiPageHeader-EuiPageHeader"
 >
   <div
-    class="euiPageHeaderContent css-r7h80b-euiPageHeaderWidth"
+    class="euiPageHeaderContent css-8hff4w-euiPageHeaderContent-euiPageHeaderWidth"
   >
     <div
       class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
@@ -83,7 +83,7 @@ exports[`EuiPageHeader props alignItems center is rendered 1`] = `
         class="euiFlexItem euiFlexItem--flexGrowZero"
       >
         <div
-          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--wrap euiPageHeaderContent__rightSideItems"
+          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--wrap css-dl3a9l-rightSideFlexItem"
         >
           <div
             class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -111,7 +111,7 @@ exports[`EuiPageHeader props alignItems stretch is rendered 1`] = `
   class="euiPageHeader euiPageHeader--responsive euiPageHeader--stretch css-3arji0-euiPageHeader-EuiPageHeader"
 >
   <div
-    class="euiPageHeaderContent css-r7h80b-euiPageHeaderWidth"
+    class="euiPageHeaderContent css-8hff4w-euiPageHeaderContent-euiPageHeaderWidth"
   >
     <div
       class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
@@ -129,7 +129,7 @@ exports[`EuiPageHeader props alignItems stretch is rendered 1`] = `
         class="euiFlexItem euiFlexItem--flexGrowZero"
       >
         <div
-          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--wrap euiPageHeaderContent__rightSideItems"
+          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--wrap css-dl3a9l-rightSideFlexItem"
         >
           <div
             class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -157,7 +157,7 @@ exports[`EuiPageHeader props alignItems top is rendered 1`] = `
   class="euiPageHeader euiPageHeader--responsive euiPageHeader--top css-3arji0-euiPageHeader-EuiPageHeader"
 >
   <div
-    class="euiPageHeaderContent css-r7h80b-euiPageHeaderWidth"
+    class="euiPageHeaderContent css-8hff4w-euiPageHeaderContent-euiPageHeaderWidth"
   >
     <div
       class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
@@ -175,7 +175,7 @@ exports[`EuiPageHeader props alignItems top is rendered 1`] = `
         class="euiFlexItem euiFlexItem--flexGrowZero"
       >
         <div
-          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--wrap euiPageHeaderContent__rightSideItems"
+          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--wrap css-dl3a9l-rightSideFlexItem"
         >
           <div
             class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -203,7 +203,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
   class="euiPageHeader euiPageHeader--responsive euiPageHeader--center css-3arji0-euiPageHeader-EuiPageHeader"
 >
   <div
-    class="euiPageHeaderContent css-ti4652-euiPageHeaderWidth-border"
+    class="euiPageHeaderContent css-m6hb1r-euiPageHeaderContent-euiPageHeaderWidth-border"
   >
     <nav
       aria-label="aria-label"
@@ -252,7 +252,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           data-test-subj="test subject string"
         >
           <span
-            class="euiPageHeaderContent__titleIcon testClass1 testClass2"
+            class="testClass1 testClass2 css-1au49xx-euiPageHeaderContent__titleIcon"
             data-euiicon-type="logoKibana"
             data-test-subj="test subject string"
           >
@@ -276,7 +276,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       >
         <div
           aria-label="aria-label"
-          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiFlexGroup--wrap euiPageHeaderContent__rightSideItems testClass1 testClass2"
+          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiFlexGroup--wrap testClass1 testClass2 css-dl3a9l-rightSideFlexItem"
           data-test-subj="test subject string"
         >
           <div
@@ -349,7 +349,7 @@ exports[`EuiPageHeader props responsive is rendered as false 1`] = `
   class="euiPageHeader euiPageHeader--center css-3arji0-euiPageHeader-EuiPageHeader"
 >
   <div
-    class="euiPageHeaderContent css-r7h80b-euiPageHeaderWidth"
+    class="euiPageHeaderContent css-8hff4w-euiPageHeaderContent-euiPageHeaderWidth"
   >
     <div
       class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiPageHeaderContent__top"
@@ -367,7 +367,7 @@ exports[`EuiPageHeader props responsive is rendered as reverse 1`] = `
   class="euiPageHeader euiPageHeader--responsiveReverse euiPageHeader--center css-3arji0-euiPageHeader-EuiPageHeader"
 >
   <div
-    class="euiPageHeaderContent css-r7h80b-euiPageHeaderWidth"
+    class="euiPageHeaderContent css-8hff4w-euiPageHeaderContent-euiPageHeaderWidth"
   >
     <div
       class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
@@ -385,7 +385,7 @@ exports[`EuiPageHeader props restrictWidth is rendered as custom 1`] = `
   class="euiPageHeader euiPageHeader--responsive euiPageHeader--center css-3arji0-euiPageHeader-EuiPageHeader"
 >
   <div
-    class="euiPageHeaderContent css-905l2n-euiPageHeaderWidth"
+    class="euiPageHeaderContent css-1rkinpv-euiPageHeaderContent-euiPageHeaderWidth"
   >
     <div
       class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
@@ -403,7 +403,7 @@ exports[`EuiPageHeader props restrictWidth is rendered as true 1`] = `
   class="euiPageHeader euiPageHeader--responsive euiPageHeader--center css-3arji0-euiPageHeader-EuiPageHeader"
 >
   <div
-    class="euiPageHeaderContent css-1q0u4qz-euiPageHeaderWidth"
+    class="euiPageHeaderContent css-lisi1m-euiPageHeaderContent-euiPageHeaderWidth"
   >
     <div
       class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"

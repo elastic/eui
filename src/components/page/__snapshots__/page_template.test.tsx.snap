@@ -220,7 +220,7 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageHeader 1`] =
       title="Page title"
     >
       <div
-        class="euiPageHeaderContent css-1hdwj0s-euiPageHeaderWidth-border-l"
+        class="euiPageHeaderContent css-1dkul23-euiPageHeaderContent-euiPageHeaderWidth-border-l"
       >
         <div
           class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
@@ -492,7 +492,7 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageHeader 1`
       title="Page title"
     >
       <div
-        class="euiPageHeaderContent css-h8mnkm-euiPageHeaderWidth-l"
+        class="euiPageHeaderContent css-19e9enh-euiPageHeaderContent-euiPageHeaderWidth-l"
       >
         <div
           class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
@@ -748,7 +748,7 @@ exports[`EuiPageTemplate template default is rendered with pageHeader 1`] = `
       title="Page title"
     >
       <div
-        class="euiPageHeaderContent css-h8mnkm-euiPageHeaderWidth-l"
+        class="euiPageHeaderContent css-19e9enh-euiPageHeaderContent-euiPageHeaderWidth-l"
       >
         <div
           class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
@@ -992,7 +992,7 @@ exports[`EuiPageTemplate template empty is rendered with pageHeader 1`] = `
       title="Page title"
     >
       <div
-        class="euiPageHeaderContent css-1hdwj0s-euiPageHeaderWidth-border-l"
+        class="euiPageHeaderContent css-1dkul23-euiPageHeaderContent-euiPageHeaderWidth-border-l"
       >
         <div
           class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"

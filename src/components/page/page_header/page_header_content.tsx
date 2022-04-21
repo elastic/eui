@@ -23,6 +23,9 @@ import { euiPaddingStyles, PADDING_SIZES } from '../../../global_styling';
 import { _EuiPageRestrictWidth } from '../_restrict_width';
 import { useEuiTheme } from '../../../services';
 import { euiPageHeaderStyles, euiPageHeaderWidth } from './page_header.styles';
+import { css } from '@emotion/react';
+import { getEuiBreakpoint } from '../../../global_styling/variables/_breakpoint';
+import { euiPageHeaderContentStyles } from './page_header_content.styles';
 
 export const ALIGN_ITEMS = ['top', 'bottom', 'center', 'stretch'] as const;
 
@@ -162,7 +165,8 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
   const useTheme = useEuiTheme();
   const classes = classNames('euiPageHeaderContent');
   const width = euiPageHeaderWidth(restrictWidth as _EuiPageRestrictWidth);
-  const styles = euiPageHeaderStyles(useTheme);
+  const pageHeaderStyles = euiPageHeaderStyles(useTheme);
+  const styles = euiPageHeaderContentStyles(useTheme);
 
   let paddingSides = 'block';
   let paddingSize = _paddingSize;
@@ -192,8 +196,9 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
   const blockPadding = euiPaddingStyles(useTheme, paddingSides);
 
   const cssStyles = [
+    styles.euiPageHeaderContent,
     width,
-    bottomBorder && styles.border,
+    bottomBorder && pageHeaderStyles.border,
     blockPadding[paddingSize],
   ];
 
@@ -221,12 +226,9 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
     const icon = iconType ? (
       <EuiIcon
         size="xl"
+        css={styles.euiPageHeaderContent__titleIcon}
         {...iconProps}
         type={iconType}
-        className={classNames(
-          'euiPageHeaderContent__titleIcon',
-          iconProps?.className
-        )}
       />
     ) : undefined;
 
@@ -339,11 +341,12 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
         <EuiFlexGroup
           wrap
           responsive={false}
+          css={css`
+            ${getEuiBreakpoint[2]} {
+              flex-direction: row-reverse;
+            }
+          `}
           {...rightSideGroupProps}
-          className={classNames(
-            'euiPageHeaderContent__rightSideItems',
-            rightSideGroupProps?.className
-          )}
         >
           {wrapWithFlex()}
         </EuiFlexGroup>
@@ -353,7 +356,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
 
   if (onlyChildren) {
     return (
-      <div className={'euiPageHeader'} css={cssStyles} {...rest}>
+      <div css={[...cssStyles, styles.flex]} {...rest}>
         {children}
       </div>
     );

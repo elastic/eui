@@ -22,3 +22,11 @@ export const breakpoint: EuiThemeBreakpoint = {
   s: 575,
   xs: 0,
 };
+
+export const EuiBreakpoints = Object.keys(breakpoint);
+
+// NOT how we want to do this, but quick way to convert
+export const getEuiBreakpoint = EuiBreakpoints.map(
+  // @ts-ignore todo
+  (bp) => `@media screen and (min-width: ${breakpoint[bp]}px)`
+);
