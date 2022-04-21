@@ -165,7 +165,7 @@ import { Demo } from './demo';
 
 const cache = createCache({
   key: 'codesandbox',
-  container: document.querySelector('meta[name="global-styles"]'),
+  container: document.querySelector('meta[name="emotion-styles"]'),
 });
 
 ReactDOM.render(
@@ -182,7 +182,7 @@ ReactDOM.render(
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="global-styles">
+  <meta name="emotion-styles">
 </head>
 <body>
   <div id="root" />

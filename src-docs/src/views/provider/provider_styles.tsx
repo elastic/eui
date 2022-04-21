@@ -13,7 +13,7 @@ export default () => {
 <html lang="en">
   <head>
     <title>My App</title>
-    <meta name="global-style-insert">
+    <meta name="emotion-style-insert">
   </head>
   <body>
     <div id="root"></div>
@@ -30,7 +30,7 @@ import createCache from '@emotion/cache';
 
 const cache = createCache({
   key: 'myApp',
-  container: document.querySelector('meta[name="global-style-insert"]'),
+  container: document.querySelector('meta[name="emotion-style-insert"]'),
 });
 
 <EuiProvider${colorMode === 'DARK' ? ' colorMode="dark"' : ''} cache={cache}'>

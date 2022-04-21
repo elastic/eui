@@ -87,7 +87,8 @@ export const ProviderExample = {
             <EuiCode>@emotion/cache</EuiCode> and style injection location
           </h3>
           <p>
-            In the case that your app has its own static stylesheet, the global
+            In the case that your app has its own static stylesheet,{' '}
+            <EuiCode>@emotion</EuiCode>
             styles may not be injected into the correct location in the{' '}
             <EuiCode>{'<head>'}</EuiCode>, causing unintentional overrides or
             unapplied styles.{' '}
