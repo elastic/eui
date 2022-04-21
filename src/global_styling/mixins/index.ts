@@ -7,3 +7,4 @@
  */
 
 export * from './_helpers';
+export * from './_typography';

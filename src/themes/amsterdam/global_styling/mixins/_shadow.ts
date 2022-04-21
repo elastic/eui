@@ -9,7 +9,7 @@
 import { useEuiTheme, UseEuiTheme } from '../../../../services/theme';
 import { getShadowColor } from '../functions';
 import { createStyleHookFromMixin } from '../../../../global_styling/utils';
-import { _EuiShadowSizes } from '../../../../global_styling/variables/_shadow';
+import { _EuiShadowSizes } from '../../../../global_styling/variables/shadow';
 
 export interface EuiShadowCustomColor {
   color?: string;
