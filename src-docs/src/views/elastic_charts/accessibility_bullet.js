@@ -63,6 +63,7 @@ export const AccessibilityBullet = () => {
           actual={280}
           bands={bands}
           ticks={[0, 50, 100, 150, 200, 250, 300]}
+          domain={{ min: 0, max: 300 }}
           tickValueFormatter={({ value }) => String(value)}
           bandFillColor={({ value }) => bandFillColor(value)}
           labelMajor="Revenue 2020 YTD  "

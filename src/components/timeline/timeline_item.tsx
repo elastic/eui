@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes, ElementType } from 'react';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 
@@ -24,7 +24,7 @@ export const VERTICAL_ALIGN = ['top', 'center'] as const;
 export type EuiTimelineItemVerticalAlign = typeof VERTICAL_ALIGN[number];
 
 export interface EuiTimelineItemProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, 'children'>,
+  extends Omit<HTMLAttributes<ElementType>, 'children'>,
     CommonProps,
     Omit<EuiTimelineItemIconProps, 'verticalAlign'>,
     Omit<EuiTimelineItemEventProps, 'verticalAlign'> {
@@ -32,6 +32,12 @@ export interface EuiTimelineItemProps
    * Vertical alignment of the event with the icon
    */
   verticalAlign?: EuiTimelineItemVerticalAlign;
+  /**
+   * Sets the HTML element for `EuiTimelineItem`.
+   * By default, the element renders as a `<li/>`.
+   * Only change the HTML element when it is not wrapped in a `EuiTimeline` that renders as a `<ol/>`.
+   */
+  component?: ElementType;
 }
 
 export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
@@ -40,6 +46,7 @@ export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
   icon,
   iconAriaLabel,
   className,
+  component = 'li',
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -47,8 +54,10 @@ export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
 
   const cssStyles = [styles.euiTimelineItem];
 
+  const Element = component;
+
   return (
-    <div css={cssStyles} {...rest}>
+    <Element css={cssStyles} {...rest}>
       <EuiTimelineItemIcon
         icon={icon}
         iconAriaLabel={iconAriaLabel}
@@ -58,6 +67,6 @@ export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
       <EuiTimelineItemEvent verticalAlign={verticalAlign}>
         {children}
       </EuiTimelineItemEvent>
-    </div>
+    </Element>
   );
 };
