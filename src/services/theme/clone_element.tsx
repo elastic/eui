@@ -20,13 +20,19 @@ export const cloneElementWithCss = (
   element: any,
   props: any
 ): React.ReactElement => {
-  const elementType =
+  const clonedElement =
     element.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__ || element.type; // EMOTION_TYPE handles non-React elements (native JSX/HTML nodes)
 
-  return jsx(elementType, {
+  const clonedProps = {
     key: element.key,
     ref: element.ref,
     ...element.props,
     ...props,
-  });
+  };
+
+  if (props.css || element.props.css) {
+    clonedProps.css = [element.props.css, props.css];
+  }
+
+  return jsx(clonedElement, clonedProps);
 };
