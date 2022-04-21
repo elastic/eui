@@ -10,7 +10,7 @@ import { css, keyframes } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { euiShadowFlat } from '../../themes/amsterdam/global_styling/mixins';
 
-const _euiBottomBarColor = '#131317';
+//const _euiBottomBarColor = '#131317';
 const _euiBottomBarZHeader = 1000;
 
 const euiBottomBarAppear = keyframes`
@@ -29,8 +29,8 @@ export const euiBottomBarStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
   // Base
   euiBottomBar: css`
     ${euiShadowFlat(euiTheme, undefined, colorMode)};
-    background: ${_euiBottomBarColor};
-    color: ${euiTheme.colors.ghost};
+    background: ${euiTheme.colors.lightShade};
+    color: ${euiTheme.colors.text};
     animation: ${euiBottomBarAppear} ${euiTheme.animation.slow}
       ${euiTheme.animation.resistance};
     z-index: ${_euiBottomBarZHeader - 2};

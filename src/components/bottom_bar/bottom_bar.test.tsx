@@ -11,10 +11,7 @@ import ReactDOM from 'react-dom';
 import { render, mount } from 'enzyme';
 import { keysOf } from '../common';
 import { requiredProps, takeMountedSnapshot } from '../../test';
-import {
-  renderWithStyles,
-  shouldRenderCustomStyles,
-} from '../../test/internal';
+import { renderWithStyles } from '../../test/internal';
 
 import {
   EuiBottomBar,
@@ -32,7 +29,6 @@ ReactDOM.createPortal = (children) => {
 
 describe('EuiBottomBar', () => {
   renderWithStyles(<EuiBottomBar />);
-  shouldRenderCustomStyles(<EuiBottomBar />);
 
   test('is rendered', () => {
     const component = render(

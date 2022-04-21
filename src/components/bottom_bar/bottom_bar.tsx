@@ -21,6 +21,7 @@ import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
 import { euiBottomBarStyles } from './bottom_bar.styles';
+import { EuiThemeProvider } from '../../services/theme/provider';
 
 type BottomBarPaddingSize = 'none' | 's' | 'm' | 'l';
 
@@ -97,7 +98,7 @@ export type EuiBottomBarProps = CommonProps &
     left?: CSSProperties['left'];
   };
 
-export const EuiBottomBar = forwardRef<
+const _EuiBottomBar = forwardRef<
   HTMLElement, // type of element or component the ref will be passed to
   EuiBottomBarProps // what properties apart from `ref` the component accepts
 >(
@@ -179,6 +180,7 @@ export const EuiBottomBar = forwardRef<
           {(screenReaderHeading: string) => (
             // Though it would be better to use aria-labelledby than aria-label and not repeat the same string twice
             // A bug in voiceover won't list some landmarks in the rotor without an aria-label
+
             <section
               aria-label={
                 landmarkHeading ? landmarkHeading : screenReaderHeading
@@ -221,4 +223,15 @@ export const EuiBottomBar = forwardRef<
   }
 );
 
-EuiBottomBar.displayName = 'EuiBottomBar';
+export const EuiBottomBar: EuiBottomBarProps = ({ ...rest }) => {
+  const { colorMode } = useEuiTheme();
+
+  const BottomBar = _EuiBottomBar;
+  return (
+    <EuiThemeProvider colorMode={'dark'}>
+      <BottomBar {...rest} />
+    </EuiThemeProvider>
+  );
+};
+
+_EuiBottomBar.displayName = 'EuiBottomBar';
