@@ -171,7 +171,7 @@ export const FontScaleJS = () => {
             The quick brown fox jumped over the blue moon to catch a snail
           </p>
         }
-        snippet="useEuiFontSize('l');"
+        snippet="${useEuiFontSize('l')}"
       />
       <ThemeExample
         title={<code>useEuiFontSize().fontSize</code>}
