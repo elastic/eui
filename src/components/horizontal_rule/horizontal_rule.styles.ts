@@ -12,7 +12,7 @@ import { UseEuiTheme } from '../../services';
 export const euiHorizontalRuleStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiHorizontalRule: css`
     border: none;
-    height: 1px;
+    height: ${euiTheme.border.width.thin};
     background-color: ${euiTheme.border.color};
     flex-shrink: 0; // Ensure when used in flex group, it retains its size
     flex-grow: 0; // Ensure when used in flex group, it retains its size
