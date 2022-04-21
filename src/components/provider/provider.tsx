@@ -7,7 +7,7 @@
  */
 
 import React, { PropsWithChildren } from 'react';
-import { CacheProvider, EmotionCache } from '@emotion/react';
+import { EmotionCache } from '@emotion/react';
 
 import { EuiGlobalStyles, EuiGlobalStylesProps } from '../../global_styling';
 import {
@@ -43,19 +43,14 @@ export const EuiProvider = <T extends {} = {}>({
   colorMode,
   modify,
   children,
-}: PropsWithChildren<EuiProviderProps<T>>) => {
-  return theme !== null && GlobalStyles !== false ? (
-    <EuiThemeProvider theme={theme} colorMode={colorMode} modify={modify}>
-      {cache ? (
-        <CacheProvider value={cache}>
-          <GlobalStyles />
-        </CacheProvider>
-      ) : (
-        <GlobalStyles />
-      )}
-      {children}
-    </EuiThemeProvider>
-  ) : (
-    <EuiThemeProvider colorMode={colorMode}>{children}</EuiThemeProvider>
-  );
-};
+}: PropsWithChildren<EuiProviderProps<T>>) => (
+  <EuiThemeProvider
+    theme={theme ?? undefined}
+    colorMode={colorMode}
+    modify={modify}
+    cache={cache}
+  >
+    {theme !== null && GlobalStyles !== false ? <GlobalStyles /> : null}
+    {children}
+  </EuiThemeProvider>
+);

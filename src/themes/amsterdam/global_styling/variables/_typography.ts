@@ -11,7 +11,7 @@ import {
   font,
 } from '../../../../global_styling/variables/_typography';
 
-/**
+/*
  * Amsterdam theme just changes the main font from the beta Inter UI to Inter
  */
 export const font_ams: EuiThemeFont = {

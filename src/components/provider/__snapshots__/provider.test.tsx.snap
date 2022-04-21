@@ -897,6 +897,27 @@ exports[`EuiProvider is rendered 1`] = `
 
 exports[`EuiProvider providing an @emotion cache config applies the cache to global styles 1`] = `
 <EuiThemeProvider
+  cache={
+    Object {
+      "insert": [Function],
+      "inserted": Object {},
+      "key": "testing",
+      "nonce": undefined,
+      "registered": Object {},
+      "sheet": StyleSheet {
+        "_insertTag": [Function],
+        "before": null,
+        "container": <head />,
+        "ctr": 0,
+        "insertionPoint": undefined,
+        "isSpeedy": false,
+        "key": "testing",
+        "nonce": undefined,
+        "prepend": undefined,
+        "tags": Array [],
+      },
+    }
+  }
   theme={
     Object {
       "animation": Object {
@@ -1185,31 +1206,7 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to glo
     }
   }
 >
-  <ContextProvider
-    value={
-      Object {
-        "insert": [Function],
-        "inserted": Object {},
-        "key": "testing",
-        "nonce": undefined,
-        "registered": Object {},
-        "sheet": StyleSheet {
-          "_insertTag": [Function],
-          "before": null,
-          "container": <head />,
-          "ctr": 0,
-          "insertionPoint": undefined,
-          "isSpeedy": false,
-          "key": "testing",
-          "nonce": undefined,
-          "prepend": undefined,
-          "tags": Array [],
-        },
-      }
-    }
-  >
-    <EuiGlobalStyles />
-  </ContextProvider>
+  <EuiGlobalStyles />
 </EuiThemeProvider>
 `;
 
