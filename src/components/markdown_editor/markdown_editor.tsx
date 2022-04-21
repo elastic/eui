@@ -320,6 +320,9 @@ export const EuiMarkdownEditor = forwardRef<
 
         setSelectedNode(node);
       };
+      // `parsed` changed, which means the node at the cursor may be different
+      // e.g. from clicking a toolbar button
+      getCursorNode();
 
       const textarea = textareaRef.current!;
 

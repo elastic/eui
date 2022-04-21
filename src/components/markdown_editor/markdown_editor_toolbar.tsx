@@ -21,6 +21,7 @@ import { MARKDOWN_MODE, MODE_VIEWING } from './markdown_modes';
 import { EuiMarkdownEditorUiPlugin } from './markdown_types';
 import { EuiMarkdownContext } from './markdown_context';
 import MarkdownActions from './markdown_actions';
+import { IconType } from '../icon';
 
 export type EuiMarkdownEditorToolbarProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
@@ -33,13 +34,13 @@ export type EuiMarkdownEditorToolbarProps = HTMLAttributes<HTMLDivElement> &
 
 const boldItalicButtons = [
   {
-    id: 'mdBold',
+    id: 'strong',
     label: 'Bold',
     name: 'bold',
     iconType: 'editorBold',
   },
   {
-    id: 'mdItalic',
+    id: 'emphasis',
     label: 'Italic',
     name: 'italic',
     iconType: 'editorItalic',
@@ -69,24 +70,54 @@ const listButtons = [
 
 const quoteCodeLinkButtons = [
   {
-    id: 'mdQuote',
+    id: 'blockquote',
     label: 'Quote',
     name: 'quote',
     iconType: 'quote',
   },
   {
-    id: 'mdCode',
+    id: 'inlineCode',
     label: 'Code',
     name: 'code',
     iconType: 'editorCodeBlock',
   },
   {
-    id: 'mdLink',
+    id: 'link',
     label: 'Link',
     name: 'link',
     iconType: 'editorLink',
   },
 ];
+
+interface FormatSelectableButtonArgs {
+  selectedNode: null | any;
+  handleMdButtonClick: (mdButtonId: string) => void;
+  isEditable: boolean;
+  id: string;
+  label: string;
+  icon: IconType;
+}
+export const formatSelectableButton = ({
+  selectedNode,
+  handleMdButtonClick,
+  isEditable,
+  id,
+  label,
+  icon,
+}: FormatSelectableButtonArgs) => (
+  <EuiButtonIcon
+    color="text"
+    {...(selectedNode && selectedNode.type === id
+      ? {
+          style: { background: 'rgba(0, 0, 0, 0.15)' },
+        }
+      : null)}
+    onClick={() => handleMdButtonClick(id)}
+    iconType={icon}
+    aria-label={label}
+    isDisabled={!isEditable}
+  />
+);
 
 export const EuiMarkdownEditorToolbar = forwardRef<
   HTMLDivElement,
@@ -112,37 +143,40 @@ export const EuiMarkdownEditorToolbar = forwardRef<
         <div className="euiMarkdownEditorToolbar__buttons">
           {boldItalicButtons.map((item) => (
             <EuiToolTip key={item.id} content={item.label} delay="long">
-              <EuiButtonIcon
-                color="text"
-                onClick={() => handleMdButtonClick(item.id)}
-                iconType={item.iconType}
-                aria-label={item.label}
-                isDisabled={!isEditable}
-              />
+              {formatSelectableButton({
+                selectedNode,
+                handleMdButtonClick,
+                isEditable,
+                id: item.id,
+                label: item.label,
+                icon: item.iconType,
+              })}
             </EuiToolTip>
           ))}
           <span className="euiMarkdownEditorToolbar__divider" />
           {listButtons.map((item) => (
             <EuiToolTip key={item.id} content={item.label} delay="long">
-              <EuiButtonIcon
-                color="text"
-                onClick={() => handleMdButtonClick(item.id)}
-                iconType={item.iconType}
-                aria-label={item.label}
-                isDisabled={!isEditable}
-              />
+              {formatSelectableButton({
+                selectedNode,
+                handleMdButtonClick,
+                isEditable,
+                id: item.id,
+                label: item.label,
+                icon: item.iconType,
+              })}
             </EuiToolTip>
           ))}
           <span className="euiMarkdownEditorToolbar__divider" />
           {quoteCodeLinkButtons.map((item) => (
             <EuiToolTip key={item.id} content={item.label} delay="long">
-              <EuiButtonIcon
-                color="text"
-                onClick={() => handleMdButtonClick(item.id)}
-                iconType={item.iconType}
-                aria-label={item.label}
-                isDisabled={!isEditable}
-              />
+              {formatSelectableButton({
+                selectedNode,
+                handleMdButtonClick,
+                isEditable,
+                id: item.id,
+                label: item.label,
+                icon: item.iconType,
+              })}
             </EuiToolTip>
           ))}
 
@@ -150,22 +184,16 @@ export const EuiMarkdownEditorToolbar = forwardRef<
             <>
               <span className="euiMarkdownEditorToolbar__divider" />
               {uiPlugins.map(({ name, button }) => {
-                const isSelectedNodeType =
-                  selectedNode && selectedNode.type === name;
                 return (
                   <EuiToolTip key={name} content={button.label} delay="long">
-                    <EuiButtonIcon
-                      color="text"
-                      {...(isSelectedNodeType
-                        ? {
-                            style: { background: 'rgba(0, 0, 0, 0.15)' },
-                          }
-                        : null)}
-                      onClick={() => handleMdButtonClick(name)}
-                      iconType={button.iconType}
-                      aria-label={button.label}
-                      isDisabled={!isEditable}
-                    />
+                    {formatSelectableButton({
+                      selectedNode,
+                      handleMdButtonClick,
+                      isEditable,
+                      id: name,
+                      label: button.label,
+                      icon: button.iconType,
+                    })}
                   </EuiToolTip>
                 );
               })}

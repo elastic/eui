@@ -60,8 +60,8 @@ class MarkdownActions {
         },
         {}
       ),
-      mdBold: {
-        name: 'mdBold',
+      strong: {
+        name: 'strong',
         button: { label: '', iconType: '' },
         formatting: {
           prefix: '**',
@@ -69,8 +69,8 @@ class MarkdownActions {
           trimFirst: true,
         },
       },
-      mdItalic: {
-        name: 'mdItalic',
+      emphasis: {
+        name: 'emphasis',
         button: { label: '', iconType: '' },
         formatting: {
           prefix: '_',
@@ -78,8 +78,8 @@ class MarkdownActions {
           trimFirst: true,
         },
       },
-      mdQuote: {
-        name: 'mdQuote',
+      blockquote: {
+        name: 'quote',
         button: { label: '', iconType: '' },
         formatting: {
           prefix: '> ',
@@ -87,8 +87,8 @@ class MarkdownActions {
           surroundWithNewlines: true,
         },
       },
-      mdCode: {
-        name: 'mdCode',
+      inlineCode: {
+        name: 'inlineCode',
         button: { label: '', iconType: '' },
         formatting: {
           prefix: '`',
