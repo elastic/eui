@@ -84,6 +84,8 @@
 
   .euiTabs--xlarge & {
     padding: $euiSizeS $euiSizeL;
+    line-height: $euiSize * 4.5;
+    height: $euiSize * 4.5;
 
     .euiTab__content {
       @include euiFontSizeL;

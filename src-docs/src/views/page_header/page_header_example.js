@@ -65,7 +65,7 @@ export const PageHeaderExample = {
             An additional prop <EuiCode>rightSideItems</EuiCode> allows for a
             simple <strong>array of nodes</strong> which will layout in a
             flexbox row. This is commonly used for adding multiple buttons, of
-            which, at least one should be primary (or{' '}
+            which, at least one should be primary (adding{' '}
             <EuiCode language="ts">{'fill="true"'}</EuiCode>). These items are
             also displayed in <strong>reverse order</strong> so that the first
             and primary array item will be displayed on the far right.
@@ -99,12 +99,10 @@ export const PageHeaderExample = {
               <strong>EuiTab</strong>
             </Link>{' '}
             objects using the <EuiCode>label</EuiCode> key for the tab content.
-            When displaying tabs it is recommended to also apply the{' '}
-            <EuiCode>bottomBorder</EuiCode> prop (on the{' '}
-            <strong>EuiPageHeader</strong> component not through{' '}
-            <EuiCode>tabsProps</EuiCode>) to create separation of the header and
-            content. You&apos;ll still need to manage the page content and
-            selected tab in your own instance.
+            When displaying tabs, the <EuiCode>bottomBorder</EuiCode> prop will
+            be enforced to create separation of the header and content.
+            You&apos;ll still need to manage the page content and selected tab
+            in your own instance.
           </p>
         </>
       ),
@@ -125,7 +123,7 @@ export const PageHeaderExample = {
             <EuiCode>pageTitle</EuiCode>, <strong>EuiPageHeader</strong> will
             promote those tabs as if they are the page title. This means that
             any <EuiCode>description</EuiCode> or <EuiCode>children</EuiCode>{' '}
-            will sit <strong>below</strong> the tabs and should be describing
+            will sit <strong>below</strong> the tabs and should used to describe
             the currently selected tab.
           </p>
         </>

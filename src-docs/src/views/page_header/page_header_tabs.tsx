@@ -4,7 +4,6 @@ import { EuiPageHeader } from '../../../../src/components';
 
 export default () => (
   <EuiPageHeader
-    bottomBorder
     tabs={[
       {
         label: 'Tab 1',

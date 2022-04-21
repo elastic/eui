@@ -215,10 +215,22 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageHeader 1`] =
   >
     <header
       aria-label="aria-label"
-      class="euiPageHeader euiPageHeader--bottomBorder euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
+      class="euiPageHeader euiPageHeader--responsive euiPageHeader--center testClass1 testClass2 css-3arji0-euiPageHeader-EuiPageHeader"
       data-test-subj="test subject string"
       title="Page title"
-    />
+    >
+      <div
+        class="euiPageHeaderContent css-1hdwj0s-euiPageHeaderWidth-border-l"
+      >
+        <div
+          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+        >
+          <div
+            class="euiFlexItem"
+          />
+        </div>
+      </div>
+    </header>
     <div
       class="euiPageBody euiPageBody--borderRadiusNone"
     >
@@ -475,10 +487,22 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageHeader 1`
   >
     <header
       aria-label="aria-label"
-      class="euiPageHeader euiPageHeader--paddingLarge euiPageHeader--restrictWidth-default euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
+      class="euiPageHeader euiPageHeader--responsive euiPageHeader--center testClass1 testClass2 css-1n0822h-euiPageHeader-l-EuiPageHeader"
       data-test-subj="test subject string"
       title="Page title"
-    />
+    >
+      <div
+        class="euiPageHeaderContent css-h8mnkm-euiPageHeaderWidth-l"
+      >
+        <div
+          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+        >
+          <div
+            class="euiFlexItem"
+          />
+        </div>
+      </div>
+    </header>
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
       style="display:flex"
@@ -719,10 +743,22 @@ exports[`EuiPageTemplate template default is rendered with pageHeader 1`] = `
   >
     <header
       aria-label="aria-label"
-      class="euiPageHeader euiPageHeader--paddingLarge euiPageHeader--restrictWidth-default euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
+      class="euiPageHeader euiPageHeader--responsive euiPageHeader--center testClass1 testClass2 css-1n0822h-euiPageHeader-l-EuiPageHeader"
       data-test-subj="test subject string"
       title="Page title"
-    />
+    >
+      <div
+        class="euiPageHeaderContent css-h8mnkm-euiPageHeaderWidth-l"
+      >
+        <div
+          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+        >
+          <div
+            class="euiFlexItem"
+          />
+        </div>
+      </div>
+    </header>
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
       role="main"
@@ -951,10 +987,22 @@ exports[`EuiPageTemplate template empty is rendered with pageHeader 1`] = `
   >
     <header
       aria-label="aria-label"
-      class="euiPageHeader euiPageHeader--bottomBorder euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
+      class="euiPageHeader euiPageHeader--responsive euiPageHeader--center testClass1 testClass2 css-3arji0-euiPageHeader-EuiPageHeader"
       data-test-subj="test subject string"
       title="Page title"
-    />
+    >
+      <div
+        class="euiPageHeaderContent css-1hdwj0s-euiPageHeaderWidth-border-l"
+      >
+        <div
+          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+        >
+          <div
+            class="euiFlexItem"
+          />
+        </div>
+      </div>
+    </header>
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
       role="main"

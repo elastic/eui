@@ -19,6 +19,10 @@ import { EuiText } from '../../text';
 import { useIsWithinBreakpoints } from '../../../services/hooks';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../../breadcrumbs';
+import { euiPaddingStyles, PADDING_SIZES } from '../../../global_styling';
+import { _EuiPageRestrictWidth } from '../_restrict_width';
+import { useEuiTheme } from '../../../services';
+import { euiPageHeaderStyles, euiPageHeaderWidth } from './page_header.styles';
 
 export const ALIGN_ITEMS = ['top', 'bottom', 'center', 'stretch'] as const;
 
@@ -86,7 +90,18 @@ interface EuiPageHeaderContentLeft
   description?: string | ReactNode;
 }
 
-export interface _EuiPageHeaderContentProps extends EuiPageHeaderContentLeft {
+export interface _EuiPageHeaderContentProps
+  extends EuiPageHeaderContentLeft,
+    _EuiPageRestrictWidth {
+  /**
+   * The only option is on/off
+   */
+  bottomBorder?: boolean;
+  /**
+   * Adjust the padding.
+   * When using this setting it's best to be consistent throughout all similar usages
+   */
+  paddingSize?: typeof PADDING_SIZES[number];
   /**
    * Set to false if you don't want the children to stack at small screen sizes.
    * Set to `reverse` to display the right side content first for the sake of hierarchy (like global time)
@@ -134,6 +149,9 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
   rightSideItems,
   rightSideGroupProps,
   children,
+  restrictWidth,
+  paddingSize: _paddingSize = 'none',
+  bottomBorder: _bottom_border,
   ...rest
 }) => {
   const isResponsiveBreakpoint = useIsWithinBreakpoints(
@@ -141,7 +159,43 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
     !!responsive
   );
 
+  const useTheme = useEuiTheme();
   const classes = classNames('euiPageHeaderContent');
+  const width = euiPageHeaderWidth(restrictWidth as _EuiPageRestrictWidth);
+  const styles = euiPageHeaderStyles(useTheme);
+
+  let paddingSides = 'block';
+  let paddingSize = _paddingSize;
+  let bottomBorder = _bottom_border;
+
+  const onlyChildren =
+    !tabs && !pageTitle && !rightSideItems && !description && children;
+  const onlyTabs =
+    tabs && !pageTitle && !rightSideItems && !description && !children;
+  const tabsAsTitle = tabs && !pageTitle;
+  const tabsAtTheBottom = pageTitle && tabs;
+  const borderWithoutPadding =
+    (!paddingSize || paddingSize === 'none') && bottomBorder;
+
+  if (onlyTabs) {
+    paddingSize = 'none';
+  } else if (tabsAsTitle) {
+    paddingSides = 'block-end';
+  } else if (tabsAtTheBottom) {
+    paddingSides = 'block-start';
+    bottomBorder = bottomBorder === false ? false : true;
+  } else if (borderWithoutPadding) {
+    paddingSides = 'block-end';
+    paddingSize = 'l';
+  }
+
+  const blockPadding = euiPaddingStyles(useTheme, paddingSides);
+
+  const cssStyles = [
+    width,
+    bottomBorder && styles.border,
+    blockPadding[paddingSize],
+  ];
 
   let descriptionNode;
   if (description) {
@@ -297,8 +351,16 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
     );
   }
 
+  if (onlyChildren) {
+    return (
+      <div className={'euiPageHeader'} css={cssStyles} {...rest}>
+        {children}
+      </div>
+    );
+  }
+
   return alignItems === 'top' || isResponsiveBreakpoint ? (
-    <div className={classes} {...rest}>
+    <div className={classes} css={cssStyles} {...rest}>
       {optionalBreadcrumbs}
       <EuiFlexGroup
         responsive={!!responsive}
@@ -321,7 +383,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
       {bottomContentNode}
     </div>
   ) : (
-    <div className={classes} {...rest}>
+    <div className={classes} css={cssStyles} {...rest}>
       <EuiFlexGroup
         responsive={!!responsive}
         className="euiPageHeaderContent__top"

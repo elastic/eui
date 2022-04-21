@@ -9,9 +9,17 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services/theme';
 
-// TODO: Make into a hook
 export const PADDING_SIZES = ['none', 's', 'm', 'l'] as const;
 
+export type _EuiPaddingSize = {
+  /**
+   * Adjust the padding.
+   * When using this setting it's best to be consistent throughout all similar usages
+   */
+  paddingSize?: typeof PADDING_SIZES[number];
+};
+
+// TODO: Make into a hook too
 export const euiPaddingStyles = ({ euiTheme }: UseEuiTheme, side: string) => {
   return {
     none: null,
