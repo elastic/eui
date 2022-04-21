@@ -61,6 +61,31 @@ describe('cloneElementWithCss', () => {
     expect(component).toHaveStyleRule('background-color', 'blue');
   });
 
+  it('handles components', () => {
+    const TestComponent: React.FC = (props) => (
+      <div {...props} css={{ backgroundColor: 'blue' }}>
+        hello world
+      </div>
+    );
+
+    const component = render(
+      <CloningParent css={{ color: 'red' }}>
+        <TestComponent css={{ border: '1px solid black' }} />
+      </CloningParent>
+    );
+
+    expect(component).toMatchInlineSnapshot(`
+      <div
+        class="css-1fcrfq4-TestComponent-component-component"
+      >
+        hello world
+      </div>
+    `);
+    expect(component).toHaveStyleRule('color', 'red');
+    expect(component).toHaveStyleRule('background-color', 'blue');
+    expect(component).toHaveStyleRule('border', '1px solid black');
+  });
+
   it('does nothing if no css property is set', () => {
     const component = render(
       <CloningParent className="test">
