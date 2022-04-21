@@ -190,7 +190,7 @@ return (
 
 Emotion converts the `css` prop to a computed `className` value, merging it into any existing `className` prop on an element. We do not parse or handle these in any special way, so whichever element the `className` prop is applied to receives the styles created by Emotion. See https://codesandbox.io/s/emotion-css-and-classname-ohmqe7 for a playground demonstration.
 
-Sometimes we want or need to allow apps to provide styles (or other props) to multiple elements in a component, and  
+Sometimes apps want or need to provide styles (or other props) to multiple elements in a component, and in these cases we add a prop to the component that captures the extra information, spreading it onto the element. We can continue with this approach, allowing the `css` prop to be added for flexible styling.
 
 ### Which element in a custom component gets the `css` styling?
 
