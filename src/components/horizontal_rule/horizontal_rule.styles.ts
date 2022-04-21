@@ -18,7 +18,7 @@ export const euiHorizontalRuleStyles = ({ euiTheme }: UseEuiTheme) => ({
     flex-grow: 0; // Ensure when used in flex group, it retains its size
   `,
 
-  // size
+  // Sizes
   full: css`
     width: 100%;
   `,
