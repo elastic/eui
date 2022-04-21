@@ -160,7 +160,6 @@ export const useEuiXScrollWithShadows = createStyleHookFromMixin(
   euiXScrollWithShadows
 );
 
-// One hook to rule them all
 interface EuiScrollOverflowStyles {
   direction?: 'y' | 'x';
   mask?: boolean;
