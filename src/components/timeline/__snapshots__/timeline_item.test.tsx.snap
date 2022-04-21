@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiTimelineItem is rendered 1`] = `
-<div
+<li
   class="css-1noe449-euiTimelineItem"
 >
   <div
@@ -30,11 +30,11 @@ exports[`EuiTimelineItem is rendered 1`] = `
       I'm the children
     </p>
   </div>
-</div>
+</li>
 `;
 
 exports[`EuiTimelineItem props EuiAvatar is passed as an icon 1`] = `
-<div
+<li
   class="css-1noe449-euiTimelineItem"
 >
   <div
@@ -65,11 +65,11 @@ exports[`EuiTimelineItem props EuiAvatar is passed as an icon 1`] = `
       I'm the children
     </p>
   </div>
-</div>
+</li>
 `;
 
 exports[`EuiTimelineItem props iconAriaLabel is rendered 1`] = `
-<div
+<li
   class="css-1noe449-euiTimelineItem"
 >
   <div
@@ -100,11 +100,11 @@ exports[`EuiTimelineItem props iconAriaLabel is rendered 1`] = `
       I'm the children
     </p>
   </div>
-</div>
+</li>
 `;
 
 exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
-<div
+<li
   class="css-1noe449-euiTimelineItem"
 >
   <div
@@ -133,11 +133,11 @@ exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
       I'm the children
     </p>
   </div>
-</div>
+</li>
 `;
 
 exports[`EuiTimelineItem props verticalAlign top is rendered 1`] = `
-<div
+<li
   class="css-1noe449-euiTimelineItem"
 >
   <div
@@ -166,5 +166,5 @@ exports[`EuiTimelineItem props verticalAlign top is rendered 1`] = `
       I'm the children
     </p>
   </div>
-</div>
+</li>
 `;
