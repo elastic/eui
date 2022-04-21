@@ -22,7 +22,7 @@ export default () => {
         items={EuiThemeLevels.map((level) => {
           return {
             id: level,
-            token: `$${level};`,
+            token: `levels.${level}`,
             type: levelsTypes[level],
             value: euiTheme.levels[level],
           };
