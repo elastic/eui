@@ -13,7 +13,7 @@ import { breakpoint } from '../../global_styling/variables/_breakpoint';
 import { base, size } from '../../global_styling/variables/_size';
 
 import { colors_ams } from './global_styling/variables/_colors';
-import { font_ams } from './global_styling/variables/_typography';
+import { font } from './global_styling/variables/_typography';
 import { border_ams } from './global_styling/variables/_borders';
 
 export const AMSTERDAM_NAME_KEY = 'EUI_THEME_AMSTERDAM';
@@ -22,7 +22,7 @@ export const euiThemeAmsterdam: EuiThemeShape = {
   colors: colors_ams,
   base,
   size,
-  font: font_ams,
+  font,
   border: border_ams,
   animation,
   breakpoint,

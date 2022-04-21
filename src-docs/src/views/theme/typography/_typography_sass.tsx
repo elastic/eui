@@ -209,10 +209,10 @@ export const FontWeightSass: FunctionComponent<ThemeRowType> = ({
 const euiFontSizes = [
   'euiFontSizeXS',
   'euiFontSizeS',
-  'euiFontSize',
   'euiFontSizeM',
   'euiFontSizeL',
   'euiFontSizeXL',
+  'euiFontSizeXXL',
 ];
 
 export const FontScaleSass = () => {
@@ -234,12 +234,13 @@ export const FontScaleSass = () => {
       />
 
       <EuiBasicTable
-        items={euiFontSizes.map(function (size) {
+        items={euiFontSizes.map(function (size, index) {
           return {
             id: size,
             token: `$${size}`,
             mixin: `@include ${size}`,
             value: values[size],
+            index,
           };
         })}
         columns={[
