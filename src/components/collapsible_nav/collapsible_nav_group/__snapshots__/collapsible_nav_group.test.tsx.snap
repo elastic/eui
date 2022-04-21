@@ -209,7 +209,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
       aria-controls="id"
       aria-expanded="false"
       aria-label="aria-label"
-      class="euiAccordion__button euiCollapsibleNavGroup__heading testClass1 testClass2 css-1al58vz-euiAccordion__button"
+      class="euiAccordion__button euiCollapsibleNavGroup__heading testClass1 testClass2 css-152gqdf-euiAccordion__button"
       data-test-subj="test subject string"
       id="generated-id"
       type="button"
@@ -275,7 +275,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
     <button
       aria-controls="id"
       aria-expanded="false"
-      class="euiAccordion__button euiCollapsibleNavGroup__heading css-1al58vz-euiAccordion__button"
+      class="euiAccordion__button euiCollapsibleNavGroup__heading css-152gqdf-euiAccordion__button"
       id="generated-id"
       type="button"
     >

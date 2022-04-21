@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
+import { euiFontSize } from '../../global_styling/mixins';
 
 export const euiAccordionStyles = (
   { euiTheme }: UseEuiTheme,
@@ -23,6 +24,7 @@ export const euiAccordionStyles = (
 ) => ({
   // BEM named blocks
   euiAccordion__button: css`
+    ${euiFontSize('s', euiTheme)};
     align-items: center;
     display: flex;
     flex-grow: 1;
@@ -40,6 +42,7 @@ export const euiAccordionStyles = (
     `
       align-items: center;
       display: flex;
+      line-height: ${euiTheme.font.lineHeightMultiplier}; // Needed to retain consistent vertical alignment and spacing
     `}
   `,
   euiAccordion__childWrapper: css`
@@ -103,7 +106,7 @@ export const euiAccordionStyles = (
     padding: ${euiTheme.size.s};
   `,
   m: css`
-    padding: ${euiTheme.size.m};
+    padding: ${euiTheme.size.base};
   `,
   l: css`
     padding: ${euiTheme.size.l};
