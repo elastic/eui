@@ -186,4 +186,19 @@ describe('EuiRange', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('range should render with slider default value', () => {
+    const component = render(<EuiRange sliderDefaultValue={15} value={''} />);
+    expect(component).toMatchSnapshot();
+  });
+
+  test('slider default value can not be set below range minimum', () => {
+    const component = render(<EuiRange sliderDefaultValue={-1} value={''} />);
+    expect(component).toMatchSnapshot();
+  });
+
+  test('slider default value can not be set above range maximum', () => {
+    const component = render(<EuiRange sliderDefaultValue={101} value={''} />);
+    expect(component).toMatchSnapshot();
+  });
 });

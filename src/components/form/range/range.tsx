@@ -78,6 +78,11 @@ export interface EuiRangeProps
    */
   isLoading?: boolean;
 
+  /**
+   * Specified location the slider will be positioned at if the value input anis blank
+   */
+  sliderDefaultValue?: number;
+
   onChange?: (
     event:
       | React.ChangeEvent<HTMLInputElement>
@@ -91,6 +96,7 @@ export class EuiRange extends Component<EuiRangeProps> {
     min: 0,
     max: 100,
     step: 1,
+    sliderDefaultValue: 0,
     fullWidth: false,
     compressed: false,
     isLoading: false,
@@ -175,6 +181,7 @@ export class EuiRange extends Component<EuiRangeProps> {
       min,
       name,
       step,
+      sliderDefaultValue,
       showLabels,
       showInput,
       showTicks,
@@ -276,6 +283,7 @@ export class EuiRange extends Component<EuiRangeProps> {
                 ? () => (this.preventPopoverClose = true)
                 : undefined
             }
+            sliderDefaultValue={sliderDefaultValue}
             onFocus={showInput === true ? undefined : onFocus}
             onBlur={showInputOnly ? this.onInputBlur : onBlur}
             aria-hidden={showInput === true ? true : false}

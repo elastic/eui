@@ -48,7 +48,7 @@ exports[`EuiRange allows value prop to accept empty string 1`] = `
       min="0"
       step="1"
       type="range"
-      value=""
+      value="0"
     />
   </div>
 </div>
@@ -523,6 +523,72 @@ exports[`EuiRange props value should render 1`] = `
         before200after
       </output>
     </div>
+  </div>
+</div>
+`;
+
+exports[`EuiRange range should render with slider default value 1`] = `
+<div
+  class="euiRangeWrapper euiRange"
+>
+  <div
+    aria-hidden="false"
+    class="euiRangeTrack"
+  >
+    <input
+      aria-hidden="false"
+      class="euiRangeSlider"
+      id="generated-id"
+      max="100"
+      min="0"
+      step="1"
+      type="range"
+      value="15"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiRange slider default value can not be set below range minimum 1`] = `
+<div
+  class="euiRangeWrapper euiRange"
+>
+  <div
+    aria-hidden="false"
+    class="euiRangeTrack"
+  >
+    <input
+      aria-hidden="false"
+      class="euiRangeSlider"
+      id="generated-id"
+      max="100"
+      min="0"
+      step="1"
+      type="range"
+      value="0"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiRange slider default value can not be set above range maximum 1`] = `
+<div
+  class="euiRangeWrapper euiRange"
+>
+  <div
+    aria-hidden="false"
+    class="euiRangeTrack"
+  >
+    <input
+      aria-hidden="false"
+      class="euiRangeSlider"
+      id="generated-id"
+      max="100"
+      min="0"
+      step="1"
+      type="range"
+      value="100"
+    />
   </div>
 </div>
 `;

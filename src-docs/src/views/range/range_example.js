@@ -214,6 +214,13 @@ export const RangeControlExample = {
             will allow the inputs to be blank, though the range handles will
             show at the min (or max and min) positions.
           </p>
+          <p>
+            The <EuiCode>sliderDefaultValue</EuiCode> can be used to override
+            the default behavior of the range handles when the inputs are blank.
+            The range handles will set to the min or max value if
+            <EuiCode>sliderDefaultValue</EuiCode>
+            is set outside the bounds of the range.
+          </p>
         </Fragment>
       ),
       source: [

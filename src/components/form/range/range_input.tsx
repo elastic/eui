@@ -18,6 +18,7 @@ export interface EuiRangeInputProps
   min: number;
   side?: 'min' | 'max';
   value: string | number;
+  sliderDefaultValue?: number;
 }
 
 export const EuiRangeInput: FunctionComponent<EuiRangeInputProps> = ({
@@ -33,6 +34,7 @@ export const EuiRangeInput: FunctionComponent<EuiRangeInputProps> = ({
   digitTolerance,
   fullWidth,
   autoSize = true,
+  sliderDefaultValue,
   ...rest
 }) => {
   // Chrome will properly size the input based on the max value, but FF & IE do not.

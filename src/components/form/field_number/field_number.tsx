@@ -62,6 +62,12 @@ export type EuiFieldNumberProps = Omit<
      * when `true` creates a shorter height input
      */
     compressed?: boolean;
+
+    /**
+     * Sets the default value for the range slider when the input is set to an empty string.
+     * The range handles will set to the min or max value if sliderDefaultValue is set outside the bounds of the range.
+     */
+    sliderDefaultValue?: number;
   };
 
 export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = ({
@@ -82,6 +88,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = ({
   inputRef,
   readOnly,
   controlOnly,
+  sliderDefaultValue,
   ...rest
 }) => {
   const numIconsClass = getFormControlClassNameForIconCount({

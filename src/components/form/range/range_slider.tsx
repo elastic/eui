@@ -22,6 +22,7 @@ export type EuiRangeSliderProps = InputHTMLAttributes<HTMLInputElement> &
     min: number;
     max: number;
     step?: number;
+    sliderDefaultValue?: number;
     compressed?: boolean;
     isLoading?: boolean;
     hasFocus?: boolean;
@@ -31,6 +32,22 @@ export type EuiRangeSliderProps = InputHTMLAttributes<HTMLInputElement> &
     tabIndex?: number;
     onChange?: ChangeEventHandler<HTMLInputElement>;
   };
+
+const sliderDefaultValueCalc = (
+  min: number,
+  max: number,
+  sliderDefaultValue: number | undefined
+) => {
+  if (sliderDefaultValue === undefined || sliderDefaultValue < min) {
+    return min;
+  }
+  if (sliderDefaultValue > max) {
+    return max;
+  }
+  if (sliderDefaultValue >= min && sliderDefaultValue <= max) {
+    return sliderDefaultValue;
+  }
+};
 
 export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
   (
@@ -42,6 +59,7 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
       min,
       name,
       step,
+      sliderDefaultValue,
       onChange,
       tabIndex,
       value,
@@ -74,7 +92,11 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
         min={min}
         max={max}
         step={step}
-        value={value}
+        value={
+          value === ''
+            ? sliderDefaultValueCalc(min, max, sliderDefaultValue)
+            : value
+        }
         disabled={disabled}
         onChange={onChange}
         style={style}
