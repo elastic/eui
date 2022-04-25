@@ -34,15 +34,15 @@ export type EuiMarkdownEditorToolbarProps = HTMLAttributes<HTMLDivElement> &
 
 const boldItalicButtons = [
   {
-    id: 'strong',
+    id: 'mdBold',
     label: 'Bold',
-    name: 'bold',
+    name: 'strong',
     iconType: 'editorBold',
   },
   {
-    id: 'emphasis',
+    id: 'mdItalic',
     label: 'Italic',
-    name: 'italic',
+    name: 'emphasis',
     iconType: 'editorItalic',
   },
 ];
@@ -70,19 +70,19 @@ const listButtons = [
 
 const quoteCodeLinkButtons = [
   {
-    id: 'blockquote',
+    id: 'mdQuote',
     label: 'Quote',
-    name: 'quote',
+    name: 'blockquote',
     iconType: 'quote',
   },
   {
-    id: 'inlineCode',
+    id: 'mdCode',
     label: 'Code',
-    name: 'code',
+    name: 'inlineCode',
     iconType: 'editorCodeBlock',
   },
   {
-    id: 'link',
+    id: 'mdLink',
     label: 'Link',
     name: 'link',
     iconType: 'editorLink',
@@ -94,6 +94,7 @@ interface FormatSelectableButtonArgs {
   handleMdButtonClick: (mdButtonId: string) => void;
   isEditable: boolean;
   id: string;
+  nodeId: string;
   label: string;
   icon: IconType;
 }
@@ -102,10 +103,11 @@ export const formatSelectableButton = ({
   handleMdButtonClick,
   isEditable,
   id,
+  nodeId,
   label,
   icon,
 }: FormatSelectableButtonArgs) => {
-  const isSelected = selectedNode && selectedNode.type === id;
+  const isSelected = selectedNode && selectedNode.type === nodeId;
   return (
     <EuiButtonIcon
       color="text"
@@ -156,6 +158,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
                 handleMdButtonClick,
                 isEditable,
                 id: item.id,
+                nodeId: item.name,
                 label: item.label,
                 icon: item.iconType,
               })}
@@ -169,6 +172,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
                 handleMdButtonClick,
                 isEditable,
                 id: item.id,
+                nodeId: item.name,
                 label: item.label,
                 icon: item.iconType,
               })}
@@ -182,6 +186,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
                 handleMdButtonClick,
                 isEditable,
                 id: item.id,
+                nodeId: item.name,
                 label: item.label,
                 icon: item.iconType,
               })}
@@ -199,6 +204,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
                       handleMdButtonClick,
                       isEditable,
                       id: name,
+                      nodeId: name,
                       label: button.label,
                       icon: button.iconType,
                     })}

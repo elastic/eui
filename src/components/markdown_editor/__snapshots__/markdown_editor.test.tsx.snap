@@ -89,31 +89,19 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
         MarkdownActions {
           "editorID": "editorId",
           "styles": Object {
-            "blockquote": Object {
+            "mdBold": Object {
               "button": Object {
                 "iconType": "",
                 "label": "",
               },
               "formatting": Object {
-                "multiline": true,
-                "prefix": "> ",
-                "surroundWithNewlines": true,
-              },
-              "name": "quote",
-            },
-            "emphasis": Object {
-              "button": Object {
-                "iconType": "",
-                "label": "",
-              },
-              "formatting": Object {
-                "prefix": "_",
-                "suffix": "_",
+                "prefix": "**",
+                "suffix": "**",
                 "trimFirst": true,
               },
-              "name": "emphasis",
+              "name": "mdBold",
             },
-            "inlineCode": Object {
+            "mdCode": Object {
               "button": Object {
                 "iconType": "",
                 "label": "",
@@ -124,7 +112,19 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                 "prefix": "\`",
                 "suffix": "\`",
               },
-              "name": "inlineCode",
+              "name": "mdCode",
+            },
+            "mdItalic": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "prefix": "_",
+                "suffix": "_",
+                "trimFirst": true,
+              },
+              "name": "mdItalic",
             },
             "mdLink": Object {
               "button": Object {
@@ -151,6 +151,18 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
               },
               "name": "mdOl",
             },
+            "mdQuote": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "multiline": true,
+                "prefix": "> ",
+                "surroundWithNewlines": true,
+              },
+              "name": "mdQuote",
+            },
             "mdTl": Object {
               "button": Object {
                 "iconType": "",
@@ -174,18 +186,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                 "surroundWithNewlines": true,
               },
               "name": "mdUl",
-            },
-            "strong": Object {
-              "button": Object {
-                "iconType": "",
-                "label": "",
-              },
-              "formatting": Object {
-                "prefix": "**",
-                "suffix": "**",
-                "trimFirst": true,
-              },
-              "name": "strong",
             },
           },
         }
@@ -223,7 +223,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
             content="Bold"
             delay="long"
             display="inlineBlock"
-            key="strong"
+            key="mdBold"
             position="top"
           >
             <span
@@ -273,7 +273,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
             content="Italic"
             delay="long"
             display="inlineBlock"
-            key="emphasis"
+            key="mdItalic"
             position="top"
           >
             <span
@@ -479,7 +479,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
             content="Quote"
             delay="long"
             display="inlineBlock"
-            key="blockquote"
+            key="mdQuote"
             position="top"
           >
             <span
@@ -529,7 +529,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
             content="Code"
             delay="long"
             display="inlineBlock"
-            key="inlineCode"
+            key="mdCode"
             position="top"
           >
             <span
@@ -579,7 +579,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
             content="Link"
             delay="long"
             display="inlineBlock"
-            key="link"
+            key="mdLink"
             position="top"
           >
             <span
@@ -1437,31 +1437,19 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
         MarkdownActions {
           "editorID": "editorId",
           "styles": Object {
-            "blockquote": Object {
+            "mdBold": Object {
               "button": Object {
                 "iconType": "",
                 "label": "",
               },
               "formatting": Object {
-                "multiline": true,
-                "prefix": "> ",
-                "surroundWithNewlines": true,
-              },
-              "name": "quote",
-            },
-            "emphasis": Object {
-              "button": Object {
-                "iconType": "",
-                "label": "",
-              },
-              "formatting": Object {
-                "prefix": "_",
-                "suffix": "_",
+                "prefix": "**",
+                "suffix": "**",
                 "trimFirst": true,
               },
-              "name": "emphasis",
+              "name": "mdBold",
             },
-            "inlineCode": Object {
+            "mdCode": Object {
               "button": Object {
                 "iconType": "",
                 "label": "",
@@ -1472,7 +1460,19 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 "prefix": "\`",
                 "suffix": "\`",
               },
-              "name": "inlineCode",
+              "name": "mdCode",
+            },
+            "mdItalic": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "prefix": "_",
+                "suffix": "_",
+                "trimFirst": true,
+              },
+              "name": "mdItalic",
             },
             "mdLink": Object {
               "button": Object {
@@ -1499,6 +1499,18 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
               },
               "name": "mdOl",
             },
+            "mdQuote": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "multiline": true,
+                "prefix": "> ",
+                "surroundWithNewlines": true,
+              },
+              "name": "mdQuote",
+            },
             "mdTl": Object {
               "button": Object {
                 "iconType": "",
@@ -1522,18 +1534,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 "surroundWithNewlines": true,
               },
               "name": "mdUl",
-            },
-            "strong": Object {
-              "button": Object {
-                "iconType": "",
-                "label": "",
-              },
-              "formatting": Object {
-                "prefix": "**",
-                "suffix": "**",
-                "trimFirst": true,
-              },
-              "name": "strong",
             },
             "tooltipPlugin": Object {
               "button": Object {
@@ -1612,7 +1612,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
             content="Bold"
             delay="long"
             display="inlineBlock"
-            key="strong"
+            key="mdBold"
             position="top"
           >
             <span
@@ -1662,7 +1662,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
             content="Italic"
             delay="long"
             display="inlineBlock"
-            key="emphasis"
+            key="mdItalic"
             position="top"
           >
             <span
@@ -1868,7 +1868,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
             content="Quote"
             delay="long"
             display="inlineBlock"
-            key="blockquote"
+            key="mdQuote"
             position="top"
           >
             <span
@@ -1918,7 +1918,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
             content="Code"
             delay="long"
             display="inlineBlock"
-            key="inlineCode"
+            key="mdCode"
             position="top"
           >
             <span
@@ -1968,7 +1968,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
             content="Link"
             delay="long"
             display="inlineBlock"
-            key="link"
+            key="mdLink"
             position="top"
           >
             <span
