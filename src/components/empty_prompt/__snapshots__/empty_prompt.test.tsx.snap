@@ -24,7 +24,7 @@ exports[`EuiEmptyPrompt is rendered 1`] = `
         class="euiEmptyPrompt__contentInner"
       >
         <h2
-          class="euiTitle euiTitle--medium"
+          class="euiTitle css-1lssm25-euiTitle-m"
         >
           Title
         </h2>
@@ -508,7 +508,7 @@ exports[`EuiEmptyPrompt props title renders alone 1`] = `
         class="euiEmptyPrompt__contentInner"
       >
         <div
-          class="euiTitle euiTitle--medium"
+          class="euiTitle css-1lssm25-euiTitle-m"
         >
           title
         </div>

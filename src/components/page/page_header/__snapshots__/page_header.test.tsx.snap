@@ -24,7 +24,7 @@ exports[`EuiPageHeader props alignItems bottom is rendered 1`] = `
         class="euiFlexItem"
       >
         <h1
-          class="euiTitle euiTitle--large"
+          class="euiTitle css-ixrhxz-euiTitle-l"
         >
           Page title
         </h1>
@@ -70,7 +70,7 @@ exports[`EuiPageHeader props alignItems center is rendered 1`] = `
         class="euiFlexItem"
       >
         <h1
-          class="euiTitle euiTitle--large"
+          class="euiTitle css-ixrhxz-euiTitle-l"
         >
           Page title
         </h1>
@@ -116,7 +116,7 @@ exports[`EuiPageHeader props alignItems stretch is rendered 1`] = `
         class="euiFlexItem"
       >
         <h1
-          class="euiTitle euiTitle--large"
+          class="euiTitle css-ixrhxz-euiTitle-l"
         >
           Page title
         </h1>
@@ -162,7 +162,7 @@ exports[`EuiPageHeader props alignItems top is rendered 1`] = `
         class="euiFlexItem"
       >
         <h1
-          class="euiTitle euiTitle--large"
+          class="euiTitle css-ixrhxz-euiTitle-l"
         >
           Page title
         </h1>
@@ -244,7 +244,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       >
         <h1
           aria-label="aria-label"
-          class="euiTitle euiTitle--large testClass1 testClass2"
+          class="euiTitle testClass1 testClass2 css-ixrhxz-euiTitle-l"
           data-test-subj="test subject string"
         >
           <span
