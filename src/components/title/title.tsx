@@ -54,6 +54,7 @@ export const EuiTitle: FunctionComponent<EuiTitleProps> = ({
   const cssStyles = [
     styles.euiTitle,
     textTransform ? styles[textTransform] : undefined,
+    styles[size],
   ];
   const classes = classNames(
     'euiTitle',
