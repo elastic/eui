@@ -102,7 +102,7 @@ export interface _EuiThemeBody {
  * Font
  */
 
-export type EuiThemeFont = _EuiThemeFontBase & {
+export type _EuiThemeFont = _EuiThemeFontBase & {
   scale: _EuiThemeFontScales;
   weight: _EuiThemeFontWeights;
   body: _EuiThemeBody;

@@ -12,19 +12,21 @@ import { EuiThemeComputed, EuiThemeShape } from '../../../../src/services';
 export const EuiTheme: FunctionComponent<EuiThemeShape> = () => <div />;
 
 import {
-  _EuiThemeColors,
+  _EuiThemeColorsMode,
   _EuiThemeConstantColors,
-} from '../../../../src/global_styling/variables/_colors';
+} from '../../../../src/global_styling/variables/colors';
 
-export const EuiThemeColors: FunctionComponent<_EuiThemeColors> = () => <div />;
+export const EuiThemeColors: FunctionComponent<_EuiThemeColorsMode> = () => (
+  <div />
+);
 
 export const EuiThemeConstantColors: FunctionComponent<_EuiThemeConstantColors> = () => (
   <div />
 );
 
-import { EuiThemeSize } from '../../../../src/global_styling/variables/_size';
+import { _EuiThemeSizes } from '../../../../src/global_styling/variables/size';
 
-export const _EuiThemeSize: FunctionComponent<EuiThemeSize> = () => <div />;
+export const EuiThemeSize: FunctionComponent<_EuiThemeSizes> = () => <div />;
 
 import {
   _EuiThemeFontBase,
@@ -49,7 +51,7 @@ import {
   _EuiThemeBorderTypes,
   _EuiThemeBorderRadiusValues,
   _EuiThemeBorderWidthValues,
-} from '../../../../src/global_styling/variables/_borders';
+} from '../../../../src/global_styling/variables/borders';
 
 export const EuiThemeBorderRadiusValues: FunctionComponent<_EuiThemeBorderRadiusValues> = () => (
   <div />
@@ -64,25 +66,31 @@ export const EuiThemeBorderTypes: FunctionComponent<_EuiThemeBorderTypes> = () =
   <div />
 );
 
-import { _EuiThemeFocus } from '../../../../src/global_styling/variables/_states';
+import { _EuiThemeFocus } from '../../../../src/global_styling/variables/states';
 
 export const EuiThemeFocus: FunctionComponent<_EuiThemeFocus> = () => <div />;
 
 import {
-  _EuiThemeAnimationSpeed,
-  _EuiThemeAnimationEasing,
-} from '../../../../src/global_styling/variables/_animations';
+  _EuiThemeAnimationSpeeds,
+  _EuiThemeAnimationEasings,
+} from '../../../../src/global_styling/variables/animations';
 
-export const EuiThemeAnimationSpeed: FunctionComponent<_EuiThemeAnimationSpeed> = () => (
+export const EuiThemeAnimationSpeed: FunctionComponent<_EuiThemeAnimationSpeeds> = () => (
   <div />
 );
-export const EuiThemeAnimationEasing: FunctionComponent<_EuiThemeAnimationEasing> = () => (
+export const EuiThemeAnimationEasing: FunctionComponent<_EuiThemeAnimationEasings> = () => (
   <div />
 );
 
-import { EuiThemeBreakpoint } from '../../../../src/global_styling/variables/_breakpoint';
+import { _EuiThemeBreakpoints } from '../../../../src/global_styling/variables/breakpoint';
 
-export const _EuiThemeBreakpoint: FunctionComponent<EuiThemeBreakpoint> = () => (
+export const EuiThemeBreakpoints: FunctionComponent<_EuiThemeBreakpoints> = () => (
+  <div />
+);
+
+import { _EuiThemeLevels } from '../../../../src/global_styling/variables/levels';
+
+export const EuiThemeLevelsProps: FunctionComponent<_EuiThemeLevels> = () => (
   <div />
 );
 

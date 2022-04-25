@@ -12,6 +12,7 @@ import AnimationJS from './_animation_js';
 import AnimationSass from './_animation_sass';
 import ShadowJs from './_shadow_js';
 import ShadowSass from './_shadow_sass';
+import LevelsJS from './_levels_js';
 import LevelsSass from './_levels_sass';
 
 // This array is used inside routes.js to create the sidenav sub-sections
@@ -87,36 +88,13 @@ export default () => {
     if (showSass) {
       return (
         <>
-          <EuiSpacer size="l" />
-
-          <EuiText grow={false}>
-            <p>
-              Most of the time the z-index is handled per component. But you can
-              use this table as a reference to how EUI layers the components.
-            </p>
-          </EuiText>
-
-          <EuiSpacer size="l" />
-
-          <EuiCallOut color="warning">
-            <p>
-              If you do have to adjust z-index levels, remember that they become
-              scoped only to their parents if their parent also has a custom
-              z-index.
-            </p>
-          </EuiCallOut>
-
-          <EuiSpacer size="xl" />
-
           <LevelsSass />
         </>
       );
     } else {
       return (
         <>
-          <EuiSpacer size="xl" />
-
-          <EuiCallOut title="Coming soon" />
+          <LevelsJS />
         </>
       );
     }
@@ -188,6 +166,27 @@ export default () => {
           {`${otherSections[2].title}`} (z-index)
         </h2>
       </EuiText>
+
+      <EuiSpacer size="l" />
+
+      <EuiText grow={false}>
+        <p>
+          Most of the time the z-index is handled per component. But you can use
+          this table as a reference to how EUI layers the components.
+        </p>
+      </EuiText>
+
+      <EuiSpacer size="l" />
+
+      <EuiCallOut color="warning">
+        <p>
+          If you do have to adjust z-index levels, remember that they become
+          scoped only to their parents if their parent also has a custom
+          z-index.
+        </p>
+      </EuiCallOut>
+
+      <EuiSpacer size="xl" />
 
       {levelsContent}
     </GuidePage>

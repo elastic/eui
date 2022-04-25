@@ -8,7 +8,7 @@
 
 import { keyframes, css } from '@emotion/react';
 import { euiPaletteColorBlind } from '../../services';
-import { euiCanAnimate } from '../../global_styling/variables/_animations';
+import { euiCanAnimate } from '../../global_styling';
 
 const visColors = euiPaletteColorBlind();
 
