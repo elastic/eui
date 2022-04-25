@@ -8,7 +8,7 @@
 
 import { CSSProperties } from 'react';
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../services';
+import { UseEuiTheme, useEuiTheme } from '../../services';
 import {
   euiTextBreakWord,
   euiFontSizeFromScale,
@@ -60,16 +60,18 @@ const amsterdamThemeTitles: {
 /**
  * Mixin
  */
-export const euiTitle = (
-  scale: EuiTitleSize = 'm',
-  euiTheme: UseEuiTheme['euiTheme'],
-  measurement: _EuiThemeFontSizeMeasurement = 'rem'
-): {
+type EuiThemeTitle = {
   fontSize: CSSProperties['fontSize'];
   lineHeight: CSSProperties['lineHeight'];
   fontWeight: CSSProperties['fontWeight'];
   letterSpacing?: CSSProperties['letterSpacing'];
-} => {
+};
+
+export const euiTitle = (
+  scale: EuiTitleSize = 'm',
+  euiTheme: UseEuiTheme['euiTheme'],
+  measurement: _EuiThemeFontSizeMeasurement = 'rem'
+): EuiThemeTitle => {
   // NOTE: For future themes, we can conditionally key off `euiTheme.themeName`
   // and conditionally switch our title settings.
   const title = amsterdamThemeTitles[scale];
@@ -84,6 +86,15 @@ export const euiTitle = (
     fontWeight: title.fontWeight || euiTheme.font.weight.bold,
     letterSpacing: title.letterSpacing,
   };
+};
+
+// Hook version
+export const useEuiTitle = (
+  scale: EuiTitleSize = 'm',
+  measurement: _EuiThemeFontSizeMeasurement = 'rem'
+): EuiThemeTitle => {
+  const { euiTheme } = useEuiTheme();
+  return euiTitle(scale, euiTheme, measurement);
 };
 
 /**
