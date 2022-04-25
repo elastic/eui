@@ -28,19 +28,21 @@ export const _EuiThemeSize: FunctionComponent<EuiThemeSize> = () => <div />;
 
 import {
   _EuiThemeFontBase,
-  _EuiThemeFontWeight,
-  _EuiThemeFontScale,
-} from '../../../../src/global_styling/variables/_typography';
+  _EuiThemeFontWeights,
+  _EuiThemeFontScales,
+  _EuiThemeBody,
+} from '../../../../src/global_styling';
 
 export const EuiThemeFontBase: FunctionComponent<_EuiThemeFontBase> = () => (
   <div />
 );
-export const EuiThemeFontWeight: FunctionComponent<_EuiThemeFontWeight> = () => (
+export const EuiThemeFontWeight: FunctionComponent<_EuiThemeFontWeights> = () => (
   <div />
 );
-export const EuiThemeFontScale: FunctionComponent<_EuiThemeFontScale> = () => (
+export const EuiThemeFontScale: FunctionComponent<_EuiThemeFontScales> = () => (
   <div />
 );
+export const EuiThemeBody: FunctionComponent<_EuiThemeBody> = () => <div />;
 
 import {
   _EuiThemeBorderColorValues,
