@@ -9,10 +9,13 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiLoadingChart, SIZES } from './loading_chart';
 
 describe('EuiLoadingChart', () => {
+  shouldRenderCustomStyles(<EuiLoadingChart />);
+
   test('is rendered', () => {
     const component = render(<EuiLoadingChart {...requiredProps} />);
 
@@ -24,6 +27,7 @@ describe('EuiLoadingChart', () => {
 
     expect(component).toMatchSnapshot();
   });
+
   describe('size', () => {
     SIZES.forEach((size) => {
       test(`${size} is rendered`, () => {

@@ -62,6 +62,8 @@ export {
   transparentize,
   tint,
   shade,
+  tintOrShade,
+  shadeOrTint,
   saturate,
   desaturate,
   lightness,
