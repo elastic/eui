@@ -8,24 +8,26 @@
 
 import { buildTheme } from '../../services/theme/utils';
 import { EuiThemeShape } from '../../services/theme/types';
-import { animation } from '../../global_styling/variables/_animations';
-import { breakpoint } from '../../global_styling/variables/_breakpoint';
-import { base, size } from '../../global_styling/variables/_size';
 
-import { colors_ams } from './global_styling/variables/_colors';
-import { font_ams } from './global_styling/variables/_typography';
-import { border_ams } from './global_styling/variables/_borders';
+import { colors } from './global_styling/variables/_colors';
+import { animation } from './global_styling/variables/_animation';
+import { breakpoint } from './global_styling/variables/_breakpoint';
+import { base, size } from './global_styling/variables/_size';
+import { border } from './global_styling/variables/_borders';
+import { levels } from './global_styling/variables/_levels';
+import { font } from './global_styling/variables/_typography';
 
 export const AMSTERDAM_NAME_KEY = 'EUI_THEME_AMSTERDAM';
 
 export const euiThemeAmsterdam: EuiThemeShape = {
-  colors: colors_ams,
+  colors,
   base,
   size,
-  font: font_ams,
-  border: border_ams,
+  border,
+  font,
   animation,
   breakpoint,
+  levels,
 };
 
 export const EuiThemeAmsterdam = buildTheme(
