@@ -9,10 +9,12 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
-
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { EuiHorizontalRule } from './horizontal_rule';
 
 describe('EuiHorizontalRule', () => {
+  shouldRenderCustomStyles(<EuiHorizontalRule {...requiredProps} />);
+
   test('is rendered', () => {
     const component = render(<EuiHorizontalRule {...requiredProps} />);
 

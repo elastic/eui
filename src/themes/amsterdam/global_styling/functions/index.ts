@@ -6,4 +6,4 @@
  * Side Public License, v 1.
  */
 
-export * from './_shadows';
+export * from './shadows';
