@@ -50,7 +50,7 @@ const cssStyles = [
 
 ### Building an array of styles
 
-_examples from [avatar.tsx](https://github.com/elastic/eui/blob/86c69a69545e12b0ed354be66f5fd3a3a34ff2c9/src/components/avatar/avatar.tsx)_
+_examples from [avatar.tsx](https://github.com/elastic/eui/blob/main/src/components/avatar/avatar.tsx)_
 
 ```tsx
 export const EuiAvatar: export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({...}) => {
