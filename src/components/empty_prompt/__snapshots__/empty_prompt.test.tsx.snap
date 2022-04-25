@@ -32,7 +32,7 @@ exports[`EuiEmptyPrompt is rendered 1`] = `
           class="euiTextColor euiTextColor--subdued"
         >
           <div
-            class="euiSpacer euiSpacer--m"
+            class="euiSpacer euiSpacer--m css-hg1jdf-euiSpacer-m"
           />
           <div
             class="euiText euiText--medium"
@@ -43,7 +43,7 @@ exports[`EuiEmptyPrompt is rendered 1`] = `
           </div>
         </span>
         <div
-          class="euiSpacer euiSpacer--l"
+          class="euiSpacer euiSpacer--l css-jz428s-euiSpacer-l"
         />
         <div>
           Actions
@@ -68,7 +68,7 @@ exports[`EuiEmptyPrompt props actions renders alone 1`] = `
         class="euiEmptyPrompt__contentInner"
       >
         <div
-          class="euiSpacer euiSpacer--l"
+          class="euiSpacer euiSpacer--l css-jz428s-euiSpacer-l"
         />
         actions
       </div>
@@ -91,7 +91,7 @@ exports[`EuiEmptyPrompt props actions renders an array 1`] = `
         class="euiEmptyPrompt__contentInner"
       >
         <div
-          class="euiSpacer euiSpacer--l"
+          class="euiSpacer euiSpacer--l css-jz428s-euiSpacer-l"
         />
         <div
           class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentCenter euiFlexGroup--directionColumn euiFlexGroup--responsive euiEmptyPrompt__actions"

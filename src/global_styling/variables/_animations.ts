@@ -5,35 +5,21 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
-
-import { css } from '@emotion/react';
 import { CSSProperties } from 'react';
 
 /**
- * A quick wrapping function around the provided content that adds the
- * `prefers-reduced-motion` media query so that when it is turn off,
- * animations are not run.
- * @param content
- * @returns css Emotion object
+ * A constant storing the `prefers-reduced-motion` media query
+ * so that when it is turned off, animations are not run.
  */
-export const euiCanAnimate = (content: any) => css`
-  @media screen and (prefers-reduced-motion: no-preference) {
-    ${content}
-  }
-`;
+export const euiCanAnimate =
+  '@media screen and (prefers-reduced-motion: no-preference)';
 
 /**
- * A quick wrapping function around the provided content that adds the
- * `prefers-reduced-motion` media query that will only run the content if
- * the setting is off (reduce).
- * @param content
- * @returns css Emotion object
+ * A constant storing the `prefers-reduced-motion` media query that will
+ * only apply the content if the setting is off (reduce).
  */
-export const euiCantAnimate = (content: any) => css`
-  @media screen and (prefers-reduced-motion: reduce) {
-    ${content}
-  }
-`;
+export const euiCantAnimate =
+  '@media screen and (prefers-reduced-motion: reduce)';
 
 export interface _EuiThemeAnimationSpeed {
   extraFast: CSSProperties['animationDuration'];

@@ -40,11 +40,6 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
     font-size: ${`${font.scale[font.body.scale] * base}px`};
     line-height: ${base / (font.scale[font.body.scale] * base)};
     font-weight: ${font.weight[font.body.weight]};
-    ${
-      font.body.letterSpacing
-        ? `letter-spacing: ${font.body.letterSpacing};`
-        : ''
-    }
   `;
 
   /**

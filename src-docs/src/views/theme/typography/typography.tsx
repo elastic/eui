@@ -16,12 +16,11 @@ import {
   EuiLink,
   EuiRange,
   EuiCode,
-  EuiCallOut,
 } from '../../../../../src';
 
 import { ThemeExample } from '../_components/_theme_example';
 
-import { FontJS, FontWeightJS } from './_typography_js';
+import { FontJS, FontScaleJS, FontWeightJS } from './_typography_js';
 import {
   FontSass,
   FontWeightSass,
@@ -56,36 +55,9 @@ export default () => {
 
   const scaleContent = useMemo(() => {
     if (showSass) {
-      return (
-        <>
-          <EuiText grow={false}>
-            <h2
-              id={`${typographySections[2].id}`}
-            >{`${typographySections[2].title}`}</h2>
-            <p>
-              The typographic scale is loosely based on the{' '}
-              <EuiLink href="https://type-scale.com/?size=16&scale=1.250&text=A%20Visual%20Type%20Scale&font=Inter&fontweight=400&bodyfont=body_font_default&bodyfontweight=400&lineheight=1.75&backgroundcolor=%23ffffff&fontcolor=%23000000&preview=false">
-                Major Third (1.250) typographic scale
-              </EuiLink>
-              .
-            </p>
-          </EuiText>
-          <EuiSpacer size="xl" />
-          <FontScaleSass />
-        </>
-      );
+      return <FontScaleSass />;
     } else {
-      return (
-        <>
-          <EuiText grow={false}>
-            <h2
-              id={`${typographySections[2].id}`}
-            >{`${typographySections[2].title}`}</h2>
-          </EuiText>
-          <EuiSpacer />
-          <EuiCallOut title="Coming soon" />
-        </>
-      );
+      return <FontScaleJS />;
     }
   }, [showSass]);
 
@@ -198,6 +170,33 @@ export default () => {
       />
 
       <EuiSpacer size="xl" />
+
+      <EuiText grow={false}>
+        <h2
+          id={`${typographySections[2].id}`}
+        >{`${typographySections[2].title}`}</h2>
+        <p>
+          The typographic scale is loosely based on the{' '}
+          <EuiLink href="https://type-scale.com/?size=16&scale=1.250&text=A%20Visual%20Type%20Scale&font=Inter&fontweight=400&bodyfont=body_font_default&bodyfontweight=400&lineheight=1.75&backgroundcolor=%23ffffff&fontcolor=%23000000&preview=false">
+            Major Third (1.250) typographic scale
+          </EuiLink>
+          .
+        </p>
+        <p>
+          While these functions and hooks exist to get precise font sizing and
+          associated line-height, we still highly recommend using the{' '}
+          <Link to="/display/text">
+            <strong>EuiText</strong>
+          </Link>{' '}
+          and{' '}
+          <Link to="/display/title">
+            <strong>EuiTitle</strong>
+          </Link>{' '}
+          components as wrappers of your content instead.
+        </p>
+      </EuiText>
+      <EuiSpacer size="xl" />
+
       {scaleContent}
     </GuidePage>
   );

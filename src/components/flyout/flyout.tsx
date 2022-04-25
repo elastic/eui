@@ -35,7 +35,6 @@ import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
-import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiPortal } from '../portal';
 
 const typeToClassNameMap = {
@@ -340,20 +339,12 @@ export const EuiFlyout = forwardRef(
       );
     }
 
-    const flyoutContent = (
-      <Element
-        {...(rest as ComponentPropsWithRef<T>)}
-        role={role}
-        className={classes}
-        tabIndex={-1}
-        style={newStyle || style}
-        ref={setRef}
-      >
-        {closeButton}
-        {children}
-      </Element>
-    );
-
+    const isDefaultConfiguration = ownFocus && !isPushed;
+    const onClickOutside =
+      (isDefaultConfiguration && outsideClickCloses !== false) ||
+      outsideClickCloses === true
+        ? onClose
+        : undefined;
     /*
      * Trap focus even when `ownFocus={false}`, otherwise closing
      * the flyout won't return focus to the originating button.
@@ -361,36 +352,35 @@ export const EuiFlyout = forwardRef(
      * Set `clickOutsideDisables={true}` when `ownFocus={false}`
      * to allow non-keyboard users the ability to interact with
      * elements outside the flyout.
+     *
+     * Set `onClickOutside={onClose}` when `ownFocus` and `type` are the defaults,
+     * or if `outsideClickCloses={true}` to close on clicks that target
+     * (both mousedown and mouseup) the overlay mask.
      */
     let flyout = (
-      <EuiFocusTrap disabled={isPushed} clickOutsideDisables={!ownFocus}>
-        {flyoutContent}
+      <EuiFocusTrap
+        disabled={isPushed}
+        clickOutsideDisables={!ownFocus}
+        onClickOutside={onClickOutside}
+      >
+        <Element
+          {...(rest as ComponentPropsWithRef<T>)}
+          role={role}
+          className={classes}
+          tabIndex={-1}
+          style={newStyle || style}
+          ref={setRef}
+        >
+          {closeButton}
+          {children}
+        </Element>
       </EuiFocusTrap>
     );
-    /**
-     * Unless outsideClickCloses = true, then add the outside click detector
-     */
-    if (ownFocus === false && outsideClickCloses === true) {
-      flyout = (
-        <EuiFocusTrap disabled={isPushed} clickOutsideDisables={!ownFocus}>
-          {/* Outside click detector is needed if theres no overlay mask to auto-close when clicking on elements outside */}
-          <EuiOutsideClickDetector
-            isDisabled={isPushed}
-            onOutsideClick={() => onClose()}
-          >
-            {flyoutContent}
-          </EuiOutsideClickDetector>
-        </EuiFocusTrap>
-      );
-    }
+
     // If ownFocus is set, wrap with an overlay and allow the user to click it to close it.
-    if (ownFocus && !isPushed) {
+    if (isDefaultConfiguration) {
       flyout = (
-        <EuiOverlayMask
-          onClick={outsideClickCloses === false ? undefined : onClose}
-          headerZindexLocation="below"
-          {...maskProps}
-        >
+        <EuiOverlayMask headerZindexLocation="below" {...maskProps}>
           {flyout}
         </EuiOverlayMask>
       );

@@ -77,10 +77,8 @@ export const _barIndex = (
     // so we apply transforms which are overridden by the animation if animations are allowed
     transform: translateY(${22 * index}%);
 
-    ${euiCanAnimate(
-      css`
-        animation: ${barAnimation} 1s ${`.${index}s`} infinite;
-      `
-    )}
+    ${euiCanAnimate} {
+      animation: ${barAnimation} 1s ${`.${index}s`} infinite;
+    }
   `;
 };

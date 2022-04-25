@@ -15,7 +15,7 @@ import {
   EuiThemeBase,
   EuiThemeSize,
 } from '../../global_styling/variables/_size';
-import { EuiThemeFont } from '../../global_styling/variables/_typography';
+import { EuiThemeFont } from '../../global_styling/variables/typography';
 import { _EuiThemeFocus } from '../../global_styling/variables/_states';
 
 export const COLOR_MODES_STANDARD = {
