@@ -13,53 +13,56 @@ import { useDebouncedUpdate } from '../hooks';
 
 import { ThemeValue } from './_values';
 
-import { EuiThemeBreakpoints } from '../_props';
+import { EuiThemeLevelsProps } from '../_props';
 
 export default ({ onThemeUpdate }) => {
   const { euiTheme } = useEuiTheme();
-  const breakpoint = euiTheme.breakpoint;
-  const [breakpointClone, updateBreakpoint] = useDebouncedUpdate({
-    property: 'breakpoint',
-    value: breakpoint,
+  const levels = euiTheme.levels;
+  const [levelClone, updateLevel] = useDebouncedUpdate({
+    property: 'levels',
+    value: levels,
     onUpdate: onThemeUpdate,
   });
 
-  const breakpointTypes = getPropsFromComponent(EuiThemeBreakpoints);
+  const levelsTypes = getPropsFromComponent(EuiThemeLevelsProps);
 
   return (
     <div>
       <EuiText>
-        <h2>Breakpoints</h2>
+        <h2>Levels (z-index)</h2>
       </EuiText>
       <EuiSpacer size="xl" />
       <EuiPanel color="subdued">
         <EuiTitle size="xs">
           <h3>
-            <code>EuiThemeBreakpoint</code>
+            <code>_EuiThemeLevels</code>
           </h3>
         </EuiTitle>
         <EuiSpacer size="s" />
         <EuiText size="s" grow={false}>
           <p>
-            This default set of breakpoint tokens specify the{' '}
-            <strong>minimum</strong> window size and are used throughout EUI.
-            You can always customize or add more keys as needed.
+            This list is a stringent set of leveling constants. It is fragile
+            and yet the values should be considered only competitive as
+            siblings.
           </p>
         </EuiText>
 
         <EuiSpacer />
 
-        {Object.keys(breakpointTypes).map((prop) => {
+        {Object.keys(levelsTypes).map((prop) => {
           return (
             <ThemeValue
               key={prop}
-              property="breakpoint"
-              type={breakpointTypes[prop]}
+              property="levels"
+              type={levelsTypes[prop]}
               name={prop}
-              value={breakpointClone[prop]}
-              onUpdate={(value) => updateBreakpoint(prop, value)}
+              value={levelClone[prop]}
+              onUpdate={(value) => updateLevel(prop, value)}
               groupProps={{
                 alignItems: 'center',
+              }}
+              numberProps={{
+                style: { width: 140 },
               }}
             />
           );
