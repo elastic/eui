@@ -8,9 +8,13 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
+import { euiTextBreakWord } from '../../global_styling';
 
 export const euiTitleStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiTitle: css`
+    ${euiTextBreakWord}
+    color: ${euiTheme.colors.title};
+
     & + & {
       margin-top: ${euiTheme.size.l};
     }
