@@ -15,6 +15,8 @@ import { CommonProps } from '../common';
 import { EuiIcon, IconColor } from '../icon';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 
+export const TEXT_SIZES = ['xs', 's', 'm', 'inherit'] as const;
+
 export type EuiHealthProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
     /**
@@ -27,7 +29,7 @@ export type EuiHealthProps = CommonProps &
      * Matches the text scales of EuiText.
      * The `inherit` style will get its font size from the parent element
      */
-    textSize?: 'xs' | 's' | 'm' | 'inherit';
+    textSize?: typeof TEXT_SIZES[number];
   };
 
 export const EuiHealth: FunctionComponent<EuiHealthProps> = ({
