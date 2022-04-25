@@ -39,21 +39,21 @@ export default ({
         description={speedDescription}
         example={
           <div
-            css={css(
-              euiCanAnimate(`
-              transition: background ${euiTheme.animation.slow};
+            css={css`
+              ${euiCanAnimate} {
+                transition: background ${euiTheme.animation.slow};
 
-              :hover {
-                background: ${transparentize(euiTheme.colors.danger, 0.25)};
+                :hover {
+                  background: ${transparentize(euiTheme.colors.danger, 0.25)};
+                }
               }
-            `)
-            )}
+            `}
           >
             <strong>Hover me</strong>
           </div>
         }
         snippet={
-          'css(euiCanAnimate(`transition: background ${euiTheme.animation.slow};`))'
+          'css`${euiCanAnimate}{transition: background ${euiTheme.animation.slow};}`'
         }
         snippetLanguage="ts"
       />
@@ -89,24 +89,24 @@ export default ({
         description={easeDescription}
         example={
           <div
-            css={css(
-              euiCanAnimate(`
-              padding: ${euiTheme.size.s};
-              transition: padding ${euiTheme.animation.slow}
-                ${euiTheme.animation.resistance};
+            css={css`
+              ${euiCanAnimate} {
+                padding: ${euiTheme.size.s};
+                transition: padding ${euiTheme.animation.slow}
+                  ${euiTheme.animation.resistance};
 
-              &:hover {
-                padding: ${euiTheme.size.xl};
+                &:hover {
+                  padding: ${euiTheme.size.xl};
+                }
               }
-            `)
-            )}
+            `}
           >
             <strong>Hover me</strong>
           </div>
         }
         snippetLanguage="ts"
         snippet={
-          'css(euiCanAnimate(`transition: padding ${euiTheme.animation.slow} ${euiTheme.animation.resistance}`))'
+          'css`${euiCanAnimate}{transition: padding ${euiTheme.animation.slow} ${euiTheme.animation.resistance};}`'
         }
       />
 

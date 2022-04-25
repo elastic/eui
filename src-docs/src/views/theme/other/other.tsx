@@ -119,16 +119,17 @@ export default () => {
       <EuiCallOut
         color="warning"
         iconType="accessibility"
-        title={<code>euiCanAnimate()</code>}
+        title={<code>euiCanAnimate</code>}
       >
         <p>
           For accessbility support, we highly recommend always wrapping
-          animations and transitions with this {showSass ? 'mixin' : 'function'}
+          animations and transitions with this {showSass ? 'mixin' : 'constant'}
           . It wraps the contents in a <EuiCode>prefers-reduced-motion</EuiCode>{' '}
           media query to ensure the animations do not run if the user has this
           preference turned off. There is also a counterpart{' '}
-          {showSass ? 'mixin' : 'function'} for running content only if the user
-          has the setting turned off called <EuiCode>euiCantAnimate()</EuiCode>.
+          {showSass ? 'mixin' : 'constant'} for applying content only if the
+          user has the setting turned off called{' '}
+          <EuiCode>euiCantAnimate</EuiCode>.
         </p>
       </EuiCallOut>
 
