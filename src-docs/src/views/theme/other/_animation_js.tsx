@@ -13,6 +13,14 @@ import { getPropsFromComponent } from '../../../services/props/get_props';
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 
+const canAnimateString = `\${euiCanAnimate}{
+    transition: background \${euiTheme.animation.slow};
+  }`;
+
+const animationString = `\${euiCanAnimate}{
+    transition: padding \${euiTheme.animation.slow} \${euiTheme.animation.resistance};
+  }`;
+
 export default ({
   speedDescription,
   easeDescription,
@@ -52,10 +60,7 @@ export default ({
             <strong>Hover me</strong>
           </div>
         }
-        snippet={
-          'css`${euiCanAnimate}{transition: background ${euiTheme.animation.slow};}`'
-        }
-        snippetLanguage="ts"
+        snippet={canAnimateString}
       />
 
       <ThemeValuesTable
@@ -104,10 +109,7 @@ export default ({
             <strong>Hover me</strong>
           </div>
         }
-        snippetLanguage="ts"
-        snippet={
-          'css`${euiCanAnimate}{transition: padding ${euiTheme.animation.slow} ${euiTheme.animation.resistance};}`'
-        }
+        snippet={animationString}
       />
 
       <ThemeValuesTable
