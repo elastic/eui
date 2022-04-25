@@ -546,7 +546,9 @@ exports[`EuiDualRange props loading should display when showInput="inputWithPopo
             class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
           >
             <span
-              class="euiLoadingSpinner css-zd4oi4-euiLoadingSpinner-m"
+              aria-label="Loading"
+              class="euiLoadingSpinner css-8qqjsk-euiLoadingSpinner-m"
+              role="progressbar"
             />
           </div>
         </div>

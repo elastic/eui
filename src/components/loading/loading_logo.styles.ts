@@ -7,7 +7,7 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import { euiCanAnimate } from '../../global_styling/variables/_animations';
+import { _EuiThemeSize, euiCanAnimate } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 const loadingPulsateAndFade = keyframes`
@@ -40,7 +40,11 @@ const loadingPulsate = keyframes`
   }
 `;
 
-const loadingAnimationDistance = { m: 's', l: 'm', xl: 'base' };
+const loadingAnimationDistance: { [key: string]: _EuiThemeSize } = {
+  m: 's',
+  l: 'm',
+  xl: 'base',
+};
 
 export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
   return {

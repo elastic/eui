@@ -17,7 +17,6 @@ import {
 } from './loading_spinner.styles';
 
 export const SIZES = keysOf(spinnerSizes);
-
 export type EuiLoadingSpinnerSize = keyof typeof spinnerSizes;
 
 export type EuiLoadingSpinnerProps = CommonProps &
@@ -33,6 +32,7 @@ export const EuiLoadingSpinner: FunctionComponent<EuiLoadingSpinnerProps> = ({
 }) => {
   const euiTheme = useEuiTheme();
   const styles = euiLoadingSpinnerStyles(euiTheme);
+  // @ts-ignore TODO
   const cssStyles = [styles.euiLoadingSpinner, styles[size]];
   const classes = classNames('euiLoadingSpinner', className);
   const defaultLabel = useLoadingAriaLabel();

@@ -7,7 +7,7 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import { euiCanAnimate } from '../../global_styling/variables/_animations';
+import { euiCanAnimate } from '../../global_styling';
 import { COLOR_MODES_STANDARD, shade, tint, UseEuiTheme } from '../../services';
 
 const loadingContentGradient = keyframes`

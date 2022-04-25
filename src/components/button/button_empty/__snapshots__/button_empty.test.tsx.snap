@@ -312,7 +312,9 @@ exports[`EuiButtonEmpty props isLoading is rendered 1`] = `
     class="euiButtonContent euiButtonEmpty__content"
   >
     <span
-      class="euiLoadingSpinner euiButtonContent__spinner css-zd4oi4-euiLoadingSpinner-m"
+      aria-label="Loading"
+      class="euiLoadingSpinner euiButtonContent__spinner css-8qqjsk-euiLoadingSpinner-m"
+      role="progressbar"
     />
     <span
       class="euiButtonEmpty__text"
