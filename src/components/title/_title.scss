@@ -1,13 +1,3 @@
-.euiTitle {
-  + .euiTitle {
-    margin-top: $euiSizeL;
-  }
-}
-
-.euiTitle--uppercase {
-  text-transform: uppercase;
-}
-
 .euiTitle--xxxsmall {
   @include euiTitle('xxxs');
 }

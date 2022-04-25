@@ -6,8 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactElement } from 'react';
+import { FunctionComponent, ReactElement } from 'react';
 import classNames from 'classnames';
+import { useEuiTheme } from '../../services';
+import { cloneElementWithCss } from '../../services/theme/clone_element';
+import { euiTitleStyles } from './title.styles';
 import { CommonProps, keysOf } from '../common';
 
 const titleSizeToClassNameMap = {
@@ -46,6 +49,12 @@ export const EuiTitle: FunctionComponent<EuiTitleProps> = ({
   textTransform,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiTitleStyles(euiTheme);
+  const cssStyles = [
+    styles.euiTitle,
+    textTransform ? styles[textTransform] : undefined,
+  ];
   const classes = classNames(
     'euiTitle',
     titleSizeToClassNameMap[size],
@@ -55,9 +64,10 @@ export const EuiTitle: FunctionComponent<EuiTitleProps> = ({
   );
 
   const props = {
+    css: cssStyles,
     className: classes,
     ...rest,
   };
 
-  return React.cloneElement(children, props);
+  return cloneElementWithCss(children, props);
 };
