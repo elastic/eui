@@ -88,10 +88,9 @@ export const ProviderExample = {
           </h3>
           <p>
             In the case that your app has its own static stylesheet,{' '}
-            <EuiCode>@emotion</EuiCode>{' '}
-            styles may not be injected into the correct location in the{' '}
-            <EuiCode>{'<head>'}</EuiCode>, causing unintentional overrides or
-            unapplied styles.{' '}
+            <EuiCode>@emotion</EuiCode> styles may not be injected into the
+            correct location in the <EuiCode>{'<head>'}</EuiCode>, causing
+            unintentional overrides or unapplied styles.{' '}
             <EuiLink href="https://emotion.sh/docs/@emotion/cache" external>
               The <strong>@emotion/cache</strong> library
             </EuiLink>{' '}
