@@ -854,7 +854,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                               <div>
                                 <p>
                                   This editor uses
-
+                                   
                                   <a
                                     class="euiLink euiLink--primary"
                                     href="https://guides.github.com/features/mastering-markdown/"
@@ -1083,7 +1083,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                                           >
                                             <p>
                                               This editor uses
-
+                                               
                                               <EuiLink
                                                 href="https://guides.github.com/features/mastering-markdown/"
                                                 target="_blank"
