@@ -36,7 +36,7 @@ export const EuiComponent = () => {
 
 ## CSS-aligned props
 
-If a prop/value pair maps 1:1 to the CSS property: value, pass the value straight through
+If a prop/value pair maps 1:1 to the CSS property: value, pass the value straight through. We encounter this scenario when it is apparent that a given css property is core to configuring a component, and it doesn't make sense to use an abstraction.
 
 ```tsx
 position?: CSSProperties['position'];
