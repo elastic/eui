@@ -58,7 +58,7 @@ const _componentSize = ({
 The helper function can then be used in the exported style block:
 
 ```ts
-export const euiComponentStyles = ({ euiTheme }: UseEuiTheme) => ({
+export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Sizes
   s: css(
     _componentSize({
