@@ -6,19 +6,16 @@
  * Side Public License, v 1.
  */
 
-export type _EuiBreakpointSize = 'xs' | 's' | 'm' | 'l' | 'xl';
+import { _EuiThemeLevels } from '../../../../global_styling/variables';
 
-export type EuiThemeBreakpoint = {
-  /**
-   * Set the minimum window width at which to start to the breakpoint
-   */
-  [key in _EuiBreakpointSize]: number;
-};
-
-export const breakpoint: EuiThemeBreakpoint = {
-  xl: 1200,
-  l: 992,
-  m: 768,
-  s: 575,
-  xs: 0,
+export const levels: _EuiThemeLevels = {
+  toast: 9000,
+  modal: 8000,
+  mask: 6000,
+  navigation: 6000,
+  menu: 2000,
+  header: 1000,
+  flyout: 1000,
+  maskBelowHeader: 1000,
+  content: 0,
 };

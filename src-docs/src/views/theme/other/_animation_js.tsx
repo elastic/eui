@@ -4,14 +4,22 @@ import { keysOf, useEuiTheme, transparentize } from '../../../../../src';
 
 import {
   euiCanAnimate,
-  _EuiThemeAnimationEasing,
-  _EuiThemeAnimationSpeed,
-} from '../../../../../src/global_styling/variables/_animations';
+  _EuiThemeAnimationEasings,
+  _EuiThemeAnimationSpeeds,
+} from '../../../../../src/global_styling/variables/animations';
 
 import { EuiThemeAnimationSpeed, EuiThemeAnimationEasing } from '../_props';
 import { getPropsFromComponent } from '../../../services/props/get_props';
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
+
+const canAnimateString = `\${euiCanAnimate}{
+    transition: background \${euiTheme.animation.slow};
+  }`;
+
+const animationString = `\${euiCanAnimate}{
+    transition: padding \${euiTheme.animation.slow} \${euiTheme.animation.resistance};
+  }`;
 
 export default ({
   speedDescription,
@@ -25,11 +33,11 @@ export default ({
 
   const speedTypes = (getPropsFromComponent(
     EuiThemeAnimationSpeed
-  ) as unknown) as _EuiThemeAnimationSpeed;
+  ) as unknown) as _EuiThemeAnimationSpeeds;
   const speeds = keysOf(speedTypes);
   const easingTypes = (getPropsFromComponent(
     EuiThemeAnimationEasing
-  ) as unknown) as _EuiThemeAnimationEasing;
+  ) as unknown) as _EuiThemeAnimationEasings;
   const eases = keysOf(easingTypes);
 
   return (
@@ -52,10 +60,7 @@ export default ({
             <strong>Hover me</strong>
           </div>
         }
-        snippet={
-          'css`${euiCanAnimate}{transition: background ${euiTheme.animation.slow};}`'
-        }
-        snippetLanguage="ts"
+        snippet={canAnimateString}
       />
 
       <ThemeValuesTable
@@ -104,10 +109,7 @@ export default ({
             <strong>Hover me</strong>
           </div>
         }
-        snippetLanguage="ts"
-        snippet={
-          'css`${euiCanAnimate}{transition: padding ${euiTheme.animation.slow} ${euiTheme.animation.resistance};}`'
-        }
+        snippet={animationString}
       />
 
       <ThemeValuesTable

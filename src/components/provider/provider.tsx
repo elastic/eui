@@ -9,7 +9,10 @@
 import React, { PropsWithChildren } from 'react';
 import { EmotionCache } from '@emotion/react';
 
-import { EuiGlobalStyles, EuiGlobalStylesProps } from '../../global_styling';
+import {
+  EuiGlobalStyles,
+  EuiGlobalStylesProps,
+} from '../../global_styling/reset/global_styles';
 import {
   EuiThemeProvider,
   EuiThemeProviderProps,
