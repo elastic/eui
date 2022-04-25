@@ -7,6 +7,7 @@
  */
 
 import { css, keyframes } from '@emotion/react';
+import { euiCanAnimate } from '../../global_styling/variables/_animations';
 
 const loadingElastic = keyframes`
   0% {
@@ -39,16 +40,16 @@ export const euiLoadingElasticStyles = () => {
       display: inline-block;
 
       & path {
-        /* @include euiCanAnimate { */
-        animation-name: ${loadingElastic};
-        /* } */
-        animation-fill-mode: forwards;
-        animation-direction: alternate;
-        transform-style: preserve-3d;
-        animation-duration: 1s;
-        animation-timing-function: cubic-bezier(0, 0.63, 0.49, 1);
-        animation-iteration-count: infinite;
-        transform-origin: 50% 50%;
+        ${euiCanAnimate} {
+          animation-name: ${loadingElastic};
+          animation-fill-mode: forwards;
+          animation-direction: alternate;
+          transform-style: preserve-3d;
+          animation-duration: 1s;
+          animation-timing-function: cubic-bezier(0, 0.63, 0.49, 1);
+          animation-iteration-count: infinite;
+          transform-origin: 50% 50%;
+        }
 
         // Hide outline mainly for dark mode
         &:nth-of-type(1) {

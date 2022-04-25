@@ -7,13 +7,13 @@ exports[`EuiLoadingContent is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
 </span>
 `;
@@ -23,7 +23,7 @@ exports[`EuiLoadingContent lines 1 is rendered 1`] = `
   class="euiLoadingContent css-ie5a0n-euiLoadingContent"
 >
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
 </span>
 `;
@@ -33,10 +33,10 @@ exports[`EuiLoadingContent lines 2 is rendered 1`] = `
   class="euiLoadingContent css-ie5a0n-euiLoadingContent"
 >
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
 </span>
 `;
@@ -46,13 +46,13 @@ exports[`EuiLoadingContent lines 3 is rendered 1`] = `
   class="euiLoadingContent css-ie5a0n-euiLoadingContent"
 >
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
 </span>
 `;
@@ -62,16 +62,16 @@ exports[`EuiLoadingContent lines 4 is rendered 1`] = `
   class="euiLoadingContent css-ie5a0n-euiLoadingContent"
 >
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
 </span>
 `;
@@ -81,19 +81,19 @@ exports[`EuiLoadingContent lines 5 is rendered 1`] = `
   class="euiLoadingContent css-ie5a0n-euiLoadingContent"
 >
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
 </span>
 `;
@@ -103,22 +103,22 @@ exports[`EuiLoadingContent lines 6 is rendered 1`] = `
   class="euiLoadingContent css-ie5a0n-euiLoadingContent"
 >
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
 </span>
 `;
@@ -128,25 +128,25 @@ exports[`EuiLoadingContent lines 7 is rendered 1`] = `
   class="euiLoadingContent css-ie5a0n-euiLoadingContent"
 >
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
 </span>
 `;
@@ -156,28 +156,28 @@ exports[`EuiLoadingContent lines 8 is rendered 1`] = `
   class="euiLoadingContent css-ie5a0n-euiLoadingContent"
 >
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
 </span>
 `;
@@ -187,31 +187,31 @@ exports[`EuiLoadingContent lines 9 is rendered 1`] = `
   class="euiLoadingContent css-ie5a0n-euiLoadingContent"
 >
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
 </span>
 `;
@@ -221,34 +221,34 @@ exports[`EuiLoadingContent lines 10 is rendered 1`] = `
   class="euiLoadingContent css-ie5a0n-euiLoadingContent"
 >
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
   <span
-    class="css-ugvg4-euiLoadingContent__singleLine"
+    class="css-19nbww1-euiLoadingContent__singleLine"
   />
 </span>
 `;

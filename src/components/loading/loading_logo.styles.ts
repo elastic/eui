@@ -7,6 +7,7 @@
  */
 
 import { css, keyframes } from '@emotion/react';
+import { euiCanAnimate } from '../../global_styling/variables/_animations';
 import { UseEuiTheme } from '../../services';
 
 const loadingPulsateAndFade = keyframes`
@@ -47,17 +48,17 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
       position: relative;
       display: inline-block;
 
-      // TODO
-      /* @include euiCanAnimate { */
-      &:before,
-      &:after {
-        position: absolute;
-        content: '';
-        width: 90%;
-        inset-inline-start: 5%;
-        border-radius: 50%;
-        opacity: 0.2;
-        z-index: 1;
+      ${euiCanAnimate} {
+        &:before,
+        &:after {
+          position: absolute;
+          content: '';
+          width: 90%;
+          inset-inline-start: 5%;
+          border-radius: 50%;
+          opacity: 0.2;
+          z-index: 1;
+        }
       }
 
       &:before {
@@ -122,10 +123,10 @@ export const euiLoadingLogoIconStyles = ({ euiTheme }: UseEuiTheme) => {
 
   return {
     euiLoadingLogo__icon: css`
-      /* @include euiCanAnimate { */
-      animation: 1s ${loadingBounce('m')} ${euiTheme.animation.resistance}
-        infinite;
-      /* } */
+      ${euiCanAnimate} {
+        animation: 1s ${loadingBounce('m')} ${euiTheme.animation.resistance}
+          infinite;
+      }
     `,
 
     m: css`

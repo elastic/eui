@@ -7,6 +7,7 @@
  */
 
 import { css, keyframes } from '@emotion/react';
+import { euiCanAnimate } from '../../global_styling/variables/_animations';
 import { UseEuiTheme } from '../../services';
 
 const _loadingSpinner = keyframes`
@@ -43,10 +44,9 @@ export const euiLoadingSpinnerStyles = ({ euiTheme }: UseEuiTheme) => {
         euiTheme.colors.primary
       )};
 
-      // sass-lint:disable-block mixins-before-declarations
-      // @include euiCanAnimate {
-      animation: ${_loadingSpinner} 0.6s infinite linear;
-      // }
+      ${euiCanAnimate} {
+        animation: ${_loadingSpinner} 0.6s infinite linear;
+      }
     `,
 
     // Sizes

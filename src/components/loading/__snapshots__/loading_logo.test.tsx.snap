@@ -3,11 +3,11 @@
 exports[`EuiLoadingLogo is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiLoadingLogo euiLoadingLogo--medium testClass1 testClass2 css-6lp3yt-euiLoadingLogo-m"
+  class="euiLoadingLogo euiLoadingLogo--medium testClass1 testClass2 css-1p1obsq-euiLoadingLogo-m"
   data-test-subj="test subject string"
 >
   <span
-    class="css-ytp54n-euiLoadingLogo__icon-m"
+    class="css-vpqaeu-euiLoadingLogo__icon-m"
     data-euiicon-type="logoKibana"
   />
 </span>
@@ -16,11 +16,11 @@ exports[`EuiLoadingLogo is rendered 1`] = `
 exports[`EuiLoadingLogo logo is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiLoadingLogo euiLoadingLogo--medium testClass1 testClass2 css-6lp3yt-euiLoadingLogo-m"
+  class="euiLoadingLogo euiLoadingLogo--medium testClass1 testClass2 css-1p1obsq-euiLoadingLogo-m"
   data-test-subj="test subject string"
 >
   <span
-    class="css-ytp54n-euiLoadingLogo__icon-m"
+    class="css-vpqaeu-euiLoadingLogo__icon-m"
     data-euiicon-type="logoElastic"
   />
 </span>
@@ -28,10 +28,10 @@ exports[`EuiLoadingLogo logo is rendered 1`] = `
 
 exports[`EuiLoadingLogo size l is rendered 1`] = `
 <span
-  class="euiLoadingLogo euiLoadingLogo--large css-1xfawa5-euiLoadingLogo-l"
+  class="euiLoadingLogo euiLoadingLogo--large css-rtjevd-euiLoadingLogo-l"
 >
   <span
-    class="css-1mtxh22-euiLoadingLogo__icon-l"
+    class="css-13j96yi-euiLoadingLogo__icon-l"
     data-euiicon-type="logoKibana"
   />
 </span>
@@ -39,10 +39,10 @@ exports[`EuiLoadingLogo size l is rendered 1`] = `
 
 exports[`EuiLoadingLogo size m is rendered 1`] = `
 <span
-  class="euiLoadingLogo euiLoadingLogo--medium css-6lp3yt-euiLoadingLogo-m"
+  class="euiLoadingLogo euiLoadingLogo--medium css-1p1obsq-euiLoadingLogo-m"
 >
   <span
-    class="css-ytp54n-euiLoadingLogo__icon-m"
+    class="css-vpqaeu-euiLoadingLogo__icon-m"
     data-euiicon-type="logoKibana"
   />
 </span>
@@ -50,10 +50,10 @@ exports[`EuiLoadingLogo size m is rendered 1`] = `
 
 exports[`EuiLoadingLogo size xl is rendered 1`] = `
 <span
-  class="euiLoadingLogo euiLoadingLogo--xLarge css-tfd6v0-euiLoadingLogo-xl"
+  class="euiLoadingLogo euiLoadingLogo--xLarge css-vmvkmp-euiLoadingLogo-xl"
 >
   <span
-    class="css-1sd6gfb-euiLoadingLogo__icon-xl"
+    class="css-tt9ufr-euiLoadingLogo__icon-xl"
     data-euiicon-type="logoKibana"
   />
 </span>

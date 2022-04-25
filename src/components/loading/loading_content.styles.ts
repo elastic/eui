@@ -7,6 +7,7 @@
  */
 
 import { css, keyframes } from '@emotion/react';
+import { euiCanAnimate } from '../../global_styling/variables/_animations';
 import { COLOR_MODES_STANDARD, shade, tint, UseEuiTheme } from '../../services';
 
 const loadingContentGradient = keyframes`
@@ -63,9 +64,10 @@ export const euiLoadingContentStyles = ({
           ${gradientStartStop} 55%
         );
 
-        // TODO: WRAP IN EuiCanAnimate once fix is merged
-        animation: ${loadingContentGradient} 1.5s
-          ${euiTheme.animation.resistance} infinite;
+        ${euiCanAnimate} {
+          animation: ${loadingContentGradient} 1.5s
+            ${euiTheme.animation.resistance} infinite;
+        }
       }
     `,
   };
