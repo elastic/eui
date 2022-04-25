@@ -5,6 +5,7 @@ exports[`EuiLoadingElastic is rendered 1`] = `
   aria-label="aria-label"
   class="euiLoadingElastic euiLoadingElastic--medium testClass1 testClass2 css-1gqpwx6-euiLoadingElastic"
   data-test-subj="test subject string"
+  role="progressbar"
 >
   <span
     data-euiicon-type="logoElastic"
@@ -14,7 +15,9 @@ exports[`EuiLoadingElastic is rendered 1`] = `
 
 exports[`EuiLoadingElastic size l is rendered 1`] = `
 <span
+  aria-label="Loading"
   class="euiLoadingElastic euiLoadingElastic--large css-1gqpwx6-euiLoadingElastic"
+  role="progressbar"
 >
   <span
     data-euiicon-type="logoElastic"
@@ -24,7 +27,9 @@ exports[`EuiLoadingElastic size l is rendered 1`] = `
 
 exports[`EuiLoadingElastic size m is rendered 1`] = `
 <span
+  aria-label="Loading"
   class="euiLoadingElastic euiLoadingElastic--medium css-1gqpwx6-euiLoadingElastic"
+  role="progressbar"
 >
   <span
     data-euiicon-type="logoElastic"
@@ -34,7 +39,9 @@ exports[`EuiLoadingElastic size m is rendered 1`] = `
 
 exports[`EuiLoadingElastic size xl is rendered 1`] = `
 <span
+  aria-label="Loading"
   class="euiLoadingElastic euiLoadingElastic--xLarge css-1gqpwx6-euiLoadingElastic"
+  role="progressbar"
 >
   <span
     data-euiicon-type="logoElastic"
@@ -44,7 +51,9 @@ exports[`EuiLoadingElastic size xl is rendered 1`] = `
 
 exports[`EuiLoadingElastic size xxl is rendered 1`] = `
 <span
+  aria-label="Loading"
   class="euiLoadingElastic euiLoadingElastic--xxLarge css-1gqpwx6-euiLoadingElastic"
+  role="progressbar"
 >
   <span
     data-euiicon-type="logoElastic"

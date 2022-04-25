@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 import { EuiIcon, IconType } from '../icon';
 import { useEuiTheme } from '../../services';
+import { useLoadingAriaLabel } from './_loading_strings';
 import {
   euiLoadingLogoStyles,
   euiLoadingLogoIconStyles,
@@ -37,10 +38,12 @@ export type EuiLoadingLogoProps = CommonProps &
 export const EuiLoadingLogo: FunctionComponent<EuiLoadingLogoProps> = ({
   size = 'm',
   logo = 'logoKibana',
+  'aria-label': ariaLabel,
   className,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
+  const defaultLabel = useLoadingAriaLabel();
 
   const styles = euiLoadingLogoStyles(euiTheme);
   const cssStyles = [styles.euiLoadingLogo, styles[size]];
@@ -55,7 +58,13 @@ export const EuiLoadingLogo: FunctionComponent<EuiLoadingLogoProps> = ({
   );
 
   return (
-    <span className={classes} css={cssStyles} {...rest}>
+    <span
+      className={classes}
+      css={cssStyles}
+      role="progressbar"
+      aria-label={ariaLabel || defaultLabel}
+      {...rest}
+    >
       <EuiIcon css={iconCssStyles} type={logo} size={size} />
     </span>
   );

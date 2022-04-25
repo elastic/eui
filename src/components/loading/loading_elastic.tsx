@@ -10,6 +10,7 @@ import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 import { EuiIcon } from '../icon';
+import { useLoadingAriaLabel } from './_loading_strings';
 import { euiLoadingElasticStyles } from './loading_elastic.styles';
 
 // TODO
@@ -28,9 +29,10 @@ export interface EuiLoadingElasticProps {
 
 export const EuiLoadingElastic: FunctionComponent<
   CommonProps & HTMLAttributes<HTMLDivElement> & EuiLoadingElasticProps
-> = ({ size = 'm', className, ...rest }) => {
+> = ({ size = 'm', className, 'aria-label': ariaLabel, ...rest }) => {
   const styles = euiLoadingElasticStyles();
   const cssStyles = [styles.euiLoadingElastic];
+  const defaultLabel = useLoadingAriaLabel();
 
   const classes = classNames(
     'euiLoadingElastic',
@@ -39,7 +41,13 @@ export const EuiLoadingElastic: FunctionComponent<
   );
 
   return (
-    <span className={classes} css={cssStyles} {...rest}>
+    <span
+      className={classes}
+      css={cssStyles}
+      role="progressbar"
+      aria-label={ariaLabel || defaultLabel}
+      {...rest}
+    >
       <EuiIcon type="logoElastic" size={size} />
     </span>
   );

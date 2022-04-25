@@ -5,6 +5,7 @@ exports[`EuiLoadingContent is rendered 1`] = `
   aria-label="aria-label"
   class="euiLoadingContent testClass1 testClass2 css-ie5a0n-euiLoadingContent"
   data-test-subj="test subject string"
+  role="progressbar"
 >
   <span
     class="css-19nbww1-euiLoadingContent__singleLine"
@@ -20,7 +21,9 @@ exports[`EuiLoadingContent is rendered 1`] = `
 
 exports[`EuiLoadingContent lines 1 is rendered 1`] = `
 <span
+  aria-label="Loading"
   class="euiLoadingContent css-ie5a0n-euiLoadingContent"
+  role="progressbar"
 >
   <span
     class="css-19nbww1-euiLoadingContent__singleLine"
@@ -30,7 +33,9 @@ exports[`EuiLoadingContent lines 1 is rendered 1`] = `
 
 exports[`EuiLoadingContent lines 2 is rendered 1`] = `
 <span
+  aria-label="Loading"
   class="euiLoadingContent css-ie5a0n-euiLoadingContent"
+  role="progressbar"
 >
   <span
     class="css-19nbww1-euiLoadingContent__singleLine"
@@ -43,7 +48,9 @@ exports[`EuiLoadingContent lines 2 is rendered 1`] = `
 
 exports[`EuiLoadingContent lines 3 is rendered 1`] = `
 <span
+  aria-label="Loading"
   class="euiLoadingContent css-ie5a0n-euiLoadingContent"
+  role="progressbar"
 >
   <span
     class="css-19nbww1-euiLoadingContent__singleLine"
@@ -59,7 +66,9 @@ exports[`EuiLoadingContent lines 3 is rendered 1`] = `
 
 exports[`EuiLoadingContent lines 4 is rendered 1`] = `
 <span
+  aria-label="Loading"
   class="euiLoadingContent css-ie5a0n-euiLoadingContent"
+  role="progressbar"
 >
   <span
     class="css-19nbww1-euiLoadingContent__singleLine"
@@ -78,7 +87,9 @@ exports[`EuiLoadingContent lines 4 is rendered 1`] = `
 
 exports[`EuiLoadingContent lines 5 is rendered 1`] = `
 <span
+  aria-label="Loading"
   class="euiLoadingContent css-ie5a0n-euiLoadingContent"
+  role="progressbar"
 >
   <span
     class="css-19nbww1-euiLoadingContent__singleLine"
@@ -100,7 +111,9 @@ exports[`EuiLoadingContent lines 5 is rendered 1`] = `
 
 exports[`EuiLoadingContent lines 6 is rendered 1`] = `
 <span
+  aria-label="Loading"
   class="euiLoadingContent css-ie5a0n-euiLoadingContent"
+  role="progressbar"
 >
   <span
     class="css-19nbww1-euiLoadingContent__singleLine"
@@ -125,7 +138,9 @@ exports[`EuiLoadingContent lines 6 is rendered 1`] = `
 
 exports[`EuiLoadingContent lines 7 is rendered 1`] = `
 <span
+  aria-label="Loading"
   class="euiLoadingContent css-ie5a0n-euiLoadingContent"
+  role="progressbar"
 >
   <span
     class="css-19nbww1-euiLoadingContent__singleLine"
@@ -153,7 +168,9 @@ exports[`EuiLoadingContent lines 7 is rendered 1`] = `
 
 exports[`EuiLoadingContent lines 8 is rendered 1`] = `
 <span
+  aria-label="Loading"
   class="euiLoadingContent css-ie5a0n-euiLoadingContent"
+  role="progressbar"
 >
   <span
     class="css-19nbww1-euiLoadingContent__singleLine"
@@ -184,7 +201,9 @@ exports[`EuiLoadingContent lines 8 is rendered 1`] = `
 
 exports[`EuiLoadingContent lines 9 is rendered 1`] = `
 <span
+  aria-label="Loading"
   class="euiLoadingContent css-ie5a0n-euiLoadingContent"
+  role="progressbar"
 >
   <span
     class="css-19nbww1-euiLoadingContent__singleLine"
@@ -218,7 +237,9 @@ exports[`EuiLoadingContent lines 9 is rendered 1`] = `
 
 exports[`EuiLoadingContent lines 10 is rendered 1`] = `
 <span
+  aria-label="Loading"
   class="euiLoadingContent css-ie5a0n-euiLoadingContent"
+  role="progressbar"
 >
   <span
     class="css-19nbww1-euiLoadingContent__singleLine"

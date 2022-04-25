@@ -10,6 +10,7 @@ import React, { HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps, keysOf } from '../common';
 import classNames from 'classnames';
 import { useEuiTheme } from '../..//services';
+import { useLoadingAriaLabel } from './_loading_strings';
 import {
   euiLoadingSpinnerStyles,
   spinnerSizes,
@@ -27,12 +28,22 @@ export type EuiLoadingSpinnerProps = CommonProps &
 export const EuiLoadingSpinner: FunctionComponent<EuiLoadingSpinnerProps> = ({
   size = 'm',
   className,
+  'aria-label': ariaLabel,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
   const styles = euiLoadingSpinnerStyles(euiTheme);
   const cssStyles = [styles.euiLoadingSpinner, styles[size]];
   const classes = classNames('euiLoadingSpinner', className);
+  const defaultLabel = useLoadingAriaLabel();
 
-  return <span className={classes} css={cssStyles} {...rest} />;
+  return (
+    <span
+      className={classes}
+      css={cssStyles}
+      role="progressbar"
+      aria-label={ariaLabel || defaultLabel}
+      {...rest}
+    />
+  );
 };

@@ -10,6 +10,7 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
+import { useLoadingAriaLabel } from './_loading_strings';
 import { euiLoadingContentStyles } from './loading_content.styles';
 
 export type LineRange = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
@@ -22,12 +23,14 @@ export type EuiLoadingContentProps = CommonProps &
 export const EuiLoadingContent: FunctionComponent<EuiLoadingContentProps> = ({
   lines = 3,
   className,
+  'aria-label': ariaLabel,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
   const styles = euiLoadingContentStyles(euiTheme);
   const cssStyles = [styles.euiLoadingContent];
   const lineCssStyles = [styles.euiLoadingContent__singleLine];
+  const defaultLabel = useLoadingAriaLabel();
 
   const classes = classNames('euiLoadingContent', className);
   const lineElements = [];
@@ -37,7 +40,13 @@ export const EuiLoadingContent: FunctionComponent<EuiLoadingContentProps> = ({
   }
 
   return (
-    <span className={classes} css={cssStyles} {...rest}>
+    <span
+      className={classes}
+      css={cssStyles}
+      role="progressbar"
+      aria-label={ariaLabel || defaultLabel}
+      {...rest}
+    >
       {lineElements}
     </span>
   );
