@@ -104,20 +104,24 @@ export const formatSelectableButton = ({
   id,
   label,
   icon,
-}: FormatSelectableButtonArgs) => (
-  <EuiButtonIcon
-    color="text"
-    {...(selectedNode && selectedNode.type === id
-      ? {
-          style: { background: 'rgba(0, 0, 0, 0.15)' },
-        }
-      : null)}
-    onClick={() => handleMdButtonClick(id)}
-    iconType={icon}
-    aria-label={label}
-    isDisabled={!isEditable}
-  />
-);
+}: FormatSelectableButtonArgs) => {
+  const isSelected = selectedNode && selectedNode.type === id;
+  return (
+    <EuiButtonIcon
+      color="text"
+      {...(isSelected
+        ? {
+            style: { background: 'rgba(0, 0, 0, 0.15)' },
+          }
+        : null)}
+      onClick={() => handleMdButtonClick(id)}
+      iconType={icon}
+      aria-label={label}
+      aria-pressed={isSelected}
+      isDisabled={!isEditable}
+    />
+  );
+};
 
 export const EuiMarkdownEditorToolbar = forwardRef<
   HTMLDivElement,
@@ -139,7 +143,11 @@ export const EuiMarkdownEditorToolbar = forwardRef<
     const isEditable = !isPreviewing && !readOnly;
 
     return (
-      <div ref={ref} className="euiMarkdownEditorToolbar">
+      <div
+        ref={ref}
+        data-test-subj="euiMarkdownEditorToolbar"
+        className="euiMarkdownEditorToolbar"
+      >
         <div className="euiMarkdownEditorToolbar__buttons">
           {boldItalicButtons.map((item) => (
             <EuiToolTip key={item.id} content={item.label} delay="long">

@@ -89,19 +89,31 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
         MarkdownActions {
           "editorID": "editorId",
           "styles": Object {
-            "mdBold": Object {
+            "blockquote": Object {
               "button": Object {
                 "iconType": "",
                 "label": "",
               },
               "formatting": Object {
-                "prefix": "**",
-                "suffix": "**",
+                "multiline": true,
+                "prefix": "> ",
+                "surroundWithNewlines": true,
+              },
+              "name": "quote",
+            },
+            "emphasis": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "prefix": "_",
+                "suffix": "_",
                 "trimFirst": true,
               },
-              "name": "mdBold",
+              "name": "emphasis",
             },
-            "mdCode": Object {
+            "inlineCode": Object {
               "button": Object {
                 "iconType": "",
                 "label": "",
@@ -112,19 +124,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                 "prefix": "\`",
                 "suffix": "\`",
               },
-              "name": "mdCode",
-            },
-            "mdItalic": Object {
-              "button": Object {
-                "iconType": "",
-                "label": "",
-              },
-              "formatting": Object {
-                "prefix": "_",
-                "suffix": "_",
-                "trimFirst": true,
-              },
-              "name": "mdItalic",
+              "name": "inlineCode",
             },
             "mdLink": Object {
               "button": Object {
@@ -151,18 +151,6 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
               },
               "name": "mdOl",
             },
-            "mdQuote": Object {
-              "button": Object {
-                "iconType": "",
-                "label": "",
-              },
-              "formatting": Object {
-                "multiline": true,
-                "prefix": "> ",
-                "surroundWithNewlines": true,
-              },
-              "name": "mdQuote",
-            },
             "mdTl": Object {
               "button": Object {
                 "iconType": "",
@@ -187,15 +175,46 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
               },
               "name": "mdUl",
             },
+            "strong": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "prefix": "**",
+                "suffix": "**",
+                "trimFirst": true,
+              },
+              "name": "strong",
+            },
           },
         }
       }
       onClickPreview={[Function]}
+      selectedNode={
+        Object {
+          "children": Array [],
+          "position": Object {
+            "end": Object {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "root",
+        }
+      }
       uiPlugins={Array []}
       viewMode="editing"
     >
       <div
         className="euiMarkdownEditorToolbar"
+        data-test-subj="euiMarkdownEditorToolbar"
       >
         <div
           className="euiMarkdownEditorToolbar__buttons"
@@ -204,7 +223,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
             content="Bold"
             delay="long"
             display="inlineBlock"
-            key="mdBold"
+            key="strong"
             position="top"
           >
             <span
@@ -214,6 +233,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
             >
               <EuiButtonIcon
                 aria-label="Bold"
+                aria-pressed={false}
                 color="text"
                 iconType="editorBold"
                 isDisabled={false}
@@ -223,6 +243,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
               >
                 <button
                   aria-label="Bold"
+                  aria-pressed={false}
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
                   onBlur={[Function]}
                   onClick={[Function]}
@@ -252,7 +273,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
             content="Italic"
             delay="long"
             display="inlineBlock"
-            key="mdItalic"
+            key="emphasis"
             position="top"
           >
             <span
@@ -262,6 +283,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
             >
               <EuiButtonIcon
                 aria-label="Italic"
+                aria-pressed={false}
                 color="text"
                 iconType="editorItalic"
                 isDisabled={false}
@@ -271,6 +293,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
               >
                 <button
                   aria-label="Italic"
+                  aria-pressed={false}
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
                   onBlur={[Function]}
                   onClick={[Function]}
@@ -313,6 +336,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
             >
               <EuiButtonIcon
                 aria-label="Unordered list"
+                aria-pressed={false}
                 color="text"
                 iconType="editorUnorderedList"
                 isDisabled={false}
@@ -322,6 +346,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
               >
                 <button
                   aria-label="Unordered list"
+                  aria-pressed={false}
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
                   onBlur={[Function]}
                   onClick={[Function]}
@@ -361,6 +386,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
             >
               <EuiButtonIcon
                 aria-label="Ordered list"
+                aria-pressed={false}
                 color="text"
                 iconType="editorOrderedList"
                 isDisabled={false}
@@ -370,6 +396,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
               >
                 <button
                   aria-label="Ordered list"
+                  aria-pressed={false}
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
                   onBlur={[Function]}
                   onClick={[Function]}
@@ -409,6 +436,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
             >
               <EuiButtonIcon
                 aria-label="Task list"
+                aria-pressed={false}
                 color="text"
                 iconType="editorChecklist"
                 isDisabled={false}
@@ -418,6 +446,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
               >
                 <button
                   aria-label="Task list"
+                  aria-pressed={false}
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
                   onBlur={[Function]}
                   onClick={[Function]}
@@ -450,7 +479,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
             content="Quote"
             delay="long"
             display="inlineBlock"
-            key="mdQuote"
+            key="blockquote"
             position="top"
           >
             <span
@@ -460,6 +489,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
             >
               <EuiButtonIcon
                 aria-label="Quote"
+                aria-pressed={false}
                 color="text"
                 iconType="quote"
                 isDisabled={false}
@@ -469,6 +499,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
               >
                 <button
                   aria-label="Quote"
+                  aria-pressed={false}
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
                   onBlur={[Function]}
                   onClick={[Function]}
@@ -498,7 +529,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
             content="Code"
             delay="long"
             display="inlineBlock"
-            key="mdCode"
+            key="inlineCode"
             position="top"
           >
             <span
@@ -508,6 +539,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
             >
               <EuiButtonIcon
                 aria-label="Code"
+                aria-pressed={false}
                 color="text"
                 iconType="editorCodeBlock"
                 isDisabled={false}
@@ -517,6 +549,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
               >
                 <button
                   aria-label="Code"
+                  aria-pressed={false}
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
                   onBlur={[Function]}
                   onClick={[Function]}
@@ -546,7 +579,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
             content="Link"
             delay="long"
             display="inlineBlock"
-            key="mdLink"
+            key="link"
             position="top"
           >
             <span
@@ -556,6 +589,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
             >
               <EuiButtonIcon
                 aria-label="Link"
+                aria-pressed={false}
                 color="text"
                 iconType="editorLink"
                 isDisabled={false}
@@ -565,6 +599,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
               >
                 <button
                   aria-label="Link"
+                  aria-pressed={false}
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
                   onBlur={[Function]}
                   onClick={[Function]}
@@ -690,6 +725,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
               <textarea
                 aria-label="aria-label"
                 className="euiMarkdownEditorTextArea"
+                data-test-subj="euiMarkdownEditorTextArea"
                 id="editorId"
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -1153,6 +1189,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
 >
   <div
     class="euiMarkdownEditorToolbar"
+    data-test-subj="euiMarkdownEditorToolbar"
   >
     <div
       class="euiMarkdownEditorToolbar__buttons"
@@ -1341,6 +1378,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       <textarea
         aria-label="aria-label"
         class="euiMarkdownEditorTextArea"
+        data-test-subj="euiMarkdownEditorTextArea"
         id="editorId"
         placeholder="placeholder"
         rows="6"
@@ -1399,19 +1437,31 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
         MarkdownActions {
           "editorID": "editorId",
           "styles": Object {
-            "mdBold": Object {
+            "blockquote": Object {
               "button": Object {
                 "iconType": "",
                 "label": "",
               },
               "formatting": Object {
-                "prefix": "**",
-                "suffix": "**",
+                "multiline": true,
+                "prefix": "> ",
+                "surroundWithNewlines": true,
+              },
+              "name": "quote",
+            },
+            "emphasis": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "prefix": "_",
+                "suffix": "_",
                 "trimFirst": true,
               },
-              "name": "mdBold",
+              "name": "emphasis",
             },
-            "mdCode": Object {
+            "inlineCode": Object {
               "button": Object {
                 "iconType": "",
                 "label": "",
@@ -1422,19 +1472,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                 "prefix": "\`",
                 "suffix": "\`",
               },
-              "name": "mdCode",
-            },
-            "mdItalic": Object {
-              "button": Object {
-                "iconType": "",
-                "label": "",
-              },
-              "formatting": Object {
-                "prefix": "_",
-                "suffix": "_",
-                "trimFirst": true,
-              },
-              "name": "mdItalic",
+              "name": "inlineCode",
             },
             "mdLink": Object {
               "button": Object {
@@ -1461,18 +1499,6 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
               },
               "name": "mdOl",
             },
-            "mdQuote": Object {
-              "button": Object {
-                "iconType": "",
-                "label": "",
-              },
-              "formatting": Object {
-                "multiline": true,
-                "prefix": "> ",
-                "surroundWithNewlines": true,
-              },
-              "name": "mdQuote",
-            },
             "mdTl": Object {
               "button": Object {
                 "iconType": "",
@@ -1497,6 +1523,18 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
               },
               "name": "mdUl",
             },
+            "strong": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "prefix": "**",
+                "suffix": "**",
+                "trimFirst": true,
+              },
+              "name": "strong",
+            },
             "tooltipPlugin": Object {
               "button": Object {
                 "iconType": "editorComment",
@@ -1520,6 +1558,24 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
         }
       }
       onClickPreview={[Function]}
+      selectedNode={
+        Object {
+          "children": Array [],
+          "position": Object {
+            "end": Object {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "root",
+        }
+      }
       uiPlugins={
         Array [
           Object {
@@ -1547,6 +1603,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
     >
       <div
         className="euiMarkdownEditorToolbar"
+        data-test-subj="euiMarkdownEditorToolbar"
       >
         <div
           className="euiMarkdownEditorToolbar__buttons"
@@ -1555,7 +1612,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
             content="Bold"
             delay="long"
             display="inlineBlock"
-            key="mdBold"
+            key="strong"
             position="top"
           >
             <span
@@ -1565,6 +1622,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
             >
               <EuiButtonIcon
                 aria-label="Bold"
+                aria-pressed={false}
                 color="text"
                 iconType="editorBold"
                 isDisabled={false}
@@ -1574,6 +1632,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
               >
                 <button
                   aria-label="Bold"
+                  aria-pressed={false}
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
                   onBlur={[Function]}
                   onClick={[Function]}
@@ -1603,7 +1662,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
             content="Italic"
             delay="long"
             display="inlineBlock"
-            key="mdItalic"
+            key="emphasis"
             position="top"
           >
             <span
@@ -1613,6 +1672,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
             >
               <EuiButtonIcon
                 aria-label="Italic"
+                aria-pressed={false}
                 color="text"
                 iconType="editorItalic"
                 isDisabled={false}
@@ -1622,6 +1682,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
               >
                 <button
                   aria-label="Italic"
+                  aria-pressed={false}
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
                   onBlur={[Function]}
                   onClick={[Function]}
@@ -1664,6 +1725,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
             >
               <EuiButtonIcon
                 aria-label="Unordered list"
+                aria-pressed={false}
                 color="text"
                 iconType="editorUnorderedList"
                 isDisabled={false}
@@ -1673,6 +1735,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
               >
                 <button
                   aria-label="Unordered list"
+                  aria-pressed={false}
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
                   onBlur={[Function]}
                   onClick={[Function]}
@@ -1712,6 +1775,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
             >
               <EuiButtonIcon
                 aria-label="Ordered list"
+                aria-pressed={false}
                 color="text"
                 iconType="editorOrderedList"
                 isDisabled={false}
@@ -1721,6 +1785,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
               >
                 <button
                   aria-label="Ordered list"
+                  aria-pressed={false}
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
                   onBlur={[Function]}
                   onClick={[Function]}
@@ -1760,6 +1825,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
             >
               <EuiButtonIcon
                 aria-label="Task list"
+                aria-pressed={false}
                 color="text"
                 iconType="editorChecklist"
                 isDisabled={false}
@@ -1769,6 +1835,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
               >
                 <button
                   aria-label="Task list"
+                  aria-pressed={false}
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
                   onBlur={[Function]}
                   onClick={[Function]}
@@ -1801,7 +1868,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
             content="Quote"
             delay="long"
             display="inlineBlock"
-            key="mdQuote"
+            key="blockquote"
             position="top"
           >
             <span
@@ -1811,6 +1878,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
             >
               <EuiButtonIcon
                 aria-label="Quote"
+                aria-pressed={false}
                 color="text"
                 iconType="quote"
                 isDisabled={false}
@@ -1820,6 +1888,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
               >
                 <button
                   aria-label="Quote"
+                  aria-pressed={false}
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
                   onBlur={[Function]}
                   onClick={[Function]}
@@ -1849,7 +1918,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
             content="Code"
             delay="long"
             display="inlineBlock"
-            key="mdCode"
+            key="inlineCode"
             position="top"
           >
             <span
@@ -1859,6 +1928,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
             >
               <EuiButtonIcon
                 aria-label="Code"
+                aria-pressed={false}
                 color="text"
                 iconType="editorCodeBlock"
                 isDisabled={false}
@@ -1868,6 +1938,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
               >
                 <button
                   aria-label="Code"
+                  aria-pressed={false}
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
                   onBlur={[Function]}
                   onClick={[Function]}
@@ -1897,7 +1968,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
             content="Link"
             delay="long"
             display="inlineBlock"
-            key="mdLink"
+            key="link"
             position="top"
           >
             <span
@@ -1907,6 +1978,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
             >
               <EuiButtonIcon
                 aria-label="Link"
+                aria-pressed={false}
                 color="text"
                 iconType="editorLink"
                 isDisabled={false}
@@ -1916,6 +1988,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
               >
                 <button
                   aria-label="Link"
+                  aria-pressed={false}
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
                   onBlur={[Function]}
                   onClick={[Function]}
@@ -1958,6 +2031,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
             >
               <EuiButtonIcon
                 aria-label="Tooltip"
+                aria-pressed={false}
                 color="text"
                 iconType="editorComment"
                 isDisabled={false}
@@ -1967,6 +2041,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
               >
                 <button
                   aria-label="Tooltip"
+                  aria-pressed={false}
                   className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
                   onBlur={[Function]}
                   onClick={[Function]}
@@ -2114,6 +2189,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
               <textarea
                 aria-label="aria-label"
                 className="euiMarkdownEditorTextArea"
+                data-test-subj="euiMarkdownEditorTextArea"
                 id="editorId"
                 onChange={[Function]}
                 onFocus={[Function]}
@@ -3445,6 +3521,7 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
 >
   <div
     class="euiMarkdownEditorToolbar"
+    data-test-subj="euiMarkdownEditorToolbar"
   >
     <div
       class="euiMarkdownEditorToolbar__buttons"
@@ -3633,6 +3710,7 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
       <textarea
         aria-label="aria-label"
         class="euiMarkdownEditorTextArea"
+        data-test-subj="euiMarkdownEditorTextArea"
         id="editorId"
         rows="6"
         style="height:calc(250px);max-height:500px"
@@ -3679,6 +3757,7 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
 >
   <div
     class="euiMarkdownEditorToolbar"
+    data-test-subj="euiMarkdownEditorToolbar"
   >
     <div
       class="euiMarkdownEditorToolbar__buttons"
@@ -3867,6 +3946,7 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
       <textarea
         aria-label="aria-label"
         class="euiMarkdownEditorTextArea"
+        data-test-subj="euiMarkdownEditorTextArea"
         id="editorId"
         rows="6"
         style="height:100%;max-height:"
@@ -3913,6 +3993,7 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
 >
   <div
     class="euiMarkdownEditorToolbar"
+    data-test-subj="euiMarkdownEditorToolbar"
   >
     <div
       class="euiMarkdownEditorToolbar__buttons"
@@ -4101,6 +4182,7 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
       <textarea
         aria-label="aria-label"
         class="euiMarkdownEditorTextArea"
+        data-test-subj="euiMarkdownEditorTextArea"
         id="editorId"
         rows="6"
         style="height:calc(400px);max-height:500px"
@@ -4147,6 +4229,7 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
 >
   <div
     class="euiMarkdownEditorToolbar"
+    data-test-subj="euiMarkdownEditorToolbar"
   >
     <div
       class="euiMarkdownEditorToolbar__buttons"
@@ -4335,6 +4418,7 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
       <textarea
         aria-label="aria-label"
         class="euiMarkdownEditorTextArea"
+        data-test-subj="euiMarkdownEditorTextArea"
         id="editorId"
         rows="6"
         style="height:calc(250px);max-height:600px"
@@ -4381,6 +4465,7 @@ exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
 >
   <div
     class="euiMarkdownEditorToolbar"
+    data-test-subj="euiMarkdownEditorToolbar"
   >
     <div
       class="euiMarkdownEditorToolbar__buttons"
@@ -4579,6 +4664,7 @@ exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
       <textarea
         aria-label="aria-label"
         class="euiMarkdownEditorTextArea euiMarkdownEditorTextArea-isReadOnly"
+        data-test-subj="euiMarkdownEditorTextArea"
         id="editorId"
         readonly=""
         rows="6"
