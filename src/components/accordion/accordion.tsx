@@ -253,7 +253,7 @@ class EuiAccordionClass extends Component<
     const buttonStyles = [styles.euiAccordion__button];
     const childWrapperStyles = [styles.euiAccordion__childWrapper];
     const childrenStyles = [
-      styles.euiAccordion__children_isLoading,
+      isLoading && styles.euiAccordion__children_isLoading,
       paddingSize === 'none' ? undefined : styles[paddingSize],
     ];
     const iconButtonStyles = [styles.euiAccordion__iconButton];
@@ -284,7 +284,7 @@ class EuiAccordionClass extends Component<
 
     if (extraAction) {
       optionalAction = (
-        <div css={optionalActionStyles}>
+        <div className="euiAccordion__optionalAction" css={optionalActionStyles}>
           {isLoading ? <EuiLoadingSpinner /> : extraAction}
         </div>
       );
@@ -316,11 +316,11 @@ class EuiAccordionClass extends Component<
         {...buttonProps}
         id={buttonId}
         className={buttonClasses}
+        css={buttonStyles}
         aria-controls={id}
         aria-expanded={isOpen}
         onClick={this.onToggle}
         type={ButtonElement === 'button' ? 'button' : undefined}
-        css={buttonStyles}
       >
         <span className={buttonContentClasses}>{buttonContent}</span>
       </ButtonElement>
@@ -328,7 +328,7 @@ class EuiAccordionClass extends Component<
 
     return (
       <Element className={classes} {...rest}>
-        <div css={triggerWrapperStyles}>
+        <div className="euiAccordion__triggerWrapper" css={triggerWrapperStyles}>
           {_arrowDisplay === 'left' && iconButton}
           {button}
           {optionalAction}
@@ -336,6 +336,7 @@ class EuiAccordionClass extends Component<
         </div>
 
         <div
+          className="euiAccordion__childWrapper"
           css={childWrapperStyles}
           ref={(node) => {
             this.childWrapper = node;

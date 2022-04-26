@@ -23,6 +23,7 @@ export const accordionConfig = () => {
   propsToUse.id = {
     ...propsToUse.id,
     value: htmlIdGenerator('generated')(),
+    type: PropTypes.String,
   };
 
   propsToUse.children = {

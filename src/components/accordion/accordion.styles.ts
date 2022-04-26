@@ -69,7 +69,7 @@ export const euiAccordionStyles = (
   `,
   euiAccordion__iconButton: css`
     flex-shrink: 0;
-    margin-right: ${euiTheme.size.xs};
+    margin-inline-end: ${euiTheme.size.xs};
     transform: rotate(0deg) !important;
     transform: rotate(0deg) !important;
 
@@ -80,7 +80,7 @@ export const euiAccordionStyles = (
 
     ${_arrowDisplay === 'right' &&
     `
-      margin-left: ${euiTheme.size.xs}
+      margin-left: ${euiTheme.size.xs};
       margin-right: 0;
     `}
   `,
