@@ -6,27 +6,17 @@
  * Side Public License, v 1.
  */
 
-import { computed } from '../../services/theme/utils';
-import { sizeToPixel } from '../../services/theme/size';
+import {
+  _EuiThemeBase,
+  _EuiThemeSizes,
+} from '../../../../global_styling/variables';
+import { sizeToPixel } from '../../../../global_styling/functions';
 
-export type EuiThemeBase = number;
+import { computed } from '../../../../services/theme/utils';
 
-export const base: EuiThemeBase = 16;
+export const base: _EuiThemeBase = 16;
 
-export type EuiThemeSize = {
-  xxs: string;
-  xs: string;
-  s: string;
-  m: string;
-  base: string;
-  l: string;
-  xl: string;
-  xxl: string;
-  xxxl: string;
-  xxxxl: string;
-};
-
-export const size: EuiThemeSize = {
+export const size: _EuiThemeSizes = {
   xxs: computed(sizeToPixel(0.125)),
   xs: computed(sizeToPixel(0.25)),
   s: computed(sizeToPixel(0.5)),

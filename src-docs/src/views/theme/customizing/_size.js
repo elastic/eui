@@ -12,7 +12,7 @@ import {
 
 import { getPropsFromComponent } from '../../../services/props/get_props';
 import { useDebouncedUpdate } from '../hooks';
-import { EuiTheme, _EuiThemeSize } from '../_props';
+import { EuiTheme, EuiThemeSize } from '../_props';
 import { ThemeValue } from './_values';
 
 export default ({ onThemeUpdate }) => {
@@ -26,7 +26,7 @@ export default ({ onThemeUpdate }) => {
   });
 
   const themeProps = getPropsFromComponent(EuiTheme);
-  const themeSizeProps = getPropsFromComponent(_EuiThemeSize);
+  const themeSizeProps = getPropsFromComponent(EuiThemeSize);
 
   return (
     <div>

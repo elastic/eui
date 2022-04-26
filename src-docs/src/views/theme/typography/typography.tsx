@@ -32,9 +32,9 @@ import { ThemeContext } from '../../../components/with_theme';
 
 // This array is used inside routes.js to create the sidenav sub-sections
 export const typographySections = [
-  { title: 'Font settings', id: 'font-settings' },
-  { title: 'Font weight', id: 'font-weight' },
   { title: 'Font scale', id: 'font-scale' },
+  { title: 'Font weight', id: 'font-weight' },
+  { title: 'Font settings', id: 'font-settings' },
 ];
 
 export default () => {
@@ -101,11 +101,29 @@ export default () => {
         <h2
           id={`${typographySections[0].id}`}
         >{`${typographySections[0].title}`}</h2>
+        <p>
+          The typographic scale is loosely based on the{' '}
+          <EuiLink href="https://type-scale.com/?size=16&scale=1.250&text=A%20Visual%20Type%20Scale&font=Inter&fontweight=400&bodyfont=body_font_default&bodyfontweight=400&lineheight=1.75&backgroundcolor=%23ffffff&fontcolor=%23000000&preview=false">
+            Major Third (1.250) typographic scale
+          </EuiLink>
+          .
+        </p>
+        <p>
+          While these functions and hooks exist to get precise font sizing and
+          associated line-height, we still highly recommend using the{' '}
+          <Link to="/display/text">
+            <strong>EuiText</strong>
+          </Link>{' '}
+          and{' '}
+          <Link to="/display/title">
+            <strong>EuiTitle</strong>
+          </Link>{' '}
+          components as wrappers of your content instead.
+        </p>
       </EuiText>
-
       <EuiSpacer size="xl" />
 
-      {baseContent}
+      {scaleContent}
 
       <EuiSpacer size="xl" />
 
@@ -175,29 +193,11 @@ export default () => {
         <h2
           id={`${typographySections[2].id}`}
         >{`${typographySections[2].title}`}</h2>
-        <p>
-          The typographic scale is loosely based on the{' '}
-          <EuiLink href="https://type-scale.com/?size=16&scale=1.250&text=A%20Visual%20Type%20Scale&font=Inter&fontweight=400&bodyfont=body_font_default&bodyfontweight=400&lineheight=1.75&backgroundcolor=%23ffffff&fontcolor=%23000000&preview=false">
-            Major Third (1.250) typographic scale
-          </EuiLink>
-          .
-        </p>
-        <p>
-          While these functions and hooks exist to get precise font sizing and
-          associated line-height, we still highly recommend using the{' '}
-          <Link to="/display/text">
-            <strong>EuiText</strong>
-          </Link>{' '}
-          and{' '}
-          <Link to="/display/title">
-            <strong>EuiTitle</strong>
-          </Link>{' '}
-          components as wrappers of your content instead.
-        </p>
       </EuiText>
+
       <EuiSpacer size="xl" />
 
-      {scaleContent}
+      {baseContent}
     </GuidePage>
   );
 };

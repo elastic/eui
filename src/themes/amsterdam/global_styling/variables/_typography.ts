@@ -8,7 +8,7 @@
 
 import { computed } from '../../../../services/theme/utils';
 import {
-  EuiThemeFont,
+  _EuiThemeFont,
   _EuiThemeFontBase,
   _EuiThemeFontScales,
   _EuiThemeFontWeights,
@@ -46,7 +46,7 @@ export const fontWeight: _EuiThemeFontWeights = {
   bold: 700,
 };
 
-export const font: EuiThemeFont = {
+export const font: _EuiThemeFont = {
   ...fontBase,
   scale: fontScale,
   weight: fontWeight,

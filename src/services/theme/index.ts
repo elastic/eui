@@ -37,4 +37,3 @@ export type {
   EuiThemeSystem,
 } from './types';
 export { COLOR_MODES_STANDARD } from './types';
-export { sizeToPixel } from './size';

@@ -227,3 +227,5 @@ Any updates to the `src/` folder require a new [upcoming changelog](../upcoming_
 Documentation-only changes (e.g. changes to **only** `wiki/` or `src-docs/`) do not require a CHANGELOG entry. You may use the `skip-changelog` label on your PR to bypass CI checks.
 
 [docs]: https://elastic.github.io/eui/
+
+### Refer to [Creating documentation example pages](./eui-documentation-site.md) for information on the process of documenting components.

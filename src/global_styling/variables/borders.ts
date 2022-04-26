@@ -8,8 +8,6 @@
 
 import { CSSProperties } from 'react';
 import { ColorModeSwitch } from '../../services/theme/types';
-import { computed } from '../../services/theme/utils';
-import { sizeToPixel } from '../../services/theme/size';
 
 export interface _EuiThemeBorderWidthValues {
   /**
@@ -66,28 +64,4 @@ export interface _EuiThemeBorderTypes {
   editable: CSSProperties['border'];
 }
 
-export type EuiThemeBorder = _EuiThemeBorderValues & _EuiThemeBorderTypes;
-
-export const border: EuiThemeBorder = {
-  color: computed(([lightShade]) => lightShade, ['colors.lightShade']),
-  width: {
-    thin: '1px',
-    thick: '2px',
-  },
-  radius: {
-    medium: computed(sizeToPixel(0.25)),
-    small: computed(sizeToPixel(0.125)),
-  },
-  thin: computed(([width, color]) => `${width.thin} solid ${color}`, [
-    'border.width',
-    'border.color',
-  ]),
-  thick: computed(([width, color]) => `${width.thick} solid ${color}`, [
-    'border.width',
-    'border.color',
-  ]),
-  editable: computed(([width, color]) => `${width.thick} dotted ${color}`, [
-    'border.width',
-    'border.color',
-  ]),
-};
+export type _EuiThemeBorder = _EuiThemeBorderValues & _EuiThemeBorderTypes;

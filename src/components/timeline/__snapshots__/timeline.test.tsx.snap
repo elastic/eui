@@ -16,7 +16,7 @@ exports[`EuiTimeline is rendered with items 1`] = `
       >
         <div
           aria-label="email"
-          class="euiAvatar euiAvatar--m euiAvatar--user css-rdwecc-euiAvatar-m-user-subdued"
+          class="euiAvatar euiAvatar--m euiAvatar--user css-1x3d3qm-euiAvatar-m-user-subdued"
           role="img"
           title="email"
         >
@@ -51,7 +51,7 @@ exports[`EuiTimeline is rendered with items 1`] = `
       >
         <div
           aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user css-rdwecc-euiAvatar-m-user-subdued"
+          class="euiAvatar euiAvatar--m euiAvatar--user css-1x3d3qm-euiAvatar-m-user-subdued"
           role="img"
           title=""
         >

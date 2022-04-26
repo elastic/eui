@@ -83,7 +83,7 @@ exports[`EuiAvatar props color as string is rendered 1`] = `
 exports[`EuiAvatar props color as subdued is rendered 1`] = `
 <div
   aria-label="name"
-  class="euiAvatar euiAvatar--m euiAvatar--user css-rdwecc-euiAvatar-m-user-subdued"
+  class="euiAvatar euiAvatar--m euiAvatar--user css-1x3d3qm-euiAvatar-m-user-subdued"
   role="img"
   title="name"
 >

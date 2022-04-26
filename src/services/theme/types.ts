@@ -7,16 +7,17 @@
  */
 
 import { RecursivePartial, ValueOf } from '../../components/common';
-import { EuiThemeAnimation } from '../../global_styling/variables/_animations';
-import { EuiThemeBreakpoint } from '../../global_styling/variables/_breakpoint';
-import { EuiThemeBorder } from '../../global_styling/variables/_borders';
-import { EuiThemeColors } from '../../global_styling/variables/_colors';
+import { _EuiThemeAnimation } from '../../global_styling/variables/animations';
+import { _EuiThemeBreakpoints } from '../../global_styling/variables/breakpoint';
+import { _EuiThemeBorder } from '../../global_styling/variables/borders';
+import { _EuiThemeColors } from '../../global_styling/variables/colors';
 import {
-  EuiThemeBase,
-  EuiThemeSize,
-} from '../../global_styling/variables/_size';
-import { EuiThemeFont } from '../../global_styling/variables/typography';
-import { _EuiThemeFocus } from '../../global_styling/variables/_states';
+  _EuiThemeBase,
+  _EuiThemeSizes,
+} from '../../global_styling/variables/size';
+import { _EuiThemeFont } from '../../global_styling/variables/typography';
+import { _EuiThemeFocus } from '../../global_styling/variables/states';
+import { _EuiThemeLevels } from '../../global_styling/variables/levels';
 
 export const COLOR_MODES_STANDARD = {
   light: 'LIGHT',
@@ -44,14 +45,15 @@ export type StrictColorModeSwitch<T = string> = {
 };
 
 export type EuiThemeShape = {
-  colors: EuiThemeColors;
-  base: EuiThemeBase;
-  size: EuiThemeSize;
-  font: EuiThemeFont;
-  border: EuiThemeBorder;
+  colors: _EuiThemeColors;
+  base: _EuiThemeBase;
+  size: _EuiThemeSizes;
+  font: _EuiThemeFont;
+  border: _EuiThemeBorder;
   focus?: _EuiThemeFocus;
-  animation: EuiThemeAnimation;
-  breakpoint: EuiThemeBreakpoint;
+  animation: _EuiThemeAnimation;
+  breakpoint: _EuiThemeBreakpoints;
+  levels: _EuiThemeLevels;
 };
 
 export type EuiThemeSystem<T = {}> = {
