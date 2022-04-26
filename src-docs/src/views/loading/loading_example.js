@@ -112,7 +112,7 @@ export const LoadingExample = {
       ),
       props: { EuiLoadingChart },
       demo: <LoadingChart />,
-      snippet: '<EuiLoadingChart size="m" />',
+      snippet: ['<EuiLoadingChart size="m" />', '<EuiLoadingChart mono />'],
       playground: loadingChartConfig,
     },
     {

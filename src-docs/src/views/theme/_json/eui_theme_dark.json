@@ -180,14 +180,6 @@
     "gutterM": "12px",
     "gutterL": "24px"
   },
-  "ruleMargins": {
-    "marginXSmall": "8px",
-    "marginSmall": "12px",
-    "marginMedium": "16px",
-    "marginLarge": "24px",
-    "marginXLarge": "32px",
-    "marginXXLarge": "40px"
-  },
   "euiIconLoadingOpacity": 0.05,
   "euiIconColors": {
     "accent": "#f68fbe",
@@ -305,14 +297,6 @@
   "euiSideNavBranchTextcolor": "#878b95",
   "euiSideNavSelectedTextcolor": "#36a2ef",
   "euiSideNavDisabledTextcolor": "#515761",
-  "spacerSizes": {
-    "xs": "4px",
-    "s": "8px",
-    "m": "16px",
-    "l": "24px",
-    "xl": "32px",
-    "xxl": "40px"
-  },
   "euiStepNumberSize": "32px",
   "euiStepNumberSmallSize": "24px",
   "euiStepNumberMargin": "16px",
