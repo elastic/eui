@@ -176,7 +176,7 @@ Although possible in some contexts, it is not recommended to "shortcut" logic us
 
 ## Child selectors
 
-Most components also contain child elements that have their own styles. Each element should have it's own theme function to keep things tidy. Keep them within a singel `styles.ts` file if they exist in the same `.tsx` file.
+Most components also contain child elements that have their own styles. Each element should have it's own theme function to keep things tidy. Keep them within a single `styles.ts` file if they exist in the same `.tsx` file.
 
 
 ```ts
@@ -202,7 +202,7 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
   
   return (
     <div css={cssStyles} />
-      <span> css={cssChildStyles} />
+      <span css={cssChildStyles} />
     </div>
   )
 }
@@ -253,7 +253,7 @@ If for other reasons, it is absolutely necessary to target a child from within a
 ```ts
 export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiComponentName: css`
-    [class*="euiOtherComponentName"] {}
+    [class*="euiComponentName__child"] {}
   `,
 });
 ```
