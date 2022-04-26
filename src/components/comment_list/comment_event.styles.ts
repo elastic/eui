@@ -9,10 +9,7 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 
-export const euiCommentEventStyles = (
-  { euiTheme }: UseEuiTheme,
-  hasUpdateColor: boolean
-) => ({
+export const euiCommentEventStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiCommentEvent: css`
     overflow: hidden;
   `,
@@ -21,7 +18,7 @@ export const euiCommentEventStyles = (
     border-radius: ${euiTheme.border.radius.medium};
     border: ${euiTheme.border.thin};
 
-    > *:first-of-type {
+    > [class*='euiCommentEvent__header'] {
       background: ${euiTheme.colors.lightestShade};
       border-bottom: ${euiTheme.border.thin};
     }
@@ -31,16 +28,7 @@ export const euiCommentEventStyles = (
     }
   `,
   update: css`
-    // when there is a update color a paddingSize 's' is added to the EuiPanel
-    // so we need to add some padding to the content when there is no padding from the EuiPanel
-    ${!hasUpdateColor &&
-    css`
-      > *:first-of-type {
-        padding: ${euiTheme.size.xs} 0;
-      }
-    `}
-
-    > * {
+    > [class*='euiCommentEvent__body'] {
       padding-top: ${euiTheme.size.xs};
     }
   `,
@@ -66,5 +54,8 @@ export const euiCommentEventStyles = (
   `,
   euiCommentEvent__headerIconUpdate: css`
     margin-right: ${euiTheme.size.xs};
+  `,
+  euiCommentEvent__updatePanel: css`
+    padding: ${euiTheme.size.xs} 0;
   `,
 });

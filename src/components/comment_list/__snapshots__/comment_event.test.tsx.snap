@@ -2,7 +2,7 @@
 
 exports[`EuiCommentEvent is rendered 1`] = `
 <figure
-  class="euiCommentEvent euiCommentEvent--regular testClass1 testClass2 css-p4wekm-euiCommentEvent-regular"
+  class="euiCommentEvent euiCommentEvent--regular testClass1 testClass2 css-1vw1i3u-euiCommentEvent-regular"
 >
   <figcaption
     class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
@@ -25,7 +25,7 @@ exports[`EuiCommentEvent is rendered 1`] = `
 
 exports[`EuiCommentEvent props event is rendered 1`] = `
 <figure
-  class="euiCommentEvent euiCommentEvent--regular css-p4wekm-euiCommentEvent-regular"
+  class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
 >
   <figcaption
     class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
@@ -50,7 +50,7 @@ exports[`EuiCommentEvent props event is rendered 1`] = `
 
 exports[`EuiCommentEvent props timestamp is rendered 1`] = `
 <figure
-  class="euiCommentEvent euiCommentEvent--regular css-p4wekm-euiCommentEvent-regular"
+  class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
 >
   <figcaption
     class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
@@ -86,7 +86,7 @@ exports[`EuiCommentEvent props type custom is rendered 1`] = `
 
 exports[`EuiCommentEvent props type regular is rendered 1`] = `
 <figure
-  class="euiCommentEvent euiCommentEvent--regular css-p4wekm-euiCommentEvent-regular"
+  class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
 >
   <figcaption
     class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
@@ -109,10 +109,10 @@ exports[`EuiCommentEvent props type regular is rendered 1`] = `
 
 exports[`EuiCommentEvent props type update is rendered 1`] = `
 <div
-  class="euiCommentEvent euiCommentEvent--update css-c4ftu2-euiCommentEvent-update-update"
+  class="euiCommentEvent euiCommentEvent--update css-kr7aki-euiCommentEvent-update"
 >
   <div
-    class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow"
+    class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow css-8nrfo3-euiCommentEvent__updatePanel"
   >
     <div
       class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
@@ -136,7 +136,7 @@ exports[`EuiCommentEvent props type update is rendered 1`] = `
 
 exports[`EuiCommentEvent props updateColor is rendered 1`] = `
 <figure
-  class="euiCommentEvent euiCommentEvent--regular css-p4wekm-euiCommentEvent-regular"
+  class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
 >
   <figcaption
     class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
@@ -159,7 +159,7 @@ exports[`EuiCommentEvent props updateColor is rendered 1`] = `
 
 exports[`EuiCommentEvent props updateIcon is rendered 1`] = `
 <figure
-  class="euiCommentEvent euiCommentEvent--regular css-p4wekm-euiCommentEvent-regular"
+  class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
 >
   <figcaption
     class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"

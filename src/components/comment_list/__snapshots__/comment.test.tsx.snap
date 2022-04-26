@@ -31,7 +31,7 @@ exports[`EuiComment is rendered 1`] = `
     class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <figure
-      class="euiCommentEvent euiCommentEvent--regular css-p4wekm-euiCommentEvent-regular"
+      class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
     >
       <figcaption
         class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
@@ -83,7 +83,7 @@ exports[`EuiComment props event is rendered 1`] = `
     class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <figure
-      class="euiCommentEvent euiCommentEvent--regular css-p4wekm-euiCommentEvent-regular"
+      class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
     >
       <figcaption
         class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
@@ -137,7 +137,7 @@ exports[`EuiComment props timelineIcon is rendered 1`] = `
     class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <figure
-      class="euiCommentEvent euiCommentEvent--regular css-p4wekm-euiCommentEvent-regular"
+      class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
     >
       <figcaption
         class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
@@ -189,7 +189,7 @@ exports[`EuiComment props timestamp is rendered 1`] = `
     class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <figure
-      class="euiCommentEvent euiCommentEvent--regular css-p4wekm-euiCommentEvent-regular"
+      class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
     >
       <figcaption
         class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
@@ -283,7 +283,7 @@ exports[`EuiComment props type regular is rendered 1`] = `
     class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <figure
-      class="euiCommentEvent euiCommentEvent--regular css-p4wekm-euiCommentEvent-regular"
+      class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
     >
       <figcaption
         class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
@@ -335,10 +335,10 @@ exports[`EuiComment props type update is rendered 1`] = `
     class="css-1a9m88x-euiTimelineItemEvent-center"
   >
     <div
-      class="euiCommentEvent euiCommentEvent--update css-c4ftu2-euiCommentEvent-update-update"
+      class="euiCommentEvent euiCommentEvent--update css-kr7aki-euiCommentEvent-update"
     >
       <div
-        class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow"
+        class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow css-8nrfo3-euiCommentEvent__updatePanel"
       >
         <div
           class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
@@ -391,7 +391,7 @@ exports[`EuiComment renders a body 1`] = `
     class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <figure
-      class="euiCommentEvent euiCommentEvent--regular css-p4wekm-euiCommentEvent-regular"
+      class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
     >
       <figcaption
         class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"

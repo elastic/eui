@@ -78,10 +78,8 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
     className
   );
 
-  const hasUpdateColor = updateColor ? true : false;
-
   const euiTheme = useEuiTheme();
-  const styles = euiCommentEventStyles(euiTheme, hasUpdateColor);
+  const styles = euiCommentEventStyles(euiTheme);
 
   const cssStyles = [styles.euiCommentEvent, styles[type]];
   const headerCssStyles = styles.euiCommentEvent__header;
@@ -89,6 +87,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   const headerUsernameCssStyles = styles.euiCommentEvent__headerUsername;
   const headerDataCssStyles = styles.euiCommentEvent__headerData;
   const headerIconUpdateCssStyles = styles.euiCommentEvent__headerIconUpdate;
+  const updatePanelCssStyles = styles.euiCommentEvent__updatePanel;
 
   const isTypeUpdate = type === 'update';
   const isTypeCustom = type === 'custom';
@@ -123,7 +122,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
 
   const panelProps = updateColor
     ? { color: updateColor, paddingSize: 's' }
-    : { color: 'transparent', paddingSize: 'none' };
+    : { color: 'transparent', paddingSize: 'none', css: updatePanelCssStyles };
 
   const updateEventHeader = !isTypeCustom && (
     <EuiPanel {...(panelProps as EuiPanelProps)}>

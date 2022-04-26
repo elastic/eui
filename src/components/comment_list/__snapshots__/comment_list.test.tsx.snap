@@ -35,7 +35,7 @@ exports[`EuiCommentList is rendered 1`] = `
       class="css-1waxxmm-euiTimelineItemEvent-top"
     >
       <figure
-        class="euiCommentEvent euiCommentEvent--regular css-p4wekm-euiCommentEvent-regular"
+        class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
       >
         <figcaption
           class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
