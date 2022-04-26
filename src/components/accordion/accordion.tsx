@@ -254,7 +254,7 @@ class EuiAccordionClass extends Component<
     const childWrapperStyles = [styles.euiAccordion__childWrapper];
     const childrenStyles = [
       styles.euiAccordion__children_isLoading,
-      styles[paddingSize],
+      paddingSize === 'none' ? undefined : styles[paddingSize],
     ];
     const iconButtonStyles = [styles.euiAccordion__iconButton];
     const optionalActionStyles = [styles.euiAccordion__optionalAction];

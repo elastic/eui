@@ -98,7 +98,6 @@ export const euiAccordionStyles = (
   `,
 
   // Padding
-  none: '',
   xs: css`
     padding: ${euiTheme.size.xs};
   `,
