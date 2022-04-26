@@ -34,6 +34,77 @@ export const EuiComponent = () => {
 };
 ```
 
+## CSS-aligned props
+
+If a prop/value pair maps 1:1 to the CSS property: value, pass the value straight through. We encounter this scenario when it is apparent that a given css property is core to configuring a component, and it doesn't make sense to use an abstraction.
+
+```tsx
+position?: CSSProperties['position'];
+
+const cssStyles = [
+  { position }
+];
+```
+
+## Component props that enable styles
+
+### Building an array of styles
+
+_examples from [avatar.tsx](https://github.com/elastic/eui/blob/main/src/components/avatar/avatar.tsx)_
+
+```tsx
+export const EuiAvatar: export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({...}) => {
+  // access the theme and compute avatar's styles
+  const euiTheme = useEuiTheme();
+  const styles = euiAvatarStyles(euiTheme);
+
+  ...
+  
+  // build the styles array
+  const cssStyles = [
+    styles.euiAvatar, // base styles
+    styles[size], // styles associated with the `size` prop's value
+    styles[type], // styles associated with the `type` prop's value
+    
+    // optional styles
+    isPlain && styles.plain,
+    isSubdued && styles.subdued,
+    isDisabled && styles.isDisabled,
+  ];
+  
+  ...
+
+  // pass the styles array to the `css` prop of the target element 
+  return (
+    <div
+      css={cssStyles}
+    />
+  )
+}
+```
+
+### If a prop's value renders no styles
+
+A. If it's necessary to still know the prop value while debugging, create an empty css`` map for that value
+
+```tsx
+paddingSize = 'none';
+
+const euiComponentStyles = ({
+  none: css``
+})
+```
+
+B. If it's mostly just an empty default state, check for that prop before grabbing the css value
+
+```tsx
+paddingSize = 'none';
+
+const cssStyles = [
+  paddingSize === 'none' ? undefined : styles[paddingSize]
+]
+```
+
 ## Style helpers
 
 EUI components often have style variants that use a similar patterns. In these cases, consider creating a helper function to create repetitive styles.
@@ -112,3 +183,19 @@ return (
   <EuiComponent css={styles} />
 );
 ```
+
+## FAQ
+
+### Can the `css` prop be forwarded to a nested element?
+
+Emotion converts the `css` prop to a computed `className` value, merging it into any existing `className` prop on an element. We do not parse or handle these in any special way, so whichever element the `className` prop is applied to receives the styles created by Emotion. See https://codesandbox.io/s/emotion-css-and-classname-ohmqe7 for a playground demonstration.
+
+Sometimes apps want or need to provide styles (or other props) to multiple elements in a component, and in these cases we add a prop to the component that captures the extra information, spreading it onto the element. We can continue with this approach, allowing the `css` prop to be added for flexible styling.
+
+### Which element in a custom component gets the `css` styling?
+
+Same as the above answer, whichever element is given the generated `className` is the styles' target.
+
+### How should `createElement` usages be converted?
+
+Emotion provides its own `createElement` function; existing uses of `import {createElement} from 'react'` can be converted to `import {createElement} from '@emotion/react'`
