@@ -10,6 +10,9 @@ import { render } from 'enzyme';
 import { ReactElement } from 'react';
 import { createSerializer } from '@emotion/jest';
 
+// NOTE: This helper currently does not work and should not be called.
+// Even when called within an it() block, a stack overflow error occurs.
+
 /**
  * Use this function to add the `@emotion` Jest serializer to a single test.
  * The resulting snapshot will include the styles of elements in the component that use `@emotion` for styling.
@@ -25,6 +28,10 @@ import { createSerializer } from '@emotion/jest';
   ```
  */
 export const renderWithStyles = (component: ReactElement) => {
+  throw new Error(
+    'This helper currently does not work and should not be called.'
+  );
+
   afterAll(() => {
     expect.addSnapshotSerializer(
       createSerializer({

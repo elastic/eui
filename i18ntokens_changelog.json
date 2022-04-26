@@ -1,5 +1,15 @@
 [
   {
+    "version": "55.1.0",
+    "changes": [
+      {
+        "token": "euiLoadingChart.ariaLabel",
+        "changeType": "added",
+        "value": "Loading"
+      }
+    ]
+  },
+  {
     "version": "54.1.0",
     "changes": [
       {

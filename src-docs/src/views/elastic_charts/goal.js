@@ -63,6 +63,7 @@ export const GoalChart = () => {
             actual={12}
             bands={bands}
             ticks={[-10, 0, 10, 20, 30, 40]}
+            domain={{ min: -10, max: 40 }}
             tickValueFormatter={({ value }) => String(value)}
             bandFillColor={({ value }) => bandFillColor(value)}
             labelMajor="Temperature"

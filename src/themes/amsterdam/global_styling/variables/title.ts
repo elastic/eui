@@ -14,17 +14,22 @@
 import {
   title,
   EuiThemeTitle,
-} from '../../../../global_styling/variables/title';
-import { SCALES } from '../../../../global_styling/variables/_typography';
+} from '../../../../global_styling/variables/_title';
+import { EuiThemeFontScales } from '../../../../global_styling/variables/typography';
 import { computed } from '../../../../services/theme/utils';
 
 // For Amsterdam, change all font-weights to bold and remove letter-spacing
 
-export const title_ams: EuiThemeTitle = SCALES.reduce((acc, elem) => {
-  acc[elem] = {
-    ...title[elem],
-    fontWeight: computed(([fontWeight]) => fontWeight, ['font.weight.bold']),
-    letterSpacing: undefined,
-  };
-  return acc;
-}, {} as EuiThemeTitle);
+// TODO: Move to EuiTitle component
+
+export const title_ams: EuiThemeTitle = EuiThemeFontScales.reduce(
+  (acc, elem) => {
+    acc[elem] = {
+      ...title[elem],
+      fontWeight: computed(([fontWeight]) => fontWeight, ['font.weight.bold']),
+      letterSpacing: undefined,
+    };
+    return acc;
+  },
+  {} as EuiThemeTitle
+);

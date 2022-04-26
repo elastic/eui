@@ -19,7 +19,7 @@ import favicon96Dev from '../images/favicon/dev/favicon-96x96.png';
 
 const emotionCache = createCache({
   key: 'eui-docs',
-  container: document.querySelector('meta[name="emotion-global"]'),
+  container: document.querySelector('meta[name="emotion-styles"]'),
 });
 
 export const AppContext = ({ children }) => {
