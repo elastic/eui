@@ -13,6 +13,7 @@ import React, {
   useState,
   PropsWithChildren,
 } from 'react';
+import { CacheProvider, EmotionCache } from '@emotion/react';
 import isEqual from 'lodash/isEqual';
 
 import {
@@ -33,6 +34,7 @@ export interface EuiThemeProviderProps<T> {
   theme?: EuiThemeSystem<T>;
   colorMode?: EuiThemeColorMode;
   modify?: EuiThemeModifications<T>;
+  cache?: EmotionCache;
   children: any;
 }
 
@@ -40,6 +42,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
   theme: _system,
   colorMode: _colorMode,
   modify: _modifications,
+  cache,
   children,
 }: PropsWithChildren<EuiThemeProviderProps<T>>) => {
   const parentSystem = useContext(EuiSystemContext);
@@ -120,7 +123,11 @@ export const EuiThemeProvider = <T extends {} = {}>({
       <EuiSystemContext.Provider value={system}>
         <EuiModificationsContext.Provider value={modifications}>
           <EuiThemeContext.Provider value={theme}>
-            {children}
+            {cache ? (
+              <CacheProvider value={cache}>{children}</CacheProvider>
+            ) : (
+              children
+            )}
           </EuiThemeContext.Provider>
         </EuiModificationsContext.Provider>
       </EuiSystemContext.Provider>
