@@ -6,18 +6,16 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent } from 'react';
-import { CommonProps } from '../common';
-import classNames from 'classnames';
+import React, { FunctionComponent } from 'react';
 import { EuiComment, EuiCommentProps } from './comment';
+import { EuiTimeline, EuiTimelineProps } from '../timeline';
 
-export type EuiCommentListProps = HTMLAttributes<HTMLDivElement> &
-  CommonProps & {
-    /**
-     * List of comments to render. See #EuiComment
-     */
-    comments?: EuiCommentProps[];
-  };
+export type EuiCommentListProps = EuiTimelineProps & {
+  /**
+   * List of comments to render. See #EuiComment
+   */
+  comments?: EuiCommentProps[];
+};
 
 export const EuiCommentList: FunctionComponent<EuiCommentListProps> = ({
   children,
@@ -25,8 +23,6 @@ export const EuiCommentList: FunctionComponent<EuiCommentListProps> = ({
   comments,
   ...rest
 }) => {
-  const classes = classNames('euiCommentList', className);
-
   let commentElements = null;
 
   if (comments) {
@@ -36,9 +32,9 @@ export const EuiCommentList: FunctionComponent<EuiCommentListProps> = ({
   }
 
   return (
-    <div className={classes} {...rest}>
+    <EuiTimeline className="euiCommentList" {...rest}>
       {commentElements}
       {children}
-    </div>
+    </EuiTimeline>
   );
 };

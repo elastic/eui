@@ -1,59 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiCommentList is rendered 1`] = `
-<div
+<ol
   aria-label="aria-label"
-  class="euiCommentList testClass1 testClass2"
+  class="euiTimeline euiCommentList"
   data-test-subj="test subject string"
+  role="list"
 >
-  <div
-    class="euiComment"
+  <li
+    class="css-mjs1z4-euiTimelineItem"
   >
     <div
-      class="euiCommentTimeline"
+      class="css-1t86e7q-euiTimelineItemIcon-top"
     >
       <div
-        class="euiCommentTimeline__content"
+        class="css-irfkcc-euiTimelineItemIcon__content"
       >
         <div
-          class=""
+          aria-label="janed"
+          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentTimeline css-11owldj-euiAvatar-m-user"
+          role="img"
+          style="background-color:#f1d86f;color:#000000"
+          title="janed"
         >
-          <div
-            aria-label="janed"
-            class="euiAvatar euiAvatar--m euiAvatar--user css-11owldj-euiAvatar-m-user"
-            role="img"
-            style="background-color:#f1d86f;color:#000000"
-            title="janed"
+          <span
+            aria-hidden="true"
           >
-            <span
-              aria-hidden="true"
-            >
-              j
-            </span>
-          </div>
+            j
+          </span>
         </div>
       </div>
     </div>
-    <figure
-      class="euiCommentEvent euiCommentEvent--regular"
+    <div
+      class="css-1waxxmm-euiTimelineItemEvent-top"
     >
-      <figcaption
-        class="euiCommentEvent__header"
+      <figure
+        class="euiCommentEvent euiCommentEvent--regular css-p4wekm-euiCommentEvent-regular"
       >
-        <div
-          class="euiCommentEvent__headerData"
+        <figcaption
+          class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
         >
-          <div
-            class="euiCommentEvent__headerUsername"
+          <span
+            class="euiCommentEvent__headerData css-vgd89l-euiCommentEvent__headerData"
           >
-            janed
-          </div>
-          <div
-            class="euiCommentEvent__headerEvent"
-          />
-        </div>
-      </figcaption>
-    </figure>
-  </div>
-</div>
+            <span
+              class="euiCommentEvent__headerUsername css-12gd9rw-euiCommentEvent__headerUsername"
+            >
+              janed
+            </span>
+            <span
+              class="euiCommentEvent__headerEvent"
+            />
+          </span>
+        </figcaption>
+      </figure>
+    </div>
+  </li>
+</ol>
 `;

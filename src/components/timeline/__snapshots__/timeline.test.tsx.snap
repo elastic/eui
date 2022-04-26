@@ -6,7 +6,7 @@ exports[`EuiTimeline is rendered with items 1`] = `
   role="list"
 >
   <li
-    class="css-1noe449-euiTimelineItem"
+    class="css-mjs1z4-euiTimelineItem"
   >
     <div
       class="css-1grznaw-euiTimelineItemIcon-center"
@@ -41,7 +41,7 @@ exports[`EuiTimeline is rendered with items 1`] = `
     </div>
   </li>
   <li
-    class="css-1noe449-euiTimelineItem"
+    class="css-mjs1z4-euiTimelineItem"
   >
     <div
       class="css-1t86e7q-euiTimelineItemIcon-top"

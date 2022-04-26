@@ -31,6 +31,7 @@ export const euiTimelineItemStyles = ({ euiTheme }: UseEuiTheme) => ({
       }
 
       &:not(:only-child) > [class*='euiTimelineItemIcon-center']::before {
+        display: flex;
         top: 0;
         height: 50%;
       }

@@ -6,9 +6,10 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { keysOf } from '../common';
+import { EuiTimelineItem } from '../timeline';
 import { EuiCommentEvent, EuiCommentEventProps } from './comment_event';
 import {
   EuiCommentTimeline,
@@ -16,8 +17,7 @@ import {
 } from './comment_timeline';
 
 export interface EuiCommentProps
-  extends HTMLAttributes<HTMLDivElement>,
-    EuiCommentEventProps,
+  extends EuiCommentEventProps,
     EuiCommentTimelineProps {}
 
 const typeToClassNameMap = {
@@ -48,9 +48,18 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
     className
   );
 
+  const isTypeUpdate = type === 'update';
+  const verticalAlign = isTypeUpdate ? 'center' : 'top';
+
   return (
-    <div className={classes} {...rest}>
-      <EuiCommentTimeline username={username} timelineIcon={timelineIcon} />
+    <EuiTimelineItem
+      verticalAlign={verticalAlign}
+      className={classes}
+      icon={
+        <EuiCommentTimeline username={username} timelineIcon={timelineIcon} />
+      }
+      {...rest}
+    >
       <EuiCommentEvent
         username={username}
         actions={actions}
@@ -62,6 +71,6 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
       >
         {children}
       </EuiCommentEvent>
-    </div>
+    </EuiTimelineItem>
   );
 };
