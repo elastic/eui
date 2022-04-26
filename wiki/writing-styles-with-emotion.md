@@ -27,7 +27,7 @@ import { euiComponentNameStyles } from './{component name}.styles.ts';
 export const EuiComponent = () => {
   const theme = useEuiTheme();
   const styles = euiComponentNameStyles(theme);
-  const cssStyles = [componentStyles.euiComponentName]
+  const cssStyles = [styles.euiComponentName]
 
   return (
     <div css={cssStyles} />
