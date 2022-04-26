@@ -28,6 +28,7 @@ export const euiAccordionStyles = (
     align-items: center;
     display: flex;
     flex-grow: 1;
+    line-height: ${euiTheme.size.l};
     text-align: left;
     width: 100%;
 
@@ -42,7 +43,7 @@ export const euiAccordionStyles = (
     `
       align-items: center;
       display: flex;
-      line-height: ${euiTheme.font.lineHeightMultiplier}; // Needed to retain consistent vertical alignment and spacing
+      line-height: ${euiTheme.size.l}; // Needed to retain consistent vertical alignment and spacing
     `}
   `,
   euiAccordion__childWrapper: css`
