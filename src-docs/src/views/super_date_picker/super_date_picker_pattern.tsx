@@ -23,7 +23,7 @@ const sampleItems = [
 
 export default () => {
   const [recentlyUsedRanges, setRecentlyUsedRanges] = useState<
-    EuiSuperDatePickerProps['recentlyUsedRanges']
+    NonNullable<EuiSuperDatePickerProps['recentlyUsedRanges']>
   >([]);
   const [isLoading, setIsLoading] = useState(false);
   const [refreshInterval, setRefreshInterval] = useState(1000);

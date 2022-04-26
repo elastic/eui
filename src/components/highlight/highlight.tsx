@@ -8,7 +8,7 @@
 
 import React, { Fragment, HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps } from '../common';
-import { EuiMark } from '../mark';
+import { EuiMark, EuiMarkProps } from '../mark';
 
 interface EuiHighlightChunk {
   /**
@@ -25,7 +25,10 @@ interface EuiHighlightChunk {
   highlight?: boolean;
 }
 
+type EuiMarkPropHelpText = Pick<EuiMarkProps, 'hasScreenReaderHelpText'>;
+
 export type EuiHighlightProps = HTMLAttributes<HTMLSpanElement> &
+  EuiMarkPropHelpText &
   CommonProps & {
     /**
      * string to highlight as this component's content
@@ -52,7 +55,8 @@ const highlight = (
   searchSubject: string,
   searchValue: string,
   isStrict: boolean,
-  highlightAll: boolean
+  highlightAll: boolean,
+  hasScreenReaderHelpText: boolean
 ) => {
   if (!searchValue) {
     return searchSubject;
@@ -70,7 +74,14 @@ const highlight = (
           const { end, highlight, start } = chunk;
           const value = searchSubject.substr(start, end - start);
           if (highlight) {
-            return <EuiMark key={start}>{value}</EuiMark>;
+            return (
+              <EuiMark
+                key={start}
+                hasScreenReaderHelpText={hasScreenReaderHelpText}
+              >
+                {value}
+              </EuiMark>
+            );
           }
           return value;
         })}
@@ -101,7 +112,9 @@ const highlight = (
   return (
     <Fragment>
       {preMatch}
-      <EuiMark>{match}</EuiMark>
+      <EuiMark hasScreenReaderHelpText={hasScreenReaderHelpText}>
+        {match}
+      </EuiMark>
       {postMatch}
     </Fragment>
   );
@@ -158,11 +171,18 @@ export const EuiHighlight: FunctionComponent<EuiHighlightProps> = ({
   search,
   strict = false,
   highlightAll = false,
+  hasScreenReaderHelpText = true,
   ...rest
 }) => {
   return (
     <span className={className} {...rest}>
-      {highlight(children, search, strict, highlightAll)}
+      {highlight(
+        children,
+        search,
+        strict,
+        highlightAll,
+        hasScreenReaderHelpText
+      )}
     </span>
   );
 };

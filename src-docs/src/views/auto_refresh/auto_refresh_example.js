@@ -37,7 +37,7 @@ export const AutoRefreshExample = {
       text: (
         <p>
           This is a component that is used by the{' '}
-          <Link to="/forms/super-date-picker">
+          <Link to="/templates/super-date-picker">
             <strong>EuiSuperDatePicker</strong>
           </Link>{' '}
           component to create an automatic refresh configuration. It merely

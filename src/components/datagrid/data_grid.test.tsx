@@ -452,6 +452,11 @@ function moveColumnToIndex(
 }
 
 describe('EuiDataGrid', () => {
+  // Mock requestAnimationFrame to run immediately
+  jest
+    .spyOn(window, 'requestAnimationFrame')
+    .mockImplementation((cb: any) => cb());
+
   describe('rendering', () => {
     const getBoundingClientRect =
       window.Element.prototype.getBoundingClientRect;

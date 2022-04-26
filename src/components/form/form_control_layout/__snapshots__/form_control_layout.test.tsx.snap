@@ -188,6 +188,49 @@ exports[`EuiFormControlLayout props icon side right is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiFormControlLayout props isDropdown is rendered 1`] = `
+<div
+  class="euiFormControlLayout"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <div
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+    >
+      <span
+        class="euiFormControlLayoutCustomIcon"
+      >
+        <span
+          aria-hidden="true"
+          class="euiFormControlLayoutCustomIcon__icon"
+          data-euiicon-type="arrowDown"
+        />
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiFormControlLayout props isInvalid is rendered 1`] = `
+<div
+  class="euiFormControlLayout"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <div
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+    >
+      <span
+        color="danger"
+        data-euiicon-type="alert"
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiFormControlLayout props isLoading is rendered 1`] = `
 <div
   class="euiFormControlLayout"

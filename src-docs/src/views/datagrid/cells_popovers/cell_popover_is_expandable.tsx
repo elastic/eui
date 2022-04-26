@@ -28,7 +28,7 @@ const columns: EuiDataGridColumn[] = [
   },
   {
     id: 'lastName',
-    isExpandable: false,
+    isExpandable: false, // Overridden by the fact that cellActions is set
     cellActions,
   },
   {

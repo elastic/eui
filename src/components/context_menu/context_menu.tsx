@@ -234,8 +234,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
     if (nextPanelId) {
       if (this.state.isUsingKeyboardToNavigate) {
         this.setState(({ idToPanelMap }) => ({
-          focusedItemIndex:
-            idToPanelMap[nextPanelId].initialFocusedItemIndex ?? 0,
+          focusedItemIndex: idToPanelMap[nextPanelId].initialFocusedItemIndex,
         }));
       }
 
@@ -252,10 +251,9 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
 
       // Set focus on the item which shows the panel we're leaving.
       const previousPanel = this.state.idToPanelMap[previousPanelId];
-      const focusedItemIndex = previousPanel.items!.findIndex(
-        (item) =>
-          !isItemSeparator(item) && item.panel === this.state.incomingPanelId
-      );
+      const focusedItemIndex = previousPanel
+        .items!.filter((item) => !isItemSeparator(item))
+        .findIndex((item) => item.panel === this.state.incomingPanelId);
 
       if (focusedItemIndex !== -1) {
         this.setState({
@@ -392,7 +390,6 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
             ? this.state.transitionDirection
             : undefined
         }
-        hasFocus={transitionType === 'in'}
         items={this.state.idToRenderedItemsMap[panelId]}
         initialFocusedItemIndex={
           this.state.isUsingKeyboardToNavigate

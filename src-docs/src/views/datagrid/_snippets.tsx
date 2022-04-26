@@ -15,16 +15,12 @@ inMemory={{ level: 'sorting' }}`,
     actions: { showMoveLeft: false, showMoveRight: false }, // doesn't show move actions in column header
     schema: 'franchise', // custom schema later defined under schemaDetectors
     cellActions: [ // provides one additional cell action that triggers an alert once clicked
-      {
-        label: 'test',
-        iconType: 'heart',
-        callback: ()=> alert('test')
-      }
-    ]
-  }
+      ({ Component }) => <Component iconType="heart" onClick={() => alert('test')}>Custom action</Component>,
+    ],
+  },
 ]}`,
   columnVisibility: `columnVisibility={{
-  visibleColumns: ['A', 'C'],
+  visibleColumns: ['A'],
   setVisibleColumns: () => {},
 }}`,
   leadingControlColumns: `leadingControlColumns={[
@@ -61,7 +57,7 @@ inMemory={{ level: 'sorting' }}`,
   onChangeItemsPerPage: () => {},
 }}`,
   sorting: `sorting={{
-  columns: [{ id: 'C', direction: 'asc' }],
+  columns: [{ id: 'A', direction: 'asc' }],
   onSort: () => {},
 }}`,
   toolbarVisibility: `toolbarVisibility={{

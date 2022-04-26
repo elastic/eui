@@ -26,6 +26,12 @@ import {
   writingExamplesSections,
 } from './views/guidelines/writing_examples';
 
+// Templates
+
+import { PageTemplateExample } from './views/page/page_template_example';
+
+import { SitewideSearchExample } from './views/selectable/selectable_sitewide_template_example';
+
 // Services
 
 import { ColorPaletteExample } from './views/color_palette/color_palette_example';
@@ -163,8 +169,6 @@ import { OutsideClickDetectorExample } from './views/outside_click_detector/outs
 
 import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
 
-import { PageExample } from './views/page/page_example';
-
 import { PageHeaderExample } from './views/page_header/page_header_example';
 
 import { PaginationExample } from './views/pagination/pagination_example';
@@ -188,6 +192,7 @@ import { ResizeObserverExample } from './views/resize_observer/resize_observer_e
 import { ResizableContainerExample } from './views/resizable_container/resizable_container_example';
 
 import { ResponsiveExample } from './views/responsive/responsive_example';
+import { ScrollExample } from './views/scroll/scroll_example';
 
 import { SearchBarExample } from './views/search_bar/search_bar_example';
 
@@ -214,6 +219,8 @@ import { TabsExample } from './views/tabs/tabs_example';
 import { TextDiffExample } from './views/text_diff/text_diff_example';
 
 import { TextExample } from './views/text/text_example';
+
+import { TimelineExample } from './views/timeline/timeline_example';
 
 import { TitleExample } from './views/title/title_example';
 
@@ -440,6 +447,14 @@ const navigation = [
     ],
   },
   {
+    name: 'Templates',
+    items: [
+      PageTemplateExample,
+      SitewideSearchExample,
+      SuperDatePickerExample,
+    ].map((example) => createExample(example)),
+  },
+  {
     name: 'Layout',
     items: [
       AccordionExample,
@@ -449,7 +464,6 @@ const navigation = [
       HeaderExample,
       HorizontalRuleExample,
       ModalExample,
-      PageExample,
       PageHeaderExample,
       PanelExample,
       PopoverExample,
@@ -496,6 +510,7 @@ const navigation = [
       ProgressExample,
       StatExample,
       TextExample,
+      TimelineExample,
       TitleExample,
       ToastExample,
       ToolTipExample,
@@ -520,7 +535,6 @@ const navigation = [
       SearchBarExample,
       SelectableExample,
       SuggestExample,
-      SuperDatePickerExample,
       SuperSelectExample,
     ].map((example) => createExample(example)),
   },
@@ -582,6 +596,7 @@ const navigation = [
       ProviderExample,
       ResizeObserverExample,
       ResponsiveExample,
+      ScrollExample,
       TextDiffExample,
       WindowEventExample,
     ].map((example) => createExample(example)),

@@ -328,7 +328,7 @@ exports[`EuiRange props loading should display when showInput="inputWithPopover"
         >
           <input
             aria-label="aria-label"
-            class="euiFieldNumber euiRangeInput euiRangeInput--max euiFieldNumber-isLoading"
+            class="euiFieldNumber euiRangeInput euiRangeInput--max euiFormControlLayout--1icons euiFieldNumber-isLoading"
             data-test-subj="test subject string"
             id="id"
             max="100"

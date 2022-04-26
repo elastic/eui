@@ -135,50 +135,48 @@ exports[`EuiNotificationEvent props contextMenuItems are rendered 1`] = `
   tabindex="-1"
 >
   <div>
-    <div>
-      <button
-        class="euiContextMenuItem"
-        type="button"
+    <button
+      class="euiContextMenuItem"
+      type="button"
+    >
+      <span
+        class="euiContextMenu__itemLayout"
       >
         <span
-          class="euiContextMenu__itemLayout"
+          class="euiContextMenuItem__text"
         >
-          <span
-            class="euiContextMenuItem__text"
-          >
-            Context menu 1 for id: id
-          </span>
+          Context menu 1 for id: id
         </span>
-      </button>
-      <button
-        class="euiContextMenuItem"
-        type="button"
+      </span>
+    </button>
+    <button
+      class="euiContextMenuItem"
+      type="button"
+    >
+      <span
+        class="euiContextMenu__itemLayout"
       >
         <span
-          class="euiContextMenu__itemLayout"
+          class="euiContextMenuItem__text"
         >
-          <span
-            class="euiContextMenuItem__text"
-          >
-            Context menu 2 for id: id
-          </span>
+          Context menu 2 for id: id
         </span>
-      </button>
-      <button
-        class="euiContextMenuItem"
-        type="button"
+      </span>
+    </button>
+    <button
+      class="euiContextMenuItem"
+      type="button"
+    >
+      <span
+        class="euiContextMenu__itemLayout"
       >
         <span
-          class="euiContextMenu__itemLayout"
+          class="euiContextMenuItem__text"
         >
-          <span
-            class="euiContextMenuItem__text"
-          >
-            Context menu 3 for id: id
-          </span>
+          Context menu 3 for id: id
         </span>
-      </button>
-    </div>
+      </span>
+    </button>
   </div>
 </div>
 `;

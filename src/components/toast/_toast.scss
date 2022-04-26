@@ -2,7 +2,7 @@
   border: $euiBorderThin;
   // This overwrites some of the border above
   // sass-lint:disable-block mixins-before-declarations
-  @include euiBottomShadowLarge($adjustBorders: true);
+  @include euiBottomShadowLarge;
 
   position: relative;
   padding: $euiSize;

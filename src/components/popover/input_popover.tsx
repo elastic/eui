@@ -14,7 +14,7 @@ import React, {
   useCallback,
 } from 'react';
 import classnames from 'classnames';
-import tabbable from 'tabbable';
+import { tabbable, FocusableElement } from 'tabbable';
 
 import { CommonProps } from '../common';
 import { EuiFocusTrap } from '../focus_trap';
@@ -81,7 +81,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
 
   const onKeyDown = (event: React.KeyboardEvent) => {
     if (panelEl && event.key === cascadingMenuKeys.TAB) {
-      const tabbableItems = tabbable(panelEl).filter((el: HTMLElement) => {
+      const tabbableItems = tabbable(panelEl).filter((el: FocusableElement) => {
         return (
           Array.from(el.attributes)
             .map((el) => el.name)

@@ -6,4 +6,4 @@
  * Side Public License, v 1.
  */
 
-export const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
+export const IS_JEST_ENVIRONMENT = typeof jest !== 'undefined';

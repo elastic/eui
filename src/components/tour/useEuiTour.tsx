@@ -11,8 +11,7 @@ import { assertNever } from '../common';
 import { EuiTourStepProps } from './tour_step';
 import { EuiTourAction, EuiTourActions, EuiTourState } from './types';
 
-export type EuiStatelessTourStep = Omit<EuiTourStepProps, keyof EuiTourState> &
-  Partial<EuiTourState>;
+export type EuiStatelessTourStep = EuiTourStepProps & Partial<EuiTourState>;
 
 export const useEuiTour = (
   stepsArray: EuiStatelessTourStep[],

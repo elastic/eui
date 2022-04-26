@@ -80,5 +80,6 @@ export const EuiValidatableControl: FunctionComponent<
 
   return cloneElement(child, {
     ref: replacedRef,
+    'aria-invalid': isInvalid,
   });
 };

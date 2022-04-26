@@ -18,6 +18,7 @@ The [`src/test`](../src/test) module exports some functions and constants to hel
 * `findTestSubject` helps you find DOM nodes in mounted components.
 * `requiredProps` is a list of all props almost all components should support.
 * `takeMountedSnapshot` generates a snapshot of a mounted component.
+* `renderWithStyles` generates a snapshot including Emotion style output.
 
 ### Test helper naming pattern
 
@@ -43,15 +44,12 @@ A good test will document:
 
 ```jsx
 describe('YourComponent', () => {
-  test('is rendered', () => {
-    const component = render(
-      <YourComponent {...requiredProps}>
-        Hello
-      </YourComponent>
-    );
-
-    expect(component).toMatchSnapshot();
-  });
+  // Snapshot will be generated at the end of the snap file
+  renderWithStyles(
+    <YourComponent {...requiredProps}>
+      Hello
+    </YourComponent>
+  ));
 
   describe('props', () => {
     describe('color', () => {

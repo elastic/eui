@@ -1,8 +1,8 @@
 # Derived from the zenato/puppeteer Docker image
 # https://github.com/zenato/docker-puppeteer/blob/master/Dockerfile
 
-# >=12.0 required (for cypress), but latest right now is 16.13.1
-FROM node:16.13.1
+# >=12.0 required (for cypress), but latest right now is 16.14.2
+FROM node:16.14.2
 
 # See https://crbug.com/795759
 RUN apt-get update && apt-get install -yq libgconf-2-4
@@ -34,8 +34,10 @@ RUN yarn global add cypress
 # Add puppeteer user (pptruser).
 RUN groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser \
     && mkdir -p /home/pptruser/Downloads \
+    && mkdir -p /cypress/screenshots \
     && chown -R pptruser:pptruser /home/pptruser \
-    && chown -R pptruser:pptruser /node_modules
+    && chown -R pptruser:pptruser /node_modules \
+    && chown -R pptruser:pptruser /cypress
 
 # Run user as non privileged.
 USER pptruser

@@ -51,7 +51,6 @@ EUI provides SVG icon formats only. After exporting your icon as an SVG from you
 - `<use>...</use>`
 - `id: <value>`
 - `fill: <value>`
-- `fill-rule: <value>` or `fillRule: <value>`
 
 _**Note**: Figma users can use the [SVG Export plugin][svg-plugin] to optimize SVG sizes and code._
 

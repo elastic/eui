@@ -96,7 +96,7 @@ export const TabsExample = {
             size is best for when placing inside popovers or other small
             containers. Reserve using the large size for when using as primary
             page navigation, like inside of{' '}
-            <Link to="/layout/page">
+            <Link to="/layout/page-header">
               <strong>EuiPageHeader</strong>
             </Link>
             .

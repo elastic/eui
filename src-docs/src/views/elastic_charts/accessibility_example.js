@@ -191,8 +191,8 @@ export const ElasticChartsAccessibilityExample = {
             iconType="visPie"
           >
             <p>
-              Partition charts include: sunburst, treemap, icicle, flame, and
-              mosaic.
+              Partition charts include: sunburst, treemap, icicle, flame,
+              mosaic, and waffle.
             </p>
           </EuiCallOut>
         </>
@@ -221,7 +221,7 @@ export const ElasticChartsAccessibilityExample = {
             For the provided example, a visually hidden data table is rendered
             with the caption we passed on <EuiCode>ariaTableCaption</EuiCode>.
           </p>
-          <EuiCode language="jsx" inline={false}>
+          <EuiCodeBlock language="jsx">
             {`<p>There is a great variety of reported favorite fruit</p>
 
 <dl>
@@ -254,7 +254,7 @@ export const ElasticChartsAccessibilityExample = {
     </tr>
   </tbody>
 </table>`}
-          </EuiCode>
+          </EuiCodeBlock>
         </>
       ),
     },
@@ -275,10 +275,7 @@ export const ElasticChartsAccessibilityExample = {
             }
             iconType="visAreaStacked"
           >
-            <p>
-              XY charts include: area, bar, bubble, histogram, line, and
-              heatmap.
-            </p>
+            <p>XY charts include: area, bar, and histogram.</p>
           </EuiCallOut>
         </>
       ),
@@ -337,6 +334,7 @@ export const ElasticChartsAccessibilityExample = {
       snippet: `<Chart>
   <Settings aria-label="Chart title" {...props} />
   <Goal
+    domain={{ min: 0, max: 300 }}
     bands=[0, 100, 125, 150, 250]
     bandLabels=['freezing', 'cold', 'brisk', 'warm', 'hot']
     {...otherProps}

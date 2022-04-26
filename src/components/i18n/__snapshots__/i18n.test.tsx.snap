@@ -249,7 +249,19 @@ exports[`EuiI18n mapped tokens mappingFunc calls the mapping function with the s
       "mapping": Object {
         "test1": "This is the mapped value.",
       },
-      "mappingFunc": [Function],
+      "mappingFunc": [MockFunction] {
+        "calls": Array [
+          Array [
+            "placeholder",
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": "PLACEHOLDER",
+          },
+        ],
+      },
     }
   }
 >
@@ -270,7 +282,19 @@ exports[`EuiI18n reading values from context mappingFunc calls the mapping funct
       "mapping": Object {
         "test1": "This is the mapped value.",
       },
-      "mappingFunc": [Function],
+      "mappingFunc": [MockFunction] {
+        "calls": Array [
+          Array [
+            "This is the basic string.",
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": "THIS IS THE BASIC STRING.",
+          },
+        ],
+      },
     }
   }
 >
@@ -316,6 +340,60 @@ exports[`EuiI18n reading values from context render prop with multiple tokens re
       This is the first mapped value.
        
       This is the second mapped value.
+    </div>
+  </EuiI18n>
+</EuiContext>
+`;
+
+exports[`EuiI18n reading values from context render prop with multiple tokens uses the mapping function if one is provided 1`] = `
+<EuiContext
+  i18n={
+    Object {
+      "mapping": Object {
+        "test1": "This is the first mapped value.",
+        "test2": "This is the second mapped value.",
+      },
+      "mappingFunc": [MockFunction] {
+        "calls": Array [
+          Array [
+            "This is the first basic string.",
+          ],
+          Array [
+            "This is the second basic string.",
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": "THIS IS THE FIRST BASIC STRING.",
+          },
+          Object {
+            "type": "return",
+            "value": "THIS IS THE SECOND BASIC STRING.",
+          },
+        ],
+      },
+    }
+  }
+>
+  <EuiI18n
+    defaults={
+      Array [
+        "This is the first basic string.",
+        "This is the second basic string.",
+      ]
+    }
+    tokens={
+      Array [
+        "test1",
+        "test2",
+      ]
+    }
+  >
+    <div>
+      THIS IS THE FIRST BASIC STRING.
+       
+      THIS IS THE SECOND BASIC STRING.
     </div>
   </EuiI18n>
 </EuiContext>
@@ -506,7 +584,7 @@ exports[`EuiI18n reading values from context rendering to dom renders a mapped s
 </EuiContext>
 `;
 
-exports[`EuiI18n useEuiI18n unmapped calls a function and renders the result to the dom 1`] = `
+exports[`EuiI18n useEuiI18n unmapped calls a function that returns JSX and renders the result to the dom 1`] = `
 <Component>
   <div>
     <p>
@@ -518,6 +596,34 @@ exports[`EuiI18n useEuiI18n unmapped calls a function and renders the result to 
     </p>
   </div>
 </Component>
+`;
+
+exports[`EuiI18n useEuiI18n unmapped calls a function that returns a string and the i18n mapping function 1`] = `
+<EuiContext
+  i18n={
+    Object {
+      "mappingFunc": [MockFunction] {
+        "calls": Array [
+          Array [
+            "This is a callback with values",
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": "THIS IS A CALLBACK WITH VALUES",
+          },
+        ],
+      },
+    }
+  }
+>
+  <Component>
+    <div>
+      THIS IS A CALLBACK WITH VALUES
+    </div>
+  </Component>
+</EuiContext>
 `;
 
 exports[`EuiI18n useEuiI18n unmapped handles multiple tokens 1`] = `

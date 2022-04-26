@@ -62,6 +62,8 @@ export {
   transparentize,
   tint,
   shade,
+  tintOrShade,
+  shadeOrTint,
   saturate,
   desaturate,
   lightness,
@@ -75,6 +77,8 @@ export { useColorPickerState, useColorStopsState } from './color_picker';
 export * from './console';
 
 export { copyToClipboard } from './copy_to_clipboard';
+
+export * from './findElement';
 
 export {
   formatAuto,

@@ -1,18 +1,29 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { css } from '@emotion/react';
 import { useEuiTheme } from '../../../../../src/services';
-import { EuiCode } from '../../../../../src/components';
+import {
+  EuiBasicTable,
+  EuiButtonGroup,
+  EuiCode,
+  EuiDescribedFormGroup,
+  EuiPanel,
+  EuiSpacer,
+} from '../../../../../src/components';
 
 import {
-  fontWeight,
-  _EuiThemeFontWeight,
-} from '../../../../../src/global_styling/variables/_typography';
+  euiFontSize,
+  useEuiFontSize,
+  EuiThemeFontWeights,
+  EuiThemeFontScales,
+  EuiThemeFontSizeMeasurements,
+  _EuiThemeFontSizeMeasurement,
+} from '../../../../../src/global_styling';
 
 import { EuiThemeFontBase, EuiThemeFontWeight, ThemeRowType } from '../_props';
 import { getPropsFromComponent } from '../../../services/props/get_props';
+import { getDescription } from '../../../services/props/get_description';
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
-import { getDescription } from '../../../services/props/get_description';
 
 export const FontJS = () => {
   const { euiTheme } = useEuiTheme();
@@ -77,13 +88,12 @@ export const FontJS = () => {
   );
 };
 
-const weightKeys = Object.keys(fontWeight) as Array<keyof _EuiThemeFontWeight>;
-
 export const FontWeightJS: FunctionComponent<ThemeRowType> = ({
   description,
 }) => {
   const { euiTheme } = useEuiTheme();
   const weightProps = getPropsFromComponent(EuiThemeFontWeight);
+  const weightKeys = EuiThemeFontWeights;
 
   return (
     <>
@@ -120,6 +130,166 @@ export const FontWeightJS: FunctionComponent<ThemeRowType> = ({
             Aa
           </div>
         )}
+      />
+    </>
+  );
+};
+
+export const FontScaleJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const scaleKeys = EuiThemeFontScales;
+
+  const measurementButtons = EuiThemeFontSizeMeasurements.map((m) => {
+    return {
+      id: m,
+      label: m,
+    };
+  });
+
+  const [measurementSelected, setMeasurementSelected] = useState(
+    measurementButtons[0].id
+  );
+
+  return (
+    <>
+      <ThemeExample
+        title={<code>useEuiFontSize()</code>}
+        description={
+          <p>
+            Font sizing is provided through this React hook (or function
+            version) and not the global theme. It returns both the{' '}
+            <EuiCode>font-size</EuiCode> and <EuiCode>line-height</EuiCode> for
+            the provided <EuiCode>scale</EuiCode>.
+          </p>
+        }
+        example={
+          <p
+            css={css`
+              ${useEuiFontSize('l')}
+            `}
+          >
+            The quick brown fox jumped over the blue moon to catch a snail
+          </p>
+        }
+        snippet="${useEuiFontSize('l')}"
+      />
+      <ThemeExample
+        title={<code>useEuiFontSize().fontSize</code>}
+        description={
+          <p>
+            To use precisely only the <EuiCode>font-size</EuiCode> value, you
+            will still use the same hook (or function) to grab the individual
+            property via the returned object.
+          </p>
+        }
+        example={
+          <p
+            css={css`
+              font-size: ${useEuiFontSize('xs').fontSize};
+            `}
+          >
+            The quick brown fox jumped over the blue moon to catch a snail
+          </p>
+        }
+        snippet="font-size: ${useEuiFontSize('xs').fontSize};"
+      />
+      <EuiPanel color="accent">
+        <EuiDescribedFormGroup
+          fullWidth
+          title={<h3>Value measurements</h3>}
+          description={
+            <p>
+              The font sizing function also supports the three main measurements
+              for font-size, <EuiCode>rem | px | em</EuiCode>, with{' '}
+              <EuiCode>rem</EuiCode> being default for all EUI components.
+            </p>
+          }
+        >
+          <EuiSpacer />
+          <EuiButtonGroup
+            buttonSize="m"
+            legend="Value measurement to show in table"
+            options={measurementButtons}
+            idSelected={measurementSelected}
+            onChange={(id) =>
+              setMeasurementSelected(id as _EuiThemeFontSizeMeasurement)
+            }
+            color="accent"
+            isFullWidth
+          />
+        </EuiDescribedFormGroup>
+      </EuiPanel>
+      <EuiSpacer />
+      <EuiBasicTable
+        tableLayout="auto"
+        items={scaleKeys.map((scale, index) => {
+          return {
+            id: scale,
+            value: `useEuiFontSize('${scale}'${
+              measurementSelected !== 'rem' ? `, '${measurementSelected}'` : ''
+            })`,
+            size: `${
+              euiFontSize(scale, euiTheme, measurementSelected).fontSize
+            }`,
+            lineHeight: `${
+              euiFontSize(scale, euiTheme, measurementSelected).lineHeight
+            }`,
+            index,
+          };
+        })}
+        columns={[
+          {
+            field: 'sample',
+            name: 'Sample',
+            valign: 'baseline',
+            width: '50%',
+            render: (sample, item) => (
+              <div
+                css={css`
+                  ${euiFontSize(item.id, euiTheme, measurementSelected)}
+                `}
+              >
+                The quick brown fox jumped over the blue moon to catch a snail
+              </div>
+            ),
+            mobileOptions: {
+              width: '100%',
+            },
+          },
+          {
+            field: 'value',
+            name: 'Function',
+            width: 'auto',
+            valign: 'baseline',
+            render: (value: React.ReactNode) => (
+              <EuiCode language="css">{value}</EuiCode>
+            ),
+          },
+          {
+            field: 'size',
+            name: 'Font size',
+            width: '100px',
+            valign: 'baseline',
+            align: 'right',
+            render: (size: string) => (
+              <small>
+                <code>{size}</code>
+              </small>
+            ),
+          },
+          {
+            field: 'lineHeight',
+            name: 'Line height',
+            width: '100px',
+            valign: 'baseline',
+            align: 'right',
+            render: (lineHeight: string) => (
+              <small>
+                <code>{lineHeight}</code>
+              </small>
+            ),
+          },
+        ]}
       />
     </>
   );

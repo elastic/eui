@@ -1,28 +1,5 @@
 // Helper mixins
 
-// Useful border shade when dealing with images of unknown color.
-@mixin innerBorder($type: 'dark', $borderRadius: 0, $alpha: .1) {
-  $color: rgba($euiColorDarkestShade, $alpha);
-
-  @if $type == 'light' {
-    $color: rgba($euiColorEmptyShade, $alpha);
-  }
-
-  position: relative;
-
-  &:after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: $borderRadius;
-    content: '';
-    pointer-events: none;
-    border: 1px solid $color;
-  }
-}
-
 // Set scroll bar appearance on Chrome (and firefox).
 @mixin euiScrollBar($thumbColor: $euiColorDarkShade, $trackBackgroundColor: transparent, $size: 'thin') {
   // Firefox's scrollbar coloring cascades, but the sizing does not,

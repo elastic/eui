@@ -8,13 +8,11 @@
 
 import React from 'react';
 import { render, mount } from 'enzyme';
-import { findTestSubject, requiredProps } from '../../test';
+import { requiredProps } from '../../test';
 
 import { EuiContextMenuPanel, SIZES } from './context_menu_panel';
 
 import { EuiContextMenuItem } from './context_menu_item';
-
-import { tick } from './context_menu.test';
 
 import { keys } from '../../services';
 
@@ -162,30 +160,6 @@ describe('EuiContextMenuPanel', () => {
       });
     });
 
-    describe('initialFocusedItemIndex', () => {
-      it('sets focus on the item occupying that index', async () => {
-        const component = mount(
-          <EuiContextMenuPanel items={items} initialFocusedItemIndex={1} />
-        );
-
-        await tick(20);
-
-        expect(findTestSubject(component, 'itemB').getDOMNode()).toBe(
-          document.activeElement
-        );
-      });
-
-      it('sets focus on the panel when set to `-1`', async () => {
-        const component = mount(
-          <EuiContextMenuPanel items={items} initialFocusedItemIndex={-1} />
-        );
-
-        await tick(20);
-
-        expect(component.getDOMNode()).toBe(document.activeElement);
-      });
-    });
-
     describe('onUseKeyboardToNavigate', () => {
       it('is called when up arrow is pressed', () => {
         const onUseKeyboardToNavigateHandler = jest.fn();
@@ -216,12 +190,13 @@ describe('EuiContextMenuPanel', () => {
       });
 
       describe('left arrow', () => {
-        it('calls handler if showPreviousPanel exists', () => {
+        it('calls handler if onClose and showPreviousPanel exists', () => {
           const onUseKeyboardToNavigateHandler = jest.fn();
 
           const component = mount(
             <EuiContextMenuPanel
               items={items}
+              onClose={() => {}}
               showPreviousPanel={() => {}}
               onUseKeyboardToNavigate={onUseKeyboardToNavigateHandler}
             />

@@ -372,7 +372,11 @@ export const SelectionControlsExample = {
             <strong>EuiFormFieldset</strong> simply wraps its children in a{' '}
             <EuiCode language="html">&lt;fieldset&gt;</EuiCode> with the option
             to add a <EuiCode language="html">&lt;legend&gt;</EuiCode> via the{' '}
-            <EuiCode>legend</EuiCode> object prop.
+            <EuiCode>legend</EuiCode> object prop. Find more examples in the{' '}
+            <Link to="/forms/selection-controls/guidelines">
+              guidelines tab
+            </Link>
+            .
           </p>
         </Fragment>
       ),

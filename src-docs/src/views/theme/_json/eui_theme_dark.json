@@ -6,24 +6,6 @@
     "l": "24px",
     "xl": "32px"
   },
-  "avatarSizing": {
-    "s": {
-      "size": "24px",
-      "font-size": "12px"
-    },
-    "m": {
-      "size": "32px",
-      "font-size": "14.4px"
-    },
-    "l": {
-      "size": "40px",
-      "font-size": "19.200000000000003px"
-    },
-    "xl": {
-      "size": "64px",
-      "font-size": "25.6px"
-    }
-  },
   "euiBadgeGroupGutterTypes": {
     "gutterExtraSmall": "4px",
     "gutterSmall": "8px"
@@ -641,7 +623,6 @@
   },
   "euiBreakpointKeys": "'xs', 's', 'm', 'l', 'xl'",
   "euiShadowColor": "#000000",
-  "euiShadowColorLarge": "#000000",
   "euiSize": "16px",
   "euiSizeXS": "4px",
   "euiSizeS": "8px",

@@ -99,12 +99,6 @@ export const useUnconstrainedHeight = ({
 }) => {
   const { getCorrectRowIndex } = useContext(DataGridSortingContext);
 
-  // when a row height is updated, force a re-render of the grid body to update the unconstrained height
-  const forceRender = useForceRender();
-  useEffect(() => {
-    rowHeightUtils.setRerenderGridBody(forceRender);
-  }, [rowHeightUtils, forceRender]);
-
   let knownHeight = 0; // tracks the pixel height of rows we know the size of
   let knownRowCount = 0; // how many rows we know the size of
   for (let i = startRow; i < endRow; i++) {
@@ -137,6 +131,7 @@ export const useUnconstrainedHeight = ({
     innerGridRef.current,
     'width'
   );
+  const forceRender = useForceRender();
   useUpdateEffect(forceRender, [innerWidth]);
 
   const unconstrainedHeight =

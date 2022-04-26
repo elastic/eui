@@ -17,6 +17,10 @@ const formRowsSource = require('!!raw-loader!./form_rows');
 
 import DescribedFormGroup from './described_form_group';
 const describedFormGroupSource = require('!!raw-loader!./described_form_group');
+import DescribedFormGroupWidth from './described_form_group_width';
+const describedFormGroupWidthSource = require('!!raw-loader!./described_form_group_width');
+import DescribedFormGroupRatio from './described_form_group_ratio';
+const describedFormGroupRatioSource = require('!!raw-loader!./described_form_group_ratio');
 
 import FullWidth from './full_width';
 const fullWidthSource = require('!!raw-loader!./full_width');
@@ -70,12 +74,6 @@ export const FormLayoutsExample = {
   sections: [
     {
       title: 'Form and form rows',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: formRowsSource,
-        },
-      ],
       text: (
         <p>
           Use the <strong>EuiFormRow</strong> component to easily associate form
@@ -91,6 +89,12 @@ export const FormLayoutsExample = {
         EuiFormRow,
       },
       demo: <FormRows />,
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: formRowsSource,
+        },
+      ],
       snippet: `<EuiFormRow
   label="Text field"
   helpText="I am some friendly help text."
@@ -99,25 +103,119 @@ export const FormLayoutsExample = {
 </EuiFormRow>`,
     },
     {
+      title: 'Full-width',
+      text: (
+        <p>
+          Form elements will automatically flex to a max-width of{' '}
+          <EuiCode>400px</EuiCode>. You can optionally pass the{' '}
+          <EuiCode>fullWidth</EuiCode> prop to the row and form control to
+          expand to their container. This should be done rarely and usually you
+          will only need it for isolated controls like search bars and sliders.
+        </p>
+      ),
+      props: {
+        EuiFormRow,
+      },
+      demo: <FullWidth />,
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: fullWidthSource,
+        },
+      ],
+      snippet: `<EuiFormRow
+  fullWidth
+  label="Works on form rows too"
+  helpText="Note that the fullWidth prop is not passed to the form row's child"
+>
+  <EuiRange fullWidth />
+</EuiFormRow>`,
+    },
+    {
+      title: 'Inline',
+      text: (
+        <p>
+          Inline forms can be made with{' '}
+          <Link to="/layout/flex">
+            <strong>EuiFlexGroup</strong>
+          </Link>
+          . Apply <EuiCode language="js">{'grow={false}'}</EuiCode> on any of
+          the items you want to collapse (like the button below). Note that the
+          button&apos;s <strong>EuiFormRow</strong> wrapper also requires an
+          additional prop when it&rsquo;s missing a label{' '}
+          <EuiCode language="js">hasEmptyLabelSpace</EuiCode>.
+        </p>
+      ),
+      demo: <Inline />,
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: inlineSource,
+        },
+      ],
+    },
+    {
+      text: (
+        <>
+          <h3>Sizing inline form rows</h3>
+          <p>
+            Apply a <EuiCode>width</EuiCode> or change the{' '}
+            <EuiCode>grow</EuiCode> prop on the wrapping{' '}
+            <strong>EuiFlexItem</strong> to size individual controls. When you
+            need to make a field smaller, always apply the width to the flex
+            item, not the input. The input inside will resize as needed.
+          </p>
+          <p>
+            When supplying children to an <strong>EuiFormRow</strong> that is{' '}
+            <strong>not</strong> a form control, and you need to the content to
+            vertically center with the other form controls, change the{' '}
+            <EuiCode>display</EuiCode> prop to <EuiCode>center</EuiCode> or{' '}
+            <EuiCode>centerCompressed</EuiCode>.
+          </p>
+        </>
+      ),
+      demo: <InlineSizing />,
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: inlineSizingSource,
+        },
+      ],
+      snippet: `<EuiFormRow label="Avatar" display="centerCompressed">
+  <EuiAvatar name="John Doe" size="s" />
+</EuiFormRow>`,
+    },
+    {
       title: 'Described form groups',
+      text: (
+        <>
+          <p>
+            Use <strong>EuiDescribedFormGroup</strong> component to create
+            sections of associated form controls and rows. It can also simply be
+            used with one <strong>EuiFormRow</strong> as a way to display
+            additional text next to the field (on mobile, it will revert to
+            being stacked).
+          </p>
+          <p>
+            Read more about appropriate layout usage of{' '}
+            <strong>EuiDescribedFormGroup</strong> in the{' '}
+            <Link to="/forms/form-layouts/guidelines">
+              forms usage guidelines
+            </Link>
+            .
+          </p>
+        </>
+      ),
+      props: {
+        EuiDescribedFormGroup,
+      },
+      demo: <DescribedFormGroup />,
       source: [
         {
           type: GuideSectionTypes.JS,
           code: describedFormGroupSource,
         },
       ],
-      text: (
-        <p>
-          Use <strong>EuiDescribedFormGroup</strong> component to associate
-          multiple <strong>EuiFormRows</strong>. It can also simply be used with
-          one <strong>EuiFormRow</strong> as a way to display additional text
-          next to the field (on mobile, it will revert to being stacked).
-        </p>
-      ),
-      props: {
-        EuiDescribedFormGroup,
-      },
-      demo: <DescribedFormGroup />,
       snippet: `<EuiDescribedFormGroup
   title={<h3>Set heading level based on context</h3>}
   description={
@@ -132,6 +230,63 @@ export const FormLayoutsExample = {
     <EuiFieldText />
   </EuiFormRow>
 </EuiDescribedFormGroup>`,
+    },
+    {
+      text: (
+        <>
+          <h3>Sizing described form rows</h3>
+          <p>
+            By default, <strong>EuiDescribedFormGroup</strong> has a max-width
+            of 800px for best readability. To expand the group to 100%, add the{' '}
+            <EuiCode>fullWidth</EuiCode> prop to this, the{' '}
+            <strong>EuiFormRow</strong>, <strong>and</strong> the individual
+            fields.
+          </p>
+        </>
+      ),
+      props: {
+        EuiDescribedFormGroup,
+      },
+      demo: <DescribedFormGroupWidth />,
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: describedFormGroupWidthSource,
+        },
+      ],
+    },
+    {
+      text: (
+        <>
+          <p>
+            You can also change the ratio of the width of the description column
+            versus the field column. By default it is{' '}
+            <EuiCode>{"'half'"}</EuiCode>, but you can also change to{' '}
+            <EuiCode>{"'third'"}</EuiCode> or <EuiCode>{"'quarter'"}</EuiCode>{' '}
+            which prioritizes the field column. You will most likely still need
+            to apply <EuiCode>fullWidth</EuiCode> to all the components. The
+            description column does have a minimum readable width applied to it
+            so that it cannot shrink too far.
+          </p>
+          <p>
+            Both the description and field columns are simply{' '}
+            <strong>EuiFlexItem</strong> wrappers. If you need more
+            customization of these columns you can pass flex item props to{' '}
+            <EuiCode>descriptionFlexItemProps</EuiCode> and{' '}
+            <EuiCode>fieldFlexItemProps</EuiCode> respectively.
+          </p>
+        </>
+      ),
+      props: {
+        EuiDescribedFormGroup,
+      },
+      demo: <DescribedFormGroupRatio />,
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: describedFormGroupRatioSource,
+        },
+      ],
     },
     {
       title: 'Form labels',
@@ -218,95 +373,9 @@ export const FormLayoutsExample = {
         },
       ],
     },
-    {
-      title: 'Full-width',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: fullWidthSource,
-        },
-      ],
-      text: (
-        <p>
-          Form elements will automatically flex to a max-width of{' '}
-          <EuiCode>400px</EuiCode>. You can optionally pass the{' '}
-          <EuiCode>fullWidth</EuiCode> prop to the row and form control to
-          expand to their container. This should be done rarely and usually you
-          will only need it for isolated controls like search bars and sliders.
-        </p>
-      ),
-      props: {
-        EuiFormRow,
-      },
-      demo: <FullWidth />,
-      snippet: `<EuiFormRow
-  fullWidth
-  label="Works on form rows too"
-  helpText="Note that the fullWidth prop is not passed to the form row's child"
->
-  <EuiRange fullWidth />
-</EuiFormRow>`,
-    },
 
     {
-      title: 'Inline',
-      text: (
-        <p>
-          Inline forms can be made with{' '}
-          <Link to="/layout/flex">
-            <strong>EuiFlexGroup</strong>
-          </Link>
-          . Apply <EuiCode language="js">grow=false</EuiCode> on any of the
-          items you want to collapse (like this button). Note that the button
-          FormRow component also requires an additional prop because it&rsquo;s
-          missing a label.
-        </p>
-      ),
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: inlineSource,
-        },
-      ],
-      demo: <Inline />,
-    },
-    {
-      title: 'Sizing inline form rows',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: inlineSizingSource,
-        },
-      ],
-      text: (
-        <Fragment>
-          <p>
-            Apply a width to the wrapping FlexItem to size individual controls.
-            When you need to make a field smaller, always apply the width to the
-            FlexItem, not the input. The input inside will resize as needed.
-          </p>
-          <p>
-            When supplying children to an EuiFormRow that is{' '}
-            <strong>not</strong> a form control, and you need to the content to
-            vertically center with the other form controls, change the{' '}
-            <EuiCode>display</EuiCode> prop to <EuiCode>center</EuiCode> or{' '}
-            <EuiCode>centerCompressed</EuiCode>.
-          </p>
-        </Fragment>
-      ),
-      demo: <InlineSizing />,
-      snippet: `<EuiFormRow label="Avatar" display="centerCompressed">
-  <EuiAvatar name="John Doe" size="s" />
-</EuiFormRow>`,
-    },
-    {
       title: 'In a popover',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: inlinePopoverSource,
-        },
-      ],
       text: (
         <p>
           Because forms auto-size to their wrapping elements, it means you can
@@ -315,6 +384,12 @@ export const FormLayoutsExample = {
         </p>
       ),
       demo: <InlinePopover />,
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: inlinePopoverSource,
+        },
+      ],
     },
   ],
   guidelines: <Guidelines />,

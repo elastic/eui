@@ -171,12 +171,14 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     } = this.props;
 
     const { id } = this.state;
+    const hasLabel = label || labelAppend;
 
     const classes = classNames(
       'euiFormRow',
       {
         'euiFormRow--hasEmptyLabelSpace': hasEmptyLabelSpace,
         'euiFormRow--fullWidth': fullWidth,
+        'euiFormRow--hasLabel': hasLabel,
       },
       displayToClassNameMap[display!], // Safe use of ! as default prop is 'row'
       className
@@ -222,7 +224,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     const isLegend = label && labelType === 'legend' ? true : false;
     const labelId = `${id}-label`;
 
-    if (label || labelAppend) {
+    if (hasLabel) {
       let labelProps = {};
       if (isLegend) {
         labelProps = {
@@ -235,6 +237,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
           type: labelType,
         };
       }
+
       optionalLabel = (
         <div className="euiFormRow__labelWrapper">
           <EuiFormLabel

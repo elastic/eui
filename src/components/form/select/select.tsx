@@ -19,7 +19,7 @@ import {
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
 import { EuiValidatableControl } from '../validatable_control';
-import { EuiFormControlLayoutIconsProps } from '../form_control_layout/form_control_layout_icons';
+import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
 
 export interface EuiSelectOption
   extends OptionHTMLAttributes<HTMLOptionElement> {
@@ -76,6 +76,7 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
   prepend,
   append,
   onMouseUp,
+  disabled,
   ...rest
 }) => {
   // if this is injecting an empty option for `hasNoInitialSelection` then
@@ -91,8 +92,15 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
     if (onMouseUp) onMouseUp(e);
   };
 
+  const numIconsClass = getFormControlClassNameForIconCount({
+    isInvalid,
+    isLoading,
+    isDropdown: true,
+  });
+
   const classes = classNames(
     'euiSelect',
+    numIconsClass,
     {
       'euiSelect--fullWidth': fullWidth,
       'euiSelect--compressed': compressed,
@@ -118,16 +126,13 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
     selectDefaultValue = defaultValue || '';
   }
 
-  const icon: EuiFormControlLayoutIconsProps['icon'] = {
-    type: 'arrowDown',
-    side: 'right',
-  };
-
   return (
     <EuiFormControlLayout
-      icon={icon}
+      isDropdown={true}
       fullWidth={fullWidth}
       isLoading={isLoading}
+      isInvalid={isInvalid}
+      isDisabled={disabled}
       compressed={compressed}
       prepend={prepend}
       append={append}
@@ -142,6 +147,7 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
           defaultValue={selectDefaultValue}
           value={value}
           onMouseUp={handleMouseUp}
+          disabled={disabled}
           {...rest}
         >
           {emptyOptionNode}

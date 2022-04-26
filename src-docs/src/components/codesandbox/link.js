@@ -108,6 +108,14 @@ export const Demo = () => (<EuiButton>Hello world!</EuiButton>);
     );
   }
 
+  // Prepend the `@emotion/react` JSX pragma to enable the `css` prop on non-EUI elements/components
+  // https://emotion.sh/docs/css-prop#jsx-pragma
+  if (demoContent.includes('css=')) {
+    demoContent = `/** @jsxImportSource @emotion/react */
+${demoContent}
+`;
+  }
+
   const demoContentDeps = listExtraDeps(demoContent);
   let mergedDeps = demoContentDeps;
 

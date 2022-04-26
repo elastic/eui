@@ -18,6 +18,7 @@ const iconTypes = [
   'appSearchApp',
   'auditbeatApp',
   'canvasApp',
+  'casesApp',
   'codeApp',
   'consoleApp',
   'crossClusterReplicationApp',

@@ -20,6 +20,7 @@ describe('EuiFormControlLayoutCustomIcon', () => {
       onClick: () => null,
       type: 'alert',
       iconRef: 'icon',
+      color: 'danger',
     };
     const component = render(
       <EuiFormControlLayoutCustomIcon {...props} {...requiredProps} />

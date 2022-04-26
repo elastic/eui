@@ -42,6 +42,20 @@ describe('EuiHighlight', () => {
 
         expect(component).toMatchSnapshot();
       });
+
+      test('hasScreenReaderHelpText can be false', () => {
+        const component = render(
+          <EuiHighlight
+            search="match"
+            highlightAll
+            hasScreenReaderHelpText={false}
+          >
+            match match match
+          </EuiHighlight>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
     });
 
     describe('loose matching', () => {

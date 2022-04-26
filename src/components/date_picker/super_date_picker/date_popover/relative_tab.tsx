@@ -8,7 +8,6 @@
 
 import React, { Component, ChangeEventHandler } from 'react';
 import dateMath from '@elastic/datemath';
-import { toSentenceCase } from '../../../../services/string/to_case';
 import { htmlIdGenerator } from '../../../../services';
 import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
 import {
@@ -23,8 +22,7 @@ import {
 } from '../../../form';
 import { EuiSpacer } from '../../../spacer';
 
-import { timeUnits } from '../time_units';
-import { relativeOptions } from '../relative_options';
+import { TimeOptions } from '../time_options';
 import {
   parseRelativeParts,
   toRelativeStringFromParts,
@@ -44,12 +42,13 @@ export interface EuiRelativeTabProps {
   onChange: EuiDatePopoverContentProps['onChange'];
   roundUp?: boolean;
   position: 'start' | 'end';
+  labelPrefix: string;
+  timeOptions: TimeOptions;
 }
 
 interface EuiRelativeTabState
   extends Pick<RelativeParts, 'unit' | 'round' | 'roundUnit'> {
   count: number | undefined;
-  sentenceCasedPosition: string;
 }
 
 export class EuiRelativeTab extends Component<
@@ -58,7 +57,6 @@ export class EuiRelativeTab extends Component<
 > {
   state: EuiRelativeTabState = {
     ...parseRelativeParts(this.props.value),
-    sentenceCasedPosition: toSentenceCase(this.props.position),
   };
 
   relativeDateInputNumberDescriptionId = htmlIdGenerator()();
@@ -107,6 +105,7 @@ export class EuiRelativeTab extends Component<
   };
 
   render() {
+    const { relativeOptions, relativeRoundingLabels } = this.props.timeOptions;
     const { count, unit } = this.state;
     const invalidDate = this.props.value === INVALID_DATE;
     const invalidValue = count === undefined || count < 0;
@@ -204,15 +203,7 @@ export class EuiRelativeTab extends Component<
             compressed
             value={formattedValue}
             readOnly
-            prepend={
-              <EuiFormLabel>
-                <EuiI18n
-                  token="euiRelativeTab.relativeDate"
-                  default="{position} date"
-                  values={{ position: this.state.sentenceCasedPosition }}
-                />
-              </EuiFormLabel>
-            }
+            prepend={<EuiFormLabel>{this.props.labelPrefix}</EuiFormLabel>}
           />
           <EuiScreenReaderOnly>
             <p id={this.relativeDateInputNumberDescriptionId}>
@@ -225,20 +216,12 @@ export class EuiRelativeTab extends Component<
           </EuiScreenReaderOnly>
         </EuiForm>
         <EuiPopoverFooter paddingSize="s">
-          <EuiI18n
-            token="euiRelativeTab.roundingLabel"
-            default="Round to the {unit}"
-            values={{ unit: timeUnits[unit.substring(0, 1) as TimeUnitId] }}
-          >
-            {(roundingLabel: string) => (
-              <EuiSwitch
-                data-test-subj={'superDatePickerRelativeDateRoundSwitch'}
-                label={roundingLabel}
-                checked={this.state.round}
-                onChange={this.onRoundChange}
-              />
-            )}
-          </EuiI18n>
+          <EuiSwitch
+            data-test-subj={'superDatePickerRelativeDateRoundSwitch'}
+            label={relativeRoundingLabels[unit.substring(0, 1) as TimeUnitId]}
+            checked={this.state.round}
+            onChange={this.onRoundChange}
+          />
         </EuiPopoverFooter>
       </>
     );

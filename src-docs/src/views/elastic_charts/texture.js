@@ -31,6 +31,8 @@ export const TextureMultiSeriesChart = () => {
         <BarSeries
           key={1}
           id={'series-1'}
+          xAccessor={'x'}
+          yAccessors={['y']}
           barSeriesStyle={{
             rect: {
               opacity: 0.2,
@@ -48,6 +50,8 @@ export const TextureMultiSeriesChart = () => {
         <AreaSeries
           key={2}
           id={'series-2'}
+          xAccessor={'x'}
+          yAccessors={['y']}
           areaSeriesStyle={{
             area: {
               opacity: 0.05,

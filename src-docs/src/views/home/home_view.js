@@ -186,7 +186,7 @@ export const HomeView = () => (
         <EuiFlexItem grow={false} className="guideHomePage__blockformCard">
           <EuiCard
             hasBorder
-            href="#/layout/page"
+            href="#/templates/page-template"
             textAlign="left"
             image={imagePages}
             title="Pages"

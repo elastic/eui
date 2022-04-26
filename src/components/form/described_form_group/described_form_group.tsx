@@ -10,51 +10,56 @@ import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 
 import classNames from 'classnames';
 
-import { CommonProps, keysOf, PropsOf } from '../../common';
+import { CommonProps, PropsOf } from '../../common';
 
 import { EuiTitle, EuiTitleSize, EuiTitleProps } from '../../title';
 import { EuiText } from '../../text';
-import { EuiFlexGroup, EuiFlexItem, EuiFlexGroupGutterSize } from '../../flex';
-
-const paddingSizeToClassNameMap = {
-  xxxs: 'euiDescribedFormGroup__fieldPadding--xxxsmall',
-  xxs: 'euiDescribedFormGroup__fieldPadding--xxsmall',
-  xs: 'euiDescribedFormGroup__fieldPadding--xsmall',
-  s: 'euiDescribedFormGroup__fieldPadding--small',
-  m: 'euiDescribedFormGroup__fieldPadding--medium',
-  l: 'euiDescribedFormGroup__fieldPadding--large',
-};
-
-export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
-
-export type EuiDescribedFormGroupPaddingSize = keyof typeof paddingSizeToClassNameMap;
+import {
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiFlexGroupGutterSize,
+  EuiFlexItemProps,
+} from '../../flex';
 
 export type EuiDescribedFormGroupProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
     /**
-     * One or more `EuiFormRow`s
+     * One or more `EuiFormRow`s.
      */
     children?: ReactNode;
     /**
-     * Passed to `EuiFlexGroup`
+     * Passed to `EuiFlexGroup`.
      */
     gutterSize?: EuiFlexGroupGutterSize;
+    /**
+     * Expand to fill 100% of the parent.
+     * Default max-width is 800px.
+     */
     fullWidth?: boolean;
     /**
-     * For better accessibility, it's recommended the use of HTML headings
+     * Width ratio of description column compared to field column.
+     * Can be used in conjunction with `fullWidth` and
+     * may require `fullWidth` to be applied to child elements.
+     */
+    ratio?: 'half' | 'third' | 'quarter';
+    /**
+     * For better accessibility, it's recommended to use an HTML heading.
      */
     title: EuiTitleProps['children'];
+    /**
+     * Adjust the visual `size` of the EuiTitle that wraps `title`.
+     */
     titleSize?: EuiTitleSize;
     /**
-     * Added as a child of `EuiText`
+     * Added as a child of `EuiText`.
      */
     description?: ReactNode;
     /**
-     * For customizing the description container. Extended from `EuiFlexItem`
+     * For customizing the description container. Extended from `EuiFlexItem`.
      */
     descriptionFlexItemProps?: PropsOf<typeof EuiFlexItem>;
     /**
-     * For customizing the field container. Extended from `EuiFlexItem`
+     * For customizing the field container. Extended from `EuiFlexItem`.
      */
     fieldFlexItemProps?: PropsOf<typeof EuiFlexItem>;
   };
@@ -64,6 +69,7 @@ export const EuiDescribedFormGroup: FunctionComponent<EuiDescribedFormGroupProps
   className,
   gutterSize = 'l',
   fullWidth = false,
+  ratio = 'half',
   titleSize = 'xs',
   title,
   description,
@@ -81,13 +87,17 @@ export const EuiDescribedFormGroup: FunctionComponent<EuiDescribedFormGroupProps
 
   const fieldClasses = classNames(
     'euiDescribedFormGroup__fields',
-    paddingSizeToClassNameMap[titleSize],
     fieldFlexItemProps && fieldFlexItemProps.className
   );
 
   let renderedDescription: ReactNode;
 
   if (description) {
+    // If the description is just a string, wrap it in a paragraph element
+    if (typeof description === 'string') {
+      description = <p>{description}</p>;
+    }
+
     renderedDescription = (
       <EuiText
         size="s"
@@ -99,10 +109,33 @@ export const EuiDescribedFormGroup: FunctionComponent<EuiDescribedFormGroupProps
     );
   }
 
+  let fieldGrowth: EuiFlexItemProps['grow'];
+  switch (ratio) {
+    case 'half':
+      fieldGrowth = 1;
+      break;
+    case 'third':
+      fieldGrowth = 2;
+      break;
+    case 'quarter':
+      fieldGrowth = 3;
+      break;
+    default:
+      console.warn('Please provide an allowed ratio to EuiDescribedFromRow');
+      break;
+  }
+
   return (
     <div role="group" className={classes} {...rest}>
-      <EuiFlexGroup gutterSize={gutterSize}>
-        <EuiFlexItem {...descriptionFlexItemProps}>
+      <EuiFlexGroup alignItems="baseline" gutterSize={gutterSize}>
+        <EuiFlexItem
+          grow={1}
+          {...descriptionFlexItemProps}
+          className={classNames(
+            'euiDescribedFormGroup__descriptionColumn',
+            descriptionFlexItemProps?.className
+          )}
+        >
           <EuiTitle size={titleSize} className="euiDescribedFormGroup__title">
             {title}
           </EuiTitle>
@@ -110,7 +143,11 @@ export const EuiDescribedFormGroup: FunctionComponent<EuiDescribedFormGroupProps
           {renderedDescription}
         </EuiFlexItem>
 
-        <EuiFlexItem {...fieldFlexItemProps} className={fieldClasses}>
+        <EuiFlexItem
+          grow={fieldGrowth}
+          {...fieldFlexItemProps}
+          className={fieldClasses}
+        >
           {children}
         </EuiFlexItem>
       </EuiFlexGroup>

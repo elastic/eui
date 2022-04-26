@@ -14,7 +14,7 @@ import dateMath from '@elastic/datemath';
 
 import { EuiDatePicker, EuiDatePickerProps } from '../../date_picker';
 import { EuiFormRow, EuiFieldText, EuiFormLabel } from '../../../form';
-import { toSentenceCase } from '../../../../services/string/to_case';
+import { EuiI18n } from '../../../i18n';
 import { EuiDatePopoverContentProps } from './date_popover_content';
 
 export interface EuiAbsoluteTabProps {
@@ -25,12 +25,12 @@ export interface EuiAbsoluteTabProps {
   onChange: EuiDatePopoverContentProps['onChange'];
   roundUp: boolean;
   position: 'start' | 'end';
+  labelPrefix: string;
   utcOffset?: number;
 }
 
 interface EuiAbsoluteTabState {
   isTextInvalid: boolean;
-  sentenceCasedPosition: string;
   textInputValue: string;
   valueAsMoment: Moment | null;
 }
@@ -44,8 +44,6 @@ export class EuiAbsoluteTab extends Component<
   constructor(props: EuiAbsoluteTabProps) {
     super(props);
 
-    const sentenceCasedPosition = toSentenceCase(props.position);
-
     const parsedValue = dateMath.parse(props.value, { roundUp: props.roundUp });
     const valueAsMoment =
       parsedValue && parsedValue.isValid() ? parsedValue : moment();
@@ -56,7 +54,6 @@ export class EuiAbsoluteTab extends Component<
 
     this.state = {
       isTextInvalid: false,
-      sentenceCasedPosition,
       textInputValue,
       valueAsMoment,
     };
@@ -96,13 +93,14 @@ export class EuiAbsoluteTab extends Component<
   };
 
   render() {
-    const { dateFormat, timeFormat, locale, utcOffset } = this.props;
     const {
-      valueAsMoment,
-      isTextInvalid,
-      textInputValue,
-      sentenceCasedPosition,
-    } = this.state;
+      dateFormat,
+      timeFormat,
+      locale,
+      utcOffset,
+      labelPrefix,
+    } = this.props;
+    const { valueAsMoment, isTextInvalid, textInputValue } = this.state;
 
     return (
       <div>
@@ -117,20 +115,28 @@ export class EuiAbsoluteTab extends Component<
           locale={locale}
           utcOffset={utcOffset}
         />
-        <EuiFormRow
-          className="euiSuperDatePicker__absoluteDateFormRow"
-          isInvalid={isTextInvalid}
-          error={isTextInvalid ? `Expected format ${dateFormat}` : undefined}
+        <EuiI18n
+          token="euiAbsoluteTab.dateFormatError"
+          default="Expected format: {dateFormat}"
+          values={{ dateFormat }}
         >
-          <EuiFieldText
-            compressed
-            isInvalid={isTextInvalid}
-            value={textInputValue}
-            onChange={this.handleTextChange}
-            data-test-subj={'superDatePickerAbsoluteDateInput'}
-            prepend={<EuiFormLabel>{sentenceCasedPosition} date</EuiFormLabel>}
-          />
-        </EuiFormRow>
+          {(dateFormatError: string) => (
+            <EuiFormRow
+              className="euiSuperDatePicker__absoluteDateFormRow"
+              isInvalid={isTextInvalid}
+              error={isTextInvalid ? dateFormatError : undefined}
+            >
+              <EuiFieldText
+                compressed
+                isInvalid={isTextInvalid}
+                value={textInputValue}
+                onChange={this.handleTextChange}
+                data-test-subj={'superDatePickerAbsoluteDateInput'}
+                prepend={<EuiFormLabel>{labelPrefix}</EuiFormLabel>}
+              />
+            </EuiFormRow>
+          )}
+        </EuiI18n>
       </div>
     );
   }

@@ -21,7 +21,12 @@ export default () => {
       &emsp;
       <EuiAvatar size="m" name="Medium size" iconType="managementApp" />
       &emsp;
-      <EuiAvatar size="l" name="Large" iconType="managementApp" />
+      <EuiAvatar
+        size="l"
+        color="subdued"
+        name="Large"
+        iconType="managementApp"
+      />
       &emsp;
       <EuiAvatar
         size="xl"

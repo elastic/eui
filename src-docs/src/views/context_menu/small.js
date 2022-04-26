@@ -5,6 +5,7 @@ import {
   EuiContextMenuPanel,
   EuiContextMenuItem,
   EuiPopover,
+  EuiCopy,
 } from '../../../../src/components';
 import { useGeneratedHtmlId } from '../../../../src/services';
 
@@ -23,9 +24,13 @@ export default () => {
   };
 
   const items = [
-    <EuiContextMenuItem key="copy" icon="copy" onClick={closePopover}>
-      Copy
-    </EuiContextMenuItem>,
+    <EuiCopy textToCopy="Copied some text!" anchorClassName="eui-fullWidth">
+      {(copy) => (
+        <EuiContextMenuItem key="copy" icon="copy" onClick={copy} size="s">
+          Copy
+        </EuiContextMenuItem>
+      )}
+    </EuiCopy>,
     <EuiContextMenuItem key="edit" icon="pencil" onClick={closePopover}>
       Edit
     </EuiContextMenuItem>,

@@ -16,6 +16,7 @@ export interface DurationRange {
 
 export type TimeUnitId = 's' | 'm' | 'h' | 'd' | 'w' | 'M' | 'y';
 export type TimeUnitFromNowId = 's+' | 'm+' | 'h+' | 'd+' | 'w+' | 'M+' | 'y+';
+export type TimeUnitAllId = TimeUnitId | TimeUnitFromNowId;
 export type TimeUnitLabel =
   | 'second'
   | 'minute'
@@ -54,7 +55,7 @@ export interface RelativeParts {
 
 export interface RelativeOption {
   text: string;
-  value: TimeUnitId | TimeUnitFromNowId;
+  value: TimeUnitAllId;
 }
 
 export type OnRefreshChangeProps = {

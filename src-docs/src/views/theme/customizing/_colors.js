@@ -20,7 +20,7 @@ import {
   shade_colors,
   special_colors,
   text_colors,
-} from '../../../../../src/global_styling/variables/_colors';
+} from '../../../../../src/themes/amsterdam/global_styling/variables/_colors';
 
 import { getPropsFromComponent } from '../../../services/props/get_props';
 

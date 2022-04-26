@@ -43,7 +43,7 @@ export default () => {
   };
 
   const [recentlyUsedRanges, setRecentlyUsedRanges] = useState<
-    EuiSuperDatePickerProps['recentlyUsedRanges']
+    NonNullable<EuiSuperDatePickerProps['recentlyUsedRanges']>
   >([]);
   const [isLoading, setIsLoading] = useState(false);
   const [start, setStart] = useState('now-30m');

@@ -48,6 +48,11 @@ export type EuiFormControlLayoutProps = CommonProps &
     className?: string;
     compressed?: boolean;
     readOnly?: boolean;
+    isInvalid?: boolean;
+    /**
+     * Controls the adding of and visibility of a down arrow icon
+     */
+    isDropdown?: boolean;
     /**
      * Connects the prepend and append labels to the input
      */
@@ -68,6 +73,8 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
       prepend,
       append,
       readOnly,
+      isInvalid: invalid,
+      isDropdown,
       inputId,
       ...rest
     } = this.props;
@@ -98,6 +105,8 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
             clear={clear}
             compressed={compressed}
             isLoading={isLoading}
+            isInvalid={invalid}
+            isDropdown={!readOnly && !isDisabled && isDropdown}
           />
         </div>
         {appendNodes}

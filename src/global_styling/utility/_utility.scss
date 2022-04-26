@@ -101,6 +101,13 @@
 }
 
 /**
+ * Scroll bar only
+ */
+.eui-scrollBar {
+  @include euiScrollBar;
+}
+
+/**
   * Overflow scrolling
   */
 .eui-yScroll {

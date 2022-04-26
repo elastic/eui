@@ -1,414 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiContextMenu can pass-through horizontal rule props 1`] = `
-<div
-  class="euiContextMenu"
->
-  <div
-    class="euiContextMenuPanel euiContextMenu__panel"
-    tabindex="-1"
-  >
-    <div
-      class="euiContextMenuPanelTitle"
-    >
-      <span
-        class="euiContextMenu__itemLayout"
-      >
-        Testing separator
-      </span>
-    </div>
-    <div>
-      <div>
-        <hr
-          class="euiHorizontalRule euiHorizontalRule--half euiHorizontalRule--marginSmall"
-        />
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EuiContextMenu is rendered 1`] = `
-<div
-  aria-label="aria-label"
-  class="euiContextMenu testClass1 testClass2"
-  data-test-subj="test subject string"
-/>
-`;
-
-exports[`EuiContextMenu panel item can be a separator line 1`] = `
-<div
-  class="euiContextMenu"
->
-  <div
-    class="euiContextMenuPanel euiContextMenu__panel"
-    tabindex="-1"
-  >
-    <div
-      class="euiContextMenuPanelTitle"
-    >
-      <span
-        class="euiContextMenu__itemLayout"
-      >
-        Testing separator
-      </span>
-    </div>
-    <div>
-      <div>
-        <button
-          class="euiContextMenuItem"
-          type="button"
-        >
-          <span
-            class="euiContextMenu__itemLayout"
-          >
-            <span
-              class="euiContextMenuItem__text"
-            >
-              Foo
-            </span>
-          </span>
-        </button>
-        <hr
-          class="euiHorizontalRule euiHorizontalRule--full"
-        />
-        <button
-          class="euiContextMenuItem"
-          type="button"
-        >
-          <span
-            class="euiContextMenu__itemLayout"
-          >
-            <span
-              class="euiContextMenuItem__text"
-            >
-              Bar
-            </span>
-          </span>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EuiContextMenu panel item can contain JSX 1`] = `
-<div
-  class="euiContextMenu"
->
-  <div
-    class="euiContextMenuPanel euiContextMenu__panel"
-    tabindex="-1"
-  >
-    <div
-      class="euiContextMenuPanelTitle"
-    >
-      <span
-        class="euiContextMenu__itemLayout"
-      >
-        3
-      </span>
-    </div>
-    <div>
-      <div>
-        <button
-          class="euiContextMenuItem"
-          type="button"
-        >
-          <span
-            class="euiContextMenu__itemLayout"
-          >
-            <span
-              class="euiContextMenuItem__text"
-            >
-              <span
-                style="color:tomato"
-              >
-                foo
-              </span>
-            </span>
-          </span>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EuiContextMenu props panels and initialPanelId allows you to click the title button to go back to the previous panel 1`] = `
-<div
-  class="euiContextMenu"
-  style="height: 0px;"
->
-  <div
-    class="euiContextMenuPanel euiContextMenu__panel"
-    tabindex="-1"
-  >
-    <button
-      class="euiContextMenuPanelTitle"
-      data-test-subj="contextMenuPanelTitleButton"
-      type="button"
-    >
-      <span
-        class="euiContextMenu__itemLayout"
-      >
-        <span
-          class="euiContextMenu__icon"
-          data-euiicon-type="arrowLeft"
-        />
-        <span
-          class="euiContextMenu__text"
-        >
-          2
-        </span>
-      </span>
-    </button>
-    <div>
-      <div>
-        <div>
-          2
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EuiContextMenu props panels and initialPanelId allows you to click the title button to go back to the previous panel 2`] = `
-<div
-  class="euiContextMenu"
-  style="height: 0px; width: 400px;"
->
-  <div
-    class="euiContextMenuPanel euiContextMenu__panel euiContextMenuPanel-txOutRight"
-    tabindex="-1"
-  >
-    <button
-      class="euiContextMenuPanelTitle"
-      data-test-subj="contextMenuPanelTitleButton"
-      type="button"
-    >
-      <span
-        class="euiContextMenu__itemLayout"
-      >
-        <span
-          class="euiContextMenu__icon"
-          data-euiicon-type="arrowLeft"
-        />
-        <span
-          class="euiContextMenu__text"
-        >
-          2
-        </span>
-      </span>
-    </button>
-    <div>
-      <div>
-        <div>
-          2
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="euiContextMenuPanel euiContextMenu__panel euiContextMenuPanel-txInRight"
-    tabindex="-1"
-  >
-    <button
-      class="euiContextMenuPanelTitle"
-      data-test-subj="contextMenuPanelTitleButton"
-      type="button"
-    >
-      <span
-        class="euiContextMenu__itemLayout"
-      >
-        <span
-          class="euiContextMenu__icon"
-          data-euiicon-type="arrowLeft"
-        />
-        <span
-          class="euiContextMenu__text"
-        >
-          1
-        </span>
-      </span>
-    </button>
-    <div>
-      <div>
-        <button
-          class="euiContextMenuItem"
-          type="button"
-        >
-          <span
-            class="euiContextMenu__itemLayout"
-          >
-            <span
-              class="euiContextMenuItem__text"
-            >
-              2a
-            </span>
-            <span
-              class="euiContextMenu__arrow"
-              data-euiicon-type="arrowRight"
-            />
-          </span>
-        </button>
-        <button
-          class="euiContextMenuItem"
-          type="button"
-        >
-          <span
-            class="euiContextMenu__itemLayout"
-          >
-            <span
-              class="euiContextMenuItem__text"
-            >
-              2b
-            </span>
-            <span
-              class="euiContextMenu__arrow"
-              data-euiicon-type="arrowRight"
-            />
-          </span>
-        </button>
-        <button
-          class="euiContextMenuItem"
-          type="button"
-        >
-          <span
-            class="euiContextMenu__itemLayout"
-          >
-            <span
-              class="euiContextMenuItem__text"
-            >
-              2c
-            </span>
-            <span
-              class="euiContextMenu__arrow"
-              data-euiicon-type="arrowRight"
-            />
-          </span>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EuiContextMenu props panels and initialPanelId renders the referenced panel 1`] = `
-<div
-  class="euiContextMenu"
->
-  <div
-    class="euiContextMenuPanel euiContextMenu__panel"
-    tabindex="-1"
-  >
-    <button
-      class="euiContextMenuPanelTitle"
-      data-test-subj="contextMenuPanelTitleButton"
-      type="button"
-    >
-      <span
-        class="euiContextMenu__itemLayout"
-      >
-        <span
-          class="euiContextMenu__icon"
-          data-euiicon-type="arrowLeft"
-        />
-        <span
-          class="euiContextMenu__text"
-        >
-          2
-        </span>
-      </span>
-    </button>
-    <div>
-      <div>
-        <div>
-          2
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EuiContextMenu props size m is rendered 1`] = `
-<div
-  class="euiContextMenu"
->
-  <div
-    class="euiContextMenuPanel euiContextMenu__panel"
-    tabindex="-1"
-  >
-    <button
-      class="euiContextMenuPanelTitle"
-      data-test-subj="contextMenuPanelTitleButton"
-      type="button"
-    >
-      <span
-        class="euiContextMenu__itemLayout"
-      >
-        <span
-          class="euiContextMenu__icon"
-          data-euiicon-type="arrowLeft"
-        />
-        <span
-          class="euiContextMenu__text"
-        >
-          2
-        </span>
-      </span>
-    </button>
-    <div>
-      <div>
-        <div>
-          2
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EuiContextMenu props size s is rendered 1`] = `
-<div
-  class="euiContextMenu euiContextMenu--small"
->
-  <div
-    class="euiContextMenuPanel euiContextMenu__panel"
-    tabindex="-1"
-  >
-    <button
-      class="euiContextMenuPanelTitle euiContextMenuPanelTitle--small"
-      data-test-subj="contextMenuPanelTitleButton"
-      type="button"
-    >
-      <span
-        class="euiContextMenu__itemLayout"
-      >
-        <span
-          class="euiContextMenu__icon"
-          data-euiicon-type="arrowLeft"
-        />
-        <span
-          class="euiContextMenu__text"
-        >
-          2
-        </span>
-      </span>
-    </button>
-    <div>
-      <div>
-        <div>
-          2
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`EuiContextMenuPanel is rendered 1`] = `
 <div
   aria-label="aria-label"
@@ -417,9 +8,7 @@ exports[`EuiContextMenuPanel is rendered 1`] = `
   tabindex="-1"
 >
   <div>
-    <div>
-      Hello
-    </div>
+    Hello
   </div>
 </div>
 `;
@@ -448,9 +37,7 @@ exports[`EuiContextMenuPanel props onClose renders a button as a title 1`] = `
       </span>
     </span>
   </button>
-  <div>
-    <div />
-  </div>
+  <div />
 </div>
 `;
 
@@ -468,9 +55,7 @@ exports[`EuiContextMenuPanel props size m is rendered 1`] = `
       Title
     </span>
   </div>
-  <div>
-    <div />
-  </div>
+  <div />
 </div>
 `;
 
@@ -488,9 +73,7 @@ exports[`EuiContextMenuPanel props size s is rendered 1`] = `
       Title
     </span>
   </div>
-  <div>
-    <div />
-  </div>
+  <div />
 </div>
 `;
 
@@ -508,9 +91,7 @@ exports[`EuiContextMenuPanel props title is rendered 1`] = `
       Title
     </span>
   </div>
-  <div>
-    <div />
-  </div>
+  <div />
 </div>
 `;
 
@@ -519,9 +100,7 @@ exports[`EuiContextMenuPanel props transitionDirection next with transitionType 
   class="euiContextMenuPanel euiContextMenuPanel-txInLeft"
   tabindex="-1"
 >
-  <div>
-    <div />
-  </div>
+  <div />
 </div>
 `;
 
@@ -530,9 +109,7 @@ exports[`EuiContextMenuPanel props transitionDirection next with transitionType 
   class="euiContextMenuPanel euiContextMenuPanel-txOutLeft"
   tabindex="-1"
 >
-  <div>
-    <div />
-  </div>
+  <div />
 </div>
 `;
 
@@ -541,9 +118,7 @@ exports[`EuiContextMenuPanel props transitionDirection previous with transitionT
   class="euiContextMenuPanel euiContextMenuPanel-txInRight"
   tabindex="-1"
 >
-  <div>
-    <div />
-  </div>
+  <div />
 </div>
 `;
 
@@ -552,160 +127,146 @@ exports[`EuiContextMenuPanel props transitionDirection previous with transitionT
   class="euiContextMenuPanel euiContextMenuPanel-txOutRight"
   tabindex="-1"
 >
-  <div>
-    <div />
-  </div>
+  <div />
 </div>
 `;
 
 exports[`EuiContextMenuPanel updating items and content updates to items should not re-render if any items's watchedItemProps did not change 1`] = `
-"<EuiContextMenuPanel items={{...}} hasFocus={true}>
+"<EuiContextMenuPanel items={{...}}>
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex={-1} onAnimationEnd={[Function]}>
-    <div>
-      <EuiResizeObserver onResize={[Function: onResize]}>
-        <div>
-          <EuiContextMenuItem data-counter={0} buttonRef={[Function: buttonRef]}>
-            <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
-              <span className=\\"euiContextMenu__itemLayout\\">
-                <span className=\\"euiContextMenuItem__text\\">
-                  Option A
-                </span>
+    <EuiResizeObserver onResize={[Function: onResize]}>
+      <div>
+        <EuiContextMenuItem data-counter={0}>
+          <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
+            <span className=\\"euiContextMenu__itemLayout\\">
+              <span className=\\"euiContextMenuItem__text\\">
+                Option A
               </span>
-            </button>
-          </EuiContextMenuItem>
-          <EuiContextMenuItem data-counter={1} buttonRef={[Function: buttonRef]}>
-            <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
-              <span className=\\"euiContextMenu__itemLayout\\">
-                <span className=\\"euiContextMenuItem__text\\">
-                  Option B
-                </span>
+            </span>
+          </button>
+        </EuiContextMenuItem>
+        <EuiContextMenuItem data-counter={1}>
+          <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
+            <span className=\\"euiContextMenu__itemLayout\\">
+              <span className=\\"euiContextMenuItem__text\\">
+                Option B
               </span>
-            </button>
-          </EuiContextMenuItem>
-        </div>
-      </EuiResizeObserver>
-    </div>
+            </span>
+          </button>
+        </EuiContextMenuItem>
+      </div>
+    </EuiResizeObserver>
   </div>
 </EuiContextMenuPanel>"
 `;
 
 exports[`EuiContextMenuPanel updating items and content updates to items should not re-render if any items's watchedItemProps did not change 2`] = `
-"<EuiContextMenuPanel items={{...}} hasFocus={true}>
+"<EuiContextMenuPanel items={{...}}>
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex={-1} onAnimationEnd={[Function]}>
-    <div>
-      <EuiResizeObserver onResize={[Function: onResize]}>
-        <div>
-          <EuiContextMenuItem data-counter={0} buttonRef={[Function: buttonRef]}>
-            <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
-              <span className=\\"euiContextMenu__itemLayout\\">
-                <span className=\\"euiContextMenuItem__text\\">
-                  Option A
-                </span>
+    <EuiResizeObserver onResize={[Function: onResize]}>
+      <div>
+        <EuiContextMenuItem data-counter={0}>
+          <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
+            <span className=\\"euiContextMenu__itemLayout\\">
+              <span className=\\"euiContextMenuItem__text\\">
+                Option A
               </span>
-            </button>
-          </EuiContextMenuItem>
-          <EuiContextMenuItem data-counter={1} buttonRef={[Function: buttonRef]}>
-            <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
-              <span className=\\"euiContextMenu__itemLayout\\">
-                <span className=\\"euiContextMenuItem__text\\">
-                  Option B
-                </span>
+            </span>
+          </button>
+        </EuiContextMenuItem>
+        <EuiContextMenuItem data-counter={1}>
+          <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
+            <span className=\\"euiContextMenu__itemLayout\\">
+              <span className=\\"euiContextMenuItem__text\\">
+                Option B
               </span>
-            </button>
-          </EuiContextMenuItem>
-        </div>
-      </EuiResizeObserver>
-    </div>
+            </span>
+          </button>
+        </EuiContextMenuItem>
+      </div>
+    </EuiResizeObserver>
   </div>
 </EuiContextMenuPanel>"
 `;
 
 exports[`EuiContextMenuPanel updating items and content updates to items should re-render at all times when children exists 1`] = `
-"<EuiContextMenuPanel hasFocus={true} items={{...}}>
+"<EuiContextMenuPanel items={{...}}>
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex={-1} onAnimationEnd={[Function]}>
-    <div>
-      <EuiResizeObserver onResize={[Function: onResize]}>
-        <div>
-          Hello World
-        </div>
-      </EuiResizeObserver>
-    </div>
+    <EuiResizeObserver onResize={[Function: onResize]}>
+      <div>
+        Hello World
+      </div>
+    </EuiResizeObserver>
   </div>
 </EuiContextMenuPanel>"
 `;
 
 exports[`EuiContextMenuPanel updating items and content updates to items should re-render at all times when children exists 2`] = `
-"<EuiContextMenuPanel hasFocus={true} items={{...}}>
+"<EuiContextMenuPanel items={{...}}>
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex={-1} onAnimationEnd={[Function]}>
-    <div>
-      <EuiResizeObserver onResize={[Function: onResize]}>
-        <div>
-          More Salutations
-        </div>
-      </EuiResizeObserver>
-    </div>
+    <EuiResizeObserver onResize={[Function: onResize]}>
+      <div>
+        More Salutations
+      </div>
+    </EuiResizeObserver>
   </div>
 </EuiContextMenuPanel>"
 `;
 
 exports[`EuiContextMenuPanel updating items and content updates to items should re-render if any items's watchedItemProps did change 1`] = `
-"<EuiContextMenuPanel watchedItemProps={{...}} items={{...}} hasFocus={true}>
+"<EuiContextMenuPanel watchedItemProps={{...}} items={{...}}>
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex={-1} onAnimationEnd={[Function]}>
-    <div>
-      <EuiResizeObserver onResize={[Function: onResize]}>
-        <div>
-          <EuiContextMenuItem data-counter={0} buttonRef={[Function: buttonRef]}>
-            <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
-              <span className=\\"euiContextMenu__itemLayout\\">
-                <span className=\\"euiContextMenuItem__text\\">
-                  Option A
-                </span>
+    <EuiResizeObserver onResize={[Function: onResize]}>
+      <div>
+        <EuiContextMenuItem data-counter={0}>
+          <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={0}>
+            <span className=\\"euiContextMenu__itemLayout\\">
+              <span className=\\"euiContextMenuItem__text\\">
+                Option A
               </span>
-            </button>
-          </EuiContextMenuItem>
-          <EuiContextMenuItem data-counter={1} buttonRef={[Function: buttonRef]}>
-            <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
-              <span className=\\"euiContextMenu__itemLayout\\">
-                <span className=\\"euiContextMenuItem__text\\">
-                  Option B
-                </span>
+            </span>
+          </button>
+        </EuiContextMenuItem>
+        <EuiContextMenuItem data-counter={1}>
+          <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={1}>
+            <span className=\\"euiContextMenu__itemLayout\\">
+              <span className=\\"euiContextMenuItem__text\\">
+                Option B
               </span>
-            </button>
-          </EuiContextMenuItem>
-        </div>
-      </EuiResizeObserver>
-    </div>
+            </span>
+          </button>
+        </EuiContextMenuItem>
+      </div>
+    </EuiResizeObserver>
   </div>
 </EuiContextMenuPanel>"
 `;
 
 exports[`EuiContextMenuPanel updating items and content updates to items should re-render if any items's watchedItemProps did change 2`] = `
-"<EuiContextMenuPanel watchedItemProps={{...}} items={{...}} hasFocus={true}>
+"<EuiContextMenuPanel watchedItemProps={{...}} items={{...}}>
   <div className=\\"euiContextMenuPanel\\" onKeyDown={[Function]} tabIndex={-1} onAnimationEnd={[Function]}>
-    <div>
-      <EuiResizeObserver onResize={[Function: onResize]}>
-        <div>
-          <EuiContextMenuItem data-counter={2} buttonRef={[Function: buttonRef]}>
-            <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={2}>
-              <span className=\\"euiContextMenu__itemLayout\\">
-                <span className=\\"euiContextMenuItem__text\\">
-                  Option A
-                </span>
+    <EuiResizeObserver onResize={[Function: onResize]}>
+      <div>
+        <EuiContextMenuItem data-counter={2}>
+          <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={2}>
+            <span className=\\"euiContextMenu__itemLayout\\">
+              <span className=\\"euiContextMenuItem__text\\">
+                Option A
               </span>
-            </button>
-          </EuiContextMenuItem>
-          <EuiContextMenuItem data-counter={3} buttonRef={[Function: buttonRef]}>
-            <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={3}>
-              <span className=\\"euiContextMenu__itemLayout\\">
-                <span className=\\"euiContextMenuItem__text\\">
-                  Option B
-                </span>
+            </span>
+          </button>
+        </EuiContextMenuItem>
+        <EuiContextMenuItem data-counter={3}>
+          <button disabled={false} className=\\"euiContextMenuItem\\" type=\\"button\\" data-counter={3}>
+            <span className=\\"euiContextMenu__itemLayout\\">
+              <span className=\\"euiContextMenuItem__text\\">
+                Option B
               </span>
-            </button>
-          </EuiContextMenuItem>
-        </div>
-      </EuiResizeObserver>
-    </div>
+            </span>
+          </button>
+        </EuiContextMenuItem>
+      </div>
+    </EuiResizeObserver>
   </div>
 </EuiContextMenuPanel>"
 `;

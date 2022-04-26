@@ -31,7 +31,7 @@
 .euiPopover__panel {
   // Ignore linting for legibility of transition property, and the mixin performs an overwrite
   // sass-lint:disable-block indentation
-  @include euiBottomShadow($adjustBorders: true);
+  @include euiBottomShadow;
   position: absolute;
   min-width: $euiButtonMinWidth; /* 1 */
   max-width: calc(100vw - #{$euiSizeXL}); /* 3 */

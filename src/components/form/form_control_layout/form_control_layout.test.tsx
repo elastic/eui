@@ -118,6 +118,18 @@ describe('EuiFormControlLayout', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('isInvalid is rendered', () => {
+      const component = render(<EuiFormControlLayout isInvalid />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('isDropdown is rendered', () => {
+      const component = render(<EuiFormControlLayout isDropdown />);
+
+      expect(component).toMatchSnapshot();
+    });
+
     describe('compressed', () => {
       it('renders small-sized icon, clear button, and loading spinner', () => {
         const component = render(

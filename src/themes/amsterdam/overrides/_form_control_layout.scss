@@ -43,11 +43,13 @@
   }
 
   .euiFormControlLayout__childrenWrapper:first-child .euiSelect,
+  .euiFormControlLayout__childrenWrapper:first-child .euiSuperSelectControl,
   .euiFormControlLayout__childrenWrapper:first-child [class*='euiField'] {
     @include euiFormControlSideBorderRadius($euiFormControlBorderRadius, $side: 'left');
   }
 
   .euiFormControlLayout__childrenWrapper:last-child .euiSelect,
+  .euiFormControlLayout__childrenWrapper:last-child .euiSuperSelectControl,
   .euiFormControlLayout__childrenWrapper:last-child [class*='euiField'] {
     @include euiFormControlSideBorderRadius($euiFormControlBorderRadius, $side: 'right');
   }

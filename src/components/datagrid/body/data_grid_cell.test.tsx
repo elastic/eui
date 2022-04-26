@@ -75,8 +75,6 @@ describe('EuiDataGridCell', () => {
     });
     (getCellActions().prop('onExpandClick') as Function)();
     expect(mockPopoverContext.closeCellPopover).toHaveBeenCalledTimes(1);
-    (getCellActions().prop('closePopover') as Function)();
-    expect(mockPopoverContext.closeCellPopover).toHaveBeenCalledTimes(2);
   });
 
   describe('shouldComponentUpdate', () => {
@@ -391,6 +389,18 @@ describe('EuiDataGridCell', () => {
   });
 
   describe('isExpandable', () => {
+    it('always returns true if column.cellActions exists', () => {
+      const component = mount(
+        <EuiDataGridCell
+          {...requiredProps}
+          column={{ id: 'someId', cellActions: [() => <button />] }}
+          isExpandable={false}
+        />
+      );
+
+      expect(component.find('renderCellValue').prop('isExpandable')).toBe(true);
+    });
+
     it('falls back to props.isExpandable which is derived from the column config', () => {
       const component = mount(
         <EuiDataGridCell {...requiredProps} isExpandable={true} />

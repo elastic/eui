@@ -1,18 +1,114 @@
-## [`main`](https://github.com/elastic/eui/tree/main)
+## [`55.0.1`](https://github.com/elastic/eui/tree/v55.0.1)
 
-- Added `"custom"` option to `EuiComment.type` ([#5692](https://github.com/elastic/eui/pull/5692))
-- Added `updateIcon` and `updateColor` props to `EuiCommentEvent` ([#5692](https://github.com/elastic/eui/pull/5692))
-- Updated `EuiComment.actions` type to accept `ReactNode[]` ([#5692](https://github.com/elastic/eui/pull/5692))
-- Changed `.euiMarkdownEditor` display to `flex` to prevent display issues when the markdown editor is inside a `EuiComment` ([#5692](https://github.com/elastic/eui/pull/5692))
-- Added `compressed` prop to `EuiFilterGroup` and reduced the size of the `EuiFilterButton` notification badge ([#5717](https://github.com/elastic/eui/pull/5717))
-- Updated `testenv` mock for `EuiIcon` to render `aria-label` as text ([#5709](https://github.com/elastic/eui/pull/5709))
+**Bug fixes**
+
+- Fixed missing Sass variable file import ([#5820](https://github.com/elastic/eui/pull/5820))
+
+## [`55.0.0`](https://github.com/elastic/eui/tree/v55.0.0)
+
+- Added JS function versions of Sass style mixins (a11y, animation, scroll, shadows) ([#5754](https://github.com/elastic/eui/pull/5754))
+- Added a `<p />` wrapper around `description` of `EuiDescribedFormGroup` when provided as a string ([#5756](https://github.com/elastic/eui/pull/5756))
+- Added a `ratio` prop to `EuiDescribedFormGroup` to control the column width ratio ([#5756](https://github.com/elastic/eui/pull/5756))
+
+**Bug fixes**
+
+- Fixed margin calculation of `hasEmptyLabelSpace` on `EuiFormRow` ([#5756](https://github.com/elastic/eui/pull/5756))
+- Fixed vertical alignment between `EuiDescribedFormGroup` columns ([#5756](https://github.com/elastic/eui/pull/5756))
+- Fixed `EuiContextMenu` stranding keyboard focus when pressing the left/right arrow keys quickly between more than 2 panels ([#5783](https://github.com/elastic/eui/pull/5783))
+- Fixed `EuiContextMenu` to enable up/down arrow key navigation to all focusable `items` ([#5783](https://github.com/elastic/eui/pull/5783))
+- Fixed `EuiContextMenu` to enable using the up/down arrow keys to navigate to the panel title back button (which takes the user to the previous panel), and focus this button if `initialFocusedItemIndex` has not been set ([#5783](https://github.com/elastic/eui/pull/5783))
+- Fixed `EuiComboBox` losing focus when a disabled option is clicked ([#5795](https://github.com/elastic/eui/pull/5795))
+- Fixed an `EuiDataGrid` bug occurring when closing cell popovers on clicking the originating cell. The original fix was unintentionally affecting cell popovers with nested modals, popovers, etc. ([#5797](https://github.com/elastic/eui/pull/5797))
+
+**Breaking changes**
+
+- `EuiPopover`s will no longer focus the first tabbable child by default - instead, the popover panel will be focused. This change should be a better experience for both keyboard and screen reader users. Consumers who want to set an initial focus on specific popover element should use the `initialFocus` prop. ([#5784](https://github.com/elastic/eui/pull/5784))
+
+## [`54.1.0`](https://github.com/elastic/eui/tree/v54.1.0)
+
+- Added `EuiTimeline` component ([#5730](https://github.com/elastic/eui/pull/5730))
+- Added a `"subdued"` color option to `EuiAvatar` ([#5730](https://github.com/elastic/eui/pull/5730))
+- Added internationalized screen reader helpers to `EuiMark` ([#5739](https://github.com/elastic/eui/pull/5739))
+- Added `casesApp` feature icon type to `EuiIcon` ([#5779](https://github.com/elastic/eui/pull/5779))
+
+**Bug fixes**
+
+- Fixed keyboard focus being stranded on `EuiContextMenu` popover close ([#5760](https://github.com/elastic/eui/pull/5760))
+- Fixed bug in `EuiEmptyPrompt` where a `min-height` was unnecessarily being applied for vertical layouts ([#5763](https://github.com/elastic/eui/pull/5763))
+
+## [`54.0.0`](https://github.com/elastic/eui/tree/v54.0.0)
+
+- `EuiDataGrid` now allows limiting the number of visible cell actions with a new `columns.visibleCellActions` prop (defaults to 2). All additional actions will be shown in the cell expansion popover. ([#5675](https://github.com/elastic/eui/pull/5675))
+- Added a new `gridStyle.rowClasses` API to `EuiDataGrid`, which allows adding custom classes/styling to specific row indices, primarily for the purpose of highlighting rows ([#5732](https://github.com/elastic/eui/pull/5732))
+- Added `alert` icon indicator and `aria-invalid` when the following form controls are `isInvalid`: `EuiFieldNumber`, `EuiFieldPassword`, `EuiFieldText`, `EuiSelect`, `EuiSuperSelect`, `EuiFieldSearch`, `EuiColorPicker` ([#5738](https://github.com/elastic/eui/pull/5738))
+- Added `isInvalid` prop to `EuiFormControlLayout` to render the `alert` icon ([#5738](https://github.com/elastic/eui/pull/5738))
+- Added `isDropdown` prop to `EuiFormControlLayout` to create and control an `arrowDown` icon ([#5738](https://github.com/elastic/eui/pull/5738))
+- Added `color` as to `EuiFormControlLayout`'s `icon` object ([#5738](https://github.com/elastic/eui/pull/5738))
+
+**Bug fixes**
+
+- Fixed `EuiSuperSelect` border-radius with `append` or `prepend` ([#5738](https://github.com/elastic/eui/pull/5738))
+- Fixed `EuiSuperSelect` not respecting `readOnly` ([#5738](https://github.com/elastic/eui/pull/5738))
+- Fixed `EuiDataGrid` cell focus sometimes not being restored for keyboard users when cell expansion popovers were closed ([#5761](https://github.com/elastic/eui/pull/5761))
+
+**Breaking changes**
+
+- Removed the `closePopover()` callback passed to `EuiDataGrid`'s `cellActions` render functions. Use `closeCellPopover()` passed by `EuiDataGrid`'s `ref` prop instead. ([#5734](https://github.com/elastic/eui/pull/5734))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiAvatar` to CSS-in-JS styling ([#5670](https://github.com/elastic/eui/pull/5670))
+
+## [`53.0.2`](https://github.com/elastic/eui/tree/v53.0.2)
+
+**Note: this release is a backport containing changes originally made in `55.0.0`**
+
+**Bug fixes**
+
+- Fixed an `EuiDataGrid` bug occurring when closing cell popovers on clicking the originating cell. The original fix was unintentionally affecting cell popovers with nested modals, popovers, etc. ([#5797](https://github.com/elastic/eui/pull/5797))
+
+## [`53.0.1`](https://github.com/elastic/eui/tree/v53.0.1)
+
+**Bug fixes**
+
+- Fixed `EuiContext.i18n`'s `mappingFunc` not being called for `EuiI18n`s with multiple tokens or function callbacks ([#5748](https://github.com/elastic/eui/pull/5748))
+- Fixed poor rendering performance of `EuiIcon` when using a custom data URI `type` ([#5751](https://github.com/elastic/eui/pull/5751))
+
+## [`53.0.0`](https://github.com/elastic/eui/tree/v53.0.0)
+
+- Added all remaining missing i18n tokens for `EuiSuperDatePicker` ([#5743](https://github.com/elastic/eui/pull/5743))
+
+**Breaking changes**
+
+- Removed `prettyDuration` utility exported by `EuiSuperDatePicker` - this util was converted to a `PrettyDuration` component and `usePrettyDuration` hook which should be used instead ([#5743](https://github.com/elastic/eui/pull/5743))
+- Removed `commonDurationRanges` exported by `EuiSuperDatePicker`. The new pretty duration utils will fall back to `commonDurationRanges` by default if no `quickRanges` are passed ([#5743](https://github.com/elastic/eui/pull/5743))
+
+## [`52.2.0`](https://github.com/elastic/eui/tree/v52.2.0)
+
+- Added `branchUser`, `desktop` and `sessionViewer` glyphs to `EuiIcon` ([#5740](https://github.com/elastic/eui/pull/5740))
+
+## [`52.1.0`](https://github.com/elastic/eui/tree/v52.1.0)
+
+- Added `anchor` prop to `EuiTourStep` to allow for DOM selector attachment ([#5696](https://github.com/elastic/eui/pull/5696))
+- `EuiDataGrid` now forces `isExpandable` to be true if any `cellActions` are passed, as keyboard users are otherwise unable to access cell actions without the expansion popover ([#5710](https://github.com/elastic/eui/pull/5710))
+
+**Bug fixes**
+
+- Fixed EuiDataGrid not rerendering correctly on row heights change ([#5712](https://github.com/elastic/eui/pull/5712))
+- Fixed `EuiContextMenu` requiring two tab keypresses to advance to the next focusable menu item ([#5719](https://github.com/elastic/eui/pull/5719))
+- Fixed `EuiDataGrid` footer cell focus bugging out after moving its column ([#5720](https://github.com/elastic/eui/pull/5720))
+
+## [`52.0.0`](https://github.com/elastic/eui/tree/v52.0.0)
+
 - Added `editorChecklist` glyph to `EuiIcon` ([#5705](https://github.com/elastic/eui/pull/5705))
+- Updated `testenv` mock for `EuiIcon` to render `aria-label` as text ([#5709](https://github.com/elastic/eui/pull/5709))
+- Added `compressed` prop to `EuiFilterGroup` and reduced the size of the `EuiFilterButton` notification badge ([#5717](https://github.com/elastic/eui/pull/5717))
+- Increased contrast of `EuiSelectableTemplateSitewide` input text when in dark header ([#5724](https://github.com/elastic/eui/pull/5724))
 
 **Breaking changes**
 
 - Removed Legacy theme including compiled CSS ([#5688](https://github.com/elastic/eui/pull/5688))
 - Removed `flush` and `size` props in `EuiFilterButtonProps` ([#5717](https://github.com/elastic/eui/pull/5717))
-- Changed `EuiCommentEvent.username` type from `ReactNode` to `string` ([#5692](https://github.com/elastic/eui/pull/5692))
 
 **CSS-in-JS conversions**
 
@@ -54,7 +150,7 @@
 - Added `textWrap` to `EuiSelectableListItem`, `EuiSelectableList`, and `EuiSelectable.listOptions` ([#5679](https://github.com/elastic/eui/issues/5679))
 - Forced `truncation` on `EuiSuggest` items when `isVirtualize` ([#5679](https://github.com/elastic/eui/issues/5679))
 - Changed proportion handling between content and image in `horizontal` `EuiEmptyPrompt` and added spacing between ([#5663](https://github.com/elastic/eui/pull/5663))
-- Reduced SASS compilation time using a different math `pow` implementation ([#5674](https://github.com/elastic/eui/pull/5674)) 
+- Reduced SASS compilation time using a different math `pow` implementation ([#5674](https://github.com/elastic/eui/pull/5674))
 
 **Bug fixes**
 

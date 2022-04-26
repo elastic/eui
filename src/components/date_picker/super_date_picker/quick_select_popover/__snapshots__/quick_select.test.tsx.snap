@@ -113,7 +113,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
         values={
           Object {
             "timeTense": "last",
-            "timeUnit": "minutes",
+            "timeUnit": "Minutes",
             "timeValue": 15,
           }
         }
@@ -236,7 +236,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
         values={
           Object {
             "timeTense": "Next",
-            "timeUnit": "months",
+            "timeUnit": "Months",
             "timeValue": 32,
           }
         }

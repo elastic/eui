@@ -10,7 +10,9 @@ import { ThemeNotice } from '../_components/_theme_notice';
 
 import AnimationJS from './_animation_js';
 import AnimationSass from './_animation_sass';
+import ShadowJs from './_shadow_js';
 import ShadowSass from './_shadow_sass';
+import LevelsJS from './_levels_js';
 import LevelsSass from './_levels_sass';
 
 // This array is used inside routes.js to create the sidenav sub-sections
@@ -76,7 +78,7 @@ export default () => {
     } else {
       return (
         <>
-          <EuiCallOut title="Coming soon" />
+          <ShadowJs />
         </>
       );
     }
@@ -86,36 +88,13 @@ export default () => {
     if (showSass) {
       return (
         <>
-          <EuiSpacer size="l" />
-
-          <EuiText grow={false}>
-            <p>
-              Most of the time the z-index is handled per component. But you can
-              use this table as a reference to how EUI layers the components.
-            </p>
-          </EuiText>
-
-          <EuiSpacer size="l" />
-
-          <EuiCallOut color="warning">
-            <p>
-              If you do have to adjust z-index levels, remember that they become
-              scoped only to their parents if their parent also has a custom
-              z-index.
-            </p>
-          </EuiCallOut>
-
-          <EuiSpacer size="xl" />
-
           <LevelsSass />
         </>
       );
     } else {
       return (
         <>
-          <EuiSpacer size="xl" />
-
-          <EuiCallOut title="Coming soon" />
+          <LevelsJS />
         </>
       );
     }
@@ -133,6 +112,30 @@ export default () => {
 
       <EuiText grow={false}>
         <h2 id={`${otherSections[0].id}`}>{`${otherSections[0].title}`}</h2>
+      </EuiText>
+
+      <EuiSpacer />
+
+      <EuiCallOut
+        color="warning"
+        iconType="accessibility"
+        title={<code>euiCanAnimate</code>}
+      >
+        <p>
+          For accessbility support, we highly recommend always wrapping
+          animations and transitions with this {showSass ? 'mixin' : 'constant'}
+          . It wraps the contents in a <EuiCode>prefers-reduced-motion</EuiCode>{' '}
+          media query to ensure the animations do not run if the user has this
+          preference turned off. There is also a counterpart{' '}
+          {showSass ? 'mixin' : 'constant'} for applying content only if the
+          user has the setting turned off called{' '}
+          <EuiCode>euiCantAnimate</EuiCode>.
+        </p>
+      </EuiCallOut>
+
+      <EuiSpacer />
+
+      <EuiText grow={false}>
         <p>
           The <EuiCode>animation</EuiCode> values provide some easy and
           consistent ways for adding transition or animation effects and timing.
@@ -163,6 +166,27 @@ export default () => {
           {`${otherSections[2].title}`} (z-index)
         </h2>
       </EuiText>
+
+      <EuiSpacer size="l" />
+
+      <EuiText grow={false}>
+        <p>
+          Most of the time the z-index is handled per component. But you can use
+          this table as a reference to how EUI layers the components.
+        </p>
+      </EuiText>
+
+      <EuiSpacer size="l" />
+
+      <EuiCallOut color="warning">
+        <p>
+          If you do have to adjust z-index levels, remember that they become
+          scoped only to their parents if their parent also has a custom
+          z-index.
+        </p>
+      </EuiCallOut>
+
+      <EuiSpacer size="xl" />
 
       {levelsContent}
     </GuidePage>

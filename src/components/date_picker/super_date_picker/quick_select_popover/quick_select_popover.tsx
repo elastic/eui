@@ -20,6 +20,7 @@ import { EuiQuickSelect } from './quick_select';
 import { EuiCommonlyUsedTimeRanges } from './commonly_used_time_ranges';
 import { EuiRecentlyUsed } from './recently_used';
 import { EuiRefreshInterval } from '../../auto_refresh/refresh_interval';
+import { TimeOptions } from '../time_options';
 import {
   DurationRange,
   ApplyRefreshInterval,
@@ -40,6 +41,7 @@ export interface EuiQuickSelectPopoverProps {
   recentlyUsedRanges: DurationRange[];
   refreshInterval: number;
   start: string;
+  timeOptions: TimeOptions;
 }
 
 interface EuiQuickSelectPopoverState {
@@ -90,6 +92,7 @@ export class EuiQuickSelectPopover extends Component<
       end,
       recentlyUsedRanges,
       start,
+      timeOptions,
     } = this.props;
     const { prevQuickSelect } = this.state;
 
@@ -100,6 +103,7 @@ export class EuiQuickSelectPopover extends Component<
           start={start}
           end={end}
           prevQuickSelect={prevQuickSelect}
+          timeOptions={timeOptions}
         />
         {commonlyUsedRanges.length > 0 && <EuiHorizontalRule margin="s" />}
         <EuiCommonlyUsedTimeRanges

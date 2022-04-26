@@ -9,6 +9,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
+import { RenderI18nTimeOptions } from '../time_options';
 import {
   EuiQuickSelectPopover,
   EuiQuickSelectPopoverProps,
@@ -16,7 +17,7 @@ import {
 
 const noop = () => {};
 
-const defaultProps: EuiQuickSelectPopoverProps = {
+const defaultProps: Omit<EuiQuickSelectPopoverProps, 'timeOptions'> = {
   applyTime: noop,
   applyRefreshInterval: noop,
   start: 'now-15m',
@@ -31,8 +32,13 @@ const defaultProps: EuiQuickSelectPopoverProps = {
 
 describe('EuiQuickSelectPopover', () => {
   test('is rendered', () => {
-    const component = shallow(<EuiQuickSelectPopover {...defaultProps} />);
-
+    const component = shallow(
+      <RenderI18nTimeOptions>
+        {(timeOptions) => (
+          <EuiQuickSelectPopover {...defaultProps} timeOptions={timeOptions} />
+        )}
+      </RenderI18nTimeOptions>
+    ).dive();
     expect(component).toMatchSnapshot();
   });
 });

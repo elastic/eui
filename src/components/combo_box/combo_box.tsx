@@ -550,7 +550,7 @@ export class EuiComboBox<T> extends Component<
   };
 
   onContainerBlur: EventListener = (event) => {
-    // close the options list, unless the use clicked on an option
+    // close the options list, unless the user clicked on an option
 
     /**
      * FireFox returns `relatedTarget` as `null` for security reasons, but provides a proprietary `explicitOriginalTarget`.
@@ -586,6 +586,15 @@ export class EuiComboBox<T> extends Component<
       if (!this.hasActiveOption()) {
         this.setCustomOptions(true);
       }
+    } else if (focusedInOptionsList) {
+      // https://github.com/elastic/eui/issues/5179
+      // need to restore focus to the input box when clicking non-interactive elements
+
+      // firefox doesn't support calling .focus() during a blur event
+      // https://bugzilla.mozilla.org/show_bug.cgi?id=53579
+      requestAnimationFrame(() => {
+        this.searchInputRefInstance?.focus();
+      });
     }
   };
 

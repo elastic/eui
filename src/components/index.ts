@@ -161,6 +161,8 @@ export * from './text';
 
 export * from './text_diff';
 
+export * from './timeline';
+
 export * from './title';
 
 export * from './toast';

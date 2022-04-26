@@ -12,6 +12,6 @@ jobs:
     - uses: actions/checkout@v2
     - uses: dangoslen/changelog-enforcer@v2
       with:
-        changeLogPath: 'CHANGELOG.md'
+        changeLogPath: "upcoming_changelogs/${{ github.event.pull_request.number }}.md"
         skipLabels: 'skip-changelog'
-        missingUpdateErrorMessage: 'You need to edit the changelog.md file in this PR before it can be merged. Use the `skip-changelog` label to bypass this check.'
+        missingUpdateErrorMessage: 'You need to add a changelog to this PR before it can be merged. @see https://github.com/elastic/eui/blob/main/wiki/documentation-guidelines.md#changelog'

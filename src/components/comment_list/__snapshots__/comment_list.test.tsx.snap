@@ -20,7 +20,7 @@ exports[`EuiCommentList is rendered 1`] = `
         >
           <div
             aria-label="janed"
-            class="euiAvatar euiAvatar--m euiAvatar--user"
+            class="euiAvatar euiAvatar--m euiAvatar--user css-11owldj-euiAvatar-m-user"
             role="img"
             style="background-color:#f1d86f;color:#000000"
             title="janed"

@@ -16,6 +16,7 @@ import {
 } from 'react';
 import type { VariableSizeGrid as Grid } from 'react-window';
 import { isObject, isNumber } from '../../../services/predicate';
+import { useForceRender } from '../../../services';
 import {
   EuiDataGridStyleCellPaddings,
   EuiDataGridStyle,
@@ -96,8 +97,8 @@ export class RowHeightUtils {
 
   cacheStyles(gridStyles: EuiDataGridStyle) {
     this.styles = {
-      paddingTop: cellPaddingsMap[gridStyles.cellPadding!],
-      paddingBottom: cellPaddingsMap[gridStyles.cellPadding!],
+      paddingTop: cellPaddingsMap[gridStyles.cellPadding || 'm'],
+      paddingBottom: cellPaddingsMap[gridStyles.cellPadding || 'm'],
     };
   }
 
@@ -201,6 +202,9 @@ export class RowHeightUtils {
     rowHeights.set(colId, adaptedHeight);
     this.heightsCache.set(rowIndex, rowHeights);
     this.resetRow(visibleRowIndex);
+
+    // When an auto row height is updated, force a re-render
+    // of the grid body to update the unconstrained height
     this.rerenderGridBody();
   }
 
@@ -246,24 +250,41 @@ export class RowHeightUtils {
 }
 
 /**
- * Hook for instantiating RowHeightUtils, and also updating
- * internal vars from outside props via useEffects
+ * Hook for instantiating RowHeightUtils, setting internal class vars,
+ * and setting up various row-height-related side effects
  */
 export const useRowHeightUtils = ({
   gridRef,
   gridStyles,
   columns,
+  rowHeightsOptions,
 }: {
   gridRef: Grid | null;
   gridStyles: EuiDataGridStyle;
   columns: EuiDataGridColumn[];
+  rowHeightsOptions?: EuiDataGridRowHeightsOptions;
 }) => {
   const rowHeightUtils = useMemo(() => new RowHeightUtils(), []);
 
-  // Update rowHeightUtils with grid ref
+  // Update rowHeightUtils with internal vars from outside dependencies
+  const forceRender = useForceRender();
   useEffect(() => {
     if (gridRef) rowHeightUtils.setGrid(gridRef);
-  }, [gridRef, rowHeightUtils]);
+    rowHeightUtils.setRerenderGridBody(forceRender);
+  }, [gridRef, forceRender, rowHeightUtils]);
+
+  // Forces a rerender whenever the row heights change, as this can cause the
+  // grid to change height/have scrollbars. Without this, grid rerendering is stale
+  useEffect(() => {
+    requestAnimationFrame(forceRender);
+  }, [
+    // Effects that should cause rerendering
+    rowHeightsOptions?.defaultHeight,
+    rowHeightsOptions?.rowHeights,
+    // Dependencies
+    rowHeightUtils,
+    forceRender,
+  ]);
 
   // Re-cache styles whenever grid density changes
   useEffect(() => {

@@ -221,7 +221,7 @@ exports[`EuiPageHeaderContent props breadcrumbs is rendered 1`] = `
     </ol>
   </nav>
   <div
-    class="euiSpacer euiSpacer--s"
+    class="euiSpacer euiSpacer--s css-i2qclb-euiSpacer-s"
   />
   <div
     class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
@@ -248,7 +248,7 @@ exports[`EuiPageHeaderContent props children is rendered 1`] = `
     class="euiPageHeaderContent__bottom"
   >
     <div
-      class="euiSpacer euiSpacer--l"
+      class="euiSpacer euiSpacer--l css-jz428s-euiSpacer-l"
     />
     <p>
       Anything
@@ -272,7 +272,7 @@ exports[`EuiPageHeaderContent props children is rendered 2`] = `
     class="euiPageHeaderContent__bottom"
   >
     <div
-      class="euiSpacer euiSpacer--l"
+      class="euiSpacer euiSpacer--l css-jz428s-euiSpacer-l"
     />
     Child
   </div>
@@ -322,11 +322,11 @@ exports[`EuiPageHeaderContent props children is rendered even if content props a
     class="euiPageHeaderContent__bottom"
   >
     <div
-      class="euiSpacer euiSpacer--l"
+      class="euiSpacer euiSpacer--l css-jz428s-euiSpacer-l"
     />
     Child
     <div
-      class="euiSpacer euiSpacer--l"
+      class="euiSpacer euiSpacer--l css-jz428s-euiSpacer-l"
     />
     <div
       class="euiTabs euiTabs--large euiTabs--condensed"

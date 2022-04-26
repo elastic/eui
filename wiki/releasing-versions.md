@@ -18,11 +18,11 @@ The release process is started by running the following command.
 npm run release
 ```
 
-This command runs all tests and then builds the `lib` and `dist` distributions formats. Next the recent changes are read from `CHANGELOG.md` and you will be asked to choose what part of the version to bump.
+This command runs all tests and then builds the `lib` and `dist` distributions formats. Next the recent changes are read from `upcoming_changelogs/` and you will be asked to choose what part of the version to bump.
 
 ![bumping a version](https://camo.githubusercontent.com/439b41058aa56f167867c4e118ef5e80c02c962f/68747470733a2f2f642e70722f692f51624b36614a2e676966)
 
-After the version is bumped, the release script automatically updates `CHANGELOG.md` to note that the recent changes are now part of a release. The updates are committed to git and tagged, then pushed to your `upstream` branch.
+After the version is bumped, the release script automatically updates `CHANGELOG.md` with the new release header and collated upcoming changelogs, and then cleans the `upcoming_changelogs/` directory. The updates are committed to git and tagged, then pushed to your `upstream` branch.
 
 The latest changes have now been pushed to GitHub, a new `git` tag now exists on GitHub, the new release can be installed from `npm`, and the [documentation site][docs] will update momentarily<sup>\*</sup>.
 
@@ -84,6 +84,7 @@ This provides a walkthrough of the patching & backport release process; examples
   * Run the unit tests again - `npm test`
   * Create the release builds - `npm run build`
   * Update the I18n tokens - `npm run update-token-changelog -- patch`
+  * Update the changelog - `npm run update-changelog-manual --release=patch`
   * Use npm to update package.json & package-lock.json version, git commit, and git tag - `npm version patch`
   * Push the version commit & tag to upstream - `git push upstream --tags`
   * Publish the new version to npm

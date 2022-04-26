@@ -27,7 +27,7 @@ exports[`EuiSuperSelect is rendered 1`] = `
           <button
             aria-haspopup="listbox"
             aria-label="aria-label"
-            class="euiSuperSelectControl testClass1 testClass2"
+            class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2"
             data-test-subj="test subject string"
             type="button"
           />
@@ -78,7 +78,7 @@ exports[`EuiSuperSelect props compressed is rendered 1`] = `
           <button
             aria-haspopup="listbox"
             aria-label="aria-label"
-            class="euiSuperSelectControl euiSuperSelectControl--compressed testClass1 testClass2"
+            class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--compressed testClass1 testClass2"
             data-test-subj="test subject string"
             type="button"
           />
@@ -128,7 +128,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
           </span>
           <button
             aria-haspopup="listbox"
-            class="euiSuperSelectControl euiSuperSelect--isOpen__button"
+            class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
             data-test-subj="superSelect"
             type="button"
           />
@@ -290,7 +290,7 @@ exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
           <button
             aria-haspopup="listbox"
             aria-label="aria-label"
-            class="euiSuperSelectControl euiSuperSelectControl--fullWidth testClass1 testClass2"
+            class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--fullWidth testClass1 testClass2"
             data-test-subj="test subject string"
             type="button"
           />
@@ -346,7 +346,7 @@ exports[`EuiSuperSelect props is rendered with a prepend and append 1`] = `
           <button
             aria-haspopup="listbox"
             aria-label="aria-label"
-            class="euiSuperSelectControl euiSuperSelectControl--inGroup testClass1 testClass2"
+            class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--inGroup testClass1 testClass2"
             data-test-subj="test subject string"
             type="button"
           />
@@ -401,7 +401,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
           </span>
           <button
             aria-haspopup="listbox"
-            class="euiSuperSelectControl euiSuperSelect--isOpen__button"
+            class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
             data-test-subj="superSelect"
             type="button"
           >
@@ -567,7 +567,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
           </span>
           <button
             aria-haspopup="listbox"
-            class="euiSuperSelectControl euiSuperSelect--isOpen__button"
+            class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
             data-test-subj="superSelect"
             type="button"
           />
@@ -728,7 +728,7 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
           </span>
           <button
             aria-haspopup="listbox"
-            class="euiSuperSelectControl euiSuperSelect--isOpen__button"
+            class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button"
             data-test-subj="superSelect"
             type="button"
           >
@@ -892,7 +892,7 @@ exports[`EuiSuperSelect props select component is rendered 1`] = `
           </span>
           <button
             aria-haspopup="listbox"
-            class="euiSuperSelectControl"
+            class="euiSuperSelectControl euiFormControlLayout--1icons"
             type="button"
           />
           <div
@@ -941,7 +941,7 @@ exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
           </span>
           <button
             aria-haspopup="listbox"
-            class="euiSuperSelectControl"
+            class="euiSuperSelectControl euiFormControlLayout--1icons"
             type="button"
           >
             Option #2

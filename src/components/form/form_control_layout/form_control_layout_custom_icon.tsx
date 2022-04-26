@@ -34,6 +34,7 @@ export const EuiFormControlLayoutCustomIcon: FunctionComponent<EuiFormControlLay
   type,
   iconRef,
   size,
+  color,
   ...rest
 }) => {
   const classes = classNames('euiFormControlLayoutCustomIcon', className, {
@@ -54,6 +55,7 @@ export const EuiFormControlLayoutCustomIcon: FunctionComponent<EuiFormControlLay
           aria-hidden="true"
           size={size}
           type={type}
+          color={color}
         />
       </button>
     );
@@ -66,6 +68,7 @@ export const EuiFormControlLayoutCustomIcon: FunctionComponent<EuiFormControlLay
         aria-hidden="true"
         size={size}
         type={type}
+        color={color}
       />
     </span>
   );

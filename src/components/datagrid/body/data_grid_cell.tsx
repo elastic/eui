@@ -18,7 +18,7 @@ import React, {
   MutableRefObject,
 } from 'react';
 import { createPortal } from 'react-dom';
-import tabbable from 'tabbable';
+import { tabbable } from 'tabbable';
 import { keys } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiFocusTrap } from '../../focus_trap';
@@ -400,6 +400,10 @@ export class EuiDataGridCell extends Component<
         },
         0
       );
+      // Close the cell popover if the popover was open and the user clicked the cell
+      if (this.props.popoverContext.popoverIsOpen) {
+        this.props.popoverContext.closeCellPopover();
+      }
     }
   };
 
@@ -429,6 +433,10 @@ export class EuiDataGridCell extends Component<
   };
 
   isExpandable = () => {
+    // A cell must always show an expansion popover if it has cell actions,
+    // otherwise keyboard and screen reader users have no way of accessing them
+    if (this.props.column?.cellActions?.length) return true;
+
     // props.isExpandable inherits from column.isExpandable
     // state.cellProps allows consuming applications to override isExpandable on a per-cell basis
     return this.state.cellProps.isExpandable ?? this.props.isExpandable;
@@ -516,7 +524,6 @@ export class EuiDataGridCell extends Component<
 
     const isExpandable = this.isExpandable();
     const popoverIsOpen = this.isPopoverOpen();
-    const hasCellActions = isExpandable || column?.cellActions;
     const showCellActions =
       this.state.isFocused ||
       this.state.isEntered ||
@@ -652,7 +659,7 @@ export class EuiDataGridCell extends Component<
       </EuiFocusTrap>
     );
 
-    if (hasCellActions) {
+    if (isExpandable) {
       innerContent = (
         <div className={anchorClass} ref={this.popoverAnchorRef}>
           <div className={expandClass}>
@@ -663,8 +670,6 @@ export class EuiDataGridCell extends Component<
               rowIndex={rowIndex}
               colIndex={colIndex}
               column={column}
-              isExpandable={isExpandable}
-              closePopover={closeCellPopover}
               onExpandClick={() => {
                 if (popoverIsOpen) {
                   closeCellPopover();
