@@ -34,8 +34,6 @@ export const euiLoadingContentStyles = ({
       : tint(euiTheme.colors.lightShade, 0.8);
 
   return {
-    euiLoadingContent: css``,
-
     euiLoadingContent__singleLine: css`
       display: block;
       width: 100%;

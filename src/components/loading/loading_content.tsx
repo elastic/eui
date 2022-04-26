@@ -28,7 +28,6 @@ export const EuiLoadingContent: FunctionComponent<EuiLoadingContentProps> = ({
 }) => {
   const euiTheme = useEuiTheme();
   const styles = euiLoadingContentStyles(euiTheme);
-  const cssStyles = [styles.euiLoadingContent];
   const lineCssStyles = [styles.euiLoadingContent__singleLine];
   const defaultLabel = useLoadingAriaLabel();
 
@@ -42,7 +41,6 @@ export const EuiLoadingContent: FunctionComponent<EuiLoadingContentProps> = ({
   return (
     <span
       className={classes}
-      css={cssStyles}
       role="progressbar"
       aria-label={ariaLabel || defaultLabel}
       {...rest}

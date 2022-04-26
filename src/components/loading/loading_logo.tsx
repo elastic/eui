@@ -65,7 +65,9 @@ export const EuiLoadingLogo: FunctionComponent<EuiLoadingLogoProps> = ({
       aria-label={ariaLabel || defaultLabel}
       {...rest}
     >
-      <EuiIcon css={iconCssStyles} type={logo} size={size} />
+      <span css={iconCssStyles}>
+        <EuiIcon type={logo} size={size} />
+      </span>
     </span>
   );
 };

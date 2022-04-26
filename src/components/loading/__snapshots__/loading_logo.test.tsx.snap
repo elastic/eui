@@ -9,8 +9,11 @@ exports[`EuiLoadingLogo is rendered 1`] = `
 >
   <span
     class="css-vpqaeu-euiLoadingLogo__icon-m"
-    data-euiicon-type="logoKibana"
-  />
+  >
+    <span
+      data-euiicon-type="logoKibana"
+    />
+  </span>
 </span>
 `;
 
@@ -23,8 +26,11 @@ exports[`EuiLoadingLogo logo is rendered 1`] = `
 >
   <span
     class="css-vpqaeu-euiLoadingLogo__icon-m"
-    data-euiicon-type="logoElastic"
-  />
+  >
+    <span
+      data-euiicon-type="logoElastic"
+    />
+  </span>
 </span>
 `;
 
@@ -36,8 +42,11 @@ exports[`EuiLoadingLogo size l is rendered 1`] = `
 >
   <span
     class="css-13j96yi-euiLoadingLogo__icon-l"
-    data-euiicon-type="logoKibana"
-  />
+  >
+    <span
+      data-euiicon-type="logoKibana"
+    />
+  </span>
 </span>
 `;
 
@@ -49,8 +58,11 @@ exports[`EuiLoadingLogo size m is rendered 1`] = `
 >
   <span
     class="css-vpqaeu-euiLoadingLogo__icon-m"
-    data-euiicon-type="logoKibana"
-  />
+  >
+    <span
+      data-euiicon-type="logoKibana"
+    />
+  </span>
 </span>
 `;
 
@@ -62,7 +74,10 @@ exports[`EuiLoadingLogo size xl is rendered 1`] = `
 >
   <span
     class="css-tt9ufr-euiLoadingLogo__icon-xl"
-    data-euiicon-type="logoKibana"
-  />
+  >
+    <span
+      data-euiicon-type="logoKibana"
+    />
+  </span>
 </span>
 `;

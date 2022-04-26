@@ -53,12 +53,12 @@ export const euiLoadingSpinnerStyles = ({ euiTheme }: UseEuiTheme) => {
     s: css`
       width: ${euiTheme.size[spinnerSizes.s]};
       height: ${euiTheme.size[spinnerSizes.s]};
-      border-width: 1.5px;
+      border-width: calc(${euiTheme.border.width.thin} * 1.5);
     `,
     m: css`
       width: ${euiTheme.size[spinnerSizes.m]};
       height: ${euiTheme.size[spinnerSizes.m]};
-      border-width: 1.5px;
+      border-width: calc(${euiTheme.border.width.thin} * 1.5);
     `,
     l: css`
       width: ${euiTheme.size[spinnerSizes.l]};

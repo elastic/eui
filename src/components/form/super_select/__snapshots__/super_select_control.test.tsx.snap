@@ -273,7 +273,7 @@ Array [
       >
         <span
           aria-label="Loading"
-          class="euiLoadingSpinner css-8qqjsk-euiLoadingSpinner-m"
+          class="euiLoadingSpinner css-155ohbx-euiLoadingSpinner-m"
           role="progressbar"
         />
         <span
