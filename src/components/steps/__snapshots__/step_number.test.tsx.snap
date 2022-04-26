@@ -7,7 +7,7 @@ exports[`EuiStepNumber is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <span
-    class="euiScreenReaderOnly"
+    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
   >
     Step 
   </span>
@@ -23,7 +23,7 @@ exports[`EuiStepNumber props has titleSize is rendered 1`] = `
   class="euiStepNumber"
 >
   <span
-    class="euiScreenReaderOnly"
+    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
   >
     Step 1
   </span>
@@ -41,7 +41,7 @@ exports[`EuiStepNumber props isHollow is rendered 1`] = `
   class="euiStepNumber euiStepNumber-isHollow"
 >
   <span
-    class="euiScreenReaderOnly"
+    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
   >
     Step 1
   </span>
@@ -72,7 +72,7 @@ exports[`EuiStepNumber props status current is rendered 1`] = `
   class="euiStepNumber"
 >
   <span
-    class="euiScreenReaderOnly"
+    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
   >
     Current step is 1
   </span>
@@ -103,7 +103,7 @@ exports[`EuiStepNumber props status disabled is rendered 1`] = `
   class="euiStepNumber euiStepNumber--disabled"
 >
   <span
-    class="euiScreenReaderOnly"
+    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
   >
     Step 1 is disabled
   </span>
@@ -121,7 +121,7 @@ exports[`EuiStepNumber props status incomplete is rendered 1`] = `
   class="euiStepNumber euiStepNumber--incomplete"
 >
   <span
-    class="euiScreenReaderOnly"
+    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
   >
     Step 1 is incomplete
   </span>
@@ -139,7 +139,7 @@ exports[`EuiStepNumber props status loading is rendered 1`] = `
   class="euiStepNumber euiStepNumber--loading"
 >
   <span
-    class="euiScreenReaderOnly"
+    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
   >
     Step 1 is loading
   </span>

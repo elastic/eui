@@ -5,7 +5,7 @@ exports[`EuiTreeView is rendered 1`] = `
   class="euiText euiText--medium euiTreeView__wrapper"
 >
   <p
-    class="euiScreenReaderOnly"
+    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
     id="euiTreeView_generated-id--instruction"
   >
     You can quickly navigate this list using arrow keys.

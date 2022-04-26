@@ -1404,549 +1404,241 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
 `;
 
 exports[`EuiBasicTable with initial selection 1`] = `
-<EuiBasicTable
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-      },
-    ]
-  }
-  itemId="id"
-  items={
-    Array [
-      Object {
-        "id": "1",
-        "name": "name1",
-      },
-      Object {
-        "id": "2",
-        "name": "name2",
-      },
-      Object {
-        "id": "3",
-        "name": "name3",
-      },
-    ]
-  }
-  noItemsMessage={
-    <EuiI18n
-      default="No items found"
-      token="euiBasicTable.noItemsMessage"
-    />
-  }
-  responsive={true}
-  selection={
-    Object {
-      "initialSelected": Array [
-        Object {
-          "id": "1",
-          "name": "name1",
-        },
-      ],
-      "onSelectionChange": [Function],
-    }
-  }
-  tableLayout="fixed"
+<div
+  class="euiBasicTable"
 >
-  <div
-    className="euiBasicTable"
-  >
-    <div>
-      <EuiTableHeaderMobile>
+  <div>
+    <div
+      class="euiTableHeaderMobile"
+    >
+      <div
+        class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
+      >
         <div
-          className="euiTableHeaderMobile"
+          class="euiFlexItem euiFlexItem--flexGrowZero"
         >
-          <EuiFlexGroup
-            alignItems="baseline"
-            justifyContent="spaceBetween"
-            responsive={false}
+          <div
+            class="euiCheckbox"
+          >
+            <input
+              aria-label="Select all rows"
+              class="euiCheckbox__input"
+              id="_selection_column-checkbox_generated-id_mobile"
+              type="checkbox"
+            />
+            <div
+              class="euiCheckbox__square"
+            />
+            <label
+              class="euiCheckbox__label"
+              for="_selection_column-checkbox_generated-id_mobile"
+            >
+              Select all rows
+            </label>
+          </div>
+        </div>
+        <div
+          class="euiFlexItem euiFlexItem--flexGrowZero"
+        />
+      </div>
+    </div>
+    <table
+      class="euiTable euiTable--responsive"
+      id="__table_generated-id"
+      tabindex="-1"
+    >
+      <caption
+        class="euiScreenReaderOnly euiTableCaption css-4l8ha9-euiScreenReaderOnlyStyles"
+      />
+      <thead>
+        <tr>
+          <th
+            class="euiTableHeaderCellCheckbox"
+            scope="col"
           >
             <div
-              className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
+              class="euiTableCellContent"
             >
-              <EuiFlexItem
-                grow={false}
+              <div
+                class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
               >
-                <div
-                  className="euiFlexItem euiFlexItem--flexGrowZero"
-                >
-                  <EuiI18n
-                    default="Select all rows"
-                    token="euiBasicTable.selectAllRows"
-                  >
-                    <EuiCheckbox
-                      aria-label="Select all rows"
-                      checked={false}
-                      compressed={false}
-                      disabled={false}
-                      id="_selection_column-checkbox_generated-id_mobile"
-                      indeterminate={false}
-                      label="Select all rows"
-                      onChange={[Function]}
-                    >
-                      <div
-                        className="euiCheckbox"
-                      >
-                        <input
-                          aria-label="Select all rows"
-                          checked={false}
-                          className="euiCheckbox__input"
-                          disabled={false}
-                          id="_selection_column-checkbox_generated-id_mobile"
-                          onChange={[Function]}
-                          type="checkbox"
-                        />
-                        <div
-                          className="euiCheckbox__square"
-                        />
-                        <label
-                          className="euiCheckbox__label"
-                          htmlFor="_selection_column-checkbox_generated-id_mobile"
-                        >
-                          Select all rows
-                        </label>
-                      </div>
-                    </EuiCheckbox>
-                  </EuiI18n>
-                </div>
-              </EuiFlexItem>
-              <EuiFlexItem
-                grow={false}
-              >
-                <div
-                  className="euiFlexItem euiFlexItem--flexGrowZero"
+                <input
+                  aria-label="Select all rows"
+                  class="euiCheckbox__input"
+                  data-test-subj="checkboxSelectAll"
+                  id="_selection_column-checkbox_generated-id_desktop"
+                  type="checkbox"
                 />
-              </EuiFlexItem>
+                <div
+                  class="euiCheckbox__square"
+                />
+              </div>
             </div>
-          </EuiFlexGroup>
-        </div>
-      </EuiTableHeaderMobile>
-      <EuiTable
-        id="__table_generated-id"
-        responsive={true}
-        tableLayout="fixed"
-      >
-        <table
-          className="euiTable euiTable--responsive"
-          id="__table_generated-id"
-          tabIndex={-1}
-        >
-          <EuiScreenReaderOnly>
-            <caption
-              className="euiScreenReaderOnly euiTableCaption"
-            >
-              <EuiDelayRender
-                delay={500}
-              />
-            </caption>
-          </EuiScreenReaderOnly>
-          <EuiTableHeader>
-            <thead>
-              <tr>
-                <EuiTableHeaderCellCheckbox
-                  key="_selection_column_h"
-                >
-                  <th
-                    className="euiTableHeaderCellCheckbox"
-                    scope="col"
-                    style={
-                      Object {
-                        "width": undefined,
-                      }
-                    }
-                  >
-                    <div
-                      className="euiTableCellContent"
-                    >
-                      <EuiI18n
-                        default="Select all rows"
-                        token="euiBasicTable.selectAllRows"
-                      >
-                        <EuiCheckbox
-                          aria-label="Select all rows"
-                          checked={false}
-                          compressed={false}
-                          data-test-subj="checkboxSelectAll"
-                          disabled={false}
-                          id="_selection_column-checkbox_generated-id_desktop"
-                          indeterminate={false}
-                          label={null}
-                          onChange={[Function]}
-                          type="inList"
-                        >
-                          <div
-                            className="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
-                          >
-                            <input
-                              aria-label="Select all rows"
-                              checked={false}
-                              className="euiCheckbox__input"
-                              data-test-subj="checkboxSelectAll"
-                              disabled={false}
-                              id="_selection_column-checkbox_generated-id_desktop"
-                              onChange={[Function]}
-                              type="checkbox"
-                            />
-                            <div
-                              className="euiCheckbox__square"
-                            />
-                          </div>
-                        </EuiCheckbox>
-                      </EuiI18n>
-                    </div>
-                  </th>
-                </EuiTableHeaderCellCheckbox>
-                <EuiTableHeaderCell
-                  align="left"
-                  data-test-subj="tableHeaderCell_name_0"
-                  description="description"
-                  key="_data_h_name_0"
-                >
-                  <th
-                    className="euiTableHeaderCell"
-                    data-test-subj="tableHeaderCell_name_0"
-                    role="columnheader"
-                    scope="col"
-                    style={
-                      Object {
-                        "width": undefined,
-                      }
-                    }
-                  >
-                    <CellContents
-                      className="euiTableCellContent"
-                      description="description"
-                      showSortMsg={false}
-                    >
-                      <span
-                        className="euiTableCellContent"
-                      >
-                        <EuiInnerText>
-                          <EuiI18n
-                            default="{innerText}; {description}"
-                            token="euiTableHeaderCell.titleTextWithDesc"
-                            values={
-                              Object {
-                                "description": "description",
-                                "innerText": "Name",
-                              }
-                            }
-                          >
-                            <span
-                              className="euiTableCellContent__text"
-                              title="Name; description"
-                            >
-                              Name
-                            </span>
-                          </EuiI18n>
-                        </EuiInnerText>
-                        <EuiScreenReaderOnly>
-                          <span
-                            className="euiScreenReaderOnly"
-                          >
-                            description
-                          </span>
-                        </EuiScreenReaderOnly>
-                      </span>
-                    </CellContents>
-                  </th>
-                </EuiTableHeaderCell>
-              </tr>
-            </thead>
-          </EuiTableHeader>
-          <EuiTableBody
-            bodyRef={[Function]}
+          </th>
+          <th
+            class="euiTableHeaderCell"
+            data-test-subj="tableHeaderCell_name_0"
+            role="columnheader"
+            scope="col"
           >
-            <tbody>
-              <EuiTableRow
-                isSelectable={true}
-                isSelected={true}
+            <span
+              class="euiTableCellContent"
+            >
+              <span
+                class="euiTableCellContent__text"
+                title="; description"
               >
-                <tr
-                  className="euiTableRow euiTableRow-isSelectable euiTableRow-isSelected"
-                >
-                  <EuiTableRowCellCheckbox
-                    key="_selection_column_1"
-                  >
-                    <td
-                      className="euiTableRowCellCheckbox"
-                    >
-                      <div
-                        className="euiTableCellContent"
-                      >
-                        <EuiI18n
-                          default="Select this row"
-                          token="euiBasicTable.selectThisRow"
-                        >
-                          <EuiCheckbox
-                            aria-label="Select this row"
-                            checked={true}
-                            compressed={false}
-                            data-test-subj="checkboxSelectRow-1"
-                            disabled={false}
-                            id="__table_generated-id_selection_column_1-checkbox"
-                            indeterminate={false}
-                            onChange={[Function]}
-                            title="Select this row"
-                            type="inList"
-                          >
-                            <div
-                              className="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
-                            >
-                              <input
-                                aria-label="Select this row"
-                                checked={true}
-                                className="euiCheckbox__input"
-                                data-test-subj="checkboxSelectRow-1"
-                                disabled={false}
-                                id="__table_generated-id_selection_column_1-checkbox"
-                                onChange={[Function]}
-                                title="Select this row"
-                                type="checkbox"
-                              />
-                              <div
-                                className="euiCheckbox__square"
-                              />
-                            </div>
-                          </EuiCheckbox>
-                        </EuiI18n>
-                      </div>
-                    </td>
-                  </EuiTableRowCellCheckbox>
-                  <EuiTableRowCell
-                    align="left"
-                    key="_data_column_name_1_0"
-                    mobileOptions={
-                      Object {
-                        "header": "Name",
-                        "render": undefined,
-                      }
-                    }
-                    setScopeRow={false}
-                    textOnly={true}
-                  >
-                    <td
-                      className="euiTableRowCell euiTableRowCell--middle"
-                      style={
-                        Object {
-                          "width": undefined,
-                        }
-                      }
-                    >
-                      <div
-                        className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
-                      >
-                        Name
-                      </div>
-                      <div
-                        className="euiTableCellContent"
-                      >
-                        <span
-                          className="euiTableCellContent__text"
-                        >
-                          name1
-                        </span>
-                      </div>
-                    </td>
-                  </EuiTableRowCell>
-                </tr>
-              </EuiTableRow>
-              <EuiTableRow
-                isSelectable={true}
-                isSelected={false}
+                Name
+              </span>
+              <span
+                class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
               >
-                <tr
-                  className="euiTableRow euiTableRow-isSelectable"
-                >
-                  <EuiTableRowCellCheckbox
-                    key="_selection_column_2"
-                  >
-                    <td
-                      className="euiTableRowCellCheckbox"
-                    >
-                      <div
-                        className="euiTableCellContent"
-                      >
-                        <EuiI18n
-                          default="Select this row"
-                          token="euiBasicTable.selectThisRow"
-                        >
-                          <EuiCheckbox
-                            aria-label="Select this row"
-                            checked={false}
-                            compressed={false}
-                            data-test-subj="checkboxSelectRow-2"
-                            disabled={false}
-                            id="__table_generated-id_selection_column_2-checkbox"
-                            indeterminate={false}
-                            onChange={[Function]}
-                            title="Select this row"
-                            type="inList"
-                          >
-                            <div
-                              className="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
-                            >
-                              <input
-                                aria-label="Select this row"
-                                checked={false}
-                                className="euiCheckbox__input"
-                                data-test-subj="checkboxSelectRow-2"
-                                disabled={false}
-                                id="__table_generated-id_selection_column_2-checkbox"
-                                onChange={[Function]}
-                                title="Select this row"
-                                type="checkbox"
-                              />
-                              <div
-                                className="euiCheckbox__square"
-                              />
-                            </div>
-                          </EuiCheckbox>
-                        </EuiI18n>
-                      </div>
-                    </td>
-                  </EuiTableRowCellCheckbox>
-                  <EuiTableRowCell
-                    align="left"
-                    key="_data_column_name_2_0"
-                    mobileOptions={
-                      Object {
-                        "header": "Name",
-                        "render": undefined,
-                      }
-                    }
-                    setScopeRow={false}
-                    textOnly={true}
-                  >
-                    <td
-                      className="euiTableRowCell euiTableRowCell--middle"
-                      style={
-                        Object {
-                          "width": undefined,
-                        }
-                      }
-                    >
-                      <div
-                        className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
-                      >
-                        Name
-                      </div>
-                      <div
-                        className="euiTableCellContent"
-                      >
-                        <span
-                          className="euiTableCellContent__text"
-                        >
-                          name2
-                        </span>
-                      </div>
-                    </td>
-                  </EuiTableRowCell>
-                </tr>
-              </EuiTableRow>
-              <EuiTableRow
-                isSelectable={true}
-                isSelected={false}
+                description
+              </span>
+            </span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="euiTableRow euiTableRow-isSelectable"
+        >
+          <td
+            class="euiTableRowCellCheckbox"
+          >
+            <div
+              class="euiTableCellContent"
+            >
+              <div
+                class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
               >
-                <tr
-                  className="euiTableRow euiTableRow-isSelectable"
-                >
-                  <EuiTableRowCellCheckbox
-                    key="_selection_column_3"
-                  >
-                    <td
-                      className="euiTableRowCellCheckbox"
-                    >
-                      <div
-                        className="euiTableCellContent"
-                      >
-                        <EuiI18n
-                          default="Select this row"
-                          token="euiBasicTable.selectThisRow"
-                        >
-                          <EuiCheckbox
-                            aria-label="Select this row"
-                            checked={false}
-                            compressed={false}
-                            data-test-subj="checkboxSelectRow-3"
-                            disabled={false}
-                            id="__table_generated-id_selection_column_3-checkbox"
-                            indeterminate={false}
-                            onChange={[Function]}
-                            title="Select this row"
-                            type="inList"
-                          >
-                            <div
-                              className="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
-                            >
-                              <input
-                                aria-label="Select this row"
-                                checked={false}
-                                className="euiCheckbox__input"
-                                data-test-subj="checkboxSelectRow-3"
-                                disabled={false}
-                                id="__table_generated-id_selection_column_3-checkbox"
-                                onChange={[Function]}
-                                title="Select this row"
-                                type="checkbox"
-                              />
-                              <div
-                                className="euiCheckbox__square"
-                              />
-                            </div>
-                          </EuiCheckbox>
-                        </EuiI18n>
-                      </div>
-                    </td>
-                  </EuiTableRowCellCheckbox>
-                  <EuiTableRowCell
-                    align="left"
-                    key="_data_column_name_3_0"
-                    mobileOptions={
-                      Object {
-                        "header": "Name",
-                        "render": undefined,
-                      }
-                    }
-                    setScopeRow={false}
-                    textOnly={true}
-                  >
-                    <td
-                      className="euiTableRowCell euiTableRowCell--middle"
-                      style={
-                        Object {
-                          "width": undefined,
-                        }
-                      }
-                    >
-                      <div
-                        className="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
-                      >
-                        Name
-                      </div>
-                      <div
-                        className="euiTableCellContent"
-                      >
-                        <span
-                          className="euiTableCellContent__text"
-                        >
-                          name3
-                        </span>
-                      </div>
-                    </td>
-                  </EuiTableRowCell>
-                </tr>
-              </EuiTableRow>
-            </tbody>
-          </EuiTableBody>
-        </table>
-      </EuiTable>
-    </div>
+                <input
+                  aria-label="Select this row"
+                  class="euiCheckbox__input"
+                  data-test-subj="checkboxSelectRow-1"
+                  id="__table_generated-id_selection_column_1-checkbox"
+                  title="Select this row"
+                  type="checkbox"
+                />
+                <div
+                  class="euiCheckbox__square"
+                />
+              </div>
+            </div>
+          </td>
+          <td
+            class="euiTableRowCell euiTableRowCell--middle"
+          >
+            <div
+              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            >
+              Name
+            </div>
+            <div
+              class="euiTableCellContent"
+            >
+              <span
+                class="euiTableCellContent__text"
+              >
+                name1
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="euiTableRow euiTableRow-isSelectable"
+        >
+          <td
+            class="euiTableRowCellCheckbox"
+          >
+            <div
+              class="euiTableCellContent"
+            >
+              <div
+                class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
+              >
+                <input
+                  aria-label="Select this row"
+                  class="euiCheckbox__input"
+                  data-test-subj="checkboxSelectRow-2"
+                  id="__table_generated-id_selection_column_2-checkbox"
+                  title="Select this row"
+                  type="checkbox"
+                />
+                <div
+                  class="euiCheckbox__square"
+                />
+              </div>
+            </div>
+          </td>
+          <td
+            class="euiTableRowCell euiTableRowCell--middle"
+          >
+            <div
+              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            >
+              Name
+            </div>
+            <div
+              class="euiTableCellContent"
+            >
+              <span
+                class="euiTableCellContent__text"
+              >
+                name2
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="euiTableRow euiTableRow-isSelectable"
+        >
+          <td
+            class="euiTableRowCellCheckbox"
+          >
+            <div
+              class="euiTableCellContent"
+            >
+              <div
+                class="euiCheckbox euiCheckbox--inList euiCheckbox--noLabel"
+              >
+                <input
+                  aria-label="Select this row"
+                  class="euiCheckbox__input"
+                  data-test-subj="checkboxSelectRow-3"
+                  id="__table_generated-id_selection_column_3-checkbox"
+                  title="Select this row"
+                  type="checkbox"
+                />
+                <div
+                  class="euiCheckbox__square"
+                />
+              </div>
+            </div>
+          </td>
+          <td
+            class="euiTableRowCell euiTableRowCell--middle"
+          >
+            <div
+              class="euiTableRowCell__mobileHeader euiTableRowCell--hideForDesktop"
+            >
+              Name
+            </div>
+            <div
+              class="euiTableCellContent"
+            >
+              <span
+                class="euiTableCellContent__text"
+              >
+                name3
+              </span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</EuiBasicTable>
+</div>
 `;
 
 exports[`EuiBasicTable with multiple record actions with custom availability 1`] = `

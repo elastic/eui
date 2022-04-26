@@ -79,7 +79,7 @@ describe('useDataGridColumnSelector', () => {
     it('renders a toolbar button/popover allowing users to set column visibility and order', () => {
       const component = mount(<MockComponent showColumnSelector={true} />);
       openPopover(component);
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
       closePopover(component);
     });
 

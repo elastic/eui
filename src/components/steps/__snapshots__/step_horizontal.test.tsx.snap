@@ -11,7 +11,7 @@ exports[`EuiStepHorizontal is rendered 1`] = `
     class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
   >
     <span
-      class="euiScreenReaderOnly"
+      class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
     >
       Step 1 is incomplete
     </span>
@@ -58,7 +58,7 @@ exports[`EuiStepHorizontal props isSelected 1`] = `
     class="euiStepNumber euiStepHorizontal__number"
   >
     <span
-      class="euiScreenReaderOnly"
+      class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
     >
       Current step is 1
     </span>
@@ -105,7 +105,7 @@ exports[`EuiStepHorizontal props status current is rendered 1`] = `
     class="euiStepNumber euiStepHorizontal__number"
   >
     <span
-      class="euiScreenReaderOnly"
+      class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
     >
       Current step is 1
     </span>
@@ -152,7 +152,7 @@ exports[`EuiStepHorizontal props status disabled is rendered 1`] = `
     class="euiStepNumber euiStepNumber--disabled euiStepHorizontal__number"
   >
     <span
-      class="euiScreenReaderOnly"
+      class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
     >
       Step 1 is disabled
     </span>
@@ -178,7 +178,7 @@ exports[`EuiStepHorizontal props status incomplete is rendered 1`] = `
     class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
   >
     <span
-      class="euiScreenReaderOnly"
+      class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
     >
       Step 1 is incomplete
     </span>
@@ -204,7 +204,7 @@ exports[`EuiStepHorizontal props status loading is rendered 1`] = `
     class="euiStepNumber euiStepNumber--loading euiStepHorizontal__number"
   >
     <span
-      class="euiScreenReaderOnly"
+      class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
     >
       Step 1 is loading
     </span>
@@ -248,7 +248,7 @@ exports[`EuiStepHorizontal props step 1`] = `
     class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
   >
     <span
-      class="euiScreenReaderOnly"
+      class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
     >
       Step 5 is incomplete
     </span>
@@ -274,7 +274,7 @@ exports[`EuiStepHorizontal props title 1`] = `
     class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
   >
     <span
-      class="euiScreenReaderOnly"
+      class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
     >
       Step 1 is incomplete
     </span>

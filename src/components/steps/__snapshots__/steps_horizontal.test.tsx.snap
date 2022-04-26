@@ -42,7 +42,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
         class="euiStepNumber euiStepHorizontal__number"
       >
         <span
-          class="euiScreenReaderOnly"
+          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
         >
           Current step is 2
         </span>
@@ -71,7 +71,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
         class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
       >
         <span
-          class="euiScreenReaderOnly"
+          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
         >
           Step 3 is incomplete
         </span>
@@ -101,7 +101,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
         class="euiStepNumber euiStepNumber--disabled euiStepHorizontal__number"
       >
         <span
-          class="euiScreenReaderOnly"
+          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
         >
           Step 4 is disabled
         </span>

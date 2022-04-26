@@ -120,7 +120,7 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
           <span />
         </div>
         <p
-          class="euiScreenReaderOnly"
+          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
           id="generated-id"
         >
           You are in a dialog. To close this dialog, hit escape.
@@ -176,7 +176,7 @@ exports[`EuiPopover props buffer 1`] = `
           style="left: 10px; top: 0px;"
         />
         <p
-          class="euiScreenReaderOnly"
+          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
           id="generated-id"
         >
           You are in a dialog. To close this dialog, hit escape.
@@ -232,7 +232,7 @@ exports[`EuiPopover props buffer for all sides 1`] = `
           style="left: 10px; top: 0px;"
         />
         <p
-          class="euiScreenReaderOnly"
+          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
           id="generated-id"
         >
           You are in a dialog. To close this dialog, hit escape.
@@ -301,7 +301,7 @@ exports[`EuiPopover props focusTrapProps is rendered 1`] = `
           style="left: 10px; top: 0px;"
         />
         <p
-          class="euiScreenReaderOnly"
+          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
           id="generated-id"
         >
           You are in a dialog. To close this dialog, hit escape.
@@ -370,7 +370,7 @@ exports[`EuiPopover props isOpen renders true 1`] = `
           style="left: 10px; top: 0px;"
         />
         <p
-          class="euiScreenReaderOnly"
+          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
           id="generated-id"
         >
           You are in a dialog. To close this dialog, hit escape.
@@ -427,7 +427,7 @@ exports[`EuiPopover props offset with arrow 1`] = `
           style="left: 10px; top: 0px;"
         />
         <p
-          class="euiScreenReaderOnly"
+          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
           id="generated-id"
         >
           You are in a dialog. To close this dialog, hit escape.
@@ -483,7 +483,7 @@ exports[`EuiPopover props offset without arrow 1`] = `
           class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
         />
         <p
-          class="euiScreenReaderOnly"
+          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
           id="generated-id"
         >
           You are in a dialog. To close this dialog, hit escape.
@@ -539,7 +539,7 @@ exports[`EuiPopover props ownFocus defaults to true 1`] = `
           style="left: 10px; top: 0px;"
         />
         <p
-          class="euiScreenReaderOnly"
+          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
           id="generated-id"
         >
           You are in a dialog. To close this dialog, hit escape.
@@ -642,7 +642,7 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
           style="left: 10px; top: 0px;"
         />
         <p
-          class="euiScreenReaderOnly"
+          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
           id="generated-id"
         >
           You are in a dialog. To close this dialog, hit escape.
@@ -698,7 +698,7 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
           style="left: 10px; top: 0px;"
         />
         <p
-          class="euiScreenReaderOnly"
+          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
           id="generated-id"
         >
           You are in a dialog. To close this dialog, hit escape.
@@ -755,7 +755,7 @@ exports[`EuiPopover props panelProps is rendered 1`] = `
           style="left: 10px; top: 0px;"
         />
         <p
-          class="euiScreenReaderOnly"
+          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
           id="generated-id"
         >
           You are in a dialog. To close this dialog, hit escape.

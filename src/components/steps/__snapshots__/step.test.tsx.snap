@@ -13,7 +13,7 @@ exports[`EuiStep is rendered 1`] = `
       class="euiStepNumber euiStep__circle"
     >
       <span
-        class="euiScreenReaderOnly"
+        class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
       >
         Step 1
       </span>
@@ -51,7 +51,7 @@ exports[`EuiStep props headingElement 1`] = `
       class="euiStepNumber euiStep__circle"
     >
       <span
-        class="euiScreenReaderOnly"
+        class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
       >
         Step 1
       </span>
@@ -122,7 +122,7 @@ exports[`EuiStep props status current is rendered 1`] = `
       class="euiStepNumber euiStep__circle"
     >
       <span
-        class="euiScreenReaderOnly"
+        class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
       >
         Current step is 1
       </span>
@@ -193,7 +193,7 @@ exports[`EuiStep props status disabled is rendered 1`] = `
       class="euiStepNumber euiStepNumber--disabled euiStep__circle"
     >
       <span
-        class="euiScreenReaderOnly"
+        class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
       >
         Step 1 is disabled
       </span>
@@ -231,7 +231,7 @@ exports[`EuiStep props status incomplete is rendered 1`] = `
       class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
     >
       <span
-        class="euiScreenReaderOnly"
+        class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
       >
         Step 1 is incomplete
       </span>
@@ -269,7 +269,7 @@ exports[`EuiStep props status loading is rendered 1`] = `
       class="euiStepNumber euiStepNumber--loading euiStep__circle"
     >
       <span
-        class="euiScreenReaderOnly"
+        class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
       >
         Step 1 is loading
       </span>
@@ -337,7 +337,7 @@ exports[`EuiStep props step 1`] = `
       class="euiStepNumber euiStep__circle"
     >
       <span
-        class="euiScreenReaderOnly"
+        class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
       >
         Step 5
       </span>
@@ -375,7 +375,7 @@ exports[`EuiStep props titleSize 1`] = `
       class="euiStepNumber euiStep__circle euiStepNumber--small"
     >
       <span
-        class="euiScreenReaderOnly"
+        class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
       >
         Step 1
       </span>

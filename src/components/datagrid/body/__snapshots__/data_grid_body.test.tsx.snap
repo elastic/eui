@@ -127,7 +127,7 @@ exports[`EuiDataGridBody renders 1`] = `
             </span>
           </div>
           <p
-            class="euiScreenReaderOnly"
+            class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
           >
             Row: 1; Column: 1
           </p>
@@ -161,7 +161,7 @@ exports[`EuiDataGridBody renders 1`] = `
             </span>
           </div>
           <p
-            class="euiScreenReaderOnly"
+            class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
           >
             Row: 1; Column: 2
           </p>

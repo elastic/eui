@@ -441,7 +441,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
                 Titan
               </span>
               <div
-                class="euiScreenReaderOnly"
+                class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
               >
                  - To select this option, press enter.
               </div>
@@ -474,7 +474,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
                 Enceladus
               </span>
               <div
-                class="euiScreenReaderOnly"
+                class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
               >
                  - To select this option, press enter.
               </div>
@@ -507,7 +507,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
                 Mimas
               </span>
               <div
-                class="euiScreenReaderOnly"
+                class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
               >
                  - To select this option, press enter.
               </div>
@@ -540,7 +540,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
                 Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
               </span>
               <div
-                class="euiScreenReaderOnly"
+                class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
               >
                  - To select this option, press enter.
               </div>
@@ -573,7 +573,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
                 Tethys
               </span>
               <div
-                class="euiScreenReaderOnly"
+                class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
               >
                  - To select this option, press enter.
               </div>
@@ -606,7 +606,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
                 Hyperion
               </span>
               <div
-                class="euiScreenReaderOnly"
+                class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
               >
                  - To select this option, press enter.
               </div>
