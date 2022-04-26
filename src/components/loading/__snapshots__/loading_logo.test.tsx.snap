@@ -3,7 +3,7 @@
 exports[`EuiLoadingLogo is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiLoadingLogo euiLoadingLogo--medium testClass1 testClass2 css-1p1obsq-euiLoadingLogo-m"
+  class="euiLoadingLogo euiLoadingLogo--medium testClass1 testClass2 css-1q9lj2c-euiLoadingLogo-m"
   data-test-subj="test subject string"
   role="progressbar"
 >
@@ -17,7 +17,7 @@ exports[`EuiLoadingLogo is rendered 1`] = `
 exports[`EuiLoadingLogo logo is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiLoadingLogo euiLoadingLogo--medium testClass1 testClass2 css-1p1obsq-euiLoadingLogo-m"
+  class="euiLoadingLogo euiLoadingLogo--medium testClass1 testClass2 css-1q9lj2c-euiLoadingLogo-m"
   data-test-subj="test subject string"
   role="progressbar"
 >
@@ -31,7 +31,7 @@ exports[`EuiLoadingLogo logo is rendered 1`] = `
 exports[`EuiLoadingLogo size l is rendered 1`] = `
 <span
   aria-label="Loading"
-  class="euiLoadingLogo euiLoadingLogo--large css-rtjevd-euiLoadingLogo-l"
+  class="euiLoadingLogo euiLoadingLogo--large css-ztstjs-euiLoadingLogo-l"
   role="progressbar"
 >
   <span
@@ -44,7 +44,7 @@ exports[`EuiLoadingLogo size l is rendered 1`] = `
 exports[`EuiLoadingLogo size m is rendered 1`] = `
 <span
   aria-label="Loading"
-  class="euiLoadingLogo euiLoadingLogo--medium css-1p1obsq-euiLoadingLogo-m"
+  class="euiLoadingLogo euiLoadingLogo--medium css-1q9lj2c-euiLoadingLogo-m"
   role="progressbar"
 >
   <span
@@ -57,7 +57,7 @@ exports[`EuiLoadingLogo size m is rendered 1`] = `
 exports[`EuiLoadingLogo size xl is rendered 1`] = `
 <span
   aria-label="Loading"
-  class="euiLoadingLogo euiLoadingLogo--xLarge css-vmvkmp-euiLoadingLogo-xl"
+  class="euiLoadingLogo euiLoadingLogo--xLarge css-ze07rn-euiLoadingLogo-xl"
   role="progressbar"
 >
   <span

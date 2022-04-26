@@ -63,51 +63,66 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
           opacity: 0.2;
           z-index: 1;
         }
-      }
 
-      &:before {
-        box-shadow: 0 0 ${euiTheme.size.s} ${euiTheme.colors.fullShade};
-        animation: 1s ${loadingPulsateAndFade} ${euiTheme.animation.resistance}
-          infinite;
-      }
+        &:before {
+          box-shadow: 0 0 ${euiTheme.size.s} ${euiTheme.colors.fullShade};
+          animation: 1s ${loadingPulsateAndFade}
+            ${euiTheme.animation.resistance} infinite;
+        }
 
-      &:after {
-        background-color: ${euiTheme.colors.fullShade};
-        animation: 1s ${loadingPulsate} ${euiTheme.animation.resistance}
-          infinite;
+        &:after {
+          background-color: ${euiTheme.colors.fullShade};
+          animation: 1s ${loadingPulsate} ${euiTheme.animation.resistance}
+            infinite;
+        }
       }
-      /* } */
     `,
 
     /**
-     * 1. Requires pixel math for animation.
+     * 1. Requires pixel math for animation
+     * 2. Add a half the amount of animation distance padding to the top to give it more room
      */
     m: css`
-      padding-block-start: ${euiTheme.size[loadingAnimationDistance.m]};
+      ${euiCanAnimate} {
+        /* 2 */
+        padding-block-start: calc(
+          ${euiTheme.size[loadingAnimationDistance.m]} / 2
+        );
+      }
 
       &:before,
       &:after {
-        height: ${euiTheme.size.xs};
+        height: ${euiTheme.base * 0.25}px; /* 1 */
         inset-block-end: -${euiTheme.size.xs};
       }
     `,
 
     l: css`
-      padding-block-start: ${euiTheme.size[loadingAnimationDistance.l]};
+      ${euiCanAnimate} {
+        /* 2 */
+        padding-block-start: calc(
+          ${euiTheme.size[loadingAnimationDistance.l]} / 2
+        );
+      }
 
       &:before,
       &:after {
-        height: ${euiTheme.size.s};
+        height: ${euiTheme.base * 0.375}px; /* 1 */
         inset-block-end: -${euiTheme.size.s};
       }
     `,
 
     xl: css`
-      padding-block-start: ${euiTheme.size[loadingAnimationDistance.xl]};
+      ${euiCanAnimate} {
+        /* 2 */
+        padding-block-start: calc(
+          ${euiTheme.size[loadingAnimationDistance.xl]} / 2
+        );
+      }
 
       &:before,
       &:after {
-        height: ${euiTheme.size.s};
+        height: ${euiTheme.base * 0.5}px; /* 1 */
         inset-block-end: -${euiTheme.size.m};
       }
     `,
