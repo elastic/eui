@@ -223,15 +223,18 @@ const _EuiBottomBar = forwardRef<
   }
 );
 
-export const EuiBottomBar: EuiBottomBarProps = ({ ...rest }) => {
-  const { colorMode } = useEuiTheme();
+export const EuiBottomBar = forwardRef<HTMLElement, EuiBottomBarProps>(
+  (props, ref) => {
+    //const { colorMode } = useEuiTheme();
 
-  const BottomBar = _EuiBottomBar;
-  return (
-    <EuiThemeProvider colorMode={'dark'}>
-      <BottomBar {...rest} />
-    </EuiThemeProvider>
-  );
-};
+    const BottomBar = _EuiBottomBar;
+    return (
+      <EuiThemeProvider colorMode={'dark'}>
+        <BottomBar ref={ref} {...props} />
+      </EuiThemeProvider>
+    );
+  }
+);
 
+EuiBottomBar.displayName = 'EuiBottomBar';
 _EuiBottomBar.displayName = 'EuiBottomBar';
