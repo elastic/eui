@@ -79,9 +79,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({...}) => {
 
   // pass the styles array to the `css` prop of the target element 
   return (
-    <div
-      css={cssStyles}
-    />
+    <div css={cssStyles} />
   )
 }
 ```
@@ -107,6 +105,59 @@ const cssStyles = [
   paddingSize === 'none' ? undefined : styles[paddingSize]
 ]
 ```
+
+## Style maps
+
+When building styles based on an array of possible prop values, you'll want to establish the array of values first in the component file then use that array to create your prop values and your styles map.
+
+
+```tsx
+export const SIZES = ['s', 'm', 'l', 'xl', 'xxl'] as const;
+export type EuiComponentNameSize = typeof SIZES[number];
+
+export type EuiComponentNameProps = CommonProps & {
+  size?: EuiComponentNameSize;
+};
+  
+export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}) => {
+  const euiTheme = useEuiTheme();
+  
+  const styles = euiComponentNameStyles(euiTheme);
+  const cssStyles = [styles.euiComponentName, styles[size]];
+  
+  return (
+    <div css={cssStyles} />
+  )
+}
+```
+
+```ts
+const componentSizes: {
+  [size in EuiComponentNameSize]: _EuiThemeSize;
+} = {
+  s: 'm',
+  m: 'base',
+  l: 'l',
+  xl: 'xl',
+  xxl: 'xxl',
+};
+
+export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiComponentName: css``,
+
+  // Sizes
+  s: css`
+    width: ${euiTheme.size[componentSizes.s]};
+    height: ${euiTheme.size[componentSizes.s]};
+  `,
+  m: css`
+    width: ${euiTheme.size[componentSizes.m]};
+    height: ${euiTheme.size[componentSizes.m]};
+  `,
+  ...etc
+});
+```
+
 
 ## Style helpers
 
@@ -178,7 +229,6 @@ Although possible in some contexts, it is not recommended to "shortcut" logic us
 
 Most components also contain child elements that have their own styles. Each element should have it's own theme function to keep things tidy. Keep them within a single `styles.ts` file if they exist in the same `.tsx` file.
 
-
 ```ts
 export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiComponentName: css``
@@ -201,7 +251,7 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
   const cssChildStyles = [childStyles.euiComponentName__child];
   
   return (
-    <div css={cssStyles} />
+    <div css={cssStyles}>
       <span css={cssChildStyles} />
     </div>
   )
@@ -240,7 +290,7 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
   const cssChildStyles = [childStyles.euiComponentName__child, childStyles[size]];
   
   return (
-    <div css={cssStyles} />
+    <div css={cssStyles}>
       <span> css={cssChildStyles} />
     </div>
   )
