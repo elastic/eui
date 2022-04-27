@@ -104,7 +104,7 @@ export interface _EuiThemeBody {
 
 export interface _EuiThemeTitle {
   /**
-   * A font weight key for setting the base title weight
+   * A font weight key for setting the base weight for titles and headings
    */
   weight: keyof _EuiThemeFontWeights;
 }
