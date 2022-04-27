@@ -103,7 +103,7 @@ export type EuiAccordionProps = CommonProps &
     isLoadingMessage?: boolean | ReactNode;
   };
 
-class EuiAccordionClass extends Component<
+export class EuiAccordionClass extends Component<
   WithEuiThemeProps & EuiAccordionProps,
   { isOpen: boolean }
 > {
@@ -284,7 +284,10 @@ class EuiAccordionClass extends Component<
 
     if (extraAction) {
       optionalAction = (
-        <div className="euiAccordion__optionalAction" css={optionalActionStyles}>
+        <div
+          className="euiAccordion__optionalAction"
+          css={optionalActionStyles}
+        >
           {isLoading ? <EuiLoadingSpinner /> : extraAction}
         </div>
       );
@@ -328,7 +331,10 @@ class EuiAccordionClass extends Component<
 
     return (
       <Element className={classes} {...rest}>
-        <div className="euiAccordion__triggerWrapper" css={triggerWrapperStyles}>
+        <div
+          className="euiAccordion__triggerWrapper"
+          css={triggerWrapperStyles}
+        >
           {_arrowDisplay === 'left' && iconButton}
           {button}
           {optionalAction}
