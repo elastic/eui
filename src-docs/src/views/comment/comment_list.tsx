@@ -93,4 +93,6 @@ const comments: EuiCommentProps[] = [
   },
 ];
 
-export default () => <EuiCommentList comments={comments} />;
+export default () => (
+  <EuiCommentList comments={comments} aria-label="Comment list example" />
+);

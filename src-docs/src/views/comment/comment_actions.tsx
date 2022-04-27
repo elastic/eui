@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  EuiCommentList,
   EuiComment,
   EuiButtonIcon,
   EuiText,
@@ -97,6 +98,7 @@ export default () => {
 
   const updateActions = [
     <EuiButtonIcon
+      key="copy-alert"
       title="Copy alert link"
       aria-label="Copy alert link"
       iconType="link"
@@ -104,6 +106,7 @@ export default () => {
       color="text"
     />,
     <EuiButtonIcon
+      key="show-details"
       title="Show the alert details in a flyout"
       aria-label="Show details"
       iconType="popout"
@@ -114,7 +117,7 @@ export default () => {
   ];
 
   return (
-    <div>
+    <EuiCommentList aria-label="Actions">
       <EuiComment
         username="janed"
         event="added a comment"
@@ -136,6 +139,6 @@ export default () => {
         timelineIcon="dot"
       />
       {flyout}
-    </div>
+    </EuiCommentList>
   );
 };

@@ -1,5 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import {
+  EuiCommentList,
   EuiComment,
   EuiText,
   EuiAvatar,
@@ -23,7 +24,7 @@ const customIconBody = (
 );
 
 export default () => (
-  <Fragment>
+  <EuiCommentList aria-label="An example with different timeline icons">
     <EuiComment
       username="janed"
       event="added a comment"
@@ -50,12 +51,13 @@ export default () => (
       timestamp="7 hours ago"
       timelineIcon={
         <EuiAvatar
+          size="l"
+          name="juanab"
           imageUrl="https://source.unsplash.com/64x64/?woman"
-          name="Juana"
         />
       }
     >
       {customIconBody}
     </EuiComment>
-  </Fragment>
+  </EuiCommentList>
 );

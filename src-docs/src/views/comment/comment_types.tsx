@@ -3,6 +3,7 @@ import {
   EuiPanel,
   EuiText,
   EuiCode,
+  EuiCommentList,
   EuiComment,
 } from '../../../../src/components/';
 
@@ -15,7 +16,7 @@ const body = (
 );
 
 export default () => (
-  <div>
+  <EuiCommentList aria-label="Comment types example">
     <EuiComment username="andred" event="added a comment" timestamp="yesterday">
       {body}
     </EuiComment>
@@ -36,5 +37,5 @@ export default () => (
         </p>
       </EuiPanel>
     </EuiComment>
-  </div>
+  </EuiCommentList>
 );

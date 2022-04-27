@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { formatDate, htmlIdGenerator } from '../../../../src/services';
 import {
+  EuiCommentList,
   EuiComment,
   EuiCommentProps,
   EuiButtonIcon,
@@ -157,36 +158,36 @@ export default () => {
 
   return (
     <>
-      {commentsList}
+      <EuiCommentList aria-label="Comment system example">
+        {commentsList}
+        <EuiComment key="comment-custom-1" username="emma" type="custom">
+          <EuiMarkdownEditor
+            aria-label="Markdown editor"
+            aria-describedby={errorElementId.current}
+            placeholder="Add a comment..."
+            value={editorValue}
+            onChange={setEditorValue}
+            readOnly={isLoading}
+            initialViewMode="editing"
+            markdownFormatProps={{ textSize: 's' }}
+          />
+        </EuiComment>
+      </EuiCommentList>
+      <EuiSpacer />
 
-      <EuiComment username="emma" type="custom">
-        <EuiMarkdownEditor
-          aria-label="Markdown editor"
-          aria-describedby={errorElementId.current}
-          placeholder="Add a comment..."
-          value={editorValue}
-          onChange={setEditorValue}
-          readOnly={isLoading}
-          initialViewMode="editing"
-          markdownFormatProps={{ textSize: 's' }}
-        />
-
-        <EuiSpacer />
-
-        <EuiFlexGroup justifyContent="flexEnd">
-          <EuiFlexItem grow={false}>
-            <div>
-              <EuiButton
-                onClick={onAddComment}
-                isLoading={isLoading}
-                isDisabled={editorError}
-              >
-                Add comment
-              </EuiButton>
-            </div>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      </EuiComment>
+      <EuiFlexGroup justifyContent="flexEnd">
+        <EuiFlexItem grow={false}>
+          <div>
+            <EuiButton
+              onClick={onAddComment}
+              isLoading={isLoading}
+              isDisabled={editorError}
+            >
+              Add comment
+            </EuiButton>
+          </div>
+        </EuiFlexItem>
+      </EuiFlexGroup>
     </>
   );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  EuiCommentList,
   EuiComment,
   EuiBadge,
   EuiText,
@@ -41,7 +42,7 @@ const eventWithOneTag = (
 );
 
 export default () => (
-  <div>
+  <EuiCommentList aria-label="Comment type update example">
     <EuiComment
       username="luisg"
       type="update"
@@ -65,5 +66,5 @@ export default () => (
     >
       {bodyUpdate}
     </EuiComment>
-  </div>
+  </EuiCommentList>
 );
