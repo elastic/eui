@@ -98,6 +98,17 @@ export interface _EuiThemeBody {
   weight: keyof _EuiThemeFontWeights;
 }
 
+/**
+ * Title styles
+ */
+
+export interface _EuiThemeTitle {
+  /**
+   * A font weight key for setting the base weight for titles and headings
+   */
+  weight: keyof _EuiThemeFontWeights;
+}
+
 /*
  * Font
  */
@@ -106,4 +117,5 @@ export type _EuiThemeFont = _EuiThemeFontBase & {
   scale: _EuiThemeFontScales;
   weight: _EuiThemeFontWeights;
   body: _EuiThemeBody;
+  title: _EuiThemeTitle;
 };

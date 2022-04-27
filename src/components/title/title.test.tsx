@@ -8,6 +8,7 @@
 
 import { render } from 'enzyme';
 import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiTitle } from './title';
 
@@ -21,6 +22,12 @@ describe('EuiTitle', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  shouldRenderCustomStyles(
+    <EuiTitle>
+      <h1>Title</h1>
+    </EuiTitle>
+  );
 
   test('renders children element className', () => {
     const component = render(

@@ -8,8 +8,9 @@
 
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
-import { TEXT_SIZES, EuiHealth } from './health';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { COLORS } from '../icon/icon';
+import { EuiHealth, TEXT_SIZES } from './health';
 
 describe('EuiHealth', () => {
   test('is rendered', () => {
@@ -18,9 +19,11 @@ describe('EuiHealth', () => {
     expect(component).toMatchSnapshot();
   });
 
+  shouldRenderCustomStyles(<EuiHealth />);
+
   describe('props', () => {
     describe('textSize', () => {
-      TEXT_SIZES.forEach((textSize) => {
+      TEXT_SIZES.forEach((textSize: any) => {
         test(`${textSize} is rendered`, () => {
           const component = render(
             <EuiHealth textSize={textSize} color="success" />

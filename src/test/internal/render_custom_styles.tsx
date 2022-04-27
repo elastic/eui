@@ -37,7 +37,7 @@ export const shouldRenderCustomStyles = (component: ReactElement) => {
     expect(componentNode).toHaveLength(1);
     // css
     expect(componentNode.attr('class')).toEqual(
-      expect.stringMatching(/css-[\d\w]{7}-css/) // should have generated an emotion class ending with -css
+      expect.stringMatching(/css-[\d\w]{6,7}-css/) // should have generated an emotion class ending with -css
     );
     // style
     expect(componentNode.attr('style')).toContain("content:'world'");
