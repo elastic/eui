@@ -3493,11 +3493,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 323,
+        "line": 322,
         "column": 8
       },
       "end": {
-        "line": 323,
+        "line": 322,
         "column": 78
       }
     },
@@ -3790,6 +3790,22 @@
       }
     },
     "filepath": "src/components/list_group/pinnable_list_group/pinnable_list_group.tsx"
+  },
+  {
+    "token": "euiLoadingChart.ariaLabel",
+    "defString": "Loading",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 44,
+        "column": 27
+      },
+      "end": {
+        "line": 44,
+        "column": 77
+      }
+    },
+    "filepath": "src/components/loading/loading_chart.tsx"
   },
   {
     "token": "euiMark.highlightStart",
