@@ -11,7 +11,6 @@ import ReactDOM from 'react-dom';
 import { render, mount } from 'enzyme';
 import { keysOf } from '../common';
 import { requiredProps, takeMountedSnapshot } from '../../test';
-import { shouldRenderCustomStyles } from '../../test/internal';
 
 import {
   EuiBottomBar,
@@ -35,8 +34,6 @@ describe('EuiBottomBar', () => {
 
     expect(component).toMatchSnapshot();
   });
-
-  shouldRenderCustomStyles(<EuiBottomBar />);
 
   describe('props', () => {
     describe('paddingSize', () => {

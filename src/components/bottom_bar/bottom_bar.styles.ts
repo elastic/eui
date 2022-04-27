@@ -7,35 +7,42 @@
  */
 
 import { css, keyframes } from '@emotion/react';
+import { euiCanAnimate } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
+import { shade } from '../../services/color';
 import { euiShadowFlat } from '../../themes/amsterdam/global_styling/mixins';
 
-//const _euiBottomBarColor = '#131317';
-const _euiBottomBarZHeader = 1000;
-
 const euiBottomBarAppear = keyframes`
-0% {
+  0% {
     transform: translateY(100%);
     opacity: 0;
   }
 
   100% {
-    transform: translateY(00%);
+    transform: translateY(0%);
     opacity: 1;
   }
 `;
 
 export const euiBottomBarStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
   // Base
+  //Text color needs to be reapplied to properly scope the forced `colorMode`
   euiBottomBar: css`
     ${euiShadowFlat(euiTheme, undefined, colorMode)};
-    background: ${euiTheme.colors.lightShade};
+    background: ${shade(euiTheme.colors.lightestShade, 0.5)};
     color: ${euiTheme.colors.text};
-    animation: ${euiBottomBarAppear} ${euiTheme.animation.slow}
-      ${euiTheme.animation.resistance};
-    z-index: ${_euiBottomBarZHeader - 2};
+    ${euiCanAnimate} {
+      animation: ${euiBottomBarAppear} ${euiTheme.animation.slow}
+        ${euiTheme.animation.resistance};
+    }
   `,
   static: css``,
+  fixed: css`
+    z-index: ${Number(euiTheme.levels.header) - 2};
+  `,
+  sticky: css`
+    z-index: ${Number(euiTheme.levels.header) - 2};
+  `,
   // Padding
   s: css`
     padding: ${euiTheme.size.s};

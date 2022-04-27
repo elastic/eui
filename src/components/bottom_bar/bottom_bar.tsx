@@ -161,7 +161,12 @@ const _EuiBottomBar = forwardRef<
       className
     );
 
-    const cssStyles = [styles.euiBottomBar, styles[paddingSize], { position }];
+    const cssStyles = [
+      styles.euiBottomBar,
+      styles[position],
+      styles[paddingSize],
+      { position },
+    ];
 
     const newStyle = {
       left,
@@ -225,8 +230,6 @@ const _EuiBottomBar = forwardRef<
 
 export const EuiBottomBar = forwardRef<HTMLElement, EuiBottomBarProps>(
   (props, ref) => {
-    //const { colorMode } = useEuiTheme();
-
     const BottomBar = _EuiBottomBar;
     return (
       <EuiThemeProvider colorMode={'dark'}>
