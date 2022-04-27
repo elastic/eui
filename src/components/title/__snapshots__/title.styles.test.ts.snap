@@ -4,7 +4,6 @@ exports[`euiTitle mixin returns a static object of title font properties for eac
 Object {
   "fontSize": "2.4286rem",
   "fontWeight": 700,
-  "letterSpacing": undefined,
   "lineHeight": "2.8571rem",
 }
 `;
@@ -13,7 +12,6 @@ exports[`euiTitle mixin returns a static object of title font properties for eac
 Object {
   "fontSize": "1.9286rem",
   "fontWeight": 700,
-  "letterSpacing": undefined,
   "lineHeight": "2.2857rem",
 }
 `;
@@ -22,7 +20,6 @@ exports[`euiTitle mixin returns a static object of title font properties for eac
 Object {
   "fontSize": "1.5714rem",
   "fontWeight": 700,
-  "letterSpacing": undefined,
   "lineHeight": "2.2857rem",
 }
 `;
@@ -31,7 +28,6 @@ exports[`euiTitle mixin returns a static object of title font properties for eac
 Object {
   "fontSize": "1.1429rem",
   "fontWeight": 700,
-  "letterSpacing": undefined,
   "lineHeight": "1.7143rem",
 }
 `;
@@ -40,7 +36,6 @@ exports[`euiTitle mixin returns a static object of title font properties for eac
 Object {
   "fontSize": "1.0000rem",
   "fontWeight": 700,
-  "letterSpacing": undefined,
   "lineHeight": "1.7143rem",
 }
 `;
@@ -49,7 +44,6 @@ exports[`euiTitle mixin returns a static object of title font properties for eac
 Object {
   "fontSize": "0.8571rem",
   "fontWeight": 700,
-  "letterSpacing": undefined,
   "lineHeight": "1.1429rem",
 }
 `;

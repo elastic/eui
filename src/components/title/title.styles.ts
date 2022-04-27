@@ -64,7 +64,6 @@ type EuiThemeTitle = {
   fontSize: CSSProperties['fontSize'];
   lineHeight: CSSProperties['lineHeight'];
   fontWeight: CSSProperties['fontWeight'];
-  letterSpacing?: CSSProperties['letterSpacing'];
 };
 
 export const euiTitle = (
@@ -84,7 +83,6 @@ export const euiTitle = (
       measurement
     ),
     fontWeight: euiTheme.font.weight[euiTheme.font.title.weight],
-    letterSpacing: title.letterSpacing,
   };
 };
 
