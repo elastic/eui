@@ -6,12 +6,9 @@
  * Side Public License, v 1.
  */
 
-/** @jsx jsx */
-import React from 'react';
-import { css, jsx } from '@emotion/react';
+import { cloneElement as cloneElementWithCss } from 'react';
+import { css } from '@emotion/react';
 import { render } from 'enzyme';
-
-import { cloneElementWithCss } from './clone_element';
 
 describe('cloneElementWithCss', () => {
   const CloningParent: React.FC<any> = ({ children, ...props }) => {

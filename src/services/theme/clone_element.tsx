@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import { ReactElement } from 'react';
 import { jsx } from '@emotion/react';
 
 /**
@@ -16,10 +16,7 @@ import { jsx } from '@emotion/react';
  *
  * NOTE: We're still using/testing this utility internally, so this is not yet a public API
  */
-export const cloneElementWithCss = (
-  element: any,
-  props: any
-): React.ReactElement => {
+export const cloneElementWithCss = (element: any, props: any): ReactElement => {
   const clonedElement =
     element.props.__EMOTION_TYPE_PLEASE_DO_NOT_USE__ || element.type; // EMOTION_TYPE handles non-React elements (native JSX/HTML nodes)
 
