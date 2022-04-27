@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import {
   EuiCodeBlock,

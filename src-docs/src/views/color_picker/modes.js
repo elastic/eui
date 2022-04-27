@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 
 import {
   EuiColorPicker,
@@ -17,7 +17,7 @@ export default () => {
   const [colorStops, setColorStops] = useColorStopsState();
 
   return (
-    <React.Fragment>
+    <Fragment>
       <EuiFormRow label="Pick a swatch" isInvalid={!!errors} error={errors}>
         <EuiColorPicker
           mode="swatch"
@@ -58,6 +58,6 @@ export default () => {
           mode="picker"
         />
       </EuiFormRow>
-    </React.Fragment>
+    </Fragment>
   );
 };

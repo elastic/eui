@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { useSelector } from 'react-redux';
 import createCache from '@emotion/cache';

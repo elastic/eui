@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { EuiButton, EuiButtonIcon } from '../../../../src/components';
 

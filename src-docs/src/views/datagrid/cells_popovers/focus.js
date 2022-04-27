@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { fake } from 'faker';
 
 import {

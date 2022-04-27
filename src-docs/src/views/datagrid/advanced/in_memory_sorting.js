@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useMemo, useState } from 'react';
+import { Fragment, useCallback, useMemo, useState } from 'react';
 import { fake } from 'faker';
 
 import { EuiDataGrid, EuiLink } from '../../../../../src';

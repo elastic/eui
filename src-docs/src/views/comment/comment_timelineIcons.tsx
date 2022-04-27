@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { EuiComment } from '../../../../src/components/comment_list';
 import { EuiText } from '../../../../src/components/text';
 import { EuiAvatar } from '../../../../src/components/avatar';

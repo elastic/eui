@@ -1,4 +1,3 @@
-import React from 'react';
 import { EuiLink, EuiText } from '../../../../src/components';
 
 const urls = [

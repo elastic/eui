@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 
 import {
   EuiSuperDatePicker,
@@ -31,11 +31,11 @@ export default () => {
     });
   };
 
-  const onStartInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onStartInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setStart(e.target.value);
   };
 
-  const onEndInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onEndInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEnd(e.target.value);
   };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 import {
   EuiButton,
@@ -79,7 +79,7 @@ export default () => {
           }
         };
         return (
-          <React.Fragment>
+          <Fragment>
             <EuiButtonEmpty iconType="refresh" flush="left" onClick={resetTour}>
               Start or reset tour
             </EuiButtonEmpty>
@@ -103,7 +103,7 @@ export default () => {
                 <EuiButton onClick={handleClick}>Save query</EuiButton>
               </EuiTourStep>
             </EuiForm>
-          </React.Fragment>
+          </Fragment>
         );
       }}
     </EuiTour>

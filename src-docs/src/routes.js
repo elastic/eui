@@ -1,4 +1,4 @@
-import React, { createElement, Fragment } from 'react';
+import { createElement, Fragment } from 'react';
 
 import { slugify } from '../../src/services';
 

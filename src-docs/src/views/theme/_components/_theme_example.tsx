@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import React, { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent, ReactNode } from 'react';
 import {
   EuiCodeBlock,
   EuiCodeBlockProps,

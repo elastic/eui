@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiCode, EuiText } from '../../../../src/components';
 
 const htmlCode = `<!--I'm an example of HTML-->

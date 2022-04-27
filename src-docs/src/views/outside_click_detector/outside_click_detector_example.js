@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -22,7 +22,7 @@ export const OutsideClickDetectorExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <Fragment>
           <p>
             Use <strong>EuiOutsideClickDetector</strong> to trigger a handler
             when the user clicks outside of the child element.
@@ -39,7 +39,7 @@ export const OutsideClickDetectorExample = {
             }
             color="warning"
           />
-        </React.Fragment>
+        </Fragment>
       ),
       props: { EuiOutsideClickDetector },
       demo: <OutsideClickDetector />,

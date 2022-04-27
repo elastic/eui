@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useRef } from 'react';
+import { useCallback, useState, useRef } from 'react';
 
 import {
   EuiMarkdownEditor,

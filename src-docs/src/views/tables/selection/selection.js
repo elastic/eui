@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useRef } from 'react';
+import { useState, Fragment, useRef } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 

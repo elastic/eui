@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 
 // @ts-ignore Importing from JS
 import { GuidePage } from '../../../components/guide_page';

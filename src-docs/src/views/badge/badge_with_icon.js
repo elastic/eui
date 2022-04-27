@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiBadge } from '../../../../src/components';
 
 export default () => (

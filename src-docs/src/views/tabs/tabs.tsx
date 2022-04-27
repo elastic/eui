@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useMemo } from 'react';
+import { useState, Fragment, useMemo } from 'react';
 
 import {
   EuiIcon,

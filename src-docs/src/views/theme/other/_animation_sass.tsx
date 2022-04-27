@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 // @ts-ignore Importing from JS
 import { useJsonVars } from '../_json/_get_json_vars';

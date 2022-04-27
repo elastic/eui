@@ -1,4 +1,3 @@
-import React from 'react';
 import { EuiInMemoryTable } from '../../../../../src/components';
 
 const data = [

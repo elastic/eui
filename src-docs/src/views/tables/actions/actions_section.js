@@ -1,4 +1,3 @@
-import React from 'react';
 import { EuiBasicTable } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
 

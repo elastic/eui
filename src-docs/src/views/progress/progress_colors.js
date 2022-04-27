@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 
 import {
   EuiFlexGroup,
@@ -20,7 +20,7 @@ const vizBars = [];
 
 for (let i = 0; i < 10; i++) {
   vizBars.push(
-    <React.Fragment key={i}>
+    <Fragment key={i}>
       <EuiProgress
         label={`vis${i}`}
         valueText={true}
@@ -30,7 +30,7 @@ for (let i = 0; i < 10; i++) {
         size="m"
       />
       <EuiSpacer size="s" />
-    </React.Fragment>
+    </Fragment>
   );
 }
 
@@ -38,7 +38,7 @@ export default () => (
   <EuiFlexGroup>
     <EuiFlexItem>
       {mainColors.map((value) => (
-        <React.Fragment key={value}>
+        <Fragment key={value}>
           <EuiProgress
             label={value}
             valueText={true}
@@ -48,7 +48,7 @@ export default () => (
             size="m"
           />
           <EuiSpacer size="s" />
-        </React.Fragment>
+        </Fragment>
       ))}
     </EuiFlexItem>
     <EuiFlexItem>{vizBars}</EuiFlexItem>

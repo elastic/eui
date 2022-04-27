@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent, ReactNode } from 'react';
 
 // @ts-ignore Importing from Sass file
 import fonts from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../../src/global_styling/variables/_font_weight.scss';
@@ -99,7 +99,7 @@ export const FontSass = () => {
           {
             field: 'mixin',
             name: 'Mixin',
-            render: (mixin: React.ReactNode, item) => (
+            render: (mixin: ReactNode, item) => (
               <div>
                 <EuiCode>{mixin}</EuiCode>
                 <EuiSpacer size="s" />
@@ -172,9 +172,7 @@ export const FontWeightSass: FunctionComponent<ThemeRowType> = ({
           {
             field: 'token',
             name: 'Token',
-            render: (variable: React.ReactNode) => (
-              <EuiCode>{variable}</EuiCode>
-            ),
+            render: (variable: ReactNode) => <EuiCode>{variable}</EuiCode>,
             mobileOptions: {
               header: false,
               width: '100%',
@@ -247,14 +245,12 @@ export const FontScaleSass = () => {
           {
             field: 'token',
             name: 'Token',
-            render: (variable: React.ReactNode) => (
-              <EuiCode>{variable}</EuiCode>
-            ),
+            render: (variable: ReactNode) => <EuiCode>{variable}</EuiCode>,
           },
           {
             field: 'mixin',
             name: 'Mixin',
-            render: (mixin: React.ReactNode) => (
+            render: (mixin: ReactNode) => (
               <EuiCode language="css">{mixin}</EuiCode>
             ),
           },

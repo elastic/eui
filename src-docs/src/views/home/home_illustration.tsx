@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { ThemeContext } from '../../components/with_theme';
 import illustrationDarkMode from '../../images/illustration-eui-hero-500-darkmode-shadow.svg';
 import illustrationLightMode from '../../images/illustration-eui-hero-500-shadow.svg';

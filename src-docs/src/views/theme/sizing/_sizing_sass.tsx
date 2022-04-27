@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ThemeExample } from '../_components/_theme_example';
 
 // @ts-ignore Importing from JS

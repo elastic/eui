@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode, useContext } from 'react';
+import { FunctionComponent, ReactNode, useContext } from 'react';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { slugify } from '../../../../src/services/string/slugify';
 import {

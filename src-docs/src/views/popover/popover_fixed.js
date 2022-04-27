@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import { EuiButton, EuiPopover } from '../../../../src/components';
 
@@ -25,7 +25,7 @@ export default () => {
   );
 
   return (
-    <React.Fragment>
+    <Fragment>
       <EuiButton onClick={toggleExample}>Toggle example</EuiButton>
       {isExampleShown && (
         <EuiPopover
@@ -38,6 +38,6 @@ export default () => {
           <div>This popover scrolls with the button element!</div>
         </EuiPopover>
       )}
-    </React.Fragment>
+    </Fragment>
   );
 };

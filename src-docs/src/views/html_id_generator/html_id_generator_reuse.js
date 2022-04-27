@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiCode } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';

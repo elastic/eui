@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState, useRef } from 'react';
+import { useCallback, useMemo, useState, useRef } from 'react';
 // @ts-ignore - faker does not have type declarations
 import { fake } from 'faker';
 

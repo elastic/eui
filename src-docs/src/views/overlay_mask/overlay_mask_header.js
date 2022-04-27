@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import {
   EuiOverlayMask,
@@ -18,7 +18,7 @@ export default () => {
   let flyout;
   if (flyOut) {
     flyout = (
-      <React.Fragment>
+      <Fragment>
         <EuiOverlayMask onClick={toggleFlyOut} headerZindexLocation="below" />
         <EuiFlyout size="s" onClose={toggleFlyOut}>
           <EuiFlyoutHeader>
@@ -27,16 +27,16 @@ export default () => {
             </EuiTitle>
           </EuiFlyoutHeader>
         </EuiFlyout>
-      </React.Fragment>
+      </Fragment>
     );
   }
 
   return (
-    <React.Fragment>
+    <Fragment>
       <EuiButton onClick={() => toggleFlyOut()}>
         Overlay as a sibling of a flyout
       </EuiButton>
       {flyout}
-    </React.Fragment>
+    </Fragment>
   );
 };

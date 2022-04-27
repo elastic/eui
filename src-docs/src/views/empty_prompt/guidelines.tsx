@@ -1,5 +1,4 @@
-import React from 'react';
-// @ts-ignore Importing from JS file
+// @ts-expect-error Importing from JS file
 import { GuideRule, GuideRuleExample, GuideRuleTitle } from '../../components';
 
 import {

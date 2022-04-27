@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent, ReactNode } from 'react';
 import { EuiCode, EuiCodeBlock } from '../../../../src/components/code';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
 import { EuiText } from '../../../../src/components/text';

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiSteps, EuiTitle, EuiSpacer } from '../../../../src/components';
 
 const steps = [

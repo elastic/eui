@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
 import { EuiSpacer } from '../../../../src/components/spacer';
 

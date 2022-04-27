@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiFlexGrid, EuiFlexItem } from '../../../../src/components/flex';
 
 export default () => (

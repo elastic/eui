@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { createElement, Fragment, useEffect, useState } from 'react';
 
 import {
   EuiBadge,
@@ -32,7 +32,7 @@ export default () => {
       </p>
       <EuiInnerText>
         {(ref, innerText) => (
-          <React.Fragment>
+          <Fragment>
             <EuiPanel paddingSize="s" className="eui-displayInlineBlock">
               <span ref={ref} title={innerText}>
                 Simple string content
@@ -43,7 +43,7 @@ export default () => {
               <strong>Output:</strong>
             </p>{' '}
             <EuiCode>{innerText}</EuiCode>
-          </React.Fragment>
+          </Fragment>
         )}
       </EuiInnerText>
 
@@ -54,7 +54,7 @@ export default () => {
       </p>
       <EuiInnerText>
         {(ref, innerText) => (
-          <React.Fragment>
+          <Fragment>
             <EuiPanel paddingSize="s" className="eui-displayInlineBlock">
               <span ref={ref} title={innerText}>
                 <EuiHighlight search="content">
@@ -68,7 +68,7 @@ export default () => {
               <strong>Output:</strong>
             </p>{' '}
             <EuiCode>{innerText}</EuiCode>
-          </React.Fragment>
+          </Fragment>
         )}
       </EuiInnerText>
 
@@ -79,7 +79,7 @@ export default () => {
       </p>
       <EuiInnerText>
         {(ref, innerText) => (
-          <React.Fragment>
+          <Fragment>
             <EuiPanel paddingSize="s" className="eui-displayInlineBlock">
               <span ref={ref} title={innerText}>
                 {thing}
@@ -90,7 +90,7 @@ export default () => {
               <strong>Output:</strong>
             </p>{' '}
             <EuiCode>{innerText}</EuiCode>
-          </React.Fragment>
+          </Fragment>
         )}
       </EuiInnerText>
 
@@ -101,9 +101,9 @@ export default () => {
       </p>
       <EuiInnerText>
         {(ref, innerText) => (
-          <React.Fragment>
+          <Fragment>
             <EuiPanel paddingSize="s" className="eui-displayInlineBlock">
-              {React.createElement(
+              {createElement(
                 type,
                 {
                   ref,
@@ -117,7 +117,7 @@ export default () => {
               <strong>Output:</strong>
             </p>{' '}
             <EuiCode>{innerText}</EuiCode>
-          </React.Fragment>
+          </Fragment>
         )}
       </EuiInnerText>
     </EuiText>

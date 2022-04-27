@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 import classNames from 'classnames';
 import {

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiErrorBoundary } from '../../../../src/components';
 
 const BadComponent = () => {

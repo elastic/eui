@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiText, EuiTextAlign, EuiSpacer } from '../../../../src/components';
 
 export default () => (

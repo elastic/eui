@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiStat, EuiFlexItem, EuiFlexGroup } from '../../../../src/components';
 
 export default () => (

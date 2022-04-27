@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiBadge, EuiIcon } from '../../../../../src/components';
 
 export const ratingAAA = (

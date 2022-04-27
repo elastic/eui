@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiMarkdownFormat } from '../../../../src';
 
 const markdownContent = `Beyond Remark's base syntax, **EuiMarkdownFormat** bundles these abilities by default:

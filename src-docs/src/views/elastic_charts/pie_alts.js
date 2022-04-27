@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React, { useState, Fragment, useContext } from 'react';
+import { useState, Fragment, useContext } from 'react';
 import groupBy from 'lodash/groupBy';
 import mapValues from 'lodash/mapValues';
 import orderBy from 'lodash/orderBy';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { EuiDataGrid } from '../../../../../src/components';
 
 import { DataGridPropsTable } from '../_props_table';

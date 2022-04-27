@@ -1,4 +1,3 @@
-import React from 'react';
 import { EuiButton } from '../../../../src/components/button';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
 

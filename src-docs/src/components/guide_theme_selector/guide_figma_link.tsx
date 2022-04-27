@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import React from 'react';
+import { FunctionComponent } from 'react';
 
 import { EuiButtonEmpty } from '../../../../src/components/button';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks/useIsWithinBreakpoints';
@@ -14,7 +14,7 @@ type GuideFigmaLinkProps = {
   context?: any;
 };
 
-export const GuideFigmaLink: React.FunctionComponent<GuideFigmaLinkProps> = () => {
+export const GuideFigmaLink: FunctionComponent<GuideFigmaLinkProps> = () => {
   return (
     <ThemeContext.Consumer>
       {(context) => <GuideFigmaLinkComponent context={context} />}
@@ -23,7 +23,7 @@ export const GuideFigmaLink: React.FunctionComponent<GuideFigmaLinkProps> = () =
 };
 
 // @ts-ignore Context has no type
-const GuideFigmaLinkComponent: React.FunctionComponent<GuideFigmaLinkProps> = () => {
+const GuideFigmaLinkComponent: FunctionComponent<GuideFigmaLinkProps> = () => {
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
 
   const href = 'https://www.figma.com/community/file/964536385682658129';

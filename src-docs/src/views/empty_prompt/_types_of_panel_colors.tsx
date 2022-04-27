@@ -1,4 +1,3 @@
-import React from 'react';
 import { EuiCode } from '../../../../src/components';
 
 export const typesOfPanelColors: any = {

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiAvatar, EuiTitle, EuiSpacer } from '../../../../src/components';
 
 export default () => (

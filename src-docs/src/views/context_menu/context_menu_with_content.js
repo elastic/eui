@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import {
   EuiButton,
@@ -118,7 +118,7 @@ export default () => {
   );
 
   return (
-    <React.Fragment>
+    <Fragment>
       <EuiPopover
         id={normalContextMenuPopoverId}
         button={button}
@@ -142,6 +142,6 @@ export default () => {
       >
         <EuiContextMenu initialPanelId={0} panels={dynamicPanels} />
       </EuiPopover>
-    </React.Fragment>
+    </Fragment>
   );
 };

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { DefaultItemAction } from '../../../../../src/components/basic_table/action_types';
 import { Search } from '../../../../../src/components/basic_table/in_memory_table';
 import { SearchFilterConfig } from '../../../../../src/components/search_bar/filters';

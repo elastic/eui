@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent, ReactNode } from 'react';
 import { CommonProps } from '../../../../src/components/common';
 
 interface EuiOverlayMaskInterface extends CommonProps {

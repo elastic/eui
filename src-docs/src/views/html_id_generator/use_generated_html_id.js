@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import { useState, Fragment } from 'react';
 
 import { EuiSwitch, EuiSpacer, EuiCode } from '../../../../src/components';
 

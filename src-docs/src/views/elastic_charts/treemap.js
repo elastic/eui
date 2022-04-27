@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import { ThemeContext } from '../../components';
 import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
 import { GITHUB_DATASET_MOD } from './data';

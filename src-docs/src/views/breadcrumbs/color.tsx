@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiBreadcrumbs, EuiBreadcrumb, EuiIcon } from '../../../../src';
 
 const breadcrumbs: EuiBreadcrumb[] = [

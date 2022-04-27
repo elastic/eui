@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import { EuiText } from '../../../../src/components/text';
 import { EuiBadge } from '../../../../src/components/badge';

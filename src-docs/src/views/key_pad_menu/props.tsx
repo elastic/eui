@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 
 import { _EuiKeyPadMenuCheckableProps } from '../../../../src/components/key_pad_menu/key_pad_menu';
 

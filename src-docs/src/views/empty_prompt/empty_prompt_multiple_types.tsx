@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import React, { ReactNode, useState } from 'react';
+import { ChangeEvent, ReactNode, useState } from 'react';
 
 import { EuiSpacer, EuiSelect } from '../../../../src/components';
 import { GuideSection } from '../../components/guide_section/guide_section';
@@ -48,7 +48,7 @@ export default () => {
     options[0].demoBackground
   );
 
-  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setValue(e.target.value);
 
     const component = options.find((item) => item.value === e.target.value);

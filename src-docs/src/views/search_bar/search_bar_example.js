@@ -1,4 +1,3 @@
-import React from 'react';
 import { propsInfo } from './props_info';
 
 import { GuideRuleTitle, GuideSectionTypes } from '../../components';

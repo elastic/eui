@@ -1,10 +1,10 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent, ReactNode } from 'react';
 import { css } from '@emotion/react';
 // @ts-ignore NOT TS yet
 import { humanizeType } from '../../services/playground/knobs';
 
 export type ThemeRowType = {
-  description?: React.ReactNode;
+  description?: ReactNode;
 };
 
 import { EuiThemeComputed, EuiThemeShape } from '../../../../src/services';

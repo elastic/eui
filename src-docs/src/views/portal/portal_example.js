@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -40,7 +40,7 @@ export const PortalExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <Fragment>
           <p>
             There is an optional <EuiCode>insert</EuiCode> prop that can specify
             the portal&apos;s location in the DOM. When used, it is important to
@@ -56,7 +56,7 @@ export const PortalExample = {
             <EuiCode>before</EuiCode> or
             <EuiCode>after</EuiCode>.
           </p>
-        </React.Fragment>
+        </Fragment>
       ),
       props: { EuiPortal },
       demo: <PortalInsert />,

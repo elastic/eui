@@ -1,5 +1,5 @@
 import chroma from 'chroma-js';
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 
 import {
   EuiText,

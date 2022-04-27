@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { EuiListGroup, EuiListGroupItem } from '../../../../src/components';
 import { useGeneratedHtmlId } from '../../../../src/services';

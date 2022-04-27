@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 
 import { EuiCode, EuiColorPickerSwatch } from '../../../../../src';

@@ -1,4 +1,4 @@
-import React, { useRef, useState, Fragment } from 'react';
+import { useRef, useState, Fragment } from 'react';
 
 import {
   EuiButton,

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, SetStateAction } from 'react';
 
 import {
   EuiSpacer,
@@ -37,7 +37,7 @@ export default () => {
 
   const [widthIdSelected, setWidthIdSelected] = useState(widthButtons[0].id);
 
-  const onWidthChange = (optionId: React.SetStateAction<string>) => {
+  const onWidthChange = (optionId: SetStateAction<string>) => {
     setWidthIdSelected(optionId);
     setWidth(widthButtons.find(({ id }) => id === optionId)!.label);
   };

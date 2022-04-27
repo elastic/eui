@@ -1,4 +1,3 @@
-import React from 'react';
 import { GuideSectionTypes } from '../../../components';
 
 import { EuiCode, EuiCallOut } from '../../../../../src/components';

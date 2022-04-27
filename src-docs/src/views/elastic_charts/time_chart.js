@@ -1,4 +1,4 @@
-import React, { useState, useContext, Fragment } from 'react';
+import { useState, useContext, Fragment } from 'react';
 import { ThemeContext } from '../../components';
 import {
   Chart,

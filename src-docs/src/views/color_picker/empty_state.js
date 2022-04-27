@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { Fragment, useMemo } from 'react';
 
 import { EuiColorPicker, EuiFormRow } from '../../../../src/components';
 
@@ -9,7 +9,7 @@ export default () => {
   const isInvalid = useMemo(() => color !== '' && !!errors, [color, errors]);
 
   return (
-    <React.Fragment>
+    <Fragment>
       <EuiFormRow label="Pick a color" isInvalid={isInvalid} error={errors}>
         <EuiColorPicker
           onChange={setColor}
@@ -19,6 +19,6 @@ export default () => {
           isClearable={true}
         />
       </EuiFormRow>
-    </React.Fragment>
+    </Fragment>
   );
 };

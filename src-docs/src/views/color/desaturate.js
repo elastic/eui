@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 
 import { desaturate } from '../../../../src/services';
 import { EuiFlexGrid, EuiFlexItem, EuiBadge } from '../../../../src/components';

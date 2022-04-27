@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from 'react';
+import { FunctionComponent, Fragment } from 'react';
 import { EuiLink } from '../../../../../src/components/link';
 import { EuiSpacer } from '../../../../../src/components/spacer';
 import { EuiText } from '../../../../../src/components/text';

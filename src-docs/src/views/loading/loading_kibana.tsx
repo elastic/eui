@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiLoadingLogo } from '../../../../src/components/loading';
 
 export default () => (

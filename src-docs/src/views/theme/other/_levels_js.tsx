@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 import { getPropsFromComponent } from '../../../services/props/get_props';
 import {

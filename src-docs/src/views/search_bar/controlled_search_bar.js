@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import { useState, Fragment } from 'react';
 import { times } from '../../../../src/services/utils';
 import { Random } from '../../../../src/services/random';
 import {

@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -22,7 +22,7 @@ export const MutationObserverExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <Fragment>
           <p>
             <strong>EuiMutationObserver</strong> is a wrapper around the
             <EuiLink href="https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver">
@@ -41,7 +41,7 @@ export const MutationObserverExample = {
             callback which you must put on the element you wish to observe the
             mutations.
           </p>
-        </React.Fragment>
+        </Fragment>
       ),
       components: { EuiMutationObserver },
       demo: <MutationObserver />,

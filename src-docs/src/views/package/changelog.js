@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiMarkdownFormat } from '../../../../src';
 import { GuidePage } from '../../components/guide_page';
 

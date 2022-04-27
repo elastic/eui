@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 
 import {
   EuiColorPicker,
@@ -17,7 +17,7 @@ export default () => {
   const [colorStops, setColorStops, addStop] = useColorStopsState(true);
 
   return (
-    <React.Fragment>
+    <Fragment>
       {/* DisplayToggles wrapper for Docs only */}
       <DisplayToggles canLoading={false} canPrepend canAppend canClear>
         <EuiColorPicker color={color} onChange={setColor} />
@@ -38,6 +38,6 @@ export default () => {
           addStop={addStop}
         />
       </DisplayToggles>
-    </React.Fragment>
+    </Fragment>
   );
 };

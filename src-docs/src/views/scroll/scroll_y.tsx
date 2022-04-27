@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { css } from '@emotion/react';
 
 import { ThemeContext } from '../../components/with_theme';

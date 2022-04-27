@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useEffect, useMemo } from 'react';
+import { FunctionComponent, useState, useEffect, useMemo } from 'react';
 import { EuiCodeBlock } from '../../../../../src/components/code';
 import { EuiButtonEmpty } from '../../../../../src/components/button';
 // @ts-ignore Not TS

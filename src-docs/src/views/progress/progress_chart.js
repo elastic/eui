@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 
 import { EuiProgress, EuiSpacer } from '../../../../src/components';
 
@@ -17,7 +17,7 @@ export default () => (
   <Fragment>
     <div style={{ maxWidth: 160 }}>
       {data.map((item) => (
-        <React.Fragment key={item.value}>
+        <Fragment key={item.value}>
           <EuiProgress
             valueText={true}
             max={100}
@@ -26,7 +26,7 @@ export default () => (
             {...item}
           />
           <EuiSpacer size="s" />
-        </React.Fragment>
+        </Fragment>
       ))}
     </div>
     <EuiSpacer size="m" />

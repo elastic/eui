@@ -1,4 +1,3 @@
-import React from 'react';
 import { EuiEmptyPrompt } from '../../../../../src/components';
 
 export default () => (

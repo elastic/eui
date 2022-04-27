@@ -1,4 +1,3 @@
-import React from 'react';
 import { EuiPanel, EuiCode, EuiSpacer } from '../../../../src';
 
 export default () => {

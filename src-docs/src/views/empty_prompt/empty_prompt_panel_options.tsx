@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import React, { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 import {
   EuiSpacer,
@@ -23,7 +23,7 @@ export default () => {
 
   const [panelColor, setPanelColor] = useState(panelColorsOptions[0].value);
 
-  const onChangePanelColor = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const onChangePanelColor = (e: ChangeEvent<HTMLSelectElement>) => {
     setPanelColor(e.target.value as PanelColor);
   };
 

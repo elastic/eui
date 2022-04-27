@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { EuiFilterGroup, EuiFilterButton } from '../../../../src/components';
 import { DisplayToggles } from '../form_controls/display_toggles';

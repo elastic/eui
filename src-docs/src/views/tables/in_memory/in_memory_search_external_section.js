@@ -1,4 +1,3 @@
-import React from 'react';
 import { GuideSectionTypes } from '../../../components';
 
 import { Table } from './in_memory_search_external';

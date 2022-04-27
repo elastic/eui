@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { EuiComboBox } from '../../../../src/components';
 import { euiPaletteColorBlindBehindText } from '../../../../src/services';

@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 
 import {
   EuiButtonEmpty,
@@ -11,7 +11,7 @@ const buttons = ['primary', 'success', 'warning', 'danger', 'text', 'disabled'];
 export default () => (
   <div>
     {buttons.map((value) => (
-      <React.Fragment key={value}>
+      <Fragment key={value}>
         <EuiFlexGroup
           key={value}
           responsive={false}
@@ -50,7 +50,7 @@ export default () => (
             </EuiButtonEmpty>
           </EuiFlexItem>
         </EuiFlexGroup>
-      </React.Fragment>
+      </Fragment>
     ))}
   </div>
 );

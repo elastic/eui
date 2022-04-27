@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import imageIcons from '../../images/icons.svg';
 import imageButtons from '../../images/buttons.svg';

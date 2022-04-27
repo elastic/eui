@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiDescriptionList, EuiSpacer } from '../../../../src/components';
 
 const favoriteVideoGames = [

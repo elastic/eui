@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleLocale as _toggleLocale } from '../actions';
 import { GuidePageChrome, ThemeContext, GuidePageHeader } from '../components';

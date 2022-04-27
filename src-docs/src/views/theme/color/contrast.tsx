@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext, SetStateAction, Fragment } from 'react';
 import { ThemeContext } from '../../../components/with_theme';
 
 import {
@@ -60,8 +60,8 @@ export default () => {
           showTextVariants={showTextVariants}
           // @ts-ignore Help
           onChange={(
-            sliderValue: React.SetStateAction<number>,
-            toggleChecked: React.SetStateAction<boolean>
+            sliderValue: SetStateAction<number>,
+            toggleChecked: SetStateAction<boolean>
           ) => {
             setContrastValue(sliderValue);
             setShowTextVariants(toggleChecked);
@@ -115,26 +115,26 @@ export default () => {
           {showSass
             ? sassCoreColors.map((color: string) => {
                 return (
-                  <React.Fragment key={color}>
+                  <Fragment key={color}>
                     <ColorSectionSass
                       color={color}
                       minimumContrast={contrastValue}
                       showTextVariants={false}
                     />
                     <EuiSpacer />
-                  </React.Fragment>
+                  </Fragment>
                 );
               })
             : brandKeys.map((color: string) => {
                 return (
-                  <React.Fragment key={color}>
+                  <Fragment key={color}>
                     <ColorSectionJS
                       color={color as keyof _EuiThemeColorsMode}
                       minimumContrast={contrastValue}
                       showTextVariants={false}
                     />
                     <EuiSpacer />
-                  </React.Fragment>
+                  </Fragment>
                 );
               })}
         </EuiPanel>
@@ -156,7 +156,7 @@ export default () => {
           {showSass
             ? sassGrayColors.map((color: string) => {
                 return (
-                  <React.Fragment key={color}>
+                  <Fragment key={color}>
                     <ColorSectionSass
                       key={color}
                       color={color}
@@ -164,12 +164,12 @@ export default () => {
                       showTextVariants={showTextVariants}
                     />
                     <EuiSpacer />
-                  </React.Fragment>
+                  </Fragment>
                 );
               })
             : shadeKeys.map((color: string) => {
                 return (
-                  <React.Fragment key={color}>
+                  <Fragment key={color}>
                     <ColorSectionJS
                       key={color}
                       color={color as keyof _EuiThemeColorsMode}
@@ -177,7 +177,7 @@ export default () => {
                       showTextVariants={showTextVariants}
                     />
                     <EuiSpacer />
-                  </React.Fragment>
+                  </Fragment>
                 );
               })}
         </EuiPanel>

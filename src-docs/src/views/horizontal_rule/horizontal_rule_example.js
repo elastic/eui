@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiHorizontalRule, EuiCode } from '../../../../src/components';

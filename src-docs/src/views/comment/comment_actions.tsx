@@ -1,4 +1,4 @@
-import React, { Component, HTMLAttributes } from 'react';
+import { Component, HTMLAttributes } from 'react';
 import { EuiComment } from '../../../../src/components/comment_list';
 import { EuiButtonIcon } from '../../../../src/components/button';
 import { EuiText } from '../../../../src/components/text';

@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 
 import {
   EuiColorPicker,
@@ -19,7 +19,7 @@ export default () => {
   const customSwatches = ['#333', '#666', '#999', '#CCC'];
 
   return (
-    <React.Fragment>
+    <Fragment>
       <EuiFormRow label="Pick a color" isInvalid={!!errors} error={errors}>
         <EuiColorPicker
           onChange={setColor}
@@ -41,6 +41,6 @@ export default () => {
           swatches={customSwatches}
         />
       </EuiFormRow>
-    </React.Fragment>
+    </Fragment>
   );
 };

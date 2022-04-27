@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiEmptyPrompt, EuiButton } from '../../../../src/components';
 
 export default () => (

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, Fragment } from 'react';
+import { useState, useCallback, Fragment } from 'react';
 
 // @ts-ignore Importing from JS
 import { fake } from 'faker';

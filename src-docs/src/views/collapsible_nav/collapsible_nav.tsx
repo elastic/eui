@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { EuiCollapsibleNav } from '../../../../src/components/collapsible_nav';
 import { EuiButton } from '../../../../src/components/button';

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiCallOut } from '../../../../src/components';
 
 import { section as basicSection } from './basic';

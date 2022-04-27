@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import React, { useState } from 'react';
+import { FunctionComponent, useState } from 'react';
 
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks/useIsWithinBreakpoints';
 import { EUI_THEME, EUI_THEMES } from '../../../../src/themes';
@@ -25,7 +25,7 @@ type GuideThemeSelectorProps = {
   context?: any;
 };
 
-export const GuideThemeSelector: React.FunctionComponent<GuideThemeSelectorProps> = ({
+export const GuideThemeSelector: FunctionComponent<GuideThemeSelectorProps> = ({
   ...rest
 }) => {
   return (
@@ -37,7 +37,7 @@ export const GuideThemeSelector: React.FunctionComponent<GuideThemeSelectorProps
 
 const STORAGE_KEY = 'legacy_theme_notification';
 
-const GuideThemeSelectorComponent: React.FunctionComponent<GuideThemeSelectorProps> = ({
+const GuideThemeSelectorComponent: FunctionComponent<GuideThemeSelectorProps> = ({
   context,
   onToggleLocale,
   selectedLocale,

@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { EuiSwitch, EuiSuggestItem } from '../../../../src/components';
 import { GuideSection } from '../../components/guide_section/guide_section';

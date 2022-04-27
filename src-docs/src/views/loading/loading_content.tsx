@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiLoadingContent } from '../../../../src/components/loading';
 
 export default () => (

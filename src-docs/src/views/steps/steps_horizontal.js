@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiStepsHorizontal } from '../../../../src/components';
 
 const horizontalSteps = [

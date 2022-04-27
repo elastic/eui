@@ -1,11 +1,11 @@
-import React from 'react';
+import { Component } from 'react';
 import { css } from '@emotion/react';
 import { withEuiTheme, WithEuiThemeProps } from '../../../../src/services';
 import { EuiIcon } from '../../../../src/components/icon';
 import { EuiText } from '../../../../src/components/text';
 
 // eslint-disable-next-line react/prefer-stateless-function
-class Block extends React.Component<WithEuiThemeProps> {
+class Block extends Component<WithEuiThemeProps> {
   render() {
     const { theme } = this.props;
 

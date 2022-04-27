@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { EuiPortal, EuiButton } from '../../../../src/components';
 import { EuiSpacer } from '../../../../src/components/spacer/spacer';

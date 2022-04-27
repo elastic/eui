@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiTreeView, EuiToken } from '../../../../src/components';
 
 export default () => {

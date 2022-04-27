@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { EuiCopy } from '../../../../src';
 import { ThemeExample } from '../theme/_components/_theme_example';
 

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiText, EuiHorizontalRule } from '../../../../src/components';
 
 export default () => (

@@ -1,4 +1,3 @@
-import React from 'react';
 import { EuiPanel } from '../../../../src/components/panel';
 import { EuiBadge } from '../../../../src/components/badge';
 import { EuiButtonIcon } from '../../../../src/components/button';

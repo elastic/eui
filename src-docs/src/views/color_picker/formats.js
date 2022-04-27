@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiColorPicker, EuiFormRow } from '../../../../src/components';
 import { useColorPickerState } from '../../../../src/services';
 

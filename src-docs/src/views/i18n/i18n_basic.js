@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {
   EuiI18n,
   EuiTitle,

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiListGroup } from '../../../../src/components';
 
 const myContent = [

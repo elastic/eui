@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiExpression, EuiSpacer } from '../../../../src/components';
 
 export default () => (

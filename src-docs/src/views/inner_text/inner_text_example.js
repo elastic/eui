@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -21,7 +21,7 @@ const euiInnerTextSnippet = `<EuiInnerText>
 export const InnerTextExample = {
   title: 'Inner text',
   intro: (
-    <React.Fragment>
+    <Fragment>
       <EuiText>
         <p>
           For instances where accessing the text content of a component that may
@@ -45,7 +45,7 @@ export const InnerTextExample = {
           <EuiCode>innerText</EuiCode> value to use as needed.
         </p>
       </EuiText>
-    </React.Fragment>
+    </Fragment>
   ),
   sections: [
     {

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiLoadingSpinner } from '../../../../src/components/loading';
 
 export default () => (

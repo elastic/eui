@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiBottomBar, EuiSpacer, EuiText } from '../../../../src/components';
 
 export default () => {

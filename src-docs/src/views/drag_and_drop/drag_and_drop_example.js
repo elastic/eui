@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 import { GuideSectionTypes } from '../../components';
 import {
   EuiCallOut,
@@ -39,7 +39,7 @@ export const DragAndDropExample = {
   title: 'Drag and drop',
   beta: true,
   intro: (
-    <React.Fragment>
+    <Fragment>
       <EuiText>
         <p>
           An extension of{' '}
@@ -83,7 +83,7 @@ export const DragAndDropExample = {
           With that in mind, keep your users' working context in mind.`}
         </p>
       </EuiCallOut>
-    </React.Fragment>
+    </Fragment>
   ),
   sections: [
     {
@@ -95,7 +95,7 @@ export const DragAndDropExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <Fragment>
           <p>
             <strong>EuiDraggable</strong> makes very few assumptions about what
             content it contains. To give affordance to draggable elements and to
@@ -154,7 +154,7 @@ export const DragAndDropExample = {
               <EuiCode>move</EuiCode>: move an item to a differnt droppable area
             </li>
           </ul>
-        </React.Fragment>
+        </Fragment>
       ),
       props: { EuiDragDropContext, EuiDraggable, EuiDroppable },
       demo: <DragAndDropBare />,
@@ -168,7 +168,7 @@ export const DragAndDropExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <Fragment>
           <p>
             The simplest case, demonstrating a single{' '}
             <strong>EuiDroppable</strong> with <EuiCode>reorder</EuiCode>{' '}
@@ -182,7 +182,7 @@ export const DragAndDropExample = {
             data that can be used to alter appearance or behavior (e.g.,{' '}
             <EuiCode>isDragging</EuiCode>).
           </p>
-        </React.Fragment>
+        </Fragment>
       ),
       props: { EuiDragDropContext, EuiDraggable, EuiDroppable },
       demo: <DragAndDrop />,
@@ -196,7 +196,7 @@ export const DragAndDropExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <Fragment>
           <p>
             By default the entire element surface can initiate a drag. To
             specify an element within as the handle and create a containing
@@ -212,7 +212,7 @@ export const DragAndDropExample = {
             <EuiCode>provided.dragHandleProps</EuiCode> needs to be added to the
             intended handle element.
           </p>
-        </React.Fragment>
+        </Fragment>
       ),
       demo: <DragAndDropCustomHandle />,
     },
@@ -225,7 +225,7 @@ export const DragAndDropExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <Fragment>
           <p>
             <strong>EuiDraggable</strong> can contain interactive elements such
             as buttons and form fields. Interactive elements require{' '}
@@ -235,7 +235,7 @@ export const DragAndDropExample = {
             functionality and accessibility, while enabling click, keypress,
             etc., events on the interactive child elements.
           </p>
-        </React.Fragment>
+        </Fragment>
       ),
       demo: <DragAndDropDisableBlocking />,
     },
@@ -248,7 +248,7 @@ export const DragAndDropExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <Fragment>
           <p>
             By default, all <strong>EuiDroppable</strong> elements are of the
             same type and will accept <strong>EuiDraggable</strong> elements
@@ -258,7 +258,7 @@ export const DragAndDropExample = {
             The EUI <EuiCode>move</EuiCode> method is demonstrated in this
             example.
           </p>
-        </React.Fragment>
+        </Fragment>
       ),
       demo: <DragAndDropMoveLists />,
     },
@@ -271,7 +271,7 @@ export const DragAndDropExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <Fragment>
           <p>
             Setting the <EuiCode>type</EuiCode> prop on an{' '}
             <strong>EuiDroppable</strong> element will ensure that it will only
@@ -283,7 +283,7 @@ export const DragAndDropExample = {
             elements have a visual change that indicates they can accept the
             actively moving/focused <strong>EuiDraggable</strong> element.
           </p>
-        </React.Fragment>
+        </Fragment>
       ),
       demo: <DragAndDropTypes />,
     },
@@ -296,7 +296,7 @@ export const DragAndDropExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <Fragment>
           <p>
             For cases where collections of <strong>EuiDraggable</strong>{' '}
             elements are static or can be used in multiple places set{' '}
@@ -316,7 +316,7 @@ export const DragAndDropExample = {
             items. This API is likely to change, but currently provides the
             visual changes with drop-to-remove interactions.
           </p>
-        </React.Fragment>
+        </Fragment>
       ),
       demo: <DragAndDropClone />,
     },
@@ -329,14 +329,14 @@ export const DragAndDropExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <Fragment>
           <p>
             <strong>EuiDraggables</strong> in <strong>EuiDroppables</strong>,{' '}
             <strong>EuiDroppables</strong> in <strong>EuiDraggables</strong>,
             custom drag handles, horizontal movement, vertical movement,
             flexbox, panel inception, you name it.
           </p>
-        </React.Fragment>
+        </Fragment>
       ),
       demo: <DragAndDropComplex />,
     },

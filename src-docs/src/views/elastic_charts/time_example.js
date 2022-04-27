@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 
 import { ExternalBadge } from './shared';
 import { TimeChart } from './time_chart';

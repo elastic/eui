@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiCode, EuiLink, EuiText } from '../../../../src/components';
 
 export default () => (

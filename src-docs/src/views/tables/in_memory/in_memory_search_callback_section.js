@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { GuideSectionTypes } from '../../../components';
 
 import { Table } from './in_memory_search_callback';

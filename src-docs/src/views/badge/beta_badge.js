@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiBetaBadge, EuiSpacer, EuiTitle } from '../../../../src/components';
 
 const colors = ['hollow', 'accent', 'subdued'];

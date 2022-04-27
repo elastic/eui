@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 import { EuiSplitPanel } from '../../../../../src/components/panel';
 import { _EuiSplitPanelInnerProps } from '../../../../../src/components/panel/split_panel/';

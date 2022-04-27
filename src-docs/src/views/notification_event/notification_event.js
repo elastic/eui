@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { EuiPanel } from '../../../../src/components/panel';
 import { EuiContextMenuItem } from '../../../../src/components/context_menu';
 import { EuiNotificationEvent } from '../../../../src/components/notification/notification_event';

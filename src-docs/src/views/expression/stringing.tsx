@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiExpression } from '../../../../src/components/expression';
 
 export default () => (

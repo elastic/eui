@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiListGroup, EuiListGroupItem } from '../../../../src/components';
 
 export default () => (

@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
@@ -306,7 +306,7 @@ const stopKitchenSinkSnippet = `<EuiColorStops
 export const ColorPickerExample = {
   title: 'Color selection',
   intro: (
-    <React.Fragment>
+    <Fragment>
       <EuiText>
         <p>
           Three components exist to aid color selection:{' '}
@@ -315,13 +315,13 @@ export const ColorPickerExample = {
           <strong>EuiColorStops</strong>.
         </p>
       </EuiText>
-    </React.Fragment>
+    </Fragment>
   ),
   sections: [
     {
       title: 'Color picker',
       text: (
-        <React.Fragment>
+        <Fragment>
           <EuiText>
             <p>
               Color input component allowing for multiple methods of entry and
@@ -337,7 +337,7 @@ export const ColorPickerExample = {
               choices. The swatches must also be entered in hex or RGBa format.
             </p>
           </EuiText>
-        </React.Fragment>
+        </Fragment>
       ),
       source: [
         {
@@ -353,7 +353,7 @@ export const ColorPickerExample = {
     {
       title: 'Color palette picker',
       text: (
-        <React.Fragment>
+        <Fragment>
           <EuiText>
             <p>
               Use <strong>EuiColorPalettePicker</strong> to select palettes to
@@ -370,7 +370,7 @@ export const ColorPickerExample = {
               palettes for continuous data.
             </p>
           </EuiText>
-        </React.Fragment>
+        </Fragment>
       ),
       source: [
         {
@@ -391,7 +391,7 @@ export const ColorPickerExample = {
     {
       title: 'Color palette display',
       text: (
-        <React.Fragment>
+        <Fragment>
           <EuiText>
             <p>
               Use <strong>EuiColorPaletteDisplay</strong> to show the palette in
@@ -414,7 +414,7 @@ export const ColorPickerExample = {
               .
             </p>
           </EuiText>
-        </React.Fragment>
+        </Fragment>
       ),
       source: [
         {
@@ -432,7 +432,7 @@ export const ColorPickerExample = {
     {
       title: 'Color stops',
       text: (
-        <React.Fragment>
+        <Fragment>
           <EuiText>
             <p>
               Use <strong>EuiColorStops</strong> to define color stops for data
@@ -441,7 +441,7 @@ export const ColorPickerExample = {
               next stop number (exclusive).
             </p>
           </EuiText>
-        </React.Fragment>
+        </Fragment>
       ),
       source: [
         {
@@ -464,7 +464,7 @@ export const ColorPickerExample = {
     {
       title: 'Free-range color stops',
       text: (
-        <React.Fragment>
+        <Fragment>
           <EuiText>
             <p>
               Typical use of <strong>EuiColorStops</strong> (as above) will have
@@ -476,7 +476,7 @@ export const ColorPickerExample = {
               have more freedom over resetting the values on the fly.
             </p>
           </EuiText>
-        </React.Fragment>
+        </Fragment>
       ),
       source: [
         {

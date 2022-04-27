@@ -1,4 +1,3 @@
-import React from 'react';
 import DelayRender from './delay_render';
 import { GuideSectionTypes } from '../../components';
 import { EuiDelayRender, EuiDelayHide } from '../../../../src/components';

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiCollapsibleNavGroup, EuiText, EuiCode } from '../../../../src';
 
 export default () => (

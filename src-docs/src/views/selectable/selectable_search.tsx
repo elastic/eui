@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import { useState, Fragment } from 'react';
 
 import { EuiSelectable } from '../../../../src/components/selectable';
 import { Options } from './data';

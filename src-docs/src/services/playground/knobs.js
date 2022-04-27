@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { assertUnreachable, PropTypes } from 'react-view';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
 import {

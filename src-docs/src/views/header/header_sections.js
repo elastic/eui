@@ -3,8 +3,6 @@
  * See the main example for all the menu items.
  */
 
-import React from 'react';
-
 import {
   EuiHeader,
   EuiHeaderLogo,

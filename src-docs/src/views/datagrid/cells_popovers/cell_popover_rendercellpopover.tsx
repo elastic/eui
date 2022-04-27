@@ -1,4 +1,4 @@
-import React, { useState, ReactNode } from 'react';
+import { useState, ReactNode } from 'react';
 // @ts-ignore - faker does not have type declarations
 import { fake } from 'faker';
 

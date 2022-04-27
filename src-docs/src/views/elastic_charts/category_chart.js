@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useContext } from 'react';
+import { useState, Fragment, useContext } from 'react';
 import orderBy from 'lodash/orderBy';
 import round from 'lodash/round';
 

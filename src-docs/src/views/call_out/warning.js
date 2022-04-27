@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiCallOut, EuiLink, EuiButton } from '../../../../src/components';
 
 export default () => (

@@ -1,4 +1,3 @@
-import React from 'react';
 import { EuiComment } from '../../../../src/components/comment_list';
 import { EuiText } from '../../../../src/components/text';
 import { EuiCode } from '../../../../src/components/code';

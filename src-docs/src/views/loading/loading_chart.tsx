@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiLoadingChart } from '../../../../src';
 
 export default () => (

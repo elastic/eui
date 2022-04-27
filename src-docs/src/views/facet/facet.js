@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiFacetButton, EuiIcon, EuiAvatar } from '../../../../src/components';
 
 export default () => (

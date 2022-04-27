@@ -1,4 +1,4 @@
-import React, { cloneElement, useState, Fragment } from 'react';
+import { cloneElement, useState, Fragment } from 'react';
 
 import {
   EuiFlexGroup,

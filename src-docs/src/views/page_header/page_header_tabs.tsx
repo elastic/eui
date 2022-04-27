@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiPageHeader } from '../../../../src/components';
 
 export default () => (

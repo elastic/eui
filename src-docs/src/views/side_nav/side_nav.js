@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { EuiSideNav } from '../../../../src/components';
 import { htmlIdGenerator } from '../../../../src/services';

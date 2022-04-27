@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
@@ -22,7 +22,7 @@ export const ResizeObserverExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <Fragment>
           <p>
             <strong>EuiResizeObserver</strong> is a wrapper around the
             <EuiLink href="https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver">
@@ -43,7 +43,7 @@ export const ResizeObserverExample = {
             will pass a <EuiCode>ref</EuiCode>
             callback which you must put on the element you wish to observe.
           </p>
-        </React.Fragment>
+        </Fragment>
       ),
       demo: <ResizeObserver />,
     },
@@ -56,12 +56,12 @@ export const ResizeObserverExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <Fragment>
           <p>
             There is also a React hook, <EuiCode>useResizeObserver</EuiCode>,
             which provides the same observation functionality.
           </p>
-        </React.Fragment>
+        </Fragment>
       ),
       demo: <ResizeObserverHook />,
     },

@@ -1,4 +1,3 @@
-import React from 'react';
 import { requiredProps } from '../../../../src/test';
 
 import { EuiPageHeader, EuiButton } from '../../../../src/components';

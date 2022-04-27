@@ -1,6 +1,4 @@
-import React from 'react';
-
-// @ts-ignore Importing from JS
+// @ts-expect-error Importing from JS file
 import { useJsonVars } from '../_json/_get_json_vars';
 
 import { ThemeValuesTable } from '../_components/_theme_values_table';

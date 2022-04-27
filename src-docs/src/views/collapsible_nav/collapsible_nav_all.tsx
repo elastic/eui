@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
 

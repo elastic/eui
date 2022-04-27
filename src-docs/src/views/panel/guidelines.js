@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { GuideRule, GuideRuleExample } from '../../components';
 
 import {

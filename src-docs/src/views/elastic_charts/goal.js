@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Chart, Settings, Goal } from '@elastic/charts';
 import { EuiSpacer, EuiTitle, EuiCodeBlock } from '../../../../src/components';
 import {

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { Fragment, FunctionComponent } from 'react';
 import { EuiCodeBlock } from '../../../../../src/components/code';
 import { EuiSpacer } from '../../../../../src/components/spacer';
 
@@ -18,14 +18,14 @@ export const GuideSectionSnippets: FunctionComponent<GuideSectionSnippets> = ({
     );
   } else {
     snippetCode = snippets.map((snip, index) => (
-      <React.Fragment key={`snippet${index}`}>
+      <Fragment key={`snippet${index}`}>
         <EuiCodeBlock language="jsx" fontSize="m" paddingSize="m" isCopyable>
           {snip}
         </EuiCodeBlock>
         {index < snippets.length - 1 && <EuiSpacer size="xs" />}
-      </React.Fragment>
+      </Fragment>
     ));
   }
 
-  return <React.Fragment>{snippetCode}</React.Fragment>;
+  return <Fragment>{snippetCode}</Fragment>;
 };

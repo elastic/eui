@@ -1,4 +1,3 @@
-import React from 'react';
 import { EuiTimelineItem, EuiText, EuiCode } from '../../../../src/components';
 
 export default () => (

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiMarkdownFormat } from '../../../../src';
 
 const markdownContent = `This text has the \`textSize\` prop set to \`"s"\`.

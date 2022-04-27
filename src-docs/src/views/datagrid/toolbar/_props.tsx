@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiDataGridToolBarVisibilityOptions } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
 import { DataGridPropsTable } from '../_props_table';

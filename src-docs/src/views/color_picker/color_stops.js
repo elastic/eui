@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import {
   EuiColorStops,
@@ -66,7 +66,7 @@ export default () => {
   );
 
   return (
-    <React.Fragment>
+    <Fragment>
       <EuiFormRow label="Empty start">
         <EuiColorStops
           label="Empty start"
@@ -150,6 +150,6 @@ export default () => {
           </EuiFlexItem>
         </EuiFlexGroup>
       </EuiFormRow>
-    </React.Fragment>
+    </Fragment>
   );
 };

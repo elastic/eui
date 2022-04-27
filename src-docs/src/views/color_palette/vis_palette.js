@@ -1,4 +1,3 @@
-import React from 'react';
 import { useJsonVars } from '../theme/_json/_get_json_vars.js';
 
 import {

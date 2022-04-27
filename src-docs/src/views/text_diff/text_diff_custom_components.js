@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { useEuiTextDiff, EuiCodeBlock } from '../../../../src/components';
 
 export default () => {

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiPageTemplate } from '../../../../src/components';
 
 export default ({ button = <></>, content, sideNav, bottomBar }) => {

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiAccordion, EuiButton } from '../../../../src/components';
 import { useGeneratedHtmlId } from '../../../../src/services';
 

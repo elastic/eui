@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiBadge, EuiPanel, EuiBadgeGroup } from '../../../../src/components';
 
 export default () => (

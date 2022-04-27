@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiCode, EuiSpacer } from '../../../../src/components';
 import { EuiMark } from '../../../../src/components/mark';
 import { UtilityClassesSection } from './utility_classes_section';

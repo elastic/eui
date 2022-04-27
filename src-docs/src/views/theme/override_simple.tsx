@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent, ReactNode } from 'react';
 import { EuiCode } from '../../../../src/components/code';
 import { EuiText } from '../../../../src/components/text';
 import { EuiThemeProvider, useEuiTheme } from '../../../../src/services';

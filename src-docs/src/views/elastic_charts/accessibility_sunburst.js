@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { ThemeContext } from '../../components';
 import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
 

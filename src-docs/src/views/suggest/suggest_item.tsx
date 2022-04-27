@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiSuggestItem, EuiSuggest } from '../../../../src/components';
 
 const shortDescription = 'This is the description';

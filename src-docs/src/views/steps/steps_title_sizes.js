@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiCode, EuiSteps } from '../../../../src/components';
 
 const firstSetOfSteps = [

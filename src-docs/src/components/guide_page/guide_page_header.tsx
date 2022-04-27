@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { FunctionComponent, useState } from 'react';
 
 import {
   EuiHeaderLogo,
@@ -24,7 +24,7 @@ export type GuidePageHeaderProps = {
   selectedLocale: string;
 };
 
-export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
+export const GuidePageHeader: FunctionComponent<GuidePageHeaderProps> = ({
   onToggleLocale,
   selectedLocale,
 }) => {

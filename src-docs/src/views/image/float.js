@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiImage, EuiText } from '../../../../src/components';
 import { fake } from 'faker';
 

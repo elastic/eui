@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 
 import { UseGeneratedHtmlIdOptions } from '../../../../src/services/accessibility/html_id_generator';
 

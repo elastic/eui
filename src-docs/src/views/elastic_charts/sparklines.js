@@ -1,4 +1,4 @@
-import React, { useContext, Fragment } from 'react';
+import { useContext, Fragment } from 'react';
 import cloneDeep from 'lodash/cloneDeep';
 import { ThemeContext } from '../../components';
 import {

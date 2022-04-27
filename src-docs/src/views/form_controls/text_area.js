@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { EuiTextArea } from '../../../../src/components';
 import { DisplayToggles } from './display_toggles';

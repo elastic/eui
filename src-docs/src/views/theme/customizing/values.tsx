@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useState, useContext } from 'react';
 
 import {
   EuiSpacer,
@@ -66,8 +66,8 @@ export default () => {
   const currentLanguage = themeContext.themeLanguage;
   const showSass = currentLanguage.includes('sass');
 
-  const [jsonFlyoutIsOpen, setJsonFlyoutIsOpen] = React.useState(false);
-  const [overrides, setOverrides] = React.useState({});
+  const [jsonFlyoutIsOpen, setJsonFlyoutIsOpen] = useState(false);
+  const [overrides, setOverrides] = useState({});
 
   const updateTheme = (newOverrides: { [key: string]: any } | undefined) => {
     setOverrides(mergeDeep(overrides, newOverrides));

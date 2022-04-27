@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiControlBar, EuiLink } from '../../../../src/components';
 
 export default () => {

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiCodeBlock, useEuiTheme } from '../../../../src';
 
 export default () => {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { EuiLink } from '../../../../../src/components';
 
 export function PropsLinkMarkdownParser() {

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { EuiCode } from '../../../../../src';
 import { GuideSectionTypes } from '../../../components/guide_section/guide_section_types';
 

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useState, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import { useEuiTheme } from '../../../../../src/services';
 import {
@@ -261,7 +261,7 @@ export const FontScaleJS = () => {
             name: 'Function',
             width: 'auto',
             valign: 'baseline',
-            render: (value: React.ReactNode) => (
+            render: (value: ReactNode) => (
               <EuiCode language="css">{value}</EuiCode>
             ),
           },

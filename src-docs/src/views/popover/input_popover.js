@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import {
   EuiInputPopover,
@@ -36,7 +36,7 @@ export default () => {
   );
 
   return (
-    <React.Fragment>
+    <Fragment>
       <EuiInputPopover
         input={input}
         isOpen={isPopoverOpen}
@@ -59,6 +59,6 @@ export default () => {
       >
         Popover will adjust in size as the input does
       </EuiInputPopover>
-    </React.Fragment>
+    </Fragment>
   );
 };

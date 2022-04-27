@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { EuiPanel } from '../../../../src/components/panel';
 import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiButtonGroup } from '../../../../src/components/button';

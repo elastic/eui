@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 
 import { EuiCode, EuiSpacer, EuiText } from '../../../../../src';
 

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 import { EuiText, EuiLink } from '../../../../src/components';
 import { ThemeContext } from '../../components/with_theme';

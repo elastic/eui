@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiSideNav, EuiCallOut } from '../../../../src/components';

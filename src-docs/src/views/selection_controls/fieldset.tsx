@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiFormFieldset } from '../../../../src/components/form/form_fieldset';
 import { EuiSwitch } from '../../../../src/components/form/switch';
 import { EuiSpacer } from '../../../../src/components/spacer';

@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import { useState, Fragment, SetStateAction } from 'react';
 
 import { EuiSwitch, EuiFormRow } from '../../../../src/components';
 import { useGeneratedHtmlId } from '../../../../src/services';
@@ -8,15 +8,11 @@ export default () => {
   const [checked2, setChecked2] = useState(false);
   const toggleTextSwitchId = useGeneratedHtmlId({ prefix: 'toggleTextSwitch' });
 
-  const onChange1 = (e: {
-    target: { checked: React.SetStateAction<boolean> };
-  }) => {
+  const onChange1 = (e: { target: { checked: SetStateAction<boolean> } }) => {
     setChecked1(e.target.checked);
   };
 
-  const onChange2 = (e: {
-    target: { checked: React.SetStateAction<boolean> };
-  }) => {
+  const onChange2 = (e: { target: { checked: SetStateAction<boolean> } }) => {
     setChecked2(e.target.checked);
   };
 

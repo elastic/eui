@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { fake } from 'faker';
 
 import { EuiDataGrid, EuiAvatar } from '../../../../../src/components';

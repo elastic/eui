@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, ReactNode } from 'react';
+import { FunctionComponent, useState, ReactNode } from 'react';
 import classNames from 'classnames';
 import {
   EuiTabs,

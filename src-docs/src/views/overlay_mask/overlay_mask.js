@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import {
   EuiOverlayMask,
@@ -12,7 +12,7 @@ export default () => {
   const [maskWithClickOpen, changeMaskWithClick] = useState(false);
 
   const modal = (
-    <React.Fragment>
+    <Fragment>
       <EuiOverlayMask
         onClick={() => {
           changeMask(false);
@@ -22,7 +22,7 @@ export default () => {
           <h2> Click anywhere to close overlay. </h2>
         </EuiTitle>
       </EuiOverlayMask>
-    </React.Fragment>
+    </Fragment>
   );
 
   const maskWithClick = (
@@ -38,7 +38,7 @@ export default () => {
   );
 
   return (
-    <React.Fragment>
+    <Fragment>
       <EuiButton
         onClick={() => {
           changeMask(true);
@@ -52,6 +52,6 @@ export default () => {
       </EuiButton>
       {maskOpen ? modal : undefined}
       {maskWithClickOpen ? maskWithClick : undefined}
-    </React.Fragment>
+    </Fragment>
   );
 };

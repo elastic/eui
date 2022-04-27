@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { useView } from 'react-view';
 
 import { GuideSectionPropsDescription } from './guide_section_props_description';

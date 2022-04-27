@@ -1,4 +1,4 @@
-import React from 'react';
+import { createContext, Component } from 'react';
 import { EUI_THEMES, EUI_THEME } from '../../../../src/themes';
 // @ts-ignore importing from a JS file
 import { applyTheme } from '../../services';
@@ -42,9 +42,9 @@ interface State {
   themeLanguage: THEME_LANGUAGES['id'];
 }
 
-export const ThemeContext = React.createContext(defaultState);
+export const ThemeContext = createContext(defaultState);
 
-export class ThemeProvider extends React.Component<object, State> {
+export class ThemeProvider extends Component<object, State> {
   constructor(props: object) {
     super(props);
 

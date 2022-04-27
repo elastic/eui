@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { GuideSectionTypes } from '../../components';
 
@@ -18,7 +18,7 @@ export const FocusTrapExample = {
         },
       ],
       text: (
-        <React.Fragment>
+        <Fragment>
           <p>
             Use <strong>EuiFocusTrap</strong> to prevent keyboard-initiated
             focus from leaving a defined area. Temporary flows and UX escapes
@@ -45,7 +45,7 @@ export const FocusTrapExample = {
             Use <EuiCode>noIsolation=false</EuiCode> when pointer events on
             outside elements should be disallowed.
           </p>
-        </React.Fragment>
+        </Fragment>
       ),
       props: { EuiFocusTrap },
       demo: <FocusTrap />,

@@ -1,4 +1,4 @@
-import React from 'react';
+import { cloneElement } from 'react';
 import { getParameters } from 'codesandbox/lib/api/define';
 import {
   cleanEuiImports,
@@ -202,7 +202,7 @@ ReactDOM.render(
 
   const params = getParameters(config);
 
-  const childWithSubmit = React.cloneElement(children, {
+  const childWithSubmit = cloneElement(children, {
     type: 'submit',
   });
 

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import { Fragment, useState } from 'react';
 import chroma from 'chroma-js';
 import { css } from '@emotion/react';
 

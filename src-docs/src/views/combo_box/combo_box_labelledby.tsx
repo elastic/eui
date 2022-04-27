@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import { EuiComboBox, EuiSpacer, EuiText } from '../../../../src/components';
 
@@ -80,7 +80,7 @@ export default () => {
   };
 
   return (
-    <React.Fragment>
+    <Fragment>
       <EuiText>
         <h3 id={generatedId}>Heading as a label</h3>
       </EuiText>
@@ -94,6 +94,6 @@ export default () => {
         onCreateOption={onCreateOption}
         isClearable={true}
       />
-    </React.Fragment>
+    </Fragment>
   );
 };

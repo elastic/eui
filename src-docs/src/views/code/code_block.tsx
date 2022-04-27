@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiCodeBlock, EuiSpacer } from '../../../../src/components';
 
 const jsCode = `/* I'm an example of JS */

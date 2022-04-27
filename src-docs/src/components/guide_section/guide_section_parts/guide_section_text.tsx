@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent, ReactNode } from 'react';
 import { EuiSpacer } from '../../../../../src/components/spacer';
 import { EuiTitle } from '../../../../../src/components/title';
 import { EuiText } from '../../../../../src/components/text';

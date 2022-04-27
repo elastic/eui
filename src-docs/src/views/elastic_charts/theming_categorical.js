@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React, { Fragment, useState, useEffect, useContext } from 'react';
+import { Fragment, useState, useEffect, useContext } from 'react';
 import { Chart, Settings, Axis, DataGenerator } from '@elastic/charts';
 import { ThemeContext } from '../../components';
 

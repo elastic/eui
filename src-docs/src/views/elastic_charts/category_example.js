@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { ExternalBadge } from './shared';
 import { CategoryChart } from './category_chart';
 

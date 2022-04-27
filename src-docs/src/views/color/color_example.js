@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { LanguageSelector } from '../../components';
 import Intro from './intro';
 

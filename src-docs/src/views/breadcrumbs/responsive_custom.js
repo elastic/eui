@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { EuiBreadcrumbs } from '../../../../src/components';
 
 export default () => {
