@@ -9,7 +9,11 @@
 import { testCustomHook } from '../../test/internal';
 
 import { EuiThemeFontScales } from '../variables/typography';
-import { useEuiFontSize, euiTextBreakWord } from './_typography';
+import {
+  useEuiFontSize,
+  euiTextBreakWord,
+  euiTextTruncate,
+} from './_typography';
 
 describe('euiFontSize', () => {
   describe('returns an object of font-size and line-height for each scale', () => {
@@ -48,5 +52,15 @@ describe('euiFontSize', () => {
 describe('euiTextBreakWord', () => {
   it('returns a string of CSS text', () => {
     expect(euiTextBreakWord()).toMatchSnapshot();
+  });
+});
+
+describe('euiTextTruncate', () => {
+  it('returns a string of CSS text', () => {
+    expect(euiTextTruncate()).toMatchSnapshot();
+  });
+
+  it('allows customizing max-width', () => {
+    expect(euiTextTruncate('150px')).toMatchSnapshot();
   });
 });

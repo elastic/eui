@@ -175,3 +175,23 @@ exports[`euiTextBreakWord returns a string of CSS text 1`] = `
   word-break: break-word; // IE doesn't understand but that's ok
 "
 `;
+
+exports[`euiTextTruncate allows customizing max-width 1`] = `
+"
+  max-width: 150px; // Ensure that the node has a maximum width after which truncation can occur
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  word-wrap: normal !important; // Fix for IE 8/9 if 'word-wrap: break-word' is in effect on ancestor nodes.
+"
+`;
+
+exports[`euiTextTruncate returns a string of CSS text 1`] = `
+"
+  max-width: 100%; // Ensure that the node has a maximum width after which truncation can occur
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  word-wrap: normal !important; // Fix for IE 8/9 if 'word-wrap: break-word' is in effect on ancestor nodes.
+"
+`;

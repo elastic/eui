@@ -55,3 +55,14 @@ export const euiTextBreakWord = () => `
   word-wrap: break-word !important; // spec says, they are literally just alternate names for each other but some browsers support one and not the other
   word-break: break-word; // IE doesn't understand but that's ok
 `;
+
+// Prevent text from wrapping onto multiple lines, and truncate with an ellipsis.
+export const euiTextTruncate = (
+  maxWidth: CSSProperties['maxWidth'] = '100%'
+) => `
+  max-width: ${maxWidth}; // Ensure that the node has a maximum width after which truncation can occur
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  word-wrap: normal !important; // Fix for IE 8/9 if 'word-wrap: break-word' is in effect on ancestor nodes.
+`;
