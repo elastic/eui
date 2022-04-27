@@ -49,7 +49,7 @@ export const EuiLoadingLogo: FunctionComponent<EuiLoadingLogoProps> = ({
   const cssStyles = [styles.euiLoadingLogo, styles[size]];
 
   const iconStyles = euiLoadingLogoIconStyles(euiTheme);
-  const iconCssStyles = [iconStyles.euiLoadingLogo__icon, iconStyles[size]];
+  const iconCssStyles = [iconStyles.euiLoadingLogo__icon];
 
   const classes = classNames(
     'euiLoadingLogo',

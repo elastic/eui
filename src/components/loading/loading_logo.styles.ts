@@ -40,10 +40,16 @@ const loadingPulsate = keyframes`
   }
 `;
 
-const loadingAnimationDistance: { [key: string]: _EuiThemeSize } = {
-  m: 's',
-  l: 'm',
-  xl: 'base',
+const loadingBounce = keyframes`
+  50% {
+    transform: translateY(-50%);
+  }
+`;
+
+const loadingPadding: { [key: string]: _EuiThemeSize } = {
+  m: 'xxs',
+  l: 'xs',
+  xl: 's',
 };
 
 export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
@@ -85,9 +91,7 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
     m: css`
       ${euiCanAnimate} {
         /* 2 */
-        padding-block-start: calc(
-          ${euiTheme.size[loadingAnimationDistance.m]} / 2
-        );
+        padding-block-start: ${euiTheme.size[loadingPadding.m]};
       }
 
       &:before,
@@ -100,9 +104,7 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
     l: css`
       ${euiCanAnimate} {
         /* 2 */
-        padding-block-start: calc(
-          ${euiTheme.size[loadingAnimationDistance.l]} / 2
-        );
+        padding-block-start: ${euiTheme.size[loadingPadding.l]};
       }
 
       &:before,
@@ -115,9 +117,7 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
     xl: css`
       ${euiCanAnimate} {
         /* 2 */
-        padding-block-start: calc(
-          ${euiTheme.size[loadingAnimationDistance.xl]} / 2
-        );
+        padding-block-start: ${euiTheme.size[loadingPadding.xl]};
       }
 
       &:before,
@@ -130,34 +130,13 @@ export const euiLoadingLogoStyles = ({ euiTheme }: UseEuiTheme) => {
 };
 
 export const euiLoadingLogoIconStyles = ({ euiTheme }: UseEuiTheme) => {
-  function loadingBounce(size: any) {
-    return keyframes`
-      50% {
-        transform: translateY(-${
-          euiTheme.size[loadingAnimationDistance[size]]
-        });
-      }
-    `;
-  }
-
   return {
     euiLoadingLogo__icon: css`
+      display: inline-block;
+
       ${euiCanAnimate} {
-        animation: 1s ${loadingBounce('m')} ${euiTheme.animation.resistance}
-          infinite;
+        animation: 1s ${loadingBounce} ${euiTheme.animation.resistance} infinite;
       }
-    `,
-
-    m: css`
-      animation-name: ${loadingBounce('m')};
-    `,
-
-    l: css`
-      animation-name: ${loadingBounce('l')};
-    `,
-
-    xl: css`
-      animation-name: ${loadingBounce('xl')};
     `,
   };
 };
