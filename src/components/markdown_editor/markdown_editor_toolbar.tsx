@@ -98,7 +98,7 @@ interface FormatSelectableButtonArgs {
   label: string;
   icon: IconType;
 }
-export const formatSelectableButton = ({
+const EuiMarkdownEditorToolbarButton = ({
   selectedNode,
   handleMdButtonClick,
   isEditable,
@@ -153,43 +153,43 @@ export const EuiMarkdownEditorToolbar = forwardRef<
         <div className="euiMarkdownEditorToolbar__buttons">
           {boldItalicButtons.map((item) => (
             <EuiToolTip key={item.id} content={item.label} delay="long">
-              {formatSelectableButton({
-                selectedNode,
-                handleMdButtonClick,
-                isEditable,
-                id: item.id,
-                nodeId: item.name,
-                label: item.label,
-                icon: item.iconType,
-              })}
+              <EuiMarkdownEditorToolbarButton
+                selectedNode={selectedNode}
+                handleMdButtonClick={handleMdButtonClick}
+                isEditable={isEditable}
+                id={item.id}
+                nodeId={item.name}
+                label={item.label}
+                icon={item.iconType}
+              />
             </EuiToolTip>
           ))}
           <span className="euiMarkdownEditorToolbar__divider" />
           {listButtons.map((item) => (
             <EuiToolTip key={item.id} content={item.label} delay="long">
-              {formatSelectableButton({
-                selectedNode,
-                handleMdButtonClick,
-                isEditable,
-                id: item.id,
-                nodeId: item.name,
-                label: item.label,
-                icon: item.iconType,
-              })}
+              <EuiMarkdownEditorToolbarButton
+                selectedNode={selectedNode}
+                handleMdButtonClick={handleMdButtonClick}
+                isEditable={isEditable}
+                id={item.id}
+                nodeId={item.name}
+                label={item.label}
+                icon={item.iconType}
+              />
             </EuiToolTip>
           ))}
           <span className="euiMarkdownEditorToolbar__divider" />
           {quoteCodeLinkButtons.map((item) => (
             <EuiToolTip key={item.id} content={item.label} delay="long">
-              {formatSelectableButton({
-                selectedNode,
-                handleMdButtonClick,
-                isEditable,
-                id: item.id,
-                nodeId: item.name,
-                label: item.label,
-                icon: item.iconType,
-              })}
+              <EuiMarkdownEditorToolbarButton
+                selectedNode={selectedNode}
+                handleMdButtonClick={handleMdButtonClick}
+                isEditable={isEditable}
+                id={item.id}
+                nodeId={item.name}
+                label={item.label}
+                icon={item.iconType}
+              />
             </EuiToolTip>
           ))}
 
@@ -199,15 +199,15 @@ export const EuiMarkdownEditorToolbar = forwardRef<
               {uiPlugins.map(({ name, button }) => {
                 return (
                   <EuiToolTip key={name} content={button.label} delay="long">
-                    {formatSelectableButton({
-                      selectedNode,
-                      handleMdButtonClick,
-                      isEditable,
-                      id: name,
-                      nodeId: name,
-                      label: button.label,
-                      icon: button.iconType,
-                    })}
+                    <EuiMarkdownEditorToolbarButton
+                      selectedNode={selectedNode}
+                      handleMdButtonClick={handleMdButtonClick}
+                      isEditable={isEditable}
+                      id={name}
+                      nodeId={name}
+                      label={button.label}
+                      icon={button.iconType}
+                    />
                   </EuiToolTip>
                 );
               })}
