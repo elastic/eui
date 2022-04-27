@@ -51,7 +51,6 @@ export default () => (
       timestamp="7 hours ago"
       timelineIcon={
         <EuiAvatar
-          size="l"
           name="juanab"
           imageUrl="https://source.unsplash.com/64x64/?woman"
         />
