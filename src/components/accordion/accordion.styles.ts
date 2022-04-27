@@ -10,19 +10,7 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { euiFontSize } from '../../global_styling/mixins';
 
-export const euiAccordionStyles = (
-  { euiTheme }: UseEuiTheme,
-  {
-    _arrowDisplay,
-    isOpen,
-    isLoading,
-  }: {
-    _arrowDisplay: string | undefined;
-    isOpen: boolean;
-    isLoading: boolean | undefined;
-  }
-) => ({
-  // BEM named blocks
+export const euiAccordionButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiAccordion__button: css`
     ${euiFontSize('s', euiTheme)};
     align-items: center;
@@ -37,15 +25,27 @@ export const euiAccordionStyles = (
       cursor: pointer;
       text-decoration: underline;
     }
-  `,
-  euiAccordion__children_isLoading: css`
-    ${isLoading &&
+  `
+});
+
+export const euiAccordionChildrenIsLoadingStyles = (
+  { euiTheme }: UseEuiTheme,
+  { isLoading }: { isLoading: boolean | undefined }
+) => ({
+    euiAccordion__children_isLoading: css`
+      ${isLoading &&
+      `
+        align-items: center;
+        display: flex;
+        line-height: ${euiTheme.size.l}; // Needed to retain consistent vertical alignment and spacing
+      `}
     `
-      align-items: center;
-      display: flex;
-      line-height: ${euiTheme.size.l}; // Needed to retain consistent vertical alignment and spacing
-    `}
-  `,
+});
+
+export const euiAccordionChildWrapperStyles = (
+  { euiTheme }: UseEuiTheme,
+  { isOpen }: { isOpen: boolean | undefined }
+) => ({
   euiAccordion__childWrapper: css`
     height: 0;
     opacity: 0;
@@ -66,7 +66,16 @@ export const euiAccordionStyles = (
       opacity: 1;
       visibility: visible;
     `}
-  `,
+  `
+});
+
+export const euiAccordionIconButtonStyles = (
+  { euiTheme }: UseEuiTheme,
+  { _arrowDisplay, isOpen }: {
+    _arrowDisplay: string | undefined;
+    isOpen: boolean;
+  }
+) => ({
   euiAccordion__iconButton: css`
     flex-shrink: 0;
     margin-inline-end: ${euiTheme.size.xs};
@@ -83,16 +92,28 @@ export const euiAccordionStyles = (
       margin-left: ${euiTheme.size.xs};
       margin-right: 0;
     `}
-  `,
+  `
+});
+
+export const euiAccordionOptionalActionStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiAccordion__optionalAction: css`
     flex-shrink: 0;
-  `,
+  `
+});
+
+export const euiAccordionSpinnerStyles = (
+  { euiTheme }: UseEuiTheme,
+  { isLoading }: { isLoading: boolean | undefined }
+) => ({
   euiAccordion__spinner: css`
     ${isLoading &&
     `
       margin-right: ${euiTheme.size.xs};
     `}
-  `,
+  `
+});
+
+export const euiAccordionTriggerWrapperStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiAccordion__triggerWrapper: css`
     align-items: center;
     display: flex;
@@ -113,5 +134,5 @@ export const euiAccordionStyles = (
   `,
   xl: css`
     padding: ${euiTheme.size.xl};
-  `,
+  `
 });
