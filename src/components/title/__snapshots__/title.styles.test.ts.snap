@@ -20,7 +20,7 @@ exports[`euiTitle mixin returns a static object of title font properties for eac
 Object {
   "fontSize": "1.5714rem",
   "fontWeight": 700,
-  "lineHeight": "2.2857rem",
+  "lineHeight": "1.7143rem",
 }
 `;
 
@@ -36,7 +36,7 @@ exports[`euiTitle mixin returns a static object of title font properties for eac
 Object {
   "fontSize": "1.0000rem",
   "fontWeight": 700,
-  "lineHeight": "1.7143rem",
+  "lineHeight": "1.4286rem",
 }
 `;
 

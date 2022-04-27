@@ -11,51 +11,11 @@ import { css } from '@emotion/react';
 import { UseEuiTheme, useEuiTheme } from '../../services';
 import {
   euiTextBreakWord,
-  euiFontSizeFromScale,
-  euiLineHeightFromBaseline,
+  euiFontSize,
   _EuiThemeFontScale,
   _EuiThemeFontSizeMeasurement,
 } from '../../global_styling';
 import { EuiTitleSize } from './title';
-
-/**
- * Theme-specific scale settings
- */
-type _EuiThemeTitle = {
-  fontSize: _EuiThemeFontScale;
-  lineHeight: _EuiThemeFontScale;
-  fontWeight?: CSSProperties['fontWeight']; // Defaults to bold
-  letterSpacing?: string; // Not currently used in Amsterdam, but may be used in future themes
-};
-
-const amsterdamThemeTitles: {
-  [size in EuiTitleSize]: _EuiThemeTitle;
-} = {
-  xxxs: {
-    fontSize: 'xs',
-    lineHeight: 'xs',
-  },
-  xxs: {
-    fontSize: 's',
-    lineHeight: 'm',
-  },
-  xs: {
-    fontSize: 'm',
-    lineHeight: 'm',
-  },
-  s: {
-    fontSize: 'l',
-    lineHeight: 'xl',
-  },
-  m: {
-    fontSize: 'xl',
-    lineHeight: 'xl',
-  },
-  l: {
-    fontSize: 'xxl',
-    lineHeight: 'xxl',
-  },
-};
 
 /**
  * Mixin
@@ -71,17 +31,19 @@ export const euiTitle = (
   euiTheme: UseEuiTheme['euiTheme'],
   measurement: _EuiThemeFontSizeMeasurement = 'rem'
 ): EuiThemeTitle => {
-  // NOTE: For future themes, we can conditionally key off `euiTheme.themeName`
-  // and conditionally switch our title settings.
-  const title = amsterdamThemeTitles[scale];
+  const titleScaleToFontSizeScaleMap: {
+    [size in EuiTitleSize]: _EuiThemeFontScale;
+  } = {
+    xxxs: 'xs',
+    xxs: 's',
+    xs: 'm',
+    s: 'l',
+    m: 'xl',
+    l: 'xxl',
+  };
 
   return {
-    fontSize: euiFontSizeFromScale(title.fontSize, euiTheme, measurement),
-    lineHeight: euiLineHeightFromBaseline(
-      title.lineHeight,
-      euiTheme,
-      measurement
-    ),
+    ...euiFontSize(titleScaleToFontSizeScaleMap[scale], euiTheme, measurement),
     fontWeight: euiTheme.font.weight[euiTheme.font.title.weight],
   };
 };
