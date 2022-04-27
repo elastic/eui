@@ -150,14 +150,14 @@ export const CommentListExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Use <strong>EuiComment</strong> to display comments. Each{' '}
             <strong>EuiComment</strong> has two parts: a{' '}
             <EuiCode>timelineIcon</EuiCode> on the left and content on the
             right.
           </p>
-        </div>
+        </>
       ),
       props: { EuiComment },
       snippet: commentSnippet,
@@ -173,7 +173,7 @@ export const CommentListExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             You can supply one of the following types with the default being{' '}
             <EuiCode>regular</EuiCode>:
@@ -197,7 +197,7 @@ export const CommentListExample = {
               won&apos;t show even if they are passed.
             </li>
           </ul>
-        </div>
+        </>
       ),
       props: { EuiComment },
       snippet: commentTypesSnippet,
@@ -212,7 +212,7 @@ export const CommentListExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             As mentioned in the section before, the <strong>EuiComment</strong>{' '}
             type <EuiCode>update</EuiCode> generally displays logging actions
@@ -228,7 +228,7 @@ export const CommentListExample = {
             of urgency (e.g. if an alert was triggered and it is very urgent you
             can use the color <EuiCode>danger</EuiCode>).
           </p>
-        </div>
+        </>
       ),
       props: { EuiComment },
       snippet: commentTypeUpdateSnippet,
@@ -243,7 +243,7 @@ export const CommentListExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             There are three ways to use <EuiCode>timelineIcon</EuiCode>:
           </p>
@@ -265,7 +265,7 @@ export const CommentListExample = {
               ). It is recommended not to use an element larger than 40x40.
             </li>
           </ol>
-        </div>
+        </>
       ),
       props: { EuiComment },
       snippet: commentTimelineIconsSnippet,
@@ -280,7 +280,7 @@ export const CommentListExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             There are scenarios where you might want to allow the user to
             perform <EuiCode>actions</EuiCode> related to each comment. Some
@@ -303,7 +303,7 @@ export const CommentListExample = {
             </Link>
             .
           </p>
-        </div>
+        </>
       ),
       props: { EuiComment },
       snippet: commentActionsSnippet,
