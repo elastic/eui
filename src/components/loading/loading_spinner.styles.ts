@@ -9,6 +9,7 @@
 import { css, keyframes } from '@emotion/react';
 import { _EuiThemeSize, euiCanAnimate } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
+import { EuiLoadingSpinnerSize } from './loading_spinner';
 
 const _loadingSpinner = keyframes`
   from {
@@ -20,7 +21,9 @@ const _loadingSpinner = keyframes`
   }
 `;
 
-export const spinnerSizes: { [key: string]: _EuiThemeSize } = {
+export const spinnerSizes: {
+  [size in EuiLoadingSpinnerSize]: _EuiThemeSize;
+} = {
   s: 'm',
   m: 'base',
   l: 'l',

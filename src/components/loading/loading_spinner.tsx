@@ -7,17 +7,14 @@
  */
 
 import React, { HTMLAttributes, FunctionComponent } from 'react';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import classNames from 'classnames';
 import { useEuiTheme } from '../..//services';
 import { useLoadingAriaLabel } from './_loading_strings';
-import {
-  euiLoadingSpinnerStyles,
-  spinnerSizes,
-} from './loading_spinner.styles';
+import { euiLoadingSpinnerStyles } from './loading_spinner.styles';
 
-export const SIZES = keysOf(spinnerSizes);
-export type EuiLoadingSpinnerSize = keyof typeof spinnerSizes;
+export const SIZES = ['s', 'm', 'l', 'xl', 'xxl'] as const;
+export type EuiLoadingSpinnerSize = typeof SIZES[number];
 
 export type EuiLoadingSpinnerProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {

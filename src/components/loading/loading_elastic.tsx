@@ -8,23 +8,16 @@
 
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import { EuiIcon } from '../icon';
 import { useLoadingAriaLabel } from './_loading_strings';
 import { euiLoadingElasticStyles } from './loading_elastic.styles';
 
-// TODO
-const sizeToClassNameMap = {
-  m: 'euiLoadingElastic--medium',
-  l: 'euiLoadingElastic--large',
-  xl: 'euiLoadingElastic--xLarge',
-  xxl: 'euiLoadingElastic--xxLarge',
-};
-
-export const SIZES = keysOf(sizeToClassNameMap);
+export const SIZES = ['m', 'l', 'xl', 'xxl'] as const;
+export type EuiLoadingElasticSize = typeof SIZES[number];
 
 export interface EuiLoadingElasticProps {
-  size?: keyof typeof sizeToClassNameMap;
+  size?: EuiLoadingElasticSize;
 }
 
 export const EuiLoadingElastic: FunctionComponent<
@@ -34,11 +27,7 @@ export const EuiLoadingElastic: FunctionComponent<
   const cssStyles = [styles.euiLoadingElastic];
   const defaultLabel = useLoadingAriaLabel();
 
-  const classes = classNames(
-    'euiLoadingElastic',
-    sizeToClassNameMap[size],
-    className
-  );
+  const classes = classNames('euiLoadingElastic', className);
 
   return (
     <span

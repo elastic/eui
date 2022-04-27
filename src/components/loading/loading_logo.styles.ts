@@ -9,6 +9,7 @@
 import { css, keyframes } from '@emotion/react';
 import { _EuiThemeSize, euiCanAnimate } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
+import { EuiLoadingLogoSize } from './loading_logo';
 
 const loadingPulsateAndFade = keyframes`
   0% {
@@ -46,7 +47,9 @@ const loadingBounce = keyframes`
   }
 `;
 
-const loadingPadding: { [key: string]: _EuiThemeSize } = {
+const loadingPadding: {
+  [size in EuiLoadingLogoSize]: _EuiThemeSize;
+} = {
   m: 'xxs',
   l: 'xs',
   xl: 's',

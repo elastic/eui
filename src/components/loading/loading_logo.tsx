@@ -8,7 +8,7 @@
 
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import { EuiIcon, IconType } from '../icon';
 import { useEuiTheme } from '../../services';
 import { useLoadingAriaLabel } from './_loading_strings';
@@ -17,18 +17,12 @@ import {
   euiLoadingLogoIconStyles,
 } from './loading_logo.styles';
 
-// TODO
-const sizeToClassNameMap = {
-  m: 'euiLoadingLogo--medium',
-  l: 'euiLoadingLogo--large',
-  xl: 'euiLoadingLogo--xLarge',
-};
-
-export const SIZES = keysOf(sizeToClassNameMap);
+export const SIZES = ['m', 'l', 'xl'] as const;
+export type EuiLoadingLogoSize = typeof SIZES[number];
 
 export type EuiLoadingLogoProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
-    size?: keyof typeof sizeToClassNameMap;
+    size?: EuiLoadingLogoSize;
     /**
      * While this component should be restricted to using logo icons, it works with any IconType
      */
@@ -51,11 +45,7 @@ export const EuiLoadingLogo: FunctionComponent<EuiLoadingLogoProps> = ({
   const iconStyles = euiLoadingLogoIconStyles(euiTheme);
   const iconCssStyles = [iconStyles.euiLoadingLogo__icon];
 
-  const classes = classNames(
-    'euiLoadingLogo',
-    sizeToClassNameMap[size],
-    className
-  );
+  const classes = classNames('euiLoadingLogo', className);
 
   return (
     <span
