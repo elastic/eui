@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { EuiSpacer, EuiText } from '../../../../src/components';
 import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
 import UtilityClassesFunctions from './utility_functions';
+import UtilityClassesMixins from './utility_mixins';
 import UtilityClassesDisplay from './utility_classes';
 import UtilityClassesText from './utility_classes_text';
 import UtilityClassesVertAlign from './utility_classes_vert_align';
@@ -29,6 +30,18 @@ export const UtilityClassesExample = {
         <>
           <EuiSpacer />
           <UtilityClassesFunctions />
+          <EuiSpacer />
+          <EuiHorizontalRule />
+        </>
+      ),
+    },
+    {
+      title: 'Mixins',
+      wrapText: false,
+      text: (
+        <>
+          <EuiSpacer />
+          <UtilityClassesMixins />
           <EuiSpacer />
           <EuiHorizontalRule />
         </>

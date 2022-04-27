@@ -7,4 +7,5 @@
  */
 
 export * from './_helpers';
+export * from './_padding';
 export * from './_typography';
