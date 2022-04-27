@@ -12,7 +12,6 @@ import { logicals, LogicalSides } from '../functions';
 export const PADDING_SIZES = ['none', 'xs', 's', 'm', 'l', 'xl'] as const;
 export type EuiPaddingSize = typeof PADDING_SIZES[number];
 
-// TODO: Make into a hook
 export const euiPaddingStyles = (
   { euiTheme }: UseEuiTheme,
   side?: LogicalSides
