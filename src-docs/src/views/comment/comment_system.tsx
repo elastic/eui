@@ -175,7 +175,7 @@ export default () => {
       </EuiCommentList>
       <EuiSpacer />
 
-      <EuiFlexGroup justifyContent="flexEnd">
+      <EuiFlexGroup justifyContent="flexEnd" responsive={false}>
         <EuiFlexItem grow={false}>
           <div>
             <EuiButton

@@ -8,6 +8,8 @@ import {
   EuiCode,
   EuiComment,
   EuiCommentList,
+  EuiCallOut,
+  EuiText,
 } from '../../../../src/components';
 import commentConfig from './playground';
 
@@ -92,8 +94,35 @@ const commentListSnippet = `<EuiCommentList
 
 export const CommentListExample = {
   title: 'Comment list',
+  intro: (
+    <EuiText>
+      <p>
+        The <strong>EuiCommentList</strong> is a timeline component built on top
+        of{' '}
+        <Link to="/display/timeline">
+          <strong>EuiTimeline</strong>
+        </Link>
+        . It allows you to display comments or logging actions that either a
+        user or a system has performed.
+      </p>
+
+      <EuiCallOut
+        color="warning"
+        iconType="accessibility"
+        title={
+          <>
+            For accessibility, it is highly recommended to provide a descriptive{' '}
+            <EuiCode>aria-label</EuiCode>, or a text node ID of an external
+            label to the <EuiCode>aria-labelledby</EuiCode> prop of the{' '}
+            <strong>EuiCommentList</strong>.
+          </>
+        }
+      />
+    </EuiText>
+  ),
   sections: [
     {
+      title: 'Basic comment list',
       source: [
         {
           type: GuideSectionTypes.JS,
