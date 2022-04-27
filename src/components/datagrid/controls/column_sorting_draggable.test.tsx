@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 
 import { schemaDetectors } from '../utils/data_grid_schema';

@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, Fragment, HTMLAttributes, ReactNode } from 'react';
+import {
+  ChangeEvent,
+  Component,
+  Fragment,
+  HTMLAttributes,
+  ReactNode,
+} from 'react';
 import classNames from 'classnames';
 import moment from 'moment';
 import {
@@ -735,7 +741,7 @@ export class EuiBasicTable<T = any> extends Component<
 
     const disabled = selectableItems.length === 0;
 
-    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const onChange = (event: ChangeEvent<HTMLInputElement>) => {
       if (event.target.checked) {
         this.changeSelection(selectableItems);
       } else {
@@ -1120,7 +1126,7 @@ export class EuiBasicTable<T = any> extends Component<
     const title =
       selection!.selectableMessage &&
       selection!.selectableMessage(!disabled, item);
-    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const onChange = (event: ChangeEvent<HTMLInputElement>) => {
       if (event.target.checked) {
         this.changeSelection([...this.state.selection, item]);
       } else {

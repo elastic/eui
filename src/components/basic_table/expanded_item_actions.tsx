@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode } from 'react';
 import classNames from 'classnames';
 import { DefaultItemAction } from './default_item_action';
 import { CustomItemAction } from './custom_item_action';

@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import { MouseEvent } from 'react';
+
 export const EuiFlyout = ({
   as = 'div',
   role = 'dialog',
@@ -30,7 +31,7 @@ export const EuiFlyout = ({
           type="button"
           data-test-subj="euiFlyoutCloseButton"
           aria-label="Close this dialog"
-          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+          onClick={(e: MouseEvent<HTMLButtonElement>) => {
             onClose();
             closeButtonProps?.onClick && closeButtonProps.onClick(e);
           }}

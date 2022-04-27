@@ -23,7 +23,6 @@
  * 
  */
 
-import React from "react";
 import { mount } from "enzyme";
 import * as utils from "../src/date_utils";
 import { setTime, cloneDate, newDate } from "../src/date_utils";

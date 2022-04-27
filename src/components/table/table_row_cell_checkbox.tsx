@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, TdHTMLAttributes } from 'react';
+import { FunctionComponent, TdHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 

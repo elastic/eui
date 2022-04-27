@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactElement } from 'react';
+import { cloneElement, ReactElement } from 'react';
 import { render } from 'enzyme';
 import { css } from '@emotion/react';
 
@@ -22,7 +22,7 @@ export const shouldRenderCustomStyles = (component: ReactElement) => {
   it('should render custom classNames, css, and styles', () => {
     const rendered = render(
       <div>
-        {React.cloneElement(component, {
+        {cloneElement(component, {
           className: 'hello',
           css: css`
             color: red;

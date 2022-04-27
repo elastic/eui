@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 
 import { findTestSubject } from '../../test';

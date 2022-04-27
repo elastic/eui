@@ -7,7 +7,7 @@
  */
 
 import classNames from 'classnames';
-import React, {
+import {
   ButtonHTMLAttributes,
   FunctionComponent,
   MouseEvent as ReactMouseEvent,

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent, MouseEvent } from 'react';
 import classNames from 'classnames';
 
 export interface EuiRangeHighlightProps {
@@ -19,7 +19,7 @@ export interface EuiRangeHighlightProps {
   upperValue: number;
   max: number;
   min: number;
-  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+  onClick?: (e: MouseEvent<HTMLDivElement>) => void;
 }
 
 export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({

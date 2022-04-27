@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { ComponentType } from 'react';
+import { ComponentType } from 'react';
 
 export const EuiIcon = ({ type, 'aria-label': ariaLabel, ...rest }: any) => (
   <span

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent, ReactNode } from 'react';
 import { euiTimelineItemEventStyles } from './timeline_item_event.styles';
 import { EuiTimelineItemVerticalAlign } from './timeline_item';
 

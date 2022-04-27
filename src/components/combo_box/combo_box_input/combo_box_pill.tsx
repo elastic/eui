@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { AriaAttributes, Component, MouseEventHandler } from 'react';
+import { AriaAttributes, Component, MouseEventHandler } from 'react';
 import classNames from 'classnames';
 
 import { EuiBadge } from '../../badge';

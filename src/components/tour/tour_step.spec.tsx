@@ -6,8 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-
 import { EuiTourStep } from './tour_step';
 
 const steps = [

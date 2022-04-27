@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { isString } from '../../services/predicate';
 import {
   EuiButtonEmpty,

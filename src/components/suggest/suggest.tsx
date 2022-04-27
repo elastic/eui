@@ -6,12 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   CSSProperties,
   FormEvent,
   FunctionComponent,
   useState,
   useCallback,
+  FocusEvent,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
@@ -154,12 +155,12 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   /**
    * Search helpers
    */
-  const searchOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+  const searchOnFocus = (e: FocusEvent<HTMLInputElement>) => {
     onFocus?.(e);
     openPopover();
   };
 
-  const searchOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+  const searchOnBlur = (e: FocusEvent<HTMLInputElement>) => {
     onBlur?.(e);
     if (!popoverRef?.contains(e.relatedTarget as HTMLElement)) {
       closePopover();

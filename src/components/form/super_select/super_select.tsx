@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, FocusEvent } from 'react';
+import { Component, FocusEvent, KeyboardEvent } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
@@ -182,7 +182,7 @@ export class EuiSuperSelect<T extends string> extends Component<
     }
   };
 
-  onSelectKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+  onSelectKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
     if (event.key === keys.ARROW_UP || event.key === keys.ARROW_DOWN) {
       event.preventDefault();
       event.stopPropagation();
@@ -190,7 +190,7 @@ export class EuiSuperSelect<T extends string> extends Component<
     }
   };
 
-  onItemKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+  onItemKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
     switch (event.key) {
       case keys.ESCAPE:
         // close the popover and prevent ancestors from handling

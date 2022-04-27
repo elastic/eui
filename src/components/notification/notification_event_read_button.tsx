@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { EuiButtonIcon, EuiButtonIconProps } from '../button';
 import { useEuiI18n } from '../i18n';
 import classNames from 'classnames';

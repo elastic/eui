@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FocusEvent } from 'react';
+import { FocusEvent } from 'react';
 import { render, shallow } from 'enzyme';
 import { CollapsedItemActions } from './collapsed_item_actions';
 import { Action } from './action_types';

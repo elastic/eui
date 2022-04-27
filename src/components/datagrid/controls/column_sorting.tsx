@@ -7,7 +7,7 @@
  */
 
 import classNames from 'classnames';
-import React, { Fragment, ReactNode, useEffect, useState } from 'react';
+import { Fragment, ReactNode, useEffect, useState } from 'react';
 import { DropResult } from 'react-beautiful-dnd';
 import { EuiButtonEmpty } from '../../button';
 import {

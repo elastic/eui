@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
+  Fragment,
   ChangeEvent,
   InputHTMLAttributes,
   FunctionComponent,
@@ -42,7 +43,7 @@ export const EuiHue: FunctionComponent<EuiHueProps> = ({
   };
   const classes = classNames('euiHue', className);
   return (
-    <React.Fragment>
+    <Fragment>
       <EuiScreenReaderOnly>
         <label htmlFor={`${id}-hue`}>
           <EuiI18n
@@ -67,6 +68,6 @@ export const EuiHue: FunctionComponent<EuiHueProps> = ({
           {...rest}
         />
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 };

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ReactNode, Key } from 'react';
+import { Component, ReactNode, Key } from 'react';
 import classNames from 'classnames';
 
 import { EuiButtonEmpty } from '../../button/button_empty';

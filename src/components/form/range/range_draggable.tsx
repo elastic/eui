@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import { CSSProperties, FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { useMouseMove } from '../../../services';
@@ -37,7 +37,7 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
   value,
   ...rest
 }) => {
-  const outerStyle: React.CSSProperties = {
+  const outerStyle: CSSProperties = {
     left: `calc(${lowerPosition})`,
     right: `calc(100% - ${upperPosition} - 16px)`,
   };

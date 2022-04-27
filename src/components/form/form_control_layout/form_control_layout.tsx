@@ -6,10 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
+  Children,
   cloneElement,
   Component,
   HTMLAttributes,
+  Key,
   ReactElement,
   ReactNode,
 } from 'react';
@@ -127,7 +129,7 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
       return this.createFormLabel(side, nodes, inputId);
     }
 
-    const appendNodes = React.Children.map(nodes, (item, index) =>
+    const appendNodes = Children.map(nodes, (item, index) =>
       typeof item === 'string'
         ? this.createFormLabel(side, item, inputId)
         : this.createSideNode(side, item, index)
@@ -151,11 +153,7 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
     );
   }
 
-  createSideNode(
-    side: 'append' | 'prepend',
-    node: ReactElement,
-    key: React.Key
-  ) {
+  createSideNode(side: 'append' | 'prepend', node: ReactElement, key: Key) {
     return cloneElement(node, {
       className: classNames(
         `euiFormControlLayout__${side}`,

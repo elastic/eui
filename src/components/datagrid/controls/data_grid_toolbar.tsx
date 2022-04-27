@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import { isValidElement } from 'react';
 import {
   EuiDataGridProps,
   EuiDataGridToolbarProps,
@@ -132,11 +132,11 @@ export function renderAdditionalControls(
     if (leftPositionObj?.append) {
       return leftPositionObj.append;
     }
-    if (React.isValidElement(additionalControlsObj?.left)) {
+    if (isValidElement(additionalControlsObj?.left)) {
       // If the consumer passed a single ReactNode to `additionalControls.left`, default to the left append position
       return additionalControlsObj.left;
     }
-    if (React.isValidElement(additionalControls)) {
+    if (isValidElement(additionalControls)) {
       // API backwards compatability: if the consumer passed a single ReactNode to `additionalControls`, default to the the left append position
       return additionalControls;
     }

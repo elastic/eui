@@ -6,11 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   forwardRef,
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   MouseEventHandler,
+  Ref,
 } from 'react';
 import classNames from 'classnames';
 import { EuiIcon } from '../icon';
@@ -138,7 +139,7 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
 
       return (
         <button
-          ref={ref as React.Ref<HTMLButtonElement>}
+          ref={ref as Ref<HTMLButtonElement>}
           {...(buttonProps as EuiLinkButtonProps)}
         >
           {children}
@@ -160,7 +161,7 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
 
     return (
       <a
-        ref={ref as React.Ref<HTMLAnchorElement>}
+        ref={ref as Ref<HTMLAnchorElement>}
         {...(anchorProps as EuiLinkAnchorProps)}
       >
         {children}

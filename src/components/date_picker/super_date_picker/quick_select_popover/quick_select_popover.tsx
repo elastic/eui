@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, Fragment } from 'react';
+import { cloneElement, Component, Fragment } from 'react';
 
 import { EuiButtonEmpty } from '../../../button';
 import { EuiIcon } from '../../../icon';
@@ -137,7 +137,7 @@ export class EuiQuickSelectPopover extends Component<
           </EuiTitle>
           <EuiSpacer size="xs" />
           <EuiText size="s" className="euiQuickSelectPopover__section">
-            {React.cloneElement(content, { applyTime: this.applyTime })}
+            {cloneElement(content, { applyTime: this.applyTime })}
           </EuiText>
         </Fragment>
       );

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
+import { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { EuiPanel, _EuiPanelProps } from '../panel';
 import { EuiBreakpointSize } from '../../../services/breakpoint';

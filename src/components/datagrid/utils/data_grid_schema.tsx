@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { EuiI18n } from '../../i18n'; // Note: this file must be named data_grid_schema to match i18n tokens
 import {
   EuiDataGridColumn,

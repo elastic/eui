@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ReactNode } from 'react';
+import { Component, ReactNode } from 'react';
 import { isArray, isNil } from '../../../services/predicate';
 import { ExclusiveUnion } from '../../common';
 import { EuiPopover, EuiPopoverTitle } from '../../popover';

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import { EmotionCache } from '@emotion/react';
 
 import {

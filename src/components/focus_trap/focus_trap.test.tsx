@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { EventHandler } from 'react';
+import { EventHandler, MouseEvent } from 'react';
 import { render, mount } from 'enzyme';
 
 import { findTestSubject, takeMountedSnapshot } from '../../test';
@@ -113,17 +113,13 @@ describe('EuiFocusTrap', () => {
       // enzyme doesn't mount the components into the global jsdom `document`
       // but that's where the click detector listener is,
       // pass the top-level mounted component's click event on to document
-      const triggerDocumentMouseDown: EventHandler<any> = (
-        e: React.MouseEvent
-      ) => {
+      const triggerDocumentMouseDown: EventHandler<any> = (e: MouseEvent) => {
         const event = new Event('mousedown') as EuiEvent;
         event.euiGeneratedBy = ((e.nativeEvent as unknown) as EuiEvent).euiGeneratedBy;
         document.dispatchEvent(event);
       };
 
-      const triggerDocumentMouseUp: EventHandler<any> = (
-        e: React.MouseEvent
-      ) => {
+      const triggerDocumentMouseUp: EventHandler<any> = (e: MouseEvent) => {
         const event = new Event('mousedown') as EuiEvent;
         event.euiGeneratedBy = ((e.nativeEvent as unknown) as EuiEvent).euiGeneratedBy;
         document.dispatchEvent(event);

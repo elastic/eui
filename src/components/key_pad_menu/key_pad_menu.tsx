@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+import { Children, FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps, ExclusiveUnion } from '../common';
@@ -73,7 +73,7 @@ export const EuiKeyPadMenu: FunctionComponent<EuiKeyPadMenuProps> = ({
     </fieldset>
   ) : (
     <ul className={classes} {...rest}>
-      {React.Children.map(children, (child) => (
+      {Children.map(children, (child) => (
         <li>{child}</li>
       ))}
     </ul>

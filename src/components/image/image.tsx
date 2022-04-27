@@ -6,11 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   FunctionComponent,
   ImgHTMLAttributes,
   useState,
   ReactNode,
+  CSSProperties,
+  KeyboardEvent,
 } from 'react';
 import classNames from 'classnames';
 
@@ -130,7 +132,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
 }) => {
   const [isFullScreenActive, setIsFullScreenActive] = useState(false);
 
-  const onKeyDown = (event: React.KeyboardEvent) => {
+  const onKeyDown = (event: KeyboardEvent) => {
     if (event.key === keys.ESCAPE) {
       event.preventDefault();
       event.stopPropagation();
@@ -146,7 +148,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     setIsFullScreenActive(true);
   };
 
-  const customStyle: React.CSSProperties = { ...style };
+  const customStyle: CSSProperties = { ...style };
 
   let classes = classNames(
     'euiImage',

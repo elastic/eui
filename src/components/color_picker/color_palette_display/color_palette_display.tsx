@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import classnames from 'classnames';
 import { ExclusiveUnion, keysOf } from '../../common';
 import { ColorStop } from '../color_stops';

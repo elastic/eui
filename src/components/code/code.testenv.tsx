@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 export const EuiCode = ({
   children,
   'data-test-subj': dataTestSubj,

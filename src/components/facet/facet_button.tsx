@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
+  isValidElement,
+  cloneElement,
   FunctionComponent,
   HTMLAttributes,
   MouseEventHandler,
@@ -96,8 +98,8 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
   // Add an icon to the button if one exists.
   let buttonIcon: ReactElement;
 
-  if (React.isValidElement<{ className?: string }>(icon)) {
-    buttonIcon = React.cloneElement(icon, {
+  if (isValidElement<{ className?: string }>(icon)) {
+    buttonIcon = cloneElement(icon, {
       className: classNames(icon.props.className, 'euiFacetButton__icon'),
     });
   }

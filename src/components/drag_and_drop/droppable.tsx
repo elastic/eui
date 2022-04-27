@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
+  createContext,
   CSSProperties,
   FunctionComponent,
   ReactElement,
@@ -53,7 +54,7 @@ export interface EuiDroppableProps
   grow?: boolean;
 }
 
-export const EuiDroppableContext = React.createContext({
+export const EuiDroppableContext = createContext({
   cloneItems: false,
 });
 

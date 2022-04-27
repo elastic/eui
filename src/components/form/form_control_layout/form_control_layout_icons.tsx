@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Fragment, Component } from 'react';
+import { Fragment, Component } from 'react';
 
 import { EuiLoadingSpinner } from '../../loading';
 import {

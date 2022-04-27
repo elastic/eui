@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { mount, render, shallow } from 'enzyme';
 
 import { mockRowHeightUtils } from '../utils/__mocks__/row_heights';

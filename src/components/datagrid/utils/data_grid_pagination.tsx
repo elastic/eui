@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useCallback, useContext } from 'react';
+import { useCallback, useContext } from 'react';
 import { useEuiI18n } from '../../i18n'; // Note: this file must be named data_grid_pagination to match i18n tokens
 import { EuiTablePagination } from '../../table/table_pagination';
 import { EuiDataGridPaginationRendererProps } from '../data_grid_types';

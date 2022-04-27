@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { EuiSpacer } from '../spacer';
 import { EuiTablePagination } from '../table';
 import {

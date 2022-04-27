@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ReactElement } from 'react';
+import { Component, ReactElement } from 'react';
 import { isString } from '../../services/predicate';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSearchBox, SchemaType } from './search_box';

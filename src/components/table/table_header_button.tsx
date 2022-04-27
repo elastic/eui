@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { ButtonHTMLAttributes, FunctionComponent } from 'react';
+import { ButtonHTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { EuiInnerText } from '../inner_text';

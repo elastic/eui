@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent, ReactNode } from 'react';
+import { HTMLAttributes, FunctionComponent, ReactNode } from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
 import { EuiScreenReaderOnly } from '../../accessibility';

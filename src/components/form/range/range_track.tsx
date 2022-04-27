@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, MouseEventHandler, HTMLAttributes } from 'react';
+import { Component, MouseEventHandler, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import range from 'lodash/range';

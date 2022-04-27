@@ -23,13 +23,13 @@
  * 
  */
 
-import React from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import Day from "./day";
 import WeekNumber from "./week_number";
 import * as utils from "./date_utils";
 
-export default class Week extends React.Component {
+export default class Week extends Component {
   static get defaultProps() {
     return {
       shouldCloseOnSelect: true

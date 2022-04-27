@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { IsFilter, IsFilterConfigType } from './is_filter';
 import {
   FieldValueSelectionFilter,

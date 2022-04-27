@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { createContext, useContext } from 'react';
+import { createContext, useContext } from 'react';
 import { EuiResizableContainerRegistry } from './types';
 interface ContainerContextProps {
   registry?: EuiResizableContainerRegistry;

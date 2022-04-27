@@ -6,7 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
+import {
+  Children,
+  isValidElement,
+  cloneElement,
+  FunctionComponent,
+  HTMLAttributes,
+  CSSProperties,
+} from 'react';
 import classNames from 'classnames';
 
 import { EuiListGroupItem, EuiListGroupItemProps } from './list_group_item';
@@ -133,9 +140,9 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
     });
   } else {
     if (showToolTips) {
-      childrenOrListItems = React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-          return React.cloneElement<Partial<EuiListGroupItemProps>>(child, {
+      childrenOrListItems = Children.map(children, (child) => {
+        if (isValidElement(child)) {
+          return cloneElement<Partial<EuiListGroupItemProps>>(child, {
             showToolTip: true,
           });
         }

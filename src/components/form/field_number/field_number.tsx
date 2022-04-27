@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { InputHTMLAttributes, Ref, FunctionComponent } from 'react';
+import { InputHTMLAttributes, Ref, FunctionComponent } from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
 

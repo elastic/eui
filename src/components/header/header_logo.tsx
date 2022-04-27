@@ -6,11 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  AnchorHTMLAttributes,
-  ReactNode,
-} from 'react';
+import { FunctionComponent, AnchorHTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { EuiIcon, IconType } from '../icon';

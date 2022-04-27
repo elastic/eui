@@ -23,7 +23,7 @@
  * 
  */
 
-import React from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import MonthYearDropdownOptions from "./month_year_dropdown_options";
 import {
@@ -37,7 +37,7 @@ import {
   newDate
 } from "./date_utils";
 
-export default class MonthYearDropdown extends React.Component {
+export default class MonthYearDropdown extends Component {
   static propTypes = {
     dropdownMode: PropTypes.oneOf(["scroll", "select"]).isRequired,
     dateFormat: PropTypes.string.isRequired,

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useEffect, useCallback, ChangeEvent } from 'react';
+import { useEffect, useCallback, ChangeEvent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { EuiFieldSearch, EuiFieldSearchProps } from '../../form';

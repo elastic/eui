@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   Fragment,
   HTMLAttributes,
   AnchorHTMLAttributes,
@@ -15,6 +15,8 @@ import React, {
   ReactElement,
   MouseEventHandler,
   FunctionComponent,
+  Ref,
+  cloneElement,
 } from 'react';
 import classNames from 'classnames';
 
@@ -136,7 +138,7 @@ export type EuiListGroupItemProps = CommonProps &
      * Pass-through ref reference specifically for targeting
      * instances where the item content is rendered as a `button`
      */
-    buttonRef?: React.Ref<HTMLButtonElement>;
+    buttonRef?: Ref<HTMLButtonElement>;
   };
 
 export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
@@ -194,7 +196,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       );
     }
   } else if (icon) {
-    iconNode = React.cloneElement(icon, {
+    iconNode = cloneElement(icon, {
       className: classNames('euiListGroupItem__icon', icon.props.className),
     });
   }

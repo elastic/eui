@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { EventHandler, MouseEvent as ReactMouseEvent } from 'react';
+import { EventHandler, MouseEvent as ReactMouseEvent } from 'react';
 import { render, mount } from 'enzyme';
 
 import { EuiOutsideClickDetector, EuiEvent } from './outside_click_detector';

@@ -8,8 +8,6 @@
 
 /// <reference types="../../../cypress/support"/>
 
-import React from 'react';
-
 import { EuiPopover } from '../popover';
 import { EuiContextMenu } from './context_menu';
 import { EuiContextMenuItem } from './context_menu_item';

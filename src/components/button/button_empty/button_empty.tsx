@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, Ref } from 'react';
+import { FunctionComponent, Ref } from 'react';
 import classNames from 'classnames';
 
 import {

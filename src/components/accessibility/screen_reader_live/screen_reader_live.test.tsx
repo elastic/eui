@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { mount, render } from 'enzyme';
 
 import { findTestSubject } from '../../../test';

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { EuiI18n } from '../../../i18n';
 import { EuiFlexGrid, EuiFlexItem } from '../../../flex';
 import { EuiTitle } from '../../../title';

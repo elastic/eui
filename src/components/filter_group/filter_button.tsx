@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Fragment, FunctionComponent } from 'react';
+import { Fragment, FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 import { useEuiI18n } from '../i18n';

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useMemo } from 'react';
+import { FunctionComponent, useMemo } from 'react';
 import unified, { PluggableList } from 'unified';
 import { VFileContents } from 'vfile';
 import classNames from 'classnames';

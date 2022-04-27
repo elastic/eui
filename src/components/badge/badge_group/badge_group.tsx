@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { forwardRef, HTMLAttributes, Ref, ReactNode } from 'react';
+import { Children, forwardRef, HTMLAttributes, Ref, ReactNode } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../../common';
 
@@ -47,7 +47,7 @@ export const EuiBadgeGroup = forwardRef<
 
     return (
       <div className={classes} ref={ref} {...rest}>
-        {React.Children.map(children, (child: ReactNode) => (
+        {Children.map(children, (child: ReactNode) => (
           <span className="euiBadgeGroup__item">{child}</span>
         ))}
       </div>

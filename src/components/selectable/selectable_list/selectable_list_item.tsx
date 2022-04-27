@@ -7,7 +7,7 @@
  */
 
 import classNames from 'classnames';
-import React, { Component, LiHTMLAttributes } from 'react';
+import { Component, LiHTMLAttributes, ReactNode } from 'react';
 import { CommonProps, keysOf } from '../../common';
 import { EuiI18n } from '../../i18n';
 import { EuiIcon, IconColor, IconType } from '../../icon';
@@ -35,7 +35,7 @@ export type EuiSelectablePaddingSize = typeof PADDING_SIZES[number];
 
 export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
   CommonProps & {
-    children?: React.ReactNode;
+    children?: ReactNode;
     /**
      * Applies an icon and visual styling to activated items
      */
@@ -49,8 +49,8 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
      */
     isFocused?: boolean;
     disabled?: boolean;
-    prepend?: React.ReactNode;
-    append?: React.ReactNode;
+    prepend?: ReactNode;
+    append?: ReactNode;
     allowExclusions?: boolean;
     /**
      * When enabled by setting to either `true` or passing custom a custom badge,
@@ -127,7 +127,7 @@ export class EuiSelectableListItem extends Component<
       [`euiSelectableListItem__text--${textWrap}`]: textWrap,
     });
 
-    let optionIcon: React.ReactNode;
+    let optionIcon: ReactNode;
     if (showIcons) {
       const { icon, color } = resolveIconAndColor(checked);
       optionIcon = (
@@ -139,8 +139,8 @@ export class EuiSelectableListItem extends Component<
       );
     }
 
-    let state: React.ReactNode;
-    let instruction: React.ReactNode;
+    let state: ReactNode;
+    let instruction: ReactNode;
     if (allowExclusions && checked === 'on') {
       state = (
         <EuiI18n
@@ -192,16 +192,16 @@ export class EuiSelectableListItem extends Component<
       ) : undefined;
     }
 
-    let prependNode: React.ReactNode;
+    let prependNode: ReactNode;
     if (prepend) {
       prependNode = (
         <span className="euiSelectableListItem__prepend">{prepend}</span>
       );
     }
 
-    let appendNode: React.ReactNode;
+    let appendNode: ReactNode;
     if (append || !!onFocusBadge) {
-      let onFocusBadgeNode: React.ReactNode;
+      let onFocusBadgeNode: ReactNode;
       const defaultOnFocusBadgeProps: EuiBadgeProps = {
         'aria-hidden': true,
         iconType: 'returnKey',

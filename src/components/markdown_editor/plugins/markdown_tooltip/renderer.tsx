@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { EuiMarkdownAstNodePosition } from '../../markdown_types';
 import { EuiToolTip } from '../../../tool_tip';
 import { EuiIcon } from '../../../icon';

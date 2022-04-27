@@ -6,12 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   ButtonHTMLAttributes,
   HTMLAttributes,
   FunctionComponent,
   ReactNode,
   useCallback,
+  BaseSyntheticEvent,
+  MouseEvent,
 } from 'react';
 import classNames from 'classnames';
 
@@ -19,8 +21,8 @@ import { CommonProps } from '../../common';
 import { useGeneratedHtmlId } from '../../../services/accessibility';
 import { EuiIcon } from '../../icon';
 
-export type EuiSwitchEvent = React.BaseSyntheticEvent<
-  React.MouseEvent<HTMLButtonElement>,
+export type EuiSwitchEvent = BaseSyntheticEvent<
+  MouseEvent<HTMLButtonElement>,
   HTMLButtonElement,
   EventTarget & {
     checked: boolean;
@@ -68,7 +70,7 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
   const labelId = useGeneratedHtmlId({ conditionalId: labelProps?.id });
 
   const onClick = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement | HTMLParagraphElement>) => {
+    (e: MouseEvent<HTMLButtonElement | HTMLParagraphElement>) => {
       if (disabled) {
         return;
       }
@@ -112,7 +114,7 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
           <span className="euiSwitch__thumb" />
           <span className="euiSwitch__track">
             {!compressed && (
-              <React.Fragment>
+              <>
                 <EuiIcon type="cross" size="m" className="euiSwitch__icon" />
 
                 <EuiIcon
@@ -120,7 +122,7 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
                   size="m"
                   className="euiSwitch__icon euiSwitch__icon--checked"
                 />
-              </React.Fragment>
+              </>
             )}
           </span>
         </span>

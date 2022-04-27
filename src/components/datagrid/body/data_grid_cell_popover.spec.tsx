@@ -8,7 +8,6 @@
 
 /// <reference types="../../../../cypress/support"/>
 
-import React from 'react';
 import { EuiDataGrid, EuiDataGridProps } from '../';
 
 const baseProps: EuiDataGridProps = {

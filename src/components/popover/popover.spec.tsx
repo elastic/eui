@@ -8,7 +8,7 @@
 
 /// <reference types="../../../cypress/support"/>
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { EuiButton } from '../button';
 import { EuiPopover } from './popover';

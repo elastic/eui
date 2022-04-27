@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { render } from 'enzyme';
 
 import { EuiShowForBreakpoints, EuiShowFor } from './show_for';

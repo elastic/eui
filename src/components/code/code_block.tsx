@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   CSSProperties,
   HTMLAttributes,
   FunctionComponent,
@@ -402,7 +402,7 @@ const useFullScreen = ({
 
   const showFullScreenButton = !!overflowHeight;
 
-  const FullScreenButton: React.FC = () => {
+  const FullScreenButton: FunctionComponent = () => {
     if (!showFullScreenButton) return null;
     return (
       <EuiI18n
@@ -425,7 +425,7 @@ const useFullScreen = ({
     );
   };
 
-  const FullScreenDisplay: React.FC<{ className: string }> = ({
+  const FullScreenDisplay: FunctionComponent<{ className: string }> = ({
     children,
     className,
   }) => {

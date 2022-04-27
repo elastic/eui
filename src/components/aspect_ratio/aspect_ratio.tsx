@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
+  cloneElement,
   FunctionComponent,
   HTMLAttributes,
   ReactElement,
@@ -54,7 +55,7 @@ export const EuiAspectRatio: FunctionComponent<EuiAspectRatioProps> = ({
     ...rest,
   };
 
-  const content = React.cloneElement(children, props);
+  const content = cloneElement(children, props);
   let contentwithoptionalwrap = content;
   if (maxWidth) {
     contentwithoptionalwrap = (

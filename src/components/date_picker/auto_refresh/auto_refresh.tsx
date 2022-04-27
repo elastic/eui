@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
 import { EuiFieldText, EuiFieldTextProps } from '../../form';
 import {

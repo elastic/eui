@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { render } from 'enzyme';
 import { EuiFormControlLayoutClearButton } from './form_control_layout_clear_button';
 import { requiredProps } from '../../../test';

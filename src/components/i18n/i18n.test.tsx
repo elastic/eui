@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactChild } from 'react';
+import { ReactChild } from 'react';
 import { mount } from 'enzyme';
 import { EuiContext } from '../context';
 import { EuiI18n, useEuiI18n } from './i18n';

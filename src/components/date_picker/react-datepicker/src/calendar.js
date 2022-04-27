@@ -28,7 +28,7 @@ import MonthDropdown from "./month_dropdown";
 import MonthYearDropdown from "./month_year_dropdown";
 import Month from "./month";
 import Time from "./time";
-import React from "react";
+import { forwardRef, createRef, Component } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import CalendarContainer from "./calendar_container";
@@ -62,7 +62,7 @@ import {
 
 import { EuiFocusTrap } from '../../../focus_trap';
 
-const FocusTrapContainer = React.forwardRef((props, ref) => <div ref={ref} className="react-datepicker__focusTrap" {...props}/>);
+const FocusTrapContainer = forwardRef((props, ref) => <div ref={ref} className="react-datepicker__focusTrap" {...props}/>);
 
 const DROPDOWN_FOCUS_CLASSNAMES = [
   "react-datepicker__year-select",
@@ -77,7 +77,7 @@ const isDropdownSelect = (element = {}) => {
   );
 };
 
-export default class Calendar extends React.Component {
+export default class Calendar extends Component {
   static propTypes = {
     adjustDateOnChange: PropTypes.bool,
     className: PropTypes.string,
@@ -171,8 +171,8 @@ export default class Calendar extends React.Component {
       monthContainer: null,
       pauseFocusTrap: false
     };
-    this.monthRef = React.createRef();
-    this.yearRef = React.createRef();
+    this.monthRef = createRef();
+    this.yearRef = createRef();
   }
 
   componentDidMount() {

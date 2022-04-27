@@ -6,13 +6,16 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   FunctionComponent,
   ReactNode,
   useState,
   CSSProperties,
   ReactElement,
   useEffect,
+  FocusEvent,
+  FormEvent,
+  cloneElement,
 } from 'react';
 import classNames from 'classnames';
 import { useCombinedRefs, throttle } from '../../../services';
@@ -141,19 +144,19 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
   /**
    * Search helpers
    */
-  const searchOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+  const searchOnFocus = (e: FocusEvent<HTMLInputElement>) => {
     searchProps && searchProps.onFocus && searchProps.onFocus(e);
     if (canShowPopoverButton) return;
 
     setPopoverIsOpen(true);
   };
 
-  const onSearchInput = (e: React.FormEvent<HTMLInputElement>) => {
+  const onSearchInput = (e: FormEvent<HTMLInputElement>) => {
     searchProps && searchProps.onInput && searchProps.onInput(e);
     setPopoverIsOpen(true);
   };
 
-  const searchOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+  const searchOnBlur = (e: FocusEvent<HTMLInputElement>) => {
     searchProps && searchProps.onBlur && searchProps.onBlur(e);
     if (canShowPopoverButton) return;
 
@@ -211,7 +214,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
    */
   let popoverTrigger: ReactElement;
   if (popoverButton && canShowPopoverButton) {
-    popoverTrigger = React.cloneElement(popoverButton, {
+    popoverTrigger = cloneElement(popoverButton, {
       ...popoverButton.props,
       onClick: togglePopover,
       onKeyDown: (e: KeyboardEvent) => {

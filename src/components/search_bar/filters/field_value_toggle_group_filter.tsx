@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { EuiFilterButton } from '../../filter_group';
 import { Query } from '../query';
 import { OperatorType } from '../query/ast';

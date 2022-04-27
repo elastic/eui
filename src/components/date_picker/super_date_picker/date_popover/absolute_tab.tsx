@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ChangeEventHandler } from 'react';
+import { Component, ChangeEventHandler } from 'react';
 
 import moment, { Moment, LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 

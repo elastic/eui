@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent, Ref } from 'react';
+import { HTMLAttributes, FunctionComponent, Ref } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 import { EuiLoadingSpinner } from '../loading';

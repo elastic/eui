@@ -7,7 +7,7 @@
  */
 
 import classnames from 'classnames';
-import React, {
+import {
   FunctionComponent,
   useContext,
   useEffect,

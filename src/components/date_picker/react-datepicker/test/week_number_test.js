@@ -23,7 +23,6 @@
  * 
  */
 
-import React from "react";
 import WeekNumber from "../src/week_number";
 import { shallow } from "enzyme";
 import sinon from "sinon";

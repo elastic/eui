@@ -6,14 +6,16 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   AriaAttributes,
   FunctionComponent,
   HTMLAttributes,
+  MouseEvent as ReactMouseEvent,
   MouseEventHandler,
   ReactNode,
   Ref,
 } from 'react';
+
 import classNames from 'classnames';
 import chroma from 'chroma-js';
 import { CommonProps, ExclusiveUnion, keysOf, PropsOf } from '../common';
@@ -216,8 +218,8 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
     target?: string;
     rel?: string;
     onClick?:
-      | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
-      | ((event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void);
+      | ((event: ReactMouseEvent<HTMLButtonElement, MouseEvent>) => void)
+      | ((event: ReactMouseEvent<HTMLAnchorElement, MouseEvent>) => void);
   } = {};
 
   if (href && !isDisabled) {

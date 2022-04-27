@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { render, mount } from 'enzyme';
 
 import { EuiColorStops } from './color_stops';

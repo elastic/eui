@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { PropsWithChildren, ComponentType, ComponentProps } from 'react';
+import { PropsWithChildren, ComponentType, ComponentProps } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../../common';
 import {

@@ -6,11 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   SelectHTMLAttributes,
   OptionHTMLAttributes,
   Ref,
   FunctionComponent,
+  MouseEvent,
+  ReactNode,
 } from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
@@ -23,7 +25,7 @@ import { getFormControlClassNameForIconCount } from '../form_control_layout/_num
 
 export interface EuiSelectOption
   extends OptionHTMLAttributes<HTMLOptionElement> {
-  text: React.ReactNode;
+  text: ReactNode;
 }
 
 export type EuiSelectProps = Omit<
@@ -83,7 +85,7 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
   // value needs to fallback to an empty string to interact properly with `defaultValue`
   const value = hasNoInitialSelection ? _value ?? '' : _value;
 
-  const handleMouseUp = (e: React.MouseEvent<HTMLSelectElement>) => {
+  const handleMouseUp = (e: MouseEvent<HTMLSelectElement>) => {
     // Normalizes cross-browser mouse eventing by preventing propagation,
     // notably for use in conjunction with EuiOutsideClickDetector.
     // See https://github.com/elastic/eui/pull/1926 for full discussion on

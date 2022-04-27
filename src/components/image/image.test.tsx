@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { render, mount, ReactWrapper } from 'enzyme';
 import { requiredProps, findTestSubject } from '../../test';
 import { act } from 'react-dom/test-utils';

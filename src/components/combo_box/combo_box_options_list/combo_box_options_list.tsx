@@ -6,12 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  Component,
-  ComponentProps,
-  ReactNode,
-  RefCallback,
-} from 'react';
+import { Component, ComponentProps, ReactNode, RefCallback } from 'react';
 import classNames from 'classnames';
 import {
   FixedSizeList,

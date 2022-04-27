@@ -8,7 +8,7 @@
 
 /// <reference types="../../../../cypress/support"/>
 
-import React, { useState, createRef, forwardRef } from 'react';
+import { useState, createRef, forwardRef } from 'react';
 import { EuiDataGrid } from '../';
 import { EuiDataGridRefProps } from '../data_grid_types';
 

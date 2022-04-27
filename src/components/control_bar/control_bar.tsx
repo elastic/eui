@@ -7,10 +7,12 @@
  */
 
 import classNames from 'classnames';
-import React, {
+
+import {
   ButtonHTMLAttributes,
   Component,
   HTMLAttributes,
+  MouseEvent as ReactMouseEvent,
   MouseEventHandler,
   Ref,
   ReactNode,
@@ -287,7 +289,7 @@ export class EuiControlBar extends Component<
 
     const handleTabClick = (
       control: TabControl,
-      e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+      e: ReactMouseEvent<HTMLButtonElement, MouseEvent>
     ) => {
       this.setState(
         {

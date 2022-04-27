@@ -7,7 +7,7 @@
  */
 
 import classNames from 'classnames';
-import React, {
+import {
   Component,
   createRef,
   FocusEvent,

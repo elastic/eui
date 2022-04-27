@@ -7,7 +7,6 @@
  */
 /* eslint-disable no-irregular-whitespace */
 
-import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 

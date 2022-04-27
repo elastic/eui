@@ -8,8 +8,6 @@
 
 /// <reference types="../../../cypress/support"/>
 
-import React from 'react';
-
 import { EuiSuggest, EuiSuggestionProps } from './suggest';
 
 const sampleItems: EuiSuggestionProps[] = [

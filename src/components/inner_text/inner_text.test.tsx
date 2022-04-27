@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useState, useEffect } from 'react';
+import { createElement, useState, useEffect } from 'react';
 import { act } from 'react-dom/test-utils';
 import { render, mount } from 'enzyme';
 import { findTestSubject, requiredProps } from '../../test';
@@ -69,7 +69,7 @@ describe('useInnerText', () => {
       [ref, innerText] = useInnerText();
       return (
         <div>
-          {React.createElement(
+          {createElement(
             type,
             {
               ref,

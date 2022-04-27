@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useMemo, FunctionComponent } from 'react';
+import { useMemo, FunctionComponent } from 'react';
 import { highlight, RefractorNode } from 'refractor';
 import classNames from 'classnames';
 import {

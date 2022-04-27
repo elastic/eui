@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
+import {
+  FunctionComponent,
+  ReactNode,
+  HTMLAttributes,
+  KeyboardEvent,
+  MouseEvent,
+} from 'react';
 import classnames from 'classnames';
 
 import { keys } from '../../services';
@@ -24,9 +30,7 @@ export interface EuiModalProps extends HTMLAttributes<HTMLDivElement> {
    */
   children: ReactNode;
   onClose: (
-    event?:
-      | React.KeyboardEvent<HTMLDivElement>
-      | React.MouseEvent<HTMLButtonElement>
+    event?: KeyboardEvent<HTMLDivElement> | MouseEvent<HTMLButtonElement>
   ) => void;
   /**
    * Sets the max-width of the modal.
@@ -52,7 +56,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
   style,
   ...rest
 }) => {
-  const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key === keys.ESCAPE) {
       event.preventDefault();
       event.stopPropagation();

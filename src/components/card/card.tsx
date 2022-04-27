@@ -6,8 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
+  cloneElement,
   FunctionComponent,
+  MouseEvent,
+  MouseEventHandler,
   ReactElement,
   ReactNode,
   isValidElement,
@@ -115,8 +118,8 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
      * Use only if you want to forego a button in the footer and make the whole card clickable
      */
     onClick?:
-      | React.MouseEventHandler<HTMLButtonElement>
-      | React.MouseEventHandler<HTMLAnchorElement>;
+      | MouseEventHandler<HTMLButtonElement>
+      | MouseEventHandler<HTMLAnchorElement>;
     isDisabled?: boolean;
     href?: string;
     target?: string;
@@ -190,7 +193,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
    * *Card Accessibility: The redundant click event https://inclusive-components.design/cards/*
    */
   let link: HTMLAnchorElement | HTMLButtonElement | null = null;
-  const outerOnClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const outerOnClick = (e: MouseEvent<HTMLDivElement>) => {
     if (link && link !== e.target) {
       link.click();
     }
@@ -249,7 +252,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   let iconNode;
   if (icon) {
-    iconNode = React.cloneElement(icon, {
+    iconNode = cloneElement(icon, {
       className: classNames(icon.props.className, 'euiCard__icon'),
     });
   }
@@ -320,7 +323,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     theTitle = (
       <a
         className="euiCard__titleAnchor"
-        onClick={onClick as React.MouseEventHandler<HTMLAnchorElement>}
+        onClick={onClick as MouseEventHandler<HTMLAnchorElement>}
         href={href}
         target={target}
         aria-describedby={ariaDesc}
@@ -336,7 +339,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     theTitle = (
       <button
         className="euiCard__titleButton"
-        onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
+        onClick={onClick as MouseEventHandler<HTMLButtonElement>}
         disabled={isDisabled}
         aria-describedby={`${optionalBetaBadgeID} ${ariaDesc}`}
         ref={(node) => {

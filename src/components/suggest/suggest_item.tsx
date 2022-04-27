@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
+  Fragment,
   FunctionComponent,
   HTMLAttributes,
   ButtonHTMLAttributes,
@@ -170,7 +171,7 @@ export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
   }
 
   const innerContent = (
-    <React.Fragment>
+    <Fragment>
       <span className={`euiSuggestItem__type ${typeColorClass}`}>
         <EuiIcon
           type={type.iconType}
@@ -185,7 +186,7 @@ export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
           {description}
         </span>
       )}
-    </React.Fragment>
+    </Fragment>
   );
 
   if (onClick) {

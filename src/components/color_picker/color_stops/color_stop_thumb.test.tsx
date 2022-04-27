@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { render } from 'enzyme';
 
 import { EuiColorStopThumb } from './color_stop_thumb';

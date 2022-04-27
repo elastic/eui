@@ -23,7 +23,7 @@
  * 
  */
 
-import React from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import {
@@ -50,7 +50,7 @@ function doHoursAndMinutesAlign(time1, time2) {
   );
 }
 
-export default class Time extends React.Component {
+export default class Time extends Component {
   static propTypes = {
     format: PropTypes.string,
     includeTimes: PropTypes.array,

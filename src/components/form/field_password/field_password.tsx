@@ -6,11 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   InputHTMLAttributes,
   FunctionComponent,
   useState,
   Ref,
+  MouseEvent,
 } from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
@@ -99,7 +100,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
   const setInputRef = useCombinedRefs([_setInputRef, _inputRef]);
 
   const handleToggle = (
-    event: React.MouseEvent<HTMLButtonElement>,
+    event: MouseEvent<HTMLButtonElement>,
     isVisible: boolean
   ) => {
     setInputType(isVisible ? 'password' : 'text');

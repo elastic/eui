@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, FocusEvent, ReactNode, ReactElement } from 'react';
+import { Component, FocusEvent, ReactNode, ReactElement } from 'react';
 import { isString } from '../../services/predicate';
 import { EuiContextMenuItem, EuiContextMenuPanel } from '../context_menu';
 import { EuiPopover } from '../popover';

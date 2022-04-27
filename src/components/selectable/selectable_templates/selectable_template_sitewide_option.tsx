@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { EuiIconProps, EuiIcon } from '../../../components/icon';

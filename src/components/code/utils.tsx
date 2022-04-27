@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
+  Fragment,
   createElement,
   ReactElement,
   ReactNode,
@@ -72,7 +73,7 @@ export const nodeToHtml = (
     );
   }
 
-  return <React.Fragment key={key}>{node.value}</React.Fragment>;
+  return <Fragment key={key}>{node.value}</Fragment>;
 };
 
 /**

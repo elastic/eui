@@ -8,7 +8,7 @@
 
 /// <reference types="../../../cypress/support"/>
 
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { EuiDataGrid, EuiDataGridColumn, EuiDataGridProps } from './index';
 import { EuiLink } from '../link';
 import { EuiButtonEmpty } from '../button';

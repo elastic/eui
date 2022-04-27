@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, FunctionComponent } from 'react';
+import { Component, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import moment, { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 import dateMath from '@elastic/datemath';

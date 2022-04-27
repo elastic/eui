@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ReactNode, MouseEventHandler } from 'react';
+import { Component, ReactNode, MouseEventHandler } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';

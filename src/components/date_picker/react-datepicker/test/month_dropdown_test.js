@@ -23,7 +23,6 @@
  * 
  */
 
-import React from 'react';
 import MonthDropdown from '../src/month_dropdown.jsx';
 import MonthDropdownOptions from '../src/month_dropdown_options.jsx';
 import { mount } from 'enzyme';

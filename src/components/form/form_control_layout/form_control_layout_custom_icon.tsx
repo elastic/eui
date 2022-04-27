@@ -6,11 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  ButtonHTMLAttributes,
-  FunctionComponent,
-  HTMLAttributes,
-} from 'react';
+import { ButtonHTMLAttributes, FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { EuiIcon, EuiIconProps, IconType } from '../../icon';

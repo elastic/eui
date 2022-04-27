@@ -6,11 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  Component,
-  ChangeEventHandler,
-  KeyboardEventHandler,
-} from 'react';
+import { Component, ChangeEventHandler, KeyboardEventHandler } from 'react';
 import { EuiI18n } from '../../i18n';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiSelect, EuiFieldNumber, EuiFormLabel, EuiSwitch } from '../../form';

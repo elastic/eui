@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { TextareaHTMLAttributes, Ref, FunctionComponent } from 'react';
+import { TextareaHTMLAttributes, Ref, FunctionComponent } from 'react';
 import { CommonProps } from '../../common';
 import classNames from 'classnames';
 import { EuiValidatableControl } from '../validatable_control';

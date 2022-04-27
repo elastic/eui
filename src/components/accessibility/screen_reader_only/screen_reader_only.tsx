@@ -7,7 +7,6 @@
  */
 
 import { cloneElement, ReactElement, FunctionComponent } from 'react';
-import { css } from '@emotion/react';
 import classNames from 'classnames';
 
 export interface EuiScreenReaderOnlyProps {
@@ -20,27 +19,23 @@ export interface EuiScreenReaderOnlyProps {
    * For keyboard navigation, force content to display visually upon focus.
    */
   showOnFocus?: boolean;
-  className?: string;
 }
 
 export const EuiScreenReaderOnly: FunctionComponent<EuiScreenReaderOnlyProps> = ({
   children,
   showOnFocus,
-  className,
 }) => {
   const classes = classNames(
     {
       euiScreenReaderOnly: !showOnFocus,
       'euiScreenReaderOnly--showOnFocus': showOnFocus,
     },
-    className,
     children.props.className
   );
 
   const props = {
     ...children.props,
     className: classes,
-    css: [children.props.css, css({ borderColor: 'coral' })],
   };
 
   return cloneElement(children, props);

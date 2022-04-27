@@ -6,8 +6,10 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
+  MouseEvent as ReactMouseEvent,
   FunctionComponent,
+  KeyboardEvent,
   ReactNode,
   useEffect,
   useState,
@@ -37,11 +39,9 @@ export interface EuiConfirmModalProps
   cancelButtonText?: ReactNode;
   confirmButtonText?: ReactNode;
   onCancel: (
-    event?:
-      | React.KeyboardEvent<HTMLDivElement>
-      | React.MouseEvent<HTMLButtonElement>
+    event?: KeyboardEvent<HTMLDivElement> | ReactMouseEvent<HTMLButtonElement>
   ) => void;
-  onConfirm?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onConfirm?: (event: ReactMouseEvent<HTMLButtonElement, MouseEvent>) => void;
   confirmButtonDisabled?: boolean;
   className?: string;
   defaultFocusedButton?: typeof CONFIRM_BUTTON | typeof CANCEL_BUTTON;

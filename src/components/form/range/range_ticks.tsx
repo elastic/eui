@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
+  useRef,
   ButtonHTMLAttributes,
   MouseEventHandler,
   FunctionComponent,
@@ -130,7 +131,7 @@ const EuiTickValue: FunctionComponent<
 
 export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = (props) => {
   const { ticks, tickSequence, max, min, interval = 1, compressed } = props;
-  const ticksRef = React.useRef<HTMLDivElement | null>(null);
+  const ticksRef = useRef<HTMLDivElement | null>(null);
   // Calculate the width of each tick mark
   const percentageWidth = (interval / (max - min + interval)) * 100;
 

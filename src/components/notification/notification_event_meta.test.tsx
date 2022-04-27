@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { mount, render } from 'enzyme';
 import { EuiNotificationEventMeta } from './notification_event_meta';
 import { EuiContextMenuPanel, EuiContextMenuItem } from '../context_menu';

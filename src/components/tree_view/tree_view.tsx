@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, HTMLAttributes, createContext } from 'react';
+import { Component, HTMLAttributes, createContext } from 'react';
+
+import * as React from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { EuiI18n } from '../i18n';

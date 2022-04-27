@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, cloneElement } from 'react';
+import { Component, cloneElement } from 'react';
 import { CustomItemAction as Action } from './action_types';
 
 export interface CustomItemActionProps<T> {

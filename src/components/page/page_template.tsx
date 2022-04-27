@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { CSSProperties, FunctionComponent, ReactNode } from 'react';
+import { CSSProperties, FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 import { EuiPage, EuiPageProps, SIZES } from './page';
 import { EuiPageSideBar, EuiPageSideBarProps } from './page_side_bar';

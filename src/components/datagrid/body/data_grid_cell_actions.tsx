@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { JSXElementConstructor, useMemo, useCallback } from 'react';
+import { JSXElementConstructor, useMemo, useCallback } from 'react';
 import {
   EuiDataGridColumn,
   EuiDataGridColumnCellAction,

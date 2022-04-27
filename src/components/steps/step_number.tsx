@@ -7,7 +7,7 @@
  */
 
 import classNames from 'classnames';
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import { FunctionComponent, HTMLAttributes } from 'react';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps, keysOf } from '../common';
 import { EuiIcon } from '../icon';

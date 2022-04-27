@@ -23,7 +23,7 @@
  * 
  */
 
-import React from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import {
@@ -37,7 +37,7 @@ import {
   getDayOfWeekCode
 } from "./date_utils";
 
-export default class Day extends React.Component {
+export default class Day extends Component {
   static propTypes = {
     disabledKeyboardNavigation: PropTypes.bool,
     day: PropTypes.object.isRequired,

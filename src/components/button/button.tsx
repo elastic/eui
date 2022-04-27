@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
+  createElement,
   forwardRef,
   FunctionComponent,
   Ref,
@@ -281,7 +282,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       };
     }
 
-    return React.createElement(
+    return createElement(
       element,
       {
         className: classes,

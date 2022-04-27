@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { EuiFieldSearch, EuiFieldSearchProps } from '../form';
 
 export interface SchemaType {

@@ -23,7 +23,7 @@
  * 
  */
 
-import React from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 
@@ -52,7 +52,7 @@ function generateYears(year, noOfYear, minDate, maxDate) {
   return list;
 }
 
-export default class YearDropdownOptions extends React.Component {
+export default class YearDropdownOptions extends Component {
   static propTypes = {
     minDate: PropTypes.object,
     maxDate: PropTypes.object,

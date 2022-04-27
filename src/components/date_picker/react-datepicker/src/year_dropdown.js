@@ -23,12 +23,12 @@
  * 
  */
 
-import React from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import YearDropdownOptions from "./year_dropdown_options";
 import { getYear } from "./date_utils";
 
-export default class YearDropdown extends React.Component {
+export default class YearDropdown extends Component {
   static propTypes = {
     adjustDateOnChange: PropTypes.bool,
     dropdownMode: PropTypes.oneOf(["scroll", "select"]).isRequired,

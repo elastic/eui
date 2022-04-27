@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useContext } from 'react';
+import { FunctionComponent, useContext } from 'react';
 import { EuiCheckbox } from '../../../form/checkbox';
 import { EuiMarkdownContext } from '../../markdown_context';
 import { useGeneratedHtmlId } from '../../../../services/accessibility';

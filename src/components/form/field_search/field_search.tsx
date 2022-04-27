@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, InputHTMLAttributes, KeyboardEvent } from 'react';
+import { Component, InputHTMLAttributes, KeyboardEvent } from 'react';
 import classNames from 'classnames';
 import { Browser } from '../../../services/browser';
 import { CommonProps } from '../../common';

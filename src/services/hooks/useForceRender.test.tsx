@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useImperativeHandle, createRef, forwardRef } from 'react';
+import { useImperativeHandle, createRef, forwardRef } from 'react';
 import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 import { useForceRender } from './useForceRender';

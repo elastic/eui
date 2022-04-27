@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useState } from 'react';
 import { EuiAccordion } from '../accordion';
 import { useGeneratedHtmlId } from '../../services';
 import { useEuiI18n } from '../i18n';

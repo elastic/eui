@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ReactNode } from 'react';
+import {
+  ChangeEvent,
+  Component,
+  FocusEvent,
+  MouseEvent,
+  ReactNode,
+} from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
@@ -79,9 +85,7 @@ export interface EuiRangeProps
   isLoading?: boolean;
 
   onChange?: (
-    event:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.MouseEvent<HTMLButtonElement>,
+    event: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLButtonElement>,
     isValid: boolean
   ) => void;
 }
@@ -110,7 +114,7 @@ export class EuiRange extends Component<EuiRangeProps> {
   };
 
   handleOnChange = (
-    e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>
+    e: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLButtonElement>
   ) => {
     const isValid = isWithinRange(
       this.props.min,
@@ -130,7 +134,7 @@ export class EuiRange extends Component<EuiRangeProps> {
     );
   }
 
-  onInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+  onInputFocus = (e: FocusEvent<HTMLInputElement>) => {
     if (this.props.onFocus) {
       this.props.onFocus(e);
     }
@@ -139,7 +143,7 @@ export class EuiRange extends Component<EuiRangeProps> {
     });
   };
 
-  onInputBlur = (e: React.FocusEvent<HTMLInputElement>) =>
+  onInputBlur = (e: FocusEvent<HTMLInputElement>) =>
     setTimeout(() => {
       // Safari does not recognize any focus-related eventing for input[type=range]
       // making it impossible to capture its state using active/focus/relatedTarget

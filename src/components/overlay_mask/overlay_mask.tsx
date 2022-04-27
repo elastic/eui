@@ -11,7 +11,7 @@
  * into portals.
  */
 
-import React, {
+import {
   FunctionComponent,
   HTMLAttributes,
   ReactNode,

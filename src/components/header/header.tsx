@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, useEffect } from 'react';
+import { FunctionComponent, HTMLAttributes, useEffect } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 

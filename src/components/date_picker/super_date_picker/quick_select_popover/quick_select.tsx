@@ -6,11 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  Component,
-  ChangeEventHandler,
-  KeyboardEventHandler,
-} from 'react';
+import { Component, ChangeEventHandler, KeyboardEventHandler } from 'react';
 import moment from 'moment';
 import dateMath from '@elastic/datemath';
 import { htmlIdGenerator } from '../../../../services';

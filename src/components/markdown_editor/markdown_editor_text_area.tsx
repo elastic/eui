@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { TextareaHTMLAttributes, forwardRef, useContext } from 'react';
+import { TextareaHTMLAttributes, forwardRef, useContext } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { EuiMarkdownContext } from './markdown_context';

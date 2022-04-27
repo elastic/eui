@@ -23,7 +23,6 @@
  * 
  */
 
-import React from "react";
 import DatePicker from "../src/index.jsx";
 import moment from "moment";
 import TestUtils from "react-dom/test-utils";

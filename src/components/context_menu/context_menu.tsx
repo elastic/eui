@@ -6,9 +6,10 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   Component,
   HTMLAttributes,
+  MouseEvent,
   ReactElement,
   ReactNode,
 } from 'react';
@@ -32,7 +33,7 @@ export type EuiContextMenuPanelItemDescriptorEntry = Omit<
   EuiContextMenuItemProps,
   'hasPanel'
 > & {
-  name: React.ReactNode;
+  name: ReactNode;
   key?: string;
   panel?: EuiContextMenuPanelId;
 };
@@ -319,7 +320,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
       } = item;
 
       const onClickHandler = panel
-        ? (event: React.MouseEvent) => {
+        ? (event: MouseEvent) => {
             if (onClick && event) {
               event.persist();
             }

@@ -6,12 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  ReactNode,
-  FunctionComponent,
-  useState,
-  useEffect,
-} from 'react';
+import { ReactNode, FunctionComponent, useState, useEffect } from 'react';
 import { throttle } from '../../services';
 import { EuiBreakpointSize, getBreakpoint } from '../../services/breakpoint';
 

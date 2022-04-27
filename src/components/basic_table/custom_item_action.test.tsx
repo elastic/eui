@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { shallow } from 'enzyme';
 import { CustomItemAction, CustomItemActionProps } from './custom_item_action';
 

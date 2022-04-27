@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import { MouseEvent } from 'react';
 import {
   EuiDataGridColumn,
   EuiDataGridColumnActions,
@@ -77,7 +77,7 @@ export const getColumnActions = ({
   return actions.map((action) => ({
     ...action,
     // Wrap EuiListGroupItem onClick function to close the popover and prevent bubbling up
-    onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
+    onClick: (e: MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation();
       setIsPopoverOpen(false);
       if (action?.onClick) {

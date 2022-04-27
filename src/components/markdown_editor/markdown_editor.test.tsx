@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import { Component } from 'react';
 import { render, mount, ReactWrapper } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 import { EuiMarkdownEditor } from './markdown_editor';
@@ -283,11 +283,7 @@ describe('EuiMarkdownEditor', () => {
       value: 'Hello',
       onChange: jest.fn(),
     };
-    let component: ReactWrapper<
-      any,
-      Readonly<{}>,
-      React.Component<{}, {}, any>
-    >;
+    let component: ReactWrapper<any, Readonly<{}>, Component<{}, {}, any>>;
     let textareaNode: () => Element;
     beforeEach(() => {
       component = mount(

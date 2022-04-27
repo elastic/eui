@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, ElementType } from 'react';
+import { FunctionComponent, HTMLAttributes, ElementType } from 'react';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 

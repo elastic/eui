@@ -23,14 +23,14 @@
  * 
  */
 
-import React from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 
 import { EuiFocusTrap } from '../../../focus_trap';
 import { EuiScreenReaderOnly } from '../../../accessibility';
 
-export default class MonthDropdownOptions extends React.Component {
+export default class MonthDropdownOptions extends Component {
   static propTypes = {
     onCancel: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,

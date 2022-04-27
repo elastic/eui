@@ -6,13 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  ReactNode,
-  useState,
-  useMemo,
-  useCallback,
-  useEffect,
-} from 'react';
+import { ReactNode, useState, useMemo, useCallback, useEffect } from 'react';
 
 import { useUpdateEffect } from '../../../services';
 import { EuiI18n, useEuiI18n } from '../../i18n';

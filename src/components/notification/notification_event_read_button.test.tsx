@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { render, mount } from 'enzyme';
 
 import { EuiNotificationEventReadButton } from './notification_event_read_button';

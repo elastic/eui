@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactElement } from 'react';
+import { cloneElement, FunctionComponent, ReactElement } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 
@@ -59,5 +59,5 @@ export const EuiTitle: FunctionComponent<EuiTitleProps> = ({
     ...rest,
   };
 
-  return React.cloneElement(children, props);
+  return cloneElement(children, props);
 };

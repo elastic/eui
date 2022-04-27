@@ -6,12 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  useState,
-  useMemo,
-  useCallback,
-} from 'react';
+import { FunctionComponent, useState, useMemo, useCallback } from 'react';
 
 import { EuiButtonEmpty } from '../../button';
 import { EuiContextMenuItem, EuiContextMenuPanel } from '../../context_menu';

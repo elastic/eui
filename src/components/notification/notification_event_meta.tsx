@@ -6,12 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  useState,
-  ReactNode,
-  ReactElement,
-} from 'react';
+import { FunctionComponent, useState, ReactNode, ReactElement } from 'react';
 import classNames from 'classnames';
 import { EuiIcon, IconType } from '../icon';
 import { EuiBadge, EuiBadgeProps } from '../badge';

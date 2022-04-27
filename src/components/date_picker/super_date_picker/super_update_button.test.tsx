@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { shallow, mount } from 'enzyme';
 
 import { EuiSuperUpdateButton } from './super_update_button';

@@ -23,11 +23,11 @@
  * 
  */
 
-import React from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 
-export default class WeekNumber extends React.Component {
+export default class WeekNumber extends Component {
   static propTypes = {
     weekNumber: PropTypes.number.isRequired,
     onClick: PropTypes.func

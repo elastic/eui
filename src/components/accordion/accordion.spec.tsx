@@ -8,7 +8,6 @@
 
 /// <reference types="../../../cypress/support"/>
 
-import React from 'react';
 import { EuiAccordion, EuiAccordionProps } from './index';
 import { EuiPanel } from '../../components/panel';
 import { htmlIdGenerator } from '../../services';

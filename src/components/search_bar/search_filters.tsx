@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, Fragment, ReactElement } from 'react';
+import { Component, Fragment, ReactElement } from 'react';
 import { createFilter, SearchFilterConfig } from './filters';
 import { Query } from './query';
 import { EuiFilterGroup } from '../filter_group';

@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { render } from 'enzyme';
+import { MouseEvent } from 'react';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
@@ -18,7 +18,7 @@ describe('EuiHeaderBreadcrumbs', () => {
       {
         text: 'Animals',
         href: '#',
-        onClick: (e: React.MouseEvent) => {
+        onClick: (e: MouseEvent) => {
           e.preventDefault();
           console.log('You clicked Animals');
         },
@@ -27,7 +27,7 @@ describe('EuiHeaderBreadcrumbs', () => {
       },
       {
         text: 'Reptiles',
-        onClick: (e: React.MouseEvent) => {
+        onClick: (e: MouseEvent) => {
           e.preventDefault();
           console.log('You clicked Reptiles');
         },

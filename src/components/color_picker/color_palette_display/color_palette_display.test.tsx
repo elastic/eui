@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { render } from 'enzyme';
 
 import { EuiColorPaletteDisplay, SIZES } from './color_palette_display';

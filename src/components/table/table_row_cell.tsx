@@ -6,7 +6,10 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
+  isValidElement,
+  Children,
+  cloneElement,
   CSSProperties,
   Fragment,
   FunctionComponent,
@@ -178,11 +181,11 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
 
     if (textOnly === true) {
       modifiedChildren = <span className={childClasses}>{children}</span>;
-    } else if (React.isValidElement(children)) {
-      modifiedChildren = React.Children.map(
+    } else if (isValidElement(children)) {
+      modifiedChildren = Children.map(
         children,
         (child: ReactElement<CommonProps>) =>
-          React.cloneElement(child, {
+          cloneElement(child, {
             className: classNames(child.props.className, childClasses),
           })
       );

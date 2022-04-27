@@ -23,10 +23,10 @@
  * 
  */
 
-import React from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 
-class CustomInput extends React.Component {
+class CustomInput extends Component {
     onChange(e) {
         var args = [e, e.target.value];
         if (this.props.onChangeArgs) {

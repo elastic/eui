@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, ReactNode, FunctionComponent } from 'react';
+import { HTMLAttributes, ReactNode, FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 import { EuiDescriptionListTitle } from './description_list_title';

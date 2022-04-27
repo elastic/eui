@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, FocusEvent, MouseEvent, ReactNode } from 'react';
 import { mount, ReactWrapper, render } from 'enzyme';
 import { EuiDataGrid } from './';
 import { EuiDataGridProps } from './data_grid_types';
@@ -22,7 +22,7 @@ import { act } from 'react-dom/test-utils';
 // Mock the cell popover (TODO: Move failing tests to Cypress and remove need for mock?)
 jest.mock('../popover', () => ({
   ...jest.requireActual('../popover'),
-  EuiWrappingPopover: ({ children }: { children: React.ReactNode }) => (
+  EuiWrappingPopover: ({ children }: { children: ReactNode }) => (
     <div data-test-subj="euiDataGridExpansionPopover">{children}</div>
   ),
 }));
@@ -99,7 +99,7 @@ function resizeColumn(
     pageX: originalWidth,
     stopPropagation: () => {},
     preventDefault: () => {},
-  } as React.MouseEvent<HTMLDivElement>);
+  } as MouseEvent<HTMLDivElement>);
   firstResizer.onMouseMove({ pageX: columnWidth });
   act(() => firstResizer.onMouseUp());
 
@@ -2203,7 +2203,7 @@ describe('EuiDataGrid', () => {
       expect(findTestSubject(component, 'happyAction').exists()).toBe(false);
 
       findTestSubject(component, 'dataGridRowCell').at(1).prop('onMouseEnter')!(
-        {} as React.MouseEvent
+        {} as MouseEvent
       );
 
       component.update();
@@ -2360,7 +2360,7 @@ describe('EuiDataGrid', () => {
       act(() =>
         component
           .find('div [data-test-subj="euiDataGridBody"][onFocus]')
-          .props().onFocus!({} as React.FocusEvent)
+          .props().onFocus!({} as FocusEvent)
       );
       component.update();
 
@@ -2558,7 +2558,7 @@ describe('EuiDataGrid', () => {
       act(() =>
         component
           .find('div [data-test-subj="euiDataGridBody"][onFocus]')
-          .props().onFocus!({} as React.FocusEvent)
+          .props().onFocus!({} as FocusEvent)
       );
       component.update();
 

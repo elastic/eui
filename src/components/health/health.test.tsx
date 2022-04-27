@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 import { TEXT_SIZES, EuiHealth } from './health';

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Fragment, createElement } from 'react';
+import { Fragment, createElement, ComponentType } from 'react';
 // Importing seemingly unused types from `unified` because the definitions
 // are exported for two versions of TypeScript (3.4, 4.0) and implicit
 // imports during eui.d.ts generation default to the incorrect version (3.4).
@@ -40,7 +40,7 @@ const unknownHandler: Handler = (h, node) => {
 };
 
 export interface Rehype2ReactOptions {
-  components: { [key: string]: React.ComponentType<any> };
+  components: { [key: string]: ComponentType<any> };
   [key: string]: any;
 }
 

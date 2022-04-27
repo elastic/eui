@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactElement, createElement } from 'react';
+import { FunctionComponent, ReactElement, createElement } from 'react';
 import classNames from 'classnames';
 import {
   EuiNotificationEventMeta,

@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { requiredProps } from '../../test';
 import { shallow } from 'enzyme';
 import { PaginationBar } from './pagination_bar';

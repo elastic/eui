@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { shallow } from 'enzyme';
 
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';

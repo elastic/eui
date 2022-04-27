@@ -6,13 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   cloneElement,
   Component,
   Children,
   HTMLAttributes,
   ReactElement,
   ReactNode,
+  AriaAttributes,
 } from 'react';
 import classNames from 'classnames';
 import { ExclusiveUnion, CommonProps, keysOf } from '../../common';
@@ -256,7 +257,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       );
     }
 
-    const optionalProps: React.AriaAttributes = {};
+    const optionalProps: AriaAttributes = {};
     /**
      * Safe use of ! as default prop is []
      */
@@ -300,14 +301,14 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     };
 
     const contents = (
-      <React.Fragment>
+      <>
         {optionalLabel}
         <div className={fieldWrapperClasses}>
           {field}
           {optionalErrors}
           {optionalHelpTexts}
         </div>
-      </React.Fragment>
+      </>
     );
 
     return labelType === 'legend' ? (

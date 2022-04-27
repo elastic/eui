@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { shallow } from 'enzyme';
 
 import { EuiDataGridControlHeaderCell } from './data_grid_control_header_cell';

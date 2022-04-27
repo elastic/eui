@@ -6,9 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
+  ChangeEvent,
   FunctionComponent,
+  KeyboardEvent,
+  MouseEvent,
   ReactChild,
+  TouchEvent,
   useEffect,
   useMemo,
   useRef,
@@ -163,7 +167,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     onChange({ stop: value, color });
   };
 
-  const handleStopInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleStopInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     let value = parseFloat(e.target.value);
 
     const willBeInvalid = value > globalMax || value < globalMin;
@@ -193,7 +197,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     handleStopChange(newStop);
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
     switch (event.key) {
       case keys.ENTER:
         event.preventDefault();
@@ -218,20 +222,20 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
     handlePointerChange
   );
 
-  const handleOnMouseDown = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleOnMouseDown = (e: MouseEvent<HTMLButtonElement>) => {
     if (!readOnly) {
       handleMouseDown(e);
     }
     openPopover();
   };
 
-  const handleTouchInteraction = (e: React.TouchEvent<HTMLButtonElement>) => {
+  const handleTouchInteraction = (e: TouchEvent<HTMLButtonElement>) => {
     if (!readOnly) {
       handleInteraction(e);
     }
   };
 
-  const handleTouchStart = (e: React.TouchEvent<HTMLButtonElement>) => {
+  const handleTouchStart = (e: TouchEvent<HTMLButtonElement>) => {
     handleTouchInteraction(e);
     if (!isPopoverOpen) {
       openPopover();
@@ -326,7 +330,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
               ]}
               defaults={['Stop value', 'Value is out of range']}
             >
-              {([stopLabel, stopErrorMessage]: React.ReactChild[]) => (
+              {([stopLabel, stopErrorMessage]: ReactChild[]) => (
                 <EuiFormRow
                   label={stopLabel}
                   display="rowCompressed"

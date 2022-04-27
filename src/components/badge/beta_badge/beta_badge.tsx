@@ -6,14 +6,16 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   AriaAttributes,
   Fragment,
   FunctionComponent,
   HTMLAttributes,
+  MouseEvent as ReactMouseEvent,
   MouseEventHandler,
   ReactNode,
 } from 'react';
+
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion, keysOf } from '../../common';
 
@@ -177,8 +179,8 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
     target?: string;
     rel?: string;
     onClick?:
-      | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
-      | ((event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void);
+      | ((event: ReactMouseEvent<HTMLButtonElement, MouseEvent>) => void)
+      | ((event: ReactMouseEvent<HTMLAnchorElement, MouseEvent>) => void);
   } = {};
 
   if (href) {

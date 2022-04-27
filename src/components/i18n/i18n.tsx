@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
+  createElement,
   Fragment,
   ReactChild,
   FunctionComponent,
@@ -86,7 +87,7 @@ function lookupToken<
     : () => <Fragment>{children}</Fragment>;
 
   // same reasons as above, we can't promise the transforms match the default's type
-  return React.createElement(Component, values) as RESOLVED;
+  return createElement(Component, values) as RESOLVED;
 }
 
 type ResolvedType<T> = T extends (...args: any[]) => any ? ReturnType<T> : T;

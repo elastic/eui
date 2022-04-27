@@ -6,10 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   cloneElement,
   Component,
   HTMLAttributes,
+  KeyboardEvent,
   ReactElement,
   ReactNode,
 } from 'react';
@@ -133,7 +134,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     });
   };
 
-  onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     // If this panel contains items you can use the left arrow key to go back at any time.
     // But if it doesn't contain items, then you have to focus on the back button specifically,
     // since there could be content inside the panel which requires use of the left arrow key,

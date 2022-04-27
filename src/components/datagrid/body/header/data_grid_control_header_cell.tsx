@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { EuiDataGridControlHeaderCellProps } from '../../data_grid_types';
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
 

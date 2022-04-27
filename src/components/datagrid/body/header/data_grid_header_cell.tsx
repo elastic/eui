@@ -7,7 +7,7 @@
  */
 
 import classnames from 'classnames';
-import React, {
+import {
   AriaAttributes,
   FunctionComponent,
   HTMLAttributes,

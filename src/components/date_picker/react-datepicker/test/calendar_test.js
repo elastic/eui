@@ -23,7 +23,6 @@
  * 
  */
 
-import React from "react";
 import Calendar from "../src/calendar";
 import Month from "../src/month";
 import Day from "../src/day";

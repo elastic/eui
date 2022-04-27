@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   Component,
   cloneElement,
   Fragment,
@@ -14,6 +14,8 @@ import React, {
   ReactNode,
   MouseEvent as ReactMouseEvent,
 } from 'react';
+
+import * as React from 'react';
 import classNames from 'classnames';
 
 import { keysOf } from '../common';

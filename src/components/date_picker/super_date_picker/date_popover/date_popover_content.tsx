@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent, SyntheticEvent } from 'react';
 
 import { EuiI18n, useEuiI18n } from '../../../i18n';
 import { EuiTabbedContent, EuiTabbedContentProps } from '../../../tabs';
@@ -27,7 +27,7 @@ import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 
 export interface EuiDatePopoverContentProps {
   value: string;
-  onChange(date: string | null, event?: React.SyntheticEvent<any>): void;
+  onChange(date: string | null, event?: SyntheticEvent<any>): void;
   roundUp?: boolean;
   dateFormat: string;
   timeFormat: string;

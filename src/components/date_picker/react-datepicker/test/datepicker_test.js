@@ -23,7 +23,7 @@
  * 
  */
 
-import React from "react";
+import { Component } from "react";
 import ReactDOM from "react-dom";
 import TestUtils from "react-dom/test-utils";
 import { mount } from "enzyme";
@@ -434,7 +434,7 @@ describe("DatePicker", () => {
   });
 
   it("should mount and unmount properly", done => {
-    class TestComponent extends React.Component {
+    class TestComponent extends Component {
       constructor(props) {
         super(props);
         this.state = { mounted: true };

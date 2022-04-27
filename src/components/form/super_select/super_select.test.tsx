@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { mount, render } from 'enzyme';
 import { requiredProps, takeMountedSnapshot } from '../../../test';
 

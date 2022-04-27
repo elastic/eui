@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, MouseEvent } from 'react';
+import { FunctionComponent, HTMLAttributes, MouseEvent } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';

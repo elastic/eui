@@ -6,8 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
+  FocusEvent,
   FunctionComponent,
+  KeyboardEvent,
+  MouseEvent,
   useCallback,
   useEffect,
   useMemo,
@@ -259,7 +262,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     }
   }, [wrapperRef]);
 
-  const setWrapperHasFocus = (e: React.FocusEvent) => {
+  const setWrapperHasFocus = (e: FocusEvent) => {
     if (e.target === wrapperRef) {
       setHasFocus(true);
     }
@@ -302,7 +305,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     setIsHoverDisabled(false);
   };
 
-  const handleAddHover = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleAddHover = (e: MouseEvent<HTMLDivElement>) => {
     if (isNotInteractive || !wrapperRef) return;
     const stop = getStopFromMouseLocationFn({ x: e.pageX, y: e.pageY });
     const position = getPositionFromStopFn(stop);
@@ -310,7 +313,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     setAddTargetPosition(position);
   };
 
-  const handleAddClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleAddClick = (e: MouseEvent<HTMLDivElement>) => {
     if (isNotInteractive || isTargetAThumb(e.target) || !wrapperRef) return;
     const newStop = getStopFromMouseLocationFn({ x: e.pageX, y: e.pageY });
     const newColorStops = addDefinedStop(colorStops, newStop, addColor);
@@ -318,7 +321,7 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
     handleOnChange(newColorStops);
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (disabled) return;
     switch (event.key) {
       case keys.ESCAPE:

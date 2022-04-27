@@ -6,13 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   Component,
   HTMLAttributes,
   ReactNode,
   createRef,
   ReactElement,
   KeyboardEvent,
+  FocusEvent,
+  cloneElement,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
@@ -414,7 +416,7 @@ export class EuiSelectable<T = {}> extends Component<
     }
   };
 
-  onContainerBlur = (e: React.FocusEvent) => {
+  onContainerBlur = (e: FocusEvent) => {
     // Ignore blur events when moving from search to option to avoid activeOptionIndex conflicts
     if (
       ((e.relatedTarget as Node)?.firstChild as HTMLElement)?.id === this.listId
@@ -544,7 +546,7 @@ export class EuiSelectable<T = {}> extends Component<
           </>
         );
       } else {
-        messageContent = React.cloneElement(loadingMessage, {
+        messageContent = cloneElement(loadingMessage, {
           id: this.messageContentId,
           ...loadingMessage.props,
         });
@@ -566,7 +568,7 @@ export class EuiSelectable<T = {}> extends Component<
           </p>
         );
       } else {
-        messageContent = React.cloneElement(noMatchesMessage, {
+        messageContent = cloneElement(noMatchesMessage, {
           id: this.messageContentId,
           ...noMatchesMessage.props,
         });
@@ -584,7 +586,7 @@ export class EuiSelectable<T = {}> extends Component<
           </p>
         );
       } else {
-        messageContent = React.cloneElement(emptyMessage, {
+        messageContent = cloneElement(emptyMessage, {
           id: this.messageContentId,
           ...emptyMessage.props,
         });

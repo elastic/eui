@@ -23,12 +23,12 @@
  * 
  */
 
-import React from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import MonthDropdownOptions from "./month_dropdown_options";
 import * as utils from "./date_utils";
 
-export default class MonthDropdown extends React.Component {
+export default class MonthDropdown extends Component {
   static propTypes = {
     dropdownMode: PropTypes.oneOf(["scroll", "select"]).isRequired,
     locale: PropTypes.string,

@@ -7,7 +7,7 @@
  */
 
 import classNames from 'classnames';
-import React, { forwardRef, useMemo, useRef, useState } from 'react';
+import { forwardRef, useMemo, useRef, useState } from 'react';
 import {
   VariableSizeGrid as Grid,
   GridOnItemsRenderedProps,

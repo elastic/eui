@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   ReactNode,
   ReactElement,
   useEffect,
@@ -16,6 +16,9 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   ComponentType,
+  MouseEvent,
+  TouchEvent,
+  isValidElement,
 } from 'react';
 import classNames from 'classnames';
 
@@ -137,7 +140,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
   );
 
   const onMouseMove = useCallback(
-    (event: React.MouseEvent | React.TouchEvent) => {
+    (event: MouseEvent | TouchEvent) => {
       if (
         !reducerState.prevPanelId ||
         !reducerState.nextPanelId ||
@@ -231,7 +234,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     const content = children(EuiResizablePanel, EuiResizableButton, {
       togglePanel: actions.togglePanel,
     });
-    const modes = React.isValidElement(content)
+    const modes = isValidElement(content)
       ? content.props.children.map(
           (el: ReactElement) => getModeType(el.props.mode) || DEFAULT
         )

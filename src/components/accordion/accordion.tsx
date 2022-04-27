@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, HTMLAttributes, ReactNode } from 'react';
+import { Component, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';

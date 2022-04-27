@@ -6,12 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   FunctionComponent,
   HTMLAttributes,
   useState,
   useEffect,
   useCallback,
+  KeyboardEvent,
 } from 'react';
 import classnames from 'classnames';
 import { tabbable, FocusableElement } from 'tabbable';
@@ -79,7 +80,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
     setPanelWidth();
   }, [setPanelWidth]);
 
-  const onKeyDown = (event: React.KeyboardEvent) => {
+  const onKeyDown = (event: KeyboardEvent) => {
     if (panelEl && event.key === cascadingMenuKeys.TAB) {
       const tabbableItems = tabbable(panelEl).filter((el: FocusableElement) => {
         return (

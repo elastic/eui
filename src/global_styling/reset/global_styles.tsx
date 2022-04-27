@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { Global, css } from '@emotion/react';
 import { euiScrollBarStyles } from '../mixins';
 import { shade, tint, transparentize } from '../../services/color';

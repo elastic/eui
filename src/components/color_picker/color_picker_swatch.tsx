@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { ButtonHTMLAttributes, forwardRef, useMemo } from 'react';
+import { ButtonHTMLAttributes, forwardRef, useMemo } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';

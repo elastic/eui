@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import { isValidElement, FunctionComponent, HTMLAttributes } from 'react';
 import classnames from 'classnames';
 import { CommonProps } from '../common';
 
@@ -22,7 +22,7 @@ export const EuiModalHeaderTitle: EuiModalHeaderTitleProps = ({
   const classes = classnames('euiModalHeader__title', className);
   return (
     <div className={classes} {...rest}>
-      {React.isValidElement(children) ? children : <h1>{children}</h1>}
+      {isValidElement(children) ? children : <h1>{children}</h1>}
     </div>
   );
 };

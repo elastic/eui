@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   FunctionComponent,
   JSXElementConstructor,
   useCallback,

@@ -23,7 +23,6 @@
  * 
  */
 
-import React from "react";
 import { mount } from "enzyme";
 import TimeComponent from "../src/time";
 import moment from "moment";

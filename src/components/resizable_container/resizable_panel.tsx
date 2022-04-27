@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   CSSProperties,
   ReactNode,
   useEffect,
@@ -14,6 +14,7 @@ import React, {
   useRef,
   FunctionComponent,
   HTMLAttributes,
+  MouseEvent,
 } from 'react';
 import classNames from 'classnames';
 
@@ -317,12 +318,12 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     onToggleCollapsed && onToggleCollapsed(panelId, options);
   };
 
-  const collapseRight = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const collapseRight = (e: MouseEvent<HTMLButtonElement>) => {
     onClickCollapse({ direction: 'right' });
     if (e.detail) e.currentTarget.blur();
   };
 
-  const collapseLeft = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const collapseLeft = (e: MouseEvent<HTMLButtonElement>) => {
     onClickCollapse({ direction: 'left' });
     if (e.detail) e.currentTarget.blur();
   };

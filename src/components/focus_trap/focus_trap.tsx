@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, CSSProperties } from 'react';
+import { Component, CSSProperties } from 'react';
 import { FocusOn } from 'react-focus-on';
 import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
 

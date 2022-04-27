@@ -6,8 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-
 export const EuiAutoSizer = ({
   children,
   defaultHeight,

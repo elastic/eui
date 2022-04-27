@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { mount, shallow } from 'enzyme';
 
 import { EuiDataGridSorting } from '../../data_grid_types';

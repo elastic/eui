@@ -7,7 +7,7 @@
  */
 
 import classNames from 'classnames';
-import React, { FunctionComponent, OlHTMLAttributes } from 'react';
+import { FunctionComponent, OlHTMLAttributes } from 'react';
 import { CommonProps } from '../common';
 import { EuiStepHorizontal, EuiStepHorizontalProps } from './step_horizontal';
 

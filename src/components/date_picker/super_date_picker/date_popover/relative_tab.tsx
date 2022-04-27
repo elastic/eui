@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ChangeEventHandler } from 'react';
+import { Component, ChangeEventHandler } from 'react';
 import dateMath from '@elastic/datemath';
 import { htmlIdGenerator } from '../../../../services';
 import { EuiFlexGroup, EuiFlexItem } from '../../../flex';

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Fragment, HTMLAttributes, FunctionComponent } from 'react';
+import { Fragment, HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 import { EuiMark, EuiMarkProps } from '../mark';
 

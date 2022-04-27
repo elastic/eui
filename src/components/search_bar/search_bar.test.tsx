@@ -7,7 +7,6 @@
  */
 
 /* eslint-disable react/no-multi-comp */
-import React from 'react';
 import { requiredProps } from '../../test';
 import { mount, shallow } from 'enzyme';
 import { EuiSearchBar } from './search_bar';

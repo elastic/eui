@@ -6,11 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  HTMLAttributes,
-  ThHTMLAttributes,
-} from 'react';
+import { FunctionComponent, HTMLAttributes, ThHTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { EuiScreenReaderOnly } from '../accessibility';

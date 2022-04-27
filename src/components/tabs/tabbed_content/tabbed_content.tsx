@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, createRef, HTMLAttributes, ReactNode } from 'react';
+import { Component, createRef, HTMLAttributes, ReactNode } from 'react';
 
 import { htmlIdGenerator } from '../../../services';
 

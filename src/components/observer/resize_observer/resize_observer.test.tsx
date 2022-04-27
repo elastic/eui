@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useState } from 'react';
 import { mount } from 'enzyme';
 import { EuiResizeObserver, useResizeObserver } from './resize_observer';
 import { sleep } from '../../../test';

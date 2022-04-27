@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode } from 'react';
+import { FunctionComponent, ReactNode } from 'react';
 import { IconType } from '../icon';
 import { EuiAvatar } from '../avatar';
 import { useEuiTheme } from '../../services';

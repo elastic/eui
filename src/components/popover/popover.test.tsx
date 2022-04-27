@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactNode } from 'react';
+import { createRef, ReactNode } from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 import { EuiFocusTrap } from '../';
@@ -472,7 +472,7 @@ describe('EuiPopover', () => {
     afterAll(() => jest.useRealTimers());
 
     it('closes the popover and refocuses the toggle button', () => {
-      const toggleButtonEl = React.createRef<HTMLButtonElement>();
+      const toggleButtonEl = createRef<HTMLButtonElement>();
       const toggleButton = <button ref={toggleButtonEl} />;
 
       const component = mount(
@@ -492,7 +492,7 @@ describe('EuiPopover', () => {
     });
 
     it('refocuses the first nested toggle button on focus trap deactivation', () => {
-      const toggleButtonEl = React.createRef<HTMLButtonElement>();
+      const toggleButtonEl = createRef<HTMLButtonElement>();
       const toggleDiv = (
         <div>
           <button ref={toggleButtonEl} tabIndex={-1} />
@@ -517,7 +517,7 @@ describe('EuiPopover', () => {
     });
 
     it('does not refocus if the toggle button is not focusable', () => {
-      const toggleDivEl = React.createRef<HTMLDivElement>();
+      const toggleDivEl = createRef<HTMLDivElement>();
       const toggleDiv = <div ref={toggleDivEl} />;
 
       const component = mount(

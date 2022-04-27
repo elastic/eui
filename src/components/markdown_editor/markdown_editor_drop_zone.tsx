@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useEffect } from 'react';
+import { useState, FunctionComponent, useEffect } from 'react';
 import classNames from 'classnames';
 import { useDropzone } from 'react-dropzone';
 import { EuiMarkdownEditorFooter } from './markdown_editor_footer';
@@ -58,9 +58,9 @@ const getUnacceptedItems = (
 export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZoneProps> = (
   props
 ) => {
-  const [isDragging, toggleDragging] = React.useState(false);
-  const [isUploadingFiles, toggleUploadingFiles] = React.useState(false);
-  const [isDraggingError, toggleDraggingError] = React.useState(false);
+  const [isDragging, toggleDragging] = useState(false);
+  const [isUploadingFiles, toggleUploadingFiles] = useState(false);
+  const [isDraggingError, toggleDraggingError] = useState(false);
 
   const {
     children,
@@ -80,10 +80,9 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
     'euiMarkdownEditorDropZone--isDraggingError': isDraggingError,
   });
 
-  const [
-    editorFooterRef,
-    setEditorFooterRef,
-  ] = React.useState<HTMLDivElement | null>(null);
+  const [editorFooterRef, setEditorFooterRef] = useState<HTMLDivElement | null>(
+    null
+  );
 
   const { height: editorFooterHeight } = useResizeObserver(
     editorFooterRef,

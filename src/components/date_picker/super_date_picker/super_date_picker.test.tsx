@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import { ReactElement } from 'react';
 import { mount, shallow, ReactWrapper } from 'enzyme';
 
 import {
@@ -26,7 +26,7 @@ const findInternalInstance = (
   const instance = component.instance() as EuiSuperDatePickerInternal;
   return [instance, component];
 };
-const shallowAndDive = (component: React.ReactElement) =>
+const shallowAndDive = (component: ReactElement) =>
   shallow(component).dive().dive();
 
 describe('EuiSuperDatePicker', () => {

@@ -6,11 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   cloneElement,
   Component,
+  MouseEvent,
   ReactElement,
   ReactNode,
   Ref,
@@ -39,7 +40,7 @@ export interface EuiContextMenuItemProps extends CommonProps {
   icon?: EuiContextMenuItemIcon;
   hasPanel?: boolean;
   disabled?: boolean;
-  onClick?: (event: React.MouseEvent) => void;
+  onClick?: (event: MouseEvent) => void;
   buttonRef?: Ref<HTMLButtonElement>;
   /**
    * Required if using a tooltip. Add an optional tooltip on hover

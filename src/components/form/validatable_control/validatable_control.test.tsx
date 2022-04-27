@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import { createRef } from 'react';
 import { render, mount } from 'enzyme';
 
 import { EuiValidatableControl } from './validatable_control';
@@ -39,7 +39,7 @@ describe('EuiValidatableControl', () => {
     });
 
     it('sets a ref object\'s "current" property', () => {
-      const ref = React.createRef<HTMLInputElement>();
+      const ref = createRef<HTMLInputElement>();
 
       mount(
         <EuiValidatableControl>
@@ -125,7 +125,7 @@ describe('EuiValidatableControl', () => {
     });
 
     it('sets a ref object\'s "current" property when the child element changes', () => {
-      const ref = React.createRef<HTMLInputElement>();
+      const ref = createRef<HTMLInputElement>();
 
       const Component = ({ change }: { change: boolean }) => (
         <EuiValidatableControl>

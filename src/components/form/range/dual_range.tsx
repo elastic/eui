@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { Component } from 'react';
+import {
+  ChangeEvent,
+  Component,
+  FocusEvent,
+  KeyboardEvent,
+  MouseEvent,
+} from 'react';
 import classNames from 'classnames';
 
 import { keys } from '../../../services';
@@ -41,19 +47,19 @@ export interface EuiDualRangeProps
   > {
   value: [ValueMember, ValueMember];
   onBlur?: (
-    event: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLDivElement>
+    event: FocusEvent<HTMLInputElement> | FocusEvent<HTMLDivElement>
   ) => void;
   onFocus?: (
-    event: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLDivElement>
+    event: FocusEvent<HTMLInputElement> | FocusEvent<HTMLDivElement>
   ) => void;
   onChange: (
     values: [ValueMember, ValueMember],
     isValid: boolean,
     event?:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.MouseEvent<HTMLButtonElement>
-      | React.KeyboardEvent<HTMLInputElement>
-      | React.KeyboardEvent<HTMLDivElement>
+      | ChangeEvent<HTMLInputElement>
+      | MouseEvent<HTMLButtonElement>
+      | KeyboardEvent<HTMLInputElement>
+      | KeyboardEvent<HTMLDivElement>
   ) => void;
   fullWidth?: boolean;
   isInvalid?: boolean;
@@ -182,9 +188,9 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     lower: ValueMember,
     upper: ValueMember,
     e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.MouseEvent<HTMLButtonElement>
-      | React.KeyboardEvent<HTMLInputElement>
+      | ChangeEvent<HTMLInputElement>
+      | MouseEvent<HTMLButtonElement>
+      | KeyboardEvent<HTMLInputElement>
   ) => {
     // If the values are invalid, find whether the new value is in the upper
     // or lower half and move the appropriate handle to the new value,
@@ -206,7 +212,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     newVal: ValueMember,
     lower: ValueMember,
     upper: ValueMember,
-    e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>
+    e: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLButtonElement>
   ) => {
     // Lower thumb targeted or right-moving swap has occurred
     if (
@@ -224,7 +230,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
 
   _determineThumbMovement = (
     newVal: number,
-    e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>
+    e: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLButtonElement>
   ) => {
     // Determine thumb movement based on slider interaction
     if (!this.isValid) {
@@ -250,10 +256,10 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     lower: ValueMember,
     upper: ValueMember,
     e?:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.MouseEvent<HTMLButtonElement>
-      | React.KeyboardEvent<HTMLInputElement>
-      | React.KeyboardEvent<HTMLDivElement>
+      | ChangeEvent<HTMLInputElement>
+      | MouseEvent<HTMLButtonElement>
+      | KeyboardEvent<HTMLInputElement>
+      | KeyboardEvent<HTMLDivElement>
   ) => {
     const isValid =
       isWithinRange(this.props.min, upper, lower) &&
@@ -262,12 +268,12 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
   };
 
   handleSliderChange = (
-    e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>
+    e: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLButtonElement>
   ) => {
     this._determineThumbMovement(Number(e.currentTarget.value), e);
   };
 
-  _resetToRangeEnds = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  _resetToRangeEnds = (e: KeyboardEvent<HTMLInputElement>) => {
     // Arbitrary decision to pass `min` instead of `max`. Result is the same.
     this._determineInvalidThumbMovement(
       this.props.min,
@@ -277,7 +283,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     );
   };
 
-  _isDirectionalKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  _isDirectionalKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     return (
       [
         keys.ARROW_UP,
@@ -288,7 +294,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     );
   };
 
-  handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  handleInputKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     // Relevant only when initial values are both `''` and `showInput` is set
     if (this._isDirectionalKeyPress(e) && !this.isValid) {
       e.preventDefault();
@@ -296,19 +302,17 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     }
   };
 
-  handleLowerInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  handleLowerInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     this._handleOnChange(e.target.value, this.upperValue, e);
   };
 
-  handleUpperInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  handleUpperInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     this._handleOnChange(this.lowerValue, e.target.value, e);
   };
 
   _handleKeyDown = (
     value: ValueMember,
-    event:
-      | React.KeyboardEvent<HTMLInputElement>
-      | React.KeyboardEvent<HTMLDivElement>
+    event: KeyboardEvent<HTMLInputElement> | KeyboardEvent<HTMLDivElement>
   ) => {
     let newVal = Number(value);
     let stepRemainder = 0;
@@ -336,7 +340,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     return newVal;
   };
 
-  handleLowerKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  handleLowerKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     let lower = this.lowerValue;
     switch (event.key) {
       case keys.TAB:
@@ -354,7 +358,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     this._handleOnChange(lower, this.upperValue, event);
   };
 
-  handleUpperKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  handleUpperKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     let upper = this.upperValue;
     switch (event.key) {
       case keys.TAB:
@@ -372,7 +376,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     this._handleOnChange(this.lowerValue, upper, event);
   };
 
-  handleDraggableKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  handleDraggableKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     let lower = this.lowerValue;
     let upper = this.upperValue;
     switch (event.key) {
@@ -408,21 +412,21 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     });
   };
 
-  onThumbFocus = (e: React.FocusEvent<HTMLDivElement>) => {
+  onThumbFocus = (e: FocusEvent<HTMLDivElement>) => {
     if (this.props.onFocus) {
       this.props.onFocus(e);
     }
     this.toggleHasFocus(true);
   };
 
-  onThumbBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+  onThumbBlur = (e: FocusEvent<HTMLDivElement>) => {
     if (this.props.onBlur) {
       this.props.onBlur(e);
     }
     this.toggleHasFocus(false);
   };
 
-  onInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+  onInputFocus = (e: FocusEvent<HTMLInputElement>) => {
     if (this.props.onFocus) {
       this.props.onFocus(e);
     }
@@ -432,7 +436,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     });
   };
 
-  onInputBlur = (e: React.FocusEvent<HTMLInputElement>) =>
+  onInputBlur = (e: FocusEvent<HTMLInputElement>) =>
     setTimeout(() => {
       // Safari does not recognize any focus-related eventing for input[type=range]
       // making it impossible to capture its state using active/focus/relatedTarget
@@ -685,7 +689,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
           )}
 
           {this.state.rangeSliderRefAvailable && (
-            <React.Fragment>
+            <>
               {isDraggable && this.isValid && (
                 <EuiRangeDraggable
                   min={min}
@@ -734,7 +738,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
               />
-            </React.Fragment>
+            </>
           )}
         </EuiRangeTrack>
         {showLabels && <EuiRangeLabel disabled={disabled}>{max}</EuiRangeLabel>}

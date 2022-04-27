@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 
 import { EuiFieldNumber, EuiFieldNumberProps } from '../field_number';
 

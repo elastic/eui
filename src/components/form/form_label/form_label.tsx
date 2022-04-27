@@ -6,11 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  LabelHTMLAttributes,
-  HTMLAttributes,
-} from 'react';
+import { FunctionComponent, LabelHTMLAttributes, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../../common';
 

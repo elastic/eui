@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { EuiIcon } from '../icon';
 import { EuiToken } from '../token';
 import { render, shallow } from 'enzyme';

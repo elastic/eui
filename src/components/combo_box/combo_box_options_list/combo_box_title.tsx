@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 
 export const EuiComboBoxTitle: FunctionComponent<{}> = ({ children }) => (
   <div className="euiComboBoxTitle">{children}</div>

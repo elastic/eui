@@ -19,7 +19,14 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // TypeScript Version: 2.8
 
-import * as React from 'react';
+import {
+  ClassicComponentClass,
+  FocusEvent,
+  KeyboardEvent,
+  MouseEvent,
+  ReactNode,
+  SyntheticEvent
+} from 'react';
 import * as moment from 'moment';
 
 import {PopoverAnchorPosition} from '../../../popover';
@@ -38,7 +45,7 @@ export interface ReactDatePickerProps {
    * Optional class added to the calendar portion of datepicker
    */
   calendarClassName?: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   /**
    * Added to the actual input of the calendar
@@ -48,7 +55,7 @@ export interface ReactDatePickerProps {
   /**
    * Replaces the input with any node, like a button
    */
-  customInput?: React.ReactNode;
+  customInput?: ReactNode;
   customInputRef?: string;
 
   /**
@@ -105,25 +112,25 @@ export interface ReactDatePickerProps {
   minTime?: moment.Moment;
   monthsShown?: number;
   name?: string;
-  onBlur?(event: React.FocusEvent<HTMLInputElement>): void;
+  onBlur?(event: FocusEvent<HTMLInputElement>): void;
 
   /**
    * What to do when the input changes
    */
   onChange?(
     date: moment.Moment | null,
-    event?: React.SyntheticEvent<any>
+    event?: SyntheticEvent<any>
   ): void;
-  onChangeRaw?(event: React.FocusEvent<HTMLInputElement>): void;
-  onClickOutside?(event: React.MouseEvent<HTMLDivElement>): void;
-  onFocus?(event: React.FocusEvent<HTMLInputElement>): void;
-  onKeyDown?(event: React.KeyboardEvent<HTMLDivElement>): void;
+  onChangeRaw?(event: FocusEvent<HTMLInputElement>): void;
+  onClickOutside?(event: MouseEvent<HTMLDivElement>): void;
+  onFocus?(event: FocusEvent<HTMLInputElement>): void;
+  onKeyDown?(event: KeyboardEvent<HTMLDivElement>): void;
   onMonthChange?(date: moment.Moment): void;
-  onSelect?(date: moment.Moment, event?: React.SyntheticEvent<any>): void;
+  onSelect?(date: moment.Moment, event?: SyntheticEvent<any>): void;
   onWeekSelect?(
     firstDayOfWeek: moment.Moment,
     weekNumber: string | number,
-    event?: React.SyntheticEvent<any>
+    event?: SyntheticEvent<any>
   ): void;
   onYearChange?(date: moment.Moment): void;
   openToDate?: moment.Moment;
@@ -134,7 +141,7 @@ export interface ReactDatePickerProps {
    * Class applied to the popup, when inline is false
    */
   popperClassName?: string;
-  popperContainer?(props: { children: React.ReactNode[] }): React.ReactNode;
+  popperContainer?(props: { children: ReactNode[] }): ReactNode;
   popperPlacement?: PopoverAnchorPosition;
   preventOpenOnFocus?: boolean;
   readOnly?: boolean;
@@ -193,5 +200,5 @@ export interface ReactDatePickerProps {
   withPortal?: boolean;
   yearDropdownItemNumber?: number;
 }
-declare const ReactDatePicker: React.ClassicComponentClass<ReactDatePickerProps>;
+declare const ReactDatePicker: ClassicComponentClass<ReactDatePickerProps>;
 export default ReactDatePicker;

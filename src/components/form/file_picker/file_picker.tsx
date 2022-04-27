@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, InputHTMLAttributes, ReactNode } from 'react';
+import { Component, InputHTMLAttributes, MouseEvent, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../../common';
@@ -105,7 +105,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
     }
   };
 
-  removeFiles = (e?: React.MouseEvent<HTMLButtonElement>) => {
+  removeFiles = (e?: MouseEvent<HTMLButtonElement>) => {
     if (e) {
       e.stopPropagation();
       e.preventDefault();

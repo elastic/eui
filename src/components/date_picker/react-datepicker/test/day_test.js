@@ -23,7 +23,6 @@
  * 
  */
 
-import React from "react";
 import Day from "../src/day";
 import { shallow } from "enzyme";
 import {

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import { FunctionComponent } from 'react';
 import dateMath from '@elastic/datemath';
 import moment, { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 import { useEuiI18n } from '../../i18n';
@@ -259,7 +259,7 @@ export const usePrettyDuration = ({
   return prettyDuration;
 };
 
-export const PrettyDuration: React.FC<PrettyDurationProps> = ({
+export const PrettyDuration: FunctionComponent<PrettyDurationProps> = ({
   timeFrom,
   timeTo,
   quickRanges,

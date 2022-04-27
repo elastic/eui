@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import ReactDOM from 'react-dom';
 import { render, mount } from 'enzyme';
 import { keysOf } from '../common';

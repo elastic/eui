@@ -23,7 +23,6 @@
  * 
  */
 
-import React from "react";
 import YearDropdownOptions from "../src/year_dropdown_options.jsx";
 import { mount, shallow } from "enzyme";
 import moment from "moment";

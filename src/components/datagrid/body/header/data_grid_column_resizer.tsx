@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component } from 'react';
+import { Component, MouseEvent } from 'react';
 import {
   EuiDataGridColumnResizerProps,
   EuiDataGridColumnResizerState,
@@ -23,7 +23,7 @@ export class EuiDataGridColumnResizer extends Component<
     offset: 0,
   };
 
-  onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+  onMouseDown = (e: MouseEvent<HTMLDivElement>) => {
     this.setState({
       initialX: e.pageX,
     });

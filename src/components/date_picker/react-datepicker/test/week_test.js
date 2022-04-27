@@ -23,7 +23,6 @@
  * 
  */
 
-import React from "react";
 import Week from "../src/week";
 import WeekNumber from "../src/week_number";
 import Day from "../src/day";

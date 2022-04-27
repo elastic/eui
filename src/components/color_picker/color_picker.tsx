@@ -6,9 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
+  ChangeEvent,
   FunctionComponent,
   HTMLAttributes,
+  MouseEvent,
+  KeyboardEvent,
   ReactElement,
   cloneElement,
   useEffect,
@@ -141,8 +144,8 @@ export interface EuiColorPickerProps
 }
 
 function isKeyboardEvent(
-  event: React.MouseEvent | React.KeyboardEvent
-): event is React.KeyboardEvent {
+  event: MouseEvent | KeyboardEvent
+): event is KeyboardEvent {
   return typeof event === 'object' && 'key' in event;
 }
 
@@ -343,7 +346,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     closeColorSelector(true);
   };
 
-  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key === keys.ENTER) {
       if (isColorSelectorShown) {
         handleFinalSelection();
@@ -354,9 +357,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   };
 
   const handleInputActivity = (
-    event:
-      | React.KeyboardEvent<HTMLInputElement>
-      | React.MouseEvent<HTMLInputElement>
+    event: KeyboardEvent<HTMLInputElement> | MouseEvent<HTMLInputElement>
   ) => {
     if (isKeyboardEvent(event)) {
       if (event.key === keys.ENTER) {
@@ -368,9 +369,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     }
   };
 
-  const handleToggleOnKeyDown = (
-    event: React.KeyboardEvent<HTMLDivElement>
-  ) => {
+  const handleToggleOnKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key === keys.ARROW_DOWN) {
       event.preventDefault();
       if (isColorSelectorShown) {
@@ -384,7 +383,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     }
   };
 
-  const handleColorInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleColorInput = (event: ChangeEvent<HTMLInputElement>) => {
     handleOnChange(event.target.value);
     const newColor = getChromaColor(event.target.value, showAlpha);
     if (newColor) {
@@ -438,9 +437,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   };
 
   const handleAlphaSelection = (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.MouseEvent<HTMLButtonElement>,
+    e: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLButtonElement>,
     isValid: boolean
   ) => {
     const target = e.target as HTMLInputElement;

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import { MouseEvent } from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
@@ -36,7 +36,7 @@ const breadcrumbs: EuiBreadcrumb[] = [
   {
     text: 'Animals',
     href: '#',
-    onClick: (e: React.MouseEvent) => {
+    onClick: (e: MouseEvent) => {
       e.preventDefault();
       console.log('You clicked Animals');
     },

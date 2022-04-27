@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
+  createElement,
   Component,
   HTMLAttributes,
   ReactNode,
@@ -397,7 +398,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
           >
             <ul ref={this.setListBoxRef}>
               {optionArray.map((_, index) =>
-                React.createElement(
+                createElement(
                   this.ListRow,
                   {
                     key: index,

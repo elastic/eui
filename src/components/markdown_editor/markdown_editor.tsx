@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
+import {
   createElement,
   HTMLAttributes,
   useEffect,
@@ -349,7 +349,7 @@ export const EuiMarkdownEditor = forwardRef<
     const textarea = textareaRef.current;
     const previewRef = useRef<HTMLDivElement>(null);
     const editorToolbarRef = useRef<HTMLDivElement>(null);
-    const [hasUnacceptedItems, setHasUnacceptedItems] = React.useState(false);
+    const [hasUnacceptedItems, setHasUnacceptedItems] = useState(false);
     const [currentHeight, setCurrentHeight] = useState(height);
     const [editorFooterHeight, setEditorFooterHeight] = useState(0);
     const [editorToolbarHeight, setEditorToolbarHeight] = useState(0);

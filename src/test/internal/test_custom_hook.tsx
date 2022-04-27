@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
 import { mount } from 'enzyme';
 
 export const HookWrapper = (props: { hook?: Function }) => {

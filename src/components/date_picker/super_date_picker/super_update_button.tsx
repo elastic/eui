@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, MouseEventHandler, Ref } from 'react';
+import { Component, MouseEventHandler, Ref } from 'react';
 import classNames from 'classnames';
 
 import { EuiButton, EuiButtonProps } from '../../button';

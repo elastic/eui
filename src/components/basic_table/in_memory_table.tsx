@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ReactNode } from 'react';
+import { Component, ReactNode, RefObject, createRef } from 'react';
 import {
   EuiBasicTable,
   Criteria,
@@ -256,7 +256,7 @@ export class EuiInMemoryTable<T> extends Component<
     responsive: true,
     tableLayout: 'fixed',
   };
-  tableRef: React.RefObject<EuiBasicTable>;
+  tableRef: RefObject<EuiBasicTable>;
 
   static getDerivedStateFromProps<T>(
     nextProps: EuiInMemoryTableProps<T>,
@@ -377,7 +377,7 @@ export class EuiInMemoryTable<T> extends Component<
       showPerPageOptions,
     };
 
-    this.tableRef = React.createRef<EuiBasicTable>();
+    this.tableRef = createRef<EuiBasicTable>();
   }
 
   setSelection(newSelection: T[]) {

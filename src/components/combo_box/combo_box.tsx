@@ -10,8 +10,9 @@
  * Elements within EuiComboBox which would normally be tabbable (inputs, buttons) have been removed
  * from the tab order with tabindex={-1} so that we can control the keyboard navigation interface.
  */
-import React, {
+import {
   Component,
+  FocusEvent as ReactFocusEvent,
   FocusEventHandler,
   HTMLAttributes,
   KeyboardEventHandler,
@@ -576,7 +577,7 @@ export class EuiComboBox<T> extends Component<
 
       if (this.props.onBlur) {
         this.props.onBlur(
-          (event as unknown) as React.FocusEvent<HTMLDivElement>
+          (event as unknown) as ReactFocusEvent<HTMLDivElement>
         );
       }
       this.setState({ hasFocus: false });

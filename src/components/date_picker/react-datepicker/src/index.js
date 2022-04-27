@@ -24,7 +24,7 @@
  */
 
 import Calendar from "./calendar";
-import React from "react";
+import { cloneElement, Component } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 
@@ -94,7 +94,7 @@ function hasSelectionChanged(date1, date2) {
  */
 const INPUT_ERR_1 = "Date input not valid.";
 
-export default class DatePicker extends React.Component {
+export default class DatePicker extends Component {
   static propTypes = {
     adjustDateOnChange: PropTypes.bool,
     allowSameDay: PropTypes.bool,
@@ -777,7 +777,7 @@ export default class DatePicker extends React.Component {
           ? this.state.inputValue
           : safeDateFormat(this.props.selected, this.props);
 
-    return React.cloneElement(customInput, {
+    return cloneElement(customInput, {
       [customInputRef]: input => {
         this.input = input;
       },
@@ -820,7 +820,7 @@ export default class DatePicker extends React.Component {
 
   renderAccessibleButton = () => {
     if (this.props.accessibleModeButton != null) {
-      return React.cloneElement(this.props.accessibleModeButton, {
+      return cloneElement(this.props.accessibleModeButton, {
         onClick: this.onInputClick,
         onKeyDown: this.onAccessibleModeButtonKeyDown,
         className: classnames(

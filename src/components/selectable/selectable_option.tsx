@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
 
 export type EuiSelectableOptionCheckedType = 'on' | 'off' | undefined;
@@ -42,11 +42,11 @@ export type EuiSelectableOptionBase = CommonProps & {
   /**
    * Node to add between the selection icon and the label
    */
-  prepend?: React.ReactNode;
+  prepend?: ReactNode;
   /**
    * Node to add to the far right of the item
    */
-  append?: React.ReactNode;
+  append?: ReactNode;
   ref?: (optionIndex: number) => void;
   /**
    * Disallow `id` from being set.
