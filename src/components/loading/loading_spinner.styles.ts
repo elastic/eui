@@ -21,7 +21,7 @@ const _loadingSpinner = keyframes`
   }
 `;
 
-export const spinnerSizes: {
+const spinnerSizes: {
   [size in EuiLoadingSpinnerSize]: _EuiThemeSize;
 } = {
   s: 'm',
@@ -31,7 +31,7 @@ export const spinnerSizes: {
   xxl: 'xxl',
 };
 
-export const spinnerColors = (main: string, highlight: string) => {
+const spinnerColors = (main: string, highlight: string) => {
   return `${highlight} ${main} ${main} ${main}`;
 };
 
