@@ -49,7 +49,7 @@ describe('cloneElementWithCss', () => {
 
     expect(component).toMatchInlineSnapshot(`
       <div
-        class="css-88aly5-component-component-component"
+        class="css-1pj53ay-component-component-component"
       >
         hello world
       </div>
@@ -73,7 +73,7 @@ describe('cloneElementWithCss', () => {
 
     expect(component).toMatchInlineSnapshot(`
       <div
-        class="css-1fcrfq4-TestComponent-component-component"
+        class="css-17p9yvk-TestComponent-component-component"
       >
         hello world
       </div>
