@@ -83,7 +83,7 @@ export const euiTitle = (
       euiTheme,
       measurement
     ),
-    fontWeight: title.fontWeight || euiTheme.font.weight.bold,
+    fontWeight: euiTheme.font.weight[euiTheme.font.title.weight],
     letterSpacing: title.letterSpacing,
   };
 };
