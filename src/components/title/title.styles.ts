@@ -24,6 +24,7 @@ type EuiThemeTitle = {
   fontSize: CSSProperties['fontSize'];
   lineHeight: CSSProperties['lineHeight'];
   fontWeight: CSSProperties['fontWeight'];
+  color: CSSProperties['color'];
 };
 
 export const euiTitle = (
@@ -45,6 +46,7 @@ export const euiTitle = (
   return {
     ...euiFontSize(titleScaleToFontSizeScaleMap[scale], euiTheme, measurement),
     fontWeight: euiTheme.font.weight[euiTheme.font.title.weight],
+    color: euiTheme.colors.title,
   };
 };
 
@@ -63,7 +65,6 @@ export const useEuiTitle = (
 export const euiTitleStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiTitle: css`
     ${euiTextBreakWord}
-    color: ${euiTheme.colors.title};
 
     & + & {
       margin-top: ${euiTheme.size.l};
