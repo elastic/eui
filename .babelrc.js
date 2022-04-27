@@ -12,16 +12,23 @@ module.exports = {
       "modules": process.env.BABEL_MODULES ? process.env.BABEL_MODULES === 'false' ? false : process.env.BABEL_MODULES : "commonjs" // babel's default is commonjs
     }],
     ["@babel/typescript", { isTSX: true, allExtensions: true }],
-    "@babel/react",
     [
-      "@emotion/babel-preset-css-prop",
+      "@babel/preset-react",
       {
-        "autoLabel": "always",
-        "labelFormat": "[local]"
-      },
+        "runtime": "automatic",
+        "importSource": "@emotion/react"
+      }
     ],
   ],
   "plugins": [
+    [
+      "@emotion/babel-plugin",
+      {
+        "autoLabel": "always",
+        "labelFormat": "[local]",
+        "sourceMap": false,
+      },
+    ],
     "@babel/plugin-syntax-dynamic-import",
     `${__dirname}/scripts/babel/proptypes-from-ts-props`,
     "add-module-exports",

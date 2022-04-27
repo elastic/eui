@@ -79,6 +79,9 @@ module.exports = {
     'jsx-a11y/tabindex-no-positive': 'error',
     'jsx-a11y/label-has-associated-control': 'error',
 
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
 

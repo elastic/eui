@@ -118,7 +118,7 @@
     "@elastic/charts": "^46.0.1",
     "@elastic/datemath": "^5.0.3",
     "@elastic/eslint-config-kibana": "^0.15.0",
-    "@emotion/babel-preset-css-prop": "^11.2.0",
+    "@emotion/babel-plugin": "^11.9.2",
     "@emotion/cache": "^11.7.1",
     "@emotion/eslint-plugin": "^11.7.0",
     "@emotion/jest": "^11.9.0",
