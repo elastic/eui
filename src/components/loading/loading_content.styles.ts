@@ -39,6 +39,7 @@ export const euiLoadingContentStyles = ({
       width: 100%;
       height: ${euiTheme.size.base};
       border-radius: ${euiTheme.border.radius.medium};
+      background: ${gradientStartStop};
       overflow: hidden;
 
       &:not(:last-child) {
@@ -54,7 +55,6 @@ export const euiLoadingContentStyles = ({
         display: block;
         width: 220%;
         height: 100%;
-        background: red;
         background: linear-gradient(
           137deg,
           ${gradientStartStop} 45%,

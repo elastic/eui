@@ -8,13 +8,13 @@ exports[`EuiLoadingContent is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
 </span>
 `;
@@ -26,7 +26,7 @@ exports[`EuiLoadingContent lines 1 is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
 </span>
 `;
@@ -38,10 +38,10 @@ exports[`EuiLoadingContent lines 2 is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
 </span>
 `;
@@ -53,13 +53,13 @@ exports[`EuiLoadingContent lines 3 is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
 </span>
 `;
@@ -71,16 +71,16 @@ exports[`EuiLoadingContent lines 4 is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
 </span>
 `;
@@ -92,19 +92,19 @@ exports[`EuiLoadingContent lines 5 is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
 </span>
 `;
@@ -116,22 +116,22 @@ exports[`EuiLoadingContent lines 6 is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
 </span>
 `;
@@ -143,25 +143,25 @@ exports[`EuiLoadingContent lines 7 is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
 </span>
 `;
@@ -173,28 +173,28 @@ exports[`EuiLoadingContent lines 8 is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
 </span>
 `;
@@ -206,31 +206,31 @@ exports[`EuiLoadingContent lines 9 is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
 </span>
 `;
@@ -242,34 +242,34 @@ exports[`EuiLoadingContent lines 10 is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
   <span
-    class="css-19nbww1-euiLoadingContent__singleLine"
+    class="css-1mpwu6v-euiLoadingContent__singleLine"
   />
 </span>
 `;
