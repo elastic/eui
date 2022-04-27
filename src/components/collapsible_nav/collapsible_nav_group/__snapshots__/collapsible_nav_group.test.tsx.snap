@@ -203,7 +203,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
   data-test-subj="test subject string"
 >
   <div
-    class="css-mrlcwq-euiAccordion__triggerWrapper"
+    class="euiAccordion__triggerWrapper css-mrlcwq-euiAccordion__triggerWrapper"
   >
     <button
       aria-controls="id"
@@ -237,7 +237,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
       aria-controls="id"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton--right css-adiasl-euiAccordion__iconButton"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton--right css-1rgdsyh-euiAccordion__iconButton"
       tabindex="-1"
       type="button"
     >
@@ -251,14 +251,14 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
   </div>
   <div
     aria-labelledby="generated-id"
-    class="css-n3rdhr-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper css-n3rdhr-euiAccordion__childWrapper"
     id="id"
     role="region"
     tabindex="-1"
   >
     <div>
       <div
-        class=" css-19izu2g-euiAccordion__children_isLoading"
+        class=" css-13wylk3"
       />
     </div>
   </div>
@@ -270,7 +270,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
   class="euiAccordion euiCollapsibleNavGroup euiCollapsibleNavGroup--withHeading"
 >
   <div
-    class="css-mrlcwq-euiAccordion__triggerWrapper"
+    class="euiAccordion__triggerWrapper css-mrlcwq-euiAccordion__triggerWrapper"
   >
     <button
       aria-controls="id"
@@ -302,7 +302,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
       aria-controls="id"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton--right css-adiasl-euiAccordion__iconButton"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton--right css-1rgdsyh-euiAccordion__iconButton"
       tabindex="-1"
       type="button"
     >
@@ -316,14 +316,14 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
   </div>
   <div
     aria-labelledby="generated-id"
-    class="css-n3rdhr-euiAccordion__childWrapper"
+    class="euiAccordion__childWrapper css-n3rdhr-euiAccordion__childWrapper"
     id="id"
     role="region"
     tabindex="-1"
   >
     <div>
       <div
-        class=" css-19izu2g-euiAccordion__children_isLoading"
+        class=" css-13wylk3"
       />
     </div>
   </div>

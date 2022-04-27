@@ -529,7 +529,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
         class="euiAccordion euiNotificationEventMessages__accordion"
       >
         <div
-          class="css-mrlcwq-euiAccordion__triggerWrapper"
+          class="euiAccordion__triggerWrapper css-mrlcwq-euiAccordion__triggerWrapper"
         >
           <button
             aria-controls="euiNotificationEventMessagesAccordion_generated-id"
@@ -548,14 +548,14 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
         </div>
         <div
           aria-labelledby="generated-id"
-          class="css-n3rdhr-euiAccordion__childWrapper"
+          class="euiAccordion__childWrapper css-n3rdhr-euiAccordion__childWrapper"
           id="euiNotificationEventMessagesAccordion_generated-id"
           role="region"
           tabindex="-1"
         >
           <div>
             <div
-              class=" css-19izu2g-euiAccordion__children_isLoading"
+              class=" css-13wylk3"
             >
               <div
                 class="euiNotificationEventMessages__accordionContent"

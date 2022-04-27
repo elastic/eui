@@ -25,21 +25,21 @@ export const euiAccordionButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
       cursor: pointer;
       text-decoration: underline;
     }
-  `
+  `,
 });
 
-export const euiAccordionChildrenIsLoadingStyles = (
-  { euiTheme }: UseEuiTheme,
-  { isLoading }: { isLoading: boolean | undefined }
-) => ({
-    euiAccordion__children_isLoading: css`
-      ${isLoading &&
-      `
+export const euiAccordionChildrenIsLoadingStyles = ({
+  isLoading,
+}: {
+  isLoading: boolean | undefined;
+}) => ({
+  euiAccordion__children_isLoading: css`
+    ${isLoading &&
+    `
         align-items: center;
         display: flex;
-        line-height: ${euiTheme.size.l}; // Needed to retain consistent vertical alignment and spacing
       `}
-    `
+  `,
 });
 
 export const euiAccordionChildWrapperStyles = (
@@ -66,12 +66,15 @@ export const euiAccordionChildWrapperStyles = (
       opacity: 1;
       visibility: visible;
     `}
-  `
+  `,
 });
 
 export const euiAccordionIconButtonStyles = (
   { euiTheme }: UseEuiTheme,
-  { _arrowDisplay, isOpen }: {
+  {
+    _arrowDisplay,
+    isOpen,
+  }: {
     _arrowDisplay: string | undefined;
     isOpen: boolean;
   }
@@ -92,13 +95,13 @@ export const euiAccordionIconButtonStyles = (
       margin-left: ${euiTheme.size.xs};
       margin-right: 0;
     `}
-  `
+  `,
 });
 
-export const euiAccordionOptionalActionStyles = ({ euiTheme }: UseEuiTheme) => ({
+export const euiAccordionOptionalActionStyles = () => ({
   euiAccordion__optionalAction: css`
     flex-shrink: 0;
-  `
+  `,
 });
 
 export const euiAccordionSpinnerStyles = (
@@ -110,10 +113,12 @@ export const euiAccordionSpinnerStyles = (
     `
       margin-right: ${euiTheme.size.xs};
     `}
-  `
+  `,
 });
 
-export const euiAccordionTriggerWrapperStyles = ({ euiTheme }: UseEuiTheme) => ({
+export const euiAccordionTriggerWrapperStyles = ({
+  euiTheme,
+}: UseEuiTheme) => ({
   euiAccordion__triggerWrapper: css`
     align-items: center;
     display: flex;
@@ -134,5 +139,5 @@ export const euiAccordionTriggerWrapperStyles = ({ euiTheme }: UseEuiTheme) => (
   `,
   xl: css`
     padding: ${euiTheme.size.xl};
-  `
+  `,
 });
