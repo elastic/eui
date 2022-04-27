@@ -13,6 +13,7 @@ import {
   useEuiFontSize,
   euiTextBreakWord,
   euiTextTruncate,
+  euiNumberFormat,
 } from './_typography';
 
 describe('euiFontSize', () => {
@@ -62,5 +63,11 @@ describe('euiTextTruncate', () => {
 
   it('allows customizing max-width', () => {
     expect(euiTextTruncate('150px')).toMatchSnapshot();
+  });
+});
+
+describe('euiNumberFormat', () => {
+  it('returns a string of CSS text', () => {
+    expect(euiNumberFormat()).toMatchSnapshot();
   });
 });

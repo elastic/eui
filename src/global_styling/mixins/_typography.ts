@@ -66,3 +66,8 @@ export const euiTextTruncate = (
   white-space: nowrap !important;
   word-wrap: normal !important; // Fix for IE 8/9 if 'word-wrap: break-word' is in effect on ancestor nodes.
 `;
+
+// Fixed-width numbers for tabular data
+export const euiNumberFormat = () => `
+  font-feature-settings: 'calt' 1, 'kern' 1, 'liga' 1, 'tnum' 1;
+`;

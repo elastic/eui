@@ -168,6 +168,12 @@ Object {
 }
 `;
 
+exports[`euiNumberFormat returns a string of CSS text 1`] = `
+"
+  font-feature-settings: 'calt' 1, 'kern' 1, 'liga' 1, 'tnum' 1; // Fixed-width numbers for tabular data
+"
+`;
+
 exports[`euiTextBreakWord returns a string of CSS text 1`] = `
 "
   overflow-wrap: break-word !important; // makes sure the long string will wrap and not bust out of the container
