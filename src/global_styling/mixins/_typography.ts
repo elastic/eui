@@ -50,7 +50,7 @@ export const useEuiFontSize = (
  */
 
 // https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
-export const euiTextBreakWord = `
+export const euiTextBreakWord = () => `
   overflow-wrap: break-word !important; // makes sure the long string will wrap and not bust out of the container
   word-wrap: break-word !important; // spec says, they are literally just alternate names for each other but some browsers support one and not the other
   word-break: break-word; // IE doesn't understand but that's ok
