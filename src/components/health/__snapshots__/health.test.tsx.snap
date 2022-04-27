@@ -3,7 +3,7 @@
 exports[`EuiHealth is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiHealth euiHealth--textSizeS testClass1 testClass2"
+  class="euiHealth testClass1 testClass2 css-qn8ayk-euiHealth-s"
   data-test-subj="test subject string"
 >
   <div
@@ -25,7 +25,7 @@ exports[`EuiHealth is rendered 1`] = `
 
 exports[`EuiHealth props color #000000 is rendered 1`] = `
 <div
-  class="euiHealth euiHealth--textSizeS"
+  class="euiHealth css-qn8ayk-euiHealth-s"
 >
   <div
     class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -47,7 +47,7 @@ exports[`EuiHealth props color #000000 is rendered 1`] = `
 
 exports[`EuiHealth props color accent is rendered 1`] = `
 <div
-  class="euiHealth euiHealth--textSizeS"
+  class="euiHealth css-qn8ayk-euiHealth-s"
 >
   <div
     class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -69,7 +69,7 @@ exports[`EuiHealth props color accent is rendered 1`] = `
 
 exports[`EuiHealth props color danger is rendered 1`] = `
 <div
-  class="euiHealth euiHealth--textSizeS"
+  class="euiHealth css-qn8ayk-euiHealth-s"
 >
   <div
     class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -91,7 +91,7 @@ exports[`EuiHealth props color danger is rendered 1`] = `
 
 exports[`EuiHealth props color default is rendered 1`] = `
 <div
-  class="euiHealth euiHealth--textSizeS"
+  class="euiHealth css-qn8ayk-euiHealth-s"
 >
   <div
     class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -113,7 +113,7 @@ exports[`EuiHealth props color default is rendered 1`] = `
 
 exports[`EuiHealth props color ghost is rendered 1`] = `
 <div
-  class="euiHealth euiHealth--textSizeS"
+  class="euiHealth css-qn8ayk-euiHealth-s"
 >
   <div
     class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -135,7 +135,7 @@ exports[`EuiHealth props color ghost is rendered 1`] = `
 
 exports[`EuiHealth props color inherit is rendered 1`] = `
 <div
-  class="euiHealth euiHealth--textSizeS"
+  class="euiHealth css-qn8ayk-euiHealth-s"
 >
   <div
     class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -157,7 +157,7 @@ exports[`EuiHealth props color inherit is rendered 1`] = `
 
 exports[`EuiHealth props color primary is rendered 1`] = `
 <div
-  class="euiHealth euiHealth--textSizeS"
+  class="euiHealth css-qn8ayk-euiHealth-s"
 >
   <div
     class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -179,7 +179,7 @@ exports[`EuiHealth props color primary is rendered 1`] = `
 
 exports[`EuiHealth props color subdued is rendered 1`] = `
 <div
-  class="euiHealth euiHealth--textSizeS"
+  class="euiHealth css-qn8ayk-euiHealth-s"
 >
   <div
     class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -201,7 +201,7 @@ exports[`EuiHealth props color subdued is rendered 1`] = `
 
 exports[`EuiHealth props color success is rendered 1`] = `
 <div
-  class="euiHealth euiHealth--textSizeS"
+  class="euiHealth css-qn8ayk-euiHealth-s"
 >
   <div
     class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -223,7 +223,7 @@ exports[`EuiHealth props color success is rendered 1`] = `
 
 exports[`EuiHealth props color text is rendered 1`] = `
 <div
-  class="euiHealth euiHealth--textSizeS"
+  class="euiHealth css-qn8ayk-euiHealth-s"
 >
   <div
     class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -245,7 +245,7 @@ exports[`EuiHealth props color text is rendered 1`] = `
 
 exports[`EuiHealth props color warning is rendered 1`] = `
 <div
-  class="euiHealth euiHealth--textSizeS"
+  class="euiHealth css-qn8ayk-euiHealth-s"
 >
   <div
     class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -267,7 +267,7 @@ exports[`EuiHealth props color warning is rendered 1`] = `
 
 exports[`EuiHealth props textSize inherit is rendered 1`] = `
 <div
-  class="euiHealth euiHealth--textSizeInherit"
+  class="euiHealth css-1eqikqq-euiHealth-inherit"
 >
   <div
     class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -289,7 +289,7 @@ exports[`EuiHealth props textSize inherit is rendered 1`] = `
 
 exports[`EuiHealth props textSize m is rendered 1`] = `
 <div
-  class="euiHealth euiHealth--textSizeM"
+  class="euiHealth css-28ntf-euiHealth-m"
 >
   <div
     class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -311,7 +311,7 @@ exports[`EuiHealth props textSize m is rendered 1`] = `
 
 exports[`EuiHealth props textSize s is rendered 1`] = `
 <div
-  class="euiHealth euiHealth--textSizeS"
+  class="euiHealth css-qn8ayk-euiHealth-s"
 >
   <div
     class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -333,7 +333,7 @@ exports[`EuiHealth props textSize s is rendered 1`] = `
 
 exports[`EuiHealth props textSize xs is rendered 1`] = `
 <div
-  class="euiHealth euiHealth--textSizeXS"
+  class="euiHealth css-ft4ki3-euiHealth-xs"
 >
   <div
     class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
