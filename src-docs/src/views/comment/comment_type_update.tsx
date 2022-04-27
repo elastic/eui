@@ -4,6 +4,8 @@ import {
   EuiBadge,
   EuiText,
   EuiCode,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components/';
 
 const bodyUpdate = (
@@ -14,17 +16,36 @@ const bodyUpdate = (
   </EuiText>
 );
 
+const eventWihtMultipleTags = (
+  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s">
+    <EuiFlexItem grow={false}>added tags</EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge color="accent">case</EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge color="primary">phising</EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge color="success">security</EuiBadge>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+
+const eventWithOneTag = (
+  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="xs">
+    <EuiFlexItem grow={false}>marked cases as</EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge color="danger">Closed</EuiBadge>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+
 export default () => (
   <div>
     <EuiComment
       username="luisg"
       type="update"
-      event={
-        <>
-          added tags <EuiBadge>case</EuiBadge> <EuiBadge>phising</EuiBadge>{' '}
-          <EuiBadge>security</EuiBadge>
-        </>
-      }
+      event={eventWihtMultipleTags}
       timestamp="22 hours ago"
       updateIcon="tag"
     />
@@ -39,11 +60,7 @@ export default () => (
     <EuiComment
       username="milal"
       type="update"
-      event={
-        <>
-          marked cases as <EuiBadge color="danger">Closed</EuiBadge>
-        </>
-      }
+      event={eventWithOneTag}
       timestamp="6 hours ago"
     >
       {bodyUpdate}

@@ -27,13 +27,16 @@ const copyAction = (
 );
 
 const complexEvent = (
-  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s">
+  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="xs">
     <EuiFlexItem grow={false}>added tags</EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiBadge color="primary">sample</EuiBadge>
+      <EuiBadge color="accent">case</EuiBadge>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiBadge color="success">review</EuiBadge>
+      <EuiBadge color="primary">phising</EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge color="success">security</EuiBadge>
     </EuiFlexItem>
   </EuiFlexGroup>
 );

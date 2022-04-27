@@ -35,23 +35,23 @@ exports[`EuiCommentList is rendered 1`] = `
       class="css-1waxxmm-euiTimelineItemEvent-top"
     >
       <figure
-        class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
+        class="euiCommentEvent euiCommentEvent--regular css-1ccpf9c-euiCommentEvent-regular"
       >
         <figcaption
-          class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
+          class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
         >
-          <span
-            class="euiCommentEvent__headerData css-vgd89l-euiCommentEvent__headerData"
+          <div
+            class="euiCommentEvent__headerData css-1l51d77-euiCommentEvent__headerData"
           >
-            <span
-              class="euiCommentEvent__headerUsername css-12gd9rw-euiCommentEvent__headerUsername"
+            <div
+              class="euiCommentEvent__headerUsername css-10865x4-euiCommentEvent__headerUsername"
             >
               janed
-            </span>
-            <span
+            </div>
+            <div
               class="euiCommentEvent__headerEvent"
             />
-          </span>
+          </div>
         </figcaption>
       </figure>
     </div>

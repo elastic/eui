@@ -24,18 +24,20 @@ export const euiCommentEventStyles = ({ euiTheme }: UseEuiTheme) => ({
     }
 
     > * {
-      padding: ${euiTheme.size.s};
+      padding-inline: ${euiTheme.size.s};
+      padding-block: ${euiTheme.size.s};
     }
   `,
   update: css`
     > [class*='euiCommentEvent__body'] {
-      padding-top: ${euiTheme.size.xs};
+      padding-block-start: ${euiTheme.size.xs};
     }
   `,
   custom: css``,
   euiCommentEvent__header: css`
     display: flex;
     align-items: center;
+    gap: ${euiTheme.size.s};
   `,
   euiCommentEvent__body: css``,
   euiCommentEvent__headerData: css`
@@ -43,19 +45,12 @@ export const euiCommentEventStyles = ({ euiTheme }: UseEuiTheme) => ({
     flex: 1;
     align-items: center;
     flex-wrap: wrap;
-
-    > * {
-      padding-right: ${euiTheme.size.xs};
-    }
+    gap: ${euiTheme.size.xs};
   `,
   euiCommentEvent__headerUsername: css`
     font-weight: ${euiTheme.font.weight.semiBold};
-    padding-right: ${euiTheme.size.xs};
-  `,
-  euiCommentEvent__headerIconUpdate: css`
-    margin-right: ${euiTheme.size.xs};
   `,
   euiCommentEvent__updatePanel: css`
-    padding: ${euiTheme.size.xs} 0;
+    padding-block: ${euiTheme.size.xs};
   `,
 });

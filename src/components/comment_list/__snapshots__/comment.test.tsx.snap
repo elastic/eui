@@ -31,23 +31,23 @@ exports[`EuiComment is rendered 1`] = `
     class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <figure
-      class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
+      class="euiCommentEvent euiCommentEvent--regular css-1ccpf9c-euiCommentEvent-regular"
     >
       <figcaption
-        class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
+        class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
       >
-        <span
-          class="euiCommentEvent__headerData css-vgd89l-euiCommentEvent__headerData"
+        <div
+          class="euiCommentEvent__headerData css-1l51d77-euiCommentEvent__headerData"
         >
-          <span
-            class="euiCommentEvent__headerUsername css-12gd9rw-euiCommentEvent__headerUsername"
+          <div
+            class="euiCommentEvent__headerUsername css-10865x4-euiCommentEvent__headerUsername"
           >
             someuser
-          </span>
-          <span
+          </div>
+          <div
             class="euiCommentEvent__headerEvent"
           />
-        </span>
+        </div>
       </figcaption>
     </figure>
   </div>
@@ -83,25 +83,25 @@ exports[`EuiComment props event is rendered 1`] = `
     class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <figure
-      class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
+      class="euiCommentEvent euiCommentEvent--regular css-1ccpf9c-euiCommentEvent-regular"
     >
       <figcaption
-        class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
+        class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
       >
-        <span
-          class="euiCommentEvent__headerData css-vgd89l-euiCommentEvent__headerData"
+        <div
+          class="euiCommentEvent__headerData css-1l51d77-euiCommentEvent__headerData"
         >
-          <span
-            class="euiCommentEvent__headerUsername css-12gd9rw-euiCommentEvent__headerUsername"
+          <div
+            class="euiCommentEvent__headerUsername css-10865x4-euiCommentEvent__headerUsername"
           >
             someuser
-          </span>
-          <span
+          </div>
+          <div
             class="euiCommentEvent__headerEvent"
           >
             commented
-          </span>
-        </span>
+          </div>
+        </div>
       </figcaption>
     </figure>
   </div>
@@ -137,23 +137,23 @@ exports[`EuiComment props timelineIcon is rendered 1`] = `
     class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <figure
-      class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
+      class="euiCommentEvent euiCommentEvent--regular css-1ccpf9c-euiCommentEvent-regular"
     >
       <figcaption
-        class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
+        class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
       >
-        <span
-          class="euiCommentEvent__headerData css-vgd89l-euiCommentEvent__headerData"
+        <div
+          class="euiCommentEvent__headerData css-1l51d77-euiCommentEvent__headerData"
         >
-          <span
-            class="euiCommentEvent__headerUsername css-12gd9rw-euiCommentEvent__headerUsername"
+          <div
+            class="euiCommentEvent__headerUsername css-10865x4-euiCommentEvent__headerUsername"
           >
             someuser
-          </span>
-          <span
+          </div>
+          <div
             class="euiCommentEvent__headerEvent"
           />
-        </span>
+        </div>
       </figcaption>
     </figure>
   </div>
@@ -189,30 +189,30 @@ exports[`EuiComment props timestamp is rendered 1`] = `
     class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <figure
-      class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
+      class="euiCommentEvent euiCommentEvent--regular css-1ccpf9c-euiCommentEvent-regular"
     >
       <figcaption
-        class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
+        class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
       >
-        <span
-          class="euiCommentEvent__headerData css-vgd89l-euiCommentEvent__headerData"
+        <div
+          class="euiCommentEvent__headerData css-1l51d77-euiCommentEvent__headerData"
         >
-          <span
-            class="euiCommentEvent__headerUsername css-12gd9rw-euiCommentEvent__headerUsername"
+          <div
+            class="euiCommentEvent__headerUsername css-10865x4-euiCommentEvent__headerUsername"
           >
             someuser
-          </span>
-          <span
+          </div>
+          <div
             class="euiCommentEvent__headerEvent"
           />
-          <span
+          <div
             class="euiCommentEvent__headerTimestamp"
           >
             <time>
               21 days ago
             </time>
-          </span>
-        </span>
+          </div>
+        </div>
       </figcaption>
     </figure>
   </div>
@@ -283,23 +283,23 @@ exports[`EuiComment props type regular is rendered 1`] = `
     class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <figure
-      class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
+      class="euiCommentEvent euiCommentEvent--regular css-1ccpf9c-euiCommentEvent-regular"
     >
       <figcaption
-        class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
+        class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
       >
-        <span
-          class="euiCommentEvent__headerData css-vgd89l-euiCommentEvent__headerData"
+        <div
+          class="euiCommentEvent__headerData css-1l51d77-euiCommentEvent__headerData"
         >
-          <span
-            class="euiCommentEvent__headerUsername css-12gd9rw-euiCommentEvent__headerUsername"
+          <div
+            class="euiCommentEvent__headerUsername css-10865x4-euiCommentEvent__headerUsername"
           >
             someuser
-          </span>
-          <span
+          </div>
+          <div
             class="euiCommentEvent__headerEvent"
           />
-        </span>
+        </div>
       </figcaption>
     </figure>
   </div>
@@ -335,26 +335,26 @@ exports[`EuiComment props type update is rendered 1`] = `
     class="css-1a9m88x-euiTimelineItemEvent-center"
   >
     <div
-      class="euiCommentEvent euiCommentEvent--update css-kr7aki-euiCommentEvent-update"
+      class="euiCommentEvent euiCommentEvent--update css-krcl3t-euiCommentEvent-update"
     >
       <div
-        class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow css-8nrfo3-euiCommentEvent__updatePanel"
+        class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow css-cylma9-euiCommentEvent__updatePanel"
       >
         <div
-          class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
+          class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
         >
-          <span
-            class="euiCommentEvent__headerData css-vgd89l-euiCommentEvent__headerData"
+          <div
+            class="euiCommentEvent__headerData css-1l51d77-euiCommentEvent__headerData"
           >
-            <span
-              class="euiCommentEvent__headerUsername css-12gd9rw-euiCommentEvent__headerUsername"
+            <div
+              class="euiCommentEvent__headerUsername css-10865x4-euiCommentEvent__headerUsername"
             >
               someuser
-            </span>
-            <span
+            </div>
+            <div
               class="euiCommentEvent__headerEvent"
             />
-          </span>
+          </div>
         </div>
       </div>
     </div>
@@ -391,23 +391,23 @@ exports[`EuiComment renders a body 1`] = `
     class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <figure
-      class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
+      class="euiCommentEvent euiCommentEvent--regular css-1ccpf9c-euiCommentEvent-regular"
     >
       <figcaption
-        class="euiCommentEvent__header css-1a0qoab-euiCommentEvent__header"
+        class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
       >
-        <span
-          class="euiCommentEvent__headerData css-vgd89l-euiCommentEvent__headerData"
+        <div
+          class="euiCommentEvent__headerData css-1l51d77-euiCommentEvent__headerData"
         >
-          <span
-            class="euiCommentEvent__headerUsername css-12gd9rw-euiCommentEvent__headerUsername"
+          <div
+            class="euiCommentEvent__headerUsername css-10865x4-euiCommentEvent__headerUsername"
           >
             someuser
-          </span>
-          <span
+          </div>
+          <div
             class="euiCommentEvent__headerEvent"
           />
-        </span>
+        </div>
       </figcaption>
       <div
         class="euiCommentEvent__body css-1gv33fs-euiCommentEvent__body"
