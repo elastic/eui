@@ -27,13 +27,13 @@ const complexEvent = (
   <EuiFlexGroup responsive={false} alignItems="center" gutterSize="xs">
     <EuiFlexItem grow={false}>added tags</EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiBadge color="accent">case</EuiBadge>
+      <EuiBadge>case</EuiBadge>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiBadge color="primary">phising</EuiBadge>
+      <EuiBadge>phising</EuiBadge>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiBadge color="success">security</EuiBadge>
+      <EuiBadge>security</EuiBadge>
     </EuiFlexItem>
   </EuiFlexGroup>
 );
