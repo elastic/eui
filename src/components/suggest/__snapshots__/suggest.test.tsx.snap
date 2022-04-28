@@ -1021,7 +1021,9 @@ Array [
                 class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
               >
                 <span
-                  class="euiLoadingSpinner euiLoadingSpinner--medium"
+                  aria-label="Loading"
+                  class="euiLoadingSpinner css-155ohbx-euiLoadingSpinner-m"
+                  role="progressbar"
                 />
               </div>
             </div>
@@ -1274,7 +1276,9 @@ Array [
                 class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
               >
                 <span
-                  class="euiLoadingSpinner euiLoadingSpinner--medium"
+                  aria-label="Loading"
+                  class="euiLoadingSpinner css-155ohbx-euiLoadingSpinner-m"
+                  role="progressbar"
                 />
               </div>
             </div>
