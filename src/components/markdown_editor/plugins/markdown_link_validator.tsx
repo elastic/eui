@@ -16,12 +16,17 @@ interface LinkOrTextNode {
   children?: Array<{ value: string }>;
 }
 
-export function markdownLinkValidator() {
+export interface MarkdownLinkValidatorOptions {
+  allowRelative: boolean;
+  allowProtocols: string[];
+}
+
+export function markdownLinkValidator(options: MarkdownLinkValidatorOptions) {
   return (ast: any) => {
     visit(ast, 'link', (_node: unknown) => {
       const node = _node as LinkOrTextNode;
 
-      if (!validateUrl(node.url!)) {
+      if (!validateUrl(node.url!, options)) {
         mutateLinkToText(node);
       }
     });
@@ -45,7 +50,21 @@ export function mutateLinkToText(node: LinkOrTextNode) {
   return node;
 }
 
-export function validateUrl(url: string) {
-  // A link is valid if it starts with http:, https:, or /
-  return /^(https?:|\/)/.test(url);
+export function validateUrl(
+  url: string,
+  { allowRelative, allowProtocols }: MarkdownLinkValidatorOptions
+) {
+  // relative captures both relative paths `/` and protocols `//`
+  const isRelative = url.startsWith('/');
+  if (isRelative) {
+    return allowRelative;
+  }
+
+  try {
+    const parsedUrl = new URL(url);
+    return allowProtocols.indexOf(parsedUrl.protocol) !== -1;
+  } catch (e) {
+    // failed to parse input as url
+    return false;
+  }
 }

@@ -6,38 +6,51 @@
  * Side Public License, v 1.
  */
 
-import { validateUrl, mutateLinkToText } from './markdown_link_validator';
+import {
+  validateUrl,
+  mutateLinkToText,
+  MarkdownLinkValidatorOptions,
+} from './markdown_link_validator';
 import { validateHref } from '../../../services/security/href_validator';
+
+const defaultValidationOptions: MarkdownLinkValidatorOptions = {
+  allowRelative: true,
+  allowProtocols: ['http:', 'https:'],
+};
 
 describe('validateURL', () => {
   it('approves of https:', () => {
-    expect(validateUrl('https:')).toBeTruthy();
+    expect(
+      validateUrl('https://domain', defaultValidationOptions)
+    ).toBeTruthy();
   });
   it('approves of http:', () => {
-    expect(validateUrl('http:')).toBeTruthy();
+    expect(validateUrl('http://domain', defaultValidationOptions)).toBeTruthy();
   });
   it('approves of absolute relative links', () => {
-    expect(validateUrl('/')).toBeTruthy();
+    expect(validateUrl('/', defaultValidationOptions)).toBeTruthy();
   });
   it('approves of relative protocols', () => {
-    expect(validateUrl('//')).toBeTruthy();
+    expect(validateUrl('//', defaultValidationOptions)).toBeTruthy();
   });
   it('rejects a url starting with http with not an s following', () => {
-    expect(validateUrl('httpm:')).toBeFalsy();
+    expect(validateUrl('httpm:', defaultValidationOptions)).toBeFalsy();
   });
   it('rejects a directory relative link', () => {
-    expect(validateUrl('./')).toBeFalsy();
-    expect(validateUrl('../')).toBeFalsy();
+    expect(validateUrl('./', defaultValidationOptions)).toBeFalsy();
+    expect(validateUrl('../', defaultValidationOptions)).toBeFalsy();
   });
   it('rejects a word', () => {
-    expect(validateUrl('word')).toBeFalsy();
+    expect(validateUrl('word', defaultValidationOptions)).toBeFalsy();
   });
   it('rejects gopher', () => {
-    expect(validateUrl('gopher:')).toBeFalsy();
+    expect(
+      validateUrl('gopher://domain', defaultValidationOptions)
+    ).toBeFalsy();
   });
   it('rejects javascript', () => {
     // eslint-disable-next-line no-script-url
-    expect(validateUrl('javascript:')).toBeFalsy();
+    expect(validateUrl('javascript:', defaultValidationOptions)).toBeFalsy();
     // eslint-disable-next-line no-script-url
     expect(validateHref('javascript:alert()')).toBeFalsy();
   });
