@@ -17,8 +17,8 @@ export const logicalSide = {
   vertical: 'block',
 };
 
-const SIDES = keysOf(logicalSide);
-export type LogicalSides = typeof SIDES[number];
+export const LOGICAL_SIDES = keysOf(logicalSide);
+export type LogicalSides = typeof LOGICAL_SIDES[number];
 
 const logicalMargins = {
   'margin-left': 'margin-inline-start',

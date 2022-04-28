@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useEuiPadding mixin returns a static padding property for each padding size for each logical side bottom 1`] = `
+"
+      padding-block-end: 12px;
+    "
+`;
+
+exports[`useEuiPadding mixin returns a static padding property for each padding size for each logical side horizontal 1`] = `
+"
+      padding-inline: 12px;
+    "
+`;
+
+exports[`useEuiPadding mixin returns a static padding property for each padding size for each logical side left 1`] = `
+"
+      padding-inline-start: 12px;
+    "
+`;
+
+exports[`useEuiPadding mixin returns a static padding property for each padding size for each logical side right 1`] = `
+"
+      padding-inline-end: 12px;
+    "
+`;
+
+exports[`useEuiPadding mixin returns a static padding property for each padding size for each logical side top 1`] = `
+"
+      padding-block-start: 12px;
+    "
+`;
+
+exports[`useEuiPadding mixin returns a static padding property for each padding size for each logical side vertical 1`] = `
+"
+      padding-block: 12px;
+    "
+`;
+
+exports[`useEuiPadding mixin returns a static padding property for each padding size l 1`] = `
+"
+      padding: 24px;
+    "
+`;
+
+exports[`useEuiPadding mixin returns a static padding property for each padding size m 1`] = `
+"
+      padding: 12px;
+    "
+`;
+
+exports[`useEuiPadding mixin returns a static padding property for each padding size none 1`] = `null`;
+
+exports[`useEuiPadding mixin returns a static padding property for each padding size s 1`] = `
+"
+      padding: 8px;
+    "
+`;
+
+exports[`useEuiPadding mixin returns a static padding property for each padding size xl 1`] = `
+"
+      padding: 32px;
+    "
+`;
+
+exports[`useEuiPadding mixin returns a static padding property for each padding size xs 1`] = `
+"
+      padding: 4px;
+    "
+`;
