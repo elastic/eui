@@ -6,12 +6,7 @@
  * Side Public License, v 1.
  */
 
-/**
- * Wraps Object.keys with proper typescript definition of the resulting array
- */
-function keysOf<T, K extends keyof T>(obj: T): K[] {
-  return Object.keys(obj) as K[];
-}
+import { keysOf } from '../../components/common';
 
 export const logicalSide = {
   left: 'inline-start',

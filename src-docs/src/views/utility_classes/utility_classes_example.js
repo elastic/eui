@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import { EuiSpacer, EuiText } from '../../../../src/components';
 import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
-import UtilityClassesFunctions from './utility_functions';
 import UtilityClassesMixins from './utility_mixins';
 import UtilityClassesColor from './utility_color';
 import UtilityClassesDisplay from './utility_classes';
@@ -24,18 +23,6 @@ export const UtilityClassesExample = {
     </EuiText>
   ),
   sections: [
-    {
-      title: 'Functions',
-      wrapText: false,
-      text: (
-        <>
-          <EuiSpacer />
-          <UtilityClassesFunctions />
-          <EuiSpacer />
-          <EuiHorizontalRule />
-        </>
-      ),
-    },
     {
       title: 'Mixins',
       wrapText: false,
