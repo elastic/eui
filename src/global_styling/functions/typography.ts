@@ -9,6 +9,7 @@
 import {
   _EuiThemeFontScale,
   _EuiThemeFontSizeMeasurement,
+  _EuiThemeFontWeights,
 } from '../variables/typography';
 import { UseEuiTheme } from '../../services/theme/hooks';
 
@@ -75,3 +76,26 @@ export function euiLineHeightFromBaseline(
     ? `${pixelValue}px`
     : `${(pixelValue / denominator).toFixed(4)}rem`;
 }
+
+/**
+ * Text weight shifting
+ *
+ * When changing the font-weight based the state of the component,
+ * this mixin will ensure that the sizing is dependent on the boldest
+ * weight so it doesn't shift sibling content.
+ */
+export const euiTextShift = (
+  fontWeight: keyof _EuiThemeFontWeights = 'bold',
+  attribute: string = 'data-text',
+  euiTheme: UseEuiTheme['euiTheme']
+) => {
+  return `
+  &::after {
+    display: block;
+    content: attr(${attribute});
+    font-weight: ${euiTheme.font.weight[fontWeight]};
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }`;
+};
