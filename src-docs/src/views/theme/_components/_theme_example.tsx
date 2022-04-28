@@ -29,6 +29,7 @@ export type ThemeExample = {
     property?: string;
     type?: string;
   };
+  hasSpacing?: boolean;
 };
 
 export const ThemeExample: FunctionComponent<ThemeExample> = ({
@@ -39,6 +40,7 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
   examplePanel,
   snippet,
   snippetLanguage = 'jsx',
+  hasSpacing = true,
 }) => {
   const { euiTheme } = useEuiTheme();
   const finalSnippet =
@@ -53,9 +55,13 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
       <EuiSplitPanel.Outer
         color={color}
         direction="row"
-        css={css`
-          margin-bottom: ${euiTheme.size.xl};
-        `}
+        css={
+          hasSpacing
+            ? css`
+                margin-bottom: ${euiTheme.size.xl};
+              `
+            : undefined
+        }
       >
         <EuiSplitPanel.Inner style={{ flexShrink: 0 }}>
           {title && (
