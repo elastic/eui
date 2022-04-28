@@ -2,7 +2,7 @@
 
 exports[`EuiCommentEvent is rendered 1`] = `
 <figure
-  class="euiCommentEvent euiCommentEvent--regular testClass1 testClass2 css-j5c1j2-euiCommentEvent-regular"
+  class="euiCommentEvent euiCommentEvent--regular testClass1 testClass2 css-sm3hpk-euiCommentEvent-regular"
 >
   <figcaption
     class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
@@ -25,7 +25,7 @@ exports[`EuiCommentEvent is rendered 1`] = `
 
 exports[`EuiCommentEvent props event is rendered 1`] = `
 <figure
-  class="euiCommentEvent euiCommentEvent--regular css-j5c1j2-euiCommentEvent-regular"
+  class="euiCommentEvent euiCommentEvent--regular css-sm3hpk-euiCommentEvent-regular"
 >
   <figcaption
     class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
@@ -50,7 +50,7 @@ exports[`EuiCommentEvent props event is rendered 1`] = `
 
 exports[`EuiCommentEvent props timestamp is rendered 1`] = `
 <figure
-  class="euiCommentEvent euiCommentEvent--regular css-j5c1j2-euiCommentEvent-regular"
+  class="euiCommentEvent euiCommentEvent--regular css-sm3hpk-euiCommentEvent-regular"
 >
   <figcaption
     class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
@@ -86,7 +86,7 @@ exports[`EuiCommentEvent props type custom is rendered 1`] = `
 
 exports[`EuiCommentEvent props type regular is rendered 1`] = `
 <figure
-  class="euiCommentEvent euiCommentEvent--regular css-j5c1j2-euiCommentEvent-regular"
+  class="euiCommentEvent euiCommentEvent--regular css-sm3hpk-euiCommentEvent-regular"
 >
   <figcaption
     class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
@@ -136,7 +136,7 @@ exports[`EuiCommentEvent props type update is rendered 1`] = `
 
 exports[`EuiCommentEvent props updateColor is rendered 1`] = `
 <figure
-  class="euiCommentEvent euiCommentEvent--regular css-j5c1j2-euiCommentEvent-regular"
+  class="euiCommentEvent euiCommentEvent--regular css-sm3hpk-euiCommentEvent-regular"
 >
   <figcaption
     class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
@@ -159,7 +159,7 @@ exports[`EuiCommentEvent props updateColor is rendered 1`] = `
 
 exports[`EuiCommentEvent props updateIcon is rendered 1`] = `
 <figure
-  class="euiCommentEvent euiCommentEvent--regular css-j5c1j2-euiCommentEvent-regular"
+  class="euiCommentEvent euiCommentEvent--regular css-sm3hpk-euiCommentEvent-regular"
 >
   <figcaption
     class="euiCommentEvent__header css-397e40-euiCommentEvent__header"

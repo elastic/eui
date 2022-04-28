@@ -22,8 +22,7 @@ export const euiCommentEventStyles = ({ euiTheme }: UseEuiTheme) => ({
     }
 
     > * {
-      padding-inline: ${euiTheme.size.s};
-      padding-block: ${euiTheme.size.s};
+      padding: ${euiTheme.size.s};
     }
   `,
   update: css`
