@@ -36,14 +36,12 @@ export const MentionsParser: Plugin = function MentionsParser() {
       return true;
     }
 
-    const match = `@${mention};`;
+    const match = `@${mention}`;
 
     const now = eat.now();
     const offset = mention.length + 1;
     now.column += offset;
     now.offset += offset;
-
-    console.log('found: ', mention);
 
     return eat(match)({
       type: 'mentionsPlugin',

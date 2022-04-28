@@ -13,7 +13,7 @@ export const mentionsPlugin = {
   name: 'mentionsPlugin',
   button: {
     label: 'Mention',
-    iconType: 'editorComment',
+    iconType: 'user',
   },
   formatting: {
     prefix: '@',
@@ -25,4 +25,19 @@ export const mentionsPlugin = {
       {'@someone'}
     </EuiCodeBlock>
   ),
+  editor: ({ node, onSave, onCancel }) => {
+    return (
+      <div>
+        <button
+          type="button"
+          onClick={() => onSave('new text', { block: false })}
+        >
+          Save
+        </button>
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
+      </div>
+    );
+  },
 };
