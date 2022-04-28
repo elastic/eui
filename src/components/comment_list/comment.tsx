@@ -9,7 +9,7 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { keysOf } from '../common';
-import { EuiTimelineItem } from '../timeline';
+import { EuiTimelineItem, EuiTimelineItemProps } from '../timeline';
 import { EuiCommentEvent, EuiCommentEventProps } from './comment_event';
 import {
   EuiCommentTimeline,
@@ -18,7 +18,14 @@ import {
 
 export interface EuiCommentProps
   extends EuiCommentEventProps,
-    EuiCommentTimelineProps {}
+    EuiCommentTimelineProps {
+  /**
+   * Sets the HTML element for `EuiComment`.
+   * By default, the element renders as a `<li/>`.
+   * Only change the HTML element when it is not wrapped in a `EuiCommentList` that renders as a `<ol/>`.
+   */
+  component?: EuiTimelineItemProps['component'];
+}
 
 const typeToClassNameMap = {
   regular: '',
@@ -39,6 +46,7 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
   timestamp,
   updateIcon,
   updateColor,
+  component = 'li',
   ...rest
 }) => {
   const classes = classNames(
@@ -55,6 +63,7 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
     <EuiTimelineItem
       verticalAlign={verticalAlign}
       className={classes}
+      component={component}
       icon={
         <EuiCommentTimeline username={username} timelineIcon={timelineIcon} />
       }

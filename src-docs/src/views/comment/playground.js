@@ -37,6 +37,12 @@ export default () => {
     value: 'added a comment',
   };
 
+  propsToUse.component = {
+    ...propsToUse.component,
+    type: PropTypes.String,
+    value: 'div',
+  };
+
   return {
     config: {
       componentName: 'EuiComment',
