@@ -82,7 +82,7 @@ export default () => {
         <h2 id={`${sizingSections[2].id}`}>{`${sizingSections[2].title}`}</h2>
       </EuiTitle>
 
-      <EuiSpacer size="s" />
+      <EuiSpacer size="l" />
 
       {utilsContent}
     </GuidePage>

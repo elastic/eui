@@ -11,6 +11,9 @@ import {
   logicals,
   EuiSpacer,
   EuiText,
+  euiPaddingStyles,
+  useEuiPadding,
+  useEuiBackgroundColor,
 } from '../../../../../src';
 
 import { ThemeExample } from '../_components/_theme_example';
@@ -133,9 +136,12 @@ export default () => {
 };
 
 export const UtilsJS = () => {
+  const euiTheme = useEuiTheme();
+
   return (
     <>
       <EuiText grow={false}>
+        <h3>Logical properties</h3>
         <p>
           EUI utilizes{' '}
           <EuiLink href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Logical_Properties">
@@ -205,6 +211,69 @@ export const UtilsJS = () => {
           </p>
         }
         snippet={"${logicals['padding-left']}: 160px;"}
+      />
+
+      <EuiSpacer size="xl" />
+
+      <EuiText grow={false}>
+        <h3>Padding</h3>
+        <p>
+          Uniform padding is a common task within EUI and as a consumer. These
+          utiliies provide both contexts with simple helpers, that also provide
+          the logical property type.
+        </p>
+      </EuiText>
+
+      <EuiSpacer size="l" />
+
+      <ThemeExample
+        title={<code>{'euiPaddingStyles(euiTheme, side?)'}</code>}
+        description={
+          <>
+            <p>
+              Returns an object of the available sizing keys containing the css
+              string of the logical CSS property version for the given{' '}
+              <EuiCode language="sass">side</EuiCode>.
+            </p>
+            <p>
+              This is best used to map component prop styles to padding output.
+            </p>
+          </>
+        }
+        example={
+          <p
+            css={[
+              useEuiBackgroundColor('warning'),
+              euiPaddingStyles(euiTheme, 'left').l,
+            ]}
+          >
+            <code>{euiPaddingStyles(euiTheme, 'left').l}</code>
+          </p>
+        }
+        snippetLanguage="tsx"
+        snippet={`const paddingStyles = euiPaddingStyles(euiTheme);
+const cssStyles = [paddingStyles['l']];
+
+<span css={cssStyles}>
+  /* Your content */
+</span>`}
+      />
+
+      <ThemeExample
+        title={<code>{'useEuiPadding(size, side?)'}</code>}
+        description={
+          <p>
+            Returns the logical CSS property version for the given{' '}
+            <EuiCode language="sass">side</EuiCode> and the value for the given{' '}
+            <EuiCode>size</EuiCode>.
+          </p>
+        }
+        example={
+          <p css={[useEuiBackgroundColor('warning'), useEuiPadding('l')]}>
+            <code>{useEuiPadding('l')}</code>
+          </p>
+        }
+        snippet={"useEuiPadding('l')"}
       />
     </>
   );
