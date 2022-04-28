@@ -87,6 +87,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   const cssHeaderUsernameStyles = styles.euiCommentEvent__headerUsername;
   const cssHeaderDataStyles = styles.euiCommentEvent__headerData;
   const cssUpdatePanelStyles = styles.euiCommentEvent__updatePanel;
+  const cssHeaderActionsStyles = styles.euiCommentEvent__headerActions;
 
   const isTypeUpdate = type === 'update';
   const isTypeCustom = type === 'custom';
@@ -114,7 +115,12 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
         ) : undefined}
       </div>
       {actions ? (
-        <div className="euiCommentEvent__headerActions">{actions}</div>
+        <div
+          className="euiCommentEvent__headerActions"
+          css={cssHeaderActionsStyles}
+        >
+          {actions}
+        </div>
       ) : undefined}
     </>
   );

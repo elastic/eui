@@ -53,4 +53,9 @@ export const euiCommentEventStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiCommentEvent__updatePanel: css`
     padding-block: ${euiTheme.size.xs};
   `,
+  euiCommentEvent__headerActions: css`
+    > * + * {
+      margin-inline-start: ${euiTheme.size.xs};
+    }
+  `,
 });
