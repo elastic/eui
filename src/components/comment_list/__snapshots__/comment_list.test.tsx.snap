@@ -3,12 +3,12 @@
 exports[`EuiCommentList is rendered 1`] = `
 <ol
   aria-label="aria-label"
-  class="euiTimeline euiCommentList"
+  class="euiTimeline euiCommentList testClass1 testClass2"
   data-test-subj="test subject string"
   role="list"
 >
   <li
-    class="css-mjs1z4-euiTimelineItem"
+    class="euiComment css-mjs1z4-euiTimelineItem"
   >
     <div
       class="css-1t86e7q-euiTimelineItemIcon-top"
@@ -35,7 +35,7 @@ exports[`EuiCommentList is rendered 1`] = `
       class="css-1waxxmm-euiTimelineItemEvent-top"
     >
       <figure
-        class="euiCommentEvent euiCommentEvent--regular css-1ccpf9c-euiCommentEvent-regular"
+        class="euiCommentEvent euiCommentEvent--regular css-j5c1j2-euiCommentEvent-regular"
       >
         <figcaption
           class="euiCommentEvent__header css-397e40-euiCommentEvent__header"

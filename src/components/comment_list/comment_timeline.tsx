@@ -22,6 +22,7 @@ export interface EuiCommentTimelineProps extends CommonProps {
 export const EuiCommentTimeline: FunctionComponent<EuiCommentTimelineProps> = ({
   timelineIcon,
   username,
+  ...rest
 }) => {
   let iconRender;
   if (typeof timelineIcon === 'string') {
@@ -31,13 +32,16 @@ export const EuiCommentTimeline: FunctionComponent<EuiCommentTimelineProps> = ({
         name={username}
         iconType={timelineIcon}
         color="subdued"
+        {...rest}
       />
     );
   } else if (timelineIcon) {
     iconRender = timelineIcon;
   } else {
     // if no `iconType` or custom avatar is passed, it defaults to an avatar with the username initial letter
-    iconRender = <EuiAvatar className="euiCommentTimeline" name={username} />;
+    iconRender = (
+      <EuiAvatar className="euiCommentTimeline" name={username} {...rest} />
+    );
   }
 
   return <>{iconRender}</>;

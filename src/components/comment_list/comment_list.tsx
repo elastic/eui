@@ -7,6 +7,7 @@
  */
 
 import React, { FunctionComponent } from 'react';
+import classNames from 'classnames';
 import { EuiComment, EuiCommentProps } from './comment';
 import { EuiTimeline, EuiTimelineProps } from '../timeline';
 
@@ -23,6 +24,8 @@ export const EuiCommentList: FunctionComponent<EuiCommentListProps> = ({
   comments,
   ...rest
 }) => {
+  const classes = classNames('euiCommentList', className);
+
   let commentElements = null;
 
   if (comments) {
@@ -32,7 +35,7 @@ export const EuiCommentList: FunctionComponent<EuiCommentListProps> = ({
   }
 
   return (
-    <EuiTimeline className="euiCommentList" {...rest}>
+    <EuiTimeline className={classes} {...rest}>
       {commentElements}
       {children}
     </EuiTimeline>

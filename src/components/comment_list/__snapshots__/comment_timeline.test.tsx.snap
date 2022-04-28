@@ -2,8 +2,9 @@
 
 exports[`EuiCommentTimeline is rendered 1`] = `
 <div
-  aria-label="someuser"
-  class="euiAvatar euiAvatar--m euiAvatar--user euiCommentTimeline css-11owldj-euiAvatar-m-user"
+  aria-label="aria-label"
+  class="euiAvatar euiAvatar--m euiAvatar--user testClass1 testClass2 css-11owldj-euiAvatar-m-user"
+  data-test-subj="test subject string"
   role="img"
   style="background-color:#c47c6c;color:#000000"
   title="someuser"

@@ -10,9 +10,7 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 
 export const euiCommentEventStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiCommentEvent: css`
-    overflow: hidden;
-  `,
+  euiCommentEvent: css``,
   // types
   regular: css`
     border-radius: ${euiTheme.border.radius.medium};
