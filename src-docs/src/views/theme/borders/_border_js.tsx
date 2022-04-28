@@ -44,6 +44,7 @@ export const TypesJS: FunctionComponent<ThemeRowType> = ({ description }) => {
           </div>
         }
         snippet={'border: ${euiTheme.border.thin};'}
+        snippetLanguage="emotion"
       />
 
       <ThemeValuesTable
@@ -101,6 +102,7 @@ export const ColorJS: FunctionComponent<ThemeRowType> = ({ description }) => {
           </div>
         }
         snippet={'border-color: ${euiTheme.border.color};'}
+        snippetLanguage="emotion"
       />
 
       <ThemeValuesTable
@@ -153,6 +155,7 @@ export const WidthJS: FunctionComponent<ThemeRowType> = ({ description }) => {
         snippet={
           'border: ${euiTheme.border.width.thick} dashed ${euiTheme.border.color};'
         }
+        snippetLanguage="emotion"
       />
 
       <ThemeValuesTable
@@ -203,6 +206,7 @@ export const RadiusJS: FunctionComponent<ThemeRowType> = ({ description }) => {
           </div>
         }
         snippet={'border-radius: ${euiTheme.border.radius.medium};'}
+        snippetLanguage="emotion"
       />
 
       <ThemeValuesTable
