@@ -306,6 +306,7 @@ export const EuiMarkdownEditor = forwardRef<
             for (let i = 0; i < node.children.length; i++) {
               const child = node.children[i];
               if (
+                child.position &&
                 child.position.start.offset < selectionStart &&
                 selectionStart < child.position.end.offset
               ) {
@@ -521,7 +522,8 @@ export const EuiMarkdownEditor = forwardRef<
                   onSave: (markdown, config) => {
                     if (
                       selectedNode &&
-                      selectedNode.type === pluginEditorPlugin.name
+                      selectedNode.type === pluginEditorPlugin.name &&
+                      selectedNode.position
                     ) {
                       // modifying an existing node
                       textareaRef.current!.setSelectionRange(
