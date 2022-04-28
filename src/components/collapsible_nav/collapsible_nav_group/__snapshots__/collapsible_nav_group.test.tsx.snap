@@ -53,7 +53,7 @@ exports[`EuiCollapsibleNavGroup props iconProps renders data-test-subj 1`] = `
         class="euiFlexItem"
       >
         <h3
-          class="euiTitle euiTitle--xxsmall euiCollapsibleNavGroup__title"
+          class="euiTitle euiCollapsibleNavGroup__title css-1po7voc-euiTitle-xxs"
           id="id__title"
         >
           Title
@@ -86,7 +86,7 @@ exports[`EuiCollapsibleNavGroup props iconSize is rendered 1`] = `
         class="euiFlexItem"
       >
         <h3
-          class="euiTitle euiTitle--xxsmall euiCollapsibleNavGroup__title"
+          class="euiTitle euiCollapsibleNavGroup__title css-1po7voc-euiTitle-xxs"
           id="id__title"
         >
           Title
@@ -119,7 +119,7 @@ exports[`EuiCollapsibleNavGroup props iconType is rendered 1`] = `
         class="euiFlexItem"
       >
         <h3
-          class="euiTitle euiTitle--xxsmall euiCollapsibleNavGroup__title"
+          class="euiTitle euiCollapsibleNavGroup__title css-1po7voc-euiTitle-xxs"
           id="id__title"
         >
           Title
@@ -145,7 +145,7 @@ exports[`EuiCollapsibleNavGroup props title is rendered 1`] = `
         class="euiFlexItem"
       >
         <h3
-          class="euiTitle euiTitle--xxsmall euiCollapsibleNavGroup__title"
+          class="euiTitle euiCollapsibleNavGroup__title css-1po7voc-euiTitle-xxs"
           id="id__title"
         >
           Title
@@ -171,7 +171,7 @@ exports[`EuiCollapsibleNavGroup props titleElement can change the rendered eleme
         class="euiFlexItem"
       >
         <h2
-          class="euiTitle euiTitle--xxsmall euiCollapsibleNavGroup__title"
+          class="euiTitle euiCollapsibleNavGroup__title css-1po7voc-euiTitle-xxs"
           id="id__title"
         >
           Title
@@ -224,7 +224,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
             class="euiFlexItem"
           >
             <h3
-              class="euiTitle euiTitle--xxsmall euiCollapsibleNavGroup__title"
+              class="euiTitle euiCollapsibleNavGroup__title css-1po7voc-euiTitle-xxs"
               id="id__title"
             >
               Title
@@ -289,7 +289,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
             class="euiFlexItem"
           >
             <h3
-              class="euiTitle euiTitle--xxsmall euiCollapsibleNavGroup__title"
+              class="euiTitle euiCollapsibleNavGroup__title css-1po7voc-euiTitle-xxs"
               id="id__title"
             >
               Title

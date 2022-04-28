@@ -88,7 +88,10 @@ export const LoadingExample = {
       ),
       props: { EuiLoadingLogo },
       demo: <LoadingLogo />,
-      snippet: '<EuiLoadingLogo size="m" />',
+      snippet: [
+        '<EuiLoadingLogo size="m" />',
+        '<EuiLoadingLogo logo="logoSecurity" />',
+      ],
       playground: loadingLogoConfig,
     },
     {
