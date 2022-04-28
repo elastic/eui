@@ -7,11 +7,12 @@
  */
 
 import React, { PropsWithChildren } from 'react';
-import { EmotionCache } from '@emotion/react';
+import { CacheProvider, EmotionCache } from '@emotion/react';
 
 import {
   EuiGlobalStyles,
   EuiGlobalStylesProps,
+  EuiUtilityClasses,
 } from '../../global_styling/reset/global_styles';
 import {
   EuiThemeProvider,
@@ -37,12 +38,34 @@ export interface EuiProviderProps<T>
    * Provide a cache configuration from `@emotion/cache`
    */
   cache?: EmotionCache;
+  globalCache?: EmotionCache;
+  utilityClasses?: false | ((params: any) => JSX.Element | null);
+  utilityCache?: EmotionCache;
 }
+
+const Styles = ({ theme, cache, styles: Styles }: any) => {
+  if (theme !== null && Styles !== false) {
+    if (cache) {
+      return (
+        <CacheProvider value={cache}>
+          <Styles />
+        </CacheProvider>
+      );
+    } else {
+      return <Styles />;
+    }
+  } else {
+    return null;
+  }
+};
 
 export const EuiProvider = <T extends {} = {}>({
   cache,
   theme = EuiThemeAmsterdam,
-  globalStyles: GlobalStyles = EuiGlobalStyles,
+  globalCache,
+  globalStyles: Globals = EuiGlobalStyles,
+  utilityCache,
+  utilityClasses: Utilities = EuiUtilityClasses,
   colorMode,
   modify,
   children,
@@ -53,7 +76,8 @@ export const EuiProvider = <T extends {} = {}>({
     modify={modify}
     cache={cache}
   >
-    {theme !== null && GlobalStyles !== false ? <GlobalStyles /> : null}
+    <Styles theme={theme} cache={globalCache} styles={Globals} />
+    <Styles theme={theme} cache={utilityCache} styles={Utilities} />
     {children}
   </EuiThemeProvider>
 );
