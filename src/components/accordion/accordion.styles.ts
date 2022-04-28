@@ -28,103 +28,12 @@ export const euiAccordionButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
 });
 
-export const euiAccordionChildrenIsLoadingStyles = ({
-  isLoading,
-}: {
-  isLoading: boolean | undefined;
-}) => ({
-  euiAccordion__children_isLoading: css`
-    ${isLoading &&
-    `
-        align-items: center;
-        display: flex;
-      `}
-  `,
-});
-
-export const euiAccordionChildWrapperStyles = (
-  { euiTheme }: UseEuiTheme,
-  { isOpen }: { isOpen: boolean | undefined }
-) => ({
-  euiAccordion__childWrapper: css`
-    height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: height ${euiTheme.animation.normal}
-        ${euiTheme.animation.resistance},
-      opacity ${euiTheme.animation.normal} ${euiTheme.animation.resistance};
-    visibility: hidden;
-    will-change: opacity, visibility, height;
-
-    &:focus {
-      outline: none; // Hide focus ring because of tabindex=-1 on Safari
-    }
-
-    ${isOpen &&
-    `
-      height: auto;
-      opacity: 1;
-      visibility: visible;
-    `}
-  `,
-});
-
-export const euiAccordionIconButtonStyles = (
-  { euiTheme }: UseEuiTheme,
-  {
-    _arrowDisplay,
-    isOpen,
-  }: {
-    _arrowDisplay: string | undefined;
-    isOpen: boolean;
-  }
-) => ({
-  euiAccordion__iconButton: css`
-    flex-shrink: 0;
-    margin-inline-end: ${euiTheme.size.xs};
-    transform: rotate(0deg) !important;
-    transform: rotate(0deg) !important;
-
-    ${isOpen &&
-    `
-      transform: rotate(90deg) !important;
-    `}
-
-    ${_arrowDisplay === 'right' &&
-    `
-      margin-left: ${euiTheme.size.xs};
-      margin-right: 0;
-    `}
-  `,
-});
-
-export const euiAccordionOptionalActionStyles = () => ({
-  euiAccordion__optionalAction: css`
-    flex-shrink: 0;
-  `,
-});
-
-export const euiAccordionSpinnerStyles = (
-  { euiTheme }: UseEuiTheme,
-  { isLoading }: { isLoading: boolean | undefined }
-) => ({
-  euiAccordion__spinner: css`
-    ${isLoading &&
-    `
-      margin-right: ${euiTheme.size.xs};
-    `}
-  `,
-});
-
-export const euiAccordionTriggerWrapperStyles = ({
-  euiTheme,
-}: UseEuiTheme) => ({
-  euiAccordion__triggerWrapper: css`
+export const euiAccordionChildrenStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiAccordion__children: css``,
+  isLoading: css`
     align-items: center;
     display: flex;
   `,
-
-  // Padding
   xs: css`
     padding: ${euiTheme.size.xs};
   `,
@@ -139,5 +48,63 @@ export const euiAccordionTriggerWrapperStyles = ({
   `,
   xl: css`
     padding: ${euiTheme.size.xl};
+  `,
+});
+
+export const euiAccordionChildWrapperStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiAccordion__childWrapper: css`
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: height ${euiTheme.animation.normal}
+        ${euiTheme.animation.resistance},
+      opacity ${euiTheme.animation.normal} ${euiTheme.animation.resistance};
+    visibility: hidden;
+    will-change: opacity, visibility, height;
+
+    &:focus {
+      outline: none; // Hide focus ring because of tabindex=-1 on Safari
+    }
+  `,
+  isOpen: css`
+    height: auto;
+    opacity: 1;
+    visibility: visible;
+  `,
+});
+
+export const euiAccordionIconButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiAccordion__iconButton: css`
+    flex-shrink: 0;
+    margin-inline-end: ${euiTheme.size.xs};
+    transform: rotate(0deg) !important;
+    transform: rotate(0deg) !important;
+  `,
+  isOpen: css`
+    transform: rotate(90deg) !important;
+  `,
+  arrowRight: css`
+    margin-left: ${euiTheme.size.xs};
+    margin-right: 0;
+  `,
+});
+
+export const euiAccordionOptionalActionStyles = () => ({
+  euiAccordion__optionalAction: css`
+    flex-shrink: 0;
+  `,
+});
+
+export const euiAccordionSpinnerStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiAccordion__spinner: css``,
+  isLoading: css`
+    margin-right: ${euiTheme.size.xs};
+  `,
+});
+
+export const euiAccordionTriggerWrapperStyles = () => ({
+  euiAccordion__triggerWrapper: css`
+    align-items: center;
+    display: flex;
   `,
 });

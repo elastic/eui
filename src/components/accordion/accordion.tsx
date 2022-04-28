@@ -23,7 +23,7 @@ import {
 import { EuiButtonIcon, EuiButtonIconProps } from '../button';
 import {
   euiAccordionButtonStyles,
-  euiAccordionChildrenIsLoadingStyles,
+  euiAccordionChildrenStyles,
   euiAccordionChildWrapperStyles,
   euiAccordionIconButtonStyles,
   euiAccordionOptionalActionStyles,
@@ -257,43 +257,40 @@ export class EuiAccordionClass extends Component<
     const buttonStyles = euiAccordionButtonStyles(theme);
     const cssButtonStyles = [buttonStyles.euiAccordion__button];
 
-    const childIsLoadingStyles = euiAccordionChildrenIsLoadingStyles({
-      isLoading,
-    });
-    const cssChildIsLoadingStyles = [
-      isLoading && childIsLoadingStyles.euiAccordion__children_isLoading,
+    const childrenStyles = euiAccordionChildrenStyles(theme);
+    const cssChildrenStyles = [
+      childrenStyles.euiAccordion__children,
+      isLoading && childrenStyles.isLoading,
+      paddingSize === 'none' ? undefined : childrenStyles[paddingSize!],
     ];
 
-    const childWrapperStyles = euiAccordionChildWrapperStyles(theme, {
-      isOpen,
-    });
+    const childWrapperStyles = euiAccordionChildWrapperStyles(theme);
     const cssChildWrapperStyles = [
       childWrapperStyles.euiAccordion__childWrapper,
+      isOpen && childWrapperStyles.isOpen,
     ];
 
-    const iconButtonStyles = euiAccordionIconButtonStyles(theme, {
-      _arrowDisplay,
-      isOpen,
-    });
-    const cssIconButtonStyles = [iconButtonStyles.euiAccordion__iconButton];
+    const iconButtonStyles = euiAccordionIconButtonStyles(theme);
+    const cssIconButtonStyles = [
+      iconButtonStyles.euiAccordion__iconButton,
+      isOpen && iconButtonStyles.isOpen,
+      _arrowDisplay === 'right' && iconButtonStyles.arrowRight,
+    ];
 
     const optionalActionStyles = euiAccordionOptionalActionStyles();
     const cssOptionalActionStyles = [
       optionalActionStyles.euiAccordion__optionalAction,
     ];
 
-    const spinnerStyles = euiAccordionSpinnerStyles(theme, { isLoading });
-    const cssSpinnerStyles = [spinnerStyles.euiAccordion__spinner];
-
-    const triggerWrapperStyles = euiAccordionTriggerWrapperStyles(theme);
-    const cssTriggerWrapperStyles = [
-      triggerWrapperStyles.euiAccordion__triggerWrapper,
+    const spinnerStyles = euiAccordionSpinnerStyles(theme);
+    const cssSpinnerStyles = [
+      spinnerStyles.euiAccordion__spinner,
+      isLoading && spinnerStyles.isLoading,
     ];
 
-    // Style is derived from props['paddingSize'] and triggerWrapperStyles sizes
-    const cssChildrenStyles = [
-      cssChildIsLoadingStyles,
-      paddingSize === 'none' ? undefined : triggerWrapperStyles[paddingSize!],
+    const triggerWrapperStyles = euiAccordionTriggerWrapperStyles();
+    const cssTriggerWrapperStyles = [
+      triggerWrapperStyles.euiAccordion__triggerWrapper,
     ];
 
     let iconButton;
