@@ -72,7 +72,7 @@ const quoteCodeLinkButtons = [
   {
     id: 'mdQuote',
     label: 'Quote',
-    name: 'blockquote',
+    name: 'quote',
     iconType: 'quote',
   },
   {
@@ -89,7 +89,7 @@ const quoteCodeLinkButtons = [
   },
 ];
 
-interface FormatSelectableButtonArgs {
+interface EuiMarkdownEditorToolbarButtonProps {
   selectedNode: null | any;
   handleMdButtonClick: (mdButtonId: string) => void;
   isEditable: boolean;
@@ -106,7 +106,7 @@ const EuiMarkdownEditorToolbarButton = ({
   nodeId,
   label,
   icon,
-}: FormatSelectableButtonArgs) => {
+}: EuiMarkdownEditorToolbarButtonProps) => {
   const isSelected = selectedNode && selectedNode.type === nodeId;
   return (
     <EuiButtonIcon
@@ -116,10 +116,12 @@ const EuiMarkdownEditorToolbarButton = ({
             style: { background: 'rgba(0, 0, 0, 0.15)' },
           }
         : null)}
+      data-test-subj={`euiMarkdownEditorToolbarButton${
+        isSelected ? ' pressed' : ''
+      }`}
       onClick={() => handleMdButtonClick(id)}
       iconType={icon}
       aria-label={label}
-      aria-pressed={isSelected}
       isDisabled={!isEditable}
     />
   );

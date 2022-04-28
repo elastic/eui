@@ -18,13 +18,12 @@ describe('EuiMarkdownEditor', () => {
 
 _italic_
 
-> quote
-
 \`inline codeblock\`
 
 [link](https://elastic.co)
 
 !{tooltip[text](help)}`;
+
       cy.realMount(
         <EuiMarkdownEditor
           data-test-subj="test-editor"
@@ -34,11 +33,6 @@ _italic_
         />
       );
 
-      // verify all of the toolbar buttons are not selected
-      cy.get(
-        '[data-test-subj=test-editor] [data-test-subj=euiMarkdownEditorToolbar] button[aria-pressed=true]'
-      ).should('not.exist');
-
       // Focus the editor text area for key events
       cy.get(
         '[data-test-subj=test-editor] [data-test-subj=euiMarkdownEditorTextArea]'
@@ -47,37 +41,31 @@ _italic_
       // Enter the bold node & verify
       cy.realPress('ArrowRight');
       cy.get(
-        '[data-test-subj=test-editor] [data-test-subj=euiMarkdownEditorToolbar] button[aria-label=Bold][aria-pressed=true]'
+        '[data-test-subj=test-editor] [data-test-subj=euiMarkdownEditorToolbar] button[aria-label=Bold][data-test-subj="euiMarkdownEditorToolbarButton pressed"]'
       ).should('exist');
 
       // Enter the italic node & verify
       cy.repeatRealPress('ArrowDown', 2);
       cy.get(
-        '[data-test-subj=test-editor] [data-test-subj=euiMarkdownEditorToolbar] button[aria-label=Italic][aria-pressed=true]'
-      ).should('exist');
-
-      // Enter the quote node & verify
-      cy.repeatRealPress('ArrowDown', 2);
-      cy.get(
-        '[data-test-subj=test-editor] [data-test-subj=euiMarkdownEditorToolbar] button[aria-label=Quote][aria-pressed=true]'
+        '[data-test-subj=test-editor] [data-test-subj=euiMarkdownEditorToolbar] button[aria-label=Italic][data-test-subj="euiMarkdownEditorToolbarButton pressed"]'
       ).should('exist');
 
       // Enter the inline code node & verify
       cy.repeatRealPress('ArrowDown', 2);
       cy.get(
-        '[data-test-subj=test-editor] [data-test-subj=euiMarkdownEditorToolbar] button[aria-label=Code][aria-pressed=true]'
+        '[data-test-subj=test-editor] [data-test-subj=euiMarkdownEditorToolbar] button[aria-label=Code][data-test-subj="euiMarkdownEditorToolbarButton pressed"]'
       ).should('exist');
 
       // Enter the link node & verify
       cy.repeatRealPress('ArrowDown', 2);
       cy.get(
-        '[data-test-subj=test-editor] [data-test-subj=euiMarkdownEditorToolbar] button[aria-label=Link][aria-pressed=true]'
+        '[data-test-subj=test-editor] [data-test-subj=euiMarkdownEditorToolbar] button[aria-label=Link][data-test-subj="euiMarkdownEditorToolbarButton pressed"]'
       ).should('exist');
 
       // Enter the tooltip node & verify
       cy.repeatRealPress('ArrowDown', 2);
       cy.get(
-        '[data-test-subj=test-editor] [data-test-subj=euiMarkdownEditorToolbar] button[aria-label=Tooltip][aria-pressed=true]'
+        '[data-test-subj=test-editor] [data-test-subj=euiMarkdownEditorToolbar] button[aria-label=Tooltip][data-test-subj="euiMarkdownEditorToolbarButton pressed"]'
       ).should('exist');
     });
   });
