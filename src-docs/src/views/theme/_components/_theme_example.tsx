@@ -42,7 +42,7 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
 }) => {
   const { euiTheme } = useEuiTheme();
   const finalSnippet =
-    snippetLanguage === 'jsx'
+    snippetLanguage === 'emotion'
       ? `css\`
   ${snippet}
 \``
@@ -91,7 +91,9 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
                     isCopyable={true}
                     paddingSize="none"
                     transparentBackground={true}
-                    language={snippetLanguage || 'jsx'}
+                    language={
+                      snippetLanguage === 'emotion' ? 'jsx' : snippetLanguage
+                    }
                   >
                     {finalSnippet}
                   </EuiCodeBlock>
