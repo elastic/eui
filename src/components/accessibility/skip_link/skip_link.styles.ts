@@ -29,8 +29,8 @@ export const euiSkipLinkStyles = ({ euiTheme }: UseEuiTheme) => {
     fixed: css`
       &:focus {
         position: fixed;
-        top: ${euiTheme.size.xs};
-        left: ${euiTheme.size.xs};
+        inset-block-start: ${euiTheme.size.xs};
+        inset-inline-start: ${euiTheme.size.xs};
         z-index: ${Number(euiTheme.levels.header) + 1};
       }
     `,
