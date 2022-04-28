@@ -14,12 +14,12 @@ import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 
 const canAnimateString = `\${euiCanAnimate} {
-  transition: background \${euiTheme.animation.slow};
-}`;
+    transition: background \${euiTheme.animation.slow};
+  }`;
 
 const animationString = `\${euiCanAnimate} {
-  transition: padding \${euiTheme.animation.slow} \${euiTheme.animation.resistance};
-}`;
+    transition: padding \${euiTheme.animation.slow} \${euiTheme.animation.resistance};
+  }`;
 
 export default ({
   speedDescription,
