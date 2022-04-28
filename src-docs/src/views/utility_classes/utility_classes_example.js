@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { EuiSpacer, EuiText } from '../../../../src/components';
+import { EuiSpacer, EuiText, EuiTitle } from '../../../../src/components';
 import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
 import UtilityClassesDisplay from './utility_classes';
-import UtilityClassesText from './utility_classes_text';
 import UtilityClassesVertAlign from './utility_classes_vert_align';
 import UtilityClassesResponsive from './utility_classes_responsive';
 
@@ -15,8 +14,6 @@ export const UtilityClassesExample = {
       <p>
         The following CSS-only classes are provided as helper utilities. They
         are useful for making micro-adjustments to existing React components.
-        For overflow and scrolling specific utilities, go to the{' '}
-        <Link to="/utilities/scroll">Scroll documentation page</Link>.
       </p>
     </EuiText>
   ),
@@ -28,18 +25,6 @@ export const UtilityClassesExample = {
         <>
           <EuiSpacer />
           <UtilityClassesDisplay />
-          <EuiSpacer />
-          <EuiHorizontalRule />
-        </>
-      ),
-    },
-    {
-      title: 'Text',
-      wrapText: false,
-      text: (
-        <>
-          <EuiSpacer />
-          <UtilityClassesText />
           <EuiSpacer />
           <EuiHorizontalRule />
         </>
@@ -64,6 +49,30 @@ export const UtilityClassesExample = {
         <>
           <EuiSpacer />
           <UtilityClassesResponsive />
+        </>
+      ),
+    },
+    {
+      // We avoid using the `title` key here to prevent these sections from showing up as sidebar links
+      text: (
+        <>
+          <EuiHorizontalRule />
+          <EuiTitle>
+            <h2>Scroll</h2>
+          </EuiTitle>
+          <p>
+            For overflow and scrolling specific utilities, go to the{' '}
+            <Link to="/utilities/scroll">Scroll documentation page</Link>.
+          </p>
+          <EuiHorizontalRule />
+          <EuiTitle>
+            <h2>Text</h2>
+          </EuiTitle>
+          <p>
+            For text and typography specific utilities, go to the{' '}
+            <Link to="/utilities/text">Text documentation page</Link>.
+          </p>
+          <EuiSpacer size="xs" />
         </>
       ),
     },
