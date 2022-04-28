@@ -2,6 +2,11 @@ import React from 'react';
 
 import { EuiText } from '../../../../src/components';
 
+import TextAlignUtilities from './align';
+import TextWrappingUtilities from './wrapping';
+import TextNumberUtilities from './numbers';
+import TextColorUtilities from './color';
+
 export const TextUtilitiesExample = {
   title: 'Text',
   showThemeLanguageToggle: true,
@@ -15,4 +20,26 @@ export const TextUtilitiesExample = {
       </p>
     </EuiText>
   ),
+  sections: [
+    {
+      title: 'Alignment',
+      wrapText: false,
+      text: <TextAlignUtilities />,
+    },
+    {
+      title: 'Wrapping',
+      wrapText: false,
+      text: <TextWrappingUtilities />,
+    },
+    {
+      title: 'Numbers',
+      wrapText: false,
+      text: <TextNumberUtilities />,
+    },
+    {
+      title: 'Color',
+      wrapText: false,
+      text: <TextColorUtilities />,
+    },
+  ],
 };
