@@ -144,7 +144,9 @@ exports[`EuiStepNumber props status loading is rendered 1`] = `
     Step 1 is loading
   </span>
   <span
-    class="euiLoadingSpinner euiLoadingSpinner--xLarge euiStepNumber__loader"
+    aria-label="Loading"
+    class="euiLoadingSpinner euiStepNumber__loader css-1ow0yso-euiLoadingSpinner-xl"
+    role="progressbar"
   />
 </span>
 `;

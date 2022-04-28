@@ -28,7 +28,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
         </span>
       </span>
       <h2
-        class="euiTitle euiTitle--small euiStep__title"
+        class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
       >
         first title
       </h2>
@@ -63,7 +63,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
         </span>
       </span>
       <h2
-        class="euiTitle euiTitle--small euiStep__title"
+        class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
       >
         second title
       </h2>
@@ -98,7 +98,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
         </span>
       </span>
       <h2
-        class="euiTitle euiTitle--small euiStep__title"
+        class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
       >
         third title
       </h2>
@@ -142,7 +142,7 @@ exports[`EuiSteps renders steps 1`] = `
         </span>
       </span>
       <p
-        class="euiTitle euiTitle--small euiStep__title"
+        class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
       >
         first title
       </p>
@@ -177,7 +177,7 @@ exports[`EuiSteps renders steps 1`] = `
         </span>
       </span>
       <p
-        class="euiTitle euiTitle--small euiStep__title"
+        class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
       >
         second title
       </p>
@@ -212,7 +212,7 @@ exports[`EuiSteps renders steps 1`] = `
         </span>
       </span>
       <p
-        class="euiTitle euiTitle--small euiStep__title"
+        class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
       >
         third title
       </p>
@@ -256,7 +256,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
         </span>
       </span>
       <p
-        class="euiTitle euiTitle--small euiStep__title"
+        class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
       >
         first title
       </p>
@@ -291,7 +291,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
         </span>
       </span>
       <p
-        class="euiTitle euiTitle--small euiStep__title"
+        class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
       >
         second title
       </p>
@@ -326,7 +326,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
         </span>
       </span>
       <p
-        class="euiTitle euiTitle--small euiStep__title"
+        class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
       >
         third title
       </p>
@@ -370,7 +370,7 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
         </span>
       </span>
       <p
-        class="euiTitle euiTitle--xsmall euiStep__title"
+        class="euiTitle euiStep__title css-1c9cwui-euiTitle-xs"
       >
         first title
       </p>
@@ -405,7 +405,7 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
         </span>
       </span>
       <p
-        class="euiTitle euiTitle--xsmall euiStep__title"
+        class="euiTitle euiStep__title css-1c9cwui-euiTitle-xs"
       >
         second title
       </p>
@@ -440,7 +440,7 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
         </span>
       </span>
       <p
-        class="euiTitle euiTitle--xsmall euiStep__title"
+        class="euiTitle euiStep__title css-1c9cwui-euiTitle-xs"
       >
         third title
       </p>

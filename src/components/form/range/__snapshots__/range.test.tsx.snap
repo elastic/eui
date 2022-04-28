@@ -342,7 +342,9 @@ exports[`EuiRange props loading should display when showInput="inputWithPopover"
             class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
           >
             <span
-              class="euiLoadingSpinner euiLoadingSpinner--medium"
+              aria-label="Loading"
+              class="euiLoadingSpinner css-155ohbx-euiLoadingSpinner-m"
+              role="progressbar"
             />
           </div>
         </div>

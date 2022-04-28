@@ -20,7 +20,7 @@ exports[`EuiSideNav props heading accepts more headingProps 1`] = `
 >
   <h3
     aria-label="aria-label"
-    class="euiTitle euiTitle--xsmall euiSideNav__heading testClass1 testClass2 testClass1 testClass2"
+    class="euiTitle euiSideNav__heading testClass1 testClass2 testClass1 testClass2 css-1c9cwui-euiTitle-xs"
     data-test-subj="test subject string"
     id="testID"
   >
@@ -57,7 +57,7 @@ exports[`EuiSideNav props heading is rendered 1`] = `
   class="euiSideNav"
 >
   <h2
-    class="euiTitle euiTitle--xsmall euiSideNav__heading"
+    class="euiTitle euiSideNav__heading css-1c9cwui-euiTitle-xs"
     id="euiSideNav_generated-id_heading"
   >
     Side Nav Heading

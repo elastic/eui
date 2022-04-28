@@ -17,7 +17,7 @@ exports[`EuiStat is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--large euiStat__title"
+    class="euiTitle euiStat__title css-1bexacr-euiTitle-l"
   >
     title
   </p>
@@ -44,7 +44,7 @@ exports[`EuiStat props accent is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--large euiStat__title euiStat__title--accent"
+    class="euiTitle euiStat__title euiStat__title--accent css-1bexacr-euiTitle-l"
   >
     title
   </p>
@@ -71,7 +71,7 @@ exports[`EuiStat props center is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--large euiStat__title"
+    class="euiTitle euiStat__title css-1bexacr-euiTitle-l"
   >
     title
   </p>
@@ -98,7 +98,7 @@ exports[`EuiStat props danger is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--large euiStat__title euiStat__title--danger"
+    class="euiTitle euiStat__title euiStat__title--danger css-1bexacr-euiTitle-l"
   >
     title
   </p>
@@ -125,7 +125,7 @@ exports[`EuiStat props default is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--large euiStat__title"
+    class="euiTitle euiStat__title css-1bexacr-euiTitle-l"
   >
     title
   </p>
@@ -152,7 +152,7 @@ exports[`EuiStat props hexcode colors are rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--large euiStat__title"
+    class="euiTitle euiStat__title css-1bexacr-euiTitle-l"
     style="color:#EB1919"
   >
     title
@@ -180,7 +180,7 @@ exports[`EuiStat props l is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--large euiStat__title"
+    class="euiTitle euiStat__title css-1bexacr-euiTitle-l"
   >
     title
   </p>
@@ -207,7 +207,7 @@ exports[`EuiStat props left is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--large euiStat__title"
+    class="euiTitle euiStat__title css-1bexacr-euiTitle-l"
   >
     title
   </p>
@@ -236,7 +236,7 @@ exports[`EuiStat props loading is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--large euiStat__title euiStat__title-isLoading"
+    class="euiTitle euiStat__title euiStat__title-isLoading css-1bexacr-euiTitle-l"
   >
     --
   </p>
@@ -263,7 +263,7 @@ exports[`EuiStat props m is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--medium euiStat__title"
+    class="euiTitle euiStat__title css-1w464ad-euiTitle-m"
   >
     title
   </p>
@@ -290,7 +290,7 @@ exports[`EuiStat props primary is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--large euiStat__title euiStat__title--primary"
+    class="euiTitle euiStat__title euiStat__title--primary css-1bexacr-euiTitle-l"
   >
     title
   </p>
@@ -319,7 +319,7 @@ exports[`EuiStat props render with custom description element 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--large euiStat__title"
+    class="euiTitle euiStat__title css-1bexacr-euiTitle-l"
     style="color:#EB1919"
   >
     title
@@ -342,7 +342,7 @@ exports[`EuiStat props render with custom title element 1`] = `
   </div>
   <div
     aria-hidden="true"
-    class="euiTitle euiTitle--large euiStat__title"
+    class="euiTitle euiStat__title css-1bexacr-euiTitle-l"
   >
     <div>
       title
@@ -366,7 +366,7 @@ exports[`EuiStat props right is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--large euiStat__title"
+    class="euiTitle euiStat__title css-1bexacr-euiTitle-l"
   >
     title
   </p>
@@ -393,7 +393,7 @@ exports[`EuiStat props s is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--small euiStat__title"
+    class="euiTitle euiStat__title css-1mr6cet-euiTitle-s"
   >
     title
   </p>
@@ -420,7 +420,7 @@ exports[`EuiStat props subdued is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--large euiStat__title euiStat__title--subdued"
+    class="euiTitle euiStat__title euiStat__title--subdued css-1bexacr-euiTitle-l"
   >
     title
   </p>
@@ -447,7 +447,7 @@ exports[`EuiStat props success is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--large euiStat__title euiStat__title--success"
+    class="euiTitle euiStat__title euiStat__title--success css-1bexacr-euiTitle-l"
   >
     title
   </p>
@@ -465,7 +465,7 @@ exports[`EuiStat props title and description are reversed 1`] = `
 >
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--large euiStat__title"
+    class="euiTitle euiStat__title css-1bexacr-euiTitle-l"
   >
     title
   </p>
@@ -501,7 +501,7 @@ exports[`EuiStat props xs is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--xsmall euiStat__title"
+    class="euiTitle euiStat__title css-1c9cwui-euiTitle-xs"
   >
     title
   </p>
@@ -528,7 +528,7 @@ exports[`EuiStat props xxs is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--xxsmall euiStat__title"
+    class="euiTitle euiStat__title css-1po7voc-euiTitle-xxs"
   >
     title
   </p>
@@ -555,7 +555,7 @@ exports[`EuiStat props xxxs is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--xxxsmall euiStat__title"
+    class="euiTitle euiStat__title css-7xv8go-euiTitle-xxxs"
   >
     title
   </p>
