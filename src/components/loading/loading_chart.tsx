@@ -8,7 +8,7 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 
 import {
@@ -18,15 +18,8 @@ import {
 } from './loading_chart.styles';
 import { useEuiI18n } from '../i18n';
 
-const sizeToClassNameMap = {
-  m: 'euiLoadingChart--medium',
-  l: 'euiLoadingChart--large',
-  xl: 'euiLoadingChart--xLarge',
-};
-
-export const SIZES = keysOf(sizeToClassNameMap);
-
-export type EuiLoadingChartSize = keyof typeof sizeToClassNameMap;
+export const SIZES = ['m', 'l', 'xl'] as const;
+export type EuiLoadingChartSize = typeof SIZES[number];
 
 export type EuiLoadingChartProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
@@ -49,8 +42,7 @@ export const EuiLoadingChart: FunctionComponent<EuiLoadingChartProps> = ({
   const classes = classNames(
     'euiLoadingChart',
     { 'euiLoadingChart--mono': mono },
-    className,
-    sizeToClassNameMap[size]
+    className
   );
 
   const cssStyles = [styles.euiLoadingChart, styles[size]];

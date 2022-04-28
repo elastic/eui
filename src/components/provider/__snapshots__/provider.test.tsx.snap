@@ -249,6 +249,9 @@ exports[`EuiProvider applying modifications propagates \`modify\` 1`] = `
           "xxs": 0.6875,
           "xxxs": 0.5625,
         },
+        "title": Object {
+          "weight": "bold",
+        },
         "weight": Object {
           "bold": 700,
           "light": 300,
@@ -555,6 +558,9 @@ exports[`EuiProvider changing color modes propagates \`colorMode\` 1`] = `
           "xxs": 0.6875,
           "xxxs": 0.5625,
         },
+        "title": Object {
+          "weight": "bold",
+        },
         "weight": Object {
           "bold": 700,
           "light": 300,
@@ -859,6 +865,9 @@ exports[`EuiProvider is rendered 1`] = `
           "xxl": 2.125,
           "xxs": 0.6875,
           "xxxs": 0.5625,
+        },
+        "title": Object {
+          "weight": "bold",
         },
         "weight": Object {
           "bold": 700,
@@ -1185,6 +1194,9 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to glo
           "xxl": 2.125,
           "xxs": 0.6875,
           "xxxs": 0.5625,
+        },
+        "title": Object {
+          "weight": "bold",
         },
         "weight": Object {
           "bold": 700,
