@@ -45,6 +45,7 @@ const logicalPosition = {
   left: 'inset-block-end',
   horizontal: 'inset-block',
   vertical: 'inset-inline',
+  inset: 'inset',
 };
 
 const logicalSize = {
@@ -86,7 +87,7 @@ export type LogicalProperties = typeof LOGICAL_PROPERTIES[number];
  * @param value String to output as the property value
  * @returns `string` Returns the logical CSS property version for the given `property: value` pair
  */
-export const logicalCSS = (property: LogicalProperties, value?: string) => {
+export const logicalCSS = (property: LogicalProperties, value?: any) => {
   return `${logicals[property]}: ${value};`;
 };
 
@@ -96,6 +97,25 @@ export const logicalCSS = (property: LogicalProperties, value?: string) => {
  * @param value String to output as the property value
  * @returns `object` Returns the logical CSS property version for the given `property: value` pair
  */
-export const logicalStyle = (property: LogicalProperties, value?: string) => {
+export const logicalStyle = (property: LogicalProperties, value?: any) => {
   return { [`${logicals[property]}`]: `${value}` };
+};
+
+// Text alignment is separate because its the value that changes not the property
+export const logicalText = {
+  'text-align': {
+    left: 'start',
+    center: 'center',
+    right: 'end',
+  },
+};
+
+/**
+ *
+ * @param property A string that is a valid CSS logical property
+ * @param value String to output as the property value
+ * @returns `object` Returns the logical CSS property version for the given `property: value` pair
+ */
+export const logicalTextAlign = (value: 'left' | 'right' | 'center') => {
+  return `text-align: ${logicalText['text-align'][value]};`;
 };
