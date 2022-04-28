@@ -6,8 +6,6 @@
  * Side Public License, v 1.
  */
 
-import { keysOf } from '../../components/common';
-
 /**
  * Calculates the `px` value based on a scale multiplier
  * @param scale - The font scale multiplier
@@ -22,39 +20,4 @@ export const sizeToPixel = (scale: number = 1) => (
 ) => {
   const base = typeof themeOrBase === 'object' ? themeOrBase.base : themeOrBase;
   return `${base * scale}px`;
-};
-
-/**
- * Calculates the `px` value based on a scale multiplier
- * @param scale - The font scale multiplier
- * *
- * @param themeOrBase - Theme base value
- * *
- * @returns string - Rem unit aligned to baseline
- */
-
-export const logicals = {
-  left: 'inline-start',
-  right: 'inline-end',
-  top: 'block-start',
-  bottom: 'block-end',
-  horizontal: 'inline',
-  vertical: 'block',
-};
-
-export const SIDES = keysOf(logicals);
-export type LogicalSides = typeof SIDES[number];
-
-export const logicalCSS = (
-  property: string,
-  side: LogicalSides,
-  value: string
-) => {
-  return {
-    [`${property}-${logicals[side]}`]: value,
-  };
-};
-
-export const logicalProperty = (side: LogicalSides) => {
-  return `${logicals[side]}`;
 };

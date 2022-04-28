@@ -7,7 +7,7 @@
  */
 
 import { useEuiTheme, UseEuiTheme } from '../../services/theme';
-import { logicals, LogicalSides } from '../functions';
+import { logicalSide, LogicalSides } from '../functions';
 
 export const PADDING_SIZES = ['none', 'xs', 's', 'm', 'l', 'xl'] as const;
 export type EuiPaddingSize = typeof PADDING_SIZES[number];
@@ -16,7 +16,7 @@ export const euiPaddingStyles = (
   { euiTheme }: UseEuiTheme,
   side?: LogicalSides
 ) => {
-  const property = side ? `padding-${logicals[side]}` : 'padding';
+  const property = side ? `padding-${logicalSide[side]}` : 'padding';
 
   return {
     none: null,
