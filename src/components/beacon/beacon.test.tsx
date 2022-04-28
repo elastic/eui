@@ -9,10 +9,13 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiBeacon } from './beacon';
 
 describe('EuiBeacon', () => {
+  shouldRenderCustomStyles(<EuiBeacon />);
+
   test('is rendered', () => {
     const component = render(<EuiBeacon {...requiredProps} />);
 

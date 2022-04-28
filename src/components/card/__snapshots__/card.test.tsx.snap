@@ -8,7 +8,7 @@ exports[`EuiCard betaBadgeProps renders href 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -46,7 +46,7 @@ exports[`EuiCard horizontal selectable 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -90,7 +90,7 @@ exports[`EuiCard is rendered 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -115,7 +115,7 @@ exports[`EuiCard props a null icon 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -141,7 +141,7 @@ exports[`EuiCard props accepts div props like style 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -166,7 +166,7 @@ exports[`EuiCard props children 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -188,7 +188,7 @@ exports[`EuiCard props children with description 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -218,7 +218,7 @@ exports[`EuiCard props display accent is rendered 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -243,7 +243,7 @@ exports[`EuiCard props display danger is rendered 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -268,7 +268,7 @@ exports[`EuiCard props display plain is rendered 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -293,7 +293,7 @@ exports[`EuiCard props display primary is rendered 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -318,7 +318,7 @@ exports[`EuiCard props display subdued is rendered 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -343,7 +343,7 @@ exports[`EuiCard props display success is rendered 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -368,7 +368,7 @@ exports[`EuiCard props display transparent is rendered 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -393,7 +393,7 @@ exports[`EuiCard props display warning is rendered 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -418,7 +418,7 @@ exports[`EuiCard props footer 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -450,7 +450,7 @@ exports[`EuiCard props hasBorder 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -475,7 +475,7 @@ exports[`EuiCard props horizontal 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -517,17 +517,93 @@ exports[`EuiCard props href supports href as a link 1`] = `
           size="s"
         >
           <span
-            className="euiTitle euiTitle--small euiCard__title"
+            css="unknown styles"
             id="generated-idTitle"
+            key="null"
           >
-            <a
-              aria-describedby="generated-idDescription"
-              className="euiCard__titleAnchor"
-              href="#"
-              rel="noreferrer"
+            <Insertion
+              cache={
+                Object {
+                  "insert": [Function],
+                  "inserted": Object {
+                    "1mr6cet-euiTitle-s": true,
+                  },
+                  "key": "css",
+                  "nonce": undefined,
+                  "registered": Object {},
+                  "sheet": StyleSheet {
+                    "_alreadyInsertedOrderInsensitiveRule": true,
+                    "_insertTag": [Function],
+                    "before": null,
+                    "container": <head>
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .css-1mr6cet-euiTitle-s{overflow-wrap:break-word!important;word-wrap:break-word!important;word-break:break-word;font-size:1.5714rem;line-height:1.7143rem;font-weight:700;color:#1a1c21;}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRpdGxlLnN0eWxlcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFxRlEiLCJmaWxlIjoidGl0bGUuc3R5bGVzLnRzIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIENvcHlyaWdodCBFbGFzdGljc2VhcmNoIEIuVi4gYW5kL29yIGxpY2Vuc2VkIHRvIEVsYXN0aWNzZWFyY2ggQi5WLiB1bmRlciBvbmVcbiAqIG9yIG1vcmUgY29udHJpYnV0b3IgbGljZW5zZSBhZ3JlZW1lbnRzLiBMaWNlbnNlZCB1bmRlciB0aGUgRWxhc3RpYyBMaWNlbnNlXG4gKiAyLjAgYW5kIHRoZSBTZXJ2ZXIgU2lkZSBQdWJsaWMgTGljZW5zZSwgdiAxOyB5b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdFxuICogaW4gY29tcGxpYW5jZSB3aXRoLCBhdCB5b3VyIGVsZWN0aW9uLCB0aGUgRWxhc3RpYyBMaWNlbnNlIDIuMCBvciB0aGUgU2VydmVyXG4gKiBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDEuXG4gKi9cblxuaW1wb3J0IHsgQ1NTUHJvcGVydGllcyB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0JztcbmltcG9ydCB7IFVzZUV1aVRoZW1lLCB1c2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcbmltcG9ydCB7XG4gIGV1aVRleHRCcmVha1dvcmQsXG4gIGV1aUZvbnRTaXplLFxuICBfRXVpVGhlbWVGb250U2NhbGUsXG4gIF9FdWlUaGVtZUZvbnRTaXplTWVhc3VyZW1lbnQsXG59IGZyb20gJy4uLy4uL2dsb2JhbF9zdHlsaW5nJztcbmltcG9ydCB7IEV1aVRpdGxlU2l6ZSB9IGZyb20gJy4vdGl0bGUnO1xuXG4vKipcbiAqIE1peGluXG4gKi9cbnR5cGUgRXVpVGhlbWVUaXRsZSA9IHtcbiAgZm9udFNpemU6IENTU1Byb3BlcnRpZXNbJ2ZvbnRTaXplJ107XG4gIGxpbmVIZWlnaHQ6IENTU1Byb3BlcnRpZXNbJ2xpbmVIZWlnaHQnXTtcbiAgZm9udFdlaWdodDogQ1NTUHJvcGVydGllc1snZm9udFdlaWdodCddO1xuICBjb2xvcjogQ1NTUHJvcGVydGllc1snY29sb3InXTtcbn07XG5cbmV4cG9ydCBjb25zdCBldWlUaXRsZSA9IChcbiAgc2NhbGU6IEV1aVRpdGxlU2l6ZSA9ICdtJyxcbiAgZXVpVGhlbWU6IFVzZUV1aVRoZW1lWydldWlUaGVtZSddLFxuICBtZWFzdXJlbWVudDogX0V1aVRoZW1lRm9udFNpemVNZWFzdXJlbWVudCA9ICdyZW0nXG4pOiBFdWlUaGVtZVRpdGxlID0+IHtcbiAgY29uc3QgdGl0bGVTY2FsZVRvRm9udFNpemVTY2FsZU1hcDoge1xuICAgIFtzaXplIGluIEV1aVRpdGxlU2l6ZV06IF9FdWlUaGVtZUZvbnRTY2FsZTtcbiAgfSA9IHtcbiAgICB4eHhzOiAneHMnLFxuICAgIHh4czogJ3MnLFxuICAgIHhzOiAnbScsXG4gICAgczogJ2wnLFxuICAgIG06ICd4bCcsXG4gICAgbDogJ3h4bCcsXG4gIH07XG5cbiAgcmV0dXJuIHtcbiAgICAuLi5ldWlGb250U2l6ZSh0aXRsZVNjYWxlVG9Gb250U2l6ZVNjYWxlTWFwW3NjYWxlXSwgZXVpVGhlbWUsIG1lYXN1cmVtZW50KSxcbiAgICBmb250V2VpZ2h0OiBldWlUaGVtZS5mb250LndlaWdodFtldWlUaGVtZS5mb250LnRpdGxlLndlaWdodF0sXG4gICAgY29sb3I6IGV1aVRoZW1lLmNvbG9ycy50aXRsZSxcbiAgfTtcbn07XG5cbi8vIEhvb2sgdmVyc2lvblxuZXhwb3J0IGNvbnN0IHVzZUV1aVRpdGxlID0gKFxuICBzY2FsZTogRXVpVGl0bGVTaXplID0gJ20nLFxuICBtZWFzdXJlbWVudDogX0V1aVRoZW1lRm9udFNpemVNZWFzdXJlbWVudCA9ICdyZW0nXG4pOiBFdWlUaGVtZVRpdGxlID0+IHtcbiAgY29uc3QgeyBldWlUaGVtZSB9ID0gdXNlRXVpVGhlbWUoKTtcbiAgcmV0dXJuIGV1aVRpdGxlKHNjYWxlLCBldWlUaGVtZSwgbWVhc3VyZW1lbnQpO1xufTtcblxuLyoqXG4gKiBTdHlsZXNcbiAqL1xuZXhwb3J0IGNvbnN0IGV1aVRpdGxlU3R5bGVzID0gKHsgZXVpVGhlbWUgfTogVXNlRXVpVGhlbWUpID0+ICh7XG4gIGV1aVRpdGxlOiBjc3NgXG4gICAgJHtldWlUZXh0QnJlYWtXb3JkfVxuXG4gICAgJiArICYge1xuICAgICAgbWFyZ2luLXRvcDogJHtldWlUaGVtZS5zaXplLmx9O1xuICAgIH1cbiAgYCxcbiAgdXBwZXJjYXNlOiBjc3NgXG4gICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgYCxcbiAgLy8gU2l6ZXNcbiAgeHh4czogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3h4eHMnLCBldWlUaGVtZSl9XG4gIGAsXG4gIHh4czogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3h4cycsIGV1aVRoZW1lKX1cbiAgYCxcbiAgeHM6IGNzc2BcbiAgICAke2V1aVRpdGxlKCd4cycsIGV1aVRoZW1lKX1cbiAgYCxcbiAgczogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3MnLCBldWlUaGVtZSl9XG4gIGAsXG4gIG06IGNzc2BcbiAgICAke2V1aVRpdGxlKCdtJywgZXVpVGhlbWUpfVxuICBgLFxuICBsOiBjc3NgXG4gICAgJHtldWlUaXRsZSgnbCcsIGV1aVRoZW1lKX1cbiAgYCxcbn0pO1xuIl19 */
+                      </style>
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .css-1mr6cet-euiTitle-s+.css-1mr6cet-euiTitle-s{margin-top:24px;}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRpdGxlLnN0eWxlcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFxRlEiLCJmaWxlIjoidGl0bGUuc3R5bGVzLnRzIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIENvcHlyaWdodCBFbGFzdGljc2VhcmNoIEIuVi4gYW5kL29yIGxpY2Vuc2VkIHRvIEVsYXN0aWNzZWFyY2ggQi5WLiB1bmRlciBvbmVcbiAqIG9yIG1vcmUgY29udHJpYnV0b3IgbGljZW5zZSBhZ3JlZW1lbnRzLiBMaWNlbnNlZCB1bmRlciB0aGUgRWxhc3RpYyBMaWNlbnNlXG4gKiAyLjAgYW5kIHRoZSBTZXJ2ZXIgU2lkZSBQdWJsaWMgTGljZW5zZSwgdiAxOyB5b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdFxuICogaW4gY29tcGxpYW5jZSB3aXRoLCBhdCB5b3VyIGVsZWN0aW9uLCB0aGUgRWxhc3RpYyBMaWNlbnNlIDIuMCBvciB0aGUgU2VydmVyXG4gKiBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDEuXG4gKi9cblxuaW1wb3J0IHsgQ1NTUHJvcGVydGllcyB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0JztcbmltcG9ydCB7IFVzZUV1aVRoZW1lLCB1c2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcbmltcG9ydCB7XG4gIGV1aVRleHRCcmVha1dvcmQsXG4gIGV1aUZvbnRTaXplLFxuICBfRXVpVGhlbWVGb250U2NhbGUsXG4gIF9FdWlUaGVtZUZvbnRTaXplTWVhc3VyZW1lbnQsXG59IGZyb20gJy4uLy4uL2dsb2JhbF9zdHlsaW5nJztcbmltcG9ydCB7IEV1aVRpdGxlU2l6ZSB9IGZyb20gJy4vdGl0bGUnO1xuXG4vKipcbiAqIE1peGluXG4gKi9cbnR5cGUgRXVpVGhlbWVUaXRsZSA9IHtcbiAgZm9udFNpemU6IENTU1Byb3BlcnRpZXNbJ2ZvbnRTaXplJ107XG4gIGxpbmVIZWlnaHQ6IENTU1Byb3BlcnRpZXNbJ2xpbmVIZWlnaHQnXTtcbiAgZm9udFdlaWdodDogQ1NTUHJvcGVydGllc1snZm9udFdlaWdodCddO1xuICBjb2xvcjogQ1NTUHJvcGVydGllc1snY29sb3InXTtcbn07XG5cbmV4cG9ydCBjb25zdCBldWlUaXRsZSA9IChcbiAgc2NhbGU6IEV1aVRpdGxlU2l6ZSA9ICdtJyxcbiAgZXVpVGhlbWU6IFVzZUV1aVRoZW1lWydldWlUaGVtZSddLFxuICBtZWFzdXJlbWVudDogX0V1aVRoZW1lRm9udFNpemVNZWFzdXJlbWVudCA9ICdyZW0nXG4pOiBFdWlUaGVtZVRpdGxlID0+IHtcbiAgY29uc3QgdGl0bGVTY2FsZVRvRm9udFNpemVTY2FsZU1hcDoge1xuICAgIFtzaXplIGluIEV1aVRpdGxlU2l6ZV06IF9FdWlUaGVtZUZvbnRTY2FsZTtcbiAgfSA9IHtcbiAgICB4eHhzOiAneHMnLFxuICAgIHh4czogJ3MnLFxuICAgIHhzOiAnbScsXG4gICAgczogJ2wnLFxuICAgIG06ICd4bCcsXG4gICAgbDogJ3h4bCcsXG4gIH07XG5cbiAgcmV0dXJuIHtcbiAgICAuLi5ldWlGb250U2l6ZSh0aXRsZVNjYWxlVG9Gb250U2l6ZVNjYWxlTWFwW3NjYWxlXSwgZXVpVGhlbWUsIG1lYXN1cmVtZW50KSxcbiAgICBmb250V2VpZ2h0OiBldWlUaGVtZS5mb250LndlaWdodFtldWlUaGVtZS5mb250LnRpdGxlLndlaWdodF0sXG4gICAgY29sb3I6IGV1aVRoZW1lLmNvbG9ycy50aXRsZSxcbiAgfTtcbn07XG5cbi8vIEhvb2sgdmVyc2lvblxuZXhwb3J0IGNvbnN0IHVzZUV1aVRpdGxlID0gKFxuICBzY2FsZTogRXVpVGl0bGVTaXplID0gJ20nLFxuICBtZWFzdXJlbWVudDogX0V1aVRoZW1lRm9udFNpemVNZWFzdXJlbWVudCA9ICdyZW0nXG4pOiBFdWlUaGVtZVRpdGxlID0+IHtcbiAgY29uc3QgeyBldWlUaGVtZSB9ID0gdXNlRXVpVGhlbWUoKTtcbiAgcmV0dXJuIGV1aVRpdGxlKHNjYWxlLCBldWlUaGVtZSwgbWVhc3VyZW1lbnQpO1xufTtcblxuLyoqXG4gKiBTdHlsZXNcbiAqL1xuZXhwb3J0IGNvbnN0IGV1aVRpdGxlU3R5bGVzID0gKHsgZXVpVGhlbWUgfTogVXNlRXVpVGhlbWUpID0+ICh7XG4gIGV1aVRpdGxlOiBjc3NgXG4gICAgJHtldWlUZXh0QnJlYWtXb3JkfVxuXG4gICAgJiArICYge1xuICAgICAgbWFyZ2luLXRvcDogJHtldWlUaGVtZS5zaXplLmx9O1xuICAgIH1cbiAgYCxcbiAgdXBwZXJjYXNlOiBjc3NgXG4gICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgYCxcbiAgLy8gU2l6ZXNcbiAgeHh4czogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3h4eHMnLCBldWlUaGVtZSl9XG4gIGAsXG4gIHh4czogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3h4cycsIGV1aVRoZW1lKX1cbiAgYCxcbiAgeHM6IGNzc2BcbiAgICAke2V1aVRpdGxlKCd4cycsIGV1aVRoZW1lKX1cbiAgYCxcbiAgczogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3MnLCBldWlUaGVtZSl9XG4gIGAsXG4gIG06IGNzc2BcbiAgICAke2V1aVRpdGxlKCdtJywgZXVpVGhlbWUpfVxuICBgLFxuICBsOiBjc3NgXG4gICAgJHtldWlUaXRsZSgnbCcsIGV1aVRoZW1lKX1cbiAgYCxcbn0pO1xuIl19 */
+                      </style>
+                    </head>,
+                    "ctr": 2,
+                    "insertionPoint": undefined,
+                    "isSpeedy": false,
+                    "key": "css",
+                    "nonce": undefined,
+                    "prepend": undefined,
+                    "tags": Array [
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .css-1mr6cet-euiTitle-s{overflow-wrap:break-word!important;word-wrap:break-word!important;word-break:break-word;font-size:1.5714rem;line-height:1.7143rem;font-weight:700;color:#1a1c21;}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRpdGxlLnN0eWxlcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFxRlEiLCJmaWxlIjoidGl0bGUuc3R5bGVzLnRzIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIENvcHlyaWdodCBFbGFzdGljc2VhcmNoIEIuVi4gYW5kL29yIGxpY2Vuc2VkIHRvIEVsYXN0aWNzZWFyY2ggQi5WLiB1bmRlciBvbmVcbiAqIG9yIG1vcmUgY29udHJpYnV0b3IgbGljZW5zZSBhZ3JlZW1lbnRzLiBMaWNlbnNlZCB1bmRlciB0aGUgRWxhc3RpYyBMaWNlbnNlXG4gKiAyLjAgYW5kIHRoZSBTZXJ2ZXIgU2lkZSBQdWJsaWMgTGljZW5zZSwgdiAxOyB5b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdFxuICogaW4gY29tcGxpYW5jZSB3aXRoLCBhdCB5b3VyIGVsZWN0aW9uLCB0aGUgRWxhc3RpYyBMaWNlbnNlIDIuMCBvciB0aGUgU2VydmVyXG4gKiBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDEuXG4gKi9cblxuaW1wb3J0IHsgQ1NTUHJvcGVydGllcyB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0JztcbmltcG9ydCB7IFVzZUV1aVRoZW1lLCB1c2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcbmltcG9ydCB7XG4gIGV1aVRleHRCcmVha1dvcmQsXG4gIGV1aUZvbnRTaXplLFxuICBfRXVpVGhlbWVGb250U2NhbGUsXG4gIF9FdWlUaGVtZUZvbnRTaXplTWVhc3VyZW1lbnQsXG59IGZyb20gJy4uLy4uL2dsb2JhbF9zdHlsaW5nJztcbmltcG9ydCB7IEV1aVRpdGxlU2l6ZSB9IGZyb20gJy4vdGl0bGUnO1xuXG4vKipcbiAqIE1peGluXG4gKi9cbnR5cGUgRXVpVGhlbWVUaXRsZSA9IHtcbiAgZm9udFNpemU6IENTU1Byb3BlcnRpZXNbJ2ZvbnRTaXplJ107XG4gIGxpbmVIZWlnaHQ6IENTU1Byb3BlcnRpZXNbJ2xpbmVIZWlnaHQnXTtcbiAgZm9udFdlaWdodDogQ1NTUHJvcGVydGllc1snZm9udFdlaWdodCddO1xuICBjb2xvcjogQ1NTUHJvcGVydGllc1snY29sb3InXTtcbn07XG5cbmV4cG9ydCBjb25zdCBldWlUaXRsZSA9IChcbiAgc2NhbGU6IEV1aVRpdGxlU2l6ZSA9ICdtJyxcbiAgZXVpVGhlbWU6IFVzZUV1aVRoZW1lWydldWlUaGVtZSddLFxuICBtZWFzdXJlbWVudDogX0V1aVRoZW1lRm9udFNpemVNZWFzdXJlbWVudCA9ICdyZW0nXG4pOiBFdWlUaGVtZVRpdGxlID0+IHtcbiAgY29uc3QgdGl0bGVTY2FsZVRvRm9udFNpemVTY2FsZU1hcDoge1xuICAgIFtzaXplIGluIEV1aVRpdGxlU2l6ZV06IF9FdWlUaGVtZUZvbnRTY2FsZTtcbiAgfSA9IHtcbiAgICB4eHhzOiAneHMnLFxuICAgIHh4czogJ3MnLFxuICAgIHhzOiAnbScsXG4gICAgczogJ2wnLFxuICAgIG06ICd4bCcsXG4gICAgbDogJ3h4bCcsXG4gIH07XG5cbiAgcmV0dXJuIHtcbiAgICAuLi5ldWlGb250U2l6ZSh0aXRsZVNjYWxlVG9Gb250U2l6ZVNjYWxlTWFwW3NjYWxlXSwgZXVpVGhlbWUsIG1lYXN1cmVtZW50KSxcbiAgICBmb250V2VpZ2h0OiBldWlUaGVtZS5mb250LndlaWdodFtldWlUaGVtZS5mb250LnRpdGxlLndlaWdodF0sXG4gICAgY29sb3I6IGV1aVRoZW1lLmNvbG9ycy50aXRsZSxcbiAgfTtcbn07XG5cbi8vIEhvb2sgdmVyc2lvblxuZXhwb3J0IGNvbnN0IHVzZUV1aVRpdGxlID0gKFxuICBzY2FsZTogRXVpVGl0bGVTaXplID0gJ20nLFxuICBtZWFzdXJlbWVudDogX0V1aVRoZW1lRm9udFNpemVNZWFzdXJlbWVudCA9ICdyZW0nXG4pOiBFdWlUaGVtZVRpdGxlID0+IHtcbiAgY29uc3QgeyBldWlUaGVtZSB9ID0gdXNlRXVpVGhlbWUoKTtcbiAgcmV0dXJuIGV1aVRpdGxlKHNjYWxlLCBldWlUaGVtZSwgbWVhc3VyZW1lbnQpO1xufTtcblxuLyoqXG4gKiBTdHlsZXNcbiAqL1xuZXhwb3J0IGNvbnN0IGV1aVRpdGxlU3R5bGVzID0gKHsgZXVpVGhlbWUgfTogVXNlRXVpVGhlbWUpID0+ICh7XG4gIGV1aVRpdGxlOiBjc3NgXG4gICAgJHtldWlUZXh0QnJlYWtXb3JkfVxuXG4gICAgJiArICYge1xuICAgICAgbWFyZ2luLXRvcDogJHtldWlUaGVtZS5zaXplLmx9O1xuICAgIH1cbiAgYCxcbiAgdXBwZXJjYXNlOiBjc3NgXG4gICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgYCxcbiAgLy8gU2l6ZXNcbiAgeHh4czogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3h4eHMnLCBldWlUaGVtZSl9XG4gIGAsXG4gIHh4czogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3h4cycsIGV1aVRoZW1lKX1cbiAgYCxcbiAgeHM6IGNzc2BcbiAgICAke2V1aVRpdGxlKCd4cycsIGV1aVRoZW1lKX1cbiAgYCxcbiAgczogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3MnLCBldWlUaGVtZSl9XG4gIGAsXG4gIG06IGNzc2BcbiAgICAke2V1aVRpdGxlKCdtJywgZXVpVGhlbWUpfVxuICBgLFxuICBsOiBjc3NgXG4gICAgJHtldWlUaXRsZSgnbCcsIGV1aVRoZW1lKX1cbiAgYCxcbn0pO1xuIl19 */
+                      </style>,
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .css-1mr6cet-euiTitle-s+.css-1mr6cet-euiTitle-s{margin-top:24px;}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRpdGxlLnN0eWxlcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFxRlEiLCJmaWxlIjoidGl0bGUuc3R5bGVzLnRzIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIENvcHlyaWdodCBFbGFzdGljc2VhcmNoIEIuVi4gYW5kL29yIGxpY2Vuc2VkIHRvIEVsYXN0aWNzZWFyY2ggQi5WLiB1bmRlciBvbmVcbiAqIG9yIG1vcmUgY29udHJpYnV0b3IgbGljZW5zZSBhZ3JlZW1lbnRzLiBMaWNlbnNlZCB1bmRlciB0aGUgRWxhc3RpYyBMaWNlbnNlXG4gKiAyLjAgYW5kIHRoZSBTZXJ2ZXIgU2lkZSBQdWJsaWMgTGljZW5zZSwgdiAxOyB5b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdFxuICogaW4gY29tcGxpYW5jZSB3aXRoLCBhdCB5b3VyIGVsZWN0aW9uLCB0aGUgRWxhc3RpYyBMaWNlbnNlIDIuMCBvciB0aGUgU2VydmVyXG4gKiBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDEuXG4gKi9cblxuaW1wb3J0IHsgQ1NTUHJvcGVydGllcyB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0JztcbmltcG9ydCB7IFVzZUV1aVRoZW1lLCB1c2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcbmltcG9ydCB7XG4gIGV1aVRleHRCcmVha1dvcmQsXG4gIGV1aUZvbnRTaXplLFxuICBfRXVpVGhlbWVGb250U2NhbGUsXG4gIF9FdWlUaGVtZUZvbnRTaXplTWVhc3VyZW1lbnQsXG59IGZyb20gJy4uLy4uL2dsb2JhbF9zdHlsaW5nJztcbmltcG9ydCB7IEV1aVRpdGxlU2l6ZSB9IGZyb20gJy4vdGl0bGUnO1xuXG4vKipcbiAqIE1peGluXG4gKi9cbnR5cGUgRXVpVGhlbWVUaXRsZSA9IHtcbiAgZm9udFNpemU6IENTU1Byb3BlcnRpZXNbJ2ZvbnRTaXplJ107XG4gIGxpbmVIZWlnaHQ6IENTU1Byb3BlcnRpZXNbJ2xpbmVIZWlnaHQnXTtcbiAgZm9udFdlaWdodDogQ1NTUHJvcGVydGllc1snZm9udFdlaWdodCddO1xuICBjb2xvcjogQ1NTUHJvcGVydGllc1snY29sb3InXTtcbn07XG5cbmV4cG9ydCBjb25zdCBldWlUaXRsZSA9IChcbiAgc2NhbGU6IEV1aVRpdGxlU2l6ZSA9ICdtJyxcbiAgZXVpVGhlbWU6IFVzZUV1aVRoZW1lWydldWlUaGVtZSddLFxuICBtZWFzdXJlbWVudDogX0V1aVRoZW1lRm9udFNpemVNZWFzdXJlbWVudCA9ICdyZW0nXG4pOiBFdWlUaGVtZVRpdGxlID0+IHtcbiAgY29uc3QgdGl0bGVTY2FsZVRvRm9udFNpemVTY2FsZU1hcDoge1xuICAgIFtzaXplIGluIEV1aVRpdGxlU2l6ZV06IF9FdWlUaGVtZUZvbnRTY2FsZTtcbiAgfSA9IHtcbiAgICB4eHhzOiAneHMnLFxuICAgIHh4czogJ3MnLFxuICAgIHhzOiAnbScsXG4gICAgczogJ2wnLFxuICAgIG06ICd4bCcsXG4gICAgbDogJ3h4bCcsXG4gIH07XG5cbiAgcmV0dXJuIHtcbiAgICAuLi5ldWlGb250U2l6ZSh0aXRsZVNjYWxlVG9Gb250U2l6ZVNjYWxlTWFwW3NjYWxlXSwgZXVpVGhlbWUsIG1lYXN1cmVtZW50KSxcbiAgICBmb250V2VpZ2h0OiBldWlUaGVtZS5mb250LndlaWdodFtldWlUaGVtZS5mb250LnRpdGxlLndlaWdodF0sXG4gICAgY29sb3I6IGV1aVRoZW1lLmNvbG9ycy50aXRsZSxcbiAgfTtcbn07XG5cbi8vIEhvb2sgdmVyc2lvblxuZXhwb3J0IGNvbnN0IHVzZUV1aVRpdGxlID0gKFxuICBzY2FsZTogRXVpVGl0bGVTaXplID0gJ20nLFxuICBtZWFzdXJlbWVudDogX0V1aVRoZW1lRm9udFNpemVNZWFzdXJlbWVudCA9ICdyZW0nXG4pOiBFdWlUaGVtZVRpdGxlID0+IHtcbiAgY29uc3QgeyBldWlUaGVtZSB9ID0gdXNlRXVpVGhlbWUoKTtcbiAgcmV0dXJuIGV1aVRpdGxlKHNjYWxlLCBldWlUaGVtZSwgbWVhc3VyZW1lbnQpO1xufTtcblxuLyoqXG4gKiBTdHlsZXNcbiAqL1xuZXhwb3J0IGNvbnN0IGV1aVRpdGxlU3R5bGVzID0gKHsgZXVpVGhlbWUgfTogVXNlRXVpVGhlbWUpID0+ICh7XG4gIGV1aVRpdGxlOiBjc3NgXG4gICAgJHtldWlUZXh0QnJlYWtXb3JkfVxuXG4gICAgJiArICYge1xuICAgICAgbWFyZ2luLXRvcDogJHtldWlUaGVtZS5zaXplLmx9O1xuICAgIH1cbiAgYCxcbiAgdXBwZXJjYXNlOiBjc3NgXG4gICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgYCxcbiAgLy8gU2l6ZXNcbiAgeHh4czogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3h4eHMnLCBldWlUaGVtZSl9XG4gIGAsXG4gIHh4czogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3h4cycsIGV1aVRoZW1lKX1cbiAgYCxcbiAgeHM6IGNzc2BcbiAgICAke2V1aVRpdGxlKCd4cycsIGV1aVRoZW1lKX1cbiAgYCxcbiAgczogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3MnLCBldWlUaGVtZSl9XG4gIGAsXG4gIG06IGNzc2BcbiAgICAke2V1aVRpdGxlKCdtJywgZXVpVGhlbWUpfVxuICBgLFxuICBsOiBjc3NgXG4gICAgJHtldWlUaXRsZSgnbCcsIGV1aVRoZW1lKX1cbiAgYCxcbn0pO1xuIl19 */
+                      </style>,
+                    ],
+                  },
+                }
+              }
+              isStringTag={true}
+              serialized={
+                Object {
+                  "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRpdGxlLnN0eWxlcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFxRlEiLCJmaWxlIjoidGl0bGUuc3R5bGVzLnRzIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIENvcHlyaWdodCBFbGFzdGljc2VhcmNoIEIuVi4gYW5kL29yIGxpY2Vuc2VkIHRvIEVsYXN0aWNzZWFyY2ggQi5WLiB1bmRlciBvbmVcbiAqIG9yIG1vcmUgY29udHJpYnV0b3IgbGljZW5zZSBhZ3JlZW1lbnRzLiBMaWNlbnNlZCB1bmRlciB0aGUgRWxhc3RpYyBMaWNlbnNlXG4gKiAyLjAgYW5kIHRoZSBTZXJ2ZXIgU2lkZSBQdWJsaWMgTGljZW5zZSwgdiAxOyB5b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdFxuICogaW4gY29tcGxpYW5jZSB3aXRoLCBhdCB5b3VyIGVsZWN0aW9uLCB0aGUgRWxhc3RpYyBMaWNlbnNlIDIuMCBvciB0aGUgU2VydmVyXG4gKiBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDEuXG4gKi9cblxuaW1wb3J0IHsgQ1NTUHJvcGVydGllcyB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0JztcbmltcG9ydCB7IFVzZUV1aVRoZW1lLCB1c2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcbmltcG9ydCB7XG4gIGV1aVRleHRCcmVha1dvcmQsXG4gIGV1aUZvbnRTaXplLFxuICBfRXVpVGhlbWVGb250U2NhbGUsXG4gIF9FdWlUaGVtZUZvbnRTaXplTWVhc3VyZW1lbnQsXG59IGZyb20gJy4uLy4uL2dsb2JhbF9zdHlsaW5nJztcbmltcG9ydCB7IEV1aVRpdGxlU2l6ZSB9IGZyb20gJy4vdGl0bGUnO1xuXG4vKipcbiAqIE1peGluXG4gKi9cbnR5cGUgRXVpVGhlbWVUaXRsZSA9IHtcbiAgZm9udFNpemU6IENTU1Byb3BlcnRpZXNbJ2ZvbnRTaXplJ107XG4gIGxpbmVIZWlnaHQ6IENTU1Byb3BlcnRpZXNbJ2xpbmVIZWlnaHQnXTtcbiAgZm9udFdlaWdodDogQ1NTUHJvcGVydGllc1snZm9udFdlaWdodCddO1xuICBjb2xvcjogQ1NTUHJvcGVydGllc1snY29sb3InXTtcbn07XG5cbmV4cG9ydCBjb25zdCBldWlUaXRsZSA9IChcbiAgc2NhbGU6IEV1aVRpdGxlU2l6ZSA9ICdtJyxcbiAgZXVpVGhlbWU6IFVzZUV1aVRoZW1lWydldWlUaGVtZSddLFxuICBtZWFzdXJlbWVudDogX0V1aVRoZW1lRm9udFNpemVNZWFzdXJlbWVudCA9ICdyZW0nXG4pOiBFdWlUaGVtZVRpdGxlID0+IHtcbiAgY29uc3QgdGl0bGVTY2FsZVRvRm9udFNpemVTY2FsZU1hcDoge1xuICAgIFtzaXplIGluIEV1aVRpdGxlU2l6ZV06IF9FdWlUaGVtZUZvbnRTY2FsZTtcbiAgfSA9IHtcbiAgICB4eHhzOiAneHMnLFxuICAgIHh4czogJ3MnLFxuICAgIHhzOiAnbScsXG4gICAgczogJ2wnLFxuICAgIG06ICd4bCcsXG4gICAgbDogJ3h4bCcsXG4gIH07XG5cbiAgcmV0dXJuIHtcbiAgICAuLi5ldWlGb250U2l6ZSh0aXRsZVNjYWxlVG9Gb250U2l6ZVNjYWxlTWFwW3NjYWxlXSwgZXVpVGhlbWUsIG1lYXN1cmVtZW50KSxcbiAgICBmb250V2VpZ2h0OiBldWlUaGVtZS5mb250LndlaWdodFtldWlUaGVtZS5mb250LnRpdGxlLndlaWdodF0sXG4gICAgY29sb3I6IGV1aVRoZW1lLmNvbG9ycy50aXRsZSxcbiAgfTtcbn07XG5cbi8vIEhvb2sgdmVyc2lvblxuZXhwb3J0IGNvbnN0IHVzZUV1aVRpdGxlID0gKFxuICBzY2FsZTogRXVpVGl0bGVTaXplID0gJ20nLFxuICBtZWFzdXJlbWVudDogX0V1aVRoZW1lRm9udFNpemVNZWFzdXJlbWVudCA9ICdyZW0nXG4pOiBFdWlUaGVtZVRpdGxlID0+IHtcbiAgY29uc3QgeyBldWlUaGVtZSB9ID0gdXNlRXVpVGhlbWUoKTtcbiAgcmV0dXJuIGV1aVRpdGxlKHNjYWxlLCBldWlUaGVtZSwgbWVhc3VyZW1lbnQpO1xufTtcblxuLyoqXG4gKiBTdHlsZXNcbiAqL1xuZXhwb3J0IGNvbnN0IGV1aVRpdGxlU3R5bGVzID0gKHsgZXVpVGhlbWUgfTogVXNlRXVpVGhlbWUpID0+ICh7XG4gIGV1aVRpdGxlOiBjc3NgXG4gICAgJHtldWlUZXh0QnJlYWtXb3JkfVxuXG4gICAgJiArICYge1xuICAgICAgbWFyZ2luLXRvcDogJHtldWlUaGVtZS5zaXplLmx9O1xuICAgIH1cbiAgYCxcbiAgdXBwZXJjYXNlOiBjc3NgXG4gICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgYCxcbiAgLy8gU2l6ZXNcbiAgeHh4czogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3h4eHMnLCBldWlUaGVtZSl9XG4gIGAsXG4gIHh4czogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3h4cycsIGV1aVRoZW1lKX1cbiAgYCxcbiAgeHM6IGNzc2BcbiAgICAke2V1aVRpdGxlKCd4cycsIGV1aVRoZW1lKX1cbiAgYCxcbiAgczogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3MnLCBldWlUaGVtZSl9XG4gIGAsXG4gIG06IGNzc2BcbiAgICAke2V1aVRpdGxlKCdtJywgZXVpVGhlbWUpfVxuICBgLFxuICBsOiBjc3NgXG4gICAgJHtldWlUaXRsZSgnbCcsIGV1aVRoZW1lKX1cbiAgYCxcbn0pO1xuIl19 */",
+                  "name": "1mr6cet-euiTitle-s",
+                  "next": undefined,
+                  "styles": ";
+  overflow-wrap: break-word !important; // makes sure the long string will wrap and not bust out of the container
+  word-wrap: break-word !important; // spec says, they are literally just alternate names for each other but some browsers support one and not the other
+  word-break: break-word; // IE doesn't understand but that's ok
+ &+&{margin-top:24px;};label:euiTitle;;;;font-size:1.5714rem;line-height:1.7143rem;font-weight:700;color:#1a1c21;;;label:s;;;;",
+                  "toString": [Function],
+                }
+              }
+            />
+            <span
+              className="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+              id="generated-idTitle"
             >
-              Hoi
-            </a>
+              <a
+                aria-describedby="generated-idDescription"
+                className="euiCard__titleAnchor"
+                href="#"
+                rel="noreferrer"
+              >
+                Hoi
+              </a>
+            </span>
           </span>
         </EuiTitle>
         <EuiText
@@ -566,7 +642,7 @@ exports[`EuiCard props icon 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -605,7 +681,7 @@ exports[`EuiCard props image 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -630,7 +706,7 @@ exports[`EuiCard props isDisabled 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       <button
@@ -661,7 +737,7 @@ exports[`EuiCard props paddingSize l is rendered 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -686,7 +762,7 @@ exports[`EuiCard props paddingSize m is rendered 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -711,7 +787,7 @@ exports[`EuiCard props paddingSize none is rendered 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -736,7 +812,7 @@ exports[`EuiCard props paddingSize s is rendered 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -761,7 +837,7 @@ exports[`EuiCard props selectable 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -803,7 +879,7 @@ exports[`EuiCard props textAlign 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -828,7 +904,7 @@ exports[`EuiCard props titleElement 1`] = `
     class="euiCard__content"
   >
     <h4
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -853,7 +929,7 @@ exports[`EuiCard props titleElement with nodes 1`] = `
     class="euiCard__content"
   >
     <h4
-      class="euiTitle euiTitle--small euiCard__title"
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
       id="generated-idTitle"
     >
       Card title
@@ -878,7 +954,7 @@ exports[`EuiCard props titleSize 1`] = `
     class="euiCard__content"
   >
     <span
-      class="euiTitle euiTitle--xsmall euiCard__title"
+      class="euiTitle euiCard__title css-1c9cwui-euiTitle-xs"
       id="generated-idTitle"
     >
       Card title

@@ -9,7 +9,7 @@ import {
   _EuiThemeBorderTypes,
   _EuiThemeBorderRadiusValues,
   _EuiThemeBorderWidthValues,
-} from '../../../../../src/global_styling/variables/_borders';
+} from '../../../../../src/global_styling/variables/borders';
 
 import {
   EuiThemeBorderColorValues,

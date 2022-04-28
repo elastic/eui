@@ -24,7 +24,7 @@ exports[`EuiPageHeader props alignItems bottom is rendered 1`] = `
         class="euiFlexItem"
       >
         <h1
-          class="euiTitle euiTitle--large"
+          class="euiTitle css-1bexacr-euiTitle-l"
         >
           Page title
         </h1>
@@ -70,7 +70,7 @@ exports[`EuiPageHeader props alignItems center is rendered 1`] = `
         class="euiFlexItem"
       >
         <h1
-          class="euiTitle euiTitle--large"
+          class="euiTitle css-1bexacr-euiTitle-l"
         >
           Page title
         </h1>
@@ -116,7 +116,7 @@ exports[`EuiPageHeader props alignItems stretch is rendered 1`] = `
         class="euiFlexItem"
       >
         <h1
-          class="euiTitle euiTitle--large"
+          class="euiTitle css-1bexacr-euiTitle-l"
         >
           Page title
         </h1>
@@ -162,7 +162,7 @@ exports[`EuiPageHeader props alignItems top is rendered 1`] = `
         class="euiFlexItem"
       >
         <h1
-          class="euiTitle euiTitle--large"
+          class="euiTitle css-1bexacr-euiTitle-l"
         >
           Page title
         </h1>
@@ -234,7 +234,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       </ol>
     </nav>
     <div
-      class="euiSpacer euiSpacer--s"
+      class="euiSpacer euiSpacer--s css-i2qclb-euiSpacer-s"
     />
     <div
       class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
@@ -244,7 +244,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       >
         <h1
           aria-label="aria-label"
-          class="euiTitle euiTitle--large testClass1 testClass2"
+          class="euiTitle testClass1 testClass2 css-1bexacr-euiTitle-l"
           data-test-subj="test subject string"
         >
           <span
@@ -257,7 +257,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           Page title
         </h1>
         <div
-          class="euiSpacer euiSpacer--l"
+          class="euiSpacer euiSpacer--l css-jz428s-euiSpacer-l"
         />
         <div
           class="euiText euiText--medium euiText--constrainedWidth"
@@ -296,13 +296,13 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       class="euiPageHeaderContent__bottom"
     >
       <div
-        class="euiSpacer euiSpacer--l"
+        class="euiSpacer euiSpacer--l css-jz428s-euiSpacer-l"
       />
       <p>
         Anything
       </p>
       <div
-        class="euiSpacer euiSpacer--l"
+        class="euiSpacer euiSpacer--l css-jz428s-euiSpacer-l"
       />
       <div
         aria-label="aria-label"

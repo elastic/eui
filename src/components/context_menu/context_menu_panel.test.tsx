@@ -8,13 +8,11 @@
 
 import React from 'react';
 import { render, mount } from 'enzyme';
-import { findTestSubject, requiredProps } from '../../test';
+import { requiredProps } from '../../test';
 
 import { EuiContextMenuPanel, SIZES } from './context_menu_panel';
 
 import { EuiContextMenuItem } from './context_menu_item';
-
-import { tick } from './context_menu.test';
 
 import { keys } from '../../services';
 
@@ -159,23 +157,6 @@ describe('EuiContextMenuPanel', () => {
             });
           });
         });
-      });
-    });
-
-    describe('initialFocusedItemIndex', () => {
-      // Reset focus between tests
-      beforeEach(() => (document.activeElement as HTMLElement)?.blur());
-
-      it('sets focus on the item occupying that index', async () => {
-        const component = mount(
-          <EuiContextMenuPanel items={items} initialFocusedItemIndex={1} />
-        );
-
-        await tick(20);
-
-        expect(document.activeElement).toBe(
-          findTestSubject(component, 'itemB').getDOMNode()
-        );
       });
     });
 

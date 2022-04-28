@@ -83,7 +83,7 @@ exports[`EuiAvatar props color as string is rendered 1`] = `
 exports[`EuiAvatar props color as subdued is rendered 1`] = `
 <div
   aria-label="name"
-  class="euiAvatar euiAvatar--m euiAvatar--user css-rdwecc-euiAvatar-m-user-subdued"
+  class="euiAvatar euiAvatar--m euiAvatar--user css-1x3d3qm-euiAvatar-m-user-subdued"
   role="img"
   title="name"
 >
@@ -304,48 +304,3 @@ exports[`EuiAvatar props type is rendered 1`] = `
 `;
 
 exports[`EuiAvatar should throw error if color is not a hex 1`] = `"EuiAvatar needs to pass a valid color. This can either be a three or six character hex value"`;
-
-exports[`EuiAvatar should throw error if color is not a hex: renders with emotion styles 1`] = `
-.css-11owldj-euiAvatar-m-user {
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-background-size: cover;
-  background-size: cover;
-  text-align: center;
-  vertical-align: middle;
-  overflow-x: hidden;
-  font-weight: 500;
-  width: 32px;
-  height: 32px;
-  line-height: 32px;
-  font-size: calc(16px * 0.9);
-  border-radius: 50%;
-}
-
-<div
-  aria-label="name"
-  class="euiAvatar euiAvatar--m euiAvatar--user css-11owldj-euiAvatar-m-user"
-  role="img"
-  style="background-color:#e4a6c7;color:#000000"
-  title="name"
->
-  <span
-    aria-hidden="true"
-  >
-    n
-  </span>
-</div>
-`;

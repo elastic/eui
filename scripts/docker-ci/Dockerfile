@@ -34,8 +34,10 @@ RUN yarn global add cypress
 # Add puppeteer user (pptruser).
 RUN groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser \
     && mkdir -p /home/pptruser/Downloads \
+    && mkdir -p /cypress/screenshots \
     && chown -R pptruser:pptruser /home/pptruser \
-    && chown -R pptruser:pptruser /node_modules
+    && chown -R pptruser:pptruser /node_modules \
+    && chown -R pptruser:pptruser /cypress
 
 # Run user as non privileged.
 USER pptruser

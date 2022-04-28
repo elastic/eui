@@ -14,29 +14,46 @@ import {
 } from '../../../../services/color/contrast';
 import {
   _EuiThemeColors,
-  brand_text_colors,
-  shade_colors,
-  EuiThemeColors,
-  dark_shades,
-} from '../../../../global_styling/variables/_colors';
+  _EuiThemeBrandColors,
+  _EuiThemeBrandTextColors,
+  _EuiThemeShadeColors,
+  _EuiThemeSpecialColors,
+  _EuiThemeTextColors,
+  _EuiThemeColorsMode,
+} from '../../../../global_styling/variables/colors';
 
 /*
  * LIGHT THEME
+ * Only split up in the light theme to access the keys by section in the docs
  */
 
-export const light_colors_ams: _EuiThemeColors = {
-  // Brand
+export const brand_colors: _EuiThemeBrandColors = {
   primary: '#07C',
   accent: '#F04E98',
   success: '#00BFB3',
   warning: '#FEC514',
   danger: '#BD271E',
+};
 
-  // Shades
-  ...shade_colors,
-  lightestShade: '#f0f4fb',
+export const brand_text_colors: _EuiThemeBrandTextColors = {
+  primaryText: computed(makeHighContrastColor('colors.primary')),
+  accentText: computed(makeHighContrastColor('colors.accent')),
+  successText: computed(makeHighContrastColor('colors.success')),
+  warningText: computed(makeHighContrastColor('colors.warning')),
+  dangerText: computed(makeHighContrastColor('colors.danger')),
+};
 
-  // Special
+export const shade_colors: _EuiThemeShadeColors = {
+  emptyShade: '#FFF',
+  lightestShade: '#F0F4FB',
+  lightShade: '#D3DAE6',
+  mediumShade: '#98A2B3',
+  darkShade: '#69707D',
+  darkestShade: '#343741',
+  fullShade: '#000',
+};
+
+export const special_colors: _EuiThemeSpecialColors = {
   body: computed(([lightestShade]) => tint(lightestShade, 0.5), [
     'colors.lightestShade',
   ]),
@@ -44,22 +61,39 @@ export const light_colors_ams: _EuiThemeColors = {
   disabled: '#ABB4C4',
   disabledText: computed(makeDisabledContrastColor('colors.disabled')),
   shadow: computed(({ colors }) => colors.ink),
+};
 
-  // Need to come after special colors so they can react to `body`
-  ...brand_text_colors,
-
-  // Text
+export const text_colors: _EuiThemeTextColors = {
   text: computed(([darkestShade]) => darkestShade, ['colors.darkestShade']),
   title: computed(([text]) => shade(text, 0.5), ['colors.text']),
   subdued: computed(makeHighContrastColor('colors.darkShade')),
   link: computed(([primaryText]) => primaryText, ['colors.primaryText']),
 };
 
+export const light_colors: _EuiThemeColorsMode = {
+  ...brand_colors,
+  ...shade_colors,
+  ...special_colors,
+  // Need to come after special colors so they can react to `body`
+  ...brand_text_colors,
+  ...text_colors,
+};
+
 /*
  * DARK THEME
  */
 
-export const dark_colors_ams: _EuiThemeColors = {
+export const dark_shades: _EuiThemeShadeColors = {
+  emptyShade: '#1D1E24',
+  lightestShade: '#25262E',
+  lightShade: '#343741',
+  mediumShade: '#535966',
+  darkShade: '#98A2B3',
+  darkestShade: '#D4DAE5',
+  fullShade: '#FFF',
+};
+
+export const dark_colors_ams: _EuiThemeColorsMode = {
   // Brand
   primary: '#36A2EF',
   accent: '#F68FBE',
@@ -93,9 +127,9 @@ export const dark_colors_ams: _EuiThemeColors = {
  * FULL
  */
 
-export const colors_ams: EuiThemeColors = {
+export const colors: _EuiThemeColors = {
   ghost: '#FFF',
   ink: '#000',
-  LIGHT: light_colors_ams,
+  LIGHT: light_colors,
   DARK: dark_colors_ams,
 };

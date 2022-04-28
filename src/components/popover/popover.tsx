@@ -16,7 +16,7 @@ import React, {
   RefCallback,
 } from 'react';
 import classNames from 'classnames';
-import { tabbable, focusable } from 'tabbable';
+import { focusable } from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
 import { FocusTarget, EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
@@ -438,16 +438,11 @@ export class EuiPopover extends Component<Props, State> {
         return;
       }
 
-      // Otherwise let's focus the first tabbable item and expedite input from the user.
+      // Otherwise focus either `initialFocus` or the panel
       let focusTarget;
 
       if (this.props.initialFocus != null) {
         focusTarget = getElementFromInitialFocus(this.props.initialFocus);
-      } else {
-        const tabbableItems = tabbable(this.panel);
-        if (tabbableItems.length) {
-          focusTarget = tabbableItems[0];
-        }
       }
 
       // there's a race condition between the popover content becoming visible and this function call
@@ -456,7 +451,7 @@ export class EuiPopover extends Component<Props, State> {
       if (focusTarget == null) {
         // there isn't a focus target, one of two reasons:
         // #1 is the whole panel hidden? If so, schedule another check
-        // #2 panel is visible but no tabbables exist, move focus to the panel
+        // #2 panel is visible and no `initialFocus` was set, move focus to the panel
         const panelVisibility = window.getComputedStyle(this.panel).opacity;
         if (panelVisibility === '0') {
           // #1

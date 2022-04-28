@@ -8,20 +8,14 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
+import { useEuiTheme } from '../../services';
+import { euiHealthStyles } from './health.styles';
 
+import { CommonProps } from '../common';
 import { EuiIcon, IconColor } from '../icon';
-
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 
-const sizeToClassNameMap = {
-  xs: 'euiHealth--textSizeXS',
-  s: 'euiHealth--textSizeS',
-  m: 'euiHealth--textSizeM',
-  inherit: 'euiHealth--textSizeInherit',
-};
-
-export const TEXT_SIZES = keysOf(sizeToClassNameMap);
+export const TEXT_SIZES = ['xs', 's', 'm', 'inherit'] as const;
 
 export type EuiHealthProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
@@ -45,14 +39,13 @@ export const EuiHealth: FunctionComponent<EuiHealthProps> = ({
   textSize = 's',
   ...rest
 }) => {
-  const classes = classNames(
-    'euiHealth',
-    textSize ? sizeToClassNameMap[textSize] : null,
-    className
-  );
+  const euiTheme = useEuiTheme();
+  const styles = euiHealthStyles(euiTheme);
+  const cssStyles = [styles.euiHealth, styles[textSize]];
+  const classes = classNames('euiHealth', className);
 
   return (
-    <div className={classes} {...rest}>
+    <div css={cssStyles} className={classes} {...rest}>
       <EuiFlexGroup gutterSize="xs" alignItems="center" responsive={false}>
         <EuiFlexItem grow={false}>
           <EuiIcon type="dot" color={color} />

@@ -11,7 +11,7 @@ import {
   EuiPanel,
   EuiHorizontalRule,
 } from '../../../../../src';
-import { _EuiThemeColors } from '../../../../../src/global_styling/variables/_colors';
+import { _EuiThemeColorsMode } from '../../../../../src/global_styling/variables/colors';
 
 import { getContrastRatings } from './_contrast_utilities';
 import { brandKeys, brandTextKeys, shadeKeys, textKeys } from './_color_js';
@@ -21,7 +21,7 @@ const allowedColors = [...brandKeys, ...shadeKeys, 'ghost', 'ink'];
 const textVariants = [...brandTextKeys, ...textColors];
 
 type ColorSection = {
-  color: keyof _EuiThemeColors;
+  color: keyof _EuiThemeColorsMode;
   minimumContrast: string | number;
   showTextVariants: boolean;
   matchPanelColor?: boolean;
@@ -53,7 +53,7 @@ export const ColorSectionJS: FunctionComponent<ColorSection> = ({
         <EuiFlexGrid columns={2} direction="column" gutterSize="s">
           {showTextVariants && colorIsCore(color) && (
             <ColorsContrastItem
-              foreground={`${color}Text` as keyof _EuiThemeColors}
+              foreground={`${color}Text`}
               background={'body'}
               minimumContrast={minimumContrast}
             />
@@ -65,7 +65,7 @@ export const ColorSectionJS: FunctionComponent<ColorSection> = ({
             }
             return (
               <ColorsContrastItem
-                foreground={color2 as keyof _EuiThemeColors}
+                foreground={color2}
                 background={color}
                 key={color2}
                 minimumContrast={minimumContrast}
@@ -79,8 +79,8 @@ export const ColorSectionJS: FunctionComponent<ColorSection> = ({
 };
 
 type ColorsContrastItem = {
-  foreground: keyof _EuiThemeColors;
-  background: keyof _EuiThemeColors;
+  foreground: string;
+  background: string;
   minimumContrast: string | number;
 };
 
@@ -90,8 +90,10 @@ const ColorsContrastItem: FunctionComponent<ColorsContrastItem> = ({
   minimumContrast,
 }) => {
   const { euiTheme } = useEuiTheme();
-  const backgroundColor = euiTheme.colors[background];
-  const foregroundColor = euiTheme.colors[foreground];
+  const backgroundColor =
+    euiTheme.colors[background as keyof _EuiThemeColorsMode];
+  const foregroundColor =
+    euiTheme.colors[foreground as keyof _EuiThemeColorsMode];
   const backgroundIsBody = background === 'body';
 
   const contrast = chroma.contrast(backgroundColor, foregroundColor);

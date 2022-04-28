@@ -56,7 +56,7 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
         style="left: 0px; top: 10px;"
       >
         <div
-          class="euiBeacon euiTour__beacon"
+          class="euiBeacon euiTour__beacon css-c8h4zr-euiBeacon"
           style="height: 12px; width: 12px;"
         />
       </div>
@@ -66,7 +66,7 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
           id="generated-id"
         >
           <h2
-            class="euiTitle euiTitle--xxsmall euiTourHeader__title"
+            class="euiTitle euiTourHeader__title css-1po7voc-euiTitle-xxs"
           >
             A demo
           </h2>
@@ -153,7 +153,7 @@ exports[`EuiTourStep can have subtitle 1`] = `
         style="left: 0px; top: 10px;"
       >
         <div
-          class="euiBeacon euiTour__beacon"
+          class="euiBeacon euiTour__beacon css-c8h4zr-euiBeacon"
           style="height: 12px; width: 12px;"
         />
       </div>
@@ -163,12 +163,12 @@ exports[`EuiTourStep can have subtitle 1`] = `
           id="generated-id"
         >
           <h2
-            class="euiTitle euiTitle--xxxsmall euiTourHeader__subtitle"
+            class="euiTitle euiTourHeader__subtitle css-7xv8go-euiTitle-xxxs"
           >
             Subtitle
           </h2>
           <h3
-            class="euiTitle euiTitle--xxsmall euiTourHeader__title"
+            class="euiTitle euiTourHeader__title css-1po7voc-euiTitle-xxs"
           >
             A demo
           </h3>
@@ -255,7 +255,7 @@ exports[`EuiTourStep can override the footer action 1`] = `
         style="left: 0px; top: 10px;"
       >
         <div
-          class="euiBeacon euiTour__beacon"
+          class="euiBeacon euiTour__beacon css-c8h4zr-euiBeacon"
           style="height: 12px; width: 12px;"
         />
       </div>
@@ -265,7 +265,7 @@ exports[`EuiTourStep can override the footer action 1`] = `
           id="generated-id"
         >
           <h2
-            class="euiTitle euiTitle--xxsmall euiTourHeader__title"
+            class="euiTitle euiTourHeader__title css-1po7voc-euiTitle-xxs"
           >
             A demo
           </h2>
@@ -346,7 +346,7 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
           id="generated-id"
         >
           <h2
-            class="euiTitle euiTitle--xxsmall euiTourHeader__title"
+            class="euiTitle euiTourHeader__title css-1po7voc-euiTitle-xxs"
           >
             A demo
           </h2>
@@ -433,7 +433,7 @@ exports[`EuiTourStep is rendered 1`] = `
         style="left: 0px; top: 10px;"
       >
         <div
-          class="euiBeacon euiTour__beacon"
+          class="euiBeacon euiTour__beacon css-c8h4zr-euiBeacon"
           style="height: 12px; width: 12px;"
         />
       </div>
@@ -443,7 +443,7 @@ exports[`EuiTourStep is rendered 1`] = `
           id="generated-id"
         >
           <h2
-            class="euiTitle euiTitle--xxsmall euiTourHeader__title"
+            class="euiTitle euiTourHeader__title css-1po7voc-euiTitle-xxs"
           >
             A demo
           </h2>
