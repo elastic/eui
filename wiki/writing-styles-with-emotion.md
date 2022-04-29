@@ -330,7 +330,7 @@ export const EuiComponentName = ({ componentProps }) => {
 );
 ```
 
-### [Refer to <EuiBottomBar> to see an example of this pattern in practice](../src/components/bottom_bar/bottom_bar.tsx)
+**[Refer to EuiBottomBar to see an example of this pattern in practice and as an example of using `forwardRef`.](../src/components/bottom_bar/bottom_bar.tsx)**
 
 ## FAQ
 
