@@ -200,7 +200,7 @@ exports[`EuiPageHeaderContent props breadcrumbs is rendered 1`] = `
         class="euiBreadcrumb"
       >
         <a
-          class="euiLink euiLink--primary euiBreadcrumb__content customClass"
+          class="euiLink euiBreadcrumb__content customClass css-1da57ii-euiLinkHoverMixin-euiLinkFocusMixin-euiLinkMixin-euiLink-colorStyles-primary"
           data-test-subj="breadcrumbsAnimals"
           href="#"
           rel="noreferrer"

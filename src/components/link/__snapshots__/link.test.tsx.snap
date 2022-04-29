@@ -2,14 +2,14 @@
 
 exports[`EuiLink accent is rendered 1`] = `
 <button
-  class="euiLink euiLink--accent"
+  class="euiLink css-120kzc5-euiLinkHoverMixin-euiLinkFocusMixin-euiLinkMixin-euiLink-colorStyles-accent-buttonText"
   type="button"
 />
 `;
 
 exports[`EuiLink allows for target and external to be controlled independently 1`] = `
 <a
-  class="euiLink euiLink--primary"
+  class="euiLink css-1da57ii-euiLinkHoverMixin-euiLinkFocusMixin-euiLinkMixin-euiLink-colorStyles-primary"
   href="#"
   rel="noopener noreferrer"
   target="_blank"
@@ -24,40 +24,40 @@ exports[`EuiLink allows for target and external to be controlled independently 1
 
 exports[`EuiLink button respects the type property 1`] = `
 <button
-  class="euiLink euiLink--primary"
+  class="euiLink css-gigilt-euiLinkHoverMixin-euiLinkFocusMixin-euiLinkMixin-euiLink-colorStyles-primary-buttonText"
   type="submit"
 />
 `;
 
 exports[`EuiLink danger is rendered 1`] = `
 <button
-  class="euiLink euiLink--danger"
+  class="euiLink css-ves81y-euiLinkHoverMixin-euiLinkFocusMixin-euiLinkMixin-euiLink-colorStyles-danger-buttonText"
   type="button"
 />
 `;
 
 exports[`EuiLink ghost is rendered 1`] = `
 <button
-  class="euiLink euiLink--ghost"
+  class="euiLink css-10frrf7-euiLinkHoverMixin-euiLinkFocusMixin-euiLinkMixin-euiLink-colorStyles-ghost-buttonText"
   type="button"
 />
 `;
 
 exports[`EuiLink if href is not specified, it renders a button of type=button 1`] = `
 <button
-  class="euiLink euiLink--primary"
+  class="euiLink css-gigilt-euiLinkHoverMixin-euiLinkFocusMixin-euiLinkMixin-euiLink-colorStyles-primary-buttonText"
   type="button"
 />
 `;
 
 exports[`EuiLink it is an external link 1`] = `
 <a
-  class="euiLink euiLink--primary"
+  class="euiLink css-1da57ii-euiLinkHoverMixin-euiLinkFocusMixin-euiLinkMixin-euiLink-colorStyles-primary"
   href="/baz/bing"
   rel="noreferrer"
 >
   <span
-    class="euiLink__externalIcon"
+    class="css-1xdv3oo-externalIcon"
     data-euiicon-type="popout"
   >
     External link
@@ -68,7 +68,7 @@ exports[`EuiLink it is an external link 1`] = `
 exports[`EuiLink it passes the default props through 1`] = `
 <button
   aria-label="aria-label"
-  class="euiLink euiLink--primary testClass1 testClass2"
+  class="euiLink testClass1 testClass2 css-gigilt-euiLinkHoverMixin-euiLinkFocusMixin-euiLinkMixin-euiLink-colorStyles-primary-buttonText"
   data-test-subj="test subject string"
   type="button"
 />
@@ -76,7 +76,7 @@ exports[`EuiLink it passes the default props through 1`] = `
 
 exports[`EuiLink it supports both href and onClick 1`] = `
 <a
-  class="euiLink euiLink--primary"
+  class="euiLink css-1da57ii-euiLinkHoverMixin-euiLinkFocusMixin-euiLinkMixin-euiLink-colorStyles-primary"
   href="/imalink"
   rel="noreferrer"
 />
@@ -84,28 +84,28 @@ exports[`EuiLink it supports both href and onClick 1`] = `
 
 exports[`EuiLink primary is rendered 1`] = `
 <button
-  class="euiLink euiLink--primary"
+  class="euiLink css-gigilt-euiLinkHoverMixin-euiLinkFocusMixin-euiLinkMixin-euiLink-colorStyles-primary-buttonText"
   type="button"
 />
 `;
 
 exports[`EuiLink subdued is rendered 1`] = `
 <button
-  class="euiLink euiLink--subdued"
+  class="euiLink css-17s5agr-euiLinkHoverMixin-euiLinkFocusMixin-euiLinkMixin-euiLink-colorStyles-subdued-buttonText"
   type="button"
 />
 `;
 
 exports[`EuiLink success is rendered 1`] = `
 <button
-  class="euiLink euiLink--success"
+  class="euiLink css-1iy6ppa-euiLinkHoverMixin-euiLinkFocusMixin-euiLinkMixin-euiLink-colorStyles-success-buttonText"
   type="button"
 />
 `;
 
 exports[`EuiLink supports children 1`] = `
 <a
-  class="euiLink euiLink--primary"
+  class="euiLink css-1da57ii-euiLinkHoverMixin-euiLinkFocusMixin-euiLinkMixin-euiLink-colorStyles-primary"
   href="#"
   rel="noreferrer"
 >
@@ -117,7 +117,7 @@ exports[`EuiLink supports children 1`] = `
 
 exports[`EuiLink supports disabled 1`] = `
 <button
-  class="euiLink euiLink-disabled"
+  class="euiLink css-y68te1-euiLinkHoverMixin-euiLinkFocusMixin-euiLinkMixin-euiLink-disabled-buttonText"
   disabled=""
   type="button"
 />
@@ -125,7 +125,7 @@ exports[`EuiLink supports disabled 1`] = `
 
 exports[`EuiLink supports href 1`] = `
 <a
-  class="euiLink euiLink--primary"
+  class="euiLink css-1da57ii-euiLinkHoverMixin-euiLinkFocusMixin-euiLinkMixin-euiLink-colorStyles-primary"
   href="/baz/bing"
   rel="noreferrer"
 />
@@ -133,7 +133,7 @@ exports[`EuiLink supports href 1`] = `
 
 exports[`EuiLink supports rel 1`] = `
 <a
-  class="euiLink euiLink--primary"
+  class="euiLink css-1da57ii-euiLinkHoverMixin-euiLinkFocusMixin-euiLinkMixin-euiLink-colorStyles-primary"
   href="hoi"
   rel="noreferrer stylesheet"
 />
@@ -141,13 +141,13 @@ exports[`EuiLink supports rel 1`] = `
 
 exports[`EuiLink supports target 1`] = `
 <a
-  class="euiLink euiLink--primary"
+  class="euiLink css-1da57ii-euiLinkHoverMixin-euiLinkFocusMixin-euiLinkMixin-euiLink-colorStyles-primary"
   href="#"
   rel="noopener noreferrer"
   target="_blank"
 >
   <span
-    class="euiLink__externalIcon"
+    class="css-1xdv3oo-externalIcon"
     data-euiicon-type="popout"
   >
     External link
@@ -162,14 +162,14 @@ exports[`EuiLink supports target 1`] = `
 
 exports[`EuiLink text is rendered 1`] = `
 <button
-  class="euiLink euiLink--text"
+  class="euiLink css-1ww5lgi-euiLinkHoverMixin-euiLinkFocusMixin-euiLinkMixin-euiLink-colorStyles-text-buttonText"
   type="button"
 />
 `;
 
 exports[`EuiLink warning is rendered 1`] = `
 <button
-  class="euiLink euiLink--warning"
+  class="euiLink css-m97k1c-euiLinkHoverMixin-euiLinkFocusMixin-euiLinkMixin-euiLink-colorStyles-warning-buttonText"
   type="button"
 />
 `;
