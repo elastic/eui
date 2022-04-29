@@ -7,6 +7,7 @@
  */
 
 import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
+import { css } from '@emotion/react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { EuiIcon, EuiIconProps, IconType } from '../../icon';
@@ -26,8 +27,8 @@ import {
 } from '../../../global_styling';
 import { _EuiPageRestrictWidth } from '../_restrict_width';
 import { useEuiTheme } from '../../../services';
+
 import { euiPageHeaderStyles, euiPageHeaderWidth } from './page_header.styles';
-import { css } from '@emotion/react';
 import { euiPageHeaderContentStyles } from './page_header_content.styles';
 
 export const ALIGN_ITEMS = ['top', 'bottom', 'center', 'stretch'] as const;

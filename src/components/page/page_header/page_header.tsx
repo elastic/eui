@@ -16,11 +16,11 @@ import {
   EuiPageHeaderContent,
   _EuiPageHeaderContentProps,
 } from './page_header_content';
+
 import { _EuiPageRestrictWidth } from '../_restrict_width';
+import { _EuiPageBottomBorder } from '../_bottom_border';
 
 import { euiPageHeaderStyles } from './page_header.styles';
-
-import { _EuiPageBottomBorder } from '../_bottom_border';
 
 export interface EuiPageHeaderProps
   extends CommonProps,

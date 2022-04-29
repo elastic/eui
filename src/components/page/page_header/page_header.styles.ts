@@ -26,20 +26,16 @@ export const euiPageHeaderStyles = ({ euiTheme }: UseEuiTheme) => {
 };
 
 export const euiPageHeaderWidth = (restrictWidth: _EuiPageRestrictWidth) => {
-  const width = '100%';
-
   if (restrictWidth === true) {
     return css`
       margin-left: auto;
       margin-right: auto;
-      // width: ${width};
       max-width: ${PAGE_MAX_WIDTH};
     `;
   } else if (restrictWidth !== undefined) {
     return css`
       margin-left: auto;
       margin-right: auto;
-      // width: ${width};
       max-width: ${restrictWidth};
     `;
   }
