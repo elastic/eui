@@ -13,10 +13,11 @@ import React, {
   MouseEventHandler,
 } from 'react';
 import classNames from 'classnames';
+import { getSecureRelForTarget, useEuiTheme } from '../../services';
+import { euiLinkStyles } from './link.styles';
 import { EuiIcon } from '../icon';
 import { EuiI18n, useEuiI18n } from '../i18n';
 import { CommonProps, ExclusiveUnion, keysOf } from '../common';
-import { getSecureRelForTarget } from '../../services';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { validateHref } from '../../services/security/href_validator';
 
@@ -100,6 +101,8 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
     },
     ref
   ) => {
+    const theme = useEuiTheme();
+    const componentStyles = euiLinkStyles(color, theme);
     const isHrefValid = !href || validateHref(href);
     const disabled = _disabled || !isHrefValid;
 
@@ -108,12 +111,13 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
         aria-label={useEuiI18n('euiLink.external.ariaLabel', 'External link')}
         size="s"
         className="euiLink__externalIcon"
+        css={componentStyles.externalIcon}
         type="popout"
       />
     );
 
     const newTargetScreenreaderText = (
-      <EuiScreenReaderOnly>
+      <EuiScreenReaderOnly css={componentStyles.screenReaderOnly}>
         <span>
           <EuiI18n
             token="euiLink.newTarget.screenReaderOnlyText"
@@ -124,12 +128,19 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
     );
 
     if (href === undefined || !isHrefValid) {
+      const styles = [
+        componentStyles.euiLink,
+        disabled ? [componentStyles.disabled] : [],
+        componentStyles.buttonText,
+      ];
+
       const buttonProps = {
         className: classNames(
           'euiLink',
           disabled ? 'euiLink-disabled' : colorsToClassNameMap[color],
           className
         ),
+        css: styles,
         type,
         onClick,
         disabled,
@@ -147,8 +158,12 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
     }
 
     const secureRel = getSecureRelForTarget({ href, target, rel });
+
+    const styles = [componentStyles.euiLink];
+
     const anchorProps = {
       className: classNames('euiLink', colorsToClassNameMap[color], className),
+      css: styles,
       href,
       target,
       rel: secureRel,

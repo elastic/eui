@@ -6,6 +6,16 @@
  * Side Public License, v 1.
  */
 
-export * from './_helpers';
-export * from './_link';
-export * from './_typography';
+import { css } from '@emotion/react';
+
+export const euiLinkMixin = () => {
+  return css`
+    text-align: left;
+
+    &:hover,
+    &:focus,
+    &:target {
+      text-decoration: underline;
+    }
+  `;
+};

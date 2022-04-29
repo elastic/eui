@@ -1,39 +1,39 @@
 .euiLink {
-  @include euiLink;
+  // @include euiLink;
 
-  &[target='_blank'] {
-    // Make the screen reader only text positioned relatively against the link itself
-    position: relative;
+  // &[target='_blank'] {
+  //   // Make the screen reader only text positioned relatively against the link itself
+  //   position: relative;
 
-    .euiScreenReaderOnly {
-      left: 0;
-    }
-  }
+  //   .euiScreenReaderOnly {
+  //     left: 0;
+  //   }
+  // }
 
-  .euiLink__externalIcon {
-    margin-left: $euiSizeXS;
-  }
+  // .euiLink__externalIcon {
+  //   margin-left: $euiSizeXS;
+  // }
 
-  &.euiLink-disabled {
-    font-weight: inherit;
-    text-decoration: none;
-    cursor: default;
-  }
+  // &.euiLink-disabled {
+  //   font-weight: inherit;
+  //   text-decoration: none;
+  //   cursor: default;
+  // }
 
   // Create color modifiers based on the map
   @each $name, $color in $euiLinkColors {
     &.euiLink--#{$name} {
-      color: $color;
+      // color: $color;
 
-      &:hover,
-      &:focus,
-      &:target {
-        text-decoration: underline;
-      }
+      // &:hover,
+      // &:focus,
+      // &:target {
+      //   text-decoration: underline;
+      // }
 
-      &:target {
-        color: darken($color, 10%);
-      }
+      // &:target {
+      //   color: darken($color, 10%);
+      // }
 
       &:focus {
         @include euiFocusRing(null, 'outer');
@@ -43,6 +43,6 @@
 }
 
 // Make button EuiLink's text selectable
-button.euiLink { // sass-lint:disable-line no-qualifying-elements
-  user-select: text;
-}
+// button.euiLink { // sass-lint:disable-line no-qualifying-elements
+//   user-select: text;
+// }
