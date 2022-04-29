@@ -74,22 +74,23 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
         </EuiSplitPanel.Inner>
 
         {(example || snippet) && (
-          <EuiSplitPanel.Inner>
+          <EuiSplitPanel.Inner style={{ overflow: 'hidden' }}>
             <EuiSplitPanel.Outer
+              direction="column"
               hasBorder={true}
               hasShadow={false}
-              style={{ overflow: 'hidden' }}
             >
               {example && (
                 <EuiSplitPanel.Inner {...examplePanel}>
                   {example}
                 </EuiSplitPanel.Inner>
               )}
-              <EuiSplitPanel.Inner color="subdued">
+              <EuiSplitPanel.Inner paddingSize="none" color="subdued">
                 {finalSnippet && (
                   <EuiCodeBlock
+                    whiteSpace="pre"
                     isCopyable={true}
-                    paddingSize="none"
+                    paddingSize="m"
                     transparentBackground={true}
                     language={
                       snippetLanguage === 'emotion' ? 'jsx' : snippetLanguage

@@ -72,7 +72,11 @@ export default () => {
             </p>
             <p>
               <button
-                css={css(useEuiFocusRing('outset', euiTheme.colors.primary))}
+                css={css`
+                  &:focus {
+                    ${useEuiFocusRing('outset', euiTheme.colors.primary)}
+                  }
+                `}
               >
                 I am an unstyled <EuiCode>button</EuiCode> with an{' '}
                 <EuiCode>outset, primary</EuiCode> outline
@@ -80,9 +84,10 @@ export default () => {
             </p>
           </EuiText>
         }
-        snippet={
-          "<button css={css(useEuiFocusRing('outset', euiTheme.colors.primary)) />"
-        }
+        snippetLanguage="emotion"
+        snippet={`&:focus {
+   \${useEuiFocusRing('outset', euiTheme.colors.primary)}
+ }`}
       />
     </>
   );
