@@ -8,8 +8,7 @@
 
 import { css, keyframes } from '@emotion/react';
 import { euiCanAnimate } from '../../global_styling';
-import { UseEuiTheme } from '../../services';
-import { shade } from '../../services/color';
+import { UseEuiTheme, shade } from '../../services';
 import { euiShadowFlat } from '../../themes/amsterdam/global_styling/mixins';
 
 const euiBottomBarAppear = keyframes`
@@ -26,7 +25,7 @@ const euiBottomBarAppear = keyframes`
 
 export const euiBottomBarStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
   // Base
-  //Text color needs to be reapplied to properly scope the forced `colorMode`
+  // Text color needs to be reapplied to properly scope the forced `colorMode`
   euiBottomBar: css`
     ${euiShadowFlat(euiTheme, undefined, colorMode)};
     background: ${shade(euiTheme.colors.lightestShade, 0.5)};
