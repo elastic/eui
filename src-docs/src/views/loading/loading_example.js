@@ -88,7 +88,10 @@ export const LoadingExample = {
       ),
       props: { EuiLoadingLogo },
       demo: <LoadingLogo />,
-      snippet: '<EuiLoadingLogo size="m" />',
+      snippet: [
+        '<EuiLoadingLogo size="m" />',
+        '<EuiLoadingLogo logo="logoSecurity" />',
+      ],
       playground: loadingLogoConfig,
     },
     {
@@ -109,7 +112,7 @@ export const LoadingExample = {
       ),
       props: { EuiLoadingChart },
       demo: <LoadingChart />,
-      snippet: '<EuiLoadingChart size="m" />',
+      snippet: ['<EuiLoadingChart size="m" />', '<EuiLoadingChart mono />'],
       playground: loadingChartConfig,
     },
     {

@@ -985,7 +985,7 @@ describe('EuiInMemoryTable', () => {
       // this is specifically testing regression against https://github.com/elastic/eui/issues/1007
       component.setProps({});
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('pagination with actions column and sorting set to true', async () => {

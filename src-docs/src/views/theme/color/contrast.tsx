@@ -20,7 +20,7 @@ import { brandKeys, shadeKeys } from './_color_js';
 
 import { ContrastSlider } from './_contrast_slider';
 import { ratingAA } from './_contrast_utilities';
-import { _EuiThemeColors } from '../../../../../src/global_styling/variables/_colors';
+import { _EuiThemeColorsMode } from '../../../../../src/global_styling/variables/colors';
 
 export default () => {
   const [showTextVariants, setShowTextVariants] = useState(true);
@@ -129,7 +129,7 @@ export default () => {
                 return (
                   <React.Fragment key={color}>
                     <ColorSectionJS
-                      color={color as keyof _EuiThemeColors}
+                      color={color as keyof _EuiThemeColorsMode}
                       minimumContrast={contrastValue}
                       showTextVariants={false}
                     />
@@ -172,7 +172,7 @@ export default () => {
                   <React.Fragment key={color}>
                     <ColorSectionJS
                       key={color}
-                      color={color as keyof _EuiThemeColors}
+                      color={color as keyof _EuiThemeColorsMode}
                       minimumContrast={contrastValue}
                       showTextVariants={showTextVariants}
                     />

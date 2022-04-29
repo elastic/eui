@@ -40,11 +40,11 @@
 }
 
 .euiAccordion__childWrapper {
+  will-change: opacity, visibility, height;
   visibility: hidden;
   height: 0;
   opacity: 0;
   overflow: hidden;
-  transform: translatez(0);
   // sass-lint:disable-block indentation
   transition:
     height $euiAnimSpeedNormal $euiAnimSlightResistance,

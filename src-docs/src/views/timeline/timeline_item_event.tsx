@@ -14,6 +14,7 @@ import {
   EuiSplitPanel,
   EuiPanel,
   EuiHorizontalRule,
+  EuiTimeline,
 } from '../../../../src/components';
 
 import {
@@ -107,7 +108,7 @@ export default () => {
   );
 
   return (
-    <div>
+    <EuiTimeline aria-label="Life cycle of data">
       <EuiTimelineItem
         verticalAlign="top"
         icon={
@@ -144,6 +145,6 @@ export default () => {
       {phase('Cold phase', checked2, onChange2, colorBlindBehindText[2])}
 
       {phase('Frozen phase', checked3, onChange3, colorBlindBehindText[3])}
-    </div>
+    </EuiTimeline>
   );
 };
