@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  ReactElement,
+  CSSProperties,
+} from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
 
@@ -23,7 +28,8 @@ export type EuiAspectRatioProps = HTMLAttributes<HTMLDivElement> &
     /**
      * The maximum width you want the child to stretch to.
      */
-    maxWidth?: number;
+    maxWidth?: CSSProperties['width'];
+    children: ReactElement<any>;
   };
 
 export const EuiAspectRatio: FunctionComponent<EuiAspectRatioProps> = ({
@@ -36,21 +42,19 @@ export const EuiAspectRatio: FunctionComponent<EuiAspectRatioProps> = ({
 }) => {
   const classes = classNames('euiAspectRatio', className);
 
-  const paddingBottom = `${(height / width) * 100}%`;
+  const euiAspectRatioStyle = {
+    aspectRatio: `${width} / ${height}`,
+    height: '100%',
+    width: '100%',
+  };
 
-  const content = (
-    <div
-      className={classes}
-      {...rest}
-      style={{
-        paddingBottom: paddingBottom,
-        maxWidth: maxWidth ? maxWidth : 'auto',
-      }}
-    >
-      {children}
-    </div>
-  );
+  const props = {
+    className: classes,
+    style: euiAspectRatioStyle,
+    ...rest,
+  };
 
+  const content = React.cloneElement(children, props);
   let contentwithoptionalwrap = content;
   if (maxWidth) {
     contentwithoptionalwrap = (

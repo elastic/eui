@@ -9,3 +9,4 @@
 export * from './_padding';
 export * from './_color';
 export * from './_helpers';
+export * from './_typography';

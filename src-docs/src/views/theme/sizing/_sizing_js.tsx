@@ -6,7 +6,7 @@ import { EuiCode, EuiLink, keysOf } from '../../../../../src/components';
 
 import { ThemeExample } from '../_components/_theme_example';
 
-import { _EuiThemeSize } from '../_props';
+import { EuiThemeSize } from '../_props';
 import { getPropsFromComponent } from '../../../services/props/get_props';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 
@@ -39,6 +39,7 @@ export const BaseJS = () => {
         </div>
       }
       snippet={'padding: ${euiTheme.base * 2}px;'}
+      snippetLanguage="emotion"
     />
   );
 };
@@ -46,7 +47,7 @@ export const BaseJS = () => {
 export default () => {
   const { euiTheme } = useEuiTheme();
   const sizes = euiTheme.size;
-  const themeSizeProps = getPropsFromComponent(_EuiThemeSize);
+  const themeSizeProps = getPropsFromComponent(EuiThemeSize);
 
   const wrappingExampleStyle = {
     background: euiTheme.colors.highlight,
@@ -69,6 +70,7 @@ export default () => {
           </div>
         }
         snippet={'padding: ${euiTheme.size.xl};'}
+        snippetLanguage="emotion"
       />
 
       <ThemeExample
@@ -95,6 +97,7 @@ export default () => {
           </div>
         }
         snippet={'padding: calc(${euiTheme.size.base} * 2);'}
+        snippetLanguage="emotion"
       />
 
       <ThemeValuesTable

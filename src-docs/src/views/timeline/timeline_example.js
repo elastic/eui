@@ -6,6 +6,7 @@ import {
   EuiCode,
   EuiTimeline,
   EuiTimelineItem,
+  EuiCallOut,
 } from '../../../../src/components';
 import timelineItemConfig from './playground';
 
@@ -82,6 +83,19 @@ export const TimelineExample = {
               actions that either a user or a system has performed.
             </li>
           </ul>
+
+          <EuiCallOut
+            color="warning"
+            iconType="accessibility"
+            title={
+              <>
+                For accessibility, it is highly recommended to provide a
+                descriptive <EuiCode>aria-label</EuiCode>, or a text node ID of
+                an external label to the <EuiCode>aria-labelledby</EuiCode> prop
+                of the <strong>EuiTimeline</strong>.
+              </>
+            }
+          />
         </>
       ),
       props: { EuiTimeline, EuiTimelineItem },
@@ -136,11 +150,10 @@ export const TimelineExample = {
         <>
           <p>
             You can create a timeline thread by rendering multiple{' '}
-            <strong>EuiTimelineItem</strong> components. Wrapping these with an{' '}
-            <strong>EuiTimeline</strong> is not required, but we recommend
-            having all the <strong>EuiTimelineItem</strong>s nested in the same
-            container. This way, we ensure that timeline styles are applied
-            correctly.
+            <strong>EuiTimelineItem</strong> components in a{' '}
+            <strong>EuiTimeline</strong>. Following this structure ensures that
+            timeline styles are applied correctly and appropriate semantic
+            elements are used to assist with screen readers.
           </p>
           <p>
             When passing an <EuiCode>icon</EuiCode> and{' '}

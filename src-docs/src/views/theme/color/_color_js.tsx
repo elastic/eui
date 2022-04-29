@@ -15,7 +15,7 @@ import {
   shade_colors,
   special_colors,
   text_colors,
-} from '../../../../../src/global_styling/variables/_colors';
+} from '../../../../../src/themes/amsterdam/global_styling/variables/_colors';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 
 export const brandKeys = Object.keys(brand_colors);
@@ -41,6 +41,7 @@ export const BrandJS: FunctionComponent<ThemeRowType> = ({ description }) => {
           </div>
         }
         snippet={'background: ${euiTheme.colors.warning};'}
+        snippetLanguage="emotion"
       />
 
       <ThemeValuesTable
@@ -95,6 +96,7 @@ export const TextJS: FunctionComponent<ThemeRowType> = ({ description }) => {
           </div>
         }
         snippet={'color: ${euiTheme.colors.warningText};'}
+        snippetLanguage="emotion"
       />
 
       <ThemeValuesTable
@@ -149,6 +151,7 @@ export const ShadeJS: FunctionComponent<ThemeRowType> = ({ description }) => {
         snippet={
           'background: ${transparentize(euiTheme.colors.mediumShade, .25)};'
         }
+        snippetLanguage="emotion"
       />
 
       <ThemeValuesTable
@@ -194,6 +197,7 @@ export const SpecialJS: FunctionComponent<ThemeRowType> = ({ description }) => {
         }
         snippet={`color: \${euiTheme.colors.ghost};
   background-color: \${euiTheme.colors.ink};`}
+        snippetLanguage="emotion"
       />
 
       <ThemeValuesTable

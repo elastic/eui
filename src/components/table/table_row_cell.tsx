@@ -167,7 +167,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   });
 
   const widthValue =
-    useIsWithinBreakpoints(['xs', 's', 'm']) && mobileOptions.width
+    useIsWithinBreakpoints(['xs', 's']) && mobileOptions.width
       ? mobileOptions.width
       : width;
 

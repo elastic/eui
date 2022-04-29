@@ -13,7 +13,7 @@ import { useDebouncedUpdate } from '../hooks';
 
 import { ThemeValue } from './_values';
 
-import { _EuiThemeBreakpoint } from '../_props';
+import { EuiThemeBreakpoints } from '../_props';
 
 export default ({ onThemeUpdate }) => {
   const { euiTheme } = useEuiTheme();
@@ -24,7 +24,7 @@ export default ({ onThemeUpdate }) => {
     onUpdate: onThemeUpdate,
   });
 
-  const breakpointTypes = getPropsFromComponent(_EuiThemeBreakpoint);
+  const breakpointTypes = getPropsFromComponent(EuiThemeBreakpoints);
 
   return (
     <div>

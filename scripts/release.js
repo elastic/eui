@@ -66,7 +66,7 @@ if (args.dry_run) {
     updateChangelog(changelog, versionTarget);
 
     // Clear any local tags
-    execSync('git fetch upstream --tags --prune --prune-tags');
+    execSync('git fetch upstream --tags --prune --prune-tags --force');
 
     // update package.json & package-lock.json version, git commit, git tag
     execSync(`npm version ${versionTarget}`, execOptions);

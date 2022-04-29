@@ -57,7 +57,6 @@ export default () => {
             {scrollingContent}
           </div>
         }
-        snippetLanguage="tsx"
         snippet={
           `<div
   tabIndex={0}
@@ -106,7 +105,6 @@ export default () => {
               {scrollingContent}
             </div>
           }
-          snippetLanguage="tsx"
           snippet={
             `<div
   tabIndex={0}

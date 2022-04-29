@@ -7,5 +7,6 @@
  */
 
 export * from './reset/global_styles';
-export * from './variables/_shadow';
+export * from './functions';
+export * from './variables';
 export * from './mixins';

@@ -1,3 +1,26 @@
+## [`55.1.0`](https://github.com/elastic/eui/tree/v55.1.0)
+
+- Improved `EuiTimeline` a11y by using better semantic elements ([#5791](https://github.com/elastic/eui/pull/5791))
+- Replaced sass usage in `EuiAspectRatio` with inline styles using `aspect-ratio` property of css ([#5818](https://github.com/elastic/eui/pull/5818))
+- Improved accessibility of `EuiLoadingChart` ([#5821](https://github.com/elastic/eui/pull/5821))
+- Added `euiFontSize()` and `useEuiFontSize()` JS function and React hook for font sizing ([#5822](https://github.com/elastic/eui/pull/5822))
+- Added `levels` object to `EuiTheme` ([#5827](https://github.com/elastic/eui/pull/5827))
+- Updated the use of `@emotion/cache` to include all `@emotion` styles ([#5831](https://github.com/elastic/eui/pull/5831))
+
+**Bug fixes**
+
+- Fixed layout bug in `EuiAccordion` children that use `position: fixed;` ([#5806](https://github.com/elastic/eui/pull/5806))
+- Fixed `EuiFlyout` so that it no longer closes when a click starts inside the flyout but completes outside ([#5810](https://github.com/elastic/eui/pull/5810))
+- Fixed `EuiBasicTable` mobile styles being in sync between JS and Sass ([#5822](https://github.com/elastic/eui/pull/5822))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiSpacer` to Emotion; Removed `$spacerSizes` ([#5812](https://github.com/elastic/eui/pull/5812))
+- Converted `EuiBeacon` to Emotion ([#5814](https://github.com/elastic/eui/pull/5814))
+- Changed `euiCanAnimate` to a constant ([#5814](https://github.com/elastic/eui/pull/5814))
+- Converted `EuiHorizontalRule` to emotion; Removed `$ruleMargins` ([#5815](https://github.com/elastic/eui/pull/5815))
+- Converted `EuiLoadingChart` to Emotion ([#5821](https://github.com/elastic/eui/pull/5821))
+
 ## [`55.0.1`](https://github.com/elastic/eui/tree/v55.0.1)
 
 **Bug fixes**

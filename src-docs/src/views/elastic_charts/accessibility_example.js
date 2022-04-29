@@ -334,6 +334,7 @@ export const ElasticChartsAccessibilityExample = {
       snippet: `<Chart>
   <Settings aria-label="Chart title" {...props} />
   <Goal
+    domain={{ min: 0, max: 300 }}
     bands=[0, 100, 125, 150, 250]
     bandLabels=['freezing', 'cold', 'brisk', 'warm', 'hot']
     {...otherProps}

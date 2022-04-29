@@ -5,8 +5,8 @@ import {
   EuiSpacer,
   useEuiTheme,
   _EuiShadowSizesDescriptions,
-  _EuiShadowSizes,
-  SHADOW_SIZE,
+  _EuiThemeShadowSize,
+  EuiThemeShadowSizes,
   EuiSwitch,
   transparentize,
   EuiDescribedFormGroup,
@@ -19,7 +19,7 @@ import { getDescription } from '../../../services/props/get_description';
 import {
   useEuiShadow,
   useEuiShadowFlat,
-} from '../../../../../src/themes/amsterdam/global_styling/mixins/_shadow';
+} from '../../../../../src/themes/amsterdam/global_styling/mixins/shadow';
 
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
@@ -29,7 +29,7 @@ const RenderShadow = ({
   size,
   color,
 }: {
-  size: _EuiShadowSizes;
+  size: _EuiThemeShadowSize;
   color?: string;
 }) => {
   const style = useEuiShadow(size, color);
@@ -60,7 +60,7 @@ export default () => {
   const [customColor, setCustomColor] = useState(false);
   const colorProps = getPropsFromComponent(EuiThemeColors);
 
-  const shadowItems = SHADOW_SIZE.map((shadow) => {
+  const shadowItems = EuiThemeShadowSizes.map((shadow) => {
     return {
       id: shadow,
       token: customColor
@@ -114,6 +114,7 @@ export default () => {
         snippet={
           'box-shadow: 0 ${euiTheme.size.xs} ${euiTheme.size.xs} ${transparentize(euiTheme.colors.shadow, 0.04)};'
         }
+        snippetLanguage="emotion"
       />
 
       <ThemeExample
@@ -141,8 +142,8 @@ export default () => {
             </strong>
           </div>
         }
-        snippet={'css(useEuiShadow())'}
-        snippetLanguage="tsx"
+        snippet={'${useEuiShadow()}'}
+        snippetLanguage="emotion"
       />
 
       <EuiPanel color="accent">
@@ -180,7 +181,7 @@ export default () => {
             />
           ) : (
             <RenderShadow
-              size={item.id as _EuiShadowSizes}
+              size={item.id as _EuiThemeShadowSize}
               color={customColor ? euiTheme.colors.accent : undefined}
             />
           )
