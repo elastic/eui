@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, { PropsWithChildren } from 'react';
-import { CacheProvider, EmotionCache } from '@emotion/react';
+import React, { PropsWithChildren, forwardRef } from 'react';
+import { EmotionCache } from '@emotion/react';
 
 import {
   EuiGlobalStyles,
@@ -18,8 +18,11 @@ import {
   EuiThemeProvider,
   EuiThemeProviderProps,
   EuiThemeSystem,
+  UseEuiTheme,
+  useEuiTheme,
 } from '../../services';
 import { EuiThemeAmsterdam } from '../../themes';
+import { EuiCacheContext, EuiCacheProvider, useEuiCacheContext } from './cache';
 
 export interface EuiProviderProps<T>
   extends Omit<EuiThemeProviderProps<T>, 'children' | 'theme'>,
@@ -41,26 +44,12 @@ export interface EuiProviderProps<T>
   globalCache?: EmotionCache;
   utilityClasses?: false | ((params: any) => JSX.Element | null);
   utilityCache?: EmotionCache;
+  componentCache?: EmotionCache;
 }
-
-const Styles = ({ theme, cache, styles: Styles }: any) => {
-  if (theme !== null && Styles !== false) {
-    if (cache) {
-      return (
-        <CacheProvider value={cache}>
-          <Styles />
-        </CacheProvider>
-      );
-    } else {
-      return <Styles />;
-    }
-  } else {
-    return null;
-  }
-};
 
 export const EuiProvider = <T extends {} = {}>({
   cache,
+  componentCache,
   theme = EuiThemeAmsterdam,
   globalCache,
   globalStyles: Globals = EuiGlobalStyles,
@@ -70,14 +59,58 @@ export const EuiProvider = <T extends {} = {}>({
   modify,
   children,
 }: PropsWithChildren<EuiProviderProps<T>>) => (
-  <EuiThemeProvider
-    theme={theme ?? undefined}
-    colorMode={colorMode}
-    modify={modify}
-    cache={cache}
-  >
-    <Styles theme={theme} cache={globalCache} styles={Globals} />
-    <Styles theme={theme} cache={utilityCache} styles={Utilities} />
-    {children}
-  </EuiThemeProvider>
+  <>
+    {theme && (
+      <>
+        <EuiCacheProvider
+          cache={globalCache}
+          children={Globals && <Globals />}
+        />
+        <EuiCacheProvider
+          cache={utilityCache}
+          children={Utilities && <Utilities />}
+        />
+      </>
+    )}
+    <EuiCacheContext.Provider value={componentCache}>
+      <EuiCacheProvider cache={cache}>
+        <EuiThemeProvider
+          theme={theme ?? undefined}
+          colorMode={colorMode}
+          modify={modify}
+        >
+          {children}
+        </EuiThemeProvider>
+      </EuiCacheProvider>
+    </EuiCacheContext.Provider>
+  </>
 );
+
+// TODO: temporary
+
+export interface WithEuiSystemProps<P = {}> {
+  euiTheme: UseEuiTheme<P>;
+}
+export const withEuiSystem = <T extends {} = {}, U extends {} = {}>(
+  Component: React.ComponentType<T & WithEuiSystemProps<U>>
+) => {
+  const componentName = Component.displayName || Component.name || 'Component';
+  const Render = (
+    props: Omit<T, keyof WithEuiSystemProps<U>>,
+    ref: React.Ref<Omit<T, keyof WithEuiSystemProps<U>>>
+  ) => {
+    const euiTheme = useEuiTheme<U>();
+    const cache = useEuiCacheContext();
+    return (
+      <EuiCacheProvider cache={cache}>
+        <Component euiTheme={euiTheme} ref={ref} {...(props as T)} />
+      </EuiCacheProvider>
+    );
+  };
+
+  const WithEuiSystem = forwardRef(Render);
+
+  WithEuiSystem.displayName = componentName;
+
+  return WithEuiSystem;
+};

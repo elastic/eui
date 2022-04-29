@@ -29,6 +29,10 @@ const uCache = createCache({
   key: 'eui-docs-util',
   container: document.querySelector('meta[name="emotion-styles-utility"]'),
 });
+const componentCache = createCache({
+  key: 'eui-docs-eui',
+  container: document.querySelector('meta[name="emotion-styles-eui"]'),
+});
 
 export const AppContext = ({ children }) => {
   const { theme } = useContext(ThemeContext);
@@ -48,6 +52,7 @@ export const AppContext = ({ children }) => {
 
   return (
     <EuiProvider
+      componentCache={componentCache}
       globalCache={gCache}
       utilityCache={uCache}
       cache={emotionCache}

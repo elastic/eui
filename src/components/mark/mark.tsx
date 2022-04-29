@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import { useEuiI18n } from '../i18n';
 import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
+import { EuiCacheProvider, useEuiCacheContext } from '../provider';
 import { euiMarkStyles } from './mark.styles';
 export type EuiMarkProps = HTMLAttributes<HTMLElement> &
   CommonProps & {
@@ -31,6 +32,7 @@ export const EuiMark: FunctionComponent<EuiMarkProps> = ({
   hasScreenReaderHelpText = true,
   ...rest
 }) => {
+  const cache = useEuiCacheContext();
   const useTheme = useEuiTheme();
   const highlightStart = useEuiI18n(
     'euiMark.highlightStart',
@@ -45,8 +47,10 @@ export const EuiMark: FunctionComponent<EuiMarkProps> = ({
   const classes = classNames('euiMark', className);
 
   return (
-    <mark css={[styles]} className={classes} {...rest}>
-      {children}
-    </mark>
+    <EuiCacheProvider cache={cache}>
+      <mark css={[styles]} className={classes} {...rest}>
+        {children}
+      </mark>
+    </EuiCacheProvider>
   );
 };

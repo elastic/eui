@@ -6,5 +6,10 @@
  * Side Public License, v 1.
  */
 
-export * from './cache';
-export * from './provider';
+import { createContext, useContext } from 'react';
+import { EmotionCache } from '@emotion/cache';
+
+export const EuiCacheContext = createContext<EmotionCache | undefined>(
+  undefined
+);
+export const useEuiCacheContext = () => useContext(EuiCacheContext);

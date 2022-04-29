@@ -6,5 +6,5 @@
  * Side Public License, v 1.
  */
 
-export * from './cache';
-export * from './provider';
+export * from './cache_context';
+export * from './cache_provider';

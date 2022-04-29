@@ -8,10 +8,10 @@
 
 import { FunctionComponent, ReactElement } from 'react';
 import classNames from 'classnames';
-import { useEuiTheme } from '../../services';
 import { cloneElementWithCss } from '../../services/theme/clone_element';
 import { euiTitleStyles } from './title.styles';
 import { CommonProps } from '../common';
+import { withEuiSystem, WithEuiSystemProps } from '../provider';
 
 export const TITLE_SIZES = ['xxxs', 'xxs', 'xs', 's', 'm', 'l'] as const;
 export type EuiTitleSize = typeof TITLE_SIZES[number];
@@ -29,14 +29,9 @@ export type EuiTitleProps = CommonProps & {
   id?: string;
 };
 
-export const EuiTitle: FunctionComponent<EuiTitleProps> = ({
-  size = 'm',
-  children,
-  className,
-  textTransform,
-  ...rest
-}) => {
-  const euiTheme = useEuiTheme();
+export const _EuiTitle: FunctionComponent<
+  EuiTitleProps & WithEuiSystemProps
+> = ({ size = 'm', children, className, textTransform, euiTheme, ...rest }) => {
   const styles = euiTitleStyles(euiTheme);
   const cssStyles = [
     styles.euiTitle,
@@ -53,3 +48,6 @@ export const EuiTitle: FunctionComponent<EuiTitleProps> = ({
 
   return cloneElementWithCss(children, props);
 };
+_EuiTitle.displayName = 'EuiTitle';
+
+export const EuiTitle = withEuiSystem(_EuiTitle);
