@@ -39,11 +39,7 @@ export interface _EuiThemeFocus {
    */
   width: CSSProperties['borderWidth'];
   /**
-   * Larger thickness of the outline for larger components
-   */
-  widthLarge: CSSProperties['borderWidth'];
-  /**
    * Using `outline` is new for Amsterdam but is set to `none` in legacy theme
    */
-  outline: _EuiThemeFocusOutline;
+  // outline: _EuiThemeFocusOutline;
 }

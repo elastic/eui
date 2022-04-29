@@ -24,11 +24,10 @@ export const focus: _EuiThemeFocus = {
   ),
 
   // Sizing
-  widthLarge: computed(sizeToPixel(0.25)),
   width: computed(sizeToPixel(0.125)),
 
   // Outline
-  outline: {
-    outline: computed(({ focus }) => `${focus!.width} solid ${focus!.color}`),
-  },
+  // outline: {
+  //   outline: computed(({ focus }) => `${focus!.width} solid ${focus!.color}`),
+  // },
 };
