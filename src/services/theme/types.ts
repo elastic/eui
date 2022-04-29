@@ -18,6 +18,7 @@ import {
 import { _EuiThemeFont } from '../../global_styling/variables/typography';
 import { _EuiThemeFocus } from '../../global_styling/variables/states';
 import { _EuiThemeLevels } from '../../global_styling/variables/levels';
+import { _EuiThemeForm } from '../../global_styling/variables/form';
 
 export const COLOR_MODES_STANDARD = {
   light: 'LIGHT',
@@ -54,6 +55,7 @@ export type EuiThemeShape = {
   animation: _EuiThemeAnimation;
   breakpoint: _EuiThemeBreakpoints;
   levels: _EuiThemeLevels;
+  form: _EuiThemeForm;
 };
 
 export type EuiThemeSystem<T = {}> = {

@@ -6,13 +6,13 @@
  * Side Public License, v 1.
  */
 
-export * from './animations';
-export * from './borders';
-export * from './breakpoint';
-export * from './colors';
-export * from './levels';
-export * from './size';
-export * from './shadow';
-export * from './states';
-export * from './typography';
-export * from './form';
+import { _EuiThemeForm } from '../../../../global_styling/variables';
+
+/*
+ * LIGHT THEME
+ * Only split up in the light theme to access the keys by section in the docs
+ */
+
+export const form: _EuiThemeForm = {
+  maxWidth: '400px',
+};

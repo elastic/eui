@@ -1,5 +1,6 @@
 
 @mixin euiFlyout {
+  @warn 'componentMixin() has been deprecated. Wrap your usage with <EuiFlyout /> instead.';
   border-left: $euiFlyoutBorder;
   // The mixin augments the above
   // sass-lint:disable mixins-before-declarations
