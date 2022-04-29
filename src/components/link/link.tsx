@@ -130,6 +130,7 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
     if (href === undefined || !isHrefValid) {
       const styles = [
         componentStyles.euiLink,
+        componentStyles[color],
         disabled ? [componentStyles.disabled] : [],
         componentStyles.buttonText,
       ];
@@ -159,7 +160,7 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
 
     const secureRel = getSecureRelForTarget({ href, target, rel });
 
-    const styles = [componentStyles.euiLink];
+    const styles = [componentStyles.euiLink, componentStyles[color]];
 
     const anchorProps = {
       className: classNames('euiLink', colorsToClassNameMap[color], className),

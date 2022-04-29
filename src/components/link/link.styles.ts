@@ -11,24 +11,12 @@ import { UseEuiTheme } from '../../services';
 import { euiLinkMixin } from '../../global_styling';
 import { EuiLinkColor } from './';
 
-//split out as named objects like caroline and docs suggest
-const colorStyles = (color: EuiLinkColor, { euiTheme }: UseEuiTheme) => {
-  const colorsToVarMap: { [color in EuiLinkColor]: string } = {
-    primary: euiTheme.colors.primaryText,
-    subdued: euiTheme.colors.subdued,
-    success: euiTheme.colors.successText,
-    accent: euiTheme.colors.accentText,
-    danger: euiTheme.colors.dangerText,
-    warning: euiTheme.colors.warningText,
-    ghost: euiTheme.colors.ghost,
-    text: euiTheme.colors.text,
-  };
-
+const colorStyles = (color: string) => {
   return css`
-    color: ${colorsToVarMap[color]};
+    color: ${color};
 
     &:target {
-      color: darken(${colorsToVarMap[color]}, 10%);
+      color: darken(${color}, 10%);
     }
   `;
 };
@@ -40,9 +28,8 @@ export const euiLinkStyles = (color: EuiLinkColor, _theme: UseEuiTheme) => {
   return {
     euiLink: css`
       ${euiLinkMixin()}
-      ${colorStyles(color, _theme)}
 
-    &[target='_blank'] {
+      &[target='_blank'] {
         position: relative;
       }
     `,
@@ -59,6 +46,31 @@ export const euiLinkStyles = (color: EuiLinkColor, _theme: UseEuiTheme) => {
     `,
     buttonText: css`
       user-select: text;
+    `,
+    // Colors
+    primary: css`
+      ${colorStyles(euiTheme.colors.primaryText)}
+    `,
+    subdued: css`
+      ${colorStyles(euiTheme.colors.subdued)}
+    `,
+    success: css`
+      ${colorStyles(euiTheme.colors.successText)}
+    `,
+    accent: css`
+      ${colorStyles(euiTheme.colors.accentText)}
+    `,
+    danger: css`
+      ${colorStyles(euiTheme.colors.dangerText)}
+    `,
+    warning: css`
+      ${colorStyles(euiTheme.colors.warningText)}
+    `,
+    ghost: css`
+      ${colorStyles(euiTheme.colors.ghost)}
+    `,
+    text: css`
+      ${colorStyles(euiTheme.colors.text)}
     `,
   };
 };
