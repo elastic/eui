@@ -8,7 +8,6 @@
 
 import { CSSProperties } from 'react';
 import { useEuiTheme, UseEuiTheme } from '../../services';
-import { css } from '@emotion/react';
 
 export type _EuiFocusRingOffset =
   | 'inset'
@@ -28,6 +27,7 @@ export const euiFocusRing = (
   offset: _EuiFocusRingOffset = 'center',
   color?: CSSProperties['outlineColor']
 ) => {
+  // Width is enforced as a constant at the global theme layer
   const outlineWidth = euiTheme.focus.width;
   const outlineColor = color || euiTheme.focus.color;
 
@@ -46,7 +46,7 @@ export const euiFocusRing = (
   // 💔 But they don't allow coloring of the 'auto'/default outline, so contrast is no good in dark mode.
   // 👉 For these browsers we use the solid type in order to match with \`currentColor\`.
   // 😦 Which does means the outline will be square
-  return css`
+  return `
     outline: ${outlineWidth} solid ${outlineColor};
     outline-offset: ${outlineOffset};
 
