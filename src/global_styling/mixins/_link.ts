@@ -7,15 +7,36 @@
  */
 
 import { css } from '@emotion/react';
+import { UseEuiTheme } from '../../services';
 
-export const euiLinkMixin = () => {
+export const euiLinkHoverMixin = () => {
   return css`
+    text-decoration: underline;
+  `;
+};
+
+export const euiLinkFocusMixin = ({ euiTheme }: UseEuiTheme) => {
+  return css`
+    text-decoration: underline;
+    text-decoration-thickness: ${euiTheme.border.width.thick} !important;
+  `;
+};
+
+export const euiLinkMixin = (_theme: UseEuiTheme) => {
+  const { euiTheme } = _theme;
+
+  return css`
+    font-weight: ${euiTheme.font.weight.medium};
     text-align: left;
 
-    &:hover,
-    &:focus,
-    &:target {
-      text-decoration: underline;
+    &:hover {
+      ${euiLinkHoverMixin()}
+    }
+
+    &:focus {
+      // TODO: Once converted, add the Emotion equivalent to the euiFocusRing mixin below and delete src/components/link/_link.scss
+      // @include euiFocusRing(null, 'outer');
+      ${euiLinkFocusMixin(_theme)}
     }
   `;
 };

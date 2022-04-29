@@ -17,33 +17,24 @@ import { getSecureRelForTarget, useEuiTheme } from '../../services';
 import { euiLinkStyles } from './link.styles';
 import { EuiIcon } from '../icon';
 import { EuiI18n, useEuiI18n } from '../i18n';
-import { CommonProps, ExclusiveUnion, keysOf } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { validateHref } from '../../services/security/href_validator';
 
 export type EuiLinkType = 'button' | 'reset' | 'submit';
-export type EuiLinkColor =
-  | 'primary'
-  | 'subdued'
-  | 'success'
-  | 'accent'
-  | 'danger'
-  | 'warning'
-  | 'text'
-  | 'ghost';
 
-const colorsToClassNameMap: { [color in EuiLinkColor]: string } = {
-  primary: 'euiLink--primary',
-  subdued: 'euiLink--subdued',
-  success: 'euiLink--success',
-  accent: 'euiLink--accent',
-  danger: 'euiLink--danger',
-  warning: 'euiLink--warning',
-  ghost: 'euiLink--ghost',
-  text: 'euiLink--text',
-};
+export const COLORS = [
+  'primary',
+  'subdued',
+  'success',
+  'accent',
+  'danger',
+  'warning',
+  'text',
+  'ghost',
+] as const;
 
-export const COLORS = keysOf(colorsToClassNameMap);
+export type EuiLinkColor = typeof COLORS[number];
 
 export interface LinkButtonProps {
   type?: EuiLinkType;
@@ -110,7 +101,6 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
       <EuiIcon
         aria-label={useEuiI18n('euiLink.external.ariaLabel', 'External link')}
         size="s"
-        className="euiLink__externalIcon"
         css={componentStyles.externalIcon}
         type="popout"
       />
@@ -136,11 +126,7 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
       ];
 
       const buttonProps = {
-        className: classNames(
-          'euiLink',
-          disabled ? 'euiLink-disabled' : colorsToClassNameMap[color],
-          className
-        ),
+        className: classNames('euiLink', className),
         css: styles,
         type,
         onClick,
@@ -163,7 +149,7 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
     const styles = [componentStyles.euiLink, componentStyles[color]];
 
     const anchorProps = {
-      className: classNames('euiLink', colorsToClassNameMap[color], className),
+      className: classNames('euiLink', className),
       css: styles,
       href,
       target,

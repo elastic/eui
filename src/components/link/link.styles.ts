@@ -15,6 +15,12 @@ const colorStyles = (color: string) => {
   return css`
     color: ${color};
 
+    &:hover,
+    &:focus,
+    &:target {
+      text-decoration: underline;
+    }
+
     &:target {
       color: darken(${color}, 10%);
     }
@@ -26,7 +32,7 @@ export const euiLinkStyles = (color: EuiLinkColor, _theme: UseEuiTheme) => {
 
   return {
     euiLink: css`
-      ${euiLinkMixin()}
+      ${euiLinkMixin(_theme)}
 
       &[target='_blank'] {
         position: relative;
@@ -42,7 +48,7 @@ export const euiLinkStyles = (color: EuiLinkColor, _theme: UseEuiTheme) => {
       font-weight: inherit;
 
       &:hover {
-        cursor: default;
+        cursor: auto;
       }
 
       &:hover,
