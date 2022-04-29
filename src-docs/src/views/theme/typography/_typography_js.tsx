@@ -53,6 +53,7 @@ export const FontJS = () => {
           </p>
         }
         snippet={'font-family: ${euiTheme.font.family};'}
+        snippetLanguage="emotion"
       />
 
       <ThemeExample
@@ -68,6 +69,7 @@ export const FontJS = () => {
           </p>
         }
         snippet={'font-family: ${euiTheme.font.familyCode};'}
+        snippetLanguage="emotion"
       />
 
       <ThemeExample
@@ -83,6 +85,7 @@ export const FontJS = () => {
           </p>
         }
         snippet={'font-feature-settings: ${euiTheme.font.featureSettings};'}
+        snippetLanguage="emotion"
       />
     </>
   );
@@ -110,6 +113,7 @@ export const FontWeightJS: FunctionComponent<ThemeRowType> = ({
           </div>
         }
         snippet={'font-weight: ${euiTheme.font.weight.bold};'}
+        snippetLanguage="emotion"
       />
 
       <ThemeValuesTable
@@ -172,6 +176,7 @@ export const FontScaleJS = () => {
           </p>
         }
         snippet="${useEuiFontSize('l')}"
+        snippetLanguage="emotion"
       />
       <ThemeExample
         title={<code>useEuiFontSize().fontSize</code>}
@@ -192,6 +197,7 @@ export const FontScaleJS = () => {
           </p>
         }
         snippet="font-size: ${useEuiFontSize('xs').fontSize};"
+        snippetLanguage="emotion"
       />
       <EuiPanel color="accent">
         <EuiDescribedFormGroup

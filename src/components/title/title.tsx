@@ -6,28 +6,18 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactElement } from 'react';
+import { FunctionComponent, ReactElement } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
+import { useEuiTheme } from '../../services';
+import { cloneElementWithCss } from '../../services/theme/clone_element';
+import { euiTitleStyles } from './title.styles';
+import { CommonProps } from '../common';
 
-const titleSizeToClassNameMap = {
-  xxxs: 'euiTitle--xxxsmall',
-  xxs: 'euiTitle--xxsmall',
-  xs: 'euiTitle--xsmall',
-  s: 'euiTitle--small',
-  m: 'euiTitle--medium',
-  l: 'euiTitle--large',
-};
+export const TITLE_SIZES = ['xxxs', 'xxs', 'xs', 's', 'm', 'l'] as const;
+export type EuiTitleSize = typeof TITLE_SIZES[number];
 
-export const TITLE_SIZES = keysOf(titleSizeToClassNameMap);
-export type EuiTitleSize = keyof typeof titleSizeToClassNameMap;
-
-const textTransformToClassNameMap = {
-  uppercase: 'euiTitle--uppercase',
-};
-
-export const TEXT_TRANSFORM = keysOf(textTransformToClassNameMap);
-export type EuiTitleTextTransform = keyof typeof textTransformToClassNameMap;
+export const TEXT_TRANSFORM = ['uppercase'] as const;
+export type EuiTitleTextTransform = typeof TEXT_TRANSFORM[number];
 
 export type EuiTitleProps = CommonProps & {
   /**
@@ -46,18 +36,20 @@ export const EuiTitle: FunctionComponent<EuiTitleProps> = ({
   textTransform,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiTitle',
-    titleSizeToClassNameMap[size],
-    textTransform ? textTransformToClassNameMap[textTransform] : undefined,
-    className,
-    children.props.className
-  );
+  const euiTheme = useEuiTheme();
+  const styles = euiTitleStyles(euiTheme);
+  const cssStyles = [
+    styles.euiTitle,
+    textTransform ? styles[textTransform] : undefined,
+    styles[size],
+  ];
+  const classes = classNames('euiTitle', className, children.props.className);
 
   const props = {
+    css: cssStyles,
     className: classes,
     ...rest,
   };
 
-  return React.cloneElement(children, props);
+  return cloneElementWithCss(children, props);
 };

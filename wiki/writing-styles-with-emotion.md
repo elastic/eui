@@ -3,7 +3,6 @@
 EUI uses [`Emotion`](https://emotion.sh/) when writing CSS-in-JS styles.
 A general knowledge of writing CSS is enough in most cases, but there are some JavaScript-related differences that can result in unintended output. Similarly, there are feaures that don't exist in CSS of which we like to take advantage.
 
-
 ## File patterns
 
 ```ts
@@ -12,9 +11,11 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 
 export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => {
-  return css`
-    color: ${euiTheme.colors.primary};
-  `;
+  return {
+    euiComponentName: css` // Always start the object with the first key being the name of the component
+      color: ${euiTheme.colors.primaryText};
+    `,
+  };
 };
 ```
 
@@ -25,11 +26,11 @@ import { euiComponentNameStyles } from './{component name}.styles.ts';
 
 export const EuiComponent = () => {
   const theme = useEuiTheme();
-  const componentStyles = euiComponentNameStyles(theme);
-  const styles = [componentStyles]
+  const styles = euiComponentNameStyles(theme);
+  const cssStyles = [styles.euiComponentName]
 
   return (
-    <div css={styles} />
+    <div css={cssStyles} />
   );
 };
 ```
@@ -50,10 +51,12 @@ const cssStyles = [
 
 ### Building an array of styles
 
+Use an array inside of the `css` prop for optimal style composition and class name generation. This is relevant even if only a single style object is passed.
+
 _examples from [avatar.tsx](https://github.com/elastic/eui/blob/main/src/components/avatar/avatar.tsx)_
 
 ```tsx
-export const EuiAvatar: export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({...}) => {
+export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({...}) => {
   // access the theme and compute avatar's styles
   const euiTheme = useEuiTheme();
   const styles = euiAvatarStyles(euiTheme);
@@ -76,9 +79,7 @@ export const EuiAvatar: export const EuiAvatar: FunctionComponent<EuiAvatarProps
 
   // pass the styles array to the `css` prop of the target element 
   return (
-    <div
-      css={cssStyles}
-    />
+    <div css={cssStyles} />
   )
 }
 ```
@@ -104,6 +105,59 @@ const cssStyles = [
   paddingSize === 'none' ? undefined : styles[paddingSize]
 ]
 ```
+
+## Style maps
+
+When building styles based on an array of possible prop values, you'll want to establish the array of values first in the component file then use that array to create your prop values and your styles map.
+
+
+```tsx
+export const SIZES = ['s', 'm', 'l', 'xl', 'xxl'] as const;
+export type EuiComponentNameSize = typeof SIZES[number];
+
+export type EuiComponentNameProps = CommonProps & {
+  size?: EuiComponentNameSize;
+};
+  
+export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}) => {
+  const euiTheme = useEuiTheme();
+  
+  const styles = euiComponentNameStyles(euiTheme);
+  const cssStyles = [styles.euiComponentName, styles[size]];
+  
+  return (
+    <div css={cssStyles} />
+  )
+}
+```
+
+```ts
+const componentSizes: {
+  [size in EuiComponentNameSize]: _EuiThemeSize;
+} = {
+  s: 'm',
+  m: 'base',
+  l: 'l',
+  xl: 'xl',
+  xxl: 'xxl',
+};
+
+export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiComponentName: css``,
+
+  // Sizes
+  s: css`
+    width: ${euiTheme.size[componentSizes.s]};
+    height: ${euiTheme.size[componentSizes.s]};
+  `,
+  m: css`
+    width: ${euiTheme.size[componentSizes.m]};
+    height: ${euiTheme.size[componentSizes.m]};
+  `,
+  ...etc
+});
+```
+
 
 ## Style helpers
 
@@ -158,7 +212,7 @@ Note that the helper function returns a string literal instead of a `css` method
 
 Styles can be added conditionally based on environment variables, such as the active theme, using nested string template literals.
 
-```
+```ts
 `
     color: colors.primary;
     background: ${colorMode === 'light' ? 'white' : 'black'`}
@@ -167,22 +221,116 @@ Styles can be added conditionally based on environment variables, such as the ac
 
 Although possible in some contexts, it is not recommended to "shortcut" logic using the `&&` operator. Use ternary statements to avoid `undefined` statments from entering the compiled code.
 
-```
+```ts
 `${font.body.letterSpacing ? `letter-spacing: ${font.body.letterSpacing}` : ''`}`
 ```
 
-## The `css` prop
+## Child selectors
 
-_Work in progress_
+Most components also contain child elements that have their own styles. Each element should have it's own theme function to keep things tidy. Keep them within a single `styles.ts` file if they exist in the same `.tsx` file.
 
-* Use an array inside of the `css` prop for optimal style composition and class name generation. This is relevant even if only a single style object is passed.
+```ts
+export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiComponentName: css``
+});
+
+
+export const euiComponentNameChildStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiComponentName__child: css``
+});
+```
 
 ```tsx
-const styles = [componentStyles.default, componentStyles.stateful];
-return (
-  <EuiComponent css={styles} />
+export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}) => {
+  const euiTheme = useEuiTheme();
+  
+  const styles = euiComponentNameStyles(euiTheme);
+  const cssStyles = [styles.euiComponentName];
+  
+  const childStyles = euiComponentNameChildStyles(euiTheme);
+  const cssChildStyles = [childStyles.euiComponentName__child];
+  
+  return (
+    <div css={cssStyles}>
+      <span css={cssChildStyles} />
+    </div>
+  )
+}
+```
+
+## Nested selectors
+
+For the most part, nested selectors should not be necessary. If a child element requires styling based on the parent's variant, pass the same variant type to the child element.
+
+```ts
+export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiComponentName: css``,
+  // Sizes
+  s: css``,
+  m: css``,
+});
+
+
+export const euiComponentNameChildStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiComponentName__child: css``,
+  // Sizes
+  s: css``,
+  m: css``,
+});
+```
+
+```tsx
+export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}) => {
+  const euiTheme = useEuiTheme();
+  
+  const styles = euiComponentNameStyles(euiTheme);
+  const cssStyles = [styles.euiComponentName, styles[size]];
+  
+  const childStyles = euiComponentNameChildStyles(euiTheme);
+  const cssChildStyles = [childStyles.euiComponentName__child, childStyles[size]];
+  
+  return (
+    <div css={cssStyles}>
+      <span> css={cssChildStyles} />
+    </div>
+  )
+}
+```
+
+If for other reasons, it is absolutely necessary to target a child from within another selector, you should use the [class attribute selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) to match a part of the class string you expect to find.
+
+
+```ts
+export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiComponentName: css`
+    [class*="euiComponentName__child"] {}
+  `,
+});
+```
+## Creating `colorMode` specific components
+
+When creating components that rely on a specific `colorMode` from `<EuiThemeProvider>`, use this pattern to create a wrapper that will pass the entire component `<EuiThemeProvider>` details. 
+
+- `_EuiComponentName` is an internal component that contains the desired functionality and styles.
+- `EuiComponentName` is the exportable component that wraps `_EuiComponentName` inside of `<EuiThemeProvider>`.
+
+```tsx
+const _EuiComponentName = ({ componentProps }) => {
+  return <div />;
+}
+
+export const EuiComponentName = ({ componentProps }) => {
+    const Component = _EuiComponentName;
+    return (
+      <EuiThemeProvider colorMode={ colorMode }>
+        <Component {...componentProps} />
+      </EuiThemeProvider>
+    );
+  }
 );
 ```
+
+**[Refer to EuiBottomBar to see an example of this pattern in practice and as an example of using `forwardRef`.](../src/components/bottom_bar/bottom_bar.tsx)**
 
 ## FAQ
 

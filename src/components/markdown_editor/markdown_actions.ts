@@ -102,8 +102,8 @@ class MarkdownActions {
         button: { label: '', iconType: '' },
         formatting: {
           prefix: '[',
-          suffix: '](url)',
-          replaceNext: 'url',
+          suffix: '](https://)',
+          replaceNext: 'https://',
           scanFor: 'https?://',
         },
       },
