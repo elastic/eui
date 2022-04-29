@@ -45,7 +45,6 @@ export default () => {
             <ScrollContent />
           </div>
         }
-        snippetLanguage="tsx"
         snippet={`<div
   tabIndex={0}
   role="region"
@@ -91,7 +90,8 @@ export default () => {
               <ScrollContent />
             </div>
           }
-          snippet={'useEuiScrollBar()'}
+          snippet={'${useEuiScrollBar()}'}
+          snippetLanguage="emotion"
         />
       )}
 

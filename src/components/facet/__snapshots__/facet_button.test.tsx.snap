@@ -74,7 +74,9 @@ exports[`EuiFacetButton props isLoading is rendered 1`] = `
       Content
     </span>
     <span
-      class="euiLoadingSpinner euiLoadingSpinner--medium euiFacetButton__spinner"
+      aria-label="Loading"
+      class="euiLoadingSpinner euiFacetButton__spinner css-155ohbx-euiLoadingSpinner-m"
+      role="progressbar"
     />
   </span>
 </button>

@@ -41,6 +41,7 @@ export const BrandJS: FunctionComponent<ThemeRowType> = ({ description }) => {
           </div>
         }
         snippet={'background: ${euiTheme.colors.warning};'}
+        snippetLanguage="emotion"
       />
 
       <ThemeValuesTable
@@ -95,6 +96,7 @@ export const TextJS: FunctionComponent<ThemeRowType> = ({ description }) => {
           </div>
         }
         snippet={'color: ${euiTheme.colors.warningText};'}
+        snippetLanguage="emotion"
       />
 
       <ThemeValuesTable
@@ -149,6 +151,7 @@ export const ShadeJS: FunctionComponent<ThemeRowType> = ({ description }) => {
         snippet={
           'background: ${transparentize(euiTheme.colors.mediumShade, .25)};'
         }
+        snippetLanguage="emotion"
       />
 
       <ThemeValuesTable
@@ -194,6 +197,7 @@ export const SpecialJS: FunctionComponent<ThemeRowType> = ({ description }) => {
         }
         snippet={`color: \${euiTheme.colors.ghost};
   background-color: \${euiTheme.colors.ink};`}
+        snippetLanguage="emotion"
       />
 
       <ThemeValuesTable
