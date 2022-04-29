@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+export * from './_breakpoint';
 export * from './_padding';
 export * from './_color';
 export * from './_helpers';

@@ -7,29 +7,49 @@
  */
 
 import { css } from '@emotion/react';
-import { getEuiBreakpoint } from '../../../global_styling/variables/_breakpoint';
 import { UseEuiTheme } from '../../../services';
 
 export const euiPageHeaderContentStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiPageHeaderContent: css`
     width: 100%;
   `,
-  flex: css`
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    align-items: center;
 
-    ${getEuiBreakpoint[2]} {
-      flex-direction: row;
-      justify-content: space-between;
-    }
+  // alignItems
+  top: css`
+    align-items: flex-start;
+  `,
+  bottom: css`
+    align-items: flex-end;
+  `,
+  center: css`
+    align-items: center;
+  `,
+  stretch: css`
+    align-items: stretch;
+  `,
+
+  // Children only (legacy) expects EuiPageHeaderSections as children
+  flex: css`
+    flex-direction: row;
+    display: flex;
+    gap: ${euiTheme.size.base};
+    justify-content: space-between;
+  `,
+
+  // Responsive (what to do at the smaller breakpoint)
+  responsive: css`
+    flex-direction: column;
+    align-items: flex-start;
+  `,
+  responsiveReverse: css`
+    flex-direction: column-reverse;
+    align-items: flex-start;
   `,
 
   // Content
   euiPageHeaderContent__titleIcon: css`
-    top: -${euiTheme.size.xs};
+    inset-block-start: -${euiTheme.size.xs};
     position: relative;
-    margin-right: ${euiTheme.size.base};
+    margin-inline-end: ${euiTheme.size.base};
   `,
 });

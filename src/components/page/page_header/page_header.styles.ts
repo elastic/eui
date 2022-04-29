@@ -17,9 +17,10 @@ export const euiPageHeaderStyles = ({ euiTheme }: UseEuiTheme) => {
       min-width: 0; // Make sure that inner flex layouts don't get larger than this container
       display: flex;
       flex-direction: column;
+      flex-shrink: 0; // Ensures Safari doesn't shrink beyond contents
     `,
     border: css`
-      border-bottom: ${euiTheme.border.thin};
+      border-block-end: ${euiTheme.border.thin};
     `,
   };
 };

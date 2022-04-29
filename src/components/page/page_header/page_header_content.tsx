@@ -19,12 +19,15 @@ import { EuiText } from '../../text';
 import { useIsWithinBreakpoints } from '../../../services/hooks';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../../breadcrumbs';
-import { euiPaddingStyles, PADDING_SIZES } from '../../../global_styling';
+import {
+  euiPaddingStyles,
+  PADDING_SIZES,
+  euiBreakpoint,
+} from '../../../global_styling';
 import { _EuiPageRestrictWidth } from '../_restrict_width';
 import { useEuiTheme } from '../../../services';
 import { euiPageHeaderStyles, euiPageHeaderWidth } from './page_header.styles';
 import { css } from '@emotion/react';
-import { getEuiBreakpoint } from '../../../global_styling/variables/_breakpoint';
 import { euiPageHeaderContentStyles } from './page_header_content.styles';
 
 export const ALIGN_ITEMS = ['top', 'bottom', 'center', 'stretch'] as const;
@@ -112,7 +115,7 @@ export interface _EuiPageHeaderContentProps
   responsive?: boolean | 'reverse';
   /**
    * Vertical alignment of the left and right side content;
-   * Default is `middle` for custom content, but `top` for when `pageTitle` or `tabs` are included
+   * Default is `center` for custom content, but `top` for when `pageTitle` or `tabs` are included
    */
   alignItems?: typeof ALIGN_ITEMS[number];
   /**
@@ -147,7 +150,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
   description,
   breadcrumbs,
   breadcrumbProps,
-  alignItems = 'top',
+  alignItems,
   responsive = true,
   rightSideItems,
   rightSideGroupProps,
@@ -201,6 +204,24 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
     bottomBorder && pageHeaderStyles.border,
     blockPadding[paddingSize],
   ];
+
+  const childrenOnlyStyles = [
+    styles.flex,
+    styles[alignItems || 'center'],
+    responsive === true && isResponsiveBreakpoint && styles.responsive,
+    responsive === 'reverse' &&
+      isResponsiveBreakpoint &&
+      styles.responsiveReverse,
+  ];
+
+  // Don't go any further if there's no other content than children
+  if (onlyChildren) {
+    return (
+      <div css={cssStyles} {...rest}>
+        <div css={childrenOnlyStyles}>{children}</div>
+      </div>
+    );
+  }
 
   let descriptionNode;
   if (description) {
@@ -342,7 +363,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
           wrap
           responsive={false}
           css={css`
-            ${getEuiBreakpoint[2]} {
+            ${euiBreakpoint('m', useTheme.euiTheme)} {
               flex-direction: row-reverse;
             }
           `}
@@ -351,14 +372,6 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
           {wrapWithFlex()}
         </EuiFlexGroup>
       </EuiFlexItem>
-    );
-  }
-
-  if (onlyChildren) {
-    return (
-      <div css={[...cssStyles, styles.flex]} {...rest}>
-        {children}
-      </div>
     );
   }
 
@@ -387,6 +400,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
     </div>
   ) : (
     <div className={classes} css={cssStyles} {...rest}>
+      {optionalBreadcrumbs}
       <EuiFlexGroup
         responsive={!!responsive}
         className="euiPageHeaderContent__top"

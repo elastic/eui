@@ -61,23 +61,7 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   const styles = euiPageHeaderStyles(useTheme);
   const inlinePadding = euiPaddingStyles(useTheme, 'inline');
 
-  const classes = classNames(
-    'euiPageHeader',
-    {
-      'euiPageHeader--responsive': responsive === true,
-      'euiPageHeader--responsiveReverse': responsive === 'reverse',
-    },
-    `euiPageHeader--${alignItems ?? 'center'}`,
-    className
-  );
-
-  // if (!pageTitle && !tabs && !description && !rightSideItems) {
-  //   return (
-  //     <header className={classes} {...rest}>
-  //       {children}
-  //     </header>
-  //   );
-  // }
+  const classes = classNames('euiPageHeader', className);
 
   const contentProps = {
     restrictWidth,
