@@ -21,6 +21,7 @@ export type _EuiFocusRingOffset =
  * This re-applies the same default outline with a couple parameters
  * @param euiTheme UseEuiTheme.euiTheme
  * @param offset Accepts a specific measurement or 'inset' or 'outset' or 'center' to adjust outline position
+ * @param color Accepts any CSS color, **Note: only works in -webkit-**
  */
 export const euiFocusRing = (
   euiTheme: UseEuiTheme['euiTheme'],
