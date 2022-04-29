@@ -13,16 +13,6 @@ import { shade, tint, transparentize } from '../../services/color';
 import { useEuiTheme } from '../../services/theme';
 import { resetStyles as reset } from './reset';
 
-export const EuiUtilityClasses = () => (
-  <Global
-    styles={css`
-      .euiYolo {
-        color: coral;
-      }
-    `}
-  />
-);
-
 export interface EuiGlobalStylesProps {}
 
 export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
