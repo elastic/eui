@@ -65,7 +65,6 @@ export default () => {
   title={Your content}>
   /* Your content */
 </div>`}
-        hasSpacing={false}
       />
       {/* Mixin */}
       {!showSass ? (
@@ -126,7 +125,6 @@ export default () => {
   title={Your content}>
   /* Your content */
 </div>`}
-        hasSpacing={false}
       />
       {/* Mixin */}
       {!showSass ? (

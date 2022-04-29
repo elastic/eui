@@ -56,7 +56,6 @@ export default () => {
         snippet={`<div className="eui-textNumber">
   /* Your number content */
 </div>`}
-        hasSpacing={false}
       />
       {/* Mixin */}
       {!showSass ? (
