@@ -28,8 +28,8 @@ export const euiFocusRing = (
   offset: _EuiFocusRingOffset = 'center',
   color?: CSSProperties['outlineColor']
 ) => {
-  const outlineWidth = euiTheme.focus?.width;
-  const outlineColor = color || euiTheme.focus?.color;
+  const outlineWidth = euiTheme.focus.width;
+  const outlineColor = color || euiTheme.focus.color;
 
   let outlineOffset = offset;
   if (offset === 'inset') {
