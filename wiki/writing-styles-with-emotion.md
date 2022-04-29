@@ -184,6 +184,29 @@ return (
 );
 ```
 
+## Creating `colorMode` specific components
+
+When creating components that rely on a specific `colorMode` from `<EuiThemeProvider>`, use this pattern to create a wrapper that will pass the entire component `<EuiThemeProvider>` details. 
+_{component} is an internal component that contains the desired functionality and styles. {component} is the exportable component that wraps _{component} inside of `<EuiThemeProvider>`.
+
+```tsx
+const _{component} = ({ componentProps }) => {
+  return <Component />;
+}
+
+export const {components} = ({ componentProps }) => {
+    const {componentInternal} = _{component};
+    return (
+      <EuiThemeProvider colorMode={ colorMode }>
+        <componentInternal ref={ref} {...props} />
+      </EuiThemeProvider>
+    );
+  }
+);
+```
+
+### [Refer to <EuiBottomBar> to see an example of this pattern in practice](../src/components/bottom_bar/bottom_bar.tsx)
+
 ## FAQ
 
 ### Can the `css` prop be forwarded to a nested element?
