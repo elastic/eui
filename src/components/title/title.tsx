@@ -48,6 +48,5 @@ export const _EuiTitle: FunctionComponent<
 
   return cloneElementWithCss(children, props);
 };
-_EuiTitle.displayName = 'EuiTitle';
 
 export const EuiTitle = withEuiSystem(_EuiTitle);

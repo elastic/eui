@@ -12,8 +12,8 @@ import { EmotionCache } from '@emotion/react';
 import {
   EuiGlobalStyles,
   EuiGlobalStylesProps,
-  EuiUtilityClasses,
 } from '../../global_styling/reset/global_styles';
+import { EuiUtilityClasses } from '../../global_styling/utility/utility';
 import {
   EuiThemeProvider,
   EuiThemeProviderProps,
