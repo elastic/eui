@@ -8,9 +8,11 @@
 
 import React, { FunctionComponent, Ref } from 'react';
 import classNames from 'classnames';
+import { useEuiTheme } from '../../../services';
 import { EuiButton, EuiButtonProps } from '../../button/button';
-import { EuiScreenReaderOnly } from '../screen_reader_only';
 import { PropsForAnchor, PropsForButton, ExclusiveUnion } from '../../common';
+import { EuiScreenReaderOnly } from '../screen_reader_only';
+import { euiSkipLinkStyles } from './skip_link.styles';
 
 type Positions = 'static' | 'fixed' | 'absolute';
 export const POSITIONS = ['static', 'fixed', 'absolute'] as Positions[];
@@ -56,11 +58,15 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
   className,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiSkipLink',
-    [`euiSkipLink--${position}`],
-    className
-  );
+  const euiTheme = useEuiTheme();
+  const styles = euiSkipLinkStyles(euiTheme);
+
+  const classes = classNames('euiSkipLink', className);
+
+  const cssStyles = [
+    styles.euiSkipLink,
+    position !== 'static' ? styles[position] : undefined,
+  ];
 
   // Create the `href` from `destinationId`
   let optionalProps = {};
@@ -73,6 +79,7 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
   return (
     <EuiScreenReaderOnly showOnFocus>
       <EuiButton
+        css={cssStyles}
         className={classes}
         tabIndex={position === 'fixed' ? 0 : tabIndex}
         size="s"

@@ -25,7 +25,6 @@ export const UtilityClassesSection: FunctionComponent<UtilityClassesSection> = (
           )}
         </EuiCopy>
       }
-      snippetLanguage="tsx"
       {...rest}
     />
   );

@@ -39,6 +39,7 @@ export const BaseJS = () => {
         </div>
       }
       snippet={'padding: ${euiTheme.base * 2}px;'}
+      snippetLanguage="emotion"
     />
   );
 };
@@ -69,6 +70,7 @@ export default () => {
           </div>
         }
         snippet={'padding: ${euiTheme.size.xl};'}
+        snippetLanguage="emotion"
       />
 
       <ThemeExample
@@ -95,6 +97,7 @@ export default () => {
           </div>
         }
         snippet={'padding: calc(${euiTheme.size.base} * 2);'}
+        snippetLanguage="emotion"
       />
 
       <ThemeValuesTable

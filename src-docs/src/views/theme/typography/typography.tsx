@@ -184,7 +184,7 @@ export default () => {
             ? findSassFontWeight({ fontWeight })
             : findJSFontWeight({ fontWeight, euiTheme })
         }
-        snippetLanguage={showSass ? 'scss' : 'jsx'}
+        snippetLanguage={showSass ? 'scss' : 'emotion'}
       />
 
       <EuiSpacer size="xl" />
