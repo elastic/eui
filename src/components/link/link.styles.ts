@@ -21,7 +21,6 @@ const colorStyles = (color: string) => {
   `;
 };
 
-//fix broken disabled styles
 export const euiLinkStyles = (color: EuiLinkColor, _theme: UseEuiTheme) => {
   const { euiTheme } = _theme;
 
@@ -40,14 +39,22 @@ export const euiLinkStyles = (color: EuiLinkColor, _theme: UseEuiTheme) => {
       margin-left: ${euiTheme.size.xs};
     `,
     disabled: css`
-      cursor: default;
       font-weight: inherit;
-      text-decoration: none;
+
+      &:hover {
+        cursor: default;
+      }
+
+      &:hover,
+      &:focus,
+      &:target {
+        text-decoration: none;
+      }
     `,
     buttonText: css`
       user-select: text;
     `,
-    // Colors
+    // Color styles
     primary: css`
       ${colorStyles(euiTheme.colors.primaryText)}
     `,
