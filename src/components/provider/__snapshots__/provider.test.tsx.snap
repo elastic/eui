@@ -224,6 +224,21 @@ exports[`EuiProvider applying modifications propagates \`modify\` 1`] = `
         "ghost": "#FFF",
         "ink": "#000",
       },
+      "focus": Object {
+        "backgroundColor": Computed {
+          "computer": [Function],
+          "dependencies": Array [],
+        },
+        "color": "currentColor",
+        "transparency": Object {
+          "DARK": 0.7,
+          "LIGHT": 0.9,
+        },
+        "width": Computed {
+          "computer": [Function],
+          "dependencies": Array [],
+        },
+      },
       "font": Object {
         "baseline": Computed {
           "computer": [Function],
@@ -533,6 +548,21 @@ exports[`EuiProvider changing color modes propagates \`colorMode\` 1`] = `
         "ghost": "#FFF",
         "ink": "#000",
       },
+      "focus": Object {
+        "backgroundColor": Computed {
+          "computer": [Function],
+          "dependencies": Array [],
+        },
+        "color": "currentColor",
+        "transparency": Object {
+          "DARK": 0.7,
+          "LIGHT": 0.9,
+        },
+        "width": Computed {
+          "computer": [Function],
+          "dependencies": Array [],
+        },
+      },
       "font": Object {
         "baseline": Computed {
           "computer": [Function],
@@ -840,6 +870,21 @@ exports[`EuiProvider is rendered 1`] = `
         },
         "ghost": "#FFF",
         "ink": "#000",
+      },
+      "focus": Object {
+        "backgroundColor": Computed {
+          "computer": [Function],
+          "dependencies": Array [],
+        },
+        "color": "currentColor",
+        "transparency": Object {
+          "DARK": 0.7,
+          "LIGHT": 0.9,
+        },
+        "width": Computed {
+          "computer": [Function],
+          "dependencies": Array [],
+        },
       },
       "font": Object {
         "baseline": Computed {
@@ -1169,6 +1214,21 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to glo
         },
         "ghost": "#FFF",
         "ink": "#000",
+      },
+      "focus": Object {
+        "backgroundColor": Computed {
+          "computer": [Function],
+          "dependencies": Array [],
+        },
+        "color": "currentColor",
+        "transparency": Object {
+          "DARK": 0.7,
+          "LIGHT": 0.9,
+        },
+        "width": Computed {
+          "computer": [Function],
+          "dependencies": Array [],
+        },
       },
       "font": Object {
         "baseline": Computed {
