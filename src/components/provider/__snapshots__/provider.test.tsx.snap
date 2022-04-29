@@ -225,15 +225,7 @@ exports[`EuiProvider applying modifications propagates \`modify\` 1`] = `
         "ink": "#000",
       },
       "focus": Object {
-        "backgroundColor": Computed {
-          "computer": [Function],
-          "dependencies": Array [],
-        },
         "color": "currentColor",
-        "transparency": Object {
-          "DARK": 0.7,
-          "LIGHT": 0.9,
-        },
         "width": Computed {
           "computer": [Function],
           "dependencies": Array [],
@@ -549,15 +541,7 @@ exports[`EuiProvider changing color modes propagates \`colorMode\` 1`] = `
         "ink": "#000",
       },
       "focus": Object {
-        "backgroundColor": Computed {
-          "computer": [Function],
-          "dependencies": Array [],
-        },
         "color": "currentColor",
-        "transparency": Object {
-          "DARK": 0.7,
-          "LIGHT": 0.9,
-        },
         "width": Computed {
           "computer": [Function],
           "dependencies": Array [],
@@ -872,15 +856,7 @@ exports[`EuiProvider is rendered 1`] = `
         "ink": "#000",
       },
       "focus": Object {
-        "backgroundColor": Computed {
-          "computer": [Function],
-          "dependencies": Array [],
-        },
         "color": "currentColor",
-        "transparency": Object {
-          "DARK": 0.7,
-          "LIGHT": 0.9,
-        },
         "width": Computed {
           "computer": [Function],
           "dependencies": Array [],
@@ -1216,15 +1192,7 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to glo
         "ink": "#000",
       },
       "focus": Object {
-        "backgroundColor": Computed {
-          "computer": [Function],
-          "dependencies": Array [],
-        },
         "color": "currentColor",
-        "transparency": Object {
-          "DARK": 0.7,
-          "LIGHT": 0.9,
-        },
         "width": Computed {
           "computer": [Function],
           "dependencies": Array [],
