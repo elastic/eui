@@ -5,7 +5,7 @@ import { transparentize, useEuiTheme } from '../../../../../src/services';
 import { getPropsFromComponent } from '../../../services/props/get_props';
 
 import {
-  euiBackgroundColorStyles,
+  useEuiBackgroundColorStyles,
   EuiCode,
   EuiColorPickerSwatch,
   euiPaddingStyles,
@@ -13,6 +13,8 @@ import {
   EuiText,
   useEuiBackgroundColor,
   useEuiPadding,
+  BACKGROUND_COLORS,
+  euiBackgroundColor,
 } from '../../../../../src';
 
 import { EuiThemeColors, ThemeRowType } from '../_props';
@@ -243,7 +245,7 @@ export const UtilsJS = () => {
       <EuiSpacer size="l" />
 
       <ThemeExample
-        title={<code>{'euiBackgroundColorStyles(euiTheme)[color]'}</code>}
+        title={<code>{'useEuiBackgroundColorStyles()[color]'}</code>}
         description={
           <>
             <p>
@@ -259,15 +261,15 @@ export const UtilsJS = () => {
         example={
           <p
             css={[
-              euiBackgroundColorStyles(euiTheme).accent,
+              useEuiBackgroundColorStyles().accent,
               euiPaddingStyles(euiTheme).l,
             ]}
           >
-            <code>{euiBackgroundColorStyles(euiTheme).accent}</code>
+            <code>{useEuiBackgroundColorStyles().accent}</code>
           </p>
         }
         snippetLanguage="tsx"
-        snippet={`const colorStyles = euiBackgroundColorStyles(euiTheme);
+        snippet={`const colorStyles = useEuiBackgroundColorStyles();
 const cssStyles = [colorStyles['accent']];
 
 <span css={cssStyles}>
@@ -279,16 +281,32 @@ const cssStyles = [colorStyles['accent']];
         title={<code>useEuiBackgroundColor(color)</code>}
         description={
           <p>
-            Returns the background-color CSS property and computed color for the
-            given <EuiCode language="sass">color</EuiCode>.
+            Returns the just the computed background color for the given{' '}
+            <EuiCode language="sass">color</EuiCode>.
           </p>
         }
         example={
-          <p css={[useEuiBackgroundColor('subdued'), useEuiPadding('l')]}>
+          <p
+            css={[
+              `background: ${useEuiBackgroundColor('subdued')}`,
+              useEuiPadding('l'),
+            ]}
+          >
             <code>{useEuiBackgroundColor('subdued')}</code>
           </p>
         }
-        snippet={"useEuiBackgroundColor('subdued')"}
+        snippet={"background: ${useEuiBackgroundColor('subdued')};"}
+      />
+
+      <ThemeValuesTable
+        items={BACKGROUND_COLORS.map((color) => {
+          return {
+            id: color,
+            token: `useEuiBackgroundColor('${color}')`,
+            value: euiBackgroundColor(color, euiTheme),
+          };
+        })}
+        render={(item) => <EuiColorPickerSwatch color={item.value} disabled />}
       />
     </>
   );

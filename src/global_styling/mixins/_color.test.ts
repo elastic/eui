@@ -7,14 +7,30 @@
  */
 
 import { testCustomHook } from '../../test/internal';
-import { BACKGROUND_COLORS, useEuiBackgroundColor } from './_color';
+import {
+  BACKGROUND_COLORS,
+  useEuiBackgroundColor,
+  useEuiBackgroundColorStyles,
+} from './_color';
 
-describe('useEuiBackgroundColor mixin returns a static background-color property', () => {
+describe('useEuiBackgroundColor mixin returns a calculated background version', () => {
   describe('for each color', () => {
     BACKGROUND_COLORS.forEach((color) => {
       it(color, () => {
         expect(
           testCustomHook(() => useEuiBackgroundColor(color)).return
+        ).toMatchSnapshot();
+      });
+    });
+  });
+});
+
+describe('useEuiBackgroundColorStyles hook returns a static background-color property', () => {
+  describe('for each color', () => {
+    BACKGROUND_COLORS.forEach((color) => {
+      it(color, () => {
+        expect(
+          testCustomHook(() => useEuiBackgroundColorStyles()[color]).return
         ).toMatchSnapshot();
       });
     });

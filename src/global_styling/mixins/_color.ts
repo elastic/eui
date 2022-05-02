@@ -21,43 +21,56 @@ export const BACKGROUND_COLORS = [
 
 export type EuiBackgroundColor = typeof BACKGROUND_COLORS[number];
 
-export const euiBackgroundColorStyles = ({
-  euiTheme,
-  colorMode,
-}: UseEuiTheme) => {
+export const euiBackgroundColor = (
+  color: EuiBackgroundColor,
+  { euiTheme, colorMode }: UseEuiTheme
+) => {
   function tintOrShade(color: string) {
     return colorMode === 'DARK' ? shade(color, 0.7) : tint(color, 0.9);
   }
 
-  return {
-    transparent: `
-      background-color: transparent;
-    `,
-    plain: `
-      background-color: ${euiTheme.colors.emptyShade};
-    `,
-    subdued: `
-      background-color: ${euiTheme.colors.body};
-    `,
-    accent: `
-      background-color: ${tintOrShade(euiTheme.colors.accent)};
-    `,
-    primary: `
-      background-color: ${tintOrShade(euiTheme.colors.primary)};
-    `,
-    success: `
-      background-color: ${tintOrShade(euiTheme.colors.success)};
-    `,
-    warning: `
-      background-color: ${tintOrShade(euiTheme.colors.warning)};
-    `,
-    danger: `
-      background-color: ${tintOrShade(euiTheme.colors.danger)};
-    `,
-  };
+  switch (color) {
+    case 'transparent':
+      return 'transparent';
+    case 'plain':
+      return euiTheme.colors.emptyShade;
+    case 'subdued':
+      return euiTheme.colors.body;
+    default:
+      return tintOrShade(euiTheme.colors[color]);
+  }
 };
 
 export const useEuiBackgroundColor = (color: EuiBackgroundColor) => {
   const euiTheme = useEuiTheme();
-  return euiBackgroundColorStyles(euiTheme)[color];
+  return euiBackgroundColor(color, euiTheme);
+};
+
+export const useEuiBackgroundColorStyles = () => {
+  return {
+    transparent: `
+      background-color: ${useEuiBackgroundColor('transparent')};
+    `,
+    plain: `
+      background-color: ${useEuiBackgroundColor('plain')};
+    `,
+    subdued: `
+      background-color: ${useEuiBackgroundColor('subdued')};
+    `,
+    accent: `
+      background-color: ${useEuiBackgroundColor('accent')};
+    `,
+    primary: `
+      background-color: ${useEuiBackgroundColor('primary')};
+    `,
+    success: `
+      background-color: ${useEuiBackgroundColor('success')};
+    `,
+    warning: `
+      background-color: ${useEuiBackgroundColor('warning')};
+    `,
+    danger: `
+      background-color: ${useEuiBackgroundColor('danger')};
+    `,
+  };
 };
