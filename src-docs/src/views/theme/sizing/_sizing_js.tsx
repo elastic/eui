@@ -150,8 +150,11 @@ export const UtilsJS = () => {
             logical CSS properties
           </EuiLink>{' '}
           to enable directional writing-modes. To encourage use of logical
-          properties, we provide a few helper utilities to convert certain
-          directional properties to logical properties.
+          properties, we provide a few{' '}
+          <EuiLink href="https://github.com/elastic/eui/blob/main/src/global_styling/functions/logicals.ts">
+            helper utilities
+          </EuiLink>{' '}
+          to convert certain directional properties to logical properties.
         </p>
       </EuiText>
 

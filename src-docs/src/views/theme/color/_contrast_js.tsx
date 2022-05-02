@@ -72,10 +72,10 @@ export const ColorSectionJS: FunctionComponent<ColorSection> = ({
             return (
               <ColorsContrastItem
                 foreground={color2}
-                background={colorValue}
+                background={_colorValue ? colorValue : color}
                 key={color2}
                 minimumContrast={minimumContrast}
-                styleString={`${hookName}(${color})`}
+                styleString={hookName && `${hookName}('${color}')`}
               />
             );
           })}

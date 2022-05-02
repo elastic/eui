@@ -285,7 +285,7 @@ const cssStyles = [colorStyles['accent']];
         title={<code>useEuiBackgroundColor(color)</code>}
         description={
           <p>
-            Returns the just the computed background color for the given{' '}
+            Returns just the computed background color for the given{' '}
             <EuiCode language="sass">color</EuiCode>.
           </p>
         }
