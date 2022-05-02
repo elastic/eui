@@ -8,7 +8,10 @@
 
 import { testCustomHook } from '../../test/internal';
 
-import { EuiThemeFontScales } from '../variables/typography';
+import {
+  EuiThemeFontScales,
+  EuiThemeFontSizeMeasurements,
+} from '../variables/typography';
 import {
   useEuiFontSize,
   euiTextBreakWord,
@@ -18,32 +21,14 @@ import {
 
 describe('euiFontSize', () => {
   describe('returns an object of font-size and line-height for each scale', () => {
-    describe('rem', () => {
-      EuiThemeFontScales.forEach((size) => {
-        test(size, () => {
-          expect(
-            testCustomHook(() => useEuiFontSize(size)).return
-          ).toMatchSnapshot();
-        });
-      });
-    });
-
-    describe('em', () => {
-      EuiThemeFontScales.forEach((size) => {
-        test(size, () => {
-          expect(
-            testCustomHook(() => useEuiFontSize(size, 'em')).return
-          ).toMatchSnapshot();
-        });
-      });
-    });
-
-    describe('px', () => {
-      EuiThemeFontScales.forEach((size) => {
-        test(size, () => {
-          expect(
-            testCustomHook(() => useEuiFontSize(size, 'px')).return
-          ).toMatchSnapshot();
+    EuiThemeFontSizeMeasurements.forEach((measure) => {
+      describe(measure, () => {
+        EuiThemeFontScales.forEach((size) => {
+          test(size, () => {
+            expect(
+              testCustomHook(() => useEuiFontSize(size, measure)).return
+            ).toMatchSnapshot();
+          });
         });
       });
     });
