@@ -157,7 +157,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
       outsideClickCloses={outsideClickCloses}
       closeButtonPosition={closeButtonPosition}
       paddingSize={paddingSize}
-      shards={[buttonRef, ...shards]}
+      shards={[...shards]}
       {...rest}
       // Props dependent on internal docked status
       type={navIsDocked ? 'push' : 'overlay'}
