@@ -70,7 +70,7 @@ export default () => {
       {/* Mixin */}
       {!showSass ? (
         <ThemeExample
-          title={<code>euiTextTruncate()</code>}
+          title={<code>euiTextTruncate(maxWidth?)</code>}
           description={
             <>
               <p>
