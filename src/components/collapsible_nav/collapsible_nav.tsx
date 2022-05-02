@@ -12,6 +12,7 @@ import React, {
   ReactElement,
   ReactNode,
   useEffect,
+  useRef,
   useState,
 } from 'react';
 import classNames from 'classnames';
@@ -19,6 +20,7 @@ import {
   useGeneratedHtmlId,
   isWithinMinBreakpoint,
   throttle,
+  useCombinedRefs,
 } from '../../services';
 import { EuiFlyout, EuiFlyoutProps } from '../flyout';
 
@@ -71,12 +73,15 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   outsideClickCloses = true,
   closeButtonPosition = 'outside',
   paddingSize = 'none',
+  shards = [],
   ...rest
 }) => {
   const flyoutID = useGeneratedHtmlId({
     conditionalId: id,
     suffix: 'euiCollapsibleNav',
   });
+  const buttonRef = useRef();
+  const combinedButtonRef = useCombinedRefs([button?.props.ref, buttonRef]);
 
   /**
    * Setting the initial state of pushed based on the `type` prop
@@ -136,6 +141,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
           onMouseUpCapture: (e: React.MouseEvent<HTMLElement>) => {
             e.nativeEvent.stopImmediatePropagation();
           },
+          ref: combinedButtonRef,
         });
 
   const flyout = (
@@ -151,6 +157,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
       outsideClickCloses={outsideClickCloses}
       closeButtonPosition={closeButtonPosition}
       paddingSize={paddingSize}
+      shards={[buttonRef, ...shards]}
       {...rest}
       // Props dependent on internal docked status
       type={navIsDocked ? 'push' : 'overlay'}
