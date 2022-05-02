@@ -25,6 +25,7 @@ export type ThemeExample = {
   examplePanel?: _EuiSplitPanelInnerProps;
   snippet?: GuideSectionExample['tabContent'];
   snippetLanguage?: EuiCodeBlockProps['language'];
+  props?: ReactNode;
   provider?: {
     property?: string;
     type?: string;
@@ -39,6 +40,7 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
   examplePanel,
   snippet,
   snippetLanguage = 'jsx',
+  props,
 }) => {
   const { euiTheme } = useEuiTheme();
   const finalSnippet =
@@ -71,6 +73,18 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
           <EuiText size="s" grow={false}>
             {description}
           </EuiText>
+          {props && (
+            <>
+              <EuiSpacer />
+              <EuiCodeBlock
+                transparentBackground
+                paddingSize="none"
+                language="ts"
+              >
+                {props}
+              </EuiCodeBlock>
+            </>
+          )}
         </EuiSplitPanel.Inner>
 
         {(example || snippet) && (

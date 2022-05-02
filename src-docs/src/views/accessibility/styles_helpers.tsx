@@ -52,7 +52,7 @@ export default () => {
         snippet={'<p css={css(euiScreenReaderOnlyStyles())} />'}
       />
       <ThemeExample
-        title={<code>useEuiFocusRing(offset, color)</code>}
+        title={<code>useEuiFocusRing(offset?, color?)</code>}
         description={
           <p>
             By default, all interactable elements will inherit the{' '}
@@ -62,6 +62,9 @@ export default () => {
             allows that customization of the focus outline.
           </p>
         }
+        props={`offset: 'inset' | 'outset' | 'center' | CSSProperties['outlineOffset'];
+
+color: CSSProperties['outlineColor'];`}
         example={
           <EuiText size="s">
             <p>
