@@ -170,7 +170,7 @@ Object {
 
 exports[`euiNumberFormat returns a string of CSS text 1`] = `
 "
-  font-feature-settings: 'calt' 1, 'kern' 1, 'liga' 1, 'tnum' 1; // Fixed-width numbers for tabular data
+  font-feature-settings: 'calt' 1, 'kern' 1, 'liga' 1, 'tnum' 1;
 "
 `;
 

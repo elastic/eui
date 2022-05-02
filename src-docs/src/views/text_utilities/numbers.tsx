@@ -60,14 +60,14 @@ export default () => {
       {/* Mixin */}
       {!showSass ? (
         <ThemeExample
-          title={<code>euiNumberFormat()</code>}
+          title={<code>useEuiNumberFormat()</code>}
           description={
             <p>
               Use this style function to apply number text styles within your
               CSS-in-JS styling. No parameters are taken for this utility.
             </p>
           }
-          snippet={'${euiNumberFormat()}'}
+          snippet={'${useEuiNumberFormat()}'}
           snippetLanguage="emotion"
         />
       ) : (

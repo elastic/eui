@@ -70,6 +70,11 @@ export const euiTextTruncate = (
 /**
  * Fixed-width numbers for tabular data
  */
-export const euiNumberFormat = () => `
-  font-feature-settings: 'calt' 1, 'kern' 1, 'liga' 1, 'tnum' 1;
+export const euiNumberFormat = (euiTheme: UseEuiTheme['euiTheme']) => `
+  font-feature-settings: ${euiTheme.font.featureSettings}, 'tnum' 1;
 `;
+// Hook version
+export const useEuiNumberFormat = (): string => {
+  const { euiTheme } = useEuiTheme();
+  return euiNumberFormat(euiTheme);
+};
