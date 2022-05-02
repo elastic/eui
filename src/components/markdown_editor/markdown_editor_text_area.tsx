@@ -49,6 +49,7 @@ export const EuiMarkdownEditorTextArea = forwardRef<
     return (
       <textarea
         ref={ref}
+        data-test-subj="euiMarkdownEditorTextArea"
         style={{ height, maxHeight }}
         className={classes}
         {...rest}

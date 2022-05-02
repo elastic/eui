@@ -38,4 +38,7 @@ export const EuiThemeLevels = [
 
 export type _EuiThemeLevel = typeof EuiThemeLevels[number];
 
-export type _EuiThemeLevels = Record<_EuiThemeLevel, CSSProperties['zIndex']>;
+export type _EuiThemeLevels = Record<
+  _EuiThemeLevel,
+  NonNullable<CSSProperties['zIndex']>
+>;
