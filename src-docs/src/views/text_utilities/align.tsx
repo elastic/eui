@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiCode, EuiMark } from '../../../../src';
+import { EuiMark } from '../../../../src';
 import { ThemeExample } from '../theme/_components/_theme_example';
 
 export default () => (
@@ -9,8 +9,8 @@ export default () => (
       title={<code>.eui-textLeft</code>}
       description={
         <p>
-          Changes the element’s text alignment property to{' '}
-          <EuiCode language="sass">text-align: left;</EuiCode>
+          Changes the element’s text alignment to the left/starting side of its
+          container.
         </p>
       }
       example={
@@ -27,8 +27,8 @@ export default () => (
       title={<code>.eui-textCenter</code>}
       description={
         <p>
-          Changes the element’s text alignment property to{' '}
-          <EuiCode language="sass">text-align: center;</EuiCode>
+          Changes the element’s text alignment to the center/middle of its
+          container.
         </p>
       }
       example={
@@ -45,8 +45,8 @@ export default () => (
       title={<code>.eui-textRight</code>}
       description={
         <p>
-          Changes the element’s text alignment property to{' '}
-          <EuiCode language="sass">text-align: right;</EuiCode>
+          Changes the element’s text alignment to the right/ending side of its
+          container.
         </p>
       }
       example={
