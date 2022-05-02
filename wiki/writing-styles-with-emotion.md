@@ -307,7 +307,30 @@ export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
 });
 ```
+## Creating `colorMode` specific components
 
+When creating components that rely on a specific `colorMode` from `<EuiThemeProvider>`, use this pattern to create a wrapper that will pass the entire component `<EuiThemeProvider>` details. 
+
+- `_EuiComponentName` is an internal component that contains the desired functionality and styles.
+- `EuiComponentName` is the exportable component that wraps `_EuiComponentName` inside of `<EuiThemeProvider>`.
+
+```tsx
+const _EuiComponentName = ({ componentProps }) => {
+  return <div />;
+}
+
+export const EuiComponentName = ({ componentProps }) => {
+    const Component = _EuiComponentName;
+    return (
+      <EuiThemeProvider colorMode={ colorMode }>
+        <Component {...componentProps} />
+      </EuiThemeProvider>
+    );
+  }
+);
+```
+
+**[Refer to EuiBottomBar to see an example of this pattern in practice and as an example of using `forwardRef`.](../src/components/bottom_bar/bottom_bar.tsx)**
 
 ## FAQ
 
