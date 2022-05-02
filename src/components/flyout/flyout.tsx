@@ -152,7 +152,7 @@ interface _EuiFlyoutProps {
   pushMinBreakpoint?: EuiBreakpointSize | number;
   style?: CSSProperties;
   /**
-   * Elements to consider part of the flyout and will not close the flyout when clicked (depends on your configuration)
+   * Elements to consider part of the flyout and when clicked will not automatically close the flyout (depends on your configuration)
    */
   shards?: EuiFocusTrapProps['shards'];
 }
