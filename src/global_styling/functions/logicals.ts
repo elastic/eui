@@ -105,7 +105,11 @@ export const logicalCSS = (property: LogicalProperties, value?: any) => {
  * @returns `object` Returns the logical CSS property version for the given `property: value` pair
  */
 export const logicalStyle = (property: LogicalProperties, value?: any) => {
-  return { [`${logicals[property]}`]: `${value}` };
+  // Strip hyphens and camelCase the CSS logical property so React doesn't throw errors
+  const camelCasedProperty = logicals[property].replace(/-\w/g, (str) =>
+    str.charAt(1).toUpperCase()
+  );
+  return { [camelCasedProperty]: `${value}` };
 };
 
 // Text alignment is separate because its the value that changes not the property
