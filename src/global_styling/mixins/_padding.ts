@@ -26,7 +26,7 @@ export const euiPaddingSize = (
   }
 };
 
-export const useEuiPadding = (size: EuiPaddingSize) => {
+export const useEuiPaddingSize = (size: EuiPaddingSize) => {
   const euiTheme = useEuiTheme();
   return euiPaddingSize(size, euiTheme);
 };
@@ -37,19 +37,19 @@ export const useEuiPaddingStyles = (side?: LogicalSides) => {
   return {
     none: null,
     xs: `
-      ${property}: ${useEuiPadding('xs')};
+      ${property}: ${useEuiPaddingSize('xs')};
     `,
     s: `
-      ${property}: ${useEuiPadding('s')};
+      ${property}: ${useEuiPaddingSize('s')};
     `,
     m: `
-      ${property}: ${useEuiPadding('m')};
+      ${property}: ${useEuiPaddingSize('m')};
     `,
     l: `
-      ${property}: ${useEuiPadding('l')};
+      ${property}: ${useEuiPaddingSize('l')};
     `,
     xl: `
-      ${property}: ${useEuiPadding('xl')};
+      ${property}: ${useEuiPaddingSize('xl')};
     `,
   };
 };

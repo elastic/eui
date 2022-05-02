@@ -11,7 +11,7 @@ import {
   logicals,
   EuiSpacer,
   EuiText,
-  useEuiPadding,
+  useEuiPaddingSize,
   useEuiBackgroundColor,
   useEuiBackgroundColorStyles,
   useEuiPaddingStyles,
@@ -273,10 +273,10 @@ const cssStyles = [paddingStyles['l']];
           <p
             css={css`
               background: ${useEuiBackgroundColor('warning')};
-              padding: ${useEuiPadding('l')};
+              padding: ${useEuiPaddingSize('l')};
             `}
           >
-            <code>{useEuiPadding('l')}</code>
+            <code>{useEuiPaddingSize('l')}</code>
           </p>
         }
         snippetLanguage="emotion"

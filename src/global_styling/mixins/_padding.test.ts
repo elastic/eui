@@ -7,15 +7,19 @@
  */
 
 import { testCustomHook } from '../../test/internal';
-import { PADDING_SIZES, useEuiPadding, useEuiPaddingStyles } from './_padding';
+import {
+  PADDING_SIZES,
+  useEuiPaddingSize,
+  useEuiPaddingStyles,
+} from './_padding';
 import { LOGICAL_SIDES } from '../functions/logicals';
 
-describe('useEuiPadding returns a static padding value', () => {
+describe('useEuiPaddingSize returns a static padding value', () => {
   describe('for each size', () => {
     PADDING_SIZES.forEach((size) => {
       it(size, () => {
         expect(
-          testCustomHook(() => useEuiPadding(size)).return
+          testCustomHook(() => useEuiPaddingSize(size)).return
         ).toMatchSnapshot();
       });
     });

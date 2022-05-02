@@ -11,7 +11,7 @@ import {
   EuiSpacer,
   EuiText,
   useEuiBackgroundColor,
-  useEuiPadding,
+  useEuiPaddingSize,
   BACKGROUND_COLORS,
   euiBackgroundColor,
   useEuiPaddingStyles,
@@ -293,7 +293,7 @@ const cssStyles = [colorStyles['accent']];
           <p
             css={css`
               background: ${useEuiBackgroundColor('subdued')};
-              padding: ${useEuiPadding('l')};
+              padding: ${useEuiPaddingSize('l')};
             `}
           >
             <code>{useEuiBackgroundColor('subdued')}</code>

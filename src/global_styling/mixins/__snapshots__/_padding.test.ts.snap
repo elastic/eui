@@ -1,16 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`useEuiPadding returns a static padding value for each size l 1`] = `"24px"`;
+exports[`useEuiPaddingSize returns a static padding value for each size l 1`] = `"24px"`;
 
-exports[`useEuiPadding returns a static padding value for each size m 1`] = `"16px"`;
+exports[`useEuiPaddingSize returns a static padding value for each size m 1`] = `"16px"`;
 
-exports[`useEuiPadding returns a static padding value for each size none 1`] = `null`;
+exports[`useEuiPaddingSize returns a static padding value for each size none 1`] = `null`;
 
-exports[`useEuiPadding returns a static padding value for each size s 1`] = `"8px"`;
+exports[`useEuiPaddingSize returns a static padding value for each size s 1`] = `"8px"`;
 
-exports[`useEuiPadding returns a static padding value for each size xl 1`] = `"32px"`;
+exports[`useEuiPaddingSize returns a static padding value for each size xl 1`] = `"32px"`;
 
-exports[`useEuiPadding returns a static padding value for each size xs 1`] = `"4px"`;
+exports[`useEuiPaddingSize returns a static padding value for each size xs 1`] = `"4px"`;
 
 exports[`useEuiPaddingStyles hook returns the object of static background-color properties and each logical side bottom 1`] = `
 Object {
