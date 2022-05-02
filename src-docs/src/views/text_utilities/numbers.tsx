@@ -63,9 +63,8 @@ export default () => {
           title={<code>euiNumberFormat()</code>}
           description={
             <p>
-              Use this style function to apply{' '}
-              <EuiCode>.eui-textNumber</EuiCode> within your CSS-in-JS styling.
-              No parameters are taken for this utility.
+              Use this style function to apply number text styles within your
+              CSS-in-JS styling. No parameters are taken for this utility.
             </p>
           }
           snippet={'${euiNumberFormat()}'}
@@ -73,11 +72,11 @@ export default () => {
         />
       ) : (
         <ThemeExample
-          title={<code>Mixin</code>}
+          title={<code>@include euiNumberFormat</code>}
           description={
             <p>
-              Use this Sass mixin to apply <EuiCode>.eui-textNumber</EuiCode>{' '}
-              within your classes. No parameters are taken for this utility.
+              Use this Sass mixin to apply number text styles to your selectors.
+              No parameters are taken for this utility.
             </p>
           }
           snippet={'@include euiNumberFormat;'}

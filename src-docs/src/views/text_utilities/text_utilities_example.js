@@ -14,7 +14,7 @@ export const TextUtilitiesExample = {
     <EuiText>
       <p>
         These text utilities are available primarily as CSS classes to aid in
-        quickly tweaking your text. Some utilities are additionally available as
+        quickly styling your text. Some utilities are additionally available as
         either CSS-in-JS or Sass mixins to optionally compose within your own
         custom styles.
       </p>

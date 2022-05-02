@@ -55,6 +55,7 @@ export default () => {
             color="warning"
             style={{ maxWidth }}
             className="eui-textTruncate"
+            title="This text will not to wrap but truncate beyond the boundaries of the yellow box."
           >
             This text will not to wrap but truncate beyond the boundaries of the
             yellow box.
@@ -62,7 +63,7 @@ export default () => {
         }
         snippet={`<div
   className="eui-textTruncate"
-  title={Your content}>
+  title="Your content">
   /* Your content */
 </div>`}
       />
@@ -73,28 +74,26 @@ export default () => {
           description={
             <>
               <p>
-                Use this style function to apply{' '}
-                <EuiCode>.eui-textTruncate</EuiCode> within your CSS-in-JS
-                styling.
+                Use this style function to apply truncation within your
+                CSS-in-JS styling.
               </p>
               <p>
                 This utility accepts a single optional parameter for customizing
-                the width of the truncated text. If not passed, it defaults to{' '}
-                <EuiCode language="css">max-width: 100%;</EuiCode>.
+                the maximum width of the truncated text. If not passed, it
+                defaults to <EuiCode language="css">max-width: 100%;</EuiCode>.
               </p>
             </>
           }
-          snippet={`\${euiTextTruncate()}
-  \${euiTextTruncate('150px')}`}
+          snippet={'${euiTextTruncate()}'}
           snippetLanguage="emotion"
         />
       ) : (
         <ThemeExample
-          title={<code>Mixin</code>}
+          title={<code>include euiTextTruncate</code>}
           description={
             <p>
-              Use this Sass mixin to apply <EuiCode>.eui-textTruncate</EuiCode>{' '}
-              within your classes. No parameters are taken for this utility.
+              Use this Sass mixin to apply truncation to your selectors. No
+              parameters are taken for this utility.
             </p>
           }
           snippet={'@include euiTextTruncate;'}
@@ -120,9 +119,7 @@ export default () => {
             break mid-word.
           </EuiPanel>
         }
-        snippet={`<div
-  className="eui-textTruncate"
-  title={Your content}>
+        snippet={`<div className="eui-textBreakWord">
   /* Your content */
 </div>`}
       />
@@ -132,9 +129,8 @@ export default () => {
           title={<code>euiTextBreakWord()</code>}
           description={
             <p>
-              Use this style function to apply{' '}
-              <EuiCode>.eui-textBreakWord</EuiCode> within your CSS-in-JS
-              styling. No parameters are taken for this utility.
+              Use this style function to apply break-word styles within your
+              CSS-in-JS styling. No parameters are taken for this utility.
             </p>
           }
           snippet={'${euiTextBreakWord()}'}
@@ -142,11 +138,11 @@ export default () => {
         />
       ) : (
         <ThemeExample
-          title={<code>Mixin</code>}
+          title={<code>@include euiTextBreakWord</code>}
           description={
             <p>
-              Use this Sass mixin to apply <EuiCode>.eui-textBreakWord</EuiCode>{' '}
-              within your classes. No parameters are taken for this utility.
+              Use this Sass mixin to apply break-word styling to your selectors.
+              No parameters are taken for this utility.
             </p>
           }
           snippet={'@include euiTextBreakWord;'}
