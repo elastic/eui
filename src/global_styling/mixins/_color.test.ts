@@ -14,7 +14,7 @@ import {
 } from './_color';
 
 describe('useEuiBackgroundColor mixin returns a calculated background version', () => {
-  describe('for each color', () => {
+  describe('for each color:', () => {
     BACKGROUND_COLORS.forEach((color) => {
       it(color, () => {
         expect(
@@ -25,14 +25,10 @@ describe('useEuiBackgroundColor mixin returns a calculated background version', 
   });
 });
 
-describe('useEuiBackgroundColorStyles hook returns a static background-color property', () => {
-  describe('for each color', () => {
-    BACKGROUND_COLORS.forEach((color) => {
-      it(color, () => {
-        expect(
-          testCustomHook(() => useEuiBackgroundColorStyles()[color]).return
-        ).toMatchSnapshot();
-      });
-    });
+describe('useEuiBackgroundColorStyles hook returns the object of static background-color properties', () => {
+  it('for each color', () => {
+    expect(
+      testCustomHook(() => useEuiBackgroundColorStyles()).return
+    ).toMatchSnapshot();
   });
 });

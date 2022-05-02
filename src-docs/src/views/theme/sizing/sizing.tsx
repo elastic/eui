@@ -76,7 +76,7 @@ export default () => {
 
       {scaleContent}
 
-      <EuiHorizontalRule margin="xxl" />
+      <EuiSpacer size="xxl" />
 
       <EuiTitle>
         <h2 id={`${sizingSections[2].id}`}>{`${sizingSections[2].title}`}</h2>

@@ -7,11 +7,11 @@
  */
 
 import { testCustomHook } from '../../test/internal';
-import { PADDING_SIZES, useEuiPadding } from './_padding';
+import { PADDING_SIZES, useEuiPadding, useEuiPaddingStyles } from './_padding';
 import { LOGICAL_SIDES } from '../functions/logicals';
 
-describe('useEuiPadding mixin returns a static padding property', () => {
-  describe('for each padding size', () => {
+describe('useEuiPadding returns a static padding value', () => {
+  describe('for each size', () => {
     PADDING_SIZES.forEach((size) => {
       it(size, () => {
         expect(
@@ -19,14 +19,16 @@ describe('useEuiPadding mixin returns a static padding property', () => {
         ).toMatchSnapshot();
       });
     });
+  });
+});
 
-    describe('for each logical side', () => {
-      LOGICAL_SIDES.forEach((side) => {
-        it(side, () => {
-          expect(
-            testCustomHook(() => useEuiPadding('m', side)).return
-          ).toMatchSnapshot();
-        });
+describe('useEuiPaddingStyles hook returns the object of static background-color properties', () => {
+  describe('and each logical side', () => {
+    LOGICAL_SIDES.forEach((side) => {
+      it(side, () => {
+        expect(
+          testCustomHook(() => useEuiPaddingStyles(side)).return
+        ).toMatchSnapshot();
       });
     });
   });

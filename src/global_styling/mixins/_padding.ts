@@ -12,33 +12,44 @@ import { logicalSide, LogicalSides } from '../functions';
 export const PADDING_SIZES = ['none', 'xs', 's', 'm', 'l', 'xl'] as const;
 export type EuiPaddingSize = typeof PADDING_SIZES[number];
 
-export const euiPaddingStyles = (
-  { euiTheme }: UseEuiTheme,
-  side?: LogicalSides
+export const euiPaddingSize = (
+  size: EuiPaddingSize,
+  { euiTheme }: UseEuiTheme
 ) => {
+  switch (size) {
+    case 'none':
+      return null;
+    case 'm':
+      return euiTheme.size.base;
+    default:
+      return euiTheme.size[size];
+  }
+};
+
+export const useEuiPadding = (size: EuiPaddingSize) => {
+  const euiTheme = useEuiTheme();
+  return euiPaddingSize(size, euiTheme);
+};
+
+export const useEuiPaddingStyles = (side?: LogicalSides) => {
   const property = side ? `padding-${logicalSide[side]}` : 'padding';
 
   return {
     none: null,
     xs: `
-      ${property}: ${euiTheme.size.xs};
+      ${property}: ${useEuiPadding('xs')};
     `,
     s: `
-      ${property}: ${euiTheme.size.s};
+      ${property}: ${useEuiPadding('s')};
     `,
     m: `
-      ${property}: ${euiTheme.size.m};
+      ${property}: ${useEuiPadding('m')};
     `,
     l: `
-      ${property}: ${euiTheme.size.l};
+      ${property}: ${useEuiPadding('l')};
     `,
     xl: `
-      ${property}: ${euiTheme.size.xl};
+      ${property}: ${useEuiPadding('xl')};
     `,
   };
-};
-
-export const useEuiPadding = (size: EuiPaddingSize, side?: LogicalSides) => {
-  const euiTheme = useEuiTheme();
-  return euiPaddingStyles(euiTheme, side)[size];
 };

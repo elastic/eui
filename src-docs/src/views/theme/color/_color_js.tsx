@@ -8,13 +8,13 @@ import {
   useEuiBackgroundColorStyles,
   EuiCode,
   EuiColorPickerSwatch,
-  euiPaddingStyles,
   EuiSpacer,
   EuiText,
   useEuiBackgroundColor,
   useEuiPadding,
   BACKGROUND_COLORS,
   euiBackgroundColor,
+  useEuiPaddingStyles,
 } from '../../../../../src';
 
 import { EuiThemeColors, ThemeRowType } from '../_props';
@@ -266,7 +266,7 @@ export const UtilsJS = () => {
           <p
             css={[
               useEuiBackgroundColorStyles().accent,
-              euiPaddingStyles(euiTheme).l,
+              useEuiPaddingStyles().l,
             ]}
           >
             <code>{useEuiBackgroundColorStyles().accent}</code>
@@ -291,14 +291,15 @@ const cssStyles = [colorStyles['accent']];
         }
         example={
           <p
-            css={[
-              `background: ${useEuiBackgroundColor('subdued')}`,
-              useEuiPadding('l'),
-            ]}
+            css={css`
+              background: ${useEuiBackgroundColor('subdued')};
+              padding: ${useEuiPadding('l')};
+            `}
           >
             <code>{useEuiBackgroundColor('subdued')}</code>
           </p>
         }
+        snippetLanguage="emotion"
         snippet={"background: ${useEuiBackgroundColor('subdued')};"}
       />
 

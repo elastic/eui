@@ -11,9 +11,10 @@ import {
   logicals,
   EuiSpacer,
   EuiText,
-  euiPaddingStyles,
   useEuiPadding,
   useEuiBackgroundColor,
+  useEuiBackgroundColorStyles,
+  useEuiPaddingStyles,
 } from '../../../../../src';
 
 import { ThemeExample } from '../_components/_theme_example';
@@ -139,8 +140,6 @@ export default () => {
 };
 
 export const UtilsJS = () => {
-  const euiTheme = useEuiTheme();
-
   return (
     <>
       <EuiText grow={false}>
@@ -230,7 +229,7 @@ export const UtilsJS = () => {
       <EuiSpacer size="l" />
 
       <ThemeExample
-        title={<code>{'euiPaddingStyles(euiTheme, side?)'}</code>}
+        title={<code>{'useEuiPaddingStyles(side?)[size]'}</code>}
         description={
           <>
             <p>
@@ -246,15 +245,15 @@ export const UtilsJS = () => {
         example={
           <p
             css={[
-              useEuiBackgroundColor('warning'),
-              euiPaddingStyles(euiTheme, 'left').l,
+              useEuiBackgroundColorStyles().warning,
+              useEuiPaddingStyles('left').l,
             ]}
           >
-            <code>{euiPaddingStyles(euiTheme, 'left').l}</code>
+            <code>{useEuiPaddingStyles('left').l}</code>
           </p>
         }
         snippetLanguage="tsx"
-        snippet={`const paddingStyles = euiPaddingStyles(euiTheme);
+        snippet={`const paddingStyles = useEuiPaddingStyles('left');
 const cssStyles = [paddingStyles['l']];
 
 <span css={cssStyles}>
@@ -263,20 +262,25 @@ const cssStyles = [paddingStyles['l']];
       />
 
       <ThemeExample
-        title={<code>{'useEuiPadding(size, side?)'}</code>}
+        title={<code>{'useEuiPadding(size)'}</code>}
         description={
           <p>
-            Returns the logical CSS property version for the given{' '}
-            <EuiCode language="sass">side</EuiCode> and the value for the given{' '}
+            Returns just the padding size value for the given{' '}
             <EuiCode>size</EuiCode>.
           </p>
         }
         example={
-          <p css={[useEuiBackgroundColor('warning'), useEuiPadding('l')]}>
+          <p
+            css={css`
+              background: ${useEuiBackgroundColor('warning')};
+              padding: ${useEuiPadding('l')};
+            `}
+          >
             <code>{useEuiPadding('l')}</code>
           </p>
         }
-        snippet={"useEuiPadding('l')"}
+        snippetLanguage="emotion"
+        snippet={"padding: ${useEuiPadding('l')};"}
       />
     </>
   );
