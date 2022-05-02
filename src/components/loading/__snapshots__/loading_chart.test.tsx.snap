@@ -92,16 +92,16 @@ exports[`EuiLoadingChart size xl is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="css-c8z932-euiLoadingChart__bar-xl"
+    class="css-16ok1x8-euiLoadingChart__bar-xl"
   />
   <span
-    class="css-dh1qje-euiLoadingChart__bar-xl"
+    class="css-3rl1i-euiLoadingChart__bar-xl"
   />
   <span
-    class="css-c0ghp7-euiLoadingChart__bar-xl"
+    class="css-1q8ge0z-euiLoadingChart__bar-xl"
   />
   <span
-    class="css-3wdwo4-euiLoadingChart__bar-xl"
+    class="css-1fnxpnf-euiLoadingChart__bar-xl"
   />
 </span>
 `;
