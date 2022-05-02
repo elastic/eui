@@ -188,7 +188,6 @@ exports[`euiTextTruncate allows customizing max-width 1`] = `
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
-  word-wrap: normal !important; // Fix for IE 8/9 if 'word-wrap: break-word' is in effect on ancestor nodes.
 "
 `;
 
@@ -198,6 +197,5 @@ exports[`euiTextTruncate returns a string of CSS text 1`] = `
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
-  word-wrap: normal !important; // Fix for IE 8/9 if 'word-wrap: break-word' is in effect on ancestor nodes.
 "
 `;

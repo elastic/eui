@@ -46,17 +46,18 @@ export const useEuiFontSize = (
 };
 
 /**
- * Text utilities
+ * Force text to wrap on natural word breaks (e.g. spaces & hyphens)
+ * https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
  */
-
-// https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
 export const euiTextBreakWord = () => `
   overflow-wrap: break-word !important; // makes sure the long string will wrap and not bust out of the container
   word-wrap: break-word !important; // spec says, they are literally just alternate names for each other but some browsers support one and not the other
   word-break: break-word; // IE doesn't understand but that's ok
 `;
 
-// Prevent text from wrapping onto multiple lines, and truncate with an ellipsis.
+/**
+ * Prevent text from wrapping onto multiple lines, and truncate with an ellipsis.
+ */
 export const euiTextTruncate = (
   maxWidth: CSSProperties['maxWidth'] = '100%'
 ) => `
@@ -64,10 +65,11 @@ export const euiTextTruncate = (
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
-  word-wrap: normal !important; // Fix for IE 8/9 if 'word-wrap: break-word' is in effect on ancestor nodes.
 `;
 
-// Fixed-width numbers for tabular data
+/**
+ * Fixed-width numbers for tabular data
+ */
 export const euiNumberFormat = () => `
   font-feature-settings: 'calt' 1, 'kern' 1, 'liga' 1, 'tnum' 1;
 `;

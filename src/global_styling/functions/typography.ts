@@ -80,7 +80,7 @@ export function euiLineHeightFromBaseline(
 /**
  * Text weight shifting
  *
- * When changing the font-weight based the state of the component,
+ * When changing the font-weight based on the state of the component,
  * this mixin will ensure that the sizing is dependent on the boldest
  * weight so it doesn't shift sibling content.
  */
