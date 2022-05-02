@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalCSS, logicalTextAlign } from '../../global_styling';
+import { logicalStyle, logicalTextAlign } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 const _avatarSize = ({
@@ -18,8 +18,8 @@ const _avatarSize = ({
   fontSize: string;
 }) => {
   return `
-    ${logicalCSS('width', size)};
-    ${logicalCSS('height', size)};
+    ${logicalStyle('width', size)};
+    ${logicalStyle('height', size)};
     line-height: ${size};
     font-size: ${fontSize};
   `;
@@ -36,7 +36,7 @@ export const euiAvatarStyles = ({ euiTheme }: UseEuiTheme) => ({
     vertical-align: middle;
     background-size: cover;
     ${logicalTextAlign('center')};
-    ${logicalCSS('overflow-x', 'hidden')}
+    ${logicalStyle('overflow-x', 'hidden')}
     // Explicitly state weight so it doesn't get overridden by inheritance
     font-weight: ${euiTheme.font.weight.medium};
   `,

@@ -6,7 +6,6 @@ import {
   EuiCode,
   EuiLink,
   keysOf,
-  logicalCSS,
   logicalStyle,
   logicals,
   EuiSpacer,
@@ -161,45 +160,37 @@ export const UtilsJS = () => {
       <EuiSpacer size="l" />
 
       <ThemeExample
-        title={<code>{"logicalCSS('property', 'value')"}</code>}
+        title={<code>{'logicalStyle(property, value)'}</code>}
         description={
-          <p>
-            Returns the <strong>string version</strong> of the logical CSS
-            property version for the given{' '}
-            <EuiCode language="css">property: value</EuiCode> pair.
-          </p>
+          <>
+            <p>
+              Returns a style <strong>object</strong> of the logical CSS
+              property version for the given{' '}
+              <EuiCode language="css">property: value</EuiCode> pair.
+            </p>
+            <p>
+              This can be passed as any method of styling; through
+              Emotion&apos;s <EuiCode>{'css``'}</EuiCode> method or React&apos;s
+              element <EuiCode>style</EuiCode> property.
+            </p>
+          </>
         }
         example={
-          <p css={[logicalCSS('padding-left', '160px')]}>
-            <code>{logicalCSS('padding-left', '160px')}</code>
+          <p
+            css={css`
+              ${useEuiBackgroundColorStyles().warning};
+              ${logicalStyle('padding-left', '100px')}
+            `}
+          >
+            <code>{JSON.stringify(logicalStyle('padding-left', '100px'))}</code>
           </p>
         }
-        snippet={"${logicalCSS('padding-left', '160px')}"}
+        snippetLanguage="emotion"
+        snippet={"${logicalStyle('padding-left', '100px')}"}
       />
 
       <ThemeExample
-        title={<code>{"logicalStyle('property', 'value')"}</code>}
-        description={
-          <p>
-            Returns the <strong>object version</strong> of the logical CSS
-            property version for the given{' '}
-            <EuiCode language="css">property: value</EuiCode> pair.
-          </p>
-        }
-        example={
-          <p style={logicalStyle('padding-left', '160px')}>
-            <code>
-              {Object.entries(logicalStyle('padding-left', '160px'))[0][0]}:{' '}
-              {Object.entries(logicalStyle('padding-left', '160px'))[0][1]};
-            </code>
-          </p>
-        }
-        snippetLanguage="tsx"
-        snippet={"<p style={logicalStyle('padding-left', '160px')} />"}
-      />
-
-      <ThemeExample
-        title={<code>{"logicals['property']"}</code>}
+        title={<code>{'logicals[property]'}</code>}
         description={
           <p>
             An object that contains the logical property equivelants of the
@@ -209,13 +200,15 @@ export const UtilsJS = () => {
         example={
           <p
             css={css`
-              ${logicals['padding-left']}: 160px;
+              ${useEuiBackgroundColorStyles().warning};
+              ${logicals['padding-left']}: 100px;
             `}
           >
-            <code>{`${logicals['padding-left']}: 160px`}</code>
+            <code>{`${logicals['padding-left']}: 100px`}</code>
           </p>
         }
-        snippet={"${logicals['padding-left']}: 160px;"}
+        snippetLanguage="emotion"
+        snippet={"${logicals['padding-left']}: 100px;"}
       />
 
       <EuiSpacer size="xl" />

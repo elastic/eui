@@ -8,16 +8,16 @@ exports[`EuiLoadingChart is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="css-tw9h7t-euiLoadingChart__bar-m"
+    class="css-qzygck-euiLoadingChart__bar-m"
   />
   <span
-    class="css-1vttul-euiLoadingChart__bar-m"
+    class="css-1t3f050-euiLoadingChart__bar-m"
   />
   <span
-    class="css-lpjfci-euiLoadingChart__bar-m"
+    class="css-1acavo4-euiLoadingChart__bar-m"
   />
   <span
-    class="css-2dq8wt-euiLoadingChart__bar-m"
+    class="css-1hseqk6-euiLoadingChart__bar-m"
   />
 </span>
 `;
@@ -29,16 +29,16 @@ exports[`EuiLoadingChart mono is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="css-cudmsi-euiLoadingChart__bar-m"
+    class="css-1rs9n6s-euiLoadingChart__bar-m"
   />
   <span
-    class="css-5h3vtb-euiLoadingChart__bar-m"
+    class="css-1a748g5-euiLoadingChart__bar-m"
   />
   <span
-    class="css-15wun0c-euiLoadingChart__bar-m"
+    class="css-1i8a6bb-euiLoadingChart__bar-m"
   />
   <span
-    class="css-1fegcsz-euiLoadingChart__bar-m"
+    class="css-1rml83h-euiLoadingChart__bar-m"
   />
 </span>
 `;
@@ -50,16 +50,16 @@ exports[`EuiLoadingChart size l is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="css-ylmmcx-euiLoadingChart__bar-l"
+    class="css-1r25chp-euiLoadingChart__bar-l"
   />
   <span
-    class="css-10sp6p4-euiLoadingChart__bar-l"
+    class="css-d1ua6g-euiLoadingChart__bar-l"
   />
   <span
-    class="css-pny0of-euiLoadingChart__bar-l"
+    class="css-wnmrhk-euiLoadingChart__bar-l"
   />
   <span
-    class="css-iyiuk8-euiLoadingChart__bar-l"
+    class="css-ed6dhr-euiLoadingChart__bar-l"
   />
 </span>
 `;
@@ -71,16 +71,16 @@ exports[`EuiLoadingChart size m is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="css-tw9h7t-euiLoadingChart__bar-m"
+    class="css-qzygck-euiLoadingChart__bar-m"
   />
   <span
-    class="css-1vttul-euiLoadingChart__bar-m"
+    class="css-1t3f050-euiLoadingChart__bar-m"
   />
   <span
-    class="css-lpjfci-euiLoadingChart__bar-m"
+    class="css-1acavo4-euiLoadingChart__bar-m"
   />
   <span
-    class="css-2dq8wt-euiLoadingChart__bar-m"
+    class="css-1hseqk6-euiLoadingChart__bar-m"
   />
 </span>
 `;
@@ -92,16 +92,16 @@ exports[`EuiLoadingChart size xl is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="css-16ok1x8-euiLoadingChart__bar-xl"
+    class="css-n8hx24-euiLoadingChart__bar-xl"
   />
   <span
-    class="css-3rl1i-euiLoadingChart__bar-xl"
+    class="css-12941ie-euiLoadingChart__bar-xl"
   />
   <span
-    class="css-1q8ge0z-euiLoadingChart__bar-xl"
+    class="css-5c2sgv-euiLoadingChart__bar-xl"
   />
   <span
-    class="css-1fnxpnf-euiLoadingChart__bar-xl"
+    class="css-1o6b1bz-euiLoadingChart__bar-xl"
   />
 </span>
 `;

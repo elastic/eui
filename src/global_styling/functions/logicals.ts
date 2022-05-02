@@ -92,16 +92,6 @@ export type LogicalProperties = typeof LOGICAL_PROPERTIES[number];
  *
  * @param property A string that is a valid CSS logical property
  * @param value String to output as the property value
- * @returns `string` Returns the logical CSS property version for the given `property: value` pair
- */
-export const logicalCSS = (property: LogicalProperties, value?: any) => {
-  return `${logicals[property]}: ${value};`;
-};
-
-/**
- *
- * @param property A string that is a valid CSS logical property
- * @param value String to output as the property value
  * @returns `object` Returns the logical CSS property version for the given `property: value` pair
  */
 export const logicalStyle = (property: LogicalProperties, value?: any) => {

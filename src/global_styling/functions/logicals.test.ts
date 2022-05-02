@@ -10,22 +10,9 @@ import { testCustomHook } from '../../test/internal';
 import {
   LOGICAL_PROPERTIES,
   LOGICAL_TEXT_ALIGNMENT,
-  logicalCSS,
   logicalStyle,
   logicalTextAlign,
 } from '../functions/logicals';
-
-describe('logicalCSS mixin returns a string property', () => {
-  describe('for each directional property:', () => {
-    LOGICAL_PROPERTIES.forEach((prop) => {
-      it(prop, () => {
-        expect(
-          testCustomHook(() => logicalCSS(prop, '8px')).return
-        ).toMatchSnapshot();
-      });
-    });
-  });
-});
 
 describe('logicalStyle mixin returns an object property', () => {
   describe('for each directional property:', () => {

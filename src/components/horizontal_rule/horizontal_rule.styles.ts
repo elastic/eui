@@ -7,13 +7,13 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalCSS } from '../../global_styling';
+import { logicalStyle } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiHorizontalRuleStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiHorizontalRule: css`
     border: none;
-    ${logicalCSS('height', euiTheme.border.width.thin)}
+    ${logicalStyle('height', euiTheme.border.width.thin)}
     background-color: ${euiTheme.border.color};
     flex-shrink: 0; // Ensure when used in flex group, it retains its size
     flex-grow: 0; // Ensure when used in flex group, it retains its size
@@ -21,15 +21,15 @@ export const euiHorizontalRuleStyles = ({ euiTheme }: UseEuiTheme) => ({
 
   // Sizes
   full: css`
-    ${logicalCSS('width', '100%')}
+    ${logicalStyle('width', '100%')}
   `,
   half: css`
-    ${logicalCSS('width', '50%')}
-    ${logicalCSS('margin-horizontal', 'auto')}
+    ${logicalStyle('width', '50%')}
+    ${logicalStyle('margin-horizontal', 'auto')}
   `,
   quarter: css`
-    ${logicalCSS('width', '25%')}
-    ${logicalCSS('margin-horizontal', 'auto')}
+    ${logicalStyle('width', '25%')}
+    ${logicalStyle('margin-horizontal', 'auto')}
   `,
 
   // Margins
