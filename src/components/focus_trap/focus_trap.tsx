@@ -17,6 +17,10 @@ export type FocusTarget = ElementTarget;
 
 interface EuiFocusTrapInterface {
   /**
+   * Whether `onClickOutside` should be called on mouseup instead of mousedown
+   */
+  closeOnMouseup?: boolean;
+  /**
    * Clicking outside the trap area will disable the trap
    */
   clickOutsideDisables?: boolean;
@@ -64,6 +68,10 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
     }
   }
 
+  componentWillUnmount() {
+    this.removeCloseListener();
+  }
+
   // Programmatically sets focus on a nested DOM node; optional
   setInitialFocus = (initialFocus?: FocusTarget) => {
     const node = findElementBySelectorOrRef(initialFocus);
@@ -72,14 +80,29 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
     node.setAttribute('data-autofocus', 'true');
   };
 
+  onClickOutside = (e: MouseEvent | TouchEvent) => {
+    this.props.onClickOutside && this.props.onClickOutside(e);
+    this.removeCloseListener();
+  };
+
+  addCloseListener = () => {
+    document.addEventListener('mouseup', this.onClickOutside);
+    document.addEventListener('touchend', this.onClickOutside);
+  };
+
+  removeCloseListener = () => {
+    document.removeEventListener('mouseup', this.onClickOutside);
+    document.removeEventListener('touchend', this.onClickOutside);
+  };
+
   handleOutsideClick: ReactFocusOnProps['onClickOutside'] = (...args) => {
-    const { onClickOutside, clickOutsideDisables } = this.props;
+    const { onClickOutside, clickOutsideDisables, closeOnMouseup } = this.props;
     if (clickOutsideDisables) {
       this.setState({ hasBeenDisabledByClick: true });
     }
 
     if (onClickOutside) {
-      onClickOutside(...args);
+      closeOnMouseup ? this.addCloseListener() : onClickOutside(...args);
     }
   };
 

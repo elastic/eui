@@ -367,6 +367,7 @@ export const EuiFlyout = forwardRef(
         disabled={isPushed}
         clickOutsideDisables={!ownFocus}
         onClickOutside={onClickOutside}
+        closeOnMouseup={true}
         shards={shards}
       >
         <Element
