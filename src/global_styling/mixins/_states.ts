@@ -16,11 +16,11 @@ export type _EuiFocusRingOffset =
   | CSSProperties['outlineOffset'];
 
 /**
- * Focus rings default to the browser's `outline`.
- * However, some components need to be forced to have the same behavior
- * This re-applies the same default outline with a couple parameters
+ * It is best practice to utilize the browser's default `outline` property for handling focus rings.
+ * However, some components need to be forced to have the same behavior, or adjust the display.
+ * This function re-applies the same default outline with a couple parameters
  * @param euiTheme UseEuiTheme.euiTheme
- * @param offset Accepts a specific measurement or 'inset' or 'outset' or 'center' to adjust outline position
+ * @param offset Accepts a specific measurement or 'inset', 'outset' or 'center' to adjust outline position
  * @param color Accepts any CSS color, **Note: only works in -webkit-**
  */
 export const euiFocusRing = (
@@ -41,11 +41,11 @@ export const euiFocusRing = (
     outlineOffset = `calc(${outlineWidth} / -2);`;
   }
 
-  // The latest theme utilizes `focus-visible` to turn on focus outlines.
+  // This function utilizes `focus-visible` to turn on focus outlines.
   // But this is browser-dependend:
   // 👉 Safari and Firefox innately respect only showing the outline with keyboard only
   // 💔 But they don't allow coloring of the 'auto'/default outline, so contrast is no good in dark mode.
-  // 👉 For these browsers we use the solid type in order to match with \`currentColor\`.
+  // 👉 For these browsers we use the solid type in order to match with `currentColor.
   // 😦 Which does means the outline will be square
   return `
     outline: ${outlineWidth} solid ${outlineColor};
