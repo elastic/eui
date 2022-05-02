@@ -8,6 +8,13 @@
 
 import { keysOf } from '../../components/common';
 
+/**
+ * EUI utilizes logical CSS properties to enable directional writing-modes.
+ * To encourage use of logical properties, we provide a few helper utilities to
+ * convert certain directional properties to logical properties.
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Logical_Properties
+ */
+
 export const logicalSide = {
   left: 'inline-start',
   right: 'inline-end',
@@ -110,12 +117,15 @@ export const logicalText = {
   },
 };
 
+export const LOGICAL_TEXT_ALIGNMENT = keysOf(logicalText['text-align']);
+export type LogicalText = typeof LOGICAL_TEXT_ALIGNMENT[number];
+
 /**
  *
  * @param property A string that is a valid CSS logical property
  * @param value String to output as the property value
  * @returns `object` Returns the logical CSS property version for the given `property: value` pair
  */
-export const logicalTextAlign = (value: 'left' | 'right' | 'center') => {
+export const logicalTextAlign = (value: LogicalText) => {
   return `text-align: ${logicalText['text-align'][value]};`;
 };

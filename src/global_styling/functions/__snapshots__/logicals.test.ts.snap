@@ -248,6 +248,8 @@ Object {
 }
 `;
 
-exports[`logicalTextAlign mixin returns an string property for each text align value: left 1`] = `"text-align: start;"`;
+exports[`logicalTextAlign mixin returns a string property for each text align value: center 1`] = `"text-align: center;"`;
 
-exports[`logicalTextAlign mixin returns an string property for each text align value: right 1`] = `"text-align: end;"`;
+exports[`logicalTextAlign mixin returns a string property for each text align value: left 1`] = `"text-align: start;"`;
+
+exports[`logicalTextAlign mixin returns a string property for each text align value: right 1`] = `"text-align: end;"`;

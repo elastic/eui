@@ -9,6 +9,7 @@
 import { testCustomHook } from '../../test/internal';
 import {
   LOGICAL_PROPERTIES,
+  LOGICAL_TEXT_ALIGNMENT,
   logicalCSS,
   logicalStyle,
   logicalTextAlign,
@@ -38,18 +39,14 @@ describe('logicalStyle mixin returns an object property', () => {
   });
 });
 
-describe('logicalTextAlign mixin returns an string property', () => {
+describe('logicalTextAlign mixin returns a string property', () => {
   describe('for each text align value:', () => {
-    it('left', () => {
-      expect(
-        testCustomHook(() => logicalTextAlign('left')).return
-      ).toMatchSnapshot();
-    });
-
-    it('right', () => {
-      expect(
-        testCustomHook(() => logicalTextAlign('right')).return
-      ).toMatchSnapshot();
+    LOGICAL_TEXT_ALIGNMENT.forEach((align) => {
+      it(align, () => {
+        expect(
+          testCustomHook(() => logicalTextAlign(align)).return
+        ).toMatchSnapshot();
+      });
     });
   });
 });
