@@ -31,7 +31,7 @@ export interface _EuiThemeFocus {
    */
   width: CSSProperties['borderWidth'];
   /**
-   * Used to transprentize any color at certain values
+   * Used to transparentize any color at certain values
    */
   // transparency: ColorModeSwitch<number>;
   /**
