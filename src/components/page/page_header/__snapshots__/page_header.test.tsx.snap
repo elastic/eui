@@ -202,6 +202,42 @@ exports[`EuiPageHeader props alignItems top is rendered 1`] = `
 </header>
 `;
 
+exports[`EuiPageHeader props bottomBorder is rendered as extended 1`] = `
+<header
+  class="euiPageHeader css-310oy4-euiPageHeader-border"
+>
+  <div
+    class="euiPageHeaderContent css-unkftj-euiPageHeaderContent"
+  >
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+    >
+      <div
+        class="euiFlexItem"
+      />
+    </div>
+  </div>
+</header>
+`;
+
+exports[`EuiPageHeader props bottomBorder is rendered as true 1`] = `
+<header
+  class="euiPageHeader css-1ef1zro-euiPageHeader"
+>
+  <div
+    class="euiPageHeaderContent css-1wn4des-euiPageHeaderContent-border-l"
+  >
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+    >
+      <div
+        class="euiFlexItem"
+      />
+    </div>
+  </div>
+</header>
+`;
+
 exports[`EuiPageHeader props page content props are passed down is rendered 1`] = `
 <header
   class="euiPageHeader css-1ef1zro-euiPageHeader"
