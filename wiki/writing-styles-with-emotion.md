@@ -278,15 +278,20 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
   const cssStyles = [styles.euiComponentName];
 
   const eventHeaderStyles = euiComponentNameEventHeaderStyles(euiTheme);
-  const cssEventHeaderStyles = [eventHeaderStyles.euiComponentName__child];
+  const cssEventHeaderStyles = [eventHeaderStyles.euiComponentName__eventHeader];
+  const cssEventHeaderIconStyles = [eventHeaderStyles.euiComponentName__eventHeaderIcon];
+  const cssEventHeaderButtonStyles = [eventHeaderStyles.euiComponentName__eventHeaderButton];
   
   const eventFooterStyles = euiComponentNameEventFooterStyles(euiTheme);
-  const cssEventFooterStyles = [eventFooterStyles.euiComponentName__child];
+  const cssEventFooterStyles = [eventFooterStyles.euiComponentName__eventFooter];
 
   return (
     <div css={cssStyles}>
-      <span css={eventHeaderStyles} />
-      <span css={eventFooterStyles} />
+      <span css={cssEventHeaderStyles}>
+        <span css={cssEventHeaderIconStyles} />
+        <button css={cssEventHeaderButtonStyles}>My button</button>
+      </span>
+      <span css={cssEventFooterStyles} />
     </div>
   )
 }
