@@ -153,8 +153,8 @@ interface _EuiFlyoutProps {
   style?: CSSProperties;
   /**
    * Object of props passed to EuiFocusTrap.
-   * Use `shards` to allow clicks on the provided external elements.
-   * Use `closeOnMouseup` to delay the close callback to prevent conflicts with toggle buttons.
+   * `shards` specifies an array of elements that will be considered part of the flyout, preventing the flyout from being closed when clicked.
+   * `closeOnMouseup` will delay the close callback, allowing time for external toggle buttons to handle close behavior.
    */
   focusTrapProps?: Pick<EuiFocusTrapProps, 'closeOnMouseup' | 'shards'>;
 }

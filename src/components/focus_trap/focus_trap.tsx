@@ -17,7 +17,8 @@ export type FocusTarget = ElementTarget;
 
 interface EuiFocusTrapInterface {
   /**
-   * Whether `onClickOutside` should be called on mouseup instead of mousedown
+   * Whether `onClickOutside` should be called on mouseup instead of mousedown.
+   * This flag can be used to prevent conflicts with outside toggle buttons by delaying the closing click callback.
    */
   closeOnMouseup?: boolean;
   /**
