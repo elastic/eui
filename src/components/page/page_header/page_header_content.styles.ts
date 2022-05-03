@@ -12,6 +12,8 @@ import { UseEuiTheme } from '../../../services';
 export const euiPageHeaderContentStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiPageHeaderContent: css`
     width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   `,
 
   // alignItems

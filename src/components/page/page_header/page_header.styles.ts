@@ -8,7 +8,6 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
-import { PAGE_MAX_WIDTH, _EuiPageRestrictWidth } from '../_restrict_width';
 
 export const euiPageHeaderStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
@@ -23,20 +22,4 @@ export const euiPageHeaderStyles = ({ euiTheme }: UseEuiTheme) => {
       border-block-end: ${euiTheme.border.thin};
     `,
   };
-};
-
-export const euiPageHeaderWidth = (restrictWidth: _EuiPageRestrictWidth) => {
-  if (restrictWidth === true) {
-    return css`
-      margin-left: auto;
-      margin-right: auto;
-      max-width: ${PAGE_MAX_WIDTH};
-    `;
-  } else if (restrictWidth !== undefined) {
-    return css`
-      margin-left: auto;
-      margin-right: auto;
-      max-width: ${restrictWidth};
-    `;
-  }
 };

@@ -25,10 +25,13 @@ import {
   PADDING_SIZES,
   euiBreakpoint,
 } from '../../../global_styling';
-import { _EuiPageRestrictWidth } from '../_restrict_width';
+import {
+  setStyleForRestrictedPageWidth,
+  _EuiPageRestrictWidth,
+} from '../_restrict_width';
 import { useEuiTheme } from '../../../services';
 
-import { euiPageHeaderStyles, euiPageHeaderWidth } from './page_header.styles';
+import { euiPageHeaderStyles } from './page_header.styles';
 import { euiPageHeaderContentStyles } from './page_header_content.styles';
 
 export const ALIGN_ITEMS = ['top', 'bottom', 'center', 'stretch'] as const;
@@ -159,6 +162,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
   restrictWidth,
   paddingSize: _paddingSize = 'none',
   bottomBorder: _bottom_border,
+  style,
   ...rest
 }) => {
   const isResponsiveBreakpoint = useIsWithinBreakpoints(
@@ -168,9 +172,9 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
 
   const useTheme = useEuiTheme();
   const classes = classNames('euiPageHeaderContent');
-  const width = euiPageHeaderWidth(restrictWidth as _EuiPageRestrictWidth);
   const pageHeaderStyles = euiPageHeaderStyles(useTheme);
-  const styles = euiPageHeaderContentStyles(useTheme);
+  const contentStyles = euiPageHeaderContentStyles(useTheme);
+  const styles = setStyleForRestrictedPageWidth(restrictWidth, style);
 
   let paddingSides = 'block';
   let paddingSize = _paddingSize;
@@ -200,19 +204,18 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
   const blockPadding = euiPaddingStyles(useTheme, paddingSides);
 
   const cssStyles = [
-    styles.euiPageHeaderContent,
-    width,
+    contentStyles.euiPageHeaderContent,
     bottomBorder && pageHeaderStyles.border,
     blockPadding[paddingSize],
   ];
 
   const childrenOnlyStyles = [
-    styles.flex,
-    styles[alignItems || 'center'],
-    responsive === true && isResponsiveBreakpoint && styles.responsive,
+    contentStyles.flex,
+    contentStyles[alignItems || 'center'],
+    responsive === true && isResponsiveBreakpoint && contentStyles.responsive,
     responsive === 'reverse' &&
       isResponsiveBreakpoint &&
-      styles.responsiveReverse,
+      contentStyles.responsiveReverse,
   ];
 
   // Don't go any further if there's no other content than children
@@ -248,7 +251,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
     const icon = iconType ? (
       <EuiIcon
         size="xl"
-        css={styles.euiPageHeaderContent__titleIcon}
+        css={contentStyles.euiPageHeaderContent__titleIcon}
         {...iconProps}
         type={iconType}
       />
@@ -377,7 +380,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
   }
 
   return alignItems === 'top' || isResponsiveBreakpoint ? (
-    <div className={classes} css={cssStyles} {...rest}>
+    <div className={classes} css={cssStyles} style={styles} {...rest}>
       {optionalBreadcrumbs}
       <EuiFlexGroup
         responsive={!!responsive}
@@ -400,7 +403,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
       {bottomContentNode}
     </div>
   ) : (
-    <div className={classes} css={cssStyles} {...rest}>
+    <div className={classes} css={cssStyles} style={styles} {...rest}>
       {optionalBreadcrumbs}
       <EuiFlexGroup
         responsive={!!responsive}

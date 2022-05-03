@@ -215,12 +215,12 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageHeader 1`] =
   >
     <header
       aria-label="aria-label"
-      class="euiPageHeader testClass1 testClass2 css-87zvdi-euiPageHeader-EuiPageHeader"
+      class="euiPageHeader testClass1 testClass2 css-1ef1zro-euiPageHeader"
       data-test-subj="test subject string"
       title="Page title"
     >
       <div
-        class="euiPageHeaderContent css-2pbold-euiPageHeaderContent-euiPageHeaderWidth-border-l"
+        class="euiPageHeaderContent css-1wn4des-euiPageHeaderContent-border-l"
       >
         <div
           class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
@@ -487,12 +487,13 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageHeader 1`
   >
     <header
       aria-label="aria-label"
-      class="euiPageHeader testClass1 testClass2 css-88z93x-euiPageHeader-l-EuiPageHeader"
+      class="euiPageHeader testClass1 testClass2 css-1xiivv7-euiPageHeader-l"
       data-test-subj="test subject string"
       title="Page title"
     >
       <div
-        class="euiPageHeaderContent css-19e9enh-euiPageHeaderContent-euiPageHeaderWidth-l"
+        class="euiPageHeaderContent css-1nca8h8-euiPageHeaderContent-l"
+        style="max-width:1200px"
       >
         <div
           class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
@@ -743,12 +744,13 @@ exports[`EuiPageTemplate template default is rendered with pageHeader 1`] = `
   >
     <header
       aria-label="aria-label"
-      class="euiPageHeader testClass1 testClass2 css-88z93x-euiPageHeader-l-EuiPageHeader"
+      class="euiPageHeader testClass1 testClass2 css-1xiivv7-euiPageHeader-l"
       data-test-subj="test subject string"
       title="Page title"
     >
       <div
-        class="euiPageHeaderContent css-19e9enh-euiPageHeaderContent-euiPageHeaderWidth-l"
+        class="euiPageHeaderContent css-1nca8h8-euiPageHeaderContent-l"
+        style="max-width:1200px"
       >
         <div
           class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
@@ -987,12 +989,12 @@ exports[`EuiPageTemplate template empty is rendered with pageHeader 1`] = `
   >
     <header
       aria-label="aria-label"
-      class="euiPageHeader testClass1 testClass2 css-87zvdi-euiPageHeader-EuiPageHeader"
+      class="euiPageHeader testClass1 testClass2 css-1ef1zro-euiPageHeader"
       data-test-subj="test subject string"
       title="Page title"
     >
       <div
-        class="euiPageHeaderContent css-2pbold-euiPageHeaderContent-euiPageHeaderWidth-border-l"
+        class="euiPageHeaderContent css-1wn4des-euiPageHeaderContent-border-l"
       >
         <div
           class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"

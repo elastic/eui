@@ -53,3 +53,26 @@ export function setPropsForRestrictedPageWidth(
 
   return { widthClassName, newStyle };
 }
+
+/**
+ * This function calculates the correct just the combined styles
+ * based on the `restrictWidth` value passed in
+ *
+ * @param restrictWidth `boolean | number | string` The prop value
+ * @param style `CSSProperties` An object of style attributes if provided
+ * @returns An object of the updated `style` props
+ */
+export function setStyleForRestrictedPageWidth(
+  restrictWidth: _EuiPageRestrictWidth['restrictWidth'],
+  style?: CSSProperties
+): CSSProperties {
+  const newStyle = { ...style };
+
+  if (restrictWidth === true) {
+    newStyle.maxWidth = PAGE_MAX_WIDTH;
+  } else if (restrictWidth !== false) {
+    newStyle.maxWidth = restrictWidth;
+  }
+
+  return newStyle;
+}

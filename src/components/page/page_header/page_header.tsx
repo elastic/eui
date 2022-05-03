@@ -60,6 +60,11 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   const useTheme = useEuiTheme();
   const styles = euiPageHeaderStyles(useTheme);
   const inlinePadding = euiPaddingStyles(useTheme, 'inline');
+  const cssStyles = [
+    styles.euiPageHeader,
+    inlinePadding[paddingSize],
+    bottomBorder === 'extended' && styles.border,
+  ];
 
   const classes = classNames('euiPageHeader', className);
 
@@ -85,15 +90,7 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   };
 
   return (
-    <header
-      className={classes}
-      css={[
-        styles.euiPageHeader,
-        inlinePadding[paddingSize],
-        bottomBorder === 'extended' && styles.border,
-      ]}
-      {...rest}
-    >
+    <header className={classes} css={cssStyles} {...rest}>
       <EuiPageHeaderContent {...contentProps}>{children}</EuiPageHeaderContent>
     </header>
   );
