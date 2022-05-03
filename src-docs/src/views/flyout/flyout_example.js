@@ -36,9 +36,6 @@ const flyoutWithBannerSource = require('!!raw-loader!./flyout_banner');
 import FlyoutPush from './flyout_push';
 const flyoutPushSource = require('!!raw-loader!./flyout_push');
 
-import FlyoutShards from './flyout_shards';
-const flyoutShardsSource = require('!!raw-loader!./flyout_shards');
-
 const flyOutSnippet = `<EuiFlyout onClose={closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
     <EuiTitle>
@@ -337,33 +334,6 @@ export const FlyoutExample = {
       snippet: flyoutPushedSnippet,
       demo: <FlyoutPush />,
       props: { EuiFlyout },
-    },
-    {
-      title: 'Passing options to EuiFocusTrap',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: flyoutShardsSource,
-        },
-      ],
-      text: (
-        <Fragment>
-          <p>
-            To configure certain options on the underlying{' '}
-            <EuiCode>EuiFocusTrap</EuiCode>, use the
-            <EuiCode>focusTrapProps</EuiCode> prop.
-          </p>
-          <p>
-            <EuiCode>shards</EuiCode> and <EuiCode>closeOnMouseup</EuiCode> each
-            affect how outside clicks will get handled.{' '}
-            <EuiCode>shards</EuiCode> specifies an array of elements that will
-            be considered part of the flyout, preventing close when clicked.
-            <EuiCode>closeOnMouseup</EuiCode> will delay the close callback,
-            allowing time for external toggle buttons to handle close behavior.
-          </p>
-        </Fragment>
-      ),
-      demo: <FlyoutShards />,
     },
     {
       title: 'Understanding max-width',
