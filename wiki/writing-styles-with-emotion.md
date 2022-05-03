@@ -343,6 +343,13 @@ When creating mixins & utilities for reuse within Emotion CSS, consider the foll
     - If you anticipate your mixin being used in the `style` prop instead of `css` (since React will want an object and camelCased CSS properties)
     - If you want your mixin to be partially composable, so if you think developers will want to obtain a single line/property from your mixin instead of the entire thing (e.g. `euiFontSize.lineHeight`)
 
+### Naming
+
+When naming your mixins & utilities, consider the following statements:
+
+- Always prefix publicly-exported functions with `eui` unless it's purely a generic helper utility with no specific EUI consideration
+- When creating both a returned string version and object version, append the function name with `CSS` for strings and `Style` for objects. Example: `euiMixinCSS()` vs `euiMixinStyle()`.
+
 ## FAQ
 
 ### Can the `css` prop be forwarded to a nested element?
