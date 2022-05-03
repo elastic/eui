@@ -35,37 +35,6 @@ const Flyout = ({ children = childrenDefault }) => {
   );
 };
 
-const FlyoutComplex = ({ children = childrenDefault, useShards = true }) => {
-  const buttonRef = useRef();
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <>
-      {isOpen ? (
-        <EuiFlyout
-          data-test-subj="flyoutSpec"
-          onClose={() => setIsOpen(false)}
-          ownFocus={false}
-          outsideClickCloses={true}
-          focusTrapProps={{
-            shards: useShards ? [buttonRef] : [],
-            closeOnMouseup: !useShards,
-          }}
-        >
-          {children}
-        </EuiFlyout>
-      ) : null}
-      <button
-        ref={buttonRef}
-        data-test-subj="toggle"
-        onClick={() => setIsOpen((isOpen) => !isOpen)}
-      >
-        Toggle
-      </button>
-    </>
-  );
-};
-
 describe('EuiFlyout', () => {
   describe('Focus behavior', () => {
     it('focuses the close button by default', () => {
@@ -126,40 +95,70 @@ describe('EuiFlyout', () => {
           expect(cy.get('[data-test-subj="flyoutSpec"]').should('exist'));
         });
     });
+  });
 
-    it('does not interfere when a shard is clicked', () => {
+  describe('focusTrapProps', () => {
+    const FlyoutComplex = ({
+      children = childrenDefault,
+      useShards = true,
+      focusTrapProps = {},
+    }) => {
+      const outsideRef = useRef();
+      const [isOpen, setIsOpen] = useState(false);
+
+      return (
+        <>
+          {isOpen ? (
+            <EuiFlyout
+              data-test-subj="flyoutSpec"
+              onClose={() => setIsOpen(false)}
+              ownFocus={false}
+              outsideClickCloses={true}
+              focusTrapProps={{
+                shards: useShards ? [outsideRef] : [],
+                ...focusTrapProps,
+              }}
+            >
+              {children}
+            </EuiFlyout>
+          ) : null}
+          <button
+            data-test-subj="toggle"
+            onClick={() => setIsOpen((isOpen) => !isOpen)}
+          >
+            Toggle
+          </button>
+          <button ref={outsideRef} data-test-subj="outside">
+            Outside
+          </button>
+        </>
+      );
+    };
+    it('does not close the flyout when a shard is clicked', () => {
       cy.mount(<FlyoutComplex />);
       cy.get('[data-test-subj="toggle"]')
         .realClick()
         .then(() => {
           expect(cy.get('[data-test-subj="flyoutSpec"]').should('exist'));
-        })
+        });
+      cy.get('[data-test-subj="outside"]')
+        .realClick()
         .then(() => {
-          cy.get('[data-test-subj="toggle"]')
-            .realClick()
-            .then(() => {
-              expect(
-                cy.get('[data-test-subj="flyoutSpec"]').should('not.exist')
-              );
-            });
+          expect(cy.get('[data-test-subj="flyoutSpec"]').should('exist'));
         });
     });
 
-    it('can delay the close callback', () => {
-      cy.mount(<FlyoutComplex useShards={false} />);
+    it('delays the close callback when the focus trap is set to close on mouseup instead of mousedown', () => {
+      cy.mount(<FlyoutComplex focusTrapProps={{ closeOnMouseup: true }} />);
       cy.get('[data-test-subj="toggle"]')
         .realClick()
         .then(() => {
           expect(cy.get('[data-test-subj="flyoutSpec"]').should('exist'));
-        })
+        });
+      cy.get('[data-test-subj="toggle"]')
+        .realClick()
         .then(() => {
-          cy.get('[data-test-subj="toggle"]')
-            .realClick()
-            .then(() => {
-              expect(
-                cy.get('[data-test-subj="flyoutSpec"]').should('not.exist')
-              );
-            });
+          expect(cy.get('[data-test-subj="flyoutSpec"]').should('not.exist'));
         });
     });
   });
