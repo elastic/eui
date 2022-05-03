@@ -8,7 +8,7 @@
 
 /// <reference types="../../../cypress/support"/>
 
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 
 import { EuiFlyout } from './flyout';
 
@@ -93,72 +93,6 @@ describe('EuiFlyout', () => {
         .realMouseUp()
         .then(() => {
           expect(cy.get('[data-test-subj="flyoutSpec"]').should('exist'));
-        });
-    });
-  });
-
-  describe('focusTrapProps', () => {
-    const FlyoutComplex = ({
-      children = childrenDefault,
-      useShards = true,
-      focusTrapProps = {},
-    }) => {
-      const outsideRef = useRef();
-      const [isOpen, setIsOpen] = useState(false);
-
-      return (
-        <>
-          {isOpen ? (
-            <EuiFlyout
-              data-test-subj="flyoutSpec"
-              onClose={() => setIsOpen(false)}
-              ownFocus={false}
-              outsideClickCloses={true}
-              focusTrapProps={{
-                shards: useShards ? [outsideRef] : [],
-                ...focusTrapProps,
-              }}
-            >
-              {children}
-            </EuiFlyout>
-          ) : null}
-          <button
-            data-test-subj="toggle"
-            onClick={() => setIsOpen((isOpen) => !isOpen)}
-          >
-            Toggle
-          </button>
-          <button ref={outsideRef} data-test-subj="outside">
-            Outside
-          </button>
-        </>
-      );
-    };
-    it('does not close the flyout when a shard is clicked', () => {
-      cy.mount(<FlyoutComplex />);
-      cy.get('[data-test-subj="toggle"]')
-        .realClick()
-        .then(() => {
-          expect(cy.get('[data-test-subj="flyoutSpec"]').should('exist'));
-        });
-      cy.get('[data-test-subj="outside"]')
-        .realClick()
-        .then(() => {
-          expect(cy.get('[data-test-subj="flyoutSpec"]').should('exist'));
-        });
-    });
-
-    it('delays the close callback when the focus trap is set to close on mouseup instead of mousedown', () => {
-      cy.mount(<FlyoutComplex focusTrapProps={{ closeOnMouseup: true }} />);
-      cy.get('[data-test-subj="toggle"]')
-        .realClick()
-        .then(() => {
-          expect(cy.get('[data-test-subj="flyoutSpec"]').should('exist'));
-        });
-      cy.get('[data-test-subj="toggle"]')
-        .realClick()
-        .then(() => {
-          expect(cy.get('[data-test-subj="flyoutSpec"]').should('not.exist'));
         });
     });
   });
