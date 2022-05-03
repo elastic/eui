@@ -14,16 +14,7 @@ import { EuiCollapsibleNav } from './collapsible_nav';
 import { EuiHeader, EuiHeaderSectionItemButton } from '../header';
 import { EuiIcon } from '../icon';
 
-const childrenDefault = (
-  <>
-    <button data-test-subj="itemA">Item A</button>
-    <button data-test-subj="itemB">Item B</button>
-    <button data-test-subj="itemC">Item C</button>
-    <input data-test-subj="itemD" />
-  </>
-);
-
-const Nav = ({ children = childrenDefault }) => {
+const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -48,7 +39,10 @@ const Nav = ({ children = childrenDefault }) => {
               }
               onClose={() => setIsOpen(false)}
             >
-              {children}
+              <button data-test-subj="itemA">Item A</button>
+              <button data-test-subj="itemB">Item B</button>
+              <button data-test-subj="itemC">Item C</button>
+              <input data-test-subj="itemD" />
             </EuiCollapsibleNav>,
           ],
         },
