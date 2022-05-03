@@ -50,7 +50,7 @@ export type EuiThemeShape = {
   size: _EuiThemeSizes;
   font: _EuiThemeFont;
   border: _EuiThemeBorder;
-  focus?: _EuiThemeFocus;
+  focus: _EuiThemeFocus;
   animation: _EuiThemeAnimation;
   breakpoint: _EuiThemeBreakpoints;
   levels: _EuiThemeLevels;
