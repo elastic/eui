@@ -198,7 +198,7 @@ describe('EuiAccordion', () => {
 
       component.find('button').at(0).simulate('click');
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     it('opens when div is clicked if element is a div', () => {
@@ -210,7 +210,7 @@ describe('EuiAccordion', () => {
 
       component.find('button').at(0).simulate('click');
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     it('closes when clicked twice', () => {
@@ -223,7 +223,7 @@ describe('EuiAccordion', () => {
       component.find('button').at(0).simulate('click');
       component.find('button').at(0).simulate('click');
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     it('accepts and calls an optional callback on open and close', () => {
