@@ -227,7 +227,7 @@ Although possible in some contexts, it is not recommended to "shortcut" logic us
 
 ## Child selectors
 
-Most components also contain child elements that have their own styles. All elements should live in the same function. Keep them within a single `styles.ts` file if they exist in the same `.tsx` file.
+Most components also contain child elements that have their own styles. If you have just a few child elements, consider having them in the same function.
 
 ```ts
 export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
@@ -247,6 +247,46 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
   return (
     <div css={cssStyles}>
       <span css={cssChildStyles} />
+    </div>
+  )
+}
+```
+
+If you have multiple child elements, consider grouping them in different theme functions to keep things tidy. Keep them within a single styles.ts file if they exist in the same .tsx file.
+
+```ts
+export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiComponentName: css``
+});
+
+export const euiComponentNameEventHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiComponentName__eventHeader: css``,
+  euiComponentName__eventHeaderIcon: css``,
+  euiComponentName__eventHeaderButton: css``
+});
+
+export const euiComponentNameEventFooterStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiComponentName__eventFooter: css``
+});
+```
+
+```tsx
+export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}) => {
+  const euiTheme = useEuiTheme();
+  
+  const styles = euiComponentNameStyles(euiTheme);
+  const cssStyles = [styles.euiComponentName];
+
+  const eventHeaderStyles = euiComponentNameEventHeaderStyles(euiTheme);
+  const cssEventHeaderStyles = [eventHeaderStyles.euiComponentName__child];
+  
+  const eventFooterStyles = euiComponentNameEventFooterStyles(euiTheme);
+  const cssEventFooterStyles = [eventFooterStyles.euiComponentName__child];
+
+  return (
+    <div css={cssStyles}>
+      <span css={eventHeaderStyles} />
+      <span css={eventFooterStyles} />
     </div>
   )
 }
