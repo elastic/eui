@@ -1,18 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`useEuiPaddingSize returns a static padding value for each size l 1`] = `"24px"`;
-
-exports[`useEuiPaddingSize returns a static padding value for each size m 1`] = `"16px"`;
-
-exports[`useEuiPaddingSize returns a static padding value for each size none 1`] = `null`;
-
-exports[`useEuiPaddingSize returns a static padding value for each size s 1`] = `"8px"`;
-
-exports[`useEuiPaddingSize returns a static padding value for each size xl 1`] = `"32px"`;
-
-exports[`useEuiPaddingSize returns a static padding value for each size xs 1`] = `"4px"`;
-
-exports[`useEuiPaddingStyles hook returns the object of static background-color properties and each logical side bottom 1`] = `
+exports[`useEuiPaddingCSS hook returns the object of static background-color properties and each logical side bottom 1`] = `
 Object {
   "l": "
       padding-block-end: 24px;
@@ -33,7 +21,7 @@ Object {
 }
 `;
 
-exports[`useEuiPaddingStyles hook returns the object of static background-color properties and each logical side horizontal 1`] = `
+exports[`useEuiPaddingCSS hook returns the object of static background-color properties and each logical side horizontal 1`] = `
 Object {
   "l": "
       padding-inline: 24px;
@@ -54,7 +42,7 @@ Object {
 }
 `;
 
-exports[`useEuiPaddingStyles hook returns the object of static background-color properties and each logical side left 1`] = `
+exports[`useEuiPaddingCSS hook returns the object of static background-color properties and each logical side left 1`] = `
 Object {
   "l": "
       padding-inline-start: 24px;
@@ -75,7 +63,7 @@ Object {
 }
 `;
 
-exports[`useEuiPaddingStyles hook returns the object of static background-color properties and each logical side right 1`] = `
+exports[`useEuiPaddingCSS hook returns the object of static background-color properties and each logical side right 1`] = `
 Object {
   "l": "
       padding-inline-end: 24px;
@@ -96,7 +84,7 @@ Object {
 }
 `;
 
-exports[`useEuiPaddingStyles hook returns the object of static background-color properties and each logical side top 1`] = `
+exports[`useEuiPaddingCSS hook returns the object of static background-color properties and each logical side top 1`] = `
 Object {
   "l": "
       padding-block-start: 24px;
@@ -117,7 +105,7 @@ Object {
 }
 `;
 
-exports[`useEuiPaddingStyles hook returns the object of static background-color properties and each logical side vertical 1`] = `
+exports[`useEuiPaddingCSS hook returns the object of static background-color properties and each logical side vertical 1`] = `
 Object {
   "l": "
       padding-block: 24px;
@@ -137,3 +125,15 @@ Object {
     ",
 }
 `;
+
+exports[`useEuiPaddingSize returns a static padding value for each size l 1`] = `"24px"`;
+
+exports[`useEuiPaddingSize returns a static padding value for each size m 1`] = `"16px"`;
+
+exports[`useEuiPaddingSize returns a static padding value for each size none 1`] = `null`;
+
+exports[`useEuiPaddingSize returns a static padding value for each size s 1`] = `"8px"`;
+
+exports[`useEuiPaddingSize returns a static padding value for each size xl 1`] = `"32px"`;
+
+exports[`useEuiPaddingSize returns a static padding value for each size xs 1`] = `"4px"`;

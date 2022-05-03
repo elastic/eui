@@ -14,7 +14,7 @@ import {
   useEuiPaddingSize,
   useEuiBackgroundColor,
   useEuiBackgroundColorCSS,
-  useEuiPaddingStyles,
+  useEuiPaddingCSS,
 } from '../../../../../src';
 
 import { ThemeExample } from '../_components/_theme_example';
@@ -244,7 +244,7 @@ export const UtilsJS = () => {
       <EuiSpacer size="l" />
 
       <ThemeExample
-        title={<code>{'useEuiPaddingStyles(side?)[size]'}</code>}
+        title={<code>{'useEuiPaddingCSS(side?)[size]'}</code>}
         description={
           <>
             <p>
@@ -261,14 +261,14 @@ export const UtilsJS = () => {
           <p
             css={[
               useEuiBackgroundColorCSS().warning,
-              useEuiPaddingStyles('left').l,
+              useEuiPaddingCSS('left').l,
             ]}
           >
-            <code>{useEuiPaddingStyles('left').l}</code>
+            <code>{useEuiPaddingCSS('left').l}</code>
           </p>
         }
         snippetLanguage="tsx"
-        snippet={`const paddingStyles = useEuiPaddingStyles('left');
+        snippet={`const paddingStyles = useEuiPaddingCSS('left');
 const cssStyles = [paddingStyles['l']];
 
 <span css={cssStyles}>

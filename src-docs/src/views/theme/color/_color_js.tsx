@@ -14,7 +14,7 @@ import {
   useEuiPaddingSize,
   BACKGROUND_COLORS,
   euiBackgroundColor,
-  useEuiPaddingStyles,
+  useEuiPaddingCSS,
 } from '../../../../../src';
 
 import { EuiThemeColors, ThemeRowType } from '../_props';
@@ -263,7 +263,7 @@ export const UtilsJS = () => {
           </>
         }
         example={
-          <p css={[useEuiBackgroundColorCSS().accent, useEuiPaddingStyles().l]}>
+          <p css={[useEuiBackgroundColorCSS().accent, useEuiPaddingCSS().l]}>
             <code>{useEuiBackgroundColorCSS().accent}</code>
           </p>
         }

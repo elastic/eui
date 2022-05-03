@@ -31,7 +31,7 @@ export const useEuiPaddingSize = (size: EuiPaddingSize) => {
   return euiPaddingSize(size, euiTheme);
 };
 
-export const useEuiPaddingStyles = (side?: LogicalSides) => {
+export const useEuiPaddingCSS = (side?: LogicalSides) => {
   const property = side ? `padding-${logicalSide[side]}` : 'padding';
 
   return {
