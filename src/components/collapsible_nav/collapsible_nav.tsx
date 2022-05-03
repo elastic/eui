@@ -73,6 +73,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   outsideClickCloses = true,
   closeButtonPosition = 'outside',
   paddingSize = 'none',
+  focusTrapProps: _focusTrapProps = {},
   ...rest
 }) => {
   const flyoutID = useGeneratedHtmlId({
@@ -81,6 +82,11 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   });
   const buttonRef = useRef();
   const combinedButtonRef = useCombinedRefs([button?.props.ref, buttonRef]);
+  const focusTrapProps: EuiFlyoutProps['focusTrapProps'] = {
+    closeOnMouseup: false,
+    ..._focusTrapProps,
+    shards: [buttonRef, ...(_focusTrapProps.shards || [])],
+  };
 
   /**
    * Setting the initial state of pushed based on the `type` prop
@@ -156,6 +162,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
       outsideClickCloses={outsideClickCloses}
       closeButtonPosition={closeButtonPosition}
       paddingSize={paddingSize}
+      focusTrapProps={focusTrapProps}
       {...rest}
       // Props dependent on internal docked status
       type={navIsDocked ? 'push' : 'overlay'}
