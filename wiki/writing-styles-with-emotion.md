@@ -324,8 +324,8 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
   const styles = euiComponentNameStyles(euiTheme);
   const cssStyles = [styles.euiComponentName, styles[size]];
 
-  const chilStyles = euiComponentNameChildStyles(euiTheme);
-  const cssChildStyles = [chilStyles.euiComponentName__child, chilStyles[size]];
+  const childStyles = euiComponentNameChildStyles(euiTheme);
+  const cssChildStyles = [childStyles.euiComponentName__child, childStyles[size]];
   
   return (
     <div css={cssStyles}>
