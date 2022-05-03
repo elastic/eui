@@ -31,7 +31,7 @@ exports[`EuiComment is rendered 1`] = `
     class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <figure
-      class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
+      class="euiCommentEvent css-1vw1i3u-euiCommentEvent-regular"
     >
       <figcaption
         class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
@@ -83,7 +83,7 @@ exports[`EuiComment props event is rendered 1`] = `
     class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <figure
-      class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
+      class="euiCommentEvent css-1vw1i3u-euiCommentEvent-regular"
     >
       <figcaption
         class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
@@ -137,7 +137,7 @@ exports[`EuiComment props timelineIcon is rendered 1`] = `
     class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <figure
-      class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
+      class="euiCommentEvent css-1vw1i3u-euiCommentEvent-regular"
     >
       <figcaption
         class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
@@ -189,7 +189,7 @@ exports[`EuiComment props timestamp is rendered 1`] = `
     class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <figure
-      class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
+      class="euiCommentEvent css-1vw1i3u-euiCommentEvent-regular"
     >
       <figcaption
         class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
@@ -248,7 +248,7 @@ exports[`EuiComment props type custom is rendered 1`] = `
     class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <div
-      class="euiCommentEvent euiCommentEvent--custom css-p2ten8-euiCommentEvent-custom"
+      class="euiCommentEvent css-p2ten8-euiCommentEvent-custom"
     />
   </div>
 </li>
@@ -283,7 +283,7 @@ exports[`EuiComment props type regular is rendered 1`] = `
     class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <figure
-      class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
+      class="euiCommentEvent css-1vw1i3u-euiCommentEvent-regular"
     >
       <figcaption
         class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
@@ -335,7 +335,7 @@ exports[`EuiComment props type update is rendered 1`] = `
     class="css-1a9m88x-euiTimelineItemEvent-center"
   >
     <div
-      class="euiCommentEvent euiCommentEvent--update css-krcl3t-euiCommentEvent-update"
+      class="euiCommentEvent css-krcl3t-euiCommentEvent-update"
     >
       <div
         class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow css-cylma9-euiCommentEvent__updatePanel"
@@ -391,7 +391,7 @@ exports[`EuiComment renders a body 1`] = `
     class="css-1waxxmm-euiTimelineItemEvent-top"
   >
     <figure
-      class="euiCommentEvent euiCommentEvent--regular css-1vw1i3u-euiCommentEvent-regular"
+      class="euiCommentEvent css-1vw1i3u-euiCommentEvent-regular"
     >
       <figcaption
         class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
@@ -410,7 +410,7 @@ exports[`EuiComment renders a body 1`] = `
         </div>
       </figcaption>
       <div
-        class="euiCommentEvent__body css-1gv33fs-euiCommentEvent__body"
+        class="euiCommentEvent__body"
       >
         <p>
           This is the body.

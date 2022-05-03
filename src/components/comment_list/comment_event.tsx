@@ -7,13 +7,17 @@
  */
 
 import React, { FunctionComponent, ReactNode } from 'react';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 import classNames from 'classnames';
 import { IconType } from '../icon';
 import { EuiPanel, EuiPanelProps } from '../panel';
 import { EuiAvatar } from '../avatar';
-import { euiCommentEventStyles } from './comment_event.styles';
+import {
+  euiCommentEventStyles,
+  euiCommentEventHeaderStyles,
+  euiCommentEventUpdatePanelStyles,
+} from './comment_event.styles';
 
 export interface EuiCommentEventProps extends CommonProps {
   /**
@@ -57,14 +61,8 @@ export interface EuiCommentEventProps extends CommonProps {
   children?: ReactNode;
 }
 
-const typeToClassNameMap = {
-  regular: 'euiCommentEvent--regular',
-  update: 'euiCommentEvent--update',
-  custom: 'euiCommentEvent--custom',
-};
-
-export const TYPES = keysOf(typeToClassNameMap);
-export type EuiCommentType = keyof typeof typeToClassNameMap;
+export const TYPES = ['regular', 'update', 'custom'] as const;
+export type EuiCommentType = typeof TYPES[number];
 
 export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   children,
@@ -78,22 +76,21 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   updateIconAriaLabel,
   updateColor,
 }) => {
-  const classes = classNames(
-    'euiCommentEvent',
-    typeToClassNameMap[type],
-    className
-  );
+  const classes = classNames('euiCommentEvent', className);
 
   const euiTheme = useEuiTheme();
-  const styles = euiCommentEventStyles(euiTheme);
 
+  const styles = euiCommentEventStyles(euiTheme);
   const cssStyles = [styles.euiCommentEvent, styles[type]];
-  const cssHeaderStyles = styles.euiCommentEvent__header;
-  const cssBodyStyles = styles.euiCommentEvent__body;
-  const cssHeaderUsernameStyles = styles.euiCommentEvent__headerUsername;
-  const cssHeaderDataStyles = styles.euiCommentEvent__headerData;
-  const cssUpdatePanelStyles = styles.euiCommentEvent__updatePanel;
-  const cssHeaderActionsStyles = styles.euiCommentEvent__headerActions;
+
+  const headerStyles = euiCommentEventHeaderStyles(euiTheme);
+  const cssHeaderStyles = headerStyles.euiCommentEvent__header;
+  const cssHeaderUsernameStyles = headerStyles.euiCommentEvent__headerUsername;
+  const cssHeaderDataStyles = headerStyles.euiCommentEvent__headerData;
+  const cssHeaderActionsStyles = headerStyles.euiCommentEvent__headerActions;
+
+  const updatePanelStyles = euiCommentEventUpdatePanelStyles(euiTheme);
+  const cssUpdatePanelStyles = updatePanelStyles.euiCommentEvent__updatePanel;
 
   const isTypeUpdate = type === 'update';
   const isTypeCustom = type === 'custom';
@@ -163,9 +160,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
     <Element className={classes} css={cssStyles}>
       {isTypeUpdate ? updateEventHeader : regularEventHeader}
       {children ? (
-        <div className="euiCommentEvent__body" css={cssBodyStyles}>
-          {children}
-        </div>
+        <div className="euiCommentEvent__body">{children}</div>
       ) : undefined}
     </Element>
   );
