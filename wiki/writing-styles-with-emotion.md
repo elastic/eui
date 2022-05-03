@@ -227,15 +227,11 @@ Although possible in some contexts, it is not recommended to "shortcut" logic us
 
 ## Child selectors
 
-Most components also contain child elements that have their own styles. Each element should have it's own theme function to keep things tidy. Keep them within a single `styles.ts` file if they exist in the same `.tsx` file.
+Most components also contain child elements that have their own styles. All elements should live in the same function. Keep them within a single `styles.ts` file if they exist in the same `.tsx` file.
 
 ```ts
 export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiComponentName: css``
-});
-
-
-export const euiComponentNameChildStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiComponentName__child: css``
 });
 ```
@@ -246,9 +242,7 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
   
   const styles = euiComponentNameStyles(euiTheme);
   const cssStyles = [styles.euiComponentName];
-  
-  const childStyles = euiComponentNameChildStyles(euiTheme);
-  const cssChildStyles = [childStyles.euiComponentName__child];
+  const cssChildStyles = [styles.euiComponentName__child];
   
   return (
     <div css={cssStyles}>
@@ -265,13 +259,6 @@ For the most part, nested selectors should not be necessary. If a child element 
 ```ts
 export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiComponentName: css``,
-  // Sizes
-  s: css``,
-  m: css``,
-});
-
-
-export const euiComponentNameChildStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiComponentName__child: css``,
   // Sizes
   s: css``,
@@ -285,13 +272,11 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
   
   const styles = euiComponentNameStyles(euiTheme);
   const cssStyles = [styles.euiComponentName, styles[size]];
-  
-  const childStyles = euiComponentNameChildStyles(euiTheme);
-  const cssChildStyles = [childStyles.euiComponentName__child, childStyles[size]];
+  const cssChildStyles = [styles.euiComponentName__child, styles[size]];
   
   return (
     <div css={cssStyles}>
-      <span> css={cssChildStyles} />
+      <span css={cssChildStyles} />
     </div>
   )
 }
