@@ -212,7 +212,6 @@ export const AccessibilityExample = {
               </EuiText>
             }
             snippet={'<p className="euiScreenReaderOnly" />'}
-            snippetLanguage="html"
           />
           <ThemeExample
             title={<code>euiScreenReaderOnlyStyles()</code>}
@@ -231,7 +230,6 @@ export const AccessibilityExample = {
               </EuiText>
             }
             snippet={'<p css={css(euiScreenReaderOnlyStyles())} />'}
-            snippetLanguage="ts"
           />
         </>
       ),

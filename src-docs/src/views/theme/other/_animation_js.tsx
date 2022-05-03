@@ -13,11 +13,11 @@ import { getPropsFromComponent } from '../../../services/props/get_props';
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 
-const canAnimateString = `\${euiCanAnimate}{
+const canAnimateString = `\${euiCanAnimate} {
     transition: background \${euiTheme.animation.slow};
   }`;
 
-const animationString = `\${euiCanAnimate}{
+const animationString = `\${euiCanAnimate} {
     transition: padding \${euiTheme.animation.slow} \${euiTheme.animation.resistance};
   }`;
 
@@ -61,6 +61,7 @@ export default ({
           </div>
         }
         snippet={canAnimateString}
+        snippetLanguage="emotion"
       />
 
       <ThemeValuesTable
@@ -110,6 +111,7 @@ export default ({
           </div>
         }
         snippet={animationString}
+        snippetLanguage="emotion"
       />
 
       <ThemeValuesTable

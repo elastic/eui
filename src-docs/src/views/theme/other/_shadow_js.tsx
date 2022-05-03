@@ -114,6 +114,7 @@ export default () => {
         snippet={
           'box-shadow: 0 ${euiTheme.size.xs} ${euiTheme.size.xs} ${transparentize(euiTheme.colors.shadow, 0.04)};'
         }
+        snippetLanguage="emotion"
       />
 
       <ThemeExample
@@ -141,8 +142,8 @@ export default () => {
             </strong>
           </div>
         }
-        snippet={'css(useEuiShadow())'}
-        snippetLanguage="tsx"
+        snippet={'${useEuiShadow()}'}
+        snippetLanguage="emotion"
       />
 
       <EuiPanel color="accent">
