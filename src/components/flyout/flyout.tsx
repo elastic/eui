@@ -152,7 +152,9 @@ interface _EuiFlyoutProps {
   pushMinBreakpoint?: EuiBreakpointSize | number;
   style?: CSSProperties;
   /**
-   * Object of props passed to EuiFocusTrap
+   * Object of props passed to EuiFocusTrap.
+   * Use `shards` to allow clicks on the provided external elements.
+   * Use `closeOnMouseup` to delay the close callback to prevent conflicts with toggle buttons.
    */
   focusTrapProps?: Pick<EuiFocusTrapProps, 'closeOnMouseup' | 'shards'>;
 }
@@ -367,7 +369,6 @@ export const EuiFlyout = forwardRef(
         disabled={isPushed}
         clickOutsideDisables={!ownFocus}
         onClickOutside={onClickOutside}
-        closeOnMouseup={true}
         {...focusTrapProps}
       >
         <Element

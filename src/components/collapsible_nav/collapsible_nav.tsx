@@ -83,7 +83,6 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   const buttonRef = useRef();
   const combinedButtonRef = useCombinedRefs([button?.props.ref, buttonRef]);
   const focusTrapProps: EuiFlyoutProps['focusTrapProps'] = {
-    closeOnMouseup: false,
     ..._focusTrapProps,
     shards: [buttonRef, ...(_focusTrapProps.shards || [])],
   };
