@@ -49,6 +49,7 @@ export default () => (
       event={eventWihtMultipleTags}
       timestamp="22 hours ago"
       updateIcon="tag"
+      updateIconAriaLabel="tag"
     />
     <EuiComment
       username="system"

@@ -42,6 +42,11 @@ export interface EuiCommentEventProps extends CommonProps {
    */
   updateIcon?: IconType;
   /**
+   * Specify an `aria-label` for the `updateIcon`.
+   * If no `aria-label` is passed we assume the icon is purely decorative.
+   */
+  updateIconAriaLabel?: string;
+  /**
    * Background color for the event header only when the `type` is `"update"`.
    * When a color is used it adds a padding.
    */
@@ -70,6 +75,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   event,
   actions,
   updateIcon,
+  updateIconAriaLabel,
   updateColor,
 }) => {
   const classes = classNames(
@@ -134,11 +140,12 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
       <HeaderElement className="euiCommentEvent__header" css={cssHeaderStyles}>
         {updateIcon && (
           <EuiAvatar
-            name=""
             size="s"
             iconType={updateIcon}
+            name={updateIconAriaLabel ? updateIconAriaLabel : ''}
             color="subdued"
             className="euiCommentEvent__headerIconUpdate"
+            aria-hidden={!updateIconAriaLabel}
           />
         )}
         {headerElements}

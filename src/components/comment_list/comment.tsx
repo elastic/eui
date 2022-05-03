@@ -45,6 +45,7 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
   type = 'regular',
   timestamp,
   updateIcon,
+  updateIconAriaLabel,
   updateColor,
   component = 'li',
   ...rest
@@ -76,6 +77,7 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
         timestamp={timestamp}
         type={type}
         updateIcon={updateIcon}
+        updateIconAriaLabel={updateIconAriaLabel}
         updateColor={updateColor}
       >
         {children}

@@ -57,6 +57,7 @@ const initialComments: EuiCommentProps[] = [
     event: complexEvent,
     timestamp: 'on 3rd March 2022',
     updateIcon: 'tag',
+    updateIconAriaLabel: 'tag',
   },
   {
     type: 'regular',
@@ -138,6 +139,7 @@ export default () => {
           event={comment.event}
           timestamp={comment.timestamp}
           updateIcon={comment.updateIcon}
+          updateIconAriaLabel={comment.updateIconAriaLabel}
         />
       );
     } else {

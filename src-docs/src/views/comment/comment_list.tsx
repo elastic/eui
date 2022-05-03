@@ -75,6 +75,7 @@ const comments: EuiCommentProps[] = [
     event: 'edited case',
     timestamp: 'on Jan 9, 2020',
     updateIcon: 'pencil',
+    updateIconAriaLabel: 'edit',
   },
   {
     username: 'pedror',
@@ -83,6 +84,7 @@ const comments: EuiCommentProps[] = [
     event: complexEvent,
     timestamp: 'on Jan 11, 2020',
     updateIcon: 'tag',
+    updateIconAriaLabel: 'tag',
   },
   {
     username: 'elohar',
