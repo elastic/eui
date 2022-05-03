@@ -370,6 +370,24 @@ export const EuiComponentName = ({ componentProps }) => {
 
 **[Refer to EuiBottomBar to see an example of this pattern in practice and as an example of using `forwardRef`.](../src/components/bottom_bar/bottom_bar.tsx)**
 
+## Emotion mixins & utilities
+
+When creating mixins & utilities for reuse within Emotion CSS, consider the following best practices:
+
+- Publicly-exported mixins & utilities should go in [`src/global_styling/mixins`](https://github.com/elastic/eui/tree/main/src/global_styling/mixins). Utilities that are internal to EUI only should live in [`src/global_styling/functions`](https://github.com/elastic/eui/tree/main/src/global_styling/functions).
+- If the mixin is simple and does not reference `euiTheme`, you do not need to create a hook version of it.
+- In general, prefer returning CSS strings in your mixin.
+  - However, you should consider creating a 2nd util that returns a style object instead of a CSS string if the following scenarios apply to your mixin usage:
+    - If you anticipate your mixin being used in the `style` prop instead of `css` (since React will want an object and camelCased CSS properties)
+    - If you want your mixin to be partially composable, so if you think developers will want to obtain a single line/property from your mixin instead of the entire thing (e.g. `euiFontSize.lineHeight`)
+
+### Naming
+
+When naming your mixins & utilities, consider the following statements:
+
+- Always prefix publicly-exported functions with `eui` unless it's purely a generic helper utility with no specific EUI consideration
+- When creating both a returned string version and object version, append the function name with `CSS` for strings and `Style` for objects. Example: `euiMixinCSS()` vs `euiMixinStyle()`.
+
 ## FAQ
 
 ### Can the `css` prop be forwarded to a nested element?
