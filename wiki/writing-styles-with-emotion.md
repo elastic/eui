@@ -287,11 +287,11 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
 
   return (
     <div css={cssStyles}>
-      <span css={cssEventHeaderStyles}>
+      <div css={cssEventHeaderStyles}>
         <span css={cssEventHeaderIconStyles} />
         <button css={cssEventHeaderButtonStyles}>My button</button>
-      </span>
-      <span css={cssEventFooterStyles} />
+      </div>
+      <div css={cssEventFooterStyles} />
     </div>
   )
 }
