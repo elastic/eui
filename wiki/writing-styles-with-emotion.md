@@ -282,7 +282,7 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
   const cssHeaderIconStyles = [headerStyles.euiComponentName__headerIcon];
   const cssHeaderButtonStyles = [headerStyles.euiComponentName__headerButton];
   
-  const footerStyles = euiComponentNameEventFooterStyles(euiTheme);
+  const footerStyles = euiComponentNameFooterStyles(euiTheme);
   const cssFooterStyles = [footerStyles.euiComponentName__footer];
 
   return (
