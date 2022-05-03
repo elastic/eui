@@ -6,6 +6,7 @@ import {
   EuiCode,
   EuiLink,
   keysOf,
+  logicalCSS,
   logicalStyle,
   logicals,
   EuiSpacer,
@@ -160,33 +161,51 @@ export const UtilsJS = () => {
       <EuiSpacer size="l" />
 
       <ThemeExample
-        title={<code>{'logicalStyle(property, value)'}</code>}
+        title={<code>{'logicalCSS(property, value)'}</code>}
         description={
-          <>
-            <p>
-              Returns a style <strong>object</strong> of the logical CSS
-              property version for the given{' '}
-              <EuiCode language="css">property: value</EuiCode> pair.
-            </p>
-            <p>
-              This can be passed as any method of styling; through
-              Emotion&apos;s <EuiCode>{'css``'}</EuiCode> method or React&apos;s
-              element <EuiCode>style</EuiCode> property.
-            </p>
-          </>
+          <p>
+            Returns the <strong>string version</strong> of the logical CSS
+            property version for the given{' '}
+            <EuiCode language="css">property: value</EuiCode> pair. Best used
+            when providing styles via Emotion&apos;s{' '}
+            <EuiCode>{'css``'}</EuiCode> method.
+          </p>
         }
         example={
           <p
-            css={css`
-              ${useEuiBackgroundColorStyles().warning};
-              ${logicalStyle('padding-left', '100px')}
-            `}
+            css={[
+              useEuiBackgroundColorStyles().warning,
+              logicalCSS('padding-left', '100px'),
+            ]}
+          >
+            <code>{logicalCSS('padding-left', '100px')}</code>
+          </p>
+        }
+        snippetLanguage="emotion"
+        snippet={"${logicalCSS('padding-left', '100px')};"}
+      />
+
+      <ThemeExample
+        title={<code>{'logicalStyle(property, value)'}</code>}
+        description={
+          <p>
+            Returns the <strong>object version</strong> of the logical CSS
+            property version for the given{' '}
+            <EuiCode language="css">property: value</EuiCode> pair. Best used
+            when providing styles via React&apos;s <EuiCode>style</EuiCode>{' '}
+            property.
+          </p>
+        }
+        example={
+          <p
+            css={css(useEuiBackgroundColorStyles().warning)}
+            style={logicalStyle('padding-left', '100px')}
           >
             <code>{JSON.stringify(logicalStyle('padding-left', '100px'))}</code>
           </p>
         }
-        snippetLanguage="emotion"
-        snippet={"${logicalStyle('padding-left', '100px')}"}
+        snippetLanguage="tsx"
+        snippet={"<p style={logicalStyle('padding-left', '100px')} />"}
       />
 
       <ThemeExample

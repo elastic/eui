@@ -8,7 +8,7 @@
 
 import { css, keyframes } from '@emotion/react';
 import { euiPaletteColorBlind, shadeOrTint, UseEuiTheme } from '../../services';
-import { euiCanAnimate, logicalStyle } from '../../global_styling';
+import { euiCanAnimate, logicalCSS } from '../../global_styling';
 
 export const euiLoadingChartStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiLoadingChart: css`
@@ -36,15 +36,15 @@ export const euiLoadingChartBarStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
   m: css`
     width: ${euiTheme.size.xxs};
-    ${logicalStyle('margin-bottom', euiTheme.size.s)};
+    ${logicalCSS('margin-bottom', euiTheme.size.s)};
   `,
   l: css`
     width: ${euiTheme.size.xs};
-    ${logicalStyle('margin-bottom', euiTheme.size.m)};
+    ${logicalCSS('margin-bottom', euiTheme.size.m)};
   `,
   xl: css`
     width: ${euiTheme.size.s};
-    ${logicalStyle('margin-bottom', euiTheme.size.base)};
+    ${logicalCSS('margin-bottom', euiTheme.size.base)};
   `,
 });
 
