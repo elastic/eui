@@ -104,7 +104,7 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
     }
 
     if (onClickOutside) {
-      closeOnMouseup ? this.addCloseListener() : onClickOutside(...args);
+      closeOnMouseup ? this.addMouseupListener() : onClickOutside(...args);
     }
   };
 

@@ -12,36 +12,6 @@ import React, { useRef } from 'react';
 import { EuiFocusTrap } from './focus_trap';
 import { EuiPortal } from '../portal';
 
-const Trap = ({
-  onClickOutside,
-  shards,
-  closeOnMouseup,
-}: {
-  onClickOutside?: any;
-  shards?: boolean;
-  closeOnMouseup?: boolean;
-}) => {
-  const buttonRef = useRef();
-  return (
-    <div>
-      <EuiFocusTrap
-        onClickOutside={onClickOutside}
-        shards={shards ? [buttonRef] : []}
-        closeOnMouseup={closeOnMouseup}
-      >
-        <div data-test-subj="container">
-          <input data-test-subj="input" />
-          <input data-test-subj="input2" />
-        </div>
-      </EuiFocusTrap>
-      <button ref={buttonRef} data-test-subj="outside">
-        outside the focus trap
-      </button>
-      <button data-test-subj="outside2">also outside the focus trap</button>
-    </div>
-  );
-};
-
 describe('EuiFocusTrap', () => {
   describe('focus', () => {
     it('is set on the first focusable element by default', () => {
@@ -189,12 +159,39 @@ describe('EuiFocusTrap', () => {
   });
 
   describe('outside click handling', () => {
+    const Trap = ({
+      onClickOutside,
+      shards,
+      closeOnMouseup,
+    }: {
+      onClickOutside?: any;
+      shards?: boolean;
+      closeOnMouseup?: boolean;
+    }) => {
+      const buttonRef = useRef();
+      return (
+        <div>
+          <EuiFocusTrap
+            onClickOutside={onClickOutside}
+            shards={shards ? [buttonRef] : []}
+            closeOnMouseup={closeOnMouseup}
+          >
+            <div data-test-subj="container">
+              <input data-test-subj="input" />
+              <input data-test-subj="input2" />
+            </div>
+          </EuiFocusTrap>
+          <button ref={buttonRef} data-test-subj="outside">
+            outside the focus trap
+          </button>
+          <button data-test-subj="outside2">also outside the focus trap</button>
+        </div>
+      );
+    };
+
     it('calls the callback on mousedown', () => {
       const onClickOutside = cy.stub();
       cy.mount(<Trap onClickOutside={onClickOutside} />);
-
-      // The existence of `data-focus-lock-disabled=false` indicates that the trap is enabled.
-      cy.get('[data-focus-lock-disabled=false]');
 
       cy.get('[data-test-subj=outside]')
         .realMouseDown()
@@ -206,8 +203,6 @@ describe('EuiFocusTrap', () => {
     it('calls the callback on mouseup when using closeOnMouseup', () => {
       const onClickOutside = cy.stub();
       cy.mount(<Trap onClickOutside={onClickOutside} closeOnMouseup />);
-
-      cy.get('[data-focus-lock-disabled=false]');
 
       cy.get('[data-test-subj=outside]')
         .realMouseDown()
@@ -221,11 +216,9 @@ describe('EuiFocusTrap', () => {
         });
     });
 
-    it('dose not call the callback if the element is a shard', () => {
+    it('does not call the callback if the element is a shard', () => {
       const onClickOutside = cy.stub();
       cy.mount(<Trap onClickOutside={onClickOutside} shards />);
-
-      cy.get('[data-focus-lock-disabled=false]');
 
       cy.get('[data-test-subj=outside]')
         .realMouseDown()
