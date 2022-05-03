@@ -12,7 +12,8 @@ import {
   LOGICAL_TEXT_ALIGNMENT,
   logicalCSS,
   logicalStyle,
-  logicalTextAlign,
+  logicalTextAlignCSS,
+  logicalTextAlignStyle,
 } from '../functions/logicals';
 
 describe('logicalCSS mixin returns a string property', () => {
@@ -39,12 +40,24 @@ describe('logicalStyle mixin returns an object property', () => {
   });
 });
 
-describe('logicalTextAlign mixin returns a string property', () => {
+describe('logicalTextAlignCSS mixin returns a string property', () => {
   describe('for each text align value:', () => {
     LOGICAL_TEXT_ALIGNMENT.forEach((align) => {
       it(align, () => {
         expect(
-          testCustomHook(() => logicalTextAlign(align)).return
+          testCustomHook(() => logicalTextAlignCSS(align)).return
+        ).toMatchSnapshot();
+      });
+    });
+  });
+});
+
+describe('logicalTextAlignStyle mixin returns a string property', () => {
+  describe('for each text align value:', () => {
+    LOGICAL_TEXT_ALIGNMENT.forEach((align) => {
+      it(align, () => {
+        expect(
+          testCustomHook(() => logicalTextAlignStyle(align)).return
         ).toMatchSnapshot();
       });
     });

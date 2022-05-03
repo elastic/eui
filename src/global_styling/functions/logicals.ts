@@ -128,8 +128,18 @@ export type LogicalText = typeof LOGICAL_TEXT_ALIGNMENT[number];
  *
  * @param property A string that is a valid CSS logical property
  * @param value String to output as the property value
+ * @returns `string` Returns the logical CSS property version for the given `property: value` pair
+ */
+export const logicalTextAlignCSS = (value: LogicalText) => {
+  return `text-align: ${logicalText['text-align'][value]};`;
+};
+
+/**
+ *
+ * @param property A string that is a valid CSS logical property
+ * @param value String to output as the property value
  * @returns `object` Returns the logical CSS property version for the given `property: value` pair
  */
-export const logicalTextAlign = (value: LogicalText) => {
-  return `text-align: ${logicalText['text-align'][value]};`;
+export const logicalTextAlignStyle = (value: LogicalText) => {
+  return { textAlign: logicalText['text-align'][value] };
 };

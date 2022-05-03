@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalCSS, logicalTextAlign } from '../../global_styling';
+import { logicalCSS, logicalTextAlignCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 const _avatarSize = ({
@@ -35,7 +35,7 @@ export const euiAvatarStyles = ({ euiTheme }: UseEuiTheme) => ({
     align-items: center;
     vertical-align: middle;
     background-size: cover;
-    ${logicalTextAlign('center')};
+    ${logicalTextAlignCSS('center')};
     ${logicalCSS('overflow-x', 'hidden')}
     // Explicitly state weight so it doesn't get overridden by inheritance
     font-weight: ${euiTheme.font.weight.medium};
