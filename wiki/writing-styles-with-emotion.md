@@ -252,7 +252,7 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
 }
 ```
 
-If you have multiple child elements, consider grouping them in different theme functions to keep things tidy. Keep them within a single styles.ts file if they exist in the same .tsx file.
+If you have multiple child elements, consider grouping them in different theme functions to keep things tidy. Keep them within a single `styles.ts` file if they exist in the same `.tsx` file.
 
 ```ts
 export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
