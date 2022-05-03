@@ -227,15 +227,11 @@ Although possible in some contexts, it is not recommended to "shortcut" logic us
 
 ## Child selectors
 
-Most components also contain child elements that have their own styles. Each element should have it's own theme function to keep things tidy. Keep them within a single `styles.ts` file if they exist in the same `.tsx` file.
+Most components also contain child elements that have their own styles. If you have just a few child elements, consider having them in the same function.
 
 ```ts
 export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiComponentName: css``
-});
-
-
-export const euiComponentNameChildStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiComponentName: css``,
   euiComponentName__child: css``
 });
 ```
@@ -246,13 +242,56 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
   
   const styles = euiComponentNameStyles(euiTheme);
   const cssStyles = [styles.euiComponentName];
-  
-  const childStyles = euiComponentNameChildStyles(euiTheme);
-  const cssChildStyles = [childStyles.euiComponentName__child];
+  const cssChildStyles = [styles.euiComponentName__child];
   
   return (
     <div css={cssStyles}>
       <span css={cssChildStyles} />
+    </div>
+  )
+}
+```
+
+If you have multiple child elements, consider grouping them in different theme functions to keep things tidy. Keep them within a single `styles.ts` file if they exist in the same `.tsx` file.
+
+```ts
+export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiComponentName: css``
+});
+
+export const euiComponentNameHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiComponentName__header: css``,
+  euiComponentName__headerIcon: css``,
+  euiComponentName__headerButton: css``
+});
+
+export const euiComponentNameFooterStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiComponentName__footer: css``
+});
+```
+
+```tsx
+export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}) => {
+  const euiTheme = useEuiTheme();
+  
+  const styles = euiComponentNameStyles(euiTheme);
+  const cssStyles = [styles.euiComponentName];
+
+  const headerStyles = euiComponentNameHeaderStyles(euiTheme);
+  const cssHeaderStyles = [headerStyles.euiComponentName__header];
+  const cssHeaderIconStyles = [headerStyles.euiComponentName__headerIcon];
+  const cssHeaderButtonStyles = [headerStyles.euiComponentName__headerButton];
+  
+  const footerStyles = euiComponentNameFooterStyles(euiTheme);
+  const cssFooterStyles = [footerStyles.euiComponentName__footer];
+
+  return (
+    <div css={cssStyles}>
+      <div css={cssHeaderStyles}>
+        <span css={cssHeaderIconStyles} />
+        <button css={cssHeaderButtonStyles}>My button</button>
+      </div>
+      <div css={cssFooterStyles} />
     </div>
   )
 }
@@ -270,7 +309,6 @@ export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
   m: css``,
 });
 
-
 export const euiComponentNameChildStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiComponentName__child: css``,
   // Sizes
@@ -285,13 +323,13 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
   
   const styles = euiComponentNameStyles(euiTheme);
   const cssStyles = [styles.euiComponentName, styles[size]];
-  
+
   const childStyles = euiComponentNameChildStyles(euiTheme);
   const cssChildStyles = [childStyles.euiComponentName__child, childStyles[size]];
   
   return (
     <div css={cssStyles}>
-      <span> css={cssChildStyles} />
+      <span css={cssChildStyles} />
     </div>
   )
 }
