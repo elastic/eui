@@ -11,7 +11,7 @@ import { CSSProperties } from 'react';
 
 /**
  * NOTE: These were quick conversions of their Sass counterparts.
- *       They have yet to be used/tested.
+ *       The commented out keys have not been established as necessary yet.
  */
 
 export interface _EuiThemeFocusOutline {
@@ -23,27 +23,23 @@ export interface _EuiThemeFocusOutline {
 
 export interface _EuiThemeFocus {
   /**
-   * Color is used deterministically by the legacy theme, and as fallback for Amsterdam
+   * Default color of the focus ring, some components may override this property
    */
   color: ColorModeSwitch;
   /**
-   * Used to transprentize any color at certain values
-   */
-  transparency: ColorModeSwitch<number>;
-  /**
-   * Default color plus transparency
-   */
-  backgroundColor: ColorModeSwitch;
-  /**
-   * Width is the thickness of the outline or faux ring
+   * Thickness of the outline
    */
   width: CSSProperties['borderWidth'];
   /**
-   * Larger thickness of the outline for larger components
+   * Used to transparentize any color at certain values
    */
-  widthLarge: CSSProperties['borderWidth'];
+  // transparency: ColorModeSwitch<number>;
+  /**
+   * Default color plus transparency
+   */
+  // backgroundColor: ColorModeSwitch;
   /**
    * Using `outline` is new for Amsterdam but is set to `none` in legacy theme
    */
-  outline: _EuiThemeFocusOutline;
+  // outline: _EuiThemeFocusOutline;
 }
