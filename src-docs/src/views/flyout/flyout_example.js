@@ -36,6 +36,9 @@ const flyoutWithBannerSource = require('!!raw-loader!./flyout_banner');
 import FlyoutPush from './flyout_push';
 const flyoutPushSource = require('!!raw-loader!./flyout_push');
 
+import FlyoutShards from './flyout_shards';
+const flyoutShardsSource = require('!!raw-loader!./flyout_shards');
+
 const flyOutSnippet = `<EuiFlyout onClose={closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
     <EuiTitle>
@@ -334,6 +337,25 @@ export const FlyoutExample = {
       snippet: flyoutPushedSnippet,
       demo: <FlyoutPush />,
       props: { EuiFlyout },
+    },
+    {
+      title: 'Shards & onMouseUp',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: flyoutShardsSource,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            Another way to allow for continued interactions of the page content
+            while a flyout is visible, is to change the <EuiCode>type</EuiCode>{' '}
+            from <EuiCode>overlay</EuiCode> to <EuiCode>push</EuiCode>.
+          </p>
+        </Fragment>
+      ),
+      demo: <FlyoutShards />,
     },
     {
       title: 'Understanding max-width',
