@@ -8,7 +8,7 @@
 
 /// <reference types="../../../cypress/support"/>
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { EuiFlyout } from './flyout';
 
@@ -31,6 +31,37 @@ const Flyout = ({ children = childrenDefault }) => {
           {children}
         </EuiFlyout>
       ) : null}
+    </>
+  );
+};
+
+const FlyoutComplex = ({ children = childrenDefault, useShards = true }) => {
+  const buttonRef = useRef();
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      {isOpen ? (
+        <EuiFlyout
+          data-test-subj="flyoutSpec"
+          onClose={() => setIsOpen(false)}
+          ownFocus={false}
+          outsideClickCloses={true}
+          focusTrapProps={{
+            shards: useShards ? [buttonRef] : [],
+            closeOnMouseup: !useShards,
+          }}
+        >
+          {children}
+        </EuiFlyout>
+      ) : null}
+      <button
+        ref={buttonRef}
+        data-test-subj="toggle"
+        onClick={() => setIsOpen((isOpen) => !isOpen)}
+      >
+        Toggle
+      </button>
     </>
   );
 };
@@ -93,6 +124,42 @@ describe('EuiFlyout', () => {
         .realMouseUp()
         .then(() => {
           expect(cy.get('[data-test-subj="flyoutSpec"]').should('exist'));
+        });
+    });
+
+    it('does not interfere when a shard is clicked', () => {
+      cy.mount(<FlyoutComplex />);
+      cy.get('[data-test-subj="toggle"]')
+        .realClick()
+        .then(() => {
+          expect(cy.get('[data-test-subj="flyoutSpec"]').should('exist'));
+        })
+        .then(() => {
+          cy.get('[data-test-subj="toggle"]')
+            .realClick()
+            .then(() => {
+              expect(
+                cy.get('[data-test-subj="flyoutSpec"]').should('not.exist')
+              );
+            });
+        });
+    });
+
+    it('can delay the close callback', () => {
+      cy.mount(<FlyoutComplex useShards={false} />);
+      cy.get('[data-test-subj="toggle"]')
+        .realClick()
+        .then(() => {
+          expect(cy.get('[data-test-subj="flyoutSpec"]').should('exist'));
+        })
+        .then(() => {
+          cy.get('[data-test-subj="toggle"]')
+            .realClick()
+            .then(() => {
+              expect(
+                cy.get('[data-test-subj="flyoutSpec"]').should('not.exist')
+              );
+            });
         });
     });
   });

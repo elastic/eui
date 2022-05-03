@@ -7,6 +7,9 @@ import {
   EuiButton,
   EuiTitle,
   EuiFlyoutFooter,
+  EuiSpacer,
+  EuiText,
+  EuiCode,
 } from '../../../../src/components';
 import { useGeneratedHtmlId } from '../../../../src/services';
 
@@ -32,11 +35,17 @@ export default () => {
         focusTrapProps={{ shards: [buttonRef], closeOnMouseup: false }}
       >
         <EuiFlyoutHeader hasBorder>
-          <EuiTitle size="m">
-            <h2 id={shardsFlyoutTitleId}>focusTrapProps.shards</h2>
+          <EuiTitle size="s">
+            <h2 id={shardsFlyoutTitleId}>
+              <EuiCode>focusTrapProps.shards</EuiCode>
+            </h2>
           </EuiTitle>
         </EuiFlyoutHeader>
-        <EuiFlyoutBody />
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>The toggle button is considered part of this flyout.</p>
+          </EuiText>
+        </EuiFlyoutBody>
         <EuiFlyoutFooter>
           <EuiButton onClick={() => setIsFlyoutVisible(false)}>Close</EuiButton>
         </EuiFlyoutFooter>
@@ -54,13 +63,23 @@ export default () => {
         aria-labelledby={shardsFlyoutTitleId}
         ownFocus={false}
         outsideClickCloses
+        focusTrapProps={{ closeOnMouseup: true }}
       >
         <EuiFlyoutHeader hasBorder>
-          <EuiTitle size="m">
-            <h2 id={shardsFlyoutTitleId}>closeOnMouseup</h2>
+          <EuiTitle size="s">
+            <h2 id={shardsFlyoutTitleId}>
+              <EuiCode>focusTrapProps.closeOnMouseup</EuiCode>
+            </h2>
           </EuiTitle>
         </EuiFlyoutHeader>
-        <EuiFlyoutBody />
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>
+              The <EuiCode>onClose</EuiCode> callback will occur on mouseup for
+              outside clicks.
+            </p>
+          </EuiText>
+        </EuiFlyoutBody>
         <EuiFlyoutFooter>
           <EuiButton onClick={() => setIsFlyoutVisible2(false)}>
             Close
@@ -78,6 +97,7 @@ export default () => {
       >
         Toggle flyout with shards
       </EuiButton>
+      <EuiSpacer />
       {flyout}
       <EuiButton onClick={() => setIsFlyoutVisible2(!isFlyoutVisible2)}>
         Toggle flyout using closeOnMouseup

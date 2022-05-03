@@ -339,7 +339,7 @@ export const FlyoutExample = {
       props: { EuiFlyout },
     },
     {
-      title: 'Shards & onMouseUp',
+      title: 'Passing options to EuiFocusTrap',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -349,7 +349,17 @@ export const FlyoutExample = {
       text: (
         <Fragment>
           <p>
-            <EuiCode>shards</EuiCode> and <EuiCode>closeOnMouseup</EuiCode>.
+            To configure certain options on the underlying{' '}
+            <EuiCode>EuiFocusTrap</EuiCode>, use the
+            <EuiCode>focusTrapProps</EuiCode> prop.
+          </p>
+          <p>
+            <EuiCode>shards</EuiCode> and <EuiCode>closeOnMouseup</EuiCode> each
+            affect how outside clicks will get handled.{' '}
+            <EuiCode>shards</EuiCode> specifies an array of elements that will
+            be considered part of the flyout, preventing close when clicked.
+            <EuiCode>closeOnMouseup</EuiCode> will delay the close callback,
+            allowing time for external toggle buttons to handle close behavior.
           </p>
         </Fragment>
       ),
