@@ -32,6 +32,7 @@ export default () => {
 
   return (
     <EuiComment
+      component="div"
       username="Gusteau"
       event="added a comment"
       actions={
