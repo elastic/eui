@@ -152,9 +152,9 @@ interface _EuiFlyoutProps {
   pushMinBreakpoint?: EuiBreakpointSize | number;
   style?: CSSProperties;
   /**
-   * Elements to consider part of the flyout and when clicked will not automatically close the flyout (depends on your configuration)
+   * Object of props passed to EuiFocusTrap
    */
-  shards?: EuiFocusTrapProps['shards'];
+  focusTrapProps?: Pick<EuiFocusTrapProps, 'closeOnMouseup' | 'shards'>;
 }
 
 const defaultElement = 'div';
@@ -193,7 +193,7 @@ export const EuiFlyout = forwardRef(
       outsideClickCloses,
       role = 'dialog',
       pushMinBreakpoint = 'l',
-      shards,
+      focusTrapProps,
       ...rest
     }: EuiFlyoutProps<T>,
     ref:
@@ -368,7 +368,7 @@ export const EuiFlyout = forwardRef(
         clickOutsideDisables={!ownFocus}
         onClickOutside={onClickOutside}
         closeOnMouseup={true}
-        shards={shards}
+        {...focusTrapProps}
       >
         <Element
           {...(rest as ComponentPropsWithRef<T>)}

@@ -73,7 +73,6 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   outsideClickCloses = true,
   closeButtonPosition = 'outside',
   paddingSize = 'none',
-  shards = [],
   ...rest
 }) => {
   const flyoutID = useGeneratedHtmlId({
@@ -157,7 +156,6 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
       outsideClickCloses={outsideClickCloses}
       closeButtonPosition={closeButtonPosition}
       paddingSize={paddingSize}
-      shards={[...shards]}
       {...rest}
       // Props dependent on internal docked status
       type={navIsDocked ? 'push' : 'overlay'}

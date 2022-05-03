@@ -81,8 +81,10 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
   };
 
   onClickOutside = (e: MouseEvent | TouchEvent) => {
-    this.props.onClickOutside && this.props.onClickOutside(e);
     this.removeCloseListener();
+    // Timeout gives precedence to the consumer to initiate close if it has toggle behavior.
+    // Otherwise this event may occur first and the consumer toggle will reopen the flyout.
+    setTimeout(() => this.props.onClickOutside && this.props.onClickOutside(e));
   };
 
   addCloseListener = () => {
