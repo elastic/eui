@@ -231,7 +231,7 @@ Most components also contain child elements that have their own styles. If you h
 
 ```ts
 export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiComponentName: css``
+  euiComponentName: css``,
   euiComponentName__child: css``
 });
 ```
@@ -259,14 +259,14 @@ export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiComponentName: css``
 });
 
-export const euiComponentNameEventHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiComponentName__eventHeader: css``,
-  euiComponentName__eventHeaderIcon: css``,
-  euiComponentName__eventHeaderButton: css``
+export const euiComponentNameHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiComponentName__header: css``,
+  euiComponentName__headerIcon: css``,
+  euiComponentName__headerButton: css``
 });
 
-export const euiComponentNameEventFooterStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiComponentName__eventFooter: css``
+export const euiComponentNameFooterStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiComponentName__footer: css``
 });
 ```
 
@@ -277,21 +277,21 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
   const styles = euiComponentNameStyles(euiTheme);
   const cssStyles = [styles.euiComponentName];
 
-  const eventHeaderStyles = euiComponentNameEventHeaderStyles(euiTheme);
-  const cssEventHeaderStyles = [eventHeaderStyles.euiComponentName__eventHeader];
-  const cssEventHeaderIconStyles = [eventHeaderStyles.euiComponentName__eventHeaderIcon];
-  const cssEventHeaderButtonStyles = [eventHeaderStyles.euiComponentName__eventHeaderButton];
+  const headerStyles = euiComponentNameHeaderStyles(euiTheme);
+  const cssHeaderStyles = [headerStyles.euiComponentName__header];
+  const cssHeaderIconStyles = [headerStyles.euiComponentName__headerIcon];
+  const cssHeaderButtonStyles = [headerStyles.euiComponentName__headerButton];
   
-  const eventFooterStyles = euiComponentNameEventFooterStyles(euiTheme);
-  const cssEventFooterStyles = [eventFooterStyles.euiComponentName__eventFooter];
+  const footerStyles = euiComponentNameEventFooterStyles(euiTheme);
+  const cssFooterStyles = [footerStyles.euiComponentName__footer];
 
   return (
     <div css={cssStyles}>
-      <div css={cssEventHeaderStyles}>
-        <span css={cssEventHeaderIconStyles} />
-        <button css={cssEventHeaderButtonStyles}>My button</button>
+      <div css={cssHeaderStyles}>
+        <span css={cssHeaderIconStyles} />
+        <button css={cssHeaderButtonStyles}>My button</button>
       </div>
-      <div css={cssEventFooterStyles} />
+      <div css={cssFooterStyles} />
     </div>
   )
 }
@@ -304,6 +304,12 @@ For the most part, nested selectors should not be necessary. If a child element 
 ```ts
 export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiComponentName: css``,
+  // Sizes
+  s: css``,
+  m: css``,
+});
+
+export const euiComponentNameChildStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiComponentName__child: css``,
   // Sizes
   s: css``,
@@ -317,7 +323,9 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
   
   const styles = euiComponentNameStyles(euiTheme);
   const cssStyles = [styles.euiComponentName, styles[size]];
-  const cssChildStyles = [styles.euiComponentName__child, styles[size]];
+
+  const chilStyles = euiComponentNameChildStyles(euiTheme);
+  const cssChildStyles = [chilStyles.euiComponentName__child, chilStyles[size]];
   
   return (
     <div css={cssStyles}>
