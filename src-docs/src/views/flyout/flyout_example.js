@@ -349,9 +349,7 @@ export const FlyoutExample = {
       text: (
         <Fragment>
           <p>
-            Another way to allow for continued interactions of the page content
-            while a flyout is visible, is to change the <EuiCode>type</EuiCode>{' '}
-            from <EuiCode>overlay</EuiCode> to <EuiCode>push</EuiCode>.
+            <EuiCode>shards</EuiCode> and <EuiCode>closeOnMouseup</EuiCode>.
           </p>
         </Fragment>
       ),
