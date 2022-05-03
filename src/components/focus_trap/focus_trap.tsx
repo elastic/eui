@@ -17,6 +17,11 @@ export type FocusTarget = ElementTarget;
 
 interface EuiFocusTrapInterface {
   /**
+   * Whether `onClickOutside` should be called on mouseup instead of mousedown.
+   * This flag can be used to prevent conflicts with outside toggle buttons by delaying the closing click callback.
+   */
+  closeOnMouseup?: boolean;
+  /**
    * Clicking outside the trap area will disable the trap
    */
   clickOutsideDisables?: boolean;
@@ -64,6 +69,10 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
     }
   }
 
+  componentWillUnmount() {
+    this.removeMouseupListener();
+  }
+
   // Programmatically sets focus on a nested DOM node; optional
   setInitialFocus = (initialFocus?: FocusTarget) => {
     const node = findElementBySelectorOrRef(initialFocus);
@@ -72,14 +81,31 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
     node.setAttribute('data-autofocus', 'true');
   };
 
+  onMouseupOutside = (e: MouseEvent | TouchEvent) => {
+    this.removeMouseupListener();
+    // Timeout gives precedence to the consumer to initiate close if it has toggle behavior.
+    // Otherwise this event may occur first and the consumer toggle will reopen the flyout.
+    setTimeout(() => this.props.onClickOutside?.(e));
+  };
+
+  addMouseupListener = () => {
+    document.addEventListener('mouseup', this.onMouseupOutside);
+    document.addEventListener('touchend', this.onMouseupOutside);
+  };
+
+  removeMouseupListener = () => {
+    document.removeEventListener('mouseup', this.onMouseupOutside);
+    document.removeEventListener('touchend', this.onMouseupOutside);
+  };
+
   handleOutsideClick: ReactFocusOnProps['onClickOutside'] = (...args) => {
-    const { onClickOutside, clickOutsideDisables } = this.props;
+    const { onClickOutside, clickOutsideDisables, closeOnMouseup } = this.props;
     if (clickOutsideDisables) {
       this.setState({ hasBeenDisabledByClick: true });
     }
 
     if (onClickOutside) {
-      onClickOutside(...args);
+      closeOnMouseup ? this.addMouseupListener() : onClickOutside(...args);
     }
   };
 
