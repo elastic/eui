@@ -69,7 +69,7 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
   }
 
   componentWillUnmount() {
-    this.removeCloseListener();
+    this.removeMouseupListener();
   }
 
   // Programmatically sets focus on a nested DOM node; optional
@@ -80,21 +80,21 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
     node.setAttribute('data-autofocus', 'true');
   };
 
-  onClickOutside = (e: MouseEvent | TouchEvent) => {
-    this.removeCloseListener();
+  onMouseupOutside = (e: MouseEvent | TouchEvent) => {
+    this.removeMouseupListener();
     // Timeout gives precedence to the consumer to initiate close if it has toggle behavior.
     // Otherwise this event may occur first and the consumer toggle will reopen the flyout.
-    setTimeout(() => this.props.onClickOutside && this.props.onClickOutside(e));
+    setTimeout(() => this.props.onClickOutside?.(e));
   };
 
-  addCloseListener = () => {
-    document.addEventListener('mouseup', this.onClickOutside);
-    document.addEventListener('touchend', this.onClickOutside);
+  addMouseupListener = () => {
+    document.addEventListener('mouseup', this.onMouseupOutside);
+    document.addEventListener('touchend', this.onMouseupOutside);
   };
 
-  removeCloseListener = () => {
-    document.removeEventListener('mouseup', this.onClickOutside);
-    document.removeEventListener('touchend', this.onClickOutside);
+  removeMouseupListener = () => {
+    document.removeEventListener('mouseup', this.onMouseupOutside);
+    document.removeEventListener('touchend', this.onMouseupOutside);
   };
 
   handleOutsideClick: ReactFocusOnProps['onClickOutside'] = (...args) => {
