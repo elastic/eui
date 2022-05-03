@@ -16,7 +16,7 @@ exports[`useEuiBackgroundColor mixin returns a calculated background version for
 
 exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: warning 1`] = `"#fff9e8"`;
 
-exports[`useEuiBackgroundColorStyles hook returns the object of static background-color properties for each color 1`] = `
+exports[`useEuiBackgroundColorCSS hook returns the object of static background-color properties for each color 1`] = `
 Object {
   "accent": "
       background-color: #feedf5;

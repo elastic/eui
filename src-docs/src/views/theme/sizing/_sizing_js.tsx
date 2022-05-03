@@ -13,7 +13,7 @@ import {
   EuiText,
   useEuiPaddingSize,
   useEuiBackgroundColor,
-  useEuiBackgroundColorStyles,
+  useEuiBackgroundColorCSS,
   useEuiPaddingStyles,
 } from '../../../../../src';
 
@@ -174,7 +174,7 @@ export const UtilsJS = () => {
         example={
           <p
             css={[
-              useEuiBackgroundColorStyles().warning,
+              useEuiBackgroundColorCSS().warning,
               logicalCSS('padding-left', '100px'),
             ]}
           >
@@ -198,7 +198,7 @@ export const UtilsJS = () => {
         }
         example={
           <p
-            css={css(useEuiBackgroundColorStyles().warning)}
+            css={css(useEuiBackgroundColorCSS().warning)}
             style={logicalStyle('padding-left', '100px')}
           >
             <code>{JSON.stringify(logicalStyle('padding-left', '100px'))}</code>
@@ -219,7 +219,7 @@ export const UtilsJS = () => {
         example={
           <p
             css={css`
-              ${useEuiBackgroundColorStyles().warning};
+              ${useEuiBackgroundColorCSS().warning};
               ${logicals['padding-left']}: 100px;
             `}
           >
@@ -260,7 +260,7 @@ export const UtilsJS = () => {
         example={
           <p
             css={[
-              useEuiBackgroundColorStyles().warning,
+              useEuiBackgroundColorCSS().warning,
               useEuiPaddingStyles('left').l,
             ]}
           >

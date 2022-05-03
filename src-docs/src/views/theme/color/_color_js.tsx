@@ -5,7 +5,7 @@ import { transparentize, useEuiTheme } from '../../../../../src/services';
 import { getPropsFromComponent } from '../../../services/props/get_props';
 
 import {
-  useEuiBackgroundColorStyles,
+  useEuiBackgroundColorCSS,
   EuiCode,
   EuiColorPickerSwatch,
   EuiSpacer,
@@ -249,7 +249,7 @@ export const UtilsJS = () => {
       <EuiSpacer size="l" />
 
       <ThemeExample
-        title={<code>{'useEuiBackgroundColorStyles()[color]'}</code>}
+        title={<code>{'useEuiBackgroundColorCSS()[color]'}</code>}
         description={
           <>
             <p>
@@ -263,17 +263,12 @@ export const UtilsJS = () => {
           </>
         }
         example={
-          <p
-            css={[
-              useEuiBackgroundColorStyles().accent,
-              useEuiPaddingStyles().l,
-            ]}
-          >
-            <code>{useEuiBackgroundColorStyles().accent}</code>
+          <p css={[useEuiBackgroundColorCSS().accent, useEuiPaddingStyles().l]}>
+            <code>{useEuiBackgroundColorCSS().accent}</code>
           </p>
         }
         snippetLanguage="tsx"
-        snippet={`const colorStyles = useEuiBackgroundColorStyles();
+        snippet={`const colorStyles = useEuiBackgroundColorCSS();
 const cssStyles = [colorStyles['accent']];
 
 <span css={cssStyles}>

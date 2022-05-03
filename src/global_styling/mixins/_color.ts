@@ -46,7 +46,7 @@ export const useEuiBackgroundColor = (color: EuiBackgroundColor) => {
   return euiBackgroundColor(color, euiTheme);
 };
 
-export const useEuiBackgroundColorStyles = () => {
+export const useEuiBackgroundColorCSS = () => {
   return {
     transparent: `
       background-color: ${useEuiBackgroundColor('transparent')};
