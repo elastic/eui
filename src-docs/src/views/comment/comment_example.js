@@ -34,54 +34,53 @@ const commentListSource = require('!!raw-loader!./comment_list');
 import CommentSystem from './comment_system';
 const commentSystemSource = require('!!raw-loader!./comment_system');
 
-const commentSnippet = `<EuiComment username="janed">
+const commentSnippet = `<EuiComment component="div" username="janed">
   {body}
 </EuiComment>`;
 
-const commentTypesSnippet = [
-  `<EuiComment username="janed">
+const commentTypesSnippet = `<EuiCommentList aria-label="Comment types example">
+<EuiComment username="janed">
   {body}
 </EuiComment>
-`,
-  `<EuiComment type="update" username="janed" />
-`,
-  `<EuiComment type="custom" username="janed">
+<EuiComment type="update" username="janed" />
+<EuiComment type="custom" username="janed">
   {custom}
 </EuiComment>
-`,
-];
+</EuiCommentList>
+`;
 
-const commentTypeUpdateSnippet = [
-  `<EuiComment username="janed">
-  {body}
-</EuiComment>
-`,
-  `<EuiComment type="update" username="janed" />
-`,
-  `<EuiComment type="update" username="janed">
-  {body}
-</EuiComment>
-`,
-];
+const commentTypeUpdateSnippet = `<EuiCommentList aria-label="Comment type update example">
+  <EuiComment type="update" updateIcon="tag" username="janed" />
+</EuiCommentList>
+`;
 
 const commentTimelineIconsSnippet = [
-  `<EuiComment username="janed">
-  {body}
-</EuiComment>
+  `<EuiCommentList aria-label="Timeline icon example">
+  <EuiComment username="janed">
+    {body}
+  </EuiComment>
+</EuiCommentList>
 `,
-  `<EuiComment timelineIcon="tag" username="janed" />
+  `<EuiCommentList aria-label="Timeline icon example">
+    <EuiComment timelineIcon="tag" username="janed" />
+  </EuiCommentList>
 `,
-  `<EuiComment timelineIcon={avatar} username="janed">
-  {body}
-</EuiComment>
+  `<EuiCommentList aria-label="Timeline icon example">
+    <EuiComment timelineIcon={avatar} username="janed">
+      {body}
+    </EuiComment>
+  </EuiCommentList>
 `,
 ];
 
-const commentActionsSnippet = `<EuiComment username="janed" actions={customActions}>
-  {body}
-</EuiComment>`;
+const commentActionsSnippet = `<EuiCommentList aria-label="Comment actions example">
+  <EuiComment username="janed" actions={customActions}>
+    {body}
+  </EuiComment>
+</EuiCommentList>`;
 
 const commentListSnippet = `<EuiCommentList
+  aria-label="Comment list example"
   comments={[
     {
       username: username,
