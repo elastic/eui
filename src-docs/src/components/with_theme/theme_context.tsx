@@ -88,9 +88,21 @@ export class ThemeProvider extends React.Component<object, State> {
     return themeLanguage;
   };
 
+  setThemeLanguageParam = (languageKey: THEME_LANGUAGES['id']) => {
+    const languageValue = languageKey.replace('language--', ''); // Make our params more succinct
+    const hash = window?.location?.hash?.split('?'); // Note: we can't use location.search because of our hash router
+
+    const queryParams = hash[1];
+    const params = new URLSearchParams(queryParams);
+    params.set(URL_PARAM_KEY, languageValue);
+
+    window.location.hash = `${hash[0]}?${params.toString()}`;
+  };
+
   changeThemeLanguage = (language: THEME_LANGUAGES['id']) => {
     this.setState({ themeLanguage: language }, () => {
       localStorage.setItem(STYLE_STORAGE_KEY, language);
+      this.setThemeLanguageParam(language);
     });
   };
 
