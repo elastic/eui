@@ -1,3 +1,11 @@
+## [`55.1.1`](https://github.com/elastic/eui/tree/v55.1.1)
+
+- Added the `focusTrapProps` prop to `EuiFlyout` to aid outside click detection and closing event ([#5860](https://github.com/elastic/eui/pull/5860))
+
+**Bug fixes**
+
+- Fixed `EuiCollapsibleNav` failing to close when the button is clicked ([#5860](https://github.com/elastic/eui/pull/5860))
+
 ## [`55.1.0`](https://github.com/elastic/eui/tree/v55.1.0)
 
 - Improved `EuiTimeline` a11y by using better semantic elements ([#5791](https://github.com/elastic/eui/pull/5791))
