@@ -10,7 +10,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiTabs, SIZES, DISPLAYS } from './tabs';
+import { EuiTabs, SIZES } from './tabs';
 
 describe('EuiTabs', () => {
   test('renders', () => {
@@ -24,18 +24,6 @@ describe('EuiTabs', () => {
       SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {
           const component = render(<EuiTabs size={size}>children</EuiTabs>);
-
-          expect(component).toMatchSnapshot();
-        });
-      });
-    });
-
-    describe('display', () => {
-      DISPLAYS.forEach((display) => {
-        it(`${display} is rendered`, () => {
-          const component = render(
-            <EuiTabs display={display}>children</EuiTabs>
-          );
 
           expect(component).toMatchSnapshot();
         });

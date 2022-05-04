@@ -35,15 +35,6 @@
     background: transparent;
   }
 
-  &.euiStepNumber-isHollow {
-    background-color: transparent;
-    border: 2px solid $euiColorPrimary;
-
-    .euiStepNumber__number {
-      display: none;
-    }
-  }
-
   // Create modifiers based upon the map
   @each $name, $color in $euiStepStatusColorsToFade {
     &--#{$name} {
