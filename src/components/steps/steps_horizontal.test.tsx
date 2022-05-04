@@ -10,17 +10,18 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test';
 
+import { EuiStepStatus } from './step_number';
 import { EuiStepsHorizontal } from './steps_horizontal';
 
 const steps = [
   {
     title: 'Completed Step 1',
-    isComplete: true,
+    status: 'complete' as EuiStepStatus,
     onClick: () => {},
   },
   {
     title: 'Selected Step 2',
-    isSelected: true,
+    status: 'current' as EuiStepStatus,
     onClick: () => {},
   },
   {
@@ -29,7 +30,7 @@ const steps = [
   },
   {
     title: 'Disabled Step 4',
-    disabled: true,
+    status: 'disabled' as EuiStepStatus,
     onClick: () => {},
   },
 ];
