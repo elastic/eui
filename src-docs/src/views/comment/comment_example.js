@@ -38,16 +38,23 @@ const commentSnippet = `<EuiComment component="div" username="janed">
   {body}
 </EuiComment>`;
 
-const commentTypesSnippet = `<EuiCommentList aria-label="Comment types example">
-<EuiComment username="janed">
-  {body}
-</EuiComment>
-<EuiComment type="update" username="janed" />
-<EuiComment type="custom" username="janed">
-  {custom}
-</EuiComment>
+const commentTypesSnippet = [
+  `<EuiCommentList aria-label="Comment type regular example">
+  <EuiComment username="janed">
+    {body}
+  </EuiComment> 
+</EuiCommentList>`,
+  `<EuiCommentList aria-label="Comment type update example">
+  <EuiComment type="update" username="janed" />
 </EuiCommentList>
-`;
+`,
+  `<EuiCommentList aria-label="Comment type custom example">
+  <EuiComment type="custom" username="janed">
+    {custom}
+  </EuiComment>
+</EuiCommentList>
+`,
+];
 
 const commentTypeUpdateSnippet = `<EuiCommentList aria-label="Comment type update example">
   <EuiComment type="update" updateIcon="tag" username="janed" />
@@ -62,14 +69,14 @@ const commentTimelineIconsSnippet = [
 </EuiCommentList>
 `,
   `<EuiCommentList aria-label="Timeline icon example">
-    <EuiComment timelineIcon="tag" username="janed" />
-  </EuiCommentList>
+  <EuiComment timelineIcon="tag" username="janed" />
+</EuiCommentList>
 `,
   `<EuiCommentList aria-label="Timeline icon example">
-    <EuiComment timelineIcon={avatar} username="janed">
-      {body}
-    </EuiComment>
-  </EuiCommentList>
+  <EuiComment timelineIcon={avatar} username="janed">
+    {body}
+  </EuiComment>
+</EuiCommentList>
 `,
 ];
 
