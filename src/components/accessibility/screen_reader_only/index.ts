@@ -8,4 +8,7 @@
 
 export type { EuiScreenReaderOnlyProps } from './screen_reader_only';
 export { EuiScreenReaderOnly } from './screen_reader_only';
-export { euiScreenReaderOnlyStyles } from './screen_reader_only.styles';
+export {
+  euiScreenReaderOnly,
+  euiScreenReaderOnlyStyles,
+} from './screen_reader_only.styles';

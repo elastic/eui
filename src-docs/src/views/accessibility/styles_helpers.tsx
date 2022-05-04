@@ -3,7 +3,7 @@ import React from 'react';
 
 import {
   EuiCode,
-  euiScreenReaderOnlyStyles,
+  euiScreenReaderOnly,
   EuiText,
   useEuiFocusRing,
 } from '../../../../src';
@@ -34,7 +34,7 @@ export default () => {
         snippet={'<p className="euiScreenReaderOnly" />'}
       />
       <ThemeExample
-        title={<code>euiScreenReaderOnlyStyles()</code>}
+        title={<code>euiScreenReaderOnly()</code>}
         description={
           <p>
             This function allows you to apply the screen reader only CSS styles
@@ -44,12 +44,12 @@ export default () => {
         example={
           <EuiText size="s">
             <p>The next paragraph is hidden except for screen readers.</p>
-            <p css={css(euiScreenReaderOnlyStyles())}>
+            <p css={css(euiScreenReaderOnly())}>
               I am hidden except for screen readers
             </p>
           </EuiText>
         }
-        snippet={'<p css={css(euiScreenReaderOnlyStyles())} />'}
+        snippet={'<p css={css(euiScreenReaderOnly())} />'}
       />
       <ThemeExample
         title={<code>useEuiFocusRing(offset?, color?)</code>}

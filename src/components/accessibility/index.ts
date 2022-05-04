@@ -10,6 +10,7 @@ export { EuiScreenReaderLive } from './screen_reader_live';
 export type { EuiScreenReaderLiveProps } from './screen_reader_live';
 export {
   EuiScreenReaderOnly,
+  euiScreenReaderOnly,
   euiScreenReaderOnlyStyles,
 } from './screen_reader_only';
 export type { EuiScreenReaderOnlyProps } from './screen_reader_only';
