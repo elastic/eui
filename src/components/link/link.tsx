@@ -93,7 +93,7 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
     ref
   ) => {
     const theme = useEuiTheme();
-    const componentStyles = euiLinkStyles(color, theme);
+    const componentStyles = euiLinkStyles(theme);
     const isHrefValid = !href || validateHref(href);
     const disabled = _disabled || !isHrefValid;
 

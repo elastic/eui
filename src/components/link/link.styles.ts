@@ -9,7 +9,6 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { euiLinkMixin } from '../../global_styling';
-import { EuiLinkColor } from './';
 
 const colorStyles = (color: string) => {
   return css`
@@ -27,12 +26,12 @@ const colorStyles = (color: string) => {
   `;
 };
 
-export const euiLinkStyles = (color: EuiLinkColor, _theme: UseEuiTheme) => {
-  const { euiTheme } = _theme;
+export const euiLinkStyles = (theme: UseEuiTheme) => {
+  const { euiTheme } = theme;
 
   return {
     euiLink: css`
-      ${euiLinkMixin(_theme)}
+      ${euiLinkMixin(theme)}
 
       &[target='_blank'] {
         position: relative;
