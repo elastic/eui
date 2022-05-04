@@ -95,7 +95,7 @@ exports[`EuiCallOut props title is rendered 1`] = `
   class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--primary euiPanel--noShadow euiPanel--noBorder euiCallOut euiCallOut--primary css-1flvw80-euiCallOut"
 >
   <p
-    class="euiTitle euiCallOutHeader__title css-1dk1p48-euiTitle-xs-euiCallOutHeader-primary"
+    class="euiTitle euiCallOutHeader__title css-1ps1ss5-euiTitle-xs-euiCallOutHeader-primary"
   >
     Title
   </p>
