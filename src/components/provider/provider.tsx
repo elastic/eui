@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { PropsWithChildren, forwardRef } from 'react';
+import React, { PropsWithChildren } from 'react';
 import { EmotionCache } from '@emotion/react';
 
 import {
@@ -18,11 +18,9 @@ import {
   EuiThemeProvider,
   EuiThemeProviderProps,
   EuiThemeSystem,
-  UseEuiTheme,
-  useEuiTheme,
 } from '../../services';
 import { EuiThemeAmsterdam } from '../../themes';
-import { EuiCacheContext, EuiCacheProvider, useEuiCacheContext } from './cache';
+import { EuiCacheContext, EuiCacheProvider } from './cache';
 
 const isEmotionCacheObject = (
   obj: EmotionCache | Object
@@ -110,33 +108,4 @@ export const EuiProvider = <T extends {} = {}>({
       </EuiCacheContext.Provider>
     </EuiCacheProvider>
   );
-};
-
-// TODO: temporary
-
-export interface WithEuiSystemProps<P = {}> {
-  euiTheme: UseEuiTheme<P>;
-}
-export const withEuiSystem = <T extends {} = {}, U extends {} = {}>(
-  Component: React.ComponentType<T & WithEuiSystemProps<U>>
-) => {
-  const componentName = Component.displayName || Component.name || 'Component';
-  const Render = (
-    props: Omit<T, keyof WithEuiSystemProps<U>>,
-    ref: React.Ref<Omit<T, keyof WithEuiSystemProps<U>>>
-  ) => {
-    const euiTheme = useEuiTheme<U>();
-    const cache = useEuiCacheContext();
-    return (
-      <EuiCacheProvider cache={cache}>
-        <Component euiTheme={euiTheme} ref={ref} {...(props as T)} />
-      </EuiCacheProvider>
-    );
-  };
-
-  const WithEuiSystem = forwardRef(Render);
-
-  WithEuiSystem.displayName = componentName;
-
-  return WithEuiSystem;
 };

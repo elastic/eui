@@ -22,15 +22,15 @@ const generalEmotionCache = createCache({
   container: document.querySelector('meta[name="emotion-styles"]'),
 });
 const globalCache = createCache({
-  key: 'eui-docs-global',
+  key: 'eui-global',
   container: document.querySelector('meta[name="emotion-styles-global"]'),
 });
 const utilityCache = createCache({
-  key: 'eui-docs-util',
+  key: 'eui-util',
   container: document.querySelector('meta[name="emotion-styles-utility"]'),
 });
 const componentCache = createCache({
-  key: 'eui-docs-eui',
+  key: 'eui',
   container: document.querySelector('meta[name="emotion-styles-eui"]'),
 });
 
