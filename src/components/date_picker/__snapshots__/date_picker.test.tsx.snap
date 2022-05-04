@@ -867,7 +867,7 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
 </span>
 `;
 
-exports[`EuiDatePicker popoverPlacement top-end is rendered 1`] = `
+exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
 <EuiDatePicker
   adjustDateOnChange={true}
   aria-label="aria-label"
@@ -877,7 +877,7 @@ exports[`EuiDatePicker popoverPlacement top-end is rendered 1`] = `
   fullWidth={false}
   inputRef={[Function]}
   isLoading={false}
-  popoverPlacement="top-end"
+  popoverPlacement="upRight"
   shadow={true}
   shouldCloseOnSelect={true}
   showIcon={true}

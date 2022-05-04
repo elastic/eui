@@ -24,41 +24,6 @@ import { ReactDatePicker, ReactDatePickerProps } from './react-datepicker';
 export const euiDatePickerDefaultDateFormat = 'MM/DD/YYYY';
 export const euiDatePickerDefaultTimeFormat = 'hh:mm A';
 
-type popperPlacement =
-  | 'bottom'
-  | 'bottom-end'
-  | 'bottom-start'
-  | 'left'
-  | 'left-end'
-  | 'left-start'
-  | 'right'
-  | 'right-end'
-  | 'right-start'
-  | 'top'
-  | 'top-end'
-  | 'top-start';
-
-const mapAnchorPositions: {
-  [key in popperPlacement]: PopoverAnchorPosition;
-} = {
-  'bottom-start': 'downLeft',
-  bottom: 'downCenter',
-  'bottom-end': 'downRight',
-  'left-start': 'leftUp',
-  left: 'leftCenter',
-  'left-end': 'leftDown',
-  'right-start': 'rightUp',
-  right: 'rightCenter',
-  'right-end': 'rightDown',
-  'top-start': 'upLeft',
-  top: 'upCenter',
-  'top-end': 'upRight',
-};
-
-function isPopperPlacement(position?: string): position is popperPlacement {
-  return position != null && Object.keys(mapAnchorPositions).includes(position);
-}
-
 // EuiDatePicker only supports a subset of props from react-datepicker.
 const unsupportedProps = [
   // We don't want to show multiple months next to each other
@@ -149,11 +114,9 @@ interface EuiExtendedDatePickerProps
   /**
    * Sets the placement of the popover.
    *
-   * DEPRECATED: 'bottom', 'bottom-end', 'bottom-start', 'left', 'left-end', 'left-start', right', 'right-end', 'right-start', 'top', 'top-end', 'top-start'
-   *
    * **Use [EuiPopover](/#/layout/popover) values**: 'upCenter', 'upLeft', 'upRight', downCenter', 'downLeft', 'downRight', 'leftCenter', 'leftUp', 'leftDown', 'rightCenter', 'rightUp', 'rightDown'.
    */
-  popoverPlacement?: PopoverAnchorPosition | popperPlacement;
+  popoverPlacement?: PopoverAnchorPosition;
 }
 
 type _EuiDatePickerProps = CommonProps & EuiExtendedDatePickerProps;
@@ -205,7 +168,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
       openToDate,
       placeholder,
       popperClassName,
-      popoverPlacement: _popoverPlacement,
+      popoverPlacement,
       selected,
       shadow,
       shouldCloseOnSelect,
@@ -251,13 +214,6 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
     let fullDateFormat = dateFormat;
     if (showTimeSelect && dateFormat === euiDatePickerDefaultDateFormat) {
       fullDateFormat = `${dateFormat} ${timeFormat}`;
-    }
-
-    let popoverPlacement: PopoverAnchorPosition;
-    if (isPopperPlacement(_popoverPlacement)) {
-      popoverPlacement = mapAnchorPositions[_popoverPlacement];
-    } else {
-      popoverPlacement = _popoverPlacement!;
     }
 
     return (
