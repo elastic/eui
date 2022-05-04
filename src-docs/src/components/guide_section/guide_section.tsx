@@ -41,6 +41,7 @@ export interface GuideSection {
   wrapText?: boolean;
   snippet?: string | string[];
   color?: EuiPanelProps['color'];
+  children?: ReactNode;
 }
 
 export const GuideSectionCodeTypesMap = {
@@ -84,6 +85,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
   demoPanelProps,
   snippet,
   color = 'transparent',
+  children,
 }) => {
   const { path } = useRouteMatch();
   const [renderingPlayground, setRenderingPlayground] = useState(false);
@@ -231,6 +233,8 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
             />
           </>
         )}
+
+        {children}
       </EuiPageContentBody>
     </EuiPanel>
   );

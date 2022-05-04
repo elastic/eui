@@ -83,6 +83,7 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
     if (!showSass && notice) {
       return (
         <>
+          <EuiSpacer size="l" />
           <EuiPageContentBody role="region" aria-label="Notice" restrictWidth>
             {notice}
           </EuiPageContentBody>
@@ -125,17 +126,20 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
   return (
     <>
       {renderNotice()}
-      <EuiPageHeader
-        restrictWidth
-        pageTitle={
-          <>
-            {title} {betaBadge}
-          </>
-        }
-        tabs={renderTabs()}
-        description={description}
-        rightSideItems={rightSideItems}
-      />
+      <EuiPageContentBody paddingSize="l">
+        <EuiPageHeader
+          restrictWidth
+          pageTitle={
+            <>
+              {title} {betaBadge}
+            </>
+          }
+          tabs={renderTabs()}
+          description={description}
+          rightSideItems={rightSideItems}
+          bottomBorder
+        />
+      </EuiPageContentBody>
 
       <EuiPageContent
         role="main"

@@ -90,6 +90,7 @@ const GuidePageComponent = ({
     if (notice) {
       return (
         <>
+          <EuiSpacer size="l" />
           <EuiPageContentBody role="region" aria-label="Notice" restrictWidth>
             {notice}
           </EuiPageContentBody>
@@ -134,10 +135,18 @@ const GuidePageComponent = ({
       >
         <Switch>
           {playground && (
-            <Route path={`${match.path}/playground`}>{playground}</Route>
+            <Route path={`${match.path}/playground`}>
+              <EuiPageContentBody restrictWidth>
+                {playground}
+              </EuiPageContentBody>
+            </Route>
           )}
           {guidelines && (
-            <Route path={`${match.path}/guidelines`}>{guidelines}</Route>
+            <Route path={`${match.path}/guidelines`}>
+              <EuiPageContentBody restrictWidth>
+                {guidelines}
+              </EuiPageContentBody>
+            </Route>
           )}
           <Route path="">{children}</Route>
         </Switch>
