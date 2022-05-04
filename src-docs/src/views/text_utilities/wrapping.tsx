@@ -18,6 +18,7 @@ export default () => {
     <>
       <ThemeExample
         title={<code>.eui-textNoWrap</code>}
+        type="className"
         description={<p>Forces text not to wrap even in small containers.</p>}
         example={
           <EuiPanel
@@ -36,6 +37,7 @@ export default () => {
 
       <ThemeExample
         title={<code>.eui-textTruncate</code>}
+        type="className"
         description={
           <>
             <p>
@@ -71,6 +73,7 @@ export default () => {
       {!showSass ? (
         <ThemeExample
           title={<code>euiTextTruncate(maxWidth?)</code>}
+          type="function"
           description={
             <>
               <p>
@@ -89,7 +92,8 @@ export default () => {
         />
       ) : (
         <ThemeExample
-          title={<code>include euiTextTruncate</code>}
+          title={<code>@include euiTextTruncate</code>}
+          type="mixin"
           description={
             <p>
               Use this Sass mixin to apply truncation to your selectors. No
@@ -103,6 +107,7 @@ export default () => {
 
       <ThemeExample
         title={<code>.eui-textBreakWord</code>}
+        type="className"
         description={
           <p>
             Wraps the text across lines like normal, but forces long words like
@@ -127,6 +132,7 @@ export default () => {
       {!showSass ? (
         <ThemeExample
           title={<code>euiTextBreakWord()</code>}
+          type="function"
           description={
             <p>
               Use this style function to apply break-word styles within your
@@ -139,6 +145,7 @@ export default () => {
       ) : (
         <ThemeExample
           title={<code>@include euiTextBreakWord</code>}
+          type="mixin"
           description={
             <p>
               Use this Sass mixin to apply break-word styling to your selectors.
@@ -152,6 +159,7 @@ export default () => {
 
       <ThemeExample
         title={<code>.eui-textBreakAll</code>}
+        type="className"
         description={
           <p>
             Wraps the text across lines always forcing the last word on the line
@@ -176,6 +184,7 @@ export default () => {
 
       <ThemeExample
         title={<code>.eui-textBreakNormal</code>}
+        type="className"
         description={
           <p>
             Reverts the text back to the normal wrapping scheme of not forcing

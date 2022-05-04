@@ -16,6 +16,7 @@ export default () => {
     <>
       <ThemeExample
         title={<code>.eui-yScroll</code>}
+        type="className"
         description={
           <>
             <p>
@@ -52,6 +53,7 @@ export default () => {
       {!showSass && (
         <ThemeExample
           title={<code>{"useEuiOverflowScroll('y');"}</code>}
+          type="hook"
           description={
             <>
               <p>Styles hook for adding vertical scrolling to a container.</p>
@@ -100,7 +102,8 @@ export default () => {
 
       {showSass && (
         <ThemeExample
-          title={<code>@mixin euiYScroll;</code>}
+          title={<code>@include euiYScroll;</code>}
+          type="mixin"
           description={
             <>
               <p>Sass mixin for adding horizontal scrolling to a container.</p>

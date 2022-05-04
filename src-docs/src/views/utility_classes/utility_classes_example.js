@@ -1,12 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import {
-  EuiSpacer,
-  EuiText,
-  EuiCallOut,
-  EuiHorizontalRule,
-} from '../../../../src/components';
+import { EuiSpacer, EuiText, EuiCallOut } from '../../../../src/components';
 import UtilityClassesDisplay from './utility_classes';
 import UtilityClassesVertAlign from './utility_classes_vert_align';
 import UtilityClassesResponsive from './utility_classes_responsive';
@@ -36,25 +31,23 @@ export const UtilityClassesExample = {
   sections: [
     {
       title: 'Display',
+
       wrapText: false,
       text: (
         <>
           <EuiSpacer />
           <UtilityClassesDisplay />
-          <EuiSpacer />
-          <EuiHorizontalRule />
         </>
       ),
     },
     {
       title: 'Vertical alignment',
+      color: 'subdued',
       wrapText: false,
       text: (
         <>
           <EuiSpacer />
           <UtilityClassesVertAlign />
-          <EuiSpacer />
-          <EuiHorizontalRule />
         </>
       ),
     },

@@ -7,6 +7,7 @@ export default () => (
   <>
     <ThemeExample
       title={<code>.eui-textLeft</code>}
+      type="className"
       description={
         <p>
           Changes the element’s text alignment to the left/starting side of its
@@ -25,6 +26,7 @@ export default () => (
 
     <ThemeExample
       title={<code>.eui-textCenter</code>}
+      type="className"
       description={
         <p>
           Changes the element’s text alignment to the center/middle of its
@@ -43,6 +45,7 @@ export default () => (
 
     <ThemeExample
       title={<code>.eui-textRight</code>}
+      type="className"
       description={
         <p>
           Changes the element’s text alignment to the right/ending side of its

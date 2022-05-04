@@ -58,6 +58,7 @@ export default () => (
     <EuiSpacer size="xxl" />
     <UtilityClassesSection
       code="eui-hideFor--[size]"
+      type="className"
       description={
         <>
           <p>
@@ -87,6 +88,7 @@ export default () => (
     <EuiSpacer />
     <UtilityClassesSection
       code="eui-showFor--[size]"
+      type="className"
       description={
         <>
           <p>
@@ -114,6 +116,7 @@ export default () => (
     <EuiSpacer />
     <UtilityClassesSection
       code="eui-showFor--[size]--[display]"
+      type="className"
       description={
         <>
           <p>

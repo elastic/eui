@@ -19,6 +19,7 @@ export default () => {
     <>
       <ThemeExample
         title={<code>.eui-textNumber</code>}
+        type="className"
         description={
           <p>
             Applies{' '}
@@ -61,6 +62,7 @@ export default () => {
       {!showSass ? (
         <ThemeExample
           title={<code>useEuiNumberFormat()</code>}
+          type="hook"
           description={
             <p>
               Use this style function to apply number text styles within your
@@ -73,6 +75,7 @@ export default () => {
       ) : (
         <ThemeExample
           title={<code>@include euiNumberFormat</code>}
+          type="mixin"
           description={
             <p>
               Use this Sass mixin to apply number text styles to your selectors.
