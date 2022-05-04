@@ -3,6 +3,8 @@
 // As well as deprecation notices
 // https://github.com/elastic/kibana/blob/main/x-pack/plugins/upgrade_assistant/public/application/components/es_deprecations/deprecation_types/reindex/flyout/_step_progress.scss
 @function euiCallOutColor($type: 'primary', $returnBackgroundOrForeground: 'background') {
+  @warn 'euiCallOutColor() is set for deprecation. Please consider using EuiCallOut directly.';
+
   @if (map-has-key($euiCallOutTypes, $type)) {
     $color: map-get($euiCallOutTypes, $type);
     $backgroundColor: tintOrShade($color, 90%, 70%);

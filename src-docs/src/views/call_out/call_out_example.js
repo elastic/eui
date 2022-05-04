@@ -75,7 +75,7 @@ export const CallOutExample = {
             <EuiCode>s</EuiCode> (small).
           </li>
           <li>
-            Use an <EuiCode>icon</EuiCode> prop if it adds context.
+            Use an <EuiCode>iconType</EuiCode> if it adds context.
           </li>
         </ul>
       </EuiText>
