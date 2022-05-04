@@ -166,6 +166,7 @@ export default () => {
 
         <ThemeExample
           title="Variable fonts"
+          type={null}
           description={
             <>
               <p>

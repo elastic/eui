@@ -12,7 +12,8 @@ export default () => {
   return (
     <>
       <ThemeExample
-        title={'Mixin'}
+        title={<code>euiBreakpoint(sizes)</code>}
+        type="mixin"
         description={
           <p>
             Breakpoints in EUI are provided through the use of a Sass mixin{' '}
@@ -26,7 +27,8 @@ export default () => {
       />
 
       <ThemeExample
-        title={'Sass map'}
+        title={<code>$euiBreakpoints</code>}
+        type="Sass map"
         description={
           <p>
             The actual breakpoint values are provided through a map of values

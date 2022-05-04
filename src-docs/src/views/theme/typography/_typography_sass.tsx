@@ -70,6 +70,7 @@ export const FontSass = () => {
 
       <ThemeExample
         title={'Mixins'}
+        type={null}
         description={
           <>
             <p>
@@ -232,6 +233,7 @@ export const FontScaleSass = () => {
     <>
       <ThemeExample
         title={'Mixins'}
+        type={null}
         description={
           <p>
             It is recommended to use these as a mixin to automatically apply

@@ -95,7 +95,8 @@ export default () => {
       />
 
       <ThemeExample
-        title="Hooks"
+        title={<code>useEuiShadow(size)</code>}
+        type="hook"
         description={
           <>
             <p>

@@ -44,6 +44,7 @@ export default () => {
     <>
       <ThemeExample
         title={<code>getBreakpoint(width)</code>}
+        type="function"
         description={
           <p>
             Given the current <EuiCode>width</EuiCode>, this function returns
@@ -62,6 +63,7 @@ export default () => {
 
       <ThemeExample
         title={<code>isWithinBreakpoints(width, sizes[])</code>}
+        type="function"
         description={
           <>
             <p>

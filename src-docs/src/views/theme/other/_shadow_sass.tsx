@@ -25,6 +25,7 @@ export default () => {
     <>
       <ThemeExample
         title="Mixins"
+        type={null}
         description={
           <>
             <p>

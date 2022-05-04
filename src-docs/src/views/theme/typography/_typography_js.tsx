@@ -152,6 +152,7 @@ export const FontScaleJS = () => {
     <>
       <ThemeExample
         title={<code>useEuiFontSize()</code>}
+        type="hook"
         description={
           <p>
             Font sizing is provided through this React hook (or function
@@ -174,6 +175,7 @@ export const FontScaleJS = () => {
       />
       <ThemeExample
         title={<code>useEuiFontSize().fontSize</code>}
+        type={null}
         description={
           <p>
             To use precisely only the <EuiCode>font-size</EuiCode> value, you

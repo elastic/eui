@@ -73,12 +73,13 @@ export default () => {
 
       <ThemeExample
         title={<code>calc()</code>}
+        type="CSS function"
         description={
           <p>
             When doing calculations on top of the named key values, you have to
             use the{' '}
             <EuiLink href="https://developer.mozilla.org/en-US/docs/Web/CSS/calc()">
-              CSS <EuiCode>calc()</EuiCode> method
+              CSS <EuiCode>calc()</EuiCode> function
             </EuiLink>{' '}
             because the value that is returned is a string value with the
             appended unit.
