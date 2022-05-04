@@ -39,6 +39,8 @@ import Animation from './_animation';
 import Breakpoints from './_breakpoints';
 // @ts-ignore Importing from JS
 import Levels from './_levels';
+// @ts-ignore Importing from JS
+import Focus from './_focus';
 
 import Sass from './_sass';
 
@@ -114,6 +116,10 @@ export default () => {
             <EuiHorizontalRule margin="xxl" />
 
             <Levels onThemeUpdate={updateTheme} />
+
+            <EuiSpacer />
+
+            <Focus onThemeUpdate={updateTheme} />
 
             <EuiSpacer />
           </>

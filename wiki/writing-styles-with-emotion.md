@@ -227,15 +227,11 @@ Although possible in some contexts, it is not recommended to "shortcut" logic us
 
 ## Child selectors
 
-Most components also contain child elements that have their own styles. Each element should have it's own theme function to keep things tidy. Keep them within a single `styles.ts` file if they exist in the same `.tsx` file.
+Most components also contain child elements that have their own styles. If you have just a few child elements, consider having them in the same function.
 
 ```ts
 export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiComponentName: css``
-});
-
-
-export const euiComponentNameChildStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiComponentName: css``,
   euiComponentName__child: css``
 });
 ```
@@ -246,13 +242,56 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
   
   const styles = euiComponentNameStyles(euiTheme);
   const cssStyles = [styles.euiComponentName];
-  
-  const childStyles = euiComponentNameChildStyles(euiTheme);
-  const cssChildStyles = [childStyles.euiComponentName__child];
+  const cssChildStyles = [styles.euiComponentName__child];
   
   return (
     <div css={cssStyles}>
       <span css={cssChildStyles} />
+    </div>
+  )
+}
+```
+
+If you have multiple child elements, consider grouping them in different theme functions to keep things tidy. Keep them within a single `styles.ts` file if they exist in the same `.tsx` file.
+
+```ts
+export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiComponentName: css``
+});
+
+export const euiComponentNameHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiComponentName__header: css``,
+  euiComponentName__headerIcon: css``,
+  euiComponentName__headerButton: css``
+});
+
+export const euiComponentNameFooterStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiComponentName__footer: css``
+});
+```
+
+```tsx
+export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}) => {
+  const euiTheme = useEuiTheme();
+  
+  const styles = euiComponentNameStyles(euiTheme);
+  const cssStyles = [styles.euiComponentName];
+
+  const headerStyles = euiComponentNameHeaderStyles(euiTheme);
+  const cssHeaderStyles = [headerStyles.euiComponentName__header];
+  const cssHeaderIconStyles = [headerStyles.euiComponentName__headerIcon];
+  const cssHeaderButtonStyles = [headerStyles.euiComponentName__headerButton];
+  
+  const footerStyles = euiComponentNameFooterStyles(euiTheme);
+  const cssFooterStyles = [footerStyles.euiComponentName__footer];
+
+  return (
+    <div css={cssStyles}>
+      <div css={cssHeaderStyles}>
+        <span css={cssHeaderIconStyles} />
+        <button css={cssHeaderButtonStyles}>My button</button>
+      </div>
+      <div css={cssFooterStyles} />
     </div>
   )
 }
@@ -270,7 +309,6 @@ export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
   m: css``,
 });
 
-
 export const euiComponentNameChildStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiComponentName__child: css``,
   // Sizes
@@ -285,13 +323,13 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
   
   const styles = euiComponentNameStyles(euiTheme);
   const cssStyles = [styles.euiComponentName, styles[size]];
-  
+
   const childStyles = euiComponentNameChildStyles(euiTheme);
   const cssChildStyles = [childStyles.euiComponentName__child, childStyles[size]];
   
   return (
     <div css={cssStyles}>
-      <span> css={cssChildStyles} />
+      <span css={cssChildStyles} />
     </div>
   )
 }
@@ -307,7 +345,48 @@ export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
 });
 ```
+## Creating `colorMode` specific components
 
+When creating components that rely on a specific `colorMode` from `<EuiThemeProvider>`, use this pattern to create a wrapper that will pass the entire component `<EuiThemeProvider>` details. 
+
+- `_EuiComponentName` is an internal component that contains the desired functionality and styles.
+- `EuiComponentName` is the exportable component that wraps `_EuiComponentName` inside of `<EuiThemeProvider>`.
+
+```tsx
+const _EuiComponentName = ({ componentProps }) => {
+  return <div />;
+}
+
+export const EuiComponentName = ({ componentProps }) => {
+    const Component = _EuiComponentName;
+    return (
+      <EuiThemeProvider colorMode={ colorMode }>
+        <Component {...componentProps} />
+      </EuiThemeProvider>
+    );
+  }
+);
+```
+
+**[Refer to EuiBottomBar to see an example of this pattern in practice and as an example of using `forwardRef`.](../src/components/bottom_bar/bottom_bar.tsx)**
+
+## Emotion mixins & utilities
+
+When creating mixins & utilities for reuse within Emotion CSS, consider the following best practices:
+
+- Publicly-exported mixins & utilities should go in [`src/global_styling/mixins`](https://github.com/elastic/eui/tree/main/src/global_styling/mixins). Utilities that are internal to EUI only should live in [`src/global_styling/functions`](https://github.com/elastic/eui/tree/main/src/global_styling/functions).
+- If the mixin is simple and does not reference `euiTheme`, you do not need to create a hook version of it.
+- In general, prefer returning CSS strings in your mixin.
+  - However, you should consider creating a 2nd util that returns a style object instead of a CSS string if the following scenarios apply to your mixin usage:
+    - If you anticipate your mixin being used in the `style` prop instead of `css` (since React will want an object and camelCased CSS properties)
+    - If you want your mixin to be partially composable, so if you think developers will want to obtain a single line/property from your mixin instead of the entire thing (e.g. `euiFontSize.lineHeight`)
+
+### Naming
+
+When naming your mixins & utilities, consider the following statements:
+
+- Always prefix publicly-exported functions with `eui` unless it's purely a generic helper utility with no specific EUI consideration
+- When creating both a returned string version and object version, append the function name with `CSS` for strings and `Style` for objects. Example: `euiMixinCSS()` vs `euiMixinStyle()`.
 
 ## FAQ
 
