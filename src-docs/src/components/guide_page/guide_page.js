@@ -107,19 +107,22 @@ const GuidePageComponent = ({
   return (
     <>
       {renderNotice()}
-      <EuiPageHeader
-        restrictWidth
-        pageTitle={
-          <>
-            {title} {betaBadge}
-          </>
-        }
-        tabs={renderTabs() || _tabs}
-        description={description}
-        rightSideItems={rightSideItems}
-      >
-        {intro}
-      </EuiPageHeader>
+      <EuiPageContentBody paddingSize="l">
+        <EuiPageHeader
+          restrictWidth
+          pageTitle={
+            <>
+              {title} {betaBadge}
+            </>
+          }
+          tabs={renderTabs() || _tabs}
+          description={description}
+          rightSideItems={rightSideItems}
+          bottomBorder
+        >
+          {intro}
+        </EuiPageHeader>
+      </EuiPageContentBody>
 
       <EuiPageContent
         role="main"
@@ -129,17 +132,15 @@ const GuidePageComponent = ({
         hasBorder={false}
         borderRadius="none"
       >
-        <EuiPageContentBody restrictWidth>
-          <Switch>
-            {playground && (
-              <Route path={`${match.path}/playground`}>{playground}</Route>
-            )}
-            {guidelines && (
-              <Route path={`${match.path}/guidelines`}>{guidelines}</Route>
-            )}
-            <Route path="">{children}</Route>
-          </Switch>
-        </EuiPageContentBody>
+        <Switch>
+          {playground && (
+            <Route path={`${match.path}/playground`}>{playground}</Route>
+          )}
+          {guidelines && (
+            <Route path={`${match.path}/guidelines`}>{guidelines}</Route>
+          )}
+          <Route path="">{children}</Route>
+        </Switch>
       </EuiPageContent>
     </>
   );
