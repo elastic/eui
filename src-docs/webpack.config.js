@@ -84,7 +84,7 @@ const webpackConfig = {
             loader: 'style-loader',
             options: {
               injectType: 'lazySingletonStyleTag',
-              insert: 'meta[name="emotion-styles-compiled"]',
+              insert: 'meta[name="sass-styles-compiled"]',
             },
           },
           'css-loader',

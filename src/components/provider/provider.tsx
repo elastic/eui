@@ -24,6 +24,10 @@ import {
 import { EuiThemeAmsterdam } from '../../themes';
 import { EuiCacheContext, EuiCacheProvider, useEuiCacheContext } from './cache';
 
+const isEmotionCacheObject = (
+  obj: EmotionCache | Object
+): obj is EmotionCache => obj.hasOwnProperty('key');
+
 export interface EuiProviderProps<T>
   extends Omit<EuiThemeProviderProps<T>, 'children' | 'theme'>,
     EuiGlobalStylesProps {
@@ -37,43 +41,65 @@ export interface EuiProviderProps<T>
    * Pass `false` to remove the default EUI global styles.
    */
   globalStyles?: false | ((params: any) => JSX.Element | null);
-  /**
-   * Provide a cache configuration from `@emotion/cache`
-   */
-  cache?: EmotionCache;
-  globalCache?: EmotionCache;
   utilityClasses?: false | ((params: any) => JSX.Element | null);
-  utilityCache?: EmotionCache;
-  componentCache?: EmotionCache;
+  /**
+   * Provide a cache configuration(s) from `@emotion/cache`.
+   *
+   * `default` will encompass all Emotion styles, including consumer defined appliction styles, not handled by nested cache instances.
+   * `global` will scope all EUI global and reset styles.
+   * `utility` will scope all EUI utility class styles.
+   * `component` will scope all EUI component styles.
+   *
+   * A cache instance provided as the sole value will function the same as the `default` cache.
+   */
+  cache?:
+    | EmotionCache
+    | {
+        default?: EmotionCache;
+        global?: EmotionCache;
+        utility?: EmotionCache;
+        component?: EmotionCache;
+      };
 }
 
 export const EuiProvider = <T extends {} = {}>({
   cache,
-  componentCache,
   theme = EuiThemeAmsterdam,
-  globalCache,
   globalStyles: Globals = EuiGlobalStyles,
-  utilityCache,
   utilityClasses: Utilities = EuiUtilityClasses,
   colorMode,
   modify,
   children,
-}: PropsWithChildren<EuiProviderProps<T>>) => (
-  <>
-    {theme && (
-      <>
-        <EuiCacheProvider
-          cache={globalCache}
-          children={Globals && <Globals />}
-        />
-        <EuiCacheProvider
-          cache={utilityCache}
-          children={Utilities && <Utilities />}
-        />
-      </>
-    )}
-    <EuiCacheContext.Provider value={componentCache}>
-      <EuiCacheProvider cache={cache}>
+}: PropsWithChildren<EuiProviderProps<T>>) => {
+  let defaultCache;
+  let globalCache;
+  let componentCache;
+  let utilityCache;
+  if (cache) {
+    if (isEmotionCacheObject(cache)) {
+      defaultCache = cache;
+    } else {
+      defaultCache = cache.default;
+      globalCache = cache.global;
+      componentCache = cache.component;
+      utilityCache = cache.utility;
+    }
+  }
+  return (
+    <EuiCacheProvider cache={defaultCache}>
+      {theme && (
+        <>
+          <EuiCacheProvider
+            cache={globalCache}
+            children={Globals && <Globals />}
+          />
+          <EuiCacheProvider
+            cache={utilityCache}
+            children={Utilities && <Utilities />}
+          />
+        </>
+      )}
+      <EuiCacheContext.Provider value={componentCache}>
         <EuiThemeProvider
           theme={theme ?? undefined}
           colorMode={colorMode}
@@ -81,10 +107,10 @@ export const EuiProvider = <T extends {} = {}>({
         >
           {children}
         </EuiThemeProvider>
-      </EuiCacheProvider>
-    </EuiCacheContext.Provider>
-  </>
-);
+      </EuiCacheContext.Provider>
+    </EuiCacheProvider>
+  );
+};
 
 // TODO: temporary
 

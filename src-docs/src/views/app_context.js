@@ -52,10 +52,12 @@ export const AppContext = ({ children }) => {
 
   return (
     <EuiProvider
-      globalCache={globalCache}
-      utilityCache={utilityCache}
-      componentCache={componentCache}
-      cache={generalEmotionCache}
+      cache={{
+        default: generalEmotionCache,
+        global: globalCache,
+        utility: utilityCache,
+        component: componentCache,
+      }}
       theme={EUI_THEMES.find((t) => t.value === theme)?.provider}
       colorMode={theme.includes('light') ? 'light' : 'dark'}
     >
