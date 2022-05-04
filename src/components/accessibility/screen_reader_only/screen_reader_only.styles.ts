@@ -8,7 +8,10 @@
 
 import { css } from '@emotion/react';
 
-const euiScreenReaderOnlyStatic = `
+/*
+ * Mixin
+ */
+export const euiScreenReaderOnly = () => `
     position: absolute;
     left: -10000px;
     top: auto;
@@ -18,11 +21,6 @@ const euiScreenReaderOnlyStatic = `
   `;
 
 /*
- * Mixin
- */
-export const euiScreenReaderOnly = () => euiScreenReaderOnlyStatic;
-
-/*
  * Styles
  */
 export const euiScreenReaderOnlyStyles = (showOnFocus?: boolean) => {
@@ -30,9 +28,9 @@ export const euiScreenReaderOnlyStyles = (showOnFocus?: boolean) => {
     return css`
       // The :active selector is necessary for Safari which removes :focus when a button is pressed
       &:not(:focus):not(:active) {
-        ${euiScreenReaderOnlyStatic}
+        ${euiScreenReaderOnly()}
       }
     `;
   }
-  return css(euiScreenReaderOnlyStatic);
+  return css(euiScreenReaderOnly());
 };
