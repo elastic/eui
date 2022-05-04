@@ -329,7 +329,7 @@ exports[`EuiPageHeaderContent props children is rendered even if content props a
       class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
     />
     <div
-      class="euiTabs euiTabs--large euiTabs--condensed"
+      class="euiTabs euiTabs--large"
       role="tablist"
     >
       <button
@@ -594,7 +594,7 @@ exports[`EuiPageHeaderContent props tabs is rendered 1`] = `
         Tab 1
       </h1>
       <div
-        class="euiTabs euiTabs--xlarge euiTabs--condensed"
+        class="euiTabs euiTabs--xlarge"
         role="tablist"
       >
         <button
@@ -644,7 +644,7 @@ exports[`EuiPageHeaderContent props tabs is rendered with tabsProps 1`] = `
       </h1>
       <div
         aria-label="aria-label"
-        class="euiTabs euiTabs--xlarge euiTabs--condensed testClass1 testClass2"
+        class="euiTabs euiTabs--xlarge testClass1 testClass2"
         data-test-subj="test subject string"
         role="tablist"
       >

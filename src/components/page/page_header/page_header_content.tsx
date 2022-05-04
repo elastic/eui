@@ -68,7 +68,7 @@ export interface EuiPageHeaderContentTabs {
    * Any extras to apply to the outer tabs container.
    * Extends `EuiTabs`
    */
-  tabsProps?: Omit<EuiTabsProps, 'size' | 'expand' | 'display'>;
+  tabsProps?: Omit<EuiTabsProps, 'size' | 'expand'>;
 }
 
 /**
@@ -218,12 +218,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
       <>
         {pageTitleNode && <EuiSpacer />}
         {screenReaderPageTitle}
-        <EuiTabs
-          {...tabsProps}
-          display="condensed"
-          bottomBorder={false}
-          size={tabsSize}
-        >
+        <EuiTabs {...tabsProps} bottomBorder={false} size={tabsSize}>
           {renderTabs()}
         </EuiTabs>
       </>
