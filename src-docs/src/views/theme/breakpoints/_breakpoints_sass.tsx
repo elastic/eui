@@ -9,10 +9,6 @@ import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 
 export default () => {
-  const values = useJsonVars();
-  const euiBreakpoints = values.euiBreakpoints;
-  const euiBreakpointKeys = Object.keys(euiBreakpoints);
-
   return (
     <>
       <ThemeExample
@@ -43,7 +39,17 @@ export default () => {
         snippet="map-get($euiBreakpoints, 's')"
         snippetLanguage="scss"
       />
+    </>
+  );
+};
 
+export const BreakpointValuesSass = () => {
+  const values = useJsonVars();
+  const euiBreakpoints = values.euiBreakpoints;
+  const euiBreakpointKeys = Object.keys(euiBreakpoints);
+
+  return (
+    <>
       <ThemeValuesTable
         items={euiBreakpointKeys.map((size) => {
           return {

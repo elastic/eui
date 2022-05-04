@@ -22,7 +22,6 @@ export const brandKeys = Object.keys(brand_colors);
 
 export const BrandJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
-  const props = getPropsFromComponent(EuiThemeColors);
 
   return (
     <>
@@ -43,7 +42,16 @@ export const BrandJS: FunctionComponent<ThemeRowType> = ({ description }) => {
         snippet={'background: ${euiTheme.colors.warning};'}
         snippetLanguage="emotion"
       />
+    </>
+  );
+};
 
+export const BrandValuesJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const props = getPropsFromComponent(EuiThemeColors);
+
+  return (
+    <>
       <ThemeValuesTable
         items={brandKeys.map((color) => {
           return {
@@ -65,8 +73,6 @@ export const textKeys = Object.keys(text_colors);
 
 export const TextJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
-  const props = getPropsFromComponent(EuiThemeColors);
-  const textColors = textKeys.concat(brandTextKeys);
 
   return (
     <>
@@ -98,7 +104,17 @@ export const TextJS: FunctionComponent<ThemeRowType> = ({ description }) => {
         snippet={'color: ${euiTheme.colors.warningText};'}
         snippetLanguage="emotion"
       />
+    </>
+  );
+};
 
+export const TextValuesJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const props = getPropsFromComponent(EuiThemeColors);
+  const textColors = textKeys.concat(brandTextKeys);
+
+  return (
+    <>
       <ThemeValuesTable
         items={textColors.map((color) => {
           return {
@@ -129,7 +145,6 @@ export const shadeKeys = Object.keys(shade_colors);
 
 export const ShadeJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
-  const props = getPropsFromComponent(EuiThemeColors);
 
   return (
     <>
@@ -153,7 +168,16 @@ export const ShadeJS: FunctionComponent<ThemeRowType> = ({ description }) => {
         }
         snippetLanguage="emotion"
       />
+    </>
+  );
+};
 
+export const ShadeValuesJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const props = getPropsFromComponent(EuiThemeColors);
+
+  return (
+    <>
       <ThemeValuesTable
         items={shadeKeys.map((color) => {
           return {
@@ -174,8 +198,6 @@ const specialKeys = Object.keys(special_colors);
 
 export const SpecialJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
-  const props = getPropsFromComponent(EuiThemeColors);
-  const allSpecialKeys = specialKeys.concat(['ghost', 'ink']);
 
   return (
     <>
@@ -199,7 +221,17 @@ export const SpecialJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   background-color: \${euiTheme.colors.ink};`}
         snippetLanguage="emotion"
       />
+    </>
+  );
+};
 
+export const SpecialValuesJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const props = getPropsFromComponent(EuiThemeColors);
+  const allSpecialKeys = specialKeys.concat(['ghost', 'ink']);
+
+  return (
+    <>
       <ThemeValuesTable
         items={allSpecialKeys.map((color) => {
           return {

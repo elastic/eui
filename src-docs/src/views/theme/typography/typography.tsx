@@ -19,16 +19,26 @@ import {
 } from '../../../../../src';
 
 import { ThemeExample } from '../_components/_theme_example';
+import { ThemeNotice } from '../_components/_theme_notice';
+import { ThemeContext } from '../../../components/with_theme';
+import { GuideSection } from '../../../components/guide_section/guide_section';
 
-import { FontJS, FontScaleJS, FontWeightJS } from './_typography_js';
+import {
+  FontJS,
+  FontScaleJS,
+  FontScaleValuesJS,
+  FontWeightJS,
+  FontWeightValuesJS,
+} from './_typography_js';
 import {
   FontSass,
   FontWeightSass,
   euiFontWeights,
   FontScaleSass,
+  FontScaleValuesSass,
+  FontWeightValuesSass,
+  FontValuesSass,
 } from './_typography_sass';
-import { ThemeNotice } from '../_components/_theme_notice';
-import { ThemeContext } from '../../../components/with_theme';
 
 // This array is used inside routes.js to create the sidenav sub-sections
 export const typographySections = [
@@ -91,113 +101,134 @@ export default () => {
           <Link to="/display/title">
             <strong>EuiTitle</strong>
           </Link>{' '}
-          components directly <strong>instead</strong> of these theme tokens.
+          components directly <strong>instead</strong> of these theme tokens. Or
+          head to the <Link to="/utilities/text">text utilities page</Link> for
+          helper classes and functions.
         </>
       }
     >
-      <EuiSpacer size="xl" />
+      <GuideSection color="subdued">
+        <EuiSpacer size="xl" />
 
-      <EuiText grow={false}>
-        <h2
-          id={`${typographySections[0].id}`}
-        >{`${typographySections[0].title}`}</h2>
-        <p>
-          The typographic scale is loosely based on the{' '}
-          <EuiLink href="https://type-scale.com/?size=16&scale=1.250&text=A%20Visual%20Type%20Scale&font=Inter&fontweight=400&bodyfont=body_font_default&bodyfontweight=400&lineheight=1.75&backgroundcolor=%23ffffff&fontcolor=%23000000&preview=false">
-            Major Third (1.250) typographic scale
-          </EuiLink>
-          .
-        </p>
-        <p>
-          While these functions and hooks exist to get precise font sizing and
-          associated line-height, we still highly recommend using the{' '}
-          <Link to="/display/text">
-            <strong>EuiText</strong>
-          </Link>{' '}
-          and{' '}
-          <Link to="/display/title">
-            <strong>EuiTitle</strong>
-          </Link>{' '}
-          components as wrappers of your content instead.
-        </p>
-      </EuiText>
-      <EuiSpacer size="xl" />
+        <EuiText grow={false}>
+          <h2
+            id={`${typographySections[0].id}`}
+          >{`${typographySections[0].title}`}</h2>
+          <p>
+            The typographic scale is loosely based on the{' '}
+            <EuiLink href="https://type-scale.com/?size=16&scale=1.250&text=A%20Visual%20Type%20Scale&font=Inter&fontweight=400&bodyfont=body_font_default&bodyfontweight=400&lineheight=1.75&backgroundcolor=%23ffffff&fontcolor=%23000000&preview=false">
+              Major Third (1.250) typographic scale
+            </EuiLink>
+            .
+          </p>
+          <p>
+            While these functions and hooks exist to get precise font sizing and
+            associated line-height, we still highly recommend using the{' '}
+            <Link to="/display/text">
+              <strong>EuiText</strong>
+            </Link>{' '}
+            and{' '}
+            <Link to="/display/title">
+              <strong>EuiTitle</strong>
+            </Link>{' '}
+            components as wrappers of your content instead.
+          </p>
+        </EuiText>
+        <EuiSpacer size="xl" />
 
-      {scaleContent}
+        {scaleContent}
+      </GuideSection>
 
-      <EuiSpacer size="xl" />
+      <GuideSection>
+        {showSass ? <FontScaleValuesSass /> : <FontScaleValuesJS />}
+      </GuideSection>
 
-      <EuiText grow={false}>
-        <h2
-          id={`${typographySections[1].id}`}
-        >{`${typographySections[1].title}`}</h2>
-        <p>
-          EUI establishes a set of 5 font-weights based on their numeric
-          keywords values. When importing the font-family from your service of
-          choice, ensure that you have all 5 weights contained in your import.
-          See the{' '}
-          <Link to="/guidelines/getting-started">Getting Started page</Link> for
-          details on importing fonts.
-        </p>
-      </EuiText>
+      <GuideSection color="subdued">
+        <EuiSpacer size="xl" />
 
-      <EuiSpacer size="xl" />
+        <EuiText grow={false}>
+          <h2
+            id={`${typographySections[1].id}`}
+          >{`${typographySections[1].title}`}</h2>
+          <p>
+            EUI establishes a set of 5 font-weights based on their numeric
+            keywords values. When importing the font-family from your service of
+            choice, ensure that you have all 5 weights contained in your import.
+            See the{' '}
+            <Link to="/guidelines/getting-started">Getting Started page</Link>{' '}
+            for details on importing fonts.
+          </p>
+        </EuiText>
 
-      {weightContent}
+        <EuiSpacer size="xl" />
 
-      <ThemeExample
-        title="Variable fonts"
-        description={
-          <>
-            <p>
-              EUI also supports variable font families which can be{' '}
-              <EuiLink href="https://css-tricks.com/getting-the-most-out-of-variable-fonts-on-google-fonts/">
-                imported from Google fonts using their new API
-              </EuiLink>
-              . Though we still recommend sticking to the theme token names.
-            </p>
-            <EuiRange
-              fullWidth
-              id={htmlIdGenerator()()}
-              min={300}
-              max={700}
-              step={1}
-              value={fontWeight}
-              onChange={onFontWeightChange}
-              showValue
-              aria-label="Font weight"
-              showTicks
-              ticks={euiFontWeights.map(function (name) {
-                return {
-                  label: name.split('euiFontWeight').pop(),
-                  value: fonts[name],
-                };
-              })}
-            />
-          </>
-        }
-        example={
-          <div style={{ fontWeight: fontWeight }}>The quick brown fox</div>
-        }
-        snippet={
-          showSass
-            ? findSassFontWeight({ fontWeight })
-            : findJSFontWeight({ fontWeight, euiTheme })
-        }
-        snippetLanguage={showSass ? 'scss' : 'emotion'}
-      />
+        {weightContent}
 
-      <EuiSpacer size="xl" />
+        <ThemeExample
+          title="Variable fonts"
+          description={
+            <>
+              <p>
+                EUI also supports variable font families which can be{' '}
+                <EuiLink href="https://css-tricks.com/getting-the-most-out-of-variable-fonts-on-google-fonts/">
+                  imported from Google fonts using their new API
+                </EuiLink>
+                . Though we still recommend sticking to the theme token names.
+              </p>
+              <EuiRange
+                fullWidth
+                id={htmlIdGenerator()()}
+                min={300}
+                max={700}
+                step={1}
+                value={fontWeight}
+                onChange={onFontWeightChange}
+                showValue
+                aria-label="Font weight"
+                showTicks
+                ticks={euiFontWeights.map(function (name) {
+                  return {
+                    label: name.split('euiFontWeight').pop(),
+                    value: fonts[name],
+                  };
+                })}
+              />
+            </>
+          }
+          example={
+            <div style={{ fontWeight: fontWeight }}>The quick brown fox</div>
+          }
+          snippet={
+            showSass
+              ? findSassFontWeight({ fontWeight })
+              : findJSFontWeight({ fontWeight, euiTheme })
+          }
+          snippetLanguage={showSass ? 'scss' : 'emotion'}
+        />
+      </GuideSection>
 
-      <EuiText grow={false}>
-        <h2
-          id={`${typographySections[2].id}`}
-        >{`${typographySections[2].title}`}</h2>
-      </EuiText>
+      <GuideSection>
+        {showSass ? <FontWeightValuesSass /> : <FontWeightValuesJS />}
+      </GuideSection>
 
-      <EuiSpacer size="xl" />
+      <GuideSection color="subdued">
+        <EuiSpacer size="xl" />
+        <EuiText grow={false}>
+          <h2
+            id={`${typographySections[2].id}`}
+          >{`${typographySections[2].title}`}</h2>
+        </EuiText>
 
-      {baseContent}
+        <EuiSpacer size="xl" />
+
+        {baseContent}
+      </GuideSection>
+
+      {showSass && (
+        <GuideSection>
+          <FontValuesSass />
+        </GuideSection>
+      )}
     </GuidePage>
   );
 };

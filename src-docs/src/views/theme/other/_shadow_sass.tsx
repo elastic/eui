@@ -49,7 +49,13 @@ export default () => {
         snippet={'@include euiBottomShadow;'}
         snippetLanguage="scss"
       />
+    </>
+  );
+};
 
+export const ShadowValuesSass = () => {
+  return (
+    <>
       <ThemeValuesTable
         valign="middle"
         items={keysOf(shadows).map((shadow) => {

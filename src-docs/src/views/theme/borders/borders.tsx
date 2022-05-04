@@ -4,12 +4,31 @@ import { EuiCode, EuiSpacer, EuiText } from '../../../../../src/components';
 
 // @ts-ignore Importing from JS
 import { GuidePage } from '../../../components/guide_page';
+import { GuideSection } from '../../../components/guide_section/guide_section';
 import { ThemeContext } from '../../../components/with_theme';
 
 import { ThemeNotice } from '../_components/_theme_notice';
 
-import { ColorJS, RadiusJS, TypesJS, WidthJS } from './_border_js';
-import { ColorSass, TypesSass, WidthSass, RadiusSass } from './_border_sass';
+import {
+  ColorJS,
+  ColorValuesJS,
+  RadiusJS,
+  RadiusValuesJS,
+  TypesJS,
+  TypesValuesJS,
+  WidthJS,
+  WidthValuesJS,
+} from './_border_js';
+import {
+  ColorSass,
+  TypesSass,
+  TypesValuesSass,
+  WidthSass,
+  RadiusSass,
+  ColorValuesSass,
+  WidthValuesSass,
+  RadiusValuesSass,
+} from './_border_sass';
 
 // This array is used inside routes.js to create the sidenav sub-sections
 export const bordersSections = [
@@ -77,49 +96,81 @@ export default () => {
       description="The border tokens contain both individual border property values and full shorthand border properties."
       showThemeLanguageToggle
     >
-      <EuiSpacer size="xl" />
+      <GuideSection color="subdued">
+        <EuiSpacer size="xl" />
 
-      <EuiText>
-        <h2 id={`${bordersSections[0].id}`}>{`${bordersSections[0].title}`}</h2>
-      </EuiText>
+        <EuiText>
+          <h2
+            id={`${bordersSections[0].id}`}
+          >{`${bordersSections[0].title}`}</h2>
+        </EuiText>
 
-      <EuiSpacer size="xl" />
+        <EuiSpacer size="xl" />
 
-      {borderContent}
+        {borderContent}
+      </GuideSection>
 
-      <EuiSpacer size="xl" />
+      <GuideSection>
+        {showSass ? <TypesValuesSass /> : <TypesValuesJS />}
+      </GuideSection>
 
-      <EuiText grow={false}>
-        <h2 id={`${bordersSections[1].id}`}>{`${bordersSections[1].title}`}</h2>
-        <p>
-          EUI only has one base color it uses for all borders (or calculated
-          borders).
-        </p>
-      </EuiText>
+      <GuideSection color="subdued">
+        <EuiSpacer size="xl" />
 
-      <EuiSpacer size="xl" />
+        <EuiText grow={false}>
+          <h2
+            id={`${bordersSections[1].id}`}
+          >{`${bordersSections[1].title}`}</h2>
+          <p>
+            EUI only has one base color it uses for all borders (or calculated
+            borders).
+          </p>
+        </EuiText>
 
-      {colorContent}
+        <EuiSpacer size="xl" />
 
-      <EuiSpacer size="xl" />
+        {colorContent}
+      </GuideSection>
 
-      <EuiText grow={false}>
-        <h2 id={`${bordersSections[2].id}`}>{`${bordersSections[2].title}`}</h2>
-      </EuiText>
+      <GuideSection>
+        {showSass ? <ColorValuesSass /> : <ColorValuesJS />}
+      </GuideSection>
 
-      <EuiSpacer size="xl" />
+      <GuideSection color="subdued">
+        <EuiSpacer size="xl" />
 
-      {widthContent}
+        <EuiText grow={false}>
+          <h2
+            id={`${bordersSections[2].id}`}
+          >{`${bordersSections[2].title}`}</h2>
+        </EuiText>
 
-      <EuiSpacer size="xl" />
+        <EuiSpacer size="xl" />
 
-      <EuiText grow={false}>
-        <h2 id={`${bordersSections[3].id}`}>{`${bordersSections[3].title}`}</h2>
-      </EuiText>
+        {widthContent}
+      </GuideSection>
 
-      <EuiSpacer size="xl" />
+      <GuideSection>
+        {showSass ? <WidthValuesSass /> : <WidthValuesJS />}
+      </GuideSection>
 
-      {radiusContent}
+      <GuideSection color="subdued">
+        <EuiSpacer size="xl" />
+
+        <EuiText grow={false}>
+          <h2
+            id={`${bordersSections[3].id}`}
+          >{`${bordersSections[3].title}`}</h2>
+        </EuiText>
+
+        <EuiSpacer size="xl" />
+
+        {radiusContent}
+      </GuideSection>
+
+      <GuideSection>
+        {showSass ? <RadiusValuesSass /> : <RadiusValuesJS />}
+      </GuideSection>
     </GuidePage>
   );
 };

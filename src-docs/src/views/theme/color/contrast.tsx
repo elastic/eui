@@ -21,6 +21,7 @@ import { brandKeys, shadeKeys } from './_color_js';
 import { ContrastSlider } from './_contrast_slider';
 import { ratingAA } from './_contrast_utilities';
 import { _EuiThemeColorsMode } from '../../../../../src/global_styling/variables/colors';
+import { GuideSection } from '../../../components/guide_section/guide_section';
 
 export default () => {
   const [showTextVariants, setShowTextVariants] = useState(true);
@@ -29,7 +30,7 @@ export default () => {
   const showSass = useContext(ThemeContext).themeLanguage.includes('sass');
 
   return (
-    <>
+    <GuideSection>
       <EuiText grow={false}>
         <h2>Accessible text contrast</h2>
         <p>
@@ -182,6 +183,6 @@ export default () => {
               })}
         </EuiPanel>
       </div>
-    </>
+    </GuideSection>
   );
 };

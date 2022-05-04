@@ -95,8 +95,6 @@ export const FontWeightJS: FunctionComponent<ThemeRowType> = ({
   description,
 }) => {
   const { euiTheme } = useEuiTheme();
-  const weightProps = getPropsFromComponent(EuiThemeFontWeight);
-  const weightKeys = EuiThemeFontWeights;
 
   return (
     <>
@@ -115,7 +113,17 @@ export const FontWeightJS: FunctionComponent<ThemeRowType> = ({
         snippet={'font-weight: ${euiTheme.font.weight.bold};'}
         snippetLanguage="emotion"
       />
+    </>
+  );
+};
 
+export const FontWeightValuesJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const weightProps = getPropsFromComponent(EuiThemeFontWeight);
+  const weightKeys = EuiThemeFontWeights;
+
+  return (
+    <>
       <ThemeValuesTable
         items={weightKeys.map((weight) => {
           return {
@@ -140,20 +148,6 @@ export const FontWeightJS: FunctionComponent<ThemeRowType> = ({
 };
 
 export const FontScaleJS = () => {
-  const { euiTheme } = useEuiTheme();
-  const scaleKeys = EuiThemeFontScales;
-
-  const measurementButtons = EuiThemeFontSizeMeasurements.map((m) => {
-    return {
-      id: m,
-      label: m,
-    };
-  });
-
-  const [measurementSelected, setMeasurementSelected] = useState(
-    measurementButtons[0].id
-  );
-
   return (
     <>
       <ThemeExample
@@ -199,6 +193,27 @@ export const FontScaleJS = () => {
         snippet="font-size: ${useEuiFontSize('xs').fontSize};"
         snippetLanguage="emotion"
       />
+    </>
+  );
+};
+
+export const FontScaleValuesJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const scaleKeys = EuiThemeFontScales;
+
+  const measurementButtons = EuiThemeFontSizeMeasurements.map((m) => {
+    return {
+      id: m,
+      label: m,
+    };
+  });
+
+  const [measurementSelected, setMeasurementSelected] = useState(
+    measurementButtons[0].id
+  );
+
+  return (
+    <>
       <EuiPanel color="accent">
         <EuiDescribedFormGroup
           fullWidth

@@ -46,8 +46,6 @@ export const BaseJS = () => {
 
 export default () => {
   const { euiTheme } = useEuiTheme();
-  const sizes = euiTheme.size;
-  const themeSizeProps = getPropsFromComponent(EuiThemeSize);
 
   const wrappingExampleStyle = {
     background: euiTheme.colors.highlight,
@@ -99,29 +97,37 @@ export default () => {
         snippet={'padding: calc(${euiTheme.size.base} * 2);'}
         snippetLanguage="emotion"
       />
-
-      <ThemeValuesTable
-        items={keysOf(sizes).map((size) => {
-          return {
-            id: size,
-            token: `size.${size}`,
-            type: themeSizeProps[size],
-            value: sizes[size],
-          };
-        })}
-        valign="middle"
-        sampleColumnProps={{ width: '100px' }}
-        render={(size) => (
-          <div
-            css={css`
-              width: ${size.value};
-              height: ${size.value};
-              border-radius: min(25%, ${euiTheme.border.radius.small});
-              background: ${euiTheme.colors.mediumShade};
-            `}
-          />
-        )}
-      />
     </>
+  );
+};
+
+export const ScaleValuesJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const sizes = euiTheme.size;
+  const themeSizeProps = getPropsFromComponent(EuiThemeSize);
+
+  return (
+    <ThemeValuesTable
+      items={keysOf(sizes).map((size) => {
+        return {
+          id: size,
+          token: `size.${size}`,
+          type: themeSizeProps[size],
+          value: sizes[size],
+        };
+      })}
+      valign="middle"
+      sampleColumnProps={{ width: '100px' }}
+      render={(size) => (
+        <div
+          css={css`
+            width: ${size.value};
+            height: ${size.value};
+            border-radius: min(25%, ${euiTheme.border.radius.small});
+            background: ${euiTheme.colors.mediumShade};
+          `}
+        />
+      )}
+    />
   );
 };

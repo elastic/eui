@@ -15,11 +15,6 @@ import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 
 export default () => {
-  const { euiTheme } = useEuiTheme();
-  const breakpoint = euiTheme.breakpoint;
-  const breakpointTypes = getPropsFromComponent(EuiThemeBreakpoints);
-  const breakpoints = Object.keys(breakpointTypes);
-
   const [currentBreakpoint, setCurrentBreakpoint] = useState(
     getBreakpoint(typeof window === 'undefined' ? 0 : window.innerWidth)
   );
@@ -94,7 +89,35 @@ export default () => {
         snippet="isWithinBreakpoints(window.innerWidth, ['xs', 's'])"
         snippetLanguage="js"
       />
+    </>
+  );
+};
 
+export const BreakpointValuesJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const breakpoint = euiTheme.breakpoint;
+  const breakpointTypes = getPropsFromComponent(EuiThemeBreakpoints);
+  const breakpoints = Object.keys(breakpointTypes);
+
+  const [currentBreakpoint, setCurrentBreakpoint] = useState(
+    getBreakpoint(typeof window === 'undefined' ? 0 : window.innerWidth)
+  );
+
+  const functionToCallOnWindowResize = throttle(() => {
+    setCurrentBreakpoint(getBreakpoint(window.innerWidth));
+    // reacts every 50ms to resize changes and always gets the final update
+  }, 50);
+
+  useEffect(() => {
+    window.addEventListener('resize', functionToCallOnWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', functionToCallOnWindowResize);
+    };
+  }, [functionToCallOnWindowResize]);
+
+  return (
+    <>
       <ThemeValuesTable
         items={breakpoints.map((size) => {
           return {
