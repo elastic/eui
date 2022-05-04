@@ -43,8 +43,6 @@ export default () => {
       }
     >
       <GuideSection color="subdued">
-        <EuiSpacer size="xl" />
-
         <EuiText grow={false}>
           <h2>Default values</h2>
           <p>

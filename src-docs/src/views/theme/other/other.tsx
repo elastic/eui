@@ -128,8 +128,6 @@ export default () => {
       description="Here are a few more global theme tokens for styles we use throughout EUI."
     >
       <GuideSection color="subdued">
-        <EuiSpacer size="xl" />
-
         <EuiText grow={false}>
           <h2 id={`${otherSections[0].id}`}>{`${otherSections[0].title}`}</h2>
         </EuiText>
@@ -174,18 +172,13 @@ export default () => {
         {showSass ? <SpeedValuesSass /> : <SpeedValuesJS />}
       </GuideSection>
 
-      <GuideSection color="subdued">
-        <EuiSpacer size="xl" />
-        {easeContent}
-      </GuideSection>
+      <GuideSection color="subdued">{easeContent}</GuideSection>
 
       <GuideSection>
         {showSass ? <EasingValuesSass /> : <EasingValuesJS />}
       </GuideSection>
 
       <GuideSection color="subdued">
-        <EuiSpacer size="xl" />
-
         <EuiText grow={false}>
           <h2 id={`${otherSections[1].id}`}>{`${otherSections[1].title}`}</h2>
         </EuiText>
@@ -200,8 +193,6 @@ export default () => {
       </GuideSection>
 
       <GuideSection color="subdued">
-        <EuiSpacer size="xl" />
-
         <EuiText grow={false}>
           <h2 id={`${otherSections[2].id}`}>
             {`${otherSections[2].title}`} (z-index)

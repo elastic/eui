@@ -155,7 +155,6 @@ export default () => {
       ) : (
         <>
           <GuideSection color="subdued">
-            <EuiSpacer size="xl" />
             <EuiText grow={false}>
               <h2
                 id={`${colorsSections[0].id}`}
@@ -177,8 +176,6 @@ export default () => {
           </GuideSection>
 
           <GuideSection color="subdued">
-            <EuiSpacer size="xl" />
-
             <EuiText grow={false}>
               <h2
                 id={`${colorsSections[1].id}`}
@@ -209,8 +206,6 @@ export default () => {
           </GuideSection>
 
           <GuideSection color="subdued">
-            <EuiSpacer size="xl" />
-
             <EuiText grow={false}>
               <h2
                 id={`${colorsSections[2].id}`}
@@ -231,8 +226,6 @@ export default () => {
           </GuideSection>
 
           <GuideSection color="subdued">
-            <EuiSpacer size="xl" />
-
             <EuiText grow={false}>
               {' '}
               <h2

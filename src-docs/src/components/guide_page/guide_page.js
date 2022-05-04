@@ -108,7 +108,7 @@ const GuidePageComponent = ({
   return (
     <>
       {renderNotice()}
-      <EuiPageContentBody paddingSize="l">
+      <EuiPageContentBody style={{ paddingBlockEnd: 0 }} paddingSize="l">
         <EuiPageHeader
           restrictWidth
           pageTitle={
@@ -137,6 +137,7 @@ const GuidePageComponent = ({
           {playground && (
             <Route path={`${match.path}/playground`}>
               <EuiPageContentBody restrictWidth>
+                <EuiSpacer size="xl" />
                 {playground}
               </EuiPageContentBody>
             </Route>
@@ -144,6 +145,7 @@ const GuidePageComponent = ({
           {guidelines && (
             <Route path={`${match.path}/guidelines`}>
               <EuiPageContentBody restrictWidth>
+                <EuiSpacer size="xl" />
                 {guidelines}
               </EuiPageContentBody>
             </Route>

@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { EuiMarkdownFormat, EuiPageContentBody } from '../../../../src';
+import {
+  EuiMarkdownFormat,
+  EuiPageContentBody,
+  EuiSpacer,
+} from '../../../../src';
 import { GuidePage } from '../../components/guide_page';
 
 const changelogSource = require('!!raw-loader!../../../../CHANGELOG.md').default.replace(
@@ -13,6 +17,7 @@ export const Changelog = {
   component: () => (
     <GuidePage title="Changelog">
       <EuiPageContentBody restrictWidth>
+        <EuiSpacer size="xl" />
         <EuiMarkdownFormat>{changelogSource}</EuiMarkdownFormat>
       </EuiPageContentBody>
     </GuidePage>

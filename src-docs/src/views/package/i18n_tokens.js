@@ -63,6 +63,8 @@ export const I18nTokens = {
   component: () => (
     <GuidePage title="I18n tokens">
       <EuiPageContentBody restrictWidth>
+        <EuiSpacer size="xl" />
+
         <EuiInMemoryTable
           items={tokens}
           columns={columns}

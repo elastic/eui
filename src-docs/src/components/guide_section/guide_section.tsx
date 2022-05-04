@@ -184,12 +184,13 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
 
   return (
     <EuiPanel
-      color={color}
+      color={color || 'transparent'}
       borderRadius="none"
       className="guideSection"
       paddingSize="l"
       id={id}
     >
+      {color && (children || text) && <EuiSpacer size="xxl" />}
       <EuiPageContentBody restrictWidth>
         <GuideSectionExampleText title={title} wrapText={wrapText}>
           {text}
@@ -207,7 +208,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
         )}
         {(demo || fullScreen) && (
           <>
-            <EuiSpacer />
+            {text && <EuiSpacer />}
             <GuideSectionExample
               example={
                 <EuiErrorBoundary>

@@ -126,7 +126,7 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
   return (
     <>
       {renderNotice()}
-      <EuiPageContentBody paddingSize="l">
+      <EuiPageContentBody style={{ paddingBlockEnd: 0 }} paddingSize="l">
         <EuiPageHeader
           restrictWidth
           pageTitle={

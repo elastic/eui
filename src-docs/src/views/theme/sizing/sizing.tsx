@@ -41,8 +41,6 @@ export default () => {
       showThemeLanguageToggle
     >
       <GuideSection>
-        <EuiSpacer size="xl" />
-
         <EuiText grow={false}>
           <h2 id={`${sizingSections[0].id}`}>{`${sizingSections[0].title}`}</h2>
           <p>
@@ -57,8 +55,6 @@ export default () => {
       </GuideSection>
 
       <GuideSection color="subdued">
-        <EuiSpacer size="xl" />
-
         <EuiTitle>
           <h2 id={`${sizingSections[1].id}`}>{`${sizingSections[1].title}`}</h2>
         </EuiTitle>
