@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiCallOut, EuiLink, EuiButton } from '../../../../src/components';
+import { EuiCallOut, EuiLink, EuiButton } from '../../../../src';
 
 export default () => (
   <EuiCallOut title="Proceed with caution!" color="warning" iconType="help">
