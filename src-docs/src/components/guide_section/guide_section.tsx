@@ -190,7 +190,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
       paddingSize="l"
       id={id}
     >
-      {color && (children || text) && <EuiSpacer size="xxl" />}
+      {color && (children || text || title) && <EuiSpacer size="xxl" />}
       <EuiPageContentBody restrictWidth>
         <GuideSectionExampleText title={title} wrapText={wrapText}>
           {text}
