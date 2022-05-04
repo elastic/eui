@@ -1,6 +1,6 @@
 import React, { useContext, useMemo, useState } from 'react';
 
-import { EuiCode, EuiSpacer, EuiText } from '../../../../../src';
+import { EuiCallOut, EuiCode, EuiSpacer, EuiText } from '../../../../../src';
 
 // @ts-ignore Importing from JS
 import { GuidePage } from '../../../components/guide_page';
@@ -11,7 +11,7 @@ import { ThemeNotice } from '../_components/_theme_notice';
 // @ts-ignore Importing JS
 import ColorsContrast from './contrast';
 
-import { BrandJS, ShadeJS, SpecialJS, TextJS } from './_color_js';
+import { BrandJS, ShadeJS, SpecialJS, TextJS, UtilsJS } from './_color_js';
 import { Link } from 'react-router-dom';
 import { BrandSass, ShadeSass, SpecialSass, TextSass } from './_color_sass';
 
@@ -32,6 +32,7 @@ export const colorsSections = [
   { title: 'Text colors', id: 'text-colors' },
   { title: 'Shades', id: 'shades' },
   { title: 'Special colors', id: 'special-colors' },
+  { title: 'Utilities', id: 'utilities' },
 ];
 
 export default () => {
@@ -97,6 +98,12 @@ export default () => {
     return <SpecialJS description={description} />;
   }, [showSass]);
 
+  const utilsContent = useMemo(() => {
+    if (showSass)
+      return <EuiCallOut title="Utilities only available for Emotion." />;
+    return <UtilsJS />;
+  }, [showSass]);
+
   return (
     <GuidePage
       isBeta={!showSass && !selectedTabId.includes('contrast')}
@@ -155,7 +162,6 @@ export default () => {
           <EuiSpacer size="xl" />
 
           <EuiText grow={false}>
-            {' '}
             <h2
               id={`${colorsSections[1].id}`}
             >{`${colorsSections[1].title}`}</h2>
@@ -182,7 +188,6 @@ export default () => {
           <EuiSpacer size="xl" />
 
           <EuiText grow={false}>
-            {' '}
             <h2
               id={`${colorsSections[2].id}`}
             >{`${colorsSections[2].title}`}</h2>
@@ -199,7 +204,6 @@ export default () => {
           <EuiSpacer size="xl" />
 
           <EuiText grow={false}>
-            {' '}
             <h2
               id={`${colorsSections[3].id}`}
             >{`${colorsSections[3].title}`}</h2>
@@ -209,6 +213,18 @@ export default () => {
           <EuiSpacer size="xl" />
 
           {specialContent}
+
+          <EuiSpacer size="xl" />
+
+          <EuiText grow={false}>
+            <h2
+              id={`${colorsSections[4].id}`}
+            >{`${colorsSections[4].title}`}</h2>
+          </EuiText>
+
+          <EuiSpacer size="xl" />
+
+          {utilsContent}
         </>
       )}
     </GuidePage>
