@@ -105,7 +105,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
   </div>
   <div>
     <div
-      class="euiSpacer euiSpacer--m css-hg1jdf-euiSpacer-m"
+      class="euiSpacer euiSpacer--m css-jv9za2-euiSpacer-m"
     />
     <div
       class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--wrap eui-xScroll"
@@ -756,7 +756,7 @@ exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
   </div>
   <div>
     <div
-      class="euiSpacer euiSpacer--m css-hg1jdf-euiSpacer-m"
+      class="euiSpacer euiSpacer--m css-jv9za2-euiSpacer-m"
     />
     <div
       class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--wrap eui-xScroll"
