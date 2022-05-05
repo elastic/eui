@@ -12,9 +12,9 @@
  */
 
 import React, {
-  FunctionComponent,
   HTMLAttributes,
   ReactNode,
+  forwardRef,
   useEffect,
   useRef,
   useState,
@@ -22,6 +22,7 @@ import React, {
 import { createPortal } from 'react-dom';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
+import { useCombinedRefs } from '../../services';
 
 export interface EuiOverlayMaskInterface {
   /**
@@ -45,86 +46,87 @@ export type EuiOverlayMaskProps = CommonProps &
   > &
   EuiOverlayMaskInterface;
 
-export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
-  className,
-  children,
-  onClick,
-  headerZindexLocation = 'above',
-  ...rest
-}) => {
-  const overlayMaskNode = useRef<HTMLDivElement>();
-  const [isPortalTargetReady, setIsPortalTargetReady] = useState(false);
+export const EuiOverlayMask = forwardRef<HTMLDivElement, EuiOverlayMaskProps>(
+  (
+    { className, children, onClick, headerZindexLocation = 'above', ...rest },
+    ref
+  ) => {
+    const overlayMaskNode = useRef<HTMLDivElement>();
+    const combinedMaskRef = useCombinedRefs([overlayMaskNode, ref]);
+    const [isPortalTargetReady, setIsPortalTargetReady] = useState(false);
 
-  useEffect(() => {
-    document.body.classList.add('euiBody-hasOverlayMask');
+    useEffect(() => {
+      document.body.classList.add('euiBody-hasOverlayMask');
 
-    return () => {
-      document.body.classList.remove('euiBody-hasOverlayMask');
-    };
-  }, []);
+      return () => {
+        document.body.classList.remove('euiBody-hasOverlayMask');
+      };
+    }, []);
 
-  useEffect(() => {
-    if (typeof document !== 'undefined') {
-      overlayMaskNode.current = document.createElement('div');
-    }
-  }, []);
+    useEffect(() => {
+      if (typeof document !== 'undefined') {
+        combinedMaskRef(document.createElement('div'));
+      }
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    const portalTarget = overlayMaskNode.current;
+    useEffect(() => {
+      const portalTarget = overlayMaskNode.current;
 
-    if (portalTarget) {
-      document.body.appendChild(portalTarget);
-    }
-
-    setIsPortalTargetReady(true);
-
-    return () => {
       if (portalTarget) {
-        document.body.removeChild(portalTarget);
+        document.body.appendChild(portalTarget);
       }
-    };
-  }, []);
 
-  useEffect(() => {
-    if (!overlayMaskNode.current) return;
-    keysOf(rest).forEach((key) => {
-      if (typeof rest[key] !== 'string') {
-        throw new Error(
-          `Unhandled property type. EuiOverlayMask property ${key} is not a string.`
-        );
-      }
-      if (overlayMaskNode.current) {
-        overlayMaskNode.current.setAttribute(key, rest[key]!);
-      }
-    });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+      setIsPortalTargetReady(true);
 
-  useEffect(() => {
-    if (!overlayMaskNode.current) return;
-    overlayMaskNode.current.className = classNames(
-      'euiOverlayMask',
-      `euiOverlayMask--${headerZindexLocation}Header`,
-      className
-    );
-  }, [className, headerZindexLocation]);
+      return () => {
+        if (portalTarget) {
+          document.body.removeChild(portalTarget);
+        }
+      };
+    }, []);
 
-  useEffect(() => {
-    const portalTarget = overlayMaskNode.current;
-    if (!portalTarget || !onClick) return;
+    useEffect(() => {
+      if (!overlayMaskNode.current) return;
+      keysOf(rest).forEach((key) => {
+        if (typeof rest[key] !== 'string') {
+          throw new Error(
+            `Unhandled property type. EuiOverlayMask property ${key} is not a string.`
+          );
+        }
+        if (overlayMaskNode.current) {
+          overlayMaskNode.current.setAttribute(key, rest[key]!);
+        }
+      });
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const listener = (e: Event) => {
-      if (e.target === portalTarget) {
-        onClick();
-      }
-    };
-    portalTarget.addEventListener('click', listener);
+    useEffect(() => {
+      if (!overlayMaskNode.current) return;
+      overlayMaskNode.current.className = classNames(
+        'euiOverlayMask',
+        `euiOverlayMask--${headerZindexLocation}Header`,
+        className
+      );
+    }, [className, headerZindexLocation]);
 
-    return () => {
-      portalTarget.removeEventListener('click', listener);
-    };
-  }, [onClick]);
+    useEffect(() => {
+      const portalTarget = overlayMaskNode.current;
+      if (!portalTarget || !onClick) return;
 
-  return isPortalTargetReady ? (
-    <>{createPortal(children, overlayMaskNode.current!)}</>
-  ) : null;
-};
+      const listener = (e: Event) => {
+        if (e.target === portalTarget) {
+          onClick();
+        }
+      };
+      portalTarget.addEventListener('click', listener);
+
+      return () => {
+        portalTarget.removeEventListener('click', listener);
+      };
+    }, [onClick]);
+
+    return isPortalTargetReady ? (
+      <>{createPortal(children, overlayMaskNode.current!)}</>
+    ) : null;
+  }
+);
+EuiOverlayMask.displayName = 'EuiOverlayMask';

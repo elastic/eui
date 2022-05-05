@@ -6,15 +6,17 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { forwardRef as mockForwardRef } from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps, takeMountedSnapshot } from '../../test';
 
 import { EuiFlyout, SIZES, PADDING_SIZES, SIDES } from './flyout';
 
 jest.mock('../overlay_mask', () => ({
-  EuiOverlayMask: ({ headerZindexLocation, ...props }: any) => (
-    <div {...props} />
+  EuiOverlayMask: mockForwardRef(
+    ({ headerZindexLocation, ...props }: any, ref) => (
+      <div {...props} ref={ref} />
+    )
   ),
 }));
 
