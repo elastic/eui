@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { forwardRef as mockForwardRef } from 'react';
+import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps, takeMountedSnapshot } from '../../test';
 
@@ -14,10 +14,8 @@ import { EuiCollapsibleNav } from './collapsible_nav';
 import { EuiOverlayMaskProps } from '../overlay_mask';
 
 jest.mock('../overlay_mask', () => ({
-  EuiOverlayMask: mockForwardRef(
-    ({ headerZindexLocation, ...props }: any, ref) => (
-      <div {...props} ref={ref} />
-    )
+  EuiOverlayMask: ({ headerZindexLocation, maskRef, ...props }: any) => (
+    <div {...props} />
   ),
 }));
 

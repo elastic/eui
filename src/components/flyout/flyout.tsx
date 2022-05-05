@@ -390,13 +390,13 @@ export const EuiFlyout = forwardRef(
     );
 
     // If ownFocus is set, wrap with an overlay and allow the user to click it to close it.
+    const mergedMaskProps = {
+      ...maskProps,
+      maskRef: useCombinedRefs([maskProps?.maskRef, maskRef]),
+    };
     if (isDefaultConfiguration) {
       flyout = (
-        <EuiOverlayMask
-          headerZindexLocation="below"
-          {...maskProps}
-          ref={maskRef}
-        >
+        <EuiOverlayMask headerZindexLocation="below" {...mergedMaskProps}>
           {flyout}
         </EuiOverlayMask>
       );
