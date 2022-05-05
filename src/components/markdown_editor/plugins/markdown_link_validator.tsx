@@ -39,11 +39,12 @@ export function mutateLinkToText(node: LinkOrTextNode) {
   node.type = 'text';
 
   // https://github.com/elastic/eui/issues/5770
-  // if this is a `mailto:` link only keep the target address
+  // if this is a `mailto:` link only keep the link text
+  const linkText = node.children?.[0]?.value || '';
   if (node.url?.startsWith('mailto:')) {
-    node.value = node.children![0]?.value;
+    node.value = linkText;
   } else {
-    node.value = `[${node.children![0]?.value || ''}](${node.url})`;
+    node.value = `[${linkText || ''}](${node.url})`;
   }
 
   delete node.children;
