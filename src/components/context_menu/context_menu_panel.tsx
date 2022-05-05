@@ -299,6 +299,10 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     }
   };
 
+  componentDidUpdate() {
+    this.updateFocus();
+  }
+
   componentDidMount() {
     this.updateFocus();
     this.reclaimPopoverFocus();
@@ -411,10 +415,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         this.setState({ height: currentHeight });
       }
     }
-  }
-
-  componentDidUpdate() {
-    this.updateFocus();
   }
 
   panelRef = (node: HTMLElement | null) => {
