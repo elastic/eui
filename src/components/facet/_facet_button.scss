@@ -1,7 +1,0 @@
-.euiFacetButton {
-  &:focus {
-    &:not(:disabled) .euiFacetButton__text {
-      @include euiLinkFocus;
-    }
-  }
-}
