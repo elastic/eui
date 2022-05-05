@@ -83,7 +83,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
       class="euiStep__titleWrapper"
     >
       <span
-        class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
+        class="euiStepNumber euiStepNumber--incomplete euiStep__circle"
       >
         <span
           class="euiScreenReaderOnly"
@@ -197,7 +197,7 @@ exports[`EuiSteps renders steps 1`] = `
       class="euiStep__titleWrapper"
     >
       <span
-        class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
+        class="euiStepNumber euiStepNumber--incomplete euiStep__circle"
       >
         <span
           class="euiScreenReaderOnly"
@@ -311,7 +311,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
       class="euiStep__titleWrapper"
     >
       <span
-        class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
+        class="euiStepNumber euiStepNumber--incomplete euiStep__circle"
       >
         <span
           class="euiScreenReaderOnly"
@@ -425,7 +425,7 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
       class="euiStep__titleWrapper"
     >
       <span
-        class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle euiStepNumber--small"
+        class="euiStepNumber euiStepNumber--incomplete euiStep__circle euiStepNumber--small"
       >
         <span
           class="euiScreenReaderOnly"

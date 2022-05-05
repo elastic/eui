@@ -25,9 +25,9 @@ describe('EuiDatePicker', () => {
   });
 
   describe('popoverPlacement', () => {
-    test('top-end is rendered', () => {
+    test('upRight is rendered', () => {
       const component = mount(
-        <EuiDatePicker {...requiredProps} popoverPlacement="top-end" />
+        <EuiDatePicker {...requiredProps} popoverPlacement="upRight" />
       );
 
       expect(component).toMatchSnapshot();

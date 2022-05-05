@@ -94,7 +94,6 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
   >
     <button
       class="euiStepHorizontal euiStepHorizontal-isDisabled"
-      disabled=""
       title="Step 4: Disabled Step 4 is disabled"
     >
       <span

@@ -27,16 +27,6 @@ import {
 export interface EuiStepHorizontalProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>,
     CommonProps {
-  /**
-   * **DEPRECATED: Use `status = 'current'` instead**
-   * Adds to the line before the indicator for showing current progress
-   */
-  isSelected?: boolean;
-  /**
-   * **DEPRECATED: Use `status = 'complete'` instead**
-   * Adds to the line after the indicator for showing current progress
-   */
-  isComplete?: boolean;
   onClick: MouseEventHandler<HTMLButtonElement>;
   /**
    * Makes the whole step button disabled.
@@ -59,8 +49,6 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   className,
   step = 1,
   title,
-  isSelected,
-  isComplete,
   onClick,
   disabled,
   status = 'incomplete',
@@ -74,8 +62,6 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   const currentTitle = useI18nCurrentStep({ number: step, title });
 
   if (disabled) status = 'disabled';
-  else if (isComplete) status = 'complete';
-  else if (isSelected) status = 'current';
 
   const classes = classNames('euiStepHorizontal', className, {
     'euiStepHorizontal-isSelected': status === 'current',
