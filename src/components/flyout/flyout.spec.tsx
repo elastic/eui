@@ -10,6 +10,7 @@
 
 import React, { useState } from 'react';
 
+import { EuiGlobalToastList } from '../toast';
 import { EuiFlyout } from './flyout';
 
 const childrenDefault = (
@@ -62,7 +63,7 @@ describe('EuiFlyout', () => {
     });
   });
 
-  describe('Close behavior', () => {
+  describe('Close behavior: standard', () => {
     it('closes the flyout when the close button is clicked', () => {
       cy.mount(<Flyout />);
       cy.realPress('Enter').then(() => {
@@ -76,6 +77,37 @@ describe('EuiFlyout', () => {
         expect(cy.get('[data-test-subj="flyoutSpec"]').should('not.exist'));
       });
     });
+  });
+
+  describe('Close behavior: outside clicks', () => {
+    const FlyoutWithToasts = ({ children = childrenDefault, ...rest }) => {
+      const [isOpen, setIsOpen] = useState(true);
+
+      return (
+        <>
+          {isOpen ? (
+            <EuiFlyout
+              data-test-subj="flyoutSpec"
+              onClose={() => setIsOpen(false)}
+              {...rest}
+            >
+              {children}
+            </EuiFlyout>
+          ) : null}
+          <EuiGlobalToastList
+            toasts={[
+              {
+                title: 'Toast!',
+                text: 'Yeah toast',
+                id: 'a',
+              },
+            ]}
+            dismissToast={() => {}}
+            toastLifeTimeMs={10000}
+          />
+        </>
+      );
+    };
 
     it('closes the flyout when the overlay mask is clicked', () => {
       cy.mount(<Flyout />);
@@ -93,6 +125,24 @@ describe('EuiFlyout', () => {
         .realMouseUp()
         .then(() => {
           expect(cy.get('[data-test-subj="flyoutSpec"]').should('exist'));
+        });
+    });
+
+    it('does not close the flyout when the toast is clicked when `ownFocus=true`', () => {
+      cy.mount(<FlyoutWithToasts />);
+      cy.get('[data-test-subj="toastCloseButton"]')
+        .realClick()
+        .then(() => {
+          expect(cy.get('[data-test-subj="flyoutSpec"]').should('exist'));
+        });
+    });
+
+    it('closes the flyout when the toast is clicked when `ownFocus=false`', () => {
+      cy.mount(<FlyoutWithToasts ownFocus={false} outsideClickCloses={true} />);
+      cy.get('[data-test-subj="toastCloseButton"]')
+        .realClick()
+        .then(() => {
+          expect(cy.get('[data-test-subj="flyoutSpec"]').should('not.exist'));
         });
     });
   });
