@@ -1,7 +1,7 @@
 import React, { useContext, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { EuiCode, EuiSpacer, EuiText } from '../../../../../src';
+import { EuiCallOut, EuiCode, EuiSpacer, EuiText } from '../../../../../src';
 import { GuideSection } from '../../../components/guide_section/guide_section';
 
 // @ts-ignore Importing from JS
@@ -22,6 +22,7 @@ import {
   SpecialValuesJS,
   TextJS,
   TextValuesJS,
+  UtilsJS,
 } from './_color_js';
 import {
   BrandSass,
@@ -51,6 +52,7 @@ export const colorsSections = [
   { title: 'Text colors', id: 'text-colors' },
   { title: 'Shades', id: 'shades' },
   { title: 'Special colors', id: 'special-colors' },
+  { title: 'Utilities', id: 'utilities' },
 ];
 
 export default () => {
@@ -114,6 +116,12 @@ export default () => {
     );
     if (showSass) return <SpecialSass description={description} />;
     return <SpecialJS description={description} />;
+  }, [showSass]);
+
+  const utilsContent = useMemo(() => {
+    if (showSass)
+      return <EuiCallOut title="Utilities only available for Emotion." />;
+    return <UtilsJS />;
   }, [showSass]);
 
   return (
@@ -186,7 +194,7 @@ export default () => {
               </p>
               <p>
                 Each brand color also has a corresponding text variant that has
-                been calculated for proper (4.5) contrast against{' '}
+                been calculated for proper (at least 4.5) contrast against{' '}
                 <EuiCode>colors.body</EuiCode> and should be used specifically
                 when coloring text. As is used in{' '}
                 <Link to="/display/text#coloring-text">
@@ -241,6 +249,20 @@ export default () => {
 
           <GuideSection>
             {showSass ? <SpecialValuesSass /> : <SpecialValuesJS />}
+          </GuideSection>
+
+          <GuideSection color="subdued">
+            <EuiSpacer size="xl" />
+
+            <EuiText grow={false}>
+              <h2
+                id={`${colorsSections[4].id}`}
+              >{`${colorsSections[4].title}`}</h2>
+            </EuiText>
+
+            <EuiSpacer size="xl" />
+
+            {utilsContent}
           </GuideSection>
         </>
       )}

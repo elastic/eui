@@ -34,34 +34,6 @@ describe('props', () => {
     description: 'This is the description',
   };
 
-  describe('labelDisplay as expand', () => {
-    test('is rendered', () => {
-      const component = render(
-        <EuiSuggestItem
-          type={sampleItem.type}
-          description={sampleItem.description}
-          label={sampleItem.description}
-          labelDisplay="expand"
-        />
-      );
-      expect(component).toMatchSnapshot();
-    });
-  });
-
-  describe('descriptionDisplay as wrap', () => {
-    test('is rendered', () => {
-      const component = render(
-        <EuiSuggestItem
-          type={sampleItem.type}
-          description={sampleItem.description}
-          label={sampleItem.description}
-          descriptionDisplay="wrap"
-        />
-      );
-      expect(component).toMatchSnapshot();
-    });
-  });
-
   describe('labelWidth is 30%', () => {
     test('is rendered', () => {
       const component = render(
@@ -84,6 +56,18 @@ describe('props', () => {
           description={sampleItem.description}
           label={sampleItem.description}
           truncate
+        />
+      );
+      expect(component).toMatchSnapshot();
+    });
+
+    test('renders false', () => {
+      const component = render(
+        <EuiSuggestItem
+          type={sampleItem.type}
+          description={sampleItem.description}
+          label={sampleItem.description}
+          truncate={false}
         />
       );
       expect(component).toMatchSnapshot();

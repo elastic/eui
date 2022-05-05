@@ -10,7 +10,7 @@ import React, { Component, createRef, HTMLAttributes, ReactNode } from 'react';
 
 import { htmlIdGenerator } from '../../../services';
 
-import { EuiTabs, EuiTabsDisplaySizes, EuiTabsSizes } from '../tabs';
+import { EuiTabs, EuiTabsSizes } from '../tabs';
 import { EuiTab, EuiTabProps } from '../tab';
 import { CommonProps } from '../../common';
 
@@ -38,10 +38,6 @@ export type EuiTabbedContentProps = CommonProps &
      * overlay content like popovers or flyouts.
      */
     autoFocus?: 'initial' | 'selected';
-    /**
-     * Choose `default` or alternative `condensed` display styles
-     */
-    display?: EuiTabsDisplaySizes;
     /**
      * Evenly stretches each tab to fill the horizontal space
      */
@@ -163,7 +159,6 @@ export class EuiTabbedContent extends Component<
   render() {
     const {
       className,
-      display,
       expand,
       initialSelectedTab,
       onTabClick,
@@ -188,7 +183,6 @@ export class EuiTabbedContent extends Component<
         <EuiTabs
           ref={this.tabsRef}
           expand={expand}
-          display={display}
           size={size}
           onFocus={this.initializeFocus}
         >

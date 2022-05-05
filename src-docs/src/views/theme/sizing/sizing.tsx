@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 
-import { EuiSpacer, EuiText, EuiTitle } from '../../../../../src/components';
+import { EuiCallOut, EuiSpacer, EuiText, EuiTitle } from '../../../../../src';
 
 // @ts-ignore Importing from JS
 import { GuidePage } from '../../../components/guide_page';
@@ -9,13 +9,14 @@ import { ThemeContext } from '../../../components/with_theme';
 
 import { ThemeNotice } from '../_components/_theme_notice';
 
-import JSValues, { BaseJS, ScaleValuesJS } from './_sizing_js';
+import JSValues, { BaseJS, ScaleValuesJS, UtilsJS } from './_sizing_js';
 import SassValues, { BaseSass, ScaleValuesSass } from './_sizing_sass';
 
 // This array is used inside routes.js to create the sidenav sub-sections
 export const sizingSections = [
   { title: 'Base', id: 'base' },
   { title: 'Scale', id: 'scale' },
+  { title: 'Utilities', id: 'utilities' },
 ];
 
 export default () => {
@@ -28,9 +29,15 @@ export default () => {
     return <BaseJS />;
   }, [showSass]);
 
-  const selectedTabContent = useMemo(() => {
+  const scaleContent = useMemo(() => {
     if (showSass) return <SassValues />;
     return <JSValues />;
+  }, [showSass]);
+
+  const utilsContent = useMemo(() => {
+    if (showSass)
+      return <EuiCallOut title="Utilities only available for Emotion." />;
+    return <UtilsJS />;
   }, [showSass]);
 
   return (
@@ -61,11 +68,21 @@ export default () => {
 
         <EuiSpacer size="l" />
 
-        {selectedTabContent}
+        {scaleContent}
       </GuideSection>
 
       <GuideSection>
         {showSass ? <ScaleValuesSass /> : <ScaleValuesJS />}
+      </GuideSection>
+
+      <GuideSection color="subdued">
+        <EuiTitle>
+          <h2 id={`${sizingSections[2].id}`}>{`${sizingSections[2].title}`}</h2>
+        </EuiTitle>
+
+        <EuiSpacer size="l" />
+
+        {utilsContent}
       </GuideSection>
     </GuidePage>
   );

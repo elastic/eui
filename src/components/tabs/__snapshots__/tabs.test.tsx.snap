@@ -1,23 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiTabs props display condensed is rendered 1`] = `
-<div
-  class="euiTabs euiTabs--condensed"
-  role="tablist"
->
-  children
-</div>
-`;
-
-exports[`EuiTabs props display default is rendered 1`] = `
-<div
-  class="euiTabs euiTabs--bottomBorder"
-  role="tablist"
->
-  children
-</div>
-`;
-
 exports[`EuiTabs props expand is rendered 1`] = `
 <div
   class="euiTabs euiTabs--expand euiTabs--bottomBorder"

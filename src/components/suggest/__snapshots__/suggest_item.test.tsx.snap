@@ -15,37 +15,10 @@ exports[`EuiSuggestItem is rendered 1`] = `
     />
   </span>
   <span
-    class="euiSuggestItem__label"
+    class="euiSuggestItem__label euiSuggestItem__label--width50"
     title="Test label"
   >
     Test label
-  </span>
-</span>
-`;
-
-exports[`props descriptionDisplay as wrap is rendered 1`] = `
-<span
-  class="euiSuggestItem euiSuggestItem--truncate"
->
-  <span
-    class="euiSuggestItem__type euiSuggestItem__type--tint2"
-  >
-    <span
-      color="inherit"
-      data-euiicon-type="kqlValue"
-    />
-  </span>
-  <span
-    class="euiSuggestItem__label euiSuggestItem__label--width50"
-    title="This is the description"
-  >
-    This is the description
-  </span>
-  <span
-    class="euiSuggestItem__description euiSuggestItem__description--wrap"
-    title="This is the description"
-  >
-    This is the description
   </span>
 </span>
 `;
@@ -63,37 +36,10 @@ exports[`props item with no description has expanded label is rendered 1`] = `
     />
   </span>
   <span
-    class="euiSuggestItem__label"
+    class="euiSuggestItem__label euiSuggestItem__label--width50"
     title="Charles de Gaulle International Airport"
   >
     Charles de Gaulle International Airport
-  </span>
-</span>
-`;
-
-exports[`props labelDisplay as expand is rendered 1`] = `
-<span
-  class="euiSuggestItem euiSuggestItem--truncate"
->
-  <span
-    class="euiSuggestItem__type euiSuggestItem__type--tint2"
-  >
-    <span
-      color="inherit"
-      data-euiicon-type="kqlValue"
-    />
-  </span>
-  <span
-    class="euiSuggestItem__label"
-    title="This is the description"
-  >
-    This is the description
-  </span>
-  <span
-    class="euiSuggestItem__description"
-    title="This is the description"
-  >
-    This is the description
   </span>
 </span>
 `;
@@ -145,6 +91,33 @@ exports[`props truncate is rendered 1`] = `
   </span>
   <span
     class="euiSuggestItem__description"
+    title="This is the description"
+  >
+    This is the description
+  </span>
+</span>
+`;
+
+exports[`props truncate renders false 1`] = `
+<span
+  class="euiSuggestItem"
+>
+  <span
+    class="euiSuggestItem__type euiSuggestItem__type--tint2"
+  >
+    <span
+      color="inherit"
+      data-euiicon-type="kqlValue"
+    />
+  </span>
+  <span
+    class="euiSuggestItem__label euiSuggestItem__label--width50"
+    title="This is the description"
+  >
+    This is the description
+  </span>
+  <span
+    class="euiSuggestItem__description euiSuggestItem__description--wrap"
     title="This is the description"
   >
     This is the description

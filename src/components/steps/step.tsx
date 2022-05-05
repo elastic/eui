@@ -75,7 +75,6 @@ export const EuiStep: FunctionComponent<EuiStepProps> = ({
           number={step}
           status={status}
           titleSize={titleSize}
-          isHollow={status === 'incomplete'}
         />
         <EuiTitle size={titleSize as EuiTitleSize} className="euiStep__title">
           {createElement(headingElement, null, title)}

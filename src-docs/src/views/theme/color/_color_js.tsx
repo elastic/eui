@@ -4,7 +4,18 @@ import { css } from '@emotion/react';
 import { transparentize, useEuiTheme } from '../../../../../src/services';
 import { getPropsFromComponent } from '../../../services/props/get_props';
 
-import { EuiCode, EuiColorPickerSwatch } from '../../../../../src';
+import {
+  useEuiBackgroundColorCSS,
+  EuiCode,
+  EuiColorPickerSwatch,
+  EuiSpacer,
+  EuiText,
+  useEuiBackgroundColor,
+  useEuiPaddingSize,
+  BACKGROUND_COLORS,
+  euiBackgroundColor,
+  useEuiPaddingCSS,
+} from '../../../../../src';
 
 import { EuiThemeColors, ThemeRowType } from '../_props';
 
@@ -240,6 +251,91 @@ export const SpecialValuesJS = () => {
             type: props[color],
             // @ts-ignore TODO
             value: euiTheme.colors[color],
+          };
+        })}
+        render={(item) => <EuiColorPickerSwatch color={item.value} disabled />}
+      />
+    </>
+  );
+};
+
+export const UtilsJS = () => {
+  const euiTheme = useEuiTheme();
+
+  return (
+    <>
+      <EuiText grow={false}>
+        <h3>Background colors</h3>
+        <p>
+          To all but ensure proper contrast of text to background, we recommend
+          using our pre-defined shades of background colors based on the
+          EuiTheme brand colors. You can also use{' '}
+          <Link to="/layout/panel">
+            <strong>EuiPanel</strong>
+          </Link>{' '}
+          for the same effect plus more options like padding and rounded
+          corners.
+        </p>
+      </EuiText>
+
+      <EuiSpacer size="l" />
+
+      <ThemeExample
+        title={<code>{'useEuiBackgroundColorCSS()[color]'}</code>}
+        description={
+          <>
+            <p>
+              Returns an object of the available color keys containing the css
+              string of the computed background version for the given{' '}
+              <EuiCode language="sass">color</EuiCode>.
+            </p>
+            <p>
+              This is best used to map component prop styles to padding output.
+            </p>
+          </>
+        }
+        example={
+          <p css={[useEuiBackgroundColorCSS().accent, useEuiPaddingCSS().l]}>
+            <code>{useEuiBackgroundColorCSS().accent}</code>
+          </p>
+        }
+        snippetLanguage="tsx"
+        snippet={`const colorStyles = useEuiBackgroundColorCSS();
+const cssStyles = [colorStyles['accent']];
+
+<span css={cssStyles}>
+  /* Your content */
+</span>`}
+      />
+
+      <ThemeExample
+        title={<code>useEuiBackgroundColor(color)</code>}
+        description={
+          <p>
+            Returns just the computed background color for the given{' '}
+            <EuiCode language="sass">color</EuiCode>.
+          </p>
+        }
+        example={
+          <p
+            css={css`
+              background: ${useEuiBackgroundColor('subdued')};
+              padding: ${useEuiPaddingSize('l')};
+            `}
+          >
+            <code>{useEuiBackgroundColor('subdued')}</code>
+          </p>
+        }
+        snippetLanguage="emotion"
+        snippet={"background: ${useEuiBackgroundColor('subdued')};"}
+      />
+
+      <ThemeValuesTable
+        items={BACKGROUND_COLORS.map((color) => {
+          return {
+            id: color,
+            token: `useEuiBackgroundColor('${color}')`,
+            value: euiBackgroundColor(color, euiTheme),
           };
         })}
         render={(item) => <EuiColorPickerSwatch color={item.value} disabled />}
