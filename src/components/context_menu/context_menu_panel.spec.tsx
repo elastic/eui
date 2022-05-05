@@ -42,15 +42,6 @@ describe('EuiContextMenuPanel', () => {
       cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
     });
 
-    it('sets initial focus from `initialFocusedItemIndex`', () => {
-      cy.mount(
-        <EuiContextMenuPanel initialFocusedItemIndex={2}>
-          {children}
-        </EuiContextMenuPanel>
-      );
-      cy.focused().should('have.attr', 'data-test-subj', 'itemC');
-    });
-
     describe('with `children`', () => {
       it('ignores arrow key navigation, which only toggles for `items`', () => {
         cy.mount(<EuiContextMenuPanel>{children}</EuiContextMenuPanel>);
@@ -60,6 +51,20 @@ describe('EuiContextMenuPanel', () => {
     });
 
     describe('with `items`', () => {
+      it('sets initial focus from `initialFocusedItemIndex`', () => {
+        cy.mount(
+          <EuiContextMenuPanel items={items} initialFocusedItemIndex={2} />
+        );
+        cy.focused().should('have.attr', 'data-test-subj', 'itemC');
+      });
+
+      it('falls back to the panel if given an invalid `focusedItemIndex`', () => {
+        cy.mount(
+          <EuiContextMenuPanel items={items} initialFocusedItemIndex={99} />
+        );
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+      });
+
       it('focuses and registers any tabbable child as navigable menu items', () => {
         cy.mount(
           <EuiContextMenuPanel
@@ -74,6 +79,36 @@ describe('EuiContextMenuPanel', () => {
         );
         cy.realPress('{downarrow}');
         cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+      });
+
+      it('correctly re-finds navigable menu items if `items` changes', () => {
+        const DynanicItemsTest = () => {
+          const [dynamicItems, setDynamicItems] = useState([
+            items[0],
+            items[1],
+          ]);
+          const appendItems = () => setDynamicItems(items);
+          return (
+            <>
+              <EuiContextMenuPanel items={dynamicItems} />
+              <button data-test-subj="appendItems" onClick={appendItems}>
+                Append more items
+              </button>
+            </>
+          );
+        };
+        cy.mount(<DynanicItemsTest />);
+        cy.realPress('{downarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+        cy.realPress('{downarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemB');
+        cy.realPress('{downarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+
+        cy.get('[data-test-subj="appendItems"]').click();
+        cy.get('[data-test-subj="itemA"]').click();
+        cy.realPress('{uparrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemC');
       });
     });
 

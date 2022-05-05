@@ -115,6 +115,19 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     };
   }
 
+  // Find all tabbable menu items on both panel init and
+  // whenever `menuItems` resets when `props.items` changes
+  findMenuItems = () => {
+    if (!this.panel) return;
+    if (!this.props.items?.length) return; // We only need menu items/arrow key navigation for the `items` API
+    if (this.state.menuItems.length) return; // If we already have menu items, no need to continue
+
+    const tabbableItems = tabbable(this.panel);
+    if (tabbableItems.length) {
+      this.setState({ menuItems: tabbableItems });
+    }
+  };
+
   incrementFocusedItemIndex = (amount: number) => {
     let nextFocusedItemIndex;
 
@@ -250,26 +263,24 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         return;
       }
 
-      // If menuItems has been cleared, iterate through and set menuItems from tabbableItems
-      if (!this.state.menuItems.length && this.panel) {
-        const tabbableItems = tabbable(this.panel);
-        if (tabbableItems.length) {
-          this.setState({ menuItems: tabbableItems });
+      // If an item should be focused, focus it (if it exists)
+      if (this.state.focusedItemIndex != null && this.state.menuItems.length) {
+        const focusedItem = this.state.menuItems[this.state.focusedItemIndex];
+        if (focusedItem) {
+          focusedItem.focus();
+          return this.setState({ tookInitialFocus: true });
         }
       }
 
-      if (this.state.menuItems.length) {
-        // If an item is focused, focus it
-        if (this.state.focusedItemIndex != null) {
-          this.state.menuItems[this.state.focusedItemIndex].focus();
-          return this.setState({ tookInitialFocus: true });
-        }
-        // Otherwise, if the back button panel title is present, focus it
-        if (this.props.onClose) {
+      // Otherwise, if the back button panel title is present, focus it
+      if (this.backButton) {
+        // Focus the back button for both `items` and `children` APIs
+        this.backButton.focus();
+        // If `items`, ensure our focused item index is correct
+        if (this.state.menuItems.length) {
           this.setState({ focusedItemIndex: 0 });
-          this.state.menuItems[0].focus();
-          return this.setState({ tookInitialFocus: true });
         }
+        return this.setState({ tookInitialFocus: true });
       }
 
       // Focus on the panel as a last resort.
@@ -291,7 +302,10 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     }
   };
 
-  componentDidUpdate() {
+  componentDidUpdate(_: Props, prevState: State) {
+    if (prevState.menuItems !== this.state.menuItems) {
+      this.findMenuItems();
+    }
     // Focus isn't always ready to be taken on mount, so we need to call it
     // on update as well just in case
     this.takeInitialFocus();
@@ -387,6 +401,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
     this.updateHeight();
     this.getInitialPopoverParent();
+    this.findMenuItems();
   };
 
   render() {
