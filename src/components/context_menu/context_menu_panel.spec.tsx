@@ -139,15 +139,12 @@ describe('EuiContextMenuPanel', () => {
             }
             {...rest}
           >
-            <EuiContextMenuPanel
-              items={[
-                children || (
-                  <button onClick={closePopover}>
-                    Closes popover from context menu
-                  </button>
-                ),
-              ]}
-            />
+            <EuiContextMenuPanel>
+              {children}
+              <button onClick={closePopover}>
+                Closes popover from context menu
+              </button>
+            </EuiContextMenuPanel>
           </EuiPopover>
         );
       };
