@@ -128,15 +128,17 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     }
   };
 
-  incrementFocusedItemIndex = (amount: number) => {
+  focusMenuItem = (direction: 'up' | 'down') => {
+    const indexOffset = direction === 'up' ? -1 : 1;
     let nextFocusedItemIndex;
 
     if (this.state.focusedItemIndex === undefined) {
       // If this is the beginning of the user's keyboard navigation of the menu, then we'll focus
       // either the first or last item.
-      nextFocusedItemIndex = amount < 0 ? this.state.menuItems.length - 1 : 0;
+      nextFocusedItemIndex =
+        direction === 'up' ? this.state.menuItems.length - 1 : 0;
     } else {
-      nextFocusedItemIndex = this.state.focusedItemIndex + amount;
+      nextFocusedItemIndex = this.state.focusedItemIndex + indexOffset;
 
       if (nextFocusedItemIndex < 0) {
         nextFocusedItemIndex = this.state.menuItems.length - 1;
@@ -145,9 +147,8 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       }
     }
 
-    this.setState({
-      focusedItemIndex: nextFocusedItemIndex,
-    });
+    this.setState({ focusedItemIndex: nextFocusedItemIndex });
+    this.state.menuItems[nextFocusedItemIndex]?.focus();
   };
 
   onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -198,7 +199,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
         case cascadingMenuKeys.ARROW_UP:
           event.preventDefault();
-          this.incrementFocusedItemIndex(-1);
+          this.focusMenuItem('up');
 
           if (this.props.onUseKeyboardToNavigate) {
             this.props.onUseKeyboardToNavigate();
@@ -207,7 +208,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
         case cascadingMenuKeys.ARROW_DOWN:
           event.preventDefault();
-          this.incrementFocusedItemIndex(1);
+          this.focusMenuItem('down');
 
           if (this.props.onUseKeyboardToNavigate) {
             this.props.onUseKeyboardToNavigate();
