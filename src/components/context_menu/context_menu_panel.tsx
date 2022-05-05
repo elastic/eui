@@ -94,6 +94,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
   private _isMounted = false;
   private backButton?: HTMLElement | null = null;
   private panel?: HTMLElement | null = null;
+  private initialPopoverParent?: HTMLElement | null = null;
 
   constructor(props: Props) {
     super(props);
@@ -269,26 +270,8 @@ export class EuiContextMenuPanel extends Component<Props, State> {
   // 350ms after the popover finishes transitioning in. This workaround
   // reclaims focus from parent EuiPopovers that do not set an `initialFocus`
   reclaimPopoverFocus() {
-    if (!this.panel) return;
-
-    const parent = this.panel.parentNode as HTMLElement;
-    if (!parent) return;
-    const hasEuiContextMenuParent = parent.classList.contains('euiContextMenu');
-
-    // It's possible to use an EuiContextMenuPanel directly in a popover without
-    // an EuiContextMenu, so we need to account for that when searching parent nodes
-    const popoverParent = hasEuiContextMenuParent
-      ? (parent?.parentNode?.parentNode as HTMLElement)
-      : (parent?.parentNode as HTMLElement);
-    if (!popoverParent) return;
-
-    const hasPopoverParent = popoverParent.classList.contains(
-      'euiPopover__panel'
-    );
-    if (!hasPopoverParent) return;
-
     // If the popover panel gains focus, switch it to the context menu panel instead
-    popoverParent.addEventListener('focus', () => {
+    this.initialPopoverParent?.addEventListener('focus', () => {
       this.updateFocus();
     });
   }
@@ -417,10 +400,37 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     }
   }
 
+  getInitialPopoverParent() {
+    // If `transitionType` exists, that means we're navigating between panels
+    // and the initial popover has already loaded, so we shouldn't need this logic
+    if (this.props.transitionType) return;
+
+    if (!this.panel) return;
+
+    const parent = this.panel.parentNode as HTMLElement;
+    if (!parent) return;
+    const hasEuiContextMenuParent = parent.classList.contains('euiContextMenu');
+
+    // It's possible to use an EuiContextMenuPanel directly in a popover without
+    // an EuiContextMenu, so we need to account for that when searching parent nodes
+    const popoverParent = hasEuiContextMenuParent
+      ? (parent?.parentNode?.parentNode as HTMLElement)
+      : (parent?.parentNode as HTMLElement);
+    if (!popoverParent) return;
+
+    const hasPopoverParent = popoverParent.classList.contains(
+      'euiPopover__panel'
+    );
+    if (!hasPopoverParent) return;
+
+    this.initialPopoverParent = popoverParent;
+  }
+
   panelRef = (node: HTMLElement | null) => {
     this.panel = node;
 
     this.updateHeight();
+    this.getInitialPopoverParent();
   };
 
   render() {

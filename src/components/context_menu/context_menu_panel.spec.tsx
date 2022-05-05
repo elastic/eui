@@ -208,7 +208,7 @@ describe('EuiContextMenuPanel', () => {
         });
       });
 
-      it('does not lose focus while using left/right arrow navigation between panels', () => {
+      describe('panels', () => {
         const panels = [
           {
             id: 0,
@@ -245,21 +245,31 @@ describe('EuiContextMenuPanel', () => {
             initialFocusedItemIndex: 0,
           },
         ];
-        cy.mount(<EuiContextMenu panels={panels} initialPanelId={0} />);
-        cy.realPress('{downarrow}');
-        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
-        cy.realPress('{rightarrow}');
-        cy.focused().should('have.attr', 'data-test-subj', 'itemB');
-        cy.realPress('{rightarrow}');
-        cy.focused().should('have.attr', 'data-test-subj', 'itemC');
 
-        // Test extremely rapid left/right arrow usage
-        cy.repeatRealPress('{leftarrow}');
-        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
-        cy.repeatRealPress('{rightarrow}');
-        cy.focused().should('have.attr', 'data-test-subj', 'itemC');
-        cy.repeatRealPress('{leftarrow}');
-        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+        it('does not lose focus while using left/right arrow navigation between panels', () => {
+          cy.mount(<EuiContextMenu panels={panels} initialPanelId={0} />);
+          cy.realPress('{downarrow}');
+          cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+          cy.realPress('{rightarrow}');
+          cy.focused().should('have.attr', 'data-test-subj', 'itemB');
+          cy.realPress('{rightarrow}');
+          cy.focused().should('have.attr', 'data-test-subj', 'itemC');
+        });
+
+        it('does not lose focus when inside an EuiPopover and during rapid left/right arrow usage', () => {
+          cy.mount(
+            <EuiPopover isOpen={true} button={<button />}>
+              <EuiContextMenu panels={panels} initialPanelId={0} />
+            </EuiPopover>
+          );
+          cy.wait(350); // Wait for EuiContextMenuPanel to reclaim focus from popover
+          cy.realPress('{downarrow}');
+          cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+          cy.repeatRealPress('{rightarrow}');
+          cy.focused().should('have.attr', 'data-test-subj', 'itemC');
+          cy.repeatRealPress('{leftarrow}');
+          cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+        });
       });
     });
 
