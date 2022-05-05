@@ -16,12 +16,14 @@ interface LinkOrTextNode {
   children?: Array<{ value: string }>;
 }
 
-export interface MarkdownLinkValidatorOptions {
+export interface EuiMarkdownLinkValidatorOptions {
   allowRelative: boolean;
   allowProtocols: string[];
 }
 
-export function markdownLinkValidator(options: MarkdownLinkValidatorOptions) {
+export function euiMarkdownLinkValidator(
+  options: EuiMarkdownLinkValidatorOptions
+) {
   return (ast: any) => {
     visit(ast, 'link', (_node: unknown) => {
       const node = _node as LinkOrTextNode;
@@ -52,7 +54,7 @@ export function mutateLinkToText(node: LinkOrTextNode) {
 
 export function validateUrl(
   url: string,
-  { allowRelative, allowProtocols }: MarkdownLinkValidatorOptions
+  { allowRelative, allowProtocols }: EuiMarkdownLinkValidatorOptions
 ) {
   // relative captures both relative paths `/` and protocols `//`
   const isRelative = url.startsWith('/');

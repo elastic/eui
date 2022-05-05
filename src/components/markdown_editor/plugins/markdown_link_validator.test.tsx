@@ -9,11 +9,11 @@
 import {
   validateUrl,
   mutateLinkToText,
-  MarkdownLinkValidatorOptions,
+  EuiMarkdownLinkValidatorOptions,
 } from './markdown_link_validator';
 import { validateHref } from '../../../services/security/href_validator';
 
-const defaultValidationOptions: MarkdownLinkValidatorOptions = {
+const defaultValidationOptions: EuiMarkdownLinkValidatorOptions = {
   allowRelative: true,
   allowProtocols: ['http:', 'https:'],
 };

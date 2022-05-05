@@ -29,8 +29,8 @@ import highlight from '../remark/remark_prismjs';
 import * as MarkdownTooltip from '../markdown_tooltip';
 import * as MarkdownCheckbox from '../markdown_checkbox';
 import {
-  markdownLinkValidator,
-  MarkdownLinkValidatorOptions,
+  euiMarkdownLinkValidator,
+  EuiMarkdownLinkValidatorOptions,
 } from '../markdown_link_validator';
 
 export type DefaultEuiMarkdownParsingPlugins = PluggableList;
@@ -45,11 +45,11 @@ export const getDefaultEuiMarkdownParsingPlugins = ({
     [emoji, { emoticon: false }],
     [breaks, {}],
     [
-      markdownLinkValidator,
+      euiMarkdownLinkValidator,
       {
         allowRelative: true,
         allowProtocols: ['https:', 'http:'],
-      } as MarkdownLinkValidatorOptions,
+      } as EuiMarkdownLinkValidatorOptions,
     ],
     [MarkdownCheckbox.parser, {}],
   ];
