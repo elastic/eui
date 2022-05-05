@@ -52,7 +52,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       iconType,
       children,
       className,
-      heading,
+      heading = 'p',
       ...rest
     },
     ref: Ref<HTMLDivElement>
@@ -102,10 +102,9 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       );
     }
 
-    const H: any = heading ? `${heading}` : 'p';
     let header;
-
     if (title) {
+      const H: Heading = heading;
       header = (
         <EuiTitle size={size === 's' ? 'xxs' : 'xs'} css={cssHeaderStyles}>
           <H className="euiCallOutHeader__title">
@@ -115,6 +114,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
         </EuiTitle>
       );
     }
+
     return (
       <EuiPanel
         borderRadius="none"

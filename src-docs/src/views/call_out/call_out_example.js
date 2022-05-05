@@ -86,7 +86,7 @@ export const CallOutExample = {
       title: 'Info',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: infoSource,
         },
       ],
@@ -107,7 +107,7 @@ export const CallOutExample = {
       title: 'Success',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: successSource,
         },
       ],
@@ -125,7 +125,7 @@ export const CallOutExample = {
       title: 'Warning',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: warningSource,
         },
       ],
@@ -141,7 +141,7 @@ export const CallOutExample = {
       title: 'Danger',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: dangerSource,
         },
       ],
