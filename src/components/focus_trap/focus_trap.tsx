@@ -81,7 +81,7 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
     node.setAttribute('data-autofocus', 'true');
   };
 
-  onMouseupOutside = (e: MouseEvent | TouchEvent) => {
+  onMouseupOutside = (e: MouseEvent | TouchEvent) => () => {
     this.removeMouseupListener();
     // Timeout gives precedence to the consumer to initiate close if it has toggle behavior.
     // Otherwise this event may occur first and the consumer toggle will reopen the flyout.
@@ -98,14 +98,14 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
     document.removeEventListener('touchend', this.onMouseupOutside);
   };
 
-  handleOutsideClick: ReactFocusOnProps['onClickOutside'] = (...args) => {
+  handleOutsideClick: ReactFocusOnProps['onClickOutside'] = (e) => {
     const { onClickOutside, clickOutsideDisables, closeOnMouseup } = this.props;
     if (clickOutsideDisables) {
       this.setState({ hasBeenDisabledByClick: true });
     }
 
     if (onClickOutside) {
-      closeOnMouseup ? this.addMouseupListener() : onClickOutside(...args);
+      closeOnMouseup ? this.addMouseupListener() : onClickOutside(e);
     }
   };
 
