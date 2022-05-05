@@ -8,13 +8,12 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
+import { euiFontSize, euiTextTruncate } from '../../global_styling/mixins';
 import {
-  euiFontSize,
+  euiTextShift,
   euiButtonBaseCSS,
   euiButtonContentCSS,
-  euiTextTruncate,
-} from '../../global_styling/mixins';
-import { euiTextShift } from '../../global_styling/functions';
+} from '../../global_styling/functions';
 
 export const euiFacetButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
