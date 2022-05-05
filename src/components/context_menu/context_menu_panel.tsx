@@ -84,6 +84,7 @@ interface State {
   focusedItemIndex?: number;
   currentHeight?: number;
   height?: number;
+  waitingForInitialPopover: boolean;
 }
 
 export class EuiContextMenuPanel extends Component<Props, State> {
@@ -109,6 +110,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
           ? props.initialFocusedItemIndex + 1 // Account for panel title back button
           : props.initialFocusedItemIndex,
       currentHeight: undefined,
+      waitingForInitialPopover: false,
     };
   }
 
@@ -226,6 +228,12 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         return;
       }
 
+      // Don't take focus yet if EuiContextMenu is in a popover
+      // and the popover is initially opening/transitioning in
+      if (this.initialPopoverParent && this.state.waitingForInitialPopover) {
+        return;
+      }
+
       // Setting focus while transitioning causes the animation to glitch, so we have to wait
       // until it's finished before we focus anything.
       if (this.props.transitionType) {
@@ -265,16 +273,10 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     });
   }
 
-  // If EuiContextMenu is used within an EuiPopover, EuiPopover's own
-  // `updateFocus()` method hijacks EuiContextMenuPanel's `updateFocus()`
-  // 350ms after the popover finishes transitioning in. This workaround
-  // reclaims focus from parent EuiPopovers that do not set an `initialFocus`
-  reclaimPopoverFocus() {
-    // If the popover panel gains focus, switch it to the context menu panel instead
-    this.initialPopoverParent?.addEventListener('focus', () => {
-      this.updateFocus();
-    });
-  }
+  reclaimPopoverFocus = () => {
+    this.setState({ waitingForInitialPopover: false });
+    this.updateFocus();
+  };
 
   onTransitionComplete = () => {
     if (this.props.onTransitionComplete) {
@@ -287,12 +289,28 @@ export class EuiContextMenuPanel extends Component<Props, State> {
   }
 
   componentDidMount() {
-    this.updateFocus();
-    this.reclaimPopoverFocus();
+    // If EuiContextMenu is used within an EuiPopover, we need to wait for EuiPopover to:
+    // 1. Correctly set its `returnFocus` to the toggling button,
+    //    so focus is correctly restored to the popover toggle on close
+    // 2. Finish its own `updateFocus()` call 350ms after transitioning in,
+    //    so the panel can handle its own focus without focus fighting
+    if (this.initialPopoverParent) {
+      this.initialPopoverParent.addEventListener(
+        'focus',
+        this.reclaimPopoverFocus,
+        { once: true }
+      );
+    } else {
+      this.updateFocus();
+    }
     this._isMounted = true;
   }
 
   componentWillUnmount() {
+    this.initialPopoverParent?.removeEventListener(
+      'focus',
+      this.reclaimPopoverFocus
+    );
     this._isMounted = false;
   }
 
@@ -365,6 +383,12 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       return true;
     }
 
+    if (
+      nextState.waitingForInitialPopover !== this.state.waitingForInitialPopover
+    ) {
+      return true;
+    }
+
     // **
     // this component should have either items or children,
     // if there are items we can determine via `watchedItemProps` if we should update
@@ -424,6 +448,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     if (!hasPopoverParent) return;
 
     this.initialPopoverParent = popoverParent;
+    this.setState({ waitingForInitialPopover: true });
   }
 
   panelRef = (node: HTMLElement | null) => {

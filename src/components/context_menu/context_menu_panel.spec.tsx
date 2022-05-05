@@ -8,7 +8,7 @@
 
 /// <reference types="../../../cypress/support"/>
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import { EuiPopover } from '../popover';
 import { EuiContextMenu } from './context_menu';
@@ -123,16 +123,68 @@ describe('EuiContextMenuPanel', () => {
       });
     });
 
-    describe('when inside an EuiPopover', () => {
-      it('reclaims focus from the parent popover panel', () => {
-        cy.mount(
-          <EuiPopover isOpen={true} button={<button />}>
-            <EuiContextMenuPanel items={items} />
+    describe('within an EuiPopover', () => {
+      const ContextMenuInPopover: React.FC<any> = ({ children, ...rest }) => {
+        const [isOpen, setIsOpen] = useState(false);
+        const closePopover = () => setIsOpen(false);
+        const openPopover = () => setIsOpen(true);
+        return (
+          <EuiPopover
+            isOpen={isOpen}
+            closePopover={closePopover}
+            button={
+              <button data-test-subj="popoverToggle" onClick={openPopover}>
+                Toggle popover
+              </button>
+            }
+            {...rest}
+          >
+            <EuiContextMenuPanel
+              items={[
+                children || (
+                  <button onClick={closePopover}>
+                    Closes popover from context menu
+                  </button>
+                ),
+              ]}
+            />
           </EuiPopover>
         );
-        cy.wait(400); // EuiPopover's updateFocus() takes ~350ms to run
+      };
+
+      const mountAndOpenPopover = (component = <ContextMenuInPopover />) => {
+        cy.realMount(component);
+        cy.get('[data-test-subj="popoverToggle"]').click();
+        cy.wait(350); // EuiPopover's updateFocus() takes ~350ms to run
+      };
+
+      it('reclaims focus from the parent popover panel', () => {
+        mountAndOpenPopover();
         cy.focused().should('not.have.attr', 'class', 'euiPopover__panel');
         cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+      });
+
+      it('does not hijack focus from the EuiPopover if `initialFocus` is set', () => {
+        mountAndOpenPopover(
+          <ContextMenuInPopover initialFocus="#testInitialFocus">
+            <input id="testInitialFocus" />
+          </ContextMenuInPopover>
+        );
+        cy.focused().should('not.have.attr', 'class', 'euiContextMenuPanel');
+        cy.focused().should('have.attr', 'id', 'testInitialFocus');
+      });
+
+      it('restores focus to the toggling button on popover close', () => {
+        mountAndOpenPopover();
+        cy.realPress('Tab');
+        cy.realPress('Enter');
+        cy.focused().should('have.attr', 'data-test-subj', 'popoverToggle');
+      });
+
+      it('restores focus to the toggling button on popover escape key', () => {
+        mountAndOpenPopover();
+        cy.realPress('{esc}');
+        cy.focused().should('have.attr', 'data-test-subj', 'popoverToggle');
       });
     });
   });
