@@ -99,7 +99,7 @@ export default () => {
 
       {showSass && (
         <ThemeExample
-          title={<code>@include euiScrollBar;</code>}
+          title={<code>@include euiScrollBar</code>}
           type="mixin"
           description={
             <>

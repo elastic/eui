@@ -1,36 +1,7 @@
 import React from 'react';
 
-import {
-  EuiCode,
-  EuiSpacer,
-  EuiText,
-  EuiFlexGroup,
-  EuiFlexItem,
-} from '../../../../src/components';
-import { UtilityClassesSection } from './utility_classes_section';
-import breakpoints from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_responsive.scss';
-
-const euiBreakPoints = Object.getOwnPropertyNames(breakpoints.euiBreakpoints);
-
-function renderBreakpoint(size) {
-  return (
-    <EuiFlexGroup
-      responsive={false}
-      alignItems="center"
-      gutterSize="s"
-      key={size}
-    >
-      <EuiFlexItem grow={false}>
-        <EuiText size="s" className="eui-textRight" style={{ minWidth: 50 }}>
-          <EuiCode>{size}</EuiCode>
-        </EuiText>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiText size="s">{breakpoints.euiBreakpoints[size]}px</EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-  );
-}
+import { EuiCode, EuiSpacer, EuiText } from '../../../../src/components';
+import { ThemeExample } from '../theme/_components/_theme_example';
 
 const wrappingExampleStyle = {
   background: 'rgba(254, 228, 181, 0.5)',
@@ -44,20 +15,16 @@ const wrappingDivExampleStyle = {
 
 export default () => (
   <>
-    <EuiText size="m">
+    <EuiText grow={false} size="m">
       <p>
         Breakpoint sizes are based on the overall browser window width. They
         start at the mininumum values listed below until 1px before the next
         breakpoint.
       </p>
-
-      {euiBreakPoints.map(function (size) {
-        return renderBreakpoint(size, breakpoints);
-      })}
     </EuiText>
     <EuiSpacer size="xxl" />
-    <UtilityClassesSection
-      code="eui-hideFor--[size]"
+    <ThemeExample
+      title={<code>.eui-hideFor--[size]</code>}
       type="className"
       description={
         <>
@@ -86,8 +53,8 @@ export default () => (
 </span>`}
     />
     <EuiSpacer />
-    <UtilityClassesSection
-      code="eui-showFor--[size]"
+    <ThemeExample
+      title={<code>.eui-showFor--[size]</code>}
       type="className"
       description={
         <>
@@ -114,8 +81,8 @@ export default () => (
 </span>`}
     />
     <EuiSpacer />
-    <UtilityClassesSection
-      code="eui-showFor--[size]--[display]"
+    <ThemeExample
+      title={<code>.eui-showFor--[size]--[display]</code>}
       type="className"
       description={
         <>

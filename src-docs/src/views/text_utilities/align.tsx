@@ -29,8 +29,7 @@ export default () => (
       type="className"
       description={
         <p>
-          Changes the element’s text alignment to the center/middle of its
-          container.
+          Changes the element’s text alignment to the center of its container.
         </p>
       }
       example={

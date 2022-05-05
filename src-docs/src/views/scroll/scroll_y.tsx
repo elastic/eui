@@ -52,7 +52,7 @@ export default () => {
 
       {!showSass && (
         <ThemeExample
-          title={<code>{"useEuiOverflowScroll('y');"}</code>}
+          title={<code>{"useEuiOverflowScroll('y')"}</code>}
           type="hook"
           description={
             <>
@@ -102,7 +102,7 @@ export default () => {
 
       {showSass && (
         <ThemeExample
-          title={<code>@include euiYScroll;</code>}
+          title={<code>@include euiYScroll</code>}
           type="mixin"
           description={
             <>
