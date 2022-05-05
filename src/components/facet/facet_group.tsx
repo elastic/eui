@@ -9,42 +9,29 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import { EuiFlexGroup } from '../flex';
 
-type FacetGroupLayout = 'vertical' | 'horizontal';
+import { useEuiTheme } from '../../services';
+import { euiFacetGroupStyles } from './facet_group.styles';
 
-const layoutToClassNameMap: { [layout in FacetGroupLayout]: string } = {
-  vertical: 'euiFacetGroup--vertical',
-  horizontal: 'euiFacetGroup--horizontal',
-};
+export const LAYOUTS = ['vertical', 'horizontal'];
+export type EuiFacetGroupLayout = typeof LAYOUTS[number];
 
-export const LAYOUTS = keysOf(layoutToClassNameMap);
-
-type FacetGroupGutterSize = 'none' | 's' | 'm' | 'l';
-
-const gutterSizeToClassNameMap: {
-  [gutterSize in FacetGroupGutterSize]: string;
-} = {
-  none: 'euiFacetGroup--gutterNone',
-  s: 'euiFacetGroup--gutterSmall',
-  m: 'euiFacetGroup--gutterMedium',
-  l: 'euiFacetGroup--gutterLarge',
-};
-
-export const GUTTER_SIZES = keysOf(gutterSizeToClassNameMap);
+export const GUTTER_SIZES = ['none', 's', 'm', 'l'] as const;
+export type EuiFacetGroupGutterSizes = typeof GUTTER_SIZES[number];
 
 export type EuiFacetGroupProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     /**
      * Vertically in a column, or horizontally in one wrapping line
      */
-    layout?: FacetGroupLayout;
+    layout?: EuiFacetGroupLayout;
     /**
      * Distance between facet buttons.
      * Horizontal layout always adds more distance horizontally between buttons.
      */
-    gutterSize?: FacetGroupGutterSize;
+    gutterSize?: EuiFacetGroupGutterSizes;
   };
 
 export const EuiFacetGroup: FunctionComponent<EuiFacetGroupProps> = ({
@@ -54,12 +41,11 @@ export const EuiFacetGroup: FunctionComponent<EuiFacetGroupProps> = ({
   gutterSize = 'm',
   ...rest
 }) => {
-  const classes = classNames(
-    'euiFacetGroup',
-    layoutToClassNameMap[layout],
-    gutterSizeToClassNameMap[gutterSize],
-    className
-  );
+  const theme = useEuiTheme();
+  const styles = euiFacetGroupStyles(theme, layout);
+  const cssStyles = [styles.euiFacetGroup, styles[gutterSize]];
+
+  const classes = classNames('euiFacetGroup', className);
   const direction = layout === 'vertical' ? 'column' : 'row';
   const wrap = layout === 'vertical' ? false : true;
 
@@ -69,6 +55,7 @@ export const EuiFacetGroup: FunctionComponent<EuiFacetGroupProps> = ({
       direction={direction}
       wrap={wrap}
       gutterSize="none"
+      css={cssStyles}
       {...rest}
     >
       {children}
