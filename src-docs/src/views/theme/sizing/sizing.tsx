@@ -9,14 +9,20 @@ import { ThemeContext } from '../../../components/with_theme';
 
 import { ThemeNotice } from '../_components/_theme_notice';
 
-import JSValues, { BaseJS, ScaleValuesJS, UtilsJS } from './_sizing_js';
+import JSValues, {
+  BaseJS,
+  PaddingJS,
+  ScaleValuesJS,
+  UtilsJS,
+} from './_sizing_js';
 import SassValues, { BaseSass, ScaleValuesSass } from './_sizing_sass';
 
 // This array is used inside routes.js to create the sidenav sub-sections
 export const sizingSections = [
   { title: 'Base', id: 'base' },
   { title: 'Scale', id: 'scale' },
-  { title: 'Utilities', id: 'utilities' },
+  { title: 'Logical properties', id: 'logical' },
+  { title: 'Padding', id: 'padding' },
 ];
 
 export default () => {
@@ -38,6 +44,12 @@ export default () => {
     if (showSass)
       return <EuiCallOut title="Utilities only available for Emotion." />;
     return <UtilsJS />;
+  }, [showSass]);
+
+  const paddingContent = useMemo(() => {
+    if (showSass)
+      return <EuiCallOut title="Utilities only available for Emotion." />;
+    return <PaddingJS />;
   }, [showSass]);
 
   return (
@@ -80,9 +92,19 @@ export default () => {
           <h2 id={`${sizingSections[2].id}`}>{`${sizingSections[2].title}`}</h2>
         </EuiTitle>
 
-        <EuiSpacer size="l" />
+        <EuiSpacer size="m" />
 
         {utilsContent}
+      </GuideSection>
+
+      <GuideSection>
+        <EuiTitle>
+          <h2 id={`${sizingSections[3].id}`}>{`${sizingSections[3].title}`}</h2>
+        </EuiTitle>
+
+        <EuiSpacer size="m" />
+
+        {paddingContent}
       </GuideSection>
     </GuidePage>
   );

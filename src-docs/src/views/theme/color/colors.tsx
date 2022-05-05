@@ -23,6 +23,7 @@ import {
   TextJS,
   TextValuesJS,
   UtilsJS,
+  UtilsValuesJS,
 } from './_color_js';
 import {
   BrandSass,
@@ -52,7 +53,7 @@ export const colorsSections = [
   { title: 'Text colors', id: 'text-colors' },
   { title: 'Shades', id: 'shades' },
   { title: 'Special colors', id: 'special-colors' },
-  { title: 'Utilities', id: 'utilities' },
+  { title: 'Background colors', id: 'background-colors' },
 ];
 
 export default () => {
@@ -252,17 +253,19 @@ export default () => {
           </GuideSection>
 
           <GuideSection color="subdued">
-            <EuiSpacer size="xl" />
-
             <EuiText grow={false}>
               <h2
                 id={`${colorsSections[4].id}`}
               >{`${colorsSections[4].title}`}</h2>
             </EuiText>
 
-            <EuiSpacer size="xl" />
+            <EuiSpacer size="m" />
 
             {utilsContent}
+          </GuideSection>
+
+          <GuideSection>
+            {showSass ? undefined : <UtilsValuesJS />}
           </GuideSection>
         </>
       )}

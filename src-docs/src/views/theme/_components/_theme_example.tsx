@@ -9,6 +9,7 @@ import {
   EuiTitle,
   useEuiTheme,
   EuiBadge,
+  logicalCSS,
 } from '../../../../../src';
 import {
   _EuiSplitPanelInnerProps,
@@ -73,7 +74,17 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
             <>
               <EuiTitle size="xxs">
                 <h3>
-                  {title} {type && <EuiBadge color="hollow">{type}</EuiBadge>}
+                  {title}{' '}
+                  {type && (
+                    <EuiBadge
+                      css={css`
+                        ${logicalCSS('margin-left', euiTheme.size.xs)}
+                      `}
+                      color={type.includes(' ') ? 'accent' : 'hollow'}
+                    >
+                      {type}
+                    </EuiBadge>
+                  )}
                 </h3>
               </EuiTitle>
 

@@ -260,16 +260,13 @@ export const SpecialValuesJS = () => {
 };
 
 export const UtilsJS = () => {
-  const euiTheme = useEuiTheme();
-
   return (
     <>
       <EuiText grow={false}>
-        <h3>Background colors</h3>
         <p>
           To all but ensure proper contrast of text to background, we recommend
-          using our pre-defined shades of background colors based on the
-          EuiTheme brand colors. You can also use{' '}
+          using our pre-defined shades of background colors based on the{' '}
+          <strong>EuiTheme</strong> brand colors. You can also use{' '}
           <Link to="/layout/panel">
             <strong>EuiPanel</strong>
           </Link>{' '}
@@ -278,10 +275,12 @@ export const UtilsJS = () => {
         </p>
       </EuiText>
 
-      <EuiSpacer size="l" />
+      <EuiSpacer size="xl" />
 
       <ThemeExample
         title={<code>{'useEuiBackgroundColorCSS()[color]'}</code>}
+        type="style hook"
+        props={`color: '${BACKGROUND_COLORS.join("' | '")}';`}
         description={
           <>
             <p>
@@ -310,6 +309,8 @@ const cssStyles = [colorStyles['accent']];
 
       <ThemeExample
         title={<code>useEuiBackgroundColor(color)</code>}
+        type="hook"
+        props={`color: '${BACKGROUND_COLORS.join("' | '")}';`}
         description={
           <p>
             Returns just the computed background color for the given{' '}
@@ -329,17 +330,23 @@ const cssStyles = [colorStyles['accent']];
         snippetLanguage="emotion"
         snippet={"background: ${useEuiBackgroundColor('subdued')};"}
       />
-
-      <ThemeValuesTable
-        items={BACKGROUND_COLORS.map((color) => {
-          return {
-            id: color,
-            token: `useEuiBackgroundColor('${color}')`,
-            value: euiBackgroundColor(color, euiTheme),
-          };
-        })}
-        render={(item) => <EuiColorPickerSwatch color={item.value} disabled />}
-      />
     </>
+  );
+};
+
+export const UtilsValuesJS = () => {
+  const euiTheme = useEuiTheme();
+
+  return (
+    <ThemeValuesTable
+      items={BACKGROUND_COLORS.map((color) => {
+        return {
+          id: color,
+          token: `useEuiBackgroundColor('${color}')`,
+          value: euiBackgroundColor(color, euiTheme),
+        };
+      })}
+      render={(item) => <EuiColorPickerSwatch color={item.value} disabled />}
+    />
   );
 };
