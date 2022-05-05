@@ -15,7 +15,7 @@ import { EuiOverlayMaskProps } from '../overlay_mask';
 
 jest.mock('../overlay_mask', () => ({
   EuiOverlayMask: ({ headerZindexLocation, maskRef, ...props }: any) => (
-    <div {...props} />
+    <div {...props} ref={maskRef} />
   ),
 }));
 

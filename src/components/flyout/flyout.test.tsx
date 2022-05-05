@@ -14,7 +14,7 @@ import { EuiFlyout, SIZES, PADDING_SIZES, SIDES } from './flyout';
 
 jest.mock('../overlay_mask', () => ({
   EuiOverlayMask: ({ headerZindexLocation, maskRef, ...props }: any) => (
-    <div {...props} />
+    <div {...props} ref={maskRef} />
   ),
 }));
 
