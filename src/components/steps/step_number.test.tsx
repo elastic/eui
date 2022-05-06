@@ -20,14 +20,6 @@ describe('EuiStepNumber', () => {
   });
 
   describe('props', () => {
-    describe('isHollow', () => {
-      it('is rendered', () => {
-        const component = render(<EuiStepNumber number={1} isHollow />);
-
-        expect(component).toMatchSnapshot();
-      });
-    });
-
     describe('has titleSize', () => {
       it('is rendered', () => {
         const component = render(<EuiStepNumber titleSize="xs" number={1} />);

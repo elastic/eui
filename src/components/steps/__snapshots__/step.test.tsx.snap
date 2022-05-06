@@ -228,7 +228,7 @@ exports[`EuiStep props status incomplete is rendered 1`] = `
     class="euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
+      class="euiStepNumber euiStepNumber--incomplete euiStep__circle"
     >
       <span
         class="euiScreenReaderOnly"
