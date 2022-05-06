@@ -8,10 +8,9 @@
 
 const isElasticHost = /^([a-zA-Z0-9]+\.)*elastic\.co$/;
 
-// In order for the domain to be secure the regex
-// has to match _and_ the lengths of the match must
-// be _exact_ since URL's can have other URL's as
-// path or query params!
+// In order for the domain to be secure it needs to be in a parsable format,
+// with the protocol of http: or https: and the host matching elastic.co or
+// of one its subdomains
 export const isDomainSecure = (url: string = '') => {
   try {
     const parsed = new URL(url);
