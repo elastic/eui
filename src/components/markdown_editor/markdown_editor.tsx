@@ -335,6 +335,9 @@ export const EuiMarkdownEditor = forwardRef<
 
       if (selectedNode) {
         const { type } = selectedNode;
+        // ******
+        // TODO: this also needs to verify the plugin type is a popover, not a modal editor
+        // ******
         if (markdownActions.styles.hasOwnProperty(type)) {
           const actionResult = markdownActions.do(type);
           if (actionResult !== true)
