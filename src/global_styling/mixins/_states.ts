@@ -7,7 +7,7 @@
  */
 
 import { CSSProperties } from 'react';
-import { useEuiTheme, UseEuiTheme, transparentize } from '../../services';
+import { useEuiTheme, UseEuiTheme } from '../../services';
 
 export type _EuiFocusRingOffset =
   | 'inset'
@@ -70,18 +70,4 @@ export const useEuiFocusRing = (
 ) => {
   const { euiTheme } = useEuiTheme();
   return euiFocusRing(euiTheme, offset, color);
-};
-
-export const euiFocusBackground = (
-  euiTheme: UseEuiTheme['euiTheme'],
-  colorMode: UseEuiTheme['colorMode']
-) => {
-  const transparency = { LIGHT: 0.1, DARK: 0.3 };
-
-  return `
-  background-color: ${transparentize(
-    euiTheme.colors.primary,
-    transparency[colorMode]
-  )};
-  `;
 };

@@ -62,8 +62,9 @@ export const euiFacetButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
       &:focus {
         text-decoration: none;
       }
-    }
+    },
   `,
+  euiFacetButton__quantity: css``,
   // Selections
   isSelected: css`
     [class*='euiFacetButton__text'] {
@@ -79,18 +80,19 @@ export const euiFacetButtonContentStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
 });
 
-export const euiFacetButtonTextStyles = ({ euiTheme }: UseEuiTheme) => ({
+export const euiFacetButtonContentElementStyles = ({
+  euiTheme,
+}: UseEuiTheme) => ({
+  euiFacetButton__icon: css`
+    transition: all ${euiTheme.animation.fast} ease-in;
+  `,
   euiFacetButton__text: css`
     ${euiTextShift('bold', 'data-text', euiTheme)}
     ${euiTextTruncate()}
 
-  flex-grow: 1;
+    flex-grow: 1;
     vertical-align: middle;
   `,
-});
-
-export const euiFacetButtonIconStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiFacetButton__icon: css`
-    transition: all ${euiTheme.animation.fast} ease-in;
-  `,
+  euiFacetButton__spinner: css``,
+  euiFacetButton__quantity: css``,
 });

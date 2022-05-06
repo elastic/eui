@@ -9,7 +9,7 @@ exports[`EuiFacetButton is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiFacetButton__content css-84oukk-euiFacetButton__content"
+    class="css-84oukk-euiFacetButton__content"
   >
     <span
       class="euiFacetButton__text css-w00iqi-euiFacetButton__text"
@@ -26,10 +26,10 @@ exports[`EuiFacetButton props icon is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiFacetButton__content css-84oukk-euiFacetButton__content"
+    class="css-84oukk-euiFacetButton__content"
   >
     <span
-      class="css-4d6sbn-euiFacetButton__icon"
+      class="euiFacetButton__icon css-4d6sbn-euiFacetButton__icon"
       data-euiicon-type="dot"
     />
     <span
@@ -48,7 +48,7 @@ exports[`EuiFacetButton props isDisabled is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiFacetButton__content css-84oukk-euiFacetButton__content"
+    class="css-84oukk-euiFacetButton__content"
   >
     <span
       class="euiFacetButton__text css-w00iqi-euiFacetButton__text"
@@ -66,7 +66,7 @@ exports[`EuiFacetButton props isLoading is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiFacetButton__content css-84oukk-euiFacetButton__content"
+    class="css-84oukk-euiFacetButton__content"
   >
     <span
       class="euiFacetButton__text css-w00iqi-euiFacetButton__text"
@@ -75,7 +75,7 @@ exports[`EuiFacetButton props isLoading is rendered 1`] = `
     </span>
     <span
       aria-label="Loading"
-      class="euiLoadingSpinner euiFacetButton__spinner css-155ohbx-euiLoadingSpinner-m"
+      class="euiLoadingSpinner css-qp12bi-euiLoadingSpinner-m-euiFacetButton__spinner"
       role="progressbar"
     />
   </span>
@@ -88,7 +88,7 @@ exports[`EuiFacetButton props isSelected is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiFacetButton__content css-84oukk-euiFacetButton__content"
+    class="css-84oukk-euiFacetButton__content"
   >
     <span
       class="euiFacetButton__text css-w00iqi-euiFacetButton__text"
@@ -105,7 +105,7 @@ exports[`EuiFacetButton props quantity is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiFacetButton__content css-84oukk-euiFacetButton__content"
+    class="css-84oukk-euiFacetButton__content"
   >
     <span
       class="euiFacetButton__text css-w00iqi-euiFacetButton__text"
@@ -113,7 +113,7 @@ exports[`EuiFacetButton props quantity is rendered 1`] = `
       Content
     </span>
     <span
-      class="euiNotificationBadge euiNotificationBadge--medium euiNotificationBadge--subdued euiFacetButton__quantity"
+      class="euiNotificationBadge euiNotificationBadge--medium euiNotificationBadge--subdued euiFacetButton__quantity css-1axxfch-euiFacetButton__quantity"
     >
       60
     </span>

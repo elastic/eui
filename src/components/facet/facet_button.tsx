@@ -28,8 +28,7 @@ import { useEuiTheme } from '../../services';
 import {
   euiFacetButtonStyles,
   euiFacetButtonContentStyles,
-  euiFacetButtonTextStyles,
-  euiFacetButtonIconStyles,
+  euiFacetButtonContentElementStyles,
 } from './facet_button.styles';
 
 export interface EuiFacetButtonProps
@@ -86,22 +85,21 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
   const contentStyles = euiFacetButtonContentStyles(theme);
   const cssContentStyles = [contentStyles.euiFacetButton__content];
 
-  const textStyles = euiFacetButtonTextStyles(theme);
-  const cssTextStyles = [textStyles.euiFacetButton__text];
-
-  const iconStyles = euiFacetButtonIconStyles(theme);
-  const cssIconStyles = [iconStyles.euiFacetButton__icon];
+  const contentElementStyles = euiFacetButtonContentElementStyles(theme);
+  const cssTextStyles = [contentElementStyles.euiFacetButton__text];
+  const cssIconStyles = [contentElementStyles.euiFacetButton__icon];
+  const cssSpinnerStyles = [contentElementStyles.euiFacetButton__spinner];
+  const cssQuantityStyles = [contentElementStyles.euiFacetButton__quantity];
 
   // Add quantity number if provided or loading indicator
   let buttonQuantity: ReactElement;
 
   if (isLoading) {
-    buttonQuantity = (
-      <EuiLoadingSpinner className="euiFacetButton__spinner" size="m" />
-    );
+    buttonQuantity = <EuiLoadingSpinner css={cssSpinnerStyles} size="m" />;
   } else if (typeof quantity === 'number') {
     buttonQuantity = (
       <EuiNotificationBadge
+        css={cssQuantityStyles}
         className="euiFacetButton__quantity"
         size="m"
         color={!isSelected || isDisabled ? 'subdued' : 'accent'}
@@ -117,6 +115,7 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
   if (React.isValidElement<{ className?: string }>(icon)) {
     buttonIcon = cloneElementWithCss(icon, {
       css: cssIconStyles,
+      className: 'euiFacetButton__icon',
     });
   }
 
@@ -132,7 +131,7 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
           title={rest['aria-label'] || innerText}
           {...rest}
         >
-          <span css={cssContentStyles} className="euiFacetButton__content">
+          <span css={cssContentStyles}>
             {buttonIcon}
 
             <span

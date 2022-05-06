@@ -7,39 +7,37 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../services';
+import { UseEuiTheme, useEuiTheme } from '../../services';
 import { EuiFacetGroupLayout } from './facet_group';
 
 const _facetGroupGutterSize = ({
   gutterSize,
-  adjustmentSize,
   layout,
 }: {
   gutterSize: string;
-  adjustmentSize: string;
   layout: EuiFacetGroupLayout;
 }) => {
-  let layoutStyles;
+  const euiTheme = useEuiTheme();
+  const buttonMarginBlockSize = `calc(${euiTheme.euiTheme.size.m} / 2)`;
 
-  if (layout === 'horizontal') {
-    layoutStyles = `
+  const layoutStyles =
+    layout === 'horizontal'
+      ? `
       display: flex;
       flex-direction: row;
-      gap: 0 calc(${gutterSize} + ${adjustmentSize});`;
-  } else {
-    layoutStyles = `
-    .euiFacetButton {
-      width: 100%;
-    }
+      gap: 0 calc(${gutterSize});`
+      : `
+      > [class*='euiFacetButton'] {
+        width: 100%;
+      }
     `;
-  }
 
   return `
-    > [class*='euiFacetButton'] {
-      margin-block: calc(${gutterSize} / 2);
-    }
-
     ${layoutStyles}
+
+    > [class*='euiFacetButton'] {
+      margin-block: ${buttonMarginBlockSize};
+    }
   `;
 };
 
@@ -53,28 +51,24 @@ export const euiFacetGroupStyles = (
   none: css(
     _facetGroupGutterSize({
       gutterSize: '0',
-      adjustmentSize: euiTheme.size.m,
       layout,
     })
   ),
   s: css(
     _facetGroupGutterSize({
-      gutterSize: euiTheme.size.xs,
-      adjustmentSize: euiTheme.size.m,
+      gutterSize: euiTheme.size.s,
       layout,
     })
   ),
   m: css(
     _facetGroupGutterSize({
-      gutterSize: euiTheme.size.s,
-      adjustmentSize: euiTheme.size.m,
+      gutterSize: euiTheme.size.m,
       layout,
     })
   ),
   l: css(
     _facetGroupGutterSize({
-      gutterSize: euiTheme.size.m,
-      adjustmentSize: euiTheme.size.m,
+      gutterSize: euiTheme.size.l,
       layout,
     })
   ),
