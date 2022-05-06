@@ -8,7 +8,6 @@
 
 export * from './_color';
 export * from './_helpers';
-export * from './_link';
 export * from './_padding';
 export * from './_states';
 export * from './_typography';

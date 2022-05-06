@@ -124,12 +124,7 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
     if (href === undefined || !isHrefValid) {
       const buttonProps = {
         className: classNames('euiLink', className),
-        css: [
-          cssStyles,
-          styles.button,
-          !disabled ? styles[color] : [],
-          disabled ? [styles.disabled] : [],
-        ],
+        css: [cssStyles, disabled ? [styles.disabled] : styles[color]],
         type,
         onClick,
         disabled,

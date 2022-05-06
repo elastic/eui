@@ -8,10 +8,10 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { euiLinkCSS } from '../../global_styling';
+import { euiFocusRing, logicalCSS } from '../../global_styling';
 
-const colorStyles = (color: string) => {
-  return css`
+const _colorCSS = (color: string) => {
+  return `
     color: ${color};
 
     &:hover,
@@ -26,12 +26,44 @@ const colorStyles = (color: string) => {
   `;
 };
 
+export const euiLinkHoverCSS = () => {
+  return `
+    text-decoration: underline;
+  `;
+};
+
+export const euiLinkFocusCSS = ({ euiTheme }: UseEuiTheme) => {
+  return `
+    text-decoration: underline;
+    text-decoration-thickness: ${euiTheme.border.width.thick} !important;
+  `;
+};
+
+export const euiLinkCSS = (_theme: UseEuiTheme) => {
+  const { euiTheme } = _theme;
+
+  return `
+    font-weight: ${euiTheme.font.weight.medium};
+    text-align: left;
+
+    &:hover {
+      ${euiLinkHoverCSS()}
+    }
+
+    &:focus {
+      ${euiFocusRing(euiTheme, 'outset')}
+      ${euiLinkFocusCSS(_theme)}
+    }
+  `;
+};
+
 export const euiLinkStyles = (_theme: UseEuiTheme) => {
   const { euiTheme } = _theme;
 
   return {
     euiLink: css`
       ${euiLinkCSS(_theme)}
+      user-select: text;
 
       &[target='_blank'] {
         position: relative;
@@ -50,39 +82,20 @@ export const euiLinkStyles = (_theme: UseEuiTheme) => {
         text-decoration: none;
       }
     `,
-    button: css`
-      user-select: text;
-    `,
     // Color styles
-    primary: css`
-      ${colorStyles(euiTheme.colors.primaryText)}
-    `,
-    subdued: css`
-      ${colorStyles(euiTheme.colors.subdued)}
-    `,
-    success: css`
-      ${colorStyles(euiTheme.colors.successText)}
-    `,
-    accent: css`
-      ${colorStyles(euiTheme.colors.accentText)}
-    `,
-    danger: css`
-      ${colorStyles(euiTheme.colors.dangerText)}
-    `,
-    warning: css`
-      ${colorStyles(euiTheme.colors.warningText)}
-    `,
-    ghost: css`
-      ${colorStyles(euiTheme.colors.ghost)}
-    `,
-    text: css`
-      ${colorStyles(euiTheme.colors.text)}
-    `,
+    primary: css(_colorCSS(euiTheme.colors.primaryText)),
+    subdued: css(_colorCSS(euiTheme.colors.subdued)),
+    success: css(_colorCSS(euiTheme.colors.successText)),
+    accent: css(_colorCSS(euiTheme.colors.accentText)),
+    danger: css(_colorCSS(euiTheme.colors.dangerText)),
+    warning: css(_colorCSS(euiTheme.colors.warningText)),
+    ghost: css(_colorCSS(euiTheme.colors.ghost)),
+    text: css(_colorCSS(euiTheme.colors.text)),
     euiLink__screenReaderText: css`
-      left: 0;
+      ${logicalCSS('left', '0px')}
     `,
     euiLink__externalIcon: css`
-      margin-inline-start: ${euiTheme.size.xs};
+      ${logicalCSS('margin-left', euiTheme.size.xs)}
     `,
   };
 };
