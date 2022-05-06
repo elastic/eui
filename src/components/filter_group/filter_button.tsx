@@ -43,11 +43,6 @@ export type EuiFilterButtonProps = {
    * Remove border after button, good for opposite filters
    */
   withNext?: boolean;
-  /**
-   * _DEPRECATED: use `withNext`_
-   * Remove border after button, good for opposite filters
-   */
-  noDivider?: boolean;
 } & DistributiveOmit<EuiButtonEmptyProps, 'flush' | 'size'>;
 
 export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
@@ -63,7 +58,6 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   isSelected,
   type = 'button',
   grow = true,
-  noDivider,
   withNext,
   textProps,
   ...rest
@@ -80,7 +74,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
       'euiFilterButton-hasNotification': numFiltersDefined,
       'euiFilterButton--hasIcon': iconType,
       'euiFilterButton--noGrow': !grow,
-      'euiFilterButton--withNext': noDivider || withNext,
+      'euiFilterButton--withNext': withNext,
     },
     className
   );

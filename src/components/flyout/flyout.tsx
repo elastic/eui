@@ -30,7 +30,7 @@ import {
 } from '../../services';
 
 import { CommonProps, keysOf, PropsOfElement } from '../common';
-import { EuiFocusTrap } from '../focus_trap';
+import { EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
 import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
 import { EuiI18n } from '../i18n';
@@ -151,6 +151,12 @@ interface _EuiFlyoutProps {
    */
   pushMinBreakpoint?: EuiBreakpointSize | number;
   style?: CSSProperties;
+  /**
+   * Object of props passed to EuiFocusTrap.
+   * `shards` specifies an array of elements that will be considered part of the flyout, preventing the flyout from being closed when clicked.
+   * `closeOnMouseup` will delay the close callback, allowing time for external toggle buttons to handle close behavior.
+   */
+  focusTrapProps?: Pick<EuiFocusTrapProps, 'closeOnMouseup' | 'shards'>;
 }
 
 const defaultElement = 'div';
@@ -189,6 +195,7 @@ export const EuiFlyout = forwardRef(
       outsideClickCloses,
       role = 'dialog',
       pushMinBreakpoint = 'l',
+      focusTrapProps,
       ...rest
     }: EuiFlyoutProps<T>,
     ref:
@@ -362,6 +369,7 @@ export const EuiFlyout = forwardRef(
         disabled={isPushed}
         clickOutsideDisables={!ownFocus}
         onClickOutside={onClickOutside}
+        {...focusTrapProps}
       >
         <Element
           {...(rest as ComponentPropsWithRef<T>)}

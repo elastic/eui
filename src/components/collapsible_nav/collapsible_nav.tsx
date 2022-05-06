@@ -12,6 +12,7 @@ import React, {
   ReactElement,
   ReactNode,
   useEffect,
+  useRef,
   useState,
 } from 'react';
 import classNames from 'classnames';
@@ -19,6 +20,7 @@ import {
   useGeneratedHtmlId,
   isWithinMinBreakpoint,
   throttle,
+  useCombinedRefs,
 } from '../../services';
 import { EuiFlyout, EuiFlyoutProps } from '../flyout';
 
@@ -71,12 +73,19 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   outsideClickCloses = true,
   closeButtonPosition = 'outside',
   paddingSize = 'none',
+  focusTrapProps: _focusTrapProps = {},
   ...rest
 }) => {
   const flyoutID = useGeneratedHtmlId({
     conditionalId: id,
     suffix: 'euiCollapsibleNav',
   });
+  const buttonRef = useRef();
+  const combinedButtonRef = useCombinedRefs([button?.props.ref, buttonRef]);
+  const focusTrapProps: EuiFlyoutProps['focusTrapProps'] = {
+    ..._focusTrapProps,
+    shards: [buttonRef, ...(_focusTrapProps.shards || [])],
+  };
 
   /**
    * Setting the initial state of pushed based on the `type` prop
@@ -136,6 +145,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
           onMouseUpCapture: (e: React.MouseEvent<HTMLElement>) => {
             e.nativeEvent.stopImmediatePropagation();
           },
+          ref: combinedButtonRef,
         });
 
   const flyout = (
@@ -151,6 +161,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
       outsideClickCloses={outsideClickCloses}
       closeButtonPosition={closeButtonPosition}
       paddingSize={paddingSize}
+      focusTrapProps={focusTrapProps}
       {...rest}
       // Props dependent on internal docked status
       type={navIsDocked ? 'push' : 'overlay'}

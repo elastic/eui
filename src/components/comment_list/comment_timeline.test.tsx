@@ -12,8 +12,13 @@ import { requiredProps } from '../../test/required_props';
 
 import { EuiCommentTimeline } from './comment_timeline';
 import { EuiAvatar } from '../avatar';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 describe('EuiCommentTimeline', () => {
+  shouldRenderCustomStyles(
+    <EuiCommentTimeline username="someuser" {...requiredProps} />
+  );
+
   test('is rendered', () => {
     const component = render(
       <EuiCommentTimeline username="someuser" {...requiredProps} />
