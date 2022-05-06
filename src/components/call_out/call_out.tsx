@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { forwardRef, Ref, HTMLAttributes, ReactNode } from 'react';
+import React, { forwardRef, HTMLAttributes, ReactNode } from 'react';
 
 import classNames from 'classnames';
 
@@ -55,7 +55,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       heading = 'p',
       ...rest
     },
-    ref: Ref<HTMLDivElement>
+    ref
   ) => {
     const theme = useEuiTheme();
     const styles = euiCallOutStyles(theme);
@@ -122,8 +122,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
         css={cssStyles}
         paddingSize={size === 's' ? 's' : 'm'}
         className={classes}
-        // @ts-expect-error Help with forward ref
-        ref={ref}
+        panelRef={ref}
         {...rest}
       >
         {header}
