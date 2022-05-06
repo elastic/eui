@@ -64,7 +64,6 @@ export const euiFacetButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
       }
     },
   `,
-  euiFacetButton__quantity: css``,
   // Selections
   isSelected: css`
     [class*='euiFacetButton__text'] {
@@ -80,7 +79,7 @@ export const euiFacetButtonContentStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
 });
 
-export const euiFacetButtonContentElementStyles = ({
+export const euiFacetButtonContentElementsStyles = ({
   euiTheme,
 }: UseEuiTheme) => ({
   euiFacetButton__icon: css`

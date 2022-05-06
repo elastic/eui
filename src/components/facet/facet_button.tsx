@@ -28,7 +28,7 @@ import { useEuiTheme } from '../../services';
 import {
   euiFacetButtonStyles,
   euiFacetButtonContentStyles,
-  euiFacetButtonContentElementStyles,
+  euiFacetButtonContentElementsStyles,
 } from './facet_button.styles';
 
 export interface EuiFacetButtonProps
@@ -85,11 +85,11 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
   const contentStyles = euiFacetButtonContentStyles(theme);
   const cssContentStyles = [contentStyles.euiFacetButton__content];
 
-  const contentElementStyles = euiFacetButtonContentElementStyles(theme);
-  const cssTextStyles = [contentElementStyles.euiFacetButton__text];
-  const cssIconStyles = [contentElementStyles.euiFacetButton__icon];
-  const cssSpinnerStyles = [contentElementStyles.euiFacetButton__spinner];
-  const cssQuantityStyles = [contentElementStyles.euiFacetButton__quantity];
+  const contentElementsStyles = euiFacetButtonContentElementsStyles(theme);
+  const cssTextStyles = [contentElementsStyles.euiFacetButton__text];
+  const cssIconStyles = [contentElementsStyles.euiFacetButton__icon];
+  const cssSpinnerStyles = [contentElementsStyles.euiFacetButton__spinner];
+  const cssQuantityStyles = [contentElementsStyles.euiFacetButton__quantity];
 
   // Add quantity number if provided or loading indicator
   let buttonQuantity: ReactElement;
