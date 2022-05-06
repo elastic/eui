@@ -508,9 +508,9 @@ export class EuiBasicTable<T = any> extends Component<
       page: !currentCriteria.page
         ? undefined
         : {
-          index: 0,
-          size: currentCriteria.page.size,
-        },
+            index: 0,
+            size: currentCriteria.page.size,
+          },
       sort: {
         field: ((column as EuiTableFieldDataColumnType<T>).field ||
           column.name) as keyof T,
@@ -632,7 +632,7 @@ export class EuiBasicTable<T = any> extends Component<
       if (
         !(column as EuiTableFieldDataColumnType<T>).sortable ||
         (column as EuiTableFieldDataColumnType<T>)?.mobileOptions?.show ===
-        false
+          false
       ) {
         return;
       }
@@ -641,8 +641,9 @@ export class EuiBasicTable<T = any> extends Component<
 
       items.push({
         name: column.name,
-        key: `_data_s_${(column as EuiTableFieldDataColumnType<T>).field
-          }_${index}`,
+        key: `_data_s_${
+          (column as EuiTableFieldDataColumnType<T>).field
+        }_${index}`,
         onSort: this.resolveColumnOnSort(column),
         isSorted: !!sortDirection,
         isSortAscending: sortDirection
@@ -824,8 +825,9 @@ export class EuiBasicTable<T = any> extends Component<
             align={columnAlign}
             width={width}
             mobileOptions={mobileOptions}
-            data-test-subj={`tableHeaderCell_${typeof name === 'string' ? name : ''
-              }_${index}`}
+            data-test-subj={`tableHeaderCell_${
+              typeof name === 'string' ? name : ''
+            }_${index}`}
             description={description}
             {...sorting}
           >
@@ -948,7 +950,7 @@ export class EuiBasicTable<T = any> extends Component<
       const tableItemIndex =
         hasPagination(this.props) && this.props.pagination.pageSize > 0
           ? this.props.pagination.pageIndex * this.props.pagination.pageSize +
-          index
+            index
           : index;
       return this.renderItemRow(item, tableItemIndex);
     });
@@ -1011,10 +1013,10 @@ export class EuiBasicTable<T = any> extends Component<
     const selected = !selection
       ? false
       : this.state.selection &&
-      !!this.state.selection.find(
-        (selectedItem: T) =>
-          getItemId(selectedItem, itemIdCallback) === itemId
-      );
+        !!this.state.selection.find(
+          (selectedItem: T) =>
+            getItemId(selectedItem, itemIdCallback) === itemId
+        );
 
     let calculatedHasSelection;
     if (selection) {
