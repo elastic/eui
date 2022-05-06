@@ -22,13 +22,17 @@ const childrenDefault = (
   </>
 );
 
-const Flyout = ({ children = childrenDefault }) => {
+const Flyout = ({ children = childrenDefault, ...rest }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
     <>
       {isOpen ? (
-        <EuiFlyout data-test-subj="flyoutSpec" onClose={() => setIsOpen(false)}>
+        <EuiFlyout
+          data-test-subj="flyoutSpec"
+          onClose={() => setIsOpen(false)}
+          {...rest}
+        >
           {children}
         </EuiFlyout>
       ) : null}
@@ -80,6 +84,8 @@ describe('EuiFlyout', () => {
   });
 
   describe('Close behavior: outside clicks', () => {
+    // We're using toasts here to trigger outside clicks, as a UX case where
+    // we would generally expect toasts overlaid on top of a flyout *not* to close the flyout
     const FlyoutWithToasts = ({ children = childrenDefault, ...rest }) => {
       const [isOpen, setIsOpen] = useState(true);
 
@@ -115,6 +121,15 @@ describe('EuiFlyout', () => {
         .realClick()
         .then(() => {
           expect(cy.get('[data-test-subj="flyoutSpec"]').should('not.exist'));
+        });
+    });
+
+    it('does not close the flyout when `outsideClickCloses=false` and the overlay mask is clicked', () => {
+      cy.mount(<Flyout outsideClickCloses={false} />);
+      cy.get('.euiOverlayMask')
+        .realClick()
+        .then(() => {
+          expect(cy.get('[data-test-subj="flyoutSpec"]').should('exist'));
         });
     });
 
