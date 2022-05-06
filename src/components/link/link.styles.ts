@@ -91,6 +91,8 @@ export const euiLinkStyles = (_theme: UseEuiTheme) => {
     warning: css(_colorCSS(euiTheme.colors.warningText)),
     ghost: css(_colorCSS(euiTheme.colors.ghost)),
     text: css(_colorCSS(euiTheme.colors.text)),
+
+    // Children
     euiLink__screenReaderText: css`
       ${logicalCSS('left', '0px')}
     `,
