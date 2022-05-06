@@ -1,27 +1,28 @@
 import React, { useContext, useMemo } from 'react';
 
-import {
-  EuiCallOut,
-  EuiHorizontalRule,
-  EuiSpacer,
-  EuiText,
-  EuiTitle,
-} from '../../../../../src/components';
+import { EuiCallOut, EuiSpacer, EuiText, EuiTitle } from '../../../../../src';
 
 // @ts-ignore Importing from JS
 import { GuidePage } from '../../../components/guide_page';
+import { GuideSection } from '../../../components/guide_section/guide_section';
 import { ThemeContext } from '../../../components/with_theme';
 
 import { ThemeNotice } from '../_components/_theme_notice';
 
-import JSValues, { BaseJS, UtilsJS } from './_sizing_js';
-import SassValues, { BaseSass } from './_sizing_sass';
+import JSValues, {
+  BaseJS,
+  PaddingJS,
+  ScaleValuesJS,
+  UtilsJS,
+} from './_sizing_js';
+import SassValues, { BaseSass, ScaleValuesSass } from './_sizing_sass';
 
 // This array is used inside routes.js to create the sidenav sub-sections
 export const sizingSections = [
   { title: 'Base', id: 'base' },
   { title: 'Scale', id: 'scale' },
-  { title: 'Utilities', id: 'utilities' },
+  { title: 'Logical properties', id: 'logical' },
+  { title: 'Padding', id: 'padding' },
 ];
 
 export default () => {
@@ -45,6 +46,12 @@ export default () => {
     return <UtilsJS />;
   }, [showSass]);
 
+  const paddingContent = useMemo(() => {
+    if (showSass)
+      return <EuiCallOut title="Utilities only available for Emotion." />;
+    return <PaddingJS />;
+  }, [showSass]);
+
   return (
     <GuidePage
       title="Sizing"
@@ -52,39 +59,53 @@ export default () => {
       notice={<ThemeNotice />}
       showThemeLanguageToggle
     >
-      <EuiSpacer size="xl" />
+      <GuideSection>
+        <EuiText grow={false}>
+          <h2 id={`${sizingSections[0].id}`}>{`${sizingSections[0].title}`}</h2>
+          <p>
+            All sizing values, including font sizes, are calculated from a
+            single base integer and converted to pixel or rem string values.
+          </p>
+        </EuiText>
 
-      <EuiText grow={false}>
-        <h2 id={`${sizingSections[0].id}`}>{`${sizingSections[0].title}`}</h2>
-        <p>
-          All sizing values, including font sizes, are calculated from a single{' '}
-          base integer and converted to pixel or rem string values.
-        </p>
-      </EuiText>
+        <EuiSpacer size="l" />
 
-      <EuiSpacer size="l" />
+        {baseContent}
+      </GuideSection>
 
-      {baseContent}
+      <GuideSection color="subdued">
+        <EuiTitle>
+          <h2 id={`${sizingSections[1].id}`}>{`${sizingSections[1].title}`}</h2>
+        </EuiTitle>
 
-      <EuiHorizontalRule margin="xxl" />
+        <EuiSpacer size="l" />
 
-      <EuiTitle>
-        <h2 id={`${sizingSections[1].id}`}>{`${sizingSections[1].title}`}</h2>
-      </EuiTitle>
+        {scaleContent}
+      </GuideSection>
 
-      <EuiSpacer size="l" />
+      <GuideSection>
+        {showSass ? <ScaleValuesSass /> : <ScaleValuesJS />}
+      </GuideSection>
 
-      {scaleContent}
+      <GuideSection color="subdued">
+        <EuiTitle>
+          <h2 id={`${sizingSections[2].id}`}>{`${sizingSections[2].title}`}</h2>
+        </EuiTitle>
 
-      <EuiSpacer size="xxl" />
+        <EuiSpacer size="m" />
 
-      <EuiTitle>
-        <h2 id={`${sizingSections[2].id}`}>{`${sizingSections[2].title}`}</h2>
-      </EuiTitle>
+        {utilsContent}
+      </GuideSection>
 
-      <EuiSpacer size="l" />
+      <GuideSection>
+        <EuiTitle>
+          <h2 id={`${sizingSections[3].id}`}>{`${sizingSections[3].title}`}</h2>
+        </EuiTitle>
 
-      {utilsContent}
+        <EuiSpacer size="m" />
+
+        {paddingContent}
+      </GuideSection>
     </GuidePage>
   );
 };
