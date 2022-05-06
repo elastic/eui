@@ -11,7 +11,7 @@ import classNames from 'classnames';
 import { cloneElementWithCss } from '../../services/theme/clone_element';
 import { euiTitleStyles } from './title.styles';
 import { CommonProps } from '../common';
-import { withEuiSystem, WithEuiSystemProps } from '../provider';
+import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
 
 export const TITLE_SIZES = ['xxxs', 'xxs', 'xs', 's', 'm', 'l'] as const;
 export type EuiTitleSize = typeof TITLE_SIZES[number];

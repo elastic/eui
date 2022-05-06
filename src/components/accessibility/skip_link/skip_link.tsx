@@ -8,9 +8,9 @@
 
 import React, { FunctionComponent, Ref } from 'react';
 import classNames from 'classnames';
-import { useEuiTheme } from '../../../services';
 import { EuiButton, EuiButtonProps } from '../../button/button';
 import { PropsForAnchor, PropsForButton, ExclusiveUnion } from '../../common';
+import { withEuiSystem, WithEuiSystemProps } from '../../provider/system';
 import { EuiScreenReaderOnly } from '../screen_reader_only';
 import { euiSkipLinkStyles } from './skip_link.styles';
 
@@ -50,15 +50,17 @@ type propsForButton = PropsForButton<
 
 export type EuiSkipLinkProps = ExclusiveUnion<propsForAnchor, propsForButton>;
 
-export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
+export const _EuiSkipLink: FunctionComponent<
+  EuiSkipLinkProps & WithEuiSystemProps
+> = ({
   destinationId,
   tabIndex,
   position = 'static',
   children,
   className,
+  euiTheme,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
   const styles = euiSkipLinkStyles(euiTheme);
 
   const classes = classNames('euiSkipLink', className);
@@ -92,3 +94,5 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
     </EuiScreenReaderOnly>
   );
 };
+
+export const EuiSkipLink = withEuiSystem(_EuiSkipLink);

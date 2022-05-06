@@ -9,7 +9,7 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
+import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
 import { useLoadingAriaLabel } from './_loading_strings';
 import { euiLoadingContentStyles } from './loading_content.styles';
 
@@ -20,13 +20,9 @@ export type EuiLoadingContentProps = CommonProps &
     lines?: LineRange;
   };
 
-export const EuiLoadingContent: FunctionComponent<EuiLoadingContentProps> = ({
-  lines = 3,
-  className,
-  'aria-label': ariaLabel,
-  ...rest
-}) => {
-  const euiTheme = useEuiTheme();
+export const _EuiLoadingContent: FunctionComponent<
+  EuiLoadingContentProps & WithEuiSystemProps
+> = ({ lines = 3, className, 'aria-label': ariaLabel, euiTheme, ...rest }) => {
   const styles = euiLoadingContentStyles(euiTheme);
   const lineCssStyles = [styles.euiLoadingContent__singleLine];
   const defaultLabel = useLoadingAriaLabel();
@@ -49,3 +45,5 @@ export const EuiLoadingContent: FunctionComponent<EuiLoadingContentProps> = ({
     </span>
   );
 };
+
+export const EuiLoadingContent = withEuiSystem(_EuiLoadingContent);

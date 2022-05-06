@@ -10,7 +10,7 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
+import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
 import { euiHorizontalRuleStyles } from './horizontal_rule.styles';
 
 export type EuiHorizontalRuleSize = keyof typeof sizeToClassNameMap;
@@ -46,13 +46,9 @@ const marginToClassNameMap = {
 
 export const MARGINS = Object.keys(marginToClassNameMap);
 
-export const EuiHorizontalRule: FunctionComponent<EuiHorizontalRuleProps> = ({
-  className,
-  size = 'full',
-  margin = 'l',
-  ...rest
-}) => {
-  const euiTheme = useEuiTheme();
+export const _EuiHorizontalRule: FunctionComponent<
+  EuiHorizontalRuleProps & WithEuiSystemProps
+> = ({ className, euiTheme, size = 'full', margin = 'l', ...rest }) => {
   const styles = euiHorizontalRuleStyles(euiTheme);
 
   const classes = classNames(
@@ -66,3 +62,5 @@ export const EuiHorizontalRule: FunctionComponent<EuiHorizontalRuleProps> = ({
 
   return <hr css={cssStyles} className={classes} {...rest} />;
 };
+
+export const EuiHorizontalRule = withEuiSystem(_EuiHorizontalRule);

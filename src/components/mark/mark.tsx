@@ -10,8 +10,7 @@ import React, { HTMLAttributes, FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 import { useEuiI18n } from '../i18n';
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
-import { EuiCacheProvider, useEuiCacheContext } from '../provider';
+import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
 import { euiMarkStyles } from './mark.styles';
 export type EuiMarkProps = HTMLAttributes<HTMLElement> &
   CommonProps & {
@@ -26,20 +25,19 @@ export type EuiMarkProps = HTMLAttributes<HTMLElement> &
     children: ReactNode;
   };
 
-export const EuiMark: FunctionComponent<EuiMarkProps> = ({
+export const _EuiMark: FunctionComponent<EuiMarkProps & WithEuiSystemProps> = ({
   children,
   className,
+  euiTheme,
   hasScreenReaderHelpText = true,
   ...rest
 }) => {
-  const cache = useEuiCacheContext();
-  const useTheme = useEuiTheme();
   const highlightStart = useEuiI18n(
     'euiMark.highlightStart',
     'highlight start'
   );
   const highlightEnd = useEuiI18n('euiMark.highlightEnd', 'highlight end');
-  const styles = euiMarkStyles(useTheme, {
+  const styles = euiMarkStyles(euiTheme, {
     hasScreenReaderHelpText,
     highlightStart,
     highlightEnd,
@@ -47,10 +45,10 @@ export const EuiMark: FunctionComponent<EuiMarkProps> = ({
   const classes = classNames('euiMark', className);
 
   return (
-    <EuiCacheProvider cache={cache}>
-      <mark css={[styles]} className={classes} {...rest}>
-        {children}
-      </mark>
-    </EuiCacheProvider>
+    <mark css={[styles]} className={classes} {...rest}>
+      {children}
+    </mark>
   );
 };
+
+export const EuiMark = withEuiSystem(_EuiMark);

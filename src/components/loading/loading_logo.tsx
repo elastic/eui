@@ -10,7 +10,7 @@ import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { EuiIcon, IconType } from '../icon';
-import { useEuiTheme } from '../../services';
+import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
 import { useLoadingAriaLabel } from './_loading_strings';
 import {
   euiLoadingLogoStyles,
@@ -29,14 +29,16 @@ export type EuiLoadingLogoProps = CommonProps &
     logo?: IconType;
   };
 
-export const EuiLoadingLogo: FunctionComponent<EuiLoadingLogoProps> = ({
+export const _EuiLoadingLogo: FunctionComponent<
+  EuiLoadingLogoProps & WithEuiSystemProps
+> = ({
   size = 'm',
   logo = 'logoKibana',
   'aria-label': ariaLabel,
   className,
+  euiTheme,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
   const defaultLabel = useLoadingAriaLabel();
 
   const styles = euiLoadingLogoStyles(euiTheme);
@@ -61,3 +63,5 @@ export const EuiLoadingLogo: FunctionComponent<EuiLoadingLogoProps> = ({
     </span>
   );
 };
+
+export const EuiLoadingLogo = withEuiSystem(_EuiLoadingLogo);

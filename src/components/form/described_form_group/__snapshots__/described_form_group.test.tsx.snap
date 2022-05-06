@@ -15,14 +15,14 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
       className="euiDescribedFormGroup__descriptionColumn"
       grow={1}
     >
-      <_EuiTitle
+      <EuiTitle
         className="euiDescribedFormGroup__title"
         size="xs"
       >
         <h3>
           Title
         </h3>
-      </_EuiTitle>
+      </EuiTitle>
       <EuiText
         className="euiDescribedFormGroup__description"
         color="subdued"
@@ -65,14 +65,14 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
       className="euiDescribedFormGroup__descriptionColumn"
       grow={1}
     >
-      <_EuiTitle
+      <EuiTitle
         className="euiDescribedFormGroup__title"
         size="xs"
       >
         <h3>
           Title
         </h3>
-      </_EuiTitle>
+      </EuiTitle>
     </EuiFlexItem>
     <EuiFlexItem
       className="euiDescribedFormGroup__fields"
@@ -106,14 +106,14 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
       className="euiDescribedFormGroup__descriptionColumn"
       grow={1}
     >
-      <_EuiTitle
+      <EuiTitle
         className="euiDescribedFormGroup__title"
         size="xs"
       >
         <h3>
           Title
         </h3>
-      </_EuiTitle>
+      </EuiTitle>
       <EuiText
         className="euiDescribedFormGroup__description"
         color="subdued"
@@ -156,14 +156,14 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
       className="euiDescribedFormGroup__descriptionColumn"
       grow={1}
     >
-      <_EuiTitle
+      <EuiTitle
         className="euiDescribedFormGroup__title"
         size="xs"
       >
         <h3>
           Title
         </h3>
-      </_EuiTitle>
+      </EuiTitle>
       <EuiText
         className="euiDescribedFormGroup__description"
         color="subdued"
@@ -206,14 +206,14 @@ exports[`EuiDescribedFormGroup props props for the flex item containers are pass
       className="euiDescribedFormGroup__descriptionColumn"
       grow={2}
     >
-      <_EuiTitle
+      <EuiTitle
         className="euiDescribedFormGroup__title"
         size="xs"
       >
         <h3>
           Title
         </h3>
-      </_EuiTitle>
+      </EuiTitle>
       <EuiText
         className="euiDescribedFormGroup__description"
         color="subdued"
@@ -257,14 +257,14 @@ exports[`EuiDescribedFormGroup props third is rendered 1`] = `
       className="euiDescribedFormGroup__descriptionColumn"
       grow={1}
     >
-      <_EuiTitle
+      <EuiTitle
         className="euiDescribedFormGroup__title"
         size="xs"
       >
         <h3>
           Title
         </h3>
-      </_EuiTitle>
+      </EuiTitle>
       <EuiText
         className="euiDescribedFormGroup__description"
         color="subdued"
@@ -307,14 +307,14 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
       className="euiDescribedFormGroup__descriptionColumn"
       grow={1}
     >
-      <_EuiTitle
+      <EuiTitle
         className="euiDescribedFormGroup__title"
         size="l"
       >
         <h3>
           Title
         </h3>
-      </_EuiTitle>
+      </EuiTitle>
       <EuiText
         className="euiDescribedFormGroup__description"
         color="subdued"
@@ -357,14 +357,14 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
       className="euiDescribedFormGroup__descriptionColumn"
       grow={1}
     >
-      <_EuiTitle
+      <EuiTitle
         className="euiDescribedFormGroup__title"
         size="xs"
       >
         <h3>
           Title
         </h3>
-      </_EuiTitle>
+      </EuiTitle>
       <EuiText
         className="euiDescribedFormGroup__description"
         color="subdued"

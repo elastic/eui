@@ -10,7 +10,7 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
+import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
 
 import { euiSpacerStyles } from './spacer.styles';
 
@@ -32,12 +32,9 @@ export type EuiSpacerProps = HTMLAttributes<HTMLDivElement> &
     size?: SpacerSize;
   };
 
-export const EuiSpacer: FunctionComponent<EuiSpacerProps> = ({
-  className,
-  size = 'l',
-  ...rest
-}) => {
-  const euiTheme = useEuiTheme();
+export const _EuiSpacer: FunctionComponent<
+  EuiSpacerProps & WithEuiSystemProps
+> = ({ className, euiTheme, size = 'l', ...rest }) => {
   const styles = euiSpacerStyles(euiTheme);
   const classes = classNames('euiSpacer', sizeToClassNameMap[size], className);
 
@@ -45,3 +42,5 @@ export const EuiSpacer: FunctionComponent<EuiSpacerProps> = ({
 
   return <div className={classes} css={cssStyles} {...rest} />;
 };
+
+export const EuiSpacer = withEuiSystem(_EuiSpacer);
