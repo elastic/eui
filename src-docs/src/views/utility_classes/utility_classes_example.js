@@ -38,7 +38,6 @@ export const UtilityClassesExample = {
   sections: [
     {
       title: 'Display',
-
       wrapText: false,
       text: (
         <>

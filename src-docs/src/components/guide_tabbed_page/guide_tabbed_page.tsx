@@ -149,7 +149,7 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
         hasBorder={false}
         borderRadius="none"
       >
-        <EuiPageContentBody restrictWidth>
+        <EuiPageContentBody paddingSize="l" restrictWidth>
           <Switch>{pagesRoutes}</Switch>
         </EuiPageContentBody>
       </EuiPageContent>

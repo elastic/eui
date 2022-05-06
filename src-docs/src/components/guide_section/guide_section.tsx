@@ -84,7 +84,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
   wrapText = true,
   demoPanelProps,
   snippet,
-  color = 'transparent',
+  color,
   children,
 }) => {
   const { path } = useRouteMatch();
