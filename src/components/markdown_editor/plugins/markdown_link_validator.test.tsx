@@ -90,7 +90,22 @@ describe('mutateLinkToText', () => {
       }
     `);
   });
-  it('keeps only the email address when handling mailto: links', () => {
+  it('keeps only the link text when both text & url are the same value', () => {
+    expect(
+      mutateLinkToText({
+        type: 'link',
+        url: 'ftp://www.example.com',
+        title: null,
+        children: [{ value: 'ftp://www.example.com' }],
+      })
+    ).toMatchInlineSnapshot(`
+      Object {
+        "type": "text",
+        "value": "ftp://www.example.com",
+      }
+    `);
+  });
+  it('renders with the markdown link syntax when link and url are not the same value', () => {
     expect(
       mutateLinkToText({
         type: 'link',
@@ -101,7 +116,7 @@ describe('mutateLinkToText', () => {
     ).toMatchInlineSnapshot(`
       Object {
         "type": "text",
-        "value": "someone@elastic.co",
+        "value": "[someone@elastic.co](mailto:someone@elastic.co)",
       }
     `);
   });

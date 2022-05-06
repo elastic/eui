@@ -105,10 +105,8 @@ export const MarkdownFormatExample = {
             Markdown content often comes from untrusted sources like user
             generated content. To help with potential security issues,{' '}
             <EuiCode>EuiMarkdownRenderer</EuiCode> only renders links if they
-            begin with <EuiCode>https:</EuiCode>, <EuiCode>https</EuiCode>, or{' '}
-            <EuiCode>/</EuiCode>. Links that do not meet these requirements are
-            rendered in the markdown link format, with the exception of{' '}
-            <EuiCode>mailto:</EuiCode> where only the link copy is kept.
+            begin with <EuiCode>https:</EuiCode>, <EuiCode>http:</EuiCode>,{' '}
+            <EuiCode>mailto:</EuiCode>, or <EuiCode>/</EuiCode>.
           </p>
           <EuiCodeBlock language="markdown">{markdownContent}</EuiCodeBlock>
         </>

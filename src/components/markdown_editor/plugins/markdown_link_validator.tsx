@@ -36,15 +36,17 @@ export function euiMarkdownLinkValidator(
 }
 
 export function mutateLinkToText(node: LinkOrTextNode) {
+  // this is an upsupported url, convert to a text node
   node.type = 'text';
 
-  // https://github.com/elastic/eui/issues/5770
-  // if this is a `mailto:` link only keep the link text
+  // and, if the link text matches the url there's only one value to show
+  // otherwise render as the markdown syntax so both text & url remain, unlinked
   const linkText = node.children?.[0]?.value || '';
-  if (node.url?.startsWith('mailto:')) {
+  const linkUrl = node.url ?? '';
+  if (linkText === linkUrl) {
     node.value = linkText;
   } else {
-    node.value = `[${linkText || ''}](${node.url})`;
+    node.value = `[${linkText}](${node.url})`;
   }
 
   delete node.children;
