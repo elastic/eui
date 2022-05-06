@@ -41,7 +41,19 @@ const parsingPlugins = getDefaultEuiMarkdownParsingPlugins();
 const processingPlugins = getDefaultEuiMarkdownProcessingPlugins();
 const uiPlugins = getDefaultEuiMarkdownUiPlugins();
 
-parsingPlugins.push(MarkdownMentions.parser);
+const mentionsConfig = {
+  options: [
+    { label: 'miukimiu', data: { first: 'Elizabet' } },
+    { label: 'chandlerprall', data: { first: 'Chandler' } },
+    { label: 'thompsongl', data: { first: 'Greg' } },
+    { label: 'cchaos', data: { first: 'Caroline' } },
+    { label: '1copenut', data: { first: 'Trevor' } },
+    { label: 'constancecchen', data: { first: 'Constance' } },
+    { label: 'snide', data: { first: 'Dave' } },
+  ],
+};
+
+parsingPlugins.push([MarkdownMentions.parser, mentionsConfig]);
 processingPlugins[1][1].components.mentionsPlugin = MarkdownMentions.renderer;
 uiPlugins.push(MarkdownMentions.plugin);
 

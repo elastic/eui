@@ -8,9 +8,11 @@
 
 import { Plugin } from 'unified';
 import { RemarkTokenizer } from '../../markdown_types';
-import { MentionsNodeDetails } from './types';
+import { MentionsNodeDetails, MentionsParserConfig } from './types';
 
-export const MentionsParser: Plugin = function MentionsParser() {
+export const MentionsParser: Plugin<[
+  MentionsParserConfig
+]> = function MentionsParser(config: MentionsParserConfig = { options: [] }) {
   const Parser = this.Parser;
   const tokenizers = Parser.prototype.inlineTokenizers;
   const methods = Parser.prototype.inlineMethods;
@@ -25,9 +27,10 @@ export const MentionsParser: Plugin = function MentionsParser() {
     let mention = '';
     for (let i = 1; i < value.length; i++) {
       const char = value[i];
-      mention += char;
       if (char === ' ' || char === '\t' || char === '\r' || char === '\n') {
         break;
+      } else {
+        mention += char;
       }
     }
 
@@ -44,6 +47,7 @@ export const MentionsParser: Plugin = function MentionsParser() {
 
     return eat(match)({
       type: 'mentionsPlugin',
+      config,
       mention,
     } as MentionsNodeDetails);
   };

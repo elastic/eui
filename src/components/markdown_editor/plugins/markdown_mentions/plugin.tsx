@@ -24,7 +24,7 @@ export const mentionsPlugin: EuiMarkdownEditorUiPlugin<MentionsNodeDetails> = {
       {'@someone'}
     </EuiCodeBlock>
   ),
-  popover: ({ textarea, onSave, onCancel }) => {
+  popover: ({ node, textarea, onSave, onCancel }) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const selectableRef = useRef<EuiSelectable>(null);
 
@@ -57,16 +57,6 @@ export const mentionsPlugin: EuiMarkdownEditorUiPlugin<MentionsNodeDetails> = {
       };
     }, [textarea, onCancel]);
 
-    const options = [
-      { label: 'miukimiu' },
-      { label: 'chandlerprall' },
-      { label: 'thompsongl' },
-      { label: 'cchaos' },
-      { label: '1copenut' },
-      { label: 'constancecchen' },
-      { label: 'snide' },
-    ];
-
     const onChange: EuiSelectableProps['onChange'] = (options) => {
       for (let i = 0; i < options.length; i++) {
         if (options[i].checked) {
@@ -80,7 +70,7 @@ export const mentionsPlugin: EuiMarkdownEditorUiPlugin<MentionsNodeDetails> = {
       <EuiSelectable
         ref={selectableRef}
         singleSelection
-        options={options}
+        options={node?.config.options}
         onChange={onChange}
       >
         {(list) => list}

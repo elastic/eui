@@ -6,7 +6,14 @@
  * Side Public License, v 1.
  */
 
+import { EuiSelectableProps } from '../../../selectable';
+
+export interface MentionsParserConfig {
+  options: EuiSelectableProps['options'];
+}
+
 export interface MentionsNodeDetails {
   type: 'mentionsPlugin';
+  config: MentionsParserConfig;
   mention: string;
 }

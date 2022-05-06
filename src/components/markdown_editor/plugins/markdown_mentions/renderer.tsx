@@ -9,11 +9,17 @@
 import React, { FunctionComponent } from 'react';
 import { EuiMarkdownAstNodePosition } from '../../markdown_types';
 import { MentionsNodeDetails } from './types';
+import { EuiToolTip } from '../../../tool_tip';
 
 export const mentionsMarkdownRenderer: FunctionComponent<
   MentionsNodeDetails & {
     position: EuiMarkdownAstNodePosition;
   }
-> = ({ mention }) => {
-  return <strong>@{mention}</strong>;
+> = ({ config, mention }) => {
+  const match = config.options.find(({ label }) => label === mention);
+  return (
+    <EuiToolTip content={match?.data?.first}>
+      <span>@{mention}</span>
+    </EuiToolTip>
+  );
 };
