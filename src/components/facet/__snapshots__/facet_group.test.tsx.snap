@@ -34,7 +34,7 @@ exports[`EuiFacetGroup props gutterSize s is rendered 1`] = `
 
 exports[`EuiFacetGroup props layout horizontal is rendered 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--directionRow euiFlexGroup--responsive euiFlexGroup--wrap euiFacetGroup css-17tqz3v-euiFacetGroup-m"
+  class="euiFlexGroup euiFlexGroup--directionRow euiFlexGroup--responsive euiFlexGroup--wrap euiFacetGroup css-8k8zr7-euiFacetGroup-m"
 />
 `;
 

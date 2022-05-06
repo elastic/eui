@@ -25,7 +25,7 @@ const _facetGroupGutterSize = ({
       ? `
       display: flex;
       flex-direction: row;
-      gap: 0 calc(${gutterSize});`
+      gap: 0 ${gutterSize};`
       : `
       > [class*='euiFacetButton'] {
         width: 100%;
