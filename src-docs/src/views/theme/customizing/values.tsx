@@ -131,10 +131,7 @@ export default () => {
 
       {!showSass && (
         <>
-          <EuiBottomBar
-            style={{ marginLeft: -24, marginRight: -24, marginBottom: -24 }}
-            position="sticky"
-          >
+          <EuiBottomBar position="sticky">
             <EuiFlexGroup responsive={false} justifyContent="flexEnd">
               {Object.keys(overrides).length > 0 && (
                 <>
