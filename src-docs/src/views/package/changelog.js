@@ -16,7 +16,7 @@ export const Changelog = {
   name: 'Changelog',
   component: () => (
     <GuidePage title="Changelog">
-      <EuiPageContentBody restrictWidth>
+      <EuiPageContentBody paddingSize="l" restrictWidth>
         <EuiSpacer size="xl" />
         <EuiMarkdownFormat>{changelogSource}</EuiMarkdownFormat>
       </EuiPageContentBody>
