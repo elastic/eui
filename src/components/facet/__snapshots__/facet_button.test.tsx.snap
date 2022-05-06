@@ -3,7 +3,7 @@
 exports[`EuiFacetButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiFacetButton testClass1 testClass2 css-ffj30w-euiFacetButton-unSelected"
+  class="euiFacetButton testClass1 testClass2 css-1i5ch8m-euiFacetButton-unSelected"
   data-test-subj="test subject string"
   title="aria-label"
   type="button"
@@ -22,14 +22,14 @@ exports[`EuiFacetButton is rendered 1`] = `
 
 exports[`EuiFacetButton props icon is rendered 1`] = `
 <button
-  class="euiFacetButton css-ffj30w-euiFacetButton-unSelected"
+  class="euiFacetButton css-1i5ch8m-euiFacetButton-unSelected"
   type="button"
 >
   <span
     class="css-84oukk-euiFacetButton__content"
   >
     <span
-      class="euiFacetButton__icon css-4d6sbn-euiFacetButton__icon"
+      class="euiFacetButton__icon css-1gu24b1-euiFacetButton__icon"
       data-euiicon-type="dot"
     />
     <span
@@ -43,7 +43,7 @@ exports[`EuiFacetButton props icon is rendered 1`] = `
 
 exports[`EuiFacetButton props isDisabled is rendered 1`] = `
 <button
-  class="euiFacetButton css-ffj30w-euiFacetButton-unSelected"
+  class="euiFacetButton css-1i5ch8m-euiFacetButton-unSelected"
   disabled=""
   type="button"
 >
@@ -61,7 +61,7 @@ exports[`EuiFacetButton props isDisabled is rendered 1`] = `
 
 exports[`EuiFacetButton props isLoading is rendered 1`] = `
 <button
-  class="euiFacetButton css-ffj30w-euiFacetButton-unSelected"
+  class="euiFacetButton css-1i5ch8m-euiFacetButton-unSelected"
   disabled=""
   type="button"
 >
@@ -84,7 +84,7 @@ exports[`EuiFacetButton props isLoading is rendered 1`] = `
 
 exports[`EuiFacetButton props isSelected is rendered 1`] = `
 <button
-  class="euiFacetButton css-kuig8s-euiFacetButton-isSelected"
+  class="euiFacetButton css-ucajw6-euiFacetButton-isSelected"
   type="button"
 >
   <span
@@ -101,7 +101,7 @@ exports[`EuiFacetButton props isSelected is rendered 1`] = `
 
 exports[`EuiFacetButton props quantity is rendered 1`] = `
 <button
-  class="euiFacetButton css-ffj30w-euiFacetButton-unSelected"
+  class="euiFacetButton css-1i5ch8m-euiFacetButton-unSelected"
   type="button"
 >
   <span

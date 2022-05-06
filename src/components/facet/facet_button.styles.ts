@@ -8,12 +8,14 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { euiFontSize, euiTextTruncate } from '../../global_styling/mixins';
 import {
+  euiFontSize,
+  euiTextTruncate,
+  euiCanAnimate,
   euiTextShift,
   euiButtonBaseCSS,
   euiButtonContentCSS,
-} from '../../global_styling/functions';
+} from '../../global_styling';
 
 export const euiFacetButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
@@ -24,7 +26,10 @@ export const euiFacetButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
     height: ${euiTheme.size.xl};
     text-align: left;
     text-decoration: none;
-    transition: all ${euiTheme.animation.fast} ease-in;
+
+    ${euiCanAnimate} {
+      transition: all ${euiTheme.animation.fast} ease-in;
+    }
 
     &:hover,
     &:focus {
@@ -83,7 +88,9 @@ export const euiFacetButtonContentElementsStyles = ({
   euiTheme,
 }: UseEuiTheme) => ({
   euiFacetButton__icon: css`
-    transition: all ${euiTheme.animation.fast} ease-in;
+    ${euiCanAnimate} {
+      transition: all ${euiTheme.animation.fast} ease-in;
+    }
   `,
   euiFacetButton__text: css`
     ${euiTextShift('bold', 'data-text', euiTheme)}
