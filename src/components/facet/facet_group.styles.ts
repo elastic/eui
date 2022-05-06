@@ -17,8 +17,8 @@ const _facetGroupGutterSize = ({
   gutterSize: string;
   layout: EuiFacetGroupLayout;
 }) => {
-  const euiTheme = useEuiTheme();
-  const buttonMarginBlockSize = `calc(${euiTheme.euiTheme.size.m} / 2)`;
+  const { euiTheme } = useEuiTheme();
+  const buttonMarginBlockSize = `calc(${euiTheme.size.m} / 2)`;
 
   const layoutStyles =
     layout === 'horizontal'
