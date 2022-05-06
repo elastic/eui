@@ -15,7 +15,7 @@ import { validateHref } from '../../../services/security/href_validator';
 
 const defaultValidationOptions: EuiMarkdownLinkValidatorOptions = {
   allowRelative: true,
-  allowProtocols: ['http:', 'https:'],
+  allowProtocols: ['http:', 'https:', 'mailto:'],
 };
 
 describe('validateURL', () => {
@@ -26,6 +26,11 @@ describe('validateURL', () => {
   });
   it('approves of http:', () => {
     expect(validateUrl('http://domain', defaultValidationOptions)).toBeTruthy();
+  });
+  it('approves of mailto:', () => {
+    expect(
+      validateUrl('mailto:someone@elastic.co', defaultValidationOptions)
+    ).toBeTruthy();
   });
   it('approves of absolute relative links', () => {
     expect(validateUrl('/', defaultValidationOptions)).toBeTruthy();
