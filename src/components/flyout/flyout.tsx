@@ -348,14 +348,20 @@ export const EuiFlyout = forwardRef(
       );
     }
 
-    const isDefaultConfiguration = ownFocus && !isPushed;
-    const onClickOutside = (event: MouseEvent | TouchEvent) =>
-      (isDefaultConfiguration &&
-        outsideClickCloses !== false &&
-        event.target === maskRef.current) ||
-      outsideClickCloses === true
-        ? onClose(event)
-        : undefined;
+    const hasOverlayMask = ownFocus && !isPushed;
+    const onClickOutside = (event: MouseEvent | TouchEvent) => {
+      // Do not close the flyout for any external click
+      if (outsideClickCloses === false) return undefined;
+      if (hasOverlayMask) {
+        // The overlay mask is present, so only clicks on the mask should close the flyout, regardless of outsideClickCloses
+        if (event.target === maskRef.current) return onClose(event);
+      } else {
+        // No overlay mask is present, so any outside clicks should close the flyout
+        if (outsideClickCloses === true) return onClose(event);
+      }
+      // Otherwise if ownFocus is false and outsideClickCloses is undefined, outside clicks should not close the flyout
+      return undefined;
+    };
     /*
      * Trap focus even when `ownFocus={false}`, otherwise closing
      * the flyout won't return focus to the originating button.
@@ -394,7 +400,7 @@ export const EuiFlyout = forwardRef(
       ...maskProps,
       maskRef: useCombinedRefs([maskProps?.maskRef, maskRef]),
     };
-    if (isDefaultConfiguration) {
+    if (hasOverlayMask) {
       flyout = (
         <EuiOverlayMask headerZindexLocation="below" {...mergedMaskProps}>
           {flyout}
