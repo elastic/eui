@@ -10,7 +10,7 @@ import { UseEuiTheme } from '../../services/theme/hooks';
 // Provides a solid reset and base for handling sizing layout
 // Does not include any visual styles
 export const euiButtonBaseCSS = (euiTheme: UseEuiTheme['euiTheme']) => {
-  // TODO replace wiht button height variable
+  // TODO replace with button height variable
   const euiButtonHeight = euiTheme.size.xxl;
 
   return `
