@@ -6,37 +6,36 @@
  * Side Public License, v 1.
  */
 
-import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
+import { euiFocusRing } from './_states';
 
-export const euiLinkHoverMixin = () => {
-  return css`
+export const euiLinkHoverCSS = () => {
+  return `
     text-decoration: underline;
   `;
 };
 
-export const euiLinkFocusMixin = ({ euiTheme }: UseEuiTheme) => {
-  return css`
+export const euiLinkFocusCSS = ({ euiTheme }: UseEuiTheme) => {
+  return `
     text-decoration: underline;
     text-decoration-thickness: ${euiTheme.border.width.thick} !important;
   `;
 };
 
-export const euiLinkMixin = (_theme: UseEuiTheme) => {
+export const euiLinkCSS = (_theme: UseEuiTheme) => {
   const { euiTheme } = _theme;
 
-  return css`
+  return `
     font-weight: ${euiTheme.font.weight.medium};
     text-align: left;
 
     &:hover {
-      ${euiLinkHoverMixin()}
+      ${euiLinkHoverCSS()}
     }
 
     &:focus {
-      // TODO: Once converted, add the Emotion equivalent to the euiFocusRing mixin below and delete src/components/link/_link.scss
-      // @include euiFocusRing(null, 'outer');
-      ${euiLinkFocusMixin(_theme)}
+      ${euiFocusRing(euiTheme, 'outset')}
+      ${euiLinkFocusCSS(_theme)}
     }
   `;
 };

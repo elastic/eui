@@ -1,7 +1,0 @@
-// TODO: Keep this SCSS intact until the `euiFocusRing` mixin has been converted to Emotion and added to src/global_styling/mixins/_link.ts
-
-.euiLink {
-  &:focus {
-    @include euiFocusRing(null, 'outer');
-  }
-}

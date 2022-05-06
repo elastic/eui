@@ -92,22 +92,17 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
     },
     ref
   ) => {
-    const theme = useEuiTheme();
-    const componentStyles = euiLinkStyles(theme);
+    const euiTheme = useEuiTheme();
+    const styles = euiLinkStyles(euiTheme);
+    const cssStyles = [styles.euiLink];
+    const cssScreenReaderTextStyles = [styles.euiLink__screenReaderText];
+    const cssExternalLinkIconStyles = [styles.euiLink__externalIcon];
+
     const isHrefValid = !href || validateHref(href);
     const disabled = _disabled || !isHrefValid;
 
-    const externalLinkIcon = (
-      <EuiIcon
-        aria-label={useEuiI18n('euiLink.external.ariaLabel', 'External link')}
-        size="s"
-        css={componentStyles.externalIcon}
-        type="popout"
-      />
-    );
-
     const newTargetScreenreaderText = (
-      <EuiScreenReaderOnly css={componentStyles.screenReaderOnly}>
+      <EuiScreenReaderOnly css={cssScreenReaderTextStyles}>
         <span>
           <EuiI18n
             token="euiLink.newTarget.screenReaderOnlyText"
@@ -117,17 +112,24 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
       </EuiScreenReaderOnly>
     );
 
-    if (href === undefined || !isHrefValid) {
-      const styles = [
-        componentStyles.euiLink,
-        !disabled ? componentStyles[color] : [],
-        disabled ? [componentStyles.disabled] : [],
-        componentStyles.buttonText,
-      ];
+    const externalLinkIcon = (
+      <EuiIcon
+        aria-label={useEuiI18n('euiLink.external.ariaLabel', 'External link')}
+        size="s"
+        css={cssExternalLinkIconStyles}
+        type="popout"
+      />
+    );
 
+    if (href === undefined || !isHrefValid) {
       const buttonProps = {
         className: classNames('euiLink', className),
-        css: styles,
+        css: [
+          cssStyles,
+          styles.button,
+          !disabled ? styles[color] : [],
+          disabled ? [styles.disabled] : [],
+        ],
         type,
         onClick,
         disabled,
@@ -146,11 +148,9 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
 
     const secureRel = getSecureRelForTarget({ href, target, rel });
 
-    const styles = [componentStyles.euiLink, componentStyles[color]];
-
     const anchorProps = {
       className: classNames('euiLink', className),
-      css: styles,
+      css: [cssStyles, styles[color]],
       href,
       target,
       rel: secureRel,

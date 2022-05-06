@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { euiLinkMixin } from '../../global_styling';
+import { euiLinkCSS } from '../../global_styling';
 
 const colorStyles = (color: string) => {
   return css`
@@ -26,22 +26,16 @@ const colorStyles = (color: string) => {
   `;
 };
 
-export const euiLinkStyles = (theme: UseEuiTheme) => {
-  const { euiTheme } = theme;
+export const euiLinkStyles = (_theme: UseEuiTheme) => {
+  const { euiTheme } = _theme;
 
   return {
     euiLink: css`
-      ${euiLinkMixin(theme)}
+      ${euiLinkCSS(_theme)}
 
       &[target='_blank'] {
         position: relative;
       }
-    `,
-    screenReaderOnly: css`
-      left: 0;
-    `,
-    externalIcon: css`
-      margin-left: ${euiTheme.size.xs};
     `,
     disabled: css`
       font-weight: inherit;
@@ -56,7 +50,7 @@ export const euiLinkStyles = (theme: UseEuiTheme) => {
         text-decoration: none;
       }
     `,
-    buttonText: css`
+    button: css`
       user-select: text;
     `,
     // Color styles
@@ -83,6 +77,12 @@ export const euiLinkStyles = (theme: UseEuiTheme) => {
     `,
     text: css`
       ${colorStyles(euiTheme.colors.text)}
+    `,
+    euiLink__screenReaderText: css`
+      left: 0;
+    `,
+    euiLink__externalIcon: css`
+      margin-inline-start: ${euiTheme.size.xs};
     `,
   };
 };
