@@ -61,10 +61,23 @@ export interface PluginWithImmediateFormatting {
   editor?: never;
 }
 
-export interface PluginWithDelayedFormatting<NodeShape> {
+export interface PluginWithDelayedEditorFormatting<NodeShape> {
   formatting?: never;
   editor: ComponentType<EuiMarkdownEditorUiPluginEditorProps<NodeShape>>;
 }
+
+export interface PluginWithDelayedPopoverFormatting<NodeShape> {
+  formatting?: never;
+  popover: ComponentType<
+    EuiMarkdownEditorUiPluginEditorProps<NodeShape> & {
+      textarea: HTMLTextAreaElement;
+    }
+  >;
+}
+
+type PluginWithDelayedFormatting<NodeShape> =
+  | PluginWithDelayedEditorFormatting<NodeShape>
+  | PluginWithDelayedPopoverFormatting<NodeShape>;
 
 export type EuiMarkdownEditorUiPlugin<NodeShape = any> = {
   name: string;

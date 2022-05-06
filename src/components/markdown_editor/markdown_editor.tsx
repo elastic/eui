@@ -51,6 +51,8 @@ import {
 } from './plugins/markdown_default_plugins';
 
 import { EuiResizeObserver } from '../observer/resize_observer';
+import { EuiPortal } from '../portal';
+import { EuiPanel } from '../panel';
 
 type CommonMarkdownEditorProps = Omit<
   HTMLAttributes<HTMLDivElement>,
@@ -329,6 +331,19 @@ export const EuiMarkdownEditor = forwardRef<
     }, [parsed]);
 
     useEffect(() => {
+      setPluginEditorPlugin(undefined);
+
+      if (selectedNode) {
+        const { type } = selectedNode;
+        if (markdownActions.styles.hasOwnProperty(type)) {
+          const actionResult = markdownActions.do(type);
+          if (actionResult !== true)
+            contextValue.openPluginEditor(actionResult);
+        }
+      }
+    }, [selectedNode, markdownActions, contextValue]);
+
+    useEffect(() => {
       if (onParse) {
         const messages = parsed ? parsed.messages : [];
         const ast = parsed ? parsed.result ?? parsed.contents : null;
@@ -502,7 +517,7 @@ export const EuiMarkdownEditor = forwardRef<
               </EuiResizeObserver>
             </EuiMarkdownEditorDropZone>
 
-            {pluginEditorPlugin && (
+            {pluginEditorPlugin && 'editor' in pluginEditorPlugin && (
               <EuiModal onClose={() => setPluginEditorPlugin(undefined)}>
                 {createElement(pluginEditorPlugin.editor!, {
                   node:
@@ -541,6 +556,60 @@ export const EuiMarkdownEditor = forwardRef<
                   },
                 })}
               </EuiModal>
+            )}
+            {pluginEditorPlugin && 'popover' in pluginEditorPlugin && (
+              <EuiPortal>
+                <EuiPanel
+                  css={(function () {
+                    const bounds = textareaRef.current!.getBoundingClientRect();
+                    return {
+                      position: 'fixed',
+                      top: bounds.bottom,
+                      left: bounds.left,
+                      width: 200,
+                      height: 100,
+                    };
+                  })()}
+                >
+                  {createElement(pluginEditorPlugin.popover!, {
+                    node:
+                      selectedNode &&
+                      selectedNode.type === pluginEditorPlugin.name
+                        ? selectedNode
+                        : null,
+                    textarea: textareaRef.current!,
+                    onCancel: () => setPluginEditorPlugin(undefined),
+                    onSave: (markdown, config) => {
+                      if (
+                        selectedNode &&
+                        selectedNode.type === pluginEditorPlugin.name &&
+                        selectedNode.position
+                      ) {
+                        // modifying an existing node
+                        textareaRef.current!.setSelectionRange(
+                          selectedNode.position.start.offset,
+                          selectedNode.position.end.offset
+                        );
+                      } else {
+                        // creating a new node
+                        if (config.block) {
+                          // inject newlines if needed
+                          markdown = padWithNewlinesIfNeeded(
+                            textareaRef.current!,
+                            markdown
+                          );
+                        }
+                      }
+                      insertText(textareaRef.current!, {
+                        text: markdown,
+                        selectionStart: undefined,
+                        selectionEnd: undefined,
+                      });
+                      setPluginEditorPlugin(undefined);
+                    },
+                  })}
+                </EuiPanel>
+              </EuiPortal>
             )}
           </div>
         </div>

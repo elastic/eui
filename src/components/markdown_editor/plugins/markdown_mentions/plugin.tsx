@@ -6,38 +6,85 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { EuiCodeBlock } from '../../../code';
+import { EuiMarkdownEditorUiPlugin } from '../../markdown_types';
+import { MentionsNodeDetails } from './types';
+import { EuiSelectable, EuiSelectableProps } from '../../../selectable';
+import { keys } from '../../../../services/keys';
 
-export const mentionsPlugin = {
+export const mentionsPlugin: EuiMarkdownEditorUiPlugin<MentionsNodeDetails> = {
   name: 'mentionsPlugin',
   button: {
     label: 'Mention',
     iconType: 'user',
-  },
-  formatting: {
-    prefix: '@',
-    suffix: '',
-    trimFirst: true,
   },
   helpText: (
     <EuiCodeBlock language="md" paddingSize="s" fontSize="l">
       {'@someone'}
     </EuiCodeBlock>
   ),
-  editor: ({ node, onSave, onCancel }) => {
+  popover: ({ textarea, onSave, onCancel }) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const selectableRef = useRef<EuiSelectable>(null);
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+      const onKeyDown: GlobalEventHandlers['onkeydown'] = (e) => {
+        if (e.key === keys.ARROW_UP) {
+          e.stopPropagation();
+          e.preventDefault();
+          selectableRef.current?.incrementActiveOptionIndex(-1);
+        } else if (e.key === keys.ARROW_DOWN) {
+          e.stopPropagation();
+          e.preventDefault();
+          selectableRef.current?.incrementActiveOptionIndex(1);
+        } else if (e.key === keys.ENTER) {
+          e.stopPropagation();
+          e.preventDefault();
+          selectableRef.current?.selectActiveItem();
+        } else if (e.key === keys.ESCAPE) {
+          onCancel();
+        }
+      };
+
+      selectableRef.current?.incrementActiveOptionIndex(1); // pre-select the first item
+      textarea.focus(); // clicking the mentions button will also trigger this popover
+      textarea.addEventListener('keydown', onKeyDown);
+
+      return () => {
+        textarea.removeEventListener('keydown', onKeyDown);
+      };
+    }, [textarea, onCancel]);
+
+    const options = [
+      { label: 'miukimiu' },
+      { label: 'chandlerprall' },
+      { label: 'thompsongl' },
+      { label: 'cchaos' },
+      { label: '1copenut' },
+      { label: 'constancecchen' },
+      { label: 'snide' },
+    ];
+
+    const onChange: EuiSelectableProps['onChange'] = (options) => {
+      for (let i = 0; i < options.length; i++) {
+        if (options[i].checked) {
+          onSave(`@${options[i].label} `, { block: false });
+          return;
+        }
+      }
+    };
+
     return (
-      <div>
-        <button
-          type="button"
-          onClick={() => onSave('new text', { block: false })}
-        >
-          Save
-        </button>
-        <button type="button" onClick={onCancel}>
-          Cancel
-        </button>
-      </div>
+      <EuiSelectable
+        ref={selectableRef}
+        singleSelection
+        options={options}
+        onChange={onChange}
+      >
+        {(list) => list}
+      </EuiSelectable>
     );
   },
 };

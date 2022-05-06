@@ -9,8 +9,14 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
 } from '../../../../src/components';
+import {
+  getDefaultEuiMarkdownParsingPlugins,
+  getDefaultEuiMarkdownProcessingPlugins,
+  getDefaultEuiMarkdownUiPlugins,
+} from '../../../..//src/components/markdown_editor';
+import * as MarkdownMentions from '../../../../src/components/markdown_editor/plugins/markdown_mentions';
 
-const initialContent = `@someone`;
+const initialContent = '@someone\n\nelse';
 
 const dropHandlers = [
   {
@@ -31,6 +37,14 @@ const dropHandlers = [
   },
 ];
 
+const parsingPlugins = getDefaultEuiMarkdownParsingPlugins();
+const processingPlugins = getDefaultEuiMarkdownProcessingPlugins();
+const uiPlugins = getDefaultEuiMarkdownUiPlugins();
+
+parsingPlugins.push(MarkdownMentions.parser);
+processingPlugins[1][1].components.mentionsPlugin = MarkdownMentions.renderer;
+uiPlugins.push(MarkdownMentions.plugin);
+
 export default () => {
   const [value, setValue] = useState(initialContent);
   const [messages, setMessages] = useState([]);
@@ -50,6 +64,9 @@ export default () => {
   return (
     <>
       <EuiMarkdownEditor
+        parsingPluginList={parsingPlugins}
+        processingPluginList={processingPlugins}
+        uiPlugins={uiPlugins}
         aria-label="EUI markdown editor demo"
         placeholder="Your markdown here..."
         value={value}

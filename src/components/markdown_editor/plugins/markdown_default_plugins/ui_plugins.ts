@@ -7,7 +7,6 @@
  */
 
 import * as MarkdownTooltip from '../markdown_tooltip';
-import * as MarkdownMentions from '../markdown_mentions';
 import { EuiMarkdownEditorUiPlugin } from './../../markdown_types';
 
 export type DefaultEuiMarkdownUiPlugins = EuiMarkdownEditorUiPlugin[];
@@ -21,7 +20,6 @@ export const getDefaultEuiMarkdownUiPlugins = ({
   const uiPlugins = [];
 
   if (!excludeSet.has('tooltip')) uiPlugins.push(MarkdownTooltip.plugin);
-  if (!excludeSet.has('mentions')) uiPlugins.push(MarkdownMentions.plugin);
 
   return uiPlugins;
 };

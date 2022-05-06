@@ -290,8 +290,6 @@ export class EuiSelectable<T = {}> extends Component<
   };
 
   onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    const optionsList = this.optionsListRef.current;
-
     switch (event.key) {
       case keys.ARROW_UP:
         event.preventDefault();
@@ -332,11 +330,7 @@ export class EuiSelectable<T = {}> extends Component<
         }
         event.preventDefault();
         event.stopPropagation();
-        if (this.state.activeOptionIndex != null && optionsList) {
-          optionsList.onAddOrRemoveOption(
-            this.state.visibleOptions[this.state.activeOptionIndex]
-          );
-        }
+        this.selectActiveItem();
         break;
 
       case keys.ALT:
@@ -348,6 +342,15 @@ export class EuiSelectable<T = {}> extends Component<
       default:
         this.setState({ activeOptionIndex: undefined }, this.onFocus);
         break;
+    }
+  };
+
+  selectActiveItem = () => {
+    const optionsList = this.optionsListRef.current;
+    if (this.state.activeOptionIndex != null && optionsList) {
+      optionsList.onAddOrRemoveOption(
+        this.state.visibleOptions[this.state.activeOptionIndex]
+      );
     }
   };
 
