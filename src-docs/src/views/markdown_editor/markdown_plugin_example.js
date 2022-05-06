@@ -315,9 +315,10 @@ export const MarkdownPluginExample = {
         <Fragment>
           <p>
             To enhance user and application security, the default behavior
-            removes links to URLs that don&apos;t begin with{' '}
-            <EuiCode>https://</EuiCode>, <EuiCode>http://</EuiCode>, or{' '}
-            <EuiCode>/</EuiCode> (relative). This validation can be further
+            removes links to URLs that aren&apos;t relative (beginning with{' '}
+            <EuiCode>/</EuiCode>) and don&apos;t use the{' '}
+            <EuiCode>https:</EuiCode>, <EuiCode>http:</EuiCode>, or{' '}
+            <EuiCode>mailto:</EuiCode> protocols. This validation can be further
             configured or removed altogether.
           </p>
           <p>

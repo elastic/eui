@@ -48,7 +48,7 @@ export const getDefaultEuiMarkdownParsingPlugins = ({
       euiMarkdownLinkValidator,
       {
         allowRelative: true,
-        allowProtocols: ['https:', 'http:'],
+        allowProtocols: ['https:', 'http:', 'mailto:'],
       } as EuiMarkdownLinkValidatorOptions,
     ],
     [MarkdownCheckbox.parser, {}],
