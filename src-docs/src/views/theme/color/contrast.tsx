@@ -12,6 +12,7 @@ import {
   EuiDescribedFormGroup,
   EuiButtonGroup,
   useEuiTheme,
+  EuiPageContentBody,
 } from '../../../../../src';
 
 import {
@@ -26,7 +27,6 @@ import { brandKeys, shadeKeys } from './_color_js';
 import { ContrastSlider } from './_contrast_slider';
 import { ratingAA } from './_contrast_utilities';
 import { _EuiThemeColorsMode } from '../../../../../src/global_styling/variables/colors';
-import { GuideSection } from '../../../components/guide_section/guide_section';
 import {
   BACKGROUND_COLORS,
   _EuiBackgroundColor,
@@ -37,6 +37,14 @@ import {
   euiButtonColor,
   _EuiButtonColor,
 } from '../../../../../src/components/button/button_mixins';
+
+// This array is used inside routes.js to create the sidenav sub-sections
+export const contrastSections = [
+  { title: 'Body background color', id: 'body-background-color' },
+  { title: 'Brand colors', id: 'brand-colors' },
+  { title: 'Shades', id: 'shades' },
+  { title: 'Background colors', id: 'background-colors' },
+];
 
 export default () => {
   const euiTheme = useEuiTheme();
@@ -83,7 +91,7 @@ export default () => {
   const showSass = useContext(ThemeContext).themeLanguage.includes('sass');
 
   return (
-    <GuideSection>
+    <EuiPageContentBody paddingSize="l">
       <EuiText grow={false}>
         <h2>Accessible text contrast</h2>
         <p>
@@ -125,7 +133,9 @@ export default () => {
         <EuiSpacer size="xxl" />
 
         <EuiText grow={false}>
-          <h3>{showSass ? 'Page' : 'Body'} background color</h3>
+          <h2
+            id={`${contrastSections[0].id}`}
+          >{`${contrastSections[0].title}`}</h2>
           <p>
             In order to meet contrast minimums, the text variants use the page
             body color as the denominator for calculating the altered color.
@@ -155,7 +165,9 @@ export default () => {
         <EuiSpacer size="xxl" />
 
         <EuiText grow={false}>
-          <h3>Brand colors</h3>
+          <h2
+            id={`${contrastSections[1].id}`}
+          >{`${contrastSections[1].title}`}</h2>
           <p>
             We typically only recommend using full black or white on top of
             brand colors. This can be in the form of full, empty, ink, or ghost
@@ -196,7 +208,9 @@ export default () => {
         <EuiSpacer size="xxl" />
 
         <EuiText grow={false}>
-          <h3>Shades</h3>
+          <h2
+            id={`${contrastSections[2].id}`}
+          >{`${contrastSections[2].title}`}</h2>
           <p>
             Again we recommend sticking with the text variant of brand colors
             when possible. The opposite may be true when using darker shades as
@@ -239,7 +253,9 @@ export default () => {
         <EuiSpacer size="xxl" />
 
         <EuiText grow={false}>
-          <h3>Background colors</h3>
+          <h2
+            id={`${contrastSections[3].id}`}
+          >{`${contrastSections[3].title}`}</h2>
         </EuiText>
         <EuiSpacer />
         {showSass ? (
@@ -335,6 +351,6 @@ export default () => {
           </>
         )}
       </div>
-    </GuideSection>
+    </EuiPageContentBody>
   );
 };

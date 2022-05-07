@@ -26,6 +26,7 @@ import {
   EuiTitle,
   EuiTabs,
   EuiTab,
+  EuiPageContentBody,
 } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';
@@ -82,7 +83,7 @@ const GuideRuleWriting = ({ children, className, ...rest }) => {
 
 export const WritingGuidelines = () => {
   return (
-    <>
+    <EuiPageContentBody restrictWidth paddingSize="l">
       <EuiText grow={false}>
         <p>
           You can have the most beautiful UI, but without{' '}
@@ -982,6 +983,6 @@ export const WritingGuidelines = () => {
           />
         </EuiFlexItem>
       </EuiFlexGrid>
-    </>
+    </EuiPageContentBody>
   );
 };

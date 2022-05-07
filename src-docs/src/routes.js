@@ -244,7 +244,11 @@ import { ThemeExample } from './views/theme/theme_example';
 import { ColorModeExample } from './views/theme/color_mode/color_mode_example';
 import Breakpoints from './views/theme/breakpoints/breakpoints';
 import Borders, { bordersSections } from './views/theme/borders/borders';
-import Color, { colorsSections } from './views/theme/color/colors';
+import Color, { colorsInfo, colorsSections } from './views/theme/color/tokens';
+import ColorContrast, { contrastSections } from './views/theme/color/contrast';
+import ColorFunctions, {
+  colorsFunctionsSections,
+} from './views/theme/color/functions';
 import Sizing, { sizingSections } from './views/theme/sizing/sizing';
 import Typography, {
   typographySections,
@@ -422,11 +426,31 @@ const navigation = [
         component: Borders,
         sections: bordersSections,
       },
-      {
-        name: 'Colors',
-        component: Color,
-        sections: colorsSections,
-      },
+      createTabbedPage({
+        ...colorsInfo,
+        pages: [
+          {
+            title: 'Tokens',
+            page: Color,
+            sections: colorsSections,
+          },
+          {
+            title: 'Functions',
+            page: ColorFunctions,
+            sections: colorsFunctionsSections,
+          },
+          {
+            title: 'Contrast',
+            page: ColorContrast,
+            sections: contrastSections,
+          },
+        ],
+      }),
+      // {
+      //   name: 'Colors',
+      //   component: Color,
+      //   sections: colorsSections,
+      // },
       {
         name: 'Sizing',
         component: Sizing,

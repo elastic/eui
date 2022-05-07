@@ -21,6 +21,7 @@ import {
   EuiText,
   EuiToolTip,
   EuiToast,
+  EuiPageContentBody,
 } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';
@@ -48,7 +49,7 @@ export const WritingExamples = () => {
   const modalStyles = { maxWidth: 480, transform: 'scale(.8)' };
 
   return (
-    <>
+    <EuiPageContentBody restrictWidth paddingSize="l">
       <EuiText grow={false}>
         <h2 id="buttons">Buttons</h2>
 
@@ -681,6 +682,6 @@ export const WritingExamples = () => {
           </EuiText>
         </GuideRuleExample>
       </GuideRule>
-    </>
+    </EuiPageContentBody>
   );
 };

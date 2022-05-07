@@ -5,7 +5,6 @@ import {
   EuiPageHeader,
   EuiPageContent,
   EuiPageContentBody,
-  EuiSpacer,
   EuiBetaBadge,
 } from '../../../../src/components';
 
@@ -83,11 +82,14 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
     if (!showSass && notice) {
       return (
         <>
-          <EuiSpacer size="l" />
-          <EuiPageContentBody role="region" aria-label="Notice" restrictWidth>
+          <EuiPageContentBody
+            paddingSize="l"
+            role="region"
+            aria-label="Notice"
+            restrictWidth
+          >
             {notice}
           </EuiPageContentBody>
-          <EuiSpacer size="l" />
         </>
       );
     }
@@ -149,9 +151,7 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
         hasBorder={false}
         borderRadius="none"
       >
-        <EuiPageContentBody paddingSize="l" restrictWidth>
-          <Switch>{pagesRoutes}</Switch>
-        </EuiPageContentBody>
+        <Switch>{pagesRoutes}</Switch>
       </EuiPageContent>
     </>
   );
