@@ -10,7 +10,7 @@ import React, { forwardRef, HTMLAttributes, ReactNode } from 'react';
 
 import classNames from 'classnames';
 
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import { IconType, EuiIcon } from '../icon';
 
 import { EuiText } from '../text';
@@ -20,9 +20,13 @@ import { EuiTitle } from '../title';
 
 import { euiCallOutStyles, euiCallOutHeadingStyles } from './call_out.styles';
 
-type Color = 'primary' | 'success' | 'warning' | 'danger';
+export const COLORS = ['primary', 'success', 'warning', 'danger'] as const;
+export type Color = typeof COLORS[number];
+
+export const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'] as const;
+type Heading = typeof HEADINGS[number];
+
 type Size = 's' | 'm';
-type Heading = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
 
 export type EuiCallOutProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'title' | 'color'> & {
@@ -32,16 +36,6 @@ export type EuiCallOutProps = CommonProps &
     size?: Size;
     heading?: Heading;
   };
-
-const colorToClassNameMap: { [color in Color]: string } = {
-  primary: 'euiCallOut--primary',
-  success: 'euiCallOut--success',
-  warning: 'euiCallOut--warning',
-  danger: 'euiCallOut--danger',
-};
-
-export const COLORS = keysOf(colorToClassNameMap);
-export const HEADINGS: Heading[] = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'];
 
 export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
   (
@@ -71,7 +65,9 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
 
     const classes = classNames(
       'euiCallOut',
-      colorToClassNameMap[color],
+      {
+        [`euiCallOut--${color}`]: color,
+      },
       className
     );
 
