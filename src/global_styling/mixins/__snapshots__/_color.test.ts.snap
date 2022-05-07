@@ -8,7 +8,7 @@ exports[`useEuiBackgroundColor mixin returns a calculated background version for
 
 exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: primary 1`] = `"#e6f1fa"`;
 
-exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: subdued 1`] = `"#f8fafd"`;
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: subdued 1`] = `"#f7f8fc"`;
 
 exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: success 1`] = `"#e6f9f7"`;
 
@@ -31,7 +31,7 @@ Object {
       background-color: #e6f1fa;
     ",
   "subdued": "
-      background-color: #f8fafd;
+      background-color: #f7f8fc;
     ",
   "success": "
       background-color: #e6f9f7;
