@@ -9,6 +9,9 @@ import {
   EuiPanel,
   EuiCallOut,
   EuiCode,
+  EuiDescribedFormGroup,
+  EuiButtonGroup,
+  useEuiTheme,
 } from '../../../../../src';
 
 import {
@@ -26,13 +29,56 @@ import { _EuiThemeColorsMode } from '../../../../../src/global_styling/variables
 import { GuideSection } from '../../../components/guide_section/guide_section';
 import {
   BACKGROUND_COLORS,
-  EuiBackgroundColor,
+  _EuiBackgroundColor,
   useEuiBackgroundColor,
 } from '../../../../../src/global_styling';
+import {
+  BUTTON_COLORS,
+  euiButtonColor,
+  _EuiButtonColor,
+} from '../../../../../src/components/button/button_mixins';
 
 export default () => {
+  const euiTheme = useEuiTheme();
   const [showTextVariants, setShowTextVariants] = useState(true);
   const [contrastValue, setContrastValue] = useState(4.5);
+
+  const backgroundButtons = ['container', 'hover', 'button'].map((m) => {
+    return {
+      id: m,
+      label: m,
+    };
+  });
+
+  const [backgroundColors, setBackgroundColors] = useState<any>(
+    BACKGROUND_COLORS
+  );
+  const [backgroundFunction, setBackgroundFunction] = useState<any>(
+    'useEuiBackgroundColor'
+  );
+  const [backgroundSelected, setBackgroundSelected] = useState(
+    backgroundButtons[0].id
+  );
+
+  const switchBackgroundColors = (id: string) => {
+    switch (id) {
+      case 'container':
+        setBackgroundSelected(id);
+        setBackgroundColors(BACKGROUND_COLORS);
+        setBackgroundFunction('useEuiBackgroundColor(color)');
+        break;
+      case 'hover':
+        setBackgroundSelected(id);
+        setBackgroundColors(BACKGROUND_COLORS);
+        setBackgroundFunction("useEuiBackgroundColor(color, 'transparent')");
+        break;
+      case 'button':
+        setBackgroundSelected(id);
+        setBackgroundColors(BUTTON_COLORS);
+        setBackgroundFunction('euiButtonColor(color)');
+        break;
+    }
+  };
 
   const showSass = useContext(ThemeContext).themeLanguage.includes('sass');
 
@@ -194,40 +240,100 @@ export default () => {
 
         <EuiText grow={false}>
           <h3>Background colors</h3>
-          <p>
-            These background colors are pre-defined shades of the brand colors.
-            They are recalled by using the hook{' '}
-            <EuiCode>useEuiBackgroundColor(color)</EuiCode>.
-          </p>
         </EuiText>
-
         <EuiSpacer />
+        {showSass ? (
+          <EuiCallOut title="Background colors only exist for CSS-in-JS styling." />
+        ) : (
+          <>
+            <EuiPanel color="accent">
+              <EuiDescribedFormGroup
+                fullWidth
+                title={<h3>Different colors for different contexts</h3>}
+                description={
+                  <p>
+                    These background colors are pre-defined shades of the brand
+                    colors. They are recalled by using the hook{' '}
+                    <EuiCode>{backgroundFunction}</EuiCode>.
+                  </p>
+                }
+              >
+                <EuiSpacer />
+                <EuiButtonGroup
+                  buttonSize="m"
+                  legend="Value measurement to show in table"
+                  options={backgroundButtons}
+                  idSelected={backgroundSelected}
+                  onChange={(id) => switchBackgroundColors(id)}
+                  color="accent"
+                  isFullWidth
+                />
+              </EuiDescribedFormGroup>
+            </EuiPanel>
+            <EuiSpacer />
 
-        <EuiPanel color="subdued">
-          {showSass ? (
-            <EuiCallOut title="Background colors only exist for CSS-in-JS styling." />
-          ) : (
-            BACKGROUND_COLORS.map((color: string) => {
-              return (
-                color !== 'transparent' && (
-                  <React.Fragment key={color}>
-                    <ColorSectionJS
-                      key={color}
-                      color={color as keyof _EuiThemeColorsMode}
-                      colorValue={useEuiBackgroundColor(
-                        color as EuiBackgroundColor
-                      )}
-                      hookName="useEuiBackgroundColor"
-                      minimumContrast={contrastValue}
-                      showTextVariants={showTextVariants}
-                    />
-                    <EuiSpacer />
-                  </React.Fragment>
-                )
-              );
-            })
-          )}
-        </EuiPanel>
+            <EuiPanel color="subdued">
+              {backgroundColors.map((color: string) => {
+                switch (backgroundSelected) {
+                  case 'container':
+                    return (
+                      <React.Fragment key={color}>
+                        <ColorSectionJS
+                          key={color}
+                          color={color as keyof _EuiThemeColorsMode}
+                          colorValue={useEuiBackgroundColor(
+                            color as _EuiBackgroundColor
+                          )}
+                          hookName="useEuiBackgroundColor"
+                          minimumContrast={contrastValue}
+                          showTextVariants={showTextVariants}
+                        />
+                        <EuiSpacer />
+                      </React.Fragment>
+                    );
+
+                  case 'hover':
+                    return (
+                      <React.Fragment key={color}>
+                        <ColorSectionJS
+                          key={color}
+                          color={color as keyof _EuiThemeColorsMode}
+                          colorValue={useEuiBackgroundColor(
+                            color as _EuiBackgroundColor,
+                            'transparent'
+                          )}
+                          hookName="useEuiBackgroundColor"
+                          minimumContrast={contrastValue}
+                          showTextVariants={showTextVariants}
+                        />
+                        <EuiSpacer />
+                      </React.Fragment>
+                    );
+
+                  case 'button':
+                    return (
+                      color !== 'disabled' && (
+                        <React.Fragment key={color}>
+                          <ColorSectionJS
+                            key={color}
+                            color={color as keyof _EuiThemeColorsMode}
+                            colorValue={euiButtonColor(
+                              color as _EuiButtonColor,
+                              euiTheme
+                            )}
+                            hookName="useEuiButtonColorCSS"
+                            minimumContrast={contrastValue}
+                            showTextVariants={showTextVariants}
+                          />
+                          <EuiSpacer />
+                        </React.Fragment>
+                      )
+                    );
+                }
+              })}
+            </EuiPanel>
+          </>
+        )}
       </div>
     </GuideSection>
   );
