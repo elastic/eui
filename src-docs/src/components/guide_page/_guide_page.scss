@@ -30,6 +30,7 @@ $guideSideNavWidth: 240px;
 
 .guideSideNav {
   @include euiSideNavEmbellish;
+  overflow: hidden;
 }
 
 .guideSideNav__content {

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { transparentize, useEuiTheme } from '../../../../../src/services';
@@ -15,6 +15,10 @@ import {
   BACKGROUND_COLORS,
   euiBackgroundColor,
   useEuiPaddingCSS,
+  EuiButtonGroup,
+  EuiDescribedFormGroup,
+  EuiPanel,
+  _EuiBackgroundColorMethod,
 } from '../../../../../src';
 
 import { EuiThemeColors, ThemeRowType } from '../_props';
@@ -308,9 +312,11 @@ const cssStyles = [colorStyles['accent']];
       />
 
       <ThemeExample
-        title={<code>useEuiBackgroundColor(color)</code>}
+        title={<code>useEuiBackgroundColor(color, method?)</code>}
         type="hook"
-        props={`color: '${BACKGROUND_COLORS.join("' | '")}';`}
+        props={`color: '${BACKGROUND_COLORS.join("' | '")}';
+
+method? 'opaque' | 'transparent';`}
         description={
           <p>
             Returns just the computed background color for the given{' '}
@@ -336,17 +342,67 @@ const cssStyles = [colorStyles['accent']];
 
 export const UtilsValuesJS = () => {
   const euiTheme = useEuiTheme();
+  const backgroundButtons = ['opaque', 'transparent'].map((m) => {
+    return {
+      id: m,
+      label: m,
+    };
+  });
+  const [backgroundSelected, setBackgroundSelected] = useState(
+    backgroundButtons[0].id
+  );
 
   return (
-    <ThemeValuesTable
-      items={BACKGROUND_COLORS.map((color) => {
-        return {
-          id: color,
-          token: `useEuiBackgroundColor('${color}')`,
-          value: euiBackgroundColor(color, euiTheme),
-        };
-      })}
-      render={(item) => <EuiColorPickerSwatch color={item.value} disabled />}
-    />
+    <>
+      <EuiPanel color="accent">
+        <EuiDescribedFormGroup
+          fullWidth
+          title={<h3>Different colors for different contexts</h3>}
+          description={
+            <p>
+              While the hook accepts rendering the value as opaque or
+              transparent, we highly suggest reserving transparent for use only
+              during interactive states like hover and focus.
+            </p>
+          }
+        >
+          <EuiSpacer />
+          <EuiButtonGroup
+            buttonSize="m"
+            legend="Value measurement to show in table"
+            options={backgroundButtons}
+            idSelected={backgroundSelected}
+            onChange={(id) => setBackgroundSelected(id)}
+            color="accent"
+            isFullWidth
+          />
+        </EuiDescribedFormGroup>
+      </EuiPanel>
+      <EuiSpacer />
+
+      <ThemeValuesTable
+        items={BACKGROUND_COLORS.map((color) => {
+          return {
+            id: color,
+            token:
+              backgroundSelected === 'transparent'
+                ? `useEuiBackgroundColor('${color}', 'transparent')`
+                : `useEuiBackgroundColor('${color}')`,
+            value: euiBackgroundColor(
+              color,
+              euiTheme,
+              backgroundSelected as _EuiBackgroundColorMethod
+            ),
+          };
+        })}
+        render={(item) => (
+          <EuiColorPickerSwatch
+            color={item.value}
+            style={{ background: item.value }}
+            disabled
+          />
+        )}
+      />
+    </>
   );
 };
