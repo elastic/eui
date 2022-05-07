@@ -235,6 +235,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
         onFocus: searchOnFocus,
         onBlur: searchOnBlur,
         onInput: onSearchInput,
+        onKeyDown: onSearchInput,
         className: searchClasses,
       }}
       listProps={{
