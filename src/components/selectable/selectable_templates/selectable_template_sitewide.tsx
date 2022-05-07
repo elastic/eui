@@ -153,6 +153,15 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
     setPopoverIsOpen(true);
   };
 
+  const onSearchKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    searchProps && searchProps.onKeyDown && searchProps.onKeyDown(e);
+    if (canShowPopoverButton) return;
+
+    if (e.key === 'Enter') {
+      setPopoverIsOpen(true);
+    }
+  };
+
   const searchOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     searchProps && searchProps.onBlur && searchProps.onBlur(e);
     if (canShowPopoverButton) return;
@@ -235,7 +244,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
         onFocus: searchOnFocus,
         onBlur: searchOnBlur,
         onInput: onSearchInput,
-        onKeyDown: onSearchInput,
+        onKeyDown: onSearchKeydown,
         className: searchClasses,
       }}
       listProps={{
