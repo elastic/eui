@@ -45,7 +45,7 @@ export const brand_text_colors: _EuiThemeBrandTextColors = {
 
 export const shade_colors: _EuiThemeShadeColors = {
   emptyShade: '#FFF',
-  lightestShade: '#F1F4FA',
+  lightestShade: '#F0F4FB',
   lightShade: '#D3DAE6',
   mediumShade: '#98A2B3',
   darkShade: '#69707D',
@@ -54,7 +54,7 @@ export const shade_colors: _EuiThemeShadeColors = {
 };
 
 export const special_colors: _EuiThemeSpecialColors = {
-  body: computed(([lightestShade]) => tint(lightestShade, 0.4), [
+  body: computed(([lightestShade]) => tint(lightestShade, 0.5), [
     'colors.lightestShade',
   ]),
   highlight: computed(([warning]) => tint(warning, 0.9), ['colors.warning']),
