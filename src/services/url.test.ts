@@ -18,12 +18,14 @@ describe('url', () => {
       expect(isDomainSecure('https://docs.elastic.co')).toEqual(true);
       expect(isDomainSecure('https://stats.elastic.co')).toEqual(true);
       expect(isDomainSecure('https://lots.of.kids.elastic.co')).toEqual(true);
+      expect(isDomainSecure('http://docs.elastic.co')).toEqual(true);
       expect(
         isDomainSecure('https://elastic.co/cool/url/with?lots=of&params')
       ).toEqual(true);
     });
 
     it('returns false for unsecure domains', () => {
+      expect(isDomainSecure('asdfasdf')).toEqual(false);
       expect(isDomainSecure('https://wwwelastic.co')).toEqual(false);
       expect(isDomainSecure('https://www.zelastic.co')).toEqual(false);
       expect(isDomainSecure('https://*elastic.co')).toEqual(false);
@@ -31,11 +33,13 @@ describe('url', () => {
       expect(isDomainSecure('https://elastic.co.now')).toEqual(false);
       expect(isDomainSecure('elastic.co')).toEqual(false);
       expect(isDomainSecure('smb://www.elastic.co')).toEqual(false);
+      expect(isDomainSecure('smb://www.elastic.co:443')).toEqual(false);
       expect(
         isDomainSecure(
           'https://wwwelastic.co/cool/url/with?lots=of&params/https://elastic.co'
         )
       ).toEqual(false);
+      expect(isDomainSecure('https://example.com/.elastic.co')).toEqual(false);
     });
   });
 });

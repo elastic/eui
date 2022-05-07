@@ -29,7 +29,14 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
       ],
       Array [
         [Function],
-        Object {},
+        Object {
+          "allowProtocols": Array [
+            "https:",
+            "http:",
+            "mailto:",
+          ],
+          "allowRelative": true,
+        },
       ],
       Array [
         [Function],
