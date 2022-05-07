@@ -62,22 +62,22 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({...}) => {
   const styles = euiAvatarStyles(euiTheme);
 
   ...
-  
+
   // build the styles array
   const cssStyles = [
     styles.euiAvatar, // base styles
     styles[size], // styles associated with the `size` prop's value
     styles[type], // styles associated with the `type` prop's value
-    
+
     // optional styles
     isPlain && styles.plain,
     isSubdued && styles.subdued,
     isDisabled && styles.isDisabled,
   ];
-  
+
   ...
 
-  // pass the styles array to the `css` prop of the target element 
+  // pass the styles array to the `css` prop of the target element
   return (
     <div css={cssStyles} />
   )
@@ -110,7 +110,6 @@ const cssStyles = [
 
 When building styles based on an array of possible prop values, you'll want to establish the array of values first in the component file then use that array to create your prop values and your styles map.
 
-
 ```tsx
 export const SIZES = ['s', 'm', 'l', 'xl', 'xxl'] as const;
 export type EuiComponentNameSize = typeof SIZES[number];
@@ -118,13 +117,13 @@ export type EuiComponentNameSize = typeof SIZES[number];
 export type EuiComponentNameProps = CommonProps & {
   size?: EuiComponentNameSize;
 };
-  
+
 export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}) => {
   const euiTheme = useEuiTheme();
-  
+
   const styles = euiComponentNameStyles(euiTheme);
   const cssStyles = [styles.euiComponentName, styles[size]];
-  
+
   return (
     <div css={cssStyles} />
   )
@@ -157,7 +156,6 @@ export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
   ...etc
 });
 ```
-
 
 ## Style helpers
 
@@ -239,11 +237,11 @@ export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
 ```tsx
 export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}) => {
   const euiTheme = useEuiTheme();
-  
+
   const styles = euiComponentNameStyles(euiTheme);
   const cssStyles = [styles.euiComponentName];
   const cssChildStyles = [styles.euiComponentName__child];
-  
+
   return (
     <div css={cssStyles}>
       <span css={cssChildStyles} />
@@ -273,7 +271,7 @@ export const euiComponentNameFooterStyles = ({ euiTheme }: UseEuiTheme) => ({
 ```tsx
 export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}) => {
   const euiTheme = useEuiTheme();
-  
+
   const styles = euiComponentNameStyles(euiTheme);
   const cssStyles = [styles.euiComponentName];
 
@@ -281,7 +279,7 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
   const cssHeaderStyles = [headerStyles.euiComponentName__header];
   const cssHeaderIconStyles = [headerStyles.euiComponentName__headerIcon];
   const cssHeaderButtonStyles = [headerStyles.euiComponentName__headerButton];
-  
+
   const footerStyles = euiComponentNameFooterStyles(euiTheme);
   const cssFooterStyles = [footerStyles.euiComponentName__footer];
 
@@ -320,13 +318,13 @@ export const euiComponentNameChildStyles = ({ euiTheme }: UseEuiTheme) => ({
 ```tsx
 export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}) => {
   const euiTheme = useEuiTheme();
-  
+
   const styles = euiComponentNameStyles(euiTheme);
   const cssStyles = [styles.euiComponentName, styles[size]];
 
   const childStyles = euiComponentNameChildStyles(euiTheme);
   const cssChildStyles = [childStyles.euiComponentName__child, childStyles[size]];
-  
+
   return (
     <div css={cssStyles}>
       <span css={cssChildStyles} />
@@ -337,7 +335,6 @@ export const EuiComponentName: FunctionComponent<EuiComponentNameProps> = ({...}
 
 If for other reasons, it is absolutely necessary to target a child from within another selector, you should use the [class attribute selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) to match a part of the class string you expect to find.
 
-
 ```ts
 export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiComponentName: css`
@@ -345,9 +342,10 @@ export const euiComponentNameStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
 });
 ```
+
 ## Creating `colorMode` specific components
 
-When creating components that rely on a specific `colorMode` from `<EuiThemeProvider>`, use this pattern to create a wrapper that will pass the entire component `<EuiThemeProvider>` details. 
+When creating components that rely on a specific `colorMode` from `<EuiThemeProvider>`, use this pattern to create a wrapper that will pass the entire component `<EuiThemeProvider>` details.
 
 - `_EuiComponentName` is an internal component that contains the desired functionality and styles.
 - `EuiComponentName` is the exportable component that wraps `_EuiComponentName` inside of `<EuiThemeProvider>`.
@@ -392,7 +390,7 @@ When naming your mixins & utilities, consider the following statements:
 
 ### Can the `css` prop be forwarded to a nested element?
 
-Emotion converts the `css` prop to a computed `className` value, merging it into any existing `className` prop on an element. We do not parse or handle these in any special way, so whichever element the `className` prop is applied to receives the styles created by Emotion. See https://codesandbox.io/s/emotion-css-and-classname-ohmqe7 for a playground demonstration.
+Emotion converts the `css` prop to a computed `className` value, merging it into any existing `className` prop on an element. We do not parse or handle these in any special way, so whichever element the `className` prop is applied to receives the styles created by Emotion. See <https://codesandbox.io/s/emotion-css-and-classname-ohmqe7> for a playground demonstration.
 
 Sometimes apps want or need to provide styles (or other props) to multiple elements in a component, and in these cases we add a prop to the component that captures the extra information, spreading it onto the element. We can continue with this approach, allowing the `css` prop to be added for flexible styling.
 
@@ -403,3 +401,54 @@ Same as the above answer, whichever element is given the generated `className` i
 ### How should `createElement` usages be converted?
 
 Emotion provides its own `createElement` function; existing uses of `import {createElement} from 'react'` can be converted to `import {createElement} from '@emotion/react'`
+
+## Theming ideas
+
+Can prop values be generated through the global theme layer?
+
+Example: Buttons
+
+Amsterdam theme
+
+```tsx
+export const BUTTON_COLORS = ‘primary’ | ‘success’;
+
+export const useEuiButtonColorCSS = () => {
+  const euiTheme = useEuiTheme();
+
+  return {
+    primary: `
+      background-color: ${euiButtonColor('primary', euiTheme)};
+    `,
+    success: `
+      background-color: ${euiButtonColor('success', euiTheme)};
+    `,
+  }
+}
+```
+
+Somehow the `EuiThemeProvider` should expect and certain component prop type options like `EuiButtonProps[‘color’]: EuiThemeProvider.theme.button.colors`.
+
+Button component
+
+```tsx
+export type ButtonColor = EuiThemeProvider.theme.button.colors;
+
+export const EuiButton: FunctionComponent<Props> = ({
+  color,
+)} => {
+  const style = [useEuiButtonColorCSS[color]];
+}
+
+export const EuiBottomBar = forwardRef<HTMLElement, EuiBottomBarProps>(
+  (props, ref) => {
+    const BottomBar = _EuiBottomBar;
+    return (
+      <EuiThemeProvider colorMode={'dark'}>
+        <BottomBar ref={ref} {...props} />
+      </EuiThemeProvider>
+    );
+  }
+);
+
+```

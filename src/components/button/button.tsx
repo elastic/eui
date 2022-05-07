@@ -16,6 +16,7 @@ import React, {
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
+import { createElement } from '@emotion/react';
 
 import {
   CommonProps,
@@ -33,6 +34,11 @@ import {
   EuiButtonContent,
 } from './button_content';
 import { validateHref } from '../../services/security/href_validator';
+import {
+  _EuiButtonColor,
+  useEuiButtonColorCSS,
+  BUTTON_COLORS,
+} from '../../themes/amsterdam/overrides/button';
 
 export type ButtonColor =
   | 'primary'
@@ -77,7 +83,7 @@ export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
   /**
    * Any of our named colors.
    */
-  color?: ButtonColor;
+  color?: _EuiButtonColor;
   /**
    * Use size `s` in confined spaces
    */
@@ -233,15 +239,18 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
 
     const classes = classNames(
       baseClassName,
-      color && colorToClassNameMap[color]
-        ? `${baseClassName}${colorToClassNameMap[color]}`
-        : `${baseClassName}${colorToClassNameMap.primary}`,
+      // color && colorToClassNameMap[color]
+      //   ? `${baseClassName}${colorToClassNameMap[color]}`
+      //   : `${baseClassName}${colorToClassNameMap.primary}`,
       size && sizeToClassNameMap[size]
         ? `${baseClassName}${sizeToClassNameMap[size]}`
         : null,
       fill && `${baseClassName}--fill`,
       fullWidth && `${baseClassName}--fullWidth`,
       buttonIsDisabled && `${baseClassName}-isDisabled`,
+      {
+        // [`${baseClassName}--${color}`]: color,
+      },
       className
     );
 
@@ -273,19 +282,23 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       </EuiButtonContent>
     );
 
-    let calculatedStyle: CSSProperties | undefined = style;
+    const colorStyles = BUTTON_COLORS.includes(color)
+      ? [useEuiButtonColorCSS()[color][fill ? 'fill' : 'base']]
+      : undefined;
+
+    const calculatedStyle: CSSProperties | undefined = {
+      ...style,
+    };
     if (minWidth !== undefined || minWidth !== null) {
-      calculatedStyle = {
-        ...calculatedStyle,
-        minWidth,
-      };
+      calculatedStyle.minWidth = minWidth;
     }
 
-    return React.createElement(
+    return createElement(
       element,
       {
         className: classes,
         style: calculatedStyle,
+        css: colorStyles,
         disabled: element === 'button' && buttonIsDisabled,
         'aria-pressed': element === 'button' ? isSelected : undefined,
         ref,

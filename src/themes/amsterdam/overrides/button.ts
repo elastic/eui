@@ -12,15 +12,15 @@ import {
   transparentize,
   useEuiTheme,
   UseEuiTheme,
-} from '../../services';
+} from '../../../services';
 
 export const BUTTON_COLORS = [
   'text',
   'accent',
   'primary',
-  'success',
-  'warning',
-  'danger',
+  // 'success',
+  // 'warning',
+  // 'danger',
   'disabled',
 ] as const;
 
@@ -50,26 +50,46 @@ export const useEuiButtonColorCSS = () => {
   const euiTheme = useEuiTheme();
 
   return {
-    text: `
-      background-color: ${euiButtonColor('text', euiTheme)};
-    `,
-    accent: `
-      background-color: ${euiButtonColor('accent', euiTheme)};
-    `,
-    primary: `
-      background-color: ${euiButtonColor('primary', euiTheme)};
-    `,
-    success: `
-      background-color: ${euiButtonColor('success', euiTheme)};
-    `,
-    warning: `
-      background-color: ${euiButtonColor('warning', euiTheme)};
-    `,
-    danger: `
-      background-color: ${euiButtonColor('danger', euiTheme)};
-    `,
-    disabled: `
-      background-color: ${euiButtonColor('disabled', euiTheme)};
-    `,
+    text: {
+      base: `
+        background-color: ${euiButtonColor('text', euiTheme)};
+        `,
+      fill: `
+        background-color: ${euiTheme.euiTheme.colors.mediumShade};
+      `,
+    },
+    accent: {
+      base: `
+        background-color: ${euiButtonColor('accent', euiTheme)};
+        `,
+      fill: `
+        background-color: ${euiTheme.euiTheme.colors.accent};
+      `,
+    },
+    primary: {
+      base: `
+        background-color: ${euiButtonColor('primary', euiTheme)};
+        `,
+      fill: `
+        background-color: ${euiTheme.euiTheme.colors.primary};
+      `,
+    },
+    // success: `
+    //   background-color: ${euiButtonColor('success', euiTheme)};
+    // `,
+    // warning: `
+    //   background-color: ${euiButtonColor('warning', euiTheme)};
+    // `,
+    // danger: `
+    //   background-color: ${euiButtonColor('danger', euiTheme)};
+    // `,
+    disabled: {
+      base: `
+        background-color: ${euiButtonColor('disabled', euiTheme)};
+        `,
+      fill: `
+        background-color: ${euiButtonColor('disabled', euiTheme)};
+        `,
+    },
   };
 };
