@@ -20,21 +20,14 @@ export const colorsFunctionsSections = [
   {
     title: 'Contrast',
     id: 'contrast',
-    text: (
-      <>
-        <ContrastSections /> <TextSections />
-      </>
-    ),
   },
   {
     title: 'Transparency',
     id: 'transparency',
-    text: <TransparencySections />,
   },
   {
     title: 'Tint and shade',
     id: 'tint-and-shade',
-    text: <TintShadeSections />,
   },
 ];
 
@@ -73,20 +66,34 @@ export default () => {
         <EuiText grow={false}>
           <h2>Utilities</h2>
         </EuiText>
-
+        <EuiSpacer size="xl" />
+        <EuiText grow={false}>
+          <h3
+            id={`${colorsFunctionsSections[1].id}`}
+          >{`${colorsFunctionsSections[1].title}`}</h3>
+        </EuiText>
         <EuiSpacer size="m" />
+        <ContrastSections /> <TextSections />
+      </GuideSection>
 
-        {colorsFunctionsSections.map((section) =>
-          section.id === colorsFunctionsSections[0].id ? undefined : (
-            <>
-              <EuiText grow={false}>
-                <h3 id={`${section.id}`}>{`${section.title}`}</h3>
-              </EuiText>
-              <EuiSpacer size="m" />
-              {section.text}
-            </>
-          )
-        )}
+      <GuideSection color={'transparent'}>
+        <EuiText grow={false}>
+          <h3
+            id={`${colorsFunctionsSections[2].id}`}
+          >{`${colorsFunctionsSections[2].title}`}</h3>
+        </EuiText>
+        <EuiSpacer size="m" />
+        <TransparencySections />
+      </GuideSection>
+
+      <GuideSection color={'subdued'}>
+        <EuiText grow={false}>
+          <h3
+            id={`${colorsFunctionsSections[3].id}`}
+          >{`${colorsFunctionsSections[3].title}`}</h3>
+        </EuiText>
+        <EuiSpacer size="m" />
+        <TintShadeSections />
       </GuideSection>
     </>
   );
