@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from '../../../components/with_theme';
 
-import { EuiSpacer, EuiText } from '../../../../../src';
+import { EuiCallOut, EuiSpacer, EuiText } from '../../../../../src';
 import { GuideSection } from '../../../components/guide_section/guide_section';
 
-import { ContrastSections } from '../../color/contrast/sections';
+import { ContrastSections } from './_functions_contrast';
 import { TextSections } from '../../color/text/sections';
 import { TintShadeSections } from '../../color/tint_shade/sections';
-import { TransparencySections } from '../../color/transparency/sections';
+import { TransparencySections } from './_functions_transparency';
 
 import { UtilsJS, UtilsValuesJS } from './_color_js';
 
@@ -39,23 +40,35 @@ export const colorsFunctionsSections = [
 ];
 
 export default () => {
+  const themeContext = useContext(ThemeContext);
+  const currentLanguage = themeContext.themeLanguage;
+  const showSass = currentLanguage.includes('sass');
+
   return (
     <>
-      <GuideSection color={'subdued'}>
-        <EuiText grow={false}>
-          <h2
-            id={`${colorsFunctionsSections[0].id}`}
-          >{`${colorsFunctionsSections[0].title}`}</h2>
-        </EuiText>
+      {showSass ? (
+        <GuideSection>
+          <EuiCallOut title="Background colors only available for CSS-in-JS." />
+        </GuideSection>
+      ) : (
+        <>
+          <GuideSection color={'subdued'}>
+            <EuiText grow={false}>
+              <h2
+                id={`${colorsFunctionsSections[0].id}`}
+              >{`${colorsFunctionsSections[0].title}`}</h2>
+            </EuiText>
 
-        <EuiSpacer size="m" />
+            <EuiSpacer size="m" />
 
-        <UtilsJS />
-      </GuideSection>
+            <UtilsJS />
+          </GuideSection>
 
-      <GuideSection color="transparent">
-        <UtilsValuesJS />
-      </GuideSection>
+          <GuideSection color="transparent">
+            <UtilsValuesJS />
+          </GuideSection>
+        </>
+      )}
 
       <GuideSection color={'subdued'}>
         <EuiText grow={false}>

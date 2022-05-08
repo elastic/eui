@@ -12,7 +12,6 @@ import {
   EuiDescribedFormGroup,
   EuiButtonGroup,
   useEuiTheme,
-  EuiPageContentBody,
 } from '../../../../../src';
 
 import {
@@ -37,6 +36,7 @@ import {
   euiButtonColor,
   _EuiButtonColor,
 } from '../../../../../src/components/button/button_mixins';
+import { GuideSection } from '../../../components/guide_section/guide_section';
 
 // This array is used inside routes.js to create the sidenav sub-sections
 export const contrastSections = [
@@ -91,7 +91,7 @@ export default () => {
   const showSass = useContext(ThemeContext).themeLanguage.includes('sass');
 
   return (
-    <EuiPageContentBody paddingSize="l">
+    <GuideSection>
       <EuiText grow={false}>
         <h2>Accessible text contrast</h2>
         <p>
@@ -351,6 +351,6 @@ export default () => {
           </>
         )}
       </div>
-    </EuiPageContentBody>
+    </GuideSection>
   );
 };
