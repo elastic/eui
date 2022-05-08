@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
+import { GuideSection } from '../guide_section/guide_section';
 import {
   EuiBetaBadge,
   EuiPageHeader,
@@ -90,11 +91,11 @@ const GuidePageComponent = ({
     if (notice) {
       return (
         <>
-          <EuiSpacer size="l" />
-          <EuiPageContentBody role="region" aria-label="Notice" restrictWidth>
-            {notice}
-          </EuiPageContentBody>
-          <EuiSpacer size="l" />
+          <GuideSection>
+            <div role="region" aria-label="Notice">
+              {notice}
+            </div>
+          </GuideSection>
         </>
       );
     }
@@ -136,18 +137,18 @@ const GuidePageComponent = ({
         <Switch>
           {playground && (
             <Route path={`${match.path}/playground`}>
-              <EuiPageContentBody restrictWidth>
+              <GuideSection>
                 <EuiSpacer size="xl" />
                 {playground}
-              </EuiPageContentBody>
+              </GuideSection>
             </Route>
           )}
           {guidelines && (
             <Route path={`${match.path}/guidelines`}>
-              <EuiPageContentBody restrictWidth>
+              <GuideSection>
                 <EuiSpacer size="xl" />
                 {guidelines}
-              </EuiPageContentBody>
+              </GuideSection>
             </Route>
           )}
           <Route path="">{children}</Route>

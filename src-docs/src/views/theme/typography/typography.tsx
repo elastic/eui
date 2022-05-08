@@ -11,7 +11,6 @@ import {
   useEuiTheme,
   htmlIdGenerator,
   throttle,
-  EuiSpacer,
   EuiText,
   EuiLink,
   EuiRange,
@@ -132,7 +131,6 @@ export default () => {
             components as wrappers of your content instead.
           </p>
         </EuiText>
-        <EuiSpacer size="xl" />
 
         {scaleContent}
       </GuideSection>
@@ -155,8 +153,6 @@ export default () => {
             for details on importing fonts.
           </p>
         </EuiText>
-
-        <EuiSpacer size="xl" />
 
         {weightContent}
 
@@ -214,8 +210,6 @@ export default () => {
             id={`${typographySections[2].id}`}
           >{`${typographySections[2].title}`}</h2>
         </EuiText>
-
-        <EuiSpacer size="xl" />
 
         {baseContent}
       </GuideSection>

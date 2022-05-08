@@ -5,11 +5,11 @@ import {
   EuiPageHeader,
   EuiPageContent,
   EuiPageContentBody,
-  EuiSpacer,
   EuiBetaBadge,
 } from '../../../../src/components';
 
 import { LanguageSelector, ThemeContext } from '../with_theme';
+import { GuideSection } from '../guide_section/guide_section';
 
 export type GuideTabbedPageProps = {
   title: string;
@@ -82,13 +82,11 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
   const renderNotice = () => {
     if (!showSass && notice) {
       return (
-        <>
-          <EuiSpacer size="l" />
-          <EuiPageContentBody role="region" aria-label="Notice" restrictWidth>
+        <GuideSection>
+          <div role="region" aria-label="Notice">
             {notice}
-          </EuiPageContentBody>
-          <EuiSpacer size="l" />
-        </>
+          </div>
+        </GuideSection>
       );
     }
   };

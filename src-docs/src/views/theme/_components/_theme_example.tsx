@@ -60,7 +60,9 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
         color={color || 'transparent'}
         direction="row"
         css={css`
-          margin-bottom: ${euiTheme.size.xl};
+          :not(:first-child) {
+            margin-top: ${euiTheme.size.xl};
+          }
         `}
       >
         <EuiSplitPanel.Inner

@@ -175,8 +175,6 @@ export default () => {
               </p>
             </EuiText>
 
-            <EuiSpacer size="xl" />
-
             {brandContent}
           </GuideSection>
 
@@ -205,8 +203,6 @@ export default () => {
               </p>
             </EuiText>
 
-            <EuiSpacer size="xl" />
-
             {textContent}
           </GuideSection>
 
@@ -225,8 +221,6 @@ export default () => {
               </p>
             </EuiText>
 
-            <EuiSpacer size="xl" />
-
             {shadesContent}
           </GuideSection>
 
@@ -242,8 +236,6 @@ export default () => {
               >{`${colorsSections[3].title}`}</h2>
               <p>These are used a lot for special cases.</p>
             </EuiText>
-
-            <EuiSpacer size="xl" />
 
             {specialContent}
           </GuideSection>

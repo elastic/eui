@@ -10,6 +10,7 @@ import {
   EuiPageContentBody,
   EuiPanel,
   EuiPanelProps,
+  CommonProps,
 } from '../../../../src';
 
 import { slugify } from '../../../../src/services/string/slugify';
@@ -23,8 +24,9 @@ import {
   GuideSectionExampleTabs,
   GuideSectionExampleTabsProps,
 } from './guide_section_parts/guide_section_tabs';
+import classNames from 'classnames';
 
-export interface GuideSection {
+export interface GuideSection extends CommonProps {
   id?: string;
   title?: string;
   text?: ReactNode;
@@ -86,6 +88,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
   snippet,
   color,
   children,
+  className,
 }) => {
   const { path } = useRouteMatch();
   const [renderingPlayground, setRenderingPlayground] = useState(false);
@@ -184,13 +187,14 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
 
   return (
     <EuiPanel
+      id={id}
+      className={classNames('guideSection', className)}
       color={color || 'transparent'}
       borderRadius="none"
-      className="guideSection"
       paddingSize="l"
-      id={id}
+      grow={false}
     >
-      {color && (children || text || title) && <EuiSpacer size="xxl" />}
+      <EuiSpacer size={color || title ? 'xxl' : 'xs'} />
       <EuiPageContentBody restrictWidth>
         <GuideSectionExampleText title={title} wrapText={wrapText}>
           {text}
@@ -236,6 +240,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
         )}
 
         {children}
+        <EuiSpacer size={color ? 'xxl' : 'xs'} />
       </EuiPageContentBody>
     </EuiPanel>
   );

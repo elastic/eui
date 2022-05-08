@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 
-import { EuiCode, EuiSpacer, EuiText } from '../../../../../src/components';
+import { EuiCode, EuiText } from '../../../../../src/components';
 
 // @ts-ignore Importing from JS
 import { GuidePage } from '../../../components/guide_page';
@@ -103,8 +103,6 @@ export default () => {
           >{`${bordersSections[0].title}`}</h2>
         </EuiText>
 
-        <EuiSpacer size="xl" />
-
         {borderContent}
       </GuideSection>
 
@@ -123,8 +121,6 @@ export default () => {
           </p>
         </EuiText>
 
-        <EuiSpacer size="xl" />
-
         {colorContent}
       </GuideSection>
 
@@ -139,8 +135,6 @@ export default () => {
           >{`${bordersSections[2].title}`}</h2>
         </EuiText>
 
-        <EuiSpacer size="xl" />
-
         {widthContent}
       </GuideSection>
 
@@ -154,8 +148,6 @@ export default () => {
             id={`${bordersSections[3].id}`}
           >{`${bordersSections[3].title}`}</h2>
         </EuiText>
-
-        <EuiSpacer size="xl" />
 
         {radiusContent}
       </GuideSection>

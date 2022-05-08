@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
-import { GuideRule, GuideRuleExample } from '../../components';
+import { GuideRule, GuideRuleExample, GuideSection } from '../../components';
 
 import {
   EuiButton,
@@ -82,7 +82,7 @@ const GuideRuleWriting = ({ children, className, ...rest }) => {
 
 export const WritingGuidelines = () => {
   return (
-    <>
+    <GuideSection>
       <EuiText grow={false}>
         <p>
           You can have the most beautiful UI, but without{' '}
@@ -982,6 +982,6 @@ export const WritingGuidelines = () => {
           />
         </EuiFlexItem>
       </EuiFlexGrid>
-    </>
+    </GuideSection>
   );
 };

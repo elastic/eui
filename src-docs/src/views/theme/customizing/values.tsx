@@ -88,7 +88,7 @@ export default () => {
         notice={<ThemeNotice />}
         showThemeLanguageToggle
       >
-        <GuideSection>
+        <GuideSection color="transparent">
           {showSass ? (
             <Sass />
           ) : (
