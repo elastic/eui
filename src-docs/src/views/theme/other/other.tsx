@@ -168,13 +168,13 @@ export default () => {
         {speedContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <SpeedValuesSass /> : <SpeedValuesJS />}
       </GuideSection>
 
       <GuideSection color="subdued">{easeContent}</GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <EasingValuesSass /> : <EasingValuesJS />}
       </GuideSection>
 
@@ -188,7 +188,7 @@ export default () => {
         {shadowContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <ShadowValuesSass /> : <ShadowValuesJS />}
       </GuideSection>
 
@@ -221,7 +221,7 @@ export default () => {
         <EuiSpacer size="xl" />
       </GuideSection>
 
-      <GuideSection>{levelsContent}</GuideSection>
+      <GuideSection color="transparent">{levelsContent}</GuideSection>
     </GuidePage>
   );
 };

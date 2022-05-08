@@ -57,7 +57,7 @@ export default () => {
         {baseContent}
       </GuideSection>
 
-      <GuideSection>{valuesContent}</GuideSection>
+      <GuideSection color="transparent">{valuesContent}</GuideSection>
     </GuidePage>
   );
 };

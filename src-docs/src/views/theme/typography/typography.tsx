@@ -137,8 +137,9 @@ export default () => {
         {scaleContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <FontScaleValuesSass /> : <FontScaleValuesJS />}
+        <EuiSpacer size="l" />
       </GuideSection>
 
       <GuideSection color="subdued">
@@ -204,7 +205,7 @@ export default () => {
         />
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <FontWeightValuesSass /> : <FontWeightValuesJS />}
       </GuideSection>
 
@@ -221,7 +222,7 @@ export default () => {
       </GuideSection>
 
       {showSass && (
-        <GuideSection>
+        <GuideSection color="transparent">
           <FontValuesSass />
         </GuideSection>
       )}

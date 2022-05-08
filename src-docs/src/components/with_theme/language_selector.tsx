@@ -19,7 +19,7 @@ const NOTIF_STORAGE_VALUE = 'dismissed';
 
 export const LanguageSelector = ({
   onChange,
-  showTour = true,
+  showTour = false,
 }: {
   onChange?: (id: string) => void;
   showTour?: boolean;
@@ -63,7 +63,7 @@ export const LanguageSelector = ({
       footerAction={<EuiLink onClick={onTourDismiss}>Got it!</EuiLink>}
     >
       <EuiButtonGroup
-        buttonSize="m"
+        buttonSize="s"
         color="accent"
         legend="Language selector"
         options={theme_languages}

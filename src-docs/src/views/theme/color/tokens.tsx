@@ -135,7 +135,7 @@ export default () => {
         {brandContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <BrandValuesSass /> : <BrandValuesJS />}
       </GuideSection>
 
@@ -163,7 +163,7 @@ export default () => {
         {textContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <TextValuesSass /> : <TextValuesJS />}
       </GuideSection>
 
@@ -181,7 +181,7 @@ export default () => {
         {shadesContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <ShadeValuesSass /> : <ShadeValuesJS />}
       </GuideSection>
 
@@ -197,7 +197,7 @@ export default () => {
         {specialContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <SpecialValuesSass /> : <SpecialValuesJS />}
       </GuideSection>
     </>

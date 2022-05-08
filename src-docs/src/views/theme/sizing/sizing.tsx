@@ -83,7 +83,7 @@ export default () => {
         {scaleContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <ScaleValuesSass /> : <ScaleValuesJS />}
       </GuideSection>
 
@@ -97,7 +97,7 @@ export default () => {
         {utilsContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         <EuiTitle>
           <h2 id={`${sizingSections[3].id}`}>{`${sizingSections[3].title}`}</h2>
         </EuiTitle>
