@@ -3,8 +3,6 @@ import React from 'react';
 import { LanguageSelector } from '../../components';
 import Intro from './intro';
 
-import { ContrastSections } from './contrast/sections';
-import { TransparencySections } from './transparency/sections';
 import { TintShadeSections } from './tint_shade/sections';
 import { TextSections } from './text/sections';
 
@@ -13,16 +11,6 @@ export const ColorExample = {
   intro: <Intro />,
   rightSideItems: [<LanguageSelector />],
   sections: [
-    {
-      title: 'Contrast',
-      wrapText: false,
-      text: <ContrastSections />,
-    },
-    {
-      title: 'Transparency',
-      wrapText: false,
-      text: <TransparencySections />,
-    },
     {
       title: 'Tint and shade',
       wrapText: false,
