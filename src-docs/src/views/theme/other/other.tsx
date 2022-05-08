@@ -1,7 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 
-// @ts-ignore Importing from JS
-import { GuidePage } from '../../../components/guide_page';
+import { GuideTabbedPage } from '../../../components/guide_tabbed_page';
 import { ThemeContext } from '../../../components/with_theme';
 
 import { EuiCallOut, EuiCode, EuiSpacer, EuiText } from '../../../../../src';
@@ -120,7 +119,7 @@ export default () => {
   }, [showSass]);
 
   return (
-    <GuidePage
+    <GuideTabbedPage
       title="More tokens"
       isBeta={!showSass}
       notice={<ThemeNotice />}
@@ -161,13 +160,13 @@ export default () => {
         {speedContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <SpeedValuesSass /> : <SpeedValuesJS />}
       </GuideSection>
 
       <GuideSection color="subdued">{easeContent}</GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <EasingValuesSass /> : <EasingValuesJS />}
       </GuideSection>
 
@@ -179,7 +178,7 @@ export default () => {
         {shadowContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <ShadowValuesSass /> : <ShadowValuesJS />}
       </GuideSection>
 
@@ -210,7 +209,7 @@ export default () => {
         </EuiCallOut>
       </GuideSection>
 
-      <GuideSection>{levelsContent}</GuideSection>
-    </GuidePage>
+      <GuideSection color="transparent">{levelsContent}</GuideSection>
+    </GuideTabbedPage>
   );
 };

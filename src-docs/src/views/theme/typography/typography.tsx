@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 // @ts-ignore Importing from Sass file
 import fonts from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../../src/global_styling/variables/_font_weight.scss';
 
-// @ts-ignore Importing from JS
-import { GuidePage } from '../../../components/guide_page';
+import { GuideSection } from '../../../components/guide_section/guide_section';
+import { GuideTabbedPage } from '../../../components/guide_tabbed_page';
 
 import {
   useEuiTheme,
@@ -20,7 +20,6 @@ import {
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeNotice } from '../_components/_theme_notice';
 import { ThemeContext } from '../../../components/with_theme';
-import { GuideSection } from '../../../components/guide_section/guide_section';
 
 import {
   FontJS,
@@ -85,7 +84,7 @@ export default () => {
   }, [showSass]);
 
   return (
-    <GuidePage
+    <GuideTabbedPage
       title="Typography"
       isBeta={!showSass}
       notice={<ThemeNotice />}
@@ -219,7 +218,7 @@ export default () => {
           <FontValuesSass />
         </GuideSection>
       )}
-    </GuidePage>
+    </GuideTabbedPage>
   );
 };
 

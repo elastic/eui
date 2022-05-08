@@ -19,8 +19,8 @@ import {
   EuiThemeProvider,
 } from '../../../../../src';
 
-// @ts-ignore Importing from JS
-import { GuidePage } from '../../../components';
+import { GuideSection } from '../../../components/guide_section/guide_section';
+import { GuideTabbedPage } from '../../../components/guide_tabbed_page';
 
 import { ThemeNotice } from '../_components/_theme_notice';
 import { ThemeContext } from '../../../components/with_theme';
@@ -43,8 +43,6 @@ import Levels from './_levels';
 import Focus from './_focus';
 
 import Sass from './_sass';
-import { GuideSection } from '../../../components/guide_section/guide_section';
-
 // @ts-ignore TODO
 const JsonFlyout = ({ setIsOpen }) => {
   const { euiTheme } = useEuiTheme();
@@ -82,7 +80,7 @@ export default () => {
 
   return (
     <EuiThemeProvider modify={overrides}>
-      <GuidePage
+      <GuideTabbedPage
         isBeta
         title="Customizing theme"
         notice={<ThemeNotice />}
@@ -127,7 +125,7 @@ export default () => {
             </>
           )}
         </GuideSection>
-      </GuidePage>
+      </GuideTabbedPage>
 
       {!showSass && (
         <>

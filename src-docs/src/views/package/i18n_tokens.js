@@ -11,7 +11,7 @@ import {
   EuiText,
   EuiTitle,
 } from '../../../../src';
-import { GuidePage } from '../../components/guide_page';
+import { GuideTabbedPage } from '../../components/guide_tabbed_page';
 import { GuideSection } from '../../components';
 
 const columns = [
@@ -61,7 +61,7 @@ const search = {
 export const I18nTokens = {
   name: 'I18n tokens',
   component: () => (
-    <GuidePage title="I18n tokens">
+    <GuideTabbedPage title="I18n tokens">
       <GuideSection>
         <EuiInMemoryTable
           items={tokens}
@@ -103,6 +103,6 @@ export const I18nTokens = {
           </EuiAccordion>
         ))}
       </GuideSection>
-    </GuidePage>
+    </GuideTabbedPage>
   ),
 };

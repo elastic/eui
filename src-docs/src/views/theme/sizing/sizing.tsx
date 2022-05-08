@@ -2,8 +2,7 @@ import React, { useContext, useMemo } from 'react';
 
 import { EuiCallOut, EuiSpacer, EuiText, EuiTitle } from '../../../../../src';
 
-// @ts-ignore Importing from JS
-import { GuidePage } from '../../../components/guide_page';
+import { GuideTabbedPage } from '../../../components/guide_tabbed_page';
 import { GuideSection } from '../../../components/guide_section/guide_section';
 import { ThemeContext } from '../../../components/with_theme';
 
@@ -53,7 +52,7 @@ export default () => {
   }, [showSass]);
 
   return (
-    <GuidePage
+    <GuideTabbedPage
       title="Sizing"
       isBeta={!showSass}
       notice={<ThemeNotice />}
@@ -106,6 +105,6 @@ export default () => {
 
         {paddingContent}
       </GuideSection>
-    </GuidePage>
+    </GuideTabbedPage>
   );
 };
