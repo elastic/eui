@@ -36,8 +36,6 @@ import { SitewideSearchExample } from './views/selectable/selectable_sitewide_te
 
 import { ColorPaletteExample } from './views/color_palette/color_palette_example';
 
-import { ColorExample } from './views/color/color_example';
-
 import { PrettyDurationExample } from './views/pretty_duration/pretty_duration_example';
 
 import { UtilityClassesExample } from './views/utility_classes/utility_classes_example';
@@ -603,7 +601,6 @@ const navigation = [
       AccessibilityExample,
       AutoSizerExample,
       BeaconExample,
-      ColorExample,
       ColorPaletteExample,
       CopyExample,
       UtilityClassesExample,
