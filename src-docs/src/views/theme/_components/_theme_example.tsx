@@ -10,6 +10,8 @@ import {
   useEuiTheme,
   EuiBadge,
   logicalCSS,
+  useIsWithinBreakpoints,
+  useEuiPaddingCSS,
 } from '../../../../../src';
 import {
   _EuiSplitPanelInnerProps,
@@ -47,6 +49,8 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
   props,
 }) => {
   const { euiTheme } = useEuiTheme();
+  const isLargeBreakpoint = useIsWithinBreakpoints(['m', 'l', 'xl']);
+
   const finalSnippet =
     snippetLanguage === 'emotion'
       ? `css\`
@@ -57,19 +61,23 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
   return (
     <>
       <EuiSplitPanel.Outer
-        color={color || 'transparent'}
+        color={isLargeBreakpoint ? color || 'transparent' : 'subdued'}
         direction="row"
         css={css`
+          gap: ${euiTheme.size.xl};
+
+          ${useEuiPaddingCSS(isLargeBreakpoint ? 'vertical' : undefined).xl};
+          /* padding: ${euiTheme.size.xl}; */
+
           :not(:first-child) {
-            margin-top: ${euiTheme.size.xl};
+            margin-block-start: ${euiTheme.size.xl};
           }
         `}
       >
         <EuiSplitPanel.Inner
-          paddingSize="l"
+          paddingSize="none"
           style={{
             flexShrink: 0,
-            paddingInlineStart: color ? undefined : 0,
           }}
         >
           {title && (
@@ -113,10 +121,9 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
 
         {(example || snippet) && (
           <EuiSplitPanel.Inner
-            paddingSize="l"
+            paddingSize="none"
             style={{
               overflow: 'hidden',
-              paddingInlineEnd: color ? undefined : 0,
             }}
           >
             <EuiSplitPanel.Outer
