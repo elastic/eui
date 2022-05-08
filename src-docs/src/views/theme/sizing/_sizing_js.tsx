@@ -18,6 +18,7 @@ import {
   EuiAccordion,
   PADDING_SIZES,
   LOGICAL_SIDES,
+  EuiPanel,
 } from '../../../../../src';
 
 import { ThemeExample } from '../_components/_theme_example';
@@ -243,21 +244,25 @@ export const UtilsJS = () => {
         snippet={"${logicals['padding-left']}: 100px;"}
       />
 
-      <EuiAccordion
-        id={htmlIdGenerator()()}
-        buttonContent={<strong>All supported properties</strong>}
-        paddingSize="m"
-      >
-        <EuiText
-          css={css`
-            white-space: pre;
-            columns: 3;
-          `}
-          size="s"
+      <EuiPanel color="subdued">
+        <EuiAccordion
+          id={htmlIdGenerator()()}
+          buttonContent={<strong>All supported properties</strong>}
+          paddingSize="m"
         >
-          <code>{Object.keys(logicals).join('\r\n')}</code>
-        </EuiText>
-      </EuiAccordion>
+          <EuiText
+            css={css`
+              white-space: pre;
+              columns: 3;
+            `}
+            size="s"
+          >
+            <code>{Object.keys(logicals).join('\r\n')}</code>
+          </EuiText>
+        </EuiAccordion>
+      </EuiPanel>
+
+      <EuiSpacer size="xl" />
     </>
   );
 };

@@ -1,28 +1,25 @@
 import React, { useContext, useMemo } from 'react';
 
-import { EuiCallOut, EuiSpacer, EuiText, EuiTitle } from '../../../../../src';
+import { EuiSpacer, EuiText, EuiTitle } from '../../../../../src';
 
-// @ts-ignore Importing from JS
-import { GuidePage } from '../../../components/guide_page';
 import { GuideSection } from '../../../components/guide_section/guide_section';
 import { ThemeContext } from '../../../components/with_theme';
 
 import { ThemeNotice } from '../_components/_theme_notice';
 
-import JSValues, {
-  BaseJS,
-  PaddingJS,
-  ScaleValuesJS,
-  UtilsJS,
-} from './_sizing_js';
+import JSValues, { BaseJS, ScaleValuesJS } from './_sizing_js';
 import SassValues, { BaseSass, ScaleValuesSass } from './_sizing_sass';
+
+export const sizingInfo = {
+  title: 'Sizing',
+  notice: <ThemeNotice />,
+  showThemeLanguageToggle: true,
+};
 
 // This array is used inside routes.js to create the sidenav sub-sections
 export const sizingSections = [
   { title: 'Base', id: 'base' },
   { title: 'Scale', id: 'scale' },
-  { title: 'Logical properties', id: 'logical' },
-  { title: 'Padding', id: 'padding' },
 ];
 
 export default () => {
@@ -40,26 +37,9 @@ export default () => {
     return <JSValues />;
   }, [showSass]);
 
-  const utilsContent = useMemo(() => {
-    if (showSass)
-      return <EuiCallOut title="Utilities only available for Emotion." />;
-    return <UtilsJS />;
-  }, [showSass]);
-
-  const paddingContent = useMemo(() => {
-    if (showSass)
-      return <EuiCallOut title="Utilities only available for Emotion." />;
-    return <PaddingJS />;
-  }, [showSass]);
-
   return (
-    <GuidePage
-      title="Sizing"
-      isBeta={!showSass}
-      notice={<ThemeNotice />}
-      showThemeLanguageToggle
-    >
-      <GuideSection>
+    <>
+      <GuideSection color="transparent">
         <EuiText grow={false}>
           <h2 id={`${sizingSections[0].id}`}>{`${sizingSections[0].title}`}</h2>
           <p>
@@ -86,26 +66,6 @@ export default () => {
       <GuideSection color="transparent">
         {showSass ? <ScaleValuesSass /> : <ScaleValuesJS />}
       </GuideSection>
-
-      <GuideSection color="subdued">
-        <EuiTitle>
-          <h2 id={`${sizingSections[2].id}`}>{`${sizingSections[2].title}`}</h2>
-        </EuiTitle>
-
-        <EuiSpacer size="m" />
-
-        {utilsContent}
-      </GuideSection>
-
-      <GuideSection color="transparent">
-        <EuiTitle>
-          <h2 id={`${sizingSections[3].id}`}>{`${sizingSections[3].title}`}</h2>
-        </EuiTitle>
-
-        <EuiSpacer size="m" />
-
-        {paddingContent}
-      </GuideSection>
-    </GuidePage>
+    </>
   );
 };

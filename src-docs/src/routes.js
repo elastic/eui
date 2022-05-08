@@ -247,7 +247,13 @@ import ColorContrast, { contrastSections } from './views/theme/color/contrast';
 import ColorFunctions, {
   colorsFunctionsSections,
 } from './views/theme/color/functions';
-import Sizing, { sizingSections } from './views/theme/sizing/sizing';
+import Sizing, {
+  sizingInfo,
+  sizingSections,
+} from './views/theme/sizing/tokens';
+import SizingFunctions, {
+  sizingFunctionSections,
+} from './views/theme/sizing/functions';
 import Typography, {
   typographySections,
 } from './views/theme/typography/typography';
@@ -444,16 +450,21 @@ const navigation = [
           },
         ],
       }),
-      // {
-      //   name: 'Colors',
-      //   component: Color,
-      //   sections: colorsSections,
-      // },
-      {
-        name: 'Sizing',
-        component: Sizing,
-        sections: sizingSections,
-      },
+      createTabbedPage({
+        ...sizingInfo,
+        pages: [
+          {
+            title: 'Tokens',
+            page: Sizing,
+            sections: sizingSections,
+          },
+          {
+            title: 'Functions',
+            page: SizingFunctions,
+            sections: sizingFunctionSections,
+          },
+        ],
+      }),
       {
         name: 'Typography',
         component: Typography,
