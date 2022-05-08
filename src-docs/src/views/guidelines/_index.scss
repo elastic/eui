@@ -412,7 +412,7 @@
 }
 
 .guideSass__shadeExample {
-  $backgroundColor: shade($euiColorSuccess, 20%);
+  $backgroundColor: shade($euiColorSuccess, 40%);
   background: $backgroundColor;
   color: chooseLightOrDarkText($backgroundColor);
   padding: $euiSize;

@@ -6,7 +6,7 @@ import { GuideSection } from '../../../components/guide_section/guide_section';
 
 import { ContrastSections } from './_functions_contrast';
 import { TextSections } from '../../color/text/sections';
-import { TintShadeSections } from '../../color/tint_shade/sections';
+import { TintShadeSections } from './_functions_shadeTint';
 import { TransparencySections } from './_functions_transparency';
 
 import { UtilsJS, UtilsValuesJS } from './_color_js';

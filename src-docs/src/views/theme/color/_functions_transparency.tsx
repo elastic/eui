@@ -47,9 +47,7 @@ alpha: decimal = 0-1;`;
       </EuiBadge>
     </code>
   );
-  const snippet = showSass
-    ? sassExample
-    : 'const rgba = transparentize(color, 0.75);';
+  const snippet = showSass ? sassExample : 'transparentize(color, 0.75)';
 
   return (
     <ThemeExample
@@ -58,7 +56,7 @@ alpha: decimal = 0-1;`;
       description={text}
       props={props}
       example={demo}
-      snippetLanguage={showSass ? 'sass' : 'emotion'}
+      snippetLanguage={showSass ? 'sass' : 'tsx'}
       snippet={snippet}
     />
   );
