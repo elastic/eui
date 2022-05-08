@@ -63,7 +63,7 @@ export const LanguageSelector = ({
       footerAction={<EuiLink onClick={onTourDismiss}>Got it!</EuiLink>}
     >
       <EuiButtonGroup
-        buttonSize="s"
+        buttonSize="m"
         color="accent"
         legend="Language selector"
         options={theme_languages}

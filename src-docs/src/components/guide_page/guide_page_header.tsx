@@ -4,7 +4,6 @@ import {
   EuiHeaderLogo,
   EuiHeader,
   EuiHeaderSectionItemButton,
-  EuiHeaderSectionItem,
 } from '../../../../src/components/header';
 import { EuiBadge } from '../../../../src/components/badge';
 import { EuiIcon } from '../../../../src/components/icon';
@@ -17,7 +16,6 @@ import { EuiButtonEmpty } from '../../../../src/components/button';
 import { CodeSandboxLink } from '../../components/codesandbox/link';
 import logoEUI from '../../images/logo-eui.svg';
 import { GuideThemeSelector, GuideFigmaLink } from '../guide_theme_selector';
-import { LanguageSelector } from '../with_theme';
 
 const pkg = require('../../../../package.json');
 
@@ -121,9 +119,6 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
           onToggleLocale={onToggleLocale}
           selectedLocale={selectedLocale}
         />,
-        <EuiHeaderSectionItem>
-          <LanguageSelector />
-        </EuiHeaderSectionItem>,
         renderMobileMenu(),
       ]
     : [
@@ -131,9 +126,6 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
           onToggleLocale={onToggleLocale}
           selectedLocale={selectedLocale}
         />,
-        <EuiHeaderSectionItem>
-          <LanguageSelector />
-        </EuiHeaderSectionItem>,
         renderGithub(),
         <GuideFigmaLink key="figma" />,
         renderCodeSandbox(),
