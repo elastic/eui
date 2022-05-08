@@ -105,7 +105,7 @@ export default () => {
         {borderContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <TypesValuesSass /> : <TypesValuesJS />}
       </GuideSection>
 
@@ -123,7 +123,7 @@ export default () => {
         {colorContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <ColorValuesSass /> : <ColorValuesJS />}
       </GuideSection>
 
@@ -137,7 +137,7 @@ export default () => {
         {widthContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <WidthValuesSass /> : <WidthValuesJS />}
       </GuideSection>
 
@@ -151,7 +151,7 @@ export default () => {
         {radiusContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <RadiusValuesSass /> : <RadiusValuesJS />}
       </GuideSection>
     </GuideTabbedPage>

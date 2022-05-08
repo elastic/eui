@@ -39,23 +39,13 @@ export const UtilityClassesExample = {
     {
       title: 'Display',
       wrapText: false,
-      text: (
-        <>
-          <EuiSpacer />
-          <UtilityClassesDisplay />
-        </>
-      ),
+      text: <UtilityClassesDisplay />,
     },
     {
       title: 'Vertical alignment',
       color: 'subdued',
       wrapText: false,
-      text: (
-        <>
-          <EuiSpacer />
-          <UtilityClassesVertAlign />
-        </>
-      ),
+      text: <UtilityClassesVertAlign />,
     },
   ],
 };

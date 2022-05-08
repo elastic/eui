@@ -56,11 +56,13 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
     />
   );
 
-  let tabs: Array<{
-    id: string;
-    handleClick: () => void;
-    name: string;
-  }> = _tabs;
+  let tabs:
+    | Array<{
+        id: string;
+        handleClick: () => void;
+        name: string;
+      }>
+    | undefined = undefined;
 
   if (pages) {
     tabs = pages.map((page: any) => {
@@ -133,7 +135,9 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
   }
 
   const renderTabs = () => {
-    if (!tabs) {
+    if (_tabs) {
+      return _tabs;
+    } else if (!tabs) {
       return undefined;
     }
 
@@ -180,7 +184,7 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
     <>
       {renderNotice()}
       <EuiPageContentBody
-        style={{ paddingBlockEnd: tabs ? 0 : undefined }}
+        style={{ paddingBlockEnd: tabs || _tabs ? 0 : undefined }}
         paddingSize="l"
       >
         <EuiPageHeader
@@ -208,9 +212,7 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
         hasBorder={false}
         borderRadius="none"
       >
-        <EuiPageContentBody paddingSize="l" restrictWidth>
-          <Switch>{pagesRoutes}</Switch>
-        </EuiPageContentBody>
+        <Switch>{pagesRoutes}</Switch>
       </EuiPageContent>
     </>
   );
