@@ -5,7 +5,7 @@ import { EuiCallOut, EuiSpacer, EuiText } from '../../../../../src';
 import { GuideSection } from '../../../components/guide_section/guide_section';
 
 import { ContrastSections } from './_functions_contrast';
-import { TextSections } from '../../color/text/sections';
+import { TextSections } from './_functions_isDark';
 import { TintShadeSections } from './_functions_shadeTint';
 import { TransparencySections } from './_functions_transparency';
 
@@ -20,7 +20,11 @@ export const colorsFunctionsSections = [
   {
     title: 'Contrast',
     id: 'contrast',
-    text: <ContrastSections />,
+    text: (
+      <>
+        <ContrastSections /> <TextSections />
+      </>
+    ),
   },
   {
     title: 'Transparency',
@@ -31,11 +35,6 @@ export const colorsFunctionsSections = [
     title: 'Tint and shade',
     id: 'tint-and-shade',
     text: <TintShadeSections />,
-  },
-  {
-    title: 'Light or dark text',
-    id: 'light-or-dark-text',
-    text: <TextSections />,
   },
 ];
 

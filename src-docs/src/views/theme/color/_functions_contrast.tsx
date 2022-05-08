@@ -111,7 +111,7 @@ background?: string = euiTheme.colors.body;`;
           </div>
         }
         snippetLanguage="emotion"
-        snippet={'color: makeHighContrastColor(foreground)(euiTheme);'}
+        snippet={'color: ${makeHighContrastColor(foreground)(euiTheme)};'}
       />
     );
   }
