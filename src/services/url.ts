@@ -6,19 +6,19 @@
  * Side Public License, v 1.
  */
 
-const isElasticDomain = /(https?:\/\/(.+?\.)?elastic\.co((\/|\?)[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*)?)/g;
+const isElasticHost = /^([a-zA-Z0-9]+\.)*elastic\.co$/;
 
-// In order for the domain to be secure the regex
-// has to match _and_ the lengths of the match must
-// be _exact_ since URL's can have other URL's as
-// path or query params!
+// In order for the domain to be secure it needs to be in a parsable format,
+// with the protocol of http: or https: and the host matching elastic.co or
+// of one its subdomains
 export const isDomainSecure = (url: string = '') => {
-  const matches = url.match(isElasticDomain);
-
-  if (!matches) {
+  try {
+    const parsed = new URL(url);
+    const protocolMatches =
+      parsed.protocol === 'http:' || parsed.protocol === 'https:';
+    const domainMatches = !!parsed.host.match(isElasticHost);
+    return protocolMatches && domainMatches;
+  } catch (e) {
     return false;
   }
-  const [match] = matches;
-
-  return match.length === url.length;
 };

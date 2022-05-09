@@ -24,19 +24,15 @@ exports[`EuiForm renders with error callout when isInvalid is "true" 1`] = `
 >
   <div
     aria-live="assertive"
-    class="euiCallOut euiCallOut--danger euiForm__errors"
+    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiCallOut euiCallOut--danger euiForm__errors css-1flvw80-euiCallOut"
     role="alert"
     tabindex="-1"
   >
-    <div
-      class="euiCallOutHeader"
+    <p
+      class="euiTitle euiCallOutHeader__title css-st4zhi-euiTitle-xs-euiCallOutHeader-danger"
     >
-      <span
-        class="euiCallOutHeader__title"
-      >
-        Please address the highlighted errors.
-      </span>
-    </div>
+      Please address the highlighted errors.
+    </p>
   </div>
 </div>
 `;
@@ -49,21 +45,17 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has mul
 >
   <div
     aria-live="assertive"
-    class="euiCallOut euiCallOut--danger euiForm__errors"
+    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiCallOut euiCallOut--danger euiForm__errors css-1flvw80-euiCallOut"
     role="alert"
     tabindex="-1"
   >
-    <div
-      class="euiCallOutHeader"
+    <p
+      class="euiTitle euiCallOutHeader__title css-st4zhi-euiTitle-xs-euiCallOutHeader-danger"
     >
-      <span
-        class="euiCallOutHeader__title"
-      >
-        Please address the highlighted errors.
-      </span>
-    </div>
+      Please address the highlighted errors.
+    </p>
     <div
-      class="euiText euiText--small"
+      class="euiText euiText--small css-i7i3v9-euiCallOut__description"
     >
       <div
         class="euiTextColor euiTextColor--default"
@@ -98,21 +90,17 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has one
 >
   <div
     aria-live="assertive"
-    class="euiCallOut euiCallOut--danger euiForm__errors"
+    class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiCallOut euiCallOut--danger euiForm__errors css-1flvw80-euiCallOut"
     role="alert"
     tabindex="-1"
   >
-    <div
-      class="euiCallOutHeader"
+    <p
+      class="euiTitle euiCallOutHeader__title css-st4zhi-euiTitle-xs-euiCallOutHeader-danger"
     >
-      <span
-        class="euiCallOutHeader__title"
-      >
-        Please address the highlighted errors.
-      </span>
-    </div>
+      Please address the highlighted errors.
+    </p>
     <div
-      class="euiText euiText--small"
+      class="euiText euiText--small css-i7i3v9-euiCallOut__description"
     >
       <div
         class="euiTextColor euiTextColor--default"

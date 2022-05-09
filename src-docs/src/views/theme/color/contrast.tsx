@@ -7,7 +7,9 @@ import {
   EuiLink,
   EuiTitle,
   EuiPanel,
-} from '../../../../../src/components';
+  EuiCallOut,
+  EuiCode,
+} from '../../../../../src';
 
 import {
   ColorSectionSass,
@@ -21,6 +23,12 @@ import { brandKeys, shadeKeys } from './_color_js';
 import { ContrastSlider } from './_contrast_slider';
 import { ratingAA } from './_contrast_utilities';
 import { _EuiThemeColorsMode } from '../../../../../src/global_styling/variables/colors';
+import { GuideSection } from '../../../components/guide_section/guide_section';
+import {
+  BACKGROUND_COLORS,
+  EuiBackgroundColor,
+  useEuiBackgroundColor,
+} from '../../../../../src/global_styling';
 
 export default () => {
   const [showTextVariants, setShowTextVariants] = useState(true);
@@ -29,7 +37,7 @@ export default () => {
   const showSass = useContext(ThemeContext).themeLanguage.includes('sass');
 
   return (
-    <>
+    <GuideSection>
       <EuiText grow={false}>
         <h2>Accessible text contrast</h2>
         <p>
@@ -181,7 +189,46 @@ export default () => {
                 );
               })}
         </EuiPanel>
+
+        <EuiSpacer size="xxl" />
+
+        <EuiText grow={false}>
+          <h3>Background colors</h3>
+          <p>
+            These background colors are pre-defined shades of the brand colors.
+            They are recalled by using the hook{' '}
+            <EuiCode>useEuiBackgroundColor(color)</EuiCode>.
+          </p>
+        </EuiText>
+
+        <EuiSpacer />
+
+        <EuiPanel color="subdued">
+          {showSass ? (
+            <EuiCallOut title="Background colors only exist for CSS-in-JS styling." />
+          ) : (
+            BACKGROUND_COLORS.map((color: string) => {
+              return (
+                color !== 'transparent' && (
+                  <React.Fragment key={color}>
+                    <ColorSectionJS
+                      key={color}
+                      color={color as keyof _EuiThemeColorsMode}
+                      colorValue={useEuiBackgroundColor(
+                        color as EuiBackgroundColor
+                      )}
+                      hookName="useEuiBackgroundColor"
+                      minimumContrast={contrastValue}
+                      showTextVariants={showTextVariants}
+                    />
+                    <EuiSpacer />
+                  </React.Fragment>
+                )
+              );
+            })
+          )}
+        </EuiPanel>
       </div>
-    </>
+    </GuideSection>
   );
 };

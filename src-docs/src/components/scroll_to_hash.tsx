@@ -4,7 +4,8 @@ import { useLocation } from 'react-router-dom';
 const ScrollToHash: FunctionComponent = () => {
   const location = useLocation();
   useEffect(() => {
-    const element = document.getElementById(location.hash.replace('#', ''));
+    const hash = location.hash.split('?')[0].replace('#', ''); // Remove any query params and the leading hash
+    const element = document.getElementById(hash);
     const headerOffset = 72;
     if (element) {
       window.scrollTo({

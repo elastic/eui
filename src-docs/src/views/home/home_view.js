@@ -34,7 +34,7 @@ export const HomeView = () => (
     color="transparent"
     borderRadius="none"
   >
-    <EuiPageContentBody restrictWidth>
+    <EuiPageContentBody paddingSize="l" restrictWidth>
       <EuiPanel color="subdued" hasShadow={false} paddingSize="none">
         <EuiFlexGroup
           alignItems="center"

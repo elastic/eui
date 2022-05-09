@@ -10,6 +10,7 @@ import {
   EuiSpacer,
   EuiText,
   EuiTitle,
+  EuiPageContentBody,
 } from '../../../../src';
 import { GuidePage } from '../../components/guide_page';
 
@@ -61,45 +62,49 @@ export const I18nTokens = {
   name: 'I18n tokens',
   component: () => (
     <GuidePage title="I18n tokens">
-      <EuiInMemoryTable
-        items={tokens}
-        columns={columns}
-        search={search}
-        pagination={{ initialPageSize: 50 }}
-      />
+      <EuiPageContentBody paddingSize="l" restrictWidth>
+        <EuiSpacer size="xl" />
 
-      <EuiSpacer size="m" />
+        <EuiInMemoryTable
+          items={tokens}
+          columns={columns}
+          search={search}
+          pagination={{ initialPageSize: 50 }}
+        />
 
-      <EuiTitle size="m">
-        <span>Token changelog</span>
-      </EuiTitle>
+        <EuiSpacer size="m" />
 
-      {tokenChangelog.map(({ version, changes }) => (
-        <EuiAccordion
-          key={version}
-          id={version}
-          buttonContent={<span>{version}</span>}
-        >
-          <EuiInMemoryTable
-            items={changes}
-            columns={[
-              {
-                field: 'changeType',
-                name: 'Change',
-                width: '100px',
-                render: (changeType) => (
-                  <EuiText color="subdued" size="xs">
-                    {changeType}
-                  </EuiText>
-                ),
-              },
-              { field: 'token', name: 'Token' },
-              { field: 'value', name: 'New Value' },
-            ]}
-          />
-          <EuiSpacer size="s" />
-        </EuiAccordion>
-      ))}
+        <EuiTitle size="m">
+          <span>Token changelog</span>
+        </EuiTitle>
+
+        {tokenChangelog.map(({ version, changes }) => (
+          <EuiAccordion
+            key={version}
+            id={version}
+            buttonContent={<span>{version}</span>}
+          >
+            <EuiInMemoryTable
+              items={changes}
+              columns={[
+                {
+                  field: 'changeType',
+                  name: 'Change',
+                  width: '100px',
+                  render: (changeType) => (
+                    <EuiText color="subdued" size="xs">
+                      {changeType}
+                    </EuiText>
+                  ),
+                },
+                { field: 'token', name: 'Token' },
+                { field: 'value', name: 'New Value' },
+              ]}
+            />
+            <EuiSpacer size="s" />
+          </EuiAccordion>
+        ))}
+      </EuiPageContentBody>
     </GuidePage>
   ),
 };

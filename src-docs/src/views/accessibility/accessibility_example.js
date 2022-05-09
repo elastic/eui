@@ -189,6 +189,7 @@ export const AccessibilityExample = {
     {
       title: 'Styles helpers',
       wrapText: false,
+      color: 'subdued',
       text: <StylesHelpers />,
     },
   ],

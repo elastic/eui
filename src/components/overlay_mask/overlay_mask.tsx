@@ -14,7 +14,9 @@
 import React, {
   FunctionComponent,
   HTMLAttributes,
+  MutableRefObject,
   ReactNode,
+  Ref,
   useEffect,
   useRef,
   useState,
@@ -22,6 +24,7 @@ import React, {
 import { createPortal } from 'react-dom';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
+import { useCombinedRefs } from '../../services';
 
 export interface EuiOverlayMaskInterface {
   /**
@@ -36,6 +39,10 @@ export interface EuiOverlayMaskInterface {
    * Should the mask visually sit above or below the EuiHeader (controlled by z-index)
    */
   headerZindexLocation?: 'above' | 'below';
+  /**
+   * React ref to be passed to the wrapping container
+   */
+  maskRef?: Ref<HTMLDivElement> | MutableRefObject<HTMLDivElement>;
 }
 
 export type EuiOverlayMaskProps = CommonProps &
@@ -50,9 +57,11 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   children,
   onClick,
   headerZindexLocation = 'above',
+  maskRef,
   ...rest
 }) => {
   const overlayMaskNode = useRef<HTMLDivElement>();
+  const combinedMaskRef = useCombinedRefs([overlayMaskNode, maskRef]);
   const [isPortalTargetReady, setIsPortalTargetReady] = useState(false);
 
   useEffect(() => {
@@ -65,9 +74,9 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
 
   useEffect(() => {
     if (typeof document !== 'undefined') {
-      overlayMaskNode.current = document.createElement('div');
+      combinedMaskRef(document.createElement('div'));
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const portalTarget = overlayMaskNode.current;

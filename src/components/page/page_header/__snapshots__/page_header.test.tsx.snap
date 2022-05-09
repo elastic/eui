@@ -213,7 +213,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           class="euiBreadcrumb"
         >
           <a
-            class="euiLink euiLink--primary euiBreadcrumb__content customClass"
+            class="euiLink euiBreadcrumb__content customClass css-102pf9n-euiLink-primary"
             data-test-subj="breadcrumbsAnimals"
             href="#"
             rel="noreferrer"
@@ -234,7 +234,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       </ol>
     </nav>
     <div
-      class="euiSpacer euiSpacer--s css-i2qclb-euiSpacer-s"
+      class="euiSpacer euiSpacer--s css-78drzl-euiSpacer-s"
     />
     <div
       class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
@@ -257,7 +257,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           Page title
         </h1>
         <div
-          class="euiSpacer euiSpacer--l css-jz428s-euiSpacer-l"
+          class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
         />
         <div
           class="euiText euiText--medium euiText--constrainedWidth"
@@ -296,17 +296,17 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       class="euiPageHeaderContent__bottom"
     >
       <div
-        class="euiSpacer euiSpacer--l css-jz428s-euiSpacer-l"
+        class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
       />
       <p>
         Anything
       </p>
       <div
-        class="euiSpacer euiSpacer--l css-jz428s-euiSpacer-l"
+        class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
       />
       <div
         aria-label="aria-label"
-        class="euiTabs euiTabs--large euiTabs--condensed testClass1 testClass2"
+        class="euiTabs euiTabs--large testClass1 testClass2"
         data-test-subj="test subject string"
         role="tablist"
       >

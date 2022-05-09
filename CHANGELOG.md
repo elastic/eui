@@ -1,3 +1,90 @@
+## [`57.0.0`](https://github.com/elastic/eui/tree/v57.0.0)
+
+- Updated `EuiMarkdownFormat` to allow `mailto:` links by default ([#5790](https://github.com/elastic/eui/pull/5790))
+- Updated `EuiMarkdownEditor`'s `euiMarkdownLinkValidator` parsing plugin to allow customization of link validation ([#5790](https://github.com/elastic/eui/pull/5790))
+- Added `logicals{}`, `logicalCSS()`, `logicalStyle()`, `logicalTextAlignCSS()`, and `logicalTextAlignSTyle()` CSS property utilities ([#5850](https://github.com/elastic/eui/pull/5850))
+- Added `euiPaddingSize()`, `useEuiPaddingSize()`, and `useEuiPaddingCSS()` sizing utilities ([#5850](https://github.com/elastic/eui/pull/5850))
+- Added `euiBackgroundColor()`, `useEuiBackgroundColor()` and `useEuiBackgroundColorCSS()` color utilities ([#5850](https://github.com/elastic/eui/pull/5850))
+- Changed default `EuiCallOut` `heading` element from `span` to `p` ([#5870](https://github.com/elastic/eui/pull/5870))
+- Updated `EuiOverlayMask` to accept a React ref ([#5876](https://github.com/elastic/eui/pull/5876))
+- Renamed `user` glyph to `userAvatar` in `EuiIcon` ([#5877](https://github.com/elastic/eui/pull/5877))
+- Added new `user` glyph in `EuiIcon` ([#5877](https://github.com/elastic/eui/pull/5877))
+
+**Bug fixes**
+
+- Fixed alignment of `EuiCallOut` icon with the heading text ([#5870](https://github.com/elastic/eui/pull/5870))
+- Fixed `EuiFlyout` `outsideClickCloses` not being scoped to overlay mask when `ownFocus=true` ([#5876](https://github.com/elastic/eui/pull/5876))
+
+**Deprecations**
+
+- Sass mixin `euiCallOutColor()` deprecated in favor of using `EuiCallOut` directly ([#5870](https://github.com/elastic/eui/pull/5870))
+
+**Breaking changes**
+
+- Removed deprecated options for `EuiDatePicker`'s `popoverPosition` props - use `EuiPopover` values going forward ([#5868](https://github.com/elastic/eui/pull/5868))
+- Removed `partition` prop from EuiCharts theme configuration - use `theme.partition` instead ([#5868](https://github.com/elastic/eui/pull/5868))
+- Removed `data-grid-cell-id` attribute from `EuiDataGrid` cells - use separate `data-gridcell-column-id` & `data-gridcell-row-index` attributes instead ([#5868](https://github.com/elastic/eui/pull/5868))
+- Removed `noDivider` prop from `EuiFilterButton` - use `withNext` prop instead ([#5868](https://github.com/elastic/eui/pull/5868))
+- Removed `isSelected` and `isComplete` props from `EuiHorizontalStep` - use `status` prop instead ([#5868](https://github.com/elastic/eui/pull/5868))
+- Removed `isHollow` prop from `EuiStep` - this visual appearance is no longer used in Amsterdam ([#5868](https://github.com/elastic/eui/pull/5868))
+- Removed condensed `display` prop from `EuiTabs` & `EuiTabbedContent` - this visual appearance is no longer used in Amsterdam ([#5868](https://github.com/elastic/eui/pull/5868))
+- Removed `descriptionDisplay` and `labelDisplay` props from `EuiSuggestItem` - use `truncate` and `labelWidth` instead, respectively ([#5868](https://github.com/elastic/eui/pull/5868))
+- Removed `.euiButton---subdued` className and `$euiButtonTypes.subdued` Sass variable - use `text` color instead ([#5868](https://github.com/elastic/eui/pull/5868))
+- Removed `.eui-textOverflowWrap` - use `.eui-textBreakWord` instead ([#5868](https://github.com/elastic/eui/pull/5868))
+- Removed `.euiYScrollWithShadows` - use `.eui-yScrollWithShadows` instead ([#5868](https://github.com/elastic/eui/pull/5868))
+- `EuiMarkdownEditor` no longer automatically includes the tooltip plugin in custom plugin arrays passed to `uiPlugins`. To use EUI's tooltip plugin, use `getDefaultEuiMarkdownPlugins()` ([#5868](https://github.com/elastic/eui/pull/5868))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiLink` to Emotion and removed `$euiLinkColors` ([#5856](https://github.com/elastic/eui/pull/5856))
+- Converted `EuiCallOut` to Emotion ([#5870](https://github.com/elastic/eui/pull/5870))
+
+## [`56.0.0`](https://github.com/elastic/eui/tree/v56.0.0)
+
+- Increased weight of `EuiLoadingSpinner` border ([#5845](https://github.com/elastic/eui/pull/5845))
+- Added `role` and default `aria-label` to `EuiLoadingLogo`, `EuiLoadingContent`, `EuiLoadingElastic`, and `EuiLoadingSpinner` ([#5845](https://github.com/elastic/eui/pull/5845))
+- Added `euiTextTruncate`, `euiTextWordBreak`, and `euiNumberFormat` CSS-in-JS text utilities ([#5854](https://github.com/elastic/eui/pull/5854))
+- Added `focus` token to global `EuiTheme` ([#5855](https://github.com/elastic/eui/pull/5855))
+- Added `euiFocusRing()` and `useEuiFocusRing()` function/hook for customizing focus outline ([#5855](https://github.com/elastic/eui/pull/5855))
+- Added the `focusTrapProps` prop to `EuiFlyout` to aid outside click detection and closing event ([#5860](https://github.com/elastic/eui/pull/5860))
+
+**Bug fixes**
+
+- Fixed a number of `EuiMarkdownEditor`'s default toolbar buttons to highlight when the text cursor is in a related location ([#5840](https://github.com/elastic/eui/pull/5840))
+- Fixed allotted animation size of `EuiLoadingLogo` ([#5845](https://github.com/elastic/eui/pull/5845))
+- Fixed `EuiLoadingElastic` in dark mode ([#5845](https://github.com/elastic/eui/pull/5845))
+- Fixed border-radius of nested `EuiSplitPanel`s ([#5855](https://github.com/elastic/eui/pull/5855))
+- Fixed `offset` of global focus `outline` ([#5855](https://github.com/elastic/eui/pull/5855))
+- Fixed `EuiCollapsibleNav` failing to close when the button is clicked ([#5860](https://github.com/elastic/eui/pull/5860))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiBottomBar` to Emotion ([#5823](https://github.com/elastic/eui/pull/5823))
+- Converted `EuiHealth` to Emotion ([#5832](https://github.com/elastic/eui/pull/5832))
+- Converted `EuiTitle` to Emotion ([#5842](https://github.com/elastic/eui/pull/5842))
+- Converted `EuiLoadingLogo`, `EuiLoadingContent`, `EuiLoadingElastic`, and `EuiLoadingSpinner`; Removed `$euiLoadingSpinnerSizes`, `$euiGradientStartStop`, and `$euiGradientMiddle` ([#5845](https://github.com/elastic/eui/pull/5845))
+- Converted `EuiSkipLink` to Emotion ([#5851](https://github.com/elastic/eui/pull/5851))
+
+**Breaking change**
+
+- As part of `EuiTitle`'s Emotion conversion, the line-height of `s` and `xxs` sized `EuiTitle`s have been slightly reduced ([#5842](https://github.com/elastic/eui/pull/5842))
+
+## [`55.1.2`](https://github.com/elastic/eui/tree/v55.1.2)
+
+**Note: this release is a backport containing changes originally made in `57.0.0`**
+
+- Updated `EuiOverlayMask` to accept a React ref ([#5876](https://github.com/elastic/eui/pull/5876))
+
+**Bug fixes**
+
+- Fixed `EuiFlyout` `outsideClickCloses` not being scoped to overlay mask when `ownFocus=true` ([#5876](https://github.com/elastic/eui/pull/5876))
+
+## [`55.1.1`](https://github.com/elastic/eui/tree/v55.1.1)
+
+**Note: this release is a backport containing changes originally made in `56.0.0`**
+
+- Added the `focusTrapProps` prop to `EuiFlyout` to aid outside click detection and closing event ([#5860](https://github.com/elastic/eui/pull/5860))
+
 ## [`55.1.0`](https://github.com/elastic/eui/tree/v55.1.0)
 
 - Improved `EuiTimeline` a11y by using better semantic elements ([#5791](https://github.com/elastic/eui/pull/5791))
