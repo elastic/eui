@@ -1,3 +1,11 @@
+## [`55.1.2`](https://github.com/elastic/eui/tree/v55.1.2)
+
+- Updated `EuiOverlayMask` to accept a React ref ([#5876](https://github.com/elastic/eui/pull/5876))
+
+**Bug fixes**
+
+- Fixed `EuiFlyout` `outsideClickCloses` not being scoped to overlay mask when `ownFocus=true` ([#5876](https://github.com/elastic/eui/pull/5876))
+
 ## [`55.1.1`](https://github.com/elastic/eui/tree/v55.1.1)
 
 - Added the `focusTrapProps` prop to `EuiFlyout` to aid outside click detection and closing event ([#5860](https://github.com/elastic/eui/pull/5860))
