@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiText } from './text';
 
@@ -22,6 +23,8 @@ describe('EuiText', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  shouldRenderCustomStyles(<EuiText size="s" color="#fff" />);
 
   describe('props', () => {
     describe('grow', () => {

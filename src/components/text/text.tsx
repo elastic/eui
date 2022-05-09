@@ -10,6 +10,9 @@ import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 
+import { useEuiTheme } from '../../services';
+import { euiTextStyles } from './text.styles';
+
 import { TextColor, EuiTextColor } from './text_color';
 
 import { EuiTextAlign, TextAlignment } from './text_align';
@@ -48,6 +51,10 @@ export const EuiText: FunctionComponent<EuiTextProps> = ({
   className,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiTextStyles(euiTheme);
+  const cssStyles = [styles.euiText];
+
   const classes = classNames(
     'euiText',
     textSizeToClassNameMap[size],
@@ -75,7 +82,7 @@ export const EuiText: FunctionComponent<EuiTextProps> = ({
   }
 
   return (
-    <div className={classes} {...rest}>
+    <div css={cssStyles} className={classes} {...rest}>
       {optionallyAlteredText || children}
     </div>
   );
