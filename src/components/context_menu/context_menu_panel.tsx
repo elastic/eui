@@ -388,9 +388,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       : (parent?.parentNode as HTMLElement);
     if (!popoverParent) return;
 
-    const hasPopoverParent = popoverParent.classList.contains(
-      'euiPopover__panel'
-    );
+    const hasPopoverParent = !!popoverParent.dataset.popoverPanel;
     if (!hasPopoverParent) return;
 
     this.initialPopoverParent = popoverParent;
