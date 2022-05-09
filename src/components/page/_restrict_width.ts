@@ -21,7 +21,7 @@ export const PAGE_MAX_WIDTH: CSSProperties['maxWidth'] = '1200px';
 export type _EuiPageRestrictWidth = {
   /**
    * Sets the max-width of the page,
-   * set to `true` to use the default size of `1000px (1200 for Amsterdam)`,
+   * set to `true` to use the default size of `1200px`,
    * set to `false` to not restrict the width,
    * set to a number for a custom width in px,
    * set to a string for a custom width in custom measurement.
