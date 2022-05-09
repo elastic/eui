@@ -28,6 +28,7 @@ export const TextUtilitiesExample = {
     },
     {
       title: 'Wrapping',
+      color: 'subdued',
       wrapText: false,
       text: <TextWrappingUtilities />,
     },
@@ -38,6 +39,7 @@ export const TextUtilitiesExample = {
     },
     {
       title: 'Color',
+      color: 'subdued',
       wrapText: false,
       text: <TextColorUtilities />,
     },

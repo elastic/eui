@@ -14,6 +14,7 @@ export default () => {
     <>
       <UtilityClassesSection
         code=".eui-fullHeight"
+        type="className"
         description={
           <>
             <p>
