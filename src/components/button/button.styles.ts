@@ -11,7 +11,7 @@ import { UseEuiTheme } from '../../services';
 // Provides a solid reset and base for handling sizing layout
 // Does not include any visual styles
 export const euiButtonBaseCSS = ({ euiTheme }: UseEuiTheme) => {
-  // TODO button variables should live outside of this functions
+  // TODO button variables should live outside of this function
   const euiButtonHeight = euiTheme.size.xxl;
 
   return `
