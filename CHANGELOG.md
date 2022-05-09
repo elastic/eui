@@ -69,6 +69,16 @@
 
 - As part of `EuiTitle`'s Emotion conversion, the line-height of `s` and `xxs` sized `EuiTitle`s have been slightly reduced ([#5842](https://github.com/elastic/eui/pull/5842))
 
+## [`55.1.2`](https://github.com/elastic/eui/tree/v55.1.2)
+
+**Note: this release is a backport containing changes originally made in `57.0.0`**
+
+- Updated `EuiOverlayMask` to accept a React ref ([#5876](https://github.com/elastic/eui/pull/5876))
+
+**Bug fixes**
+
+- Fixed `EuiFlyout` `outsideClickCloses` not being scoped to overlay mask when `ownFocus=true` ([#5876](https://github.com/elastic/eui/pull/5876))
+
 ## [`55.1.1`](https://github.com/elastic/eui/tree/v55.1.1)
 
 **Note: this release is a backport containing changes originally made in `56.0.0`**
