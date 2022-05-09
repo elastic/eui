@@ -3,7 +3,7 @@
 exports[`EuiText is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiText euiText--medium testClass1 testClass2"
+  class="euiText euiText--medium testClass1 testClass2 css-1st3sqn-euiText"
   data-test-subj="test subject string"
 >
   <p>
