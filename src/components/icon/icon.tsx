@@ -393,6 +393,7 @@ const typeToPathMap = {
   upgradeAssistantApp: 'app_upgrade_assistant',
   uptimeApp: 'app_uptime',
   user: 'user',
+  userAvatar: 'userAvatar',
   users: 'users',
   usersRolesApp: 'app_users_roles',
   vector: 'vector',

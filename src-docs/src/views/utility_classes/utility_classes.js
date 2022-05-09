@@ -12,6 +12,7 @@ export default () => (
   <>
     <UtilityClassesSection
       code="eui-displayBlock"
+      type="className"
       description={
         <p>
           Changes the element’s display property to{' '}
@@ -30,6 +31,7 @@ export default () => (
     <EuiSpacer />
     <UtilityClassesSection
       code="eui-displayInline"
+      type="className"
       description={
         <p>
           Changes the element’s display property to{' '}
@@ -48,6 +50,7 @@ export default () => (
     <EuiSpacer />
     <UtilityClassesSection
       code="eui-displayInlineBlock"
+      type="className"
       description={
         <p>
           Changes the element’s display property to{' '}
@@ -69,6 +72,7 @@ export default () => (
     <EuiSpacer />
     <UtilityClassesSection
       code="eui-fullWidth"
+      type="className"
       description={
         <p>
           Changes the element’s display property to{' '}

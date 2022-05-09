@@ -7,6 +7,7 @@ import {
   EuiShowFor,
   EuiHideFor,
   EuiCodeBlock,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import { BREAKPOINTS, BREAKPOINT_KEYS } from '../../../../src/services';
@@ -22,6 +23,8 @@ const responsiveSnippet = [
   <!-- <div>Content only showing for l and xl screens</div> -->
 </EuiShowFor>`,
 ];
+
+import UtilityClassesResponsive from './utility_classes_responsive';
 
 function renderSizes(size, index) {
   let code = `'${size}': ${BREAKPOINTS[size]}px`;
@@ -72,6 +75,17 @@ export const ResponsiveExample = {
       snippet: responsiveSnippet,
       props: { EuiShowFor, EuiHideFor, EuiBreakpointSize },
       demo: <Responsive />,
+    },
+    {
+      title: 'Utility classes',
+      color: 'subdued',
+      wrapText: false,
+      text: (
+        <>
+          <EuiSpacer />
+          <UtilityClassesResponsive />
+        </>
+      ),
     },
   ],
 };

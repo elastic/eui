@@ -1,1385 +1,232 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1`] = `
-<EuiMarkdownEditor
-  aria-label="aria-label"
-  className="testClass1 testClass2"
+<div
+  class="euiMarkdownEditor testClass1 testClass2"
   data-test-subj="test subject string"
-  editorId="editorId"
-  onChange={[Function]}
-  parsingPluginList={
-    Array [
-      Array [
-        [Function],
-        Object {},
-      ],
-      Array [
-        [Function],
-        Object {},
-      ],
-      Array [
-        [Function],
-        Object {
-          "emoticon": false,
-        },
-      ],
-      Array [
-        [Function],
-        Object {},
-      ],
-      Array [
-        [Function],
-        Object {},
-      ],
-      Array [
-        [Function],
-        Object {},
-      ],
-    ]
-  }
-  processingPluginList={
-    Array [
-      Array [
-        [Function],
-        Object {
-          "allowDangerousHtml": true,
-          "handlers": Object {},
-          "unknownHandler": [Function],
-        },
-      ],
-      Array [
-        [Function],
-        Object {
-          "Fragment": Symbol(react.fragment),
-          "components": Object {
-            "a": Object {
-              "$$typeof": Symbol(react.forward_ref),
-              "propTypes": Object {
-                "aria-label": [Function],
-                "className": [Function],
-                "color": [Function],
-                "data-test-subj": [Function],
-                "external": [Function],
-                "onClick": [Function],
-                "type": [Function],
-              },
-              "render": [Function],
-            },
-            "blockquote": [Function],
-            "checkboxPlugin": [Function],
-            "code": [Function],
-            "hr": [Function],
-            "pre": [Function],
-            "table": [Function],
-          },
-          "createElement": [Function],
-        },
-      ],
-    ]
-  }
-  uiPlugins={Array []}
-  value=""
 >
   <div
-    className="euiMarkdownEditor testClass1 testClass2"
-    data-test-subj="test subject string"
+    class="euiMarkdownEditorToolbar"
+    data-test-subj="euiMarkdownEditorToolbar"
   >
-    <EuiMarkdownEditorToolbar
-      markdownActions={
-        MarkdownActions {
-          "editorID": "editorId",
-          "styles": Object {
-            "mdBold": Object {
-              "button": Object {
-                "iconType": "",
-                "label": "",
-              },
-              "formatting": Object {
-                "prefix": "**",
-                "suffix": "**",
-                "trimFirst": true,
-              },
-              "name": "mdBold",
-            },
-            "mdCode": Object {
-              "button": Object {
-                "iconType": "",
-                "label": "",
-              },
-              "formatting": Object {
-                "blockPrefix": "\`\`\`",
-                "blockSuffix": "\`\`\`",
-                "prefix": "\`",
-                "suffix": "\`",
-              },
-              "name": "mdCode",
-            },
-            "mdItalic": Object {
-              "button": Object {
-                "iconType": "",
-                "label": "",
-              },
-              "formatting": Object {
-                "prefix": "_",
-                "suffix": "_",
-                "trimFirst": true,
-              },
-              "name": "mdItalic",
-            },
-            "mdLink": Object {
-              "button": Object {
-                "iconType": "",
-                "label": "",
-              },
-              "formatting": Object {
-                "prefix": "[",
-                "replaceNext": "https://",
-                "scanFor": "https?://",
-                "suffix": "](https://)",
-              },
-              "name": "mdLink",
-            },
-            "mdOl": Object {
-              "button": Object {
-                "iconType": "",
-                "label": "",
-              },
-              "formatting": Object {
-                "multiline": true,
-                "orderedList": true,
-                "prefix": "1. ",
-              },
-              "name": "mdOl",
-            },
-            "mdQuote": Object {
-              "button": Object {
-                "iconType": "",
-                "label": "",
-              },
-              "formatting": Object {
-                "multiline": true,
-                "prefix": "> ",
-                "surroundWithNewlines": true,
-              },
-              "name": "mdQuote",
-            },
-            "mdTl": Object {
-              "button": Object {
-                "iconType": "",
-                "label": "",
-              },
-              "formatting": Object {
-                "multiline": true,
-                "prefix": "- [ ] ",
-                "surroundWithNewlines": true,
-              },
-              "name": "mdTl",
-            },
-            "mdUl": Object {
-              "button": Object {
-                "iconType": "",
-                "label": "",
-              },
-              "formatting": Object {
-                "multiline": true,
-                "prefix": "- ",
-                "surroundWithNewlines": true,
-              },
-              "name": "mdUl",
-            },
-          },
-        }
-      }
-      onClickPreview={[Function]}
-      selectedNode={
-        Object {
-          "children": Array [],
-          "position": Object {
-            "end": Object {
-              "column": 1,
-              "line": 1,
-              "offset": 0,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 1,
-              "offset": 0,
-            },
-          },
-          "type": "root",
-        }
-      }
-      uiPlugins={Array []}
-      viewMode="editing"
+    <div
+      class="euiMarkdownEditorToolbar__buttons"
     >
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Bold"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          data-test-subj="euiMarkdownEditorToolbarButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorBold"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Italic"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          data-test-subj="euiMarkdownEditorToolbarButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorItalic"
+          />
+        </button>
+      </span>
+      <span
+        class="euiMarkdownEditorToolbar__divider"
+      />
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Unordered list"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          data-test-subj="euiMarkdownEditorToolbarButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorUnorderedList"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Ordered list"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          data-test-subj="euiMarkdownEditorToolbarButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorOrderedList"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Task list"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          data-test-subj="euiMarkdownEditorToolbarButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorChecklist"
+          />
+        </button>
+      </span>
+      <span
+        class="euiMarkdownEditorToolbar__divider"
+      />
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Quote"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          data-test-subj="euiMarkdownEditorToolbarButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="quote"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Code"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          data-test-subj="euiMarkdownEditorToolbarButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorCodeBlock"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Link"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          data-test-subj="euiMarkdownEditorToolbarButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorLink"
+          />
+        </button>
+      </span>
+    </div>
+    <button
+      class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small"
+      type="button"
+    >
+      <span
+        class="euiButtonContent euiButtonEmpty__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="eye"
+        />
+        <span
+          class="euiButtonEmpty__text"
+        >
+          Preview
+        </span>
+      </span>
+    </button>
+  </div>
+  <div
+    class="euiMarkdownEditor__toggleContainer"
+  >
+    <div
+      class="euiMarkdownEditorDropZone"
+    >
+      <textarea
+        aria-label="aria-label"
+        class="euiMarkdownEditorTextArea"
+        data-test-subj="euiMarkdownEditorTextArea"
+        id="editorId"
+        rows="6"
+        style="max-height: 500px;"
+      />
       <div
-        className="euiMarkdownEditorToolbar"
-        data-test-subj="euiMarkdownEditorToolbar"
+        class="euiMarkdownEditorFooter"
       >
         <div
-          className="euiMarkdownEditorToolbar__buttons"
+          class="euiMarkdownEditorFooter__actions"
+        />
+        <div
+          class="euiPopover euiPopover--anchorUpCenter"
         >
-          <EuiToolTip
-            content="Bold"
-            delay="long"
-            display="inlineBlock"
-            key="mdBold"
-            position="top"
+          <div
+            class="euiPopover__anchor"
           >
-            <span
-              className="euiToolTipAnchor"
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              <EuiMarkdownEditorToolbarButton
-                handleMdButtonClick={[Function]}
-                icon="editorBold"
-                id="mdBold"
-                isEditable={true}
-                label="Bold"
-                nodeId="strong"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                selectedNode={
-                  Object {
-                    "children": Array [],
-                    "position": Object {
-                      "end": Object {
-                        "column": 1,
-                        "line": 1,
-                        "offset": 0,
-                      },
-                      "start": Object {
-                        "column": 1,
-                        "line": 1,
-                        "offset": 0,
-                      },
-                    },
-                    "type": "root",
-                  }
-                }
-              >
-                <EuiButtonIcon
-                  aria-label="Bold"
-                  color="text"
-                  data-test-subj="euiMarkdownEditorToolbarButton"
-                  iconType="editorBold"
-                  isDisabled={false}
-                  onClick={[Function]}
-                >
-                  <button
-                    aria-label="Bold"
-                    className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                    data-test-subj="euiMarkdownEditorToolbarButton"
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    <EuiIcon
-                      aria-hidden="true"
-                      className="euiButtonIcon__icon"
-                      color="inherit"
-                      size="m"
-                      type="editorBold"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="euiButtonIcon__icon"
-                        color="inherit"
-                        data-euiicon-type="editorBold"
-                        size="m"
-                      />
-                    </EuiIcon>
-                  </button>
-                </EuiButtonIcon>
-              </EuiMarkdownEditorToolbarButton>
-            </span>
-          </EuiToolTip>
-          <EuiToolTip
-            content="Italic"
-            delay="long"
-            display="inlineBlock"
-            key="mdItalic"
-            position="top"
-          >
-            <span
-              className="euiToolTipAnchor"
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              <EuiMarkdownEditorToolbarButton
-                handleMdButtonClick={[Function]}
-                icon="editorItalic"
-                id="mdItalic"
-                isEditable={true}
-                label="Italic"
-                nodeId="emphasis"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                selectedNode={
-                  Object {
-                    "children": Array [],
-                    "position": Object {
-                      "end": Object {
-                        "column": 1,
-                        "line": 1,
-                        "offset": 0,
-                      },
-                      "start": Object {
-                        "column": 1,
-                        "line": 1,
-                        "offset": 0,
-                      },
-                    },
-                    "type": "root",
-                  }
-                }
-              >
-                <EuiButtonIcon
-                  aria-label="Italic"
-                  color="text"
-                  data-test-subj="euiMarkdownEditorToolbarButton"
-                  iconType="editorItalic"
-                  isDisabled={false}
-                  onClick={[Function]}
-                >
-                  <button
-                    aria-label="Italic"
-                    className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                    data-test-subj="euiMarkdownEditorToolbarButton"
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    <EuiIcon
-                      aria-hidden="true"
-                      className="euiButtonIcon__icon"
-                      color="inherit"
-                      size="m"
-                      type="editorItalic"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="euiButtonIcon__icon"
-                        color="inherit"
-                        data-euiicon-type="editorItalic"
-                        size="m"
-                      />
-                    </EuiIcon>
-                  </button>
-                </EuiButtonIcon>
-              </EuiMarkdownEditorToolbarButton>
-            </span>
-          </EuiToolTip>
-          <span
-            className="euiMarkdownEditorToolbar__divider"
-          />
-          <EuiToolTip
-            content="Unordered list"
-            delay="long"
-            display="inlineBlock"
-            key="mdUl"
-            position="top"
-          >
-            <span
-              className="euiToolTipAnchor"
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              <EuiMarkdownEditorToolbarButton
-                handleMdButtonClick={[Function]}
-                icon="editorUnorderedList"
-                id="mdUl"
-                isEditable={true}
-                label="Unordered list"
-                nodeId="ul"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                selectedNode={
-                  Object {
-                    "children": Array [],
-                    "position": Object {
-                      "end": Object {
-                        "column": 1,
-                        "line": 1,
-                        "offset": 0,
-                      },
-                      "start": Object {
-                        "column": 1,
-                        "line": 1,
-                        "offset": 0,
-                      },
-                    },
-                    "type": "root",
-                  }
-                }
-              >
-                <EuiButtonIcon
-                  aria-label="Unordered list"
-                  color="text"
-                  data-test-subj="euiMarkdownEditorToolbarButton"
-                  iconType="editorUnorderedList"
-                  isDisabled={false}
-                  onClick={[Function]}
-                >
-                  <button
-                    aria-label="Unordered list"
-                    className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                    data-test-subj="euiMarkdownEditorToolbarButton"
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    <EuiIcon
-                      aria-hidden="true"
-                      className="euiButtonIcon__icon"
-                      color="inherit"
-                      size="m"
-                      type="editorUnorderedList"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="euiButtonIcon__icon"
-                        color="inherit"
-                        data-euiicon-type="editorUnorderedList"
-                        size="m"
-                      />
-                    </EuiIcon>
-                  </button>
-                </EuiButtonIcon>
-              </EuiMarkdownEditorToolbarButton>
-            </span>
-          </EuiToolTip>
-          <EuiToolTip
-            content="Ordered list"
-            delay="long"
-            display="inlineBlock"
-            key="mdOl"
-            position="top"
-          >
-            <span
-              className="euiToolTipAnchor"
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              <EuiMarkdownEditorToolbarButton
-                handleMdButtonClick={[Function]}
-                icon="editorOrderedList"
-                id="mdOl"
-                isEditable={true}
-                label="Ordered list"
-                nodeId="ol"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                selectedNode={
-                  Object {
-                    "children": Array [],
-                    "position": Object {
-                      "end": Object {
-                        "column": 1,
-                        "line": 1,
-                        "offset": 0,
-                      },
-                      "start": Object {
-                        "column": 1,
-                        "line": 1,
-                        "offset": 0,
-                      },
-                    },
-                    "type": "root",
-                  }
-                }
-              >
-                <EuiButtonIcon
-                  aria-label="Ordered list"
-                  color="text"
-                  data-test-subj="euiMarkdownEditorToolbarButton"
-                  iconType="editorOrderedList"
-                  isDisabled={false}
-                  onClick={[Function]}
-                >
-                  <button
-                    aria-label="Ordered list"
-                    className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                    data-test-subj="euiMarkdownEditorToolbarButton"
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    <EuiIcon
-                      aria-hidden="true"
-                      className="euiButtonIcon__icon"
-                      color="inherit"
-                      size="m"
-                      type="editorOrderedList"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="euiButtonIcon__icon"
-                        color="inherit"
-                        data-euiicon-type="editorOrderedList"
-                        size="m"
-                      />
-                    </EuiIcon>
-                  </button>
-                </EuiButtonIcon>
-              </EuiMarkdownEditorToolbarButton>
-            </span>
-          </EuiToolTip>
-          <EuiToolTip
-            content="Task list"
-            delay="long"
-            display="inlineBlock"
-            key="mdTl"
-            position="top"
-          >
-            <span
-              className="euiToolTipAnchor"
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              <EuiMarkdownEditorToolbarButton
-                handleMdButtonClick={[Function]}
-                icon="editorChecklist"
-                id="mdTl"
-                isEditable={true}
-                label="Task list"
-                nodeId="tl"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                selectedNode={
-                  Object {
-                    "children": Array [],
-                    "position": Object {
-                      "end": Object {
-                        "column": 1,
-                        "line": 1,
-                        "offset": 0,
-                      },
-                      "start": Object {
-                        "column": 1,
-                        "line": 1,
-                        "offset": 0,
-                      },
-                    },
-                    "type": "root",
-                  }
-                }
-              >
-                <EuiButtonIcon
-                  aria-label="Task list"
-                  color="text"
-                  data-test-subj="euiMarkdownEditorToolbarButton"
-                  iconType="editorChecklist"
-                  isDisabled={false}
-                  onClick={[Function]}
-                >
-                  <button
-                    aria-label="Task list"
-                    className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                    data-test-subj="euiMarkdownEditorToolbarButton"
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    <EuiIcon
-                      aria-hidden="true"
-                      className="euiButtonIcon__icon"
-                      color="inherit"
-                      size="m"
-                      type="editorChecklist"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="euiButtonIcon__icon"
-                        color="inherit"
-                        data-euiicon-type="editorChecklist"
-                        size="m"
-                      />
-                    </EuiIcon>
-                  </button>
-                </EuiButtonIcon>
-              </EuiMarkdownEditorToolbarButton>
-            </span>
-          </EuiToolTip>
-          <span
-            className="euiMarkdownEditorToolbar__divider"
-          />
-          <EuiToolTip
-            content="Quote"
-            delay="long"
-            display="inlineBlock"
-            key="mdQuote"
-            position="top"
-          >
-            <span
-              className="euiToolTipAnchor"
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              <EuiMarkdownEditorToolbarButton
-                handleMdButtonClick={[Function]}
-                icon="quote"
-                id="mdQuote"
-                isEditable={true}
-                label="Quote"
-                nodeId="quote"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                selectedNode={
-                  Object {
-                    "children": Array [],
-                    "position": Object {
-                      "end": Object {
-                        "column": 1,
-                        "line": 1,
-                        "offset": 0,
-                      },
-                      "start": Object {
-                        "column": 1,
-                        "line": 1,
-                        "offset": 0,
-                      },
-                    },
-                    "type": "root",
-                  }
-                }
-              >
-                <EuiButtonIcon
-                  aria-label="Quote"
-                  color="text"
-                  data-test-subj="euiMarkdownEditorToolbarButton"
-                  iconType="quote"
-                  isDisabled={false}
-                  onClick={[Function]}
-                >
-                  <button
-                    aria-label="Quote"
-                    className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                    data-test-subj="euiMarkdownEditorToolbarButton"
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    <EuiIcon
-                      aria-hidden="true"
-                      className="euiButtonIcon__icon"
-                      color="inherit"
-                      size="m"
-                      type="quote"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="euiButtonIcon__icon"
-                        color="inherit"
-                        data-euiicon-type="quote"
-                        size="m"
-                      />
-                    </EuiIcon>
-                  </button>
-                </EuiButtonIcon>
-              </EuiMarkdownEditorToolbarButton>
-            </span>
-          </EuiToolTip>
-          <EuiToolTip
-            content="Code"
-            delay="long"
-            display="inlineBlock"
-            key="mdCode"
-            position="top"
-          >
-            <span
-              className="euiToolTipAnchor"
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              <EuiMarkdownEditorToolbarButton
-                handleMdButtonClick={[Function]}
-                icon="editorCodeBlock"
-                id="mdCode"
-                isEditable={true}
-                label="Code"
-                nodeId="inlineCode"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                selectedNode={
-                  Object {
-                    "children": Array [],
-                    "position": Object {
-                      "end": Object {
-                        "column": 1,
-                        "line": 1,
-                        "offset": 0,
-                      },
-                      "start": Object {
-                        "column": 1,
-                        "line": 1,
-                        "offset": 0,
-                      },
-                    },
-                    "type": "root",
-                  }
-                }
-              >
-                <EuiButtonIcon
-                  aria-label="Code"
-                  color="text"
-                  data-test-subj="euiMarkdownEditorToolbarButton"
-                  iconType="editorCodeBlock"
-                  isDisabled={false}
-                  onClick={[Function]}
-                >
-                  <button
-                    aria-label="Code"
-                    className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                    data-test-subj="euiMarkdownEditorToolbarButton"
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    <EuiIcon
-                      aria-hidden="true"
-                      className="euiButtonIcon__icon"
-                      color="inherit"
-                      size="m"
-                      type="editorCodeBlock"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="euiButtonIcon__icon"
-                        color="inherit"
-                        data-euiicon-type="editorCodeBlock"
-                        size="m"
-                      />
-                    </EuiIcon>
-                  </button>
-                </EuiButtonIcon>
-              </EuiMarkdownEditorToolbarButton>
-            </span>
-          </EuiToolTip>
-          <EuiToolTip
-            content="Link"
-            delay="long"
-            display="inlineBlock"
-            key="mdLink"
-            position="top"
-          >
-            <span
-              className="euiToolTipAnchor"
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
-            >
-              <EuiMarkdownEditorToolbarButton
-                handleMdButtonClick={[Function]}
-                icon="editorLink"
-                id="mdLink"
-                isEditable={true}
-                label="Link"
-                nodeId="link"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                selectedNode={
-                  Object {
-                    "children": Array [],
-                    "position": Object {
-                      "end": Object {
-                        "column": 1,
-                        "line": 1,
-                        "offset": 0,
-                      },
-                      "start": Object {
-                        "column": 1,
-                        "line": 1,
-                        "offset": 0,
-                      },
-                    },
-                    "type": "root",
-                  }
-                }
-              >
-                <EuiButtonIcon
-                  aria-label="Link"
-                  color="text"
-                  data-test-subj="euiMarkdownEditorToolbarButton"
-                  iconType="editorLink"
-                  isDisabled={false}
-                  onClick={[Function]}
-                >
-                  <button
-                    aria-label="Link"
-                    className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                    data-test-subj="euiMarkdownEditorToolbarButton"
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    <EuiIcon
-                      aria-hidden="true"
-                      className="euiButtonIcon__icon"
-                      color="inherit"
-                      size="m"
-                      type="editorLink"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="euiButtonIcon__icon"
-                        color="inherit"
-                        data-euiicon-type="editorLink"
-                        size="m"
-                      />
-                    </EuiIcon>
-                  </button>
-                </EuiButtonIcon>
-              </EuiMarkdownEditorToolbarButton>
-            </span>
-          </EuiToolTip>
-        </div>
-        <EuiButtonEmpty
-          color="text"
-          iconType="eye"
-          onClick={[Function]}
-          size="s"
-        >
-          <button
-            className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small"
-            disabled={false}
-            onClick={[Function]}
-            type="button"
-          >
-            <EuiButtonContent
-              className="euiButtonEmpty__content"
-              iconSide="left"
-              iconSize="m"
-              iconType="eye"
-              textProps={
-                Object {
-                  "className": "euiButtonEmpty__text",
-                }
-              }
+            <button
+              aria-label="Show markdown help"
+              class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--small euiMarkdownEditorFooter__helpButton"
+              title="Syntax help"
+              type="button"
             >
               <span
-                className="euiButtonContent euiButtonEmpty__content"
-              >
-                <EuiIcon
-                  className="euiButtonContent__icon"
-                  color="inherit"
-                  size="m"
-                  type="eye"
-                >
-                  <span
-                    className="euiButtonContent__icon"
-                    color="inherit"
-                    data-euiicon-type="eye"
-                    size="m"
-                  />
-                </EuiIcon>
-                <span
-                  className="euiButtonEmpty__text"
-                >
-                  <EuiI18n
-                    default="Preview"
-                    token="euiMarkdownEditorToolbar.previewMarkdown"
-                  >
-                    Preview
-                  </EuiI18n>
-                </span>
-              </span>
-            </EuiButtonContent>
-          </button>
-        </EuiButtonEmpty>
-      </div>
-    </EuiMarkdownEditorToolbar>
-    <div
-      className="euiMarkdownEditor__toggleContainer"
-      style={
-        Object {
-          "height": "calc(100% - 0px)",
-        }
-      }
-    >
-      <EuiMarkdownEditorDropZone
-        dropHandlers={Array []}
-        errors={Array []}
-        hasUnacceptedItems={false}
-        insertText={[Function]}
-        isEditing={true}
-        setEditorFooterHeight={[Function]}
-        setHasUnacceptedItems={[Function]}
-        uiPlugins={Array []}
-      >
-        <div
-          className="euiMarkdownEditorDropZone"
-          onBlur={null}
-          onClick={null}
-          onDragEnter={null}
-          onDragLeave={null}
-          onDragOver={null}
-          onDrop={null}
-          onFocus={null}
-          onKeyDown={null}
-        >
-          <EuiResizeObserver
-            onResize={[Function]}
-          >
-            <EuiMarkdownEditorTextArea
-              aria-label="aria-label"
-              height="calc(250px)"
-              id="editorId"
-              maxHeight="500px"
-              onChange={[Function]}
-              onFocus={[Function]}
-              value=""
-            >
-              <textarea
-                aria-label="aria-label"
-                className="euiMarkdownEditorTextArea"
-                data-test-subj="euiMarkdownEditorTextArea"
-                id="editorId"
-                onChange={[Function]}
-                onFocus={[Function]}
-                rows={6}
-                style={
-                  Object {
-                    "height": "calc(250px)",
-                    "maxHeight": "500px",
-                  }
-                }
-                value=""
+                aria-hidden="true"
+                class="euiButtonIcon__icon"
+                color="inherit"
+                data-euiicon-type="MarkdownLogo"
               />
-            </EuiMarkdownEditorTextArea>
-          </EuiResizeObserver>
-          <EuiMarkdownEditorFooter
-            dropHandlers={Array []}
-            errors={Array []}
-            hasUnacceptedItems={false}
-            isUploadingFiles={false}
-            openFiles={[Function]}
-            uiPlugins={Array []}
-          >
-            <div
-              className="euiMarkdownEditorFooter"
-            >
-              <div
-                className="euiMarkdownEditorFooter__actions"
-              />
-              <EuiPopover
-                anchorPosition="upCenter"
-                button={
-                  <EuiButtonIcon
-                    aria-label="Show markdown help"
-                    className="euiMarkdownEditorFooter__helpButton"
-                    color="text"
-                    iconType={[Function]}
-                    onClick={[Function]}
-                    size="s"
-                    title="Syntax help"
-                  />
-                }
-                closePopover={[Function]}
-                display="inlineBlock"
-                hasArrow={true}
-                isOpen={true}
-                ownFocus={true}
-                panelPaddingSize="s"
-              >
-                <div
-                  className="euiPopover euiPopover--anchorUpCenter"
-                >
-                  <div
-                    className="euiPopover__anchor"
-                  >
-                    <EuiButtonIcon
-                      aria-label="Show markdown help"
-                      className="euiMarkdownEditorFooter__helpButton"
-                      color="text"
-                      iconType={[Function]}
-                      onClick={[Function]}
-                      size="s"
-                      title="Syntax help"
-                    >
-                      <button
-                        aria-label="Show markdown help"
-                        className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--small euiMarkdownEditorFooter__helpButton"
-                        onClick={[Function]}
-                        title="Syntax help"
-                        type="button"
-                      >
-                        <EuiIcon
-                          aria-hidden="true"
-                          className="euiButtonIcon__icon"
-                          color="inherit"
-                          size="m"
-                          type={[Function]}
-                        >
-                          <span
-                            aria-hidden="true"
-                            className="euiButtonIcon__icon"
-                            color="inherit"
-                            data-euiicon-type="MarkdownLogo"
-                            size="m"
-                          />
-                        </EuiIcon>
-                      </button>
-                    </EuiButtonIcon>
-                  </div>
-                  <EuiPortal>
-                    <Portal
-                      containerInfo={
-                        <div>
-                          <div
-                            data-focus-guard="true"
-                            style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-                            tabindex="-1"
-                          />
-                          <div
-                            data-focus-guard="true"
-                            style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-                            tabindex="-1"
-                          />
-                          <div
-                            data-focus-lock-disabled="disabled"
-                          >
-                            <div
-                              aria-describedby="generated-id"
-                              aria-live="off"
-                              aria-modal="true"
-                              class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--top"
-                              data-autofocus="true"
-                              role="dialog"
-                              style="top: -16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
-                              tabindex="0"
-                            >
-                              <div
-                                class="euiPopover__panelArrow euiPopover__panelArrow--top"
-                                style="left: 10px; top: 0px;"
-                              />
-                              <p
-                                class="euiScreenReaderOnly"
-                                id="generated-id"
-                              >
-                                You are in a dialog. To close this dialog, hit escape.
-                              </p>
-                              <div>
-                                <p>
-                                  This editor uses
-                                   
-                                  <a
-                                    class="euiLink euiLink--primary"
-                                    href="https://guides.github.com/features/mastering-markdown/"
-                                    rel="noopener noreferrer"
-                                    target="_blank"
-                                  >
-                                    GitHub flavored markdown
-                                    <span
-                                      class="euiLink__externalIcon"
-                                      data-euiicon-type="popout"
-                                    >
-                                      External link
-                                    </span>
-                                    <span
-                                      class="euiScreenReaderOnly"
-                                    >
-                                      (opens in a new tab or window)
-                                    </span>
-                                  </a>
-                                  .
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            data-focus-guard="true"
-                            style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-                            tabindex="-1"
-                          />
-                        </div>
-                      }
-                    >
-                      <EuiFocusTrap
-                        clickOutsideDisables={true}
-                        disabled={true}
-                        initialFocus={[Function]}
-                        noIsolation={true}
-                        onClickOutside={[Function]}
-                        onEscapeKey={[Function]}
-                        returnFocus={false}
-                        scrollLock={false}
-                      >
-                        <ForwardRef
-                          enabled={false}
-                          initialFocus={[Function]}
-                          noIsolation={true}
-                          onClickOutside={[Function]}
-                          onEscapeKey={[Function]}
-                          returnFocus={false}
-                          scrollLock={false}
-                        >
-                          <ForwardRef
-                            enabled={false}
-                            initialFocus={[Function]}
-                            noIsolation={true}
-                            onClickOutside={[Function]}
-                            onEscapeKey={[Function]}
-                            returnFocus={false}
-                            scrollLock={false}
-                            sideCar={[Function]}
-                          >
-                            <ForwardRef(FocusLockUI)
-                              as={
-                                Object {
-                                  "$$typeof": Symbol(react.forward_ref),
-                                  "classNames": Object {
-                                    "fullWidth": "width-before-scroll-bar",
-                                    "zeroRight": "right-scroll-bar-position",
-                                  },
-                                  "defaultProps": Object {
-                                    "enabled": true,
-                                    "inert": false,
-                                    "removeScrollBar": true,
-                                  },
-                                  "render": [Function],
-                                }
-                              }
-                              autoFocus={true}
-                              crossFrame={true}
-                              disabled={true}
-                              lockProps={
-                                Object {
-                                  "allowPinchZoom": undefined,
-                                  "as": undefined,
-                                  "enabled": false,
-                                  "inert": undefined,
-                                  "shards": undefined,
-                                  "sideCar": [Function],
-                                  "style": undefined,
-                                }
-                              }
-                              noFocusGuards={false}
-                              persistentFocus={false}
-                              returnFocus={false}
-                              sideCar={[Function]}
-                            >
-                              <div
-                                data-focus-guard={true}
-                                key="guard-first"
-                                style={
-                                  Object {
-                                    "height": "0px",
-                                    "left": "1px",
-                                    "overflow": "hidden",
-                                    "padding": 0,
-                                    "position": "fixed",
-                                    "top": "1px",
-                                    "width": "1px",
-                                  }
-                                }
-                                tabIndex={-1}
-                              />
-                              <div
-                                data-focus-guard={true}
-                                key="guard-nearest"
-                                style={
-                                  Object {
-                                    "height": "0px",
-                                    "left": "1px",
-                                    "overflow": "hidden",
-                                    "padding": 0,
-                                    "position": "fixed",
-                                    "top": "1px",
-                                    "width": "1px",
-                                  }
-                                }
-                                tabIndex={-1}
-                              />
-                              <ForwardRef
-                                data-focus-lock-disabled="disabled"
-                                enabled={false}
-                                inert={false}
-                                onBlur={[Function]}
-                                onFocus={[Function]}
-                                removeScrollBar={true}
-                                sideCar={[Function]}
-                              >
-                                <div
-                                  data-focus-lock-disabled="disabled"
-                                  onBlur={[Function]}
-                                  onFocus={[Function]}
-                                  onScrollCapture={[Function]}
-                                  onTouchMoveCapture={[Function]}
-                                  onWheelCapture={[Function]}
-                                >
-                                  <EuiPanel
-                                    aria-describedby="generated-id"
-                                    aria-live="off"
-                                    aria-modal="true"
-                                    className="euiPopover__panel euiPopover__panel--top"
-                                    hasShadow={false}
-                                    paddingSize="s"
-                                    panelRef={[Function]}
-                                    role="dialog"
-                                    style={
-                                      Object {
-                                        "left": -22,
-                                        "top": -16,
-                                        "willChange": "transform, opacity",
-                                        "zIndex": 2000,
-                                      }
-                                    }
-                                    tabIndex={0}
-                                  >
-                                    <div
-                                      aria-describedby="generated-id"
-                                      aria-live="off"
-                                      aria-modal="true"
-                                      className="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--top"
-                                      role="dialog"
-                                      style={
-                                        Object {
-                                          "left": -22,
-                                          "top": -16,
-                                          "willChange": "transform, opacity",
-                                          "zIndex": 2000,
-                                        }
-                                      }
-                                      tabIndex={0}
-                                    >
-                                      <div
-                                        className="euiPopover__panelArrow euiPopover__panelArrow--top"
-                                        style={
-                                          Object {
-                                            "left": 10,
-                                            "top": 0,
-                                          }
-                                        }
-                                      />
-                                      <EuiScreenReaderOnly>
-                                        <p
-                                          className="euiScreenReaderOnly"
-                                          id="generated-id"
-                                        >
-                                          <EuiI18n
-                                            default="You are in a dialog. To close this dialog, hit escape."
-                                            token="euiPopover.screenReaderAnnouncement"
-                                          >
-                                            You are in a dialog. To close this dialog, hit escape.
-                                          </EuiI18n>
-                                        </p>
-                                      </EuiScreenReaderOnly>
-                                      <EuiMutationObserver
-                                        observerOptions={
-                                          Object {
-                                            "attributes": true,
-                                            "characterData": true,
-                                            "childList": true,
-                                            "subtree": true,
-                                          }
-                                        }
-                                        onMutation={[Function]}
-                                      >
-                                        <div>
-                                          <EuiI18n
-                                            defaults={
-                                              Array [
-                                                "This editor uses",
-                                              ]
-                                            }
-                                            tokens={
-                                              Array [
-                                                "euiMarkdownEditorFooter.syntaxPopoverDescription",
-                                              ]
-                                            }
-                                          >
-                                            <p>
-                                              This editor uses
-                                               
-                                              <EuiLink
-                                                href="https://guides.github.com/features/mastering-markdown/"
-                                                target="_blank"
-                                              >
-                                                <a
-                                                  className="euiLink euiLink--primary"
-                                                  href="https://guides.github.com/features/mastering-markdown/"
-                                                  rel="noopener noreferrer"
-                                                  target="_blank"
-                                                >
-                                                  <EuiI18n
-                                                    default="GitHub flavored markdown"
-                                                    token="euiMarkdownEditorFooter.mdSyntaxLink"
-                                                  >
-                                                    GitHub flavored markdown
-                                                  </EuiI18n>
-                                                  <EuiIcon
-                                                    aria-label="External link"
-                                                    className="euiLink__externalIcon"
-                                                    size="s"
-                                                    type="popout"
-                                                  >
-                                                    <span
-                                                      className="euiLink__externalIcon"
-                                                      data-euiicon-type="popout"
-                                                      size="s"
-                                                    >
-                                                      External link
-                                                    </span>
-                                                  </EuiIcon>
-                                                  <EuiScreenReaderOnly>
-                                                    <span
-                                                      className="euiScreenReaderOnly"
-                                                    >
-                                                      <EuiI18n
-                                                        default="(opens in a new tab or window)"
-                                                        token="euiLink.newTarget.screenReaderOnlyText"
-                                                      >
-                                                        (opens in a new tab or window)
-                                                      </EuiI18n>
-                                                    </span>
-                                                  </EuiScreenReaderOnly>
-                                                </a>
-                                              </EuiLink>
-                                              .
-                                            </p>
-                                          </EuiI18n>
-                                        </div>
-                                      </EuiMutationObserver>
-                                    </div>
-                                  </EuiPanel>
-                                </div>
-                              </ForwardRef>
-                              <div
-                                data-focus-guard={true}
-                                style={
-                                  Object {
-                                    "height": "0px",
-                                    "left": "1px",
-                                    "overflow": "hidden",
-                                    "padding": 0,
-                                    "position": "fixed",
-                                    "top": "1px",
-                                    "width": "1px",
-                                  }
-                                }
-                                tabIndex={-1}
-                              />
-                            </ForwardRef(FocusLockUI)>
-                          </ForwardRef>
-                        </ForwardRef>
-                      </EuiFocusTrap>
-                    </Portal>
-                  </EuiPortal>
-                </div>
-              </EuiPopover>
-            </div>
-          </EuiMarkdownEditorFooter>
-          <input
-            autoComplete="off"
-            multiple={true}
-            onChange={null}
-            onClick={null}
-            style={
-              Object {
-                "display": "none",
-              }
-            }
-            tabIndex={-1}
-            type="file"
-          />
+            </button>
+          </div>
         </div>
-      </EuiMarkdownEditorDropZone>
+      </div>
+      <input
+        autocomplete="off"
+        multiple=""
+        style="display: none;"
+        tabindex="-1"
+        type="file"
+      />
     </div>
   </div>
-</EuiMarkdownEditor>
+</div>
 `;
 
 exports[`EuiMarkdownEditor is rendered 1`] = `

@@ -26,3 +26,5 @@ export type {
   RemarkRehypeHandler,
   RemarkTokenizer,
 } from './markdown_types';
+export { euiMarkdownLinkValidator } from './plugins/markdown_link_validator';
+export type { EuiMarkdownLinkValidatorOptions } from './plugins/markdown_link_validator';

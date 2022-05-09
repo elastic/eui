@@ -1,9 +1,3 @@
-.guideSection {
-  & + .guideSection {
-    margin-top: $euiSizeXL;
-  }
-}
-
 .guideSection__tableCodeBlock {
   padding-left: $euiSizeXS;
   padding-right: $euiSizeXS;
