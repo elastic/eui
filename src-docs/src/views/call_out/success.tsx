@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiCallOut, EuiLink } from '../../../../src/components';
+import { EuiCallOut, EuiLink } from '../../../../src';
 
 export default () => (
   <EuiCallOut title="Good news, everyone!" color="success" iconType="user">

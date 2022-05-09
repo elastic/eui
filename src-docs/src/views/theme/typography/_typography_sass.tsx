@@ -70,6 +70,7 @@ export const FontSass = () => {
 
       <ThemeExample
         title={'Mixins'}
+        type={null}
         description={
           <>
             <p>
@@ -86,7 +87,13 @@ export const FontSass = () => {
         snippet="@include euiCodeFont;"
         snippetLanguage="scss"
       />
+    </>
+  );
+};
 
+export const FontValuesSass = () => {
+  return (
+    <>
       <EuiBasicTable
         items={Object.keys(euiFontMixins).map(function (mixin) {
           return {
@@ -144,8 +151,6 @@ export const euiFontWeights = [
 export const FontWeightSass: FunctionComponent<ThemeRowType> = ({
   description,
 }) => {
-  const values = useJsonVars();
-
   return (
     <>
       <ThemeExample
@@ -159,7 +164,15 @@ export const FontWeightSass: FunctionComponent<ThemeRowType> = ({
         snippet={'font-weight: $euiFontWeightBold;'}
         snippetLanguage="scss"
       />
+    </>
+  );
+};
 
+export const FontWeightValuesSass = () => {
+  const values = useJsonVars();
+
+  return (
+    <>
       <EuiBasicTable
         items={euiFontWeights.map(function (weight) {
           return {
@@ -216,12 +229,11 @@ const euiFontSizes = [
 ];
 
 export const FontScaleSass = () => {
-  const values = useJsonVars();
-
   return (
     <>
       <ThemeExample
         title={'Mixins'}
+        type={null}
         description={
           <p>
             It is recommended to use these as a mixin to automatically apply
@@ -232,7 +244,15 @@ export const FontScaleSass = () => {
         snippet="@include euiFontSizeL;"
         snippetLanguage="scss"
       />
+    </>
+  );
+};
 
+export const FontScaleValuesSass = () => {
+  const values = useJsonVars();
+
+  return (
+    <>
       <EuiBasicTable
         items={euiFontSizes.map(function (size, index) {
           return {
