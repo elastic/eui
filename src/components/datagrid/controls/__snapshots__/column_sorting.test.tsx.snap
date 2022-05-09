@@ -105,7 +105,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                   aria-describedby="generated-id"
                   aria-live="off"
                   aria-modal="true"
-                  class="euiPanel euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop css-6zsgh2-euiPanel-grow-m-s-plain"
+                  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop css-6zsgh2-euiPanel-grow-m-s-plain"
                   data-autofocus="true"
                   role="dialog"
                   style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
@@ -589,7 +589,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                             aria-describedby="generated-id"
                             aria-live="off"
                             aria-modal="true"
-                            className="euiPanel euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop css-6zsgh2-euiPanel-grow-m-s-plain"
+                            className="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop css-6zsgh2-euiPanel-grow-m-s-plain"
                             role="dialog"
                             style={
                               Object {

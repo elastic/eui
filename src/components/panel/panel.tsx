@@ -28,6 +28,19 @@ import { euiPanelStyles } from './panel.style';
 export const SIZES = PADDING_SIZES;
 export type PanelPaddingSize = EuiPaddingSize;
 
+// Padding class names necessary for EuiPopover and EuiCard.
+// But not the new sizes `xs`, and `xl`.
+const paddingSizeToClassNameMap: {
+  [value in PanelPaddingSize]: string | null;
+} = {
+  none: null,
+  xs: null,
+  s: 'paddingSmall',
+  m: 'paddingMedium',
+  l: 'paddingLarge',
+  xl: null,
+};
+
 export const BORDER_RADII = ['none', 'm'] as const;
 export type PanelBorderRadius = typeof BORDER_RADII[number];
 
@@ -113,7 +126,16 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     rest.onClick && styles.isClickable,
   ];
 
-  const classes = classNames('euiPanel', `euiPanel--${color}`, className);
+  const classes = classNames(
+    'euiPanel',
+    `euiPanel--${color}`,
+    {
+      [`euiPanel--${paddingSizeToClassNameMap[paddingSize]}`]: paddingSizeToClassNameMap[
+        paddingSize
+      ],
+    },
+    className
+  );
 
   if (rest.onClick && element !== 'div') {
     return (
