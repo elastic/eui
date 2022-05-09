@@ -172,7 +172,7 @@ describe('EuiMarkdownEditor', () => {
       .find('EuiButtonIcon.euiMarkdownEditorFooter__helpButton')
       .simulate('click');
 
-    expect(component).toMatchSnapshot();
+    expect(component.render()).toMatchSnapshot();
   });
 
   test('fires onChange on text area change', () => {
