@@ -1,24 +1,39 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { EuiSpacer, EuiText } from '../../../../src/components';
-import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
+import { EuiSpacer, EuiText, EuiCallOut } from '../../../../src/components';
 import UtilityClassesDisplay from './utility_classes';
-import UtilityClassesText from './utility_classes_text';
 import UtilityClassesVertAlign from './utility_classes_vert_align';
-import UtilityClassesResponsive from './utility_classes_responsive';
 
 export const UtilityClassesExample = {
   title: 'CSS utility classes',
   intro: (
-    <EuiText grow={false}>
-      <p>
-        The following CSS-only classes are provided as helper utilities. They
-        are useful for making micro-adjustments to existing React components.
+    <>
+      <EuiText grow={false}>
+        <p>
+          The following CSS-only classes are provided as helper utilities. They
+          are useful for making micro-adjustments to existing React components.
+        </p>
+      </EuiText>
+      <EuiSpacer size="m" />
+      <EuiCallOut title="Scroll utilities have moved" iconType="symlink">
         For overflow and scrolling specific utilities, go to the{' '}
         <Link to="/utilities/scroll">Scroll documentation page</Link>.
-      </p>
-    </EuiText>
+      </EuiCallOut>
+      <EuiSpacer size="m" />
+      <EuiCallOut title="Text utilities have moved" iconType="symlink">
+        For text and typography specific utilities, go to the{' '}
+        <Link to="/utilities/text">Text documentation page</Link>.
+      </EuiCallOut>
+      <EuiSpacer size="m" />
+      <EuiCallOut title="Responsive utilities have moved" iconType="symlink">
+        For responsive specific utilities, go to the{' '}
+        <Link to="/utilities/responsive#utility-classes">
+          Responsive documentation page
+        </Link>
+        .
+      </EuiCallOut>
+    </>
   ),
   sections: [
     {
@@ -28,42 +43,17 @@ export const UtilityClassesExample = {
         <>
           <EuiSpacer />
           <UtilityClassesDisplay />
-          <EuiSpacer />
-          <EuiHorizontalRule />
-        </>
-      ),
-    },
-    {
-      title: 'Text',
-      wrapText: false,
-      text: (
-        <>
-          <EuiSpacer />
-          <UtilityClassesText />
-          <EuiSpacer />
-          <EuiHorizontalRule />
         </>
       ),
     },
     {
       title: 'Vertical alignment',
+      color: 'subdued',
       wrapText: false,
       text: (
         <>
           <EuiSpacer />
           <UtilityClassesVertAlign />
-          <EuiSpacer />
-          <EuiHorizontalRule />
-        </>
-      ),
-    },
-    {
-      title: 'Responsive',
-      wrapText: false,
-      text: (
-        <>
-          <EuiSpacer />
-          <UtilityClassesResponsive />
         </>
       ),
     },

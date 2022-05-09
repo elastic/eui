@@ -8,6 +8,7 @@
 
 import React, {
   useEffect,
+  useRef,
   useState,
   forwardRef,
   ComponentPropsWithRef,
@@ -15,7 +16,7 @@ import React, {
   ElementType,
   Fragment,
   FunctionComponent,
-  MouseEvent,
+  MouseEvent as ReactMouseEvent,
   MutableRefObject,
 } from 'react';
 import classnames from 'classnames';
@@ -30,7 +31,7 @@ import {
 } from '../../services';
 
 import { CommonProps, keysOf, PropsOfElement } from '../common';
-import { EuiFocusTrap } from '../focus_trap';
+import { EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
 import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
 import { EuiI18n } from '../i18n';
@@ -81,7 +82,7 @@ export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 type _EuiFlyoutPaddingSize = typeof PADDING_SIZES[number];
 
 interface _EuiFlyoutProps {
-  onClose: () => void;
+  onClose: (event: MouseEvent | TouchEvent | KeyboardEvent) => void;
   /**
    * Defines the width of the panel.
    * Pass a predefined size of `s | m | l`, or pass any number/string compatible with the CSS `width` attribute
@@ -151,6 +152,12 @@ interface _EuiFlyoutProps {
    */
   pushMinBreakpoint?: EuiBreakpointSize | number;
   style?: CSSProperties;
+  /**
+   * Object of props passed to EuiFocusTrap.
+   * `shards` specifies an array of elements that will be considered part of the flyout, preventing the flyout from being closed when clicked.
+   * `closeOnMouseup` will delay the close callback, allowing time for external toggle buttons to handle close behavior.
+   */
+  focusTrapProps?: Pick<EuiFocusTrapProps, 'closeOnMouseup' | 'shards'>;
 }
 
 const defaultElement = 'div';
@@ -189,6 +196,7 @@ export const EuiFlyout = forwardRef(
       outsideClickCloses,
       role = 'dialog',
       pushMinBreakpoint = 'l',
+      focusTrapProps,
       ...rest
     }: EuiFlyoutProps<T>,
     ref:
@@ -197,6 +205,7 @@ export const EuiFlyout = forwardRef(
       | null
   ) => {
     const Element = as || defaultElement;
+    const maskRef = useRef<HTMLDivElement>(null);
     /**
      * Setting the initial state of pushed based on the `type` prop
      * and if the current window size is large enough (larger than `pushMinBreakpoint`)
@@ -275,7 +284,7 @@ export const EuiFlyout = forwardRef(
     const onKeyDown = (event: KeyboardEvent) => {
       if (!isPushed && event.key === keys.ESCAPE) {
         event.preventDefault();
-        onClose();
+        onClose(event);
       }
     };
 
@@ -329,9 +338,9 @@ export const EuiFlyout = forwardRef(
               data-test-subj="euiFlyoutCloseButton"
               {...closeButtonProps}
               className={closeButtonClasses}
-              onClick={(e: MouseEvent<HTMLButtonElement>) => {
-                onClose();
-                closeButtonProps?.onClick && closeButtonProps.onClick(e);
+              onClick={(e: ReactMouseEvent<HTMLButtonElement>) => {
+                onClose(e.nativeEvent);
+                closeButtonProps?.onClick?.(e);
               }}
             />
           )}
@@ -339,12 +348,20 @@ export const EuiFlyout = forwardRef(
       );
     }
 
-    const isDefaultConfiguration = ownFocus && !isPushed;
-    const onClickOutside =
-      (isDefaultConfiguration && outsideClickCloses !== false) ||
-      outsideClickCloses === true
-        ? onClose
-        : undefined;
+    const hasOverlayMask = ownFocus && !isPushed;
+    const onClickOutside = (event: MouseEvent | TouchEvent) => {
+      // Do not close the flyout for any external click
+      if (outsideClickCloses === false) return undefined;
+      if (hasOverlayMask) {
+        // The overlay mask is present, so only clicks on the mask should close the flyout, regardless of outsideClickCloses
+        if (event.target === maskRef.current) return onClose(event);
+      } else {
+        // No overlay mask is present, so any outside clicks should close the flyout
+        if (outsideClickCloses === true) return onClose(event);
+      }
+      // Otherwise if ownFocus is false and outsideClickCloses is undefined, outside clicks should not close the flyout
+      return undefined;
+    };
     /*
      * Trap focus even when `ownFocus={false}`, otherwise closing
      * the flyout won't return focus to the originating button.
@@ -362,6 +379,7 @@ export const EuiFlyout = forwardRef(
         disabled={isPushed}
         clickOutsideDisables={!ownFocus}
         onClickOutside={onClickOutside}
+        {...focusTrapProps}
       >
         <Element
           {...(rest as ComponentPropsWithRef<T>)}
@@ -378,9 +396,13 @@ export const EuiFlyout = forwardRef(
     );
 
     // If ownFocus is set, wrap with an overlay and allow the user to click it to close it.
-    if (isDefaultConfiguration) {
+    const mergedMaskProps = {
+      ...maskProps,
+      maskRef: useCombinedRefs([maskProps?.maskRef, maskRef]),
+    };
+    if (hasOverlayMask) {
       flyout = (
-        <EuiOverlayMask headerZindexLocation="below" {...maskProps}>
+        <EuiOverlayMask headerZindexLocation="below" {...mergedMaskProps}>
           {flyout}
         </EuiOverlayMask>
       );

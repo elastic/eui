@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiCallOut, EuiLink } from '../../../../src/components';
+import { EuiCallOut, EuiLink } from '../../../../src';
 
 export default () => (
   <EuiCallOut title="Sorry, there was an error" color="danger" iconType="alert">

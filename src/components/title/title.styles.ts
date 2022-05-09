@@ -64,7 +64,7 @@ export const useEuiTitle = (
  */
 export const euiTitleStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiTitle: css`
-    ${euiTextBreakWord}
+    ${euiTextBreakWord()}
 
     & + & {
       margin-top: ${euiTheme.size.l};

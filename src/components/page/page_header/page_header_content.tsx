@@ -21,9 +21,10 @@ import { useIsWithinBreakpoints } from '../../../services/hooks';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../../breadcrumbs';
 import {
-  euiPaddingStyles,
   PADDING_SIZES,
   euiBreakpoint,
+  useEuiPaddingCSS,
+  LogicalSides,
 } from '../../../global_styling';
 import {
   setStyleForRestrictedPageWidth,
@@ -82,7 +83,7 @@ export interface EuiPageHeaderContentTabs {
    * Any extras to apply to the outer tabs container.
    * Extends `EuiTabs`
    */
-  tabsProps?: Omit<EuiTabsProps, 'size' | 'expand' | 'display'>;
+  tabsProps?: Omit<EuiTabsProps, 'size' | 'expand'>;
 }
 
 /**
@@ -176,7 +177,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
   const contentStyles = euiPageHeaderContentStyles(useTheme);
   const styles = setStyleForRestrictedPageWidth(restrictWidth, style);
 
-  let paddingSides = 'block';
+  let paddingSides: LogicalSides = 'vertical';
   let paddingSize = _paddingSize;
   let bottomBorder = _bottom_border;
 
@@ -192,16 +193,16 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
   if (onlyTabs) {
     paddingSize = 'none';
   } else if (tabsAsTitle) {
-    paddingSides = 'block-end';
+    paddingSides = 'bottom';
   } else if (tabsAtTheBottom) {
-    paddingSides = 'block-start';
+    paddingSides = 'top';
     bottomBorder = bottomBorder === false ? false : true;
   } else if (borderWithoutPadding) {
-    paddingSides = 'block-end';
+    paddingSides = 'bottom';
     paddingSize = 'l';
   }
 
-  const blockPadding = euiPaddingStyles(useTheme, paddingSides);
+  const blockPadding = useEuiPaddingCSS(paddingSides);
 
   const cssStyles = [
     contentStyles.euiPageHeaderContent,
@@ -299,12 +300,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
       <>
         {pageTitleNode && <EuiSpacer />}
         {screenReaderPageTitle}
-        <EuiTabs
-          {...tabsProps}
-          display="condensed"
-          bottomBorder={false}
-          size={tabsSize}
-        >
+        <EuiTabs {...tabsProps} bottomBorder={false} size={tabsSize}>
           {renderTabs()}
         </EuiTabs>
       </>

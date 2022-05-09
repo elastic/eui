@@ -10,7 +10,7 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { useEuiTheme } from '../../../services';
-import { euiPaddingStyles, _EuiPaddingSize } from '../../../global_styling';
+import { useEuiPaddingCSS, EuiPaddingSize } from '../../../global_styling';
 
 import {
   EuiPageHeaderContent,
@@ -30,7 +30,7 @@ export interface EuiPageHeaderProps
     // but we should explicitely set here too because we do things with the values
     _EuiPageRestrictWidth,
     _EuiPageBottomBorder,
-    _EuiPaddingSize {}
+    EuiPaddingSize {}
 
 export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   className,
@@ -59,7 +59,7 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
 }) => {
   const useTheme = useEuiTheme();
   const styles = euiPageHeaderStyles(useTheme);
-  const inlinePadding = euiPaddingStyles(useTheme, 'inline');
+  const inlinePadding = useEuiPaddingCSS('horizontal');
   const cssStyles = [
     styles.euiPageHeader,
     inlinePadding[paddingSize],

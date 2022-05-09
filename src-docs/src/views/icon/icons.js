@@ -234,6 +234,7 @@ export const iconTypes = [
   'unfold',
   'unlink',
   'user',
+  'userAvatar',
   'users',
   'vector',
   'videoPlayer',

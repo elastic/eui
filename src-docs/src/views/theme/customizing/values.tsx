@@ -39,8 +39,11 @@ import Animation from './_animation';
 import Breakpoints from './_breakpoints';
 // @ts-ignore Importing from JS
 import Levels from './_levels';
+// @ts-ignore Importing from JS
+import Focus from './_focus';
 
 import Sass from './_sass';
+import { GuideSection } from '../../../components/guide_section/guide_section';
 
 // @ts-ignore TODO
 const JsonFlyout = ({ setIsOpen }) => {
@@ -85,47 +88,50 @@ export default () => {
         notice={<ThemeNotice />}
         showThemeLanguageToggle
       >
-        {showSass ? (
-          <Sass />
-        ) : (
-          <>
-            <Colors onThemeUpdate={updateTheme} />
+        <GuideSection>
+          {showSass ? (
+            <Sass />
+          ) : (
+            <>
+              <Colors onThemeUpdate={updateTheme} />
 
-            <EuiHorizontalRule margin="xxl" />
+              <EuiHorizontalRule margin="xxl" />
 
-            <Size onThemeUpdate={updateTheme} />
+              <Size onThemeUpdate={updateTheme} />
 
-            <EuiHorizontalRule margin="xxl" />
+              <EuiHorizontalRule margin="xxl" />
 
-            <Typography onThemeUpdate={updateTheme} />
+              <Typography onThemeUpdate={updateTheme} />
 
-            <EuiHorizontalRule margin="xxl" />
+              <EuiHorizontalRule margin="xxl" />
 
-            <Border onThemeUpdate={updateTheme} />
+              <Border onThemeUpdate={updateTheme} />
 
-            <EuiHorizontalRule margin="xxl" />
+              <EuiHorizontalRule margin="xxl" />
 
-            <Breakpoints onThemeUpdate={updateTheme} />
+              <Breakpoints onThemeUpdate={updateTheme} />
 
-            <EuiHorizontalRule margin="xxl" />
+              <EuiHorizontalRule margin="xxl" />
 
-            <Animation onThemeUpdate={updateTheme} />
+              <Animation onThemeUpdate={updateTheme} />
 
-            <EuiHorizontalRule margin="xxl" />
+              <EuiHorizontalRule margin="xxl" />
 
-            <Levels onThemeUpdate={updateTheme} />
+              <Levels onThemeUpdate={updateTheme} />
 
-            <EuiSpacer />
-          </>
-        )}
+              <EuiSpacer />
+
+              <Focus onThemeUpdate={updateTheme} />
+
+              <EuiSpacer />
+            </>
+          )}
+        </GuideSection>
       </GuidePage>
 
       {!showSass && (
         <>
-          <EuiBottomBar
-            style={{ marginLeft: -24, marginRight: -24, marginBottom: -24 }}
-            position="sticky"
-          >
+          <EuiBottomBar position="sticky">
             <EuiFlexGroup responsive={false} justifyContent="flexEnd">
               {Object.keys(overrides).length > 0 && (
                 <>

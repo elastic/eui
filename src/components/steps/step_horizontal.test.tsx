@@ -39,22 +39,6 @@ describe('EuiStepHorizontal', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('isSelected', () => {
-      const component = render(
-        <EuiStepHorizontal isSelected onClick={() => {}} />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-
-    test('isComplete', () => {
-      const component = render(
-        <EuiStepHorizontal isComplete onClick={() => {}} />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
-
     describe('status', () => {
       STATUS.forEach((status) => {
         test(`${status} is rendered`, () => {
@@ -64,6 +48,14 @@ describe('EuiStepHorizontal', () => {
 
           expect(component).toMatchSnapshot();
         });
+      });
+
+      test('disabled overrides the passed status', () => {
+        const component = render(
+          <EuiStepHorizontal status="current" disabled onClick={() => {}} />
+        );
+
+        expect(component).toMatchSnapshot();
       });
     });
 
