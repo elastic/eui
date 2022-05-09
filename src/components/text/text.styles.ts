@@ -12,6 +12,8 @@ import { UseEuiTheme } from '../../services';
 import { euiLinkCSS } from '../link/link.styles';
 import { euiTitle } from '../title/title.styles';
 
+export const euiTextConstrainedMaxWidth = '36em';
+
 /**
  * Mixins
  */
@@ -142,16 +144,15 @@ export const euiTextStyles = ({ euiTheme }: UseEuiTheme) => ({
       letter-spacing: normal;
     }
 
-    &.euiText--constrainedWidth {
-      max-width: 36em; // TODO
-      // If the max-width is way too short of the width of the container,
-      // at least make it 2/3 of its parent
-      min-width: 75%;
-    }
-
     > :last-child,
     .euiTextColor > :last-child {
       margin-bottom: 0 !important;
     }
+  `,
+  constrainedWidth: css`
+    max-width: ${euiTextConstrainedMaxWidth};
+    // If the max-width is way too short of the width of the container,
+    // at least make it 2/3 of its parent
+    min-width: 75%;
   `,
 });

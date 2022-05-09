@@ -53,15 +53,15 @@ export const EuiText: FunctionComponent<EuiTextProps> = ({
 }) => {
   const euiTheme = useEuiTheme();
   const styles = euiTextStyles(euiTheme);
-  const cssStyles = [styles.euiText];
+  const cssStyles = [
+    styles.euiText,
+    !grow ? styles.constrainedWidth : undefined,
+  ];
 
   const classes = classNames(
     'euiText',
     textSizeToClassNameMap[size],
-    className,
-    {
-      'euiText--constrainedWidth': !grow,
-    }
+    className
   );
 
   let optionallyAlteredText;

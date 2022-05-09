@@ -12,10 +12,10 @@ exports[`EuiText is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiText props grow is rendered 1`] = `
+exports[`EuiText props grow false 1`] = `
 <div
   aria-label="aria-label"
-  class="euiText euiText--medium testClass1 testClass2"
+  class="euiText euiText--medium testClass1 testClass2 css-19nx0h7-euiText-constrainedWidth"
   data-test-subj="test subject string"
 >
   <p>
