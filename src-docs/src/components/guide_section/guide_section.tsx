@@ -24,7 +24,11 @@ import {
   GuideSectionExampleTabsProps,
 } from './guide_section_parts/guide_section_tabs';
 
-export interface GuideSection {
+export interface GuideSection
+  extends Pick<
+    GuideSectionExample,
+    'exampleToggles' | 'demoPanelProps' | 'ghostBackground'
+  > {
   id?: string;
   title?: string;
   text?: ReactNode;
@@ -34,10 +38,8 @@ export interface GuideSection {
     slug: string;
     demo: ReactNode;
   };
-  demoPanelProps?: GuideSectionExample['demoPanelProps'];
   props?: object;
   playground?: any;
-  ghostBackground?: boolean;
   wrapText?: boolean;
   snippet?: string | string[];
   color?: EuiPanelProps['color'];
@@ -83,6 +85,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
   ghostBackground,
   wrapText = true,
   demoPanelProps,
+  exampleToggles,
   snippet,
   color,
   children,
@@ -231,6 +234,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
               tabs={renderTabs()}
               ghostBackground={ghostBackground}
               demoPanelProps={demoPanelProps}
+              exampleToggles={exampleToggles}
             />
           </>
         )}
