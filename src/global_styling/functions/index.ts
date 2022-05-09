@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-export * from './button';
 export * from './logicals';
 export * from './size';
 export * from './typography';

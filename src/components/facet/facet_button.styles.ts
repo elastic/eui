@@ -13,14 +13,19 @@ import {
   euiTextTruncate,
   euiCanAnimate,
   euiTextShift,
-  euiButtonBaseCSS,
-  euiButtonContentCSS,
 } from '../../global_styling';
 
-export const euiFacetButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
-  // Base
-  euiFacetButton: css`
-    ${euiButtonBaseCSS(euiTheme)}
+import { euiButtonBaseCSS } from '../button/button.styles';
+import { euiButtonContentCSS } from '../button/button_content.styles';
+import { euiLinkFocusCSS } from '../link/link.styles';
+
+export const euiFacetButtonStyles = (_theme: UseEuiTheme) => {
+  const { euiTheme } = _theme;
+
+  return {
+    // Base
+    euiFacetButton: css`
+    ${euiButtonBaseCSS(_theme)}
     ${euiFontSize('s', euiTheme)}
 
     height: ${euiTheme.size.xl};
@@ -40,9 +45,7 @@ export const euiFacetButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
     }
 
     &:focus:not(:disabled) [class*='euiFacetButton__text'] {
-      // TODO replace these two lines with the euiLinkFocusCSS mixin once EuiLink is converted
-      text-decoration: underline;
-      text-decoration-thickness: ${euiTheme.border.width.thick};
+      ${euiLinkFocusCSS(_theme)}
     }
 
     &:disabled {
@@ -69,14 +72,15 @@ export const euiFacetButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
       }
     },
   `,
-  // Selections
-  isSelected: css`
-    [class*='euiFacetButton__text'] {
-      font-weight: ${euiTheme.font.weight.bold};
-    }
-  `,
-  unSelected: css``,
-});
+    // Selections
+    isSelected: css`
+      [class*='euiFacetButton__text'] {
+        font-weight: ${euiTheme.font.weight.bold};
+      }
+    `,
+    unSelected: css``,
+  };
+};
 
 export const euiFacetButtonContentStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiFacetButton__content: css`
