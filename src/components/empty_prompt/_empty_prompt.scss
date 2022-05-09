@@ -1,5 +1,3 @@
-@import '../text/_variables';
-
 .euiEmptyPrompt {
   text-align: center;
   margin: auto;
@@ -60,7 +58,7 @@
   }
 
   .euiEmptyPrompt__contentInner {
-    max-width: $euiTextConstrainedMaxWidth;
+    max-width: 36em; // TODO: Use euiTextConstrainedMaxWidth in text.styles.ts
     margin: auto;
   }
 
@@ -97,7 +95,7 @@
   }
 
   .euiEmptyPrompt__content {
-    max-width: $euiTextConstrainedMaxWidth;
+    max-width: 36em; // TODO: Use euiTextConstrainedMaxWidth in text.styles.ts
 
     @include euiBreakpoint('l', 'xl') {
       padding: $euiSizeL 0;

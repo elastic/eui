@@ -28,9 +28,9 @@ describe('EuiText', () => {
 
   describe('props', () => {
     describe('grow', () => {
-      test('is rendered', () => {
+      test('false', () => {
         const component = render(
-          <EuiText {...requiredProps} grow>
+          <EuiText {...requiredProps} grow={false}>
             <p>Content</p>
           </EuiText>
         );
