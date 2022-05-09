@@ -155,12 +155,14 @@ export const useEuiShadowFlat = createStyleHookFromMixin(euiShadowFlat);
 
 // One hook to rule them all
 interface EuiShadowStyles {
-  size?: _EuiThemeShadowSize;
+  size: _EuiThemeShadowSize;
   color?: _EuiThemeShadowCustomColor['color'];
 }
 export const euiShadow = (
   euiTheme: UseEuiTheme['euiTheme'],
-  { size = 'l', color = undefined }: EuiShadowStyles = {},
+  { size, color }: EuiShadowStyles = {
+    size: 'l',
+  },
   colorMode: UseEuiTheme['colorMode']
 ) => {
   switch (size) {

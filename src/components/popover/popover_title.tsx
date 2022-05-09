@@ -39,6 +39,7 @@ export const EuiPopoverTitle: EuiPopoverTitleProps = ({
 }) => {
   const classes = classNames(
     'euiPopoverTitle',
+    // @ts-expect-error EuiPanel increased its available sizes
     paddingSize ? paddingSizeToClassNameMap[paddingSize] : null,
     className
   );

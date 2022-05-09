@@ -21,11 +21,7 @@ import { CommonProps } from '../common';
 import { useEuiResizableContainerContext } from './context';
 import { useGeneratedHtmlId } from '../../services';
 import { EuiPanel } from '../panel';
-import {
-  PanelPaddingSize,
-  panelPaddingValues,
-  _EuiPanelProps,
-} from '../panel/panel';
+import { PanelPaddingSize, _EuiPanelProps } from '../panel/panel';
 import { useEuiI18n } from '../i18n';
 import {
   EuiResizablePanelController,
@@ -34,6 +30,13 @@ import {
   PanelPosition,
 } from './types';
 import { EuiResizableCollapseButton } from './resizable_collapse_button';
+
+const panelPaddingValues = {
+  none: 0,
+  s: 8,
+  m: 16,
+  l: 24,
+};
 
 export interface ToggleOptions {
   'data-test-subj'?: string;
@@ -232,11 +235,13 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   }, [isCollapsed, isCollapsible, position, panels, panelId]);
 
   const padding = useMemo(() => {
+    // @ts-expect-error EuiPanel increased its available sizes
     return `${panelPaddingValues[paddingSize] * 2}px`;
   }, [paddingSize]);
 
   const classes = classNames(
     'euiResizablePanel',
+    // @ts-expect-error EuiPanel increased its available sizes
     paddingSizeToClassNameMap[wrapperPadding],
     {
       'euiResizablePanel--collapsible': isCollapsible,

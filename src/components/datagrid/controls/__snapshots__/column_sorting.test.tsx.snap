@@ -105,7 +105,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                   aria-describedby="generated-id"
                   aria-live="off"
                   aria-modal="true"
-                  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop"
+                  class="euiPanel euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop css-6zsgh2-euiPanel-grow-m-s-plain"
                   data-autofocus="true"
                   role="dialog"
                   style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
@@ -502,7 +502,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                           aria-describedby="generated-id"
                           aria-live="off"
                           aria-modal="true"
-                          className="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop"
+                          css="unknown styles"
                           role="dialog"
                           style={
                             Object {
@@ -514,110 +514,186 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                           }
                           tabIndex={0}
                         >
-                          <div
-                            className="euiPopover__panelArrow euiPopover__panelArrow--bottom"
-                            style={
+                          <Insertion
+                            cache={
                               Object {
-                                "left": 10,
-                                "top": 0,
+                                "insert": [Function],
+                                "inserted": Object {
+                                  "6zsgh2-euiPanel-grow-m-s-plain": true,
+                                },
+                                "key": "css",
+                                "nonce": undefined,
+                                "registered": Object {},
+                                "sheet": StyleSheet {
+                                  "_alreadyInsertedOrderInsensitiveRule": true,
+                                  "_insertTag": [Function],
+                                  "before": null,
+                                  "container": <head>
+                                    <style
+                                      data-emotion="css"
+                                      data-s=""
+                                    >
+                                      
+                                      .css-6zsgh2-euiPanel-grow-m-s-plain{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;border-radius:6px;padding:8px;background-color:#FFF;}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIl9jb2xvci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFzRGMiLCJmaWxlIjoiX2NvbG9yLnRzIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIENvcHlyaWdodCBFbGFzdGljc2VhcmNoIEIuVi4gYW5kL29yIGxpY2Vuc2VkIHRvIEVsYXN0aWNzZWFyY2ggQi5WLiB1bmRlciBvbmVcbiAqIG9yIG1vcmUgY29udHJpYnV0b3IgbGljZW5zZSBhZ3JlZW1lbnRzLiBMaWNlbnNlZCB1bmRlciB0aGUgRWxhc3RpYyBMaWNlbnNlXG4gKiAyLjAgYW5kIHRoZSBTZXJ2ZXIgU2lkZSBQdWJsaWMgTGljZW5zZSwgdiAxOyB5b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdFxuICogaW4gY29tcGxpYW5jZSB3aXRoLCBhdCB5b3VyIGVsZWN0aW9uLCB0aGUgRWxhc3RpYyBMaWNlbnNlIDIuMCBvciB0aGUgU2VydmVyXG4gKiBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDEuXG4gKi9cblxuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnO1xuaW1wb3J0IHsgc2hhZGUsIHRpbnQsIHVzZUV1aVRoZW1lLCBVc2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcblxuZXhwb3J0IGNvbnN0IEJBQ0tHUk9VTkRfQ09MT1JTID0gW1xuICAndHJhbnNwYXJlbnQnLFxuICAncGxhaW4nLFxuICAnc3ViZHVlZCcsXG4gICdhY2NlbnQnLFxuICAncHJpbWFyeScsXG4gICdzdWNjZXNzJyxcbiAgJ3dhcm5pbmcnLFxuICAnZGFuZ2VyJyxcbl0gYXMgY29uc3Q7XG5cbmV4cG9ydCB0eXBlIEV1aUJhY2tncm91bmRDb2xvciA9IHR5cGVvZiBCQUNLR1JPVU5EX0NPTE9SU1tudW1iZXJdO1xuXG5leHBvcnQgY29uc3QgZXVpQmFja2dyb3VuZENvbG9yID0gKFxuICBjb2xvcjogRXVpQmFja2dyb3VuZENvbG9yLFxuICB7IGV1aVRoZW1lLCBjb2xvck1vZGUgfTogVXNlRXVpVGhlbWVcbikgPT4ge1xuICBmdW5jdGlvbiB0aW50T3JTaGFkZShjb2xvcjogc3RyaW5nKSB7XG4gICAgcmV0dXJuIGNvbG9yTW9kZSA9PT0gJ0RBUksnID8gc2hhZGUoY29sb3IsIDAuNykgOiB0aW50KGNvbG9yLCAwLjkpO1xuICB9XG5cbiAgc3dpdGNoIChjb2xvcikge1xuICAgIGNhc2UgJ3RyYW5zcGFyZW50JzpcbiAgICAgIHJldHVybiAndHJhbnNwYXJlbnQnO1xuICAgIGNhc2UgJ3BsYWluJzpcbiAgICAgIHJldHVybiBldWlUaGVtZS5jb2xvcnMuZW1wdHlTaGFkZTtcbiAgICBjYXNlICdzdWJkdWVkJzpcbiAgICAgIHJldHVybiBldWlUaGVtZS5jb2xvcnMuYm9keTtcbiAgICBkZWZhdWx0OlxuICAgICAgcmV0dXJuIHRpbnRPclNoYWRlKGV1aVRoZW1lLmNvbG9yc1tjb2xvcl0pO1xuICB9XG59O1xuXG5leHBvcnQgY29uc3QgdXNlRXVpQmFja2dyb3VuZENvbG9yID0gKGNvbG9yOiBFdWlCYWNrZ3JvdW5kQ29sb3IpID0+IHtcbiAgY29uc3QgZXVpVGhlbWUgPSB1c2VFdWlUaGVtZSgpO1xuICByZXR1cm4gZXVpQmFja2dyb3VuZENvbG9yKGNvbG9yLCBldWlUaGVtZSk7XG59O1xuXG5leHBvcnQgY29uc3QgdXNlRXVpQmFja2dyb3VuZENvbG9yQ1NTID0gKCkgPT4ge1xuICByZXR1cm4ge1xuICAgIHRyYW5zcGFyZW50OiBjc3NgXG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAke3VzZUV1aUJhY2tncm91bmRDb2xvcigndHJhbnNwYXJlbnQnKX07XG4gICAgYCxcbiAgICBwbGFpbjogY3NzYFxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogJHt1c2VFdWlCYWNrZ3JvdW5kQ29sb3IoJ3BsYWluJyl9O1xuICAgIGAsXG4gICAgc3ViZHVlZDogY3NzYFxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogJHt1c2VFdWlCYWNrZ3JvdW5kQ29sb3IoJ3N1YmR1ZWQnKX07XG4gICAgYCxcbiAgICBhY2NlbnQ6IGNzc2BcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7dXNlRXVpQmFja2dyb3VuZENvbG9yKCdhY2NlbnQnKX07XG4gICAgYCxcbiAgICBwcmltYXJ5OiBjc3NgXG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAke3VzZUV1aUJhY2tncm91bmRDb2xvcigncHJpbWFyeScpfTtcbiAgICBgLFxuICAgIHN1Y2Nlc3M6IGNzc2BcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7dXNlRXVpQmFja2dyb3VuZENvbG9yKCdzdWNjZXNzJyl9O1xuICAgIGAsXG4gICAgd2FybmluZzogY3NzYFxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogJHt1c2VFdWlCYWNrZ3JvdW5kQ29sb3IoJ3dhcm5pbmcnKX07XG4gICAgYCxcbiAgICBkYW5nZXI6IGNzc2BcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7dXNlRXVpQmFja2dyb3VuZENvbG9yKCdkYW5nZXInKX07XG4gICAgYCxcbiAgfTtcbn07XG4iXX0= */
+                                    </style>
+                                    <style
+                                      data-rbd-always="0"
+                                      type="text/css"
+                                    >
+                                       [data-rbd-drag-handle-context-id="0"] { 
+          -webkit-touch-callout: none;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+          touch-action: manipulation;
+         } [data-rbd-droppable-context-id="0"] { overflow-anchor: none; } 
+                                    </style>
+                                    <style
+                                      data-rbd-dynamic="0"
+                                      type="text/css"
+                                    >
+                                       [data-rbd-drag-handle-context-id="0"] { 
+      cursor: -webkit-grab;
+      cursor: grab;
+     }  
+                                    </style>
+                                  </head>,
+                                  "ctr": 1,
+                                  "insertionPoint": undefined,
+                                  "isSpeedy": false,
+                                  "key": "css",
+                                  "nonce": undefined,
+                                  "prepend": undefined,
+                                  "tags": Array [
+                                    <style
+                                      data-emotion="css"
+                                      data-s=""
+                                    >
+                                      
+                                      .css-6zsgh2-euiPanel-grow-m-s-plain{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;border-radius:6px;padding:8px;background-color:#FFF;}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIl9jb2xvci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFzRGMiLCJmaWxlIjoiX2NvbG9yLnRzIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIENvcHlyaWdodCBFbGFzdGljc2VhcmNoIEIuVi4gYW5kL29yIGxpY2Vuc2VkIHRvIEVsYXN0aWNzZWFyY2ggQi5WLiB1bmRlciBvbmVcbiAqIG9yIG1vcmUgY29udHJpYnV0b3IgbGljZW5zZSBhZ3JlZW1lbnRzLiBMaWNlbnNlZCB1bmRlciB0aGUgRWxhc3RpYyBMaWNlbnNlXG4gKiAyLjAgYW5kIHRoZSBTZXJ2ZXIgU2lkZSBQdWJsaWMgTGljZW5zZSwgdiAxOyB5b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdFxuICogaW4gY29tcGxpYW5jZSB3aXRoLCBhdCB5b3VyIGVsZWN0aW9uLCB0aGUgRWxhc3RpYyBMaWNlbnNlIDIuMCBvciB0aGUgU2VydmVyXG4gKiBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDEuXG4gKi9cblxuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnO1xuaW1wb3J0IHsgc2hhZGUsIHRpbnQsIHVzZUV1aVRoZW1lLCBVc2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcblxuZXhwb3J0IGNvbnN0IEJBQ0tHUk9VTkRfQ09MT1JTID0gW1xuICAndHJhbnNwYXJlbnQnLFxuICAncGxhaW4nLFxuICAnc3ViZHVlZCcsXG4gICdhY2NlbnQnLFxuICAncHJpbWFyeScsXG4gICdzdWNjZXNzJyxcbiAgJ3dhcm5pbmcnLFxuICAnZGFuZ2VyJyxcbl0gYXMgY29uc3Q7XG5cbmV4cG9ydCB0eXBlIEV1aUJhY2tncm91bmRDb2xvciA9IHR5cGVvZiBCQUNLR1JPVU5EX0NPTE9SU1tudW1iZXJdO1xuXG5leHBvcnQgY29uc3QgZXVpQmFja2dyb3VuZENvbG9yID0gKFxuICBjb2xvcjogRXVpQmFja2dyb3VuZENvbG9yLFxuICB7IGV1aVRoZW1lLCBjb2xvck1vZGUgfTogVXNlRXVpVGhlbWVcbikgPT4ge1xuICBmdW5jdGlvbiB0aW50T3JTaGFkZShjb2xvcjogc3RyaW5nKSB7XG4gICAgcmV0dXJuIGNvbG9yTW9kZSA9PT0gJ0RBUksnID8gc2hhZGUoY29sb3IsIDAuNykgOiB0aW50KGNvbG9yLCAwLjkpO1xuICB9XG5cbiAgc3dpdGNoIChjb2xvcikge1xuICAgIGNhc2UgJ3RyYW5zcGFyZW50JzpcbiAgICAgIHJldHVybiAndHJhbnNwYXJlbnQnO1xuICAgIGNhc2UgJ3BsYWluJzpcbiAgICAgIHJldHVybiBldWlUaGVtZS5jb2xvcnMuZW1wdHlTaGFkZTtcbiAgICBjYXNlICdzdWJkdWVkJzpcbiAgICAgIHJldHVybiBldWlUaGVtZS5jb2xvcnMuYm9keTtcbiAgICBkZWZhdWx0OlxuICAgICAgcmV0dXJuIHRpbnRPclNoYWRlKGV1aVRoZW1lLmNvbG9yc1tjb2xvcl0pO1xuICB9XG59O1xuXG5leHBvcnQgY29uc3QgdXNlRXVpQmFja2dyb3VuZENvbG9yID0gKGNvbG9yOiBFdWlCYWNrZ3JvdW5kQ29sb3IpID0+IHtcbiAgY29uc3QgZXVpVGhlbWUgPSB1c2VFdWlUaGVtZSgpO1xuICByZXR1cm4gZXVpQmFja2dyb3VuZENvbG9yKGNvbG9yLCBldWlUaGVtZSk7XG59O1xuXG5leHBvcnQgY29uc3QgdXNlRXVpQmFja2dyb3VuZENvbG9yQ1NTID0gKCkgPT4ge1xuICByZXR1cm4ge1xuICAgIHRyYW5zcGFyZW50OiBjc3NgXG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAke3VzZUV1aUJhY2tncm91bmRDb2xvcigndHJhbnNwYXJlbnQnKX07XG4gICAgYCxcbiAgICBwbGFpbjogY3NzYFxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogJHt1c2VFdWlCYWNrZ3JvdW5kQ29sb3IoJ3BsYWluJyl9O1xuICAgIGAsXG4gICAgc3ViZHVlZDogY3NzYFxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogJHt1c2VFdWlCYWNrZ3JvdW5kQ29sb3IoJ3N1YmR1ZWQnKX07XG4gICAgYCxcbiAgICBhY2NlbnQ6IGNzc2BcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7dXNlRXVpQmFja2dyb3VuZENvbG9yKCdhY2NlbnQnKX07XG4gICAgYCxcbiAgICBwcmltYXJ5OiBjc3NgXG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAke3VzZUV1aUJhY2tncm91bmRDb2xvcigncHJpbWFyeScpfTtcbiAgICBgLFxuICAgIHN1Y2Nlc3M6IGNzc2BcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7dXNlRXVpQmFja2dyb3VuZENvbG9yKCdzdWNjZXNzJyl9O1xuICAgIGAsXG4gICAgd2FybmluZzogY3NzYFxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogJHt1c2VFdWlCYWNrZ3JvdW5kQ29sb3IoJ3dhcm5pbmcnKX07XG4gICAgYCxcbiAgICBkYW5nZXI6IGNzc2BcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7dXNlRXVpQmFja2dyb3VuZENvbG9yKCdkYW5nZXInKX07XG4gICAgYCxcbiAgfTtcbn07XG4iXX0= */
+                                    </style>,
+                                  ],
+                                },
+                              }
+                            }
+                            isStringTag={true}
+                            serialized={
+                              Object {
+                                "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIl9jb2xvci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFzRGMiLCJmaWxlIjoiX2NvbG9yLnRzIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIENvcHlyaWdodCBFbGFzdGljc2VhcmNoIEIuVi4gYW5kL29yIGxpY2Vuc2VkIHRvIEVsYXN0aWNzZWFyY2ggQi5WLiB1bmRlciBvbmVcbiAqIG9yIG1vcmUgY29udHJpYnV0b3IgbGljZW5zZSBhZ3JlZW1lbnRzLiBMaWNlbnNlZCB1bmRlciB0aGUgRWxhc3RpYyBMaWNlbnNlXG4gKiAyLjAgYW5kIHRoZSBTZXJ2ZXIgU2lkZSBQdWJsaWMgTGljZW5zZSwgdiAxOyB5b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdFxuICogaW4gY29tcGxpYW5jZSB3aXRoLCBhdCB5b3VyIGVsZWN0aW9uLCB0aGUgRWxhc3RpYyBMaWNlbnNlIDIuMCBvciB0aGUgU2VydmVyXG4gKiBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDEuXG4gKi9cblxuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnO1xuaW1wb3J0IHsgc2hhZGUsIHRpbnQsIHVzZUV1aVRoZW1lLCBVc2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcblxuZXhwb3J0IGNvbnN0IEJBQ0tHUk9VTkRfQ09MT1JTID0gW1xuICAndHJhbnNwYXJlbnQnLFxuICAncGxhaW4nLFxuICAnc3ViZHVlZCcsXG4gICdhY2NlbnQnLFxuICAncHJpbWFyeScsXG4gICdzdWNjZXNzJyxcbiAgJ3dhcm5pbmcnLFxuICAnZGFuZ2VyJyxcbl0gYXMgY29uc3Q7XG5cbmV4cG9ydCB0eXBlIEV1aUJhY2tncm91bmRDb2xvciA9IHR5cGVvZiBCQUNLR1JPVU5EX0NPTE9SU1tudW1iZXJdO1xuXG5leHBvcnQgY29uc3QgZXVpQmFja2dyb3VuZENvbG9yID0gKFxuICBjb2xvcjogRXVpQmFja2dyb3VuZENvbG9yLFxuICB7IGV1aVRoZW1lLCBjb2xvck1vZGUgfTogVXNlRXVpVGhlbWVcbikgPT4ge1xuICBmdW5jdGlvbiB0aW50T3JTaGFkZShjb2xvcjogc3RyaW5nKSB7XG4gICAgcmV0dXJuIGNvbG9yTW9kZSA9PT0gJ0RBUksnID8gc2hhZGUoY29sb3IsIDAuNykgOiB0aW50KGNvbG9yLCAwLjkpO1xuICB9XG5cbiAgc3dpdGNoIChjb2xvcikge1xuICAgIGNhc2UgJ3RyYW5zcGFyZW50JzpcbiAgICAgIHJldHVybiAndHJhbnNwYXJlbnQnO1xuICAgIGNhc2UgJ3BsYWluJzpcbiAgICAgIHJldHVybiBldWlUaGVtZS5jb2xvcnMuZW1wdHlTaGFkZTtcbiAgICBjYXNlICdzdWJkdWVkJzpcbiAgICAgIHJldHVybiBldWlUaGVtZS5jb2xvcnMuYm9keTtcbiAgICBkZWZhdWx0OlxuICAgICAgcmV0dXJuIHRpbnRPclNoYWRlKGV1aVRoZW1lLmNvbG9yc1tjb2xvcl0pO1xuICB9XG59O1xuXG5leHBvcnQgY29uc3QgdXNlRXVpQmFja2dyb3VuZENvbG9yID0gKGNvbG9yOiBFdWlCYWNrZ3JvdW5kQ29sb3IpID0+IHtcbiAgY29uc3QgZXVpVGhlbWUgPSB1c2VFdWlUaGVtZSgpO1xuICByZXR1cm4gZXVpQmFja2dyb3VuZENvbG9yKGNvbG9yLCBldWlUaGVtZSk7XG59O1xuXG5leHBvcnQgY29uc3QgdXNlRXVpQmFja2dyb3VuZENvbG9yQ1NTID0gKCkgPT4ge1xuICByZXR1cm4ge1xuICAgIHRyYW5zcGFyZW50OiBjc3NgXG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAke3VzZUV1aUJhY2tncm91bmRDb2xvcigndHJhbnNwYXJlbnQnKX07XG4gICAgYCxcbiAgICBwbGFpbjogY3NzYFxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogJHt1c2VFdWlCYWNrZ3JvdW5kQ29sb3IoJ3BsYWluJyl9O1xuICAgIGAsXG4gICAgc3ViZHVlZDogY3NzYFxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogJHt1c2VFdWlCYWNrZ3JvdW5kQ29sb3IoJ3N1YmR1ZWQnKX07XG4gICAgYCxcbiAgICBhY2NlbnQ6IGNzc2BcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7dXNlRXVpQmFja2dyb3VuZENvbG9yKCdhY2NlbnQnKX07XG4gICAgYCxcbiAgICBwcmltYXJ5OiBjc3NgXG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAke3VzZUV1aUJhY2tncm91bmRDb2xvcigncHJpbWFyeScpfTtcbiAgICBgLFxuICAgIHN1Y2Nlc3M6IGNzc2BcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7dXNlRXVpQmFja2dyb3VuZENvbG9yKCdzdWNjZXNzJyl9O1xuICAgIGAsXG4gICAgd2FybmluZzogY3NzYFxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogJHt1c2VFdWlCYWNrZ3JvdW5kQ29sb3IoJ3dhcm5pbmcnKX07XG4gICAgYCxcbiAgICBkYW5nZXI6IGNzc2BcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7dXNlRXVpQmFja2dyb3VuZENvbG9yKCdkYW5nZXInKX07XG4gICAgYCxcbiAgfTtcbn07XG4iXX0= */",
+                                "name": "6zsgh2-euiPanel-grow-m-s-plain",
+                                "next": undefined,
+                                "styles": "flex-grow:0;label:euiPanel;;;flex-grow:1;label:grow;;;border-radius:6px;;label:m;;;padding:8px;;label:s;;;background-color:#FFF;;label:plain;;;;;;",
+                                "toString": [Function],
                               }
                             }
                           />
-                          <EuiScreenReaderOnly>
-                            <p
-                              className="euiScreenReaderOnly"
-                              id="generated-id"
-                            >
-                              <EuiI18n
-                                default="You are in a dialog. To close this dialog, hit escape."
-                                token="euiPopover.screenReaderAnnouncement"
-                              >
-                                You are in a dialog. To close this dialog, hit escape.
-                              </EuiI18n>
-                            </p>
-                          </EuiScreenReaderOnly>
-                          <EuiMutationObserver
-                            observerOptions={
+                          <div
+                            aria-describedby="generated-id"
+                            aria-live="off"
+                            aria-modal="true"
+                            className="euiPanel euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop css-6zsgh2-euiPanel-grow-m-s-plain"
+                            role="dialog"
+                            style={
                               Object {
-                                "attributes": true,
-                                "characterData": true,
-                                "childList": true,
-                                "subtree": true,
+                                "left": -22,
+                                "top": 16,
+                                "willChange": "transform, opacity",
+                                "zIndex": 2000,
                               }
                             }
-                            onMutation={[Function]}
+                            tabIndex={0}
                           >
-                            <div>
-                              <div
-                                aria-live="assertive"
-                                className="euiDataGrid__controlScroll"
-                                role="region"
+                            <div
+                              className="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+                              style={
+                                Object {
+                                  "left": 10,
+                                  "top": 0,
+                                }
+                              }
+                            />
+                            <EuiScreenReaderOnly>
+                              <p
+                                className="euiScreenReaderOnly"
+                                id="generated-id"
                               >
-                                <EuiDragDropContext
-                                  onDragEnd={[Function]}
+                                <EuiI18n
+                                  default="You are in a dialog. To close this dialog, hit escape."
+                                  token="euiPopover.screenReaderAnnouncement"
                                 >
-                                  <DragDropContext
+                                  You are in a dialog. To close this dialog, hit escape.
+                                </EuiI18n>
+                              </p>
+                            </EuiScreenReaderOnly>
+                            <EuiMutationObserver
+                              observerOptions={
+                                Object {
+                                  "attributes": true,
+                                  "characterData": true,
+                                  "childList": true,
+                                  "subtree": true,
+                                }
+                              }
+                              onMutation={[Function]}
+                            >
+                              <div>
+                                <div
+                                  aria-live="assertive"
+                                  className="euiDataGrid__controlScroll"
+                                  role="region"
+                                >
+                                  <EuiDragDropContext
                                     onDragEnd={[Function]}
-                                    onDragStart={[Function]}
                                   >
-                                    <ErrorBoundary>
-                                      <App
-                                        contextId="0"
-                                        dragHandleUsageInstructions="
+                                    <DragDropContext
+                                      onDragEnd={[Function]}
+                                      onDragStart={[Function]}
+                                    >
+                                      <ErrorBoundary>
+                                        <App
+                                          contextId="0"
+                                          dragHandleUsageInstructions="
   Press space bar to start a drag.
   When dragging you can use the arrow keys to move the item around and escape to cancel.
   Some screen readers may require you to be in focus mode or to use your pass through key
 "
-                                        onDragEnd={[Function]}
-                                        onDragStart={[Function]}
-                                        setCallbacks={[Function]}
-                                      >
-                                        <Provider
-                                          context={
-                                            Object {
-                                              "$$typeof": Symbol(react.context),
-                                              "Consumer": Object {
-                                                "$$typeof": Symbol(react.context),
-                                                "_calculateChangedBits": null,
-                                                "_context": [Circular],
-                                              },
-                                              "Provider": Object {
-                                                "$$typeof": Symbol(react.provider),
-                                                "_context": [Circular],
-                                              },
-                                              "_calculateChangedBits": null,
-                                              "_currentRenderer": Object {},
-                                              "_currentRenderer2": null,
-                                              "_currentValue": null,
-                                              "_currentValue2": null,
-                                              "_threadCount": 0,
-                                            }
-                                          }
-                                          store={
-                                            Object {
-                                              "dispatch": [Function],
-                                              "getState": [Function],
-                                              "replaceReducer": [Function],
-                                              "subscribe": [Function],
-                                              Symbol(observable): [Function],
-                                            }
-                                          }
+                                          onDragEnd={[Function]}
+                                          onDragStart={[Function]}
+                                          setCallbacks={[Function]}
                                         >
-                                          <EuiDroppable
-                                            droppableId="columnSorting"
+                                          <Provider
+                                            context={
+                                              Object {
+                                                "$$typeof": Symbol(react.context),
+                                                "Consumer": Object {
+                                                  "$$typeof": Symbol(react.context),
+                                                  "_calculateChangedBits": null,
+                                                  "_context": [Circular],
+                                                },
+                                                "Provider": Object {
+                                                  "$$typeof": Symbol(react.provider),
+                                                  "_context": [Circular],
+                                                },
+                                                "_calculateChangedBits": null,
+                                                "_currentRenderer": Object {},
+                                                "_currentRenderer2": null,
+                                                "_currentValue": null,
+                                                "_currentValue2": null,
+                                                "_threadCount": 0,
+                                              }
+                                            }
+                                            store={
+                                              Object {
+                                                "dispatch": [Function],
+                                                "getState": [Function],
+                                                "replaceReducer": [Function],
+                                                "subscribe": [Function],
+                                                Symbol(observable): [Function],
+                                              }
+                                            }
                                           >
-                                            <Connect(Droppable)
-                                              direction="vertical"
+                                            <EuiDroppable
                                               droppableId="columnSorting"
-                                              getContainerForClone={[Function]}
-                                              ignoreContainerClipping={false}
-                                              isCombineEnabled={false}
-                                              isDropDisabled={false}
-                                              mode="standard"
-                                              renderClone={null}
-                                              type="EUI_DEFAULT"
                                             >
-                                              <Droppable
+                                              <Connect(Droppable)
                                                 direction="vertical"
                                                 droppableId="columnSorting"
                                                 getContainerForClone={[Function]}
@@ -625,148 +701,150 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                                                 isCombineEnabled={false}
                                                 isDropDisabled={false}
                                                 mode="standard"
-                                                placeholder={null}
                                                 renderClone={null}
-                                                shouldAnimatePlaceholder={false}
-                                                snapshot={
-                                                  Object {
-                                                    "draggingFromThisWith": null,
-                                                    "draggingOverWith": null,
-                                                    "isDraggingOver": false,
-                                                    "isUsingPlaceholder": false,
-                                                  }
-                                                }
                                                 type="EUI_DEFAULT"
-                                                updateViewportMaxScroll={[Function]}
-                                                useClone={null}
                                               >
-                                                <div
-                                                  className="euiDroppable euiDroppable--noGrow"
-                                                  data-rbd-droppable-context-id="0"
-                                                  data-rbd-droppable-id="columnSorting"
-                                                  data-test-subj="droppable"
+                                                <Droppable
+                                                  direction="vertical"
+                                                  droppableId="columnSorting"
+                                                  getContainerForClone={[Function]}
+                                                  ignoreContainerClipping={false}
+                                                  isCombineEnabled={false}
+                                                  isDropDisabled={false}
+                                                  mode="standard"
+                                                  placeholder={null}
+                                                  renderClone={null}
+                                                  shouldAnimatePlaceholder={false}
+                                                  snapshot={
+                                                    Object {
+                                                      "draggingFromThisWith": null,
+                                                      "draggingOverWith": null,
+                                                      "isDraggingOver": false,
+                                                      "isUsingPlaceholder": false,
+                                                    }
+                                                  }
+                                                  type="EUI_DEFAULT"
+                                                  updateViewportMaxScroll={[Function]}
+                                                  useClone={null}
                                                 >
-                                                  <EuiDataGridColumnSortingDraggable
-                                                    direction="asc"
-                                                    display="Column A"
-                                                    id="columnA"
-                                                    index={0}
-                                                    key="columnA"
-                                                    schema={
-                                                      Object {
-                                                        "columnA": Object {
-                                                          "columnType": "numeric",
-                                                        },
-                                                        "columnC": Object {
-                                                          "columnType": "boolean",
-                                                        },
-                                                      }
-                                                    }
-                                                    schemaDetectors={
-                                                      Array [
-                                                        Object {
-                                                          "comparator": [Function],
-                                                          "detector": [Function],
-                                                          "icon": "tokenBoolean",
-                                                          "sortTextAsc": <EuiI18n
-                                                            default="False-True"
-                                                            token="euiDataGridSchema.booleanSortTextAsc"
-                                                          />,
-                                                          "sortTextDesc": <EuiI18n
-                                                            default="True-False"
-                                                            token="euiDataGridSchema.booleanSortTextDesc"
-                                                          />,
-                                                          "type": "boolean",
-                                                        },
-                                                        Object {
-                                                          "color": "euiColorVis0",
-                                                          "comparator": [Function],
-                                                          "detector": [Function],
-                                                          "icon": "currency",
-                                                          "sortTextAsc": <EuiI18n
-                                                            default="Low-High"
-                                                            token="euiDataGridSchema.currencySortTextAsc"
-                                                          />,
-                                                          "sortTextDesc": <EuiI18n
-                                                            default="High-Low"
-                                                            token="euiDataGridSchema.currencySortTextDesc"
-                                                          />,
-                                                          "type": "currency",
-                                                        },
-                                                        Object {
-                                                          "detector": [Function],
-                                                          "icon": "tokenDate",
-                                                          "sortTextAsc": <EuiI18n
-                                                            default="Old-New"
-                                                            token="euiDataGridSchema.dateSortTextAsc"
-                                                          />,
-                                                          "sortTextDesc": <EuiI18n
-                                                            default="New-Old"
-                                                            token="euiDataGridSchema.dateSortTextDesc"
-                                                          />,
-                                                          "type": "datetime",
-                                                        },
-                                                        Object {
-                                                          "comparator": [Function],
-                                                          "detector": [Function],
-                                                          "icon": "tokenNumber",
-                                                          "sortTextAsc": <EuiI18n
-                                                            default="Low-High"
-                                                            token="euiDataGridSchema.numberSortTextAsc"
-                                                          />,
-                                                          "sortTextDesc": <EuiI18n
-                                                            default="High-Low"
-                                                            token="euiDataGridSchema.numberSortTextDesc"
-                                                          />,
-                                                          "type": "numeric",
-                                                        },
-                                                        Object {
-                                                          "comparator": [Function],
-                                                          "detector": [Function],
-                                                          "icon": "tokenObject",
-                                                          "sortTextAsc": <EuiI18n
-                                                            default="Small-Large"
-                                                            token="euiDataGridSchema.jsonSortTextAsc"
-                                                          />,
-                                                          "sortTextDesc": <EuiI18n
-                                                            default="Large-Small"
-                                                            token="euiDataGridSchema.jsonSortTextDesc"
-                                                          />,
-                                                          "type": "json",
-                                                        },
-                                                      ]
-                                                    }
-                                                    sorting={
-                                                      Object {
-                                                        "columns": Array [
-                                                          Object {
-                                                            "direction": "asc",
-                                                            "id": "columnA",
-                                                          },
-                                                        ],
-                                                        "onSort": [MockFunction],
-                                                      }
-                                                    }
+                                                  <div
+                                                    className="euiDroppable euiDroppable--noGrow"
+                                                    data-rbd-droppable-context-id="0"
+                                                    data-rbd-droppable-id="columnSorting"
+                                                    data-test-subj="droppable"
                                                   >
-                                                    <EuiDraggable
-                                                      draggableId="columnA"
+                                                    <EuiDataGridColumnSortingDraggable
+                                                      direction="asc"
+                                                      display="Column A"
+                                                      id="columnA"
                                                       index={0}
+                                                      key="columnA"
+                                                      schema={
+                                                        Object {
+                                                          "columnA": Object {
+                                                            "columnType": "numeric",
+                                                          },
+                                                          "columnC": Object {
+                                                            "columnType": "boolean",
+                                                          },
+                                                        }
+                                                      }
+                                                      schemaDetectors={
+                                                        Array [
+                                                          Object {
+                                                            "comparator": [Function],
+                                                            "detector": [Function],
+                                                            "icon": "tokenBoolean",
+                                                            "sortTextAsc": <EuiI18n
+                                                              default="False-True"
+                                                              token="euiDataGridSchema.booleanSortTextAsc"
+                                                            />,
+                                                            "sortTextDesc": <EuiI18n
+                                                              default="True-False"
+                                                              token="euiDataGridSchema.booleanSortTextDesc"
+                                                            />,
+                                                            "type": "boolean",
+                                                          },
+                                                          Object {
+                                                            "color": "euiColorVis0",
+                                                            "comparator": [Function],
+                                                            "detector": [Function],
+                                                            "icon": "currency",
+                                                            "sortTextAsc": <EuiI18n
+                                                              default="Low-High"
+                                                              token="euiDataGridSchema.currencySortTextAsc"
+                                                            />,
+                                                            "sortTextDesc": <EuiI18n
+                                                              default="High-Low"
+                                                              token="euiDataGridSchema.currencySortTextDesc"
+                                                            />,
+                                                            "type": "currency",
+                                                          },
+                                                          Object {
+                                                            "detector": [Function],
+                                                            "icon": "tokenDate",
+                                                            "sortTextAsc": <EuiI18n
+                                                              default="Old-New"
+                                                              token="euiDataGridSchema.dateSortTextAsc"
+                                                            />,
+                                                            "sortTextDesc": <EuiI18n
+                                                              default="New-Old"
+                                                              token="euiDataGridSchema.dateSortTextDesc"
+                                                            />,
+                                                            "type": "datetime",
+                                                          },
+                                                          Object {
+                                                            "comparator": [Function],
+                                                            "detector": [Function],
+                                                            "icon": "tokenNumber",
+                                                            "sortTextAsc": <EuiI18n
+                                                              default="Low-High"
+                                                              token="euiDataGridSchema.numberSortTextAsc"
+                                                            />,
+                                                            "sortTextDesc": <EuiI18n
+                                                              default="High-Low"
+                                                              token="euiDataGridSchema.numberSortTextDesc"
+                                                            />,
+                                                            "type": "numeric",
+                                                          },
+                                                          Object {
+                                                            "comparator": [Function],
+                                                            "detector": [Function],
+                                                            "icon": "tokenObject",
+                                                            "sortTextAsc": <EuiI18n
+                                                              default="Small-Large"
+                                                              token="euiDataGridSchema.jsonSortTextAsc"
+                                                            />,
+                                                            "sortTextDesc": <EuiI18n
+                                                              default="Large-Small"
+                                                              token="euiDataGridSchema.jsonSortTextDesc"
+                                                            />,
+                                                            "type": "json",
+                                                          },
+                                                        ]
+                                                      }
+                                                      sorting={
+                                                        Object {
+                                                          "columns": Array [
+                                                            Object {
+                                                              "direction": "asc",
+                                                              "id": "columnA",
+                                                            },
+                                                          ],
+                                                          "onSort": [MockFunction],
+                                                        }
+                                                      }
                                                     >
-                                                      <PublicDraggable
+                                                      <EuiDraggable
                                                         draggableId="columnA"
                                                         index={0}
-                                                        isDragDisabled={false}
                                                       >
-                                                        <PrivateDraggable
-                                                          canDragInteractiveElements={false}
+                                                        <PublicDraggable
                                                           draggableId="columnA"
                                                           index={0}
-                                                          isClone={false}
                                                           isDragDisabled={false}
-                                                          isEnabled={true}
-                                                          shouldRespectForcePress={false}
                                                         >
-                                                          <Connect(Draggable)
+                                                          <PrivateDraggable
                                                             canDragInteractiveElements={false}
                                                             draggableId="columnA"
                                                             index={0}
@@ -775,452 +853,452 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                                                             isEnabled={true}
                                                             shouldRespectForcePress={false}
                                                           >
-                                                            <Draggable
+                                                            <Connect(Draggable)
                                                               canDragInteractiveElements={false}
                                                               draggableId="columnA"
-                                                              dropAnimationFinished={[Function]}
                                                               index={0}
                                                               isClone={false}
                                                               isDragDisabled={false}
                                                               isEnabled={true}
-                                                              mapped={
-                                                                Object {
-                                                                  "combineTargetFor": null,
-                                                                  "offset": Object {
-                                                                    "x": 0,
-                                                                    "y": 0,
-                                                                  },
-                                                                  "shouldAnimateDisplacement": true,
-                                                                  "snapshot": Object {
-                                                                    "combineTargetFor": null,
-                                                                    "combineWith": null,
-                                                                    "draggingOver": null,
-                                                                    "dropAnimation": null,
-                                                                    "isClone": false,
-                                                                    "isDragging": false,
-                                                                    "isDropAnimating": false,
-                                                                    "mode": null,
-                                                                  },
-                                                                  "type": "SECONDARY",
-                                                                }
-                                                              }
                                                               shouldRespectForcePress={false}
                                                             >
-                                                              <div
-                                                                aria-describedby="rbd-hidden-text-0-hidden-text-0"
-                                                                className="euiDraggable"
-                                                                data-rbd-drag-handle-context-id="0"
-                                                                data-rbd-drag-handle-draggable-id="columnA"
-                                                                data-rbd-draggable-context-id="0"
-                                                                data-rbd-draggable-id="columnA"
-                                                                data-test-subj="draggable"
-                                                                draggable={false}
-                                                                onDragStart={[Function]}
-                                                                onTransitionEnd={null}
-                                                                role="button"
-                                                                style={
+                                                              <Draggable
+                                                                canDragInteractiveElements={false}
+                                                                draggableId="columnA"
+                                                                dropAnimationFinished={[Function]}
+                                                                index={0}
+                                                                isClone={false}
+                                                                isDragDisabled={false}
+                                                                isEnabled={true}
+                                                                mapped={
                                                                   Object {
-                                                                    "transform": null,
-                                                                    "transition": null,
+                                                                    "combineTargetFor": null,
+                                                                    "offset": Object {
+                                                                      "x": 0,
+                                                                      "y": 0,
+                                                                    },
+                                                                    "shouldAnimateDisplacement": true,
+                                                                    "snapshot": Object {
+                                                                      "combineTargetFor": null,
+                                                                      "combineWith": null,
+                                                                      "draggingOver": null,
+                                                                      "dropAnimation": null,
+                                                                      "isClone": false,
+                                                                      "isDragging": false,
+                                                                      "isDropAnimating": false,
+                                                                      "mode": null,
+                                                                    },
+                                                                    "type": "SECONDARY",
                                                                   }
                                                                 }
-                                                                tabIndex={0}
+                                                                shouldRespectForcePress={false}
                                                               >
                                                                 <div
-                                                                  className="euiDataGridColumnSorting__item false euiDraggable__item"
+                                                                  aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                                                                  className="euiDraggable"
+                                                                  data-rbd-drag-handle-context-id="0"
+                                                                  data-rbd-drag-handle-draggable-id="columnA"
+                                                                  data-rbd-draggable-context-id="0"
+                                                                  data-rbd-draggable-id="columnA"
+                                                                  data-test-subj="draggable"
+                                                                  draggable={false}
+                                                                  onDragStart={[Function]}
+                                                                  onTransitionEnd={null}
+                                                                  role="button"
+                                                                  style={
+                                                                    Object {
+                                                                      "transform": null,
+                                                                      "transition": null,
+                                                                    }
+                                                                  }
+                                                                  tabIndex={0}
                                                                 >
-                                                                  <EuiScreenReaderOnly>
-                                                                    <p
-                                                                      className="euiScreenReaderOnly"
-                                                                    >
-                                                                      <EuiI18n
-                                                                        default="{display} is sorting this data grid"
-                                                                        token="euiColumnSortingDraggable.activeSortLabel"
-                                                                        values={
-                                                                          Object {
-                                                                            "display": "Column A",
-                                                                          }
-                                                                        }
-                                                                      >
-                                                                        Column A is sorting this data grid
-                                                                      </EuiI18n>
-                                                                    </p>
-                                                                  </EuiScreenReaderOnly>
-                                                                  <EuiFlexGroup
-                                                                    alignItems="center"
-                                                                    data-test-subj="euiDataGridColumnSorting-sortColumn-columnA"
-                                                                    gutterSize="xs"
-                                                                    responsive={false}
+                                                                  <div
+                                                                    className="euiDataGridColumnSorting__item false euiDraggable__item"
                                                                   >
-                                                                    <div
-                                                                      className="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
-                                                                      data-test-subj="euiDataGridColumnSorting-sortColumn-columnA"
-                                                                    >
-                                                                      <EuiFlexItem
-                                                                        grow={false}
+                                                                    <EuiScreenReaderOnly>
+                                                                      <p
+                                                                        className="euiScreenReaderOnly"
                                                                       >
-                                                                        <div
-                                                                          className="euiFlexItem euiFlexItem--flexGrowZero"
-                                                                        >
-                                                                          <EuiI18n
-                                                                            default="Remove {display} from data grid sort"
-                                                                            token="euiColumnSortingDraggable.removeSortLabel"
-                                                                            values={
-                                                                              Object {
-                                                                                "display": "Column A",
-                                                                              }
+                                                                        <EuiI18n
+                                                                          default="{display} is sorting this data grid"
+                                                                          token="euiColumnSortingDraggable.activeSortLabel"
+                                                                          values={
+                                                                            Object {
+                                                                              "display": "Column A",
                                                                             }
+                                                                          }
+                                                                        >
+                                                                          Column A is sorting this data grid
+                                                                        </EuiI18n>
+                                                                      </p>
+                                                                    </EuiScreenReaderOnly>
+                                                                    <EuiFlexGroup
+                                                                      alignItems="center"
+                                                                      data-test-subj="euiDataGridColumnSorting-sortColumn-columnA"
+                                                                      gutterSize="xs"
+                                                                      responsive={false}
+                                                                    >
+                                                                      <div
+                                                                        className="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+                                                                        data-test-subj="euiDataGridColumnSorting-sortColumn-columnA"
+                                                                      >
+                                                                        <EuiFlexItem
+                                                                          grow={false}
+                                                                        >
+                                                                          <div
+                                                                            className="euiFlexItem euiFlexItem--flexGrowZero"
                                                                           >
-                                                                            <EuiButtonIcon
-                                                                              aria-label="Remove Column A from data grid sort"
-                                                                              className="euiDataGridColumnSorting__button"
-                                                                              color="text"
-                                                                              iconType="cross"
-                                                                              onClick={[Function]}
+                                                                            <EuiI18n
+                                                                              default="Remove {display} from data grid sort"
+                                                                              token="euiColumnSortingDraggable.removeSortLabel"
+                                                                              values={
+                                                                                Object {
+                                                                                  "display": "Column A",
+                                                                                }
+                                                                              }
                                                                             >
-                                                                              <button
+                                                                              <EuiButtonIcon
                                                                                 aria-label="Remove Column A from data grid sort"
-                                                                                className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGridColumnSorting__button"
+                                                                                className="euiDataGridColumnSorting__button"
+                                                                                color="text"
+                                                                                iconType="cross"
                                                                                 onClick={[Function]}
-                                                                                type="button"
                                                                               >
-                                                                                <EuiIcon
-                                                                                  aria-hidden="true"
-                                                                                  className="euiButtonIcon__icon"
-                                                                                  color="inherit"
-                                                                                  size="m"
-                                                                                  type="cross"
+                                                                                <button
+                                                                                  aria-label="Remove Column A from data grid sort"
+                                                                                  className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGridColumnSorting__button"
+                                                                                  onClick={[Function]}
+                                                                                  type="button"
                                                                                 >
-                                                                                  <span
+                                                                                  <EuiIcon
                                                                                     aria-hidden="true"
                                                                                     className="euiButtonIcon__icon"
                                                                                     color="inherit"
-                                                                                    data-euiicon-type="cross"
+                                                                                    size="m"
+                                                                                    type="cross"
+                                                                                  >
+                                                                                    <span
+                                                                                      aria-hidden="true"
+                                                                                      className="euiButtonIcon__icon"
+                                                                                      color="inherit"
+                                                                                      data-euiicon-type="cross"
+                                                                                      size="m"
+                                                                                    />
+                                                                                  </EuiIcon>
+                                                                                </button>
+                                                                              </EuiButtonIcon>
+                                                                            </EuiI18n>
+                                                                          </div>
+                                                                        </EuiFlexItem>
+                                                                        <EuiFlexItem
+                                                                          grow={false}
+                                                                        >
+                                                                          <div
+                                                                            className="euiFlexItem euiFlexItem--flexGrowZero"
+                                                                          >
+                                                                            <EuiToken
+                                                                              iconType="tokenNumber"
+                                                                            >
+                                                                              <span
+                                                                                className="euiToken euiToken--euiColorVis0 euiToken--square euiToken--light euiToken--small"
+                                                                                style={Object {}}
+                                                                              >
+                                                                                <EuiIcon
+                                                                                  size="m"
+                                                                                  type="tokenNumber"
+                                                                                >
+                                                                                  <span
+                                                                                    data-euiicon-type="tokenNumber"
                                                                                     size="m"
                                                                                   />
                                                                                 </EuiIcon>
-                                                                              </button>
-                                                                            </EuiButtonIcon>
-                                                                          </EuiI18n>
-                                                                        </div>
-                                                                      </EuiFlexItem>
-                                                                      <EuiFlexItem
-                                                                        grow={false}
-                                                                      >
-                                                                        <div
-                                                                          className="euiFlexItem euiFlexItem--flexGrowZero"
-                                                                        >
-                                                                          <EuiToken
-                                                                            iconType="tokenNumber"
-                                                                          >
-                                                                            <span
-                                                                              className="euiToken euiToken--euiColorVis0 euiToken--square euiToken--light euiToken--small"
-                                                                              style={Object {}}
-                                                                            >
-                                                                              <EuiIcon
-                                                                                size="m"
-                                                                                type="tokenNumber"
-                                                                              >
-                                                                                <span
-                                                                                  data-euiicon-type="tokenNumber"
-                                                                                  size="m"
-                                                                                />
-                                                                              </EuiIcon>
-                                                                            </span>
-                                                                          </EuiToken>
-                                                                        </div>
-                                                                      </EuiFlexItem>
-                                                                      <EuiFlexItem
-                                                                        aria-hidden={true}
-                                                                      >
-                                                                        <div
+                                                                              </span>
+                                                                            </EuiToken>
+                                                                          </div>
+                                                                        </EuiFlexItem>
+                                                                        <EuiFlexItem
                                                                           aria-hidden={true}
-                                                                          className="euiFlexItem"
                                                                         >
-                                                                          <EuiText
-                                                                            size="xs"
+                                                                          <div
+                                                                            aria-hidden={true}
+                                                                            className="euiFlexItem"
                                                                           >
-                                                                            <div
-                                                                              className="euiText euiText--extraSmall"
+                                                                            <EuiText
+                                                                              size="xs"
                                                                             >
-                                                                              <p>
-                                                                                Column A
-                                                                              </p>
-                                                                            </div>
-                                                                          </EuiText>
-                                                                        </div>
-                                                                      </EuiFlexItem>
-                                                                      <EuiFlexItem
-                                                                        className="euiDataGridColumnSorting__orderButtons"
-                                                                      >
-                                                                        <div
-                                                                          className="euiFlexItem euiDataGridColumnSorting__orderButtons"
-                                                                        >
-                                                                          <EuiI18n
-                                                                            default="Select sorting method for {display}"
-                                                                            token="euiColumnSortingDraggable.toggleLegend"
-                                                                            values={
-                                                                              Object {
-                                                                                "display": "Column A",
-                                                                              }
-                                                                            }
-                                                                          >
-                                                                            <EuiButtonGroup
-                                                                              buttonSize="compressed"
-                                                                              className="euiDataGridColumnSorting__order"
-                                                                              idSelected="columnAAsc"
-                                                                              isFullWidth={true}
-                                                                              legend="Select sorting method for Column A"
-                                                                              name="columnA"
-                                                                              onChange={[Function]}
-                                                                              options={
-                                                                                Array [
-                                                                                  Object {
-                                                                                    "data-test-subj": "euiDataGridColumnSorting-sortColumn-columnA-asc",
-                                                                                    "id": "columnAAsc",
-                                                                                    "label": <EuiI18n
-                                                                                      default="Low-High"
-                                                                                      token="euiDataGridSchema.numberSortTextAsc"
-                                                                                    />,
-                                                                                    "value": "asc",
-                                                                                  },
-                                                                                  Object {
-                                                                                    "data-test-subj": "euiDataGridColumnSorting-sortColumn-columnA-desc",
-                                                                                    "id": "columnADesc",
-                                                                                    "label": <EuiI18n
-                                                                                      default="High-Low"
-                                                                                      token="euiDataGridSchema.numberSortTextDesc"
-                                                                                    />,
-                                                                                    "value": "desc",
-                                                                                  },
-                                                                                ]
-                                                                              }
-                                                                            >
-                                                                              <fieldset
-                                                                                className="euiButtonGroup euiButtonGroup--compressed euiButtonGroup--text euiButtonGroup--fullWidth euiDataGridColumnSorting__order"
-                                                                                disabled={false}
+                                                                              <div
+                                                                                className="euiText euiText--extraSmall"
                                                                               >
-                                                                                <EuiScreenReaderOnly>
-                                                                                  <legend
-                                                                                    className="euiScreenReaderOnly"
-                                                                                  >
-                                                                                    Select sorting method for Column A
-                                                                                  </legend>
-                                                                                </EuiScreenReaderOnly>
-                                                                                <div
-                                                                                  className="euiButtonGroup__buttons"
-                                                                                >
-                                                                                  <EuiButtonGroupButton
-                                                                                    color="text"
-                                                                                    data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
-                                                                                    element="label"
-                                                                                    id="columnAAsc"
-                                                                                    isDisabled={false}
-                                                                                    isIconOnly={false}
-                                                                                    isSelected={true}
-                                                                                    key="0"
-                                                                                    label={
-                                                                                      <EuiI18n
+                                                                                <p>
+                                                                                  Column A
+                                                                                </p>
+                                                                              </div>
+                                                                            </EuiText>
+                                                                          </div>
+                                                                        </EuiFlexItem>
+                                                                        <EuiFlexItem
+                                                                          className="euiDataGridColumnSorting__orderButtons"
+                                                                        >
+                                                                          <div
+                                                                            className="euiFlexItem euiDataGridColumnSorting__orderButtons"
+                                                                          >
+                                                                            <EuiI18n
+                                                                              default="Select sorting method for {display}"
+                                                                              token="euiColumnSortingDraggable.toggleLegend"
+                                                                              values={
+                                                                                Object {
+                                                                                  "display": "Column A",
+                                                                                }
+                                                                              }
+                                                                            >
+                                                                              <EuiButtonGroup
+                                                                                buttonSize="compressed"
+                                                                                className="euiDataGridColumnSorting__order"
+                                                                                idSelected="columnAAsc"
+                                                                                isFullWidth={true}
+                                                                                legend="Select sorting method for Column A"
+                                                                                name="columnA"
+                                                                                onChange={[Function]}
+                                                                                options={
+                                                                                  Array [
+                                                                                    Object {
+                                                                                      "data-test-subj": "euiDataGridColumnSorting-sortColumn-columnA-asc",
+                                                                                      "id": "columnAAsc",
+                                                                                      "label": <EuiI18n
                                                                                         default="Low-High"
                                                                                         token="euiDataGridSchema.numberSortTextAsc"
-                                                                                      />
-                                                                                    }
-                                                                                    name="columnA"
-                                                                                    onChange={[Function]}
-                                                                                    size="compressed"
-                                                                                    value="asc"
+                                                                                      />,
+                                                                                      "value": "asc",
+                                                                                    },
+                                                                                    Object {
+                                                                                      "data-test-subj": "euiDataGridColumnSorting-sortColumn-columnA-desc",
+                                                                                      "id": "columnADesc",
+                                                                                      "label": <EuiI18n
+                                                                                        default="High-Low"
+                                                                                        token="euiDataGridSchema.numberSortTextDesc"
+                                                                                      />,
+                                                                                      "value": "desc",
+                                                                                    },
+                                                                                  ]
+                                                                                }
+                                                                              >
+                                                                                <fieldset
+                                                                                  className="euiButtonGroup euiButtonGroup--compressed euiButtonGroup--text euiButtonGroup--fullWidth euiDataGridColumnSorting__order"
+                                                                                  disabled={false}
+                                                                                >
+                                                                                  <EuiScreenReaderOnly>
+                                                                                    <legend
+                                                                                      className="euiScreenReaderOnly"
+                                                                                    >
+                                                                                      Select sorting method for Column A
+                                                                                    </legend>
+                                                                                  </EuiScreenReaderOnly>
+                                                                                  <div
+                                                                                    className="euiButtonGroup__buttons"
                                                                                   >
-                                                                                    <EuiButtonDisplay
-                                                                                      baseClassName="euiButtonGroupButton"
-                                                                                      className="euiButtonGroupButton-isSelected"
+                                                                                    <EuiButtonGroupButton
                                                                                       color="text"
                                                                                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
                                                                                       element="label"
-                                                                                      fill={false}
-                                                                                      htmlFor="generated-id"
+                                                                                      id="columnAAsc"
                                                                                       isDisabled={false}
-                                                                                      size="s"
-                                                                                      textProps={
-                                                                                        Object {
-                                                                                          "className": "euiButtonGroupButton__textShift",
-                                                                                          "data-text": "Low-High",
-                                                                                          "ref": [Function],
-                                                                                        }
+                                                                                      isIconOnly={false}
+                                                                                      isSelected={true}
+                                                                                      key="0"
+                                                                                      label={
+                                                                                        <EuiI18n
+                                                                                          default="Low-High"
+                                                                                          token="euiDataGridSchema.numberSortTextAsc"
+                                                                                        />
                                                                                       }
-                                                                                      title="Low-High"
+                                                                                      name="columnA"
+                                                                                      onChange={[Function]}
+                                                                                      size="compressed"
+                                                                                      value="asc"
                                                                                     >
-                                                                                      <label
-                                                                                        className="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isSelected"
+                                                                                      <EuiButtonDisplay
+                                                                                        baseClassName="euiButtonGroupButton"
+                                                                                        className="euiButtonGroupButton-isSelected"
+                                                                                        color="text"
                                                                                         data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
-                                                                                        disabled={false}
+                                                                                        element="label"
+                                                                                        fill={false}
                                                                                         htmlFor="generated-id"
-                                                                                        style={
+                                                                                        isDisabled={false}
+                                                                                        size="s"
+                                                                                        textProps={
                                                                                           Object {
-                                                                                            "minWidth": undefined,
+                                                                                            "className": "euiButtonGroupButton__textShift",
+                                                                                            "data-text": "Low-High",
+                                                                                            "ref": [Function],
                                                                                           }
                                                                                         }
                                                                                         title="Low-High"
                                                                                       >
-                                                                                        <EuiButtonContent
-                                                                                          className="euiButton__content"
-                                                                                          iconSide="left"
-                                                                                          textProps={
+                                                                                        <label
+                                                                                          className="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isSelected"
+                                                                                          data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
+                                                                                          disabled={false}
+                                                                                          htmlFor="generated-id"
+                                                                                          style={
                                                                                             Object {
-                                                                                              "className": "euiButton__text euiButtonGroupButton__textShift",
-                                                                                              "data-text": "Low-High",
-                                                                                              "ref": [Function],
+                                                                                              "minWidth": undefined,
                                                                                             }
                                                                                           }
+                                                                                          title="Low-High"
                                                                                         >
-                                                                                          <span
-                                                                                            className="euiButtonContent euiButton__content"
+                                                                                          <EuiButtonContent
+                                                                                            className="euiButton__content"
+                                                                                            iconSide="left"
+                                                                                            textProps={
+                                                                                              Object {
+                                                                                                "className": "euiButton__text euiButtonGroupButton__textShift",
+                                                                                                "data-text": "Low-High",
+                                                                                                "ref": [Function],
+                                                                                              }
+                                                                                            }
                                                                                           >
                                                                                             <span
-                                                                                              className="euiButton__text euiButtonGroupButton__textShift"
-                                                                                              data-text="Low-High"
+                                                                                              className="euiButtonContent euiButton__content"
                                                                                             >
-                                                                                              <input
-                                                                                                checked={true}
-                                                                                                className="euiScreenReaderOnly"
-                                                                                                data-test-subj="columnAAsc"
-                                                                                                disabled={false}
-                                                                                                id="generated-id"
-                                                                                                name="columnA"
-                                                                                                onChange={[Function]}
-                                                                                                type="radio"
-                                                                                                value="asc"
-                                                                                              />
-                                                                                              <EuiI18n
-                                                                                                default="Low-High"
-                                                                                                token="euiDataGridSchema.numberSortTextAsc"
+                                                                                              <span
+                                                                                                className="euiButton__text euiButtonGroupButton__textShift"
+                                                                                                data-text="Low-High"
                                                                                               >
-                                                                                                Low-High
-                                                                                              </EuiI18n>
+                                                                                                <input
+                                                                                                  checked={true}
+                                                                                                  className="euiScreenReaderOnly"
+                                                                                                  data-test-subj="columnAAsc"
+                                                                                                  disabled={false}
+                                                                                                  id="generated-id"
+                                                                                                  name="columnA"
+                                                                                                  onChange={[Function]}
+                                                                                                  type="radio"
+                                                                                                  value="asc"
+                                                                                                />
+                                                                                                <EuiI18n
+                                                                                                  default="Low-High"
+                                                                                                  token="euiDataGridSchema.numberSortTextAsc"
+                                                                                                >
+                                                                                                  Low-High
+                                                                                                </EuiI18n>
+                                                                                              </span>
                                                                                             </span>
-                                                                                          </span>
-                                                                                        </EuiButtonContent>
-                                                                                      </label>
-                                                                                    </EuiButtonDisplay>
-                                                                                  </EuiButtonGroupButton>
-                                                                                  <EuiButtonGroupButton
-                                                                                    color="text"
-                                                                                    data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
-                                                                                    element="label"
-                                                                                    id="columnADesc"
-                                                                                    isDisabled={false}
-                                                                                    isIconOnly={false}
-                                                                                    isSelected={false}
-                                                                                    key="1"
-                                                                                    label={
-                                                                                      <EuiI18n
-                                                                                        default="High-Low"
-                                                                                        token="euiDataGridSchema.numberSortTextDesc"
-                                                                                      />
-                                                                                    }
-                                                                                    name="columnA"
-                                                                                    onChange={[Function]}
-                                                                                    size="compressed"
-                                                                                    value="desc"
-                                                                                  >
-                                                                                    <EuiButtonDisplay
-                                                                                      baseClassName="euiButtonGroupButton"
+                                                                                          </EuiButtonContent>
+                                                                                        </label>
+                                                                                      </EuiButtonDisplay>
+                                                                                    </EuiButtonGroupButton>
+                                                                                    <EuiButtonGroupButton
                                                                                       color="text"
                                                                                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
                                                                                       element="label"
-                                                                                      fill={false}
-                                                                                      htmlFor="generated-id"
+                                                                                      id="columnADesc"
                                                                                       isDisabled={false}
-                                                                                      size="s"
-                                                                                      textProps={
-                                                                                        Object {
-                                                                                          "className": "euiButtonGroupButton__textShift",
-                                                                                          "data-text": "High-Low",
-                                                                                          "ref": [Function],
-                                                                                        }
+                                                                                      isIconOnly={false}
+                                                                                      isSelected={false}
+                                                                                      key="1"
+                                                                                      label={
+                                                                                        <EuiI18n
+                                                                                          default="High-Low"
+                                                                                          token="euiDataGridSchema.numberSortTextDesc"
+                                                                                        />
                                                                                       }
-                                                                                      title="High-Low"
+                                                                                      name="columnA"
+                                                                                      onChange={[Function]}
+                                                                                      size="compressed"
+                                                                                      value="desc"
                                                                                     >
-                                                                                      <label
-                                                                                        className="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+                                                                                      <EuiButtonDisplay
+                                                                                        baseClassName="euiButtonGroupButton"
+                                                                                        color="text"
                                                                                         data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
-                                                                                        disabled={false}
+                                                                                        element="label"
+                                                                                        fill={false}
                                                                                         htmlFor="generated-id"
-                                                                                        style={
+                                                                                        isDisabled={false}
+                                                                                        size="s"
+                                                                                        textProps={
                                                                                           Object {
-                                                                                            "minWidth": undefined,
+                                                                                            "className": "euiButtonGroupButton__textShift",
+                                                                                            "data-text": "High-Low",
+                                                                                            "ref": [Function],
                                                                                           }
                                                                                         }
                                                                                         title="High-Low"
                                                                                       >
-                                                                                        <EuiButtonContent
-                                                                                          className="euiButton__content"
-                                                                                          iconSide="left"
-                                                                                          textProps={
+                                                                                        <label
+                                                                                          className="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+                                                                                          data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
+                                                                                          disabled={false}
+                                                                                          htmlFor="generated-id"
+                                                                                          style={
                                                                                             Object {
-                                                                                              "className": "euiButton__text euiButtonGroupButton__textShift",
-                                                                                              "data-text": "High-Low",
-                                                                                              "ref": [Function],
+                                                                                              "minWidth": undefined,
                                                                                             }
                                                                                           }
+                                                                                          title="High-Low"
                                                                                         >
-                                                                                          <span
-                                                                                            className="euiButtonContent euiButton__content"
+                                                                                          <EuiButtonContent
+                                                                                            className="euiButton__content"
+                                                                                            iconSide="left"
+                                                                                            textProps={
+                                                                                              Object {
+                                                                                                "className": "euiButton__text euiButtonGroupButton__textShift",
+                                                                                                "data-text": "High-Low",
+                                                                                                "ref": [Function],
+                                                                                              }
+                                                                                            }
                                                                                           >
                                                                                             <span
-                                                                                              className="euiButton__text euiButtonGroupButton__textShift"
-                                                                                              data-text="High-Low"
+                                                                                              className="euiButtonContent euiButton__content"
                                                                                             >
-                                                                                              <input
-                                                                                                checked={false}
-                                                                                                className="euiScreenReaderOnly"
-                                                                                                data-test-subj="columnADesc"
-                                                                                                disabled={false}
-                                                                                                id="generated-id"
-                                                                                                name="columnA"
-                                                                                                onChange={[Function]}
-                                                                                                type="radio"
-                                                                                                value="desc"
-                                                                                              />
-                                                                                              <EuiI18n
-                                                                                                default="High-Low"
-                                                                                                token="euiDataGridSchema.numberSortTextDesc"
+                                                                                              <span
+                                                                                                className="euiButton__text euiButtonGroupButton__textShift"
+                                                                                                data-text="High-Low"
                                                                                               >
-                                                                                                High-Low
-                                                                                              </EuiI18n>
+                                                                                                <input
+                                                                                                  checked={false}
+                                                                                                  className="euiScreenReaderOnly"
+                                                                                                  data-test-subj="columnADesc"
+                                                                                                  disabled={false}
+                                                                                                  id="generated-id"
+                                                                                                  name="columnA"
+                                                                                                  onChange={[Function]}
+                                                                                                  type="radio"
+                                                                                                  value="desc"
+                                                                                                />
+                                                                                                <EuiI18n
+                                                                                                  default="High-Low"
+                                                                                                  token="euiDataGridSchema.numberSortTextDesc"
+                                                                                                >
+                                                                                                  High-Low
+                                                                                                </EuiI18n>
+                                                                                              </span>
                                                                                             </span>
-                                                                                          </span>
-                                                                                        </EuiButtonContent>
-                                                                                      </label>
-                                                                                    </EuiButtonDisplay>
-                                                                                  </EuiButtonGroupButton>
-                                                                                </div>
-                                                                              </fieldset>
-                                                                            </EuiButtonGroup>
-                                                                          </EuiI18n>
-                                                                        </div>
-                                                                      </EuiFlexItem>
-                                                                      <EuiFlexItem
-                                                                        aria-describedby="rbd-hidden-text-0-hidden-text-0"
-                                                                        data-rbd-drag-handle-context-id="0"
-                                                                        data-rbd-drag-handle-draggable-id="columnA"
-                                                                        draggable={false}
-                                                                        grow={false}
-                                                                        onDragStart={[Function]}
-                                                                        role="button"
-                                                                        tabIndex={0}
-                                                                      >
-                                                                        <div
+                                                                                          </EuiButtonContent>
+                                                                                        </label>
+                                                                                      </EuiButtonDisplay>
+                                                                                    </EuiButtonGroupButton>
+                                                                                  </div>
+                                                                                </fieldset>
+                                                                              </EuiButtonGroup>
+                                                                            </EuiI18n>
+                                                                          </div>
+                                                                        </EuiFlexItem>
+                                                                        <EuiFlexItem
                                                                           aria-describedby="rbd-hidden-text-0-hidden-text-0"
-                                                                          className="euiFlexItem euiFlexItem--flexGrowZero"
                                                                           data-rbd-drag-handle-context-id="0"
                                                                           data-rbd-drag-handle-draggable-id="columnA"
                                                                           draggable={false}
+                                                                          grow={false}
                                                                           onDragStart={[Function]}
                                                                           role="button"
                                                                           tabIndex={0}
                                                                         >
                                                                           <div
                                                                             aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                                                                            className="euiFlexItem euiFlexItem--flexGrowZero"
                                                                             data-rbd-drag-handle-context-id="0"
                                                                             data-rbd-drag-handle-draggable-id="columnA"
                                                                             draggable={false}
@@ -1228,96 +1306,76 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                                                                             role="button"
                                                                             tabIndex={0}
                                                                           >
-                                                                            <EuiIcon
-                                                                              color="subdued"
-                                                                              type="grab"
+                                                                            <div
+                                                                              aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                                                                              data-rbd-drag-handle-context-id="0"
+                                                                              data-rbd-drag-handle-draggable-id="columnA"
+                                                                              draggable={false}
+                                                                              onDragStart={[Function]}
+                                                                              role="button"
+                                                                              tabIndex={0}
                                                                             >
-                                                                              <span
+                                                                              <EuiIcon
                                                                                 color="subdued"
-                                                                                data-euiicon-type="grab"
-                                                                              />
-                                                                            </EuiIcon>
+                                                                                type="grab"
+                                                                              >
+                                                                                <span
+                                                                                  color="subdued"
+                                                                                  data-euiicon-type="grab"
+                                                                                />
+                                                                              </EuiIcon>
+                                                                            </div>
                                                                           </div>
-                                                                        </div>
-                                                                      </EuiFlexItem>
-                                                                    </div>
-                                                                  </EuiFlexGroup>
+                                                                        </EuiFlexItem>
+                                                                      </div>
+                                                                    </EuiFlexGroup>
+                                                                  </div>
                                                                 </div>
-                                                              </div>
-                                                            </Draggable>
-                                                          </Connect(Draggable)>
-                                                        </PrivateDraggable>
-                                                      </PublicDraggable>
-                                                    </EuiDraggable>
-                                                  </EuiDataGridColumnSortingDraggable>
-                                                  <div
-                                                    className="euiDroppable__placeholder"
-                                                  >
-                                                    <AnimateInOut
-                                                      on={null}
-                                                      shouldAnimate={false}
-                                                    />
+                                                              </Draggable>
+                                                            </Connect(Draggable)>
+                                                          </PrivateDraggable>
+                                                        </PublicDraggable>
+                                                      </EuiDraggable>
+                                                    </EuiDataGridColumnSortingDraggable>
+                                                    <div
+                                                      className="euiDroppable__placeholder"
+                                                    >
+                                                      <AnimateInOut
+                                                        on={null}
+                                                        shouldAnimate={false}
+                                                      />
+                                                    </div>
                                                   </div>
-                                                </div>
-                                              </Droppable>
-                                            </Connect(Droppable)>
-                                          </EuiDroppable>
-                                        </Provider>
-                                      </App>
-                                    </ErrorBoundary>
-                                  </DragDropContext>
-                                </EuiDragDropContext>
-                              </div>
-                              <EuiPopoverFooter>
-                                <div
-                                  className="euiPopoverFooter"
-                                >
-                                  <EuiFlexGroup
-                                    gutterSize="m"
-                                    justifyContent="spaceBetween"
-                                    responsive={false}
+                                                </Droppable>
+                                              </Connect(Droppable)>
+                                            </EuiDroppable>
+                                          </Provider>
+                                        </App>
+                                      </ErrorBoundary>
+                                    </DragDropContext>
+                                  </EuiDragDropContext>
+                                </div>
+                                <EuiPopoverFooter>
+                                  <div
+                                    className="euiPopoverFooter"
                                   >
-                                    <div
-                                      className="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
+                                    <EuiFlexGroup
+                                      gutterSize="m"
+                                      justifyContent="spaceBetween"
+                                      responsive={false}
                                     >
-                                      <EuiFlexItem
-                                        grow={false}
+                                      <div
+                                        className="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
                                       >
-                                        <div
-                                          className="euiFlexItem euiFlexItem--flexGrowZero"
+                                        <EuiFlexItem
+                                          grow={false}
                                         >
-                                          <EuiPopover
-                                            anchorPosition="downLeft"
-                                            button={
-                                              <EuiButtonEmpty
-                                                data-test-subj="dataGridColumnSortingSelectionButton"
-                                                flush="left"
-                                                iconSide="right"
-                                                iconType="arrowDown"
-                                                onClick={[Function]}
-                                                size="xs"
-                                              >
-                                                <EuiI18n
-                                                  default="Pick fields to sort by"
-                                                  token="euiColumnSorting.pickFields"
-                                                />
-                                              </EuiButtonEmpty>
-                                            }
-                                            closePopover={[Function]}
-                                            data-test-subj="dataGridColumnSortingPopoverColumnSelection"
-                                            display="inlineBlock"
-                                            hasArrow={true}
-                                            isOpen={false}
-                                            ownFocus={true}
-                                            panelPaddingSize="none"
+                                          <div
+                                            className="euiFlexItem euiFlexItem--flexGrowZero"
                                           >
-                                            <div
-                                              className="euiPopover euiPopover--anchorDownLeft"
-                                              data-test-subj="dataGridColumnSortingPopoverColumnSelection"
-                                            >
-                                              <div
-                                                className="euiPopover__anchor"
-                                              >
+                                            <EuiPopover
+                                              anchorPosition="downLeft"
+                                              button={
                                                 <EuiButtonEmpty
                                                   data-test-subj="dataGridColumnSortingSelectionButton"
                                                   flush="left"
@@ -1326,113 +1384,143 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                                                   onClick={[Function]}
                                                   size="xs"
                                                 >
-                                                  <button
-                                                    className="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiButtonEmpty--flushLeft"
+                                                  <EuiI18n
+                                                    default="Pick fields to sort by"
+                                                    token="euiColumnSorting.pickFields"
+                                                  />
+                                                </EuiButtonEmpty>
+                                              }
+                                              closePopover={[Function]}
+                                              data-test-subj="dataGridColumnSortingPopoverColumnSelection"
+                                              display="inlineBlock"
+                                              hasArrow={true}
+                                              isOpen={false}
+                                              ownFocus={true}
+                                              panelPaddingSize="none"
+                                            >
+                                              <div
+                                                className="euiPopover euiPopover--anchorDownLeft"
+                                                data-test-subj="dataGridColumnSortingPopoverColumnSelection"
+                                              >
+                                                <div
+                                                  className="euiPopover__anchor"
+                                                >
+                                                  <EuiButtonEmpty
                                                     data-test-subj="dataGridColumnSortingSelectionButton"
-                                                    disabled={false}
+                                                    flush="left"
+                                                    iconSide="right"
+                                                    iconType="arrowDown"
                                                     onClick={[Function]}
-                                                    type="button"
+                                                    size="xs"
                                                   >
-                                                    <EuiButtonContent
-                                                      className="euiButtonEmpty__content"
-                                                      iconSide="right"
-                                                      iconSize="s"
-                                                      iconType="arrowDown"
-                                                      textProps={
-                                                        Object {
-                                                          "className": "euiButtonEmpty__text",
-                                                        }
-                                                      }
+                                                    <button
+                                                      className="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiButtonEmpty--flushLeft"
+                                                      data-test-subj="dataGridColumnSortingSelectionButton"
+                                                      disabled={false}
+                                                      onClick={[Function]}
+                                                      type="button"
                                                     >
-                                                      <span
-                                                        className="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+                                                      <EuiButtonContent
+                                                        className="euiButtonEmpty__content"
+                                                        iconSide="right"
+                                                        iconSize="s"
+                                                        iconType="arrowDown"
+                                                        textProps={
+                                                          Object {
+                                                            "className": "euiButtonEmpty__text",
+                                                          }
+                                                        }
                                                       >
-                                                        <EuiIcon
-                                                          className="euiButtonContent__icon"
-                                                          color="inherit"
-                                                          size="s"
-                                                          type="arrowDown"
+                                                        <span
+                                                          className="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
                                                         >
-                                                          <span
+                                                          <EuiIcon
                                                             className="euiButtonContent__icon"
                                                             color="inherit"
-                                                            data-euiicon-type="arrowDown"
                                                             size="s"
-                                                          />
-                                                        </EuiIcon>
-                                                        <span
-                                                          className="euiButtonEmpty__text"
-                                                        >
-                                                          <EuiI18n
-                                                            default="Pick fields to sort by"
-                                                            token="euiColumnSorting.pickFields"
+                                                            type="arrowDown"
                                                           >
-                                                            Pick fields to sort by
-                                                          </EuiI18n>
+                                                            <span
+                                                              className="euiButtonContent__icon"
+                                                              color="inherit"
+                                                              data-euiicon-type="arrowDown"
+                                                              size="s"
+                                                            />
+                                                          </EuiIcon>
+                                                          <span
+                                                            className="euiButtonEmpty__text"
+                                                          >
+                                                            <EuiI18n
+                                                              default="Pick fields to sort by"
+                                                              token="euiColumnSorting.pickFields"
+                                                            >
+                                                              Pick fields to sort by
+                                                            </EuiI18n>
+                                                          </span>
                                                         </span>
-                                                      </span>
-                                                    </EuiButtonContent>
-                                                  </button>
-                                                </EuiButtonEmpty>
+                                                      </EuiButtonContent>
+                                                    </button>
+                                                  </EuiButtonEmpty>
+                                                </div>
                                               </div>
-                                            </div>
-                                          </EuiPopover>
-                                        </div>
-                                      </EuiFlexItem>
-                                      <EuiFlexItem
-                                        grow={false}
-                                      >
-                                        <div
-                                          className="euiFlexItem euiFlexItem--flexGrowZero"
+                                            </EuiPopover>
+                                          </div>
+                                        </EuiFlexItem>
+                                        <EuiFlexItem
+                                          grow={false}
                                         >
-                                          <EuiButtonEmpty
-                                            data-test-subj="dataGridColumnSortingClearButton"
-                                            flush="right"
-                                            onClick={[Function]}
-                                            size="xs"
+                                          <div
+                                            className="euiFlexItem euiFlexItem--flexGrowZero"
                                           >
-                                            <button
-                                              className="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiButtonEmpty--flushRight"
+                                            <EuiButtonEmpty
                                               data-test-subj="dataGridColumnSortingClearButton"
-                                              disabled={false}
+                                              flush="right"
                                               onClick={[Function]}
-                                              type="button"
+                                              size="xs"
                                             >
-                                              <EuiButtonContent
-                                                className="euiButtonEmpty__content"
-                                                iconSide="left"
-                                                iconSize="s"
-                                                textProps={
-                                                  Object {
-                                                    "className": "euiButtonEmpty__text",
-                                                  }
-                                                }
+                                              <button
+                                                className="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiButtonEmpty--flushRight"
+                                                data-test-subj="dataGridColumnSortingClearButton"
+                                                disabled={false}
+                                                onClick={[Function]}
+                                                type="button"
                                               >
-                                                <span
-                                                  className="euiButtonContent euiButtonEmpty__content"
+                                                <EuiButtonContent
+                                                  className="euiButtonEmpty__content"
+                                                  iconSide="left"
+                                                  iconSize="s"
+                                                  textProps={
+                                                    Object {
+                                                      "className": "euiButtonEmpty__text",
+                                                    }
+                                                  }
                                                 >
                                                   <span
-                                                    className="euiButtonEmpty__text"
+                                                    className="euiButtonContent euiButtonEmpty__content"
                                                   >
-                                                    <EuiI18n
-                                                      default="Clear sorting"
-                                                      token="euiColumnSorting.clearAll"
+                                                    <span
+                                                      className="euiButtonEmpty__text"
                                                     >
-                                                      Clear sorting
-                                                    </EuiI18n>
+                                                      <EuiI18n
+                                                        default="Clear sorting"
+                                                        token="euiColumnSorting.clearAll"
+                                                      >
+                                                        Clear sorting
+                                                      </EuiI18n>
+                                                    </span>
                                                   </span>
-                                                </span>
-                                              </EuiButtonContent>
-                                            </button>
-                                          </EuiButtonEmpty>
-                                        </div>
-                                      </EuiFlexItem>
-                                    </div>
-                                  </EuiFlexGroup>
-                                </div>
-                              </EuiPopoverFooter>
-                            </div>
-                          </EuiMutationObserver>
+                                                </EuiButtonContent>
+                                              </button>
+                                            </EuiButtonEmpty>
+                                          </div>
+                                        </EuiFlexItem>
+                                      </div>
+                                    </EuiFlexGroup>
+                                  </div>
+                                </EuiPopoverFooter>
+                              </div>
+                            </EuiMutationObserver>
+                          </div>
                         </div>
                       </EuiPanel>
                     </div>

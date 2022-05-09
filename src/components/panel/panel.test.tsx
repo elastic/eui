@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiPanel, SIZES, COLORS, BORDER_RADII } from './panel';
 
@@ -18,6 +19,8 @@ describe('EuiPanel', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  shouldRenderCustomStyles(<EuiPanel />);
 
   describe('props', () => {
     describe('hasShadow', () => {

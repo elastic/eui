@@ -115,7 +115,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                   aria-describedby="generated-id"
                   aria-live="off"
                   aria-modal="true"
-                  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop"
+                  class="euiPanel euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop css-6zsgh2-euiPanel-grow-m-s-plain"
                   data-autofocus="true"
                   role="dialog"
                   style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
@@ -491,7 +491,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                           aria-describedby="generated-id"
                           aria-live="off"
                           aria-modal="true"
-                          className="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop"
+                          css="unknown styles"
                           role="dialog"
                           style={
                             Object {
@@ -503,167 +503,243 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                           }
                           tabIndex={0}
                         >
-                          <div
-                            className="euiPopover__panelArrow euiPopover__panelArrow--bottom"
-                            style={
+                          <Insertion
+                            cache={
                               Object {
-                                "left": 10,
-                                "top": 0,
+                                "insert": [Function],
+                                "inserted": Object {
+                                  "6zsgh2-euiPanel-grow-m-s-plain": true,
+                                },
+                                "key": "css",
+                                "nonce": undefined,
+                                "registered": Object {},
+                                "sheet": StyleSheet {
+                                  "_alreadyInsertedOrderInsensitiveRule": true,
+                                  "_insertTag": [Function],
+                                  "before": null,
+                                  "container": <head>
+                                    <style
+                                      data-emotion="css"
+                                      data-s=""
+                                    >
+                                      
+                                      .css-6zsgh2-euiPanel-grow-m-s-plain{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;border-radius:6px;padding:8px;background-color:#FFF;}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIl9jb2xvci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFzRGMiLCJmaWxlIjoiX2NvbG9yLnRzIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIENvcHlyaWdodCBFbGFzdGljc2VhcmNoIEIuVi4gYW5kL29yIGxpY2Vuc2VkIHRvIEVsYXN0aWNzZWFyY2ggQi5WLiB1bmRlciBvbmVcbiAqIG9yIG1vcmUgY29udHJpYnV0b3IgbGljZW5zZSBhZ3JlZW1lbnRzLiBMaWNlbnNlZCB1bmRlciB0aGUgRWxhc3RpYyBMaWNlbnNlXG4gKiAyLjAgYW5kIHRoZSBTZXJ2ZXIgU2lkZSBQdWJsaWMgTGljZW5zZSwgdiAxOyB5b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdFxuICogaW4gY29tcGxpYW5jZSB3aXRoLCBhdCB5b3VyIGVsZWN0aW9uLCB0aGUgRWxhc3RpYyBMaWNlbnNlIDIuMCBvciB0aGUgU2VydmVyXG4gKiBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDEuXG4gKi9cblxuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnO1xuaW1wb3J0IHsgc2hhZGUsIHRpbnQsIHVzZUV1aVRoZW1lLCBVc2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcblxuZXhwb3J0IGNvbnN0IEJBQ0tHUk9VTkRfQ09MT1JTID0gW1xuICAndHJhbnNwYXJlbnQnLFxuICAncGxhaW4nLFxuICAnc3ViZHVlZCcsXG4gICdhY2NlbnQnLFxuICAncHJpbWFyeScsXG4gICdzdWNjZXNzJyxcbiAgJ3dhcm5pbmcnLFxuICAnZGFuZ2VyJyxcbl0gYXMgY29uc3Q7XG5cbmV4cG9ydCB0eXBlIEV1aUJhY2tncm91bmRDb2xvciA9IHR5cGVvZiBCQUNLR1JPVU5EX0NPTE9SU1tudW1iZXJdO1xuXG5leHBvcnQgY29uc3QgZXVpQmFja2dyb3VuZENvbG9yID0gKFxuICBjb2xvcjogRXVpQmFja2dyb3VuZENvbG9yLFxuICB7IGV1aVRoZW1lLCBjb2xvck1vZGUgfTogVXNlRXVpVGhlbWVcbikgPT4ge1xuICBmdW5jdGlvbiB0aW50T3JTaGFkZShjb2xvcjogc3RyaW5nKSB7XG4gICAgcmV0dXJuIGNvbG9yTW9kZSA9PT0gJ0RBUksnID8gc2hhZGUoY29sb3IsIDAuNykgOiB0aW50KGNvbG9yLCAwLjkpO1xuICB9XG5cbiAgc3dpdGNoIChjb2xvcikge1xuICAgIGNhc2UgJ3RyYW5zcGFyZW50JzpcbiAgICAgIHJldHVybiAndHJhbnNwYXJlbnQnO1xuICAgIGNhc2UgJ3BsYWluJzpcbiAgICAgIHJldHVybiBldWlUaGVtZS5jb2xvcnMuZW1wdHlTaGFkZTtcbiAgICBjYXNlICdzdWJkdWVkJzpcbiAgICAgIHJldHVybiBldWlUaGVtZS5jb2xvcnMuYm9keTtcbiAgICBkZWZhdWx0OlxuICAgICAgcmV0dXJuIHRpbnRPclNoYWRlKGV1aVRoZW1lLmNvbG9yc1tjb2xvcl0pO1xuICB9XG59O1xuXG5leHBvcnQgY29uc3QgdXNlRXVpQmFja2dyb3VuZENvbG9yID0gKGNvbG9yOiBFdWlCYWNrZ3JvdW5kQ29sb3IpID0+IHtcbiAgY29uc3QgZXVpVGhlbWUgPSB1c2VFdWlUaGVtZSgpO1xuICByZXR1cm4gZXVpQmFja2dyb3VuZENvbG9yKGNvbG9yLCBldWlUaGVtZSk7XG59O1xuXG5leHBvcnQgY29uc3QgdXNlRXVpQmFja2dyb3VuZENvbG9yQ1NTID0gKCkgPT4ge1xuICByZXR1cm4ge1xuICAgIHRyYW5zcGFyZW50OiBjc3NgXG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAke3VzZUV1aUJhY2tncm91bmRDb2xvcigndHJhbnNwYXJlbnQnKX07XG4gICAgYCxcbiAgICBwbGFpbjogY3NzYFxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogJHt1c2VFdWlCYWNrZ3JvdW5kQ29sb3IoJ3BsYWluJyl9O1xuICAgIGAsXG4gICAgc3ViZHVlZDogY3NzYFxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogJHt1c2VFdWlCYWNrZ3JvdW5kQ29sb3IoJ3N1YmR1ZWQnKX07XG4gICAgYCxcbiAgICBhY2NlbnQ6IGNzc2BcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7dXNlRXVpQmFja2dyb3VuZENvbG9yKCdhY2NlbnQnKX07XG4gICAgYCxcbiAgICBwcmltYXJ5OiBjc3NgXG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAke3VzZUV1aUJhY2tncm91bmRDb2xvcigncHJpbWFyeScpfTtcbiAgICBgLFxuICAgIHN1Y2Nlc3M6IGNzc2BcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7dXNlRXVpQmFja2dyb3VuZENvbG9yKCdzdWNjZXNzJyl9O1xuICAgIGAsXG4gICAgd2FybmluZzogY3NzYFxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogJHt1c2VFdWlCYWNrZ3JvdW5kQ29sb3IoJ3dhcm5pbmcnKX07XG4gICAgYCxcbiAgICBkYW5nZXI6IGNzc2BcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7dXNlRXVpQmFja2dyb3VuZENvbG9yKCdkYW5nZXInKX07XG4gICAgYCxcbiAgfTtcbn07XG4iXX0= */
+                                    </style>
+                                    <style
+                                      data-rbd-always="0"
+                                      type="text/css"
+                                    >
+                                       [data-rbd-drag-handle-context-id="0"] { 
+          -webkit-touch-callout: none;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+          touch-action: manipulation;
+         } [data-rbd-droppable-context-id="0"] { overflow-anchor: none; } 
+                                    </style>
+                                    <style
+                                      data-rbd-dynamic="0"
+                                      type="text/css"
+                                    >
+                                       [data-rbd-drag-handle-context-id="0"] { 
+      cursor: -webkit-grab;
+      cursor: grab;
+     }  
+                                    </style>
+                                  </head>,
+                                  "ctr": 1,
+                                  "insertionPoint": undefined,
+                                  "isSpeedy": false,
+                                  "key": "css",
+                                  "nonce": undefined,
+                                  "prepend": undefined,
+                                  "tags": Array [
+                                    <style
+                                      data-emotion="css"
+                                      data-s=""
+                                    >
+                                      
+                                      .css-6zsgh2-euiPanel-grow-m-s-plain{-webkit-box-flex:0;-webkit-flex-grow:0;-ms-flex-positive:0;flex-grow:0;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;border-radius:6px;padding:8px;background-color:#FFF;}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIl9jb2xvci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFzRGMiLCJmaWxlIjoiX2NvbG9yLnRzIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIENvcHlyaWdodCBFbGFzdGljc2VhcmNoIEIuVi4gYW5kL29yIGxpY2Vuc2VkIHRvIEVsYXN0aWNzZWFyY2ggQi5WLiB1bmRlciBvbmVcbiAqIG9yIG1vcmUgY29udHJpYnV0b3IgbGljZW5zZSBhZ3JlZW1lbnRzLiBMaWNlbnNlZCB1bmRlciB0aGUgRWxhc3RpYyBMaWNlbnNlXG4gKiAyLjAgYW5kIHRoZSBTZXJ2ZXIgU2lkZSBQdWJsaWMgTGljZW5zZSwgdiAxOyB5b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdFxuICogaW4gY29tcGxpYW5jZSB3aXRoLCBhdCB5b3VyIGVsZWN0aW9uLCB0aGUgRWxhc3RpYyBMaWNlbnNlIDIuMCBvciB0aGUgU2VydmVyXG4gKiBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDEuXG4gKi9cblxuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnO1xuaW1wb3J0IHsgc2hhZGUsIHRpbnQsIHVzZUV1aVRoZW1lLCBVc2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcblxuZXhwb3J0IGNvbnN0IEJBQ0tHUk9VTkRfQ09MT1JTID0gW1xuICAndHJhbnNwYXJlbnQnLFxuICAncGxhaW4nLFxuICAnc3ViZHVlZCcsXG4gICdhY2NlbnQnLFxuICAncHJpbWFyeScsXG4gICdzdWNjZXNzJyxcbiAgJ3dhcm5pbmcnLFxuICAnZGFuZ2VyJyxcbl0gYXMgY29uc3Q7XG5cbmV4cG9ydCB0eXBlIEV1aUJhY2tncm91bmRDb2xvciA9IHR5cGVvZiBCQUNLR1JPVU5EX0NPTE9SU1tudW1iZXJdO1xuXG5leHBvcnQgY29uc3QgZXVpQmFja2dyb3VuZENvbG9yID0gKFxuICBjb2xvcjogRXVpQmFja2dyb3VuZENvbG9yLFxuICB7IGV1aVRoZW1lLCBjb2xvck1vZGUgfTogVXNlRXVpVGhlbWVcbikgPT4ge1xuICBmdW5jdGlvbiB0aW50T3JTaGFkZShjb2xvcjogc3RyaW5nKSB7XG4gICAgcmV0dXJuIGNvbG9yTW9kZSA9PT0gJ0RBUksnID8gc2hhZGUoY29sb3IsIDAuNykgOiB0aW50KGNvbG9yLCAwLjkpO1xuICB9XG5cbiAgc3dpdGNoIChjb2xvcikge1xuICAgIGNhc2UgJ3RyYW5zcGFyZW50JzpcbiAgICAgIHJldHVybiAndHJhbnNwYXJlbnQnO1xuICAgIGNhc2UgJ3BsYWluJzpcbiAgICAgIHJldHVybiBldWlUaGVtZS5jb2xvcnMuZW1wdHlTaGFkZTtcbiAgICBjYXNlICdzdWJkdWVkJzpcbiAgICAgIHJldHVybiBldWlUaGVtZS5jb2xvcnMuYm9keTtcbiAgICBkZWZhdWx0OlxuICAgICAgcmV0dXJuIHRpbnRPclNoYWRlKGV1aVRoZW1lLmNvbG9yc1tjb2xvcl0pO1xuICB9XG59O1xuXG5leHBvcnQgY29uc3QgdXNlRXVpQmFja2dyb3VuZENvbG9yID0gKGNvbG9yOiBFdWlCYWNrZ3JvdW5kQ29sb3IpID0+IHtcbiAgY29uc3QgZXVpVGhlbWUgPSB1c2VFdWlUaGVtZSgpO1xuICByZXR1cm4gZXVpQmFja2dyb3VuZENvbG9yKGNvbG9yLCBldWlUaGVtZSk7XG59O1xuXG5leHBvcnQgY29uc3QgdXNlRXVpQmFja2dyb3VuZENvbG9yQ1NTID0gKCkgPT4ge1xuICByZXR1cm4ge1xuICAgIHRyYW5zcGFyZW50OiBjc3NgXG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAke3VzZUV1aUJhY2tncm91bmRDb2xvcigndHJhbnNwYXJlbnQnKX07XG4gICAgYCxcbiAgICBwbGFpbjogY3NzYFxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogJHt1c2VFdWlCYWNrZ3JvdW5kQ29sb3IoJ3BsYWluJyl9O1xuICAgIGAsXG4gICAgc3ViZHVlZDogY3NzYFxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogJHt1c2VFdWlCYWNrZ3JvdW5kQ29sb3IoJ3N1YmR1ZWQnKX07XG4gICAgYCxcbiAgICBhY2NlbnQ6IGNzc2BcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7dXNlRXVpQmFja2dyb3VuZENvbG9yKCdhY2NlbnQnKX07XG4gICAgYCxcbiAgICBwcmltYXJ5OiBjc3NgXG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAke3VzZUV1aUJhY2tncm91bmRDb2xvcigncHJpbWFyeScpfTtcbiAgICBgLFxuICAgIHN1Y2Nlc3M6IGNzc2BcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7dXNlRXVpQmFja2dyb3VuZENvbG9yKCdzdWNjZXNzJyl9O1xuICAgIGAsXG4gICAgd2FybmluZzogY3NzYFxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogJHt1c2VFdWlCYWNrZ3JvdW5kQ29sb3IoJ3dhcm5pbmcnKX07XG4gICAgYCxcbiAgICBkYW5nZXI6IGNzc2BcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7dXNlRXVpQmFja2dyb3VuZENvbG9yKCdkYW5nZXInKX07XG4gICAgYCxcbiAgfTtcbn07XG4iXX0= */
+                                    </style>,
+                                  ],
+                                },
+                              }
+                            }
+                            isStringTag={true}
+                            serialized={
+                              Object {
+                                "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIl9jb2xvci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFzRGMiLCJmaWxlIjoiX2NvbG9yLnRzIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIENvcHlyaWdodCBFbGFzdGljc2VhcmNoIEIuVi4gYW5kL29yIGxpY2Vuc2VkIHRvIEVsYXN0aWNzZWFyY2ggQi5WLiB1bmRlciBvbmVcbiAqIG9yIG1vcmUgY29udHJpYnV0b3IgbGljZW5zZSBhZ3JlZW1lbnRzLiBMaWNlbnNlZCB1bmRlciB0aGUgRWxhc3RpYyBMaWNlbnNlXG4gKiAyLjAgYW5kIHRoZSBTZXJ2ZXIgU2lkZSBQdWJsaWMgTGljZW5zZSwgdiAxOyB5b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdFxuICogaW4gY29tcGxpYW5jZSB3aXRoLCBhdCB5b3VyIGVsZWN0aW9uLCB0aGUgRWxhc3RpYyBMaWNlbnNlIDIuMCBvciB0aGUgU2VydmVyXG4gKiBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDEuXG4gKi9cblxuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vcmVhY3QnO1xuaW1wb3J0IHsgc2hhZGUsIHRpbnQsIHVzZUV1aVRoZW1lLCBVc2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcblxuZXhwb3J0IGNvbnN0IEJBQ0tHUk9VTkRfQ09MT1JTID0gW1xuICAndHJhbnNwYXJlbnQnLFxuICAncGxhaW4nLFxuICAnc3ViZHVlZCcsXG4gICdhY2NlbnQnLFxuICAncHJpbWFyeScsXG4gICdzdWNjZXNzJyxcbiAgJ3dhcm5pbmcnLFxuICAnZGFuZ2VyJyxcbl0gYXMgY29uc3Q7XG5cbmV4cG9ydCB0eXBlIEV1aUJhY2tncm91bmRDb2xvciA9IHR5cGVvZiBCQUNLR1JPVU5EX0NPTE9SU1tudW1iZXJdO1xuXG5leHBvcnQgY29uc3QgZXVpQmFja2dyb3VuZENvbG9yID0gKFxuICBjb2xvcjogRXVpQmFja2dyb3VuZENvbG9yLFxuICB7IGV1aVRoZW1lLCBjb2xvck1vZGUgfTogVXNlRXVpVGhlbWVcbikgPT4ge1xuICBmdW5jdGlvbiB0aW50T3JTaGFkZShjb2xvcjogc3RyaW5nKSB7XG4gICAgcmV0dXJuIGNvbG9yTW9kZSA9PT0gJ0RBUksnID8gc2hhZGUoY29sb3IsIDAuNykgOiB0aW50KGNvbG9yLCAwLjkpO1xuICB9XG5cbiAgc3dpdGNoIChjb2xvcikge1xuICAgIGNhc2UgJ3RyYW5zcGFyZW50JzpcbiAgICAgIHJldHVybiAndHJhbnNwYXJlbnQnO1xuICAgIGNhc2UgJ3BsYWluJzpcbiAgICAgIHJldHVybiBldWlUaGVtZS5jb2xvcnMuZW1wdHlTaGFkZTtcbiAgICBjYXNlICdzdWJkdWVkJzpcbiAgICAgIHJldHVybiBldWlUaGVtZS5jb2xvcnMuYm9keTtcbiAgICBkZWZhdWx0OlxuICAgICAgcmV0dXJuIHRpbnRPclNoYWRlKGV1aVRoZW1lLmNvbG9yc1tjb2xvcl0pO1xuICB9XG59O1xuXG5leHBvcnQgY29uc3QgdXNlRXVpQmFja2dyb3VuZENvbG9yID0gKGNvbG9yOiBFdWlCYWNrZ3JvdW5kQ29sb3IpID0+IHtcbiAgY29uc3QgZXVpVGhlbWUgPSB1c2VFdWlUaGVtZSgpO1xuICByZXR1cm4gZXVpQmFja2dyb3VuZENvbG9yKGNvbG9yLCBldWlUaGVtZSk7XG59O1xuXG5leHBvcnQgY29uc3QgdXNlRXVpQmFja2dyb3VuZENvbG9yQ1NTID0gKCkgPT4ge1xuICByZXR1cm4ge1xuICAgIHRyYW5zcGFyZW50OiBjc3NgXG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAke3VzZUV1aUJhY2tncm91bmRDb2xvcigndHJhbnNwYXJlbnQnKX07XG4gICAgYCxcbiAgICBwbGFpbjogY3NzYFxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogJHt1c2VFdWlCYWNrZ3JvdW5kQ29sb3IoJ3BsYWluJyl9O1xuICAgIGAsXG4gICAgc3ViZHVlZDogY3NzYFxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogJHt1c2VFdWlCYWNrZ3JvdW5kQ29sb3IoJ3N1YmR1ZWQnKX07XG4gICAgYCxcbiAgICBhY2NlbnQ6IGNzc2BcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7dXNlRXVpQmFja2dyb3VuZENvbG9yKCdhY2NlbnQnKX07XG4gICAgYCxcbiAgICBwcmltYXJ5OiBjc3NgXG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAke3VzZUV1aUJhY2tncm91bmRDb2xvcigncHJpbWFyeScpfTtcbiAgICBgLFxuICAgIHN1Y2Nlc3M6IGNzc2BcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7dXNlRXVpQmFja2dyb3VuZENvbG9yKCdzdWNjZXNzJyl9O1xuICAgIGAsXG4gICAgd2FybmluZzogY3NzYFxuICAgICAgYmFja2dyb3VuZC1jb2xvcjogJHt1c2VFdWlCYWNrZ3JvdW5kQ29sb3IoJ3dhcm5pbmcnKX07XG4gICAgYCxcbiAgICBkYW5nZXI6IGNzc2BcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7dXNlRXVpQmFja2dyb3VuZENvbG9yKCdkYW5nZXInKX07XG4gICAgYCxcbiAgfTtcbn07XG4iXX0= */",
+                                "name": "6zsgh2-euiPanel-grow-m-s-plain",
+                                "next": undefined,
+                                "styles": "flex-grow:0;label:euiPanel;;;flex-grow:1;label:grow;;;border-radius:6px;;label:m;;;padding:8px;;label:s;;;background-color:#FFF;;label:plain;;;;;;",
+                                "toString": [Function],
                               }
                             }
                           />
-                          <EuiScreenReaderOnly>
-                            <p
-                              className="euiScreenReaderOnly"
-                              id="generated-id"
-                            >
-                              <EuiI18n
-                                default="You are in a dialog. To close this dialog, hit escape."
-                                token="euiPopover.screenReaderAnnouncement"
-                              >
-                                You are in a dialog. To close this dialog, hit escape.
-                              </EuiI18n>
-                            </p>
-                          </EuiScreenReaderOnly>
-                          <EuiMutationObserver
-                            observerOptions={
+                          <div
+                            aria-describedby="generated-id"
+                            aria-live="off"
+                            aria-modal="true"
+                            className="euiPanel euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop css-6zsgh2-euiPanel-grow-m-s-plain"
+                            role="dialog"
+                            style={
                               Object {
-                                "attributes": true,
-                                "characterData": true,
-                                "childList": true,
-                                "subtree": true,
+                                "left": -22,
+                                "top": 16,
+                                "willChange": "transform, opacity",
+                                "zIndex": 2000,
                               }
                             }
-                            onMutation={[Function]}
+                            tabIndex={0}
                           >
-                            <div>
+                            <div
+                              className="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+                              style={
+                                Object {
+                                  "left": 10,
+                                  "top": 0,
+                                }
+                              }
+                            />
+                            <EuiScreenReaderOnly>
+                              <p
+                                className="euiScreenReaderOnly"
+                                id="generated-id"
+                              >
+                                <EuiI18n
+                                  default="You are in a dialog. To close this dialog, hit escape."
+                                  token="euiPopover.screenReaderAnnouncement"
+                                >
+                                  You are in a dialog. To close this dialog, hit escape.
+                                </EuiI18n>
+                              </p>
+                            </EuiScreenReaderOnly>
+                            <EuiMutationObserver
+                              observerOptions={
+                                Object {
+                                  "attributes": true,
+                                  "characterData": true,
+                                  "childList": true,
+                                  "subtree": true,
+                                }
+                              }
+                              onMutation={[Function]}
+                            >
                               <div>
-                                <EuiPopoverTitle>
-                                  <div
-                                    className="euiPopoverTitle"
-                                  >
-                                    <EuiI18n
-                                      defaults={
-                                        Array [
-                                          "Search",
-                                          "Search columns",
-                                        ]
-                                      }
-                                      tokens={
-                                        Array [
-                                          "euiColumnSelector.search",
-                                          "euiColumnSelector.searchcolumns",
-                                        ]
-                                      }
+                                <div>
+                                  <EuiPopoverTitle>
+                                    <div
+                                      className="euiPopoverTitle"
                                     >
-                                      <EuiFieldText
-                                        aria-label="Search columns"
-                                        compressed={true}
-                                        data-test-subj="dataGridColumnSelectorSearch"
-                                        onChange={[Function]}
-                                        placeholder="Search"
-                                        value=""
+                                      <EuiI18n
+                                        defaults={
+                                          Array [
+                                            "Search",
+                                            "Search columns",
+                                          ]
+                                        }
+                                        tokens={
+                                          Array [
+                                            "euiColumnSelector.search",
+                                            "euiColumnSelector.searchcolumns",
+                                          ]
+                                        }
                                       >
-                                        <EuiFormControlLayout
+                                        <EuiFieldText
+                                          aria-label="Search columns"
                                           compressed={true}
-                                          fullWidth={false}
+                                          data-test-subj="dataGridColumnSelectorSearch"
+                                          onChange={[Function]}
+                                          placeholder="Search"
+                                          value=""
                                         >
-                                          <div
-                                            className="euiFormControlLayout euiFormControlLayout--compressed"
+                                          <EuiFormControlLayout
+                                            compressed={true}
+                                            fullWidth={false}
                                           >
                                             <div
-                                              className="euiFormControlLayout__childrenWrapper"
+                                              className="euiFormControlLayout euiFormControlLayout--compressed"
                                             >
-                                              <EuiValidatableControl>
-                                                <input
-                                                  aria-label="Search columns"
-                                                  className="euiFieldText euiFieldText--compressed"
-                                                  data-test-subj="dataGridColumnSelectorSearch"
-                                                  onChange={[Function]}
-                                                  placeholder="Search"
-                                                  type="text"
-                                                  value=""
+                                              <div
+                                                className="euiFormControlLayout__childrenWrapper"
+                                              >
+                                                <EuiValidatableControl>
+                                                  <input
+                                                    aria-label="Search columns"
+                                                    className="euiFieldText euiFieldText--compressed"
+                                                    data-test-subj="dataGridColumnSelectorSearch"
+                                                    onChange={[Function]}
+                                                    placeholder="Search"
+                                                    type="text"
+                                                    value=""
+                                                  />
+                                                </EuiValidatableControl>
+                                                <EuiFormControlLayoutIcons
+                                                  compressed={true}
                                                 />
-                                              </EuiValidatableControl>
-                                              <EuiFormControlLayoutIcons
-                                                compressed={true}
-                                              />
+                                              </div>
                                             </div>
-                                          </div>
-                                        </EuiFormControlLayout>
-                                      </EuiFieldText>
-                                    </EuiI18n>
-                                  </div>
-                                </EuiPopoverTitle>
-                                <div
-                                  className="euiDataGrid__controlScroll"
-                                >
-                                  <EuiDragDropContext
-                                    onDragEnd={[Function]}
+                                          </EuiFormControlLayout>
+                                        </EuiFieldText>
+                                      </EuiI18n>
+                                    </div>
+                                  </EuiPopoverTitle>
+                                  <div
+                                    className="euiDataGrid__controlScroll"
                                   >
-                                    <DragDropContext
+                                    <EuiDragDropContext
                                       onDragEnd={[Function]}
-                                      onDragStart={[Function]}
                                     >
-                                      <ErrorBoundary>
-                                        <App
-                                          contextId="0"
-                                          dragHandleUsageInstructions="
+                                      <DragDropContext
+                                        onDragEnd={[Function]}
+                                        onDragStart={[Function]}
+                                      >
+                                        <ErrorBoundary>
+                                          <App
+                                            contextId="0"
+                                            dragHandleUsageInstructions="
   Press space bar to start a drag.
   When dragging you can use the arrow keys to move the item around and escape to cancel.
   Some screen readers may require you to be in focus mode or to use your pass through key
 "
-                                          onDragEnd={[Function]}
-                                          onDragStart={[Function]}
-                                          setCallbacks={[Function]}
-                                        >
-                                          <Provider
-                                            context={
-                                              Object {
-                                                "$$typeof": Symbol(react.context),
-                                                "Consumer": Object {
-                                                  "$$typeof": Symbol(react.context),
-                                                  "_calculateChangedBits": null,
-                                                  "_context": [Circular],
-                                                },
-                                                "Provider": Object {
-                                                  "$$typeof": Symbol(react.provider),
-                                                  "_context": [Circular],
-                                                },
-                                                "_calculateChangedBits": null,
-                                                "_currentRenderer": Object {},
-                                                "_currentRenderer2": null,
-                                                "_currentValue": null,
-                                                "_currentValue2": null,
-                                                "_threadCount": 0,
-                                              }
-                                            }
-                                            store={
-                                              Object {
-                                                "dispatch": [Function],
-                                                "getState": [Function],
-                                                "replaceReducer": [Function],
-                                                "subscribe": [Function],
-                                                Symbol(observable): [Function],
-                                              }
-                                            }
+                                            onDragEnd={[Function]}
+                                            onDragStart={[Function]}
+                                            setCallbacks={[Function]}
                                           >
-                                            <EuiDroppable
-                                              droppableId="columnOrder"
-                                              isDropDisabled={false}
+                                            <Provider
+                                              context={
+                                                Object {
+                                                  "$$typeof": Symbol(react.context),
+                                                  "Consumer": Object {
+                                                    "$$typeof": Symbol(react.context),
+                                                    "_calculateChangedBits": null,
+                                                    "_context": [Circular],
+                                                  },
+                                                  "Provider": Object {
+                                                    "$$typeof": Symbol(react.provider),
+                                                    "_context": [Circular],
+                                                  },
+                                                  "_calculateChangedBits": null,
+                                                  "_currentRenderer": Object {},
+                                                  "_currentRenderer2": null,
+                                                  "_currentValue": null,
+                                                  "_currentValue2": null,
+                                                  "_threadCount": 0,
+                                                }
+                                              }
+                                              store={
+                                                Object {
+                                                  "dispatch": [Function],
+                                                  "getState": [Function],
+                                                  "replaceReducer": [Function],
+                                                  "subscribe": [Function],
+                                                  Symbol(observable): [Function],
+                                                }
+                                              }
                                             >
-                                              <Connect(Droppable)
-                                                direction="vertical"
+                                              <EuiDroppable
                                                 droppableId="columnOrder"
-                                                getContainerForClone={[Function]}
-                                                ignoreContainerClipping={false}
-                                                isCombineEnabled={false}
                                                 isDropDisabled={false}
-                                                mode="standard"
-                                                renderClone={null}
-                                                type="EUI_DEFAULT"
                                               >
-                                                <Droppable
+                                                <Connect(Droppable)
                                                   direction="vertical"
                                                   droppableId="columnOrder"
                                                   getContainerForClone={[Function]}
@@ -671,48 +747,50 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                                                   isCombineEnabled={false}
                                                   isDropDisabled={false}
                                                   mode="standard"
-                                                  placeholder={null}
                                                   renderClone={null}
-                                                  shouldAnimatePlaceholder={false}
-                                                  snapshot={
-                                                    Object {
-                                                      "draggingFromThisWith": null,
-                                                      "draggingOverWith": null,
-                                                      "isDraggingOver": false,
-                                                      "isUsingPlaceholder": false,
-                                                    }
-                                                  }
                                                   type="EUI_DEFAULT"
-                                                  updateViewportMaxScroll={[Function]}
-                                                  useClone={null}
                                                 >
-                                                  <div
-                                                    className="euiDroppable euiDroppable--noGrow"
-                                                    data-rbd-droppable-context-id="0"
-                                                    data-rbd-droppable-id="columnOrder"
-                                                    data-test-subj="droppable"
+                                                  <Droppable
+                                                    direction="vertical"
+                                                    droppableId="columnOrder"
+                                                    getContainerForClone={[Function]}
+                                                    ignoreContainerClipping={false}
+                                                    isCombineEnabled={false}
+                                                    isDropDisabled={false}
+                                                    mode="standard"
+                                                    placeholder={null}
+                                                    renderClone={null}
+                                                    shouldAnimatePlaceholder={false}
+                                                    snapshot={
+                                                      Object {
+                                                        "draggingFromThisWith": null,
+                                                        "draggingOverWith": null,
+                                                        "isDraggingOver": false,
+                                                        "isUsingPlaceholder": false,
+                                                      }
+                                                    }
+                                                    type="EUI_DEFAULT"
+                                                    updateViewportMaxScroll={[Function]}
+                                                    useClone={null}
                                                   >
-                                                    <EuiDraggable
-                                                      draggableId="columnA"
-                                                      index={0}
-                                                      isDragDisabled={false}
-                                                      key="columnA"
+                                                    <div
+                                                      className="euiDroppable euiDroppable--noGrow"
+                                                      data-rbd-droppable-context-id="0"
+                                                      data-rbd-droppable-id="columnOrder"
+                                                      data-test-subj="droppable"
                                                     >
-                                                      <PublicDraggable
+                                                      <EuiDraggable
                                                         draggableId="columnA"
                                                         index={0}
                                                         isDragDisabled={false}
+                                                        key="columnA"
                                                       >
-                                                        <PrivateDraggable
-                                                          canDragInteractiveElements={false}
+                                                        <PublicDraggable
                                                           draggableId="columnA"
                                                           index={0}
-                                                          isClone={false}
                                                           isDragDisabled={false}
-                                                          isEnabled={true}
-                                                          shouldRespectForcePress={false}
                                                         >
-                                                          <Connect(Draggable)
+                                                          <PrivateDraggable
                                                             canDragInteractiveElements={false}
                                                             draggableId="columnA"
                                                             index={0}
@@ -721,165 +799,165 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                                                             isEnabled={true}
                                                             shouldRespectForcePress={false}
                                                           >
-                                                            <Draggable
+                                                            <Connect(Draggable)
                                                               canDragInteractiveElements={false}
                                                               draggableId="columnA"
-                                                              dropAnimationFinished={[Function]}
                                                               index={0}
                                                               isClone={false}
                                                               isDragDisabled={false}
                                                               isEnabled={true}
-                                                              mapped={
-                                                                Object {
-                                                                  "combineTargetFor": null,
-                                                                  "offset": Object {
-                                                                    "x": 0,
-                                                                    "y": 0,
-                                                                  },
-                                                                  "shouldAnimateDisplacement": true,
-                                                                  "snapshot": Object {
-                                                                    "combineTargetFor": null,
-                                                                    "combineWith": null,
-                                                                    "draggingOver": null,
-                                                                    "dropAnimation": null,
-                                                                    "isClone": false,
-                                                                    "isDragging": false,
-                                                                    "isDropAnimating": false,
-                                                                    "mode": null,
-                                                                  },
-                                                                  "type": "SECONDARY",
-                                                                }
-                                                              }
                                                               shouldRespectForcePress={false}
                                                             >
-                                                              <div
-                                                                aria-describedby="rbd-hidden-text-0-hidden-text-0"
-                                                                className="euiDraggable"
-                                                                data-rbd-drag-handle-context-id="0"
-                                                                data-rbd-drag-handle-draggable-id="columnA"
-                                                                data-rbd-draggable-context-id="0"
-                                                                data-rbd-draggable-id="columnA"
-                                                                data-test-subj="draggable"
-                                                                draggable={false}
-                                                                onDragStart={[Function]}
-                                                                onTransitionEnd={null}
-                                                                role="button"
-                                                                style={
+                                                              <Draggable
+                                                                canDragInteractiveElements={false}
+                                                                draggableId="columnA"
+                                                                dropAnimationFinished={[Function]}
+                                                                index={0}
+                                                                isClone={false}
+                                                                isDragDisabled={false}
+                                                                isEnabled={true}
+                                                                mapped={
                                                                   Object {
-                                                                    "transform": null,
-                                                                    "transition": null,
+                                                                    "combineTargetFor": null,
+                                                                    "offset": Object {
+                                                                      "x": 0,
+                                                                      "y": 0,
+                                                                    },
+                                                                    "shouldAnimateDisplacement": true,
+                                                                    "snapshot": Object {
+                                                                      "combineTargetFor": null,
+                                                                      "combineWith": null,
+                                                                      "draggingOver": null,
+                                                                      "dropAnimation": null,
+                                                                      "isClone": false,
+                                                                      "isDragging": false,
+                                                                      "isDropAnimating": false,
+                                                                      "mode": null,
+                                                                    },
+                                                                    "type": "SECONDARY",
                                                                   }
                                                                 }
-                                                                tabIndex={0}
+                                                                shouldRespectForcePress={false}
                                                               >
                                                                 <div
-                                                                  className="euiDataGridColumnSelector__item false euiDraggable__item"
-                                                                  data-test-subj="dataGridColumnSelectorColumnItem-columnA"
+                                                                  aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                                                                  className="euiDraggable"
+                                                                  data-rbd-drag-handle-context-id="0"
+                                                                  data-rbd-drag-handle-draggable-id="columnA"
+                                                                  data-rbd-draggable-context-id="0"
+                                                                  data-rbd-draggable-id="columnA"
+                                                                  data-test-subj="draggable"
+                                                                  draggable={false}
+                                                                  onDragStart={[Function]}
+                                                                  onTransitionEnd={null}
+                                                                  role="button"
+                                                                  style={
+                                                                    Object {
+                                                                      "transform": null,
+                                                                      "transition": null,
+                                                                    }
+                                                                  }
+                                                                  tabIndex={0}
                                                                 >
-                                                                  <EuiFlexGroup
-                                                                    alignItems="center"
-                                                                    gutterSize="m"
-                                                                    responsive={false}
+                                                                  <div
+                                                                    className="euiDataGridColumnSelector__item false euiDraggable__item"
+                                                                    data-test-subj="dataGridColumnSelectorColumnItem-columnA"
                                                                   >
-                                                                    <div
-                                                                      className="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+                                                                    <EuiFlexGroup
+                                                                      alignItems="center"
+                                                                      gutterSize="m"
+                                                                      responsive={false}
                                                                     >
-                                                                      <EuiFlexItem>
-                                                                        <div
-                                                                          className="euiFlexItem"
-                                                                        >
-                                                                          <EuiSwitch
-                                                                            checked={true}
-                                                                            className="euiSwitch--mini"
-                                                                            compressed={true}
-                                                                            data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnA"
-                                                                            label="columnA"
-                                                                            name="columnA"
-                                                                            onChange={[Function]}
+                                                                      <div
+                                                                        className="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+                                                                      >
+                                                                        <EuiFlexItem>
+                                                                          <div
+                                                                            className="euiFlexItem"
                                                                           >
-                                                                            <div
-                                                                              className="euiSwitch euiSwitch--compressed euiSwitch--mini"
+                                                                            <EuiSwitch
+                                                                              checked={true}
+                                                                              className="euiSwitch--mini"
+                                                                              compressed={true}
+                                                                              data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnA"
+                                                                              label="columnA"
+                                                                              name="columnA"
+                                                                              onChange={[Function]}
                                                                             >
-                                                                              <button
-                                                                                aria-checked={true}
-                                                                                aria-labelledby="generated-id"
-                                                                                className="euiSwitch__button"
-                                                                                data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnA"
-                                                                                id="generated-id"
-                                                                                name="columnA"
-                                                                                onClick={[Function]}
-                                                                                role="switch"
-                                                                                type="button"
+                                                                              <div
+                                                                                className="euiSwitch euiSwitch--compressed euiSwitch--mini"
                                                                               >
-                                                                                <span
-                                                                                  className="euiSwitch__body"
+                                                                                <button
+                                                                                  aria-checked={true}
+                                                                                  aria-labelledby="generated-id"
+                                                                                  className="euiSwitch__button"
+                                                                                  data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnA"
+                                                                                  id="generated-id"
+                                                                                  name="columnA"
+                                                                                  onClick={[Function]}
+                                                                                  role="switch"
+                                                                                  type="button"
                                                                                 >
                                                                                   <span
-                                                                                    className="euiSwitch__thumb"
-                                                                                  />
-                                                                                  <span
-                                                                                    className="euiSwitch__track"
-                                                                                  />
+                                                                                    className="euiSwitch__body"
+                                                                                  >
+                                                                                    <span
+                                                                                      className="euiSwitch__thumb"
+                                                                                    />
+                                                                                    <span
+                                                                                      className="euiSwitch__track"
+                                                                                    />
+                                                                                  </span>
+                                                                                </button>
+                                                                                <span
+                                                                                  className="euiSwitch__label"
+                                                                                  id="generated-id"
+                                                                                  onClick={[Function]}
+                                                                                >
+                                                                                  columnA
                                                                                 </span>
-                                                                              </button>
-                                                                              <span
-                                                                                className="euiSwitch__label"
-                                                                                id="generated-id"
-                                                                                onClick={[Function]}
-                                                                              >
-                                                                                columnA
-                                                                              </span>
-                                                                            </div>
-                                                                          </EuiSwitch>
-                                                                        </div>
-                                                                      </EuiFlexItem>
-                                                                      <EuiFlexItem
-                                                                        grow={false}
-                                                                      >
-                                                                        <div
-                                                                          className="euiFlexItem euiFlexItem--flexGrowZero"
+                                                                              </div>
+                                                                            </EuiSwitch>
+                                                                          </div>
+                                                                        </EuiFlexItem>
+                                                                        <EuiFlexItem
+                                                                          grow={false}
                                                                         >
-                                                                          <EuiIcon
-                                                                            color="subdued"
-                                                                            type="grab"
+                                                                          <div
+                                                                            className="euiFlexItem euiFlexItem--flexGrowZero"
                                                                           >
-                                                                            <span
+                                                                            <EuiIcon
                                                                               color="subdued"
-                                                                              data-euiicon-type="grab"
-                                                                            />
-                                                                          </EuiIcon>
-                                                                        </div>
-                                                                      </EuiFlexItem>
-                                                                    </div>
-                                                                  </EuiFlexGroup>
+                                                                              type="grab"
+                                                                            >
+                                                                              <span
+                                                                                color="subdued"
+                                                                                data-euiicon-type="grab"
+                                                                              />
+                                                                            </EuiIcon>
+                                                                          </div>
+                                                                        </EuiFlexItem>
+                                                                      </div>
+                                                                    </EuiFlexGroup>
+                                                                  </div>
                                                                 </div>
-                                                              </div>
-                                                            </Draggable>
-                                                          </Connect(Draggable)>
-                                                        </PrivateDraggable>
-                                                      </PublicDraggable>
-                                                    </EuiDraggable>
-                                                    <EuiDraggable
-                                                      draggableId="columnB"
-                                                      index={1}
-                                                      isDragDisabled={false}
-                                                      key="columnB"
-                                                    >
-                                                      <PublicDraggable
+                                                              </Draggable>
+                                                            </Connect(Draggable)>
+                                                          </PrivateDraggable>
+                                                        </PublicDraggable>
+                                                      </EuiDraggable>
+                                                      <EuiDraggable
                                                         draggableId="columnB"
                                                         index={1}
                                                         isDragDisabled={false}
+                                                        key="columnB"
                                                       >
-                                                        <PrivateDraggable
-                                                          canDragInteractiveElements={false}
+                                                        <PublicDraggable
                                                           draggableId="columnB"
                                                           index={1}
-                                                          isClone={false}
                                                           isDragDisabled={false}
-                                                          isEnabled={true}
-                                                          shouldRespectForcePress={false}
                                                         >
-                                                          <Connect(Draggable)
+                                                          <PrivateDraggable
                                                             canDragInteractiveElements={false}
                                                             draggableId="columnB"
                                                             index={1}
@@ -888,277 +966,287 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                                                             isEnabled={true}
                                                             shouldRespectForcePress={false}
                                                           >
-                                                            <Draggable
+                                                            <Connect(Draggable)
                                                               canDragInteractiveElements={false}
                                                               draggableId="columnB"
-                                                              dropAnimationFinished={[Function]}
                                                               index={1}
                                                               isClone={false}
                                                               isDragDisabled={false}
                                                               isEnabled={true}
-                                                              mapped={
-                                                                Object {
-                                                                  "combineTargetFor": null,
-                                                                  "offset": Object {
-                                                                    "x": 0,
-                                                                    "y": 0,
-                                                                  },
-                                                                  "shouldAnimateDisplacement": true,
-                                                                  "snapshot": Object {
-                                                                    "combineTargetFor": null,
-                                                                    "combineWith": null,
-                                                                    "draggingOver": null,
-                                                                    "dropAnimation": null,
-                                                                    "isClone": false,
-                                                                    "isDragging": false,
-                                                                    "isDropAnimating": false,
-                                                                    "mode": null,
-                                                                  },
-                                                                  "type": "SECONDARY",
-                                                                }
-                                                              }
                                                               shouldRespectForcePress={false}
                                                             >
-                                                              <div
-                                                                aria-describedby="rbd-hidden-text-0-hidden-text-0"
-                                                                className="euiDraggable"
-                                                                data-rbd-drag-handle-context-id="0"
-                                                                data-rbd-drag-handle-draggable-id="columnB"
-                                                                data-rbd-draggable-context-id="0"
-                                                                data-rbd-draggable-id="columnB"
-                                                                data-test-subj="draggable"
-                                                                draggable={false}
-                                                                onDragStart={[Function]}
-                                                                onTransitionEnd={null}
-                                                                role="button"
-                                                                style={
+                                                              <Draggable
+                                                                canDragInteractiveElements={false}
+                                                                draggableId="columnB"
+                                                                dropAnimationFinished={[Function]}
+                                                                index={1}
+                                                                isClone={false}
+                                                                isDragDisabled={false}
+                                                                isEnabled={true}
+                                                                mapped={
                                                                   Object {
-                                                                    "transform": null,
-                                                                    "transition": null,
+                                                                    "combineTargetFor": null,
+                                                                    "offset": Object {
+                                                                      "x": 0,
+                                                                      "y": 0,
+                                                                    },
+                                                                    "shouldAnimateDisplacement": true,
+                                                                    "snapshot": Object {
+                                                                      "combineTargetFor": null,
+                                                                      "combineWith": null,
+                                                                      "draggingOver": null,
+                                                                      "dropAnimation": null,
+                                                                      "isClone": false,
+                                                                      "isDragging": false,
+                                                                      "isDropAnimating": false,
+                                                                      "mode": null,
+                                                                    },
+                                                                    "type": "SECONDARY",
                                                                   }
                                                                 }
-                                                                tabIndex={0}
+                                                                shouldRespectForcePress={false}
                                                               >
                                                                 <div
-                                                                  className="euiDataGridColumnSelector__item false euiDraggable__item"
-                                                                  data-test-subj="dataGridColumnSelectorColumnItem-columnB"
+                                                                  aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                                                                  className="euiDraggable"
+                                                                  data-rbd-drag-handle-context-id="0"
+                                                                  data-rbd-drag-handle-draggable-id="columnB"
+                                                                  data-rbd-draggable-context-id="0"
+                                                                  data-rbd-draggable-id="columnB"
+                                                                  data-test-subj="draggable"
+                                                                  draggable={false}
+                                                                  onDragStart={[Function]}
+                                                                  onTransitionEnd={null}
+                                                                  role="button"
+                                                                  style={
+                                                                    Object {
+                                                                      "transform": null,
+                                                                      "transition": null,
+                                                                    }
+                                                                  }
+                                                                  tabIndex={0}
                                                                 >
-                                                                  <EuiFlexGroup
-                                                                    alignItems="center"
-                                                                    gutterSize="m"
-                                                                    responsive={false}
+                                                                  <div
+                                                                    className="euiDataGridColumnSelector__item false euiDraggable__item"
+                                                                    data-test-subj="dataGridColumnSelectorColumnItem-columnB"
                                                                   >
-                                                                    <div
-                                                                      className="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+                                                                    <EuiFlexGroup
+                                                                      alignItems="center"
+                                                                      gutterSize="m"
+                                                                      responsive={false}
                                                                     >
-                                                                      <EuiFlexItem>
-                                                                        <div
-                                                                          className="euiFlexItem"
-                                                                        >
-                                                                          <EuiSwitch
-                                                                            checked={true}
-                                                                            className="euiSwitch--mini"
-                                                                            compressed={true}
-                                                                            data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnB"
-                                                                            label="columnB"
-                                                                            name="columnB"
-                                                                            onChange={[Function]}
+                                                                      <div
+                                                                        className="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+                                                                      >
+                                                                        <EuiFlexItem>
+                                                                          <div
+                                                                            className="euiFlexItem"
                                                                           >
-                                                                            <div
-                                                                              className="euiSwitch euiSwitch--compressed euiSwitch--mini"
+                                                                            <EuiSwitch
+                                                                              checked={true}
+                                                                              className="euiSwitch--mini"
+                                                                              compressed={true}
+                                                                              data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnB"
+                                                                              label="columnB"
+                                                                              name="columnB"
+                                                                              onChange={[Function]}
                                                                             >
-                                                                              <button
-                                                                                aria-checked={true}
-                                                                                aria-labelledby="generated-id"
-                                                                                className="euiSwitch__button"
-                                                                                data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnB"
-                                                                                id="generated-id"
-                                                                                name="columnB"
-                                                                                onClick={[Function]}
-                                                                                role="switch"
-                                                                                type="button"
+                                                                              <div
+                                                                                className="euiSwitch euiSwitch--compressed euiSwitch--mini"
                                                                               >
-                                                                                <span
-                                                                                  className="euiSwitch__body"
+                                                                                <button
+                                                                                  aria-checked={true}
+                                                                                  aria-labelledby="generated-id"
+                                                                                  className="euiSwitch__button"
+                                                                                  data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnB"
+                                                                                  id="generated-id"
+                                                                                  name="columnB"
+                                                                                  onClick={[Function]}
+                                                                                  role="switch"
+                                                                                  type="button"
                                                                                 >
                                                                                   <span
-                                                                                    className="euiSwitch__thumb"
-                                                                                  />
-                                                                                  <span
-                                                                                    className="euiSwitch__track"
-                                                                                  />
+                                                                                    className="euiSwitch__body"
+                                                                                  >
+                                                                                    <span
+                                                                                      className="euiSwitch__thumb"
+                                                                                    />
+                                                                                    <span
+                                                                                      className="euiSwitch__track"
+                                                                                    />
+                                                                                  </span>
+                                                                                </button>
+                                                                                <span
+                                                                                  className="euiSwitch__label"
+                                                                                  id="generated-id"
+                                                                                  onClick={[Function]}
+                                                                                >
+                                                                                  columnB
                                                                                 </span>
-                                                                              </button>
-                                                                              <span
-                                                                                className="euiSwitch__label"
-                                                                                id="generated-id"
-                                                                                onClick={[Function]}
-                                                                              >
-                                                                                columnB
-                                                                              </span>
-                                                                            </div>
-                                                                          </EuiSwitch>
-                                                                        </div>
-                                                                      </EuiFlexItem>
-                                                                      <EuiFlexItem
-                                                                        grow={false}
-                                                                      >
-                                                                        <div
-                                                                          className="euiFlexItem euiFlexItem--flexGrowZero"
+                                                                              </div>
+                                                                            </EuiSwitch>
+                                                                          </div>
+                                                                        </EuiFlexItem>
+                                                                        <EuiFlexItem
+                                                                          grow={false}
                                                                         >
-                                                                          <EuiIcon
-                                                                            color="subdued"
-                                                                            type="grab"
+                                                                          <div
+                                                                            className="euiFlexItem euiFlexItem--flexGrowZero"
                                                                           >
-                                                                            <span
+                                                                            <EuiIcon
                                                                               color="subdued"
-                                                                              data-euiicon-type="grab"
-                                                                            />
-                                                                          </EuiIcon>
-                                                                        </div>
-                                                                      </EuiFlexItem>
-                                                                    </div>
-                                                                  </EuiFlexGroup>
+                                                                              type="grab"
+                                                                            >
+                                                                              <span
+                                                                                color="subdued"
+                                                                                data-euiicon-type="grab"
+                                                                              />
+                                                                            </EuiIcon>
+                                                                          </div>
+                                                                        </EuiFlexItem>
+                                                                      </div>
+                                                                    </EuiFlexGroup>
+                                                                  </div>
                                                                 </div>
-                                                              </div>
-                                                            </Draggable>
-                                                          </Connect(Draggable)>
-                                                        </PrivateDraggable>
-                                                      </PublicDraggable>
-                                                    </EuiDraggable>
-                                                    <div
-                                                      className="euiDroppable__placeholder"
-                                                    >
-                                                      <AnimateInOut
-                                                        on={null}
-                                                        shouldAnimate={false}
-                                                      />
+                                                              </Draggable>
+                                                            </Connect(Draggable)>
+                                                          </PrivateDraggable>
+                                                        </PublicDraggable>
+                                                      </EuiDraggable>
+                                                      <div
+                                                        className="euiDroppable__placeholder"
+                                                      >
+                                                        <AnimateInOut
+                                                          on={null}
+                                                          shouldAnimate={false}
+                                                        />
+                                                      </div>
                                                     </div>
-                                                  </div>
-                                                </Droppable>
-                                              </Connect(Droppable)>
-                                            </EuiDroppable>
-                                          </Provider>
-                                        </App>
-                                      </ErrorBoundary>
-                                    </DragDropContext>
-                                  </EuiDragDropContext>
+                                                  </Droppable>
+                                                </Connect(Droppable)>
+                                              </EuiDroppable>
+                                            </Provider>
+                                          </App>
+                                        </ErrorBoundary>
+                                      </DragDropContext>
+                                    </EuiDragDropContext>
+                                  </div>
                                 </div>
-                              </div>
-                              <EuiPopoverFooter>
-                                <div
-                                  className="euiPopoverFooter"
-                                >
-                                  <EuiFlexGroup
-                                    gutterSize="s"
-                                    justifyContent="spaceBetween"
-                                    responsive={false}
+                                <EuiPopoverFooter>
+                                  <div
+                                    className="euiPopoverFooter"
                                   >
-                                    <div
-                                      className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
+                                    <EuiFlexGroup
+                                      gutterSize="s"
+                                      justifyContent="spaceBetween"
+                                      responsive={false}
                                     >
-                                      <EuiFlexItem
-                                        grow={false}
+                                      <div
+                                        className="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
                                       >
-                                        <div
-                                          className="euiFlexItem euiFlexItem--flexGrowZero"
+                                        <EuiFlexItem
+                                          grow={false}
                                         >
-                                          <EuiButtonEmpty
-                                            data-test-subj="dataGridColumnSelectorShowAllButton"
-                                            flush="left"
-                                            onClick={[Function]}
-                                            size="xs"
+                                          <div
+                                            className="euiFlexItem euiFlexItem--flexGrowZero"
                                           >
-                                            <button
-                                              className="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiButtonEmpty--flushLeft"
+                                            <EuiButtonEmpty
                                               data-test-subj="dataGridColumnSelectorShowAllButton"
-                                              disabled={false}
+                                              flush="left"
                                               onClick={[Function]}
-                                              type="button"
+                                              size="xs"
                                             >
-                                              <EuiButtonContent
-                                                className="euiButtonEmpty__content"
-                                                iconSide="left"
-                                                iconSize="s"
-                                                textProps={
-                                                  Object {
-                                                    "className": "euiButtonEmpty__text",
-                                                  }
-                                                }
+                                              <button
+                                                className="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiButtonEmpty--flushLeft"
+                                                data-test-subj="dataGridColumnSelectorShowAllButton"
+                                                disabled={false}
+                                                onClick={[Function]}
+                                                type="button"
                                               >
-                                                <span
-                                                  className="euiButtonContent euiButtonEmpty__content"
+                                                <EuiButtonContent
+                                                  className="euiButtonEmpty__content"
+                                                  iconSide="left"
+                                                  iconSize="s"
+                                                  textProps={
+                                                    Object {
+                                                      "className": "euiButtonEmpty__text",
+                                                    }
+                                                  }
                                                 >
                                                   <span
-                                                    className="euiButtonEmpty__text"
+                                                    className="euiButtonContent euiButtonEmpty__content"
                                                   >
-                                                    <EuiI18n
-                                                      default="Show all"
-                                                      token="euiColumnSelector.selectAll"
+                                                    <span
+                                                      className="euiButtonEmpty__text"
                                                     >
-                                                      Show all
-                                                    </EuiI18n>
+                                                      <EuiI18n
+                                                        default="Show all"
+                                                        token="euiColumnSelector.selectAll"
+                                                      >
+                                                        Show all
+                                                      </EuiI18n>
+                                                    </span>
                                                   </span>
-                                                </span>
-                                              </EuiButtonContent>
-                                            </button>
-                                          </EuiButtonEmpty>
-                                        </div>
-                                      </EuiFlexItem>
-                                      <EuiFlexItem
-                                        grow={false}
-                                      >
-                                        <div
-                                          className="euiFlexItem euiFlexItem--flexGrowZero"
+                                                </EuiButtonContent>
+                                              </button>
+                                            </EuiButtonEmpty>
+                                          </div>
+                                        </EuiFlexItem>
+                                        <EuiFlexItem
+                                          grow={false}
                                         >
-                                          <EuiButtonEmpty
-                                            data-test-subj="dataGridColumnSelectorHideAllButton"
-                                            flush="right"
-                                            onClick={[Function]}
-                                            size="xs"
+                                          <div
+                                            className="euiFlexItem euiFlexItem--flexGrowZero"
                                           >
-                                            <button
-                                              className="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiButtonEmpty--flushRight"
+                                            <EuiButtonEmpty
                                               data-test-subj="dataGridColumnSelectorHideAllButton"
-                                              disabled={false}
+                                              flush="right"
                                               onClick={[Function]}
-                                              type="button"
+                                              size="xs"
                                             >
-                                              <EuiButtonContent
-                                                className="euiButtonEmpty__content"
-                                                iconSide="left"
-                                                iconSize="s"
-                                                textProps={
-                                                  Object {
-                                                    "className": "euiButtonEmpty__text",
-                                                  }
-                                                }
+                                              <button
+                                                className="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiButtonEmpty--flushRight"
+                                                data-test-subj="dataGridColumnSelectorHideAllButton"
+                                                disabled={false}
+                                                onClick={[Function]}
+                                                type="button"
                                               >
-                                                <span
-                                                  className="euiButtonContent euiButtonEmpty__content"
+                                                <EuiButtonContent
+                                                  className="euiButtonEmpty__content"
+                                                  iconSide="left"
+                                                  iconSize="s"
+                                                  textProps={
+                                                    Object {
+                                                      "className": "euiButtonEmpty__text",
+                                                    }
+                                                  }
                                                 >
                                                   <span
-                                                    className="euiButtonEmpty__text"
+                                                    className="euiButtonContent euiButtonEmpty__content"
                                                   >
-                                                    <EuiI18n
-                                                      default="Hide all"
-                                                      token="euiColumnSelector.hideAll"
+                                                    <span
+                                                      className="euiButtonEmpty__text"
                                                     >
-                                                      Hide all
-                                                    </EuiI18n>
+                                                      <EuiI18n
+                                                        default="Hide all"
+                                                        token="euiColumnSelector.hideAll"
+                                                      >
+                                                        Hide all
+                                                      </EuiI18n>
+                                                    </span>
                                                   </span>
-                                                </span>
-                                              </EuiButtonContent>
-                                            </button>
-                                          </EuiButtonEmpty>
-                                        </div>
-                                      </EuiFlexItem>
-                                    </div>
-                                  </EuiFlexGroup>
-                                </div>
-                              </EuiPopoverFooter>
-                            </div>
-                          </EuiMutationObserver>
+                                                </EuiButtonContent>
+                                              </button>
+                                            </EuiButtonEmpty>
+                                          </div>
+                                        </EuiFlexItem>
+                                      </div>
+                                    </EuiFlexGroup>
+                                  </div>
+                                </EuiPopoverFooter>
+                              </div>
+                            </EuiMutationObserver>
+                          </div>
                         </div>
                       </EuiPanel>
                     </div>
