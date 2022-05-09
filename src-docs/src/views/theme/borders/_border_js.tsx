@@ -26,8 +26,6 @@ import { getDescription } from '../../../services/props/get_description';
 
 export const TypesJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
-  const typeProps = getPropsFromComponent(EuiThemeBorderTypes);
-  const types = Object.keys(typeProps) as Array<keyof _EuiThemeBorderTypes>;
   return (
     <>
       <ThemeExample
@@ -46,7 +44,16 @@ export const TypesJS: FunctionComponent<ThemeRowType> = ({ description }) => {
         snippet={'border: ${euiTheme.border.thin};'}
         snippetLanguage="emotion"
       />
+    </>
+  );
+};
 
+export const TypesValuesJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const typeProps = getPropsFromComponent(EuiThemeBorderTypes);
+  const types = Object.keys(typeProps) as Array<keyof _EuiThemeBorderTypes>;
+  return (
+    <>
       <ThemeValuesTable
         items={types.map((type) => {
           return {
@@ -75,9 +82,6 @@ export const TypesJS: FunctionComponent<ThemeRowType> = ({ description }) => {
 export const ColorJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
   const colorProps = getPropsFromComponent(EuiThemeBorderColorValues);
-  const types = Object.keys(colorProps) as Array<
-    keyof _EuiThemeBorderColorValues
-  >;
 
   return (
     <>
@@ -104,7 +108,19 @@ export const ColorJS: FunctionComponent<ThemeRowType> = ({ description }) => {
         snippet={'border-color: ${euiTheme.border.color};'}
         snippetLanguage="emotion"
       />
+    </>
+  );
+};
 
+export const ColorValuesJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const colorProps = getPropsFromComponent(EuiThemeBorderColorValues);
+  const types = Object.keys(colorProps) as Array<
+    keyof _EuiThemeBorderColorValues
+  >;
+
+  return (
+    <>
       <ThemeValuesTable
         items={types.map((type) => {
           return {
@@ -122,10 +138,6 @@ export const ColorJS: FunctionComponent<ThemeRowType> = ({ description }) => {
 
 export const WidthJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
-  const widthProps = getPropsFromComponent(EuiThemeBorderWidthValues);
-  const widths = Object.keys(widthProps) as Array<
-    keyof _EuiThemeBorderWidthValues
-  >;
 
   const wrappingExampleStyle = {
     padding: euiTheme.size.s,
@@ -157,7 +169,19 @@ export const WidthJS: FunctionComponent<ThemeRowType> = ({ description }) => {
         }
         snippetLanguage="emotion"
       />
+    </>
+  );
+};
 
+export const WidthValuesJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const widthProps = getPropsFromComponent(EuiThemeBorderWidthValues);
+  const widths = Object.keys(widthProps) as Array<
+    keyof _EuiThemeBorderWidthValues
+  >;
+
+  return (
+    <>
       <ThemeValuesTable
         items={widths.map((type) => {
           return {
@@ -184,10 +208,6 @@ export const WidthJS: FunctionComponent<ThemeRowType> = ({ description }) => {
 
 export const RadiusJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
-  const radiusProps = getPropsFromComponent(EuiThemeBorderRadiusValues);
-  const radii = Object.keys(radiusProps) as Array<
-    keyof _EuiThemeBorderRadiusValues
-  >;
 
   return (
     <>
@@ -208,7 +228,19 @@ export const RadiusJS: FunctionComponent<ThemeRowType> = ({ description }) => {
         snippet={'border-radius: ${euiTheme.border.radius.medium};'}
         snippetLanguage="emotion"
       />
+    </>
+  );
+};
 
+export const RadiusValuesJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const radiusProps = getPropsFromComponent(EuiThemeBorderRadiusValues);
+  const radii = Object.keys(radiusProps) as Array<
+    keyof _EuiThemeBorderRadiusValues
+  >;
+
+  return (
+    <>
       <ThemeValuesTable
         items={radii.map((type) => {
           return {

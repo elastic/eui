@@ -6,10 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { css } from '@emotion/react';
-import { shade, tint, UseEuiTheme } from '../../services';
+import { shade, tint, useEuiTheme, UseEuiTheme } from '../../services';
 
-// TODO Make into a hook
 export const BACKGROUND_COLORS = [
   'transparent',
   'plain',
@@ -21,38 +19,58 @@ export const BACKGROUND_COLORS = [
   'danger',
 ] as const;
 
-export const euiBackgroundColorStyles = ({
-  euiTheme,
-  colorMode,
-}: UseEuiTheme) => {
+export type EuiBackgroundColor = typeof BACKGROUND_COLORS[number];
+
+export const euiBackgroundColor = (
+  color: EuiBackgroundColor,
+  { euiTheme, colorMode }: UseEuiTheme
+) => {
   function tintOrShade(color: string) {
     return colorMode === 'DARK' ? shade(color, 0.7) : tint(color, 0.9);
   }
 
+  switch (color) {
+    case 'transparent':
+      return 'transparent';
+    case 'plain':
+      return euiTheme.colors.emptyShade;
+    case 'subdued':
+      return euiTheme.colors.body;
+    default:
+      return tintOrShade(euiTheme.colors[color]);
+  }
+};
+
+export const useEuiBackgroundColor = (color: EuiBackgroundColor) => {
+  const euiTheme = useEuiTheme();
+  return euiBackgroundColor(color, euiTheme);
+};
+
+export const useEuiBackgroundColorCSS = () => {
   return {
-    transparent: css`
-      background-color: transparent;
+    transparent: `
+      background-color: ${useEuiBackgroundColor('transparent')};
     `,
-    plain: css`
-      background-color: ${euiTheme.colors.emptyShade};
+    plain: `
+      background-color: ${useEuiBackgroundColor('plain')};
     `,
-    subdued: css`
-      background-color: ${euiTheme.colors.body};
+    subdued: `
+      background-color: ${useEuiBackgroundColor('subdued')};
     `,
-    accent: css`
-      background-color: ${tintOrShade(euiTheme.colors.accent)};
+    accent: `
+      background-color: ${useEuiBackgroundColor('accent')};
     `,
-    primary: css`
-      background-color: ${tintOrShade(euiTheme.colors.primary)};
+    primary: `
+      background-color: ${useEuiBackgroundColor('primary')};
     `,
-    success: css`
-      background-color: ${tintOrShade(euiTheme.colors.success)};
+    success: `
+      background-color: ${useEuiBackgroundColor('success')};
     `,
-    warning: css`
-      background-color: ${tintOrShade(euiTheme.colors.warning)};
+    warning: `
+      background-color: ${useEuiBackgroundColor('warning')};
     `,
-    danger: css`
-      background-color: ${tintOrShade(euiTheme.colors.danger)};
+    danger: `
+      background-color: ${useEuiBackgroundColor('danger')};
     `,
   };
 };

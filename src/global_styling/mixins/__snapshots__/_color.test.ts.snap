@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: accent 1`] = `"#feedf5"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: danger 1`] = `"#f8e9e9"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: plain 1`] = `"#FFF"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: primary 1`] = `"#e6f1fa"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: subdued 1`] = `"#f8fafd"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: success 1`] = `"#e6f9f7"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: transparent 1`] = `"transparent"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: warning 1`] = `"#fff9e8"`;
+
+exports[`useEuiBackgroundColorCSS hook returns the object of static background-color properties for each color 1`] = `
+Object {
+  "accent": "
+      background-color: #feedf5;
+    ",
+  "danger": "
+      background-color: #f8e9e9;
+    ",
+  "plain": "
+      background-color: #FFF;
+    ",
+  "primary": "
+      background-color: #e6f1fa;
+    ",
+  "subdued": "
+      background-color: #f8fafd;
+    ",
+  "success": "
+      background-color: #e6f9f7;
+    ",
+  "transparent": "
+      background-color: transparent;
+    ",
+  "warning": "
+      background-color: #fff9e8;
+    ",
+}
+`;

@@ -1,95 +1,73 @@
 import React from 'react';
-import { css } from '@emotion/react';
 
 import {
   useEuiTheme,
   EuiTitle,
   EuiSpacer,
-  EuiColorPickerSwatch,
-  EuiFlexItem,
-  EuiCodeBlock,
+  EuiText,
+  EuiPanel,
 } from '../../../../../src';
 
-import { ThemeSection } from '../_theme_section';
+import { getPropsFromComponent } from '../../../services/props/get_props';
+import { useDebouncedUpdate } from '../hooks';
+
 import { ThemeValue } from './_values';
 
-import { getPropsFromComponent, EuiThemeFocus } from '../_props';
+import { EuiThemeFocus } from '../_props';
 
 export default ({ onThemeUpdate }) => {
   const { euiTheme } = useEuiTheme();
   const focus = euiTheme.focus;
+
+  const [focusClone, updateFocus] = useDebouncedUpdate({
+    property: 'focus',
+    value: focus,
+    onUpdate: onThemeUpdate,
+  });
+
   const focusProps = getPropsFromComponent(EuiThemeFocus);
-
-  const updateFocus = (property, value) => {
-    onThemeUpdate({
-      focus: {
-        [property]: value,
-      },
-    });
-  };
-
-  const style = css`
-    width: ${euiTheme.size.xl};
-    height: ${euiTheme.size.xl};
-    border-radius: ${euiTheme.border.radius.small};
-  `;
 
   return (
     <div>
-      <EuiTitle>
+      <EuiText>
         <h2>Focus</h2>
-      </EuiTitle>
-
-      <EuiSpacer />
-
-      <ThemeSection
-        code="_EuiThemeFocus"
-        description={
+      </EuiText>
+      <EuiSpacer size="xl" />
+      <EuiPanel color="subdued">
+        <EuiTitle size="xs">
+          <h3>
+            <code>_EuiThemeFocus</code>
+          </h3>
+        </EuiTitle>
+        <EuiSpacer size="s" />
+        <EuiText size="s" grow={false}>
           <p>
             These are general properties that apply to the focus state of
             interactable components. Some components have their own specific
             implementation, but most use these variables.
           </p>
-        }
-        themeValues={Object.keys(focus).map((prop) => {
-          const isColor = prop.toLowerCase().includes('color');
-          if (prop === 'outline') {
-            return (
-              <EuiFlexItem key={prop}>
-                <ThemeValue
-                  property="focus"
-                  type={focusProps[prop]}
-                  name={prop}
-                  buttonStyle={[style, focus[prop]]}
-                />
-                <EuiSpacer size="xs" />
-                <EuiCodeBlock paddingSize="s" language="css">{`${JSON.stringify(
-                  focus[prop]
-                ).replace(/[{}"]/g, '')};`}</EuiCodeBlock>
-              </EuiFlexItem>
-            );
-          }
+        </EuiText>
+
+        <EuiSpacer />
+
+        {Object.keys(focusProps).map((prop) => {
           return (
-            <EuiFlexItem key={prop}>
-              <ThemeValue
-                property="focus"
-                name={prop}
-                type={focusProps[prop]}
-                value={focus[prop]}
-                onUpdate={(value) => updateFocus(prop, value)}
-                example={
-                  isColor ? (
-                    <EuiColorPickerSwatch color={focus[prop]} />
-                  ) : undefined
-                }
-                colorProps={
-                  isColor ? { showAlpha: true, format: 'rgba' } : undefined
-                }
-              />
-            </EuiFlexItem>
+            <ThemeValue
+              key={prop}
+              property="focus"
+              type={focusProps[prop]}
+              name={prop}
+              value={focusClone[prop]}
+              onUpdate={(value) => updateFocus(prop, value)}
+              forceUpdateType="string"
+              example={null}
+              numberProps={{
+                style: { width: 140 },
+              }}
+            />
           );
         })}
-      />
+      </EuiPanel>
     </div>
   );
 };

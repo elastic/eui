@@ -12,7 +12,7 @@ import { CSSProperties } from 'react';
  * Font units of measure
  */
 
-export const EuiThemeFontSizeMeasurements = ['px', 'rem', 'em'] as const;
+export const EuiThemeFontSizeMeasurements = ['rem', 'px', 'em'] as const;
 
 export type _EuiThemeFontSizeMeasurement = typeof EuiThemeFontSizeMeasurements[number];
 

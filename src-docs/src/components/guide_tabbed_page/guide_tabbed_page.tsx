@@ -3,10 +3,10 @@ import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { slugify } from '../../../../src/services/string/slugify';
 import {
   EuiPageHeader,
+  EuiPageContent,
   EuiPageContentBody,
   EuiSpacer,
   EuiBetaBadge,
-  EuiPageSection,
 } from '../../../../src/components';
 
 import { LanguageSelector, ThemeContext } from '../with_theme';
@@ -83,6 +83,7 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
     if (!showSass && notice) {
       return (
         <>
+          <EuiSpacer size="l" />
           <EuiPageContentBody role="region" aria-label="Notice" restrictWidth>
             {notice}
           </EuiPageContentBody>
@@ -125,8 +126,9 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
   return (
     <>
       {renderNotice()}
-      <EuiPageSection restrictWidth bottomBorder>
+      <EuiPageContentBody style={{ paddingBlockEnd: 0 }} paddingSize="l">
         <EuiPageHeader
+          restrictWidth
           pageTitle={
             <>
               {title} {betaBadge}
@@ -135,13 +137,22 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
           tabs={renderTabs()}
           description={description}
           rightSideItems={rightSideItems}
-          role="none"
+          bottomBorder
         />
-      </EuiPageSection>
+      </EuiPageContentBody>
 
-      <EuiPageSection restrictWidth>
-        <Switch>{pagesRoutes}</Switch>
-      </EuiPageSection>
+      <EuiPageContent
+        role="main"
+        hasShadow={false}
+        paddingSize="none"
+        color="transparent"
+        hasBorder={false}
+        borderRadius="none"
+      >
+        <EuiPageContentBody paddingSize="l" restrictWidth>
+          <Switch>{pagesRoutes}</Switch>
+        </EuiPageContentBody>
+      </EuiPageContent>
     </>
   );
 };

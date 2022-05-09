@@ -76,15 +76,6 @@ describe('EuiTabbedContent', () => {
       });
     });
 
-    describe('display', () => {
-      test('can be condensed', () => {
-        const component = render(
-          <EuiTabbedContent display="condensed" tabs={tabs} />
-        );
-        expect(component).toMatchSnapshot();
-      });
-    });
-
     describe('autoFocus', () => {
       AUTOFOCUS.forEach((focusType) => {
         test(`${focusType} is rendered`, () => {

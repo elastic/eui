@@ -19,8 +19,6 @@ export const getDefaultEuiMarkdownUiPlugins = ({
 
   if (!excludeSet.has('tooltip')) uiPlugins.push(MarkdownTooltip.plugin);
 
-  // @ts-ignore __originatedFromEui is a custom property
-  uiPlugins.__originatedFromEui = true;
   return uiPlugins;
 };
 
