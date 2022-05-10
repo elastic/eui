@@ -51,7 +51,6 @@ export interface EuiContextMenuPanelProps {
   title?: ReactNode;
   transitionDirection?: EuiContextMenuPanelTransitionDirection;
   transitionType?: EuiContextMenuPanelTransitionType;
-  watchedItemProps?: string[];
   /**
    * Alters the size of the items and the title
    */
@@ -84,6 +83,8 @@ interface State {
   focusedItemIndex?: number;
   currentHeight?: number;
   height?: number;
+  waitingForInitialPopover: boolean;
+  tookInitialFocus: boolean;
 }
 
 export class EuiContextMenuPanel extends Component<Props, State> {
@@ -94,6 +95,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
   private _isMounted = false;
   private backButton?: HTMLElement | null = null;
   private panel?: HTMLElement | null = null;
+  private initialPopoverParent?: HTMLElement | null = null;
 
   constructor(props: Props) {
     super(props);
@@ -108,18 +110,35 @@ export class EuiContextMenuPanel extends Component<Props, State> {
           ? props.initialFocusedItemIndex + 1 // Account for panel title back button
           : props.initialFocusedItemIndex,
       currentHeight: undefined,
+      waitingForInitialPopover: false,
+      tookInitialFocus: false,
     };
   }
 
-  incrementFocusedItemIndex = (amount: number) => {
+  // Find all tabbable menu items on both panel init and
+  // whenever `menuItems` resets when `props.items` changes
+  findMenuItems = () => {
+    if (!this.panel) return;
+    if (!this.props.items?.length) return; // We only need menu items/arrow key navigation for the `items` API
+    if (this.state.menuItems.length) return; // If we already have menu items, no need to continue
+
+    const tabbableItems = tabbable(this.panel);
+    if (tabbableItems.length) {
+      this.setState({ menuItems: tabbableItems });
+    }
+  };
+
+  focusMenuItem = (direction: 'up' | 'down') => {
+    const indexOffset = direction === 'up' ? -1 : 1;
     let nextFocusedItemIndex;
 
     if (this.state.focusedItemIndex === undefined) {
       // If this is the beginning of the user's keyboard navigation of the menu, then we'll focus
       // either the first or last item.
-      nextFocusedItemIndex = amount < 0 ? this.state.menuItems.length - 1 : 0;
+      nextFocusedItemIndex =
+        direction === 'up' ? this.state.menuItems.length - 1 : 0;
     } else {
-      nextFocusedItemIndex = this.state.focusedItemIndex + amount;
+      nextFocusedItemIndex = this.state.focusedItemIndex + indexOffset;
 
       if (nextFocusedItemIndex < 0) {
         nextFocusedItemIndex = this.state.menuItems.length - 1;
@@ -128,9 +147,8 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       }
     }
 
-    this.setState({
-      focusedItemIndex: nextFocusedItemIndex,
-    });
+    this.setState({ focusedItemIndex: nextFocusedItemIndex });
+    this.state.menuItems[nextFocusedItemIndex]?.focus();
   };
 
   onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -181,7 +199,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
         case cascadingMenuKeys.ARROW_UP:
           event.preventDefault();
-          this.incrementFocusedItemIndex(-1);
+          this.focusMenuItem('up');
 
           if (this.props.onUseKeyboardToNavigate) {
             this.props.onUseKeyboardToNavigate();
@@ -190,7 +208,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
 
         case cascadingMenuKeys.ARROW_DOWN:
           event.preventDefault();
-          this.incrementFocusedItemIndex(1);
+          this.focusMenuItem('down');
 
           if (this.props.onUseKeyboardToNavigate) {
             this.props.onUseKeyboardToNavigate();
@@ -218,10 +236,16 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     }
   };
 
-  updateFocus() {
+  takeInitialFocus() {
     // Give positioning time to render before focus is applied. Otherwise page jumps.
     requestAnimationFrame(() => {
       if (!this._isMounted) {
+        return;
+      }
+
+      // Don't take focus yet if EuiContextMenu is in a popover
+      // and the popover is initially opening/transitioning in
+      if (this.initialPopoverParent && this.state.waitingForInitialPopover) {
         return;
       }
 
@@ -235,63 +259,43 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         return;
       }
 
-      // If menuItems has been cleared, iterate through and set menuItems from tabbableItems
-      if (!this.state.menuItems.length && this.panel) {
-        const tabbableItems = tabbable(this.panel);
-        if (tabbableItems.length) {
-          this.setState({ menuItems: tabbableItems });
+      // Initial focus has already been handled, no need to continue and potentially hijack/focus fight
+      if (this.state.tookInitialFocus) {
+        return;
+      }
+
+      // If an item should be focused, focus it (if it exists)
+      if (this.state.focusedItemIndex != null && this.state.menuItems.length) {
+        const focusedItem = this.state.menuItems[this.state.focusedItemIndex];
+        if (focusedItem) {
+          focusedItem.focus();
+          return this.setState({ tookInitialFocus: true });
         }
       }
 
-      if (this.state.menuItems.length) {
-        // If an item is focused, focus it
-        if (this.state.focusedItemIndex != null) {
-          this.state.menuItems[this.state.focusedItemIndex].focus();
-          return;
-        }
-        // Otherwise, if the back button panel title is present, focus it
-        if (this.props.onClose) {
+      // Otherwise, if the back button panel title is present, focus it
+      if (this.backButton) {
+        // Focus the back button for both `items` and `children` APIs
+        this.backButton.focus();
+        // If `items`, ensure our focused item index is correct
+        if (this.state.menuItems.length) {
           this.setState({ focusedItemIndex: 0 });
-          this.state.menuItems[0].focus();
-          return;
         }
+        return this.setState({ tookInitialFocus: true });
       }
 
       // Focus on the panel as a last resort.
       if (this.panel && !this.panel.contains(document.activeElement)) {
         this.panel.focus();
+        this.setState({ tookInitialFocus: true });
       }
     });
   }
 
-  // If EuiContextMenu is used within an EuiPopover, EuiPopover's own
-  // `updateFocus()` method hijacks EuiContextMenuPanel's `updateFocus()`
-  // 350ms after the popover finishes transitioning in. This workaround
-  // reclaims focus from parent EuiPopovers that do not set an `initialFocus`
-  reclaimPopoverFocus() {
-    if (!this.panel) return;
-
-    const parent = this.panel.parentNode as HTMLElement;
-    if (!parent) return;
-    const hasEuiContextMenuParent = parent.classList.contains('euiContextMenu');
-
-    // It's possible to use an EuiContextMenuPanel directly in a popover without
-    // an EuiContextMenu, so we need to account for that when searching parent nodes
-    const popoverParent = hasEuiContextMenuParent
-      ? (parent?.parentNode?.parentNode as HTMLElement)
-      : (parent?.parentNode as HTMLElement);
-    if (!popoverParent) return;
-
-    const hasPopoverParent = popoverParent.classList.contains(
-      'euiPopover__panel'
-    );
-    if (!hasPopoverParent) return;
-
-    // If the popover panel gains focus, switch it to the context menu panel instead
-    popoverParent.addEventListener('focus', () => {
-      this.updateFocus();
-    });
-  }
+  reclaimPopoverFocus = () => {
+    this.setState({ waitingForInitialPopover: false });
+    this.takeInitialFocus();
+  };
 
   onTransitionComplete = () => {
     if (this.props.onTransitionComplete) {
@@ -299,13 +303,38 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     }
   };
 
+  componentDidUpdate(_: Props, prevState: State) {
+    if (prevState.menuItems !== this.state.menuItems) {
+      this.findMenuItems();
+    }
+    // Focus isn't always ready to be taken on mount, so we need to call it
+    // on update as well just in case
+    this.takeInitialFocus();
+  }
+
   componentDidMount() {
-    this.updateFocus();
-    this.reclaimPopoverFocus();
+    // If EuiContextMenu is used within an EuiPopover, we need to wait for EuiPopover to:
+    // 1. Correctly set its `returnFocus` to the toggling button,
+    //    so focus is correctly restored to the popover toggle on close
+    // 2. Finish its own `updateFocus()` call 350ms after transitioning in,
+    //    so the panel can handle its own focus without focus fighting
+    if (this.initialPopoverParent) {
+      this.initialPopoverParent.addEventListener(
+        'focus',
+        this.reclaimPopoverFocus,
+        { once: true }
+      );
+    } else {
+      this.takeInitialFocus();
+    }
     this._isMounted = true;
   }
 
   componentWillUnmount() {
+    this.initialPopoverParent?.removeEventListener(
+      'focus',
+      this.reclaimPopoverFocus
+    );
     this._isMounted = false;
   }
 
@@ -329,78 +358,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     return null;
   }
 
-  getWatchedPropsForItems(items: ReactElement[]) {
-    // This lets us compare prevProps and nextProps among items so we can re-render if our items
-    // have changed.
-    const { watchedItemProps } = this.props;
-
-    // Create fingerprint of all item's watched properties
-    if (items.length && watchedItemProps && watchedItemProps.length) {
-      return JSON.stringify(
-        items.map((item) => {
-          // Create object of item properties and values
-          const props: any = {
-            key: item.key,
-          };
-          watchedItemProps.forEach((prop: string) => {
-            props[prop] = item.props[prop];
-          });
-          return props;
-        })
-      );
-    }
-
-    return null;
-  }
-
-  didItemsChange(prevItems: ReactElement[], nextItems: ReactElement[]) {
-    // If the count of items has changed then update
-    if (prevItems.length !== nextItems.length) {
-      return true;
-    }
-
-    // Check if any watched item properties changed by quick string comparison
-    if (
-      this.getWatchedPropsForItems(nextItems) !==
-      this.getWatchedPropsForItems(prevItems)
-    ) {
-      return true;
-    }
-  }
-
-  shouldComponentUpdate(nextProps: Props, nextState: State) {
-    // Prevent calling `this.updateFocus()` below if we don't have to.
-    if (nextProps.transitionType !== this.props.transitionType) {
-      return true;
-    }
-
-    if (nextState.focusedItemIndex !== this.state.focusedItemIndex) {
-      return true;
-    }
-
-    // **
-    // this component should have either items or children,
-    // if there are items we can determine via `watchedItemProps` if we should update
-    // if there are children we can't know if they have changed so return true
-    // **
-
-    if (
-      (this.props.items && this.props.items.length > 0) ||
-      (nextProps.items && nextProps.items.length > 0)
-    ) {
-      if (this.didItemsChange(this.props.items!, nextProps.items!)) {
-        return true;
-      }
-    }
-
-    // it's not possible (in any good way) to know if `children` has changed, assume they might have
-    if (this.props.children != null) {
-      return true;
-    }
-
-    return false;
-  }
-
   updateHeight() {
     const currentHeight = this.panel ? this.panel.clientHeight : 0;
 
@@ -413,14 +370,37 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     }
   }
 
-  componentDidUpdate() {
-    this.updateFocus();
+  getInitialPopoverParent() {
+    // If `transitionType` exists, that means we're navigating between panels
+    // and the initial popover has already loaded, so we shouldn't need this logic
+    if (this.props.transitionType) return;
+
+    if (!this.panel) return;
+
+    const parent = this.panel.parentNode as HTMLElement;
+    if (!parent) return;
+    const hasEuiContextMenuParent = parent.classList.contains('euiContextMenu');
+
+    // It's possible to use an EuiContextMenuPanel directly in a popover without
+    // an EuiContextMenu, so we need to account for that when searching parent nodes
+    const popoverParent = hasEuiContextMenuParent
+      ? (parent?.parentNode?.parentNode as HTMLElement)
+      : (parent?.parentNode as HTMLElement);
+    if (!popoverParent) return;
+
+    const hasPopoverParent = !!popoverParent.dataset.popoverPanel;
+    if (!hasPopoverParent) return;
+
+    this.initialPopoverParent = popoverParent;
+    this.setState({ waitingForInitialPopover: true });
   }
 
   panelRef = (node: HTMLElement | null) => {
     this.panel = node;
 
     this.updateHeight();
+    this.getInitialPopoverParent();
+    this.findMenuItems();
   };
 
   render() {
@@ -435,7 +415,6 @@ export class EuiContextMenuPanel extends Component<Props, State> {
       onTransitionComplete,
       onUseKeyboardToNavigate,
       items,
-      watchedItemProps,
       initialFocusedItemIndex,
       showNextPanel,
       showPreviousPanel,

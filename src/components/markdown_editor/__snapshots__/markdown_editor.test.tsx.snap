@@ -801,6 +801,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                               aria-modal="true"
                               class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--top"
                               data-autofocus="true"
+                              data-popover-panel="true"
                               role="dialog"
                               style="top: -16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
                               tabindex="0"
@@ -969,6 +970,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                                     aria-live="off"
                                     aria-modal="true"
                                     className="euiPopover__panel euiPopover__panel--top"
+                                    data-popover-panel={true}
                                     hasShadow={false}
                                     paddingSize="s"
                                     panelRef={[Function]}
@@ -988,6 +990,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                                       aria-live="off"
                                       aria-modal="true"
                                       className="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--top"
+                                      data-popover-panel={true}
                                       role="dialog"
                                       style={
                                         Object {
