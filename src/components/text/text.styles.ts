@@ -8,7 +8,11 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { euiFontSize, _FontScaleOptions } from '../../global_styling';
+import {
+  logicalCSS,
+  euiFontSize,
+  _FontScaleOptions,
+} from '../../global_styling';
 
 import { euiLinkCSS } from '../link/link.styles';
 import { euiTitle } from '../title/title.styles';
@@ -34,10 +38,32 @@ const euiScaleText = (
   options: _FontScaleOptions
 ) => {
   const { fontSize, lineHeight } = euiFontSize('m', euiTheme, options);
+  const { measurement } = options;
+  const lineHeightSize = measurement === 'em' ? `${lineHeight}em` : lineHeight;
 
   return `
     font-size: ${fontSize};
     line-height: ${lineHeight};
+
+    p,
+    ul,
+    ol,
+    dl,
+    blockquote,
+    img,
+    pre {
+      ${logicalCSS('margin-bottom', lineHeightSize)}
+    }
+
+    ul,
+    ol {
+      ${logicalCSS('margin-left', lineHeightSize)}
+    }
+  
+    blockquote {
+      font-size: ${fontSize};
+      padding: ${lineHeightSize};
+    }
   `;
 };
 

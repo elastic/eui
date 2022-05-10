@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`euiTextStyles sizes m 1`] = `
+"
+    font-size: 1.1429rem;
+    line-height: 1.7143rem;
+
+    p,
+    ul,
+    ol,
+    dl,
+    blockquote,
+    img,
+    pre {
+      margin-block-end: 1.7143rem;
+    }
+
+    ul,
+    ol {
+      margin-inline-start: 1.7143rem;
+    }
+  
+    blockquote {
+      font-size: 1.1429rem;
+      padding: 1.7143rem;
+    }
+  ;;label:m;"
+`;
+
+exports[`euiTextStyles sizes relative 1`] = `
+"
+    font-size: 1em;
+    line-height: 1.5000;
+
+    p,
+    ul,
+    ol,
+    dl,
+    blockquote,
+    img,
+    pre {
+      margin-block-end: 1.5000em;
+    }
+
+    ul,
+    ol {
+      margin-inline-start: 1.5000em;
+    }
+  
+    blockquote {
+      font-size: 1em;
+      padding: 1.5000em;
+    }
+  ;;label:relative;"
+`;
+
+exports[`euiTextStyles sizes s 1`] = `
+"
+    font-size: 1.0000rem;
+    line-height: 1.4286rem;
+
+    p,
+    ul,
+    ol,
+    dl,
+    blockquote,
+    img,
+    pre {
+      margin-block-end: 1.4286rem;
+    }
+
+    ul,
+    ol {
+      margin-inline-start: 1.4286rem;
+    }
+  
+    blockquote {
+      font-size: 1.0000rem;
+      padding: 1.4286rem;
+    }
+  ;;label:s;"
+`;
+
+exports[`euiTextStyles sizes xs 1`] = `
+"
+    font-size: 0.8571rem;
+    line-height: 1.1429rem;
+
+    p,
+    ul,
+    ol,
+    dl,
+    blockquote,
+    img,
+    pre {
+      margin-block-end: 1.1429rem;
+    }
+
+    ul,
+    ol {
+      margin-inline-start: 1.1429rem;
+    }
+  
+    blockquote {
+      font-size: 0.8571rem;
+      padding: 1.1429rem;
+    }
+  ;;label:xs;"
+`;
