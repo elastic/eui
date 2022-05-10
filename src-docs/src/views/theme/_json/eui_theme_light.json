@@ -201,16 +201,6 @@
   },
   "euiKeyPadMenuSize": "96px",
   "euiKeyPadMenuMarginSize": "4px",
-  "euiLinkColors": {
-    "subdued": "#69707d",
-    "primary": "#0071c2",
-    "success": "#007e77",
-    "accent": "#c4407c",
-    "warning": "#8a6a0a",
-    "danger": "#bd271e",
-    "text": "#343741",
-    "ghost": "#ffffff"
-  },
   "euiListGroupItemHoverBackground": "rgba(211, 218, 230, 0.25)",
   "euiListGroupItemHoverBackgroundGhost": "rgba(255, 255, 255, 0.09999999999999998)",
   "euiListGroupGutterTypes": {
@@ -416,7 +406,6 @@
     "success": "#00bfb3",
     "warning": "#fec514",
     "danger": "#bd271e",
-    "subdued": "#69707d",
     "ghost": "#ffffff",
     "text": "#69707d"
   },

@@ -97,7 +97,6 @@ export class EuiTableSortMobile extends Component<
                 })
               : undefined
           }
-          watchedItemProps={['isSorted', 'isSortAscending']}
         />
       </EuiPopover>
     );
