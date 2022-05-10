@@ -126,7 +126,7 @@ exports[`EuiSelectable errorMessage prop can render an element as the message 1`
     Filter options
   </p>
   <div
-    class="euiText euiText--extraSmall euiSelectableMessage"
+    class="euiText euiSelectableMessage css-3vmilf-euiText-xs"
     data-test-subj="euiSelectableMessage"
     id="generated-id_messageContent"
   >
@@ -268,7 +268,7 @@ exports[`EuiSelectable errorMessage prop does renders the message when defined 1
     Filter options
   </p>
   <div
-    class="euiText euiText--extraSmall euiSelectableMessage"
+    class="euiText euiSelectableMessage css-3vmilf-euiText-xs"
     data-test-subj="euiSelectableMessage"
     id="generated-id_messageContent"
   >
@@ -371,7 +371,7 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
     Filter options
   </p>
   <div
-    class="euiText euiText--extraSmall euiSelectableMessage"
+    class="euiText euiSelectableMessage css-3vmilf-euiText-xs"
     data-test-subj="euiSelectableMessage"
     id="generated-id_messageContent"
   >

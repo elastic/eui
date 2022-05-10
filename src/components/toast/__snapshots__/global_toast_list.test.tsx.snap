@@ -54,7 +54,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
       />
     </button>
     <div
-      class="euiText euiText--small euiToastBody"
+      class="euiText euiToastBody css-1oeurl1-euiText-s"
     >
       a
     </div>
@@ -97,7 +97,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
       />
     </button>
     <div
-      class="euiText euiText--small euiToastBody"
+      class="euiText euiToastBody css-1oeurl1-euiText-s"
     >
       b
     </div>
@@ -149,7 +149,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
       />
     </button>
     <div
-      class="euiText euiText--small euiToastBody"
+      class="euiText euiToastBody css-1oeurl1-euiText-s"
     >
       a
     </div>
@@ -192,7 +192,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
       />
     </button>
     <div
-      class="euiText euiText--small euiToastBody"
+      class="euiText euiToastBody css-1oeurl1-euiText-s"
     >
       b
     </div>

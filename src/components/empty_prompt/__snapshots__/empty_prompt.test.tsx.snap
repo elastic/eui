@@ -35,7 +35,7 @@ exports[`EuiEmptyPrompt is rendered 1`] = `
             class="euiSpacer euiSpacer--m css-jv9za2-euiSpacer-m"
           />
           <div
-            class="euiText euiText--medium"
+            class="euiText css-h22ihx-euiText-m"
           >
             <p>
               Body
@@ -130,7 +130,7 @@ exports[`EuiEmptyPrompt props body renders alone 1`] = `
           class="euiTextColor euiTextColor--subdued"
         >
           <div
-            class="euiText euiText--medium"
+            class="euiText css-h22ihx-euiText-m"
           >
             body
           </div>

@@ -524,7 +524,7 @@ exports[`EuiDualRange props loading should display when showInput="inputWithPopo
             value="1"
           />
           <div
-            class="euiText euiText--small euiFormControlLayoutDelimited__delimeter"
+            class="euiText euiFormControlLayoutDelimited__delimeter css-1oeurl1-euiText-s"
           >
             <div
               class="euiTextColor euiTextColor--subdued"
@@ -613,7 +613,7 @@ exports[`EuiDualRange props slider should display in popover 1`] = `
             value="1"
           />
           <div
-            class="euiText euiText--small euiFormControlLayoutDelimited__delimeter"
+            class="euiText euiFormControlLayoutDelimited__delimeter css-1oeurl1-euiText-s"
           >
             <div
               class="euiTextColor euiTextColor--subdued"

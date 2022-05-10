@@ -49,7 +49,7 @@ exports[`EuiNotificationEvent is rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
-        class="euiText euiText--small"
+        class="euiText css-1oeurl1-euiText-s"
       >
         <div
           class="euiTextColor euiTextColor--subdued"
@@ -114,7 +114,7 @@ exports[`EuiNotificationEvent props badgeColor is rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
-        class="euiText euiText--small"
+        class="euiText css-1oeurl1-euiText-s"
       >
         <div
           class="euiTextColor euiTextColor--subdued"
@@ -230,7 +230,7 @@ exports[`EuiNotificationEvent props headingLevel is rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
-        class="euiText euiText--small"
+        class="euiText css-1oeurl1-euiText-s"
       >
         <div
           class="euiTextColor euiTextColor--subdued"
@@ -300,7 +300,7 @@ exports[`EuiNotificationEvent props iconAriaLabel is rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
-        class="euiText euiText--small"
+        class="euiText css-1oeurl1-euiText-s"
       >
         <div
           class="euiTextColor euiTextColor--subdued"
@@ -369,7 +369,7 @@ exports[`EuiNotificationEvent props iconType is rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
-        class="euiText euiText--small"
+        class="euiText css-1oeurl1-euiText-s"
       >
         <div
           class="euiTextColor euiTextColor--subdued"
@@ -451,7 +451,7 @@ exports[`EuiNotificationEvent props isRead  is rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
-        class="euiText euiText--small"
+        class="euiText css-1oeurl1-euiText-s"
       >
         <div
           class="euiTextColor euiTextColor--subdued"
@@ -515,7 +515,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
-        class="euiText euiText--small"
+        class="euiText css-1oeurl1-euiText-s"
       >
         <div
           class="euiTextColor euiTextColor--subdued"
@@ -561,7 +561,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
                 class="euiNotificationEventMessages__accordionContent"
               >
                 <div
-                  class="euiText euiText--small"
+                  class="euiText css-1oeurl1-euiText-s"
                 >
                   <div
                     class="euiTextColor euiTextColor--subdued"
@@ -572,7 +572,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
                   </div>
                 </div>
                 <div
-                  class="euiText euiText--small"
+                  class="euiText css-1oeurl1-euiText-s"
                 >
                   <div
                     class="euiTextColor euiTextColor--subdued"
@@ -641,7 +641,7 @@ exports[`EuiNotificationEvent props primaryAction is rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
-        class="euiText euiText--small"
+        class="euiText css-1oeurl1-euiText-s"
       >
         <div
           class="euiTextColor euiTextColor--subdued"
@@ -724,7 +724,7 @@ exports[`EuiNotificationEvent props primaryActionProps is rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
-        class="euiText euiText--small"
+        class="euiText css-1oeurl1-euiText-s"
       >
         <div
           class="euiTextColor euiTextColor--subdued"
@@ -812,7 +812,7 @@ exports[`EuiNotificationEvent props severity  is rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
-        class="euiText euiText--small"
+        class="euiText css-1oeurl1-euiText-s"
       >
         <div
           class="euiTextColor euiTextColor--subdued"
