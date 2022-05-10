@@ -56,7 +56,6 @@ export interface _EuiPanelProps extends CommonProps {
   /**
    * Adds a slight 1px border on all edges.
    * Only works when `color="plain | transparent"`
-   * Default is `undefined` and will default to that theme's panel style
    */
   hasBorder?: boolean;
   /**
@@ -103,7 +102,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   borderRadius = 'm',
   color = 'plain',
   hasShadow = true,
-  hasBorder,
+  hasBorder = false,
   grow = true,
   panelRef,
   element,
