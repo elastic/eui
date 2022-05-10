@@ -48,6 +48,7 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
       aria-live="assertive"
       aria-modal="true"
       class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--left euiPopover__panel-isOpen euiTour testClass1 testClass2 css-1l4493j-euiPanel-grow-m-m-plain"
+      data-popover-panel="true"
       role="dialog"
       style="top: -22px; left: -26px; will-change: transform, opacity; max-width: 420px; min-width: 240px; z-index: 2000;"
     >
@@ -145,6 +146,7 @@ exports[`EuiTourStep can have subtitle 1`] = `
       aria-live="assertive"
       aria-modal="true"
       class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--left euiPopover__panel-isOpen euiTour testClass1 testClass2 css-1l4493j-euiPanel-grow-m-m-plain"
+      data-popover-panel="true"
       role="dialog"
       style="top: -22px; left: -26px; will-change: transform, opacity; max-width: 600px; min-width: 300px; z-index: 2000;"
     >
@@ -247,6 +249,7 @@ exports[`EuiTourStep can override the footer action 1`] = `
       aria-live="assertive"
       aria-modal="true"
       class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--left euiPopover__panel-isOpen euiTour testClass1 testClass2 css-1l4493j-euiPanel-grow-m-m-plain"
+      data-popover-panel="true"
       role="dialog"
       style="top: -22px; left: -26px; will-change: transform, opacity; max-width: 600px; min-width: 300px; z-index: 2000;"
     >
@@ -333,6 +336,7 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
       aria-live="assertive"
       aria-modal="true"
       class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--left euiPopover__panel-isOpen euiTour testClass1 testClass2 css-1l4493j-euiPanel-grow-m-m-plain"
+      data-popover-panel="true"
       role="dialog"
       style="top: -22px; left: -16px; will-change: transform, opacity; max-width: 600px; min-width: 300px; z-index: 2000;"
     >
@@ -425,6 +429,7 @@ exports[`EuiTourStep is rendered 1`] = `
       aria-live="assertive"
       aria-modal="true"
       class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--left euiPopover__panel-isOpen euiTour testClass1 testClass2 css-1l4493j-euiPanel-grow-m-m-plain"
+      data-popover-panel="true"
       role="dialog"
       style="top: -22px; left: -26px; will-change: transform, opacity; max-width: 600px; min-width: 300px; z-index: 2000;"
     >

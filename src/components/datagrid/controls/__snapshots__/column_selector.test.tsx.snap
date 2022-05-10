@@ -117,6 +117,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                   aria-modal="true"
                   class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop css-6zsgh2-euiPanel-grow-m-s-plain"
                   data-autofocus="true"
+                  data-popover-panel="true"
                   role="dialog"
                   style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
                   tabindex="0"
@@ -473,6 +474,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                         aria-live="off"
                         aria-modal="true"
                         className="euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop"
+                        data-popover-panel={true}
                         hasShadow={false}
                         paddingSize="s"
                         panelRef={[Function]}
@@ -492,6 +494,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                           aria-live="off"
                           aria-modal="true"
                           css="unknown styles"
+                          data-popover-panel={true}
                           role="dialog"
                           style={
                             Object {
@@ -579,6 +582,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                             aria-live="off"
                             aria-modal="true"
                             className="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop css-6zsgh2-euiPanel-grow-m-s-plain"
+                            data-popover-panel={true}
                             role="dialog"
                             style={
                               Object {
