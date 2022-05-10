@@ -24,6 +24,33 @@ exports[`euiTextStyles sizes m 1`] = `
       font-size: 1.1429rem;
       padding: 1.7143rem;
     }
+
+    dd + dt {
+      margin-block-start: 1.1429rem;
+    }
+
+    dt,
+    .eui-definitionListReverse dd {
+      font-size: 1.1429rem;
+      line-height: 1.7143rem;
+    }
+
+    .eui-definitionListReverse dt {
+      font-size: 0.8571rem;
+      color: #343741;
+    }
+
+    small {
+      font-size: 1.0000rem;
+    }
+
+    pre {
+      padding: 1.1429rem;
+    }
+
+    code {
+      font-size: .9em; // 90% of parent font size
+    }
   ;;label:m;"
 `;
 
@@ -50,6 +77,33 @@ exports[`euiTextStyles sizes relative 1`] = `
     blockquote {
       font-size: 1em;
       padding: 1.5000em;
+    }
+
+    dd + dt {
+      margin-block-start: 1em;
+    }
+
+    dt,
+    .eui-definitionListReverse dd {
+      font-size: 1em;
+      line-height: 1.5000;
+    }
+
+    .eui-definitionListReverse dt {
+      font-size: 0.75em;
+      color: #343741;
+    }
+
+    small {
+      font-size: 0.875em;
+    }
+
+    pre {
+      padding: 1em;
+    }
+
+    code {
+      font-size: .9em; // 90% of parent font size
     }
   ;;label:relative;"
 `;
@@ -78,6 +132,33 @@ exports[`euiTextStyles sizes s 1`] = `
       font-size: 1.0000rem;
       padding: 1.4286rem;
     }
+
+    dd + dt {
+      margin-block-start: 1.0000rem;
+    }
+
+    dt,
+    .eui-definitionListReverse dd {
+      font-size: 1.0000rem;
+      line-height: 1.4286rem;
+    }
+
+    .eui-definitionListReverse dt {
+      font-size: 0.7500rem;
+      color: #343741;
+    }
+
+    small {
+      font-size: 0.8750rem;
+    }
+
+    pre {
+      padding: 1.0000rem;
+    }
+
+    code {
+      font-size: .9em; // 90% of parent font size
+    }
   ;;label:s;"
 `;
 
@@ -104,6 +185,33 @@ exports[`euiTextStyles sizes xs 1`] = `
     blockquote {
       font-size: 0.8571rem;
       padding: 1.1429rem;
+    }
+
+    dd + dt {
+      margin-block-start: 0.8571rem;
+    }
+
+    dt,
+    .eui-definitionListReverse dd {
+      font-size: 0.8571rem;
+      line-height: 1.1429rem;
+    }
+
+    .eui-definitionListReverse dt {
+      font-size: 0.6429rem;
+      color: #343741;
+    }
+
+    small {
+      font-size: 0.7500rem;
+    }
+
+    pre {
+      padding: 0.8571rem;
+    }
+
+    code {
+      font-size: .9em; // 90% of parent font size
     }
   ;;label:xs;"
 `;

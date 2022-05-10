@@ -64,6 +64,33 @@ const euiScaleText = (
       font-size: ${fontSize};
       padding: ${lineHeightSize};
     }
+
+    dd + dt {
+      ${logicalCSS('margin-top', fontSize)}
+    }
+
+    dt,
+    .eui-definitionListReverse dd {
+      font-size: ${fontSize};
+      line-height: ${lineHeight};
+    }
+
+    .eui-definitionListReverse dt {
+      font-size: ${euiFontSize('xs', euiTheme, options).fontSize};
+      color: ${euiTheme.colors.text};
+    }
+
+    small {
+      font-size: ${euiFontSize('s', euiTheme, options).fontSize};
+    }
+
+    pre {
+      padding: ${fontSize};
+    }
+
+    code {
+      font-size: .9em; // 90% of parent font size
+    }
   `;
 };
 

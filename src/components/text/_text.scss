@@ -69,36 +69,6 @@
     margin-top: marginToRemOrEm($headingMarginTop, $fontSizeH6, $sizingMethod);
   }
 
-  dd + dt {
-    $marginTop: $baseLineHeightMultiplier * 2;
-
-    margin-top: marginToRemOrEm($marginTop, $marginTop/$baseFontSize, $sizingMethod);
-  }
-
-  dt,
-  .eui-definitionListReverse dd {
-    font-size: fontSizeToRemOrEm(($baseFontSize * nth($euiTextScale, 5)), $sizingMethod); // skip level 4 on purpose
-    line-height: ($baseLineHeightMultiplier * 3) / ($baseFontSize * nth($euiTextScale, 5));
-  }
-
-  .eui-definitionListReverse dt {
-    font-size: fontSizeToRemOrEm(($baseFontSize * nth($euiTextScale, 7)), $sizingMethod);
-    color: $euiTextColor;
-  }
-
-  small {
-    font-size: fontSizeToRemOrEm(($baseFontSize * nth($euiTextScale, 6)), $sizingMethod);
-  }
-
-  pre {
-    padding: fontSizeToRemOrEm(($baseLineHeightMultiplier * 2), $sizingMethod);
-  }
-
-  code:not(.euiCode):not(.euiCodeBlock__code) {
-    // Excluding EuiCode and EuiCodeBlock selectors to not compound the reduced font-size
-    font-size: fontSizeToRemOrEm(($baseFontSize * .9), $sizingMethod);
-  }
-
   // specific markdown format components that need to scale
   &.euiMarkdownFormat {
     .euiMarkdownFormat__blockquote {
