@@ -23,34 +23,38 @@ const euiBottomBarAppear = keyframes`
   }
 `;
 
-export const euiBottomBarStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
-  // Base
-  // Text color needs to be reapplied to properly scope the forced `colorMode`
-  euiBottomBar: css`
-    ${euiShadowFlat(euiTheme, undefined, colorMode)};
-    background: ${shade(euiTheme.colors.lightestShade, 0.5)};
-    color: ${euiTheme.colors.text};
-    ${euiCanAnimate} {
-      animation: ${euiBottomBarAppear} ${euiTheme.animation.slow}
-        ${euiTheme.animation.resistance};
-    }
-  `,
-  static: css``,
-  fixed: css`
-    z-index: ${Number(euiTheme.levels.header) - 2};
-  `,
-  sticky: css`
-    z-index: ${Number(euiTheme.levels.header) - 2};
-  `,
-  // Padding
-  s: css`
-    padding: ${euiTheme.size.s};
-  `,
-  m: css`
-    padding: ${euiTheme.size.base};
-  `,
-  l: css`
-    padding: ${euiTheme.size.l};
-  `,
-  none: '',
-});
+export const euiBottomBarStyles = (_euiTheme: UseEuiTheme) => {
+  const { euiTheme } = _euiTheme;
+
+  return {
+    // Base
+    // Text color needs to be reapplied to properly scope the forced `colorMode`
+    euiBottomBar: css`
+      ${euiShadowFlat(_euiTheme)};
+      background: ${shade(euiTheme.colors.lightestShade, 0.5)};
+      color: ${euiTheme.colors.text};
+      ${euiCanAnimate} {
+        animation: ${euiBottomBarAppear} ${euiTheme.animation.slow}
+          ${euiTheme.animation.resistance};
+      }
+    `,
+    static: css``,
+    fixed: css`
+      z-index: ${Number(euiTheme.levels.header) - 2};
+    `,
+    sticky: css`
+      z-index: ${Number(euiTheme.levels.header) - 2};
+    `,
+    // Padding
+    s: css`
+      padding: ${euiTheme.size.s};
+    `,
+    m: css`
+      padding: ${euiTheme.size.base};
+    `,
+    l: css`
+      padding: ${euiTheme.size.l};
+    `,
+    none: '',
+  };
+};
