@@ -22,24 +22,23 @@ import {
   BACKGROUND_COLORS,
   PADDING_SIZES,
 } from '../../global_styling';
-import { CommonProps, ExclusiveUnion } from '../common';
+import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import { euiPanelStyles } from './panel.style';
 
 export const SIZES = PADDING_SIZES;
-export type PanelPaddingSize = EuiPaddingSize;
 
-// Padding class names necessary for EuiPopover and EuiCard.
-// But not the new sizes `xs`, and `xl`.
+// Exported padding sizes and class names necessary for EuiPopover and EuiCard.
+// Which currently will only maintain support for the original values until conversion.
 const paddingSizeToClassNameMap: {
-  [value in PanelPaddingSize]: string | null;
+  [value in EuiPaddingSize]?: string | null;
 } = {
   none: null,
-  xs: null,
   s: 'paddingSmall',
   m: 'paddingMedium',
   l: 'paddingLarge',
-  xl: null,
 };
+const _SIZES = keysOf(paddingSizeToClassNameMap);
+export type PanelPaddingSize = typeof _SIZES[number];
 
 export const BORDER_RADII = ['none', 'm'] as const;
 export type PanelBorderRadius = typeof BORDER_RADII[number];
@@ -61,7 +60,7 @@ export interface _EuiPanelProps extends CommonProps {
   /**
    * Padding for all four sides
    */
-  paddingSize?: PanelPaddingSize;
+  paddingSize?: EuiPaddingSize;
   /**
    * Corner border radius
    */
