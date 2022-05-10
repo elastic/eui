@@ -21,17 +21,29 @@ import {
 
 describe('euiFontSize', () => {
   describe('returns an object of font-size and line-height for each scale', () => {
-    EuiThemeFontSizeMeasurements.forEach((measure) => {
-      describe(measure, () => {
+    EuiThemeFontSizeMeasurements.forEach((measurement) => {
+      describe(measurement, () => {
         EuiThemeFontScales.forEach((size) => {
           test(size, () => {
             expect(
-              testCustomHook(() => useEuiFontSize(size, measure)).return
+              testCustomHook(() => useEuiFontSize(size, { measurement })).return
             ).toMatchSnapshot();
           });
         });
       });
     });
+  });
+
+  it('handles the optional customScale property by multiplying it against the passed scale', () => {
+    expect(
+      testCustomHook(() => useEuiFontSize('m', { customScale: 'xs' })).return
+    ).toMatchSnapshot();
+    expect(
+      testCustomHook(() => useEuiFontSize('l', { customScale: 'xxs' })).return
+    ).toMatchSnapshot();
+    expect(
+      testCustomHook(() => useEuiFontSize('s', { customScale: 'xl' })).return
+    ).toMatchSnapshot();
   });
 });
 
