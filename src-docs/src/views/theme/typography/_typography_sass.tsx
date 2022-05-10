@@ -134,8 +134,6 @@ export const FontValuesSass = () => {
           },
         ]}
       />
-
-      <EuiSpacer size="xl" />
     </>
   );
 };
@@ -213,8 +211,6 @@ export const FontWeightValuesSass = () => {
           },
         ]}
       />
-
-      <EuiSpacer size="xl" />
     </>
   );
 };
@@ -303,8 +299,6 @@ export const FontScaleValuesSass = () => {
           },
         ]}
       />
-
-      <EuiSpacer size="l" />
     </>
   );
 };

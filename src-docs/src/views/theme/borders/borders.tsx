@@ -1,9 +1,8 @@
 import React, { useContext, useMemo } from 'react';
 
-import { EuiCode, EuiSpacer, EuiText } from '../../../../../src/components';
+import { EuiCode, EuiText } from '../../../../../src/components';
 
-// @ts-ignore Importing from JS
-import { GuidePage } from '../../../components/guide_page';
+import { GuideTabbedPage } from '../../../components/guide_tabbed_page';
 import { GuideSection } from '../../../components/guide_section/guide_section';
 import { ThemeContext } from '../../../components/with_theme';
 
@@ -89,7 +88,7 @@ export default () => {
   }, [showSass]);
 
   return (
-    <GuidePage
+    <GuideTabbedPage
       title="Borders"
       isBeta={!showSass}
       notice={<ThemeNotice />}
@@ -103,12 +102,10 @@ export default () => {
           >{`${bordersSections[0].title}`}</h2>
         </EuiText>
 
-        <EuiSpacer size="xl" />
-
         {borderContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <TypesValuesSass /> : <TypesValuesJS />}
       </GuideSection>
 
@@ -123,12 +120,10 @@ export default () => {
           </p>
         </EuiText>
 
-        <EuiSpacer size="xl" />
-
         {colorContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <ColorValuesSass /> : <ColorValuesJS />}
       </GuideSection>
 
@@ -139,12 +134,10 @@ export default () => {
           >{`${bordersSections[2].title}`}</h2>
         </EuiText>
 
-        <EuiSpacer size="xl" />
-
         {widthContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <WidthValuesSass /> : <WidthValuesJS />}
       </GuideSection>
 
@@ -155,14 +148,12 @@ export default () => {
           >{`${bordersSections[3].title}`}</h2>
         </EuiText>
 
-        <EuiSpacer size="xl" />
-
         {radiusContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <RadiusValuesSass /> : <RadiusValuesJS />}
       </GuideSection>
-    </GuidePage>
+    </GuideTabbedPage>
   );
 };
