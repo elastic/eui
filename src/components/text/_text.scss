@@ -1,9 +1,6 @@
 // This should only be used for .euiText, therefore it's not included in a separate mixin file
 @mixin euiScaleText($baseFontSize, $sizingMethod: 'rem') {
-  @include fontSize($baseFontSize, $sizingMethod);
-
   $baseLineHeightMultiplier: $baseFontSize / 2;
-  line-height: ($baseLineHeightMultiplier * 3) / $baseFontSize;
 
   p,
   ul,
@@ -157,20 +154,4 @@
       padding: marginToRemOrEm($baseLineHeightMultiplier / 2, $baseFontSize, $sizingMethod) marginToRemOrEm($baseLineHeightMultiplier * 1, $baseFontSize, $sizingMethod);
     }
   }
-}
-
-.euiText--medium {
-  @include euiScaleText($euiFontSize, 'rem');
-}
-
-.euiText--small {
-  @include euiScaleText($euiFontSizeS, 'rem');
-}
-
-.euiText--extraSmall {
-  @include euiScaleText($euiFontSizeXS, 'rem');
-}
-
-.euiText--relative {
-  @include euiScaleText($euiFontSize, 'em');
 }

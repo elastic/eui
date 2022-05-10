@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
+import { euiFontSize, _FontScaleOptions } from '../../global_styling';
 
 import { euiLinkCSS } from '../link/link.styles';
 import { euiTitle } from '../title/title.styles';
@@ -25,6 +26,19 @@ export const euiText = (
     color: inheritColor ? 'inherit' : euiTheme.colors.text,
     fontWeight: euiTheme.font.weight.regular,
   };
+};
+
+// Internal utility for EuiText scales/sizes
+const euiScaleText = (
+  euiTheme: UseEuiTheme['euiTheme'],
+  options: _FontScaleOptions
+) => {
+  const { fontSize, lineHeight } = euiFontSize('m', euiTheme, options);
+
+  return `
+    font-size: ${fontSize};
+    line-height: ${lineHeight};
+  `;
 };
 
 /**
@@ -154,5 +168,29 @@ export const euiTextStyles = ({ euiTheme }: UseEuiTheme) => ({
     // If the max-width is way too short of the width of the container,
     // at least make it 2/3 of its parent
     min-width: 75%;
+  `,
+  // Sizes
+  m: css`
+    ${euiScaleText(euiTheme, {
+      measurement: 'rem',
+      customScale: 'm',
+    })}
+  `,
+  s: css`
+    ${euiScaleText(euiTheme, {
+      measurement: 'rem',
+      customScale: 's',
+    })}
+  `,
+  xs: css`
+    ${euiScaleText(euiTheme, {
+      measurement: 'rem',
+      customScale: 'xs',
+    })}
+  `,
+  relative: css`
+    ${euiScaleText(euiTheme, {
+      measurement: 'em',
+    })}
   `,
 });
