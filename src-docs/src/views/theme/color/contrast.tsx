@@ -7,7 +7,6 @@ import {
   EuiLink,
   EuiTitle,
   EuiPanel,
-  EuiCallOut,
   EuiCode,
   EuiDescribedFormGroup,
   EuiButtonGroup,
@@ -91,62 +90,62 @@ export default () => {
   const showSass = useContext(ThemeContext).themeLanguage.includes('sass');
 
   return (
-    <GuideSection>
-      <EuiText grow={false}>
-        <h2>Accessible text contrast</h2>
-        <p>
-          <EuiLink href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">
-            WCAG specifications
-          </EuiLink>{' '}
-          defines specific contrast ratios between foreground text and a
-          background color. The grids below display which color combinations
-          pass that rating. In general you should try to use a color combination
-          that is {ratingAA} or above with the exception of using large text.
-        </p>
-      </EuiText>
-
-      <EuiSpacer size="xl" />
-
-      <EuiTitle size="xs">
-        <h3>
-          Use the slider and toggle to adjust the color combinations shown in
-          the sections below.
-        </h3>
-      </EuiTitle>
-      <EuiSpacer size="m" />
+    <>
+      <GuideSection color="transparent">
+        <EuiText grow={false}>
+          <h2>Accessible text contrast</h2>
+          <p>
+            <EuiLink href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">
+              WCAG specifications
+            </EuiLink>{' '}
+            defines specific contrast ratios between foreground text and a
+            background color. The grids below display which color combinations
+            pass that rating. In general you should try to use a color
+            combination that is {ratingAA} or above with the exception of using
+            large text.
+          </p>
+        </EuiText>
+      </GuideSection>
 
       {/* This wrapping div for the sticky positioning */}
       <div>
-        <ContrastSlider
-          contrastValue={contrastValue}
-          showTextVariants={showTextVariants}
-          // @ts-ignore Help
-          onChange={(
-            sliderValue: React.SetStateAction<number>,
-            toggleChecked: React.SetStateAction<boolean>
-          ) => {
-            setContrastValue(sliderValue);
-            setShowTextVariants(toggleChecked);
-          }}
-        />
+        <GuideSection color="warning" className="guideColorsPage__stickySlider">
+          <EuiTitle size="xs">
+            <h3>
+              Use the slider and toggle to adjust the color combinations shown
+              in the sections below.
+            </h3>
+          </EuiTitle>
+          <EuiSpacer size="m" />
+          <ContrastSlider
+            contrastValue={contrastValue}
+            showTextVariants={showTextVariants}
+            // @ts-ignore Help
+            onChange={(
+              sliderValue: React.SetStateAction<number>,
+              toggleChecked: React.SetStateAction<boolean>
+            ) => {
+              setContrastValue(sliderValue);
+              setShowTextVariants(toggleChecked);
+            }}
+          />
+        </GuideSection>
 
-        <EuiSpacer size="xxl" />
+        <GuideSection color="subdued">
+          <EuiText grow={false}>
+            <h2
+              id={`${contrastSections[0].id}`}
+            >{`${contrastSections[0].title}`}</h2>
+            <p>
+              In order to meet contrast minimums, the text variants use the page
+              body color as the denominator for calculating the altered color.
+              Text placed on backgrounds darker than this cannot guarantee
+              contrast acceptance.
+            </p>
+          </EuiText>
 
-        <EuiText grow={false}>
-          <h2
-            id={`${contrastSections[0].id}`}
-          >{`${contrastSections[0].title}`}</h2>
-          <p>
-            In order to meet contrast minimums, the text variants use the page
-            body color as the denominator for calculating the altered color.
-            Text placed on backgrounds darker than this cannot guarantee
-            contrast acceptance.
-          </p>
-        </EuiText>
+          <EuiSpacer />
 
-        <EuiSpacer />
-
-        <EuiPanel color="subdued">
           {showSass ? (
             <ColorSectionSass
               color={'euiPageBackgroundColor'}
@@ -160,24 +159,22 @@ export default () => {
               showTextVariants={showTextVariants}
             />
           )}
-        </EuiPanel>
+        </GuideSection>
 
-        <EuiSpacer size="xxl" />
+        <GuideSection color="transparent">
+          <EuiText grow={false}>
+            <h2
+              id={`${contrastSections[1].id}`}
+            >{`${contrastSections[1].title}`}</h2>
+            <p>
+              We typically only recommend using full black or white on top of
+              brand colors. This can be in the form of full, empty, ink, or
+              ghost shades. <strong>Never combine two brand colors.</strong>
+            </p>
+          </EuiText>
 
-        <EuiText grow={false}>
-          <h2
-            id={`${contrastSections[1].id}`}
-          >{`${contrastSections[1].title}`}</h2>
-          <p>
-            We typically only recommend using full black or white on top of
-            brand colors. This can be in the form of full, empty, ink, or ghost
-            shades. <strong>Never combine two brand colors.</strong>
-          </p>
-        </EuiText>
+          <EuiSpacer />
 
-        <EuiSpacer />
-
-        <EuiPanel color="subdued">
           {showSass
             ? sassCoreColors.map((color: string) => {
                 return (
@@ -203,24 +200,22 @@ export default () => {
                   </React.Fragment>
                 );
               })}
-        </EuiPanel>
+        </GuideSection>
 
-        <EuiSpacer size="xxl" />
+        <GuideSection color="subdued">
+          <EuiText grow={false}>
+            <h2
+              id={`${contrastSections[2].id}`}
+            >{`${contrastSections[2].title}`}</h2>
+            <p>
+              Again we recommend sticking with the text variant of brand colors
+              when possible. The opposite may be true when using darker shades
+              as backgrounds.
+            </p>
+          </EuiText>
 
-        <EuiText grow={false}>
-          <h2
-            id={`${contrastSections[2].id}`}
-          >{`${contrastSections[2].title}`}</h2>
-          <p>
-            Again we recommend sticking with the text variant of brand colors
-            when possible. The opposite may be true when using darker shades as
-            backgrounds.
-          </p>
-        </EuiText>
+          <EuiSpacer />
 
-        <EuiSpacer />
-
-        <EuiPanel color="subdued">
           {showSass
             ? sassGrayColors.map((color: string) => {
                 return (
@@ -248,47 +243,49 @@ export default () => {
                   </React.Fragment>
                 );
               })}
-        </EuiPanel>
+        </GuideSection>
 
-        <EuiSpacer size="xxl" />
+        <GuideSection color={showSass ? 'primary' : 'transparent'}>
+          <EuiText grow={false}>
+            <h2
+              id={`${contrastSections[3].id}`}
+            >{`${contrastSections[3].title}`}</h2>
+          </EuiText>
+          <EuiSpacer />
+          {showSass ? (
+            <p>
+              <strong>
+                Background colors only exist for CSS-in-JS styling.
+              </strong>
+            </p>
+          ) : (
+            <>
+              <EuiPanel color="accent">
+                <EuiDescribedFormGroup
+                  fullWidth
+                  title={<h3>Different colors for different contexts</h3>}
+                  description={
+                    <p>
+                      These background colors are pre-defined shades of the
+                      brand colors. They are recalled by using the hook{' '}
+                      <EuiCode>{backgroundFunction}</EuiCode>.
+                    </p>
+                  }
+                >
+                  <EuiSpacer />
+                  <EuiButtonGroup
+                    buttonSize="m"
+                    legend="Value measurement to show in table"
+                    options={backgroundButtons}
+                    idSelected={backgroundSelected}
+                    onChange={(id) => switchBackgroundColors(id)}
+                    color="accent"
+                    isFullWidth
+                  />
+                </EuiDescribedFormGroup>
+              </EuiPanel>
+              <EuiSpacer />
 
-        <EuiText grow={false}>
-          <h2
-            id={`${contrastSections[3].id}`}
-          >{`${contrastSections[3].title}`}</h2>
-        </EuiText>
-        <EuiSpacer />
-        {showSass ? (
-          <EuiCallOut title="Background colors only exist for CSS-in-JS styling." />
-        ) : (
-          <>
-            <EuiPanel color="accent">
-              <EuiDescribedFormGroup
-                fullWidth
-                title={<h3>Different colors for different contexts</h3>}
-                description={
-                  <p>
-                    These background colors are pre-defined shades of the brand
-                    colors. They are recalled by using the hook{' '}
-                    <EuiCode>{backgroundFunction}</EuiCode>.
-                  </p>
-                }
-              >
-                <EuiSpacer />
-                <EuiButtonGroup
-                  buttonSize="m"
-                  legend="Value measurement to show in table"
-                  options={backgroundButtons}
-                  idSelected={backgroundSelected}
-                  onChange={(id) => switchBackgroundColors(id)}
-                  color="accent"
-                  isFullWidth
-                />
-              </EuiDescribedFormGroup>
-            </EuiPanel>
-            <EuiSpacer />
-
-            <EuiPanel color="subdued">
               {backgroundColors.map((color: string) => {
                 switch (backgroundSelected) {
                   case 'container':
@@ -347,10 +344,10 @@ export default () => {
                     );
                 }
               })}
-            </EuiPanel>
-          </>
-        )}
+            </>
+          )}
+        </GuideSection>
       </div>
-    </GuideSection>
+    </>
   );
 };
