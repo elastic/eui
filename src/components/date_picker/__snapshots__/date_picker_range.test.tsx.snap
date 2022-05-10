@@ -50,7 +50,7 @@ exports[`EuiDatePickerRange is rendered 1`] = `
     </div>
   </span>
   <div
-    class="euiText euiText--small euiDatePickerRange__delimeter"
+    class="euiText euiDatePickerRange__delimeter css-1oeurl1-euiText-s"
   >
     <div
       class="euiTextColor euiTextColor--subdued"
@@ -141,7 +141,7 @@ exports[`EuiDatePickerRange uses individual EuiDatePicker props 1`] = `
     </div>
   </span>
   <div
-    class="euiText euiText--small euiDatePickerRange__delimeter"
+    class="euiText euiDatePickerRange__delimeter css-1oeurl1-euiText-s"
   >
     <div
       class="euiTextColor euiTextColor--subdued"

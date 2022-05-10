@@ -15,7 +15,7 @@ exports[`EuiFormControlLayoutDelimited is rendered 1`] = `
       start
     </span>
     <div
-      class="euiText euiText--small euiFormControlLayoutDelimited__delimeter"
+      class="euiText euiFormControlLayoutDelimited__delimeter css-1oeurl1-euiText-s"
     >
       <div
         class="euiTextColor euiTextColor--subdued"
@@ -45,7 +45,7 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a node 1`]
       start
     </span>
     <div
-      class="euiText euiText--small euiFormControlLayoutDelimited__delimeter"
+      class="euiText euiFormControlLayoutDelimited__delimeter css-1oeurl1-euiText-s"
     >
       <div
         class="euiTextColor euiTextColor--subdued"
@@ -77,7 +77,7 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a string 1
       start
     </span>
     <div
-      class="euiText euiText--small euiFormControlLayoutDelimited__delimeter"
+      class="euiText euiFormControlLayoutDelimited__delimeter css-1oeurl1-euiText-s"
     >
       <div
         class="euiTextColor euiTextColor--subdued"

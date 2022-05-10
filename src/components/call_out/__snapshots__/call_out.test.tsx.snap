@@ -7,7 +7,7 @@ exports[`EuiCallOut is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiText euiText--small css-1vr4wuv-euiCallOut__description"
+    class="euiText css-1ipt00l-euiText-s-euiCallOut__description"
   >
     <div
       class="euiTextColor euiTextColor--default"
@@ -100,7 +100,7 @@ exports[`EuiCallOut props title is rendered 1`] = `
     Title
   </p>
   <div
-    class="euiText euiText--small css-1vr4wuv-euiCallOut__description"
+    class="euiText css-1ipt00l-euiText-s-euiCallOut__description"
   >
     <div
       class="euiTextColor euiTextColor--default"
