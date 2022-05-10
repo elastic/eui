@@ -300,7 +300,9 @@ side?: '${LOGICAL_SIDES.join("' | '")}';`}
               useEuiPaddingCSS('left').l,
             ]}
           >
-            <code>{useEuiPaddingCSS('left').l}</code>
+            <code>
+              {logicals['padding-left']}: {useEuiPaddingSize('l')}
+            </code>
           </p>
         }
         snippetLanguage="tsx"

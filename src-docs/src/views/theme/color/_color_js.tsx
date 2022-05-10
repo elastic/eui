@@ -295,7 +295,7 @@ export const UtilsJS = () => {
         }
         example={
           <p css={[useEuiBackgroundColorCSS().accent, useEuiPaddingCSS().l]}>
-            <code>{useEuiBackgroundColorCSS().accent}</code>
+            <code>background-color: {useEuiBackgroundColor('accent')}</code>
           </p>
         }
         snippetLanguage="tsx"
