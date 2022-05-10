@@ -93,7 +93,7 @@ export type EuiAccordionProps = CommonProps &
      */
     isLoading?: boolean;
     /**
-     * Choose whether the loading message replaces the content. Customize the message by passing a node
+     * Choose from the default loading message or customize the message by passing a node
      */
     isLoadingMessage?: boolean | ReactNode;
   };
@@ -107,7 +107,7 @@ export class EuiAccordion extends Component<
     paddingSize: 'none',
     arrowDisplay: 'left',
     isLoading: false,
-    isLoadingMessage: false,
+    isLoadingMessage: true,
     element: 'div',
     buttonElement: 'button',
   };
@@ -266,22 +266,26 @@ export class EuiAccordion extends Component<
       );
     }
 
-    let childrenContent: any;
-    if (isLoading && isLoadingMessage) {
+    let childrenContent: any = children;
+
+    if (isLoading) {
       childrenContent = (
         <>
           <EuiLoadingSpinner className="euiAccordion__spinner" />
-          <span>
-            {isLoadingMessage && isLoadingMessage !== true ? (
-              isLoadingMessage
-            ) : (
-              <EuiI18n token="euiAccordion.isLoading" default="Loading" />
-            )}
+          <span aria-hidden="true">
+            <EuiI18n token="euiAccordion.isLoading" default="Loading" />
           </span>
         </>
       );
-    } else {
-      childrenContent = children;
+
+      if (isLoadingMessage && isLoadingMessage !== true) {
+        childrenContent = (
+          <>
+            <EuiLoadingSpinner className="euiAccordion__spinner" />
+            <span>{isLoadingMessage}</span>
+          </>
+        );
+      }
     }
 
     const button = (
