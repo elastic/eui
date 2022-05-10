@@ -9,7 +9,6 @@ import {
   logicalCSS,
   logicalStyle,
   logicals,
-  EuiSpacer,
   EuiText,
   useEuiPaddingSize,
   useEuiBackgroundColor,
@@ -169,8 +168,6 @@ export const UtilsJS = () => {
         </p>
       </EuiText>
 
-      <EuiSpacer size="xl" />
-
       <ThemeExample
         title={<code>{'logicalCSS(property, value)'}</code>}
         type="function"
@@ -261,8 +258,6 @@ export const UtilsJS = () => {
           </EuiText>
         </EuiAccordion>
       </EuiPanel>
-
-      <EuiSpacer size="xl" />
     </>
   );
 };
@@ -277,8 +272,6 @@ export const PaddingJS = () => {
           the logical property type.
         </p>
       </EuiText>
-
-      <EuiSpacer size="xl" />
 
       <ThemeExample
         title={<code>{'useEuiPaddingCSS(side?)[size]'}</code>}

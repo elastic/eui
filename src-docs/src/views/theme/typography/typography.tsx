@@ -4,14 +4,13 @@ import { Link } from 'react-router-dom';
 // @ts-ignore Importing from Sass file
 import fonts from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../../src/global_styling/variables/_font_weight.scss';
 
-// @ts-ignore Importing from JS
-import { GuidePage } from '../../../components/guide_page';
+import { GuideSection } from '../../../components/guide_section/guide_section';
+import { GuideTabbedPage } from '../../../components/guide_tabbed_page';
 
 import {
   useEuiTheme,
   htmlIdGenerator,
   throttle,
-  EuiSpacer,
   EuiText,
   EuiLink,
   EuiRange,
@@ -21,7 +20,6 @@ import {
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeNotice } from '../_components/_theme_notice';
 import { ThemeContext } from '../../../components/with_theme';
-import { GuideSection } from '../../../components/guide_section/guide_section';
 
 import {
   FontJS,
@@ -86,7 +84,7 @@ export default () => {
   }, [showSass]);
 
   return (
-    <GuidePage
+    <GuideTabbedPage
       title="Typography"
       isBeta={!showSass}
       notice={<ThemeNotice />}
@@ -132,14 +130,12 @@ export default () => {
             components as wrappers of your content instead.
           </p>
         </EuiText>
-        <EuiSpacer size="xl" />
 
         {scaleContent}
       </GuideSection>
 
       <GuideSection color="transparent">
         {showSass ? <FontScaleValuesSass /> : <FontScaleValuesJS />}
-        <EuiSpacer size="l" />
       </GuideSection>
 
       <GuideSection color="subdued">
@@ -156,8 +152,6 @@ export default () => {
             for details on importing fonts.
           </p>
         </EuiText>
-
-        <EuiSpacer size="xl" />
 
         {weightContent}
 
@@ -216,8 +210,6 @@ export default () => {
           >{`${typographySections[2].title}`}</h2>
         </EuiText>
 
-        <EuiSpacer size="xl" />
-
         {baseContent}
       </GuideSection>
 
@@ -226,7 +218,7 @@ export default () => {
           <FontValuesSass />
         </GuideSection>
       )}
-    </GuidePage>
+    </GuideTabbedPage>
   );
 };
 

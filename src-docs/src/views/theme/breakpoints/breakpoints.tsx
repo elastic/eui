@@ -1,10 +1,8 @@
 import React, { useContext, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-
 import { EuiSpacer, EuiText } from '../../../../../src';
 
-// @ts-ignore Importing from JS
-import { GuidePage } from '../../../components/guide_page';
+import { GuideTabbedPage } from '../../../components/guide_tabbed_page';
 import { GuideSection } from '../../../components/guide_section/guide_section';
 import { ThemeContext } from '../../../components/with_theme';
 
@@ -29,7 +27,7 @@ export default () => {
   }, [showSass]);
 
   return (
-    <GuidePage
+    <GuideTabbedPage
       isBeta={!showSass}
       title="Breakpoints"
       notice={<ThemeNotice />}
@@ -58,6 +56,6 @@ export default () => {
       </GuideSection>
 
       <GuideSection color="transparent">{valuesContent}</GuideSection>
-    </GuidePage>
+    </GuideTabbedPage>
   );
 };

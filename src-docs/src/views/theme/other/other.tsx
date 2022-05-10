@@ -1,7 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 
-// @ts-ignore Importing from JS
-import { GuidePage } from '../../../components/guide_page';
+import { GuideTabbedPage } from '../../../components/guide_tabbed_page';
 import { ThemeContext } from '../../../components/with_theme';
 
 import { EuiCallOut, EuiCode, EuiSpacer, EuiText } from '../../../../../src';
@@ -120,7 +119,7 @@ export default () => {
   }, [showSass]);
 
   return (
-    <GuidePage
+    <GuideTabbedPage
       title="More tokens"
       isBeta={!showSass}
       notice={<ThemeNotice />}
@@ -130,11 +129,6 @@ export default () => {
       <GuideSection color="subdued">
         <EuiText grow={false}>
           <h2 id={`${otherSections[0].id}`}>{`${otherSections[0].title}`}</h2>
-        </EuiText>
-
-        <EuiSpacer />
-
-        <EuiText grow={false}>
           <p>
             The <EuiCode>animation</EuiCode> values provide some easy and
             consistent ways for adding transition or animation effects and
@@ -163,8 +157,6 @@ export default () => {
           </p>
         </EuiCallOut>
 
-        <EuiSpacer size="xl" />
-
         {speedContent}
       </GuideSection>
 
@@ -182,8 +174,6 @@ export default () => {
         <EuiText grow={false}>
           <h2 id={`${otherSections[1].id}`}>{`${otherSections[1].title}`}</h2>
         </EuiText>
-
-        <EuiSpacer size="xl" />
 
         {shadowContent}
       </GuideSection>
@@ -217,11 +207,9 @@ export default () => {
             z-index.
           </p>
         </EuiCallOut>
-
-        <EuiSpacer size="xl" />
       </GuideSection>
 
       <GuideSection color="transparent">{levelsContent}</GuideSection>
-    </GuidePage>
+    </GuideTabbedPage>
   );
 };

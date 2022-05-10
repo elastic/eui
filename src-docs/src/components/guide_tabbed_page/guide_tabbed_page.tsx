@@ -5,36 +5,45 @@ import {
   EuiPageHeader,
   EuiPageContent,
   EuiPageContentBody,
-  EuiSpacer,
   EuiBetaBadge,
+  CommonProps,
+  EuiHorizontalRule,
 } from '../../../../src/components';
 
 import { LanguageSelector, ThemeContext } from '../with_theme';
+import { GuideSection } from '../guide_section/guide_section';
 
-export type GuideTabbedPageProps = {
-  title: string;
+export type GuideTabbedPageProps = CommonProps & {
+  description?: ReactNode;
+  guidelines?: ReactNode;
+  history: any;
+  intro?: ReactNode;
+  isBeta?: boolean;
   location: any;
   match: any;
-  history: any;
-  pages: any;
-  isBeta?: boolean;
   notice?: ReactNode;
-  showThemeLanguageToggle?: boolean;
-  description?: ReactNode;
+  pages?: any;
   rightSideItems?: ReactNode[];
+  showThemeLanguageToggle?: boolean;
+  tabs?: any;
+  title: string;
 };
 
 const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
-  title,
+  description,
+  guidelines,
+  history,
+  intro,
+  isBeta,
   location,
   match,
-  history,
-  pages,
-  isBeta,
-  showThemeLanguageToggle,
   notice,
-  description,
+  pages,
   rightSideItems: _rightSideItems,
+  showThemeLanguageToggle,
+  tabs: _tabs,
+  title,
+  children,
 }) => {
   const themeContext = useContext(ThemeContext);
   const currentLanguage = themeContext.themeLanguage;
@@ -47,26 +56,101 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
     />
   );
 
-  const tabs: any[] = pages.map((page: any) => {
-    const id = slugify(page.title);
-    return {
-      id: id,
-      name: page.title,
-      handleClick: () => {
-        history.push(`${match.path}/${id}`);
+  let tabs:
+    | Array<{
+        id: string;
+        handleClick: () => void;
+        name: string;
+      }>
+    | undefined = undefined;
+
+  if (pages) {
+    tabs = pages.map((page: any) => {
+      const id = slugify(page.title);
+      return {
+        id: id,
+        name: page.title,
+        handleClick: () => {
+          history.push(`${match.path}/${id}`);
+        },
+      };
+    });
+  } else if (guidelines) {
+    tabs = [
+      {
+        id: 'examples',
+        name: 'Examples',
+        handleClick: () => {
+          history.push(`${match.path}`);
+        },
       },
-    };
-  });
+      {
+        id: 'guidelines',
+        name: 'Guidelines',
+        handleClick: () => {
+          history.push(`${match.path}/guidelines`);
+        },
+      },
+    ];
+  }
+
+  let pagesRoutes: any[];
+
+  if (pages) {
+    pagesRoutes = pages.map((page: any) => {
+      const pathname = location.pathname;
+      const id = slugify(page.title);
+      const firstTabId = slugify(pages[0].title);
+
+      // first nav level redirects to first tab
+      if (match.path === pathname) {
+        return (
+          <Redirect
+            key={pathname}
+            from={`${match.path}`}
+            to={`${match.path}/${firstTabId}`}
+          />
+        );
+      } else {
+        const PageComponent = page.page;
+
+        return (
+          <Route key={pathname} path={`${match.path}/${id}`}>
+            <PageComponent showSass={showSass} />
+          </Route>
+        );
+      }
+    });
+  } else {
+    pagesRoutes = [
+      guidelines && (
+        <Route key={'guidelines'} path={`${match.path}/guidelines`}>
+          <GuideSection>{guidelines}</GuideSection>
+        </Route>
+      ),
+      <Route key="default" path="">
+        {children}
+      </Route>,
+    ];
+  }
 
   const renderTabs = () => {
-    if (tabs.length < 2) {
+    if (_tabs) {
+      return _tabs;
+    } else if (!tabs) {
       return undefined;
     }
 
     return tabs.map(({ id, handleClick, name }, index) => {
       const pathname = location.pathname;
 
-      const isSelected = pathname.includes(`${match.path}/${id}`);
+      let isSelected = false;
+      if (id === 'guidelines')
+        isSelected = pathname.includes(`${match.path}/guidelines`);
+      else if (id === 'examples')
+        isSelected =
+          !pathname.includes(`${match.path}/`) || pathname.includes('examples');
+      else isSelected = pathname.includes(`${match.path}/${id}`);
 
       return {
         onClick: () => {
@@ -82,13 +166,11 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
   const renderNotice = () => {
     if (!showSass && notice) {
       return (
-        <>
-          <EuiSpacer size="l" />
-          <EuiPageContentBody role="region" aria-label="Notice" restrictWidth>
+        <GuideSection>
+          <div role="region" aria-label="Notice">
             {notice}
-          </EuiPageContentBody>
-          <EuiSpacer size="l" />
-        </>
+          </div>
+        </GuideSection>
       );
     }
   };
@@ -98,35 +180,13 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
     rightSideItems.push(<LanguageSelector />);
   }
 
-  const pagesRoutes: any[] = pages.map((page: any) => {
-    const pathname = location.pathname;
-    const id = slugify(page.title);
-    const firstTabId = slugify(pages[0].title);
-
-    // first nav level redirects to first tab
-    if (match.path === pathname) {
-      return (
-        <Redirect
-          key={pathname}
-          from={`${match.path}`}
-          to={`${match.path}/${firstTabId}`}
-        />
-      );
-    } else {
-      const PageComponent = page.page;
-
-      return (
-        <Route key={pathname} path={`${match.path}/${id}`}>
-          <PageComponent showSass={showSass} />
-        </Route>
-      );
-    }
-  });
-
   return (
     <>
       {renderNotice()}
-      <EuiPageContentBody style={{ paddingBlockEnd: 0 }} paddingSize="l">
+      <EuiPageContentBody
+        style={{ paddingBlockEnd: tabs || _tabs ? 0 : undefined }}
+        paddingSize="l"
+      >
         <EuiPageHeader
           restrictWidth
           pageTitle={
@@ -137,9 +197,12 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
           tabs={renderTabs()}
           description={description}
           rightSideItems={rightSideItems}
-          bottomBorder
-        />
+        >
+          {intro}
+        </EuiPageHeader>
       </EuiPageContentBody>
+
+      <EuiHorizontalRule margin="none" />
 
       <EuiPageContent
         role="main"

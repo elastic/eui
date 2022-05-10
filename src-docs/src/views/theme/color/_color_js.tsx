@@ -8,7 +8,6 @@ import {
   useEuiBackgroundColorCSS,
   EuiCode,
   EuiColorPickerSwatch,
-  EuiSpacer,
   EuiText,
   useEuiBackgroundColor,
   useEuiPaddingSize,
@@ -18,6 +17,7 @@ import {
   EuiButtonGroup,
   EuiDescribedFormGroup,
   EuiPanel,
+  EuiSpacer,
   _EuiBackgroundColorMethod,
 } from '../../../../../src';
 
@@ -278,8 +278,6 @@ export const UtilsJS = () => {
           corners.
         </p>
       </EuiText>
-
-      <EuiSpacer size="xl" />
 
       <ThemeExample
         title={<code>{'useEuiBackgroundColorCSS()[color]'}</code>}
