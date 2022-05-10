@@ -13,7 +13,7 @@ import {
   euiTextBreakWord,
   euiFontSize,
   _EuiThemeFontScale,
-  _EuiThemeFontSizeMeasurement,
+  _FontScaleOptions,
 } from '../../global_styling';
 import { EuiTitleSize } from './title';
 
@@ -28,9 +28,9 @@ type EuiThemeTitle = {
 };
 
 export const euiTitle = (
-  scale: EuiTitleSize = 'm',
+  scale: EuiTitleSize,
   euiTheme: UseEuiTheme['euiTheme'],
-  measurement: _EuiThemeFontSizeMeasurement = 'rem'
+  options?: _FontScaleOptions
 ): EuiThemeTitle => {
   const titleScaleToFontSizeScaleMap: {
     [size in EuiTitleSize]: _EuiThemeFontScale;
@@ -44,7 +44,7 @@ export const euiTitle = (
   };
 
   return {
-    ...euiFontSize(titleScaleToFontSizeScaleMap[scale], euiTheme, measurement),
+    ...euiFontSize(titleScaleToFontSizeScaleMap[scale], euiTheme, options),
     fontWeight: euiTheme.font.weight[euiTheme.font.title.weight],
     color: euiTheme.colors.title,
   };
@@ -52,11 +52,11 @@ export const euiTitle = (
 
 // Hook version
 export const useEuiTitle = (
-  scale: EuiTitleSize = 'm',
-  measurement: _EuiThemeFontSizeMeasurement = 'rem'
+  scale: EuiTitleSize,
+  options?: _FontScaleOptions
 ): EuiThemeTitle => {
   const { euiTheme } = useEuiTheme();
-  return euiTitle(scale, euiTheme, measurement);
+  return euiTitle(scale, euiTheme, options);
 };
 
 /**

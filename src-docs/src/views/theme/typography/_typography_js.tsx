@@ -252,10 +252,12 @@ export const FontScaleValuesJS = () => {
               measurementSelected !== 'rem' ? `, '${measurementSelected}'` : ''
             })`,
             size: `${
-              euiFontSize(scale, euiTheme, measurementSelected).fontSize
+              euiFontSize(scale, euiTheme, { measurement: measurementSelected })
+                .fontSize
             }`,
             lineHeight: `${
-              euiFontSize(scale, euiTheme, measurementSelected).lineHeight
+              euiFontSize(scale, euiTheme, { measurement: measurementSelected })
+                .lineHeight
             }`,
             index,
           };
@@ -269,7 +271,9 @@ export const FontScaleValuesJS = () => {
             render: (sample, item) => (
               <div
                 css={css`
-                  ${euiFontSize(item.id, euiTheme, measurementSelected)}
+                  ${euiFontSize(item.id, euiTheme, {
+                    measurement: measurementSelected,
+                  })}
                 `}
               >
                 The quick brown fox jumped over the blue moon to catch a snail

@@ -13,6 +13,11 @@ import {
 } from '../variables/typography';
 import { UseEuiTheme } from '../../services/theme/hooks';
 
+export interface _FontScaleOptions {
+  measurement?: _EuiThemeFontSizeMeasurement;
+  customScale?: _EuiThemeFontScale;
+}
+
 /**
  * Calculates the font-size value based on the provided scale key
  * @param scale - The font scale key
@@ -25,13 +30,14 @@ import { UseEuiTheme } from '../../services/theme/hooks';
 export function euiFontSizeFromScale(
   scale: _EuiThemeFontScale,
   { base, font }: UseEuiTheme['euiTheme'],
-  measurement: _EuiThemeFontSizeMeasurement = 'rem'
+  { measurement = 'rem', customScale }: _FontScaleOptions = {}
 ) {
   if (measurement === 'em') {
     return `${font.scale[scale]}em`;
   }
 
-  const numerator = base * font.scale[scale];
+  let numerator = base * font.scale[scale];
+  if (customScale) numerator *= font.scale[customScale];
   const denominator = base * font.scale[font.body.scale];
 
   return measurement === 'px'
@@ -54,11 +60,12 @@ export function euiFontSizeFromScale(
 export function euiLineHeightFromBaseline(
   scale: _EuiThemeFontScale,
   { base, font }: UseEuiTheme['euiTheme'],
-  measurement: _EuiThemeFontSizeMeasurement = 'rem'
+  { measurement = 'rem', customScale }: _FontScaleOptions = {}
 ) {
-  const { baseline, body, lineHeightMultiplier } = font;
-  const numerator = base * font.scale[scale];
-  const denominator = base * font.scale[body.scale];
+  const { baseline, lineHeightMultiplier } = font;
+  let numerator = base * font.scale[scale];
+  if (customScale) numerator *= font.scale[customScale];
+  const denominator = base * font.scale[font.body.scale];
 
   const _lineHeightMultiplier =
     numerator <= base ? lineHeightMultiplier : lineHeightMultiplier * 0.833;
