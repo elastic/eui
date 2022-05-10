@@ -10008,6 +10008,29 @@ exports[`EuiIcon props type user is rendered 1`] = `
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
   data-icon-type="user"
   focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M8 9a4 4 0 100-8 4 4 0 000 8zm0-1a3 3 0 100-6 3 3 0 000 6z"
+    fill-rule="evenodd"
+  />
+  <path
+    d="M15 14.291A9.053 9.053 0 008 11a9.053 9.053 0 00-7 3.291l.715.71A8.047 8.047 0 018 11.996 8.047 8.047 0 0114.286 15l.714-.71z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type userAvatar is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="userAvatar"
+  focusable="false"
   height="18"
   role="img"
   viewBox="0 0 18 18"

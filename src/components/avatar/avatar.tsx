@@ -7,7 +7,7 @@
  */
 
 import React, { HTMLAttributes, FunctionComponent, CSSProperties } from 'react';
-import { CommonProps, ExclusiveUnion, keysOf } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import classNames from 'classnames';
 
 import { isColorDark, hexToRgb, isValidHex } from '../../services/color';
@@ -17,23 +17,11 @@ import { IconType, EuiIcon, IconSize, IconColor } from '../icon';
 
 import { euiAvatarStyles } from './avatar.styles';
 
-const sizeToClassNameMap = {
-  s: 'euiAvatar--s',
-  m: 'euiAvatar--m',
-  l: 'euiAvatar--l',
-  xl: 'euiAvatar--xl',
-};
+export const SIZES = ['s', 'm', 'l', 'xl'] as const;
+export type EuiAvatarSize = typeof SIZES[number];
 
-export const SIZES = keysOf(sizeToClassNameMap);
-export type EuiAvatarSize = keyof typeof sizeToClassNameMap;
-
-const typeToClassNameMap = {
-  space: 'euiAvatar--space',
-  user: 'euiAvatar--user',
-};
-
-export const TYPES = keysOf(typeToClassNameMap);
-export type EuiAvatarType = keyof typeof typeToClassNameMap;
+export const TYPES = ['space', 'user'] as const;
+export type EuiAvatarType = typeof TYPES[number];
 
 /**
  * The avatar can only display one type of content,
@@ -133,9 +121,9 @@ export const _EuiAvatar: FunctionComponent<
 
   const classes = classNames(
     'euiAvatar',
-    sizeToClassNameMap[size],
-    typeToClassNameMap[type],
     {
+      [`euiAvatar--${size}`]: size,
+      [`euiAvatar--${type}`]: type,
       'euiAvatar-isDisabled': isDisabled,
     },
     className

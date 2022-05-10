@@ -14,8 +14,8 @@ import { withEuiSystem, WithEuiSystemProps } from '../../provider/system';
 import { EuiScreenReaderOnly } from '../screen_reader_only';
 import { euiSkipLinkStyles } from './skip_link.styles';
 
-type Positions = 'static' | 'fixed' | 'absolute';
-export const POSITIONS = ['static', 'fixed', 'absolute'] as Positions[];
+export const POSITIONS = ['static', 'fixed', 'absolute'] as const;
+type Positions = typeof POSITIONS[number];
 
 interface EuiSkipLinkInterface extends EuiButtonProps {
   /**

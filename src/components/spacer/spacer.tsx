@@ -14,18 +14,8 @@ import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
 
 import { euiSpacerStyles } from './spacer.styles';
 
-const sizeToClassNameMap = {
-  xs: 'euiSpacer--xs',
-  s: 'euiSpacer--s',
-  m: 'euiSpacer--m',
-  l: 'euiSpacer--l',
-  xl: 'euiSpacer--xl',
-  xxl: 'euiSpacer--xxl',
-};
-
-export const SIZES = Object.keys(sizeToClassNameMap);
-
-export type SpacerSize = keyof typeof sizeToClassNameMap;
+export const SIZES = ['xs', 's', 'm', 'l', 'xl', 'xxl'] as const;
+export type SpacerSize = typeof SIZES[number];
 
 export type EuiSpacerProps = HTMLAttributes<HTMLDivElement> &
   CommonProps & {
@@ -36,7 +26,11 @@ export const _EuiSpacer: FunctionComponent<
   EuiSpacerProps & WithEuiSystemProps
 > = ({ className, euiTheme, size = 'l', ...rest }) => {
   const styles = euiSpacerStyles(euiTheme);
-  const classes = classNames('euiSpacer', sizeToClassNameMap[size], className);
+  const classes = classNames(
+    'euiSpacer',
+    { [`euiSpacer--${size}`]: size },
+    className
+  );
 
   const cssStyles = [styles.euiSpacer, styles[size]];
 
