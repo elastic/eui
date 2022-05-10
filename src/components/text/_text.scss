@@ -2,26 +2,6 @@
 @mixin euiScaleText($baseFontSize, $sizingMethod: 'rem') {
   $baseLineHeightMultiplier: $baseFontSize / 2;
 
-  p,
-  ul,
-  ol,
-  dl,
-  blockquote,
-  img,
-  pre {
-    margin-bottom: marginToRemOrEm(($baseLineHeightMultiplier * 3), $baseFontSize, $sizingMethod);
-  }
-
-  ul,
-  ol {
-    margin-left: marginToRemOrEm(($baseLineHeightMultiplier * 3), $baseFontSize, $sizingMethod);
-  }
-
-  blockquote {
-    font-size: fontSizeToRemOrEm($baseFontSize, $sizingMethod);
-    padding:  marginToRemOrEm(($baseLineHeightMultiplier * 3), $baseFontSize, $sizingMethod);
-  }
-
   // headings
   $fontSizeH1: $baseFontSize * nth($euiTextScale, 1);
   $fontSizeH2: $baseFontSize * nth($euiTextScale, 2);
