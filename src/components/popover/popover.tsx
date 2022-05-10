@@ -801,6 +801,7 @@ export class EuiPopover extends Component<Props, State> {
           >
             <EuiPanel
               {...(panelProps as EuiPanelProps)}
+              data-popover-panel
               panelRef={this.panelRef}
               className={panelClasses}
               hasShadow={false}
