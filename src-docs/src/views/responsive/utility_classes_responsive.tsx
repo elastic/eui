@@ -22,7 +22,6 @@ export default () => (
         breakpoint.
       </p>
     </EuiText>
-    <EuiSpacer size="xxl" />
     <ThemeExample
       title={<code>.eui-hideFor--[size]</code>}
       type="className"
@@ -52,7 +51,6 @@ export default () => (
   <!-- Your content -->
 </span>`}
     />
-    <EuiSpacer />
     <ThemeExample
       title={<code>.eui-showFor--[size]</code>}
       type="className"
@@ -80,7 +78,6 @@ export default () => (
   <!-- Your content -->
 </span>`}
     />
-    <EuiSpacer />
     <ThemeExample
       title={<code>.eui-showFor--[size]--[display]</code>}
       type="className"

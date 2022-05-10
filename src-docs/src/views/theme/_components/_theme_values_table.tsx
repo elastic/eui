@@ -1,4 +1,3 @@
-import { css } from '@emotion/react';
 import React, { ReactNode } from 'react';
 import {
   EuiSpacer,
@@ -134,13 +133,5 @@ export const ThemeValuesTable = ({
     });
   }
 
-  return (
-    <EuiBasicTable
-      css={css`
-        margin-bottom: ${euiTheme.size.xxxl};
-      `}
-      items={items}
-      columns={columns}
-    />
-  );
+  return <EuiBasicTable items={items} columns={columns} />;
 };

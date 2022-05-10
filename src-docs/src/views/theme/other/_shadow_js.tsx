@@ -196,7 +196,6 @@ export const ShadowValuesJS = () => {
           )
         }
       />
-      <EuiSpacer size="xl" />
     </>
   );
 };

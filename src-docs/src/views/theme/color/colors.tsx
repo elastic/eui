@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import { EuiCallOut, EuiCode, EuiSpacer, EuiText } from '../../../../../src';
 import { GuideSection } from '../../../components/guide_section/guide_section';
 
-// @ts-ignore Importing from JS
-import { GuidePage } from '../../../components/guide_page';
+import { GuideTabbedPage } from '../../../components/guide_tabbed_page';
 import { ThemeContext } from '../../../components/with_theme';
 
 import { ThemeNotice } from '../_components/_theme_notice';
@@ -126,7 +125,7 @@ export default () => {
   }, [showSass]);
 
   return (
-    <GuidePage
+    <GuideTabbedPage
       isBeta={!showSass && !selectedTabId.includes('contrast')}
       title="Colors"
       notice={<ThemeNotice />}
@@ -175,12 +174,10 @@ export default () => {
               </p>
             </EuiText>
 
-            <EuiSpacer size="xl" />
-
             {brandContent}
           </GuideSection>
 
-          <GuideSection>
+          <GuideSection color="transparent">
             {showSass ? <BrandValuesSass /> : <BrandValuesJS />}
           </GuideSection>
 
@@ -205,12 +202,10 @@ export default () => {
               </p>
             </EuiText>
 
-            <EuiSpacer size="xl" />
-
             {textContent}
           </GuideSection>
 
-          <GuideSection>
+          <GuideSection color="transparent">
             {showSass ? <TextValuesSass /> : <TextValuesJS />}
           </GuideSection>
 
@@ -225,12 +220,10 @@ export default () => {
               </p>
             </EuiText>
 
-            <EuiSpacer size="xl" />
-
             {shadesContent}
           </GuideSection>
 
-          <GuideSection>
+          <GuideSection color="transparent">
             {showSass ? <ShadeValuesSass /> : <ShadeValuesJS />}
           </GuideSection>
 
@@ -243,12 +236,10 @@ export default () => {
               <p>These are used a lot for special cases.</p>
             </EuiText>
 
-            <EuiSpacer size="xl" />
-
             {specialContent}
           </GuideSection>
 
-          <GuideSection>
+          <GuideSection color="transparent">
             {showSass ? <SpecialValuesSass /> : <SpecialValuesJS />}
           </GuideSection>
 
@@ -264,11 +255,14 @@ export default () => {
             {utilsContent}
           </GuideSection>
 
-          <GuideSection>
-            {showSass ? undefined : <UtilsValuesJS />}
-          </GuideSection>
+          {showSass ? undefined : (
+            <GuideSection color="transparent">
+              {' '}
+              <UtilsValuesJS />
+            </GuideSection>
+          )}
         </>
       )}
-    </GuidePage>
+    </GuideTabbedPage>
   );
 };

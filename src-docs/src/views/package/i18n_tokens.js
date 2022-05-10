@@ -10,9 +10,9 @@ import {
   EuiSpacer,
   EuiText,
   EuiTitle,
-  EuiPageContentBody,
 } from '../../../../src';
-import { GuidePage } from '../../components/guide_page';
+import { GuideTabbedPage } from '../../components/guide_tabbed_page';
+import { GuideSection } from '../../components';
 
 const columns = [
   {
@@ -61,10 +61,8 @@ const search = {
 export const I18nTokens = {
   name: 'I18n tokens',
   component: () => (
-    <GuidePage title="I18n tokens">
-      <EuiPageContentBody paddingSize="l" restrictWidth>
-        <EuiSpacer size="xl" />
-
+    <GuideTabbedPage title="I18n tokens">
+      <GuideSection>
         <EuiInMemoryTable
           items={tokens}
           columns={columns}
@@ -104,7 +102,7 @@ export const I18nTokens = {
             <EuiSpacer size="s" />
           </EuiAccordion>
         ))}
-      </EuiPageContentBody>
-    </GuidePage>
+      </GuideSection>
+    </GuideTabbedPage>
   ),
 };
