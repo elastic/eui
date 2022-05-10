@@ -98,7 +98,7 @@ export const EuiForm = forwardRef<HTMLElement, EuiFormProps>(
 
     return (
       <Element
-        // @ts-ignore Element is a <div> or <form>, but TypeScript wants to support both
+        // @ts-expect-error Element is a <div> or <form>, but TypeScript wants to support both
         ref={ref}
         className={classes}
         {...(rest as HTMLAttributes<HTMLElement>)}
