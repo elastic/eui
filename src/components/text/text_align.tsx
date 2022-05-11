@@ -7,7 +7,6 @@
  */
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
-import classNames from 'classnames';
 import { CommonProps } from '../common';
 
 import { euiTextAlignStyles } from './text_align.styles';
@@ -22,17 +21,14 @@ export type EuiTextAlignProps = CommonProps &
 
 export const EuiTextAlign: FunctionComponent<EuiTextAlignProps> = ({
   children,
-  className,
   textAlign = 'left',
   ...rest
 }) => {
   const styles = euiTextAlignStyles();
   const cssStyles = [styles.euiTextAlign, styles[textAlign]];
 
-  const classes = classNames('euiTextAlign', className);
-
   return (
-    <div css={cssStyles} className={classes} {...rest}>
+    <div css={cssStyles} {...rest}>
       {children}
     </div>
   );

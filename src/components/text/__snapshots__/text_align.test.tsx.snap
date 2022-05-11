@@ -2,26 +2,26 @@
 
 exports[`EuiTextAlign direction prop center is rendered 1`] = `
 <div
-  class="euiTextAlign euiTextAlign--center"
+  class="css-155kyc0-euiTextAlign-center"
 />
 `;
 
 exports[`EuiTextAlign direction prop left is rendered 1`] = `
 <div
-  class="euiTextAlign euiTextAlign--left"
+  class="css-90la4n-euiTextAlign-left"
 />
 `;
 
 exports[`EuiTextAlign direction prop right is rendered 1`] = `
 <div
-  class="euiTextAlign euiTextAlign--right"
+  class="css-5onnip-euiTextAlign-right"
 />
 `;
 
 exports[`EuiTextAlign is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiTextAlign euiTextAlign--left testClass1 testClass2"
+  class="testClass1 testClass2 css-90la4n-euiTextAlign-left"
   data-test-subj="test subject string"
 />
 `;
