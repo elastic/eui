@@ -178,6 +178,6 @@ export const useEuiShadow = (
   size: _EuiThemeShadowSize = 'l',
   color?: _EuiThemeShadowCustomColor['color']
 ) => {
-  const _euiTheme = useEuiTheme();
-  return euiShadow(_euiTheme, size, { color });
+  const euiThemeContext = useEuiTheme();
+  return euiShadow(euiThemeContext, size, { color });
 };
