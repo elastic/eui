@@ -39,6 +39,10 @@ export interface EuiProviderProps<T>
    * Pass `false` to remove the default EUI global styles.
    */
   globalStyles?: false | ((params: any) => JSX.Element | null);
+  /**
+   * Provide utility classes.
+   * Pass `false` to remove the default EUI utility classes.
+   */
   utilityClasses?: false | ((params: any) => JSX.Element | null);
   /**
    * Provide a cache configuration(s) from `@emotion/cache`.

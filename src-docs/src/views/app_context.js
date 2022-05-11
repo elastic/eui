@@ -18,15 +18,15 @@ import favicon32Dev from '../images/favicon/dev/favicon-32x32.png';
 import favicon96Dev from '../images/favicon/dev/favicon-96x96.png';
 
 const generalEmotionCache = createCache({
-  key: 'eui-docs',
-  container: document.querySelector('meta[name="emotion-styles"]'),
+  key: 'docs',
+  container: document.querySelector('meta[name="emotion-styles-docs"]'),
 });
 const globalCache = createCache({
-  key: 'eui-global',
+  key: 'global',
   container: document.querySelector('meta[name="emotion-styles-global"]'),
 });
 const utilityCache = createCache({
-  key: 'eui-util',
+  key: 'util',
   container: document.querySelector('meta[name="emotion-styles-utility"]'),
 });
 const componentCache = createCache({
