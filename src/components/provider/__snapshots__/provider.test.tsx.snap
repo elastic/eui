@@ -2,12 +2,6 @@
 
 exports[`EuiProvider applying modifications propagates \`modify\` 1`] = `
 <EuiCacheProvider>
-  <EuiCacheProvider>
-    <EuiGlobalStyles />
-  </EuiCacheProvider>
-  <EuiCacheProvider>
-    <EuiUtilityClasses />
-  </EuiCacheProvider>
   <ContextProvider>
     <EuiThemeProvider
       modify={
@@ -330,19 +324,20 @@ exports[`EuiProvider applying modifications propagates \`modify\` 1`] = `
           },
         }
       }
-    />
+    >
+      <EuiCacheProvider>
+        <EuiGlobalStyles />
+      </EuiCacheProvider>
+      <EuiCacheProvider>
+        <EuiUtilityClasses />
+      </EuiCacheProvider>
+    </EuiThemeProvider>
   </ContextProvider>
 </EuiCacheProvider>
 `;
 
 exports[`EuiProvider changing color modes propagates \`colorMode\` 1`] = `
 <EuiCacheProvider>
-  <EuiCacheProvider>
-    <EuiGlobalStyles />
-  </EuiCacheProvider>
-  <EuiCacheProvider>
-    <EuiUtilityClasses />
-  </EuiCacheProvider>
   <ContextProvider>
     <EuiThemeProvider
       colorMode="dark"
@@ -654,19 +649,20 @@ exports[`EuiProvider changing color modes propagates \`colorMode\` 1`] = `
           },
         }
       }
-    />
+    >
+      <EuiCacheProvider>
+        <EuiGlobalStyles />
+      </EuiCacheProvider>
+      <EuiCacheProvider>
+        <EuiUtilityClasses />
+      </EuiCacheProvider>
+    </EuiThemeProvider>
   </ContextProvider>
 </EuiCacheProvider>
 `;
 
 exports[`EuiProvider is rendered 1`] = `
 <EuiCacheProvider>
-  <EuiCacheProvider>
-    <EuiGlobalStyles />
-  </EuiCacheProvider>
-  <EuiCacheProvider>
-    <EuiUtilityClasses />
-  </EuiCacheProvider>
   <ContextProvider>
     <EuiThemeProvider
       theme={
@@ -977,7 +973,14 @@ exports[`EuiProvider is rendered 1`] = `
           },
         }
       }
-    />
+    >
+      <EuiCacheProvider>
+        <EuiGlobalStyles />
+      </EuiCacheProvider>
+      <EuiCacheProvider>
+        <EuiUtilityClasses />
+      </EuiCacheProvider>
+    </EuiThemeProvider>
   </ContextProvider>
 </EuiCacheProvider>
 `;
@@ -1006,12 +1009,6 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to glo
     }
   }
 >
-  <EuiCacheProvider>
-    <EuiGlobalStyles />
-  </EuiCacheProvider>
-  <EuiCacheProvider>
-    <EuiUtilityClasses />
-  </EuiCacheProvider>
   <ContextProvider>
     <EuiThemeProvider
       theme={
@@ -1322,7 +1319,14 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to glo
           },
         }
       }
-    />
+    >
+      <EuiCacheProvider>
+        <EuiGlobalStyles />
+      </EuiCacheProvider>
+      <EuiCacheProvider>
+        <EuiUtilityClasses />
+      </EuiCacheProvider>
+    </EuiThemeProvider>
   </ContextProvider>
 </EuiCacheProvider>
 `;

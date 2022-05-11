@@ -89,24 +89,24 @@ export const EuiProvider = <T extends {} = {}>({
   }
   return (
     <EuiCacheProvider cache={defaultCache}>
-      {theme && (
-        <>
-          <EuiCacheProvider
-            cache={globalCache || euiCache}
-            children={Globals && <Globals />}
-          />
-          <EuiCacheProvider
-            cache={utilityCache}
-            children={Utilities && <Utilities />}
-          />
-        </>
-      )}
       <EuiCacheContext.Provider value={euiCache}>
         <EuiThemeProvider
           theme={theme ?? undefined}
           colorMode={colorMode}
           modify={modify}
         >
+          {theme && (
+            <>
+              <EuiCacheProvider
+                cache={globalCache || euiCache}
+                children={Globals && <Globals />}
+              />
+              <EuiCacheProvider
+                cache={utilityCache}
+                children={Utilities && <Utilities />}
+              />
+            </>
+          )}
           {children}
         </EuiThemeProvider>
       </EuiCacheContext.Provider>
