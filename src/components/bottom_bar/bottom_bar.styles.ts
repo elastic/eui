@@ -23,14 +23,14 @@ const euiBottomBarAppear = keyframes`
   }
 `;
 
-export const euiBottomBarStyles = (_euiTheme: UseEuiTheme) => {
-  const { euiTheme } = _euiTheme;
+export const euiBottomBarStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
 
   return {
     // Base
     // Text color needs to be reapplied to properly scope the forced `colorMode`
     euiBottomBar: css`
-      ${euiShadowFlat(_euiTheme)};
+      ${euiShadowFlat(euiThemeContext)};
       background: ${shade(euiTheme.colors.lightestShade, 0.5)};
       color: ${euiTheme.colors.text};
       ${euiCanAnimate} {
