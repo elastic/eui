@@ -3,14 +3,14 @@
 exports[`EuiTextColor is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiTextColor euiTextColor--default testClass1 testClass2 css-7fidck-euiTextColor-default"
+  class="testClass1 testClass2 css-7fidck-euiTextColor-default"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiTextColor props color is rendered with custom color 1`] = `
 <span
-  class="euiTextColor euiTextColor--custom css-tseiet-euiTextColor"
+  class="css-tseiet-euiTextColor"
   style="color:#ff0000"
 >
   <p>
@@ -21,7 +21,7 @@ exports[`EuiTextColor props color is rendered with custom color 1`] = `
 
 exports[`EuiTextColor props color is rendered with named color 1`] = `
 <span
-  class="euiTextColor euiTextColor--warning css-1yjx65l-euiTextColor-warning"
+  class="css-1yjx65l-euiTextColor-warning"
 >
   <p>
     Content
