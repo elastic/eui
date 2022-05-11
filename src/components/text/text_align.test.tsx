@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiTextAlign, ALIGNMENTS } from './text_align';
 
@@ -18,6 +19,8 @@ describe('EuiTextAlign', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  shouldRenderCustomStyles(<EuiTextAlign textAlign="right" />);
 
   describe('direction prop', () => {
     ALIGNMENTS.forEach((direction) => {

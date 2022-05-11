@@ -8,17 +8,12 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 
-export const alignmentToClassNameMap = {
-  left: 'euiTextAlign--left',
-  right: 'euiTextAlign--right',
-  center: 'euiTextAlign--center',
-};
+import { euiTextAlignStyles } from './text_align.styles';
 
-export type TextAlignment = keyof typeof alignmentToClassNameMap;
-
-export const ALIGNMENTS = keysOf(alignmentToClassNameMap);
+export const ALIGNMENTS = ['left', 'right', 'center'] as const;
+export type TextAlignment = typeof ALIGNMENTS[number];
 
 export type EuiTextAlignProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
@@ -31,14 +26,13 @@ export const EuiTextAlign: FunctionComponent<EuiTextAlignProps> = ({
   textAlign = 'left',
   ...rest
 }) => {
-  const classes = classNames(
-    'euiTextAlign',
-    alignmentToClassNameMap[textAlign],
-    className
-  );
+  const styles = euiTextAlignStyles();
+  const cssStyles = [styles.euiTextAlign, styles[textAlign]];
+
+  const classes = classNames('euiTextAlign', className);
 
   return (
-    <div className={classes} {...rest}>
+    <div css={cssStyles} className={classes} {...rest}>
       {children}
     </div>
   );
