@@ -10,7 +10,7 @@ exports[`EuiCallOut is rendered 1`] = `
     class="euiText css-1a1mxin-euiText-s-euiCallOut__description"
   >
     <div
-      class="euiTextColor euiTextColor--default"
+      class="css-7fidck-euiTextColor-default"
     >
       Content
     </div>
@@ -103,7 +103,7 @@ exports[`EuiCallOut props title is rendered 1`] = `
     class="euiText css-1a1mxin-euiText-s-euiCallOut__description"
   >
     <div
-      class="euiTextColor euiTextColor--default"
+      class="css-7fidck-euiTextColor-default"
     >
       Content
     </div>

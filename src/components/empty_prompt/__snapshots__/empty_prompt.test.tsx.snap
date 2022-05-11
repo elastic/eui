@@ -29,7 +29,7 @@ exports[`EuiEmptyPrompt is rendered 1`] = `
           Title
         </h2>
         <span
-          class="euiTextColor euiTextColor--subdued"
+          class="css-xv0fhq-euiTextColor-subdued"
         >
           <div
             class="euiSpacer euiSpacer--m css-jv9za2-euiSpacer-m"
@@ -127,7 +127,7 @@ exports[`EuiEmptyPrompt props body renders alone 1`] = `
         class="euiEmptyPrompt__contentInner"
       >
         <span
-          class="euiTextColor euiTextColor--subdued"
+          class="css-xv0fhq-euiTextColor-subdued"
         >
           <div
             class="euiText css-h22ihx-euiText-m"

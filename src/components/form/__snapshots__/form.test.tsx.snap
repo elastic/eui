@@ -58,7 +58,7 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has mul
       class="euiText css-1a1mxin-euiText-s-euiCallOut__description"
     >
       <div
-        class="euiTextColor euiTextColor--default"
+        class="css-7fidck-euiTextColor-default"
       >
         <ul>
           <li
@@ -103,7 +103,7 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has one
       class="euiText css-1a1mxin-euiText-s-euiCallOut__description"
     >
       <div
-        class="euiTextColor euiTextColor--default"
+        class="css-7fidck-euiTextColor-default"
       >
         <ul>
           <li

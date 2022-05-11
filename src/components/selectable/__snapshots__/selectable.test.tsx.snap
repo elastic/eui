@@ -131,7 +131,7 @@ exports[`EuiSelectable errorMessage prop can render an element as the message 1`
     id="generated-id_messageContent"
   >
     <div
-      class="euiTextColor euiTextColor--subdued"
+      class="css-xv0fhq-euiTextColor-subdued"
     >
       <span>
         Element error!
@@ -273,7 +273,7 @@ exports[`EuiSelectable errorMessage prop does renders the message when defined 1
     id="generated-id_messageContent"
   >
     <div
-      class="euiTextColor euiTextColor--subdued"
+      class="css-xv0fhq-euiTextColor-subdued"
     >
       <p>
         Error!
@@ -376,7 +376,7 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
     id="generated-id_messageContent"
   >
     <div
-      class="euiTextColor euiTextColor--subdued"
+      class="css-xv0fhq-euiTextColor-subdued"
     >
       <p>
         <strong>
