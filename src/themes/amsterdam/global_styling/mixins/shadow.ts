@@ -21,11 +21,9 @@ export interface EuiShadowCustomColor {
  * euiSlightShadow
  */
 export const euiShadowXSmall = (
-  _euiTheme: UseEuiTheme,
+  { euiTheme, colorMode }: UseEuiTheme,
   { color: _color }: _EuiThemeShadowCustomColor = {}
 ) => {
-  const { euiTheme, colorMode } = _euiTheme;
-
   const color = _color || euiTheme.colors.shadow;
   return `
 box-shadow:
@@ -38,11 +36,9 @@ box-shadow:
  * bottomShadowSmall
  */
 export const euiShadowSmall = (
-  _euiTheme: UseEuiTheme,
+  { euiTheme, colorMode }: UseEuiTheme,
   { color: _color }: _EuiThemeShadowCustomColor = {}
 ) => {
-  const { euiTheme, colorMode } = _euiTheme;
-
   const color = _color || euiTheme.colors.shadow;
   return `
 box-shadow:
@@ -56,11 +52,9 @@ box-shadow:
  * bottomShadowMedium
  */
 export const euiShadowMedium = (
-  _euiTheme: UseEuiTheme,
+  { euiTheme, colorMode }: UseEuiTheme,
   { color: _color }: _EuiThemeShadowCustomColor = {}
 ) => {
-  const { euiTheme, colorMode } = _euiTheme;
-
   const color = _color || euiTheme.colors.shadow;
   return `
 box-shadow:
@@ -75,11 +69,9 @@ box-shadow:
  * bottomShadow
  */
 export const euiShadowLarge = (
-  _euiTheme: UseEuiTheme,
+  { euiTheme, colorMode }: UseEuiTheme,
   { color: _color }: _EuiThemeShadowCustomColor = {}
 ) => {
-  const { euiTheme, colorMode } = _euiTheme;
-
   const color = _color || euiTheme.colors.shadow;
   return `
 box-shadow:
@@ -97,11 +89,9 @@ export interface EuiShadowXLarge extends _EuiThemeShadowCustomColor {
   reverse?: boolean;
 }
 export const euiShadowXLarge = (
-  _euiTheme: UseEuiTheme,
+  { euiTheme, colorMode }: UseEuiTheme,
   { color: _color, reverse }: EuiShadowXLarge = {}
 ) => {
-  const { euiTheme, colorMode } = _euiTheme;
-
   const color = _color || euiTheme.colors.shadow;
   return `
 box-shadow:
@@ -116,11 +106,9 @@ box-shadow:
  * TODO: I think this is only used by panels/cards in the Amsterdam theme, move there
  */
 export const euiSlightShadowHover = (
-  _euiTheme: UseEuiTheme,
+  { euiTheme, colorMode }: UseEuiTheme,
   { color: _color }: _EuiThemeShadowCustomColor = {}
 ) => {
-  const { euiTheme, colorMode } = _euiTheme;
-
   const color = _color || euiTheme.colors.shadow;
   return `
 box-shadow:
@@ -133,8 +121,8 @@ box-shadow:
 export const useEuiSlightShadowHover = (
   color?: _EuiThemeShadowCustomColor['color']
 ) => {
-  const euiTheme = useEuiTheme();
-  return euiSlightShadowHover(euiTheme, { color });
+  const euiThemeContext = useEuiTheme();
+  return euiSlightShadowHover(euiThemeContext, { color });
 };
 
 /**
@@ -144,11 +132,9 @@ export const useEuiSlightShadowHover = (
  * Useful for popovers that drop UP rather than DOWN.
  */
 export const euiShadowFlat = (
-  _euiTheme: UseEuiTheme,
+  { euiTheme, colorMode }: UseEuiTheme,
   { color: _color }: _EuiThemeShadowCustomColor = {}
 ) => {
-  const { euiTheme, colorMode } = _euiTheme;
-
   const color = _color || euiTheme.colors.shadow;
   return `
 box-shadow:
@@ -161,26 +147,26 @@ box-shadow:
 export const useEuiShadowFlat = (
   color?: _EuiThemeShadowCustomColor['color']
 ) => {
-  const euiTheme = useEuiTheme();
-  return euiShadowFlat(euiTheme, { color });
+  const euiThemeContext = useEuiTheme();
+  return euiShadowFlat(euiThemeContext, { color });
 };
 
 export const euiShadow = (
-  euiTheme: UseEuiTheme,
+  euiThemeContext: UseEuiTheme,
   size: _EuiThemeShadowSize = 'l',
   { color }: _EuiThemeShadowCustomColor = {}
 ) => {
   switch (size) {
     case 'xs':
-      return euiShadowXSmall(euiTheme, { color });
+      return euiShadowXSmall(euiThemeContext, { color });
     case 's':
-      return euiShadowSmall(euiTheme, { color });
+      return euiShadowSmall(euiThemeContext, { color });
     case 'm':
-      return euiShadowMedium(euiTheme, { color });
+      return euiShadowMedium(euiThemeContext, { color });
     case 'l':
-      return euiShadowLarge(euiTheme, { color });
+      return euiShadowLarge(euiThemeContext, { color });
     case 'xl':
-      return euiShadowXLarge(euiTheme, { color });
+      return euiShadowXLarge(euiThemeContext, { color });
 
     default:
       console.warn('Please provide a valid size option to useEuiShadow');
@@ -192,6 +178,6 @@ export const useEuiShadow = (
   size: _EuiThemeShadowSize = 'l',
   color?: _EuiThemeShadowCustomColor['color']
 ) => {
-  const euiTheme = useEuiTheme();
-  return euiShadow(euiTheme, size, { color });
+  const _euiTheme = useEuiTheme();
+  return euiShadow(_euiTheme, size, { color });
 };
