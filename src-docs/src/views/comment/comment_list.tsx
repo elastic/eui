@@ -27,7 +27,7 @@ const copyAction = (
 );
 
 const complexEvent = (
-  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="xs">
+  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="xs" wrap>
     <EuiFlexItem grow={false}>added tags</EuiFlexItem>
     <EuiFlexItem grow={false}>
       <EuiBadge>case</EuiBadge>
@@ -57,6 +57,7 @@ const longBody = (
 const comments: EuiCommentProps[] = [
   {
     username: 'janed',
+    timelineAvatarName: 'janed',
     event: 'added a comment',
     timestamp: 'on Jan 1, 2020',
     children: body,
@@ -64,13 +65,14 @@ const comments: EuiCommentProps[] = [
   },
   {
     username: 'juanab',
-    type: 'update',
+    timelineAvatarName: 'juanab',
     actions: copyAction,
     event: 'pushed incident X0Z235',
     timestamp: 'on Jan 3, 2020',
   },
   {
     username: 'pancho1',
+    timelineAvatarName: 'pancho1',
     type: 'update',
     event: 'edited case',
     timestamp: 'on Jan 9, 2020',
@@ -79,6 +81,7 @@ const comments: EuiCommentProps[] = [
   },
   {
     username: 'pedror',
+    timelineAvatarName: 'pedror',
     type: 'update',
     actions: copyAction,
     event: complexEvent,
@@ -88,6 +91,7 @@ const comments: EuiCommentProps[] = [
   },
   {
     username: 'elohar',
+    timelineAvatarName: 'elohar',
     event: 'added a comment',
     timestamp: 'on Jan 14, 2020',
     children: longBody,

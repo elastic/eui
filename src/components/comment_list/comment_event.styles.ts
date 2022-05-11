@@ -44,9 +44,11 @@ export const euiCommentEventUpdatePanelStyles = ({
 });
 
 export const euiCommentEventHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiCommentEvent__header: css`
+  euiCommentEvent__header: css``,
+  euiCommentEvent__headerPanel: css``,
+  euiCommentEvent__headerMain: css`
     display: flex;
-    align-items: center;
+    flex: 1;
     gap: ${euiTheme.size.s};
   `,
   euiCommentEvent__headerData: css`
@@ -60,8 +62,11 @@ export const euiCommentEventHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
     font-weight: ${euiTheme.font.weight.semiBold};
   `,
   euiCommentEvent__headerActions: css`
-    > * + * {
-      margin-inline-start: ${euiTheme.size.xs};
-    }
+    display: flex;
+    flex-wrap: wrap;
+    gap: ${euiTheme.size.xs};
+  `,
+  euiCommentEvent__headerUpdateMessage: css`
+    padding-top: ${euiTheme.size.xs};
   `,
 });

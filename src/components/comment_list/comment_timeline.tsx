@@ -6,41 +6,51 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent } from 'react';
 import { CommonProps } from '../common';
-import { EuiAvatar } from '../avatar';
-import { IconType } from '../icon';
+import { EuiAvatar, EuiAvatarProps } from '../avatar';
 
 export interface EuiCommentTimelineProps extends CommonProps {
   /**
-   * Main icon that accompanies the comment. The default is `user` for regular comments and `dot` for update comments. To customize, pass a `string` as an `EuiIcon['type']` or any `ReactNode`.
+   * Main avatar that accompanies the comment. Pass any name, preferably the username.
    */
-  timelineIcon?: ReactNode | IconType;
-  username: string;
+  timelineAvatarName: EuiAvatarProps['name'];
+  /**
+   * Customize the avatar with an any EuiIcon['type']. The avtar color defaults to `subdued`.
+   */
+  timelineAvatarIconType?: EuiAvatarProps['iconType'];
+  /**
+   * Further extend the props applied to EuiAvatar.
+   */
+  timelineAvatarProps?: Omit<EuiAvatarProps, 'name' | 'iconType'>;
 }
 
 export const EuiCommentTimeline: FunctionComponent<EuiCommentTimelineProps> = ({
-  timelineIcon,
-  username,
-  ...rest
+  timelineAvatarName,
+  timelineAvatarIconType,
+  timelineAvatarProps,
 }) => {
   let iconRender;
-  if (typeof timelineIcon === 'string') {
+
+  const avatarClassName = 'euiCommentAvatar';
+
+  if (timelineAvatarIconType) {
     iconRender = (
       <EuiAvatar
-        className="euiCommentTimeline"
-        name={username}
-        iconType={timelineIcon}
+        {...(timelineAvatarProps as any)}
+        className={avatarClassName}
+        name={timelineAvatarName}
+        iconType={timelineAvatarIconType}
         color="subdued"
-        {...rest}
       />
     );
-  } else if (timelineIcon) {
-    iconRender = timelineIcon;
   } else {
-    // if no `iconType` or custom avatar is passed, it defaults to an avatar with the username initial letter
     iconRender = (
-      <EuiAvatar className="euiCommentTimeline" name={username} {...rest} />
+      <EuiAvatar
+        {...(timelineAvatarProps as any)}
+        className={avatarClassName}
+        name={timelineAvatarName}
+      />
     );
   }
 

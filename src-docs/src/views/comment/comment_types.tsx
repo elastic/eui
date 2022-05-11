@@ -17,12 +17,17 @@ const body = (
 
 export default () => (
   <EuiCommentList aria-label="Comment types example">
-    <EuiComment username="andred" event="added a comment" timestamp="yesterday">
+    <EuiComment
+      timelineAvatarName="andred"
+      username="andred"
+      event="added a comment"
+      timestamp="yesterday"
+    >
       {body}
     </EuiComment>
     <EuiComment
+      timelineAvatarName="milal"
       username="milal"
-      type="update"
       event={
         <>
           edited a comment of type <EuiCode>update</EuiCode>
@@ -30,7 +35,7 @@ export default () => (
       }
       timestamp="6 hours ago"
     />
-    <EuiComment username="luisg" type="custom">
+    <EuiComment timelineAvatarName="hugo">
       <EuiPanel hasBorder>
         <p>
           I am a comment of type <EuiCode>custom</EuiCode>.

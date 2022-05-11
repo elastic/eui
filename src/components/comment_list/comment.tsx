@@ -8,7 +8,6 @@
 
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
-import { keysOf } from '../common';
 import { EuiTimelineItem, EuiTimelineItemProps } from '../timeline';
 import { EuiCommentEvent, EuiCommentEventProps } from './comment_event';
 import {
@@ -27,37 +26,27 @@ export interface EuiCommentProps
   component?: EuiTimelineItemProps['component'];
 }
 
-const typeToClassNameMap = {
-  regular: '',
-  update: 'euiComment--update',
-  custom: '',
-};
-
-export const TYPES = keysOf(typeToClassNameMap);
-
 export const EuiComment: FunctionComponent<EuiCommentProps> = ({
   children,
   className,
   username,
   event,
   actions,
-  timelineIcon,
   type = 'regular',
   timestamp,
+  component = 'li',
+  timelineAvatarName,
+  timelineAvatarIconType,
+  timelineAvatarProps,
   updateIcon,
   updateIconAriaLabel,
-  updateColor,
-  component = 'li',
+  updateMessage,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiComment',
-    typeToClassNameMap[type],
-    { 'euiComment--hasBody': children },
-    className
-  );
+  const classes = classNames('euiComment', className);
 
-  const isTypeUpdate = type === 'update';
+  const hasEventElements = username || updateIcon || username || actions;
+  const isTypeUpdate = !children && hasEventElements;
   const verticalAlign = isTypeUpdate ? 'center' : 'top';
 
   return (
@@ -66,7 +55,11 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
       className={classes}
       component={component}
       icon={
-        <EuiCommentTimeline username={username} timelineIcon={timelineIcon} />
+        <EuiCommentTimeline
+          timelineAvatarName={timelineAvatarName}
+          timelineAvatarIconType={timelineAvatarIconType}
+          timelineAvatarProps={timelineAvatarProps}
+        />
       }
       {...rest}
     >
@@ -78,7 +71,7 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
         type={type}
         updateIcon={updateIcon}
         updateIconAriaLabel={updateIconAriaLabel}
-        updateColor={updateColor}
+        updateMessage={updateMessage}
       >
         {children}
       </EuiCommentEvent>

@@ -9,16 +9,17 @@ import {
   EuiFlexItem,
 } from '../../../../src/components/';
 
-const bodyUpdate = (
+const updateMessage = (
   <EuiText size="s">
     <p>
-      Comments of type <EuiCode>update</EuiCode> can also have a body
+      This is a <EuiCode>updateMessage</EuiCode>. It displays in the event
+      header.
     </p>
   </EuiText>
 );
 
 const eventWihtMultipleTags = (
-  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s">
+  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s" wrap>
     <EuiFlexItem grow={false}>added tags</EuiFlexItem>
     <EuiFlexItem grow={false}>
       <EuiBadge>case</EuiBadge>
@@ -44,8 +45,8 @@ const eventWithOneTag = (
 export default () => (
   <EuiCommentList aria-label="Comment type update example">
     <EuiComment
+      timelineAvatarName="system"
       username="luisg"
-      type="update"
       event={eventWihtMultipleTags}
       timestamp="22 hours ago"
       updateIcon="tag"
@@ -53,19 +54,19 @@ export default () => (
     />
     <EuiComment
       username="system"
-      type="update"
-      timelineIcon="dot"
+      timelineAvatarName="system"
+      timelineAvatarIconType="dot"
       event="pushed a new incident"
       timestamp="20 hours ago"
-      updateColor="danger"
     />
     <EuiComment
+      timelineAvatarName="milal"
       username="milal"
-      type="update"
       event={eventWithOneTag}
       timestamp="6 hours ago"
+      updateMessage={updateMessage}
     >
-      {bodyUpdate}
+      {updateMessage}
     </EuiComment>
   </EuiCommentList>
 );

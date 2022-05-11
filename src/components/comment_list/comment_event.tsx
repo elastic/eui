@@ -23,7 +23,7 @@ export interface EuiCommentEventProps extends CommonProps {
   /**
    * Author of the comment. When no `timelineIcon` is passed the username initial letter is used to generate an avatar.
    */
-  username: string;
+  username?: string;
   /**
    * Time of occurrence of the event. Its format is set on the consumer's side
    */
@@ -41,6 +41,12 @@ export interface EuiCommentEventProps extends CommonProps {
    * Use `custom` when passing a children that doesn't require the event header. Elements like `username`, `timestamp`, `event` and `actions` won't show.
    */
   type?: EuiCommentType;
+
+  /**
+   * Accepts any ReactNode.
+   */
+  children?: ReactNode;
+
   /**
    * Custom icon that shows before the username only when the `type` is `"update"`.
    */
@@ -51,14 +57,13 @@ export interface EuiCommentEventProps extends CommonProps {
    */
   updateIconAriaLabel?: string;
   /**
-   * Background color for the event header only when the `type` is `"update"`.
-   * When a color is used it adds a padding.
+   * A sub header
    */
-  updateColor?: EuiPanelProps['color'];
+  updateMessage?: ReactNode;
   /**
-   * Accepts any ReactNode.
+   * Background color for the event header.
    */
-  children?: ReactNode;
+  headerColor?: EuiPanelProps['color'];
 }
 
 export const TYPES = ['regular', 'update', 'custom'] as const;
@@ -69,14 +74,29 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   className,
   username,
   timestamp,
-  type = 'regular',
   event,
   actions,
   updateIcon,
   updateIconAriaLabel,
-  updateColor,
+  updateMessage,
+  headerColor,
 }) => {
   const classes = classNames('euiCommentEvent', className);
+
+  const hasEventElements = username || updateIcon || username || actions;
+
+  const isTypeRegular = children && hasEventElements;
+  const isTypeUpdate = !children && hasEventElements;
+
+  let type: EuiCommentType;
+
+  if (isTypeRegular) {
+    type = 'regular';
+  } else if (isTypeUpdate) {
+    type = 'update';
+  } else {
+    type = 'custom';
+  }
 
   const euiTheme = useEuiTheme();
 
@@ -85,83 +105,73 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
 
   const headerStyles = euiCommentEventHeaderStyles(euiTheme);
   const cssHeaderStyles = headerStyles.euiCommentEvent__header;
+  const cssHeaderPanelStyles = headerStyles.euiCommentEvent__headerPanel;
   const cssHeaderUsernameStyles = headerStyles.euiCommentEvent__headerUsername;
+  const cssHeaderMainStyles = headerStyles.euiCommentEvent__headerMain;
   const cssHeaderDataStyles = headerStyles.euiCommentEvent__headerData;
   const cssHeaderActionsStyles = headerStyles.euiCommentEvent__headerActions;
+  const cssHeaderUpdateMessageStyles =
+    headerStyles.euiCommentEvent__headerUpdateMessage;
 
   const updatePanelStyles = euiCommentEventUpdatePanelStyles(euiTheme);
   const cssUpdatePanelStyles = updatePanelStyles.euiCommentEvent__updatePanel;
 
-  const isTypeUpdate = type === 'update';
-  const isTypeCustom = type === 'custom';
   const isFigure =
-    type === 'regular' ||
-    (type === 'update' && typeof children !== 'undefined');
+    isTypeRegular || (isTypeUpdate && typeof updateMessage !== 'undefined');
 
   const Element = isFigure ? 'figure' : 'div';
   const HeaderElement = isFigure ? 'figcaption' : 'div';
 
-  const headerElements = (
-    <>
-      <div className="euiCommentEvent__headerData" css={cssHeaderDataStyles}>
-        <div
-          className="euiCommentEvent__headerUsername"
-          css={cssHeaderUsernameStyles}
-        >
-          {username}
-        </div>
-        <div className="euiCommentEvent__headerEvent">{event}</div>
-        {timestamp ? (
-          <div className="euiCommentEvent__headerTimestamp">
-            <time>{timestamp}</time>
-          </div>
-        ) : undefined}
-      </div>
-      {actions ? (
-        <div
-          className="euiCommentEvent__headerActions"
-          css={cssHeaderActionsStyles}
-        >
-          {actions}
-        </div>
-      ) : undefined}
-    </>
-  );
+  // const { updateColor, updateIcon, updateIconAriaLabel } = updateProps;
 
-  const panelProps = updateColor
-    ? { color: updateColor, paddingSize: 's' }
+  const panelProps = headerColor
+    ? { color: headerColor, paddingSize: 's' }
     : { color: 'transparent', paddingSize: 'none', css: cssUpdatePanelStyles };
 
-  const updateEventHeader = !isTypeCustom && (
-    <EuiPanel {...(panelProps as EuiPanelProps)}>
-      <HeaderElement className="euiCommentEvent__header" css={cssHeaderStyles}>
-        {updateIcon && (
-          <EuiAvatar
-            size="s"
-            iconType={updateIcon}
-            name={updateIconAriaLabel ? updateIconAriaLabel : ''}
-            color="subdued"
-            className="euiCommentEvent__headerIconUpdate"
-            aria-hidden={!updateIconAriaLabel}
-          />
-        )}
-        {headerElements}
-      </HeaderElement>
-    </EuiPanel>
-  );
-
-  const regularEventHeader = !isTypeCustom && (
+  const eventHeader = (
     <HeaderElement className="euiCommentEvent__header" css={cssHeaderStyles}>
-      {headerElements}
+      <EuiPanel {...(panelProps as EuiPanelProps)} css={cssHeaderPanelStyles}>
+        <div css={cssHeaderMainStyles}>
+          <div css={cssHeaderDataStyles}>
+            {updateIcon && (
+              <EuiAvatar
+                size="s"
+                iconType={updateIcon}
+                name={updateIconAriaLabel ? updateIconAriaLabel : ''}
+                color="subdued"
+                className="euiCommentEvent__updateIconUpdate"
+                aria-hidden={!updateIconAriaLabel}
+              />
+            )}
+
+            {username && <div css={cssHeaderUsernameStyles}>{username}</div>}
+
+            {event && (
+              <div className="euiCommentEvent__headerEvent">{event}</div>
+            )}
+
+            {timestamp && (
+              <div className="euiCommentEvent__headerTimestamp">
+                <time>{timestamp}</time>
+              </div>
+            )}
+          </div>
+
+          {actions && <div css={cssHeaderActionsStyles}>{actions}</div>}
+        </div>
+
+        {updateMessage && (
+          <div css={cssHeaderUpdateMessageStyles}>{updateMessage}</div>
+        )}
+      </EuiPanel>
     </HeaderElement>
   );
 
   return (
     <Element className={classes} css={cssStyles}>
-      {isTypeUpdate ? updateEventHeader : regularEventHeader}
-      {children ? (
-        <div className="euiCommentEvent__body">{children}</div>
-      ) : undefined}
+      {hasEventElements && eventHeader}
+
+      {children && <div className="euiCommentEvent__body">{children}</div>}
     </Element>
   );
 };

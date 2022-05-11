@@ -3,7 +3,6 @@ import {
   EuiCommentList,
   EuiComment,
   EuiText,
-  EuiAvatar,
   EuiCode,
 } from '../../../../src/components/';
 
@@ -15,7 +14,7 @@ const defaultBody = (
   </EuiText>
 );
 
-const customIconBody = (
+const customupdateMessage = (
   <EuiText size="s">
     <p>
       This comment has a custom <EuiCode>timelineIcon</EuiCode>.
@@ -26,14 +25,16 @@ const customIconBody = (
 export default () => (
   <EuiCommentList aria-label="An example with different timeline icons">
     <EuiComment
+      timelineAvatarName="janed"
       username="janed"
       event="added a comment"
       timestamp="12 hours ago"
-      timelineIcon={<EuiAvatar initials="janed" name="Juana" />}
     >
       {defaultBody}
     </EuiComment>
     <EuiComment
+      timelineAvatarName="janed"
+      timelineAvatarIconType="dot"
       username="system"
       type="update"
       event={
@@ -43,20 +44,14 @@ export default () => (
         </>
       }
       timestamp="10 hours ago"
-      timelineIcon="dot"
     />
     <EuiComment
+      timelineAvatarName="juanab"
       username="juanab"
       event="added a comment"
       timestamp="7 hours ago"
-      timelineIcon={
-        <EuiAvatar
-          name="juanab"
-          imageUrl="https://source.unsplash.com/64x64/?woman"
-        />
-      }
     >
-      {customIconBody}
+      {customupdateMessage}
     </EuiComment>
   </EuiCommentList>
 );

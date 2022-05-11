@@ -24,7 +24,7 @@ const actionButton = (
 );
 
 const complexEvent = (
-  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="xs">
+  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="xs" wrap>
     <EuiFlexItem grow={false}>added tags</EuiFlexItem>
     <EuiFlexItem grow={false}>
       <EuiBadge>case</EuiBadge>
@@ -40,8 +40,8 @@ const complexEvent = (
 
 const initialComments: EuiCommentProps[] = [
   {
-    type: 'regular',
     username: 'emma',
+    timelineAvatarName: 'emma',
     event: 'added a comment',
     timestamp: 'on 3rd March 2022',
     children: (
@@ -52,16 +52,16 @@ const initialComments: EuiCommentProps[] = [
     actions: actionButton,
   },
   {
-    type: 'update',
     username: 'emma',
+    timelineAvatarName: 'emma',
     event: complexEvent,
     timestamp: 'on 3rd March 2022',
     updateIcon: 'tag',
     updateIconAriaLabel: 'tag',
   },
   {
-    type: 'regular',
     username: 'tiago',
+    timelineAvatarName: 'tiago',
     event: 'added a comment',
     timestamp: 'on 4th March 2022',
     actions: actionButton,
@@ -73,8 +73,8 @@ const initialComments: EuiCommentProps[] = [
     ),
   },
   {
-    type: 'update',
     username: 'tiago',
+    timelineAvatarName: 'tiago',
     event: (
       <>
         marked case as <EuiBadge color="warning">In progress</EuiBadge>
@@ -116,8 +116,8 @@ export default () => {
       setComments([
         ...comments,
         {
-          type: 'regular',
           username: 'emma',
+          timelineAvatarName: 'emma',
           event: 'added a comment',
           timestamp: `on ${date}`,
           actions: actionButton,
@@ -130,39 +130,27 @@ export default () => {
   };
 
   const commentsList = comments.map((comment, index) => {
-    if (comment.type === 'update') {
-      return (
-        <EuiComment
-          key={`comment-update-${index}`}
-          type="update"
-          username={comment.username}
-          event={comment.event}
-          timestamp={comment.timestamp}
-          updateIcon={comment.updateIcon}
-          updateIconAriaLabel={comment.updateIconAriaLabel}
-        />
-      );
-    } else {
-      return (
-        <EuiComment
-          key={`comment-regular-${index}`}
-          type="regular"
-          username={comment.username}
-          event={comment.event}
-          timestamp={comment.timestamp}
-          actions={comment.actions}
-        >
-          {comment.children}
-        </EuiComment>
-      );
-    }
+    return (
+      <EuiComment
+        key={`comment-${index}`}
+        timelineAvatarName={comment.timelineAvatarName}
+        username={comment.username}
+        event={comment.event}
+        timestamp={comment.timestamp}
+        actions={comment.actions}
+        updateIcon={comment.updateIcon}
+        updateIconAriaLabel={comment.updateIconAriaLabel}
+      >
+        {comment.children}
+      </EuiComment>
+    );
   });
 
   return (
     <>
       <EuiCommentList aria-label="Comment system example">
         {commentsList}
-        <EuiComment key="comment-custom-1" username="emma" type="custom">
+        <EuiComment timelineAvatarName="Juana">
           <EuiMarkdownEditor
             aria-label="Markdown editor"
             aria-describedby={errorElementId.current}
