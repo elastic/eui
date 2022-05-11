@@ -19,6 +19,8 @@ import { EuiCacheProvider, useEuiCacheContext } from '../cache';
 export interface WithEuiSystemProps<P = {}> {
   euiTheme: UseEuiTheme<P>;
 }
+// If a component usese `forwardRef` you'll need to pass its props directly via `T` (`withEuiTheme<EuiComponentProps>(EuiComponent)`)
+// TypeScript cannot infer correctly with the extra `forwardRef` types.
 export const withEuiSystem = <T extends {} = {}, U extends {} = {}>(
   Component:
     | ComponentType<T & WithEuiSystemProps<U>>

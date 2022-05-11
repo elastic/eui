@@ -231,7 +231,7 @@ export const _EuiBottomBar = forwardRef<
 
 export const EuiBottomBar = forwardRef<HTMLElement, EuiBottomBarProps>(
   (props, ref) => {
-    const BottomBar = withEuiSystem(_EuiBottomBar);
+    const BottomBar = withEuiSystem<EuiBottomBarProps>(_EuiBottomBar);
     return (
       <EuiThemeProvider colorMode="dark">
         {/* @ts-expect-error double forward ref type */}

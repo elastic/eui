@@ -133,4 +133,4 @@ export const _EuiCallOut = forwardRef<
 );
 _EuiCallOut.displayName = 'EuiCallOut';
 
-export const EuiCallOut = withEuiSystem(_EuiCallOut);
+export const EuiCallOut = withEuiSystem<EuiCallOutProps>(_EuiCallOut);
