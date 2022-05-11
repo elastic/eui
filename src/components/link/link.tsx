@@ -21,6 +21,7 @@ import { EuiI18n, useEuiI18n } from '../i18n';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { validateHref } from '../../services/security/href_validator';
+import { SerializedStyles } from '@emotion/react';
 
 export type EuiLinkType = 'button' | 'reset' | 'submit';
 
@@ -74,9 +75,9 @@ export interface EuiLinkAnchorProps
 export type EuiLinkProps = ExclusiveUnion<
   EuiLinkButtonProps,
   EuiLinkAnchorProps
->;
+> & { css?: SerializedStyles | SerializedStyles[] }; // The type is overly complicated and TypeScript misses the automatic `css` prop from babel
 
-export const _EuiLink = forwardRef<
+const _EuiLink = forwardRef<
   HTMLAnchorElement | HTMLButtonElement,
   EuiLinkProps & WithEuiSystemProps
 >(
@@ -173,4 +174,5 @@ export const _EuiLink = forwardRef<
 );
 _EuiLink.displayName = 'EuiLink';
 
-export const EuiLink = withEuiSystem(_EuiLink);
+const EuiLink = withEuiSystem(_EuiLink);
+export { _EuiLink, EuiLink };
