@@ -1,5 +1,0 @@
-// This should only be used for .euiText, therefore it's not included in a separate mixin file
-@mixin euiScaleText($baseFontSize, $sizingMethod: 'rem') {
-  $baseLineHeightMultiplier: $baseFontSize / 2;
-
-}
