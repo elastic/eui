@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiTextColor } from './text_color';
 
@@ -18,6 +19,8 @@ describe('EuiTextColor', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  shouldRenderCustomStyles(<EuiTextColor color="#fff" />);
 
   describe('props', () => {
     describe('color', () => {

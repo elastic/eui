@@ -8,22 +8,22 @@
 
 import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 
-const colorsToClassNameMap = {
-  default: 'euiTextColor--default',
-  subdued: 'euiTextColor--subdued',
-  success: 'euiTextColor--success',
-  accent: 'euiTextColor--accent',
-  danger: 'euiTextColor--danger',
-  warning: 'euiTextColor--warning',
-  ghost: 'euiTextColor--ghost',
-  inherit: 'euiTextColor--inherit',
-};
+import { useEuiTheme } from '../../services';
+import { euiTextColorStyles } from './text_color.styles';
 
-export type TextColor = keyof typeof colorsToClassNameMap;
-
-export const COLORS = keysOf(colorsToClassNameMap);
+export const COLORS = [
+  'default',
+  'subdued',
+  'success',
+  'accent',
+  'danger',
+  'warning',
+  'ghost',
+  'inherit',
+] as const;
+export type TextColor = typeof COLORS[number];
 
 export type EuiTextColorProps = CommonProps &
   Omit<
@@ -50,10 +50,19 @@ export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
 }) => {
   const isNamedColor = COLORS.includes(color as TextColor);
 
+  const euiTheme = useEuiTheme();
+  const styles = euiTextColorStyles(euiTheme);
+  const cssStyles = [
+    styles.euiTextColor,
+    isNamedColor ? styles[color as TextColor] : undefined,
+  ];
+
   const classes = classNames(
     'euiTextColor',
-    { 'euiTextColor--custom': !isNamedColor },
-    isNamedColor && colorsToClassNameMap[color as TextColor],
+    {
+      [`euiTextColor--${color}`]: isNamedColor,
+      'euiTextColor--custom': !isNamedColor,
+    },
     className
   );
   const Component = component;
@@ -69,7 +78,12 @@ export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
     : { ...style };
 
   return (
-    <Component className={classes} style={euiTextStyle} {...rest}>
+    <Component
+      css={cssStyles}
+      className={classes}
+      style={euiTextStyle}
+      {...rest}
+    >
       {children}
     </Component>
   );
