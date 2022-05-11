@@ -7,7 +7,6 @@
  */
 
 import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
-import classNames from 'classnames';
 import { CommonProps } from '../common';
 
 import { useEuiTheme } from '../../services';
@@ -43,11 +42,11 @@ export type EuiTextColorProps = CommonProps &
 export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
   children,
   color = 'default',
-  className,
   component = 'span',
   style,
   ...rest
 }) => {
+  const Component = component;
   const isNamedColor = COLORS.includes(color as TextColor);
 
   const euiTheme = useEuiTheme();
@@ -56,16 +55,6 @@ export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
     styles.euiTextColor,
     isNamedColor ? styles[color as TextColor] : undefined,
   ];
-
-  const classes = classNames(
-    'euiTextColor',
-    {
-      [`euiTextColor--${color}`]: isNamedColor,
-      'euiTextColor--custom': !isNamedColor,
-    },
-    className
-  );
-  const Component = component;
 
   // We're checking if is a custom color.
   // If it is a custom color we set the `color` of the `.euiTextColor` div to that custom color.
@@ -78,12 +67,7 @@ export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
     : { ...style };
 
   return (
-    <Component
-      css={cssStyles}
-      className={classes}
-      style={euiTextStyle}
-      {...rest}
-    >
+    <Component css={cssStyles} style={euiTextStyle} {...rest}>
       {children}
     </Component>
   );
