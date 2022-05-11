@@ -52,7 +52,7 @@ exports[`EuiNotificationEvent is rendered 1`] = `
         class="euiText css-1oeurl1-euiText-s"
       >
         <div
-          class="euiTextColor euiTextColor--subdued"
+          class="css-xv0fhq-euiTextColor-subdued"
         >
           <p>
             message
@@ -117,7 +117,7 @@ exports[`EuiNotificationEvent props badgeColor is rendered 1`] = `
         class="euiText css-1oeurl1-euiText-s"
       >
         <div
-          class="euiTextColor euiTextColor--subdued"
+          class="css-xv0fhq-euiTextColor-subdued"
         >
           <p>
             message
@@ -233,7 +233,7 @@ exports[`EuiNotificationEvent props headingLevel is rendered 1`] = `
         class="euiText css-1oeurl1-euiText-s"
       >
         <div
-          class="euiTextColor euiTextColor--subdued"
+          class="css-xv0fhq-euiTextColor-subdued"
         >
           <p>
             message
@@ -303,7 +303,7 @@ exports[`EuiNotificationEvent props iconAriaLabel is rendered 1`] = `
         class="euiText css-1oeurl1-euiText-s"
       >
         <div
-          class="euiTextColor euiTextColor--subdued"
+          class="css-xv0fhq-euiTextColor-subdued"
         >
           <p>
             message
@@ -372,7 +372,7 @@ exports[`EuiNotificationEvent props iconType is rendered 1`] = `
         class="euiText css-1oeurl1-euiText-s"
       >
         <div
-          class="euiTextColor euiTextColor--subdued"
+          class="css-xv0fhq-euiTextColor-subdued"
         >
           <p>
             message
@@ -454,7 +454,7 @@ exports[`EuiNotificationEvent props isRead  is rendered 1`] = `
         class="euiText css-1oeurl1-euiText-s"
       >
         <div
-          class="euiTextColor euiTextColor--subdued"
+          class="css-xv0fhq-euiTextColor-subdued"
         >
           <p>
             message
@@ -518,7 +518,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
         class="euiText css-1oeurl1-euiText-s"
       >
         <div
-          class="euiTextColor euiTextColor--subdued"
+          class="css-xv0fhq-euiTextColor-subdued"
         >
           <p>
             message 1
@@ -564,7 +564,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
                   class="euiText css-1oeurl1-euiText-s"
                 >
                   <div
-                    class="euiTextColor euiTextColor--subdued"
+                    class="css-xv0fhq-euiTextColor-subdued"
                   >
                     <p>
                       message 2
@@ -575,7 +575,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
                   class="euiText css-1oeurl1-euiText-s"
                 >
                   <div
-                    class="euiTextColor euiTextColor--subdued"
+                    class="css-xv0fhq-euiTextColor-subdued"
                   >
                     <p>
                       message 3
@@ -644,7 +644,7 @@ exports[`EuiNotificationEvent props primaryAction is rendered 1`] = `
         class="euiText css-1oeurl1-euiText-s"
       >
         <div
-          class="euiTextColor euiTextColor--subdued"
+          class="css-xv0fhq-euiTextColor-subdued"
         >
           <p>
             message
@@ -727,7 +727,7 @@ exports[`EuiNotificationEvent props primaryActionProps is rendered 1`] = `
         class="euiText css-1oeurl1-euiText-s"
       >
         <div
-          class="euiTextColor euiTextColor--subdued"
+          class="css-xv0fhq-euiTextColor-subdued"
         >
           <p>
             message
@@ -815,7 +815,7 @@ exports[`EuiNotificationEvent props severity  is rendered 1`] = `
         class="euiText css-1oeurl1-euiText-s"
       >
         <div
-          class="euiTextColor euiTextColor--subdued"
+          class="css-xv0fhq-euiTextColor-subdued"
         >
           <p>
             message

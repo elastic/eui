@@ -5,7 +5,7 @@ exports[`EuiSelectableMessage bordered is rendered 1`] = `
   class="euiText euiSelectableMessage euiSelectableMessage--bordered css-3vmilf-euiText-xs"
 >
   <div
-    class="euiTextColor euiTextColor--subdued"
+    class="css-xv0fhq-euiTextColor-subdued"
   />
 </div>
 `;
@@ -17,7 +17,7 @@ exports[`EuiSelectableMessage is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiTextColor euiTextColor--subdued"
+    class="css-xv0fhq-euiTextColor-subdued"
   />
 </div>
 `;
