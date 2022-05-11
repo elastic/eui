@@ -63,12 +63,20 @@ const getProp = (prop) => {
   return newProp;
 };
 
-const propUtilityForPlayground = (props) => {
+const propUtilityForPlayground = (props, withTheme = false) => {
   const modifiedProps = {};
 
-  for (const key in props) {
-    if (props[key].type) modifiedProps[key] = getProp(props[key]);
+  if (withTheme) {
+    delete props.theme;
+    delete props.euiTheme;
   }
+
+  for (const key in props) {
+    if (props[key].type) {
+      modifiedProps[key] = getProp(props[key]);
+    }
+  }
+
   return modifiedProps;
 };
 

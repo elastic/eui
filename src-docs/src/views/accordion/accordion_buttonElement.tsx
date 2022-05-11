@@ -14,7 +14,9 @@ export default () => {
       buttonElement="div"
       buttonContent={
         <EuiLink
-          onClick={(e) => e.stopPropagation()}
+          onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+            e.stopPropagation()
+          }
           href="#/layout/accordion#interactive-content-in-the-trigger"
         >
           This is a nested link

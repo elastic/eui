@@ -99,7 +99,7 @@ export type EuiBottomBarProps = CommonProps &
     left?: CSSProperties['left'];
   };
 
-const _EuiBottomBar = forwardRef<
+export const _EuiBottomBar = forwardRef<
   HTMLElement, // type of element or component the ref will be passed to
   EuiBottomBarProps & WithEuiSystemProps // what properties apart from `ref` the component accepts
 >(

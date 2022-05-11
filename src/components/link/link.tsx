@@ -13,7 +13,8 @@ import React, {
   MouseEventHandler,
 } from 'react';
 import classNames from 'classnames';
-import { getSecureRelForTarget, useEuiTheme } from '../../services';
+import { getSecureRelForTarget } from '../../services';
+import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
 import { euiLinkStyles } from './link.styles';
 import { EuiIcon } from '../icon';
 import { EuiI18n, useEuiI18n } from '../i18n';
@@ -75,7 +76,10 @@ export type EuiLinkProps = ExclusiveUnion<
   EuiLinkAnchorProps
 >;
 
-const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
+export const _EuiLink = forwardRef<
+  HTMLAnchorElement | HTMLButtonElement,
+  EuiLinkProps & WithEuiSystemProps
+>(
   (
     {
       children,
@@ -88,11 +92,11 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
       type = 'button',
       onClick,
       disabled: _disabled,
+      euiTheme,
       ...rest
     },
     ref
   ) => {
-    const euiTheme = useEuiTheme();
     const styles = euiLinkStyles(euiTheme);
     const cssStyles = [styles.euiLink];
     const cssScreenReaderTextStyles = [styles.euiLink__screenReaderText];
@@ -167,6 +171,6 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
     );
   }
 );
+_EuiLink.displayName = 'EuiLink';
 
-EuiLink.displayName = 'EuiLink';
-export { EuiLink };
+export const EuiLink = withEuiSystem(_EuiLink);
