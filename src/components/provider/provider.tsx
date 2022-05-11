@@ -47,10 +47,10 @@ export interface EuiProviderProps<T>
   /**
    * Provide a cache configuration(s) from `@emotion/cache`.
    *
-   * `default` will encompass all Emotion styles, including consumer defined appliction styles, not handled by nested cache instances.
-   * `global` will scope all EUI global and reset styles.
-   * `utility` will scope all EUI utility class styles.
-   * `component` will scope all EUI component styles.
+   * - `default` will encompass all Emotion styles, including consumer defined appliction styles, not handled by nested cache instances.
+   * - `eui` will scope all EUI component styles.
+   * - `global` will scope all EUI global and reset styles. Will use `eui` if not specified.
+   * - `utility` will scope all EUI utility class styles.
    *
    * A cache instance provided as the sole value will function the same as the `default` cache.
    */
@@ -58,9 +58,9 @@ export interface EuiProviderProps<T>
     | EmotionCache
     | {
         default?: EmotionCache;
+        eui?: EmotionCache;
         global?: EmotionCache;
         utility?: EmotionCache;
-        component?: EmotionCache;
       };
 }
 
@@ -74,16 +74,16 @@ export const EuiProvider = <T extends {} = {}>({
   children,
 }: PropsWithChildren<EuiProviderProps<T>>) => {
   let defaultCache;
+  let euiCache;
   let globalCache;
-  let componentCache;
   let utilityCache;
   if (cache) {
     if (isEmotionCacheObject(cache)) {
       defaultCache = cache;
     } else {
       defaultCache = cache.default;
+      euiCache = cache.eui;
       globalCache = cache.global;
-      componentCache = cache.component;
       utilityCache = cache.utility;
     }
   }
@@ -92,7 +92,7 @@ export const EuiProvider = <T extends {} = {}>({
       {theme && (
         <>
           <EuiCacheProvider
-            cache={globalCache}
+            cache={globalCache || euiCache}
             children={Globals && <Globals />}
           />
           <EuiCacheProvider
@@ -101,7 +101,7 @@ export const EuiProvider = <T extends {} = {}>({
           />
         </>
       )}
-      <EuiCacheContext.Provider value={componentCache}>
+      <EuiCacheContext.Provider value={euiCache}>
         <EuiThemeProvider
           theme={theme ?? undefined}
           colorMode={colorMode}
