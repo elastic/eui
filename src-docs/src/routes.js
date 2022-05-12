@@ -189,7 +189,6 @@ import { ResizeObserverExample } from './views/resize_observer/resize_observer_e
 
 import { ResizableContainerExample } from './views/resizable_container/resizable_container_example';
 
-import { ResponsiveExample } from './views/responsive/responsive_example';
 import { ScrollExample } from './views/scroll/scroll_example';
 
 import { SearchBarExample } from './views/search_bar/search_bar_example';
@@ -238,7 +237,7 @@ import { SuperSelectExample } from './views/super_select/super_select_example';
 
 import { ThemeExample } from './views/theme/theme_example';
 import { ColorModeExample } from './views/theme/color_mode/color_mode_example';
-import Breakpoints from './views/theme/breakpoints/breakpoints';
+import { BreakpointsExample } from './views/theme/breakpoints/breakpoints_example';
 import Borders, { bordersSections } from './views/theme/borders/borders';
 import Color, { colorsInfo, colorsSections } from './views/theme/color/tokens';
 import ColorContrast, { contrastSections } from './views/theme/color/contrast';
@@ -408,10 +407,7 @@ const navigation = [
     items: [
       createExample(ThemeExample, 'Theme provider'),
       createExample(ColorModeExample),
-      {
-        name: 'Breakpoints',
-        component: Breakpoints,
-      },
+      createTabbedPage(BreakpointsExample),
       {
         name: 'Borders',
         component: Borders,
@@ -631,7 +627,6 @@ const navigation = [
       PrettyDurationExample,
       ProviderExample,
       ResizeObserverExample,
-      ResponsiveExample,
       ScrollExample,
       TextDiffExample,
       WindowEventExample,

@@ -11,9 +11,10 @@ import {
   throttle,
   EuiBreakpointSize,
   EuiCode,
+  EuiThemeBreakpoints,
 } from '../../../../../src';
 
-import { EuiThemeBreakpoints } from '../_props';
+import { EuiThemeBreakpoints as _EuiThemeBreakpoints } from '../_props';
 import { getPropsFromComponent } from '../../../services/props/get_props';
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
@@ -134,8 +135,7 @@ export default () => {
 export const BreakpointValuesJS = () => {
   const { euiTheme } = useEuiTheme();
   const breakpoint = euiTheme.breakpoint;
-  const breakpointTypes = getPropsFromComponent(EuiThemeBreakpoints);
-  const breakpoints = Object.keys(breakpointTypes);
+  const breakpointTypes = getPropsFromComponent(_EuiThemeBreakpoints);
 
   const [currentBreakpoint, setCurrentBreakpoint] = useState(
     getBreakpoint(typeof window === 'undefined' ? 0 : window.innerWidth)
@@ -157,7 +157,7 @@ export const BreakpointValuesJS = () => {
   return (
     <>
       <ThemeValuesTable
-        items={breakpoints.map((size) => {
+        items={EuiThemeBreakpoints.map((size) => {
           return {
             id: size,
             token: `breakpoint.${size}`,
