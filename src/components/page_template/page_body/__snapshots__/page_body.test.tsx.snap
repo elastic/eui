@@ -1,47 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiPageBody is rendered 1`] = `
+exports[`_EuiPageInner component is rendered 1`] = `
+<main
+  class="euiPageInner css-afbd70-euiPageInner"
+/>
+`;
+
+exports[`_EuiPageInner is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody euiPageBody--borderRadiusNone testClass1 testClass2"
+  class="euiPageInner testClass1 testClass2 css-afbd70-euiPageInner"
   data-test-subj="test subject string"
 />
 `;
 
-exports[`EuiPageBody panelled also accepts panelProps 1`] = `
+exports[`_EuiPageInner paddingSize l is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+  class="euiPageInner css-1988y1q-euiPageInner-l"
 />
 `;
 
-exports[`EuiPageBody panelled can be set to true 1`] = `
+exports[`_EuiPageInner paddingSize m is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+  class="euiPageInner css-bkn3wx-euiPageInner-m"
 />
 `;
 
-exports[`EuiPageBody restrict width can be set to a custom number 1`] = `
+exports[`_EuiPageInner paddingSize none is rendered 1`] = `
 <div
-  aria-label="aria-label"
-  class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-custom testClass1 testClass2"
-  data-test-subj="test subject string"
-  style="max-width:1024px"
+  class="euiPageInner css-afbd70-euiPageInner"
 />
 `;
 
-exports[`EuiPageBody restrict width can be set to a custom value and measurement 1`] = `
+exports[`_EuiPageInner paddingSize s is rendered 1`] = `
 <div
-  aria-label="aria-label"
-  class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-custom testClass1 testClass2"
-  data-test-subj="test subject string"
-  style="max-width:24rem"
+  class="euiPageInner css-13sfhhz-euiPageInner-s"
 />
 `;
 
-exports[`EuiPageBody restrict width can be set to a default 1`] = `
+exports[`_EuiPageInner paddingSize xl is rendered 1`] = `
 <div
-  aria-label="aria-label"
-  class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-default testClass1 testClass2"
-  data-test-subj="test subject string"
+  class="euiPageInner css-tsy6jk-euiPageInner-xl"
+/>
+`;
+
+exports[`_EuiPageInner paddingSize xs is rendered 1`] = `
+<div
+  class="euiPageInner css-1o37y8r-euiPageInner-xs"
+/>
+`;
+
+exports[`_EuiPageInner panelled is rendered 1`] = `
+<div
+  class="euiPageInner css-1g767o6-euiPageInner-panelled"
 />
 `;

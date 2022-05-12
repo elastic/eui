@@ -13,7 +13,7 @@ import {
   _EuiPageSidebar as EuiPageSideBar,
   _EuiPageSidebarProps,
 } from './page_side_bar';
-import { EuiPageBody, EuiPageBodyProps } from './page_body';
+import { _EuiPageInner as EuiPageBody, _EuiPageInnerProps } from './page_body';
 import { EuiPageHeader, EuiPageHeaderProps } from './page_header';
 import {
   EuiPageContent,
@@ -65,7 +65,7 @@ export type EuiPageTemplateProps = _EuiPageOuterProps &
     /**
      * Gets passed along to the #EuiPageBody component
      */
-    pageBodyProps?: EuiPageBodyProps;
+    pageBodyProps?: _EuiPageInnerProps;
     /**
      * Gets passed along to the #EuiPageContent component
      */
@@ -187,11 +187,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
             {pageSideBar}
           </EuiPageSideBar>
 
-          <EuiPageBody
-            // @ts-expect-error New padding sizes
-            paddingSize={paddingSize}
-            {...pageBodyProps}
-          >
+          <EuiPageBody paddingSize={paddingSize} {...pageBodyProps}>
             {pageHeader && (
               <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
             )}
@@ -218,7 +214,10 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           {...rest}
           style={pageStyle}
         >
-          <EuiPageBody restrictWidth={restrictWidth} {...pageBodyProps}>
+          <EuiPageBody
+            // restrictWidth={restrictWidth}
+            {...pageBodyProps}
+          >
             {pageHeader && (
               <EuiPageHeader
                 paddingSize="none"
@@ -269,12 +268,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
             {pageSideBar}
           </EuiPageSideBar>
 
-          <EuiPageBody
-            panelled
-            // @ts-expect-error New padding sizes
-            paddingSize={paddingSize}
-            {...pageBodyProps}
-          >
+          <EuiPageBody panelled paddingSize={paddingSize} {...pageBodyProps}>
             {pageHeader && (
               <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
             )}
@@ -361,11 +355,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
             {pageSideBar}
           </EuiPageSideBar>
 
-          <EuiPageBody
-            // @ts-expect-error New padding sizes
-            paddingSize={paddingSize}
-            {...pageBodyProps}
-          >
+          <EuiPageBody paddingSize={paddingSize} {...pageBodyProps}>
             {pageHeader && (
               <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
             )}
@@ -393,7 +383,10 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           {...rest}
           style={pageStyle}
         >
-          <EuiPageBody restrictWidth={restrictWidth} {...pageBodyProps}>
+          <EuiPageBody
+            //restrictWidth={restrictWidth}
+            {...pageBodyProps}
+          >
             {pageHeader && (
               <EuiPageHeader
                 paddingSize="none"
@@ -531,5 +524,6 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
 
 export const EuiPageT = {
   Outer: EuiPageOuter,
+  Inner: EuiPageBody,
   Sidebar: EuiPageSideBar,
 };

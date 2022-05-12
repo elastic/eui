@@ -9,55 +9,39 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
+import { PADDING_SIZES } from '../../../global_styling';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 
-import { EuiPageBody } from './page_body';
+import { _EuiPageInner as EuiPageInner } from './page_body';
 
-describe('EuiPageBody', () => {
+describe('_EuiPageInner', () => {
+  shouldRenderCustomStyles(<EuiPageInner />);
+
   test('is rendered', () => {
-    const component = render(<EuiPageBody {...requiredProps} />);
+    const component = render(<EuiPageInner {...requiredProps} />);
 
     expect(component).toMatchSnapshot();
   });
 
-  describe('panelled', () => {
-    test('can be set to true', () => {
-      const component = render(<EuiPageBody panelled={true} />);
+  test('panelled is rendered', () => {
+    const component = render(<EuiPageInner panelled={true} />);
 
-      expect(component).toMatchSnapshot();
-    });
-
-    test('also accepts panelProps', () => {
-      const component = render(
-        <EuiPageBody panelled={true} panelProps={{ color: 'subdued' }} />
-      );
-
-      expect(component).toMatchSnapshot();
-    });
+    expect(component).toMatchSnapshot();
   });
 
-  describe('restrict width', () => {
-    test('can be set to a default', () => {
-      const component = render(
-        <EuiPageBody {...requiredProps} restrictWidth={true} />
-      );
+  test('component is rendered', () => {
+    const component = render(<EuiPageInner component="main" />);
 
-      expect(component).toMatchSnapshot();
-    });
+    expect(component).toMatchSnapshot();
+  });
 
-    test('can be set to a custom number', () => {
-      const component = render(
-        <EuiPageBody {...requiredProps} restrictWidth={1024} />
-      );
+  describe('paddingSize', () => {
+    PADDING_SIZES.forEach((size) => {
+      it(`${size} is rendered`, () => {
+        const component = render(<EuiPageInner paddingSize={size} />);
 
-      expect(component).toMatchSnapshot();
-    });
-
-    test('can be set to a custom value and measurement', () => {
-      const component = render(
-        <EuiPageBody {...requiredProps} restrictWidth="24rem" />
-      );
-
-      expect(component).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
+      });
     });
   });
 });
