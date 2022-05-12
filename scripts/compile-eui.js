@@ -110,24 +110,6 @@ function compileLib() {
 function compileBundle() {
   shell.mkdir('-p', 'dist');
 
-  console.log('Building bundle...');
-  execSync('webpack --config=src/webpack.config.js', {
-    stdio: 'inherit',
-    env: {
-      ...process.env,
-      BABEL_MODULES: false,
-    },
-  });
-
-  console.log('Building minified bundle...');
-  execSync('NODE_ENV=production NODE_OPTIONS=--max-old-space-size=4096 webpack --config=src/webpack.config.js', {
-    stdio: 'inherit',
-    env: {
-      ...process.env,
-      BABEL_MODULES: false,
-    },
-  });
-
   console.log('Building test utils .d.ts files...');
   ['lib/test', 'optimize/lib/test', 'es/test', 'optimize/es/test'].forEach((dir) => {
     dtsGenerator({
