@@ -20,10 +20,14 @@ import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 
 export default () => {
+  const { euiTheme } = useEuiTheme();
   const isLargeBreakpoint = useIsWithinBreakpoints(['l', 'xl']);
 
   const [currentBreakpoint, setCurrentBreakpoint] = useState(
-    getBreakpoint(typeof window === 'undefined' ? 0 : window.innerWidth)
+    getBreakpoint(
+      typeof window === 'undefined' ? 0 : window.innerWidth,
+      euiTheme.breakpoint
+    )
   );
 
   const [withinBreakpoints, setWithinBreakpoints] = useState(
@@ -34,7 +38,7 @@ export default () => {
   );
 
   const functionToCallOnWindowResize = throttle(() => {
-    setCurrentBreakpoint(getBreakpoint(window.innerWidth));
+    setCurrentBreakpoint(getBreakpoint(window.innerWidth, euiTheme.breakpoint));
     setWithinBreakpoints(isWithinBreakpoints(window.innerWidth, ['xs', 's']));
     // reacts every 50ms to resize changes and always gets the final update
   }, 50);
@@ -50,7 +54,7 @@ export default () => {
   return (
     <>
       <ThemeExample
-        title={<code>getBreakpoint(width)</code>}
+        title={<code>getBreakpoint(width, breakpoints)</code>}
         type="function"
         description={
           <p>
@@ -64,7 +68,7 @@ export default () => {
             Current breakpoint: <strong>{currentBreakpoint}</strong>
           </p>
         }
-        snippet="getBreakpoint(window.innerWidth)"
+        snippet="getBreakpoint(window.innerWidth, euiTheme.breakpoint)"
         snippetLanguage="js"
       />
 
@@ -138,11 +142,14 @@ export const BreakpointValuesJS = () => {
   const breakpointTypes = getPropsFromComponent(_EuiThemeBreakpoints);
 
   const [currentBreakpoint, setCurrentBreakpoint] = useState(
-    getBreakpoint(typeof window === 'undefined' ? 0 : window.innerWidth)
+    getBreakpoint(
+      typeof window === 'undefined' ? 0 : window.innerWidth,
+      euiTheme.breakpoint
+    )
   );
 
   const functionToCallOnWindowResize = throttle(() => {
-    setCurrentBreakpoint(getBreakpoint(window.innerWidth));
+    setCurrentBreakpoint(getBreakpoint(window.innerWidth, euiTheme.breakpoint));
     // reacts every 50ms to resize changes and always gets the final update
   }, 50);
 

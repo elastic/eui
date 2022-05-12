@@ -97,9 +97,12 @@ export default () => {
                   return renderSassSizes(size, index);
                 })
                 .join('\n')
-            : BREAKPOINT_KEYS.map(function (size, index) {
-                return renderJsSizes(size, index);
-              }).join('\n')}
+            : // @ts-ignore Help?
+              BREAKPOINT_KEYS.reverse()
+                .map(function (size: EuiBreakpointSize, index: number) {
+                  return renderJsSizes(size, index);
+                })
+                .join('\n')}
         </EuiCodeBlock>
       </GuideSection>
 
