@@ -15,10 +15,6 @@ export const euiPageOuterStyles = ({ euiTheme }: UseEuiTheme) => ({
     background-color: ${euiTheme.colors.body};
     flex-shrink: 0; // Ensures Safari doesn't shrink height beyond contents
     max-width: 100%; // Ensures Firefox doesn't expand width beyond bounds
-
-    /* @include euiBreakpoint('xs', 's') {
-      flex-direction: column;
-    } */
   `,
 
   // Grow
@@ -34,21 +30,3 @@ export const euiPageOuterStyles = ({ euiTheme }: UseEuiTheme) => ({
     flex-direction: row;
   `,
 });
-
-// // Uses the same values as EuiPanel
-// @each $modifier, $amount in $euiPanelPaddingModifiers {
-//   .euiPage--#{$modifier} {
-//     padding: $amount;
-
-//     .euiPageSideBar {
-//       min-width: $euiPageSidebarMinWidth;
-//       margin-right: $amount;
-
-//       // sass-lint:disable-block mixins-before-declarations
-//       @include euiBreakpoint('xs', 's') {
-//         margin-right: 0;
-//         margin-bottom: $amount;
-//       }
-//     }
-//   }
-// }

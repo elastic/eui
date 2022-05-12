@@ -9,7 +9,10 @@
 import React, { CSSProperties, FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 import { _EuiPageOuter as EuiPageOuter, _EuiPageOuterProps } from './page';
-import { EuiPageSideBar, EuiPageSideBarProps } from './page_side_bar';
+import {
+  _EuiPageSidebar as EuiPageSideBar,
+  _EuiPageSidebarProps,
+} from './page_side_bar';
 import { EuiPageBody, EuiPageBodyProps } from './page_body';
 import { EuiPageHeader, EuiPageHeaderProps } from './page_header';
 import {
@@ -54,7 +57,7 @@ export type EuiPageTemplateProps = _EuiPageOuterProps &
     /**
      * Gets passed along to the #EuiPageSideBar component
      */
-    pageSideBarProps?: EuiPageSideBarProps;
+    pageSideBarProps?: _EuiPageSidebarProps;
     /**
      * Optionally include an #EuiPageHeader by passing an object of its props
      */
@@ -177,8 +180,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           style={pageStyle}
         >
           <EuiPageSideBar
-            sticky
-            // @ts-expect-error New padding sizes
+            sticky={{ offset: 0 }}
             paddingSize={paddingSize}
             {...pageSideBarProps}
           >
@@ -260,8 +262,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           style={pageStyle}
         >
           <EuiPageSideBar
-            sticky
-            // @ts-expect-error New padding sizes
+            sticky={{ offset: 0 }}
             paddingSize={paddingSize}
             {...pageSideBarProps}
           >
@@ -353,8 +354,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           style={pageStyle}
         >
           <EuiPageSideBar
-            sticky
-            // @ts-expect-error New padding sizes
+            sticky={{ offset: 0 }}
             paddingSize={paddingSize}
             {...pageSideBarProps}
           >
@@ -450,8 +450,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           style={pageStyle}
         >
           <EuiPageSideBar
-            sticky
-            // @ts-expect-error New padding sizes
+            sticky={{ offset: 0 }}
             paddingSize={paddingSize}
             {...pageSideBarProps}
           >
@@ -532,4 +531,5 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
 
 export const EuiPageT = {
   Outer: EuiPageOuter,
+  Sidebar: EuiPageSideBar,
 };

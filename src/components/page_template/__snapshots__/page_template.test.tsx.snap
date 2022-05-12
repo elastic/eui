@@ -2,7 +2,7 @@
 
 exports[`EuiPageTemplate fullHeight is rendered with noscroll 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -22,7 +22,7 @@ exports[`EuiPageTemplate fullHeight is rendered with noscroll 1`] = `
 
 exports[`EuiPageTemplate fullHeight is rendered with true 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -43,7 +43,7 @@ exports[`EuiPageTemplate fullHeight is rendered with true 1`] = `
 exports[`EuiPageTemplate is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageOuter euiPageTemplate testClass1 testClass2 css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate testClass1 testClass2 css-1fesrzg-euiPageOuter-row-grow"
   data-test-subj="test subject string"
   style="min-height:460px"
 >
@@ -64,7 +64,7 @@ exports[`EuiPageTemplate is rendered 1`] = `
 
 exports[`EuiPageTemplate restrict width can be set to a custom number 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -85,7 +85,7 @@ exports[`EuiPageTemplate restrict width can be set to a custom number 1`] = `
 
 exports[`EuiPageTemplate restrict width can be turned off 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -105,7 +105,7 @@ exports[`EuiPageTemplate restrict width can be turned off 1`] = `
 
 exports[`EuiPageTemplate template centeredBody is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -129,7 +129,7 @@ exports[`EuiPageTemplate template centeredBody is rendered 1`] = `
 
 exports[`EuiPageTemplate template centeredBody is rendered with pageBodyProps 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -155,7 +155,7 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageBodyProps 1`
 
 exports[`EuiPageTemplate template centeredBody is rendered with pageContentBodyProps 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -181,7 +181,7 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageContentBodyP
 
 exports[`EuiPageTemplate template centeredBody is rendered with pageContentProps 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -207,7 +207,7 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageContentProps
 
 exports[`EuiPageTemplate template centeredBody is rendered with pageHeader 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -249,7 +249,7 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageHeader 1`] =
 
 exports[`EuiPageTemplate template centeredBody minHeight is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:40vh"
 >
   <div
@@ -273,7 +273,7 @@ exports[`EuiPageTemplate template centeredBody minHeight is rendered 1`] = `
 
 exports[`EuiPageTemplate template centeredBody paddingSize is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -297,7 +297,7 @@ exports[`EuiPageTemplate template centeredBody paddingSize is rendered 1`] = `
 
 exports[`EuiPageTemplate template centeredBody style is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px;max-height:100vh"
 >
   <div
@@ -321,11 +321,12 @@ exports[`EuiPageTemplate template centeredBody style is rendered 1`] = `
 
 exports[`EuiPageTemplate template centeredBody with pageSideBar is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
-    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky"
+    class="css-1pzetne-euiPageSidebar-sticky-l"
+    style="min-inline-size:260px;inset-block-start:0;max-block-size:calc(100vb - 0px)"
   >
     Side Bar
   </div>
@@ -346,13 +347,14 @@ exports[`EuiPageTemplate template centeredBody with pageSideBar is rendered 1`] 
 
 exports[`EuiPageTemplate template centeredBody with pageSideBar is rendered with pageSideBarProps 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
     aria-label="aria-label"
-    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky testClass1 testClass2"
+    class="testClass1 testClass2 css-1pzetne-euiPageSidebar-sticky-l"
     data-test-subj="test subject string"
+    style="min-inline-size:260px;inset-block-start:0;max-block-size:calc(100vb - 0px)"
   >
     Side Bar
   </div>
@@ -373,7 +375,7 @@ exports[`EuiPageTemplate template centeredBody with pageSideBar is rendered with
 
 exports[`EuiPageTemplate template centeredContent is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -398,7 +400,7 @@ exports[`EuiPageTemplate template centeredContent is rendered 1`] = `
 
 exports[`EuiPageTemplate template centeredContent is rendered with pageBodyProps 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -425,7 +427,7 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageBodyProps
 
 exports[`EuiPageTemplate template centeredContent is rendered with pageContentBodyProps 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -452,7 +454,7 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageContentBo
 
 exports[`EuiPageTemplate template centeredContent is rendered with pageContentProps 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -479,7 +481,7 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageContentPr
 
 exports[`EuiPageTemplate template centeredContent is rendered with pageHeader 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -523,7 +525,7 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageHeader 1`
 
 exports[`EuiPageTemplate template centeredContent minHeight is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:40vh"
 >
   <div
@@ -548,7 +550,7 @@ exports[`EuiPageTemplate template centeredContent minHeight is rendered 1`] = `
 
 exports[`EuiPageTemplate template centeredContent paddingSize is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -573,7 +575,7 @@ exports[`EuiPageTemplate template centeredContent paddingSize is rendered 1`] = 
 
 exports[`EuiPageTemplate template centeredContent style is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px;max-height:100vh"
 >
   <div
@@ -598,11 +600,12 @@ exports[`EuiPageTemplate template centeredContent style is rendered 1`] = `
 
 exports[`EuiPageTemplate template centeredContent with pageSideBar is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
-    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky"
+    class="css-1pzetne-euiPageSidebar-sticky-l"
+    style="min-inline-size:260px;inset-block-start:0;max-block-size:calc(100vb - 0px)"
   >
     Side Bar
   </div>
@@ -623,13 +626,14 @@ exports[`EuiPageTemplate template centeredContent with pageSideBar is rendered 1
 
 exports[`EuiPageTemplate template centeredContent with pageSideBar is rendered with pageSideBarProps 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
     aria-label="aria-label"
-    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky testClass1 testClass2"
+    class="testClass1 testClass2 css-1pzetne-euiPageSidebar-sticky-l"
     data-test-subj="test subject string"
+    style="min-inline-size:260px;inset-block-start:0;max-block-size:calc(100vb - 0px)"
   >
     Side Bar
   </div>
@@ -650,7 +654,7 @@ exports[`EuiPageTemplate template centeredContent with pageSideBar is rendered w
 
 exports[`EuiPageTemplate template default is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -670,7 +674,7 @@ exports[`EuiPageTemplate template default is rendered 1`] = `
 
 exports[`EuiPageTemplate template default is rendered with pageBodyProps 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -692,7 +696,7 @@ exports[`EuiPageTemplate template default is rendered with pageBodyProps 1`] = `
 
 exports[`EuiPageTemplate template default is rendered with pageContentBodyProps 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -714,7 +718,7 @@ exports[`EuiPageTemplate template default is rendered with pageContentBodyProps 
 
 exports[`EuiPageTemplate template default is rendered with pageContentProps 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -736,7 +740,7 @@ exports[`EuiPageTemplate template default is rendered with pageContentProps 1`] 
 
 exports[`EuiPageTemplate template default is rendered with pageHeader 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -775,7 +779,7 @@ exports[`EuiPageTemplate template default is rendered with pageHeader 1`] = `
 
 exports[`EuiPageTemplate template default minHeight is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:40vh"
 >
   <div
@@ -795,7 +799,7 @@ exports[`EuiPageTemplate template default minHeight is rendered 1`] = `
 
 exports[`EuiPageTemplate template default paddingSize is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -815,7 +819,7 @@ exports[`EuiPageTemplate template default paddingSize is rendered 1`] = `
 
 exports[`EuiPageTemplate template default style is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px;max-height:100vh"
 >
   <div
@@ -835,11 +839,12 @@ exports[`EuiPageTemplate template default style is rendered 1`] = `
 
 exports[`EuiPageTemplate template default with pageSideBar is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
-    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky"
+    class="css-1pzetne-euiPageSidebar-sticky-l"
+    style="min-inline-size:260px;inset-block-start:0;max-block-size:calc(100vb - 0px)"
   >
     Side Bar
   </div>
@@ -864,13 +869,14 @@ exports[`EuiPageTemplate template default with pageSideBar is rendered 1`] = `
 
 exports[`EuiPageTemplate template default with pageSideBar is rendered with pageSideBarProps 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
     aria-label="aria-label"
-    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky testClass1 testClass2"
+    class="testClass1 testClass2 css-1pzetne-euiPageSidebar-sticky-l"
     data-test-subj="test subject string"
+    style="min-inline-size:260px;inset-block-start:0;max-block-size:calc(100vb - 0px)"
   >
     Side Bar
   </div>
@@ -895,7 +901,7 @@ exports[`EuiPageTemplate template default with pageSideBar is rendered with page
 
 exports[`EuiPageTemplate template empty is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -915,7 +921,7 @@ exports[`EuiPageTemplate template empty is rendered 1`] = `
 
 exports[`EuiPageTemplate template empty is rendered with pageBodyProps 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -937,7 +943,7 @@ exports[`EuiPageTemplate template empty is rendered with pageBodyProps 1`] = `
 
 exports[`EuiPageTemplate template empty is rendered with pageContentBodyProps 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -959,7 +965,7 @@ exports[`EuiPageTemplate template empty is rendered with pageContentBodyProps 1`
 
 exports[`EuiPageTemplate template empty is rendered with pageContentProps 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -981,7 +987,7 @@ exports[`EuiPageTemplate template empty is rendered with pageContentProps 1`] = 
 
 exports[`EuiPageTemplate template empty is rendered with pageHeader 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -1019,7 +1025,7 @@ exports[`EuiPageTemplate template empty is rendered with pageHeader 1`] = `
 
 exports[`EuiPageTemplate template empty minHeight is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:40vh"
 >
   <div
@@ -1039,7 +1045,7 @@ exports[`EuiPageTemplate template empty minHeight is rendered 1`] = `
 
 exports[`EuiPageTemplate template empty paddingSize is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
@@ -1059,7 +1065,7 @@ exports[`EuiPageTemplate template empty paddingSize is rendered 1`] = `
 
 exports[`EuiPageTemplate template empty style is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px;max-height:100vh"
 >
   <div
@@ -1079,11 +1085,12 @@ exports[`EuiPageTemplate template empty style is rendered 1`] = `
 
 exports[`EuiPageTemplate template empty with pageSideBar is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
-    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky"
+    class="css-1pzetne-euiPageSidebar-sticky-l"
+    style="min-inline-size:260px;inset-block-start:0;max-block-size:calc(100vb - 0px)"
   >
     Side Bar
   </div>
@@ -1104,13 +1111,14 @@ exports[`EuiPageTemplate template empty with pageSideBar is rendered 1`] = `
 
 exports[`EuiPageTemplate template empty with pageSideBar is rendered with pageSideBarProps 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div
     aria-label="aria-label"
-    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky testClass1 testClass2"
+    class="testClass1 testClass2 css-1pzetne-euiPageSidebar-sticky-l"
     data-test-subj="test subject string"
+    style="min-inline-size:260px;inset-block-start:0;max-block-size:calc(100vb - 0px)"
   >
     Side Bar
   </div>
@@ -1131,7 +1139,7 @@ exports[`EuiPageTemplate template empty with pageSideBar is rendered with pageSi
 
 exports[`EuiPageTemplate with bottomBar is rendered 1`] = `
 <div
-  class="euiPageOuter euiPageTemplate css-odmukm-euiPageOuter-row-grow"
+  class="euiPageOuter euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-height:460px"
 >
   <div

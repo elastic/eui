@@ -6,50 +6,81 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
-import classNames from 'classnames';
-import { CommonProps, keysOf } from '../../common';
+import React, { CSSProperties, FunctionComponent, HTMLAttributes } from 'react';
+import { CommonProps } from '../../common';
+import {
+  EuiPaddingSize,
+  logicalStyle,
+  logicalUnit,
+  useEuiPaddingCSS,
+  _EuiThemeBreakpoint,
+} from '../../../global_styling';
+import { useEuiTheme, useIsWithinBreakpoints } from '../../../services';
+import { euiPageSidebarStyles } from './page_side_bar.styles';
 
-const paddingSizeToClassNameMap = {
-  none: null,
-  s: 'euiPageSideBar--paddingSmall',
-  m: 'euiPageSideBar--paddingMedium',
-  l: 'euiPageSideBar--paddingLarge',
-};
-
-export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
-
-export interface EuiPageSideBarProps
+export interface _EuiPageSidebarProps
   extends CommonProps,
-    HTMLAttributes<HTMLDivElement> {
+    HTMLAttributes<HTMLDivElement>,
+    EuiPaddingSize {
   /**
-   * Adds `position: sticky` and affords for any fixed position headers
+   * Adds `position: sticky` and affords for any fixed position headers.
    */
-  sticky?: boolean;
+  sticky?: {
+    /**
+     * To account for any fixed elements like headers,
+     * pass in the value of the total height of those fixed elements.
+     */
+    offset: number;
+  };
   /**
-   * Adds padding around the children
+   * A minimum width is necessary to maintain size.
+   * Be sure to take `paddingSize` into account.
    */
-  paddingSize?: typeof PADDING_SIZES[number];
+  minWidth?: CSSProperties['width'];
+  /**
+   * Sets the `minWidth` to 100% when within these breakpoints.
+   */
+  responsive?: _EuiThemeBreakpoint[];
 }
 
-export const EuiPageSideBar: FunctionComponent<EuiPageSideBarProps> = ({
+export const _EuiPageSidebar: FunctionComponent<_EuiPageSidebarProps> = ({
   children,
   className,
   sticky,
   paddingSize = 'none',
+  minWidth = 260,
+  responsive = ['xs', 's'],
+  style,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiPageSideBar',
-    paddingSizeToClassNameMap[paddingSize],
-    {
-      'euiPageSideBar--sticky': sticky,
-    },
-    className
-  );
+  const themeContext = useEuiTheme();
+  const styles = euiPageSidebarStyles(themeContext);
+  const isResponding = useIsWithinBreakpoints(responsive);
+
+  const cssStyles = [
+    styles.euiPageSidebar,
+    !isResponding && sticky && styles.sticky,
+    useEuiPaddingCSS()[paddingSize],
+  ];
+
+  // Inline styles for setting up width and sticky offsets
+  let inlineStyles = {
+    ...style,
+    ...logicalStyle('min-width', isResponding ? '100%' : minWidth),
+  };
+  if (!isResponding && sticky) {
+    inlineStyles = {
+      ...inlineStyles,
+      ...logicalStyle('top', sticky.offset),
+      ...logicalStyle(
+        'max-height',
+        `calc(100${logicalUnit.vh} - ${sticky.offset}px)`
+      ),
+    };
+  }
 
   return (
-    <div className={classes} {...rest}>
+    <div className={className} css={cssStyles} style={inlineStyles} {...rest}>
       {children}
     </div>
   );

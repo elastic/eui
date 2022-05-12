@@ -1,39 +1,66 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiPageSideBar is rendered 1`] = `
+exports[`_EuiPageSidebar is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageSideBar testClass1 testClass2"
+  class="testClass1 testClass2 css-1qf7qz5-euiPageSidebar"
   data-test-subj="test subject string"
+  style="min-inline-size:260px"
 />
 `;
 
-exports[`EuiPageSideBar paddingSize l is rendered 1`] = `
+exports[`_EuiPageSidebar minWidth is rendered 1`] = `
 <div
-  class="euiPageSideBar euiPageSideBar--paddingLarge"
+  class="css-1qf7qz5-euiPageSidebar"
+  style="min-inline-size:400px"
 />
 `;
 
-exports[`EuiPageSideBar paddingSize m is rendered 1`] = `
+exports[`_EuiPageSidebar paddingSize l is rendered 1`] = `
 <div
-  class="euiPageSideBar euiPageSideBar--paddingMedium"
+  class="css-1tg25y8-euiPageSidebar-l"
+  style="min-inline-size:260px"
 />
 `;
 
-exports[`EuiPageSideBar paddingSize none is rendered 1`] = `
+exports[`_EuiPageSidebar paddingSize m is rendered 1`] = `
 <div
-  class="euiPageSideBar"
+  class="css-1mcpaa9-euiPageSidebar-m"
+  style="min-inline-size:260px"
 />
 `;
 
-exports[`EuiPageSideBar paddingSize s is rendered 1`] = `
+exports[`_EuiPageSidebar paddingSize none is rendered 1`] = `
 <div
-  class="euiPageSideBar euiPageSideBar--paddingSmall"
+  class="css-1qf7qz5-euiPageSidebar"
+  style="min-inline-size:260px"
 />
 `;
 
-exports[`EuiPageSideBar sticky is rendered 1`] = `
+exports[`_EuiPageSidebar paddingSize s is rendered 1`] = `
 <div
-  class="euiPageSideBar euiPageSideBar--sticky"
+  class="css-1apnd73-euiPageSidebar-s"
+  style="min-inline-size:260px"
+/>
+`;
+
+exports[`_EuiPageSidebar paddingSize xl is rendered 1`] = `
+<div
+  class="css-1og7fpc-euiPageSidebar-xl"
+  style="min-inline-size:260px"
+/>
+`;
+
+exports[`_EuiPageSidebar paddingSize xs is rendered 1`] = `
+<div
+  class="css-1d06vmx-euiPageSidebar-xs"
+  style="min-inline-size:260px"
+/>
+`;
+
+exports[`_EuiPageSidebar sticky is rendered 1`] = `
+<div
+  class="css-1ejlltg-euiPageSidebar-sticky"
+  style="min-inline-size:260px;inset-block-start:100px;max-block-size:calc(100vb - 100px)"
 />
 `;

@@ -27,6 +27,11 @@ export const logicalSide = {
 export const LOGICAL_SIDES = keysOf(logicalSide);
 export type LogicalSides = typeof LOGICAL_SIDES[number];
 
+export const logicalUnit = {
+  vh: 'vb',
+  vw: 'vi',
+};
+
 const logicalMargins = {
   'margin-left': 'margin-inline-start',
   'margin-right': 'margin-inline-end',
@@ -109,7 +114,7 @@ export const logicalStyle = (property: LogicalProperties, value?: any) => {
   const camelCasedProperty = logicals[property].replace(/-\w/g, (str) =>
     str.charAt(1).toUpperCase()
   );
-  return { [camelCasedProperty]: `${value}` };
+  return { [camelCasedProperty]: value };
 };
 
 // Text alignment is separate because its the value that changes not the property
