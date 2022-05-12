@@ -32,6 +32,7 @@ import {
   isWithinBreakpoints,
 } from '../../../services/breakpoint';
 import { EuiSpacer } from '../../spacer';
+import { ENTER } from '../../../services/keys';
 
 export type EuiSelectableTemplateSitewideProps = Partial<
   Omit<EuiSelectableProps<{ [key: string]: any }>, 'options'>
@@ -142,30 +143,24 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
    * Search helpers
    */
   const searchOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    searchProps && searchProps.onFocus && searchProps.onFocus(e);
-    if (canShowPopoverButton) return;
-
+    searchProps?.onFocus?.(e);
     setPopoverIsOpen(true);
   };
 
   const onSearchInput = (e: React.FormEvent<HTMLInputElement>) => {
-    searchProps && searchProps.onInput && searchProps.onInput(e);
+    searchProps?.onInput?.(e);
     setPopoverIsOpen(true);
   };
 
   const onSearchKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    searchProps && searchProps.onKeyDown && searchProps.onKeyDown(e);
-    if (canShowPopoverButton) return;
-
-    if (e.key === 'Enter') {
+    searchProps?.onKeyDown?.(e);
+    if (e.key === ENTER) {
       setPopoverIsOpen(true);
     }
   };
 
   const searchOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    searchProps && searchProps.onBlur && searchProps.onBlur(e);
-    if (canShowPopoverButton) return;
-
+    searchProps?.onBlur?.(e);
     if (!popoverRef?.contains(e.relatedTarget as HTMLElement)) {
       setPopoverIsOpen(false);
     }
