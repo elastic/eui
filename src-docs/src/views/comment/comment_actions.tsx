@@ -120,7 +120,6 @@ export default () => {
     <EuiCommentList aria-label="Actions">
       <EuiComment
         username="janed"
-        timelineAvatarName="janed"
         event="added a comment"
         actions={customActions}
         timestamp="Jan 1, 2020"
@@ -129,8 +128,7 @@ export default () => {
       </EuiComment>
       <EuiComment
         username="system"
-        timelineAvatarName="system"
-        timelineAvatarIconType="dot"
+        avatarIcon="dot"
         event={
           <>
             added an alert from <EuiLink>malware detection</EuiLink>

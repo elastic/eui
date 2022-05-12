@@ -35,14 +35,6 @@ export const euiCommentEventStyles = ({ euiTheme }: UseEuiTheme) => ({
   custom: css``,
 });
 
-export const euiCommentEventUpdatePanelStyles = ({
-  euiTheme,
-}: UseEuiTheme) => ({
-  euiCommentEvent__updatePanel: css`
-    padding-block: ${euiTheme.size.xs};
-  `,
-});
-
 export const euiCommentEventHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiCommentEvent__header: css``,
   euiCommentEvent__headerPanel: css``,
@@ -61,12 +53,18 @@ export const euiCommentEventHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiCommentEvent__headerUsername: css`
     font-weight: ${euiTheme.font.weight.semiBold};
   `,
+  euiCommentEvent__headerEvent: css``,
+  euiCommentEvent__headerTimestamp: css``,
   euiCommentEvent__headerActions: css`
     display: flex;
     flex-wrap: wrap;
     gap: ${euiTheme.size.xs};
   `,
-  euiCommentEvent__headerUpdateMessage: css`
-    padding-top: ${euiTheme.size.xs};
+  euiCommentEvent__headerEventMessage: css`
+    padding-top: ${euiTheme.size.s};
+  `,
+  // variants
+  hasHeaderColor: css`
+    padding: 0;
   `,
 });

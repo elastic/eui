@@ -41,7 +41,6 @@ const complexEvent = (
 const initialComments: EuiCommentProps[] = [
   {
     username: 'emma',
-    timelineAvatarName: 'emma',
     event: 'added a comment',
     timestamp: 'on 3rd March 2022',
     children: (
@@ -53,15 +52,13 @@ const initialComments: EuiCommentProps[] = [
   },
   {
     username: 'emma',
-    timelineAvatarName: 'emma',
     event: complexEvent,
     timestamp: 'on 3rd March 2022',
-    updateIcon: 'tag',
-    updateIconAriaLabel: 'tag',
+    eventIcon: 'tag',
+    eventIconAriaLabel: 'tag',
   },
   {
     username: 'tiago',
-    timelineAvatarName: 'tiago',
     event: 'added a comment',
     timestamp: 'on 4th March 2022',
     actions: actionButton,
@@ -74,7 +71,6 @@ const initialComments: EuiCommentProps[] = [
   },
   {
     username: 'tiago',
-    timelineAvatarName: 'tiago',
     event: (
       <>
         marked case as <EuiBadge color="warning">In progress</EuiBadge>
@@ -117,7 +113,7 @@ export default () => {
         ...comments,
         {
           username: 'emma',
-          timelineAvatarName: 'emma',
+          avatarName: 'emma',
           event: 'added a comment',
           timestamp: `on ${date}`,
           actions: actionButton,
@@ -133,13 +129,13 @@ export default () => {
     return (
       <EuiComment
         key={`comment-${index}`}
-        timelineAvatarName={comment.timelineAvatarName}
+        avatarName={comment.avatarName}
         username={comment.username}
         event={comment.event}
         timestamp={comment.timestamp}
         actions={comment.actions}
-        updateIcon={comment.updateIcon}
-        updateIconAriaLabel={comment.updateIconAriaLabel}
+        eventIcon={comment.eventIcon}
+        eventIconAriaLabel={comment.eventIconAriaLabel}
       >
         {comment.children}
       </EuiComment>
@@ -150,7 +146,7 @@ export default () => {
     <>
       <EuiCommentList aria-label="Comment system example">
         {commentsList}
-        <EuiComment timelineAvatarName="Juana">
+        <EuiComment avatarName="Juana">
           <EuiMarkdownEditor
             aria-label="Markdown editor"
             aria-describedby={errorElementId.current}

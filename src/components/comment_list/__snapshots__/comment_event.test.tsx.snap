@@ -1,181 +1,200 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiCommentEvent is rendered 1`] = `
-<figure
-  class="euiCommentEvent testClass1 testClass2 css-1vw1i3u-euiCommentEvent-regular"
->
-  <figcaption
-    class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
-  >
-    <div
-      class="euiCommentEvent__headerData css-1l51d77-euiCommentEvent__headerData"
-    >
-      <div
-        class="euiCommentEvent__headerUsername css-10865x4-euiCommentEvent__headerUsername"
-      >
-        someuser
-      </div>
-      <div
-        class="euiCommentEvent__headerEvent"
-      />
-    </div>
-  </figcaption>
-</figure>
-`;
-
-exports[`EuiCommentEvent props event is rendered 1`] = `
-<figure
-  class="euiCommentEvent css-1vw1i3u-euiCommentEvent-regular"
->
-  <figcaption
-    class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
-  >
-    <div
-      class="euiCommentEvent__headerData css-1l51d77-euiCommentEvent__headerData"
-    >
-      <div
-        class="euiCommentEvent__headerUsername css-10865x4-euiCommentEvent__headerUsername"
-      >
-        someuser
-      </div>
-      <div
-        class="euiCommentEvent__headerEvent"
-      >
-        commented
-      </div>
-    </div>
-  </figcaption>
-</figure>
-`;
-
-exports[`EuiCommentEvent props timestamp is rendered 1`] = `
-<figure
-  class="euiCommentEvent css-1vw1i3u-euiCommentEvent-regular"
->
-  <figcaption
-    class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
-  >
-    <div
-      class="euiCommentEvent__headerData css-1l51d77-euiCommentEvent__headerData"
-    >
-      <div
-        class="euiCommentEvent__headerUsername css-10865x4-euiCommentEvent__headerUsername"
-      >
-        someuser
-      </div>
-      <div
-        class="euiCommentEvent__headerEvent"
-      />
-      <div
-        class="euiCommentEvent__headerTimestamp"
-      >
-        <time>
-          21 days ago
-        </time>
-      </div>
-    </div>
-  </figcaption>
-</figure>
-`;
-
-exports[`EuiCommentEvent props type custom is rendered 1`] = `
 <div
-  class="euiCommentEvent css-p2ten8-euiCommentEvent-custom"
-/>
-`;
-
-exports[`EuiCommentEvent props type regular is rendered 1`] = `
-<figure
-  class="euiCommentEvent css-1vw1i3u-euiCommentEvent-regular"
->
-  <figcaption
-    class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
-  >
-    <div
-      class="euiCommentEvent__headerData css-1l51d77-euiCommentEvent__headerData"
-    >
-      <div
-        class="euiCommentEvent__headerUsername css-10865x4-euiCommentEvent__headerUsername"
-      >
-        someuser
-      </div>
-      <div
-        class="euiCommentEvent__headerEvent"
-      />
-    </div>
-  </figcaption>
-</figure>
-`;
-
-exports[`EuiCommentEvent props type update is rendered 1`] = `
-<div
-  class="euiCommentEvent css-krcl3t-euiCommentEvent-update"
+  class="euiCommentEvent testClass1 testClass2 css-krcl3t-euiCommentEvent-update"
 >
   <div
-    class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow css-cylma9-euiCommentEvent__updatePanel"
+    class="css-1880yg5-euiCommentEvent__header"
   >
     <div
-      class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
+      class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow css-1rpkzr0-euiCommentEvent__headerPanel"
     >
       <div
-        class="euiCommentEvent__headerData css-1l51d77-euiCommentEvent__headerData"
+        class="css-1h0gm9q-euiCommentEvent__headerMain"
       >
         <div
-          class="euiCommentEvent__headerUsername css-10865x4-euiCommentEvent__headerUsername"
+          class="css-1l51d77-euiCommentEvent__headerData"
         >
-          someuser
+          <div
+            class="css-10865x4-euiCommentEvent__headerUsername"
+          >
+            someuser
+          </div>
         </div>
-        <div
-          class="euiCommentEvent__headerEvent"
-        />
       </div>
     </div>
   </div>
 </div>
 `;
 
-exports[`EuiCommentEvent props updateColor is rendered 1`] = `
-<figure
-  class="euiCommentEvent css-1vw1i3u-euiCommentEvent-regular"
+exports[`EuiCommentEvent props event is rendered 1`] = `
+<div
+  class="euiCommentEvent css-krcl3t-euiCommentEvent-update"
 >
-  <figcaption
-    class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
+  <div
+    class="css-1880yg5-euiCommentEvent__header"
   >
     <div
-      class="euiCommentEvent__headerData css-1l51d77-euiCommentEvent__headerData"
+      class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow css-1rpkzr0-euiCommentEvent__headerPanel"
     >
       <div
-        class="euiCommentEvent__headerUsername css-10865x4-euiCommentEvent__headerUsername"
+        class="css-1h0gm9q-euiCommentEvent__headerMain"
       >
-        someuser
+        <div
+          class="css-1l51d77-euiCommentEvent__headerData"
+        >
+          <div
+            class="css-10865x4-euiCommentEvent__headerUsername"
+          >
+            someuser
+          </div>
+          <div
+            class="css-4tdimm-euiCommentEvent__headerEvent"
+          >
+            commented
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCommentEvent props eventIcon and eventIconAriaLabel are rendered 1`] = `
+<div
+  class="euiCommentEvent css-krcl3t-euiCommentEvent-update"
+>
+  <div
+    class="css-1880yg5-euiCommentEvent__header"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow css-1rpkzr0-euiCommentEvent__headerPanel"
+    >
+      <div
+        class="css-1h0gm9q-euiCommentEvent__headerMain"
+      >
+        <div
+          class="css-1l51d77-euiCommentEvent__headerData"
+        >
+          <div
+            aria-hidden="false"
+            aria-label="edit"
+            class="euiAvatar euiAvatar--s euiAvatar--user css-18bm4ak-euiAvatar-s-user-subdued"
+            role="img"
+            title="edit"
+          >
+            <span
+              class="euiAvatar__icon"
+              data-euiicon-type="pencil"
+            >
+              edit
+            </span>
+          </div>
+          <div
+            class="css-10865x4-euiCommentEvent__headerUsername"
+          >
+            someuser
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCommentEvent props eventMessage is rendered 1`] = `
+<figure
+  class="euiCommentEvent css-krcl3t-euiCommentEvent-update"
+>
+  <figcaption
+    class="css-1880yg5-euiCommentEvent__header"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow css-1rpkzr0-euiCommentEvent__headerPanel"
+    >
+      <div
+        class="css-1h0gm9q-euiCommentEvent__headerMain"
+      >
+        <div
+          class="css-1l51d77-euiCommentEvent__headerData"
+        >
+          <div
+            class="css-10865x4-euiCommentEvent__headerUsername"
+          >
+            someuser
+          </div>
+        </div>
       </div>
       <div
-        class="euiCommentEvent__headerEvent"
-      />
+        class="css-48xg5b-euiCommentEvent__headerEventMessage"
+      >
+        event message
+      </div>
     </div>
   </figcaption>
 </figure>
 `;
 
-exports[`EuiCommentEvent props updateIcon is rendered 1`] = `
-<figure
-  class="euiCommentEvent css-1vw1i3u-euiCommentEvent-regular"
+exports[`EuiCommentEvent props headerColor is rendered 1`] = `
+<div
+  class="euiCommentEvent css-krcl3t-euiCommentEvent-update"
 >
-  <figcaption
-    class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
+  <div
+    class="css-bns8vz-euiCommentEvent__header-hasHeaderColor"
   >
     <div
-      class="euiCommentEvent__headerData css-1l51d77-euiCommentEvent__headerData"
+      class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--danger euiPanel--noShadow euiPanel--noBorder css-1rpkzr0-euiCommentEvent__headerPanel"
     >
       <div
-        class="euiCommentEvent__headerUsername css-10865x4-euiCommentEvent__headerUsername"
+        class="css-1h0gm9q-euiCommentEvent__headerMain"
       >
-        someuser
+        <div
+          class="css-1l51d77-euiCommentEvent__headerData"
+        >
+          <div
+            class="css-10865x4-euiCommentEvent__headerUsername"
+          >
+            someuser
+          </div>
+        </div>
       </div>
-      <div
-        class="euiCommentEvent__headerEvent"
-      />
     </div>
-  </figcaption>
-</figure>
+  </div>
+</div>
+`;
+
+exports[`EuiCommentEvent props timestamp is rendered 1`] = `
+<div
+  class="euiCommentEvent css-krcl3t-euiCommentEvent-update"
+>
+  <div
+    class="css-1880yg5-euiCommentEvent__header"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow css-1rpkzr0-euiCommentEvent__headerPanel"
+    >
+      <div
+        class="css-1h0gm9q-euiCommentEvent__headerMain"
+      >
+        <div
+          class="css-1l51d77-euiCommentEvent__headerData"
+        >
+          <div
+            class="css-10865x4-euiCommentEvent__headerUsername"
+          >
+            someuser
+          </div>
+          <div
+            class="css-14k69ug-euiCommentEvent__headerTimestamp"
+          >
+            <time>
+              21 days ago
+            </time>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 `;

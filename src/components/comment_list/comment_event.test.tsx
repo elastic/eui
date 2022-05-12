@@ -10,7 +10,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiCommentEvent, TYPES } from './comment_event';
+import { EuiCommentEvent } from './comment_event';
 
 describe('EuiCommentEvent', () => {
   test('is rendered', () => {
@@ -22,18 +22,6 @@ describe('EuiCommentEvent', () => {
   });
 
   describe('props', () => {
-    describe('type', () => {
-      TYPES.forEach((type) => {
-        test(`${type} is rendered`, () => {
-          const component = render(
-            <EuiCommentEvent username="someuser" type={type} />
-          );
-
-          expect(component).toMatchSnapshot();
-        });
-      });
-    });
-
     describe('timestamp', () => {
       it('is rendered', () => {
         const component = render(
@@ -54,20 +42,34 @@ describe('EuiCommentEvent', () => {
       });
     });
 
-    describe('updateIcon', () => {
-      it('is rendered', () => {
+    describe('eventIcon and eventIconAriaLabel', () => {
+      it('are rendered', () => {
         const component = render(
-          <EuiCommentEvent username="someuser" updateIcon="pencil" />
+          <EuiCommentEvent
+            username="someuser"
+            eventIcon="pencil"
+            eventIconAriaLabel="edit"
+          />
         );
 
         expect(component).toMatchSnapshot();
       });
     });
 
-    describe('updateColor', () => {
+    describe('headerColor', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiCommentEvent username="someuser" updateColor="danger" />
+          <EuiCommentEvent username="someuser" headerColor="danger" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('eventMessage', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiCommentEvent username="someuser" eventMessage="event message" />
         );
 
         expect(component).toMatchSnapshot();

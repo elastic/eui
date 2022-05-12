@@ -11,14 +11,14 @@ exports[`EuiCommentList is rendered 1`] = `
     class="euiComment css-mjs1z4-euiTimelineItem"
   >
     <div
-      class="css-1t86e7q-euiTimelineItemIcon-top"
+      class="css-1grznaw-euiTimelineItemIcon-center"
     >
       <div
         class="css-irfkcc-euiTimelineItemIcon__content"
       >
         <div
           aria-label="janed"
-          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentTimeline css-1ei12rq-euiAvatar-m-user"
+          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar css-1ei12rq-euiAvatar-m-user"
           role="img"
           style="background-color:#f1d86f;color:#000000"
           title="janed"
@@ -32,28 +32,33 @@ exports[`EuiCommentList is rendered 1`] = `
       </div>
     </div>
     <div
-      class="css-1waxxmm-euiTimelineItemEvent-top"
+      class="css-1a9m88x-euiTimelineItemEvent-center"
     >
-      <figure
-        class="euiCommentEvent css-1vw1i3u-euiCommentEvent-regular"
+      <div
+        class="euiCommentEvent css-krcl3t-euiCommentEvent-update"
       >
-        <figcaption
-          class="euiCommentEvent__header css-397e40-euiCommentEvent__header"
+        <div
+          class="css-1880yg5-euiCommentEvent__header"
         >
           <div
-            class="euiCommentEvent__headerData css-1l51d77-euiCommentEvent__headerData"
+            class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow css-1rpkzr0-euiCommentEvent__headerPanel"
           >
             <div
-              class="euiCommentEvent__headerUsername css-10865x4-euiCommentEvent__headerUsername"
+              class="css-1h0gm9q-euiCommentEvent__headerMain"
             >
-              janed
+              <div
+                class="css-1l51d77-euiCommentEvent__headerData"
+              >
+                <div
+                  class="css-10865x4-euiCommentEvent__headerUsername"
+                >
+                  janed
+                </div>
+              </div>
             </div>
-            <div
-              class="euiCommentEvent__headerEvent"
-            />
           </div>
-        </figcaption>
-      </figure>
+        </div>
+      </div>
     </div>
   </li>
 </ol>

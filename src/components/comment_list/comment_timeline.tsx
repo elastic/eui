@@ -9,47 +9,61 @@
 import React, { FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 import { EuiAvatar, EuiAvatarProps } from '../avatar';
+import { EuiCommentEventProps } from './comment_event';
 
 export interface EuiCommentTimelineProps extends CommonProps {
   /**
-   * Main avatar that accompanies the comment. Pass any name, preferably the username.
+   * A name for the the avatar. It will be used for the title attribute and initials.
    */
-  timelineAvatarName: EuiAvatarProps['name'];
+  avatarName?: EuiAvatarProps['name'];
   /**
-   * Customize the avatar with an any EuiIcon['type']. The avtar color defaults to `subdued`.
+   * Customize the avatar with any EuiIcon['type']. The avatar color defaults to `subdued`.
    */
-  timelineAvatarIconType?: EuiAvatarProps['iconType'];
+  avatarIcon?: EuiAvatarProps['iconType'];
   /**
    * Further extend the props applied to EuiAvatar.
    */
-  timelineAvatarProps?: Omit<EuiAvatarProps, 'name' | 'iconType'>;
+  avatarProps?: Omit<EuiAvatarProps, 'name' | 'iconType'>;
+
+  username?: EuiCommentEventProps['username'];
 }
 
 export const EuiCommentTimeline: FunctionComponent<EuiCommentTimelineProps> = ({
-  timelineAvatarName,
-  timelineAvatarIconType,
-  timelineAvatarProps,
+  avatarName,
+  avatarIcon,
+  avatarProps,
+  username,
 }) => {
   let iconRender;
 
   const avatarClassName = 'euiCommentAvatar';
 
-  if (timelineAvatarIconType) {
+  let name;
+
+  if (username && !avatarName) {
+    name = username;
+  } else if (avatarName) {
+    name = avatarName;
+  } else {
+    name = '';
+  }
+
+  if (avatarIcon) {
     iconRender = (
       <EuiAvatar
-        {...(timelineAvatarProps as any)}
+        {...(avatarProps as any)}
         className={avatarClassName}
-        name={timelineAvatarName}
-        iconType={timelineAvatarIconType}
+        name={name}
+        iconType={avatarIcon}
         color="subdued"
       />
     );
   } else {
     iconRender = (
       <EuiAvatar
-        {...(timelineAvatarProps as any)}
+        {...(avatarProps as any)}
         className={avatarClassName}
-        name={timelineAvatarName}
+        name={name}
       />
     );
   }

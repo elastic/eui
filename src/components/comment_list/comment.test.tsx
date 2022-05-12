@@ -10,8 +10,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiComment, TYPES } from './comment';
-import { EuiAvatar } from '../avatar';
+import { EuiComment } from './comment';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
 describe('EuiComment', () => {
@@ -28,25 +27,19 @@ describe('EuiComment', () => {
   });
 
   describe('props', () => {
-    describe('type', () => {
-      TYPES.forEach((type) => {
-        test(`${type} is rendered`, () => {
-          const component = render(
-            <EuiComment username="someuser" type={type} />
-          );
-
-          expect(component).toMatchSnapshot();
-        });
-      });
-    });
-
-    describe('timelineIcon', () => {
+    describe('avatarName', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiComment
-            username="someuser"
-            timelineIcon={<EuiAvatar size="l" name="Mario" />}
-          />
+          <EuiComment username="someuser" avatarName="avatar name" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+    describe('avatarIcon', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiComment username="someuser" avatarIcon="dot" />
         );
 
         expect(component).toMatchSnapshot();
@@ -66,7 +59,7 @@ describe('EuiComment', () => {
     describe('event', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiComment event="commented" username="someuser" />
+          <EuiComment username="someuser" event="commented" />
         );
 
         expect(component).toMatchSnapshot();

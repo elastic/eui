@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  EuiPanel,
   EuiCommentList,
   EuiComment,
   EuiBadge,
@@ -7,13 +8,12 @@ import {
   EuiCode,
   EuiFlexGroup,
   EuiFlexItem,
-} from '../../../../src/components/';
+} from '../../../../src/components';
 
-const eventMessage = (
+const body = (
   <EuiText size="s">
     <p>
-      This is a <EuiCode>eventMessage</EuiCode>. It displays in the event
-      header.
+      This is the body of a comment of type <EuiCode>regular</EuiCode>
     </p>
   </EuiText>
 );
@@ -34,7 +34,7 @@ const eventWihtMultipleTags = (
 );
 
 const eventWithOneTag = (
-  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="xs">
+  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="xs" wrap>
     <EuiFlexItem grow={false}>marked cases as</EuiFlexItem>
     <EuiFlexItem grow={false}>
       <EuiBadge color="danger">Closed</EuiBadge>
@@ -43,9 +43,11 @@ const eventWithOneTag = (
 );
 
 export default () => (
-  <EuiCommentList aria-label="Comment type update example">
+  <EuiCommentList aria-label="Comment types example">
+    <EuiComment username="andred" event="added a comment" timestamp="yesterday">
+      {body}
+    </EuiComment>
     <EuiComment
-      avatarName="system"
       username="luisg"
       event={eventWihtMultipleTags}
       timestamp="22 hours ago"
@@ -53,22 +55,28 @@ export default () => (
       eventIconAriaLabel="tag"
     />
     <EuiComment
-      username="system"
-      avatarName="system"
-      avatarIcon="dot"
-      event="pushed a new incident"
-      timestamp="20 hours ago"
-      headerColor="accent"
-    />
-    <EuiComment
-      avatarName="milal"
       username="milal"
       event={eventWithOneTag}
+      eventMessage={
+        <EuiText size="s">
+          <p>Comments can also have an event message</p>
+        </EuiText>
+      }
       timestamp="6 hours ago"
-      eventMessage={eventMessage}
-      headerColor="accent"
-    >
-      {eventMessage}
+    />
+    <EuiComment
+      avatarIcon="dot"
+      username="system"
+      event="pushed a new incident"
+      timestamp="20 hours ago"
+      headerColor="danger"
+    />
+    <EuiComment avatarName="hugo">
+      <EuiPanel hasBorder>
+        <p>
+          I am a comment of type <EuiCode>custom</EuiCode>.
+        </p>
+      </EuiPanel>
     </EuiComment>
   </EuiCommentList>
 );

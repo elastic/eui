@@ -24,7 +24,6 @@ const copyAction = (
 export default () => (
   <EuiComment
     username="janed"
-    timelineAvatarName="Jane Davis"
     event="added a comment"
     actions={copyAction}
     timestamp="on Jan 1, 2020"

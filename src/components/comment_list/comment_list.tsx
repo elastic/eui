@@ -11,7 +11,7 @@ import classNames from 'classnames';
 import { EuiComment, EuiCommentProps } from './comment';
 import { EuiTimeline, EuiTimelineProps } from '../timeline';
 
-export type EuiCommentListProps = EuiTimelineProps & {
+export type EuiCommentListProps = Omit<EuiTimelineProps, 'items'> & {
   /**
    * List of comments to render. See #EuiComment
    */

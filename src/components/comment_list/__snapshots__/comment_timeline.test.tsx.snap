@@ -1,34 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCommentTimeline is rendered 1`] = `
+exports[`EuiCommentTimeline props avatarIcon is rendered 1`] = `
 <div
-  aria-label="aria-label"
-  class="euiAvatar euiAvatar--m euiAvatar--user testClass1 testClass2 css-1ei12rq-euiAvatar-m-user"
-  data-test-subj="test subject string"
+  aria-label="someuser"
+  class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar css-1jpsc91-euiAvatar-m-user-subdued"
   role="img"
-  style="background-color:#c47c6c;color:#000000"
+  title="someuser"
+>
+  <span
+    class="euiAvatar__icon"
+    data-euiicon-type="dot"
+  >
+    someuser
+  </span>
+</div>
+`;
+
+exports[`EuiCommentTimeline props avatarName is rendered 1`] = `
+<div
+  aria-label="avatar name"
+  class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar css-1ei12rq-euiAvatar-m-user"
+  role="img"
+  style="background-color:#79aad9;color:#000000"
+  title="avatar name"
+>
+  <span
+    aria-hidden="true"
+  >
+    an
+  </span>
+</div>
+`;
+
+exports[`EuiCommentTimeline props timelineAvatarProps is rendered 1`] = `
+<div
+  aria-label="someuser"
+  class="euiAvatar euiAvatar--s euiAvatar--user euiCommentAvatar css-o2z38x-euiAvatar-s-user"
+  role="img"
+  style="background-color:#ffff00;color:#000000"
   title="someuser"
 >
   <span
     aria-hidden="true"
   >
     s
-  </span>
-</div>
-`;
-
-exports[`EuiCommentTimeline props timelineIcon is rendered 1`] = `
-<div
-  aria-label="Mario"
-  class="euiAvatar euiAvatar--l euiAvatar--user css-17x6j1e-euiAvatar-l-user"
-  role="img"
-  style="background-color:#f1d86f;color:#000000"
-  title="Mario"
->
-  <span
-    aria-hidden="true"
-  >
-    M
   </span>
 </div>
 `;

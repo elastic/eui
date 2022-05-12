@@ -32,21 +32,20 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
   username,
   event,
   actions,
-  type = 'regular',
   timestamp,
   component = 'li',
-  timelineAvatarName,
-  timelineAvatarIconType,
-  timelineAvatarProps,
-  updateIcon,
-  updateIconAriaLabel,
-  updateMessage,
+  avatarName,
+  avatarIcon,
+  avatarProps,
+  headerColor,
+  eventIcon,
+  eventIconAriaLabel,
+  eventMessage,
   ...rest
 }) => {
   const classes = classNames('euiComment', className);
 
-  const hasEventElements = username || updateIcon || username || actions;
-  const isTypeUpdate = !children && hasEventElements;
+  const isTypeUpdate = !children && !eventMessage;
   const verticalAlign = isTypeUpdate ? 'center' : 'top';
 
   return (
@@ -56,9 +55,10 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
       component={component}
       icon={
         <EuiCommentTimeline
-          timelineAvatarName={timelineAvatarName}
-          timelineAvatarIconType={timelineAvatarIconType}
-          timelineAvatarProps={timelineAvatarProps}
+          username={username}
+          avatarName={avatarName}
+          avatarIcon={avatarIcon}
+          avatarProps={avatarProps}
         />
       }
       {...rest}
@@ -68,10 +68,10 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
         actions={actions}
         event={event}
         timestamp={timestamp}
-        type={type}
-        updateIcon={updateIcon}
-        updateIconAriaLabel={updateIconAriaLabel}
-        updateMessage={updateMessage}
+        headerColor={headerColor}
+        eventIcon={eventIcon}
+        eventIconAriaLabel={eventIconAriaLabel}
+        eventMessage={eventMessage}
       >
         {children}
       </EuiCommentEvent>
