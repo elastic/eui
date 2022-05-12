@@ -8,11 +8,11 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps, keysOf } from '../../common';
 import {
   _EuiPageRestrictWidth,
   setPropsForRestrictedPageWidth,
-} from './_restrict_width';
+} from '../_restrict_width';
 
 const paddingSizeToClassNameMap = {
   none: null,

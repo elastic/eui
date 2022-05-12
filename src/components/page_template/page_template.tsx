@@ -510,3 +510,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
       );
   }
 };
+
+export const EuiPageT = {
+  Outer: EuiPage,
+};

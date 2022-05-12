@@ -102,7 +102,8 @@ export const PageDemo: FunctionComponent<
   const { path } = useRouteMatch();
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
   const [showTemplate, _setShowTemplate] = useState(
-    !demosAsIndividualComponents.has(slug)
+    false
+    // !demosAsIndividualComponents.has(slug)
   );
   const setShowTemplate = (cb: (showTemplate: boolean) => boolean) => {
     _setShowTemplate((showing) => {
