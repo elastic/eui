@@ -49,12 +49,13 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
   const currentLanguage = themeContext.themeLanguage;
   const showSass = currentLanguage.includes('sass');
 
-  const betaBadge = isBeta && (
-    <EuiBetaBadge
-      label="Beta"
-      tooltipContent="This component is still under development and may contain breaking changes in the nearby future."
-    />
-  );
+  const betaBadge =
+    isBeta || (showThemeLanguageToggle && !showSass) ? (
+      <EuiBetaBadge
+        label="Beta"
+        tooltipContent="This component is still under development and may contain breaking changes in the nearby future."
+      />
+    ) : undefined;
 
   let tabs:
     | Array<{

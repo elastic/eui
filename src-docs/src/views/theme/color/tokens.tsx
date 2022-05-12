@@ -34,20 +34,18 @@ export const colorsInfo = {
   showThemeLanguageToggle: true,
   description: (
     <>
-      <EuiText grow={false}>
-        <p>
-          Elastic UI builds with a very limited palette. It uses a core set of
-          three colors with a green / orange / red qualitative set and combined
-          with a six-color grayscale. Variation beyond these colors is minimal
-          and always done with math manipulation against the original set.
-        </p>
-        <p>
-          When switching between light and dark color modes, the theme keys do
-          not change, only their values do. This is why most keys are not named
-          for their <strong>evaluated</strong> value but by their{' '}
-          <strong>purpose</strong>.
-        </p>
-      </EuiText>
+      <p>
+        Elastic UI builds with a very limited palette. It uses a core set of
+        three colors with a green / orange / red qualitative set and combined
+        with a six-color grayscale. Variation beyond these colors is minimal and
+        always done with math manipulation against the original set.
+      </p>
+      <p>
+        When switching between light and dark color modes, the theme keys do not
+        change, only their values do. This is why most keys are not named for
+        their <strong>evaluated</strong> value but by their{' '}
+        <strong>purpose</strong>.
+      </p>
     </>
   ),
 };

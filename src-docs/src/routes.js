@@ -218,8 +218,6 @@ import { TextDiffExample } from './views/text_diff/text_diff_example';
 
 import { TextExample } from './views/text/text_example';
 
-import { TextUtilitiesExample } from './views/text_utilities/text_utilities_example';
-
 import { TimelineExample } from './views/timeline/timeline_example';
 
 import { TitleExample } from './views/title/title_example';
@@ -255,8 +253,12 @@ import SizingFunctions, {
   sizingFunctionSections,
 } from './views/theme/sizing/functions';
 import Typography, {
+  typographyInfo,
   typographySections,
-} from './views/theme/typography/typography';
+} from './views/theme/typography/values';
+import TextUtilities, {
+  textUtilitiesSections,
+} from './views/theme/typography/utilities';
 import Other, { otherSections } from './views/theme/other/other';
 import ThemeValues from './views/theme/customizing/values';
 
@@ -419,12 +421,12 @@ const navigation = [
         ...colorsInfo,
         pages: [
           {
-            title: 'Tokens',
+            title: 'Values',
             page: Color,
             sections: colorsSections,
           },
           {
-            title: 'Functions',
+            title: 'Utilities',
             page: ColorFunctions,
             sections: colorsFunctionsSections,
           },
@@ -439,22 +441,37 @@ const navigation = [
         ...sizingInfo,
         pages: [
           {
-            title: 'Tokens',
+            title: 'Values',
             page: Sizing,
             sections: sizingSections,
           },
           {
-            title: 'Functions',
+            title: 'Utilities',
             page: SizingFunctions,
             sections: sizingFunctionSections,
           },
         ],
       }),
-      {
-        name: 'Typography',
-        component: Typography,
-        sections: typographySections,
-      },
+      createTabbedPage({
+        ...typographyInfo,
+        pages: [
+          {
+            title: 'Values',
+            page: Typography,
+            sections: typographySections,
+          },
+          {
+            title: 'Utilities',
+            page: TextUtilities,
+            sections: textUtilitiesSections,
+          },
+        ],
+      }),
+      // {
+      //   name: 'Typography',
+      //   component: Typography,
+      //   sections: typographySections,
+      // },
       {
         name: 'More tokens',
         component: Other,
@@ -617,7 +634,6 @@ const navigation = [
       ResponsiveExample,
       ScrollExample,
       TextDiffExample,
-      TextUtilitiesExample,
       WindowEventExample,
     ].map((example) => createExample(example)),
   },
