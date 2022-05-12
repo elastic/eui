@@ -9,6 +9,7 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme, useEuiTheme } from '../../services';
 import { EuiFacetGroupLayout } from './facet_group';
+import { logicalCSS } from '../../global_styling';
 
 const _facetGroupGutterSize = ({
   gutterSize,
@@ -18,7 +19,7 @@ const _facetGroupGutterSize = ({
   layout: EuiFacetGroupLayout;
 }) => {
   const { euiTheme } = useEuiTheme();
-  const buttonMarginBlockSize = `calc(${euiTheme.size.m} / 2)`;
+  const buttonMarginVerticalSize = `calc(${euiTheme.size.m} / 2)`;
 
   const layoutStyles =
     layout === 'horizontal'
@@ -36,7 +37,7 @@ const _facetGroupGutterSize = ({
     ${layoutStyles}
 
     > [class*='euiFacetButton'] {
-      margin-block: ${buttonMarginBlockSize};
+      ${logicalCSS('margin-vertical', buttonMarginVerticalSize)};
     }
   `;
 };

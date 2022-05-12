@@ -7,6 +7,7 @@
  */
 
 import { UseEuiTheme } from '../../services';
+import { logicalCSS } from '../../global_styling';
 
 // Provides a solid reset and base for handling sizing layout
 // Does not include any visual styles
@@ -18,11 +19,11 @@ export const euiButtonBaseCSS = ({ euiTheme }: UseEuiTheme) => {
   display: inline-block;
   appearance: none;
   cursor: pointer;
-  height: ${euiButtonHeight};
+  ${logicalCSS('height', euiButtonHeight)};
   line-height: ${euiButtonHeight}; // prevents descenders from getting cut off
   text-align: center;
   white-space: nowrap;
-  max-width: 100%;
+  ${logicalCSS('max-width', '100%')};
   vertical-align: middle;
 `;
 };

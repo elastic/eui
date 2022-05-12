@@ -7,6 +7,7 @@
  */
 
 import { UseEuiTheme } from '../../services';
+import { logicalCSS } from '../../global_styling';
 
 // Correctly lays out the contents of a button when using the proper dom elements of:
 // <button>
@@ -27,8 +28,8 @@ export const euiButtonContentCSS = (
     cssStyles = `flex-direction: row-reverse;
   
       > * + * {
-        margin-inline-start: 0; // 1, 2
-        margin-inline-end: ${euiTheme.size.s}; // 1, 2
+        ${logicalCSS('margin-left', 0)}; // 1, 2
+        ${logicalCSS('margin-right', euiTheme.size.s)}; // 1, 2
       }`;
   } else {
     cssStyles = ` display: flex;
@@ -36,13 +37,13 @@ export const euiButtonContentCSS = (
       align-items: center;
   
       > * + * {
-        margin-inline-start: ${euiTheme.size.s}; // 1
+        ${logicalCSS('margin-left', euiTheme.size.s)}; // 1, 2
       }`;
   }
 
   return `
-      height: 100%;
-      width: 100%;
+      ${logicalCSS('height', '100%')};
+      ${logicalCSS('width', '100%')};
       vertical-align: middle;
       ${cssStyles};
   

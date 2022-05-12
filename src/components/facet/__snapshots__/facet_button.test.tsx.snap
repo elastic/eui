@@ -3,13 +3,13 @@
 exports[`EuiFacetButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiFacetButton testClass1 testClass2 css-1tz8q7s-euiFacetButton-unSelected"
+  class="euiFacetButton testClass1 testClass2 css-1d2eswp-euiFacetButton-unSelected"
   data-test-subj="test subject string"
   title="aria-label"
   type="button"
 >
   <span
-    class="css-1c9m80x-euiFacetButton__content"
+    class="css-1thkho3-euiFacetButton__content"
   >
     <span
       class="euiFacetButton__text css-w00iqi-euiFacetButton__text"
@@ -22,11 +22,11 @@ exports[`EuiFacetButton is rendered 1`] = `
 
 exports[`EuiFacetButton props icon is rendered 1`] = `
 <button
-  class="euiFacetButton css-1tz8q7s-euiFacetButton-unSelected"
+  class="euiFacetButton css-1d2eswp-euiFacetButton-unSelected"
   type="button"
 >
   <span
-    class="css-1c9m80x-euiFacetButton__content"
+    class="css-1thkho3-euiFacetButton__content"
   >
     <span
       class="euiFacetButton__icon css-1gu24b1-euiFacetButton__icon"
@@ -43,12 +43,12 @@ exports[`EuiFacetButton props icon is rendered 1`] = `
 
 exports[`EuiFacetButton props isDisabled is rendered 1`] = `
 <button
-  class="euiFacetButton css-1tz8q7s-euiFacetButton-unSelected"
+  class="euiFacetButton css-1d2eswp-euiFacetButton-unSelected"
   disabled=""
   type="button"
 >
   <span
-    class="css-1c9m80x-euiFacetButton__content"
+    class="css-1thkho3-euiFacetButton__content"
   >
     <span
       class="euiFacetButton__text css-w00iqi-euiFacetButton__text"
@@ -61,12 +61,12 @@ exports[`EuiFacetButton props isDisabled is rendered 1`] = `
 
 exports[`EuiFacetButton props isLoading is rendered 1`] = `
 <button
-  class="euiFacetButton css-1tz8q7s-euiFacetButton-unSelected"
+  class="euiFacetButton css-1d2eswp-euiFacetButton-unSelected"
   disabled=""
   type="button"
 >
   <span
-    class="css-1c9m80x-euiFacetButton__content"
+    class="css-1thkho3-euiFacetButton__content"
   >
     <span
       class="euiFacetButton__text css-w00iqi-euiFacetButton__text"
@@ -84,11 +84,11 @@ exports[`EuiFacetButton props isLoading is rendered 1`] = `
 
 exports[`EuiFacetButton props isSelected is rendered 1`] = `
 <button
-  class="euiFacetButton css-gad71z-euiFacetButton-isSelected"
+  class="euiFacetButton css-jtmlsy-euiFacetButton-isSelected"
   type="button"
 >
   <span
-    class="css-1c9m80x-euiFacetButton__content"
+    class="css-1thkho3-euiFacetButton__content"
   >
     <span
       class="euiFacetButton__text css-w00iqi-euiFacetButton__text"
@@ -101,11 +101,11 @@ exports[`EuiFacetButton props isSelected is rendered 1`] = `
 
 exports[`EuiFacetButton props quantity is rendered 1`] = `
 <button
-  class="euiFacetButton css-1tz8q7s-euiFacetButton-unSelected"
+  class="euiFacetButton css-1d2eswp-euiFacetButton-unSelected"
   type="button"
 >
   <span
-    class="css-1c9m80x-euiFacetButton__content"
+    class="css-1thkho3-euiFacetButton__content"
   >
     <span
       class="euiFacetButton__text css-w00iqi-euiFacetButton__text"

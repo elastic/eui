@@ -13,6 +13,7 @@ import {
   euiTextTruncate,
   euiCanAnimate,
   euiTextShift,
+  logicalCSS,
 } from '../../global_styling';
 
 import { euiButtonBaseCSS } from '../button/button.styles';
@@ -27,8 +28,7 @@ export const euiFacetButtonStyles = (_theme: UseEuiTheme) => {
     euiFacetButton: css`
     ${euiButtonBaseCSS(_theme)}
     ${euiFontSize('s', euiTheme)}
-
-    height: ${euiTheme.size.xl};
+    ${logicalCSS('height', euiTheme.size.xl)};
     text-align: left;
     text-decoration: none;
 

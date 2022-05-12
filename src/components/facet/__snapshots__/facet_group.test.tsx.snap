@@ -3,43 +3,43 @@
 exports[`EuiFacetGroup is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFlexGroup euiFlexGroup--directionColumn euiFlexGroup--responsive euiFacetGroup testClass1 testClass2 css-55cfn4-euiFacetGroup-m"
+  class="euiFlexGroup euiFlexGroup--directionColumn euiFlexGroup--responsive euiFacetGroup testClass1 testClass2 css-1e3rbvh-euiFacetGroup-m"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiFacetGroup props gutterSize l is rendered 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--directionColumn euiFlexGroup--responsive euiFacetGroup css-rmligl-euiFacetGroup-l"
+  class="euiFlexGroup euiFlexGroup--directionColumn euiFlexGroup--responsive euiFacetGroup css-3dlq5a-euiFacetGroup-l"
 />
 `;
 
 exports[`EuiFacetGroup props gutterSize m is rendered 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--directionColumn euiFlexGroup--responsive euiFacetGroup css-55cfn4-euiFacetGroup-m"
+  class="euiFlexGroup euiFlexGroup--directionColumn euiFlexGroup--responsive euiFacetGroup css-1e3rbvh-euiFacetGroup-m"
 />
 `;
 
 exports[`EuiFacetGroup props gutterSize none is rendered 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--directionColumn euiFlexGroup--responsive euiFacetGroup css-1jyk35d-euiFacetGroup-none"
+  class="euiFlexGroup euiFlexGroup--directionColumn euiFlexGroup--responsive euiFacetGroup css-47wqnd-euiFacetGroup-none"
 />
 `;
 
 exports[`EuiFacetGroup props gutterSize s is rendered 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--directionColumn euiFlexGroup--responsive euiFacetGroup css-1c9jifl-euiFacetGroup-s"
+  class="euiFlexGroup euiFlexGroup--directionColumn euiFlexGroup--responsive euiFacetGroup css-ohxb9j-euiFacetGroup-s"
 />
 `;
 
 exports[`EuiFacetGroup props layout horizontal is rendered 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--directionRow euiFlexGroup--responsive euiFlexGroup--wrap euiFacetGroup css-8k8zr7-euiFacetGroup-m"
+  class="euiFlexGroup euiFlexGroup--directionRow euiFlexGroup--responsive euiFlexGroup--wrap euiFacetGroup css-1qfxtqy-euiFacetGroup-m"
 />
 `;
 
 exports[`EuiFacetGroup props layout vertical is rendered 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--directionColumn euiFlexGroup--responsive euiFacetGroup css-55cfn4-euiFacetGroup-m"
+  class="euiFlexGroup euiFlexGroup--directionColumn euiFlexGroup--responsive euiFacetGroup css-1e3rbvh-euiFacetGroup-m"
 />
 `;
