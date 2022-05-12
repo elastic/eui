@@ -33,6 +33,7 @@ import {
   EuiScreenReaderOnly,
   EuiText,
   EuiTitle,
+  EuiTourStep,
 } from '../../../../../src/components/';
 
 const gridRef = createRef();
@@ -410,8 +411,69 @@ export default () => {
     console.log(eventData);
   });
 
+  const [showTour, setShowTour] = useState(true);
+  const [showTour2, setShowTour2] = useState(false);
+  const nextStep = () => {
+    setShowTour(false);
+    setShowTour2(true);
+  };
+
   return (
     <DataContext.Provider value={raw_data}>
+      {showTour ? (
+        <EuiTourStep
+          anchor="[data-test-subj='dataGridColumnSelectorButton']"
+          isStepOpen
+          title="Test"
+          content={
+            <EuiText size="s">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+              fringilla quam in turpis blandit, eu ultricies nulla efficitur.
+            </EuiText>
+          }
+          step={1}
+          stepsTotal={2}
+          maxWidth={400}
+          onFinish={nextStep}
+          footerAction={
+            <EuiButtonEmpty
+              color="text"
+              flush="right"
+              size="xs"
+              onClick={nextStep}
+            >
+              Next
+            </EuiButtonEmpty>
+          }
+        />
+      ) : null}
+      {showTour2 ? (
+        <EuiTourStep
+          anchor="[data-test-subj='dataGridDisplaySelectorButton']"
+          isStepOpen
+          title="Test"
+          content={
+            <EuiText size="s">
+              Nunc ultricies egestas bibendum. Maecenas finibus enim at justo
+              elementum elementum.
+            </EuiText>
+          }
+          step={2}
+          stepsTotal={2}
+          maxWidth={400}
+          onFinish={() => setShowTour2(false)}
+          footerAction={
+            <EuiButtonEmpty
+              color="text"
+              flush="right"
+              size="xs"
+              onClick={() => setShowTour2(false)}
+            >
+              Dismiss
+            </EuiButtonEmpty>
+          }
+        />
+      ) : null}
       <EuiDataGrid
         aria-label="Data grid demo"
         columns={columns}
