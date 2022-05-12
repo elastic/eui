@@ -11,9 +11,9 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { useEuiTheme, useIsWithinBreakpoints } from '../../../services';
 import { _EuiThemeBreakpoint } from '../../../global_styling';
-import { euiPageStyles } from './page.styles';
+import { euiPageOuterStyles } from './page.styles';
 
-export interface EuiPageProps
+export interface _EuiPageOuterProps
   extends CommonProps,
     HTMLAttributes<HTMLDivElement> {
   /**
@@ -32,7 +32,7 @@ export interface EuiPageProps
   responsive?: _EuiThemeBreakpoint[];
 }
 
-export const EuiPage: FunctionComponent<EuiPageProps> = ({
+export const _EuiPageOuter: FunctionComponent<_EuiPageOuterProps> = ({
   children,
   className,
   grow = true,
@@ -41,16 +41,16 @@ export const EuiPage: FunctionComponent<EuiPageProps> = ({
   ...rest
 }) => {
   const themeContext = useEuiTheme();
-  const styles = euiPageStyles(themeContext);
+  const styles = euiPageOuterStyles(themeContext);
   const isResponding = useIsWithinBreakpoints(responsive);
 
   const cssStyles = [
-    styles.euiPage,
+    styles.euiPageOuter,
     styles[isResponding ? 'column' : direction],
     grow && styles.grow,
   ];
 
-  const classes = classNames('euiPageT', className);
+  const classes = classNames('euiPageOuter', className);
 
   return (
     <div className={classes} css={cssStyles} {...rest}>

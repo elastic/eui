@@ -9,8 +9,8 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 
-export const euiPageStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiPage: css`
+export const euiPageOuterStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiPageOuter: css`
     display: flex;
     background-color: ${euiTheme.colors.body};
     flex-shrink: 0; // Ensures Safari doesn't shrink height beyond contents

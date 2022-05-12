@@ -1,21 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiPage direction can be row 1`] = `
+exports[`_EuiPageOuter direction can be row 1`] = `
 <div
-  class="euiPageT css-6mtby6-euiPage-row-grow"
+  class="euiPageOuter css-odmukm-euiPageOuter-row-grow"
 />
 `;
 
-exports[`EuiPage grow can be false 1`] = `
+exports[`_EuiPageOuter grow can be false 1`] = `
 <div
-  class="euiPageT css-be0zyb-euiPage-row"
+  class="euiPageOuter css-1vo88w6-euiPageOuter-row"
 />
 `;
 
-exports[`EuiPage is rendered 1`] = `
+exports[`_EuiPageOuter is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageT testClass1 testClass2 css-6mtby6-euiPage-row-grow"
+  class="euiPageOuter testClass1 testClass2 css-odmukm-euiPageOuter-row-grow"
   data-test-subj="test subject string"
 />
 `;

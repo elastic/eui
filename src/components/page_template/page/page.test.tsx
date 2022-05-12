@@ -11,20 +11,20 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
-import { EuiPage } from './page';
+import { _EuiPageOuter as EuiPageOuter } from './page';
 
-describe('EuiPage', () => {
-  shouldRenderCustomStyles(<EuiPage />);
+describe('_EuiPageOuter', () => {
+  shouldRenderCustomStyles(<EuiPageOuter />);
 
   test('is rendered', () => {
-    const component = render(<EuiPage {...requiredProps} />);
+    const component = render(<EuiPageOuter {...requiredProps} />);
 
     expect(component).toMatchSnapshot();
   });
 
   describe('grow', () => {
     test('can be false', () => {
-      const component = render(<EuiPage grow={false} />);
+      const component = render(<EuiPageOuter grow={false} />);
 
       expect(component).toMatchSnapshot();
     });
@@ -32,7 +32,7 @@ describe('EuiPage', () => {
 
   describe('direction', () => {
     test('can be row', () => {
-      const component = render(<EuiPage direction="row" />);
+      const component = render(<EuiPageOuter direction="row" />);
 
       expect(component).toMatchSnapshot();
     });
