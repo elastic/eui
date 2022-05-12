@@ -1,11 +1,8 @@
 import React from 'react';
 
-import {
-  EuiMarkdownFormat,
-  EuiPageContentBody,
-  EuiSpacer,
-} from '../../../../src';
-import { GuidePage } from '../../components/guide_page';
+import { EuiMarkdownFormat } from '../../../../src';
+import { GuideSection } from '../../components';
+import { GuideTabbedPage } from '../../components/guide_tabbed_page';
 
 const changelogSource = require('!!raw-loader!../../../../CHANGELOG.md').default.replace(
   /## \[`main`\].+?##(?= \[`\d)/s, // remove the `main` heading & contents
@@ -15,11 +12,10 @@ const changelogSource = require('!!raw-loader!../../../../CHANGELOG.md').default
 export const Changelog = {
   name: 'Changelog',
   component: () => (
-    <GuidePage title="Changelog">
-      <EuiPageContentBody paddingSize="l" restrictWidth>
-        <EuiSpacer size="xl" />
+    <GuideTabbedPage title="Changelog">
+      <GuideSection>
         <EuiMarkdownFormat>{changelogSource}</EuiMarkdownFormat>
-      </EuiPageContentBody>
-    </GuidePage>
+      </GuideSection>
+    </GuideTabbedPage>
   ),
 };

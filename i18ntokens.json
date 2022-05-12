@@ -3461,11 +3461,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 98,
+        "line": 92,
         "column": 27
       },
       "end": {
-        "line": 102,
+        "line": 96,
         "column": 3
       }
     },
@@ -3477,11 +3477,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 103,
+        "line": 97,
         "column": 30
       },
       "end": {
-        "line": 107,
+        "line": 101,
         "column": 3
       }
     },
@@ -3493,11 +3493,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 329,
+        "line": 331,
         "column": 8
       },
       "end": {
-        "line": 329,
+        "line": 331,
         "column": 78
       }
     },
@@ -3728,33 +3728,33 @@
     "filepath": "src/components/image/image.tsx"
   },
   {
-    "token": "euiLink.external.ariaLabel",
-    "defString": "External link",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 108,
-        "column": 20
-      },
-      "end": {
-        "line": 108,
-        "column": 77
-      }
-    },
-    "filepath": "src/components/link/link.tsx"
-  },
-  {
     "token": "euiLink.newTarget.screenReaderOnlyText",
     "defString": "(opens in a new tab or window)",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 118,
+        "line": 107,
         "column": 10
       },
       "end": {
-        "line": 121,
+        "line": 110,
         "column": 12
+      }
+    },
+    "filepath": "src/components/link/link.tsx"
+  },
+  {
+    "token": "euiLink.external.ariaLabel",
+    "defString": "External link",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 117,
+        "column": 20
+      },
+      "end": {
+        "line": 117,
+        "column": 77
       }
     },
     "filepath": "src/components/link/link.tsx"
