@@ -2,7 +2,7 @@
 
 exports[`EuiCommentEvent is rendered 1`] = `
 <div
-  class="euiCommentEvent testClass1 testClass2 css-krcl3t-euiCommentEvent-update"
+  class="euiCommentEvent testClass1 testClass2 css-a4j02z-euiCommentEvent-update"
 >
   <div
     class="css-1880yg5-euiCommentEvent__header"
@@ -30,7 +30,7 @@ exports[`EuiCommentEvent is rendered 1`] = `
 
 exports[`EuiCommentEvent props event is rendered 1`] = `
 <div
-  class="euiCommentEvent css-krcl3t-euiCommentEvent-update"
+  class="euiCommentEvent css-a4j02z-euiCommentEvent-update"
 >
   <div
     class="css-1880yg5-euiCommentEvent__header"
@@ -63,7 +63,7 @@ exports[`EuiCommentEvent props event is rendered 1`] = `
 
 exports[`EuiCommentEvent props eventIcon and eventIconAriaLabel are rendered 1`] = `
 <div
-  class="euiCommentEvent css-krcl3t-euiCommentEvent-update"
+  class="euiCommentEvent css-a4j02z-euiCommentEvent-update"
 >
   <div
     class="css-1880yg5-euiCommentEvent__header"
@@ -105,7 +105,7 @@ exports[`EuiCommentEvent props eventIcon and eventIconAriaLabel are rendered 1`]
 
 exports[`EuiCommentEvent props eventMessage is rendered 1`] = `
 <figure
-  class="euiCommentEvent css-krcl3t-euiCommentEvent-update"
+  class="euiCommentEvent css-a4j02z-euiCommentEvent-update"
 >
   <figcaption
     class="css-1880yg5-euiCommentEvent__header"
@@ -127,7 +127,7 @@ exports[`EuiCommentEvent props eventMessage is rendered 1`] = `
         </div>
       </div>
       <div
-        class="css-48xg5b-euiCommentEvent__headerEventMessage"
+        class="css-vvb3qh-euiCommentEvent__headerEventMessage"
       >
         event message
       </div>
@@ -138,7 +138,7 @@ exports[`EuiCommentEvent props eventMessage is rendered 1`] = `
 
 exports[`EuiCommentEvent props headerColor is rendered 1`] = `
 <div
-  class="euiCommentEvent css-krcl3t-euiCommentEvent-update"
+  class="euiCommentEvent css-a4j02z-euiCommentEvent-update"
 >
   <div
     class="css-bns8vz-euiCommentEvent__header-hasHeaderColor"
@@ -166,7 +166,7 @@ exports[`EuiCommentEvent props headerColor is rendered 1`] = `
 
 exports[`EuiCommentEvent props timestamp is rendered 1`] = `
 <div
-  class="euiCommentEvent css-krcl3t-euiCommentEvent-update"
+  class="euiCommentEvent css-a4j02z-euiCommentEvent-update"
 >
   <div
     class="css-1880yg5-euiCommentEvent__header"

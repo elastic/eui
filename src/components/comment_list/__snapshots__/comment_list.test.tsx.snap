@@ -35,7 +35,7 @@ exports[`EuiCommentList is rendered 1`] = `
       class="css-1a9m88x-euiTimelineItemEvent-center"
     >
       <div
-        class="euiCommentEvent css-krcl3t-euiCommentEvent-update"
+        class="euiCommentEvent css-a4j02z-euiCommentEvent-update"
       >
         <div
           class="css-1880yg5-euiCommentEvent__header"

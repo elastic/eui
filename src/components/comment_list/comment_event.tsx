@@ -95,6 +95,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
 
   const styles = euiCommentEventStyles(euiTheme);
   const cssStyles = [styles.euiCommentEvent, styles[type]];
+  const cssBodyStyles = styles.euiCommentEvent__body;
 
   const headerStyles = euiCommentEventHeaderStyles(euiTheme);
   const cssHeaderStyles = [
@@ -162,7 +163,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
     <Element className={classes} css={cssStyles}>
       {hasEventElements && eventHeader}
 
-      {children && <div className="euiCommentEvent__body">{children}</div>}
+      {children && <div css={cssBodyStyles}>{children}</div>}
     </Element>
   );
 };

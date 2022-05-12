@@ -8,11 +8,13 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
+import { logicalCSS } from '../../global_styling';
 
 export const euiCommentEventStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiCommentEvent: css`
     overflow: hidden;
   `,
+  euiCommentEvent__body: css``,
   // types
   regular: css`
     border-radius: ${euiTheme.border.radius.medium};
@@ -23,13 +25,14 @@ export const euiCommentEventStyles = ({ euiTheme }: UseEuiTheme) => ({
       border-bottom: ${euiTheme.border.thin};
     }
 
-    > * {
+    > [class*='euiCommentEvent__header'],
+    > [class*='euiCommentEvent__body'] {
       padding: ${euiTheme.size.s};
     }
   `,
   update: css`
     > [class*='euiCommentEvent__body'] {
-      padding-block-start: ${euiTheme.size.xs};
+      ${logicalCSS('padding-top', euiTheme.size.xs)}
     }
   `,
   custom: css``,
@@ -61,7 +64,7 @@ export const euiCommentEventHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
     gap: ${euiTheme.size.xs};
   `,
   euiCommentEvent__headerEventMessage: css`
-    padding-top: ${euiTheme.size.s};
+    ${logicalCSS('padding-top', euiTheme.size.s)}
   `,
   // variants
   hasHeaderColor: css`
