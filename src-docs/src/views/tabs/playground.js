@@ -54,7 +54,8 @@ export const tabsConfig = () => {
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
   propsToUse.children = {
-    value: '<EuiTab>Tab 1</EuiTab><EuiTab isSelected>Tab 2</EuiTab>',
+    value:
+      '<EuiTab>Tab 1</EuiTab><EuiTab isSelected>Tab 2</EuiTab><EuiTab disabled>Tab 3</EuiTab><EuiTab href="#">Tab link</EuiTab>',
     type: PropTypes.ReactNode,
     hidden: false,
   };

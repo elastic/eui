@@ -6,3 +6,15 @@
   border: $euiBorderThin;
   padding: $euiSizeM;
 }
+
+.euiMarkdownEditorPreview-isReadOnly {
+  // overrides cursor pointer to better indicate that checkboxes are not clickable
+  .euiCheckbox__input ~ .euiCheckbox__label {
+    cursor: default;
+  }
+
+  // maintains the initial color on click to enforce that clicks are not doing anything
+  .euiCheckbox__input:focus:not(:checked) + .euiCheckbox__square {
+    border-color: $euiFormCustomControlBorderColor;
+  }
+}

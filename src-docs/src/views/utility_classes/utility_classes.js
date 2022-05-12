@@ -5,13 +5,14 @@ import { EuiMark } from '../../../../src/components/mark';
 import { UtilityClassesSection } from './utility_classes_section';
 
 const wrappingExampleStyle = {
-  background: 'rgba(254, 228, 181, 0.5)',
+  background: 'rgba(254, 228, 181, 0.25)',
 };
 
 export default () => (
   <>
     <UtilityClassesSection
       code="eui-displayBlock"
+      type="className"
       description={
         <p>
           Changes the element’s display property to{' '}
@@ -30,6 +31,7 @@ export default () => (
     <EuiSpacer />
     <UtilityClassesSection
       code="eui-displayInline"
+      type="className"
       description={
         <p>
           Changes the element’s display property to{' '}
@@ -48,6 +50,7 @@ export default () => (
     <EuiSpacer />
     <UtilityClassesSection
       code="eui-displayInlineBlock"
+      type="className"
       description={
         <p>
           Changes the element’s display property to{' '}
@@ -57,7 +60,8 @@ export default () => (
       example={
         <EuiMark
           style={wrappingExampleStyle}
-          className="eui-displayInlineBlock">
+          className="eui-displayInlineBlock"
+        >
           Displaying inline block
         </EuiMark>
       }
@@ -68,6 +72,7 @@ export default () => (
     <EuiSpacer />
     <UtilityClassesSection
       code="eui-fullWidth"
+      type="className"
       description={
         <p>
           Changes the element’s display property to{' '}

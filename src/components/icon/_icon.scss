@@ -40,14 +40,24 @@
   }
 }
 
-// App icon special cases for fully mono
-.euiIcon--text,
-.euiIcon--subdued,
-.euiIcon--primary,
-.euiIcon--customColor {
-  &,
-  .euiIcon__fillSecondary {
-    fill: currentColor;
+// Really force all paths to inherit when the color is ghost/text (specifically for logos)
+.euiIcon--ghost:not([data-type='logoElastic']),
+.euiIcon--text:not([data-type='logoElastic']) {
+  *[fill],
+  .euiIcon__fillNegative {
+    fill: currentColor !important; // sass-lint:disable-line no-important
+  }
+}
+
+// Elastic logo specific colors
+.euiIcon--ghost[data-type='logoElastic'],
+.euiIcon--text[data-type='logoElastic'] {
+  *[fill] {
+    fill: none !important; // sass-lint:disable-line no-important
+  }
+
+  .outline {
+    fill: currentColor !important; // sass-lint:disable-line no-important
   }
 }
 

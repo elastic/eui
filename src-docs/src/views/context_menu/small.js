@@ -5,10 +5,15 @@ import {
   EuiContextMenuPanel,
   EuiContextMenuItem,
   EuiPopover,
+  EuiCopy,
 } from '../../../../src/components';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [isPopoverOpen, setPopover] = useState(false);
+  const smallContextMenuPopoverId = useGeneratedHtmlId({
+    prefix: 'smallContextMenuPopover',
+  });
 
   const onButtonClick = () => {
     setPopover(!isPopoverOpen);
@@ -19,9 +24,13 @@ export default () => {
   };
 
   const items = [
-    <EuiContextMenuItem key="copy" icon="copy" onClick={closePopover}>
-      Copy
-    </EuiContextMenuItem>,
+    <EuiCopy textToCopy="Copied some text!" anchorClassName="eui-fullWidth">
+      {(copy) => (
+        <EuiContextMenuItem key="copy" icon="copy" onClick={copy} size="s">
+          Copy
+        </EuiContextMenuItem>
+      )}
+    </EuiCopy>,
     <EuiContextMenuItem key="edit" icon="pencil" onClick={closePopover}>
       Edit
     </EuiContextMenuItem>,
@@ -38,12 +47,13 @@ export default () => {
 
   return (
     <EuiPopover
-      id="smallContextMenuExample"
+      id={smallContextMenuPopoverId}
       button={button}
       isOpen={isPopoverOpen}
       closePopover={closePopover}
       panelPaddingSize="none"
-      anchorPosition="downLeft">
+      anchorPosition="downLeft"
+    >
       <EuiContextMenuPanel size="s" items={items} />
     </EuiPopover>
   );

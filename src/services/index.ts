@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 // Export all keys under a `keys` named variable
@@ -26,15 +15,13 @@ export {
   cascadingMenuKeys,
   comboBoxKeys,
   htmlIdGenerator,
+  useGeneratedHtmlId,
 } from './accessibility';
 
-export {
-  HorizontalAlignment,
-  LEFT_ALIGNMENT,
-  RIGHT_ALIGNMENT,
-  CENTER_ALIGNMENT,
-} from './alignment';
+export type { HorizontalAlignment } from './alignment';
+export { LEFT_ALIGNMENT, RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from './alignment';
 
+export type { EuiBreakpointSize } from './breakpoint';
 export {
   BREAKPOINTS,
   BREAKPOINT_KEYS,
@@ -42,9 +29,9 @@ export {
   isWithinBreakpoints,
   isWithinMaxBreakpoint,
   isWithinMinBreakpoint,
-  EuiBreakpointSize,
 } from './breakpoint';
 
+export type { HSV } from './color';
 export {
   isColorDark,
   isValidHex,
@@ -71,13 +58,27 @@ export {
   euiPaletteCool,
   euiPaletteWarm,
   euiPaletteGray,
-  HSV,
   getSteppedGradient,
+  transparentize,
+  tint,
+  shade,
+  tintOrShade,
+  shadeOrTint,
+  saturate,
+  desaturate,
+  lightness,
+  makeHighContrastColor,
+  makeDisabledContrastColor,
 } from './color';
 
+export type { EuiSetColorMethod } from './color_picker';
 export { useColorPickerState, useColorStopsState } from './color_picker';
 
+export * from './console';
+
 export { copyToClipboard } from './copy_to_clipboard';
+
+export * from './findElement';
 
 export {
   formatAuto,
@@ -98,12 +99,11 @@ export { getSecureRelForTarget } from './security';
 
 export { toSentenceCase, toInitials, slugify } from './string';
 
+export type { PropertySort, Direction } from './sort';
 export {
   PropertySortType,
-  PropertySort,
   SortDirectionType,
   SortDirection,
-  Direction,
   SortableProperties,
   Comparators,
 } from './sort';
@@ -119,12 +119,8 @@ export {
 
 export { EuiWindowEvent } from './window_event';
 
-export {
-  useCombinedRefs,
-  useDependentState,
-  useIsWithinBreakpoints,
-  useMouseMove,
-  isMouseEvent,
-} from './hooks';
+export * from './hooks';
 
 export { throttle } from './throttle';
+
+export * from './theme';

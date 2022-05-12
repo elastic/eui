@@ -14,7 +14,8 @@ export default ({ button = <></>, content }) => (
       className="eui-fullHeight"
       gutterSize="none"
       direction="column"
-      responsive={false}>
+      responsive={false}
+    >
       <EuiFlexItem grow={false}>
         <EuiPanel color="danger" />
       </EuiFlexItem>

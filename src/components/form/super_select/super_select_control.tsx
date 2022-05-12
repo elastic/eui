@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -28,12 +17,12 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 import { EuiScreenReaderOnly } from '../../accessibility';
-import { htmlIdGenerator } from '../../../services/accessibility';
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
 import { EuiI18n } from '../../i18n';
+import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
 
 export interface EuiSuperSelectOption<T> {
   value: T;
@@ -68,6 +57,11 @@ export interface EuiSuperSelectControlProps<T>
    * `string` | `ReactElement` or an array of these
    */
   append?: EuiFormControlLayoutProps['append'];
+  /**
+   * Creates a semantic label ID for the `div[role="listbox"]` that's opened on click or keypress.
+   * __Generated and passed down by `EuiSuperSelect`.__
+   */
+  screenReaderId?: string;
 }
 
 export const EuiSuperSelectControl: <T extends string>(
@@ -80,15 +74,25 @@ export const EuiSuperSelectControl: <T extends string>(
   fullWidth = false,
   isLoading = false,
   isInvalid = false,
+  readOnly,
   defaultValue,
   compressed = false,
   value,
   prepend,
   append,
+  screenReaderId,
+  disabled,
   ...rest
 }) => {
+  const numIconsClass = getFormControlClassNameForIconCount({
+    isInvalid,
+    isLoading,
+    isDropdown: true,
+  });
+
   const classes = classNames(
     'euiSuperSelectControl',
+    numIconsClass,
     {
       'euiSuperSelectControl--fullWidth': fullWidth,
       'euiSuperSelectControl--compressed': compressed,
@@ -114,13 +118,6 @@ export const EuiSuperSelectControl: <T extends string>(
       : selectedValue;
   }
 
-  const icon: EuiFormControlLayoutProps['icon'] = {
-    type: 'arrowDown',
-    side: 'right',
-  };
-
-  const screenReaderId = htmlIdGenerator()();
-
   return (
     <Fragment>
       <input
@@ -129,15 +126,20 @@ export const EuiSuperSelectControl: <T extends string>(
         name={name}
         defaultValue={selectDefaultValue}
         value={value}
+        readOnly={readOnly}
       />
 
       <EuiFormControlLayout
-        icon={icon}
+        isDropdown
         fullWidth={fullWidth}
         isLoading={isLoading}
+        isInvalid={isInvalid}
+        isDisabled={disabled}
+        readOnly={readOnly}
         compressed={compressed}
         prepend={prepend}
-        append={append}>
+        append={append}
+      >
         {/*
           This is read when the user tabs in. The comma is important,
           otherwise the screen reader often combines the text.
@@ -154,9 +156,12 @@ export const EuiSuperSelectControl: <T extends string>(
         <button
           type="button"
           className={classes}
-          aria-haspopup="true"
-          aria-labelledby={`${id} ${screenReaderId}`}
-          {...rest}>
+          aria-haspopup="listbox"
+          disabled={disabled || readOnly}
+          // @ts-ignore Using as a selector only for mixin use
+          readOnly={readOnly}
+          {...rest}
+        >
           {selectedValue}
         </button>
       </EuiFormControlLayout>

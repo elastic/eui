@@ -1,23 +1,3 @@
-/*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
-
 const { execSync } = require('child_process');
 const chalk = require('chalk');
 const shell = require('shelljs');
@@ -26,20 +6,21 @@ const glob = require('glob');
 const fs = require('fs');
 const dtsGenerator = require('dts-generator').default;
 
-function compileLib() {
-  shell.mkdir(
-    '-p',
-    'lib/components/icon/assets/tokens',
-    'lib/services',
-    'lib/test'
-  );
+const IGNORE_BUILD = ['**/webpack.config.js','**/*.d.ts'];
+const IGNORE_TESTS = ['**/*.test.js','**/*.test.ts','**/*.test.tsx','**/*.spec.tsx','**/test/internal/**/*.ts','**/test/internal/**/*.tsx','**/__mocks__/**'];
+const IGNORE_TESTENV = ['**/*.testenv.js','**/*.testenv.tsx','**/*.testenv.ts'];
+const IGNORE_PACKAGES = ['**/react-datepicker/test/**/*.js']
 
-  console.log('Compiling src/ to es/, lib/, and test-env/');
+function compileLib() {
+  shell.mkdir('-p', 'lib/services', 'lib/test');
+
+  console.log('Compiling src/ to es/, lib/, optimize/, and test-env/');
 
   // Run all code (com|trans)pilation through babel (ESNext JS & TypeScript)
 
+  // Default build
   execSync(
-    'babel --quiet --out-dir=es --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.test.ts,**/*.test.tsx,**/*.d.ts,**/*.testenv.js,**/*.testenv.tsx,**/*.testenv.ts" src',
+    `babel --quiet --out-dir=es --extensions .js,.ts,.tsx --ignore "${[...IGNORE_BUILD, ...IGNORE_TESTS, ...IGNORE_TESTENV, ...IGNORE_PACKAGES].join(',')}" src`,
     {
       env: {
         ...process.env,
@@ -48,9 +29,8 @@ function compileLib() {
       },
     }
   );
-
   execSync(
-    'babel --quiet --out-dir=lib --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.test.ts,**/*.test.tsx,**/*.d.ts,**/*.testenv.js,**/*.testenv.tsx,**/*.testenv.ts" src',
+    `babel --quiet --out-dir=lib --extensions .js,.ts,.tsx --ignore "${[...IGNORE_BUILD, ...IGNORE_TESTS, ...IGNORE_TESTENV, ...IGNORE_PACKAGES].join(',')}" src`,
     {
       env: {
         ...process.env,
@@ -59,8 +39,30 @@ function compileLib() {
     }
   );
 
+  // `optimize` build (Beta)
   execSync(
-    'babel --quiet --out-dir=test-env --extensions .js,.ts,.tsx --config-file="./.babelrc-test-env.js" --ignore "**/webpack.config.js,**/*.test.js,**/*.test.ts,**/*.test.tsx,**/*.d.ts" src',
+    `babel --quiet --out-dir=optimize/es --extensions .js,.ts,.tsx --config-file="./.babelrc-optimize.js" --ignore "${[...IGNORE_BUILD, ...IGNORE_TESTS, ...IGNORE_TESTENV, ...IGNORE_PACKAGES].join(',')}" src`,
+    {
+      env: {
+        ...process.env,
+        BABEL_MODULES: false,
+        NO_COREJS_POLYFILL: true,
+      },
+    }
+  );
+  execSync(
+    `babel --quiet --out-dir=optimize/lib --extensions .js,.ts,.tsx --config-file="./.babelrc-optimize.js" --ignore "${[...IGNORE_BUILD, ...IGNORE_TESTS, ...IGNORE_TESTENV, ...IGNORE_PACKAGES].join(',')}" src`,
+    {
+      env: {
+        ...process.env,
+        NO_COREJS_POLYFILL: true,
+      },
+    }
+  );
+
+  // `test-env` build
+  execSync(
+    `babel --quiet --out-dir=test-env --extensions .js,.ts,.tsx --config-file="./.babelrc-test-env.js" --ignore "${[...IGNORE_BUILD, ...IGNORE_TESTS, ...IGNORE_PACKAGES].join(',')}" src`,
     {
       env: {
         ...process.env,
@@ -90,13 +92,15 @@ function compileLib() {
 
   // Also copy over SVGs. Babel has a --copy-files option but that brings over
   // all kinds of things we don't want into the lib folder.
-  shell.mkdir('-p', 'lib/components/icon/assets');
+  shell.mkdir('-p', 'lib/components/icon/svgs', 'lib/components/icon/svgs/tokens');
+  shell.mkdir('-p', 'optimize/lib/components/icon/svgs', 'optimize/lib/components/icon/svgs/tokens');
 
   glob('./src/components/**/*.svg', undefined, (error, files) => {
     files.forEach(file => {
       const splitPath = file.split('/');
       const basePath = splitPath.slice(2, splitPath.length).join('/');
       shell.cp('-f', `${file}`, `lib/${basePath}`);
+      shell.cp('-f', `${file}`, `optimize/lib/${basePath}`);
     });
 
     console.log(chalk.green('✔ Finished copying SVGs'));
@@ -125,36 +129,23 @@ function compileBundle() {
   });
 
   console.log('Building test utils .d.ts files...');
-  dtsGenerator({
-    prefix: '',
-    out: 'lib/test/index.d.ts',
-    baseDir: path.resolve(__dirname, '..', 'src/test/'),
-    files: ['index.ts'],
-    resolveModuleId({ currentModuleId }) {
-      return `@elastic/eui/lib/test${currentModuleId !== 'index' ? `/${currentModuleId}` : ''}`;
-    },
-    resolveModuleImport({ currentModuleId, importedModuleId }) {
-   		if (currentModuleId === 'index') {
-  			return `@elastic/eui/lib/test/${importedModuleId.replace('./', '')}`;
-  		}
-			return null;
-	  }
-  });
-  dtsGenerator({
-    prefix: '',
-    out: 'es/test/index.d.ts',
-    baseDir: path.resolve(__dirname, '..', 'src/test/'),
-    files: ['index.ts'],
-    resolveModuleId({ currentModuleId }) {
-      return `@elastic/eui/es/test${currentModuleId !== 'index' ? `/${currentModuleId}` : ''}`;
-    },
-    resolveModuleImport({ currentModuleId, importedModuleId }) {
-   		if (currentModuleId === 'index') {
-          return `@elastic/eui/es/test/${importedModuleId.replace('./', '')}`;
-  		}
-			return null;
-	  }
-  });
+  ['lib/test', 'optimize/lib/test', 'es/test', 'optimize/es/test'].forEach((dir) => {
+    dtsGenerator({
+      prefix: '',
+      out: `${dir}/index.d.ts`,
+      baseDir: path.resolve(__dirname, '..', 'src/test/'),
+      files: ['index.ts'],
+      resolveModuleId({ currentModuleId }) {
+        return `@elastic/eui/${dir}${currentModuleId !== 'index' ? `/${currentModuleId}` : ''}`;
+      },
+      resolveModuleImport({ currentModuleId, importedModuleId }) {
+        if (currentModuleId === 'index') {
+          return `@elastic/eui/${dir}/${importedModuleId.replace('./', '')}`;
+        }
+        return null;
+      }
+    });
+  })
   console.log(chalk.green('✔ Finished test utils files'));
 
   console.log('Building chart theme module...');

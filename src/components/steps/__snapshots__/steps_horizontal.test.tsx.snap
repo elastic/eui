@@ -17,10 +17,11 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
         class="euiStepNumber euiStepNumber--complete euiStepHorizontal__number"
       >
         <span
-          aria-label="Step 1 is complete"
           class="euiStepNumber__icon"
           data-euiicon-type="check"
-        />
+        >
+          Step 1 is complete
+        </span>
       </span>
       <span
         class="euiStepHorizontal__title"
@@ -35,7 +36,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
   >
     <button
       class="euiStepHorizontal euiStepHorizontal-isSelected"
-      title="Step 2: Selected Step 2"
+      title="Current step 2: Selected Step 2"
     >
       <span
         class="euiStepNumber euiStepHorizontal__number"
@@ -43,7 +44,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
         <span
           class="euiScreenReaderOnly"
         >
-          Step 2
+          Current step is 2
         </span>
         <span
           aria-hidden="true"
@@ -92,8 +93,7 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
     class="euiStepHorizontal__item"
   >
     <button
-      class="euiStepHorizontal euiStepHorizontal-isIncomplete euiStepHorizontal-isDisabled"
-      disabled=""
+      class="euiStepHorizontal euiStepHorizontal-isDisabled"
       title="Step 4: Disabled Step 4 is disabled"
     >
       <span

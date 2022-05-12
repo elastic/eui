@@ -15,11 +15,18 @@ import {
   EuiSelect,
   EuiSpacer,
 } from '../../../../src/components';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [flyoutSize, setFlyoutSize] = useState('m');
   const [flyoutMaxWidth, setFlyoutMaxWidth] = useState(false);
+  const maxWidthFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'maxWidthFlyoutTitle',
+  });
+  const maxWidthFlyoutRangeId = useGeneratedHtmlId({
+    prefix: 'maxWidthFlyoutRange',
+  });
 
   const closeFlyout = () => setIsFlyoutVisible(false);
 
@@ -49,12 +56,13 @@ export default () => {
       <EuiFlyout
         ownFocus
         onClose={closeFlyout}
-        aria-labelledby="flyoutMaxWidthTitle"
+        aria-labelledby={maxWidthFlyoutTitleId}
         size={flyoutSize}
-        maxWidth={flyoutMaxWidth}>
+        maxWidth={flyoutMaxWidth}
+      >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
-            <h2 id="flyoutMaxWidthTitle">{maxWidthTitle} maxWidth</h2>
+            <h2 id={maxWidthFlyoutTitleId}>{maxWidthTitle} maxWidth</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>
@@ -71,7 +79,8 @@ export default () => {
           <EuiForm component="form">
             <EuiFormRow
               label="Text field"
-              helpText="I am some friendly help text.">
+              helpText="I am some friendly help text."
+            >
               <EuiFieldText name="first" />
             </EuiFormRow>
 
@@ -91,7 +100,12 @@ export default () => {
             </EuiFormRow>
 
             <EuiFormRow label="Range">
-              <EuiRange min={0} max={100} name="range" id="range" />
+              <EuiRange
+                min={0}
+                max={100}
+                name="range"
+                id={maxWidthFlyoutRangeId}
+              />
             </EuiFormRow>
           </EuiForm>
         </EuiFlyoutBody>

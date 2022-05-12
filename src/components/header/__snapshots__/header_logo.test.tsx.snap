@@ -8,10 +8,11 @@ exports[`EuiHeaderLogo is rendered 1`] = `
   rel="noreferrer"
 >
   <span
-    aria-label="Elastic"
     class="euiHeaderLogo__icon"
     data-euiicon-type="logoElastic"
-  />
+  >
+    Elastic
+  </span>
 </a>
 `;
 
@@ -22,10 +23,11 @@ exports[`EuiHeaderLogo renders href 1`] = `
   rel="noreferrer"
 >
   <span
-    aria-label="Elastic"
     class="euiHeaderLogo__icon"
     data-euiicon-type="logoElastic"
-  />
+  >
+    Elastic
+  </span>
 </a>
 `;
 
@@ -36,10 +38,11 @@ exports[`EuiHeaderLogo renders href with rel 1`] = `
   rel="noreferrer"
 >
   <span
-    aria-label="Elastic"
     class="euiHeaderLogo__icon"
     data-euiicon-type="logoElastic"
-  />
+  >
+    Elastic
+  </span>
 </a>
 `;
 
@@ -50,9 +53,10 @@ exports[`EuiHeaderLogo renders optional props 1`] = `
   style="color:red"
 >
   <span
-    aria-label="Moby Dick"
     class="euiHeaderLogo__icon"
     data-euiicon-type="alert"
-  />
+  >
+    Moby Dick
+  </span>
 </a>
 `;

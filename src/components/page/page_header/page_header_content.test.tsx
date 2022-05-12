@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React from 'react';
@@ -26,6 +15,7 @@ import {
   EuiPageHeaderContent,
   EuiPageHeaderContentProps,
 } from './page_header_content';
+import { EuiBreadcrumb } from '../../breadcrumbs';
 
 const tabs: EuiPageHeaderContentProps['tabs'] = [
   {
@@ -42,6 +32,23 @@ const rightSideItems: EuiPageHeaderContentProps['rightSideItems'] = [
   <button>Button 2</button>,
 ];
 
+const breadcrumbs: EuiBreadcrumb[] = [
+  {
+    text: 'Animals',
+    href: '#',
+    onClick: (e: React.MouseEvent) => {
+      e.preventDefault();
+      console.log('You clicked Animals');
+    },
+    'data-test-subj': 'breadcrumbsAnimals',
+    className: 'customClass',
+    color: 'primary',
+  },
+  {
+    text: 'Edit',
+  },
+];
+
 describe('EuiPageHeaderContent', () => {
   test('is rendered', () => {
     const component = render(<EuiPageHeaderContent {...requiredProps} />);
@@ -54,6 +61,17 @@ describe('EuiPageHeaderContent', () => {
       test('is rendered', () => {
         const component = render(
           <EuiPageHeaderContent pageTitle="Page title" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('is rendered with pageTitleProps', () => {
+        const component = render(
+          <EuiPageHeaderContent
+            pageTitle="Page title"
+            pageTitleProps={requiredProps}
+          />
         );
 
         expect(component).toMatchSnapshot();
@@ -90,6 +108,19 @@ describe('EuiPageHeaderContent', () => {
       test('is rendered with tabsProps', () => {
         const component = render(
           <EuiPageHeaderContent tabs={tabs} tabsProps={requiredProps} />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('breadcrumbs', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiPageHeaderContent
+            breadcrumbs={breadcrumbs}
+            breadcrumbProps={requiredProps}
+          />
         );
 
         expect(component).toMatchSnapshot();
@@ -153,7 +184,8 @@ describe('EuiPageHeaderContent', () => {
           <EuiPageHeaderContent
             pageTitle="Page title"
             tabs={tabs}
-            rightSideItems={rightSideItems}>
+            rightSideItems={rightSideItems}
+          >
             Child
           </EuiPageHeaderContent>
         );

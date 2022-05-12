@@ -23,8 +23,9 @@ export default () => {
         step={1}
         stepsTotal={1}
         title="Title of the current step"
-        subtitle="Title of the full tour"
-        anchorPosition="rightUp">
+        subtitle="Title of the full tour (optional)"
+        anchorPosition="rightUp"
+      >
         <EuiText>
           The tour step{' '}
           <EuiLink onClick={() => setIsOpen(!isOpen)}>anchor point</EuiLink>.

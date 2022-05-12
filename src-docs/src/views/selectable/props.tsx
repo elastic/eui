@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react';
 import {
   EuiSelectableOption,
   EuiSelectableOptionsListProps,
+  EuiSelectableSearchableSearchProps,
 } from '../../../../src/components/selectable';
 
 import {
@@ -16,6 +17,10 @@ export const EuiSelectableOptionProps: FunctionComponent<EuiSelectableOption> = 
 export const EuiSelectableOptionsList: FunctionComponent<EuiSelectableOptionsListProps> = () => (
   <div />
 );
+
+export const EuiSelectableSearchProps: FunctionComponent<EuiSelectableSearchableSearchProps<
+  any
+>> = () => <div />;
 
 export const Options: FunctionComponent<EuiSelectableTemplateSitewideOption> = () => (
   <div />

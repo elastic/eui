@@ -22,6 +22,8 @@ export const iconTypes = [
   'arrowLeft',
   'arrowRight',
   'arrowUp',
+  'arrowStart',
+  'arrowEnd',
   'asterisk',
   'beaker',
   'bell',
@@ -30,6 +32,7 @@ export const iconTypes = [
   'boxesHorizontal',
   'boxesVertical',
   'branch',
+  'branchUser',
   'broom',
   'brush',
   'bug',
@@ -59,11 +62,14 @@ export const iconTypes = [
   'currency',
   'cut',
   'database',
+  'desktop',
   'document',
-  'documentation',
-  'documentEdit',
   'documents',
+  'documentEdit',
+  'documentation',
   'dot',
+  'doubleArrowLeft',
+  'doubleArrowRight',
   'download',
   'email',
   'empty',
@@ -121,6 +127,10 @@ export const iconTypes = [
   'kqlSelector',
   'kqlValue',
   'layers',
+  'lettering',
+  'lineDashed',
+  'lineDotted',
+  'lineSolid',
   'link',
   'list',
   'listAdd',
@@ -131,6 +141,7 @@ export const iconTypes = [
   'logstashInput',
   'logstashOutput',
   'logstashQueue',
+  'magnifyWithExclamation',
   'magnifyWithMinus',
   'magnifyWithPlus',
   'magnet',
@@ -159,6 +170,7 @@ export const iconTypes = [
   'paperClip',
   'partial',
   'pause',
+  'payment',
   'pencil',
   'percent',
   'pin',
@@ -181,6 +193,7 @@ export const iconTypes = [
   'securitySignal',
   'securitySignalDetected',
   'securitySignalResolved',
+  'sessionViewer',
   'shard',
   'share',
   'snowflake',
@@ -204,6 +217,7 @@ export const iconTypes = [
   'storage',
   'string',
   'submodule',
+  'sun',
   'symlink',
   'tableOfContents',
   'tableDensityExpanded',
@@ -213,12 +227,14 @@ export const iconTypes = [
   'tear',
   'temperature',
   'timeline',
+  'timeRefresh',
   'timeslider',
   'training',
   'trash',
   'unfold',
   'unlink',
   'user',
+  'userAvatar',
   'users',
   'vector',
   'videoPlayer',
@@ -258,13 +274,15 @@ export default () => (
           <EuiCopy
             display="block"
             textToCopy={iconType}
-            afterMessage={`${iconType} copied`}>
+            afterMessage={`${iconType} copied`}
+          >
             {(copy) => (
               <EuiPanel
                 hasShadow={false}
                 hasBorder={false}
                 onClick={copy}
-                paddingSize="s">
+                paddingSize="s"
+              >
                 <EuiIcon className="eui-alignMiddle" type={iconType} /> &emsp;{' '}
                 <small>{iconType}</small>
               </EuiPanel>

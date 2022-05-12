@@ -19,7 +19,7 @@ export default () => {
   return (
     <React.Fragment>
       {/* DisplayToggles wrapper for Docs only */}
-      <DisplayToggles canLoading={false} canPrepend={true} canAppend={true}>
+      <DisplayToggles canLoading={false} canPrepend canAppend canClear>
         <EuiColorPicker color={color} onChange={setColor} />
       </DisplayToggles>
       <EuiSpacer />
@@ -27,7 +27,8 @@ export default () => {
       <DisplayToggles
         canLoading={false}
         canInvalid={false}
-        canCompressed={false}>
+        canCompressed={false}
+      >
         <EuiColorStops
           label="Kitchen sink"
           colorStops={colorStops}

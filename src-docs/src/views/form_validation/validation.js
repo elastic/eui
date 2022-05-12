@@ -43,7 +43,8 @@ export default () => {
           label="Validation with help text and errors"
           helpText="I am some friendly help text."
           isInvalid={showErrors}
-          error={errors}>
+          error={errors}
+        >
           <EuiFieldText name="text" isInvalid={showErrors} />
         </EuiFormRow>
 

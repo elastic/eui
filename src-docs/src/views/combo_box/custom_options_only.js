@@ -44,7 +44,8 @@ export default () => {
     <EuiFormRow
       label="Only custom options"
       isInvalid={isInvalid}
-      error={isInvalid ? 'Only letters are allowed' : undefined}>
+      error={isInvalid ? 'Only letters are allowed' : undefined}
+    >
       <EuiComboBox
         noSuggestions
         placeholder="Create some tags (letters only)"

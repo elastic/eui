@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -36,10 +25,13 @@ import classNames from 'classnames';
 import { CommonProps, OneOf } from '../common';
 import MarkdownActions, { insertText } from './markdown_actions';
 import { EuiMarkdownEditorToolbar } from './markdown_editor_toolbar';
-import { EuiMarkdownEditorTextArea } from './markdown_editor_text_area';
-import { EuiMarkdownFormat } from './markdown_format';
+import {
+  EuiMarkdownEditorTextArea,
+  EuiMarkdownEditorTextAreaProps,
+} from './markdown_editor_text_area';
+import { EuiMarkdownFormat, EuiMarkdownFormatProps } from './markdown_format';
 import { EuiMarkdownEditorDropZone } from './markdown_editor_drop_zone';
-import { htmlIdGenerator } from '../../services/';
+import { useGeneratedHtmlId } from '../../services/';
 
 import { MARKDOWN_MODE, MODE_EDITING, MODE_VIEWING } from './markdown_modes';
 import {
@@ -52,7 +44,6 @@ import {
 
 import { EuiModal } from '../modal';
 import { ContextShape, EuiMarkdownContext } from './markdown_context';
-import * as MarkdownTooltip from './plugins/markdown_tooltip';
 import {
   defaultParsingPlugins,
   defaultProcessingPlugins,
@@ -63,7 +54,7 @@ import { EuiResizeObserver } from '../observer/resize_observer';
 
 type CommonMarkdownEditorProps = Omit<
   HTMLAttributes<HTMLDivElement>,
-  'onChange'
+  'onChange' | 'placeholder'
 > &
   CommonProps & {
     /** aria-label OR aria-labelledby must be set */
@@ -84,6 +75,11 @@ type CommonMarkdownEditorProps = Omit<
 
     /** callback function when markdown content is modified */
     onChange: (value: string) => void;
+
+    /**
+     * Sets the current display mode to a read-only state. All editing gets resctricted.
+     */
+    readOnly?: ContextShape['readOnly'];
 
     /**
      * Sets the `height` in pixels of the editor/preview area or pass `full` to allow
@@ -129,6 +125,19 @@ type CommonMarkdownEditorProps = Omit<
 
     /** array defining any drag&drop handlers */
     dropHandlers?: EuiMarkdownDropHandler[];
+
+    /**
+     * Sets the placeholder of the textarea
+     */
+    placeholder?: EuiMarkdownEditorTextAreaProps['placeholder'];
+
+    /**
+     * Further extend the props applied to EuiMarkdownFormat
+     */
+    markdownFormatProps?: Omit<
+      EuiMarkdownFormatProps,
+      'parsingPluginList' | 'processingPluginList' | 'children'
+    >;
   };
 
 export type EuiMarkdownEditorProps = OneOf<
@@ -202,27 +211,21 @@ export const EuiMarkdownEditor = forwardRef<
       'aria-describedby': ariaDescribedBy,
       initialViewMode = MODE_EDITING,
       dropHandlers = [],
+      markdownFormatProps,
+      placeholder,
+      readOnly,
       ...rest
     },
     ref
   ) => {
     const [viewMode, setViewMode] = useState<MARKDOWN_MODE>(initialViewMode);
-    const editorId = useMemo(() => _editorId || htmlIdGenerator()(), [
-      _editorId,
-    ]);
+    const editorId = useGeneratedHtmlId({ conditionalId: _editorId });
 
     const [pluginEditorPlugin, setPluginEditorPlugin] = useState<
       EuiMarkdownEditorUiPlugin | undefined
     >(undefined);
 
     const toolbarPlugins = [...uiPlugins];
-    // @ts-ignore __originatedFromEui is a custom property
-    if (!uiPlugins.__originatedFromEui) {
-      toolbarPlugins.unshift(MarkdownTooltip.plugin);
-      console.warn(
-        'Deprecation warning: uiPlugins passed to EuiMarkdownEditor does not include the tooltip plugin, which has been added for you. This automatic inclusion has been deprecated and will be removed in the future, see https://github.com/elastic/eui/pull/4383'
-      );
-    }
 
     const markdownActions = useMemo(
       () => new MarkdownActions(editorId, toolbarPlugins),
@@ -249,7 +252,7 @@ export const EuiMarkdownEditor = forwardRef<
         const parsed = parser.processSync(value);
         return [parsed, null];
       } catch (e) {
-        return [null, e];
+        return [null, e as EuiMarkdownParseError];
       }
     }, [parser, value]);
 
@@ -267,11 +270,14 @@ export const EuiMarkdownEditor = forwardRef<
 
     const contextValue = useMemo<ContextShape>(
       () => ({
-        openPluginEditor: (plugin: EuiMarkdownEditorUiPlugin) =>
-          setPluginEditorPlugin(() => plugin),
-        replaceNode,
+        openPluginEditor: readOnly
+          ? () => {}
+          : (plugin: EuiMarkdownEditorUiPlugin) =>
+              setPluginEditorPlugin(() => plugin),
+        replaceNode: readOnly ? () => {} : replaceNode,
+        readOnly: readOnly,
       }),
-      [replaceNode]
+      [replaceNode, readOnly]
     );
 
     const [selectedNode, setSelectedNode] = useState<EuiMarkdownAstNode>();
@@ -292,6 +298,7 @@ export const EuiMarkdownEditor = forwardRef<
             for (let i = 0; i < node.children.length; i++) {
               const child = node.children[i];
               if (
+                child.position &&
                 child.position.start.offset < selectionStart &&
                 selectionStart < child.position.end.offset
               ) {
@@ -306,6 +313,9 @@ export const EuiMarkdownEditor = forwardRef<
 
         setSelectedNode(node);
       };
+      // `parsed` changed, which means the node at the cursor may be different
+      // e.g. from clicking a toolbar button
+      getCursorNode();
 
       const textarea = textareaRef.current!;
 
@@ -348,6 +358,10 @@ export const EuiMarkdownEditor = forwardRef<
       },
       className
     );
+
+    const classesPreview = classNames('euiMarkdownEditorPreview', {
+      'euiMarkdownEditorPreview-isReadOnly': readOnly,
+    });
 
     const onResize = () => {
       if (textarea && isEditing && height !== 'full') {
@@ -418,11 +432,14 @@ export const EuiMarkdownEditor = forwardRef<
           {isPreviewing && (
             <div
               ref={previewRef}
-              className="euiMarkdownEditorPreview"
-              style={{ height: previewHeight }}>
+              className={classesPreview}
+              style={{ height: previewHeight }}
+            >
               <EuiMarkdownFormat
                 parsingPluginList={parsingPluginList}
-                processingPluginList={processingPluginList}>
+                processingPluginList={processingPluginList}
+                {...markdownFormatProps}
+              >
                 {value}
               </EuiMarkdownFormat>
             </div>
@@ -432,7 +449,8 @@ export const EuiMarkdownEditor = forwardRef<
             className="euiMarkdownEditor__toggleContainer"
             style={{
               height: editorToggleContainerHeight,
-            }}>
+            }}
+          >
             <EuiMarkdownEditorDropZone
               setEditorFooterHeight={setEditorFooterHeight}
               isEditing={isEditing}
@@ -458,7 +476,8 @@ export const EuiMarkdownEditor = forwardRef<
               uiPlugins={toolbarPlugins}
               errors={errors}
               hasUnacceptedItems={hasUnacceptedItems}
-              setHasUnacceptedItems={setHasUnacceptedItems}>
+              setHasUnacceptedItems={setHasUnacceptedItems}
+            >
               <EuiResizeObserver onResize={onResize}>
                 {(resizeRef) => {
                   return (
@@ -470,6 +489,8 @@ export const EuiMarkdownEditor = forwardRef<
                       onChange={(e) => onChange(e.target.value)}
                       value={value}
                       onFocus={() => setHasUnacceptedItems(false)}
+                      placeholder={placeholder}
+                      readOnly={readOnly}
                       {...{
                         'aria-label': ariaLabel,
                         'aria-labelledby': ariaLabelledBy,
@@ -493,7 +514,8 @@ export const EuiMarkdownEditor = forwardRef<
                   onSave: (markdown, config) => {
                     if (
                       selectedNode &&
-                      selectedNode.type === pluginEditorPlugin.name
+                      selectedNode.type === pluginEditorPlugin.name &&
+                      selectedNode.position
                     ) {
                       // modifying an existing node
                       textareaRef.current!.setSelectionRange(

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiBeacon, EuiText } from '../../../../src/components';
@@ -10,7 +8,6 @@ import { beaconConfig } from './playground';
 
 import Beacon from './beacon';
 const beaconSource = require('!!raw-loader!./beacon');
-const beaconHtml = renderToHtml(Beacon);
 const beaconSnippet = '<EuiBeacon />';
 
 export const BeaconExample = {
@@ -21,10 +18,6 @@ export const BeaconExample = {
         {
           type: GuideSectionTypes.JS,
           code: beaconSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: beaconHtml,
         },
       ],
       text: (

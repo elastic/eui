@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -16,23 +14,18 @@ import {
 
 import FormCompressed from './form_compressed';
 const formCompressedSource = require('!!raw-loader!./form_compressed');
-const formCompressedHtml = renderToHtml(FormCompressed);
 
 import FormHorizontal from './form_horizontal';
 const formHorizontalSource = require('!!raw-loader!./form_horizontal');
-const formHorizontalHtml = renderToHtml(FormHorizontal);
 
 import FormHelp from './form_horizontal_help';
 const formHelpSource = require('!!raw-loader!./form_horizontal_help');
-const formHelpHtml = renderToHtml(FormHelp);
 
 import FormPopover from './form_compressed_popover';
 const formPopoverSource = require('!!raw-loader!./form_compressed_popover');
-const formPopoverHtml = renderToHtml(FormPopover);
 
 import ComplexExample from './complex_example';
 const ComplexExampleSource = require('!!raw-loader!./complex_example');
-const ComplexExampleHtml = renderToHtml(ComplexExample);
 
 export const FormCompressedExample = {
   title: 'Compressed forms',
@@ -62,10 +55,6 @@ export const FormCompressedExample = {
           type: GuideSectionTypes.JS,
           code: formCompressedSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: formCompressedHtml,
-        },
       ],
       text: (
         <p>
@@ -94,10 +83,6 @@ export const FormCompressedExample = {
         {
           type: GuideSectionTypes.JS,
           code: formHorizontalSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: formHorizontalHtml,
         },
       ],
       text: (
@@ -142,10 +127,6 @@ export const FormCompressedExample = {
         {
           type: GuideSectionTypes.JS,
           code: formHelpSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: formHelpHtml,
         },
       ],
       text: (
@@ -195,10 +176,6 @@ export const FormCompressedExample = {
           type: GuideSectionTypes.JS,
           code: formPopoverSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: formPopoverHtml,
-        },
       ],
       text: (
         <Fragment>
@@ -216,10 +193,6 @@ export const FormCompressedExample = {
         {
           type: GuideSectionTypes.JS,
           code: ComplexExampleSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: ComplexExampleHtml,
         },
       ],
       text: (

@@ -66,7 +66,7 @@ export default () => {
           label: 'A custom class is on this one',
           id: 'cutomClass',
           icon: <EuiToken size="xs" iconType="tokenObject" />,
-          className: 'euiTreeView__nodeInnerExample',
+          className: 'guideDemo__treeViewNode',
         },
       ],
     },

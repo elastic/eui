@@ -8,6 +8,7 @@ import {
   EuiButton,
   EuiTabs,
   EuiImage,
+  EuiBreadcrumbs,
 } from '../../../../src/components/';
 import {
   propUtilityForPlayground,
@@ -16,6 +17,16 @@ import {
   generateCustomProps,
   createOptionalEnum,
 } from '../../services/playground';
+
+const breadcrumbs = `[
+  {
+    text: 'Breadcrumb',
+    href: '#',
+  },
+  {
+    text: 'Current',
+  },
+]`;
 
 const tabs = `[
   {
@@ -56,10 +67,28 @@ export const pageHeaderConfig = () => {
     type: PropTypes.String,
   };
 
+  propsToUse.alignItems = {
+    ...propsToUse.alignItems,
+    value: 'top',
+  };
+
+  propsToUse.restrictWidth = {
+    ...propsToUse.restrictWidth,
+    type: PropTypes.Number,
+  };
+
   propsToUse.rightSideItems = simulateFunction({
     ...propsToUse.rightSideItems,
     custom: {
       value: rightSideItems,
+    },
+  });
+
+  propsToUse.breadcrumbs = simulateFunction({
+    ...propsToUse.breadcrumbs,
+    custom: {
+      ...propsToUse.breadcrumbs.custom,
+      value: breadcrumbs,
     },
   });
 
@@ -87,13 +116,24 @@ export const pageHeaderConfig = () => {
         EuiButton,
         EuiTabs,
         EuiImage,
+        EuiBreadcrumbs,
       },
       imports: {
         '@elastic/eui': {
-          named: ['EuiPageHeader', 'EuiButton', 'EuiTabs', 'EuiImage'],
+          named: [
+            'EuiPageHeader',
+            'EuiButton',
+            'EuiTabs',
+            'EuiImage',
+            'EuiBreadcrumbs',
+          ],
         },
       },
-      customProps: generateCustomProps(['rightSideItems', 'tabs']),
+      customProps: generateCustomProps([
+        'rightSideItems',
+        'tabs',
+        'breadcrumbs',
+      ]),
     },
   };
 };

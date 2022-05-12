@@ -3,8 +3,14 @@ on:
   schedule:
     - cron: '0 */8 * * *'
 
+permissions:
+  contents: read
+
 jobs:
   stale:
+    permissions:
+      issues: write  # for actions/stale to close stale issues
+      pull-requests: write  # for actions/stale to close stale PRs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/stale@v3
@@ -22,7 +28,7 @@ jobs:
           stale-pr-label: 'stale-pr'
           close-pr-label: 'stale-pr-closed'
           exempt-pr-labels: 'skip-stale-check,meta'
-          exempt-assignees: true
+          exempt-all-assignees: true
           operations-per-run: 1000
           remove-stale-when-updated: true
           enable-statistics: true

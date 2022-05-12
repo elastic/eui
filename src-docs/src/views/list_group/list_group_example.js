@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -15,27 +13,21 @@ import { EuiPinnableListGroupItem } from './props';
 
 import ListGroup from './list_group';
 const listGroupSource = require('!!raw-loader!./list_group');
-const listGroupHtml = renderToHtml(ListGroup);
 
 import ListGroupLinks from './list_group_links';
 const listGroupLinksSource = require('!!raw-loader!./list_group_links');
-const listGroupLinksHtml = renderToHtml(ListGroupLinks);
 
 import ListGroupLinkActions from './list_group_link_actions';
 const listGroupLinkActionsSource = require('!!raw-loader!./list_group_link_actions');
-const listGroupLinkActionsHtml = renderToHtml(ListGroupLinkActions);
 
 import ListGroupExtra from './list_group_extra';
 const listGroupExtraSource = require('!!raw-loader!./list_group_extra');
-const listGroupExtraHtml = renderToHtml(ListGroupExtra);
 
 import ListGroupItemColor from './list_group_item_color';
 const listGroupItemColorSource = require('!!raw-loader!./list_group_item_color');
-const listGroupItemColorHtml = renderToHtml(ListGroupItemColor);
 
 import PinnableListGroup from './pinnable_list_group';
 const pinnableListGroupSource = require('!!raw-loader!./pinnable_list_group');
-const pinnableListGroupHtml = renderToHtml(PinnableListGroup);
 
 export const ListGroupExample = {
   title: 'List group',
@@ -45,10 +37,6 @@ export const ListGroupExample = {
         {
           type: GuideSectionTypes.JS,
           code: listGroupSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: listGroupHtml,
         },
       ],
       text: (
@@ -77,10 +65,6 @@ export const ListGroupExample = {
         {
           type: GuideSectionTypes.JS,
           code: listGroupLinksSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: listGroupLinksHtml,
         },
       ],
       text: (
@@ -122,10 +106,6 @@ export const ListGroupExample = {
           type: GuideSectionTypes.JS,
           code: listGroupLinkActionsSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: listGroupLinkActionsHtml,
-        },
       ],
       text: (
         <p>
@@ -157,10 +137,6 @@ export const ListGroupExample = {
           type: GuideSectionTypes.JS,
           code: listGroupExtraSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: listGroupExtraHtml,
-        },
       ],
       text: (
         <p>
@@ -184,10 +160,6 @@ export const ListGroupExample = {
         {
           type: GuideSectionTypes.JS,
           code: listGroupItemColorSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: listGroupItemColorHtml,
         },
       ],
       text: (
@@ -220,10 +192,6 @@ export const ListGroupExample = {
         {
           type: GuideSectionTypes.JS,
           code: pinnableListGroupSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: pinnableListGroupHtml,
         },
       ],
       text: (

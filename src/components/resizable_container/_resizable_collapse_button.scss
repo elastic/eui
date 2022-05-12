@@ -11,7 +11,7 @@
 .euiResizableToggleButton {
   @include euiSlightShadow;
   position: absolute;
-  z-index: $euiZLevel1 + 1;
+  z-index: 2;
   // Remove animations from EuiButtonIcon because of the custom transforms
   animation: none !important; // sass-lint:disable-line no-important
   // Remove transition from EuiButtonIcon because of the custom transforms

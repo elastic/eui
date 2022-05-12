@@ -1,25 +1,14 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
   FunctionComponent,
-  HTMLAttributes,
+  ImgHTMLAttributes,
   useState,
   ReactNode,
 } from 'react';
@@ -85,7 +74,7 @@ type _EuiImageSrcOrUrl = ExclusiveUnion<
 
 export type EuiImageProps = CommonProps &
   _EuiImageSrcOrUrl &
-  HTMLAttributes<HTMLImageElement> & {
+  Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt'> & {
     /**
      * Separate from the caption is a title on the alt tag itself.
      * This one is required for accessibility.
@@ -211,23 +200,26 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
   const fullScreenDisplay = (
     <EuiOverlayMask
       data-test-subj="fullScreenOverlayMask"
-      onClick={closeFullScreen}>
+      onClick={closeFullScreen}
+    >
       <EuiFocusTrap clickOutsideDisables={true}>
         <>
           <figure
             className="euiImage euiImage-isFullScreen"
-            aria-label={optionalCaptionText}>
+            aria-label={optionalCaptionText}
+          >
             <button
               type="button"
               aria-label={useEuiI18n(
                 'euiImage.closeImage',
-                'Close full screen {alt} image',
+                'Close fullscreen {alt} image',
                 { alt }
               )}
               className="euiImage__button"
               data-test-subj="deactivateFullScreenButton"
               onClick={closeFullScreen}
-              onKeyDown={onKeyDown}>
+              onKeyDown={onKeyDown}
+            >
               <img
                 src={src || url}
                 alt={alt}
@@ -249,7 +241,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
 
   const fullscreenLabel = useEuiI18n(
     'euiImage.openImage',
-    'Open full screen {alt} image',
+    'Open fullscreen {alt} image',
     { alt }
   );
 
@@ -261,7 +253,8 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
           aria-label={fullscreenLabel}
           className={allowFullScreenButtonClasses}
           data-test-subj="activateFullScreenButton"
-          onClick={openFullScreen}>
+          onClick={openFullScreen}
+        >
           <img
             style={customStyle}
             src={src || url}

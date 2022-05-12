@@ -56,6 +56,7 @@ export default () => {
 
   const onWindowKeyDown = (e: any) => {
     if (e.metaKey && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
       window.addEventListener('keyup', onWindowKeyUp);
     }
   };
@@ -105,7 +106,8 @@ export default () => {
             alignItems="center"
             gutterSize="s"
             responsive={false}
-            wrap>
+            wrap
+          >
             <EuiFlexItem grow={false}>
               {searchValueExists && <EuiLink>View more results</EuiLink>}
             </EuiFlexItem>

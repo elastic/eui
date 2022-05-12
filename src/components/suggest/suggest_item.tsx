@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -32,9 +21,9 @@ interface Type {
   color: string | keyof typeof colorToClassNameMap;
 }
 
-interface EuiSuggestItemPropsBase {
+export interface _EuiSuggestItemPropsBase {
   /**
-   * Takes 'iconType' for EuiIcon and 'color'. 'color' can be tint1 through tint9.
+   * Takes `iconType` for EuiIcon and 'color'. 'color' can be tint1 through tint9.
    */
   type: Type;
 
@@ -49,33 +38,29 @@ interface EuiSuggestItemPropsBase {
   description?: string;
 
   /**
-   * Label display is 'fixed' by default. Label will increase its width beyond 50% if needed with 'expand'.
-   */
-  labelDisplay?: keyof typeof labelDisplayToClassMap;
-
-  /**
-   * Width of 'label' when 'labelDisplay' is set to 'fixed'.
-   * Accepts multiples of 10, from 20 to 90. Defaults to 50.
+   * Percentage width of `label`.
+   * Accepts multiples of `10`, from `20` to `90`.
+   * Label will expand to 100% if `description` is not provided.
    */
   labelWidth?: LabelWidthSize;
 
   /**
-   * Set the way in which 'description' is displayed, defaults to 'truncate'.
+   * Truncates both label and description.
    */
-  descriptionDisplay?: keyof typeof descriptionDisplayToClassMap;
+  truncate?: boolean;
 }
 
-type PropsForDiv = Omit<HTMLAttributes<HTMLDivElement>, 'onClick'>;
+type PropsForSpan = Omit<HTMLAttributes<HTMLSpanElement>, 'onClick'>;
 type PropsForButton = Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
   'onClick' | 'type'
 > & {
-  onClick: MouseEventHandler<HTMLButtonElement> | undefined;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 export type EuiSuggestItemProps = CommonProps &
-  EuiSuggestItemPropsBase &
-  ExclusiveUnion<PropsForDiv, PropsForButton>;
+  _EuiSuggestItemPropsBase &
+  ExclusiveUnion<PropsForSpan, PropsForButton>;
 
 interface ColorToClassMap {
   tint0: string;
@@ -92,7 +77,23 @@ interface ColorToClassMap {
   [key: string]: string;
 }
 
-type LabelWidthSize = '20' | '30' | '40' | '50' | '60' | '70' | '80' | '90';
+type LabelWidthSize =
+  | '20'
+  | '30'
+  | '40'
+  | '50'
+  | '60'
+  | '70'
+  | '80'
+  | '90'
+  | 20
+  | 30
+  | 40
+  | 50
+  | 60
+  | 70
+  | 80
+  | 90;
 
 const colorToClassNameMap: ColorToClassMap = {
   tint0: 'euiSuggestItem__type--tint0',
@@ -110,71 +111,55 @@ const colorToClassNameMap: ColorToClassMap = {
 
 export const COLORS = keysOf(colorToClassNameMap);
 
-const labelDisplayToClassMap = {
-  fixed: 'euiSuggestItem__labelDisplay--fixed',
-  expand: 'euiSuggestItem__labelDisplay--expand',
-};
-
-const descriptionDisplayToClassMap = {
-  truncate: 'euiSuggestItem__description--truncate',
-  wrap: 'euiSuggestItem__description--wrap',
-};
-
-export const DISPLAYS = keysOf(labelDisplayToClassMap);
-
 export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
   className,
   label,
   type,
-  labelDisplay = 'fixed',
   labelWidth = '50',
   description,
-  descriptionDisplay = 'truncate',
+  truncate = true,
   onClick,
   ...rest
 }) => {
   const classes = classNames(
     'euiSuggestItem',
     {
-      'euiSuggestItem-isClickable': onClick,
+      'euiSuggestItem--truncate': truncate,
     },
     className
   );
 
-  let colorClass = '';
-
-  const labelDisplayCalculated = !description ? 'expand' : labelDisplay;
-
   const labelClassNames = classNames(
     'euiSuggestItem__label',
-    labelDisplayToClassMap[labelDisplayCalculated],
-    {
-      [`euiSuggestItem__label--width${labelWidth}`]: labelDisplay === 'fixed',
-    }
+    `euiSuggestItem__label--width${labelWidth}`
   );
 
-  const descriptionClassNames = classNames(
-    'euiSuggestItem__description',
-    descriptionDisplayToClassMap[descriptionDisplay]
-  );
+  const descriptionClassNames = classNames('euiSuggestItem__description', {
+    'euiSuggestItem__description--wrap': !truncate,
+  });
 
+  let typeColorClass = '';
   if (type && type.color) {
     if (COLORS.indexOf(type.color as string) > -1) {
-      colorClass = colorToClassNameMap[type.color];
+      typeColorClass = colorToClassNameMap[type.color];
     }
   }
 
   const innerContent = (
     <React.Fragment>
-      <span className={`euiSuggestItem__type ${colorClass}`}>
+      <span className={`euiSuggestItem__type ${typeColorClass}`}>
         <EuiIcon
           type={type.iconType}
           color="inherit" // forces the icon to inherit its parent color
         />
       </span>
-      <span className={labelClassNames}>{label}</span>
+      <span className={labelClassNames} title={label}>
+        {label}
+      </span>
       {description && (
-        <span className={descriptionClassNames}>{description}</span>
+        <span className={descriptionClassNames} title={description}>
+          {description}
+        </span>
       )}
     </React.Fragment>
   );
@@ -184,15 +169,16 @@ export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
       <button
         onClick={onClick}
         className={classes}
-        {...(rest as PropsForButton)}>
+        {...(rest as Omit<PropsForButton, 'onClick' | 'className'>)}
+      >
         {innerContent}
       </button>
     );
   } else {
     return (
-      <div className={classes} {...(rest as PropsForDiv)}>
+      <span className={classes} {...(rest as PropsForSpan)}>
         {innerContent}
-      </div>
+      </span>
     );
   }
 };

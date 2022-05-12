@@ -4,20 +4,20 @@ import format from 'html-format';
 
 import { useView, Compiler, Placeholder } from 'react-view';
 import {
-  EuiSpacer,
   EuiCodeBlock,
   EuiErrorBoundary,
-  EuiTitle,
+  EuiFlyoutBody,
+  EuiFlyoutHeader,
+  EuiPanel,
 } from '../../../../src/components';
 import Knobs from './knobs';
-import { GuideSectionExample } from '../../components/guide_section/guide_section_parts/guide_section_example';
+import { GuideSectionPropsDescription } from '../../components/guide_section/guide_section_parts/guide_section_props_description';
 
 export default ({
   config,
   setGhostBackground,
   playgroundClassName,
-  description,
-  tabs,
+  playgroundPanelProps,
 }) => {
   const getSnippet = (code) => {
     let regex = /return \(([\S\s]*?)(;)$/gm;
@@ -42,7 +42,7 @@ export default ({
     // TODO: Replace `html-format` with something better.
     // Notably, something more jsx-friendly
     try {
-      formatted = format(newCode.trim(), ' '.repeat(4));
+      formatted = format(newCode.trim(), '  '.repeat(1));
     } catch {
       formatted = newCode.trim();
     }
@@ -66,47 +66,48 @@ export default ({
     }, [params.knobProps]);
 
     return (
-      <GuideSectionExample
-        ghostBackground={isGhost}
-        example={
-          <>
-            <div
-              className={classNames('playgroundWrapper', playgroundClassName)}>
-              <Compiler
-                {...params.compilerProps}
-                minHeight={0}
-                placeholder={Placeholder}
-                className={playgroundClassName}
-              />
-            </div>
-            <EuiSpacer />
-            <EuiCodeBlock
-              language="jsx"
-              fontSize="m"
-              paddingSize="m"
-              isCopyable>
-              {getSnippet(params.editorProps.code)}
-            </EuiCodeBlock>
-          </>
-        }
-        tabs={tabs}
-        tabContent={
-          <>
-            {description ? (
-              description
-            ) : (
-              <div className="guideSection__propsTableIntro">
-                <EuiTitle size="s">
-                  <h2>{config.componentName}</h2>
-                </EuiTitle>
-              </div>
-            )}
-            <EuiErrorBoundary>
-              <Knobs {...params.knobProps} />
-            </EuiErrorBoundary>
-          </>
-        }
-      />
+      <>
+        <EuiFlyoutHeader hasBorder>
+          <GuideSectionPropsDescription
+            className="playground__title"
+            componentName={config.componentName}
+            component={config.scope[config.componentName]}
+          />
+        </EuiFlyoutHeader>
+        <EuiFlyoutHeader className="playground__demoWrapper" hasBorder>
+          <EuiPanel
+            hasBorder={false}
+            color="transparent"
+            borderRadius="none"
+            className={classNames('playground__panel', {
+              guideDemo__ghostBackground: isGhost,
+            })}
+            {...playgroundPanelProps}
+          >
+            <Compiler
+              {...params.compilerProps}
+              placeholder={Placeholder}
+              className={classNames('playground__demo', playgroundClassName)}
+            />
+          </EuiPanel>
+        </EuiFlyoutHeader>
+        <EuiFlyoutHeader className="playground__codeWrapper" hasBorder>
+          <EuiCodeBlock
+            overflowHeight={'100%'}
+            language="jsx"
+            fontSize="m"
+            paddingSize="m"
+            isCopyable
+          >
+            {getSnippet(params.editorProps.code)}
+          </EuiCodeBlock>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody className="playground__tableWrapper">
+          <EuiErrorBoundary>
+            <Knobs {...params.knobProps} />
+          </EuiErrorBoundary>
+        </EuiFlyoutBody>
+      </>
     );
   };
 

@@ -86,14 +86,16 @@ export const ControlledSearchBar = () => {
           <EuiFlexItem grow={false}>
             <EuiButton
               size="s"
-              onClick={() => setQuery('status:open owner:dewey')}>
+              onClick={() => setQuery('status:open owner:dewey')}
+            >
               mine, open
             </EuiButton>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiButton
               size="s"
-              onClick={() => setQuery('status:closed owner:dewey')}>
+              onClick={() => setQuery('status:closed owner:dewey')}
+            >
               mine, closed
             </EuiButton>
           </EuiFlexItem>

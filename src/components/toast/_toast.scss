@@ -2,7 +2,7 @@
   border: $euiBorderThin;
   // This overwrites some of the border above
   // sass-lint:disable-block mixins-before-declarations
-  @include euiBottomShadowLarge($adjustBorders: true);
+  @include euiBottomShadowLarge;
 
   position: relative;
   padding: $euiSize;
@@ -50,7 +50,7 @@
 // Modifier naming and colors.
 $euiToastTypes: (
   primary: makeGraphicContrastColor($euiColorPrimary, $euiColorEmptyShade),
-  success: makeGraphicContrastColor($euiColorSecondary, $euiColorEmptyShade),
+  success: makeGraphicContrastColor($euiColorSuccess, $euiColorEmptyShade),
   warning: makeGraphicContrastColor($euiColorWarning, $euiColorEmptyShade),
   danger: makeGraphicContrastColor($euiColorDanger, $euiColorEmptyShade),
 );
@@ -88,7 +88,6 @@ $euiToastTypes: (
 
 .euiToastHeader__title {
   @include euiTitle('xs');
-  @include euiTextBreakWord;
   font-weight: $euiFontWeightLight;
 }
 

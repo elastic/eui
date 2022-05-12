@@ -51,7 +51,7 @@ export const Table = () => {
         header: false,
         truncateText: false,
         enlarge: true,
-        fullWidth: true,
+        width: '100%',
       },
     },
     {
@@ -120,6 +120,7 @@ export const Table = () => {
 
   return (
     <EuiBasicTable
+      tableCaption="Demo of EuiBasicTable"
       items={items}
       rowHeader="firstName"
       columns={columns}

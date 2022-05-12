@@ -50,7 +50,6 @@ exports[`CollapsedItemActions render with href and _target provided 1`] = `
   popoverRef={[Function]}
 >
   <EuiContextMenuPanel
-    hasFocus={true}
     items={
       Array [
         <EuiContextMenuItem

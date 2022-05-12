@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -13,47 +11,39 @@ import {
 
 import DatePicker from './date_picker';
 const datePickerSource = require('!!raw-loader!./date_picker');
-const datePickerHtml = renderToHtml(DatePicker);
 
 import States from './states';
 const statesSource = require('!!raw-loader!./states');
-const statesHtml = renderToHtml(States);
 
 import Locale from './locale';
 const localeSource = require('!!raw-loader!./locale');
-const localeHtml = renderToHtml(Locale);
 
 import Time from './time_select';
 const timeSource = require('!!raw-loader!./time_select');
-const timeHtml = renderToHtml(Time);
 
 import Inline from './inline';
 const inlineSource = require('!!raw-loader!./inline');
-const inlineHtml = renderToHtml(Inline);
 
 import Range from './range';
 const rangeSource = require('!!raw-loader!./range');
-const rangeHtml = renderToHtml(Range);
+
+import RangeRestricted from './range_restricted';
+const rangeRestrictedSource = require('!!raw-loader!./range_restricted');
 
 import MinMax from './min_max';
 const minMaxSource = require('!!raw-loader!./min_max');
-const minMaxHtml = renderToHtml(MinMax);
 
 import Classes from './classes';
 const classesSource = require('!!raw-loader!./classes');
-const classesHtml = renderToHtml(Classes);
 
 import OpenToDate from './open_to_date';
 const openToDateSource = require('!!raw-loader!./open_to_date');
-const openToDateHtml = renderToHtml(OpenToDate);
 
 import CustomInput from './custom_input';
 const customInputSource = require('!!raw-loader!./custom_input');
-const customInputHtml = renderToHtml(CustomInput);
 
 import Utc from './utc';
 const utcSource = require('!!raw-loader!./utc');
-const utcHtml = renderToHtml(Utc);
 
 const datePickerSnippet =
   '<EuiDatePicker selected={startDate} onChange={handleChange} />';
@@ -202,10 +192,6 @@ export const DatePickerExample = {
           type: GuideSectionTypes.JS,
           code: datePickerSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: datePickerHtml,
-        },
       ],
       text: (
         <p>
@@ -228,10 +214,6 @@ export const DatePickerExample = {
           type: GuideSectionTypes.JS,
           code: statesSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: statesHtml,
-        },
       ],
       text: (
         <p>
@@ -248,10 +230,6 @@ export const DatePickerExample = {
         {
           type: GuideSectionTypes.JS,
           code: timeSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: timeHtml,
         },
       ],
       text: (
@@ -273,10 +251,6 @@ export const DatePickerExample = {
         {
           type: GuideSectionTypes.JS,
           code: localeSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: localeHtml,
         },
       ],
       text: (
@@ -301,10 +275,6 @@ export const DatePickerExample = {
           type: GuideSectionTypes.JS,
           code: rangeSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: rangeHtml,
-        },
       ],
       text: (
         <p>
@@ -321,15 +291,34 @@ export const DatePickerExample = {
       props: { EuiDatePickerRange },
     },
     {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: rangeRestrictedSource,
+        },
+      ],
+      text: (
+        <>
+          <h3>
+            Dynamic <EuiCode>minDate</EuiCode> and <EuiCode>maxDate</EuiCode>
+          </h3>
+          <p>
+            By using <EuiCode>minDate</EuiCode> and <EuiCode>maxDate</EuiCode>,
+            and updating the values based on <EuiCode>startDate</EuiCode> and{' '}
+            <EuiCode>endDate</EuiCode>, users get immediate feedback on what
+            range values are allowed.
+          </p>
+        </>
+      ),
+      demo: <RangeRestricted />,
+      props: { EuiDatePickerRange },
+    },
+    {
       title: 'Only allow specific dates and times',
       source: [
         {
           type: GuideSectionTypes.JS,
           code: minMaxSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: minMaxHtml,
         },
       ],
       text: (
@@ -353,10 +342,6 @@ export const DatePickerExample = {
           type: GuideSectionTypes.JS,
           code: openToDateSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: openToDateHtml,
-        },
       ],
       text: (
         <p>
@@ -373,10 +358,6 @@ export const DatePickerExample = {
         {
           type: GuideSectionTypes.JS,
           code: customInputSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: customInputHtml,
         },
       ],
       text: (
@@ -395,10 +376,6 @@ export const DatePickerExample = {
           type: GuideSectionTypes.JS,
           code: utcSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: utcHtml,
-        },
       ],
       text: (
         <p>
@@ -414,10 +391,6 @@ export const DatePickerExample = {
         {
           type: GuideSectionTypes.JS,
           code: inlineSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: inlineHtml,
         },
       ],
       text: (
@@ -438,10 +411,6 @@ export const DatePickerExample = {
         {
           type: GuideSectionTypes.JS,
           code: classesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: classesHtml,
         },
       ],
       text: (

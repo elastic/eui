@@ -11,7 +11,8 @@ export default ({ button = <></>, content, sideNav, bottomBar }) => {
         pageTitle: 'Page title',
         rightSideItems: [button],
       }}
-      bottomBar={bottomBar}>
+      bottomBar={bottomBar}
+    >
       {content}
     </EuiPageTemplate>
   );

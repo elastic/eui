@@ -6,61 +6,72 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 
-import { htmlIdGenerator } from '../../../../src/services';
-
-const idPrefix = htmlIdGenerator()();
-const idPrefix2 = htmlIdGenerator()();
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
+  const basicButtonGroupPrefix = useGeneratedHtmlId({
+    prefix: 'basicButtonGroup',
+  });
+  const multiSelectButtonGroupPrefix = useGeneratedHtmlId({
+    prefix: 'multiSelectButtonGroup',
+  });
+  const disabledButtonGroupPrefix = useGeneratedHtmlId({
+    prefix: 'disabledButtonGroup',
+  });
+
   const toggleButtons = [
     {
-      id: `${idPrefix}0`,
+      id: `${basicButtonGroupPrefix}__0`,
       label: 'Option one',
     },
     {
-      id: `${idPrefix}1`,
+      id: `${basicButtonGroupPrefix}__1`,
       label: 'Option two is selected by default',
     },
     {
-      id: `${idPrefix}2`,
+      id: `${basicButtonGroupPrefix}__2`,
       label: 'Option three',
     },
   ];
 
   const toggleButtonsDisabled = [
     {
-      id: `${idPrefix}3`,
+      id: `${disabledButtonGroupPrefix}__0`,
       label: 'Option one',
     },
     {
-      id: `${idPrefix}4`,
+      id: `${disabledButtonGroupPrefix}__1`,
       label: 'Option two is selected by default',
     },
     {
-      id: `${idPrefix}5`,
+      id: `${disabledButtonGroupPrefix}__2`,
       label: 'Option three',
     },
   ];
 
   const toggleButtonsMulti = [
     {
-      id: `${idPrefix2}0`,
+      id: `${multiSelectButtonGroupPrefix}__0`,
       label: 'Option 1',
     },
     {
-      id: `${idPrefix2}1`,
+      id: `${multiSelectButtonGroupPrefix}__1`,
       label: 'Option 2 is selected by default',
     },
     {
-      id: `${idPrefix2}2`,
+      id: `${multiSelectButtonGroupPrefix}__2`,
       label: 'Option 3',
     },
   ];
 
-  const [toggleIdSelected, setToggleIdSelected] = useState(`${idPrefix}1`);
-  const [toggleIdDisabled, setToggleIdDisabled] = useState(`${idPrefix}4`);
+  const [toggleIdSelected, setToggleIdSelected] = useState(
+    `${basicButtonGroupPrefix}__1`
+  );
+  const [toggleIdDisabled, setToggleIdDisabled] = useState(
+    `${disabledButtonGroupPrefix}__1`
+  );
   const [toggleIdToSelectedMap, setToggleIdToSelectedMap] = useState({
-    [`${idPrefix2}1`]: true,
+    [`${multiSelectButtonGroupPrefix}__1`]: true,
   });
 
   const onChange = (optionId) => {

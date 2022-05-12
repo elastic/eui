@@ -291,11 +291,11 @@ exports[`EuiRange props levels should render 1`] = `
     >
       <span
         class="euiRangeLevel euiRangeLevel--danger"
-        style="width:20%"
+        style="left:calc(0% + 0px);right:calc(100% - 0px)"
       />
       <span
         class="euiRangeLevel euiRangeLevel--success"
-        style="width:80%"
+        style="left:calc(0% + 0px);right:calc(100% - 0px)"
       />
     </div>
     <input
@@ -308,6 +308,48 @@ exports[`EuiRange props levels should render 1`] = `
       type="range"
       value="20"
     />
+  </div>
+</div>
+`;
+
+exports[`EuiRange props loading should display when showInput="inputWithPopover" 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiRange__popover"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <div>
+      <div
+        class="euiFormControlLayout"
+      >
+        <div
+          class="euiFormControlLayout__childrenWrapper"
+        >
+          <input
+            aria-label="aria-label"
+            class="euiFieldNumber euiRangeInput euiRangeInput--max euiFormControlLayout--1icons euiFieldNumber-isLoading"
+            data-test-subj="test subject string"
+            id="id"
+            max="100"
+            min="0"
+            name="name"
+            step="1"
+            type="number"
+            value="8"
+          />
+          <div
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+          >
+            <span
+              aria-label="Loading"
+              class="euiLoadingSpinner css-155ohbx-euiLoadingSpinner-m"
+              role="progressbar"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 `;

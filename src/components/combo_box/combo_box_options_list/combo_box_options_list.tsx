@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -60,6 +49,7 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     'data-test-subj': string;
     activeOptionIndex?: number;
     areAllOptionsSelected?: boolean;
+    listboxAriaLabel: string;
     /**
      * Creates a custom text option. You can use `{searchValue}` inside your string to better customize your text.
      * It won't show if there's no onCreateOption.
@@ -205,8 +195,9 @@ export class EuiComboBoxOptionsList<T> extends Component<
     this.listBoxRef = ref;
 
     if (ref) {
+      ref.setAttribute('aria-label', this.props.listboxAriaLabel);
       ref.setAttribute('id', this.props.rootId('listbox'));
-      ref.setAttribute('role', 'listBox');
+      ref.setAttribute('role', 'listbox');
       ref.setAttribute('tabIndex', '0');
     }
   };
@@ -262,7 +253,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
         showIcons={singleSelection ? true : false}
         id={rootId(`_option-${index}`)}
         title={label}
-        {...rest}>
+        {...rest}
+      >
         <span className="euiComboBoxOption__contentWrapper">
           {renderOption ? (
             <span className={OPTION_CONTENT_CLASSNAME}>
@@ -275,7 +267,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
           ) : (
             <EuiHighlight
               search={searchValue}
-              className={OPTION_CONTENT_CLASSNAME}>
+              className={OPTION_CONTENT_CLASSNAME}
+            >
               {label}
             </EuiHighlight>
           )}
@@ -316,6 +309,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       delimiter,
       zIndex,
       style,
+      listboxAriaLabel,
       ...rest
     } = this.props;
 
@@ -461,7 +455,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
         itemData={matchingOptions}
         ref={this.setListRef}
         innerRef={this.setListBoxRef}
-        width={width}>
+        width={width}
+      >
         {this.ListRow}
       </FixedSizeList>
     );
@@ -487,7 +482,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
         panelRef={this.listRefCallback}
         data-test-subj={`comboBoxOptionsList ${dataTestSubj}`}
         style={{ ...style, zIndex: zIndex }}
-        {...rest}>
+        {...rest}
+      >
         <div className="euiComboBoxOptionsList__rowWrap">
           {emptyState || optionsList}
         </div>

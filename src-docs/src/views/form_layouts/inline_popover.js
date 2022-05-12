@@ -14,12 +14,22 @@ import {
   EuiSwitch,
 } from '../../../../src/components';
 
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [isPopover2Open, setIsPopover2Open] = useState(false);
   const [isSwitchChecked, setIsSwitchChecked] = useState(true);
+
+  const inlineFormPopoverId = useGeneratedHtmlId({
+    prefix: 'inlineFormPopover',
+  });
+  const verticalFormPopoverId = useGeneratedHtmlId({
+    prefix: 'verticalFormPopover',
+  });
+  const verticalFormSwitchId = useGeneratedHtmlId({
+    prefix: 'verticalFormSwitch',
+  });
 
   const onButtonClick = () => {
     setIsPopoverOpen(!isPopoverOpen);
@@ -46,7 +56,8 @@ export default () => {
       iconSide="right"
       fill
       iconType="arrowDown"
-      onClick={onButtonClick}>
+      onClick={onButtonClick}
+    >
       Inline form in a popover
     </EuiButton>
   );
@@ -78,7 +89,8 @@ export default () => {
       iconSide="right"
       fill
       iconType="arrowDown"
-      onClick={onButton2Click}>
+      onClick={onButton2Click}
+    >
       Vertical form in a popover
     </EuiButton>
   );
@@ -87,9 +99,9 @@ export default () => {
     <EuiForm component="form">
       <EuiFormRow>
         <EuiSwitch
-          id={htmlIdGenerator()()}
+          id={verticalFormSwitchId}
           name="popswitch"
-          label="Isn't this popover form cool?"
+          label="Setting name"
           checked={isSwitchChecked}
           onChange={onSwitchChange}
         />
@@ -111,19 +123,21 @@ export default () => {
   return (
     <div>
       <EuiPopover
-        id="inlineFormPopover"
+        id={inlineFormPopoverId}
         button={button}
         isOpen={isPopoverOpen}
-        closePopover={closePopover}>
+        closePopover={closePopover}
+      >
         <div style={{ width: 500 }}>{formSample}</div>
       </EuiPopover>
       &emsp;
       <EuiPopover
-        id="formPopover"
+        id={verticalFormPopoverId}
         button={button2}
         isOpen={isPopover2Open}
         closePopover={closePopover2}
-        initialFocus="[name='popfirst']">
+        initialFocus="[name='popfirst']"
+      >
         <div style={{ width: '300px' }}>{formSample2}</div>
       </EuiPopover>
     </div>

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode } from '../../../../src/components';
@@ -12,7 +10,6 @@ import { expressionConfig } from './playground';
 
 import Expression from './expression';
 const expressionSource = require('!!raw-loader!./expression');
-const expressionHtml = renderToHtml(Expression);
 const expressionSnippet = `<EuiExpression
   description={description}
   value={value}
@@ -22,16 +19,14 @@ const expressionSnippet = `<EuiExpression
 
 import Colors from './colors';
 const colorSource = require('!!raw-loader!./colors');
-const colorHtml = renderToHtml(Colors);
-const colorSnippet = `<EuiExpression 
-  description={description} 
+const colorSnippet = `<EuiExpression
+  description={description}
   value={value}
-  color="primary" 
+  color="primary"
 />`;
 
 import Stringing from './stringing';
 const stringingSource = require('!!raw-loader!./stringing');
-const stringingHtml = renderToHtml(Stringing);
 const stringingSnippet = `<div>
   <EuiExpression
     description={description1}
@@ -47,7 +42,6 @@ const stringingSnippet = `<div>
 
 import Columns from './columns';
 const columnsSource = require('!!raw-loader!./columns');
-const columnsHtml = renderToHtml(Columns);
 const columnsSnippet = `<EuiExpression
   description={description}
   display="columns"
@@ -56,7 +50,6 @@ const columnsSnippet = `<EuiExpression
 
 import Invalid from './invalid';
 const invalidSource = require('!!raw-loader!./invalid');
-const invalidHtml = renderToHtml(Invalid);
 const invalidSnippet = `<EuiExpression
   description={description}
   isInvalid
@@ -65,7 +58,6 @@ const invalidSnippet = `<EuiExpression
 
 import Truncate from './truncate';
 const truncateSource = require('!!raw-loader!./truncate');
-const truncateHtml = renderToHtml(Truncate);
 const truncateSnippet = `<EuiExpression
   description={description}
   value={value}
@@ -81,10 +73,6 @@ export const ExpressionExample = {
           type: GuideSectionTypes.JS,
           code: expressionSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: expressionHtml,
-        },
       ],
       text: (
         <p>
@@ -99,6 +87,7 @@ export const ExpressionExample = {
       props: { EuiExpression },
       snippet: expressionSnippet,
       demo: <Expression />,
+      playground: expressionConfig,
     },
     {
       title: 'Colors',
@@ -106,10 +95,6 @@ export const ExpressionExample = {
         {
           type: GuideSectionTypes.JS,
           code: colorSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: colorHtml,
         },
       ],
       text: (
@@ -128,10 +113,6 @@ export const ExpressionExample = {
           type: GuideSectionTypes.JS,
           code: stringingSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: stringingHtml,
-        },
       ],
       text: (
         <p>
@@ -149,10 +130,6 @@ export const ExpressionExample = {
         {
           type: GuideSectionTypes.JS,
           code: columnsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: columnsHtml,
         },
       ],
       text: (
@@ -186,10 +163,6 @@ export const ExpressionExample = {
           type: GuideSectionTypes.JS,
           code: invalidSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: invalidHtml,
-        },
       ],
       text: (
         <p>
@@ -208,10 +181,6 @@ export const ExpressionExample = {
           type: GuideSectionTypes.JS,
           code: truncateSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: truncateHtml,
-        },
       ],
       text: (
         <p>
@@ -228,5 +197,4 @@ export const ExpressionExample = {
       demo: <Truncate />,
     },
   ],
-  playground: expressionConfig,
 };

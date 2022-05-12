@@ -17,7 +17,8 @@ export default () => (
         iconType="cross"
         iconSide="right"
         iconOnClick={() => {}}
-        iconOnClickAriaLabel="Click this icon to...">
+        iconOnClickAriaLabel="Click this icon to..."
+      >
         Badge with iconOnClick being truncated
       </EuiBadge>
 
@@ -27,7 +28,8 @@ export default () => (
         onClick={() => {}}
         onClickAriaLabel="Click this badge to..."
         iconOnClick={() => {}}
-        iconOnClickAriaLabel="Click this icon to...">
+        iconOnClickAriaLabel="Click this icon to..."
+      >
         Badge with both onClicks being truncated
       </EuiBadge>
     </EuiBadgeGroup>

@@ -1,24 +1,31 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { CSSProperties, FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
+import { CommonProps } from '../../common';
+
+import { calculateThumbPosition, EUI_THUMB_SIZE } from './utils';
+
+const calculateOffset = (position: number, value: number, bound: number) => {
+  const threshold = 30;
+  let offset = value === bound ? 0 : EUI_THUMB_SIZE / 2;
+  if (offset !== 0) {
+    // Estimating offset by eye. Trying to account for range scaling at both ends.
+    offset =
+      position <= threshold ? offset + (1 / position) * threshold : offset;
+    offset =
+      position >= 100 - threshold
+        ? offset - (1 / (100 - position)) * threshold
+        : offset;
+  }
+  return offset;
+};
 
 export type EuiRangeLevelColor = 'primary' | 'success' | 'warning' | 'danger';
 
@@ -29,13 +36,19 @@ export const LEVEL_COLORS: EuiRangeLevelColor[] = [
   'danger',
 ];
 
-export interface EuiRangeLevel {
+export interface EuiRangeLevel extends CommonProps {
   min: number;
   max: number;
-  color: EuiRangeLevelColor;
+  /**
+   * Accepts one of `["primary", "success", "warning", "danger"]` or a valid CSS color value.
+   */
+  color: EuiRangeLevelColor | CSSProperties['color'];
 }
 
 export interface EuiRangeLevelsProps {
+  /**
+   * An array of #EuiRangeLevel objects
+   */
   levels?: EuiRangeLevel[];
   max: number;
   min: number;
@@ -50,6 +63,10 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
   showTicks,
   compressed,
 }) => {
+  const [trackWidth, setTrackWidth] = useState(0);
+  const handleRef = (node: HTMLDivElement | null) => {
+    setTrackWidth(node?.clientWidth ?? 0);
+  };
   const validateLevelIsInRange = (level: EuiRangeLevel) => {
     if (level.min < min) {
       throw new Error(
@@ -69,18 +86,54 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
   });
 
   return (
-    <div className={classes}>
+    <div className={classes} ref={handleRef}>
       {levels.map((level, index) => {
         validateLevelIsInRange(level);
-        const range = level.max - level.min;
-        const width = (range / (max - min)) * 100;
+
+        const {
+          color,
+          className,
+          min: levelMin,
+          max: levelMax,
+          ...rest
+        } = level;
+
+        let left = 0;
+        let right = 0;
+        let leftOffset = 0;
+        let rightOffset = 0;
+        if (trackWidth > 0) {
+          left =
+            levelMin === min
+              ? 0
+              : calculateThumbPosition(levelMin, min, max, trackWidth);
+          leftOffset = calculateOffset(left, levelMin, min);
+          right =
+            levelMax === max
+              ? 100
+              : calculateThumbPosition(levelMax, min, max, trackWidth);
+          rightOffset = calculateOffset(right, levelMax, max);
+        }
+
+        const isNamedColor = LEVEL_COLORS.includes(color as EuiRangeLevelColor);
+
+        const styles = {
+          left: `calc(${left}% + ${leftOffset}px)`,
+          right: `calc(${100 - right}% - ${rightOffset}px)`,
+          backgroundColor: !isNamedColor ? color : undefined,
+        };
+
+        const levelClasses = classNames(
+          'euiRangeLevel',
+          {
+            'euiRangeLevel--customColor': !isNamedColor,
+            [`euiRangeLevel--${color}`]: isNamedColor,
+          },
+          className
+        );
 
         return (
-          <span
-            key={index}
-            style={{ width: `${width}%` }}
-            className={`euiRangeLevel euiRangeLevel--${level.color}`}
-          />
+          <span key={index} style={styles} className={levelClasses} {...rest} />
         );
       })}
     </div>

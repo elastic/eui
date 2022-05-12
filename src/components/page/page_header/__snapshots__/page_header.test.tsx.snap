@@ -24,7 +24,7 @@ exports[`EuiPageHeader props alignItems bottom is rendered 1`] = `
         class="euiFlexItem"
       >
         <h1
-          class="euiTitle euiTitle--large"
+          class="euiTitle css-1bexacr-euiTitle-l"
         >
           Page title
         </h1>
@@ -70,7 +70,7 @@ exports[`EuiPageHeader props alignItems center is rendered 1`] = `
         class="euiFlexItem"
       >
         <h1
-          class="euiTitle euiTitle--large"
+          class="euiTitle css-1bexacr-euiTitle-l"
         >
           Page title
         </h1>
@@ -116,7 +116,7 @@ exports[`EuiPageHeader props alignItems stretch is rendered 1`] = `
         class="euiFlexItem"
       >
         <h1
-          class="euiTitle euiTitle--large"
+          class="euiTitle css-1bexacr-euiTitle-l"
         >
           Page title
         </h1>
@@ -162,7 +162,7 @@ exports[`EuiPageHeader props alignItems top is rendered 1`] = `
         class="euiFlexItem"
       >
         <h1
-          class="euiTitle euiTitle--large"
+          class="euiTitle css-1bexacr-euiTitle-l"
         >
           Page title
         </h1>
@@ -201,6 +201,41 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
   <div
     class="euiPageHeaderContent"
   >
+    <nav
+      aria-label="aria-label"
+      class="euiBreadcrumbs testClass1 testClass2 euiBreadcrumbs--truncate"
+      data-test-subj="test subject string"
+    >
+      <ol
+        class="euiBreadcrumbs__list"
+      >
+        <li
+          class="euiBreadcrumb"
+        >
+          <a
+            class="euiLink euiBreadcrumb__content customClass css-102pf9n-euiLink-primary"
+            data-test-subj="breadcrumbsAnimals"
+            href="#"
+            rel="noreferrer"
+          >
+            Animals
+          </a>
+        </li>
+        <li
+          class="euiBreadcrumb euiBreadcrumb--last"
+        >
+          <span
+            aria-current="page"
+            class="euiBreadcrumb__content"
+          >
+            Edit
+          </span>
+        </li>
+      </ol>
+    </nav>
+    <div
+      class="euiSpacer euiSpacer--s css-78drzl-euiSpacer-s"
+    />
     <div
       class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
     >
@@ -208,18 +243,21 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
         class="euiFlexItem"
       >
         <h1
-          class="euiTitle euiTitle--large"
+          aria-label="aria-label"
+          class="euiTitle testClass1 testClass2 css-1bexacr-euiTitle-l"
+          data-test-subj="test subject string"
         >
           <span
-            aria-label="aria-label"
             class="euiPageHeaderContent__titleIcon testClass1 testClass2"
             data-euiicon-type="logoKibana"
             data-test-subj="test subject string"
-          />
+          >
+            aria-label
+          </span>
           Page title
         </h1>
         <div
-          class="euiSpacer euiSpacer--l"
+          class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
         />
         <div
           class="euiText euiText--medium euiText--constrainedWidth"
@@ -258,17 +296,17 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       class="euiPageHeaderContent__bottom"
     >
       <div
-        class="euiSpacer euiSpacer--l"
+        class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
       />
       <p>
         Anything
       </p>
       <div
-        class="euiSpacer euiSpacer--l"
+        class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
       />
       <div
         aria-label="aria-label"
-        class="euiTabs euiTabs--condensed euiTabs--large testClass1 testClass2"
+        class="euiTabs euiTabs--large testClass1 testClass2"
         data-test-subj="test subject string"
         role="tablist"
       >
@@ -316,13 +354,13 @@ exports[`EuiPageHeader props responsive is rendered as reverse 1`] = `
 
 exports[`EuiPageHeader props restrictWidth is rendered as custom 1`] = `
 <header
-  class="euiPageHeader euiPageHeader--responsive euiPage--restrictWidth-custom euiPageHeader--center"
+  class="euiPageHeader euiPageHeader--restrictWidth-custom euiPageHeader--responsive euiPageHeader--center"
   style="max-width:100px"
 />
 `;
 
 exports[`EuiPageHeader props restrictWidth is rendered as true 1`] = `
 <header
-  class="euiPageHeader euiPageHeader--responsive euiPage--restrictWidth-default euiPageHeader--center"
+  class="euiPageHeader euiPageHeader--restrictWidth-default euiPageHeader--responsive euiPageHeader--center"
 />
 `;

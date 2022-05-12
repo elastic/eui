@@ -1,0 +1,29 @@
+.guideDemo__emptyPromptPanelPicker {
+  width: 100%;
+  gap: $euiSizeXL; // sass-lint:disable-line no-misspelled-properties
+}
+
+.guideDemo__emptyPromptPanelPickerThumbBtn {
+  width: 120px;
+  height: auto;
+
+  .euiKeyPadMenuItem__icon {
+    transform: none;
+    margin-bottom: $euiSizeS;
+  }
+}
+
+.guideDemo__emptyPromptPanelPickerThumb {
+  border: $euiBorderThin;
+  border-radius: $euiBorderRadius;
+  overflow: hidden;
+
+  &-isSelected {
+    border-color: $euiColorPrimary;
+  }
+}
+
+.guideDemo__emptyPromptDemoPreview {
+  border: 1px solid $guideDemoHighlightColor;
+  overflow: hidden;
+}

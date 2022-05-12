@@ -25,12 +25,6 @@ exports[`EuiProgress color primary is rendered 1`] = `
 />
 `;
 
-exports[`EuiProgress color secondary is rendered 1`] = `
-<div
-  class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--secondary"
-/>
-`;
-
 exports[`EuiProgress color subdued is rendered 1`] = `
 <div
   class="euiProgress euiProgress--indeterminate euiProgress--m euiProgress--subdued"

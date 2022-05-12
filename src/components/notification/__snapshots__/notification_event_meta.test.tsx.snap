@@ -77,50 +77,48 @@ exports[`EuiNotificationEventMeta props contextMenuItems are rendered 1`] = `
   tabindex="-1"
 >
   <div>
-    <div>
-      <button
-        class="euiContextMenuItem"
-        type="button"
+    <button
+      class="euiContextMenuItem"
+      type="button"
+    >
+      <span
+        class="euiContextMenu__itemLayout"
       >
         <span
-          class="euiContextMenu__itemLayout"
+          class="euiContextMenuItem__text"
         >
-          <span
-            class="euiContextMenuItem__text"
-          >
-            Mark as read
-          </span>
+          Mark as read
         </span>
-      </button>
-      <button
-        class="euiContextMenuItem"
-        type="button"
+      </span>
+    </button>
+    <button
+      class="euiContextMenuItem"
+      type="button"
+    >
+      <span
+        class="euiContextMenu__itemLayout"
       >
         <span
-          class="euiContextMenu__itemLayout"
+          class="euiContextMenuItem__text"
         >
-          <span
-            class="euiContextMenuItem__text"
-          >
-            View messages like this
-          </span>
+          View messages like this
         </span>
-      </button>
-      <button
-        class="euiContextMenuItem"
-        type="button"
+      </span>
+    </button>
+    <button
+      class="euiContextMenuItem"
+      type="button"
+    >
+      <span
+        class="euiContextMenu__itemLayout"
       >
         <span
-          class="euiContextMenu__itemLayout"
+          class="euiContextMenuItem__text"
         >
-          <span
-            class="euiContextMenuItem__text"
-          >
-            Don’t notify me about this
-          </span>
+          Don’t notify me about this
         </span>
-      </button>
-    </div>
+      </span>
+    </button>
   </div>
 </div>
 `;

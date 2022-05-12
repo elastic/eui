@@ -31,10 +31,11 @@ const generator = dtsGenerator({
   exclude: [
     'node_modules/**/*.d.ts',
     '*/custom_typings/**/*.d.ts',
-    '**/*.test.ts',
-    '**/*.test.tsx',
-    '**/*.testenv.ts',
-    '**/*.testenv.tsx',
+    '**/*.test.{ts,tsx}',
+    '**/*.testenv.{ts,tsx}',
+    '**/*.spec.{ts,tsx}',
+    '**/*.mock.{ts,tsx}',
+    '**/__mocks__/*',
     'src/themes/charts/*', // A separate d.ts file is generated for the charts theme file
     'src/test/*', // A separate d.ts file is generated for test utils
     'src-docs/**/*', // Don't include src-docs
@@ -96,6 +97,7 @@ const generator = dtsGenerator({
 // 1. strip any `/// <reference` lines from the generated eui.d.ts
 // 2. replace any import("src/...") declarations to import("@elastic/eui/src/...")
 // 3. replace any import("./...") declarations to import("@elastic/eui/src/...)
+// 4. generate & add EuiTokenObject
 generator.then(() => {
   const defsFilePath = path.resolve(baseDir, 'eui.d.ts');
 
@@ -144,5 +146,30 @@ generator.then(() => {
           );
         }
       ) // end 3.
+      .replace(/$/, `\n\n${buildEuiTokensObject()}`) // 4.
   );
 });
+
+/** For step 4 **/
+// i18ntokens.json is generated as the first step in the build and can be relied upon here
+function buildEuiTokensObject() {
+  // reduce over the tokens list as a few of the tokens are used multiple times and must be
+  // filtered down to a list
+  const { i18ndefs } = require('../i18ntokens.json').reduce(
+    ({ i18ndefs, tokens }, def) => {
+      if (!tokens.has(def.token)) {
+        tokens.add(def.token);
+        i18ndefs.push(def);
+      }
+      return { i18ndefs, tokens };
+    },
+    { i18ndefs: [], tokens: new Set() }
+  );
+  return `
+declare module '@elastic/eui' {
+  export type EuiTokensObject = {
+    ${i18ndefs.map(({ token }) => `"${token}": any;`).join('\n')}
+  }
+}
+  `;
+}

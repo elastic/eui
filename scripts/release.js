@@ -1,6 +1,5 @@
 const argparse = require('argparse');
 const chalk = require('chalk');
-const fs = require('fs');
 const path = require('path');
 const prompt = require('prompt');
 let { execSync } = require('child_process');
@@ -8,6 +7,8 @@ let { execSync } = require('child_process');
 const cwd = path.resolve(__dirname, '..');
 const stdio = 'inherit';
 const execOptions = { cwd, stdio };
+
+const { collateChangelogFiles, updateChangelog } = require('./update-changelog');
 
 const TYPE_MAJOR = 0;
 const TYPE_MINOR = 1;
@@ -36,8 +37,8 @@ if (args.dry_run) {
     process.exit(1);
   }
 
-  // ensure git is on the master branch
-  await ensureMasterBranch();
+  // ensure git is on the main branch
+  await ensureMainBranch();
 
   // run linting and unit tests
   if (args.steps.indexOf('test') > -1) {
@@ -51,13 +52,21 @@ if (args.dry_run) {
 
 
   if (args.steps.indexOf('version') > -1) {
+    const { changelogMap, changelog } = collateChangelogFiles();
+
     // prompt user for what type of version bump to make (major|minor|patch)
-    const versionTarget = await getVersionTypeFromChangelog();
+    const versionTarget = await getVersionTypeFromChangelog(changelogMap);
 
     // build may have generated a new i18ntokens.json file, dirtying the git workspace
     // it's important to track those changes with this release, so determine the changes and write them
     // to i18ntokens_changelog.json, comitting both to the workspace before running `npm version`
     execSync(`npm run update-token-changelog -- ${versionTarget}`, execOptions);
+
+    // Update CHANGELOG.md
+    updateChangelog(changelog, versionTarget);
+
+    // Clear any local tags
+    execSync('git fetch upstream --tags --prune --prune-tags --force');
 
     // update package.json & package-lock.json version, git commit, git tag
     execSync(`npm version ${versionTarget}`, execOptions);
@@ -121,8 +130,8 @@ function parseArguments() {
   };
 }
 
-async function ensureMasterBranch() {
-  // ignore master check in CI since it's checking out the HEAD commit instead
+async function ensureMainBranch() {
+  // ignore main check in CI since it's checking out the HEAD commit instead
   if (process.env.CI === 'true') {
     return;
   }
@@ -133,51 +142,22 @@ async function ensureMasterBranch() {
   const currentBranch = await repo.getCurrentBranch();
   const currentBranchName = currentBranch.shorthand();
 
-  if (currentBranchName !== 'master') {
-    console.error(`Unable to release: currently on branch "${currentBranchName}", expected "master"`);
+  if (currentBranchName !== 'main') {
+    console.error(`Unable to release: currently on branch "${currentBranchName}", expected "main"`);
     process.exit(1);
   }
 }
 
-async function getVersionTypeFromChangelog() {
-  const pathToChangelog = path.resolve(cwd, 'CHANGELOG.md');
-
-  const changelog = fs.readFileSync(pathToChangelog).toString();
-
-  // Sanity check, if the changelog contains "No public interface changes"then we shouldn't be releasing
-  if (changelog.indexOf('No public interface changes') !== -1) {
-    console.error('Unable to release: CHANGELOG.md indicates "No public interface changes"');
-    process.exit(1);
-  }
-
-  // get contents between the first two headings
-  // changelog headings always use ##, this matches:
-  //
-  // "##.+?[\r\n]+" consume the first heading & linebreak(s), which describes the master branch
-  // "(.+?)" capture (non-greedy) all changes until the rest of the regex matches
-  // "[\r\n]+##" any linebreak(s) leading up to the next ## heading
-  //
-  // regex flags "su" enable dotAll (s) and unicode-character matching (u)
-  //
-  // effectively capturing pending changes in the capture group
-  // which is stored as the second item in the returned array from `changelog.match()`
-  const [, unreleasedchanges] = changelog.match(/##.+?[\r\n]+(.+?)[\r\n]+##/su);
-
-  // these changes contain bug fixes if the string "**bug fixes**" exists
-  const hasBugFixes = unreleasedchanges.toLowerCase().indexOf('**bug fixes**') !== -1;
-
-  // by convention, non-bug changes are listed first
-  // this checks if a markdown list character "-" exists before the "bug fixes" string,
-  // which indicates that there are other changes than bug fixes
-  const hasFeaturesWithBugFixes = !!unreleasedchanges.match(/.*-.*bug fixes/isu);
-
-  // breaking changes are described under a "**breaking changes**" string
-  const hasBreakingChanges = unreleasedchanges.toLowerCase().indexOf('**breaking changes**') !== -1;
+async function getVersionTypeFromChangelog(changelogMap) {
+  // @see update-changelog.js
+  const hasFeatures = changelogMap['Features'].length > 0;
+  const hasBugFixes = changelogMap['Bug fixes'].length > 0;
+  const hasBreakingChanges = changelogMap['Breaking changes'].length > 0;
 
   // default to a MINOR bump (new features, may have bug fixes, no breaking changes)
   let recommendedType = TYPE_MINOR;
 
-  if (hasBugFixes && !hasFeaturesWithBugFixes) {
+  if (hasBugFixes && !hasFeatures) {
     // there are bug fixes with no minor features
     recommendedType = TYPE_PATCH;
   }
@@ -188,9 +168,11 @@ async function getVersionTypeFromChangelog() {
   }
 
   const humanReadableRecommendation = humanReadableTypes[recommendedType];
-  console.log(chalk.magenta('Detected the following unreleased changes from CHANGELOG.md'));
+  console.log(chalk.magenta('Detected the following upcoming changelogs:'));
   console.log('');
-  console.log(chalk.gray(unreleasedchanges));
+  Object.entries(changelogMap).forEach(([section, items]) => {
+    console.log(chalk.gray(`${section}: ${items.length}`));
+  });
   console.log('');
   console.log(`${chalk.magenta('The recommended version update for these changes is')} ${chalk.blue(humanReadableRecommendation)}`);
 

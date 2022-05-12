@@ -45,7 +45,8 @@ export default () => (
                 className={classNames({
                   guideDemo__ghostBackground: iconColor === 'ghost',
                 })}
-                paddingSize="s">
+                paddingSize="s"
+              >
                 <EuiIcon type="gisApp" color={iconColor} />
                 &emsp; <small>{iconColor}</small>
               </EuiPanel>

@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import classNames from 'classnames';
@@ -25,12 +14,14 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { useCombinedRefs } from '../../services';
+import { useCombinedRefs, useEuiTheme } from '../../services';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
+import { euiBottomBarStyles } from './bottom_bar.styles';
+import { EuiThemeProvider } from '../../services/theme/provider';
 
 type BottomBarPaddingSize = 'none' | 's' | 'm' | 'l';
 
@@ -107,7 +98,7 @@ export type EuiBottomBarProps = CommonProps &
     left?: CSSProperties['left'];
   };
 
-export const EuiBottomBar = forwardRef<
+const _EuiBottomBar = forwardRef<
   HTMLElement, // type of element or component the ref will be passed to
   EuiBottomBarProps // what properties apart from `ref` the component accepts
 >(
@@ -130,6 +121,9 @@ export const EuiBottomBar = forwardRef<
     },
     ref
   ) => {
+    const euiTheme = useEuiTheme();
+    const styles = euiBottomBarStyles(euiTheme);
+
     // Force some props if `fixed` position, but not if the user has supplied these
     affordForDisplacement =
       position !== 'fixed' ? false : affordForDisplacement;
@@ -167,6 +161,13 @@ export const EuiBottomBar = forwardRef<
       className
     );
 
+    const cssStyles = [
+      styles.euiBottomBar,
+      styles[position],
+      styles[paddingSize],
+      { position },
+    ];
+
     const newStyle = {
       left,
       right,
@@ -179,18 +180,22 @@ export const EuiBottomBar = forwardRef<
       <>
         <EuiI18n
           token="euiBottomBar.screenReaderHeading"
-          default="Page level controls">
+          default="Page level controls"
+        >
           {(screenReaderHeading: string) => (
             // Though it would be better to use aria-labelledby than aria-label and not repeat the same string twice
             // A bug in voiceover won't list some landmarks in the rotor without an aria-label
+
             <section
               aria-label={
                 landmarkHeading ? landmarkHeading : screenReaderHeading
               }
               className={classes}
+              css={cssStyles}
               ref={setRef}
               style={newStyle}
-              {...rest}>
+              {...rest}
+            >
               <EuiScreenReaderOnly>
                 <h2>
                   {landmarkHeading ? landmarkHeading : screenReaderHeading}
@@ -223,4 +228,16 @@ export const EuiBottomBar = forwardRef<
   }
 );
 
+export const EuiBottomBar = forwardRef<HTMLElement, EuiBottomBarProps>(
+  (props, ref) => {
+    const BottomBar = _EuiBottomBar;
+    return (
+      <EuiThemeProvider colorMode={'dark'}>
+        <BottomBar ref={ref} {...props} />
+      </EuiThemeProvider>
+    );
+  }
+);
+
 EuiBottomBar.displayName = 'EuiBottomBar';
+_EuiBottomBar.displayName = 'EuiBottomBar';

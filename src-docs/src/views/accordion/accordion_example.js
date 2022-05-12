@@ -18,14 +18,14 @@ const accordionArrowRightSource = require('!!raw-loader!./accordion_arrow_right'
 import AccordionMultiple from './accordion_multiple';
 const accordionMultipleSource = require('!!raw-loader!./accordion_multiple');
 const accordionMultipleSnippet = `<EuiAccordion
-  id={accordionId}
+  id={accordionId1}
   buttonContent="Clickable title for first item"
   paddingSize="l">
     <!-- Content to show when expanded -->
 </EuiAccordion>
 <EuiSpacer />
 <EuiAccordion
-  id={accordionId}
+  id={accordionId2}
   buttonContent="Clickable title for second item"
   paddingSize="l">
     <!-- Content to show when expanded -->
@@ -73,18 +73,21 @@ import AccordionIsLoading from './accordion_isLoading';
 const accordionIsLoadingSource = require('!!raw-loader!./accordion_isLoading');
 const accordionIsLoadingSnippet = [
   `<EuiAccordion
-  id={accordionId}
+  id={accordionId1}
   isLoading>
     <!-- Content to show when expanded -->
 </EuiAccordion>
 `,
   `<EuiAccordion
-  id={accordionId}
+  id={accordionId2}
   isLoading
   isLoadingMessage={customMessage}>
   <!-- Content that will be replaced by isLoadingMessage -->
 </EuiAccordion>`,
 ];
+
+import AccordionButtonElement from './accordion_buttonElement';
+const accordionButtonElementSource = require('!!raw-loader!./accordion_buttonElement');
 
 export const AccordionExample = {
   title: 'Accordion',
@@ -135,7 +138,7 @@ export const AccordionExample = {
       playground: accordionConfig,
       props: { EuiAccordion },
       snippet: `<EuiAccordion
-  id={accordionId}
+  id={accordionId1}
   buttonContent="Clickable title"
   >
     <!-- Content to show when expanded -->
@@ -163,7 +166,7 @@ export const AccordionExample = {
       ],
       demo: <AccordionArrowRight />,
       snippet: `<EuiAccordion
-  id={accordionId}
+  id={accordionId2}
   buttonContent="Clickable title"
   arrowDisplay="right"
   >
@@ -180,7 +183,7 @@ export const AccordionExample = {
       ],
       demo: <AccordionArrow />,
       snippet: `<EuiAccordion
-  id={accordionId}
+  id={accordionId3}
   buttonContent="Clickable title"
   arrowDisplay="none"
   >
@@ -328,6 +331,37 @@ export const AccordionExample = {
       demo: <AccordionGrow />,
     },
     {
+      title: 'Interactive content in the trigger',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: accordionButtonElementSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Passing interactive content like links, buttons, or form elements as
+            the <EuiCode>buttonContent</EuiCode>, will cause issues with the
+            wrapping button element. To fix this, you can change this wrapping
+            element to a div using <EuiCode>{'buttonElement="div"'}</EuiCode>.
+          </p>
+          <p>
+            If you don&apos;t want the interactive content to trigger the
+            accordion expansion, you will have to apply{' '}
+            <EuiCode language="js">e.stopPropagation()</EuiCode> to your element
+            manually.
+          </p>
+          <EuiCallOut
+            iconType="accessibility"
+            color="warning"
+            title="Accordions need a focusable button for accessibility, so changing the element to anything other than a button will enforce the display of the arrow."
+          />
+        </>
+      ),
+      demo: <AccordionButtonElement />,
+    },
+    {
       title: 'Styled for forms',
       source: [
         {
@@ -358,12 +392,22 @@ export const AccordionExample = {
               hide it until hover or focus
             </li>
           </ul>
+          <p>
+            We also recommend creating a fieldset/legend combination for better
+            accessibility and DOM structure by passing{' '}
+            <EuiCode language="tsx">{'element="fieldset"'}</EuiCode>. This will
+            set the entire accordion as a{' '}
+            <EuiCode language="html">{'<fieldset>'}</EuiCode> and automatically
+            change the <EuiCode>{'buttonElement'}</EuiCode> to a{' '}
+            <EuiCode language="html">{'<legend>'}</EuiCode>.
+          </p>
         </>
       ),
       demo: <AccordionForm />,
       snippet: `<EuiAccordion
-  id={accordionId}
+  id={accordionId4}
   className="euiAccordionForm"
+  element="fieldset"
   buttonClassName="euiAccordionForm__button"
   buttonContent={buttonContent}
   extraAction={<EuiButtonIcon

@@ -179,7 +179,7 @@ export const CollapsibleNavExample = {
         <>
           <h3>Putting it all together</h3>
           <p>
-            The button below will launch a full screen example that includes{' '}
+            The button below will launch a fullscreen example that includes{' '}
             <Link to="/layout/header">
               <strong>EuiHeader</strong>
             </Link>{' '}

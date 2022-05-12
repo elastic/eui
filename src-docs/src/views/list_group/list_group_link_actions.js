@@ -1,12 +1,34 @@
 import React, { useState } from 'react';
 
 import { EuiListGroup, EuiListGroupItem } from '../../../../src/components';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [favorite1, setFavorite1] = useState(undefined);
   const [favorite2, setFavorite2] = useState('link2');
   const [favorite3, setFavorite3] = useState(undefined);
   const [favorite4, setFavorite4] = useState(undefined);
+
+  const listGroupLinkId__1 = useGeneratedHtmlId({
+    prefix: 'listGroupLink',
+    suffix: 'first',
+  });
+  const listGroupLinkId__2 = useGeneratedHtmlId({
+    prefix: 'listGroupLink',
+    suffix: 'second',
+  });
+  const listGroupLinkId__3 = useGeneratedHtmlId({
+    prefix: 'listGroupLink',
+    suffix: 'third',
+  });
+  const listGroupLinkId__4 = useGeneratedHtmlId({
+    prefix: 'listGroupLink',
+    suffix: 'fourth',
+  });
+  const listGroupLinkId__5 = useGeneratedHtmlId({
+    prefix: 'listGroupLink',
+    suffix: 'fifth',
+  });
 
   const link1Clicked = () => {
     setFavorite1(favorite1 === 'link1' ? undefined : 'link1');
@@ -39,13 +61,13 @@ export default () => {
   return (
     <EuiListGroup maxWidth={288}>
       <EuiListGroupItem
-        id="link1"
+        id={listGroupLinkId__1}
         iconType="bullseye"
         label="EUI button link"
         onClick={() => {}}
         isActive
         extraAction={{
-          color: 'subdued',
+          color: 'text',
           onClick: link1Clicked,
           iconType: favorite1 === 'link1' ? 'starFilled' : 'starEmpty',
           iconSize: 's',
@@ -55,12 +77,12 @@ export default () => {
       />
 
       <EuiListGroupItem
-        id="link2"
+        id={listGroupLinkId__2}
         iconType="visualizeApp"
         onClick={() => {}}
         label="EUI button link"
         extraAction={{
-          color: 'subdued',
+          color: 'text',
           onClick: link2Clicked,
           iconType: favorite2 === 'link2' ? 'starFilled' : 'starEmpty',
           iconSize: 's',
@@ -70,13 +92,13 @@ export default () => {
       />
 
       <EuiListGroupItem
-        id="link3"
+        id={listGroupLinkId__3}
         iconType="lensApp"
         iconProps={{ color: 'default' }}
         onClick={() => {}}
         label="EUI button link"
         extraAction={{
-          color: 'subdued',
+          color: 'text',
           onClick: link3Clicked,
           iconType: favorite3 === 'link3' ? 'starFilled' : 'starEmpty',
           iconSize: 's',
@@ -86,12 +108,12 @@ export default () => {
       />
 
       <EuiListGroupItem
-        id="link4"
+        id={listGroupLinkId__4}
         onClick={() => {}}
         iconType="broom"
         label="EUI button link"
         extraAction={{
-          color: 'subdued',
+          color: 'text',
           onClick: link4Clicked,
           iconType: favorite4 === 'link4' ? 'starFilled' : 'starEmpty',
           iconSize: 's',
@@ -102,12 +124,12 @@ export default () => {
       />
 
       <EuiListGroupItem
-        id="link5"
+        id={listGroupLinkId__5}
         iconType="brush"
         isDisabled
         label="EUI button link"
         extraAction={{
-          color: 'subdued',
+          color: 'text',
           onClick: () => {},
           iconType: 'starEmpty',
           iconSize: 's',

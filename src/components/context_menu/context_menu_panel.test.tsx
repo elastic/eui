@@ -1,31 +1,18 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React from 'react';
-import { render, mount, ReactWrapper } from 'enzyme';
-import { findTestSubject, requiredProps } from '../../test';
+import { render, mount } from 'enzyme';
+import { requiredProps } from '../../test';
 
 import { EuiContextMenuPanel, SIZES } from './context_menu_panel';
 
 import { EuiContextMenuItem } from './context_menu_item';
-
-import { tick } from './context_menu.test';
 
 import { keys } from '../../services';
 
@@ -173,30 +160,6 @@ describe('EuiContextMenuPanel', () => {
       });
     });
 
-    describe('initialFocusedItemIndex', () => {
-      it('sets focus on the item occupying that index', async () => {
-        const component = mount(
-          <EuiContextMenuPanel items={items} initialFocusedItemIndex={1} />
-        );
-
-        await tick(20);
-
-        expect(findTestSubject(component, 'itemB').getDOMNode()).toBe(
-          document.activeElement
-        );
-      });
-
-      it('sets focus on the panel when set to `-1`', async () => {
-        const component = mount(
-          <EuiContextMenuPanel items={items} initialFocusedItemIndex={-1} />
-        );
-
-        await tick(20);
-
-        expect(component.getDOMNode()).toBe(document.activeElement);
-      });
-    });
-
     describe('onUseKeyboardToNavigate', () => {
       it('is called when up arrow is pressed', () => {
         const onUseKeyboardToNavigateHandler = jest.fn();
@@ -227,12 +190,13 @@ describe('EuiContextMenuPanel', () => {
       });
 
       describe('left arrow', () => {
-        it('calls handler if showPreviousPanel exists', () => {
+        it('calls handler if onClose and showPreviousPanel exists', () => {
           const onUseKeyboardToNavigateHandler = jest.fn();
 
           const component = mount(
             <EuiContextMenuPanel
               items={items}
+              onClose={() => {}}
               showPreviousPanel={() => {}}
               onUseKeyboardToNavigate={onUseKeyboardToNavigateHandler}
             />
@@ -290,219 +254,5 @@ describe('EuiContextMenuPanel', () => {
     });
   });
 
-  describe('behavior', () => {
-    describe('focus', () => {
-      it('is set on the first focusable element by default if there are no items and hasFocus is true', async () => {
-        const component = mount(
-          <EuiContextMenuPanel>
-            <button data-test-subj="button" />
-          </EuiContextMenuPanel>
-        );
-
-        await tick(20);
-
-        expect(findTestSubject(component, 'button').getDOMNode()).toBe(
-          document.activeElement
-        );
-      });
-
-      it('is not set on anything if hasFocus is false', () => {
-        const component = mount(
-          <EuiContextMenuPanel hasFocus={false}>
-            <button data-test-subj="button" />
-          </EuiContextMenuPanel>
-        );
-
-        expect(findTestSubject(component, 'button').getDOMNode()).not.toBe(
-          document.activeElement
-        );
-      });
-    });
-
-    describe('keyboard navigation of items', () => {
-      let component: ReactWrapper;
-      let showNextPanelHandler: jest.Mock;
-      let showPreviousPanelHandler: jest.Mock;
-
-      beforeEach(() => {
-        showNextPanelHandler = jest.fn();
-        showPreviousPanelHandler = jest.fn();
-
-        component = mount(
-          <EuiContextMenuPanel
-            items={items}
-            showNextPanel={showNextPanelHandler}
-            showPreviousPanel={showPreviousPanelHandler}
-          />
-        );
-      });
-
-      it('focuses the panel by default', async () => {
-        await tick(20);
-
-        expect(component.getDOMNode()).toBe(document.activeElement);
-      });
-
-      it('down arrow key focuses the first menu item', async () => {
-        component.simulate('keydown', { key: keys.ARROW_DOWN });
-
-        await tick(20);
-        expect(findTestSubject(component, 'itemA').getDOMNode()).toBe(
-          document.activeElement
-        );
-      });
-
-      it('subsequently, down arrow key focuses the next menu item', async () => {
-        component.simulate('keydown', { key: keys.ARROW_DOWN });
-        component.simulate('keydown', { key: keys.ARROW_DOWN });
-
-        await tick(20);
-        expect(findTestSubject(component, 'itemB').getDOMNode()).toBe(
-          document.activeElement
-        );
-      });
-
-      it('down arrow key wraps to first menu item', async () => {
-        component.simulate('keydown', { key: keys.ARROW_UP });
-        component.simulate('keydown', { key: keys.ARROW_DOWN });
-
-        await tick(20);
-        expect(findTestSubject(component, 'itemA').getDOMNode()).toBe(
-          document.activeElement
-        );
-      });
-
-      it('up arrow key focuses the last menu item', async () => {
-        component.simulate('keydown', { key: keys.ARROW_UP });
-
-        await tick(20);
-        expect(findTestSubject(component, 'itemC').getDOMNode()).toBe(
-          document.activeElement
-        );
-      });
-
-      it('subsequently, up arrow key focuses the previous menu item', async () => {
-        component.simulate('keydown', { key: keys.ARROW_UP });
-        component.simulate('keydown', { key: keys.ARROW_UP });
-
-        await tick(20);
-        expect(findTestSubject(component, 'itemB').getDOMNode()).toBe(
-          document.activeElement
-        );
-      });
-
-      it('up arrow key wraps to last menu item', async () => {
-        component.simulate('keydown', { key: keys.ARROW_DOWN });
-        component.simulate('keydown', { key: keys.ARROW_UP });
-
-        await tick(20);
-        expect(findTestSubject(component, 'itemC').getDOMNode()).toBe(
-          document.activeElement
-        );
-      });
-
-      it("right arrow key shows next panel with focused item's index", () => {
-        component.simulate('keydown', { key: keys.ARROW_DOWN });
-        component.simulate('keydown', { key: keys.ARROW_RIGHT });
-        expect(showNextPanelHandler).toHaveBeenCalledWith(0);
-      });
-
-      it('left arrow key shows previous panel', () => {
-        component.simulate('keydown', { key: keys.ARROW_LEFT });
-        expect(showPreviousPanelHandler).toHaveBeenCalledTimes(1);
-      });
-    });
-  });
-
-  describe('updating items and content', () => {
-    describe('updates to items', () => {
-      it("should not re-render if any items's watchedItemProps did not change", () => {
-        expect.assertions(2); // make sure the assertion in the `setProps` callback is executed
-
-        // by not passing `watchedItemProps` no changes to items should cause a re-render
-        const component = mount(
-          <EuiContextMenuPanel
-            items={[
-              <EuiContextMenuItem key="A" data-counter={0}>
-                Option A
-              </EuiContextMenuItem>,
-              <EuiContextMenuItem key="B" data-counter={1}>
-                Option B
-              </EuiContextMenuItem>,
-            ]}
-          />
-        );
-
-        expect(component.debug()).toMatchSnapshot();
-
-        component.setProps(
-          {
-            items: [
-              <EuiContextMenuItem key="A" data-counter={2}>
-                Option A
-              </EuiContextMenuItem>,
-              <EuiContextMenuItem key="B" data-counter={3}>
-                Option B
-              </EuiContextMenuItem>,
-            ],
-          },
-          () => {
-            expect(component.debug()).toMatchSnapshot();
-          }
-        );
-      });
-
-      it("should re-render if any items's watchedItemProps did change", () => {
-        expect.assertions(2); // make sure the assertion in the `setProps` callback is executed
-
-        // by referencing the `data-counter` property in `watchedItemProps`
-        // changes to the items should be picked up and re-rendered
-        const component = mount(
-          <EuiContextMenuPanel
-            watchedItemProps={['data-counter']}
-            items={[
-              <EuiContextMenuItem key="A" data-counter={0}>
-                Option A
-              </EuiContextMenuItem>,
-              <EuiContextMenuItem key="B" data-counter={1}>
-                Option B
-              </EuiContextMenuItem>,
-            ]}
-          />
-        );
-
-        expect(component.debug()).toMatchSnapshot();
-
-        component.setProps(
-          {
-            items: [
-              <EuiContextMenuItem key="A" data-counter={2}>
-                Option A
-              </EuiContextMenuItem>,
-              <EuiContextMenuItem key="B" data-counter={3}>
-                Option B
-              </EuiContextMenuItem>,
-            ],
-          },
-          () => {
-            expect(component.debug()).toMatchSnapshot();
-          }
-        );
-      });
-
-      it('should re-render at all times when children exists', () => {
-        expect.assertions(2); // make sure the assertion in the `setProps` callback is executed
-
-        const component = mount(
-          <EuiContextMenuPanel>Hello World</EuiContextMenuPanel>
-        );
-
-        expect(component.debug()).toMatchSnapshot();
-
-        component.setProps({ children: 'More Salutations' }, () => {
-          expect(component.debug()).toMatchSnapshot();
-        });
-      });
-    });
-  });
+  // @see Cypress context_menu_panel.spec.tsx for focus & keyboard nav testing
 });

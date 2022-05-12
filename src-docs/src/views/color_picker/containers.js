@@ -16,6 +16,7 @@ import {
 import {
   useColorPickerState,
   useColorStopsState,
+  useGeneratedHtmlId,
 } from '../../../../src/services';
 
 export default () => {
@@ -23,6 +24,7 @@ export default () => {
   const [colorStops, setColorStops] = useColorStopsState();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const containerPopoverId = useGeneratedHtmlId({ prefix: 'containerPopover' });
 
   const closeModal = () => {
     setIsModalVisible(false);
@@ -82,7 +84,8 @@ export default () => {
     <Fragment>
       <EuiFormRow
         label="Color picker"
-        helpText="This color picker is inside of a form row">
+        helpText="This color picker is inside of a form row"
+      >
         {colorPicker}
       </EuiFormRow>
 
@@ -90,16 +93,18 @@ export default () => {
 
       <EuiFormRow
         label="Color stops"
-        helpText="This color stops component is inside of a form row">
+        helpText="This color stops component is inside of a form row"
+      >
         {stops}
       </EuiFormRow>
 
       <EuiFormRow label="Unruly focus management">
         <EuiPopover
-          id="popover"
+          id={containerPopoverId}
           button={button}
           isOpen={isPopoverOpen}
-          closePopover={closePopover}>
+          closePopover={closePopover}
+        >
           <div style={{ width: '300px' }}>
             <EuiFormRow label="Color picker">{colorPicker}</EuiFormRow>
             <EuiSpacer />

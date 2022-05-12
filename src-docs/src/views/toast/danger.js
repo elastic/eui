@@ -11,7 +11,8 @@ export default () => (
   <EuiToast
     title="Couldn't complete the search"
     color="danger"
-    iconType="alert">
+    iconType="alert"
+  >
     <p>{esError}</p>
   </EuiToast>
 );

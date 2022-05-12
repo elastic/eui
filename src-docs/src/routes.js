@@ -1,30 +1,42 @@
 import React, { createElement, Fragment } from 'react';
+
 import { slugify } from '../../src/services';
 
 import { createHashHistory } from 'history';
 
-import { GuidePage, GuideSection } from './components';
+import { GuideSection, GuideMarkdownFormat } from './components';
+
+import { GuideTabbedPage } from './components/guide_tabbed_page';
 
 import { EuiErrorBoundary } from '../../src/components';
 
 import { playgroundCreator } from './services/playground';
 
 // Guidelines
-// const GettingStarted = require('!!raw-loader!./views/guidelines/getting_started.md');
+import { GettingStarted } from './views/guidelines/getting_started/getting_started';
 
 import AccessibilityGuidelines from './views/guidelines/accessibility';
 
-import ColorGuidelines from './views/guidelines/colors';
+import {
+  WritingGuidelines,
+  writingGuidelinesSections,
+} from './views/guidelines/writing_guidelines';
+import {
+  WritingExamples,
+  writingExamplesSections,
+} from './views/guidelines/writing_examples';
 
-import { SassGuidelines } from './views/guidelines/sass';
+// Templates
 
-import WritingGuidelines from './views/guidelines/writing';
+import { PageTemplateExample } from './views/page/page_template_example';
+
+import { SitewideSearchExample } from './views/selectable/selectable_sitewide_template_example';
 
 // Services
 
 import { ColorPaletteExample } from './views/color_palette/color_palette_example';
 
-import { IsColorDarkExample } from './views/is_color_dark/is_color_dark_example';
+import { ColorExample } from './views/color/color_example';
 
 import { PrettyDurationExample } from './views/pretty_duration/pretty_duration_example';
 
@@ -37,6 +49,10 @@ import { AccessibilityExample } from './views/accessibility/accessibility_exampl
 import { AccordionExample } from './views/accordion/accordion_example';
 
 import { AspectRatioExample } from './views/aspect_ratio/aspect_ratio_example';
+
+import { AutoRefreshExample } from './views/auto_refresh/auto_refresh_example';
+
+import { AutoSizerExample } from './views/auto_sizer/auto_sizer_example';
 
 import { AvatarExample } from './views/avatar/avatar_example';
 
@@ -54,8 +70,6 @@ import { CardExample } from './views/card/card_example';
 
 import { CallOutExample } from './views/call_out/call_out_example';
 
-import { CodeEditorExample } from './views/code_editor/code_editor_example';
-
 import { CodeExample } from './views/code/code_example';
 
 import { CollapsibleNavExample } from './views/collapsible_nav/collapsible_nav_example';
@@ -72,14 +86,12 @@ import { ControlBarExample } from './views/control_bar/control_bar_example';
 
 import { CopyExample } from './views/copy/copy_example';
 
-import { DataGridExample } from './views/datagrid/datagrid_example';
-import { DataGridMemoryExample } from './views/datagrid/datagrid_memory_example';
-import { DataGridSchemaExample } from './views/datagrid/datagrid_schema_example';
-import { DataGridFocusExample } from './views/datagrid/datagrid_focus_example';
-import { DataGridStylingExample } from './views/datagrid/datagrid_styling_example';
-import { DataGridControlColumnsExample } from './views/datagrid/datagrid_controlcolumns_example';
-import { DataGridFooterRowExample } from './views/datagrid/datagrid_footer_row_example';
-import { DataGridVirtualizationExample } from './views/datagrid/datagrid_virtualization_example';
+import { DataGridExample } from './views/datagrid/basics/datagrid_example';
+import { DataGridCellsExample } from './views/datagrid/cells_popovers/datagrid_cells_example';
+import { DataGridToolbarExample } from './views/datagrid/toolbar/datagrid_toolbar_example';
+import { DataGridColumnsExample } from './views/datagrid/schema_columns/datagrid_columns_example';
+import { DataGridStylingExample } from './views/datagrid/styling/datagrid_styling_example';
+import { DataGridAdvancedExample } from './views/datagrid/advanced/datagrid_advanced_example';
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
@@ -106,6 +118,8 @@ import { FlyoutExample } from './views/flyout/flyout_example';
 import { FocusTrapExample } from './views/focus_trap/focus_trap_example';
 
 import { FormControlsExample } from './views/form_controls/form_controls_example';
+
+import { SelectionControlsExample } from './views/selection_controls/selection_controls_example';
 
 import { FormLayoutsExample } from './views/form_layouts/form_layouts_example';
 
@@ -155,8 +169,6 @@ import { OutsideClickDetectorExample } from './views/outside_click_detector/outs
 
 import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
 
-import { PageExample } from './views/page/page_example';
-
 import { PageHeaderExample } from './views/page_header/page_header_example';
 
 import { PaginationExample } from './views/pagination/pagination_example';
@@ -169,6 +181,8 @@ import { PortalExample } from './views/portal/portal_example';
 
 import { ProgressExample } from './views/progress/progress_example';
 
+import { ProviderExample } from './views/provider/provider_example';
+
 import { RangeControlExample } from './views/range/range_example';
 
 import { TreeViewExample } from './views/tree_view/tree_view_example';
@@ -178,6 +192,7 @@ import { ResizeObserverExample } from './views/resize_observer/resize_observer_e
 import { ResizableContainerExample } from './views/resizable_container/resizable_container_example';
 
 import { ResponsiveExample } from './views/responsive/responsive_example';
+import { ScrollExample } from './views/scroll/scroll_example';
 
 import { SearchBarExample } from './views/search_bar/search_bar_example';
 
@@ -205,6 +220,10 @@ import { TextDiffExample } from './views/text_diff/text_diff_example';
 
 import { TextExample } from './views/text/text_example';
 
+import { TextUtilitiesExample } from './views/text_utilities/text_utilities_example';
+
+import { TimelineExample } from './views/timeline/timeline_example';
+
 import { TitleExample } from './views/title/title_example';
 
 import { ToastExample } from './views/toast/toast_example';
@@ -221,6 +240,18 @@ import { I18nTokens } from './views/package/i18n_tokens';
 
 import { SuperSelectExample } from './views/super_select/super_select_example';
 
+import { ThemeExample } from './views/theme/theme_example';
+import { ColorModeExample } from './views/theme/color_mode/color_mode_example';
+import Breakpoints from './views/theme/breakpoints/breakpoints';
+import Borders, { bordersSections } from './views/theme/borders/borders';
+import Color, { colorsSections } from './views/theme/color/colors';
+import Sizing, { sizingSections } from './views/theme/sizing/sizing';
+import Typography, {
+  typographySections,
+} from './views/theme/typography/typography';
+import Other, { otherSections } from './views/theme/other/other';
+import ThemeValues from './views/theme/customizing/values';
+
 /** Elastic Charts */
 
 import { ElasticChartsThemingExample } from './views/elastic_charts/theming_example';
@@ -233,6 +264,8 @@ import { ElasticChartsSparklinesExample } from './views/elastic_charts/sparkline
 
 import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
 
+import { ElasticChartsAccessibilityExample } from './views/elastic_charts/accessibility_example';
+
 const createExample = (example, customTitle) => {
   if (!example) {
     throw new Error(
@@ -242,18 +275,20 @@ const createExample = (example, customTitle) => {
 
   const {
     title,
-    intro,
     sections,
     beta,
     isNew,
     playground,
     guidelines,
+    ...rest
   } = example;
-  sections.forEach((section) => {
+  const filteredSections = sections.filter((section) => section !== undefined);
+
+  filteredSections.forEach((section) => {
     section.id = section.title ? slugify(section.title) : undefined;
   });
 
-  const renderedSections = sections.map((section, index) =>
+  const renderedSections = filteredSections.map((section, index) =>
     createElement(GuideSection, {
       // Using index as the key because not all require a `title`
       key: index,
@@ -272,65 +307,139 @@ const createExample = (example, customTitle) => {
 
   const component = () => (
     <EuiErrorBoundary>
-      <GuidePage
+      <GuideTabbedPage
         title={title}
-        intro={intro}
         isBeta={beta}
         playground={playgroundComponent}
-        guidelines={guidelines}>
+        guidelines={guidelines}
+        {...rest}
+      >
         {renderedSections}
-      </GuidePage>
+      </GuideTabbedPage>
     </EuiErrorBoundary>
   );
 
   return {
     name: customTitle || title,
     component,
-    sections,
+    sections: filteredSections,
     isNew,
     hasGuidelines: typeof guidelines !== 'undefined',
   };
 };
 
-// const createMarkdownExample = (example, title) => {
-//   const headings = example.default.match(/^(##) (.*)/gm);
+const createTabbedPage = ({ title, pages, isNew, ...rest }) => {
+  const component = () => (
+    <GuideTabbedPage title={title} pages={pages} {...rest} />
+  );
 
-//   const sections = headings.map((heading) => {
-//     const title = heading.replace('## ', '');
+  const pagesSections = pages.map((page, index) => {
+    return {
+      id: slugify(page.title),
+      title: page.title,
+      sections: pages[index].sections,
+    };
+  });
 
-//     return { id: slugify(title), title: title };
-//   });
+  return {
+    name: title,
+    component,
+    sections: pagesSections,
+    isNew,
+  };
+};
 
-//   return {
-//     name: title,
-//     component: () => (
-//       <GuidePage title={title}>
-//         <GuideMarkdownFormat title={title}>
-//           {example.default}
-//         </GuideMarkdownFormat>
-//       </GuidePage>
-//     ),
-//     sections: sections,
-//   };
-// };
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const createMarkdownExample = (file, name, intro) => {
+  const headings = file.default.match(/^(##) (.*)/gm);
+
+  const sections = headings.map((heading) => {
+    const title = heading.replace('## ', '');
+
+    return { id: slugify(title), title: title };
+  });
+
+  return {
+    name,
+    component: () => (
+      <GuideTabbedPage title={name}>
+        <GuideMarkdownFormat grow={false}>{file.default}</GuideMarkdownFormat>
+      </GuideTabbedPage>
+    ),
+    sections: sections,
+  };
+};
 
 const navigation = [
   {
     name: 'Guidelines',
     items: [
-      // TODO uncomment when EuiMarkdownFormat has a better text formatting
-      // createMarkdownExample(GettingStarted, 'Getting started'),
+      createExample(GettingStarted, 'Getting started'),
       createExample(AccessibilityGuidelines, 'Accessibility'),
+      createTabbedPage({
+        title: 'Writing',
+        pages: [
+          {
+            title: 'Guidelines',
+            page: WritingGuidelines,
+            sections: writingGuidelinesSections,
+          },
+          {
+            title: 'Examples',
+            page: WritingExamples,
+            sections: writingExamplesSections,
+          },
+        ],
+      }),
+    ],
+  },
+  {
+    name: 'Theming',
+    items: [
+      createExample(ThemeExample, 'Theme provider'),
+      createExample(ColorModeExample),
+      {
+        name: 'Breakpoints',
+        component: Breakpoints,
+      },
+      {
+        name: 'Borders',
+        component: Borders,
+        sections: bordersSections,
+      },
       {
         name: 'Colors',
-        component: ColorGuidelines,
+        component: Color,
+        sections: colorsSections,
       },
       {
-        name: 'Sass',
-        component: SassGuidelines,
+        name: 'Sizing',
+        component: Sizing,
+        sections: sizingSections,
       },
-      createExample(WritingGuidelines, 'Writing'),
+      {
+        name: 'Typography',
+        component: Typography,
+        sections: typographySections,
+      },
+      {
+        name: 'More tokens',
+        component: Other,
+        sections: otherSections,
+      },
+      {
+        name: 'Customizing themes',
+        component: ThemeValues,
+      },
     ],
+  },
+  {
+    name: 'Templates',
+    items: [
+      PageTemplateExample,
+      SitewideSearchExample,
+      SuperDatePickerExample,
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Layout',
@@ -342,7 +451,6 @@ const navigation = [
       HeaderExample,
       HorizontalRuleExample,
       ModalExample,
-      PageExample,
       PageHeaderExample,
       PanelExample,
       PopoverExample,
@@ -362,25 +470,10 @@ const navigation = [
       KeyPadMenuExample,
       LinkExample,
       PaginationExample,
-      TreeViewExample,
       SideNavExample,
       StepsExample,
       TabsExample,
-    ].map((example) => createExample(example)),
-  },
-  {
-    name: 'Tabular content',
-    items: [
-      DataGridExample,
-      DataGridMemoryExample,
-      DataGridSchemaExample,
-      DataGridFocusExample,
-      DataGridStylingExample,
-      DataGridControlColumnsExample,
-      DataGridFooterRowExample,
-      DataGridVirtualizationExample,
-      TableExample,
-      TableInMemoryExample,
+      TreeViewExample,
     ].map((example) => createExample(example)),
   },
   {
@@ -404,6 +497,7 @@ const navigation = [
       ProgressExample,
       StatExample,
       TextExample,
+      TimelineExample,
       TitleExample,
       ToastExample,
       ToolTipExample,
@@ -414,10 +508,11 @@ const navigation = [
     name: 'Forms',
     items: [
       FormControlsExample,
+      SelectionControlsExample,
       FormLayoutsExample,
       FormCompressedExample,
       FormValidationExample,
-      SuperSelectExample,
+      AutoRefreshExample,
       ComboBoxExample,
       ColorPickerExample,
       DatePickerExample,
@@ -427,7 +522,20 @@ const navigation = [
       SearchBarExample,
       SelectableExample,
       SuggestExample,
-      SuperDatePickerExample,
+      SuperSelectExample,
+    ].map((example) => createExample(example)),
+  },
+  {
+    name: 'Tabular content',
+    items: [
+      DataGridExample,
+      DataGridColumnsExample,
+      DataGridCellsExample,
+      DataGridToolbarExample,
+      DataGridStylingExample,
+      DataGridAdvancedExample,
+      TableExample,
+      TableInMemoryExample,
     ].map((example) => createExample(example)),
   },
   {
@@ -436,7 +544,6 @@ const navigation = [
       MarkdownFormatExample,
       MarkdownEditorExample,
       MarkdownPluginExample,
-      CodeEditorExample,
       CodeExample,
     ].map((example) => createExample(example)),
   },
@@ -448,14 +555,16 @@ const navigation = [
       ElasticChartsTimeExample,
       ElasticChartsCategoryExample,
       ElasticChartsPieExample,
+      ElasticChartsAccessibilityExample,
     ].map((example) => createExample(example)),
   },
   {
     name: 'Utilities',
     items: [
       AccessibilityExample,
+      AutoSizerExample,
       BeaconExample,
-      IsColorDarkExample,
+      ColorExample,
       ColorPaletteExample,
       CopyExample,
       UtilityClassesExample,
@@ -471,9 +580,12 @@ const navigation = [
       OverlayMaskExample,
       PortalExample,
       PrettyDurationExample,
+      ProviderExample,
       ResizeObserverExample,
       ResponsiveExample,
+      ScrollExample,
       TextDiffExample,
+      TextUtilitiesExample,
       WindowEventExample,
     ].map((example) => createExample(example)),
   },
@@ -484,20 +596,23 @@ const navigation = [
 ].map(({ name, items, ...rest }) => ({
   name,
   type: slugify(name),
-  items: items.map(({ name: itemName, hasGuidelines, ...rest }) => {
-    const item = {
-      name: itemName,
-      path: `${slugify(name)}/${slugify(itemName)}`,
-      ...rest,
-    };
+  items: items.map(
+    ({ name: itemName, hasGuidelines, isTabbedPage, sections, ...rest }) => {
+      const item = {
+        name: itemName,
+        path: `${slugify(name)}/${slugify(itemName)}`,
+        sections,
+        ...rest,
+      };
 
-    if (hasGuidelines) {
-      item.from = `guidelines/${slugify(itemName)}`;
-      item.to = `${slugify(name)}/${slugify(itemName)}/guidelines`;
+      if (hasGuidelines) {
+        item.from = `guidelines/${slugify(itemName)}`;
+        item.to = `${slugify(name)}/${slugify(itemName)}/guidelines`;
+      }
+
+      return item;
     }
-
-    return item;
-  }),
+  ),
   ...rest,
 }));
 

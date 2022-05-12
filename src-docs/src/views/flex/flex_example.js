@@ -540,7 +540,8 @@ export const FlexExample = {
           </p>
           <EuiCallOut
             color="warning"
-            title="Gutters are created with using negative margin">
+            title="Gutters are created with using negative margin"
+          >
             <p>
               If the parent container of a flex group or grid doesn&apos;t have
               sufficient padding to account for the negative margins, it may

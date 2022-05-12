@@ -82,7 +82,8 @@ export default () => {
             droppableId="DROPPABLE_AREA_COPY_1"
             cloneDraggables={true}
             spacing="l"
-            grow>
+            grow
+          >
             {list1.map(({ content, id }, idx) => (
               <EuiDraggable key={id} index={idx} draggableId={id} spacing="l">
                 <EuiPanel>{content}</EuiPanel>
@@ -99,7 +100,8 @@ export default () => {
                   index={idx}
                   draggableId={id}
                   spacing="l"
-                  isRemovable={isItemRemovable}>
+                  isRemovable={isItemRemovable}
+                >
                   <EuiPanel>
                     <EuiFlexGroup gutterSize="none" alignItems="center">
                       <EuiFlexItem>{content}</EuiFlexItem>
@@ -123,7 +125,8 @@ export default () => {
                 alignItems="center"
                 justifyContent="spaceAround"
                 gutterSize="none"
-                style={{ height: '100%' }}>
+                style={{ height: '100%' }}
+              >
                 <EuiFlexItem grow={false}>Drop Items Here</EuiFlexItem>
               </EuiFlexGroup>
             )}

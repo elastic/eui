@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiScreenReaderLive with a static configuration accepts \`aria-live\` 1`] = `
+<div
+  class="euiScreenReaderOnly"
+>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    role="status"
+  />
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    role="status"
+  >
+    <p>
+      This paragraph is not visible to sighted users but will be read by screenreaders.
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiScreenReaderLive with a static configuration accepts \`role\` 1`] = `
+<div
+  class="euiScreenReaderOnly"
+>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    role="log"
+  />
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    role="log"
+  >
+    <p>
+      This paragraph is not visible to sighted users but will be read by screenreaders.
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiScreenReaderLive with a static configuration does not render screen reader content when inactive 1`] = `
+<div
+  class="euiScreenReaderOnly"
+>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    role="status"
+  />
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    role="status"
+  />
+</div>
+`;
+
+exports[`EuiScreenReaderLive with a static configuration renders screen reader content when active 1`] = `
+<div
+  class="euiScreenReaderOnly"
+>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    role="status"
+  />
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    role="status"
+  >
+    <p>
+      This paragraph is not visible to sighted users but will be read by screenreaders.
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiScreenReaderLive with dynamic properties alternates rendering screen reader content into the second live region when changed/toggled 1`] = `
+<Component>
+  <div>
+    <button
+      data-test-subj="increment"
+      onClick={[Function]}
+    >
+      Increment
+    </button>
+    <EuiScreenReaderLive>
+      <EuiScreenReaderOnly>
+        <div
+          className="euiScreenReaderOnly"
+        >
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            role="status"
+          />
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            role="status"
+          >
+            <p>
+              Number of active options: 
+              1
+            </p>
+          </div>
+        </div>
+      </EuiScreenReaderOnly>
+    </EuiScreenReaderLive>
+  </div>
+</Component>
+`;
+
+exports[`EuiScreenReaderLive with dynamic properties initially renders screen reader content in the first live region 1`] = `
+<Component>
+  <div>
+    <button
+      data-test-subj="increment"
+      onClick={[Function]}
+    >
+      Increment
+    </button>
+    <EuiScreenReaderLive>
+      <EuiScreenReaderOnly>
+        <div
+          className="euiScreenReaderOnly"
+        >
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            role="status"
+          >
+            <p>
+              Number of active options: 
+              0
+            </p>
+          </div>
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            role="status"
+          />
+        </div>
+      </EuiScreenReaderOnly>
+    </EuiScreenReaderLive>
+  </div>
+</Component>
+`;

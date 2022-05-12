@@ -57,7 +57,8 @@ export default class extends Component<CustomActionsProps, CustomActionsState> {
         isOpen={isPopoverOpen}
         closePopover={() => this.closePopover()}
         panelPaddingSize="none"
-        anchorPosition="leftCenter">
+        anchorPosition="leftCenter"
+      >
         <EuiContextMenuPanel
           items={[
             <EuiContextMenuItem
@@ -65,7 +66,8 @@ export default class extends Component<CustomActionsProps, CustomActionsState> {
               icon="pencil"
               onClick={() => {
                 this.closePopover();
-              }}>
+              }}
+            >
               Edit
             </EuiContextMenuItem>,
             <EuiContextMenuItem
@@ -73,7 +75,8 @@ export default class extends Component<CustomActionsProps, CustomActionsState> {
               icon="share"
               onClick={() => {
                 this.closePopover();
-              }}>
+              }}
+            >
               Share
             </EuiContextMenuItem>,
             <EuiContextMenuItem
@@ -81,7 +84,8 @@ export default class extends Component<CustomActionsProps, CustomActionsState> {
               icon="copy"
               onClick={() => {
                 this.closePopover();
-              }}>
+              }}
+            >
               Copy
             </EuiContextMenuItem>,
           ]}
@@ -94,7 +98,8 @@ export default class extends Component<CustomActionsProps, CustomActionsState> {
           username="janed"
           event="added a comment"
           actions={customActions}
-          timestamp="Jan 1, 2020">
+          timestamp="Jan 1, 2020"
+        >
           {body}
         </EuiComment>
       </div>

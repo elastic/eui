@@ -1,29 +1,23 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
+import { useEuiTheme } from '../../services';
+import { euiHorizontalRuleStyles } from './horizontal_rule.styles';
 
-export type EuiHorizontalRuleSize = keyof typeof sizeToClassNameMap;
-export type EuiHorizontalRuleMargin = keyof typeof marginToClassNameMap;
+export const SIZES = ['full', 'half', 'quarter'] as const;
+export const MARGINS = ['none', 'xs', 's', 'm', 'l', 'xl', 'xxl'] as const;
+
+export type EuiHorizontalRuleSize = typeof SIZES[number];
+export type EuiHorizontalRuleMargin = typeof MARGINS[number];
 
 export interface EuiHorizontalRuleProps
   extends CommonProps,
@@ -35,25 +29,17 @@ export interface EuiHorizontalRuleProps
   margin?: EuiHorizontalRuleMargin;
 }
 
-const sizeToClassNameMap = {
-  full: 'euiHorizontalRule--full',
-  half: 'euiHorizontalRule--half',
-  quarter: 'euiHorizontalRule--quarter',
-};
-
-export const SIZES = Object.keys(sizeToClassNameMap);
-
-const marginToClassNameMap = {
+const marginToClassNameMap: {
+  [value in EuiHorizontalRuleMargin]: string | null;
+} = {
   none: null,
-  xs: 'euiHorizontalRule--marginXSmall',
-  s: 'euiHorizontalRule--marginSmall',
-  m: 'euiHorizontalRule--marginMedium',
-  l: 'euiHorizontalRule--marginLarge',
-  xl: 'euiHorizontalRule--marginXLarge',
-  xxl: 'euiHorizontalRule--marginXXLarge',
+  xs: 'marginXSmall',
+  s: 'marginSmall',
+  m: 'marginMedium',
+  l: 'marginLarge',
+  xl: 'marginXLarge',
+  xxl: 'marginXXLarge',
 };
-
-export const MARGINS = Object.keys(marginToClassNameMap);
 
 export const EuiHorizontalRule: FunctionComponent<EuiHorizontalRuleProps> = ({
   className,
@@ -61,12 +47,20 @@ export const EuiHorizontalRule: FunctionComponent<EuiHorizontalRuleProps> = ({
   margin = 'l',
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiHorizontalRuleStyles(euiTheme);
+
   const classes = classNames(
     'euiHorizontalRule',
-    sizeToClassNameMap[size],
-    marginToClassNameMap[margin],
+    {
+      [`euiHorizontalRule--${size}`]: size,
+      [`euiHorizontalRule--${marginToClassNameMap[margin]}`]:
+        margin && margin !== 'none',
+    },
     className
   );
 
-  return <hr className={classes} {...rest} />;
+  const cssStyles = [styles.euiHorizontalRule, styles[size], styles[margin]];
+
+  return <hr css={cssStyles} className={classes} {...rest} />;
 };

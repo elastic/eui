@@ -7,7 +7,8 @@ export default ({ button = <></>, content, sideNav }) => {
     <EuiPageTemplate
       template="centeredBody"
       pageContentProps={{ paddingSize: 'none' }}
-      pageSideBar={sideNav}>
+      pageSideBar={sideNav}
+    >
       <EuiEmptyPrompt
         title={<span>No spice</span>}
         body={content}

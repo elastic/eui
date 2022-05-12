@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCallOut, EuiText, EuiCode } from '../../../../src/components';
@@ -9,7 +7,6 @@ import callOutConfig from './playground';
 
 import Info from './info';
 const infoSource = require('!!raw-loader!./info');
-const infoHtml = renderToHtml(Info);
 const infoSnippet = [
   `<EuiCallOut size="m" title="Just a title. No content." iconType="gear" />
 `,
@@ -24,7 +21,6 @@ const infoSnippet = [
 
 import Success from './success';
 const successSource = require('!!raw-loader!./success');
-const successHtml = renderToHtml(Success);
 const successSnippet = [
   `<EuiCallOut title="Good news, everyone!" color="success" iconType="user">
   <p><!-- Content --></p>
@@ -34,7 +30,6 @@ const successSnippet = [
 
 import Warning from './warning';
 const warningSource = require('!!raw-loader!./warning');
-const warningHtml = renderToHtml(Warning);
 const warningSnippet = [
   `<EuiCallOut title="Proceed with caution!" color="warning" iconType="help">
   <p><!-- Content --></p>
@@ -44,7 +39,6 @@ const warningSnippet = [
 
 import Danger from './danger';
 const dangerSource = require('!!raw-loader!./danger');
-const dangerHtml = renderToHtml(Danger);
 const dangerSnippet = [
   `<EuiCallOut title="Sorry, there was an error" color="danger" iconType="alert">
   <p><!-- Content --></p>
@@ -81,7 +75,7 @@ export const CallOutExample = {
             <EuiCode>s</EuiCode> (small).
           </li>
           <li>
-            Use an <EuiCode>icon</EuiCode> prop if it adds context.
+            Use an <EuiCode>iconType</EuiCode> if it adds context.
           </li>
         </ul>
       </EuiText>
@@ -92,12 +86,8 @@ export const CallOutExample = {
       title: 'Info',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: infoSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: infoHtml,
         },
       ],
       text: (
@@ -111,17 +101,14 @@ export const CallOutExample = {
       props: { EuiCallOut },
       snippet: infoSnippet,
       demo: <Info />,
+      playground: callOutConfig,
     },
     {
       title: 'Success',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: successSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: successHtml,
         },
       ],
       text: (
@@ -138,12 +125,8 @@ export const CallOutExample = {
       title: 'Warning',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: warningSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: warningHtml,
         },
       ],
       text: (
@@ -158,12 +141,8 @@ export const CallOutExample = {
       title: 'Danger',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: dangerSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dangerHtml,
         },
       ],
       text: (
@@ -173,5 +152,4 @@ export const CallOutExample = {
       demo: <Danger />,
     },
   ],
-  playground: callOutConfig,
 };

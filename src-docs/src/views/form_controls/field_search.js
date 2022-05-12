@@ -25,7 +25,8 @@ export default () => {
             setIsClearable(e.target.checked);
           }}
         />,
-      ]}>
+      ]}
+    >
       <EuiFieldSearch
         placeholder="Search this"
         value={value}

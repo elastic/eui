@@ -1,51 +1,42 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import { EuiIcon } from '../icon';
+import { useLoadingAriaLabel } from './_loading_strings';
+import { euiLoadingElasticStyles } from './loading_elastic.styles';
 
-const sizeToClassNameMap = {
-  m: 'euiLoadingElastic--medium',
-  l: 'euiLoadingElastic--large',
-  xl: 'euiLoadingElastic--xLarge',
-  xxl: 'euiLoadingElastic--xxLarge',
-};
-
-export const SIZES = keysOf(sizeToClassNameMap);
+export const SIZES = ['m', 'l', 'xl', 'xxl'] as const;
+export type EuiLoadingElasticSize = typeof SIZES[number];
 
 export interface EuiLoadingElasticProps {
-  size?: keyof typeof sizeToClassNameMap;
+  size?: EuiLoadingElasticSize;
 }
 
 export const EuiLoadingElastic: FunctionComponent<
   CommonProps & HTMLAttributes<HTMLDivElement> & EuiLoadingElasticProps
-> = ({ size = 'm', className, ...rest }) => {
-  const classes = classNames(
-    'euiLoadingElastic',
-    sizeToClassNameMap[size],
-    className
-  );
+> = ({ size = 'm', className, 'aria-label': ariaLabel, ...rest }) => {
+  const styles = euiLoadingElasticStyles();
+  const cssStyles = [styles.euiLoadingElastic];
+  const defaultLabel = useLoadingAriaLabel();
+
+  const classes = classNames('euiLoadingElastic', className);
 
   return (
-    <span className={classes} {...rest}>
+    <span
+      className={classes}
+      css={cssStyles}
+      role="progressbar"
+      aria-label={ariaLabel || defaultLabel}
+      {...rest}
+    >
       <EuiIcon type="logoElastic" size={size} />
     </span>
   );

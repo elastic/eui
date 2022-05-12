@@ -2,7 +2,9 @@
 
 exports[`EuiMark is rendered 1`] = `
 <mark
-  class="euiMark"
+  aria-label="aria-label"
+  class="euiMark testClass1 testClass2 css-b9vly9-euiMarkStyles-EuiMark"
+  data-test-subj="test subject string"
 >
   Marked
 </mark>

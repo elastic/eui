@@ -1,5 +1,4 @@
 import React, { cloneElement, useState, Fragment } from 'react';
-import PropTypes from 'prop-types';
 
 import {
   EuiFlexGroup,
@@ -13,18 +12,19 @@ import {
 } from '../../../../src/components';
 
 export const DisplayToggles = ({
-  canIsDisabled,
-  canDisabled,
-  canReadOnly,
-  canLoading,
-  canCompressed,
-  canFullWidth,
-  canPrepend,
-  canAppend,
-  canInvalid,
+  canIsDisabled = false,
+  canDisabled = true,
+  canReadOnly = true,
+  canLoading = true,
+  canCompressed = true,
+  canFullWidth = true,
+  canInvalid = true,
+  canPrepend = false,
+  canAppend = false,
+  canClear = false,
   children,
   extras,
-  spacerSize,
+  spacerSize = 'l',
 }) => {
   const [disabled, setDisabled] = useState(false);
   const [readOnly, setReadOnly] = useState(false);
@@ -35,6 +35,7 @@ export const DisplayToggles = ({
   const [append, setAppend] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [invalid, setInvalid] = useState(false);
+  const [isClearable, setIsClearable] = useState(false);
 
   const canProps = {};
   if (canDisabled) canProps.disabled = disabled;
@@ -46,6 +47,7 @@ export const DisplayToggles = ({
   if (canPrepend && prepend) canProps.prepend = 'Prepend';
   if (canAppend && append) canProps.append = 'Append';
   if (canInvalid) canProps.isInvalid = invalid;
+  if (canClear) canProps.isClearable = isClearable;
 
   return (
     <Fragment>
@@ -63,16 +65,19 @@ export const DisplayToggles = ({
             size="xs"
             onClick={() => {
               setIsPopoverOpen(!isPopoverOpen);
-            }}>
+            }}
+          >
             Display toggles
           </EuiButtonEmpty>
-        }>
+        }
+      >
         <div>
           <EuiFlexGroup
             wrap={true}
             direction="column"
             gutterSize="s"
-            responsive={false}>
+            responsive={false}
+          >
             {(canDisabled || canIsDisabled) && (
               <EuiFlexItem grow={false}>
                 <EuiSwitch
@@ -131,8 +136,8 @@ export const DisplayToggles = ({
                     <span>
                       compressed{' '}
                       <EuiToolTip content="Compressed usages are very specific. Click to view full compressed documentation">
-                        <a href="/#/forms/compressed-forms">
-                          <EuiIcon type="help" />
+                        <a href="#/forms/compressed-forms">
+                          <EuiIcon type="help" aria-label="help" />
                         </a>
                       </EuiToolTip>
                     </span>
@@ -162,6 +167,16 @@ export const DisplayToggles = ({
                 />
               </EuiFlexItem>
             )}
+            {canClear && (
+              <EuiFlexItem grow={false}>
+                <EuiSwitch
+                  compressed
+                  label={'clearable'}
+                  checked={isClearable}
+                  onChange={(e) => setIsClearable(e.target.checked)}
+                />
+              </EuiFlexItem>
+            )}
             {extras &&
               extras.map((extra, index) => {
                 return (
@@ -175,32 +190,4 @@ export const DisplayToggles = ({
       </EuiPopover>
     </Fragment>
   );
-};
-
-DisplayToggles.propTypes = {
-  canIsDisabled: PropTypes.bool,
-  canDisabled: PropTypes.bool,
-  canReadOnly: PropTypes.bool,
-  canLoading: PropTypes.bool,
-  canCompressed: PropTypes.bool,
-  canFullWidth: PropTypes.bool,
-  canPrepend: PropTypes.bool,
-  canAppend: PropTypes.bool,
-  canInvalid: PropTypes.bool,
-  extras: PropTypes.arrayOf(PropTypes.node),
-  // Manually building the spacer array to avoid having to import Spacer into codesandbox
-  spacerSize: PropTypes.oneOf(['xs', 's', 'm', 'l', 'xl', 'xxl']),
-};
-
-DisplayToggles.defaultProps = {
-  canIsDisabled: false,
-  canDisabled: true,
-  canReadOnly: true,
-  canLoading: true,
-  canCompressed: true,
-  canFullWidth: true,
-  canInvalid: true,
-  canPrepend: false,
-  canAppend: false,
-  spacerSize: 'l',
 };

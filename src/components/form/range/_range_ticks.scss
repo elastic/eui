@@ -21,7 +21,8 @@
 }
 
 .euiRangeTick {
-  overflow-x: hidden;
+  overflow-x: hidden; // Overridden if labels overflow horizontally
+  overflow-y: hidden; // Should never scroll vertically
   text-overflow: ellipsis;
   font-size: $euiFontSizeXS;
   position: absolute;

@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React from 'react';
@@ -41,10 +30,35 @@ const options: EuiSelectableOption[] = [
 describe('EuiSelectable', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiSelectable options={options} {...requiredProps} />
+      <EuiSelectable options={options} {...requiredProps} id="testId" />
     );
 
     expect(component).toMatchSnapshot();
+  });
+
+  test('should not reset the activeOptionIndex nor isFocused when EuiSelectable is blurred in favour of its popover', () => {
+    const component = mount(
+      <EuiSelectable options={options} searchable>
+        {(list, search) => (
+          <>
+            {list}
+            {search}
+          </>
+        )}
+      </EuiSelectable>
+    );
+
+    component.setState({
+      activeOptionIndex: 0,
+      isFocused: true,
+    });
+    expect(component.state()).toMatchSnapshot();
+
+    component.find('.euiSelectable').simulate('blur', {
+      relatedTarget: { firstChild: { id: 'generated-id_listbox' } },
+    });
+    component.update();
+    expect(component.state()).toMatchSnapshot();
   });
 
   describe('props', () => {
@@ -125,6 +139,74 @@ describe('EuiSelectable', () => {
     });
   });
 
+  describe('search value', () => {
+    it('supports inheriting initialSearchValue from searchProps.defaultValue', () => {
+      const component = render(
+        <EuiSelectable
+          options={options}
+          searchable
+          searchProps={{
+            defaultValue: 'default value',
+            'data-test-subj': 'searchInput',
+          }}
+        >
+          {(list, search) => (
+            <>
+              {list}
+              {search}
+            </>
+          )}
+        </EuiSelectable>
+      );
+      expect(component).toMatchSnapshot();
+      expect(
+        component.find('input[data-test-subj="searchInput"]').prop('value')
+      ).toEqual('default value');
+    });
+
+    it('supports controlled searchValue state from searchProps.value', () => {
+      const searchProps = {
+        value: 'first value',
+        'data-test-subj': 'searchInput',
+      };
+      const component = mount(
+        <EuiSelectable options={options} searchable searchProps={searchProps}>
+          {(list, search) => (
+            <>
+              {list}
+              {search}
+            </>
+          )}
+        </EuiSelectable>
+      );
+      expect(
+        component.find('input[data-test-subj="searchInput"]').prop('value')
+      ).toEqual('first value');
+
+      component.setProps({
+        searchProps: { ...searchProps, value: 'second value' },
+      });
+      expect(
+        component.find('input[data-test-subj="searchInput"]').prop('value')
+      ).toEqual('second value');
+    });
+
+    it('defaults to an empty string if no value or defaultValue is passed from searchProps', () => {
+      const component = render(
+        <EuiSelectable
+          options={options}
+          searchable
+          searchProps={{ 'data-test-subj': 'searchInput' }}
+        >
+          {(_, search) => <>{search}</>}
+        </EuiSelectable>
+      );
+      expect(
+        component.find('input[data-test-subj="searchInput"]').prop('value')
+      ).toEqual('');
+    });
+  });
+
   describe('custom options', () => {
     test('optional properties', () => {
       type OptionalOption = EuiSelectableOption<{ value?: string }>;
@@ -193,6 +275,84 @@ describe('EuiSelectable', () => {
       expect(
         (component.find('EuiSelectableList').props() as any).visibleOptions
       ).toEqual(options);
+    });
+
+    test('with data', () => {
+      type WithData = {
+        numeral?: string;
+      };
+      const options = [
+        {
+          label: 'Titan',
+          data: {
+            numeral: 'VI',
+          },
+        },
+        {
+          label: 'Enceladus',
+          data: {
+            numeral: 'II',
+          },
+        },
+        {
+          label:
+            "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+          data: {
+            numeral: 'XVII',
+          },
+        },
+      ];
+      const component = render(
+        <EuiSelectable<WithData>
+          options={options}
+          renderOption={(option) => {
+            return (
+              <span>
+                {option.numeral}: {option.label}
+              </span>
+            );
+          }}
+        >
+          {(list) => list}
+        </EuiSelectable>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('errorMessage prop', () => {
+    it('does not render the message when not defined', () => {
+      const component = render(
+        <EuiSelectable options={options} errorMessage={null}>
+          {(list) => list}
+        </EuiSelectable>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    it('does renders the message when defined', () => {
+      const component = render(
+        <EuiSelectable options={options} errorMessage="Error!">
+          {(list) => list}
+        </EuiSelectable>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    it('can render an element as the message', () => {
+      const component = render(
+        <EuiSelectable
+          options={options}
+          errorMessage={<span>Element error!</span>}
+        >
+          {(list) => list}
+        </EuiSelectable>
+      );
+
+      expect(component).toMatchSnapshot();
     });
   });
 });

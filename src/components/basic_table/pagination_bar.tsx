@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { useEffect } from 'react';
@@ -31,7 +20,8 @@ export interface Pagination {
    */
   pageIndex: number;
   /**
-   * The maximum number of items that can be shown in a single page
+   * The maximum number of items that can be shown in a single page.
+   * Pass `0` to display the selected "Show all" option and hide the pagination.
    */
   pageSize: number;
   /**
@@ -39,23 +29,25 @@ export interface Pagination {
    */
   totalItemCount: number;
   /**
-   * Configures the page size dropdown options
+   * Configures the page size dropdown options.
+   * Pass `0` as one of the options to create a "Show all" option.
    */
   pageSizeOptions?: number[];
   /**
    * Hides the page size dropdown
    */
-  hidePerPageOptions?: boolean;
+  showPerPageOptions?: boolean;
 }
 
 export interface PaginationBarProps {
   pagination: Pagination;
+  onPageSizeChange: ItemsPerPageChangeHandler;
+  onPageChange: PageChangeHandler;
   /**
    * id of the table being controlled
    */
   'aria-controls'?: string;
-  onPageSizeChange: ItemsPerPageChangeHandler;
-  onPageChange: PageChangeHandler;
+  'aria-label'?: string;
 }
 
 export const defaults = {
@@ -64,18 +56,21 @@ export const defaults = {
 
 export const PaginationBar = ({
   pagination,
-  'aria-controls': ariaControls,
   onPageSizeChange,
   onPageChange,
+  'aria-controls': ariaControls,
+  'aria-label': ariaLabel,
 }: PaginationBarProps) => {
   const pageSizeOptions = pagination.pageSizeOptions
     ? pagination.pageSizeOptions
     : defaults.pageSizeOptions;
-  const pageCount = Math.ceil(pagination.totalItemCount / pagination.pageSize);
+  const pageCount = pagination.pageSize
+    ? Math.ceil(pagination.totalItemCount / pagination.pageSize)
+    : 1;
 
   useEffect(() => {
     if (pageCount < pagination.pageIndex + 1) {
-      onPageChange(pageCount - 1);
+      onPageChange?.(pageCount - 1);
     }
   }, [pageCount, onPageChange, pagination]);
 
@@ -84,13 +79,14 @@ export const PaginationBar = ({
       <EuiSpacer size="m" />
       <EuiTablePagination
         activePage={pagination.pageIndex}
-        hidePerPageOptions={pagination.hidePerPageOptions}
+        showPerPageOptions={pagination.showPerPageOptions}
         itemsPerPage={pagination.pageSize}
         itemsPerPageOptions={pageSizeOptions}
         pageCount={pageCount}
         onChangeItemsPerPage={onPageSizeChange}
         onChangePage={onPageChange}
         aria-controls={ariaControls}
+        aria-label={ariaLabel}
       />
     </div>
   );

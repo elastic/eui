@@ -60,7 +60,8 @@ export default () => {
             droppableId="DROPPABLE_AREA_1"
             spacing="m"
             withPanel
-            grow={false}>
+            grow={false}
+          >
             {list1.length > 0 ? (
               list1.map(({ content, id }, idx) => (
                 <EuiDraggable spacing="m" key={id} index={idx} draggableId={id}>
@@ -77,7 +78,8 @@ export default () => {
                 alignItems="center"
                 justifyContent="spaceAround"
                 gutterSize="none"
-                style={{ height: '100%' }}>
+                style={{ height: '100%' }}
+              >
                 <EuiFlexItem grow={false}>
                   <EuiIcon type="faceSad" />
                 </EuiFlexItem>
@@ -90,7 +92,8 @@ export default () => {
             droppableId="DROPPABLE_AREA_2"
             spacing="m"
             withPanel
-            grow={false}>
+            grow={false}
+          >
             {list2.length > 0 ? (
               list2.map(({ content, id }, idx) => (
                 <EuiDraggable spacing="m" key={id} index={idx} draggableId={id}>
@@ -107,7 +110,8 @@ export default () => {
                 alignItems="center"
                 justifyContent="spaceAround"
                 gutterSize="none"
-                style={{ height: '100%' }}>
+                style={{ height: '100%' }}
+              >
                 <EuiFlexItem grow={false}>
                   <EuiIcon type="faceSad" />
                 </EuiFlexItem>

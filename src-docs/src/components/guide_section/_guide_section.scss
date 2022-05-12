@@ -1,17 +1,10 @@
-.guideSection {
-  & + .guideSection {
-    margin-top: $euiSizeXL;
-  }
-}
-
 .guideSection__tableCodeBlock {
   padding-left: $euiSizeXS;
   padding-right: $euiSizeXS;
 }
 
 .guideSection__propsTableIntro {
-  padding-left: $euiSizeS;
-  padding-right: $euiSizeS;
+  padding: $euiSizeM $euiSizeS 0;
 }
 
 .guideSectionExampleCode__link {
@@ -28,6 +21,14 @@
   }
 }
 
-.guideSectionTabs__tab {
+.guideSectionTabs__tab > * {
   font-weight: $euiFontWeightMedium !important; // sass-lint:disable-line no-important
+}
+
+.guideDemo__ghostBackground {
+  @if (lightness($euiTextColor) < 50) {
+    color: $euiColorGhost;
+    // Override EuiPanel specificity
+    background: $euiColorDarkestShade !important; // sass-lint:disable-line no-important
+  }
 }

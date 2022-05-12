@@ -475,7 +475,7 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageHeader 1`
   >
     <header
       aria-label="aria-label"
-      class="euiPageHeader euiPageHeader--paddingLarge euiPageHeader--responsive euiPage--restrictWidth-default euiPageHeader--center testClass1 testClass2"
+      class="euiPageHeader euiPageHeader--paddingLarge euiPageHeader--restrictWidth-default euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
       data-test-subj="test subject string"
       title="Page title"
     />
@@ -719,7 +719,7 @@ exports[`EuiPageTemplate template default is rendered with pageHeader 1`] = `
   >
     <header
       aria-label="aria-label"
-      class="euiPageHeader euiPageHeader--paddingLarge euiPageHeader--responsive euiPage--restrictWidth-default euiPageHeader--center testClass1 testClass2"
+      class="euiPageHeader euiPageHeader--paddingLarge euiPageHeader--restrictWidth-default euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
       data-test-subj="test subject string"
       title="Page title"
     />
@@ -1097,7 +1097,7 @@ exports[`EuiPageTemplate with bottomBar is rendered 1`] = `
     </div>
     <section
       aria-label="Page level controls"
-      class="euiBottomBar euiBottomBar--sticky"
+      class="euiBottomBar euiBottomBar--sticky css-1cjporg-euiBottomBar-sticky"
       style="left:0;right:0;bottom:0"
     >
       <h2

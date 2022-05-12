@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCallOut, EuiCode, EuiProgress } from '../../../../src/components';
@@ -10,17 +8,14 @@ import progressConfig from './playground';
 
 import Progress from './progress';
 const progressSource = require('!!raw-loader!./progress');
-const progressHtml = renderToHtml(Progress);
 const progressSnippet = '<EuiProgress size="xs" color="accent" />';
 
 import ProgressValue from './progress_value';
 const progressValueSource = require('!!raw-loader!./progress_value');
-const progressValueHtml = renderToHtml(ProgressValue);
 const progressValueSnippet = '<EuiProgress value={22} max={100} size="xs" />';
 
 import ProgressFixed from './progress_fixed';
 const progressFixedSource = require('!!raw-loader!./progress_fixed');
-const progressFixedHtml = renderToHtml(ProgressFixed);
 const progressFixedSnippet = `<!-- Position at top of parent container -->
 <EuiProgress size="xs" color="accent" position="absolute" />
 
@@ -31,30 +26,27 @@ const progressFixedSnippet = `<!-- Position at top of parent container -->
 
 import ProgressSizes from './progress_sizes';
 const progressSizesSource = require('!!raw-loader!./progress_sizes');
-const progressSizesHtml = renderToHtml(ProgressSizes);
 const progressSizesSnippet = `<EuiProgress
   value={20}
-  max={100} 
+  max={100}
   size="s"
 />`;
 
 import ProgressColors from './progress_colors';
 const progressColorsSource = require('!!raw-loader!./progress_colors');
-const progressColorsHtml = renderToHtml(ProgressColors);
 const progressColorsSnippet = `<EuiProgress
   value={20}
-  max={100} 
+  max={100}
   color="vis4"
 />`;
 
 import ProgressChart from './progress_chart';
 const progressChartSource = require('!!raw-loader!./progress_chart');
-const progressChartHtml = renderToHtml(ProgressChart);
-const progressChartSnippet = `<EuiProgress 
+const progressChartSnippet = `<EuiProgress
   value={20}
   valueText={true}
   label={label}
-  max={100} 
+  max={100}
 />`;
 
 export const ProgressExample = {
@@ -65,10 +57,6 @@ export const ProgressExample = {
         {
           type: GuideSectionTypes.JS,
           code: progressSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: progressHtml,
         },
       ],
       text: (
@@ -83,6 +71,7 @@ export const ProgressExample = {
       snippet: progressSnippet,
       props: { EuiProgress },
       demo: <Progress />,
+      playground: progressConfig,
     },
     {
       title: 'Progress with values',
@@ -90,10 +79,6 @@ export const ProgressExample = {
         {
           type: GuideSectionTypes.JS,
           code: progressValueSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: progressValueHtml,
         },
       ],
       text: (
@@ -113,10 +98,6 @@ export const ProgressExample = {
           type: GuideSectionTypes.JS,
           code: progressFixedSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: progressFixedHtml,
-        },
       ],
       text: (
         <div>
@@ -130,7 +111,8 @@ export const ProgressExample = {
           </p>
           <EuiCallOut
             title="Note about progress bars over fixed headers"
-            iconType="iInCircle">
+            iconType="iInCircle"
+          >
             <p>
               Using <strong>EuiProgress</strong> with a <EuiCode>fixed</EuiCode>{' '}
               position may result in it being overlayed when its parent wrapper
@@ -152,10 +134,6 @@ export const ProgressExample = {
           type: GuideSectionTypes.JS,
           code: progressSizesSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: progressSizesHtml,
-        },
       ],
       text: (
         <p>
@@ -172,10 +150,6 @@ export const ProgressExample = {
         {
           type: GuideSectionTypes.JS,
           code: progressColorsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: progressColorsHtml,
         },
       ],
       text: (
@@ -195,7 +169,8 @@ export const ProgressExample = {
           <EuiCallOut
             title="Note about using custom colors"
             iconType="accessibility"
-            color="warning">
+            color="warning"
+          >
             <p>
               Usually, we calculate a high contrast color for{' '}
               <EuiCode>valueText</EuiCode> based on <EuiCode>color</EuiCode>.
@@ -214,10 +189,6 @@ export const ProgressExample = {
         {
           type: GuideSectionTypes.JS,
           code: progressChartSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: progressChartHtml,
         },
       ],
       text: (
@@ -241,5 +212,4 @@ export const ProgressExample = {
       snippet: progressChartSnippet,
     },
   ],
-  playground: progressConfig,
 };

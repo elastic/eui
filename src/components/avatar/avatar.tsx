@@ -1,47 +1,30 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { HTMLAttributes, FunctionComponent, CSSProperties } from 'react';
-import { CommonProps, ExclusiveUnion, keysOf } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import classNames from 'classnames';
 
 import { isColorDark, hexToRgb, isValidHex } from '../../services/color';
-import { euiPaletteColorBlindBehindText, toInitials } from '../../services';
+import {
+  euiPaletteColorBlindBehindText,
+  toInitials,
+  useEuiTheme,
+} from '../../services';
 import { IconType, EuiIcon, IconSize, IconColor } from '../icon';
 
-const sizeToClassNameMap = {
-  s: 'euiAvatar--s',
-  m: 'euiAvatar--m',
-  l: 'euiAvatar--l',
-  xl: 'euiAvatar--xl',
-};
+import { euiAvatarStyles } from './avatar.styles';
 
-export const SIZES = keysOf(sizeToClassNameMap);
-export type EuiAvatarSize = keyof typeof sizeToClassNameMap;
+export const SIZES = ['s', 'm', 'l', 'xl'] as const;
+export type EuiAvatarSize = typeof SIZES[number];
 
-const typeToClassNameMap = {
-  space: 'euiAvatar--space',
-  user: 'euiAvatar--user',
-};
-
-export const TYPES = keysOf(typeToClassNameMap);
-export type EuiAvatarType = keyof typeof typeToClassNameMap;
+export const TYPES = ['space', 'user'] as const;
+export type EuiAvatarType = typeof TYPES[number];
 
 /**
  * The avatar can only display one type of content,
@@ -95,9 +78,9 @@ export type EuiAvatarProps = Omit<HTMLAttributes<HTMLDivElement>, 'color'> &
 
     /**
      * Accepts hex values like `#FFFFFF`, `#000` otherwise a viz palette color will be assigned.
-     * Or pass `'plain'` for an empty shade or `null` to remove entirely and the text/icon color will `inherit`
+     * Or pass `'plain'` for an empty shade, `'subdued'` for a light gray shade or `null` to remove entirely and the text/icon color will `inherit`
      */
-    color?: string | 'plain' | null;
+    color?: string | 'plain' | 'subdued' | null;
 
     /**
      * The type of avatar mainly controlling the shape.
@@ -129,25 +112,41 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   style,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiAvatarStyles(euiTheme);
+
   const visColors = euiPaletteColorBlindBehindText();
+
+  const isPlain = color === 'plain';
+  const isSubdued = color === 'subdued';
 
   const classes = classNames(
     'euiAvatar',
-    sizeToClassNameMap[size],
-    typeToClassNameMap[type],
     {
+      [`euiAvatar--${size}`]: size,
+      [`euiAvatar--${type}`]: type,
       'euiAvatar-isDisabled': isDisabled,
-      'euiAvatar--plain': color === 'plain',
     },
     className
   );
+
+  const cssStyles = [
+    styles.euiAvatar,
+    styles[size],
+    styles[type],
+    isPlain && styles.plain,
+    isSubdued && styles.subdued,
+    isDisabled && styles.isDisabled,
+  ];
 
   checkValidInitials(initials);
 
   const avatarStyle: CSSProperties = style || {};
   let iconCustomColor = iconColor;
 
-  const isNamedColor = color === 'plain' || color === null;
+  const isNamedColor =
+    color === 'plain' || color === 'subdued' || color === null;
+
   if (!isNamedColor) {
     checkValidColor(color);
 
@@ -188,11 +187,14 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
 
   return (
     <div
+      css={cssStyles}
       className={classes}
       style={avatarStyle}
-      aria-label={name}
+      aria-label={isDisabled ? undefined : name}
+      role={isDisabled ? 'presentation' : 'img'}
       title={name}
-      {...rest}>
+      {...rest}
+    >
       {content}
     </div>
   );
@@ -200,7 +202,8 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
 
 // TODO: Migrate to a service
 export const checkValidColor = (color: EuiAvatarProps['color']) => {
-  const validHex = (color && isValidHex(color)) || color === 'plain';
+  const validHex =
+    (color && isValidHex(color)) || color === 'plain' || color === 'subdued';
   if (color && !validHex) {
     throw new Error(
       'EuiAvatar needs to pass a valid color. This can either be a three ' +

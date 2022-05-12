@@ -1,55 +1,35 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
-export { EuiTable, EuiTableProps } from './table';
-export { EuiTableBody, EuiTableBodyProps } from './table_body';
+export type { EuiTableProps } from './table';
+export { EuiTable } from './table';
+export type { EuiTableBodyProps } from './table_body';
+export { EuiTableBody } from './table_body';
 export { EuiTableFooter } from './table_footer';
-export {
-  EuiTableFooterCell,
-  EuiTableFooterCellProps,
-} from './table_footer_cell';
-export { EuiTableHeader, EuiTableHeaderProps } from './table_header';
-export {
-  EuiTableHeaderButton,
-  EuiTableHeaderButtonProps,
-} from './table_header_button';
-export {
-  EuiTableHeaderCell,
-  EuiTableHeaderCellProps,
-} from './table_header_cell';
-export {
-  EuiTableHeaderCellCheckbox,
-  EuiTableHeaderCellCheckboxProps,
-} from './table_header_cell_checkbox';
-export {
-  EuiTablePagination,
-  EuiTablePaginationProps,
-} from './table_pagination';
+export type { EuiTableFooterCellProps } from './table_footer_cell';
+export { EuiTableFooterCell } from './table_footer_cell';
+export type { EuiTableHeaderProps } from './table_header';
+export { EuiTableHeader } from './table_header';
+export type { EuiTableHeaderButtonProps } from './table_header_button';
+export { EuiTableHeaderButton } from './table_header_button';
+export type { EuiTableHeaderCellProps } from './table_header_cell';
+export { EuiTableHeaderCell } from './table_header_cell';
+export type { EuiTableHeaderCellCheckboxProps } from './table_header_cell_checkbox';
+export { EuiTableHeaderCellCheckbox } from './table_header_cell_checkbox';
+export type { EuiTablePaginationProps } from './table_pagination';
+export { EuiTablePagination } from './table_pagination';
 export { EuiTableHeaderMobile } from './mobile/table_header_mobile';
-export {
-  EuiTableSortMobile,
-  EuiTableSortMobileProps,
-} from './mobile/table_sort_mobile';
-export {
-  EuiTableSortMobileItem,
-  EuiTableSortMobileItemProps,
-} from './mobile/table_sort_mobile_item';
-export { EuiTableRow, EuiTableRowProps } from './table_row';
-export { EuiTableRowCell, EuiTableRowCellProps } from './table_row_cell';
+export type { EuiTableSortMobileProps } from './mobile/table_sort_mobile';
+export { EuiTableSortMobile } from './mobile/table_sort_mobile';
+export type { EuiTableSortMobileItemProps } from './mobile/table_sort_mobile_item';
+export { EuiTableSortMobileItem } from './mobile/table_sort_mobile_item';
+export type { EuiTableRowProps } from './table_row';
+export { EuiTableRow } from './table_row';
+export type { EuiTableRowCellProps } from './table_row_cell';
+export { EuiTableRowCell } from './table_row_cell';
 export { EuiTableRowCellCheckbox } from './table_row_cell_checkbox';

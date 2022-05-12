@@ -21,7 +21,8 @@ export default () => {
       iconType="arrowDown"
       iconSide="right"
       onClick={onButtonClick}
-      style={{ position: 'relative', left: 50 }}>
+      style={{ position: 'relative', left: 50 }}
+    >
       Show constrained popover
     </EuiButton>
   );
@@ -32,7 +33,8 @@ export default () => {
         button={button}
         isOpen={isPopoverOpen}
         closePopover={closePopover}
-        container={panelRef}>
+        container={panelRef}
+      >
         <div>
           Popover is positioned <EuiCode>downCenter</EuiCode> but constrained to
           fit within the panel.

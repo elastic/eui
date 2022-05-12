@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "./src/**/*.spec.tsx",
+  ],
+  "compilerOptions": {
+    "types": ["cypress", "cypress-real-events", "cypress-axe"]
+  },
+  "exclude": ["node_modules"],
+}

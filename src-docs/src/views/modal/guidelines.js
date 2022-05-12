@@ -34,7 +34,8 @@ export default () => (
       color="subdued"
       paddingSize="l"
       hasShadow={false}
-      style={{ justifyContent: 'center', display: 'flex' }}>
+      style={{ justifyContent: 'center', display: 'flex' }}
+    >
       <EuiPanel style={{ maxWidth: 520 }} paddingSize="none">
         <EuiModalHeader>
           <EuiModalHeaderTitle>
@@ -100,14 +101,17 @@ export default () => (
       description="A modal can gather input necessary for continuing the current workflow.
       This type of modal works best for a short, focused task.
       Use input modals sparingly&mdash;they interrupt the user's workflow.
-      ">
+      "
+    >
       <GuideRuleExample
         type="do"
         text="A save action is a good use case for a modal. The
-        meaning is clear and the content is simple.">
+        meaning is clear and the content is simple."
+      >
         <EuiPanel
           paddingSize="none"
-          style={{ maxWidth: 400, transform: 'scale(.75)' }}>
+          style={{ maxWidth: 400, transform: 'scale(.75)' }}
+        >
           <EuiModalHeader>
             <EuiModalHeaderTitle>Save dashboard</EuiModalHeaderTitle>
           </EuiModalHeader>
@@ -131,10 +135,12 @@ export default () => (
       <GuideRuleExample
         type="dont"
         text="Modals aren't the best design solution for multiple steps or complex user input.
-        An in-page form is more appropriate.">
+        An in-page form is more appropriate."
+      >
         <EuiPanel
           paddingSize="none"
-          style={{ maxWidth: 400, transform: 'scale(.75)' }}>
+          style={{ maxWidth: 400, transform: 'scale(.75)' }}
+        >
           <EuiModalHeader>
             <EuiModalHeaderTitle>Add a team member</EuiModalHeaderTitle>
           </EuiModalHeader>
@@ -208,14 +214,17 @@ export default () => (
       to confirm a user action.
       This modal should start with a question, give
       users enough information to make a decision,
-      and restate the action in the button label.">
+      and restate the action in the button label."
+    >
       <GuideRuleExample
         type="do"
         text="Use a modal for confirmation when the user might lose data. For the body
-        text, use one to two short sentences that explain the consequences.">
+        text, use one to two short sentences that explain the consequences."
+      >
         <EuiPanel
           paddingSize="none"
-          style={{ maxWidth: 400, transform: 'scale(.75)' }}>
+          style={{ maxWidth: 400, transform: 'scale(.75)' }}
+        >
           <EuiModalHeader>
             <EuiModalHeaderTitle>
               Save changes before leaving?
@@ -239,10 +248,12 @@ export default () => (
         type="dont"
         text=" Confirmations aren't good for messages.
           Toasts are best for success messages because they are less disruptive.
-          Error and warning messages often appear directly on the page.">
+          Error and warning messages often appear directly on the page."
+      >
         <EuiPanel
           paddingSize="none"
-          style={{ maxWidth: 400, transform: 'scale(.75)' }}>
+          style={{ maxWidth: 400, transform: 'scale(.75)' }}
+        >
           <EuiModalHeader>
             <EuiModalHeaderTitle>Great!</EuiModalHeaderTitle>
           </EuiModalHeader>
@@ -261,13 +272,16 @@ export default () => (
 
     <GuideRule
       heading="State the action in both the header and button text"
-      description='If the modal header is "Refresh this field?" then the button text should be "Refresh."'>
+      description='If the modal header is "Refresh this field?" then the button text should be "Refresh."'
+    >
       <GuideRuleExample
         type="do"
-        text="Use the same action verbs in the header and button text.">
+        text="Use the same action verbs in the header and button text."
+      >
         <EuiPanel
           paddingSize="none"
-          style={{ maxWidth: 400, transform: 'scale(.75)' }}>
+          style={{ maxWidth: 400, transform: 'scale(.75)' }}
+        >
           <EuiModalHeader>
             <EuiModalHeaderTitle>Refresh field list?</EuiModalHeaderTitle>
           </EuiModalHeader>
@@ -287,10 +301,12 @@ export default () => (
 
       <GuideRuleExample
         type="dont"
-        text='Don&apos;t use a vague header such as "Are you sure?" or the button labels "Yes" and "No."'>
+        text='Don&apos;t use a vague header such as "Are you sure?" or the button labels "Yes" and "No."'
+      >
         <EuiPanel
           paddingSize="none"
-          style={{ maxWidth: 400, transform: 'scale(.75)' }}>
+          style={{ maxWidth: 400, transform: 'scale(.75)' }}
+        >
           <EuiModalHeader>
             <EuiModalHeaderTitle>
               Are you sure you want to refresh this field list?
@@ -315,14 +331,17 @@ export default () => (
       heading="Create separate confirmations for single and bulk actions"
       description={
         'It avoids the awkwardness of "Delete 1 pipeline(s)" and improves readability.\''
-      }>
+      }
+    >
       <GuideRuleExample
         type="do"
         text="Asking users to delete a single item should include the item name in the title, if possible.
-        Use single quotes around the name if it helps clarify meaning.">
+        Use single quotes around the name if it helps clarify meaning."
+      >
         <EuiPanel
           paddingSize="none"
-          style={{ maxWidth: 400, transform: 'scale(.75)' }}>
+          style={{ maxWidth: 400, transform: 'scale(.75)' }}
+        >
           <EuiModalHeader>
             <EuiModalHeaderTitle>
               Delete pipeline &apos;MyPipeline&apos;?
@@ -346,10 +365,12 @@ export default () => (
 
       <GuideRuleExample
         type="do"
-        text="For bulk actions, include the number of items in the title.">
+        text="For bulk actions, include the number of items in the title."
+      >
         <EuiPanel
           paddingSize="none"
-          style={{ maxWidth: 400, transform: 'scale(.75)' }}>
+          style={{ maxWidth: 400, transform: 'scale(.75)' }}
+        >
           <EuiModalHeader>
             <EuiModalHeaderTitle>Delete 6 pipelines?</EuiModalHeaderTitle>
           </EuiModalHeader>
@@ -372,14 +393,17 @@ export default () => (
 
     <GuideRule
       heading="Sometimes a header and buttons are enough"
-      description="You can omit the body if users understand the decision from the header and button text alone.">
+      description="You can omit the body if users understand the decision from the header and button text alone."
+    >
       <GuideRuleExample
         type="do"
         text="Here the header and body are enough.
-        The modal asks the user whether to remove an index pattern &mdash; data won't be lost.">
+        The modal asks the user whether to remove an index pattern &mdash; data won't be lost."
+      >
         <EuiPanel
           paddingSize="none"
-          style={{ maxWidth: 400, transform: 'scale(.75)' }}>
+          style={{ maxWidth: 400, transform: 'scale(.75)' }}
+        >
           <EuiModalHeader>
             <EuiModalHeaderTitle>Remove index pattern?</EuiModalHeaderTitle>
           </EuiModalHeader>
@@ -396,10 +420,12 @@ export default () => (
 
       <GuideRuleExample
         type="dont"
-        text="Don't write body text that simply repeats the title. It doesn't add value.">
+        text="Don't write body text that simply repeats the title. It doesn't add value."
+      >
         <EuiPanel
           paddingSize="none"
-          style={{ maxWidth: 400, transform: 'scale(.75)' }}>
+          style={{ maxWidth: 400, transform: 'scale(.75)' }}
+        >
           <EuiModalHeader>
             <EuiModalHeaderTitle>Remove index pattern?</EuiModalHeaderTitle>
           </EuiModalHeader>

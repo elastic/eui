@@ -8,7 +8,7 @@ import {
   EuiScreenReaderOnly,
 } from '../../../../src/components';
 import { EuiPanel } from '../../../../src/components/panel';
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 const Rows = () => {
   const [counter, setCounter] = useState(1);
@@ -16,8 +16,10 @@ const Rows = () => {
   for (let i = 1; i <= counter; i++) {
     rows.push(<li key={i}>Row {i}</li>);
   }
-  const growingAccordianDescriptionId = htmlIdGenerator()();
-  const listId = htmlIdGenerator()();
+  const growingAccordianDescriptionId = useGeneratedHtmlId({
+    prefix: 'growingAccordianDescription',
+  });
+  const listId = useGeneratedHtmlId({ prefix: 'list' });
   return (
     <EuiText size="s">
       <EuiScreenReaderOnly>
@@ -32,7 +34,8 @@ const Rows = () => {
           iconType="plusInCircleFilled"
           onClick={() => setCounter(counter + 1)}
           aria-controls={listId}
-          aria-describedby={growingAccordianDescriptionId}>
+          aria-describedby={growingAccordianDescriptionId}
+        >
           Increase height to {counter + 1} items
         </EuiButton>{' '}
         <EuiButton
@@ -41,7 +44,8 @@ const Rows = () => {
           aria-controls={listId}
           aria-describedby={growingAccordianDescriptionId}
           onClick={() => setCounter(Math.max(0, counter - 1))}
-          isDisabled={counter === 1}>
+          isDisabled={counter === 1}
+        >
           Decrease height to {counter - 1} item{counter > 2 && 's'}
         </EuiButton>
       </p>
@@ -50,14 +54,19 @@ const Rows = () => {
   );
 };
 
-export default () => (
-  <EuiAccordion
-    id={htmlIdGenerator()()}
-    buttonContent="Click me to toggle close / open"
-    initialIsOpen={true}
-    paddingSize="s">
-    <EuiPanel color="subdued">
-      <Rows />
-    </EuiPanel>
-  </EuiAccordion>
-);
+export default () => {
+  const dynamicAccordionId = useGeneratedHtmlId({ prefix: 'dynamicAccordion' });
+
+  return (
+    <EuiAccordion
+      id={dynamicAccordionId}
+      buttonContent="Click me to toggle close / open"
+      initialIsOpen={true}
+      paddingSize="s"
+    >
+      <EuiPanel color="subdued">
+        <Rows />
+      </EuiPanel>
+    </EuiAccordion>
+  );
+};

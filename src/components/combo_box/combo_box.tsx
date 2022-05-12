@@ -1,28 +1,15 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 /**
  * Elements within EuiComboBox which would normally be tabbable (inputs, buttons) have been removed
  * from the tab order with tabindex={-1} so that we can control the keyboard navigation interface.
  */
-/* eslint-disable jsx-a11y/role-has-required-aria-props */
-
 import React, {
   Component,
   FocusEventHandler,
@@ -34,6 +21,7 @@ import classNames from 'classnames';
 
 import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
 import { EuiPortal } from '../portal';
+import { EuiI18n } from '../i18n';
 import { EuiComboBoxOptionsList } from './combo_box_options_list';
 
 import {
@@ -153,6 +141,15 @@ export interface _EuiComboBoxProps<T>
    * Specifies that the input should have focus when the component loads
    */
   autoFocus?: boolean;
+  /**
+   * Required when rendering without a visible label from [EuiFormRow](/#/forms/form-layouts).
+   */
+  'aria-label'?: string;
+  /**
+   * Reference ID of a text element containing the visible label for the combo box when not
+   * supplied by `aria-label` or from [EuiFormRow](/#/forms/form-layouts).
+   */
+  'aria-labelledby'?: string;
 }
 
 /**
@@ -553,7 +550,7 @@ export class EuiComboBox<T> extends Component<
   };
 
   onContainerBlur: EventListener = (event) => {
-    // close the options list, unless the use clicked on an option
+    // close the options list, unless the user clicked on an option
 
     /**
      * FireFox returns `relatedTarget` as `null` for security reasons, but provides a proprietary `explicitOriginalTarget`.
@@ -589,10 +586,20 @@ export class EuiComboBox<T> extends Component<
       if (!this.hasActiveOption()) {
         this.setCustomOptions(true);
       }
+    } else if (focusedInOptionsList) {
+      // https://github.com/elastic/eui/issues/5179
+      // need to restore focus to the input box when clicking non-interactive elements
+
+      // firefox doesn't support calling .focus() during a blur event
+      // https://bugzilla.mozilla.org/show_bug.cgi?id=53579
+      requestAnimationFrame(() => {
+        this.searchInputRefInstance?.focus();
+      });
     }
   };
 
   onKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
+    if (this.props.isDisabled) return;
     switch (event.key) {
       case keys.ARROW_UP:
         event.preventDefault();
@@ -935,6 +942,8 @@ export class EuiComboBox<T> extends Component<
       delimiter,
       append,
       autoFocus,
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledby,
       ...rest
     } = this.props;
     const {
@@ -947,6 +956,9 @@ export class EuiComboBox<T> extends Component<
       matchingOptions,
     } = this.state;
 
+    // Make sure we have a valid ID if users don't pass one as a prop
+    const inputId = id ?? this.rootId('_eui-combobox-id');
+
     // Visually indicate the combobox is in an invalid state if it has lost focus but there is text entered in the input.
     // When custom options are disabled and the user leaves the combo box after entering text that does not match any
     // options, this tells the user that they've entered invalid input.
@@ -957,6 +969,8 @@ export class EuiComboBox<T> extends Component<
     const classes = classNames('euiComboBox', className, {
       'euiComboBox--compressed': compressed,
       'euiComboBox--fullWidth': fullWidth,
+      'euiComboBox--prepended': prepend,
+      'euiComboBox--appended': append,
       'euiComboBox-isDisabled': isDisabled,
       'euiComboBox-isInvalid': markAsInvalid,
       'euiComboBox-isOpen': isListOpen,
@@ -975,61 +989,65 @@ export class EuiComboBox<T> extends Component<
 
       optionsList = (
         <EuiPortal>
-          <EuiComboBoxOptionsList
-            zIndex={this.state.listZIndex}
-            activeOptionIndex={this.state.activeOptionIndex}
-            areAllOptionsSelected={this.areAllOptionsSelected()}
-            customOptionText={customOptionText}
-            data-test-subj={optionsListDataTestSubj}
-            fullWidth={fullWidth}
-            isLoading={isLoading}
-            listRef={this.listRefCallback}
-            matchingOptions={matchingOptions}
-            onCloseList={this.closeList}
-            onCreateOption={onCreateOption}
-            onOptionClick={this.onOptionClick}
-            onOptionEnterKey={this.onOptionEnterKey}
-            onScroll={this.onOptionListScroll}
-            optionRef={this.optionRefCallback}
-            options={options}
-            position={listPosition}
-            singleSelection={singleSelection}
-            renderOption={renderOption}
-            rootId={this.rootId}
-            rowHeight={rowHeight}
-            scrollToIndex={activeOptionIndex}
-            searchValue={searchValue}
-            selectedOptions={selectedOptions}
-            updatePosition={this.updatePosition}
-            width={width}
-            delimiter={delimiter}
-            getSelectedOptionForSearchValue={getSelectedOptionForSearchValue}
-          />
+          <EuiI18n
+            token="euiComboBox.listboxAriaLabel"
+            default="Choose from the following options"
+          >
+            {(listboxAriaLabel: string) => (
+              <EuiComboBoxOptionsList
+                zIndex={this.state.listZIndex}
+                activeOptionIndex={this.state.activeOptionIndex}
+                areAllOptionsSelected={this.areAllOptionsSelected()}
+                customOptionText={customOptionText}
+                data-test-subj={optionsListDataTestSubj}
+                fullWidth={fullWidth}
+                isLoading={isLoading}
+                listRef={this.listRefCallback}
+                matchingOptions={matchingOptions}
+                onCloseList={this.closeList}
+                onCreateOption={onCreateOption}
+                onOptionClick={this.onOptionClick}
+                onOptionEnterKey={this.onOptionEnterKey}
+                onScroll={this.onOptionListScroll}
+                optionRef={this.optionRefCallback}
+                options={options}
+                position={listPosition}
+                singleSelection={singleSelection}
+                renderOption={renderOption}
+                rootId={this.rootId}
+                rowHeight={rowHeight}
+                scrollToIndex={activeOptionIndex}
+                searchValue={searchValue}
+                selectedOptions={selectedOptions}
+                updatePosition={this.updatePosition}
+                width={width}
+                delimiter={delimiter}
+                getSelectedOptionForSearchValue={
+                  getSelectedOptionForSearchValue
+                }
+                listboxAriaLabel={listboxAriaLabel}
+              />
+            )}
+          </EuiI18n>
         </EuiPortal>
       );
     }
 
     return (
       /**
-       * Re: jsx-a11y/interactive-supports-focus
-       * Focus is managed and is placed on the textbox element (`EuiComboBoxInput`)
+       * EuiComboBox follows the WAI-ARIA 1.2 spec for editable comboboxes
+       * with list autocomplete. This pattern is an improvement on the user
+       * experience for screen readers over the WAI-ARIA 1.1 pattern.
        *
-       * Re: jsx-a11y/role-has-required-aria-props
-       * Expansion is managed and required `aria-controls` prop is placed on the textbox element (`EuiComboBoxInput`)
-       *
-       * Reference for both: https://www.w3.org/TR/2017/REC-wai-aria-1.1-20171214/#combobox,
-       * which verifies that this implementation follows the spec.
+       * https://www.w3.org/TR/wai-aria-practices-1.2/examples/combobox/combobox-autocomplete-list.html
        */
-      // eslint-disable-next-line jsx-a11y/interactive-supports-focus
       <div
         {...rest}
-        aria-expanded={isListOpen}
-        aria-haspopup="listbox"
         className={classes}
         data-test-subj={dataTestSubj}
         onKeyDown={this.onKeyDown}
         ref={this.comboBoxRefCallback}
-        role="combobox">
+      >
         <EuiComboBoxInput
           autoSizeInputRef={this.autoSizeInputRefCallback}
           compressed={compressed}
@@ -1040,7 +1058,7 @@ export class EuiComboBox<T> extends Component<
           }
           fullWidth={fullWidth}
           hasSelectedOptions={selectedOptions.length > 0}
-          id={id}
+          id={inputId}
           inputRef={this.searchInputRefCallback}
           isDisabled={isDisabled}
           isListOpen={isListOpen}
@@ -1066,6 +1084,8 @@ export class EuiComboBox<T> extends Component<
           prepend={singleSelection ? prepend : undefined}
           isLoading={isLoading}
           autoFocus={autoFocus}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledby}
         />
         {optionsList}
       </div>

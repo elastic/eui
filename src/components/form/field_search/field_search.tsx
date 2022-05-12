@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { Component, InputHTMLAttributes, KeyboardEvent } from 'react';
@@ -29,6 +18,7 @@ import {
 } from '../form_control_layout';
 
 import { EuiValidatableControl } from '../validatable_control';
+import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
 
 export interface EuiFieldSearchProps
   extends CommonProps,
@@ -91,9 +81,7 @@ export class EuiFieldSearch extends Component<
   };
 
   state = {
-    value:
-      this.props.value ||
-      (this.props.defaultValue ? `${this.props.defaultValue}` : ''),
+    value: this.props.value || String(this.props.defaultValue || ''),
   };
 
   inputElement: HTMLInputElement | null = null;
@@ -230,7 +218,7 @@ export class EuiFieldSearch extends Component<
       incremental,
       compressed,
       onSearch,
-      isClearable,
+      isClearable: _isClearable,
       append,
       prepend,
       ...rest
@@ -239,14 +227,27 @@ export class EuiFieldSearch extends Component<
     let value = this.props.value;
     if (typeof this.props.value !== 'string') value = this.state.value;
 
+    // Set actual value of isClearable if value exists as well
+    const isClearable = Boolean(
+      _isClearable && value && !rest.readOnly && !rest.disabled
+    );
+
+    const numIconsClass = getFormControlClassNameForIconCount({
+      clear: isClearable,
+      isInvalid,
+      isLoading,
+    });
+
     const classes = classNames(
       'euiFieldSearch',
+      numIconsClass,
       {
         'euiFieldSearch--fullWidth': fullWidth,
         'euiFieldSearch--compressed': compressed,
         'euiFieldSearch--inGroup': prepend || append,
         'euiFieldSearch-isLoading': isLoading,
-        'euiFieldSearch-isClearable': isClearable && value,
+        'euiFieldSearch-isClearable': isClearable,
+        'euiFieldSearch-isInvalid': isInvalid,
       },
       className
     );
@@ -256,14 +257,16 @@ export class EuiFieldSearch extends Component<
         icon="search"
         fullWidth={fullWidth}
         isLoading={isLoading}
+        isInvalid={isInvalid}
         clear={
-          isClearable && value && !rest.readOnly && !rest.disabled
-            ? { onClick: this.onClear }
+          isClearable
+            ? { onClick: this.onClear, 'data-test-subj': 'clearSearchButton' }
             : undefined
         }
         compressed={compressed}
         append={append}
-        prepend={prepend}>
+        prepend={prepend}
+      >
         <EuiValidatableControl isInvalid={isInvalid}>
           <input
             type="search"

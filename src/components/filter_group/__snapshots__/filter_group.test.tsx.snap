@@ -8,6 +8,12 @@ exports[`EuiFilterGroup is rendered 1`] = `
 />
 `;
 
+exports[`EuiFilterGroup props compressed is rendered 1`] = `
+<div
+  class="euiFilterGroup euiFilterGroup--compressed"
+/>
+`;
+
 exports[`EuiFilterGroup props fullWidth is rendered 1`] = `
 <div
   class="euiFilterGroup euiFilterGroup--fullWidth"

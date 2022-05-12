@@ -18,7 +18,6 @@ export default () => {
     ...propsToUse.titleColor,
     options: {
       primary: 'primary',
-      secondary: 'secondary',
       success: 'success',
       danger: 'danger',
       accent: 'accent',

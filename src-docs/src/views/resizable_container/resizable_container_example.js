@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -17,6 +15,7 @@ import {
 import { EuiResizablePanel } from '../../../../src/components/resizable_container/resizable_panel';
 import { EuiResizableButton } from '../../../../src/components/resizable_container/resizable_button';
 
+// prettier-ignore
 // eslint-disable-next-line
 import { ModeOptions, ToggleOptions } from '!!prop-loader!../../../../src/components/resizable_container/resizable_panel';
 import { PanelModeType } from '!!prop-loader!../../../../src/components/resizable_container/types';
@@ -39,7 +38,6 @@ const ResizablePanelCollapsibleResponsiveSource = require('!!raw-loader!./resiza
 const ResizablePanelCollapsibleOptsSource = require('!!raw-loader!./resizable_panel_collapsible_options');
 const ResizablePanelCollapsibleExtSource = require('!!raw-loader!./resizable_panel_collapsible_external');
 
-const ResizableContainerHtml = renderToHtml(ResizableContainerBasic);
 const basicSnippet = `<EuiResizableContainer>
   {(EuiResizablePanel, EuiResizableButton) => (
     <>
@@ -56,14 +54,12 @@ const basicSnippet = `<EuiResizableContainer>
   )}
 </EuiResizableContainer>`;
 
-const ResizablePanelsHtml = renderToHtml(ResizablePanels);
 const panelsSnippet = `<EuiResizablePanel color="subdued" paddingSize="none" wrapperPadding="m">
   <EuiText>
     <p>{text}</p>
   </EuiText>
 </EuiResizablePanel>`;
 
-const ResizableContainerVerticalHtml = renderToHtml(ResizableContainerVertical);
 const verticalSnippet = `<EuiResizableContainer direction="vertical">
   {(EuiResizablePanel, EuiResizableButton) => (
     <>
@@ -83,10 +79,7 @@ const verticalSnippet = `<EuiResizableContainer direction="vertical">
     </>
   )}
 </EuiResizableContainer>`;
-const ResizableContainerResetValuesHtml = renderToHtml(
-  ResizableContainerResetValues
-);
-const ResizablePanelCollapsibleHtml = renderToHtml(ResizablePanelCollapsible);
+
 const collapsibleSnippet = `<EuiResizableContainer>
   {(EuiResizablePanel, EuiResizableButton) => (
     <>
@@ -106,9 +99,7 @@ const collapsibleSnippet = `<EuiResizableContainer>
     </>
   )}
 </EuiResizableContainer>`;
-const ResizablePanelCollapsibleResponsiveHtml = renderToHtml(
-  ResizablePanelCollapsibleResponsive
-);
+
 const responsiveSnippet = `<EuiResizableContainer direction={isMobile ? 'vertical' : 'horizontal'}>
   {(EuiResizablePanel, EuiResizableButton) => (
     <>
@@ -128,9 +119,7 @@ const responsiveSnippet = `<EuiResizableContainer direction={isMobile ? 'vertica
     </>
   )}
 </EuiResizableContainer>`;
-const ResizablePanelCollapsibleOptsHtml = renderToHtml(
-  ResizablePanelCollapsibleOpts
-);
+
 const collapsibleOptsSnippet = `<EuiResizableContainer style={{ height: '400px' }}>
   {(EuiResizablePanel, EuiResizableButton) => (
     <>
@@ -157,9 +146,7 @@ const collapsibleOptsSnippet = `<EuiResizableContainer style={{ height: '400px' 
     </>
   )}
 </EuiResizableContainer>`;
-const ResizablePanelCollapsibleExtHtml = renderToHtml(
-  ResizablePanelCollapsibleExt
-);
+
 const collapsibleExtSnippet = `<EuiResizableContainer style={{ height: '400px' }}>
   {(EuiResizablePanel, EuiResizableButton, {togglePanel}) => (
     <>
@@ -189,7 +176,8 @@ export const ResizableContainerExample = {
         <strong>EuiResizableContainer</strong> uses the{' '}
         <EuiLink
           href="https://reactjs.org/docs/render-props.html#using-props-other-than-render"
-          external>
+          external
+        >
           React Render Props
         </EuiLink>{' '}
         technique to provide <strong>EuiResizablePanel</strong> and{' '}
@@ -207,10 +195,6 @@ export const ResizableContainerExample = {
         {
           type: GuideSectionTypes.JS,
           code: ResizableContainerSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: ResizableContainerHtml,
         },
       ],
       title: 'Horizontal resizing',
@@ -251,10 +235,6 @@ export const ResizableContainerExample = {
           type: GuideSectionTypes.JS,
           code: ResizablePanelsSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: ResizablePanelsHtml,
-        },
       ],
       title: 'Resizable panel options',
       text: (
@@ -285,10 +265,6 @@ export const ResizableContainerExample = {
         {
           type: GuideSectionTypes.JS,
           code: ResizableContainerResetValuesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: ResizableContainerResetValuesHtml,
         },
       ],
       title: 'Horizontal resizing with controlled widths',
@@ -324,10 +300,6 @@ export const ResizableContainerExample = {
           type: GuideSectionTypes.JS,
           code: ResizableContainerVerticalSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: ResizableContainerVerticalHtml,
-        },
       ],
       title: 'Vertical resizing',
       text: (
@@ -346,10 +318,6 @@ export const ResizableContainerExample = {
         {
           type: GuideSectionTypes.JS,
           code: ResizablePanelCollapsibleSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: ResizablePanelCollapsibleHtml,
         },
       ],
       title: 'Collapsible resizable panels',
@@ -392,10 +360,6 @@ export const ResizableContainerExample = {
           type: GuideSectionTypes.JS,
           code: ResizablePanelCollapsibleResponsiveSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: ResizablePanelCollapsibleResponsiveHtml,
-        },
       ],
       title: 'Responsive layout',
       text: (
@@ -415,10 +379,6 @@ export const ResizableContainerExample = {
         {
           type: GuideSectionTypes.JS,
           code: ResizablePanelCollapsibleOptsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: ResizablePanelCollapsibleOptsHtml,
         },
       ],
       title: 'Collapsible panel options',
@@ -447,10 +407,6 @@ export const ResizableContainerExample = {
         {
           type: GuideSectionTypes.JS,
           code: ResizablePanelCollapsibleExtSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: ResizablePanelCollapsibleExtHtml,
         },
       ],
       title: 'Collapsible panels with external control',

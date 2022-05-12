@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -14,7 +12,6 @@ import { facetButtonConfig, facetLayoutConfig } from './playground';
 
 import Facet from './facet';
 const facetSource = require('!!raw-loader!./facet');
-const facetHtml = renderToHtml(Facet);
 const facetSnippet = `<EuiFacetButton
   quantity={6}
   icon={<EuiIcon type="dot" color="success" />}
@@ -25,7 +22,8 @@ const facetSnippet = `<EuiFacetButton
 
 import FacetLayout from './facet_layout';
 const facetLayoutSource = require('!!raw-loader!./facet_layout');
-const facetLayoutHtml = renderToHtml(FacetLayout);
+import FacetLayoutHorizontal from './facet_layout_horizontal';
+const facetLayoutHorizontalSource = require('!!raw-loader!./facet_layout_horizontal');
 
 export const FacetExample = {
   title: 'Facet',
@@ -35,10 +33,6 @@ export const FacetExample = {
         {
           type: GuideSectionTypes.JS,
           code: facetSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: facetHtml,
         },
       ],
       text: (
@@ -67,10 +61,6 @@ export const FacetExample = {
           type: GuideSectionTypes.JS,
           code: facetLayoutSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: facetLayoutHtml,
-        },
       ],
       text: (
         <>
@@ -94,12 +84,28 @@ export const FacetExample = {
       props: { EuiFacetGroup },
       demo: <FacetLayout />,
       snippet: [
-        `// Restrict the width of default (vertical) if not restricted by parent
+        `// Restrict the width of the default (vertical) layout only if not restricted by parent
 <EuiFacetGroup style={{ maxWidth: 200 }}>{facets}</EuiFacetGroup>`,
-        `// Horizontal
-<EuiFacetGroup layout="horizontal" gutterSize="l">{facets}</EuiFacetGroup>`,
       ],
       playground: facetLayoutConfig,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: facetLayoutHorizontalSource,
+        },
+      ],
+      text: (
+        <>
+          <h3>Horizontal and large gutter</h3>
+        </>
+      ),
+      props: { EuiFacetGroup },
+      demo: <FacetLayoutHorizontal />,
+      snippet: [
+        '<EuiFacetGroup layout="horizontal" gutterSize="l">{facets}</EuiFacetGroup>',
+      ],
     },
   ],
 };

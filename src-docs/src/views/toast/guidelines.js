@@ -174,10 +174,12 @@ and space to read it properly. Alternatively just link to a full page.
 
       <GuideRule
         description="Toasts are appropriate for short feedback related to a user action.
-          A toast should contain a message about a current action, not a historical action.">
+          A toast should contain a message about a current action, not a historical action."
+      >
         <GuideRuleExample
           type="do"
-          text="Use a toast for a brief message about the current action.">
+          text="Use a toast for a brief message about the current action."
+        >
           <EuiToast
             style={{ maxWidth: 300 }}
             title="Your folder was moved"
@@ -187,7 +189,8 @@ and space to read it properly. Alternatively just link to a full page.
 
         <GuideRuleExample
           type="dont"
-          text="Greet users with a toast when they open a page.">
+          text="Greet users with a toast when they open a page."
+        >
           <div style={{ textAlign: 'center' }}>
             <EuiToast
               style={{ maxWidth: 300 }}
@@ -207,10 +210,12 @@ and space to read it properly. Alternatively just link to a full page.
           Users should be able read the message in 6 to 7 seconds.
           The message should get straight to the point and rarely include more than one line.
 
-          ">
+          "
+      >
         <GuideRuleExample
           type="do"
-          text="A single line of text is readable at a glance.">
+          text="A single line of text is readable at a glance."
+        >
           <div style={{ textAlign: 'center' }}>
             <EuiToast
               style={{ maxWidth: 300 }}
@@ -224,12 +229,14 @@ and space to read it properly. Alternatively just link to a full page.
           type="dont"
           text="Cram a lot of detail into a toast.
             These errors should persist in callouts and validations on the form.
-            They don't need to be spelled out in the toast.">
+            They don't need to be spelled out in the toast."
+        >
           <div>
             <EuiToast
               style={{ maxWidth: 300 }}
               title="Your form has errors"
-              color="danger">
+              color="danger"
+            >
               <EuiText>
                 <ul>
                   <li>Username is a required field.</li>
@@ -249,16 +256,19 @@ and space to read it properly. Alternatively just link to a full page.
       <GuideRule
         description="A toast can have a single action, styled as a standard button.
           If more actions are needed, or if the action is important enough to
-          interrupt the user, use a modal instead.">
+          interrupt the user, use a modal instead."
+      >
         <GuideRuleExample
           type="do"
           text="Use only one action per toast and favor a one-word label.
               Align actions to the right, which follows our button guidelines for
-              usage within restricted width containers.">
+              usage within restricted width containers."
+        >
           <EuiToast
             style={{ maxWidth: 300 }}
             color="success"
-            title="Your report is complete">
+            title="Your report is complete"
+          >
             <div style={{ textAlign: 'right' }}>
               <EuiButton size="s">Download</EuiButton>
             </div>
@@ -268,11 +278,13 @@ and space to read it properly. Alternatively just link to a full page.
         <GuideRuleExample
           type="dont"
           text="Use multiple actions. Don't align buttons in toasts to the left.
-              This message is better in a confirmation modal.">
+              This message is better in a confirmation modal."
+        >
           <EuiToast
             style={{ maxWidth: 300 }}
             title="All messages will be deleted"
-            color="danger">
+            color="danger"
+          >
             <EuiFlexGroup justifyContent="flexEnd" gutterSize="s">
               <EuiFlexItem grow={false}>
                 <EuiButton size="s">Cancel</EuiButton>
@@ -293,7 +305,8 @@ and space to read it properly. Alternatively just link to a full page.
         <GuideRuleExample
           type="do"
           text="The check icon reinforces that the action succeeded.
-                The alert icon helps users understand the message is an error.">
+                The alert icon helps users understand the message is an error."
+        >
           <div>
             <EuiToast
               style={{ maxWidth: 300 }}
@@ -315,7 +328,8 @@ and space to read it properly. Alternatively just link to a full page.
 
         <GuideRuleExample
           type="dont"
-          text="Use icons that are hard to understand. They distract from the message.">
+          text="Use icons that are hard to understand. They distract from the message."
+        >
           <EuiToast
             color="primary"
             style={{ maxWidth: 300 }}
@@ -329,7 +343,8 @@ and space to read it properly. Alternatively just link to a full page.
 
       <GuideRule
         description="Users should be able to take
-          in all the details from one toast before the next one arrives.">
+          in all the details from one toast before the next one arrives."
+      >
         <GuideRuleExample type="do" text="Display one toast at a time.">
           <EuiToast
             style={{ maxWidth: 300 }}
@@ -343,7 +358,8 @@ and space to read it properly. Alternatively just link to a full page.
             <EuiToast
               style={{ maxWidth: 300 }}
               color="danger"
-              title="There was a problem with your node">
+              title="There was a problem with your node"
+            >
               <div style={{ textAlign: 'right' }}>
                 <EuiButton size="s">Learn more</EuiButton>
               </div>
@@ -364,11 +380,13 @@ and space to read it properly. Alternatively just link to a full page.
       <GuideRule
         description="For common actions such as create, add, delete, remove, and save,
           include the object type, the object name if available, and the past tense of the action.
-          ">
+          "
+      >
         <GuideRuleExample
           type="do"
           text="Include the object name if it's not too long.
-            Use single quotation marks around the object name if it helps clarify meaning.">
+            Use single quotation marks around the object name if it helps clarify meaning."
+        >
           <div>
             <EuiToast
               color="success"
@@ -390,7 +408,8 @@ and space to read it properly. Alternatively just link to a full page.
       <GuideRule description="Don't include the word &quot;successfully.&quot; It's implied.">
         <GuideRuleExample
           type="do"
-          text="Use this format for a success message.">
+          text="Use this format for a success message."
+        >
           <EuiToast
             color="success"
             style={{ maxWidth: 300 }}
@@ -417,7 +436,8 @@ and space to read it properly. Alternatively just link to a full page.
         </GuideRuleExample>
         <GuideRuleExample
           type="dont"
-          text="Overwhelm the user by listing the names of all the objects.">
+          text="Overwhelm the user by listing the names of all the objects."
+        >
           <EuiToast
             color="success"
             style={{ maxWidth: 300 }}
@@ -433,14 +453,17 @@ and space to read it properly. Alternatively just link to a full page.
       <GuideRule
         description="Occassionally the content of a toast is too involved to fit into the constrained space of a toast.
           This is common in long error messages. In these cases use the toast to deliver the summary of the
-          information and use a button to provide a call-to-action for the full message.">
+          information and use a button to provide a call-to-action for the full message."
+      >
         <GuideRuleExample
           type="do"
-          text="Use the toast message to provide a summary and a button to link to the full content">
+          text="Use the toast message to provide a summary and a button to link to the full content"
+        >
           <EuiToast
             style={{ maxWidth: 300 }}
             color="danger"
-            title="Your visualization has an error">
+            title="Your visualization has an error"
+          >
             <p>The maximum bucket size of 200 was exceeded.</p>
             <div style={{ textAlign: 'right' }}>
               <EuiButton size="s" color="danger" onClick={showModal}>
@@ -453,14 +476,17 @@ and space to read it properly. Alternatively just link to a full page.
 
         <GuideRuleExample
           type="dont"
-          text="Cram a lot of content into the small space of a toast.">
+          text="Cram a lot of content into the small space of a toast."
+        >
           <EuiToast
             style={{ maxWidth: 300 }}
             color="danger"
-            title="Your visualization has an error">
+            title="Your visualization has an error"
+          >
             <EuiCallOut
               title="The maximum bucket size of 200 was exceeded"
-              color="danger">
+              color="danger"
+            >
               <p>An extremely long error trace.</p>
             </EuiCallOut>
           </EuiToast>

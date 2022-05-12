@@ -11,6 +11,7 @@ import {
 import {
   EuiSpacer,
   EuiFlexGrid,
+  EuiFlexGroup,
   EuiFlexItem,
   EuiFormRow,
   EuiRange,
@@ -298,14 +299,20 @@ export const Categorical = () => {
     }
 
     customLegend = (
-      <dl className="guideCharts__customLegend">
-        <span className="guideCharts__customLegendLine" />
-        <span>Actual</span>
-        <br />
-        <br />
-        <span className="guideCharts__customLegendLine guideCharts__customLegendLine--thin" />
-        <span>Projected</span>
-      </dl>
+      <EuiFlexGroup responsive={false} className="guideCharts__customLegend">
+        <EuiFlexItem grow={false}>
+          <div>
+            <span className="guideCharts__customLegendLine" />
+            <span>Actual</span>
+          </div>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <div>
+            <span className="guideCharts__customLegendLine guideCharts__customLegendLine--thin" />
+            <span>Projected</span>
+          </div>
+        </EuiFlexItem>
+      </EuiFlexGroup>
     );
   }
 
@@ -315,6 +322,7 @@ export const Categorical = () => {
   return (
     <Fragment>
       {customTitle}
+      {customLegend}
       <div style={{ position: 'relative' }}>
         <Chart size={{ height: 200 }}>
           <Settings
@@ -329,9 +337,13 @@ export const Categorical = () => {
             position="bottom"
             showGridLines={chartType !== 'BarSeries'}
           />
-          <Axis id="left-axis" position="left" showGridLines />
+          <Axis
+            id="left-axis"
+            position="left"
+            showGridLines
+            tickFormat={(d) => Number(d).toFixed(2)}
+          />
         </Chart>
-        {customLegend}
       </div>
 
       <EuiSpacer />
@@ -340,7 +352,8 @@ export const Categorical = () => {
         <EuiFlexItem>
           <ChartCard
             title="Color types"
-            description="Coloring multi-series non-categorical charts can have different connotations.">
+            description="Coloring multi-series non-categorical charts can have different connotations."
+          >
             <EuiRadioGroup
               compressed
               options={colorTypeRadios}
@@ -353,14 +366,16 @@ export const Categorical = () => {
         <EuiFlexItem>
           <ChartCard
             title="Number of series"
-            description="Do not use too many colors in a single chart as this will hinder understanding.">
+            description="Do not use too many colors in a single chart as this will hinder understanding."
+          >
             <EuiSpacer />
             <EuiFormRow
               helpText={
                 <span id="levelsHelp3">
                   Recommended number of series is 5 or less.
                 </span>
-              }>
+              }
+            >
               <EuiRange
                 min={1}
                 max={10}
@@ -381,7 +396,8 @@ export const Categorical = () => {
         <EuiFlexItem>
           <ChartCard
             title="Grouping data"
-            description="If the series' are or can be combined into logical groups, use contrasting shapes/styles but keep the same color for within groups.">
+            description="If the series' are or can be combined into logical groups, use contrasting shapes/styles but keep the same color for within groups."
+          >
             <EuiSpacer />
             <EuiSwitch
               label="Show grouped"
@@ -430,14 +446,17 @@ export const Categorical = () => {
     id="left-axis"
     position="left"
     showGridLines
+    tickFormat={(d) => Number(d).toFixed(2)}
   />
-</Chart>`}>
+</Chart>`}
+        >
           {(copy) => (
             <EuiButton
               fill
               onClick={copy}
               iconType="copyClipboard"
-              disabled={isBadChart || isComplicatedChart}>
+              disabled={isBadChart || isComplicatedChart}
+            >
               {isBadChart || isComplicatedChart
                 ? isComplicatedChart
                   ? "It's complicated"

@@ -1,31 +1,27 @@
 /**
- * 1. Leave room for caret.
- * 2. Ensure the descenders don't get cut off
+ * 1. Ensure the descenders don't get cut off
  */
 
 .euiSelect {
   @include euiFormControlStyle;
-  @include euiFormControlWithIcon($side: 'right'); /* 1 */
-  @include euiFormControlIsLoading($isNextToIcon: true);
 
   appearance: none;
-  line-height: $euiFormControlHeight; /* 2 */
-  padding-top: 0; /* 2 */
-  padding-bottom: 0; /* 2 */
+  line-height: $euiFormControlHeight; /* 1 */
+  padding-top: 0; /* 1 */
+  padding-bottom: 0; /* 1 */
 
   &--compressed {
-    @include euiFormControlWithIcon($side: 'right', $compressed: true); /* 1 */
-    line-height: $euiFormControlCompressedHeight; /* 2 */
-    padding-top: 0; /* 2 */
-    padding-bottom: 0; /* 2 */
+    line-height: $euiFormControlCompressedHeight; /* 1 */
+    padding-top: 0; /* 1 */
+    padding-bottom: 0; /* 1 */
   }
 
   &--inGroup {
-    line-height: $euiFormControlLayoutGroupInputHeight; /* 2 */
+    line-height: $euiFormControlLayoutGroupInputHeight; /* 1 */
   }
 
   &--inGroup#{&}--compressed {
-    line-height: $euiFormControlLayoutGroupInputCompressedHeight; /* 2 */
+    line-height: $euiFormControlLayoutGroupInputCompressedHeight; /* 1 */
   }
 
   // Turn off linter for some MS specific bits.

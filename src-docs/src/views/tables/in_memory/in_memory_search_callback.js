@@ -66,6 +66,7 @@ export const Table = () => {
 
   return (
     <EuiInMemoryTable
+      tableCaption="Demo of EuiInMemoryTable with search callback"
       items={items}
       loading={isLoading}
       columns={[

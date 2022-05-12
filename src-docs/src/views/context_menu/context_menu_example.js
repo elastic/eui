@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -14,7 +12,6 @@ import {
 
 import ContextMenu from './context_menu';
 const contextMenuSource = require('!!raw-loader!./context_menu');
-const contextMenuHtml = renderToHtml(ContextMenu);
 const contextMenuSnippet = `<EuiContextMenu
   initialPanelId={0}
   panels={[
@@ -36,7 +33,6 @@ const contextMenuSnippet = `<EuiContextMenu
 
 import SinglePanel from './single_panel';
 const singlePanelSource = require('!!raw-loader!./single_panel');
-const singlePanelHtml = renderToHtml(SinglePanel);
 const singlePanelSnippet = `<EuiContextMenuPanel
   items={[
     <EuiContextMenuItem
@@ -49,7 +45,6 @@ const singlePanelSnippet = `<EuiContextMenuPanel
 
 import Small from './small';
 const smallSizeSource = require('!!raw-loader!./small');
-const smallSizeHtml = renderToHtml(SinglePanel);
 const smallSnippet = `<EuiContextMenuPanel
   size="s"
   items={items}
@@ -57,7 +52,6 @@ const smallSnippet = `<EuiContextMenuPanel
 
 import ContentPanel from './content_panel';
 const contentPanelSource = require('!!raw-loader!./content_panel');
-const contentPanelHtml = renderToHtml(ContentPanel);
 const contentPanelSnippet = `<EuiContextMenuPanel>
   <!-- React element as child -->
 </EuiContextMenuPanel>
@@ -65,7 +59,6 @@ const contentPanelSnippet = `<EuiContextMenuPanel>
 
 import ContextMenuWithContent from './context_menu_with_content';
 const contextMenuWithContentSource = require('!!raw-loader!./context_menu_with_content');
-const contextMenuWithContentHtml = renderToHtml(ContextMenuWithContent);
 
 export const ContextMenuExample = {
   title: 'Context menu',
@@ -75,10 +68,6 @@ export const ContextMenuExample = {
         {
           type: GuideSectionTypes.JS,
           code: contextMenuSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: contextMenuHtml,
         },
       ],
       text: (
@@ -103,10 +92,6 @@ export const ContextMenuExample = {
           type: GuideSectionTypes.JS,
           code: smallSizeSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: smallSizeHtml,
-        },
       ],
       text: (
         <p>
@@ -129,10 +114,6 @@ export const ContextMenuExample = {
           type: GuideSectionTypes.JS,
           code: singlePanelSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: singlePanelHtml,
-        },
       ],
       text: (
         <p>
@@ -151,10 +132,6 @@ export const ContextMenuExample = {
           type: GuideSectionTypes.JS,
           code: contentPanelSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: contentPanelHtml,
-        },
       ],
       text: (
         <p>
@@ -172,10 +149,6 @@ export const ContextMenuExample = {
         {
           type: GuideSectionTypes.JS,
           code: contextMenuWithContentSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: contextMenuWithContentHtml,
         },
       ],
       text: (

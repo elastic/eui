@@ -4,7 +4,7 @@ import {
   EuiSpacer,
   EuiCodeBlock,
   EuiText,
-  prettyDuration,
+  usePrettyDuration,
 } from '../../../../src/components';
 
 const examples = [
@@ -50,6 +50,12 @@ const examples = [
     ],
     dateFormat: 'MMMM Do YYYY, HH:mm:ss.SSS',
   },
+  {
+    // Example that will use a default common quick range label
+    start: 'now/w',
+    end: 'now',
+    dateFormat: 'MMMM Do YYYY, HH:mm:ss.SSS',
+  },
 ];
 
 export default function prettyDurationExample() {
@@ -57,16 +63,35 @@ export default function prettyDurationExample() {
     <Fragment>
       {examples.map(({ start, end, quickRanges, dateFormat }, idx) => (
         <div key={idx}>
-          <EuiCodeBlock paddingSize="s" isCopyable language="js">
-            prettyDuration(&apos;{start}&apos;, &apos;{end}&apos;,{' '}
-            {JSON.stringify(quickRanges)}, &apos;
-            {dateFormat}&apos;)
-          </EuiCodeBlock>
+          <EuiCodeBlock
+            paddingSize="s"
+            isCopyable
+            language="js"
+          >{`<PrettyDuration
+  timeFrom="${start}"
+  timeTo="${end}"
+  dateFormat="${dateFormat}"
+  quickRanges={${JSON.stringify(quickRanges)}}
+/>
+
+usePrettyDuration({
+  timeFrom: '${start}',
+  timeTo: '${end}',
+  dateFormat: '${dateFormat}',
+  quickRanges: ${JSON.stringify(quickRanges)},
+})`}</EuiCodeBlock>
 
           <EuiSpacer size="s" />
 
           <EuiText>
-            <p>{prettyDuration(start, end, quickRanges, dateFormat)}</p>
+            <p>
+              {usePrettyDuration({
+                timeFrom: start,
+                timeTo: end,
+                quickRanges,
+                dateFormat,
+              })}
+            </p>
           </EuiText>
 
           <EuiSpacer size="xl" />

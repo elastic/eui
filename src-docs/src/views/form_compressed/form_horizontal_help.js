@@ -14,7 +14,8 @@ export default () => (
     <EuiFormRow
       label="Text field"
       helpText="Show validation help text only."
-      display="columnCompressed">
+      display="columnCompressed"
+    >
       <EuiFieldText name="first" compressed />
     </EuiFormRow>
 
@@ -26,7 +27,8 @@ export default () => (
           </span>
         </EuiToolTip>
       }
-      display="columnCompressed">
+      display="columnCompressed"
+    >
       <EuiSelect
         options={[
           { value: 'option_one', text: 'Option one' },

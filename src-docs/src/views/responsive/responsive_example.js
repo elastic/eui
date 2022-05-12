@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -9,6 +7,7 @@ import {
   EuiShowFor,
   EuiHideFor,
   EuiCodeBlock,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import { BREAKPOINTS, BREAKPOINT_KEYS } from '../../../../src/services';
@@ -16,7 +15,6 @@ import { EuiBreakpointSize } from '!!prop-loader!../../../../src/services/breakp
 
 import Responsive from './responsive';
 const responsiveSource = require('!!raw-loader!./responsive');
-const responsiveHtml = renderToHtml(Responsive);
 const responsiveSnippet = [
   `<EuiHideFor sizes={['xs', 's']}>
   <!-- Content to hide from xs and s screens -->
@@ -25,6 +23,8 @@ const responsiveSnippet = [
   <!-- <div>Content only showing for l and xl screens</div> -->
 </EuiShowFor>`,
 ];
+
+import UtilityClassesResponsive from './utility_classes_responsive';
 
 function renderSizes(size, index) {
   let code = `'${size}': ${BREAKPOINTS[size]}px`;
@@ -47,10 +47,6 @@ export const ResponsiveExample = {
         {
           type: GuideSectionTypes.JS,
           code: responsiveSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: responsiveHtml,
         },
       ],
       text: (
@@ -79,6 +75,17 @@ export const ResponsiveExample = {
       snippet: responsiveSnippet,
       props: { EuiShowFor, EuiHideFor, EuiBreakpointSize },
       demo: <Responsive />,
+    },
+    {
+      title: 'Utility classes',
+      color: 'subdued',
+      wrapText: false,
+      text: (
+        <>
+          <EuiSpacer />
+          <UtilityClassesResponsive />
+        </>
+      ),
     },
   ],
 };

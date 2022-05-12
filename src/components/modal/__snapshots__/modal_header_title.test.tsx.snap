@@ -6,6 +6,8 @@ exports[`renders EuiModalHeaderTitle 1`] = `
   class="euiModalHeader__title testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  children
+  <h1>
+    children
+  </h1>
 </div>
 `;

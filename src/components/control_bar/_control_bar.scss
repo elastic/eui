@@ -104,12 +104,14 @@
 }
 
 .euiControlBar__breadcrumbs {
-  .euiBreadcrumb:not(.euiBreadcrumb--last) {
-    color: makeHighContrastColor($euiTextSubduedColor, $euiControlBarBackground);
-  }
+  .euiBreadcrumb {
+    &:not(.euiBreadcrumb--last) .euiBreadcrumb__content {
+      color: makeHighContrastColor($euiTextSubduedColor, $euiControlBarBackground);
+    }
 
-  .euiBreadcrumbSeparator {
-    background: $euiControlBarBorderColor;
+    &::after {
+      background: $euiControlBarBorderColor;
+    }
   }
 }
 

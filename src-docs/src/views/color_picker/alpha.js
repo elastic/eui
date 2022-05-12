@@ -32,7 +32,8 @@ export default () => {
       <EuiFormRow
         label="Pick a color with optional opacity"
         isInvalid={!!errors}
-        error={errors}>
+        error={errors}
+      >
         <EuiColorPicker
           onChange={setColor}
           color={color}
@@ -45,7 +46,8 @@ export default () => {
       <EuiFormRow
         label="Using RGBa format"
         isInvalid={!!errors2}
-        error={errors2}>
+        error={errors2}
+      >
         <EuiColorPicker
           onChange={setColor2}
           color={color2}

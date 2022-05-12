@@ -20,7 +20,8 @@ export default ({ button = <></>, content, sideNav }) => {
             onClick: () => setshowBottomBar((showing) => !showing),
           },
         ],
-      }}>
+      }}
+    >
       {content}
     </EuiPageTemplate>
   );

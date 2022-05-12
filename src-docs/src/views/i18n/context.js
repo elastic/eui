@@ -11,13 +11,16 @@ import {
   EuiI18n,
   EuiI18nNumber,
   useEuiI18n,
+  EuiSwitch,
+  EuiTextColor,
+  EuiMark,
 } from '../../../../src/components';
 
 const mappings = {
   fr: {
     'euiContext.english': 'Anglais',
     'euiContext.french': 'Française',
-    'euiContext.greeting': 'Salutations!',
+    'euiContext.greeting': 'Salutations, {name}!',
     'euiContext.guestNo': 'Vous êtes invité #',
     'euiContext.question': 'Quel est votre nom?',
     'euiContext.placeholder': 'Jean Dupont',
@@ -26,10 +29,23 @@ const mappings = {
 };
 
 const ContextConsumer = () => {
+  const [name, setName] = useState('');
+  const placeholderName = useEuiI18n('euiContext.placeholder', 'John Doe');
+
   return (
     <div>
       <strong>
-        <EuiI18n token="euiContext.greeting" default="Welcome!" />
+        <EuiI18n
+          token="euiContext.greeting"
+          default="Welcome, {name}!"
+          values={{
+            name: (
+              <EuiTextColor color="success">
+                {name === '' ? placeholderName : name}
+              </EuiTextColor>
+            ),
+          }}
+        />
       </strong>
 
       <EuiSpacer size="s" />
@@ -43,9 +59,12 @@ const ContextConsumer = () => {
 
       <Fragment>
         <EuiFormRow
-          label={useEuiI18n('euiContext.question', 'What is your name?')}>
+          label={useEuiI18n('euiContext.question', 'What is your name?')}
+        >
           <EuiFieldText
-            placeholder={useEuiI18n('euiContext.placeholder', 'John Doe')}
+            value={name}
+            placeholder={placeholderName}
+            onChange={({ target }) => setName(target.value)}
           />
         </EuiFormRow>
 
@@ -59,10 +78,18 @@ const ContextConsumer = () => {
 
 export default () => {
   const [language, setLanguage] = useState('en');
+  const [useDiv, setUseDiv] = useState(false);
 
   const i18n = {
     mapping: mappings[language],
     formatNumber: (value) => new Intl.NumberFormat(language).format(value),
+    render: useDiv
+      ? (children) => () => (
+          <EuiMark>
+            <div className="eui-displayInline">{children}</div>
+          </EuiMark>
+        )
+      : undefined,
   };
 
   return (
@@ -80,6 +107,14 @@ export default () => {
           </EuiButton>
         </EuiFlexItem>
       </EuiFlexGroup>
+
+      <EuiSpacer size="m" />
+
+      <EuiSwitch
+        label="Use a custom <EuiMark> instead of <Fragment> to render component"
+        checked={useDiv}
+        onChange={({ target }) => setUseDiv(target.checked)}
+      />
 
       <EuiSpacer size="m" />
 

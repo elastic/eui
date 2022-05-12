@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { Component, HTMLAttributes, ReactNode } from 'react';
@@ -22,11 +11,11 @@ import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
 
-import { EuiIcon } from '../icon';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiI18n } from '../i18n';
 import { htmlIdGenerator } from '../../services';
+import { EuiButtonIcon, EuiButtonIconProps } from '../button';
 
 const paddingSizeToClassNameMap = {
   none: '',
@@ -41,8 +30,13 @@ export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 export type EuiAccordionSize = keyof typeof paddingSizeToClassNameMap;
 
 export type EuiAccordionProps = CommonProps &
-  Omit<HTMLAttributes<HTMLDivElement>, 'id'> & {
+  Omit<HTMLAttributes<HTMLElement>, 'id'> & {
     id: string;
+    /**
+     * Applied to the entire .euiAccordion wrapper.
+     * When using `fieldset`, it will enforce `buttonElement = legend` as well.
+     */
+    element?: 'div' | 'fieldset';
     /**
      * Class that will apply to the trigger for the accordion.
      */
@@ -50,7 +44,7 @@ export type EuiAccordionProps = CommonProps &
     /**
      * Apply more props to the triggering button
      */
-    buttonProps?: CommonProps & HTMLAttributes<HTMLButtonElement>;
+    buttonProps?: CommonProps & HTMLAttributes<HTMLElement>;
     /**
      * Class that will apply to the trigger content for the accordion.
      */
@@ -59,6 +53,17 @@ export type EuiAccordionProps = CommonProps &
      * The content of the clickable trigger
      */
     buttonContent?: ReactNode;
+    /**
+     * Applied to the main button receiving the `onToggle` event.
+     * Anything other than the default `button` does not support removing the arrow display (for accessibility of focus).
+     */
+    buttonElement?: 'div' | 'legend' | 'button';
+    /**
+     * Extra props to pass to the EuiButtonIcon containing the arrow.
+     */
+    arrowProps?: Partial<
+      Omit<EuiButtonIconProps, 'iconType' | 'onClick' | 'aria-labelledby'>
+    >;
     /**
      * Will appear right aligned against the button. Useful for separate actions like deletions.
      */
@@ -103,6 +108,8 @@ export class EuiAccordion extends Component<
     arrowDisplay: 'left',
     isLoading: false,
     isLoadingMessage: false,
+    element: 'div',
+    buttonElement: 'button',
   };
 
   childContent: HTMLDivElement | null = null;
@@ -159,12 +166,15 @@ export class EuiAccordion extends Component<
     this.childContent = node;
   };
 
+  generatedId = htmlIdGenerator()();
+
   render() {
     const {
       children,
       buttonContent,
       className,
       id,
+      element: Element = 'div',
       buttonClassName,
       buttonContentClassName,
       extraAction,
@@ -175,10 +185,22 @@ export class EuiAccordion extends Component<
       isLoading,
       isLoadingMessage,
       buttonProps,
+      buttonElement: _ButtonElement = 'button',
+      arrowProps,
       ...rest
     } = this.props;
 
     const isOpen = forceState ? forceState === 'open' : this.state.isOpen;
+
+    // Force button element to be a legend if the element is a fieldset
+    const ButtonElement = Element === 'fieldset' ? 'legend' : _ButtonElement;
+    const buttonElementIsFocusable = ButtonElement === 'button';
+
+    // Force visibility of arrow button if button element is not focusable
+    const _arrowDisplay =
+      arrowDisplay === 'none' && !buttonElementIsFocusable
+        ? 'left'
+        : arrowDisplay;
 
     const classes = classNames(
       'euiAccordion',
@@ -198,55 +220,48 @@ export class EuiAccordion extends Component<
 
     const buttonClasses = classNames(
       'euiAccordion__button',
-      {
-        euiAccordion__buttonReverse: !extraAction && arrowDisplay === 'right',
-      },
       buttonClassName,
       buttonProps?.className
     );
 
-    const iconClasses = classNames('euiAccordion__icon', {
-      'euiAccordion__icon-isOpen': isOpen,
-    });
+    const buttonContentClasses = classNames(
+      'euiAccordion__buttonContent',
+      buttonContentClassName
+    );
 
-    const iconWrapperClasses = classNames('euiAccordion__iconWrapper', {
-      euiAccordion__iconButton: extraAction && arrowDisplay === 'right',
-    });
+    const iconButtonClasses = classNames(
+      'euiAccordion__iconButton',
+      {
+        'euiAccordion__iconButton-isOpen': isOpen,
+        'euiAccordion__iconButton--right': _arrowDisplay === 'right',
+      },
+      arrowProps?.className
+    );
 
-    let baseIcon;
-    if (arrowDisplay !== 'none') {
-      baseIcon = <EuiIcon className={iconClasses} type="arrowRight" size="m" />;
-    }
-
-    let icon;
     let iconButton;
-    const buttonId = buttonProps?.id ?? htmlIdGenerator()();
-    if (extraAction && arrowDisplay === 'right') {
+    const buttonId = buttonProps?.id ?? this.generatedId;
+    if (_arrowDisplay !== 'none') {
       iconButton = (
-        <button
+        <EuiButtonIcon
+          color="text"
+          {...arrowProps}
+          className={iconButtonClasses}
+          iconType="arrowRight"
+          onClick={this.onToggle}
           aria-controls={id}
           aria-expanded={isOpen}
           aria-labelledby={buttonId}
-          tabIndex={-1}
-          className={iconWrapperClasses}
-          onClick={this.onToggle}>
-          {baseIcon}
-        </button>
+          tabIndex={buttonElementIsFocusable ? -1 : 0}
+        />
       );
-    } else if (arrowDisplay !== 'none') {
-      icon = <span className={iconWrapperClasses}>{baseIcon}</span>;
     }
 
     let optionalAction = null;
 
-    if (extraAction && !isLoading) {
-      optionalAction = (
-        <div className="euiAccordion__optionalAction">{extraAction}</div>
-      );
-    } else if (isLoading) {
+    if (extraAction) {
       optionalAction = (
         <div className="euiAccordion__optionalAction">
-          <EuiLoadingSpinner />
+          {isLoading ? <EuiLoadingSpinner /> : extraAction}
         </div>
       );
     }
@@ -269,28 +284,27 @@ export class EuiAccordion extends Component<
       childrenContent = children;
     }
 
+    const button = (
+      <ButtonElement
+        {...buttonProps}
+        id={buttonId}
+        className={buttonClasses}
+        aria-controls={id}
+        aria-expanded={isOpen}
+        onClick={this.onToggle}
+        type={ButtonElement === 'button' ? 'button' : undefined}
+      >
+        <span className={buttonContentClasses}>{buttonContent}</span>
+      </ButtonElement>
+    );
+
     return (
-      <div className={classes} {...rest}>
+      <Element className={classes} {...rest}>
         <div className="euiAccordion__triggerWrapper">
-          <button
-            {...buttonProps}
-            id={buttonId}
-            aria-controls={id}
-            aria-expanded={isOpen}
-            onClick={this.onToggle}
-            className={buttonClasses}
-            type="button">
-            {icon}
-            <span
-              className={classNames(
-                'euiIEFlexWrapFix',
-                buttonContentClassName
-              )}>
-              {buttonContent}
-            </span>
-          </button>
+          {_arrowDisplay === 'left' && iconButton}
+          {button}
           {optionalAction}
-          {iconButton}
+          {_arrowDisplay === 'right' && iconButton}
         </div>
 
         <div
@@ -301,20 +315,22 @@ export class EuiAccordion extends Component<
           tabIndex={-1}
           role="region"
           aria-labelledby={buttonId}
-          id={id}>
+          id={id}
+        >
           <EuiResizeObserver onResize={this.setChildContentHeight}>
             {(resizeRef) => (
               <div
                 ref={(ref) => {
                   this.setChildContentRef(ref);
                   resizeRef(ref);
-                }}>
+                }}
+              >
                 <div className={childrenClasses}>{childrenContent}</div>
               </div>
             )}
           </EuiResizeObserver>
         </div>
-      </div>
+      </Element>
     );
   }
 }

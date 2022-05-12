@@ -29,7 +29,8 @@ export default () => {
           color="ghost"
           size="s"
           iconType="check"
-          onClick={() => {}}>
+          onClick={() => {}}
+        >
           Filled
         </EuiButton>
       </EuiFlexItem>
@@ -67,7 +68,8 @@ export default () => {
           color="ghost"
           isSelected={toggle0On}
           fill={toggle0On}
-          onClick={onToggle0Change}>
+          onClick={onToggle0Change}
+        >
           Toggle me
         </EuiButton>
       </EuiFlexItem>

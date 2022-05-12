@@ -68,7 +68,8 @@ export default () => {
     return [
       <EuiContextMenuItem
         key="contextMenuItemA"
-        onClick={() => onRead(id, isRead)}>
+        onClick={() => onRead(id, isRead)}
+      >
         {isRead ? 'Mark as unread' : 'Mark as read'}
       </EuiContextMenuItem>,
 
@@ -120,7 +121,8 @@ export default () => {
       <EuiPanel
         paddingSize="none"
         hasShadow={true}
-        style={{ maxWidth: '540px' }}>
+        style={{ maxWidth: '540px' }}
+      >
         <EuiNotificationEvent
           key={event.id}
           id={event.id}

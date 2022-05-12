@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -37,7 +26,7 @@ import {
   EuiCardSelectProps,
   euiCardSelectableColor,
 } from './card_select';
-import { htmlIdGenerator } from '../../services/accessibility';
+import { useGeneratedHtmlId } from '../../services/accessibility';
 import { validateHref } from '../../services/security/href_validator';
 import { EuiPanel, EuiPanelProps } from '../panel';
 
@@ -132,24 +121,10 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
     href?: string;
     target?: string;
     rel?: string;
-
     /**
-     * Add a badge to the card to label it as "Beta" or other non-GA state
-     * **DEPRECATED: Use `betaBadgeProps.label` instead.**
+     * Adds a badge to top of the card to label it as "Beta" or other non-GA state.
+     * Accepts all the props of [EuiBetaBadge](#/display/badge#beta-badge-type), where `label` is required.
      */
-    betaBadgeLabel?: string;
-
-    /**
-     * Add a description to the beta badge (will appear in a tooltip)
-     * **DEPRECATED: Use `betaBadgeProps.tooltipContent` instead.**
-     */
-    betaBadgeTooltipContent?: ReactNode;
-
-    /**
-     * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used.
-     * **DEPRECATED: Use `betaBadgeProps.title` instead.**
-     */
-    betaBadgeTitle?: string;
     betaBadgeProps?: Partial<EuiBetaBadgeProps>;
     /**
      * Matches to the color property of EuiPanel. If defined, removes any border & shadow.
@@ -197,9 +172,6 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   rel,
   target,
   textAlign = 'center',
-  betaBadgeLabel,
-  betaBadgeTooltipContent,
-  betaBadgeTitle,
   betaBadgeProps,
   layout = 'vertical',
   selectable,
@@ -245,17 +217,17 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     layoutToClassNameMap[layout],
     {
       'euiCard--isClickable': isClickable,
-      'euiCard--hasBetaBadge': betaBadgeLabel,
+      'euiCard--hasBetaBadge': betaBadgeProps?.label,
       'euiCard--hasIcon': icon,
       'euiCard--isSelectable': selectable,
-      'euiCard-isSelected': selectable && selectable.isSelected,
+      'euiCard-isSelected': selectable?.isSelected,
       'euiCard-isDisabled': isDisabled,
     },
     selectableColorClass,
     className
   );
 
-  const ariaId = htmlIdGenerator()();
+  const ariaId = useGeneratedHtmlId();
   const ariaDesc = description ? `${ariaId}Description` : '';
 
   /**
@@ -298,16 +270,13 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   let optionalBetaBadge;
   let optionalBetaBadgeID = '';
-  if (betaBadgeLabel) {
+  if (betaBadgeProps?.label) {
     optionalBetaBadgeID = `${ariaId}BetaBadge`;
     optionalBetaBadge = (
       <span className="euiCard__betaBadgeWrapper">
         <EuiBetaBadge
           id={optionalBetaBadgeID}
           {...(betaBadgeProps as EuiBetaBadgeProps)}
-          label={betaBadgeLabel}
-          title={betaBadgeTitle}
-          tooltipContent={betaBadgeTooltipContent}
           className={classNames(
             'euiCard__betaBadge',
             betaBadgeProps?.className
@@ -358,7 +327,8 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         rel={getSecureRelForTarget({ href, target, rel })}
         ref={(node) => {
           link = node;
-        }}>
+        }}
+      >
         {title}
       </a>
     );
@@ -371,7 +341,8 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         aria-describedby={`${optionalBetaBadgeID} ${ariaDesc}`}
         ref={(node) => {
           link = node;
-        }}>
+        }}
+      >
         {title}
       </button>
     );
@@ -394,14 +365,16 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       hasShadow={isDisabled || display ? false : true}
       hasBorder={display ? false : undefined}
       paddingSize={paddingSize}
-      {...rest}>
+      {...rest}
+    >
       {optionalCardTop}
 
       <div className="euiCard__content">
         <EuiTitle
           id={`${ariaId}Title`}
           className="euiCard__title"
-          size={titleSize}>
+          size={titleSize}
+        >
           <TitleElement>{theTitle}</TitleElement>
         </EuiTitle>
 

@@ -145,6 +145,7 @@ export const Table = () => {
       </EuiFlexGroup>
       <EuiSpacer size="l" />
       <EuiInMemoryTable
+        tableCaption="Demo of EuiInMemoryTable with search"
         items={store.users}
         columns={columns}
         search={search}

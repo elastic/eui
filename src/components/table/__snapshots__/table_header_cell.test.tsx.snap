@@ -4,7 +4,6 @@ exports[`align defaults to left 1`] = `
 <td
   class="euiTableHeaderCell"
   role="columnheader"
-  scope="col"
 >
   <span
     class="euiTableCellContent"
@@ -20,7 +19,6 @@ exports[`align renders center when specified 1`] = `
 <td
   class="euiTableHeaderCell"
   role="columnheader"
-  scope="col"
 >
   <span
     class="euiTableCellContent euiTableCellContent--alignCenter"
@@ -36,7 +34,6 @@ exports[`align renders right when specified 1`] = `
 <td
   class="euiTableHeaderCell"
   role="columnheader"
-  scope="col"
 >
   <span
     class="euiTableCellContent euiTableCellContent--alignRight"
@@ -74,7 +71,6 @@ exports[`renders td when children is null/undefined 1`] = `
   class="euiTableHeaderCell testClass1 testClass2"
   data-test-subj="test subject string"
   role="columnheader"
-  scope="col"
 >
   <span
     class="euiTableCellContent testClass1 testClass2"

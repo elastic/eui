@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { CSSProperties, FunctionComponent, ReactNode } from 'react';
@@ -136,13 +125,15 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
         className="eui-fullHeight"
         gutterSize="none"
         direction="column"
-        responsive={false}>
+        responsive={false}
+      >
         <EuiFlexItem
           className={classNames({
             'eui-yScroll': fullHeight === true,
             'eui-fullHeight': fullHeight === 'noscroll',
           })}
-          grow={true}>
+          grow={true}
+        >
           {children}
         </EuiFlexItem>
       </EuiFlexGroup>
@@ -181,11 +172,13 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           paddingSize="none"
           grow={grow}
           {...rest}
-          style={pageStyle}>
+          style={pageStyle}
+        >
           <EuiPageSideBar
             sticky
             paddingSize={paddingSize}
-            {...pageSideBarProps}>
+            {...pageSideBarProps}
+          >
             {pageSideBar}
           </EuiPageSideBar>
 
@@ -197,10 +190,12 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               verticalPosition="center"
               horizontalPosition="center"
               paddingSize={paddingSize}
-              {...pageContentProps}>
+              {...pageContentProps}
+            >
               <EuiPageContentBody
                 restrictWidth={restrictWidth}
-                {...pageContentBodyProps}>
+                {...pageContentBodyProps}
+              >
                 {children}
               </EuiPageContentBody>
             </EuiPageContent>
@@ -212,7 +207,8 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           paddingSize={paddingSize}
           grow={grow}
           {...rest}
-          style={pageStyle}>
+          style={pageStyle}
+        >
           <EuiPageBody restrictWidth={restrictWidth} {...pageBodyProps}>
             {pageHeader && (
               <EuiPageHeader
@@ -228,11 +224,13 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
                 verticalPosition="center"
                 horizontalPosition="center"
                 paddingSize={paddingSize}
-                {...pageContentProps}>
+                {...pageContentProps}
+              >
                 <EuiPageContentBody
                   paddingSize="none"
                   restrictWidth={restrictWidth}
-                  {...pageContentBodyProps}>
+                  {...pageContentBodyProps}
+                >
                   {children}
                 </EuiPageContentBody>
               </EuiPageContent>
@@ -252,11 +250,13 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           paddingSize="none"
           grow={grow}
           {...rest}
-          style={pageStyle}>
+          style={pageStyle}
+        >
           <EuiPageSideBar
             sticky
             paddingSize={paddingSize}
-            {...pageSideBarProps}>
+            {...pageSideBarProps}
+          >
             {pageSideBar}
           </EuiPageSideBar>
 
@@ -270,10 +270,12 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               hasShadow={false}
               color="subdued"
               paddingSize={paddingSize}
-              {...pageContentProps}>
+              {...pageContentProps}
+            >
               <EuiPageContentBody
                 restrictWidth={restrictWidth}
-                {...pageContentBodyProps}>
+                {...pageContentBodyProps}
+              >
                 {children}
               </EuiPageContentBody>
             </EuiPageContent>
@@ -285,7 +287,8 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           paddingSize="none"
           grow={grow}
           {...rest}
-          style={pageStyle}>
+          style={pageStyle}
+        >
           <EuiPageBody {...pageBodyProps}>
             {pageHeader && (
               <EuiPageHeader
@@ -300,17 +303,20 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               borderRadius="none"
               hasShadow={false}
               paddingSize={paddingSize}
-              style={{ display: 'flex' }}>
+              style={{ display: 'flex' }}
+            >
               <EuiPageContent
                 verticalPosition="center"
                 horizontalPosition="center"
                 hasShadow={false}
                 color="subdued"
                 paddingSize={paddingSize}
-                {...pageContentProps}>
+                {...pageContentProps}
+              >
                 <EuiPageContentBody
                   restrictWidth={restrictWidth}
-                  {...pageContentBodyProps}>
+                  {...pageContentBodyProps}
+                >
                   {children}
                 </EuiPageContentBody>
               </EuiPageContent>
@@ -330,11 +336,13 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           paddingSize="none"
           grow={grow}
           {...rest}
-          style={pageStyle}>
+          style={pageStyle}
+        >
           <EuiPageSideBar
             sticky
             paddingSize={paddingSize}
-            {...pageSideBarProps}>
+            {...pageSideBarProps}
+          >
             {pageSideBar}
           </EuiPageSideBar>
 
@@ -348,10 +356,12 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               paddingSize={'none'}
               color={'transparent'}
               borderRadius={'none'}
-              {...pageContentProps}>
+              {...pageContentProps}
+            >
               <EuiPageContentBody
                 restrictWidth={restrictWidth}
-                {...pageContentBodyProps}>
+                {...pageContentBodyProps}
+              >
                 {children}
               </EuiPageContentBody>
             </EuiPageContent>
@@ -363,7 +373,8 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           paddingSize={paddingSize}
           grow={grow}
           {...rest}
-          style={pageStyle}>
+          style={pageStyle}
+        >
           <EuiPageBody restrictWidth={restrictWidth} {...pageBodyProps}>
             {pageHeader && (
               <EuiPageHeader
@@ -379,7 +390,8 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               paddingSize={'none'}
               color={'transparent'}
               borderRadius={'none'}
-              {...pageContentProps}>
+              {...pageContentProps}
+            >
               <EuiPageContentBody paddingSize="none" {...pageContentBodyProps}>
                 {children}
               </EuiPageContentBody>
@@ -399,11 +411,13 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           paddingSize={paddingSize}
           position={canFullHeight && fullHeight ? 'static' : 'sticky'}
           // Using uknown here because of the possible conflict with overriding props and position `sticky`
-          {...(bottomBarProps as unknown)}>
+          {...(bottomBarProps as unknown)}
+        >
           {/* Wrapping the contents with EuiPageContentBody allows us to match the restrictWidth to keep the contents aligned */}
           <EuiPageContentBody
             paddingSize={'none'}
-            restrictWidth={restrictWidth}>
+            restrictWidth={restrictWidth}
+          >
             {bottomBar}
           </EuiPageContentBody>
         </EuiBottomBar>
@@ -415,11 +429,13 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           paddingSize="none"
           grow={grow}
           {...rest}
-          style={pageStyle}>
+          style={pageStyle}
+        >
           <EuiPageSideBar
             sticky
             paddingSize={paddingSize}
-            {...pageSideBarProps}>
+            {...pageSideBarProps}
+          >
             {pageSideBar}
           </EuiPageSideBar>
 
@@ -428,7 +444,8 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
             <EuiPageBody
               component="div"
               paddingSize={paddingSize}
-              className={pageBodyProps?.className}>
+              className={pageBodyProps?.className}
+            >
               {pageHeader && (
                 <EuiPageHeader
                   bottomBorder
@@ -442,10 +459,12 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
                 color={'transparent'}
                 borderRadius={'none'}
                 paddingSize="none"
-                {...pageContentProps}>
+                {...pageContentProps}
+              >
                 <EuiPageContentBody
                   restrictWidth={restrictWidth}
-                  {...pageContentBodyProps}>
+                  {...pageContentBodyProps}
+                >
                   {children}
                 </EuiPageContentBody>
               </EuiPageContent>
@@ -459,7 +478,8 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           paddingSize="none"
           grow={grow}
           {...rest}
-          style={pageStyle}>
+          style={pageStyle}
+        >
           <EuiPageBody {...pageBodyProps}>
             {pageHeader && (
               <EuiPageHeader
@@ -474,11 +494,13 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               paddingSize={'none'}
               color={'plain'}
               borderRadius={'none'}
-              {...pageContentProps}>
+              {...pageContentProps}
+            >
               <EuiPageContentBody
                 restrictWidth={restrictWidth}
                 paddingSize={paddingSize}
-                {...pageContentBodyProps}>
+                {...pageContentBodyProps}
+              >
                 {children}
               </EuiPageContentBody>
             </EuiPageContent>

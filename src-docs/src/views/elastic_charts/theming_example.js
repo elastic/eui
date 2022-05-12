@@ -1,14 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import { ExternalBadge } from './shared';
 
 import { Theming } from './theming';
 const themingSource = require('!!raw-loader!./theming');
-const themingHtml = renderToHtml(Theming);
 
 import { Categorical } from './theming_categorical';
 
@@ -31,7 +29,8 @@ export const ElasticChartsThemingExample = {
           EUI provides utilities and documentation for working with{' '}
           <EuiLink
             href="https://elastic.github.io/elastic-charts"
-            target="_blank">
+            target="_blank"
+          >
             Elastic Charts
           </EuiLink>
           , an open source charting library also created and maintained by
@@ -47,10 +46,6 @@ export const ElasticChartsThemingExample = {
         {
           type: GuideSectionTypes.JS,
           code: themingSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: themingHtml,
         },
       ],
       text: (
@@ -73,8 +68,9 @@ const euiTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LI
               theme object depending on the current Kibana theme. Learn more
               from this{' '}
               <EuiLink
-                href="https://github.com/elastic/kibana/tree/master/src/plugins/charts"
-                target="_blank">
+                href="https://github.com/elastic/kibana/tree/main/src/plugins/charts"
+                target="_blank"
+              >
                 readme
               </EuiLink>
               .

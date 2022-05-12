@@ -15,11 +15,7 @@ import { EuiButtonEmpty } from '../../../../src/components/button';
 // @ts-ignore Not TS
 import { CodeSandboxLink } from '../../components/codesandbox/link';
 import logoEUI from '../../images/logo-eui.svg';
-import {
-  GuideThemeSelector,
-  GuideSketchLink,
-  GuideFigmaLink,
-} from '../guide_theme_selector';
+import { GuideThemeSelector, GuideFigmaLink } from '../guide_theme_selector';
 
 const pkg = require('../../../../package.json');
 
@@ -49,8 +45,9 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
       <EuiBadge
         href="#/package/changelog"
         aria-label={`Version ${pkg.version}, View changelog`}
-        color={isLocalDev ? 'accent' : 'default'}>
-        {isLocalDev ? 'Local' : `v.${pkg.version}`}
+        color={isLocalDev ? 'accent' : 'default'}
+      >
+        {isLocalDev ? 'Local' : `v${pkg.version}`}
       </EuiBadge>
     );
   }
@@ -64,10 +61,7 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
       </EuiButtonEmpty>
     ) : (
       <EuiToolTip content="Github">
-        <EuiHeaderSectionItemButton
-          aria-label={label}
-          // @ts-ignore TODO: FIX
-          href={href}>
+        <EuiHeaderSectionItemButton aria-label={label} href={href}>
           <EuiIcon type="logoGithub" aria-hidden="true" />
         </EuiHeaderSectionItemButton>
       </EuiToolTip>
@@ -99,7 +93,8 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
     const button = (
       <EuiHeaderSectionItemButton
         aria-label="Open EUI options menu"
-        onClick={() => setMobilePopoverIsOpen((isOpen) => !isOpen)}>
+        onClick={() => setMobilePopoverIsOpen((isOpen) => !isOpen)}
+      >
         <EuiIcon type="apps" aria-hidden="true" />
       </EuiHeaderSectionItemButton>
     );
@@ -109,13 +104,11 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
         id="guidePageChromeThemePopover"
         button={button}
         isOpen={mobilePopoverIsOpen}
-        closePopover={() => setMobilePopoverIsOpen(false)}>
-        <div className="guideOptionsPopover">
-          {renderGithub()}
-          <GuideSketchLink />
-          <GuideFigmaLink />
-          {renderCodeSandbox()}
-        </div>
+        closePopover={() => setMobilePopoverIsOpen(false)}
+      >
+        {renderGithub()}
+        <GuideFigmaLink />
+        {renderCodeSandbox()}
       </EuiPopover>
     );
   }
@@ -134,13 +127,14 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
           selectedLocale={selectedLocale}
         />,
         renderGithub(),
-        <GuideSketchLink key="sketch" />,
         <GuideFigmaLink key="figma" />,
         renderCodeSandbox(),
       ];
 
   return (
     <EuiHeader
+      role="region"
+      aria-label="EUI Docs app bar"
       position="fixed"
       theme="dark"
       sections={[

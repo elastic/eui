@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButton,
@@ -15,27 +15,41 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
-  const idPrefix = useRef(htmlIdGenerator()());
   const [isSwitchChecked, setIsSwitchChecked] = useState(false);
+
+  const formRowCheckboxItemId__1 = useGeneratedHtmlId({
+    prefix: 'formRowCheckboxItem',
+    suffix: 'first',
+  });
+  const formRowCheckboxItemId__2 = useGeneratedHtmlId({
+    prefix: 'formRowCheckboxItem',
+    suffix: 'second',
+  });
+  const formRowCheckboxItemId__3 = useGeneratedHtmlId({
+    prefix: 'formRowCheckboxItem',
+    suffix: 'third',
+  });
+
+  const formRowRangeId = useGeneratedHtmlId({ prefix: 'formRowRange' });
   const checkboxes = [
     {
-      id: `${idPrefix.current}0`,
+      id: formRowCheckboxItemId__1,
       label: 'Option one',
     },
     {
-      id: `${idPrefix.current}1`,
+      id: formRowCheckboxItemId__2,
       label: 'Option two is checked by default',
     },
     {
-      id: `${idPrefix.current}2`,
+      id: formRowCheckboxItemId__3,
       label: 'Option three',
     },
   ];
   const [checkboxIdToSelectedMap, setCheckboxIdToSelectedMap] = useState({
-    [`${idPrefix.current}1`]: true,
+    [formRowCheckboxItemId__2]: true,
   });
 
   const onSwitchChange = () => {
@@ -59,15 +73,21 @@ export default () => {
         <EuiFieldText name="first" />
       </EuiFormRow>
 
+      <EuiFormRow label="Disabled through form row" isDisabled>
+        <EuiFieldText name="last" />
+      </EuiFormRow>
+
       <EuiFormRow
         label="Select (with no initial selection)"
         labelAppend={
           <EuiText size="xs">
             <EuiLink>Link to some help</EuiLink>
           </EuiText>
-        }>
+        }
+      >
         <EuiSelect
           hasNoInitialSelection
+          onChange={() => {}}
           options={[
             { value: 'option_one', text: 'Option one' },
             { value: 'option_two', text: 'Option two' },
@@ -81,18 +101,7 @@ export default () => {
       </EuiFormRow>
 
       <EuiFormRow label="Range">
-        <EuiRange min={0} max={100} name="range" id="range" />
-      </EuiFormRow>
-
-      <EuiFormRow
-        label="Use a switch instead of a single checkbox and set 'hasChildLabel' to false"
-        hasChildLabel={false}>
-        <EuiSwitch
-          name="switch"
-          label="Should we do this?"
-          checked={isSwitchChecked}
-          onChange={onSwitchChange}
-        />
+        <EuiRange min={0} max={100} name="range" id={formRowRangeId} />
       </EuiFormRow>
 
       <EuiSpacer />
@@ -106,6 +115,20 @@ export default () => {
             'Checkbox groups should use the `legend` prop instead of form row',
         }}
       />
+
+      <EuiSpacer />
+
+      <EuiFormRow
+        label="Use a switch instead of a single checkbox"
+        hasChildLabel={false}
+      >
+        <EuiSwitch
+          name="switch"
+          label="Setting name"
+          checked={isSwitchChecked}
+          onChange={onSwitchChange}
+        />
+      </EuiFormRow>
 
       <EuiSpacer />
 

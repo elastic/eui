@@ -14,8 +14,6 @@ import {
   TextControlProps,
 } from './props';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import ControlBar from './control_bar';
@@ -24,10 +22,8 @@ import ControlBarWithTabs from './tabs';
 import ControlBarMobile from './mobile';
 
 const controlsSource = require('!!raw-loader!./controls');
-const controlsHtml = renderToHtml(Controls);
 
 const controlBarSource = require('!!raw-loader!./control_bar');
-const controlBarHtml = renderToHtml(ControlBar);
 const controlBarSnippet = `<EuiControlBar
   showContent={false}
   controls={
@@ -74,11 +70,9 @@ const controlBarSnippet = `<EuiControlBar
 />`;
 
 const tabsBarSource = require('!!raw-loader!./tabs');
-const tabsBarHtml = renderToHtml(ControlBarWithTabs);
 const tabsBarSnippet = '<EuiControlBar controls={items} size="m"/>';
 
 const mobileBarSource = require('!!raw-loader!./mobile');
-const mobileBarHtml = renderToHtml(ControlBarMobile);
 const mobileBarSnippet = `<EuiControlBar
   showOnMobile
   controls={[
@@ -127,10 +121,6 @@ export const ControlBarExample = {
           type: GuideSectionTypes.JS,
           code: controlBarSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: controlBarHtml,
-        },
       ],
       text: (
         <div>
@@ -162,10 +152,6 @@ export const ControlBarExample = {
           type: GuideSectionTypes.JS,
           code: tabsBarSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: tabsBarHtml,
-        },
       ],
       text: (
         <div>
@@ -192,10 +178,6 @@ export const ControlBarExample = {
         {
           type: GuideSectionTypes.JS,
           code: mobileBarSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: mobileBarHtml,
         },
       ],
       text: (
@@ -228,10 +210,6 @@ export const ControlBarExample = {
         {
           type: GuideSectionTypes.JS,
           code: controlsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: controlsHtml,
         },
       ],
       text: (

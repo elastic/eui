@@ -1,18 +1,14 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiPortal } from '../../../../src/components';
 
 import { Portal } from './portal';
 const portalSource = require('!!raw-loader!./portal');
-const portalHtml = renderToHtml(Portal);
 
 import { PortalInsert } from './portal_insert';
 const portalInsertSource = require('!!raw-loader!./portal_insert');
-const portalInsertHtml = renderToHtml(PortalInsert);
 
 export const PortalExample = {
   title: 'Portal',
@@ -22,10 +18,6 @@ export const PortalExample = {
         {
           type: GuideSectionTypes.JS,
           code: portalSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: portalHtml,
         },
       ],
       text: (
@@ -45,10 +37,6 @@ export const PortalExample = {
         {
           type: GuideSectionTypes.JS,
           code: portalInsertSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: portalInsertHtml,
         },
       ],
       text: (

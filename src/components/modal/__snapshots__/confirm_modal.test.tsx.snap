@@ -47,7 +47,9 @@ Array [
             class="euiModalHeader__title"
             data-test-subj="confirmModalTitleText"
           >
-            A confirmation modal
+            <h1>
+              A confirmation modal
+            </h1>
           </div>
         </div>
         <div
@@ -160,7 +162,9 @@ Array [
             class="euiModalHeader__title"
             data-test-subj="confirmModalTitleText"
           >
-            A confirmation modal
+            <h1>
+              A confirmation modal
+            </h1>
           </div>
         </div>
         <div

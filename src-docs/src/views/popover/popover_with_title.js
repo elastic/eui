@@ -36,13 +36,15 @@ export default () => {
             <EuiButton
               iconType="arrowDown"
               iconSide="right"
-              onClick={onButtonClick1}>
+              onClick={onButtonClick1}
+            >
               With title
             </EuiButton>
           }
           isOpen={isPopoverOpen1}
           closePopover={closePopover1}
-          anchorPosition="downCenter">
+          anchorPosition="downCenter"
+        >
           <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
           <div style={{ width: '300px' }}>
             <EuiText size="s">
@@ -61,13 +63,15 @@ export default () => {
             <EuiButton
               iconType="arrowDown"
               iconSide="right"
-              onClick={onButtonClick2}>
+              onClick={onButtonClick2}
+            >
               With footer
             </EuiButton>
           }
           isOpen={isPopoverOpen2}
           closePopover={closePopover2}
-          anchorPosition="upCenter">
+          anchorPosition="upCenter"
+        >
           <div style={{ width: '300px' }}>
             <EuiText size="s">
               <p>
@@ -90,13 +94,15 @@ export default () => {
             <EuiButton
               iconType="arrowDown"
               iconSide="right"
-              onClick={onButtonClick3}>
+              onClick={onButtonClick3}
+            >
               With title and footer button
             </EuiButton>
           }
           isOpen={isPopoverOpen3}
           closePopover={closePopover3}
-          anchorPosition="upCenter">
+          anchorPosition="upCenter"
+        >
           <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
           <div style={{ width: '300px' }}>
             <EuiText size="s">

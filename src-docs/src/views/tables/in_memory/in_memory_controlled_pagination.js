@@ -107,12 +107,16 @@ export const Table = () => {
 
   return (
     <EuiInMemoryTable
+      tableCaption="Demo of EuiInMemoryTable with controlled pagination"
       onTableChange={({ page: { index } }) =>
         setPagination({ pageIndex: index })
       }
       items={users}
       columns={columns}
-      pagination={pagination}
+      pagination={{
+        ...pagination,
+        pageSizeOptions: [10, 20, 0],
+      }}
       sorting={sorting}
     />
   );

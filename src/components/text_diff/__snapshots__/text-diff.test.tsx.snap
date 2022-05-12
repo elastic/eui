@@ -2,7 +2,7 @@
 
 exports[`useEuiTextDiff is rendered 1`] = `
 <Fragment>
-  <div
+  <span
     className="euiTextDiff"
   >
     Orbiting th
@@ -140,13 +140,13 @@ exports[`useEuiTextDiff is rendered 1`] = `
       k
     </ins>
     s are a pretty neat idea.
-  </div>
+  </span>
 </Fragment>
 `;
 
 exports[`useEuiTextDiff props custom components is rendered 1`] = `
 <Fragment>
-  <div
+  <span
     className="euiTextDiff"
   >
     <p
@@ -344,6 +344,6 @@ exports[`useEuiTextDiff props custom components is rendered 1`] = `
     >
       s are a pretty neat idea.
     </p>
-  </div>
+  </span>
 </Fragment>
 `;

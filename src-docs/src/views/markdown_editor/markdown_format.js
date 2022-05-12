@@ -4,7 +4,7 @@ import { EuiMarkdownFormat } from '../../../../src';
 
 const markdownContent = `Beyond Remark's base syntax, **EuiMarkdownFormat** bundles these abilities by default:
 
-\`:smile:\` we support emojis :smile:!
+\`:smile:\` we support emojis :smile:! But not :)
 
 \`!{tooltip[anchor text](Tooltip content)}\` syntax can render !{tooltip[tooltips like this](I am Jack's helpful tooltip content)}
 

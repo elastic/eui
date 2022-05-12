@@ -1,39 +1,29 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
-import React, { Component } from 'react';
+import React, { Component, FocusEvent } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
 
 import { EuiScreenReaderOnly } from '../../accessibility';
+import { htmlIdGenerator, keys } from '../../../services';
 import {
   EuiSuperSelectControl,
   EuiSuperSelectControlProps,
   EuiSuperSelectOption,
 } from './super_select_control';
-import { EuiInputPopover } from '../../popover';
+import { EuiInputPopover, EuiPopoverProps } from '../../popover';
 import {
   EuiContextMenuItem,
   EuiContextMenuItemLayoutAlignment,
 } from '../../context_menu';
-import { keys } from '../../../services';
+
 import { EuiI18n } from '../../i18n';
 
 enum ShiftDirection {
@@ -44,7 +34,7 @@ enum ShiftDirection {
 export type EuiSuperSelectProps<T extends string> = CommonProps &
   Omit<
     EuiSuperSelectControlProps<T>,
-    'onChange' | 'onClick' | 'options' | 'value'
+    'onChange' | 'onClick' | 'onFocus' | 'onBlur' | 'options' | 'value'
   > & {
     /**
      * Pass an array of options that must at least include:
@@ -65,6 +55,8 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
      * You must pass an `onChange` function to handle the update of the value
      */
     onChange?: (value: T) => void;
+    onFocus?: (event?: FocusEvent) => void;
+    onBlur?: (event?: FocusEvent) => void;
 
     /**
      * Change to `true` if you want horizontal lines between options.
@@ -78,14 +70,20 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
     itemLayoutAlign?: EuiContextMenuItemLayoutAlignment;
 
     /**
-     * Applied to the outermost wrapper (popover)
-     */
-    popoverClassName?: string;
-
-    /**
      * Controls whether the options are shown. Default: false
      */
     isOpen?: boolean;
+
+    /**
+     * Optional props to pass to the underlying [EuiPopover](/#/layout/popover).
+     * Allows fine-grained control of the popover dropdown menu, including
+     * `repositionOnScroll` for EuiSuperSelects used within scrollable containers,
+     * and customizing popover panel styling.
+     *
+     * Does not accept a nested `popoverProps.isOpen` property - use the top level
+     * `isOpen` API instead.
+     */
+    popoverProps?: Partial<CommonProps & Omit<EuiPopoverProps, 'isOpen'>>;
   };
 
 export class EuiSuperSelect<T extends string> extends Component<
@@ -101,6 +99,9 @@ export class EuiSuperSelect<T extends string> extends Component<
 
   private itemNodes: Array<HTMLButtonElement | null> = [];
   private _isMounted: boolean = false;
+
+  describedById = htmlIdGenerator('euiSuperSelect_')('_screenreaderDescribeId');
+  labelledById = htmlIdGenerator('euiSuperSelect_')('_screenreaderLabelId');
 
   state = {
     isPopoverOpen: this.props.isOpen || false,
@@ -147,6 +148,15 @@ export class EuiSuperSelect<T extends string> extends Component<
           } else {
             focusSelected();
           }
+        } else {
+          const firstFocusableOption = this.props.options.findIndex(
+            ({ disabled }) => disabled !== true
+          );
+          this.focusItemAt(firstFocusableOption);
+        }
+
+        if (this.props.onFocus) {
+          this.props.onFocus();
         }
       });
     };
@@ -158,12 +168,15 @@ export class EuiSuperSelect<T extends string> extends Component<
     this.setState({
       isPopoverOpen: false,
     });
+
+    if (this.props.onBlur) {
+      this.props.onBlur();
+    }
   };
 
   itemClicked = (value: T) => {
-    this.setState({
-      isPopoverOpen: false,
-    });
+    this.closePopover();
+
     if (this.props.onChange) {
       this.props.onChange(value);
     }
@@ -247,12 +260,15 @@ export class EuiSuperSelect<T extends string> extends Component<
       itemClassName,
       itemLayoutAlign,
       fullWidth,
-      popoverClassName,
+      popoverProps,
       compressed,
       ...rest
     } = this.props;
 
-    const popoverClasses = classNames('euiSuperSelect', popoverClassName);
+    const popoverClasses = classNames(
+      'euiSuperSelect',
+      popoverProps?.className
+    );
 
     const buttonClasses = classNames(
       {
@@ -271,6 +287,7 @@ export class EuiSuperSelect<T extends string> extends Component<
 
     const button = (
       <EuiSuperSelectControl
+        screenReaderId={this.labelledById}
         options={options}
         value={valueOfSelected}
         onClick={
@@ -300,7 +317,8 @@ export class EuiSuperSelect<T extends string> extends Component<
           role="option"
           id={value}
           aria-selected={valueOfSelected === value}
-          {...optionRest}>
+          {...optionRest}
+        >
           {dropdownDisplay || inputDisplay}
         </EuiContextMenuItem>
       );
@@ -308,27 +326,31 @@ export class EuiSuperSelect<T extends string> extends Component<
 
     return (
       <EuiInputPopover
-        className={popoverClasses}
-        input={button}
-        isOpen={isOpen || this.state.isPopoverOpen}
         closePopover={this.closePopover}
         panelPaddingSize="none"
-        fullWidth={fullWidth}>
+        {...popoverProps}
+        className={popoverClasses}
+        isOpen={isOpen || this.state.isPopoverOpen}
+        input={button}
+        fullWidth={fullWidth}
+      >
         <EuiScreenReaderOnly>
-          <p role="alert">
+          <p id={this.describedById}>
             <EuiI18n
               token="euiSuperSelect.screenReaderAnnouncement"
-              default="You are in a form selector of {optionsCount} items and must select a single option.
+              default="You are in a form selector and must select a single option.
               Use the up and down keys to navigate or escape to close."
-              values={{ optionsCount: options.length }}
             />
           </p>
         </EuiScreenReaderOnly>
         <div
+          aria-labelledby={this.labelledById}
+          aria-describedby={this.describedById}
           className="euiSuperSelect__listbox"
           role="listbox"
           aria-activedescendant={valueOfSelected}
-          tabIndex={0}>
+          tabIndex={0}
+        >
           {items}
         </div>
       </EuiInputPopover>

@@ -117,7 +117,7 @@ exports[`EuiListGroupItem props extraAction can be disabled 1`] = `
     </span>
   </span>
   <button
-    class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction"
+    class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction"
     disabled=""
     type="button"
   >

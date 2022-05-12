@@ -221,7 +221,7 @@ export const Table = () => {
         header: false,
         truncateText: false,
         enlarge: true,
-        fullWidth: true,
+        width: '100%',
       },
     },
     {
@@ -318,6 +318,7 @@ export const Table = () => {
       <EuiSpacer size="l" />
 
       <EuiBasicTable
+        tableCaption="Demo of EuiBasicTable with actions"
         items={pageOfItems}
         itemId="id"
         columns={columns}

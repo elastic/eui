@@ -6,10 +6,15 @@ import {
   EuiContextMenuItem,
   EuiPopover,
 } from '../../../../src/components';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [isPopoverOpen, setPopover] = useState(false);
   const [rowSize, setRowSize] = useState(50);
+
+  const singleContextMenuPopoverId = useGeneratedHtmlId({
+    prefix: 'singleContextMenuPopover',
+  });
 
   const onButtonClick = () => {
     setPopover(!isPopoverOpen);
@@ -28,7 +33,8 @@ export default () => {
       size="s"
       iconType="arrowDown"
       iconSide="right"
-      onClick={onButtonClick}>
+      onClick={onButtonClick}
+    >
       Rows per page: {rowSize}
     </EuiButtonEmpty>
   );
@@ -40,7 +46,8 @@ export default () => {
       onClick={() => {
         closePopover();
         setRowSize(10);
-      }}>
+      }}
+    >
       10 rows
     </EuiContextMenuItem>,
     <EuiContextMenuItem
@@ -49,7 +56,8 @@ export default () => {
       onClick={() => {
         closePopover();
         setRowSize(20);
-      }}>
+      }}
+    >
       20 rows
     </EuiContextMenuItem>,
     <EuiContextMenuItem
@@ -58,7 +66,8 @@ export default () => {
       onClick={() => {
         closePopover();
         setRowSize(50);
-      }}>
+      }}
+    >
       50 rows
     </EuiContextMenuItem>,
     <EuiContextMenuItem
@@ -67,19 +76,21 @@ export default () => {
       onClick={() => {
         closePopover();
         setRowSize(100);
-      }}>
+      }}
+    >
       100 rows
     </EuiContextMenuItem>,
   ];
 
   return (
     <EuiPopover
-      id="singlePanel"
+      id={singleContextMenuPopoverId}
       button={button}
       isOpen={isPopoverOpen}
       closePopover={closePopover}
       panelPaddingSize="none"
-      anchorPosition="downLeft">
+      anchorPosition="downLeft"
+    >
       <EuiContextMenuPanel size="s" items={items} />
     </EuiPopover>
   );

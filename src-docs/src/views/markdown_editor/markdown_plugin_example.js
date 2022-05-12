@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -20,7 +18,9 @@ import { Link } from 'react-router-dom';
 
 import MarkdownEditorWithPlugins from './markdown_editor_with_plugins';
 const markdownEditorWithPluginsSource = require('!!raw-loader!./markdown_editor_with_plugins');
-const markdownEditorWithPluginsHtml = renderToHtml(MarkdownEditorWithPlugins);
+
+const linkValidationSource = require('!!raw-loader!./markdown_link_validation');
+import LinkValidation from './markdown_link_validation';
 
 const pluginSnippet = `<EuiMarkdownEditor
   uiPlugin={myPluginUI}
@@ -151,7 +151,8 @@ export const MarkdownPluginExample = {
         is used in combination with{' '}
         <EuiLink
           href="https://www.npmjs.com/package/remark-parse"
-          target="_blank">
+          target="_blank"
+        >
           Remark
         </EuiLink>{' '}
         to provide EUI&apos;s markdown components, which are separated into a{' '}
@@ -172,6 +173,186 @@ export const MarkdownPluginExample = {
   ),
 
   sections: [
+    {
+      title: 'Default plugins',
+      text: (
+        <>
+          <p>
+            EUI provides additional plugins by default, but these can be omitted
+            or otherwise customized by providing the{' '}
+            <EuiCode>parsingPluginList</EuiCode>,{' '}
+            <EuiCode>processingPluginList</EuiCode>, and{' '}
+            <EuiCode>uiPlugins</EuiCode> props to the editor and formatter
+            components.
+          </p>
+          <p>The parsing plugins, responsible for parsing markdown are:</p>
+          <ol>
+            <li>
+              <EuiLink
+                href="https://www.npmjs.com/package/remark-parse"
+                external
+              >
+                remark-parse
+              </EuiLink>
+            </li>
+            <li>
+              <EuiLink
+                href="https://github.com/elastic/eui/blob/main/src/components/markdown_editor/plugins/remark/remark_prismjs.ts"
+                external
+              >
+                additional pre-processing for code blocks
+              </EuiLink>
+            </li>
+            <li>
+              <EuiLink
+                href="https://www.npmjs.com/package/remark-emoji"
+                external
+              >
+                remark-emoji
+              </EuiLink>
+            </li>
+            <li>
+              <EuiLink
+                href="https://www.npmjs.com/package/remark-breaks"
+                external
+              >
+                remark-breaks
+              </EuiLink>
+            </li>
+            <li>
+              <EuiLink
+                href="https://github.com/elastic/eui/blob/main/src/components/markdown_editor/plugins/markdown_link_validator.tsx"
+                external
+              >
+                link validation for security
+              </EuiLink>
+            </li>
+            <li>
+              <EuiLink
+                href="https://github.com/elastic/eui/blob/main/src/components/markdown_editor/plugins/markdown_checkbox/parser.ts"
+                external
+              >
+                injection of EuiCheckbox for markdown check boxes
+              </EuiLink>
+            </li>
+            <li>
+              <EuiLink
+                href="https://github.com/elastic/eui/blob/main/src/components/markdown_editor/plugins/markdown_tooltip/parser.ts"
+                external
+              >
+                tooltip plugin parser
+              </EuiLink>
+            </li>
+          </ol>
+          <p>
+            The above set provides an abstract syntax tree used by the editor to
+            provide feedback, and the renderer passes that output to the set of
+            processing plugins to allow it to be rendered:
+          </p>
+          <ol>
+            <li>
+              <EuiLink
+                href="https://www.npmjs.com/package/remark-rehype"
+                external
+              >
+                remark-rehype
+              </EuiLink>
+            </li>
+            <li>
+              <EuiLink
+                href="https://www.npmjs.com/package/rehype-react"
+                external
+              >
+                rehype-react
+              </EuiLink>
+            </li>
+            <li>
+              <EuiLink
+                href="https://github.com/elastic/eui/blob/main/src/components/markdown_editor/plugins/markdown_tooltip/renderer.tsx"
+                external
+              >
+                tooltip plugin renderer
+              </EuiLink>
+            </li>
+          </ol>
+          <p>
+            The last set of plugin configuration - <EuiCode>uiPlugins</EuiCode>{' '}
+            - allows toolbar buttons to be defined and how they alter or inject
+            markdown and returns with only one plugin:
+          </p>
+          <ol>
+            <li>
+              <EuiLink
+                href="https://github.com/elastic/eui/blob/main/src/components/markdown_editor/plugins/markdown_tooltip/plugin.tsx"
+                external
+              >
+                tooltip plugin ui
+              </EuiLink>
+            </li>
+          </ol>
+          <p>
+            These plugin definitions can be obtained by calling{' '}
+            <EuiCode>getDefaultEuiMarkdownParsingPlugins</EuiCode>,{' '}
+            <EuiCode>getDefaultEuiMarkdownProcessingPlugins</EuiCode>, and{' '}
+            <EuiCode>getDefaultEuiMarkdownUiPlugins</EuiCode> respectively. Each
+            of these three functions take an optional configuration object with
+            an <EuiCode>exclude</EuiCode> key, an array of EUI-defaulted plugins
+            to disable. Currently the only option this configuration can take is{' '}
+            <EuiCode>&apos;tooltip&apos;</EuiCode>.
+          </p>
+        </>
+      ),
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: linkValidationSource,
+        },
+      ],
+      title: 'Link validation & security',
+      text: (
+        <Fragment>
+          <p>
+            To enhance user and application security, the default behavior
+            removes links to URLs that aren&apos;t relative (beginning with{' '}
+            <EuiCode>/</EuiCode>) and don&apos;t use the{' '}
+            <EuiCode>https:</EuiCode>, <EuiCode>http:</EuiCode>, or{' '}
+            <EuiCode>mailto:</EuiCode> protocols. This validation can be further
+            configured or removed altogether.
+          </p>
+          <p>
+            In this example only <EuiCode>https:</EuiCode> and{' '}
+            <EuiCode>mailto:</EuiCode> links are allowed.
+          </p>
+        </Fragment>
+      ),
+      snippet: [
+        `// change what link protocols are allowed
+const parsingPlugins = getDefaultEuiMarkdownParsingPlugins();
+parsingPlugins.find(([plugin, config]) => {
+  const isValidationPlugin = plugin === euiMarkdownLinkValidator;
+  if (isValidationPlugin) {
+    config.allowProtocols = ['https:', 'mailto:'];
+  }
+  return isValidationPlugin;
+});`,
+        `// filter out the link validation plugin
+const parsingPlugins = getDefaultEuiMarkdownParsingPlugins().filter(([plugin]) => {
+  return plugin !== euiMarkdownLinkValidator;
+});`,
+        `// disable relative urls
+const parsingPlugins = getDefaultEuiMarkdownParsingPlugins();
+parsingPlugins.find(([plugin, config]) => {
+  const isValidationPlugin = plugin === euiMarkdownLinkValidator;
+  if (isValidationPlugin) {
+    config.allowRelative = false;
+  }
+  return isValidationPlugin;
+});`,
+      ],
+      demo: <LinkValidation />,
+    },
     {
       wrapText: false,
       text: (
@@ -224,14 +405,16 @@ export const MarkdownPluginExample = {
               <p>
                 <a
                   href="https://www.npmjs.com/package/remark-parse"
-                  target="_blank">
+                  target="_blank"
+                >
                   Remark-parse
                 </a>{' '}
                 is used to parse the input text into markdown AST nodes. Its
                 documentation for{' '}
                 <a
                   href="https://www.npmjs.com/package/remark-parse#extending-the-parser"
-                  target="_blank">
+                  target="_blank"
+                >
                   writing parsers
                 </a>{' '}
                 is under the Extending the Parser section, but highlights are
@@ -271,7 +454,8 @@ export const MarkdownPluginExample = {
           <EuiSpacer />
           <EuiCodeBlock
             size="s"
-            language="javascript">{`// example plugin parser
+            language="javascript"
+          >{`// example plugin parser
 function EmojiMarkdownParser() {
   const Parser = this.Parser;
   const tokenizers = Parser.prototype.inlineTokenizers;
@@ -336,7 +520,8 @@ parsingList.push(EmojiMarkdownParser);`}</EuiCodeBlock>
           <EuiSpacer />
           <EuiCodeBlock
             size="s"
-            language="javascript">{`// example plugin processor
+            language="javascript"
+          >{`// example plugin processor
 
 // receives the configuration from the parser and renders
 const EmojiMarkdownRenderer = ({ emoji }) => {
@@ -355,10 +540,6 @@ processingList[1][1].components.emojiPlugin = EmojiMarkdownRenderer;`}</EuiCodeB
         {
           type: GuideSectionTypes.JS,
           code: markdownEditorWithPluginsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: markdownEditorWithPluginsHtml,
         },
       ],
       title: 'Putting it all together: a simple chart plugin',

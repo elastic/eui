@@ -34,7 +34,8 @@ export default () => (
       username="milal"
       type="update"
       event="edited case"
-      timestamp="6 hours ago">
+      timestamp="6 hours ago"
+    >
       {bodyUpdate}
     </EuiComment>
   </div>

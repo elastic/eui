@@ -165,7 +165,8 @@ export const CardExample = {
                 Make sure that all images are the{' '}
                 <strong>same proportions</strong> when used in a singular row.
               </span>
-            }>
+            }
+          >
             <p>
               Also, when passing an <strong>element</strong> to the{' '}
               <EuiCode>image</EuiCode> prop that consists solely of inline
@@ -241,11 +242,11 @@ export const CardExample = {
       text: (
         <p>
           If the card links to or references a module that is not GA (beta, lab,
-          etc), you can add a <EuiCode>betaBadgeLabel</EuiCode> and{' '}
-          <EuiCode>betaBadgeTooltipContent</EuiCode> to the card and it will
-          properly create and position an <strong>EuiBetaBadge</strong>. If you
-          want to change the title of the tooltip, supply a{' '}
-          <EuiCode>betaBadgeTitle</EuiCode> prop.
+          etc), you can add a <EuiCode>betaBadgeProps.label</EuiCode> and{' '}
+          <EuiCode>betaBadgeProps.tooltipContent</EuiCode> to the card and it
+          will properly create and position an <strong>EuiBetaBadge</strong>. If
+          you want to change the title of the tooltip, supply a{' '}
+          <EuiCode>betaBadgeProps.title</EuiCode> prop.
         </p>
       ),
       props: { EuiCard },
@@ -258,8 +259,10 @@ export const CardExample = {
   title="title"
   description="description"
   onClick={handleClick}
-  betaBadgeLabel="betaBadgeLabel"
-  betaBadgeTooltipContent={betaBadgeTooltipContent}
+  betaBadgeProps={{
+    label: 'betaBadgeLabel',
+    toolTipContent: 'betaBadgeTooltipContent',
+  }}
 />`,
     },
     {

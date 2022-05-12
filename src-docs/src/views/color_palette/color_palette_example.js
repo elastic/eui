@@ -1,24 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 import { qualitativePropsInfo, palettePropsInfo } from './props_info';
 
-import { EuiCode, EuiText, EuiCallOut } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiText,
+  EuiCallOut,
+  EuiFlexGrid,
+  EuiFlexItem,
+  EuiSpacer,
+} from '../../../../src/components';
 
 import ColorPalette from './color_palette';
 const colorPaletteSource = require('!!raw-loader!./color_palette');
-const colorPaletteHtml = renderToHtml(ColorPalette);
 
 import ColorPaletteQuant from './color_palette_quantitative';
 const colorPaletteQuantSource = require('!!raw-loader!./color_palette_quantitative');
-const colorPaletteQuantHtml = renderToHtml(ColorPaletteQuant);
 
 import ColorPaletteCustom from './color_palette_custom';
 const colorPaletteCustomSource = require('!!raw-loader!./color_palette_custom');
-const colorPaletteCustomHtml = renderToHtml(ColorPaletteCustom);
+
+import { VisPalette } from './vis_palette.js';
 
 export const ColorPaletteExample = {
   title: 'Color palettes',
@@ -39,10 +43,6 @@ export const ColorPaletteExample = {
         {
           type: GuideSectionTypes.JS,
           code: colorPaletteSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: colorPaletteHtml,
         },
       ],
       text: (
@@ -82,10 +82,6 @@ export const ColorPaletteExample = {
           type: GuideSectionTypes.JS,
           code: colorPaletteQuantSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: colorPaletteQuantHtml,
-        },
       ],
       text: (
         <div>
@@ -116,10 +112,6 @@ export const ColorPaletteExample = {
           type: GuideSectionTypes.JS,
           code: colorPaletteCustomSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: colorPaletteCustomHtml,
-        },
       ],
       text: (
         <div>
@@ -139,6 +131,42 @@ export const ColorPaletteExample = {
         "colorPalette(['#fff'. '#000'], 11, divergent = true);",
       ],
       props: palettePropsInfo,
+    },
+    {
+      title: 'Sass variables',
+      wrapText: false,
+      text: (
+        <>
+          <EuiText>
+            <p>
+              The following colors are color-blind safe and should be used in
+              categorically seried visualizations and graphics. They are meant
+              to be contrasted against the value of{' '}
+              <EuiCode language="scss">$euiColorEmptyShade</EuiCode> for the
+              current theme.
+            </p>
+            <p>
+              When using the palette as a background for text (i.e. badges), use
+              the <EuiCode>_behindText</EuiCode> variant. It is a brightened
+              version of the base palette to create better contrast with text.
+            </p>
+          </EuiText>
+
+          <EuiSpacer size="xxl" />
+          <EuiFlexGrid columns={2}>
+            <EuiFlexItem>
+              <VisPalette variant="graphic" />
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <VisPalette variant="behindText" />
+            </EuiFlexItem>
+          </EuiFlexGrid>
+        </>
+      ),
+      demoPanelProps: {
+        hasBorder: false,
+        color: 'transparent',
+      },
     },
   ],
 };

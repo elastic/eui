@@ -1,22 +1,3 @@
-/*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable new-cap */
 
@@ -789,7 +770,7 @@ function getPropTypesForNode(node, optional, state) {
           types.arrayExpression(
             node.properties.map(property =>
               types.stringLiteral(
-                property.key.name || property.key.name || property.key.value
+                property.key ? property.key.name || property.key.value : property.argument.name
               )
             )
           ),
@@ -1054,6 +1035,8 @@ function getPropTypesForNode(node, optional, state) {
   return propType;
 }
 
+const typescriptExtensions = new Set(['', '.ts', '.tsx']);
+
 // typeDefinitionExtractors is a mapping of [ast_node_type: func] which is used to find type definitions
 // these definitions come from four sources:
 //   - import statements
@@ -1073,9 +1056,11 @@ const typeDefinitionExtractors = {
     const { fs, sourceFilename, parse, state } = extractionOptions;
     const importPath = node.source.value;
     const isPathRelative = /^\.{1,2}\//.test(importPath);
+    const pathExtension = path.extname(importPath);
+    const isImportTypecript = typescriptExtensions.has(pathExtension);
 
     // only process relative imports for typescript definitions (avoid node_modules)
-    if (isPathRelative) {
+    if (isPathRelative && isImportTypecript) {
       // find the variable names being imported
       const importedTypeNames = node.specifiers.map(specifier => {
         switch (specifier.type) {
@@ -1445,56 +1430,6 @@ module.exports = function propTypesFromTypeScript({ types }) {
               }
             }
           }
-        },
-        exit: function exitProgram(programPath, state) {
-          // only process typescript files
-          if (
-            path.extname(state.file.opts.filename) !== '.ts' &&
-            path.extname(state.file.opts.filename) !== '.tsx'
-          )
-            return;
-
-          const types = state.get('types');
-          const typeDefinitions = state.get('typeDefinitions');
-
-          // remove any exported identifiers that are TS types or interfaces
-          // this prevents TS-only identifiers from leaking into ES code
-          programPath.traverse({
-            ExportNamedDeclaration: path => {
-              const specifiers = path.get('specifiers');
-              const source = path.get('source');
-              specifiers.forEach(specifierPath => {
-                if (types.isExportSpecifier(specifierPath)) {
-                  const {
-                    node: { local },
-                  } = specifierPath;
-                  if (types.isIdentifier(local)) {
-                    const { name } = local;
-                    if (typeDefinitions.hasOwnProperty(name)) {
-                      // this is a locally-known value
-                      const def = typeDefinitions[name];
-                      if (isTSType(def)) {
-                        specifierPath.remove();
-                      }
-                    } else if (types.isStringLiteral(source)) {
-                      const libraryName = source.get('value').node;
-                      const isRelativeSource = libraryName.startsWith('.');
-                      if (isRelativeSource === false) {
-                        // comes from a 3rd-party library
-                        // best way to reliably check if this is
-                        // a type or value is to require the
-                        // library and check its exports
-                        const library = require(libraryName);
-                        if (library.hasOwnProperty(name) === false) {
-                          specifierPath.remove();
-                        }
-                      }
-                    }
-                  }
-                }
-              });
-            },
-          });
         },
       },
 

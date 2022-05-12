@@ -111,7 +111,12 @@ export const TimeChart = () => {
           showGridLines={chartType !== 'BarSeries'}
           tickPadding={0}
         />
-        <Axis id="left-axis" position="left" showGridLines />
+        <Axis
+          id="left-axis"
+          position="left"
+          showGridLines
+          tickFormat={(d) => Number(d).toFixed(2)}
+        />
       </Chart>
 
       <EuiSpacer />
@@ -180,14 +185,17 @@ export const TimeChart = () => {
     id="left-axis"
     position="left"
     showGridLines
+    tickFormat={(d) => Number(d).toFixed(2)}
   />
-</Chart>`}>
+</Chart>`}
+        >
           {(copy) => (
             <EuiButton
               fill
               onClick={copy}
               iconType="copyClipboard"
-              disabled={isBadChart}>
+              disabled={isBadChart}
+            >
               {isBadChart
                 ? "Bad chart, don't copy"
                 : 'Copy code of current configuration'}

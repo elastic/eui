@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiWindowEvent } from '../../../../src/services';
@@ -10,15 +8,12 @@ import { EuiCode, EuiCallOut, EuiSpacer } from '../../../../src/components';
 
 import { BasicWindowEvent } from './basic_window_event';
 const basicSource = require('!!raw-loader!./basic_window_event');
-const basicHtml = renderToHtml(BasicWindowEvent);
 
 import { WindowEventConflict } from './window_event_conflict';
 const conflictSource = require('!!raw-loader!./window_event_conflict');
-const conflictHtml = renderToHtml(WindowEventConflict);
 
 import { MousePosition } from './mouse_position';
 const mousePositionSource = require('!!raw-loader!./mouse_position');
-const mousePositionHtml = renderToHtml(MousePosition);
 
 export const WindowEventExample = {
   title: 'Window events',
@@ -29,10 +24,6 @@ export const WindowEventExample = {
         {
           type: GuideSectionTypes.JS,
           code: basicSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: basicHtml,
         },
       ],
       text: (
@@ -63,17 +54,14 @@ export const WindowEventExample = {
           type: GuideSectionTypes.JS,
           code: conflictSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: conflictHtml,
-        },
       ],
       text: (
         <div>
           <EuiCallOut
             title="Be careful with global listeners"
             color="warning"
-            iconType="alert">
+            iconType="alert"
+          >
             <p>
               Since window event listeners are global, they can conflict with
               other event listeners if you aren&apos;t careful.
@@ -99,10 +87,6 @@ export const WindowEventExample = {
         {
           type: GuideSectionTypes.JS,
           code: mousePositionSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: mousePositionHtml,
         },
       ],
       text: (

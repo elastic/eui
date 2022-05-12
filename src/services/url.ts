@@ -1,35 +1,24 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
-const isElasticDomain = /(https?:\/\/(.+?\.)?elastic\.co((\/|\?)[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*)?)/g;
+const isElasticHost = /^([a-zA-Z0-9]+\.)*elastic\.co$/;
 
-// In order for the domain to be secure the regex
-// has to match _and_ the lengths of the match must
-// be _exact_ since URL's can have other URL's as
-// path or query params!
+// In order for the domain to be secure it needs to be in a parsable format,
+// with the protocol of http: or https: and the host matching elastic.co or
+// of one its subdomains
 export const isDomainSecure = (url: string = '') => {
-  const matches = url.match(isElasticDomain);
-
-  if (!matches) {
+  try {
+    const parsed = new URL(url);
+    const protocolMatches =
+      parsed.protocol === 'http:' || parsed.protocol === 'https:';
+    const domainMatches = !!parsed.host.match(isElasticHost);
+    return protocolMatches && domainMatches;
+  } catch (e) {
     return false;
   }
-  const [match] = matches;
-
-  return match.length === url.length;
 };

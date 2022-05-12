@@ -1,13 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiFocusTrap } from '../../../../src/components';
 
 import FocusTrap from './focus_trap';
 const focusTrapSource = require('!!raw-loader!./focus_trap');
-const focusTrapHtml = renderToHtml(FocusTrap);
 
 export const FocusTrapExample = {
   title: 'Focus trap',
@@ -17,10 +15,6 @@ export const FocusTrapExample = {
         {
           type: GuideSectionTypes.JS,
           code: focusTrapSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: focusTrapHtml,
         },
       ],
       text: (

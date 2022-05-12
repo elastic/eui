@@ -32,3 +32,13 @@
     background-size: 100% 100%;
   }
 }
+
+.euiMarkdownEditorTextArea-isReadOnly {
+  background: $euiFormBackgroundReadOnlyColor;
+  cursor: unset;
+
+  &:focus,
+  .euiMarkdownEditor:focus-within & {
+    background: none;
+  }
+}

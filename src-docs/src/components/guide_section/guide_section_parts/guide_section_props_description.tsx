@@ -2,7 +2,6 @@ import React, { FunctionComponent, Fragment } from 'react';
 import { EuiLink } from '../../../../../src/components/link';
 import { EuiSpacer } from '../../../../../src/components/spacer';
 import { EuiText } from '../../../../../src/components/text';
-import { EuiHorizontalRule } from '../../../../../src/components/horizontal_rule';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../../src/components/flex';
 import { EuiTitle } from '../../../../../src/components/title';
 
@@ -10,13 +9,16 @@ import { EuiTitle } from '../../../../../src/components/title';
 import { extendedTypesInfo } from '../guide_section_extends';
 // @ts-ignore not TS
 import { markup } from '../../../services/playground/knobs';
+import classNames from 'classnames';
 
 export type GuideSectionPropsDescription = {
+  className?: string;
   componentName: any;
   component: any;
 };
 
 export const GuideSectionPropsDescription: FunctionComponent<GuideSectionPropsDescription> = ({
+  className,
   componentName,
   component,
 }) => {
@@ -53,19 +55,17 @@ export const GuideSectionPropsDescription: FunctionComponent<GuideSectionPropsDe
   if (description) {
     descriptionElement = (
       <>
+        <EuiSpacer size="s" />
         <EuiText size="s">
           <p>{markup(description)}</p>
         </EuiText>
-        <EuiSpacer size="s" />
       </>
     );
   }
 
   return (
     <>
-      <EuiHorizontalRule margin="none" />
-      <EuiSpacer size="m" />
-      <div className="guideSection__propsTableIntro">
+      <div className={classNames('guideSection__propsTableIntro', className)}>
         <EuiFlexGroup alignItems="baseline" wrap>
           <EuiFlexItem grow={false}>
             <EuiTitle size="s">
@@ -80,7 +80,6 @@ export const GuideSectionPropsDescription: FunctionComponent<GuideSectionPropsDe
             </EuiFlexItem>
           )}
         </EuiFlexGroup>
-        <EuiSpacer size="s" />
         {descriptionElement}
       </div>
     </>

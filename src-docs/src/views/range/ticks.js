@@ -7,7 +7,7 @@ import {
   EuiDualRange,
 } from '../../../../src/components';
 
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [value, setValue] = useState('20');
@@ -21,10 +21,21 @@ export default () => {
     setDualValue(value);
   };
 
+  const rangeBasicTicksId = useGeneratedHtmlId({ prefix: 'rangeBasicTicks' });
+  const rangeCustomTickIntervalId = useGeneratedHtmlId({
+    prefix: 'rangeCustomTickInterval',
+  });
+  const dualRangeBasicTicksId = useGeneratedHtmlId({
+    prefix: 'dualRangeBasicTicks',
+  });
+  const dualRangeLongLabelsId = useGeneratedHtmlId({
+    prefix: 'dualRangeLongLabels',
+  });
+
   return (
     <Fragment>
       <EuiRange
-        id={htmlIdGenerator()()}
+        id={rangeBasicTicksId}
         step={10}
         value={value}
         onChange={onChange}
@@ -41,7 +52,7 @@ export default () => {
       <EuiSpacer size="l" />
 
       <EuiRange
-        id={htmlIdGenerator()()}
+        id={rangeCustomTickIntervalId}
         value={value}
         onChange={onChange}
         showInput
@@ -60,7 +71,7 @@ export default () => {
       <EuiSpacer size="l" />
 
       <EuiDualRange
-        id={htmlIdGenerator()()}
+        id={dualRangeBasicTicksId}
         value={dualValue}
         onChange={onDualChange}
         showTicks
@@ -81,7 +92,7 @@ export default () => {
       <EuiSpacer size="l" />
 
       <EuiDualRange
-        id={htmlIdGenerator()()}
+        id={dualRangeLongLabelsId}
         value={dualValue}
         onChange={onDualChange}
         showTicks

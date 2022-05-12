@@ -46,7 +46,7 @@ exports[`renders EuiTable 1`] = `
       class="euiTableRow"
     >
       <td
-        class="euiTableRowCell"
+        class="euiTableRowCell euiTableRowCell--middle"
       >
         <div
           class="euiTableCellContent"
@@ -63,7 +63,7 @@ exports[`renders EuiTable 1`] = `
       class="euiTableRow"
     >
       <td
-        class="euiTableRowCell"
+        class="euiTableRowCell euiTableRowCell--middle"
       >
         <div
           class="euiTableCellContent"

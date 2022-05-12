@@ -25,7 +25,7 @@ import {
   EuiSpacer,
   EuiText,
 } from '../../../../src/components';
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const renderLogo = () => (
@@ -136,7 +136,9 @@ export default () => {
 };
 
 const HeaderUserMenu = () => {
-  const id = htmlIdGenerator()();
+  const headerUserPopoverId = useGeneratedHtmlId({
+    prefix: 'headerUserPopover',
+  });
   const [isOpen, setIsOpen] = useState(false);
 
   const onMenuButtonClick = () => {
@@ -149,28 +151,31 @@ const HeaderUserMenu = () => {
 
   const button = (
     <EuiHeaderSectionItemButton
-      aria-controls={id}
+      aria-controls={headerUserPopoverId}
       aria-expanded={isOpen}
       aria-haspopup="true"
       aria-label="Account menu"
-      onClick={onMenuButtonClick}>
+      onClick={onMenuButtonClick}
+    >
       <EuiAvatar name="John Username" size="s" />
     </EuiHeaderSectionItemButton>
   );
 
   return (
     <EuiPopover
-      id={id}
+      id={headerUserPopoverId}
       button={button}
       isOpen={isOpen}
       anchorPosition="downRight"
       closePopover={closeMenu}
-      panelPaddingSize="none">
+      panelPaddingSize="none"
+    >
       <div style={{ width: 320 }}>
         <EuiFlexGroup
           gutterSize="m"
           className="euiHeaderProfile"
-          responsive={false}>
+          responsive={false}
+        >
           <EuiFlexItem grow={false}>
             <EuiAvatar name="John Username" size="xl" />
           </EuiFlexItem>
@@ -203,7 +208,9 @@ const HeaderUserMenu = () => {
 };
 
 const HeaderSpacesMenu = () => {
-  const id = htmlIdGenerator()();
+  const headerSpacesPopoverId = useGeneratedHtmlId({
+    prefix: 'headerSpacesPopover',
+  });
   const spacesValues = [
     {
       label: 'Sales team',
@@ -273,23 +280,25 @@ const HeaderSpacesMenu = () => {
 
   const button = (
     <EuiHeaderSectionItemButton
-      aria-controls={id}
+      aria-controls={headerSpacesPopoverId}
       aria-expanded={isOpen}
       aria-haspopup="true"
       aria-label="Spaces menu"
-      onClick={onMenuButtonClick}>
+      onClick={onMenuButtonClick}
+    >
       {selectedSpace.prepend}
     </EuiHeaderSectionItemButton>
   );
 
   return (
     <EuiPopover
-      id={id}
+      id={headerSpacesPopoverId}
       button={button}
       isOpen={isOpen}
       anchorPosition="downLeft"
       closePopover={closePopover}
-      panelPaddingSize="none">
+      panelPaddingSize="none"
+    >
       <EuiSelectable
         searchable={isListExtended()}
         searchProps={{
@@ -303,7 +312,8 @@ const HeaderSpacesMenu = () => {
         listProps={{
           rowHeight: 40,
           showIcons: false,
-        }}>
+        }}
+      >
         {(list, search) => (
           <>
             <EuiPopoverTitle paddingSize="s">
@@ -315,7 +325,8 @@ const HeaderSpacesMenu = () => {
                 size="s"
                 fullWidth
                 onClick={addMoreSpaces}
-                disabled={isListExtended()}>
+                disabled={isListExtended()}
+              >
                 Add more spaces
               </EuiButton>
             </EuiPopoverFooter>
@@ -327,9 +338,10 @@ const HeaderSpacesMenu = () => {
 };
 
 const HeaderAppMenu = () => {
-  const idGenerator = htmlIdGenerator();
-  const popoverId = idGenerator('popover');
-  const keypadId = idGenerator('keypad');
+  const headerAppPopoverId = useGeneratedHtmlId({ prefix: 'headerAppPopover' });
+  const headerAppKeyPadMenuId = useGeneratedHtmlId({
+    prefix: 'headerAppKeyPadMenu',
+  });
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -343,24 +355,26 @@ const HeaderAppMenu = () => {
 
   const button = (
     <EuiHeaderSectionItemButton
-      aria-controls={keypadId}
+      aria-controls={headerAppKeyPadMenuId}
       aria-expanded={isOpen}
       aria-haspopup="true"
       aria-label="Apps menu with 1 new app"
       notification="1"
-      onClick={onMenuButtonClick}>
+      onClick={onMenuButtonClick}
+    >
       <EuiIcon type="apps" size="m" />
     </EuiHeaderSectionItemButton>
   );
 
   return (
     <EuiPopover
-      id={popoverId}
+      id={headerAppPopoverId}
       button={button}
       isOpen={isOpen}
       anchorPosition="downRight"
-      closePopover={closeMenu}>
-      <EuiKeyPadMenu id={keypadId} style={{ width: 288 }}>
+      closePopover={closeMenu}
+    >
+      <EuiKeyPadMenu id={headerAppKeyPadMenuId} style={{ width: 288 }}>
         <EuiKeyPadMenuItem label="Discover">
           <EuiIcon type="discoverApp" size="l" />
         </EuiKeyPadMenuItem>

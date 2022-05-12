@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -22,10 +11,13 @@ import React, {
   FunctionComponent,
   ReactElement,
   ReactNode,
+  useEffect,
+  useRef,
+  useState,
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, NoArgCallback } from '../common';
+import { CommonProps, ExclusiveUnion, NoArgCallback } from '../common';
 
 import { EuiBeacon } from '../beacon';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
@@ -36,93 +28,113 @@ import {
   EuiPopoverFooter,
   EuiPopoverProps,
   EuiPopoverTitle,
+  EuiWrappingPopover,
 } from '../popover';
 import { EuiTitle } from '../title';
 
 import { EuiTourStepIndicator, EuiTourStepStatus } from './tour_step_indicator';
-import { htmlIdGenerator } from '../../services';
+import {
+  useGeneratedHtmlId,
+  findElementBySelectorOrRef,
+  ElementTarget,
+} from '../../services';
 
 type PopoverOverrides = 'button' | 'closePopover';
 
-type EuiPopoverPartials = Partial<Pick<EuiPopoverProps, PopoverOverrides>>;
+type EuiPopoverPartials = Partial<Pick<EuiPopoverProps, 'closePopover'>>;
 
-export interface EuiTourStepProps
-  extends CommonProps,
-    Omit<EuiPopoverProps, PopoverOverrides>,
-    EuiPopoverPartials {
-  /**
-   * Element to which the tour step popover attaches when open
-   */
-  children: ReactElement;
+export type EuiTourStepAnchorProps = ExclusiveUnion<
+  {
+    /**
+     * Element to which the tour step popover attaches when open
+     */
+    children: ReactElement;
+    /**
+     * Selector or reference to the element to which the tour step popover attaches when open
+     */
+    anchor?: never;
+  },
+  {
+    children?: never;
+    anchor: ElementTarget;
+  }
+>;
 
-  /**
-   * Contents of the tour step popover
-   */
-  content: ReactNode;
+export type EuiTourStepProps = CommonProps &
+  Omit<EuiPopoverProps, PopoverOverrides> &
+  EuiPopoverPartials &
+  EuiTourStepAnchorProps & {
+    /**
+     * Contents of the tour step popover
+     */
+    content: ReactNode;
 
-  /**
-   * Step will display if set to `true`
-   */
-  isStepOpen?: boolean;
+    /**
+     * Step will display if set to `true`
+     */
+    isStepOpen?: boolean;
 
-  /**
-   * Sets the min-width of the tour popover,
-   * set to `true` to use the default size,
-   * set to `false` to not restrict the width,
-   * set to a number for a custom width in px,
-   * set to a string for a custom width in custom measurement.
-   */
-  minWidth?: boolean | number | string;
+    /**
+     * Change the default min width of the popover panel
+     */
+    minWidth?: CSSProperties['minWidth'];
 
-  /**
-   * Function to call for 'Skip tour' and 'End tour' actions
-   */
-  onFinish: NoArgCallback<void>;
+    /**
+     * Change the default max width of the popover panel
+     */
+    maxWidth?: CSSProperties['maxWidth'];
 
-  /**
-   * The number of the step within the parent tour. 1-based indexing.
-   */
-  step: number;
+    /**
+     * Function to call for 'Skip tour' and 'End tour' actions
+     */
+    onFinish: NoArgCallback<void>;
 
-  /**
-   * The total number of steps in the tour
-   */
-  stepsTotal: number;
+    /**
+     * The number of the step within the parent tour. 1-based indexing.
+     */
+    step: number;
 
-  /**
-   * Optional, standard DOM `style` attribute. Passed to the EuiPopover panel.
-   */
-  style?: CSSProperties;
+    /**
+     * The total number of steps in the tour
+     */
+    stepsTotal: number;
 
-  /**
-   * Smaller title text that appears atop each step in the tour. The subtitle gets wrapped in the appropriate heading level.
-   */
-  subtitle: ReactNode;
+    /**
+     * Optional, standard DOM `style` attribute. Passed to the EuiPopover panel.
+     */
+    style?: CSSProperties;
 
-  /**
-   * Larger title text specific to this step. The title gets wrapped in the appropriate heading level.
-   */
-  title: ReactNode;
+    /**
+     * Smaller title text that appears atop each step in the tour. The subtitle gets wrapped in the appropriate heading level.
+     */
+    subtitle?: ReactNode;
 
-  /**
-   * Extra visual indication of step location
-   */
-  decoration?: 'none' | 'beacon';
+    /**
+     * Larger title text specific to this step. The title gets wrapped in the appropriate heading level.
+     */
+    title: ReactNode;
 
-  /**
-   * Element to replace the 'Skip tour' link in the footer
-   */
-  footerAction?: ReactElement;
-}
+    /**
+     * Extra visual indication of step location
+     */
+    decoration?: 'none' | 'beacon';
+
+    /**
+     * Element to replace the 'Skip tour' link in the footer
+     */
+    footerAction?: ReactElement;
+  };
 
 export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   anchorPosition = 'leftUp',
+  anchor,
   children,
   className,
   closePopover = () => {},
   content,
   isStepOpen = false,
-  minWidth = true,
+  minWidth = 300,
+  maxWidth = 600,
   onFinish,
   step = 1,
   stepsTotal,
@@ -133,24 +145,34 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   footerAction,
   ...rest
 }) => {
-  const generatedId = htmlIdGenerator();
-  const titleId = generatedId();
+  const titleId = useGeneratedHtmlId();
   if (step === 0) {
     console.warn(
       'EuiTourStep `step` should 1-based indexing. Please update to eliminate 0 indexes.'
     );
   }
-  let newStyle;
 
-  let widthClassName;
-  if (minWidth === true) {
-    widthClassName = 'euiTour--minWidth-default';
-  } else if (minWidth !== false) {
-    const value = typeof minWidth === 'number' ? `${minWidth}px` : minWidth;
-    newStyle = { ...style, minWidth: value };
-  }
+  const [hasValidAnchor, setHasValidAnchor] = useState<boolean>(false);
+  const animationFrameId = useRef<number>();
+  const anchorNode = useRef<HTMLElement | null>(null);
 
-  const classes = classNames('euiTour', widthClassName, className);
+  useEffect(() => {
+    if (anchor) {
+      animationFrameId.current = window.requestAnimationFrame(() => {
+        anchorNode.current = findElementBySelectorOrRef(anchor);
+        setHasValidAnchor(anchorNode.current ? true : false);
+      });
+    }
+
+    return () => {
+      animationFrameId.current &&
+        window.cancelAnimationFrame(animationFrameId.current);
+    };
+  }, [anchor]);
+
+  const newStyle: CSSProperties = { ...style, maxWidth, minWidth };
+
+  const classes = classNames('euiTour', className);
 
   const finishButtonProps: EuiButtonEmptyProps = {
     color: 'text',
@@ -161,7 +183,8 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   const footer = (
     <EuiFlexGroup
       responsive={false}
-      justifyContent={stepsTotal > 1 ? 'spaceBetween' : 'flexEnd'}>
+      justifyContent={stepsTotal > 1 ? 'spaceBetween' : 'flexEnd'}
+    >
       {stepsTotal > 1 && (
         <EuiFlexItem grow={false}>
           <ul className="euiTourFooter__stepList">
@@ -190,7 +213,8 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
               'euiTourStep.skipTour',
               'euiTourStep.closeTour',
             ]}
-            defaults={['End tour', 'Skip tour', 'Close tour']}>
+            defaults={['End tour', 'Skip tour', 'Close tour']}
+          >
             {([endTour, skipTour, closeTour]: string[]) => {
               let content = closeTour;
               if (stepsTotal > 1) {
@@ -210,29 +234,47 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
 
   const hasBeacon = decoration === 'beacon';
 
-  return (
-    <EuiPopover
-      anchorPosition={anchorPosition}
-      button={children}
-      closePopover={closePopover}
-      isOpen={isStepOpen}
-      ownFocus={false}
-      panelClassName={classes}
-      panelStyle={newStyle || style}
-      offset={hasBeacon ? 10 : 0}
-      aria-labelledby={titleId}
-      arrowChildren={hasBeacon && <EuiBeacon className="euiTour__beacon" />}
-      {...rest}>
+  const popoverProps = {
+    anchorPosition: anchorPosition,
+    closePopover: closePopover,
+    isOpen: isStepOpen,
+    ownFocus: false,
+    panelClassName: classes,
+    panelStyle: newStyle,
+    offset: hasBeacon ? 10 : 0,
+    'aria-labelledby': titleId,
+    arrowChildren: hasBeacon && <EuiBeacon className="euiTour__beacon" />,
+    ...rest,
+  };
+
+  const layout = (
+    <>
       <EuiPopoverTitle className="euiTourHeader" id={titleId}>
-        <EuiTitle size="xxxs" className="euiTourHeader__subtitle">
-          <h1>{subtitle}</h1>
-        </EuiTitle>
+        {subtitle && (
+          <EuiTitle size="xxxs" className="euiTourHeader__subtitle">
+            <h2>{subtitle}</h2>
+          </EuiTitle>
+        )}
         <EuiTitle size="xxs" className="euiTourHeader__title">
-          <h2>{title}</h2>
+          {subtitle ? <h3>{title}</h3> : <h2>{title}</h2>}
         </EuiTitle>
       </EuiPopoverTitle>
       <div className="euiTour__content">{content}</div>
       <EuiPopoverFooter className="euiTourFooter">{footer}</EuiPopoverFooter>
-    </EuiPopover>
+    </>
   );
+
+  if (!anchor && children) {
+    return (
+      <EuiPopover button={children} {...popoverProps}>
+        {layout}
+      </EuiPopover>
+    );
+  }
+
+  return hasValidAnchor && anchorNode.current ? (
+    <EuiWrappingPopover button={anchorNode.current} {...popoverProps}>
+      {layout}
+    </EuiWrappingPopover>
+  ) : null;
 };

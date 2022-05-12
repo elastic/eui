@@ -10,6 +10,7 @@ import {
 } from '../../../../src/components';
 
 import EuiTabsExample from '../tabs/tabbed_content';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 function flattenPanelTree(tree, array = []) {
   array.push(tree);
@@ -29,6 +30,13 @@ function flattenPanelTree(tree, array = []) {
 export default () => {
   const [isPopoverOpen, setPopover] = useState(false);
   const [isDynamicPopoverOpen, setDynamicPopover] = useState(false);
+
+  const normalContextMenuPopoverId = useGeneratedHtmlId({
+    prefix: 'normalContextMenuPopover',
+  });
+  const dynamicContextMenuPopoverId = useGeneratedHtmlId({
+    prefix: 'dynamicContextMenuPopover',
+  });
 
   const onButtonClick = () => {
     setPopover(!isPopoverOpen);
@@ -52,7 +60,7 @@ export default () => {
       title: 'View options',
       items: [
         {
-          name: 'Show full screen',
+          name: 'Show fullscreen',
           icon: <EuiIcon type="search" size="m" />,
           onClick: () => {
             closePopover();
@@ -103,7 +111,8 @@ export default () => {
     <EuiButton
       iconType="arrowDown"
       iconSide="right"
-      onClick={onDynamicButtonClick}>
+      onClick={onDynamicButtonClick}
+    >
       Click me to load dynamic mixed content menu
     </EuiButton>
   );
@@ -111,24 +120,26 @@ export default () => {
   return (
     <React.Fragment>
       <EuiPopover
-        id="contextMenuNormal"
+        id={normalContextMenuPopoverId}
         button={button}
         isOpen={isPopoverOpen}
         closePopover={closePopover}
         panelPaddingSize="none"
-        anchorPosition="upLeft">
+        anchorPosition="upLeft"
+      >
         <EuiContextMenu initialPanelId={0} panels={panels} />
       </EuiPopover>
 
       <EuiSpacer size="l" />
 
       <EuiPopover
-        id="contextMenuDynamic"
+        id={dynamicContextMenuPopoverId}
         button={dynamicButton}
         isOpen={isDynamicPopoverOpen}
         closePopover={closeDynamicPopover}
         panelPaddingSize="none"
-        anchorPosition="upLeft">
+        anchorPosition="upLeft"
+      >
         <EuiContextMenu initialPanelId={0} panels={dynamicPanels} />
       </EuiPopover>
     </React.Fragment>

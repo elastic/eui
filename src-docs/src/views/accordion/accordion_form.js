@@ -16,6 +16,7 @@ import {
   EuiTitle,
   EuiButtonIcon,
 } from '../../../../src/components';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 const repeatableForm = (
   <EuiForm component="form">
@@ -29,7 +30,8 @@ const repeatableForm = (
       <EuiFlexItem>
         <EuiFormRow
           label="Password"
-          helpText="Must include one number and one symbol">
+          helpText="Must include one number and one symbol"
+        >
           <EuiFieldPassword icon="lock" />
         </EuiFormRow>
       </EuiFlexItem>
@@ -76,26 +78,41 @@ const extraAction = (
   />
 );
 
-export default () => (
-  <div>
-    <EuiAccordion
-      id="accordionForm1"
-      className="euiAccordionForm"
-      buttonClassName="euiAccordionForm__button"
-      buttonContent={buttonContent}
-      extraAction={extraAction}
-      paddingSize="l">
-      {repeatableForm}
-    </EuiAccordion>
+export default () => {
+  const formAccordionId__1 = useGeneratedHtmlId({
+    prefix: 'formAccordion',
+    suffix: 'first',
+  });
+  const formAccordionId__2 = useGeneratedHtmlId({
+    prefix: 'formAccordion',
+    suffix: 'second',
+  });
 
-    <EuiAccordion
-      id="accordionForm2"
-      className="euiAccordionForm"
-      buttonClassName="euiAccordionForm__button"
-      buttonContent={buttonContent}
-      extraAction={extraAction}
-      paddingSize="l">
-      {repeatableForm}
-    </EuiAccordion>
-  </div>
-);
+  return (
+    <div>
+      <EuiAccordion
+        id={formAccordionId__1}
+        element="fieldset"
+        className="euiAccordionForm"
+        buttonClassName="euiAccordionForm__button"
+        buttonContent={buttonContent}
+        extraAction={extraAction}
+        paddingSize="l"
+      >
+        {repeatableForm}
+      </EuiAccordion>
+
+      <EuiAccordion
+        id={formAccordionId__2}
+        element="fieldset"
+        className="euiAccordionForm"
+        buttonClassName="euiAccordionForm__button"
+        buttonContent={buttonContent}
+        extraAction={extraAction}
+        paddingSize="l"
+      >
+        {repeatableForm}
+      </EuiAccordion>
+    </div>
+  );
+};

@@ -44,7 +44,8 @@ const HeaderUpdates = forwardRef(
         aria-label={`News feed: ${
           showNotification ? 'Updates available' : 'No updates'
         }`}
-        notification={showNotification}>
+        notification={showNotification}
+      >
         <EuiIcon type="bell" />
       </EuiHeaderSectionItemButton>
     );
@@ -55,7 +56,8 @@ const HeaderUpdates = forwardRef(
         aria-label={`News feed: ${
           showNotification ? 'Updates available' : 'No updates'
         }`}
-        notification={showNotification && notificationsNumber}>
+        notification={showNotification && notificationsNumber}
+      >
         <EuiIcon type="cheer" />
       </EuiHeaderSectionItemButton>
     );
@@ -102,7 +104,8 @@ export default () => {
             onClick={() => {
               setShowNotification(false);
               setNotificationsNumber(0);
-            }}>
+            }}
+          >
             Reset
           </EuiButton>
         </EuiFlexItem>

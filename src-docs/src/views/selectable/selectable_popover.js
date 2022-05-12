@@ -16,6 +16,7 @@ import { Comparators } from '../../../../src/services/sort';
 
 import { Options } from './data';
 import { createDataStore } from '../tables/data_store';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const countriesStore = createDataStore().countries.map((country) => {
@@ -30,6 +31,13 @@ export default () => {
   const [countries, setCountries] = useState(countriesStore);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+
+  const flexboxSelectablePopoverId = useGeneratedHtmlId({
+    prefix: 'flexboxSelectablePopover',
+  });
+  const flexboxSelectableFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'flexboxSelectableFlyoutTitle',
+  });
 
   const onButtonClick = () => {
     setOptions(options.slice().sort(Comparators.property('checked')));
@@ -65,11 +73,12 @@ export default () => {
   return (
     <Fragment>
       <EuiPopover
-        id="popover"
+        id={flexboxSelectablePopoverId}
         panelPaddingSize="none"
         button={button}
         isOpen={isPopoverOpen}
-        closePopover={closePopover}>
+        closePopover={closePopover}
+      >
         <EuiSelectable
           searchable
           searchProps={{
@@ -77,7 +86,8 @@ export default () => {
             compressed: true,
           }}
           options={options}
-          onChange={onChange}>
+          onChange={onChange}
+        >
           {(list, search) => (
             <div style={{ width: 240 }}>
               <EuiPopoverTitle paddingSize="s">{search}</EuiPopoverTitle>
@@ -97,18 +107,25 @@ export default () => {
       <EuiButton onClick={showFlyout}>Show flyout</EuiButton>
 
       {isFlyoutVisible && (
-        <EuiFlyout ownFocus onClose={closeFlyout} aria-labelledby="flyoutTitle">
+        <EuiFlyout
+          ownFocus
+          onClose={closeFlyout}
+          aria-labelledby={flexboxSelectableFlyoutTitleId}
+        >
           <EuiSelectable
             aria-label="Popover example"
             searchable
             options={countries}
             onChange={onFlyoutChange}
-            height="full">
+            height="full"
+          >
             {(list, search) => (
               <Fragment>
                 <EuiFlyoutHeader hasBorder>
                   <EuiTitle size="m">
-                    <h2 id="flyoutTitle">Be mindful of the flexbox</h2>
+                    <h2 id={flexboxSelectableFlyoutTitleId}>
+                      Be mindful of the flexbox
+                    </h2>
                   </EuiTitle>
                   <EuiSpacer />
                   {search}
@@ -129,7 +146,10 @@ export default () => {
 
       <EuiTitle size="xxs">
         <h4>
-          Using <EuiCode language="js">listProps.bordered=true</EuiCode>
+          Using <EuiCode language="js">listProps.bordered=true</EuiCode> and{' '}
+          <EuiCode language="js">
+            listProps.paddingSize=&quot;none&quot;
+          </EuiCode>
         </h4>
       </EuiTitle>
 
@@ -140,7 +160,8 @@ export default () => {
         options={options}
         onChange={() => {}}
         style={{ width: 300 }}
-        listProps={{ bordered: true }}>
+        listProps={{ bordered: true, paddingSize: 'none' }}
+      >
         {(list) => list}
       </EuiSelectable>
     </Fragment>

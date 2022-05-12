@@ -11,8 +11,8 @@
   }
 
   @each $modifier, $amount in $euiPanelBorderRadiusModifiers {
-    &.euiSplitPanel-isResponsive.euiPanel--#{$modifier} .euiSplitPanel__inner,
-    &.euiPanel--#{$modifier} .euiSplitPanel__inner {
+    &.euiSplitPanel-isResponsive.euiPanel--#{$modifier} > .euiSplitPanel__inner,
+    &.euiPanel--#{$modifier} > .euiSplitPanel__inner {
       &:first-child {
         border-radius: ($amount - 1) ($amount - 1) 0 0;
       }
@@ -32,7 +32,7 @@
   }
 
   @each $modifier, $amount in $euiPanelBorderRadiusModifiers {
-    &.euiPanel--#{$modifier} .euiSplitPanel__inner {
+    &.euiPanel--#{$modifier} > .euiSplitPanel__inner {
       &:first-child {
         border-radius: ($amount - 1) 0 0 ($amount - 1);
       }

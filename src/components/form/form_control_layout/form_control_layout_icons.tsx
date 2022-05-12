@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { Fragment, Component } from 'react';
@@ -28,7 +17,7 @@ import {
   EuiFormControlLayoutCustomIcon,
   EuiFormControlLayoutCustomIconProps,
 } from './form_control_layout_custom_icon';
-import { IconType } from '../../icon';
+import { EuiIcon, IconColor, IconType } from '../../icon';
 import { DistributiveOmit } from '../../common';
 
 export const ICON_SIDES: ['left', 'right'] = ['left', 'right'];
@@ -39,6 +28,7 @@ type IconShape = DistributiveOmit<
 > & {
   type: IconType;
   side?: typeof ICON_SIDES[number];
+  color?: IconColor;
   ref?: EuiFormControlLayoutCustomIconProps['iconRef'];
 };
 
@@ -52,6 +42,8 @@ export interface EuiFormControlLayoutIconsProps {
   icon?: IconType | IconShape;
   clear?: EuiFormControlLayoutClearButtonProps;
   isLoading?: boolean;
+  isInvalid?: boolean;
+  isDropdown?: boolean;
   compressed?: boolean;
 }
 
@@ -59,11 +51,13 @@ export class EuiFormControlLayoutIcons extends Component<
   EuiFormControlLayoutIconsProps
 > {
   render() {
-    const { icon } = this.props;
+    const { icon, isInvalid, isDropdown } = this.props;
     const iconSide = isIconShape(icon) && icon.side ? icon.side : 'left';
     const customIcon = this.renderCustomIcon();
     const loadingSpinner = this.renderLoadingSpinner();
     const clearButton = this.renderClearButton();
+    const invalidIcon = this.renderInvalidIcon();
+    const dropdownIcon = this.renderDropdownIcon();
 
     let leftIcons;
 
@@ -74,12 +68,20 @@ export class EuiFormControlLayoutIcons extends Component<
     let rightIcons;
 
     // If the icon is on the right, it should be placed after the clear button in the DOM.
-    if (clearButton || loadingSpinner || (customIcon && iconSide === 'right')) {
+    if (
+      clearButton ||
+      loadingSpinner ||
+      isInvalid ||
+      isDropdown ||
+      (customIcon && iconSide === 'right')
+    ) {
       rightIcons = (
         <div className="euiFormControlLayoutIcons euiFormControlLayoutIcons--right">
           {clearButton}
           {loadingSpinner}
+          {invalidIcon}
           {iconSide === 'right' ? customIcon : undefined}
+          {dropdownIcon}
         </div>
       );
     }
@@ -116,14 +118,29 @@ export class EuiFormControlLayoutIcons extends Component<
     );
   }
 
+  renderDropdownIcon() {
+    const { isDropdown, compressed } = this.props;
+
+    if (!isDropdown) {
+      return null;
+    }
+
+    return (
+      <EuiFormControlLayoutCustomIcon
+        size={compressed ? 's' : 'm'}
+        type="arrowDown"
+      />
+    );
+  }
+
   renderLoadingSpinner() {
-    const { isLoading } = this.props;
+    const { isLoading, compressed } = this.props;
 
     if (!isLoading) {
       return null;
     }
 
-    return <EuiLoadingSpinner size="m" />;
+    return <EuiLoadingSpinner size={compressed ? 's' : 'm'} />;
   }
 
   renderClearButton() {
@@ -137,6 +154,17 @@ export class EuiFormControlLayoutIcons extends Component<
         size={compressed ? 's' : 'm'}
         {...clear}
       />
+    );
+  }
+
+  renderInvalidIcon() {
+    const { isInvalid, compressed } = this.props;
+    if (!isInvalid) {
+      return null;
+    }
+
+    return (
+      <EuiIcon size={compressed ? 's' : 'm'} color="danger" type="alert" />
     );
   }
 }

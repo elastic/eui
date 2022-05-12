@@ -16,7 +16,8 @@ export default ({ button = <></> }) => (
       iconType: 'logoElastic',
       pageTitle: 'Page title',
       rightSideItems: [button, <EuiButton>Do something</EuiButton>],
-    }}>
+    }}
+  >
     <EuiFlexGrid columns={2}>
       <EuiFlexItem>
         <EuiPanel style={{ height: 200 }} />

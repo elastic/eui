@@ -2,6 +2,11 @@
   @include euiSuperDatePickerText;
   background-size: 100%; // For the bottom "border" via background-image
 
+  &--compressed {
+    line-height: $euiFormControlLayoutGroupInputCompressedHeight;
+    height: $euiFormControlLayoutGroupInputCompressedHeight;
+  }
+
   &:focus,
   &-isSelected {
     background-image: euiFormControlGradient();

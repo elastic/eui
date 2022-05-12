@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// Uncomment to use in consuming apps or CodeSandbox
-// import theme from '@elastic/eui/dist/eui_theme_light.json';
 
 import {
   EuiAvatar,
@@ -28,10 +26,33 @@ import {
   EuiTitle,
   EuiSelectableTemplateSitewide,
   EuiSelectableMessage,
-} from '../../../../src/components';
+  useEuiTheme,
+  useGeneratedHtmlId,
+} from '../../../../src';
+
 import { ExampleContext } from '../../services';
 
-export default ({ theme }) => {
+export default () => {
+  const { euiTheme } = useEuiTheme();
+  const guideHeaderCollapsibleNavId = useGeneratedHtmlId({
+    prefix: 'guideHeaderCollapsibleNav',
+  });
+  const guideHeaderAlertFlyoutId = useGeneratedHtmlId({
+    prefix: 'guideHeaderAlertFlyout',
+  });
+  const guideHeaderAlertFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'guideHeaderAlertFlyoutTitle',
+  });
+  const guideHeaderUserPopoverId = useGeneratedHtmlId({
+    prefix: 'guideHeaderUserPopover',
+  });
+  const guideHeaderSpacesPopoverId = useGeneratedHtmlId({
+    prefix: 'guideHeaderSpacesPopover',
+  });
+  const guideHeaderDeploymentPopoverId = useGeneratedHtmlId({
+    prefix: 'guideHeaderDeploymentPopover',
+  });
+
   useEffect(() => {
     document.body.classList.add('euiBody--headerIsFixed--double');
 
@@ -51,18 +72,20 @@ export default ({ theme }) => {
   );
   const collapsibleNav = (
     <EuiCollapsibleNav
-      id="guideHeaderCollapsibleNavExample"
+      id={guideHeaderCollapsibleNavId}
       aria-label="Main navigation"
       isOpen={navIsOpen}
       isDocked={navIsDocked}
       button={
         <EuiHeaderSectionItemButton
           aria-label="Toggle main navigation"
-          onClick={() => setNavIsOpen(!navIsOpen)}>
+          onClick={() => setNavIsOpen(!navIsOpen)}
+        >
           <EuiIcon type={'menu'} size="m" aria-hidden="true" />
         </EuiHeaderSectionItemButton>
       }
-      onClose={() => setNavIsOpen(false)}>
+      onClose={() => setNavIsOpen(false)}
+    >
       <EuiFlexItem className="eui-yScroll">
         {/* Docs callout */}
         <EuiCollapsibleNavGroup background="none" title="EuiCollapsibleNav">
@@ -109,11 +132,12 @@ export default ({ theme }) => {
       <EuiFlyout
         onClose={() => setIsAlertFlyoutVisible(false)}
         size="s"
-        id="guideHeaderAlertExample"
-        aria-labelledby="guideHeaderAlertExampleTitle">
+        id={guideHeaderAlertFlyoutId}
+        aria-labelledby={guideHeaderAlertFlyoutTitleId}
+      >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="s">
-            <h2 id="guideHeaderAlertExampleTitle">EuiHeaderAlert</h2>
+            <h2 id={guideHeaderAlertFlyoutTitleId}>EuiHeaderAlert</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>
@@ -137,21 +161,23 @@ export default ({ theme }) => {
   const [isUserMenuVisible, setIsUserMenuVisible] = useState(false);
   const userMenu = (
     <EuiPopover
-      id="guideHeaderUserMenuExample"
+      id={guideHeaderUserPopoverId}
       repositionOnScroll
       button={
         <EuiHeaderSectionItemButton
-          aria-controls="guideHeaderUserMenuExample"
+          aria-controls={guideHeaderUserPopoverId}
           aria-expanded={isUserMenuVisible}
           aria-haspopup="true"
           aria-label="User menu"
-          onClick={() => setIsUserMenuVisible(!isUserMenuVisible)}>
+          onClick={() => setIsUserMenuVisible(!isUserMenuVisible)}
+        >
           <EuiAvatar name="John Username" size="s" />
         </EuiHeaderSectionItemButton>
       }
       isOpen={isUserMenuVisible}
       anchorPosition="downRight"
-      closePopover={() => setIsUserMenuVisible(false)}>
+      closePopover={() => setIsUserMenuVisible(false)}
+    >
       <div style={{ width: 320 }}>
         <EuiText size="s" color="subdued">
           <p>
@@ -172,21 +198,23 @@ export default ({ theme }) => {
   const [isSpacesMenuVisible, setIsSpacesMenuVisible] = useState(false);
   const spacesMenu = (
     <EuiPopover
-      id="guideHeaderSpacesMenuExample"
+      id={guideHeaderSpacesPopoverId}
       repositionOnScroll
       button={
         <EuiHeaderSectionItemButton
-          aria-controls="guideHeaderSpacesMenuExample"
+          aria-controls={guideHeaderSpacesPopoverId}
           aria-expanded={isSpacesMenuVisible}
           aria-haspopup="true"
           aria-label="Spaces menu"
-          onClick={() => setIsSpacesMenuVisible(!isSpacesMenuVisible)}>
+          onClick={() => setIsSpacesMenuVisible(!isSpacesMenuVisible)}
+        >
           <EuiAvatar type="space" name="Default Space" size="s" />
         </EuiHeaderSectionItemButton>
       }
       isOpen={isSpacesMenuVisible}
       anchorPosition="downRight"
-      closePopover={() => setIsSpacesMenuVisible(false)}>
+      closePopover={() => setIsSpacesMenuVisible(false)}
+    >
       <div style={{ width: 320 }}>
         <EuiText size="s" color="subdued">
           <p>
@@ -207,24 +235,26 @@ export default ({ theme }) => {
   const [isDeploymentMenuVisible, setIsDeploymentMenuVisible] = useState(false);
   const deploymentMenu = (
     <EuiPopover
-      id="guideHeaderDeploymentMenuExample"
+      id={guideHeaderDeploymentPopoverId}
       repositionOnScroll
       button={
         <EuiBadge
-          color={theme.euiColorDarkestShade.rgba}
+          color={euiTheme.colors.darkestShade}
           iconType="arrowDown"
           iconSide="right"
-          aria-controls="guideHeaderDeploymentMenuExample"
+          aria-controls={guideHeaderDeploymentPopoverId}
           aria-expanded={isDeploymentMenuVisible}
           aria-haspopup="true"
           onClickAriaLabel="Current deployment: Production logs. Click to open deployment menu."
-          onClick={() => setIsDeploymentMenuVisible(!isDeploymentMenuVisible)}>
+          onClick={() => setIsDeploymentMenuVisible(!isDeploymentMenuVisible)}
+        >
           Production logs
         </EuiBadge>
       }
       isOpen={isDeploymentMenuVisible}
       anchorPosition="downRight"
-      closePopover={() => setIsDeploymentMenuVisible(false)}>
+      closePopover={() => setIsDeploymentMenuVisible(false)}
+    >
       <EuiText size="s" color="subdued">
         <p>Deployment menu pattern TBD</p>
       </EuiText>
@@ -289,7 +319,8 @@ export default ({ theme }) => {
               <EuiHeaderSectionItemButton
                 notification={true}
                 aria-label="Notifications: Updates available"
-                onClick={() => setIsAlertFlyoutVisible(!isAlertFlyoutVisible)}>
+                onClick={() => setIsAlertFlyoutVisible(!isAlertFlyoutVisible)}
+              >
                 <EuiIcon type="cheer" size="m" />
               </EuiHeaderSectionItemButton>,
               userMenu,
@@ -319,7 +350,8 @@ export default ({ theme }) => {
               <EuiHeaderLinks
                 popoverProps={{
                   repositionOnScroll: true, // Necessary when placing search in a fixed component
-                }}>
+                }}
+              >
                 <EuiHeaderLink color="primary">Share</EuiHeaderLink>
                 <EuiHeaderLink color="primary">Clone</EuiHeaderLink>
                 <ExampleContext.Consumer>
@@ -329,8 +361,9 @@ export default ({ theme }) => {
                       style={{ minWidth: 80 }}
                       size="s"
                       color="primary"
-                      href={`#${parentPath}`}>
-                      Exit full screen
+                      href={`#${parentPath}`}
+                    >
+                      Exit fullscreen
                     </EuiButton>
                   )}
                 </ExampleContext.Consumer>

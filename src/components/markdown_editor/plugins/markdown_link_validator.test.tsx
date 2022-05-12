@@ -1,54 +1,61 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
-import { validateUrl, mutateLinkToText } from './markdown_link_validator';
+import {
+  validateUrl,
+  mutateLinkToText,
+  EuiMarkdownLinkValidatorOptions,
+} from './markdown_link_validator';
 import { validateHref } from '../../../services/security/href_validator';
+
+const defaultValidationOptions: EuiMarkdownLinkValidatorOptions = {
+  allowRelative: true,
+  allowProtocols: ['http:', 'https:', 'mailto:'],
+};
 
 describe('validateURL', () => {
   it('approves of https:', () => {
-    expect(validateUrl('https:')).toBeTruthy();
+    expect(
+      validateUrl('https://domain', defaultValidationOptions)
+    ).toBeTruthy();
   });
   it('approves of http:', () => {
-    expect(validateUrl('http:')).toBeTruthy();
+    expect(validateUrl('http://domain', defaultValidationOptions)).toBeTruthy();
+  });
+  it('approves of mailto:', () => {
+    expect(
+      validateUrl('mailto:someone@elastic.co', defaultValidationOptions)
+    ).toBeTruthy();
   });
   it('approves of absolute relative links', () => {
-    expect(validateUrl('/')).toBeTruthy();
+    expect(validateUrl('/', defaultValidationOptions)).toBeTruthy();
   });
   it('approves of relative protocols', () => {
-    expect(validateUrl('//')).toBeTruthy();
+    expect(validateUrl('//', defaultValidationOptions)).toBeTruthy();
   });
   it('rejects a url starting with http with not an s following', () => {
-    expect(validateUrl('httpm:')).toBeFalsy();
+    expect(validateUrl('httpm:', defaultValidationOptions)).toBeFalsy();
   });
   it('rejects a directory relative link', () => {
-    expect(validateUrl('./')).toBeFalsy();
-    expect(validateUrl('../')).toBeFalsy();
+    expect(validateUrl('./', defaultValidationOptions)).toBeFalsy();
+    expect(validateUrl('../', defaultValidationOptions)).toBeFalsy();
   });
   it('rejects a word', () => {
-    expect(validateUrl('word')).toBeFalsy();
+    expect(validateUrl('word', defaultValidationOptions)).toBeFalsy();
   });
   it('rejects gopher', () => {
-    expect(validateUrl('gopher:')).toBeFalsy();
+    expect(
+      validateUrl('gopher://domain', defaultValidationOptions)
+    ).toBeFalsy();
   });
   it('rejects javascript', () => {
     // eslint-disable-next-line no-script-url
-    expect(validateUrl('javascript:')).toBeFalsy();
+    expect(validateUrl('javascript:', defaultValidationOptions)).toBeFalsy();
     // eslint-disable-next-line no-script-url
     expect(validateHref('javascript:alert()')).toBeFalsy();
   });
@@ -80,6 +87,36 @@ describe('mutateLinkToText', () => {
       Object {
         "type": "text",
         "value": "[](https://cats.com)",
+      }
+    `);
+  });
+  it('keeps only the link text when both text & url are the same value', () => {
+    expect(
+      mutateLinkToText({
+        type: 'link',
+        url: 'ftp://www.example.com',
+        title: null,
+        children: [{ value: 'ftp://www.example.com' }],
+      })
+    ).toMatchInlineSnapshot(`
+      Object {
+        "type": "text",
+        "value": "ftp://www.example.com",
+      }
+    `);
+  });
+  it('renders with the markdown link syntax when link and url are not the same value', () => {
+    expect(
+      mutateLinkToText({
+        type: 'link',
+        url: 'mailto:someone@elastic.co',
+        title: null,
+        children: [{ value: 'someone@elastic.co' }],
+      })
+    ).toMatchInlineSnapshot(`
+      Object {
+        "type": "text",
+        "value": "[someone@elastic.co](mailto:someone@elastic.co)",
       }
     `);
   });

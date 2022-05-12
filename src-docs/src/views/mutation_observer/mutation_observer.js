@@ -37,13 +37,15 @@ export const MutationObserver = () => {
 
       <EuiMutationObserver
         observerOptions={{ subtree: true, attributes: true, childList: true }}
-        onMutation={onMutation}>
+        onMutation={onMutation}
+      >
         {(mutationRef) => (
           <div ref={mutationRef}>
             <EuiButton
               color={buttonColor}
               fill={true}
-              onClick={toggleButtonColor}>
+              onClick={toggleButtonColor}
+            >
               Toggle button color
             </EuiButton>
 

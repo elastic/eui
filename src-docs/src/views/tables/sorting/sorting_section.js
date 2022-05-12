@@ -1,13 +1,11 @@
 import React from 'react';
 import { EuiCode } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
-import { renderToHtml } from '../../../services';
 
 import { EuiTableSortingType } from '!!prop-loader!../../../../../src/components/basic_table/table_types';
 
 import { Table } from './sorting';
 const source = require('!!raw-loader!./sorting');
-const html = renderToHtml(Table);
 
 export const section = {
   title: 'Adding sorting to a table',
@@ -15,10 +13,6 @@ export const section = {
     {
       type: GuideSectionTypes.JS,
       code: source,
-    },
-    {
-      type: GuideSectionTypes.HTML,
-      code: html,
     },
   ],
   text: (

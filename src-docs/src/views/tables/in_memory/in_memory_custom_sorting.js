@@ -38,6 +38,7 @@ export const Table = () => {
 
   return (
     <EuiInMemoryTable
+      tableCaption="Demo of EuiInMemoryTable with custom sorting"
       items={data}
       columns={columns}
       pagination={false}

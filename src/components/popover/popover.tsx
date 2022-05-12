@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -27,7 +16,7 @@ import React, {
   RefCallback,
 } from 'react';
 import classNames from 'classnames';
-import tabbable from 'tabbable';
+import { focusable } from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
 import { FocusTarget, EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
@@ -58,21 +47,22 @@ import {
 import { EuiI18n } from '../i18n';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 
-export type PopoverAnchorPosition =
-  | 'upCenter'
-  | 'upLeft'
-  | 'upRight'
-  | 'downCenter'
-  | 'downLeft'
-  | 'downRight'
-  | 'leftCenter'
-  | 'leftUp'
-  | 'leftDown'
-  | 'rightCenter'
-  | 'rightUp'
-  | 'rightDown';
+export const popoverAnchorPosition = [
+  'upCenter',
+  'upLeft',
+  'upRight',
+  'downCenter',
+  'downLeft',
+  'downRight',
+  'leftCenter',
+  'leftUp',
+  'leftDown',
+  'rightCenter',
+  'rightUp',
+  'rightDown',
+] as const;
 
-const generateId = htmlIdGenerator();
+export type PopoverAnchorPosition = typeof popoverAnchorPosition[number];
 
 export interface EuiPopoverProps {
   /**
@@ -111,7 +101,7 @@ export interface EuiPopoverProps {
    */
   focusTrapProps?: Pick<
     EuiFocusTrapProps,
-    'clickOutsideDisables' | 'noIsolation' | 'scrollLock'
+    'clickOutsideDisables' | 'noIsolation' | 'scrollLock' | 'shards'
   >;
   /**
    * Show arrow indicating to originating button
@@ -162,7 +152,8 @@ export interface EuiPopoverProps {
   popoverRef?: Ref<HTMLDivElement>;
   /**
    * When `true`, the popover's position is re-calculated when the user
-   * scrolls, this supports having fixed-position popover anchors
+   * scrolls, this supports having fixed-position popover anchors. When nesting
+   * an `EuiPopover` in a scrollable container, `repositionOnScroll` should be `true`
    */
   repositionOnScroll?: boolean;
   /**
@@ -290,6 +281,7 @@ function getElementFromInitialFocus(
 }
 
 const returnFocusConfig = { preventScroll: true };
+const closingTransitionTime = 250; // TODO: DRY out var when converting to CSS-in-JS
 
 export type Props = CommonProps &
   HTMLAttributes<HTMLDivElement> &
@@ -355,12 +347,14 @@ export class EuiPopover extends Component<Props, State> {
   }
 
   private respositionTimeout: number | undefined;
+  private strandedFocusTimeout: number | undefined;
   private closingTransitionTimeout: number | undefined;
   private closingTransitionAnimationFrame: number | undefined;
   private updateFocusAnimationFrame: number | undefined;
   private button: HTMLElement | null = null;
   private panel: HTMLElement | null = null;
   private hasSetInitialFocus: boolean = false;
+  private descriptionId: string = htmlIdGenerator()();
 
   constructor(props: Props) {
     super(props);
@@ -391,7 +385,24 @@ export class EuiPopover extends Component<Props, State> {
       event.preventDefault();
       event.stopPropagation();
       this.closePopover();
+      this.handleStrandedFocus();
     }
+  };
+
+  handleStrandedFocus = () => {
+    this.strandedFocusTimeout = window.setTimeout(() => {
+      // If `returnFocus` failed and focus was stranded on the body,
+      // attempt to manually restore focus to the toggle button
+      if (document.activeElement === document.body) {
+        if (!this.button) return;
+
+        const focusableItems = focusable(this.button);
+        if (!focusableItems.length) return;
+
+        const toggleButton = focusableItems[0];
+        toggleButton.focus(returnFocusConfig);
+      }
+    }, closingTransitionTime);
   };
 
   onKeyDown = (event: KeyboardEvent) => {
@@ -427,16 +438,11 @@ export class EuiPopover extends Component<Props, State> {
         return;
       }
 
-      // Otherwise let's focus the first tabbable item and expedite input from the user.
+      // Otherwise focus either `initialFocus` or the panel
       let focusTarget;
 
       if (this.props.initialFocus != null) {
         focusTarget = getElementFromInitialFocus(this.props.initialFocus);
-      } else {
-        const tabbableItems = tabbable(this.panel);
-        if (tabbableItems.length) {
-          focusTarget = tabbableItems[0];
-        }
       }
 
       // there's a race condition between the popover content becoming visible and this function call
@@ -445,9 +451,9 @@ export class EuiPopover extends Component<Props, State> {
       if (focusTarget == null) {
         // there isn't a focus target, one of two reasons:
         // #1 is the whole panel hidden? If so, schedule another check
-        // #2 panel is visible but no tabbables exist, move focus to the panel
-        const panelVisibility = window.getComputedStyle(this.panel).visibility;
-        if (panelVisibility === 'hidden') {
+        // #2 panel is visible and no `initialFocus` was set, move focus to the panel
+        const panelVisibility = window.getComputedStyle(this.panel).opacity;
+        if (panelVisibility === '0') {
           // #1
           this.updateFocus();
         } else {
@@ -471,6 +477,7 @@ export class EuiPopover extends Component<Props, State> {
   }
 
   onOpenPopover = () => {
+    clearTimeout(this.strandedFocusTimeout);
     clearTimeout(this.closingTransitionTimeout);
     if (this.closingTransitionAnimationFrame) {
       cancelAnimationFrame(this.closingTransitionAnimationFrame);
@@ -521,7 +528,7 @@ export class EuiPopover extends Component<Props, State> {
     }
 
     if (this.props.repositionOnScroll) {
-      window.addEventListener('scroll', this.positionPopoverFixed);
+      window.addEventListener('scroll', this.positionPopoverFixed, true);
     }
   }
 
@@ -534,9 +541,9 @@ export class EuiPopover extends Component<Props, State> {
     // update scroll listener
     if (prevProps.repositionOnScroll !== this.props.repositionOnScroll) {
       if (this.props.repositionOnScroll) {
-        window.addEventListener('scroll', this.positionPopoverFixed);
+        window.addEventListener('scroll', this.positionPopoverFixed, true);
       } else {
-        window.removeEventListener('scroll', this.positionPopoverFixed);
+        window.removeEventListener('scroll', this.positionPopoverFixed, true);
       }
     }
 
@@ -549,13 +556,14 @@ export class EuiPopover extends Component<Props, State> {
         this.setState({
           isClosing: false,
         });
-      }, 250);
+      }, closingTransitionTime);
     }
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.positionPopoverFixed);
+    window.removeEventListener('scroll', this.positionPopoverFixed, true);
     clearTimeout(this.respositionTimeout);
+    clearTimeout(this.strandedFocusTimeout);
     clearTimeout(this.closingTransitionTimeout);
     cancelAnimationFrame(this.closingTransitionAnimationFrame!);
     cancelAnimationFrame(this.updateFocusAnimationFrame!);
@@ -705,10 +713,9 @@ export class EuiPopover extends Component<Props, State> {
       'aria-labelledby': ariaLabelledBy,
       container,
       focusTrapProps,
+      tabIndex: tabIndexProp,
       ...rest
     } = this.props;
-
-    const descriptionId = generateId();
 
     const classes = classNames(
       'euiPopover',
@@ -735,13 +742,20 @@ export class EuiPopover extends Component<Props, State> {
     let panel;
 
     if (!this.state.suppressingPopover && (isOpen || this.state.isClosing)) {
-      let tabIndex;
+      let tabIndex = tabIndexProp;
       let initialFocus;
       let ariaDescribedby;
       let ariaLive: HTMLAttributes<any>['aria-live'];
 
-      if (ownFocus) {
-        tabIndex = 0;
+      const panelAriaModal = panelProps?.hasOwnProperty('aria-modal')
+        ? panelProps['aria-modal']
+        : 'true';
+      const panelRole = panelProps?.hasOwnProperty('role')
+        ? panelProps.role
+        : 'dialog';
+
+      if (ownFocus || panelAriaModal !== 'true') {
+        tabIndex = tabIndexProp ?? 0;
         ariaLive = 'off';
 
         initialFocus = () => this.panel!;
@@ -751,10 +765,10 @@ export class EuiPopover extends Component<Props, State> {
 
       let focusTrapScreenReaderText;
       if (ownFocus) {
-        ariaDescribedby = descriptionId;
+        ariaDescribedby = this.descriptionId;
         focusTrapScreenReaderText = (
           <EuiScreenReaderOnly>
-            <p id={descriptionId}>
+            <p id={this.descriptionId}>
               <EuiI18n
                 token="euiPopover.screenReaderAnnouncement"
                 default="You are in a dialog. To close this dialog, hit escape."
@@ -783,19 +797,21 @@ export class EuiPopover extends Component<Props, State> {
             onEscapeKey={this.onEscapeKey}
             disabled={
               !ownFocus || !this.state.isOpenStable || this.state.isClosing
-            }>
+            }
+          >
             <EuiPanel
               {...(panelProps as EuiPanelProps)}
+              data-popover-panel
               panelRef={this.panelRef}
               className={panelClasses}
               hasShadow={false}
               paddingSize={panelPaddingSize}
               tabIndex={tabIndex}
               aria-live={ariaLive}
-              role="dialog"
+              role={panelRole}
               aria-label={ariaLabel}
               aria-labelledby={ariaLabelledBy}
-              aria-modal="true"
+              aria-modal={panelAriaModal}
               aria-describedby={ariaDescribedby}
               style={{
                 ...this.state.popoverStyles,
@@ -803,7 +819,8 @@ export class EuiPopover extends Component<Props, State> {
                 willChange: !this.state.isOpenStable
                   ? 'transform, opacity'
                   : undefined,
-              }}>
+              }}
+            >
               <div className={arrowClassNames} style={this.state.arrowStyles}>
                 {arrowChildren}
               </div>
@@ -815,7 +832,8 @@ export class EuiPopover extends Component<Props, State> {
                   characterData: true, // text changes
                   subtree: true, // watch all child elements
                 }}
-                onMutation={this.onMutation}>
+                onMutation={this.onMutation}
+              >
                 {(mutationRef) => <div ref={mutationRef}>{children}</div>}
               </EuiMutationObserver>
             </EuiPanel>
@@ -842,7 +860,8 @@ export class EuiPopover extends Component<Props, State> {
             className={classes}
             ref={popoverRef}
             onKeyDown={this.onKeyDown}
-            {...rest}>
+            {...rest}
+          >
             <div className={anchorClasses} ref={this.buttonRef}>
               {button instanceof HTMLElement ? null : button}
             </div>

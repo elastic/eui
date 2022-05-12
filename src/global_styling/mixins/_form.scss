@@ -1,6 +1,7 @@
 // Labels
 @mixin euiFormLabel {
   @include euiFontSizeXS;
+  @include euiTextBreakWord;
   color: $euiTitleColor;
   font-weight: $euiFontWeightSemiBold;
 }
@@ -213,7 +214,10 @@
 }
 
 @mixin euiFormControlReadOnlyStyle {
+  // sass-lint:disable-block no-vendor-prefixes
   cursor: default;
+  color: $euiTextColor;
+  -webkit-text-fill-color: $euiTextColor; // Required for Safari
   // Use transparency since there is no border and in case form is on a non-white background
   background: $euiFormBackgroundReadOnlyColor;
   border-color: transparent;
@@ -343,13 +347,14 @@
   // Requires a selector to work with the Amsterdam outline styles
   @if ($amsterdamSelector) {
     + #{$amsterdamSelector} {
-      outline: $euiFocusRingSize solid currentColor;
+      outline: $euiFocusRingSize solid $euiFocusRingColor;
+      outline-offset: 2px;
     }
 
     // Chrome
     &:focus-visible + #{$amsterdamSelector} {
-      outline-style: auto;
-      outline-offset: 3px;
+      outline: $euiFocusRingSize solid $euiFocusRingColor;
+      outline-offset: 2px;
     }
 
     &:not(:focus-visible) + #{$amsterdamSelector} {

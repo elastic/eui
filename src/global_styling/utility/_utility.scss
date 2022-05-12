@@ -39,16 +39,12 @@
   word-break: normal !important;
 }
 
-// TODO: 7/23 DEPRECATE in favor of .eui-textBreakWord now that it's working as intended
-.eui-textOverflowWrap {
-  @include internetExplorerOnly {
-    word-break: break-all !important;
-  }
-  overflow-wrap: break-word !important;
-}
-
 .eui-textTruncate {
   @include euiTextTruncate;
+}
+
+.eui-textNumber {
+  @include euiNumberFormat;
 }
 
 /**
@@ -97,6 +93,13 @@
 }
 
 /**
+ * Scroll bar only
+ */
+.eui-scrollBar {
+  @include euiScrollBar;
+}
+
+/**
   * Overflow scrolling
   */
 .eui-yScroll {
@@ -116,11 +119,6 @@
 
 .eui-xScrollWithShadows {
   @include euiXScrollWithShadows;
-}
-
-// TODO: 10/22 DEPRECATE in favor of the correctly formatted class .eui-yScrollWithShadows
-.euiYScrollWithShadows {
-  @include euiYScrollWithShadows;
 }
 
 /**

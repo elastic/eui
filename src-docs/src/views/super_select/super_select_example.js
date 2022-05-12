@@ -1,14 +1,11 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiSuperSelect } from '../../../../src/components';
 
 import SuperSelectBasic from './super_select_basic';
 const superSelectBasicSource = require('!!raw-loader!./super_select_basic');
-const superSelectBasicHtml = renderToHtml(SuperSelectBasic);
 const superSelectBasicSnippet = `<EuiSuperSelect
   options={[
     {
@@ -23,7 +20,6 @@ const superSelectBasicSnippet = `<EuiSuperSelect
 
 import SuperSelectComplex from './super_select_complex';
 const superSelectComplexSource = require('!!raw-loader!./super_select_complex');
-const superSelectComplexHtml = renderToHtml(SuperSelectComplex);
 const superSelectComplexSnippet = `<EuiSuperSelect
   options={[
     {
@@ -40,7 +36,6 @@ const superSelectComplexSnippet = `<EuiSuperSelect
 
 import SuperSelectStates from './super_select_states';
 const superSelectStatesSource = require('!!raw-loader!./super_select_states');
-const superSelectStatesHtml = renderToHtml(SuperSelectStates);
 const superSelectStatesSnippet = `<EuiSuperSelect
   options={[
     {
@@ -65,10 +60,6 @@ export const SuperSelectExample = {
         {
           type: GuideSectionTypes.JS,
           code: superSelectBasicSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: superSelectBasicHtml,
         },
       ],
       text: (
@@ -109,10 +100,6 @@ export const SuperSelectExample = {
           type: GuideSectionTypes.JS,
           code: superSelectComplexSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: superSelectComplexHtml,
-        },
       ],
       text: (
         <p>
@@ -133,10 +120,6 @@ export const SuperSelectExample = {
         {
           type: GuideSectionTypes.JS,
           code: superSelectStatesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: superSelectStatesHtml,
         },
       ],
       text: (

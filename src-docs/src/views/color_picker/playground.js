@@ -7,7 +7,7 @@ import {
 import { EuiColorPicker } from '../../../../src/components/';
 import { PropTypes } from 'react-view';
 
-const colorPickerConfig = () => {
+export const colorPickerConfig = () => {
   const docgenInfo = Array.isArray(EuiColorPicker.__docgenInfo)
     ? EuiColorPicker.__docgenInfo[0]
     : EuiColorPicker.__docgenInfo;
@@ -68,5 +68,3 @@ const colorPickerConfig = () => {
     },
   };
 };
-
-export default [colorPickerConfig];

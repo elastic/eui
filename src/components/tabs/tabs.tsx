@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -26,19 +15,11 @@ import React, {
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 
-const displayToClassNameMap = {
-  condensed: 'euiTabs--condensed',
-  default: null,
-};
-
-export const DISPLAYS = keysOf(displayToClassNameMap);
-
-export type EuiTabsDisplaySizes = keyof typeof displayToClassNameMap;
-
 const sizeToClassNameMap = {
   s: 'euiTabs--small',
   m: null,
   l: 'euiTabs--large',
+  xl: 'euiTabs--xlarge',
 };
 
 export const SIZES = keysOf(sizeToClassNameMap);
@@ -52,14 +33,18 @@ export type EuiTabsProps = CommonProps &
      */
     children?: ReactNode;
     /**
-     * Choose `default` or alternative `condensed` display styles
-     */
-    display?: EuiTabsDisplaySizes;
-    /**
      * Evenly stretches each tab to fill the
      * horizontal space
      */
     expand?: boolean;
+    /**
+     * Adds a bottom border to separate it from the content after
+     */
+    bottomBorder?: boolean;
+    /**
+     * Sizes affect both font size and overall size.
+     * Only use the `xl` size when displayed as page titles.
+     */
     size?: EuiTabsSizes;
   };
 
@@ -70,7 +55,7 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
     {
       children,
       className,
-      display = 'default',
+      bottomBorder = true,
       expand = false,
       size = 'm',
       ...rest
@@ -79,10 +64,10 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
   ) => {
     const classes = classNames(
       'euiTabs',
-      displayToClassNameMap[display],
       sizeToClassNameMap[size],
       {
         'euiTabs--expand': expand,
+        'euiTabs--bottomBorder': bottomBorder,
       },
       className
     );
@@ -92,7 +77,8 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
         ref={ref}
         className={classes}
         {...(children && { role: 'tablist' })}
-        {...rest}>
+        {...rest}
+      >
         {children}
       </div>
     );

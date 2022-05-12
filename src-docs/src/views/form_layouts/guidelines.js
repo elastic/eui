@@ -35,7 +35,8 @@ export default () => (
 
     <GuideRule
       heading="Help users achieve success"
-      description="Our form components try to be as informative and clear as possible for the user to avoid errors or confusion.">
+      description="Our form components try to be as informative and clear as possible for the user to avoid errors or confusion."
+    >
       <EuiFlexItem>
         <EuiPanel>
           <EuiText>
@@ -77,7 +78,8 @@ export default () => (
 
     <GuideRule
       heading="Provide transparency"
-      description="It should be clear to users what they can accomplish in each part of the form. ">
+      description="It should be clear to users what they can accomplish in each part of the form. "
+    >
       <EuiFlexItem>
         <EuiPanel>
           <EuiText>
@@ -118,7 +120,8 @@ export default () => (
       color="subdued"
       paddingSize="l"
       hasShadow={false}
-      style={{ justifyContent: 'center', display: 'flex' }}>
+      style={{ justifyContent: 'center', display: 'flex' }}
+    >
       <EuiPanel style={{ maxWidth: 520 }} paddingSize="s">
         <EuiImage alt="eui described form row" url={imgFormRowToggle} />
       </EuiPanel>
@@ -126,7 +129,8 @@ export default () => (
 
     <GuideRule
       heading="When to use it"
-      description="This component is not intended for every type of form, but typically works best in the following scenarios.">
+      description="This component is not intended for every type of form, but typically works best in the following scenarios."
+    >
       <EuiFlexItem>
         <EuiText grow={false}>
           <dl>
@@ -163,16 +167,19 @@ export default () => (
 
     <GuideRule
       heading="Maintain a standard layout"
-      description="Keep the form divided into two columns, with the descriptions on one side and form fields on the other.">
+      description="Keep the form divided into two columns, with the descriptions on one side and form fields on the other."
+    >
       <GuideRuleExample
         type="do"
-        text="To make groupings clearer and keep the user's eye in one path, it's better to keep inputs in a single column. If multiple fields are needed, they should still remain within the column.">
+        text="To make groupings clearer and keep the user's eye in one path, it's better to keep inputs in a single column. If multiple fields are needed, they should still remain within the column."
+      >
         <EuiImage alt="proper field alignment" url={imgFormRowGood} />
       </GuideRuleExample>
 
       <GuideRuleExample
         type="dont"
-        text="Avoid nesting form rows. It creates an uneven path for the user's eye to travel down the form.">
+        text="Avoid nesting form rows. It creates an uneven path for the user's eye to travel down the form."
+      >
         <EuiImage alt="incorrect field alignment" url={imgFormRowBad} />
       </GuideRuleExample>
     </GuideRule>
@@ -181,15 +188,18 @@ export default () => (
 
     <GuideRule
       heading="Divide the form into sections"
-      description="As a form grows longer, it's best to divide the form into sections. This helps the user quickly scan the form and provides visual breaks between multiple input fields.">
+      description="As a form grows longer, it's best to divide the form into sections. This helps the user quickly scan the form and provides visual breaks between multiple input fields."
+    >
       <GuideRuleExample
         type="do"
-        text="Adding visual indicators can help clearly define the sections of the form.">
+        text="Adding visual indicators can help clearly define the sections of the form."
+      >
         <EuiImage alt="prop use of dividers" url={imgFormRowPanelsGood} />
       </GuideRuleExample>
       <GuideRuleExample
         type="dont"
-        text="Using panels within panels creates too much visual noise and can make it confusing where sections begin and end.">
+        text="Using panels within panels creates too much visual noise and can make it confusing where sections begin and end."
+      >
         <EuiImage alt="incorrect use of panels" url={imgFormRowPanelsBad} />
       </GuideRuleExample>
     </GuideRule>
@@ -198,12 +208,14 @@ export default () => (
     <GuideRule>
       <GuideRuleExample
         type="do"
-        text="Add more spacing between form groups than fields within the group to better define the grouping.">
+        text="Add more spacing between form groups than fields within the group to better define the grouping."
+      >
         <EuiImage alt="proper use of spacing" url={imgFormRowSpacingGood} />
       </GuideRuleExample>
       <GuideRuleExample
         type="dont"
-        text="Avoid using the same spacing between groups and individual fields. It is harder for the user to scan and understand the sections of the form.">
+        text="Avoid using the same spacing between groups and individual fields. It is harder for the user to scan and understand the sections of the form."
+      >
         <EuiImage alt="incorrect use of spacing" url={imgFormRowSpacingBad} />
       </GuideRuleExample>
     </GuideRule>

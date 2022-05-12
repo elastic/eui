@@ -11,7 +11,7 @@ import {
 
 import { htmlIdGenerator } from '../../../../src/services';
 
-export const HtmlIdGeneratorSuffix = () => {
+export default () => {
   const [suffix, setSuffix] = useState('Id');
   const [customId, setCustomId] = useState(htmlIdGenerator()('Id'));
 
@@ -26,7 +26,8 @@ export const HtmlIdGeneratorSuffix = () => {
       <EuiFlexGroup
         justifyContent="flexStart"
         gutterSize="m"
-        alignItems="center">
+        alignItems="center"
+      >
         <EuiFlexItem grow={false}>
           <EuiFormRow label="Suffix">
             <EuiFieldText

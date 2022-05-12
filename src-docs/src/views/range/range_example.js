@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -16,7 +14,10 @@ import { rangeConfig, dualRangeConfig } from './playground';
 import {
   EuiRangeLevels,
   LEVEL_COLORS,
-} from '../../../../src/components/form/range/range_levels';
+} from '../../../../src/components/form/range/range_levels'; // eslint-disable-line
+
+// eslint-disable-next-line
+import { EuiRangeLevel } from '!!prop-loader!../../../../src/components/form/range/range_levels';
 
 import { EuiRangeTicks } from '../../../../src/components/form/range/range_ticks';
 
@@ -24,31 +25,24 @@ import { EuiRangeInput } from '../../../../src/components/form/range/range_input
 
 import DualRangeExample from './dual_range';
 const dualRangeSource = require('!!raw-loader!./dual_range');
-const dualRangeHtml = renderToHtml(DualRangeExample);
 
 import RangeExample from './range';
 const rangeSource = require('!!raw-loader!./range');
-const rangeHtml = renderToHtml(RangeExample);
 
 import InputExample from './input';
 const inputSource = require('!!raw-loader!./input');
-const inputHtml = renderToHtml(InputExample);
 
 import TicksExample from './ticks';
 const ticksSource = require('!!raw-loader!./ticks');
-const ticksHtml = renderToHtml(TicksExample);
 
 import LevelsExample from './levels';
 const levelsSource = require('!!raw-loader!./levels');
-const levelsHtml = renderToHtml(LevelsExample);
 
 import StatesExample from './states';
 const statesSource = require('!!raw-loader!./states');
-const statesHtml = renderToHtml(StatesExample);
 
 import InputOnlyExample from './input_only';
 const inputOnlySource = require('!!raw-loader!./input_only');
-const inputOnlyHtml = renderToHtml(InputOnlyExample);
 
 export const RangeControlExample = {
   title: 'Range sliders',
@@ -107,15 +101,12 @@ export const RangeControlExample = {
           type: GuideSectionTypes.JS,
           code: rangeSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: rangeHtml,
-        },
       ],
       props: {
         EuiRange,
       },
       demo: <RangeExample />,
+      playground: rangeConfig,
       snippet: [
         `<EuiRange
   min={100}
@@ -184,15 +175,12 @@ export const RangeControlExample = {
           type: GuideSectionTypes.JS,
           code: dualRangeSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dualRangeHtml,
-        },
       ],
       props: {
         EuiDualRange,
       },
       demo: <DualRangeExample />,
+      playground: dualRangeConfig,
       snippet: [
         `<EuiDualRange
   min={100}
@@ -233,10 +221,6 @@ export const RangeControlExample = {
           type: GuideSectionTypes.JS,
           code: inputSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: inputHtml,
-        },
       ],
       demo: <InputExample />,
       props: { EuiRangeInput },
@@ -272,10 +256,6 @@ export const RangeControlExample = {
           type: GuideSectionTypes.JS,
           code: ticksSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: ticksHtml,
-        },
       ],
       demo: <TicksExample />,
       props: { EuiRangeTicks },
@@ -302,8 +282,10 @@ export const RangeControlExample = {
             are{' '}
             <EuiCode language="js">
               {JSON.stringify(LEVEL_COLORS, null, 2)}
-            </EuiCode>
-            .
+            </EuiCode>{' '}
+            or a valid CSS color value (e.g.{' '}
+            <EuiCode>&quot;#ff0000&quot;</EuiCode>,{' '}
+            <EuiCode>&quot;red&quot;</EuiCode>).
           </p>
           <p>
             Be sure to then add an <EuiCode>aria-describedby</EuiCode> and match
@@ -316,13 +298,9 @@ export const RangeControlExample = {
           type: GuideSectionTypes.JS,
           code: levelsSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: levelsHtml,
-        },
       ],
       demo: <LevelsExample />,
-      props: { EuiRangeLevels },
+      props: { EuiRangeLevels, EuiRangeLevel },
       snippet: [
         `<EuiRange
   levels={[
@@ -360,21 +338,17 @@ export const RangeControlExample = {
           type: GuideSectionTypes.JS,
           code: inputOnlySource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: inputOnlyHtml,
-        },
       ],
       demo: <InputOnlyExample />,
       snippet: [
         `<EuiRange
-  id={rangeId}
+  id={rangeId__1}
   value={value}
   onChange={handleChange}
   showInput="inputWithPopover"
 />`,
         `<EuiDualRange
-  id={rangeId}
+  id={rangeId__2}
   value={value}
   onChange={handleChange}
   showInput="inputWithPopover"
@@ -396,15 +370,11 @@ export const RangeControlExample = {
           type: GuideSectionTypes.JS,
           code: statesSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: statesHtml,
-        },
       ],
       demo: <StatesExample />,
       snippet: [
         `<EuiRange
-  id={rangeId}
+  id={rangeId__1}
   value={value}
   onChange={handleChange}
   fullWidth
@@ -419,7 +389,7 @@ export const RangeControlExample = {
   aria-describedBy={replaceWithID}
 />`,
         `<EuiDualRange
-  id={rangeId}
+  id={rangeId__2}
   value={value}
   onChange={handleChange}
   fullWidth
@@ -434,5 +404,4 @@ export const RangeControlExample = {
       ],
     },
   ],
-  playground: [rangeConfig, dualRangeConfig],
 };

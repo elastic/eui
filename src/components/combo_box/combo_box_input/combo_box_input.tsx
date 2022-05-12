@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -73,6 +62,8 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
   append?: EuiFormControlLayoutProps['append'];
   isLoading?: boolean;
   autoFocus?: boolean;
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
 }
 
 interface EuiComboBoxInputState {
@@ -161,6 +152,8 @@ export class EuiComboBoxInput<T> extends Component<
       append,
       isLoading,
       autoFocus,
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledby,
     } = this.props;
 
     const singleSelection = Boolean(singleSelectionProp);
@@ -186,7 +179,8 @@ export class EuiComboBoxInput<T> extends Component<
               onClick={onClick}
               onClickAriaLabel={onClick ? 'Change' : undefined}
               asPlainText={asPlainText}
-              {...rest}>
+              {...rest}
+            >
               {label}
             </EuiComboBoxPill>
           );
@@ -210,7 +204,7 @@ export class EuiComboBoxInput<T> extends Component<
         }Combo box input. ${readPlaceholder} Type some text or, to display a list of choices, press Down Arrow. ` +
         'To exit the list of choices, press Escape.';
 
-      removeOptionMessageId = htmlIdGenerator()();
+      removeOptionMessageId = rootId('removeOptionMessage');
 
       // aria-live="assertive" will read this message aloud immediately once it enters the DOM.
       // We'll render to the DOM when the input gains focus and remove it when the input loses focus.
@@ -218,7 +212,7 @@ export class EuiComboBoxInput<T> extends Component<
       // reader.
       removeOptionMessage = (
         <EuiScreenReaderOnly>
-          <span aria-live="assertive" id={removeOptionMessageId}>
+          <span aria-live="polite" id={removeOptionMessageId}>
             {removeOptionMessageContent}
           </span>
         </EuiScreenReaderOnly>
@@ -257,6 +251,7 @@ export class EuiComboBoxInput<T> extends Component<
         onClick: isListOpen && !isDisabled ? onCloseListClick : onOpenListClick,
         ref: toggleButtonRef,
         side: 'right',
+        tabIndex: -1,
         type: 'arrowDown',
       };
     }
@@ -274,11 +269,13 @@ export class EuiComboBoxInput<T> extends Component<
       <EuiFormControlLayout
         icon={icon}
         {...clickProps}
+        inputId={id}
         isLoading={isLoading}
         compressed={compressed}
         fullWidth={fullWidth}
         prepend={prepend}
-        append={append}>
+        append={append}
+      >
         <div
           className={wrapClasses}
           data-test-subj="comboBoxInput"
@@ -289,7 +286,11 @@ export class EuiComboBoxInput<T> extends Component<
           {placeholderMessage}
           <AutosizeInput
             aria-activedescendant={focusedOptionId}
+            aria-autocomplete="list"
             aria-controls={isListOpen ? rootId('listbox') : ''}
+            aria-expanded={isListOpen}
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledby}
             className="euiComboBox__input"
             data-test-subj="comboBoxSearchInput"
             disabled={isDisabled}
@@ -299,7 +300,7 @@ export class EuiComboBoxInput<T> extends Component<
             onChange={this.inputOnChange}
             onFocus={this.onFocus}
             ref={this.inputRefCallback}
-            role="textbox"
+            role="combobox"
             style={{ fontSize: 14 }}
             value={searchValue}
             autoFocus={autoFocus}

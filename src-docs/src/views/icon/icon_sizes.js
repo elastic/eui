@@ -32,13 +32,15 @@ export default () => (
           <EuiCopy
             display="block"
             textToCopy={iconSize}
-            afterMessage={`${iconSize} copied`}>
+            afterMessage={`${iconSize} copied`}
+          >
             {(copy) => (
               <EuiPanel
                 hasShadow={false}
                 hasBorder={false}
                 onClick={copy}
-                paddingSize="s">
+                paddingSize="s"
+              >
                 <EuiIcon type="logoElasticStack" size={iconSize} /> &emsp;{' '}
                 {iconSizesText[index]}
               </EuiPanel>

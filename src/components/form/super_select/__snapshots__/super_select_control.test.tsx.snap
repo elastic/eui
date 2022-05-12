@@ -14,15 +14,13 @@ Array [
     >
       <span
         class="euiScreenReaderOnly"
-        id="generated-id"
       >
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
+        aria-haspopup="listbox"
         aria-label="aria-label"
-        aria-labelledby="undefined generated-id"
-        class="euiSuperSelectControl testClass1 testClass2"
+        class="euiSuperSelectControl euiFormControlLayout--1icons testClass1 testClass2"
         data-test-subj="test subject string"
         type="button"
       />
@@ -58,14 +56,12 @@ Array [
     >
       <span
         class="euiScreenReaderOnly"
-        id="generated-id"
       >
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
-        aria-labelledby="undefined generated-id"
-        class="euiSuperSelectControl euiSuperSelectControl--compressed"
+        aria-haspopup="listbox"
+        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--compressed"
         type="button"
       />
       <div
@@ -100,14 +96,12 @@ Array [
     >
       <span
         class="euiScreenReaderOnly"
-        id="generated-id"
       >
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
-        aria-labelledby="undefined generated-id"
-        class="euiSuperSelectControl"
+        aria-haspopup="listbox"
+        class="euiSuperSelectControl euiFormControlLayout--1icons"
         type="button"
       />
       <div
@@ -142,14 +136,12 @@ Array [
     >
       <span
         class="euiScreenReaderOnly"
-        id="generated-id"
       >
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
-        aria-labelledby="undefined generated-id"
-        class="euiSuperSelectControl"
+        aria-haspopup="listbox"
+        class="euiSuperSelectControl euiFormControlLayout--1icons"
         type="button"
       />
       <div
@@ -184,14 +176,12 @@ Array [
     >
       <span
         class="euiScreenReaderOnly"
-        id="generated-id"
       >
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
-        aria-labelledby="undefined generated-id"
-        class="euiSuperSelectControl euiSuperSelectControl--fullWidth"
+        aria-haspopup="listbox"
+        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--fullWidth"
         type="button"
       />
       <div
@@ -226,19 +216,21 @@ Array [
     >
       <span
         class="euiScreenReaderOnly"
-        id="generated-id"
       >
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
-        aria-labelledby="undefined generated-id"
-        class="euiSuperSelectControl euiSuperSelectControl-isInvalid"
+        aria-haspopup="listbox"
+        class="euiSuperSelectControl euiFormControlLayout--2icons euiSuperSelectControl-isInvalid"
         type="button"
       />
       <div
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
       >
+        <span
+          color="danger"
+          data-euiicon-type="alert"
+        />
         <span
           class="euiFormControlLayoutCustomIcon"
         >
@@ -268,21 +260,21 @@ Array [
     >
       <span
         class="euiScreenReaderOnly"
-        id="generated-id"
       >
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
-        aria-labelledby="undefined generated-id"
-        class="euiSuperSelectControl euiSuperSelectControl-isLoading"
+        aria-haspopup="listbox"
+        class="euiSuperSelectControl euiFormControlLayout--2icons euiSuperSelectControl-isLoading"
         type="button"
       />
       <div
         class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
       >
         <span
-          class="euiLoadingSpinner euiLoadingSpinner--medium"
+          aria-label="Loading"
+          class="euiLoadingSpinner css-155ohbx-euiLoadingSpinner-m"
+          role="progressbar"
         />
         <span
           class="euiFormControlLayoutCustomIcon"
@@ -313,14 +305,12 @@ Array [
     >
       <span
         class="euiScreenReaderOnly"
-        id="generated-id"
       >
         Select an option: Option #1, is selected
       </span>
       <button
-        aria-haspopup="true"
-        aria-labelledby="undefined generated-id"
-        class="euiSuperSelectControl"
+        aria-haspopup="listbox"
+        class="euiSuperSelectControl euiFormControlLayout--1icons"
         type="button"
       >
         Option #1

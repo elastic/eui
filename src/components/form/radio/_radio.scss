@@ -1,8 +1,21 @@
+/**
+  * 1. Float above the visual radio and match its dimension, so that when users try to click it
+  *    they actually click this input.
+  */
+
 .euiRadio {
   position: relative;
 
+  // Set a top offset for the real input and faux input to align better with the text
+  $topOffset: (($euiSizeL - $euiRadioSize) / 2) - 1px;
+
   .euiRadio__input {
-    @include euiScreenReaderOnly;
+    @include size($euiRadioSize);
+    top: $topOffset;
+    cursor: pointer;
+    position: absolute; /* 1 */
+    opacity: 0; /* 1 */
+    z-index: 1; /* 1 */
 
     ~ .euiRadio__label {
       display: inline-block;
@@ -20,7 +33,7 @@
       display: inline-block;
       position: absolute;
       left: 0;
-      top: (($euiSizeL - $euiRadioSize) / 2) - 1px;
+      top: $topOffset;
     }
 
     &:checked {
@@ -49,37 +62,25 @@
       }
     }
 
-    &:focus,
-    &:active:not(:disabled) {
+    &:focus {
       + .euiRadio__circle {
         @include euiCustomControlFocused;
       }
     }
   }
 
-  /**
-   * 1. Float above the visual radio and match its dimension, so that when users try to click it
-   *    they actually click this input.
-   */
-
   &.euiRadio--inList,
   &.euiRadio--noLabel {
     min-height: $euiRadioSize;
     min-width: $euiRadioSize;
 
+    .euiRadio__input,
     .euiRadio__circle {
       top: 0;
     }
 
     .euiRadio__input {
-      @include size($euiRadioSize); /* 1 */
-
-      position: absolute; /* 1 */
-      opacity: 0; /* 1 */
-      z-index: 1; /* 1 */
-      margin: 0; /* 1 */
-      left: 0; /* 1 */
-      cursor: pointer;
+      margin: 0;
     }
   }
 }

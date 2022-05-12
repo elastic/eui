@@ -3,6 +3,7 @@
   padding: 0;
   text-align: center;
   border-radius: $euiBorderRadius;
+  outline-offset: -$euiFocusRingSize;
 }
 
 .euiPaginationButton-isActive {
@@ -22,6 +23,10 @@
   }
 }
 
+.euiPaginationArrowButton {
+  outline-offset: -$euiFocusRingSize;
+}
+
 .euiPaginationButton-isPlaceholder {
   align-items: baseline;
   color: $euiButtonColorDisabledText;
@@ -29,11 +34,4 @@
   padding: 0 $euiSizeS;
   height: $euiSizeL;
   padding-top: $euiSizeM / 2;
-}
-
-@include euiBreakpoint('xs', 's') {
-  .euiPaginationButton-isPlaceholder,
-  .euiPaginationButton--hideOnMobile {
-    display: none;
-  }
 }

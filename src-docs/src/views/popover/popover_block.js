@@ -20,7 +20,8 @@ export default () => {
       button={button}
       isOpen={isPopoverOpen}
       closePopover={closePopover}
-      display="block">
+      display="block"
+    >
       <div>This is a popover</div>
     </EuiPopover>
   );

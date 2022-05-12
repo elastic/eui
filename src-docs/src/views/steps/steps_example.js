@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -18,7 +16,6 @@ import { stepConfig, stepHorizontalConfig } from './playground';
 
 import Steps from './steps';
 const stepsSource = require('!!raw-loader!./steps');
-const stepsHtml = renderToHtml(Steps);
 const stepsSnippet = [
   `<EuiSteps
   steps={[
@@ -41,7 +38,6 @@ const stepsSnippet = [
 
 import StepsComplex from './steps_complex';
 const stepsComplexSource = require('!!raw-loader!./steps_complex');
-const stepsComplexHtml = renderToHtml(StepsComplex);
 const stepsComplexSnippet = [
   `<EuiSteps
   steps={[
@@ -90,23 +86,29 @@ const stepsComplexSnippet = [
 
 import HeadingElementSteps from './heading_element_steps';
 const headingElementStepsSource = require('!!raw-loader!./heading_element_steps');
-const headingElementStepsHtml = renderToHtml(HeadingElementSteps);
 const headingElementStepsSnippet = `<EuiSteps steps={steps} headingElement="h2" />
 `;
 
 import StepsHorizontal from './steps_horizontal';
 const stepsHorizontalSource = require('!!raw-loader!./steps_horizontal');
-const stepsHorizontalHtml = renderToHtml(StepsHorizontal);
 const stepsHorizontalSnippet = `<EuiStepsHorizontal steps={[{
-  title: 'Completed step',
-  isComplete: true,
-  onClick: function,
-}]} />
-`;
+    title: 'Completed step',
+    status: 'complete',
+    onClick: function,
+  },
+  {
+    title: 'Current step',
+    status: 'current',
+    onClick: function,
+  },
+  {
+    title: 'Incomplete step',
+    onClick: function,
+  }]}
+/>`;
 
 import Status from './status';
 const statusSource = require('!!raw-loader!./status');
-const statusHtml = renderToHtml(Steps);
 const statusSnippet = `<EuiSteps
   steps={[
     {
@@ -119,9 +121,7 @@ const statusSnippet = `<EuiSteps
 
 import StepsTitleSizes from './steps_title_sizes';
 const stepsTitleSizesSource = require('!!raw-loader!./steps_title_sizes');
-const stepsTitleSizesHtml = renderToHtml(StepsTitleSizes);
-const stepsTitleSizesSnippet = `<EuiSteps titleSize="xs" steps={steps} />
-`;
+const stepsTitleSizesSnippet = '<EuiSteps titleSize="xs" steps={steps} />';
 
 export const StepsExample = {
   title: 'Steps',
@@ -131,10 +131,6 @@ export const StepsExample = {
         {
           type: GuideSectionTypes.JS,
           code: stepsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: stepsHtml,
         },
       ],
       text: (
@@ -150,6 +146,7 @@ export const StepsExample = {
       props: { EuiSteps, EuiStep },
       snippet: stepsSnippet,
       demo: <Steps />,
+      playground: stepConfig,
     },
     {
       title: 'Complex steps',
@@ -157,10 +154,6 @@ export const StepsExample = {
         {
           type: GuideSectionTypes.JS,
           code: stepsComplexSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: stepsComplexHtml,
         },
       ],
       text: (
@@ -180,10 +173,6 @@ export const StepsExample = {
         {
           type: GuideSectionTypes.JS,
           code: headingElementStepsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: headingElementStepsHtml,
         },
       ],
       text: (
@@ -212,10 +201,6 @@ export const StepsExample = {
           type: GuideSectionTypes.JS,
           code: statusSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: statusHtml,
-        },
       ],
       text: (
         <p>
@@ -237,10 +222,6 @@ export const StepsExample = {
         {
           type: GuideSectionTypes.JS,
           code: stepsTitleSizesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: stepsTitleSizesHtml,
         },
       ],
       text: (
@@ -265,29 +246,28 @@ export const StepsExample = {
           type: GuideSectionTypes.JS,
           code: stepsHorizontalSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: stepsHorizontalHtml,
-        },
       ],
       text: (
         <Fragment>
           <p>
             For use when forms/setup instructions can and should be split into
-            multiple pages.
+            multiple pages. Each step should correspond to an individual page of
+            form elements, using the{' '}
+            <EuiCode language="tsx">{'status'}</EuiCode> key to denote the
+            user&apos;s progress.
           </p>
           <p>
-            For each step object, be sure to signify previous/completed steps
-            with <EuiCode language="ts">isComplete: true</EuiCode> and the
-            current/selected step with{' '}
-            <EuiCode language="ts">isSelected: true</EuiCode>.
+            For horizontal steps, the <EuiCode language="tsx">status</EuiCode>{' '}
+            key defaults to <EuiCode>{'"incomplete"'}</EuiCode> and the default
+            filled styling is reserved for indicating{' '}
+            <EuiCode>{'"current"'}</EuiCode> status.
           </p>
         </Fragment>
       ),
       demo: <StepsHorizontal />,
       snippet: stepsHorizontalSnippet,
       props: { EuiStepsHorizontal, EuiStepHorizontal },
+      playground: stepHorizontalConfig,
     },
   ],
-  playground: [stepConfig, stepHorizontalConfig],
 };

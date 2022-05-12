@@ -7,3 +7,24 @@ exports[`EuiTextColor is rendered 1`] = `
   data-test-subj="test subject string"
 />
 `;
+
+exports[`EuiTextColor props color is rendered with custom color 1`] = `
+<span
+  class="euiTextColor euiTextColor--custom"
+  style="color:#ff0000"
+>
+  <p>
+    Content
+  </p>
+</span>
+`;
+
+exports[`EuiTextColor props color is rendered with named color 1`] = `
+<span
+  class="euiTextColor euiTextColor--warning"
+>
+  <p>
+    Content
+  </p>
+</span>
+`;

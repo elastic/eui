@@ -15,10 +15,18 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 
+import { useGeneratedHtmlId } from '../../../../src/services';
+
 export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [paddingSize, setPaddingSize] = useState('l');
   const [paddingSizeName, setPaddingSizeName] = useState('large');
+  const mediumPaddingFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'mediumPaddingFlyoutTitle',
+  });
+  const mediumPaddingFlyoutId = useGeneratedHtmlId({
+    prefix: 'mediumPaddingFlyout',
+  });
 
   const sizes = [
     {
@@ -56,11 +64,12 @@ export default () => {
         ownFocus
         onClose={closeFlyout}
         paddingSize={paddingSize}
-        id="flyoutMediumPadding"
-        aria-labelledby="flyoutMediumPaddingTitle">
+        id={mediumPaddingFlyoutId}
+        aria-labelledby={mediumPaddingFlyoutTitleId}
+      >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
-            <h2 id="flyoutMediumPaddingTitle">
+            <h2 id={mediumPaddingFlyoutTitleId}>
               A flyout with a {paddingSizeName} padding
             </h2>
           </EuiTitle>
@@ -89,7 +98,8 @@ export default () => {
               <EuiButtonEmpty
                 iconType="cross"
                 onClick={closeFlyout}
-                flush="left">
+                flush="left"
+              >
                 Close
               </EuiButtonEmpty>
             </EuiFlexItem>
@@ -110,7 +120,8 @@ export default () => {
         aria-controls="flyoutMediumPadding"
         aria-expanded={isFlyoutVisible}
         aria-haspopup="true"
-        aria-label="Show padding size flyout">
+        aria-label="Show padding size flyout"
+      >
         Show flyout to test padding sizes
       </EuiButton>
       {flyout}

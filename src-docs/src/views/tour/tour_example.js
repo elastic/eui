@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -12,13 +10,15 @@ import {
 } from '../../../../src/components';
 
 import Step from './step';
+import StepDom from './step_dom';
 import Tour from './tour';
 import Managed from './managed';
 import ManagedHook from './managed_hook';
 import FullScreen from './fullscreen';
 
+import Guidelines from './guidelines';
+
 const stepSource = require('!!raw-loader!./step');
-const stepHtml = renderToHtml(Step);
 const stepSnippet = `
 <EuiTourStep
   content={
@@ -40,19 +40,16 @@ const stepSnippet = `
   </EuiText>
 </EuiTourStep>
 `;
+const stepDomSource = require('!!raw-loader!./step_dom');
 const tourSource = require('!!raw-loader!./tour');
-const tourHtml = renderToHtml(Tour);
 const managedSource = require('!!raw-loader!./managed');
-const managedHtml = renderToHtml(Managed);
 const managedHookSource = require('!!raw-loader!./managed_hook');
-const managedHookHtml = renderToHtml(ManagedHook);
 
 const fullSource = require('!!raw-loader!./fullscreen');
-const fullHtml = renderToHtml(FullScreen);
 
 export const TourExample = {
   title: 'Tour',
-  beta: true,
+  guidelines: <Guidelines />,
   intro: (
     <EuiText>
       <p>
@@ -60,23 +57,24 @@ export const TourExample = {
         customizable way to showcase items on a page in an ordered manner by
         augmenting existing elements on the page without altering functionality.
       </p>
-      <EuiCallOut
-        iconType="save"
-        title="The examples on this page, use localStorage to persist state to demonstrate starting a tour at different stages."
-      />
     </EuiText>
   ),
   sections: [
+    {
+      wrapText: false,
+      text: (
+        <EuiCallOut
+          iconType="save"
+          title="The examples on this page, use localStorage to persist state to demonstrate starting a tour at different stages."
+        />
+      ),
+    },
     {
       title: 'Step options',
       source: [
         {
           type: GuideSectionTypes.JS,
           code: stepSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: stepHtml,
         },
       ],
       text: (
@@ -96,15 +94,31 @@ export const TourExample = {
       snippet: stepSnippet,
     },
     {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: stepDomSource,
+        },
+      ],
+      text: (
+        <>
+          <h3>Using DOM selector as anchor location</h3>
+          <p>
+            Instead of wrapping the target element, use the{' '}
+            <EuiCode>anchor</EuiCode> prop to specify a DOM node. Accepted
+            values include an HTML element, a function returning an HTML
+            element, or a DOM query selector.
+          </p>
+        </>
+      ),
+      demo: <StepDom />,
+    },
+    {
       title: 'Standalone steps',
       source: [
         {
           type: GuideSectionTypes.JS,
           code: tourSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: tourHtml,
         },
       ],
       text: (
@@ -124,10 +138,6 @@ export const TourExample = {
         {
           type: GuideSectionTypes.JS,
           code: managedHookSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: managedHookHtml,
         },
       ],
       text: (
@@ -149,10 +159,6 @@ export const TourExample = {
           type: GuideSectionTypes.JS,
           code: managedSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: managedHtml,
-        },
       ],
       text: (
         <p>
@@ -165,15 +171,11 @@ export const TourExample = {
       demo: <Managed />,
     },
     {
-      title: 'Full screen demo',
+      title: 'Fullscreen demo',
       source: [
         {
           type: GuideSectionTypes.JS,
           code: fullSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: fullHtml,
         },
       ],
       text: (
@@ -183,7 +185,7 @@ export const TourExample = {
         </p>
       ),
       fullScreen: {
-        slug: 'full-screen',
+        slug: 'fullscreen',
         demo: <FullScreen />,
       },
     },

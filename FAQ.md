@@ -8,13 +8,13 @@ The Elastic UI Framework (EUI) is a design library in use at Elastic to build Re
 
 ## Can I use EUI?
 
-Yes, but be aware of the [license](LICENSE) as always. Although the roadmap and priorities are directed by our own usage within Elastic, we do attempt to make the platform generically useful for any React application and try to test for it.
+See our licensing FAQ: [I’m using EUI or Elastic Charts in my application outside of Kibana, how does this affect me?](https://www.elastic.co/pricing/faq/licensing#im-using-eui-or-elastic-charts-in-my-application-outside-of-kibana-how-does-this-affect-me)
 
 ## What is the versioning, releases and upgrade strategy?
 
 We use [semver](https://semver.org/) for versioning and use that to denote breaking changes in EUI upgrades. Traditionally we consider API changes in our prop names or existing component functionality to be a reason for a breaking change, but do not track the renaming of CSS selectors, mixins or other style changes under this same rigor.
 
-Traditionally releases are made weekly against whatever is in master and you can upgrade from NPM as you see fit.
+Traditionally releases are made weekly against whatever is in the `main` branch and you can upgrade from NPM as you see fit.
 
 ## How do you handle Typescript, Sass and theming?
 

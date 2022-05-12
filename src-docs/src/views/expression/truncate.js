@@ -24,7 +24,6 @@ export default () => (
       <EuiExpression
         description={description}
         display="columns"
-        text
         textWrap="truncate"
         value={value}
         onClick={() => {}}
@@ -38,7 +37,6 @@ export default () => (
       <EuiExpression
         value={nodes}
         display="columns"
-        text
         textWrap="truncate"
         description="indices"
         onClick={() => {}}

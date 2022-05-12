@@ -2,14 +2,11 @@ import React from 'react';
 import DelayRender from './delay_render';
 import { GuideSectionTypes } from '../../components';
 import { EuiDelayRender, EuiDelayHide } from '../../../../src/components';
-import { renderToHtml } from '../../services';
 import DelayHide from './delay_hide';
 
 const delayHideSource = require('!!raw-loader!./delay_hide');
-const delayHideHtml = renderToHtml(DelayHide);
 
 const delayRenderSource = require('!!raw-loader!./delay_render');
-const delayRenderHtml = renderToHtml(DelayRender);
 
 export const DelayRenderExample = {
   title: 'Delay',
@@ -20,10 +17,6 @@ export const DelayRenderExample = {
         {
           type: GuideSectionTypes.JS,
           code: delayRenderSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: delayRenderHtml,
         },
       ],
       text: (
@@ -44,10 +37,6 @@ export const DelayRenderExample = {
         {
           type: GuideSectionTypes.JS,
           code: delayHideSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: delayHideHtml,
         },
       ],
       text: (

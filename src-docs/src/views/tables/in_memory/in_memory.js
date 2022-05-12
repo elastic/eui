@@ -90,6 +90,7 @@ export const Table = () => {
 
   return (
     <EuiInMemoryTable
+      tableCaption="Demo of EuiInMemoryTable"
       items={store.users}
       columns={columns}
       pagination={true}

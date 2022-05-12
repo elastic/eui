@@ -13,7 +13,8 @@ export default () => (
       <EuiSplitPanel.Inner
         className="eui-textCenter"
         grow={false}
-        style={{ minWidth: 96 }}>
+        style={{ minWidth: 96 }}
+      >
         <EuiToken iconType="tokenStruct" size="xs" color="gray" />
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner paddingSize="none" color="subdued">
@@ -21,7 +22,8 @@ export default () => (
           language="html"
           isCopyable
           transparentBackground
-          paddingSize="m">
+          paddingSize="m"
+        >
           {'<EuiToken iconType="tokenStruct" size="xs" color="gray" />'}
         </EuiCodeBlock>
       </EuiSplitPanel.Inner>
@@ -31,7 +33,8 @@ export default () => (
       <EuiSplitPanel.Inner
         className="eui-textCenter"
         grow={false}
-        style={{ minWidth: 96 }}>
+        style={{ minWidth: 96 }}
+      >
         <EuiToken iconType="tokenStruct" fill="none" />
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner paddingSize="none" color="subdued">
@@ -39,7 +42,8 @@ export default () => (
           language="html"
           isCopyable
           transparentBackground
-          paddingSize="m">
+          paddingSize="m"
+        >
           {'<EuiToken iconType="tokenStruct" fill="none" />'}
         </EuiCodeBlock>
       </EuiSplitPanel.Inner>
@@ -49,7 +53,8 @@ export default () => (
       <EuiSplitPanel.Inner
         className="eui-textCenter"
         grow={false}
-        style={{ minWidth: 96 }}>
+        style={{ minWidth: 96 }}
+      >
         <EuiToken
           iconType="tokenStruct"
           size="m"
@@ -62,7 +67,8 @@ export default () => (
           language="html"
           isCopyable
           transparentBackground
-          paddingSize="m">
+          paddingSize="m"
+        >
           {
             '<EuiToken iconType="tokenStruct" size="m" shape="circle" color="#FF0000" />'
           }
@@ -74,7 +80,8 @@ export default () => (
       <EuiSplitPanel.Inner
         className="eui-textCenter"
         grow={false}
-        style={{ minWidth: 96 }}>
+        style={{ minWidth: 96 }}
+      >
         <EuiToken
           iconType="faceNeutral"
           size="l"
@@ -88,7 +95,8 @@ export default () => (
           language="html"
           isCopyable
           transparentBackground
-          paddingSize="m">
+          paddingSize="m"
+        >
           {
             '<EuiToken iconType="faceNeutral" size="l" color="euiColorVis7" shape="rectangle" fill="dark" />'
           }

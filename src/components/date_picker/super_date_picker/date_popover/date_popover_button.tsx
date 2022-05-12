@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -23,15 +12,17 @@ import React, {
   MouseEventHandler,
 } from 'react';
 import classNames from 'classnames';
+import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 
+import { useEuiI18n } from '../../../i18n';
 import { EuiPopover, EuiPopoverProps } from '../../../popover';
 
-import { formatTimeString } from '../pretty_duration';
+import { TimeOptions } from '../time_options';
+import { useFormatTimeString } from '../pretty_duration';
 import {
   EuiDatePopoverContent,
   EuiDatePopoverContentProps,
 } from './date_popover_content';
-import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 
 export interface EuiDatePopoverButtonProps {
   className?: string;
@@ -50,6 +41,8 @@ export interface EuiDatePopoverButtonProps {
   timeFormat: string;
   value: string;
   utcOffset?: number;
+  compressed?: boolean;
+  timeOptions: TimeOptions;
 }
 
 export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> = (
@@ -71,6 +64,8 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
     isOpen,
     onPopoverToggle,
     onPopoverClose,
+    compressed,
+    timeOptions,
     ...rest
   } = props;
 
@@ -78,6 +73,7 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
     'euiDatePopoverButton',
     `euiDatePopoverButton--${position}`,
     {
+      'euiDatePopoverButton--compressed': compressed,
       'euiDatePopoverButton-isSelected': isOpen,
       'euiDatePopoverButton-isInvalid': isInvalid,
       'euiDatePopoverButton-needsUpdating': needsUpdating,
@@ -85,11 +81,29 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
     },
   ]);
 
-  let title = value;
+  const formattedValue = useFormatTimeString(
+    value,
+    dateFormat,
+    roundUp,
+    locale
+  );
+  let title = formattedValue;
+
+  const invalidTitle = useEuiI18n(
+    'euiDatePopoverButton.invalidTitle',
+    'Invalid date: {title}',
+    { title }
+  );
+  const outdatedTitle = useEuiI18n(
+    'euiDatePopoverButton.outdatedTitle',
+    'Update needed: {title}',
+    { title }
+  );
+
   if (isInvalid) {
-    title = `Invalid date: ${title}`;
+    title = invalidTitle;
   } else if (needsUpdating) {
-    title = `Update needed: ${title}`;
+    title = outdatedTitle;
   }
 
   const button = (
@@ -99,8 +113,9 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
       title={title}
       disabled={isDisabled}
       data-test-subj={`superDatePicker${position}DatePopoverButton`}
-      {...buttonProps}>
-      {formatTimeString(value, dateFormat, roundUp, locale)}
+      {...buttonProps}
+    >
+      {formattedValue}
     </button>
   );
 
@@ -112,7 +127,8 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
       anchorPosition={position === 'start' ? 'downLeft' : 'downRight'}
       display="block"
       panelPaddingSize="none"
-      {...rest}>
+      {...rest}
+    >
       <EuiDatePopoverContent
         value={value}
         roundUp={roundUp}
@@ -122,6 +138,7 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
         locale={locale}
         position={position}
         utcOffset={utcOffset}
+        timeOptions={timeOptions}
       />
     </EuiPopover>
   );

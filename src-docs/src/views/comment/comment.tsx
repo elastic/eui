@@ -16,7 +16,7 @@ const copyAction = (
   <EuiButtonIcon
     title="Custom action"
     aria-label="Custom action"
-    color="subdued"
+    color="text"
     iconType="copy"
   />
 );
@@ -27,7 +27,8 @@ export default () => (
       username="janed"
       event="added a comment"
       actions={copyAction}
-      timestamp="on Jan 1, 2020">
+      timestamp="on Jan 1, 2020"
+    >
       {body}
     </EuiComment>
   </div>

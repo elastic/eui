@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../../components';
-import { Chart, Partition } from '@elastic/charts';
+import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
 
 import {
   EUI_CHARTS_THEME_DARK,
@@ -12,9 +12,13 @@ import {
   EuiTitle,
   EuiSpacer,
 } from '../../../../src/components';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
   const themeContext = useContext(ThemeContext);
+  const htmlId = htmlIdGenerator();
+  const exampleOne = htmlId();
+  const exampleTwo = htmlId();
 
   /**
    * Setup theme based on current light/dark theme
@@ -23,17 +27,17 @@ export default () => {
   const euiChartTheme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK
     : EUI_CHARTS_THEME_LIGHT;
-  const euiPartitionConfig = euiChartTheme.partition;
 
   return (
     <div>
       <EuiFlexGrid columns={2}>
         <EuiFlexItem>
           <EuiTitle className="eui-textCenter" size="xs">
-            <h3>Year to date PR count by status</h3>
+            <h3 id={exampleOne}>Year to date PR count by status</h3>
           </EuiTitle>
           <EuiSpacer />
           <Chart size={{ height: 200 }}>
+            <Settings theme={euiChartTheme.theme} ariaLabelledBy={exampleOne} />
             <Partition
               id="pieByPR"
               data={[
@@ -46,6 +50,7 @@ export default () => {
                   count: 319,
                 },
               ]}
+              layout={PartitionLayout.sunburst}
               valueAccessor={(d) => d.count}
               layers={[
                 {
@@ -56,19 +61,17 @@ export default () => {
                   },
                 },
               ]}
-              config={{
-                ...euiPartitionConfig,
-                clockwiseSectors: false,
-              }}
+              clockwiseSectors={false}
             />
           </Chart>
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiTitle className="eui-textCenter" size="xs">
-            <h3>Code languages</h3>
+            <h3 id={exampleTwo}>Code languages</h3>
           </EuiTitle>
           <EuiSpacer />
           <Chart size={{ height: 200 }}>
+            <Settings theme={euiChartTheme.theme} ariaLabelledBy={exampleTwo} />
             <Partition
               id="donutByLanguage"
               data={[
@@ -85,6 +88,7 @@ export default () => {
                   percent: 8.7,
                 },
               ]}
+              layout={PartitionLayout.sunburst}
               valueAccessor={(d) => Number(d.percent)}
               valueFormatter={() => ''}
               layers={[
@@ -96,11 +100,8 @@ export default () => {
                   },
                 },
               ]}
-              config={{
-                ...euiPartitionConfig,
-                emptySizeRatio: 0.4,
-                clockwiseSectors: false,
-              }}
+              emptySizeRatio={0.4}
+              clockwiseSectors={false}
             />
           </Chart>
         </EuiFlexItem>

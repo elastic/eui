@@ -1,40 +1,28 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
-export { EuiHeader, EuiHeaderProps, EuiHeaderSections } from './header';
+export type { EuiHeaderProps, EuiHeaderSections } from './header';
+export { EuiHeader } from './header';
 
-export { EuiHeaderAlert, EuiHeaderAlertProps } from './header_alert';
+export type { EuiHeaderAlertProps } from './header_alert';
+export { EuiHeaderAlert } from './header_alert';
 
 export { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
 
-export {
-  EuiHeaderLink,
-  EuiHeaderLinkProps,
-  EuiHeaderLinks,
-  EuiHeaderLinksProps,
-} from './header_links';
+export type { EuiHeaderLinkProps, EuiHeaderLinksProps } from './header_links';
+export { EuiHeaderLink, EuiHeaderLinks } from './header_links';
 
-export { EuiHeaderLogo, EuiHeaderLogoProps } from './header_logo';
+export type { EuiHeaderLogoProps } from './header_logo';
+export { EuiHeaderLogo } from './header_logo';
 
+export type { EuiHeaderSectionItemButtonProps } from './header_section';
 export {
   EuiHeaderSection,
   EuiHeaderSectionItem,
   EuiHeaderSectionItemButton,
-  EuiHeaderSectionItemButtonProps,
 } from './header_section';

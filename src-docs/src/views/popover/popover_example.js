@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -16,47 +14,39 @@ import {
 
 import Popover from './popover';
 const popoverSource = require('!!raw-loader!./popover');
-const popoverHtml = renderToHtml(Popover);
+
+import InitialFocus from './initial_focus';
+const initialFocusSource = require('!!raw-loader!./initial_focus');
 
 import TrapFocus from './trap_focus';
 const trapFocusSource = require('!!raw-loader!./trap_focus');
-const trapFocusHtml = renderToHtml(TrapFocus);
 
 import PopoverAnchorPosition from './popover_anchor_position';
 const popoverAnchorPositionSource = require('!!raw-loader!./popover_anchor_position');
-const popoverAnchorPositionHtml = renderToHtml(PopoverAnchorPosition);
 
 import PopoverPanelClassName from './popover_panel_class_name';
 const popoverPanelClassNameSource = require('!!raw-loader!./popover_panel_class_name');
-const popoverPanelClassNameHtml = renderToHtml(PopoverPanelClassName);
 
 import PopoverWithTitle from './popover_with_title';
 const popoverWithTitleSource = require('!!raw-loader!./popover_with_title');
-const popoverWithTitleHtml = renderToHtml(PopoverWithTitle);
 
 import PopoverWithTitlePadding from './popover_with_title_padding';
 const popoverWithTitlePaddingSource = require('!!raw-loader!./popover_with_title_padding');
-const popoverWithTitlePaddingHtml = renderToHtml(PopoverWithTitlePadding);
 
 import PopoverHTMLElementAnchor from './popover_htmlelement_anchor';
 const popoverHTMLElementAnchorSource = require('!!raw-loader!./popover_htmlelement_anchor');
-const popoverHTMLElementAnchorHtml = renderToHtml(PopoverHTMLElementAnchor);
 
 import PopoverContainer from './popover_container';
 const popoverContainerSource = require('!!raw-loader!./popover_container');
-const popoverContainerHtml = renderToHtml(PopoverContainer);
 
 import PopoverFixed from './popover_fixed';
 const popoverFixedSource = require('!!raw-loader!./popover_fixed');
-const popoverFixedHtml = renderToHtml(PopoverFixed);
 
 import PopoverBlock from './popover_block';
 const popoverBlockSource = require('!!raw-loader!./popover_block');
-const popoverBlockHtml = renderToHtml(PopoverBlock);
 
 import InputPopover from './input_popover';
 const inputPopoverSource = require('!!raw-loader!./input_popover');
-const inputPopoverHtml = renderToHtml(PopoverBlock);
 
 const popOverSnippet = `<EuiPopover
   button={button}
@@ -67,6 +57,14 @@ const popOverSnippet = `<EuiPopover
 
 const trapFocusSnippet = `<EuiPopover
   ownFocus={false}
+  button={button}
+  isOpen={isPopoverOpen}
+  closePopover={closePopover}>
+  <!-- Popover content -->
+</EuiPopover>`;
+
+const initialFocusSnippet = `<EuiPopover
+  initialFocus=".someSelector"
   button={button}
   isOpen={isPopoverOpen}
   closePopover={closePopover}>
@@ -149,10 +147,6 @@ export const PopoverExample = {
           type: GuideSectionTypes.JS,
           code: popoverSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: popoverHtml,
-        },
       ],
       text: (
         <>
@@ -187,10 +181,6 @@ export const PopoverExample = {
         {
           type: GuideSectionTypes.JS,
           code: popoverAnchorPositionSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: popoverAnchorPositionHtml,
         },
       ],
       text: (
@@ -227,10 +217,6 @@ export const PopoverExample = {
           type: GuideSectionTypes.JS,
           code: popoverWithTitleSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: popoverWithTitleHtml,
-        },
       ],
       text: (
         <>
@@ -257,10 +243,6 @@ export const PopoverExample = {
           type: GuideSectionTypes.JS,
           code: popoverWithTitlePaddingSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: popoverWithTitlePaddingHtml,
-        },
       ],
       text: (
         <p>
@@ -282,10 +264,6 @@ export const PopoverExample = {
           type: GuideSectionTypes.JS,
           code: popoverPanelClassNameSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: popoverPanelClassNameHtml,
-        },
       ],
       text: (
         <p>
@@ -303,10 +281,6 @@ export const PopoverExample = {
         {
           type: GuideSectionTypes.JS,
           code: popoverBlockSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: popoverBlockHtml,
         },
       ],
       text: (
@@ -328,10 +302,6 @@ export const PopoverExample = {
           type: GuideSectionTypes.JS,
           code: popoverFixedSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: popoverFixedHtml,
-        },
       ],
       text: (
         <p>
@@ -352,10 +322,6 @@ export const PopoverExample = {
           type: GuideSectionTypes.JS,
           code: popoverContainerSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: popoverContainerHtml,
-        },
       ],
       text: (
         <p>
@@ -374,10 +340,6 @@ export const PopoverExample = {
         {
           type: GuideSectionTypes.JS,
           code: inputPopoverSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: inputPopoverHtml,
         },
       ],
       text: (
@@ -406,15 +368,45 @@ export const PopoverExample = {
       demo: <InputPopover />,
     },
     {
+      title: 'Setting an initial focus',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: initialFocusSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            If you want a specific child element of the popover to immediately
+            gain focus when the popover is open, use the{' '}
+            <EuiCode language="ts">initialFocus</EuiCode> prop to pass either a
+            selector or DOM node.
+          </p>
+          <EuiCallOut
+            iconType="accessibility"
+            color="warning"
+            title={
+              <>
+                It can be jarring for keyboard and screen reader users to
+                immediately land on an element with no other context. To
+                alleviate this, ensure that your initial focus target makes
+                sense alone or is the primary goal of the popover.
+              </>
+            }
+          />
+        </>
+      ),
+      props: { EuiPopover },
+      snippet: initialFocusSnippet,
+      demo: <InitialFocus />,
+    },
+    {
       title: 'Removing the focus trap',
       source: [
         {
           type: GuideSectionTypes.JS,
           code: trapFocusSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: trapFocusHtml,
         },
       ],
       text: (
@@ -447,10 +439,6 @@ export const PopoverExample = {
         {
           type: GuideSectionTypes.JS,
           code: popoverHTMLElementAnchorSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: popoverHTMLElementAnchorHtml,
         },
       ],
       text: (

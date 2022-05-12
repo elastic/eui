@@ -103,9 +103,6 @@ exports[`EuiQuickSelect is rendered 1`] = `
       </EuiButton>
     </EuiFlexItem>
   </EuiFlexGroup>
-  <EuiHorizontalRule
-    margin="s"
-  />
   <EuiScreenReaderOnly>
     <p
       id="generated-id"
@@ -116,7 +113,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
         values={
           Object {
             "timeTense": "last",
-            "timeUnit": "minutes",
+            "timeUnit": "Minutes",
             "timeValue": 15,
           }
         }
@@ -229,9 +226,6 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
       </EuiButton>
     </EuiFlexItem>
   </EuiFlexGroup>
-  <EuiHorizontalRule
-    margin="s"
-  />
   <EuiScreenReaderOnly>
     <p
       id="generated-id"
@@ -242,7 +236,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
         values={
           Object {
             "timeTense": "Next",
-            "timeUnit": "months",
+            "timeUnit": "Months",
             "timeValue": 32,
           }
         }

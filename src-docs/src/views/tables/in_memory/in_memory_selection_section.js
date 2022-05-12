@@ -1,7 +1,6 @@
 import React from 'react';
 import { EuiCode } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
-import { renderToHtml } from '../../../services';
 
 import { Table } from './in_memory_selection';
 import { EuiInMemoryTable } from '../../../../../src/components/basic_table/in_memory_table';
@@ -27,7 +26,6 @@ import { FieldValueOptionType } from '!!prop-loader!../../../../../src/component
 import { FieldValueToggleGroupFilterItemType } from '!prop-loader!../../../../../src/components/search_bar/filters/field_value_toggle_group_filter.tsx';
 
 const source = require('!!raw-loader!./in_memory_selection');
-const html = renderToHtml(Table);
 
 export const selectionSection = {
   title: 'In-memory table selection',
@@ -35,10 +33,6 @@ export const selectionSection = {
     {
       type: GuideSectionTypes.JS,
       code: source,
-    },
-    {
-      type: GuideSectionTypes.HTML,
-      code: html,
     },
   ],
   text: (

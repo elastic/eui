@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -36,21 +25,13 @@ import {
 
 import { IconType, IconSize, EuiIcon } from '../../icon';
 
+import { EuiLoadingSpinner } from '../../loading';
+
+import { ButtonColor } from '../button';
+
 import { validateHref } from '../../../services/security/href_validator';
 
-export type EuiButtonIconColor =
-  | 'accent'
-  | 'danger'
-  | 'ghost'
-  | 'primary'
-  /**
-   * Set for deprecation 3/2/21
-   * This color button is close enough to text to be duplicative
-   */
-  | 'subdued'
-  | 'success'
-  | 'text'
-  | 'warning';
+export type EuiButtonIconColor = ButtonColor;
 
 const displayToClassNameMap = {
   base: null,
@@ -65,7 +46,6 @@ export interface EuiButtonIconProps extends CommonProps {
   iconType: IconType;
   /**
    * Any of the named color palette options.
-   * **`subdued` set to be DEPRECATED, use `text` instead**
    */
   color?: EuiButtonIconColor;
   'aria-label'?: string;
@@ -88,14 +68,18 @@ export interface EuiButtonIconProps extends CommonProps {
   isSelected?: boolean;
   /**
    * Sets the display style for matching other EuiButton types.
-   * `base` is equivelant to a typical EuiButton
-   * `fill` is equivelant to a filled EuiButton
-   * `empty` (default) is equivelant to an EuiButtonEmpty
+   * `base` is equivalent to a typical EuiButton
+   * `fill` is equivalent to a filled EuiButton
+   * `empty` (default) is equivalent to an EuiButtonEmpty
    */
   display?: EuiButtonIconDisplay;
+  /**
+   * Disables the button and changes the icon to a loading spinner
+   */
+  isLoading?: boolean;
 }
 
-type EuiButtonIconPropsForAnchor = {
+export type EuiButtonIconPropsForAnchor = {
   type?: string;
 } & PropsForAnchor<
   EuiButtonIconProps,
@@ -123,7 +107,6 @@ const colorToClassNameMap: { [color in EuiButtonIconColor]: string } = {
   danger: 'euiButtonIcon--danger',
   ghost: 'euiButtonIcon--ghost',
   primary: 'euiButtonIcon--primary',
-  subdued: 'euiButtonIcon--subdued',
   success: 'euiButtonIcon--success',
   text: 'euiButtonIcon--text',
   warning: 'euiButtonIcon--warning',
@@ -147,6 +130,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   iconSize = 'm',
   color = 'primary',
   isDisabled: _isDisabled,
+  disabled,
   href,
   type = 'button',
   display = 'empty',
@@ -155,10 +139,11 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   size = 'xs',
   buttonRef,
   isSelected,
+  isLoading,
   ...rest
 }) => {
   const isHrefValid = !href || validateHref(href);
-  const isDisabled = _isDisabled || !isHrefValid;
+  const isDisabled = _isDisabled || disabled || !isHrefValid || isLoading;
 
   const ariaHidden = rest['aria-hidden'];
   const isAriaHidden = ariaHidden === 'true' || ariaHidden === true;
@@ -183,7 +168,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   // Add an icon to the button if one exists.
   let buttonIcon;
 
-  if (iconType) {
+  if (iconType && !isLoading) {
     buttonIcon = (
       <EuiIcon
         className="euiButtonIcon__icon"
@@ -193,6 +178,15 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
         color="inherit" // forces the icon to inherit its parent color
       />
     );
+  }
+
+  // `original` size doesn't exist in `EuiLoadingSpinner`
+  // when the `iconSize` is `original` we don't pass any size to the `EuiLoadingSpinner`
+  // so it gets the default size
+  const loadingSize = iconSize === 'original' ? undefined : iconSize;
+
+  if (iconType && isLoading) {
+    buttonIcon = <EuiLoadingSpinner size={loadingSize} />;
   }
 
   // <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
@@ -208,7 +202,8 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
         target={target}
         rel={secureRel}
         ref={buttonRef as Ref<HTMLAnchorElement>}
-        {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
+        {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
+      >
         {buttonIcon}
       </a>
     );
@@ -223,7 +218,8 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
       aria-pressed={isSelected}
       type={type as typeof buttonType}
       ref={buttonRef as Ref<HTMLButtonElement>}
-      {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
+      {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
+    >
       {buttonIcon}
     </button>
   );

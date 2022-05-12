@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -12,7 +10,6 @@ import {
 
 import OutsideClickDetector from './outside_click_detector';
 const outsideClickDetectorSource = require('!!raw-loader!./outside_click_detector');
-const outsideClickDetectorHtml = renderToHtml(OutsideClickDetector);
 
 export const OutsideClickDetectorExample = {
   title: 'Outside click detector',
@@ -22,10 +19,6 @@ export const OutsideClickDetectorExample = {
         {
           type: GuideSectionTypes.JS,
           code: outsideClickDetectorSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: outsideClickDetectorHtml,
         },
       ],
       text: (

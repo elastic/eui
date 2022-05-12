@@ -40,6 +40,49 @@ exports[`EuiFormControlLayout props clear onClick is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiFormControlLayout props compressed renders small-sized icon, clear button, and loading spinner 1`] = `
+<div
+  class="euiFormControlLayout euiFormControlLayout--compressed"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <div
+      class="euiFormControlLayoutIcons"
+    >
+      <span
+        class="euiFormControlLayoutCustomIcon"
+      >
+        <span
+          aria-hidden="true"
+          class="euiFormControlLayoutCustomIcon__icon"
+          data-euiicon-type="alert"
+        />
+      </span>
+    </div>
+    <div
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+    >
+      <button
+        aria-label="Clear input"
+        class="euiFormControlLayoutClearButton euiFormControlLayoutClearButton--small"
+        type="button"
+      >
+        <span
+          class="euiFormControlLayoutClearButton__icon"
+          data-euiicon-type="cross"
+        />
+      </button>
+      <span
+        aria-label="Loading"
+        class="euiLoadingSpinner css-1y37fq2-euiLoadingSpinner-s"
+        role="progressbar"
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiFormControlLayout props fullWidth is rendered 1`] = `
 <div
   class="euiFormControlLayout euiFormControlLayout--fullWidth"
@@ -147,6 +190,49 @@ exports[`EuiFormControlLayout props icon side right is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiFormControlLayout props isDropdown is rendered 1`] = `
+<div
+  class="euiFormControlLayout"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <div
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+    >
+      <span
+        class="euiFormControlLayoutCustomIcon"
+      >
+        <span
+          aria-hidden="true"
+          class="euiFormControlLayoutCustomIcon__icon"
+          data-euiicon-type="arrowDown"
+        />
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiFormControlLayout props isInvalid is rendered 1`] = `
+<div
+  class="euiFormControlLayout"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <div
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+    >
+      <span
+        color="danger"
+        data-euiicon-type="alert"
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiFormControlLayout props isLoading is rendered 1`] = `
 <div
   class="euiFormControlLayout"
@@ -158,7 +244,9 @@ exports[`EuiFormControlLayout props isLoading is rendered 1`] = `
       class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
     >
       <span
-        class="euiLoadingSpinner euiLoadingSpinner--medium"
+        aria-label="Loading"
+        class="euiLoadingSpinner css-155ohbx-euiLoadingSpinner-m"
+        role="progressbar"
       />
     </div>
   </div>

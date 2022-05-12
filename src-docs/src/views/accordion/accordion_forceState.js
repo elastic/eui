@@ -6,11 +6,14 @@ import {
   EuiButtonGroup,
   EuiSpacer,
 } from '../../../../src/components';
-import { htmlIdGenerator } from '../../../../src/services';
+import { htmlIdGenerator, useGeneratedHtmlId } from '../../../../src/services';
 
 const idPrefix = htmlIdGenerator()();
 
 export default () => {
+  const forcedStateAccordionId = useGeneratedHtmlId({
+    prefix: 'forcedStateAccordion',
+  });
   const [trigger, setTrigger] = useState('closed');
   const [toggleIdSelected, setID] = useState(`${idPrefix}--closed`);
   const toggleButtons = [
@@ -45,11 +48,12 @@ export default () => {
       />
       <EuiSpacer />
       <EuiAccordion
-        id={htmlIdGenerator()()}
+        id={forcedStateAccordionId}
         forceState={trigger}
         onToggle={onToggle}
         buttonContent="I am a controlled accordion"
-        padding="l">
+        padding="l"
+      >
         <EuiPanel color="subdued">
           Any content inside of <strong>EuiAccordion</strong> will appear here.
         </EuiPanel>

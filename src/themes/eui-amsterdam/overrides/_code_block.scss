@@ -1,8 +1,0 @@
-.euiCodeBlock.euiCodeBlock--inline {
-  border-radius: $euiBorderRadiusSmall;
-  color: makeHighContrastColor($euiColorVis3, $euiCodeBlockBackgroundColor);
-
-  .euiCodeBlock__code {
-    font-weight: $euiCodeFontWeightBold;
-  }
-}

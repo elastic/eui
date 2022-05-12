@@ -65,7 +65,8 @@ export default () => {
               <EuiResizablePanel
                 mode="collapsible"
                 initialSize={20}
-                minSize="10%">
+                minSize="10%"
+              >
                 <EuiListGroup flush>{itemElements}</EuiListGroup>
               </EuiResizablePanel>
 
@@ -98,7 +99,8 @@ export default () => {
               <EuiResizablePanel
                 mode="collapsible"
                 initialSize={20}
-                minSize="10%">
+                minSize="10%"
+              >
                 <EuiListGroup flush>{itemElements}</EuiListGroup>
               </EuiResizablePanel>
 
@@ -119,7 +121,8 @@ export default () => {
               <EuiResizablePanel
                 mode="collapsible"
                 initialSize={20}
-                minSize="10%">
+                minSize="10%"
+              >
                 <EuiListGroup flush>{itemElements}</EuiListGroup>
               </EuiResizablePanel>
             </>
@@ -140,7 +143,8 @@ export default () => {
               <EuiResizablePanel
                 mode="collapsible"
                 initialSize={20}
-                minSize="10%">
+                minSize="10%"
+              >
                 <EuiListGroup flush>{itemElements}</EuiListGroup>
               </EuiResizablePanel>
 

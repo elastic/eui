@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import classNames from 'classnames';
@@ -327,7 +316,8 @@ export class EuiControlBar extends Component<
               className={classNames('euiControlBar__button', className)}
               color={color}
               {...rest}
-              size="s">
+              size="s"
+            >
               {label}
             </EuiButton>
           );
@@ -383,7 +373,8 @@ export class EuiControlBar extends Component<
             <div
               key={id}
               className={classNames('euiControlBar__text', className)}
-              {...rest}>
+              {...rest}
+            >
               {text}
             </div>
           );
@@ -412,7 +403,8 @@ export class EuiControlBar extends Component<
               key={id + index}
               className={tabClasses}
               onClick={(event) => handleTabClick(control, event)}
-              {...rest}>
+              {...rest}
+            >
               {label}
             </button>
           );
@@ -433,7 +425,8 @@ export class EuiControlBar extends Component<
     const controlBar = (
       <EuiI18n
         token="euiControlBar.screenReaderHeading"
-        default="Page level controls">
+        default="Page level controls"
+      >
         {(screenReaderHeading: string) => (
           // Though it would be better to use aria-labelledby than aria-label and not repeat the same string twice
           // A bug in voiceover won't list some landmarks in the rotor without an aria-label
@@ -441,7 +434,8 @@ export class EuiControlBar extends Component<
             className={classes}
             aria-label={landmarkHeading ? landmarkHeading : screenReaderHeading}
             {...rest}
-            style={styles}>
+            style={styles}
+          >
             <EuiScreenReaderOnly>
               <h2>{landmarkHeading ? landmarkHeading : screenReaderHeading}</h2>
             </EuiScreenReaderOnly>
@@ -449,7 +443,8 @@ export class EuiControlBar extends Component<
               className="euiControlBar__controls"
               ref={(node) => {
                 this.bar = node;
-              }}>
+              }}
+            >
               {controls.map((control, index) => controlItem(control, index))}
             </div>
             {this.props.showContent ? (

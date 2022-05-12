@@ -22,7 +22,7 @@ const copyAction = (
   <EuiButtonIcon
     title="Custom action"
     aria-label="Custom action"
-    color="subdued"
+    color="text"
     iconType="copy"
   />
 );

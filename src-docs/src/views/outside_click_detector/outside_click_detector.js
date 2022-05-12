@@ -19,7 +19,8 @@ export default () => {
         onOutsideClick={() => {
           window.alert('Clicked outside');
         }}
-        isDisabled={isDisabled}>
+        isDisabled={isDisabled}
+      >
         <p>
           {isDisabled
             ? 'This detector is disabled, so clicking outside will do nothing.'

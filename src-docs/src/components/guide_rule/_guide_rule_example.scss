@@ -10,6 +10,10 @@
   }
 }
 
+.guideRule__example__panelFooter {
+  padding: $euiSize 0;
+}
+
 .guideRule__example--do {
   .guideRule__example__panel {
     border-bottom-color: $euiColorSuccess;
@@ -22,3 +26,8 @@
   }
 }
 
+.guideRule__example--default {
+  .guideRule__example__panel {
+    border-bottom-color: $euiBorderColor;
+  }
+}

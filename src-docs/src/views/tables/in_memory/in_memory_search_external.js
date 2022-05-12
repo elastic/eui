@@ -189,7 +189,8 @@ export const Table = () => {
                   key={facet.id}
                   id={facet.id}
                   isSelected={facet.isSelected}
-                  onClick={facet.onClick}>
+                  onClick={facet.onClick}
+                >
                   {facet.label}
                 </EuiFacetButton>
               );
@@ -198,6 +199,7 @@ export const Table = () => {
         </EuiFlexItem>
         <EuiFlexItem grow={3}>
           <EuiInMemoryTable
+            tableCaption="Demo of EuiInMemoryTable with search and external state"
             items={store.users}
             columns={columns}
             search={search}

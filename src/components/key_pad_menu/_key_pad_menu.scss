@@ -5,106 +5,18 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: $euiKeyPadMenuSize * 3;
+  width: ($euiKeyPadMenuSize * 3) + ($euiKeyPadMenuMarginSize * 3);
   max-width: 100%;
-}
+  // Using negative margins on the whole menu negates the ones on the (last) items no matter how many exist per row
+  margin-bottom: -$euiKeyPadMenuMarginSize;
+  margin-right: -$euiKeyPadMenuMarginSize;
 
-/**
- * 1. If this class is applied to a button, we need to override the Chrome default font.
- * 2. If it has a BetaBadge, make sure only the first letter shows
- */
-.euiKeyPadMenuItem {
-  @include euiFont; /* 1 */
-  // Disable indentation for transition legibility
-  // sass-lint:disable-block indentation
-  display: block;
-  padding: $euiSizeXS;
-  height: $euiKeyPadMenuSize;
-  width: $euiKeyPadMenuSize;
-  color: $euiColorDarkShade;
-  border: $euiBorderThin;
-  border-color: transparent;
-  border-radius: $euiBorderRadius;
-  transition:
-    border-color $euiAnimSpeedFast ease-in,
-    box-shadow $euiAnimSpeedFast ease-in;
-
-  &:not(:disabled) {
-    &:hover,
-    &:focus {
-      @include euiSlightShadow;
-      border-color: $euiBorderColor;
-
-      .euiKeyPadMenuItem__icon { // sass-lint:disable-line nesting-depth
-        transform: translateY(0);
-      }
-    }
-
+  legend {
+    margin-bottom: $euiSizeS;
   }
 
-  &:disabled {
-    color: $euiButtonColorDisabledText;
-    cursor: not-allowed;
-
-    .euiKeyPadMenuItem__icon  {
-      filter: grayscale(100%);
-
-      svg * { // sass-lint:disable-line nesting-depth
-        fill: $euiButtonColorDisabledText;
-      }
-    }
-
+  > *:not(legend) {
+    margin-bottom: $euiKeyPadMenuMarginSize;
+    margin-right: $euiKeyPadMenuMarginSize;
   }
-}
-
-.euiKeyPadMenuItem__inner {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  .euiKeyPadMenuItem--hasBetaBadge & {
-    position: relative;
-
-    .euiKeyPadMenuItem__betaBadgeWrapper {
-      position: absolute;
-      top: $euiSizeXS;
-      right: $euiSizeS;
-      z-index: 3;
-
-      // sass-lint:disable-block nesting-depth
-      .euiKeyPadMenuItem__betaBadge:not(.euiBetaBadge--iconOnly) {
-        padding: 0 ($euiSizeM / 2);  /* 2 */
-        overflow: hidden;  /* 2 */
-        letter-spacing: 3rem;  /* 2 */
-      }
-    }
-  }
-}
-
-.euiKeyPadMenuItem__betaBadge {
-  @include size($euiKeyPadMenuItemBetaBadgeSize);
-  line-height: $euiKeyPadMenuItemBetaBadgeSize;
-  color: $euiColorFullShade;
-  background-color: tintOrShade($euiColorLightShade, 50%, 0%);
-  box-shadow: none;
-
-  .euiBetaBadge__icon {
-    @include size($euiSizeM);
-  }
-}
-
-.euiKeyPadMenuItem__icon {
-  transition: transform $euiAnimSpeedNormal $euiAnimSlightBounce;
-  transform: translateY(2px);
-  margin-bottom: $euiSizeM;
-}
-
-.euiKeyPadMenuItem__label {
-  font-size: $euiFontSizeXS;
-  font-weight: $euiFontWeightMedium;
-  line-height: $euiSize;
-  text-align: center;
 }

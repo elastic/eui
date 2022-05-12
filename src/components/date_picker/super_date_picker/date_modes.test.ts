@@ -1,23 +1,17 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
-import { getDateMode, toAbsoluteString, toRelativeString } from './date_modes';
+import {
+  getDateMode,
+  INVALID_DATE,
+  toAbsoluteString,
+  toRelativeString,
+} from './date_modes';
 
 jest.mock('@elastic/datemath', () => {
   const moment = jest.requireActual('moment');
@@ -51,6 +45,8 @@ describe('dateMode', () => {
     expect(toAbsoluteString('now+y', true)).toBe('2020-03-19T00:00:00.000Z');
     expect(toAbsoluteString('now-1w')).toBe('2019-03-12T00:00:00.000Z');
     expect(toAbsoluteString('now-1w', true)).toBe('2019-03-12T00:00:00.000Z');
+    expect(toAbsoluteString('now-999999y', true)).toBe(INVALID_DATE); // invalid time ranges cannot be parsed to ISO strings
+    expect(toAbsoluteString('now+999999y', true)).toBe(INVALID_DATE);
   });
 
   test('toRelativeString', () => {

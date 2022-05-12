@@ -31,7 +31,8 @@ export default (props) => {
       size="xs"
       iconType="arrowDown"
       aria-label="Saved Queries popover"
-      iconSide="right">
+      iconSide="right"
+    >
       <EuiIcon type="number" />
     </EuiButtonEmpty>
   );
@@ -43,13 +44,15 @@ export default (props) => {
       isOpen={isPopoverOpen}
       anchorPosition="downLeft"
       panelPaddingSize="none"
-      closePopover={closePopover}>
+      closePopover={closePopover}
+    >
       <EuiPopoverTitle paddingSize="s">SAVED QUERIES</EuiPopoverTitle>
       <div>
         <EuiText
           size="s"
           color="subdued"
-          className="savedQueryManagement__text">
+          className="savedQueryManagement__text"
+        >
           <p>Save query text and filters that you want to use again.</p>
         </EuiText>
         <div className="savedQueryManagement__listWrapper">

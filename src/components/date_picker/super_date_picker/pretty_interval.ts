@@ -1,46 +1,94 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
+
+import { useEuiI18n } from '../../i18n';
 
 const MS_IN_SECOND = 1000;
 const MS_IN_MINUTE = 60 * MS_IN_SECOND;
 const MS_IN_HOUR = 60 * MS_IN_MINUTE;
 const MS_IN_DAY = 24 * MS_IN_HOUR;
 
-export const prettyInterval = (isPaused: boolean, intervalInMs: number) => {
-  let units: string;
-  if (isPaused || intervalInMs === 0) {
-    return 'Off';
-  } else if (intervalInMs < MS_IN_MINUTE) {
-    const intervalInSeconds = Math.round(intervalInMs / MS_IN_SECOND);
-    units = intervalInSeconds > 1 ? 'seconds' : 'second';
-    return `${intervalInSeconds} ${units}`;
+type IntervalUnitId = 's' | 'm' | 'h' | 'd';
+
+/**
+ * Pretty interval i18n strings
+ *
+ * Units should not be simply concatenated because different languages
+ * will have different grammar/positions for time than English
+ */
+const usePrettyIntervalI18n = (interval: number) => ({
+  s: useEuiI18n(
+    'euiPrettyInterval.seconds',
+    ({ interval }) => `${interval} second${interval > 1 ? 's' : ''}`,
+    { interval }
+  ),
+  m: useEuiI18n(
+    'euiPrettyInterval.minutes',
+    ({ interval }) => `${interval} minute${interval > 1 ? 's' : ''}`,
+    { interval }
+  ),
+  h: useEuiI18n(
+    'euiPrettyInterval.hours',
+    ({ interval }) => `${interval} hour${interval > 1 ? 's' : ''}`,
+    { interval }
+  ),
+  d: useEuiI18n(
+    'euiPrettyInterval.days',
+    ({ interval }) => `${interval} day${interval > 1 ? 's' : ''}`,
+    { interval }
+  ),
+  shorthand: {
+    s: useEuiI18n('euiPrettyInterval.secondsShorthand', '{interval} s', {
+      interval,
+    }),
+    m: useEuiI18n('euiPrettyInterval.minutesShorthand', '{interval} m', {
+      interval,
+    }),
+    h: useEuiI18n('euiPrettyInterval.hoursShorthand', '{interval} h', {
+      interval,
+    }),
+    d: useEuiI18n('euiPrettyInterval.daysShorthand', '{interval} d', {
+      interval,
+    }),
+  },
+});
+
+export const usePrettyInterval = (
+  isPaused: boolean,
+  intervalInMs: number,
+  shortHand: boolean = false
+) => {
+  let prettyInterval = '';
+  let interval: number;
+  let unitId: IntervalUnitId;
+
+  if (intervalInMs < MS_IN_MINUTE) {
+    interval = Math.round(intervalInMs / MS_IN_SECOND);
+    unitId = 's';
   } else if (intervalInMs < MS_IN_HOUR) {
-    const intervalInMinutes = Math.round(intervalInMs / MS_IN_MINUTE);
-    units = intervalInMinutes > 1 ? 'minutes' : 'minute';
-    return `${intervalInMinutes} ${units}`;
+    interval = Math.round(intervalInMs / MS_IN_MINUTE);
+    unitId = 'm';
   } else if (intervalInMs < MS_IN_DAY) {
-    const intervalInHours = Math.round(intervalInMs / MS_IN_HOUR);
-    units = intervalInHours > 1 ? 'hours' : 'hour';
-    return `${intervalInHours} ${units}`;
+    interval = Math.round(intervalInMs / MS_IN_HOUR);
+    unitId = 'h';
+  } else {
+    interval = Math.round(intervalInMs / MS_IN_DAY);
+    unitId = 'd';
+  }
+  const prettyIntervalI18n = usePrettyIntervalI18n(interval);
+  prettyInterval = shortHand
+    ? prettyIntervalI18n.shorthand[unitId]
+    : prettyIntervalI18n[unitId];
+
+  const off = useEuiI18n('euiPrettyInterval.off', 'Off');
+  if (isPaused || intervalInMs === 0) {
+    prettyInterval = off;
   }
 
-  const intervalInDays = Math.round(intervalInMs / MS_IN_DAY);
-  units = intervalInDays > 1 ? 'days' : 'day';
-  return `${intervalInDays} ${units}`;
+  return prettyInterval;
 };

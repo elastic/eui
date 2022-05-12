@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { EuiPanel } from '../../../../src/components/panel';
 import { EuiContextMenuItem } from '../../../../src/components/context_menu';
 import { EuiNotificationEvent } from '../../../../src/components/notification/notification_event';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [isRead, setIsRead] = useState(false);
@@ -10,11 +11,16 @@ export default () => {
     setIsRead(!isRead);
   };
 
+  const reportNotificationEventId = useGeneratedHtmlId({
+    prefix: 'reportNotificationEvent',
+  });
+
   const onOpenContextMenu = (id) => {
     return [
       <EuiContextMenuItem
         key="contextMenuItemA"
-        onClick={() => onRead(id, isRead)}>
+        onClick={() => onRead(id, isRead)}
+      >
         {isRead ? 'Mark as unread' : 'Mark as read'}
       </EuiContextMenuItem>,
 
@@ -31,7 +37,7 @@ export default () => {
   return (
     <EuiPanel paddingSize="none" hasShadow={true} style={{ maxWidth: '540px' }}>
       <EuiNotificationEvent
-        id="report"
+        id={reportNotificationEventId}
         type="Report"
         iconType="logoKibana"
         iconAriaLabel="Kibana"

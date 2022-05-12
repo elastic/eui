@@ -1,13 +1,11 @@
 import React from 'react';
 import { GuideSectionTypes } from '../../../components';
-import { renderToHtml } from '../../../services';
 
 import { Table } from './mobile';
-import { propsInfo } from './props_info';
 import { EuiTextColor } from '../../../../../src/components/text';
 import { EuiCode, EuiCodeBlock } from '../../../../../src/components/code';
 const source = require('!!raw-loader!./mobile');
-const html = renderToHtml(Table);
+import { EuiTableRowCellMobileOptionsShape } from '../props/props';
 
 const exampleItem = `{
   field: 'firstName',
@@ -29,10 +27,6 @@ export const section = {
       type: GuideSectionTypes.JS,
       code: source,
     },
-    {
-      type: GuideSectionTypes.HTML,
-      code: html,
-    },
   ],
   text: (
     <div>
@@ -44,12 +38,12 @@ export const section = {
         the table does not break down easily into this format. For these use
         cases, you may set <EuiCode language="js">responsive=false</EuiCode>.
       </p>
-      <h4>
+      <p>
         To make your table work responsively, please make sure you add the
         following <EuiTextColor color="danger">additional</EuiTextColor> props
         to the top level table component (<strong>EuiBasicTable</strong> or{' '}
         <strong>EuiInMemoryTable</strong>):
-      </h4>
+      </p>
       <ul>
         <li>
           <EuiCode>isSelectable</EuiCode>: if the table has a single column of
@@ -63,21 +57,20 @@ export const section = {
           which may/may not be hidden in hover
         </li>
       </ul>
-      <h4>
+      <p>
         The <EuiCode>mobileOptions</EuiCode> object can be passed to the{' '}
         <strong>EuiTableRowCell</strong> directly or with each column item
         provided to <strong>EuiBasicTable</strong>.
-      </h4>
+      </p>
       <EuiCodeBlock language="js">{exampleItem}</EuiCodeBlock>
-      <h4>Note:</h4>
       <p>
-        You can also change basic table row cell props like{' '}
-        <EuiCode>truncateText</EuiCode> and <EuiCode>textOnly</EuiCode> for
+        <strong>Note:</strong> You can also change basic table row cell props
+        like <EuiCode>truncateText</EuiCode> and <EuiCode>textOnly</EuiCode> for
         mobile layouts, though you must also be passing a mobile specific render
         function.
       </p>
     </div>
   ),
-  props: propsInfo,
+  props: { EuiTableRowCellMobileOptionsShape },
   demo: <Table />,
 };

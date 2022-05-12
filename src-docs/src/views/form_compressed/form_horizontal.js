@@ -10,11 +10,16 @@ import {
   EuiSwitch,
   EuiPanel,
 } from '../../../../src/components';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [isSwitchChecked, setIsSwitchChecked] = useState(false);
   const [comboBoxSelectionOptions, setComboBoxSelectionOptions] = useState([]);
   const [value, setValue] = useState('20');
+
+  const horizontalFormRangeId = useGeneratedHtmlId({
+    prefix: 'horizontalFormRange',
+  });
 
   const onRangeChange = (e) => {
     setValue(e.target.value);
@@ -29,7 +34,8 @@ export default () => {
       <EuiFormRow
         label="Text field"
         helpText="I am some friendly help text."
-        display="columnCompressed">
+        display="columnCompressed"
+      >
         <EuiFieldText name="first" isLoading compressed />
       </EuiFormRow>
 
@@ -68,7 +74,7 @@ export default () => {
           min={0}
           max={100}
           name="range"
-          id="range"
+          id={horizontalFormRangeId}
           showInput
           compressed
           value={value}

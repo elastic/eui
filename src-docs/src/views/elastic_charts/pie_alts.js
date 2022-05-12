@@ -215,7 +215,8 @@ export default () => {
           <ChartCard
             textAlign="left"
             title="Bar chart options"
-            description="Compare how the following options change the understanding of the data with that of the sunburst or treemap chart.">
+            description="Compare how the following options change the understanding of the data with that of the sunburst or treemap chart."
+          >
             <EuiSwitch
               label="Stacked bar chart"
               checked={stacked}
@@ -239,7 +240,8 @@ export default () => {
         <EuiFlexItem>
           <ChartCard
             title="Order and rotation"
-            description="Categorical data is often easier to compare when sorted by sequence. Use a horizontal layout when you need more space for the category labels.">
+            description="Categorical data is often easier to compare when sorted by sequence. Use a horizontal layout when you need more space for the category labels."
+          >
             <EuiSwitch
               label="Order by count descending"
               checked={ordered}
@@ -305,13 +307,15 @@ export default () => {
         : ''
     }
   />
-</Chart>`}>
+</Chart>`}
+        >
           {(copy) => (
             <EuiButton
               disabled={isMisleadingChart || isBadChart}
               fill
               onClick={copy}
-              iconType="copyClipboard">
+              iconType="copyClipboard"
+            >
               {isBadChart || isMisleadingChart
                 ? isMisleadingChart
                   ? 'This chart is misleading'

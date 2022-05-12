@@ -11,7 +11,7 @@ import {
 
 import { htmlIdGenerator } from '../../../../src/services';
 
-export const HtmlIdGeneratorPrefix = () => {
+export default () => {
   const [prefix, setPrefix] = useState('Id');
   const [customId, setCustomId] = useState(htmlIdGenerator('Id')());
 
@@ -26,7 +26,8 @@ export const HtmlIdGeneratorPrefix = () => {
       <EuiFlexGroup
         justifyContent="flexStart"
         gutterSize="m"
-        alignItems="center">
+        alignItems="center"
+      >
         <EuiFlexItem grow={false}>
           <EuiFormRow label="Prefix">
             <EuiFieldText

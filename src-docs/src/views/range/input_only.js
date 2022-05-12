@@ -3,11 +3,16 @@ import React, { useState, Fragment } from 'react';
 import { EuiRange, EuiSpacer, EuiDualRange } from '../../../../src/components';
 
 import { DisplayToggles } from '../form_controls/display_toggles';
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [value, setValue] = useState('20');
   const [dualValue, setDualValue] = useState([20, 100]);
+
+  const inputRangeSliderId = useGeneratedHtmlId({ prefix: 'inputRangeSlider' });
+  const dualInputRangeSliderId = useGeneratedHtmlId({
+    prefix: 'dualInputRangeSlider',
+  });
 
   const onChange = (e) => {
     setValue(e.target.value);
@@ -34,7 +39,7 @@ export default () => {
     <Fragment>
       <DisplayToggles canAppend canPrepend>
         <EuiRange
-          id={htmlIdGenerator()()}
+          id={inputRangeSliderId}
           value={value}
           onChange={onChange}
           showInput="inputWithPopover"
@@ -45,9 +50,9 @@ export default () => {
 
       <EuiSpacer size="xl" />
 
-      <DisplayToggles canAppend canPrepend canLoading={false}>
+      <DisplayToggles canAppend canPrepend>
         <EuiDualRange
-          id={htmlIdGenerator()()}
+          id={dualInputRangeSliderId}
           value={dualValue}
           onChange={onDualChange}
           showInput="inputWithPopover"

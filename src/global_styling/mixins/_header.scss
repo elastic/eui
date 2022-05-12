@@ -7,7 +7,7 @@
     padding-top: $headerHeight;
 
     // When the EuiHeader is fixed, we need to account for it in the position of the flyout
-    .euiFlyout,
+    &:not(.euiDataGrid__restrictBody) .euiFlyout,
     .euiCollapsibleNav {
       top: $headerHeight;
       height: calc(100% - #{$headerHeight});
@@ -20,7 +20,7 @@
       }
     }
 
-    .euiOverlayMask--belowHeader {
+    &:not(.euiDataGrid__restrictBody) .euiOverlayMask--belowHeader {
       top: #{$headerHeight};
     }
   }

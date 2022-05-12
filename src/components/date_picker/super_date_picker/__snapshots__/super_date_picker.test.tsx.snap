@@ -59,12 +59,178 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
           }
           dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
           end="now"
-          isAutoRefreshOnly={false}
           isDisabled={false}
           isPaused={true}
           recentlyUsedRanges={Array []}
-          refreshInterval={0}
+          refreshInterval={1000}
           start="now-15m"
+          timeOptions={
+            Object {
+              "commonDurationRanges": Array [
+                Object {
+                  "end": "now/d",
+                  "label": "Today",
+                  "start": "now/d",
+                },
+                Object {
+                  "end": "now/w",
+                  "label": "This week",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now/M",
+                  "label": "This month",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now/y",
+                  "label": "This year",
+                  "start": "now/y",
+                },
+                Object {
+                  "end": "now-1d/d",
+                  "label": "Yesterday",
+                  "start": "now-1d/d",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Week to date",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Month to date",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Year to date",
+                  "start": "now/y",
+                },
+              ],
+              "refreshUnitsOptions": Array [
+                Object {
+                  "text": "Seconds",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours",
+                  "value": "h",
+                },
+              ],
+              "relativeOptions": Array [
+                Object {
+                  "text": "Seconds ago",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes ago",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours ago",
+                  "value": "h",
+                },
+                Object {
+                  "text": "Days ago",
+                  "value": "d",
+                },
+                Object {
+                  "text": "Weeks ago",
+                  "value": "w",
+                },
+                Object {
+                  "text": "Months ago",
+                  "value": "M",
+                },
+                Object {
+                  "text": "Years ago",
+                  "value": "y",
+                },
+                Object {
+                  "text": "Seconds from now",
+                  "value": "s+",
+                },
+                Object {
+                  "text": "Minutes from now",
+                  "value": "m+",
+                },
+                Object {
+                  "text": "Hours from now",
+                  "value": "h+",
+                },
+                Object {
+                  "text": "Days from now",
+                  "value": "d+",
+                },
+                Object {
+                  "text": "Weeks from now",
+                  "value": "w+",
+                },
+                Object {
+                  "text": "Months from now",
+                  "value": "M+",
+                },
+                Object {
+                  "text": "Years from now",
+                  "value": "y+",
+                },
+              ],
+              "relativeRoundingLabels": Object {
+                "M": "Round to the month",
+                "d": "Round to the day",
+                "h": "Round to the hour",
+                "m": "Round to the minute",
+                "s": "Round to the second",
+                "w": "Round to the week",
+                "y": "Round to the year",
+              },
+              "timeTenseOptions": Array [
+                Object {
+                  "text": "Last",
+                  "value": "last",
+                },
+                Object {
+                  "text": "Next",
+                  "value": "next",
+                },
+              ],
+              "timeUnitsOptions": Array [
+                Object {
+                  "text": "Seconds",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours",
+                  "value": "h",
+                },
+                Object {
+                  "text": "Days",
+                  "value": "d",
+                },
+                Object {
+                  "text": "Weeks",
+                  "value": "w",
+                },
+                Object {
+                  "text": "Months",
+                  "value": "M",
+                },
+                Object {
+                  "text": "Years",
+                  "value": "y",
+                },
+              ],
+            }
+          }
         />
       }
     >
@@ -81,15 +247,55 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
           disabled={false}
           onClick={[Function]}
         >
-          Last 15 minutes
-          <span
-            className="euiSuperDatePicker__prettyFormatLink"
-          >
-            <EuiI18n
-              default="Show dates"
-              token="euiSuperDatePicker.showDatesButtonLabel"
-            />
-          </span>
+          <PrettyDuration
+            dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+            quickRanges={
+              Array [
+                Object {
+                  "end": "now/d",
+                  "label": "Today",
+                  "start": "now/d",
+                },
+                Object {
+                  "end": "now/w",
+                  "label": "This week",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now/M",
+                  "label": "This month",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now/y",
+                  "label": "This year",
+                  "start": "now/y",
+                },
+                Object {
+                  "end": "now-1d/d",
+                  "label": "Yesterday",
+                  "start": "now-1d/d",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Week to date",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Month to date",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Year to date",
+                  "start": "now/y",
+                },
+              ]
+            }
+            timeFrom="now-15m"
+            timeTo="now"
+          />
         </button>
       </EuiDatePickerRange>
     </EuiFormControlLayout>
@@ -99,11 +305,2241 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
   >
     <EuiSuperUpdateButton
       data-test-subj="superDatePickerApplyTimeButton"
+      fill={true}
+      iconOnly={false}
       isDisabled={false}
       isLoading={false}
       needsUpdate={false}
       onClick={[Function]}
+      responsive={
+        Array [
+          "xs",
+          "s",
+        ]
+      }
       showTooltip={true}
+      size="m"
+    />
+  </EuiFlexItem>
+</EuiFlexGroup>
+`;
+
+exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormControlLayout 1`] = `
+<EuiFlexGroup
+  className="euiSuperDatePicker__flexWrapper"
+  gutterSize="s"
+  responsive={false}
+>
+  <EuiFlexItem>
+    <EuiFormControlLayout
+      className="euiSuperDatePicker"
+      data-test-subj="mySuperDatePicker"
+      isDisabled={false}
+      prepend={
+        <EuiQuickSelectPopover
+          applyTime={[Function]}
+          commonlyUsedRanges={
+            Array [
+              Object {
+                "end": "now/d",
+                "label": "Today",
+                "start": "now/d",
+              },
+              Object {
+                "end": "now/w",
+                "label": "This week",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now/M",
+                "label": "This month",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now/y",
+                "label": "This year",
+                "start": "now/y",
+              },
+              Object {
+                "end": "now-1d/d",
+                "label": "Yesterday",
+                "start": "now-1d/d",
+              },
+              Object {
+                "end": "now",
+                "label": "Week to date",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now",
+                "label": "Month to date",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now",
+                "label": "Year to date",
+                "start": "now/y",
+              },
+            ]
+          }
+          dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+          end="now"
+          isDisabled={false}
+          isPaused={true}
+          recentlyUsedRanges={Array []}
+          refreshInterval={1000}
+          start="now-15m"
+          timeOptions={
+            Object {
+              "commonDurationRanges": Array [
+                Object {
+                  "end": "now/d",
+                  "label": "Today",
+                  "start": "now/d",
+                },
+                Object {
+                  "end": "now/w",
+                  "label": "This week",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now/M",
+                  "label": "This month",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now/y",
+                  "label": "This year",
+                  "start": "now/y",
+                },
+                Object {
+                  "end": "now-1d/d",
+                  "label": "Yesterday",
+                  "start": "now-1d/d",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Week to date",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Month to date",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Year to date",
+                  "start": "now/y",
+                },
+              ],
+              "refreshUnitsOptions": Array [
+                Object {
+                  "text": "Seconds",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours",
+                  "value": "h",
+                },
+              ],
+              "relativeOptions": Array [
+                Object {
+                  "text": "Seconds ago",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes ago",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours ago",
+                  "value": "h",
+                },
+                Object {
+                  "text": "Days ago",
+                  "value": "d",
+                },
+                Object {
+                  "text": "Weeks ago",
+                  "value": "w",
+                },
+                Object {
+                  "text": "Months ago",
+                  "value": "M",
+                },
+                Object {
+                  "text": "Years ago",
+                  "value": "y",
+                },
+                Object {
+                  "text": "Seconds from now",
+                  "value": "s+",
+                },
+                Object {
+                  "text": "Minutes from now",
+                  "value": "m+",
+                },
+                Object {
+                  "text": "Hours from now",
+                  "value": "h+",
+                },
+                Object {
+                  "text": "Days from now",
+                  "value": "d+",
+                },
+                Object {
+                  "text": "Weeks from now",
+                  "value": "w+",
+                },
+                Object {
+                  "text": "Months from now",
+                  "value": "M+",
+                },
+                Object {
+                  "text": "Years from now",
+                  "value": "y+",
+                },
+              ],
+              "relativeRoundingLabels": Object {
+                "M": "Round to the month",
+                "d": "Round to the day",
+                "h": "Round to the hour",
+                "m": "Round to the minute",
+                "s": "Round to the second",
+                "w": "Round to the week",
+                "y": "Round to the year",
+              },
+              "timeTenseOptions": Array [
+                Object {
+                  "text": "Last",
+                  "value": "last",
+                },
+                Object {
+                  "text": "Next",
+                  "value": "next",
+                },
+              ],
+              "timeUnitsOptions": Array [
+                Object {
+                  "text": "Seconds",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours",
+                  "value": "h",
+                },
+                Object {
+                  "text": "Days",
+                  "value": "d",
+                },
+                Object {
+                  "text": "Weeks",
+                  "value": "w",
+                },
+                Object {
+                  "text": "Months",
+                  "value": "M",
+                },
+                Object {
+                  "text": "Years",
+                  "value": "y",
+                },
+              ],
+            }
+          }
+        />
+      }
+    >
+      <EuiDatePickerRange
+        className="euiDatePickerRange--inGroup"
+        endDateControl={<div />}
+        iconType={false}
+        isCustom={true}
+        startDateControl={<div />}
+      >
+        <button
+          className="euiSuperDatePicker__prettyFormat"
+          data-test-subj="superDatePickerShowDatesButton"
+          disabled={false}
+          onClick={[Function]}
+        >
+          <PrettyDuration
+            dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+            quickRanges={
+              Array [
+                Object {
+                  "end": "now/d",
+                  "label": "Today",
+                  "start": "now/d",
+                },
+                Object {
+                  "end": "now/w",
+                  "label": "This week",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now/M",
+                  "label": "This month",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now/y",
+                  "label": "This year",
+                  "start": "now/y",
+                },
+                Object {
+                  "end": "now-1d/d",
+                  "label": "Yesterday",
+                  "start": "now-1d/d",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Week to date",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Month to date",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Year to date",
+                  "start": "now/y",
+                },
+              ]
+            }
+            timeFrom="now-15m"
+            timeTo="now"
+          />
+        </button>
+      </EuiDatePickerRange>
+    </EuiFormControlLayout>
+  </EuiFlexItem>
+  <EuiFlexItem
+    grow={false}
+  >
+    <EuiSuperUpdateButton
+      data-test-subj="superDatePickerApplyTimeButton"
+      fill={true}
+      iconOnly={false}
+      isDisabled={false}
+      isLoading={false}
+      needsUpdate={false}
+      onClick={[Function]}
+      responsive={
+        Array [
+          "xs",
+          "s",
+        ]
+      }
+      showTooltip={true}
+      size="m"
+    />
+  </EuiFlexItem>
+</EuiFlexGroup>
+`;
+
+exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
+<EuiFlexGroup
+  className="euiSuperDatePicker__flexWrapper"
+  gutterSize="s"
+  responsive={false}
+>
+  <EuiFlexItem>
+    <EuiFormControlLayout
+      className="euiSuperDatePicker"
+      compressed={true}
+      isDisabled={false}
+      prepend={
+        <EuiQuickSelectPopover
+          applyTime={[Function]}
+          commonlyUsedRanges={
+            Array [
+              Object {
+                "end": "now/d",
+                "label": "Today",
+                "start": "now/d",
+              },
+              Object {
+                "end": "now/w",
+                "label": "This week",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now/M",
+                "label": "This month",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now/y",
+                "label": "This year",
+                "start": "now/y",
+              },
+              Object {
+                "end": "now-1d/d",
+                "label": "Yesterday",
+                "start": "now-1d/d",
+              },
+              Object {
+                "end": "now",
+                "label": "Week to date",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now",
+                "label": "Month to date",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now",
+                "label": "Year to date",
+                "start": "now/y",
+              },
+            ]
+          }
+          dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+          end="now"
+          isDisabled={false}
+          isPaused={true}
+          recentlyUsedRanges={Array []}
+          refreshInterval={1000}
+          start="now-15m"
+          timeOptions={
+            Object {
+              "commonDurationRanges": Array [
+                Object {
+                  "end": "now/d",
+                  "label": "Today",
+                  "start": "now/d",
+                },
+                Object {
+                  "end": "now/w",
+                  "label": "This week",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now/M",
+                  "label": "This month",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now/y",
+                  "label": "This year",
+                  "start": "now/y",
+                },
+                Object {
+                  "end": "now-1d/d",
+                  "label": "Yesterday",
+                  "start": "now-1d/d",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Week to date",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Month to date",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Year to date",
+                  "start": "now/y",
+                },
+              ],
+              "refreshUnitsOptions": Array [
+                Object {
+                  "text": "Seconds",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours",
+                  "value": "h",
+                },
+              ],
+              "relativeOptions": Array [
+                Object {
+                  "text": "Seconds ago",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes ago",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours ago",
+                  "value": "h",
+                },
+                Object {
+                  "text": "Days ago",
+                  "value": "d",
+                },
+                Object {
+                  "text": "Weeks ago",
+                  "value": "w",
+                },
+                Object {
+                  "text": "Months ago",
+                  "value": "M",
+                },
+                Object {
+                  "text": "Years ago",
+                  "value": "y",
+                },
+                Object {
+                  "text": "Seconds from now",
+                  "value": "s+",
+                },
+                Object {
+                  "text": "Minutes from now",
+                  "value": "m+",
+                },
+                Object {
+                  "text": "Hours from now",
+                  "value": "h+",
+                },
+                Object {
+                  "text": "Days from now",
+                  "value": "d+",
+                },
+                Object {
+                  "text": "Weeks from now",
+                  "value": "w+",
+                },
+                Object {
+                  "text": "Months from now",
+                  "value": "M+",
+                },
+                Object {
+                  "text": "Years from now",
+                  "value": "y+",
+                },
+              ],
+              "relativeRoundingLabels": Object {
+                "M": "Round to the month",
+                "d": "Round to the day",
+                "h": "Round to the hour",
+                "m": "Round to the minute",
+                "s": "Round to the second",
+                "w": "Round to the week",
+                "y": "Round to the year",
+              },
+              "timeTenseOptions": Array [
+                Object {
+                  "text": "Last",
+                  "value": "last",
+                },
+                Object {
+                  "text": "Next",
+                  "value": "next",
+                },
+              ],
+              "timeUnitsOptions": Array [
+                Object {
+                  "text": "Seconds",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours",
+                  "value": "h",
+                },
+                Object {
+                  "text": "Days",
+                  "value": "d",
+                },
+                Object {
+                  "text": "Weeks",
+                  "value": "w",
+                },
+                Object {
+                  "text": "Months",
+                  "value": "M",
+                },
+                Object {
+                  "text": "Years",
+                  "value": "y",
+                },
+              ],
+            }
+          }
+        />
+      }
+    >
+      <EuiDatePickerRange
+        className="euiDatePickerRange--inGroup"
+        endDateControl={<div />}
+        iconType={false}
+        isCustom={true}
+        startDateControl={<div />}
+      >
+        <button
+          className="euiSuperDatePicker__prettyFormat"
+          data-test-subj="superDatePickerShowDatesButton"
+          disabled={false}
+          onClick={[Function]}
+        >
+          <PrettyDuration
+            dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+            quickRanges={
+              Array [
+                Object {
+                  "end": "now/d",
+                  "label": "Today",
+                  "start": "now/d",
+                },
+                Object {
+                  "end": "now/w",
+                  "label": "This week",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now/M",
+                  "label": "This month",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now/y",
+                  "label": "This year",
+                  "start": "now/y",
+                },
+                Object {
+                  "end": "now-1d/d",
+                  "label": "Yesterday",
+                  "start": "now-1d/d",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Week to date",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Month to date",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Year to date",
+                  "start": "now/y",
+                },
+              ]
+            }
+            timeFrom="now-15m"
+            timeTo="now"
+          />
+        </button>
+      </EuiDatePickerRange>
+    </EuiFormControlLayout>
+  </EuiFlexItem>
+  <EuiFlexItem
+    grow={false}
+  >
+    <EuiSuperUpdateButton
+      data-test-subj="superDatePickerApplyTimeButton"
+      fill={true}
+      iconOnly={false}
+      isDisabled={false}
+      isLoading={false}
+      needsUpdate={false}
+      onClick={[Function]}
+      responsive={
+        Array [
+          "xs",
+          "s",
+        ]
+      }
+      showTooltip={true}
+      size="s"
+    />
+  </EuiFlexItem>
+</EuiFlexGroup>
+`;
+
+exports[`EuiSuperDatePicker props isAutoRefreshOnly is rendered 1`] = `
+<EuiFlexGroup
+  className="euiSuperDatePicker__flexWrapper euiSuperDatePicker__flexWrapper--isAutoRefreshOnly"
+  gutterSize="s"
+  responsive={false}
+>
+  <EuiFlexItem>
+    <EuiAutoRefresh
+      fullWidth={false}
+      isDisabled={false}
+      isPaused={true}
+      onRefreshChange={[Function]}
+      refreshInterval={1000}
+    />
+  </EuiFlexItem>
+</EuiFlexGroup>
+`;
+
+exports[`EuiSuperDatePicker props isAutoRefreshOnly passes required props 1`] = `
+<EuiFlexGroup
+  className="euiSuperDatePicker__flexWrapper euiSuperDatePicker__flexWrapper--isAutoRefreshOnly"
+  gutterSize="s"
+  responsive={false}
+>
+  <EuiFlexItem>
+    <EuiAutoRefresh
+      data-test-subj="autoRefreshOnly"
+      fullWidth={false}
+      isDisabled={true}
+      isPaused={true}
+      onRefreshChange={[Function]}
+      refreshInterval={1000}
+    />
+  </EuiFlexItem>
+</EuiFlexGroup>
+`;
+
+exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
+<EuiFlexGroup
+  className="euiSuperDatePicker__flexWrapper euiSuperDatePicker__flexWrapper--isQuickSelectOnly euiSuperDatePicker__flexWrapper--autoWidth"
+  gutterSize="s"
+  responsive={false}
+>
+  <EuiFlexItem>
+    <EuiFormControlLayout
+      className="euiSuperDatePicker"
+      isDisabled={false}
+      prepend={
+        <EuiQuickSelectPopover
+          applyTime={[Function]}
+          commonlyUsedRanges={
+            Array [
+              Object {
+                "end": "now/d",
+                "label": "Today",
+                "start": "now/d",
+              },
+              Object {
+                "end": "now/w",
+                "label": "This week",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now/M",
+                "label": "This month",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now/y",
+                "label": "This year",
+                "start": "now/y",
+              },
+              Object {
+                "end": "now-1d/d",
+                "label": "Yesterday",
+                "start": "now-1d/d",
+              },
+              Object {
+                "end": "now",
+                "label": "Week to date",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now",
+                "label": "Month to date",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now",
+                "label": "Year to date",
+                "start": "now/y",
+              },
+            ]
+          }
+          dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+          end="now"
+          isDisabled={false}
+          isPaused={true}
+          recentlyUsedRanges={Array []}
+          refreshInterval={1000}
+          start="now-15m"
+          timeOptions={
+            Object {
+              "commonDurationRanges": Array [
+                Object {
+                  "end": "now/d",
+                  "label": "Today",
+                  "start": "now/d",
+                },
+                Object {
+                  "end": "now/w",
+                  "label": "This week",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now/M",
+                  "label": "This month",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now/y",
+                  "label": "This year",
+                  "start": "now/y",
+                },
+                Object {
+                  "end": "now-1d/d",
+                  "label": "Yesterday",
+                  "start": "now-1d/d",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Week to date",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Month to date",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Year to date",
+                  "start": "now/y",
+                },
+              ],
+              "refreshUnitsOptions": Array [
+                Object {
+                  "text": "Seconds",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours",
+                  "value": "h",
+                },
+              ],
+              "relativeOptions": Array [
+                Object {
+                  "text": "Seconds ago",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes ago",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours ago",
+                  "value": "h",
+                },
+                Object {
+                  "text": "Days ago",
+                  "value": "d",
+                },
+                Object {
+                  "text": "Weeks ago",
+                  "value": "w",
+                },
+                Object {
+                  "text": "Months ago",
+                  "value": "M",
+                },
+                Object {
+                  "text": "Years ago",
+                  "value": "y",
+                },
+                Object {
+                  "text": "Seconds from now",
+                  "value": "s+",
+                },
+                Object {
+                  "text": "Minutes from now",
+                  "value": "m+",
+                },
+                Object {
+                  "text": "Hours from now",
+                  "value": "h+",
+                },
+                Object {
+                  "text": "Days from now",
+                  "value": "d+",
+                },
+                Object {
+                  "text": "Weeks from now",
+                  "value": "w+",
+                },
+                Object {
+                  "text": "Months from now",
+                  "value": "M+",
+                },
+                Object {
+                  "text": "Years from now",
+                  "value": "y+",
+                },
+              ],
+              "relativeRoundingLabels": Object {
+                "M": "Round to the month",
+                "d": "Round to the day",
+                "h": "Round to the hour",
+                "m": "Round to the minute",
+                "s": "Round to the second",
+                "w": "Round to the week",
+                "y": "Round to the year",
+              },
+              "timeTenseOptions": Array [
+                Object {
+                  "text": "Last",
+                  "value": "last",
+                },
+                Object {
+                  "text": "Next",
+                  "value": "next",
+                },
+              ],
+              "timeUnitsOptions": Array [
+                Object {
+                  "text": "Seconds",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours",
+                  "value": "h",
+                },
+                Object {
+                  "text": "Days",
+                  "value": "d",
+                },
+                Object {
+                  "text": "Weeks",
+                  "value": "w",
+                },
+                Object {
+                  "text": "Months",
+                  "value": "M",
+                },
+                Object {
+                  "text": "Years",
+                  "value": "y",
+                },
+              ],
+            }
+          }
+        />
+      }
+    />
+  </EuiFlexItem>
+  <EuiFlexItem
+    grow={false}
+  >
+    <EuiSuperUpdateButton
+      data-test-subj="superDatePickerApplyTimeButton"
+      fill={true}
+      iconOnly={false}
+      isDisabled={false}
+      isLoading={false}
+      needsUpdate={false}
+      onClick={[Function]}
+      responsive={
+        Array [
+          "xs",
+          "s",
+        ]
+      }
+      showTooltip={true}
+      size="m"
+    />
+  </EuiFlexItem>
+</EuiFlexGroup>
+`;
+
+exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
+<EuiFlexGroup
+  className="euiSuperDatePicker__flexWrapper euiSuperDatePicker__flexWrapper--noUpdateButton"
+  gutterSize="s"
+  responsive={false}
+>
+  <EuiFlexItem>
+    <EuiFormControlLayout
+      className="euiSuperDatePicker"
+      isDisabled={false}
+      prepend={
+        <EuiQuickSelectPopover
+          applyTime={[Function]}
+          commonlyUsedRanges={
+            Array [
+              Object {
+                "end": "now/d",
+                "label": "Today",
+                "start": "now/d",
+              },
+              Object {
+                "end": "now/w",
+                "label": "This week",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now/M",
+                "label": "This month",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now/y",
+                "label": "This year",
+                "start": "now/y",
+              },
+              Object {
+                "end": "now-1d/d",
+                "label": "Yesterday",
+                "start": "now-1d/d",
+              },
+              Object {
+                "end": "now",
+                "label": "Week to date",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now",
+                "label": "Month to date",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now",
+                "label": "Year to date",
+                "start": "now/y",
+              },
+            ]
+          }
+          dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+          end="now"
+          isDisabled={false}
+          isPaused={true}
+          recentlyUsedRanges={Array []}
+          refreshInterval={1000}
+          start="now-15m"
+          timeOptions={
+            Object {
+              "commonDurationRanges": Array [
+                Object {
+                  "end": "now/d",
+                  "label": "Today",
+                  "start": "now/d",
+                },
+                Object {
+                  "end": "now/w",
+                  "label": "This week",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now/M",
+                  "label": "This month",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now/y",
+                  "label": "This year",
+                  "start": "now/y",
+                },
+                Object {
+                  "end": "now-1d/d",
+                  "label": "Yesterday",
+                  "start": "now-1d/d",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Week to date",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Month to date",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Year to date",
+                  "start": "now/y",
+                },
+              ],
+              "refreshUnitsOptions": Array [
+                Object {
+                  "text": "Seconds",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours",
+                  "value": "h",
+                },
+              ],
+              "relativeOptions": Array [
+                Object {
+                  "text": "Seconds ago",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes ago",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours ago",
+                  "value": "h",
+                },
+                Object {
+                  "text": "Days ago",
+                  "value": "d",
+                },
+                Object {
+                  "text": "Weeks ago",
+                  "value": "w",
+                },
+                Object {
+                  "text": "Months ago",
+                  "value": "M",
+                },
+                Object {
+                  "text": "Years ago",
+                  "value": "y",
+                },
+                Object {
+                  "text": "Seconds from now",
+                  "value": "s+",
+                },
+                Object {
+                  "text": "Minutes from now",
+                  "value": "m+",
+                },
+                Object {
+                  "text": "Hours from now",
+                  "value": "h+",
+                },
+                Object {
+                  "text": "Days from now",
+                  "value": "d+",
+                },
+                Object {
+                  "text": "Weeks from now",
+                  "value": "w+",
+                },
+                Object {
+                  "text": "Months from now",
+                  "value": "M+",
+                },
+                Object {
+                  "text": "Years from now",
+                  "value": "y+",
+                },
+              ],
+              "relativeRoundingLabels": Object {
+                "M": "Round to the month",
+                "d": "Round to the day",
+                "h": "Round to the hour",
+                "m": "Round to the minute",
+                "s": "Round to the second",
+                "w": "Round to the week",
+                "y": "Round to the year",
+              },
+              "timeTenseOptions": Array [
+                Object {
+                  "text": "Last",
+                  "value": "last",
+                },
+                Object {
+                  "text": "Next",
+                  "value": "next",
+                },
+              ],
+              "timeUnitsOptions": Array [
+                Object {
+                  "text": "Seconds",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours",
+                  "value": "h",
+                },
+                Object {
+                  "text": "Days",
+                  "value": "d",
+                },
+                Object {
+                  "text": "Weeks",
+                  "value": "w",
+                },
+                Object {
+                  "text": "Months",
+                  "value": "M",
+                },
+                Object {
+                  "text": "Years",
+                  "value": "y",
+                },
+              ],
+            }
+          }
+        />
+      }
+    >
+      <EuiDatePickerRange
+        className="euiDatePickerRange--inGroup"
+        endDateControl={<div />}
+        iconType={false}
+        isCustom={true}
+        startDateControl={<div />}
+      >
+        <button
+          className="euiSuperDatePicker__prettyFormat"
+          data-test-subj="superDatePickerShowDatesButton"
+          disabled={false}
+          onClick={[Function]}
+        >
+          <PrettyDuration
+            dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+            quickRanges={
+              Array [
+                Object {
+                  "end": "now/d",
+                  "label": "Today",
+                  "start": "now/d",
+                },
+                Object {
+                  "end": "now/w",
+                  "label": "This week",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now/M",
+                  "label": "This month",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now/y",
+                  "label": "This year",
+                  "start": "now/y",
+                },
+                Object {
+                  "end": "now-1d/d",
+                  "label": "Yesterday",
+                  "start": "now-1d/d",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Week to date",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Month to date",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Year to date",
+                  "start": "now/y",
+                },
+              ]
+            }
+            timeFrom="now-15m"
+            timeTo="now"
+          />
+        </button>
+      </EuiDatePickerRange>
+    </EuiFormControlLayout>
+  </EuiFlexItem>
+</EuiFlexGroup>
+`;
+
+exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
+<EuiFlexGroup
+  className="euiSuperDatePicker__flexWrapper"
+  gutterSize="s"
+  responsive={false}
+>
+  <EuiFlexItem>
+    <EuiFormControlLayout
+      className="euiSuperDatePicker"
+      isDisabled={false}
+      prepend={
+        <EuiQuickSelectPopover
+          applyTime={[Function]}
+          commonlyUsedRanges={
+            Array [
+              Object {
+                "end": "now/d",
+                "label": "Today",
+                "start": "now/d",
+              },
+              Object {
+                "end": "now/w",
+                "label": "This week",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now/M",
+                "label": "This month",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now/y",
+                "label": "This year",
+                "start": "now/y",
+              },
+              Object {
+                "end": "now-1d/d",
+                "label": "Yesterday",
+                "start": "now-1d/d",
+              },
+              Object {
+                "end": "now",
+                "label": "Week to date",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now",
+                "label": "Month to date",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now",
+                "label": "Year to date",
+                "start": "now/y",
+              },
+            ]
+          }
+          dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+          end="now"
+          isDisabled={false}
+          isPaused={true}
+          recentlyUsedRanges={Array []}
+          refreshInterval={1000}
+          start="now-15m"
+          timeOptions={
+            Object {
+              "commonDurationRanges": Array [
+                Object {
+                  "end": "now/d",
+                  "label": "Today",
+                  "start": "now/d",
+                },
+                Object {
+                  "end": "now/w",
+                  "label": "This week",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now/M",
+                  "label": "This month",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now/y",
+                  "label": "This year",
+                  "start": "now/y",
+                },
+                Object {
+                  "end": "now-1d/d",
+                  "label": "Yesterday",
+                  "start": "now-1d/d",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Week to date",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Month to date",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Year to date",
+                  "start": "now/y",
+                },
+              ],
+              "refreshUnitsOptions": Array [
+                Object {
+                  "text": "Seconds",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours",
+                  "value": "h",
+                },
+              ],
+              "relativeOptions": Array [
+                Object {
+                  "text": "Seconds ago",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes ago",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours ago",
+                  "value": "h",
+                },
+                Object {
+                  "text": "Days ago",
+                  "value": "d",
+                },
+                Object {
+                  "text": "Weeks ago",
+                  "value": "w",
+                },
+                Object {
+                  "text": "Months ago",
+                  "value": "M",
+                },
+                Object {
+                  "text": "Years ago",
+                  "value": "y",
+                },
+                Object {
+                  "text": "Seconds from now",
+                  "value": "s+",
+                },
+                Object {
+                  "text": "Minutes from now",
+                  "value": "m+",
+                },
+                Object {
+                  "text": "Hours from now",
+                  "value": "h+",
+                },
+                Object {
+                  "text": "Days from now",
+                  "value": "d+",
+                },
+                Object {
+                  "text": "Weeks from now",
+                  "value": "w+",
+                },
+                Object {
+                  "text": "Months from now",
+                  "value": "M+",
+                },
+                Object {
+                  "text": "Years from now",
+                  "value": "y+",
+                },
+              ],
+              "relativeRoundingLabels": Object {
+                "M": "Round to the month",
+                "d": "Round to the day",
+                "h": "Round to the hour",
+                "m": "Round to the minute",
+                "s": "Round to the second",
+                "w": "Round to the week",
+                "y": "Round to the year",
+              },
+              "timeTenseOptions": Array [
+                Object {
+                  "text": "Last",
+                  "value": "last",
+                },
+                Object {
+                  "text": "Next",
+                  "value": "next",
+                },
+              ],
+              "timeUnitsOptions": Array [
+                Object {
+                  "text": "Seconds",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours",
+                  "value": "h",
+                },
+                Object {
+                  "text": "Days",
+                  "value": "d",
+                },
+                Object {
+                  "text": "Weeks",
+                  "value": "w",
+                },
+                Object {
+                  "text": "Months",
+                  "value": "M",
+                },
+                Object {
+                  "text": "Years",
+                  "value": "y",
+                },
+              ],
+            }
+          }
+        />
+      }
+    >
+      <EuiDatePickerRange
+        className="euiDatePickerRange--inGroup"
+        endDateControl={<div />}
+        iconType={false}
+        isCustom={true}
+        startDateControl={<div />}
+      >
+        <button
+          className="euiSuperDatePicker__prettyFormat"
+          data-test-subj="superDatePickerShowDatesButton"
+          disabled={false}
+          onClick={[Function]}
+        >
+          <PrettyDuration
+            dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+            quickRanges={
+              Array [
+                Object {
+                  "end": "now/d",
+                  "label": "Today",
+                  "start": "now/d",
+                },
+                Object {
+                  "end": "now/w",
+                  "label": "This week",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now/M",
+                  "label": "This month",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now/y",
+                  "label": "This year",
+                  "start": "now/y",
+                },
+                Object {
+                  "end": "now-1d/d",
+                  "label": "Yesterday",
+                  "start": "now-1d/d",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Week to date",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Month to date",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Year to date",
+                  "start": "now/y",
+                },
+              ]
+            }
+            timeFrom="now-15m"
+            timeTo="now"
+          />
+        </button>
+      </EuiDatePickerRange>
+    </EuiFormControlLayout>
+  </EuiFlexItem>
+  <EuiFlexItem
+    grow={false}
+  >
+    <EuiSuperUpdateButton
+      data-test-subj="superDatePickerApplyTimeButton"
+      fill={true}
+      iconOnly={true}
+      isDisabled={false}
+      isLoading={false}
+      needsUpdate={false}
+      onClick={[Function]}
+      responsive={
+        Array [
+          "xs",
+          "s",
+        ]
+      }
+      showTooltip={true}
+      size="m"
+    />
+  </EuiFlexItem>
+</EuiFlexGroup>
+`;
+
+exports[`EuiSuperDatePicker props width can be auto 1`] = `
+<EuiFlexGroup
+  className="euiSuperDatePicker__flexWrapper euiSuperDatePicker__flexWrapper--autoWidth"
+  gutterSize="s"
+  responsive={false}
+>
+  <EuiFlexItem>
+    <EuiFormControlLayout
+      className="euiSuperDatePicker"
+      isDisabled={false}
+      prepend={
+        <EuiQuickSelectPopover
+          applyTime={[Function]}
+          commonlyUsedRanges={
+            Array [
+              Object {
+                "end": "now/d",
+                "label": "Today",
+                "start": "now/d",
+              },
+              Object {
+                "end": "now/w",
+                "label": "This week",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now/M",
+                "label": "This month",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now/y",
+                "label": "This year",
+                "start": "now/y",
+              },
+              Object {
+                "end": "now-1d/d",
+                "label": "Yesterday",
+                "start": "now-1d/d",
+              },
+              Object {
+                "end": "now",
+                "label": "Week to date",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now",
+                "label": "Month to date",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now",
+                "label": "Year to date",
+                "start": "now/y",
+              },
+            ]
+          }
+          dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+          end="now"
+          isDisabled={false}
+          isPaused={true}
+          recentlyUsedRanges={Array []}
+          refreshInterval={1000}
+          start="now-15m"
+          timeOptions={
+            Object {
+              "commonDurationRanges": Array [
+                Object {
+                  "end": "now/d",
+                  "label": "Today",
+                  "start": "now/d",
+                },
+                Object {
+                  "end": "now/w",
+                  "label": "This week",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now/M",
+                  "label": "This month",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now/y",
+                  "label": "This year",
+                  "start": "now/y",
+                },
+                Object {
+                  "end": "now-1d/d",
+                  "label": "Yesterday",
+                  "start": "now-1d/d",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Week to date",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Month to date",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Year to date",
+                  "start": "now/y",
+                },
+              ],
+              "refreshUnitsOptions": Array [
+                Object {
+                  "text": "Seconds",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours",
+                  "value": "h",
+                },
+              ],
+              "relativeOptions": Array [
+                Object {
+                  "text": "Seconds ago",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes ago",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours ago",
+                  "value": "h",
+                },
+                Object {
+                  "text": "Days ago",
+                  "value": "d",
+                },
+                Object {
+                  "text": "Weeks ago",
+                  "value": "w",
+                },
+                Object {
+                  "text": "Months ago",
+                  "value": "M",
+                },
+                Object {
+                  "text": "Years ago",
+                  "value": "y",
+                },
+                Object {
+                  "text": "Seconds from now",
+                  "value": "s+",
+                },
+                Object {
+                  "text": "Minutes from now",
+                  "value": "m+",
+                },
+                Object {
+                  "text": "Hours from now",
+                  "value": "h+",
+                },
+                Object {
+                  "text": "Days from now",
+                  "value": "d+",
+                },
+                Object {
+                  "text": "Weeks from now",
+                  "value": "w+",
+                },
+                Object {
+                  "text": "Months from now",
+                  "value": "M+",
+                },
+                Object {
+                  "text": "Years from now",
+                  "value": "y+",
+                },
+              ],
+              "relativeRoundingLabels": Object {
+                "M": "Round to the month",
+                "d": "Round to the day",
+                "h": "Round to the hour",
+                "m": "Round to the minute",
+                "s": "Round to the second",
+                "w": "Round to the week",
+                "y": "Round to the year",
+              },
+              "timeTenseOptions": Array [
+                Object {
+                  "text": "Last",
+                  "value": "last",
+                },
+                Object {
+                  "text": "Next",
+                  "value": "next",
+                },
+              ],
+              "timeUnitsOptions": Array [
+                Object {
+                  "text": "Seconds",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours",
+                  "value": "h",
+                },
+                Object {
+                  "text": "Days",
+                  "value": "d",
+                },
+                Object {
+                  "text": "Weeks",
+                  "value": "w",
+                },
+                Object {
+                  "text": "Months",
+                  "value": "M",
+                },
+                Object {
+                  "text": "Years",
+                  "value": "y",
+                },
+              ],
+            }
+          }
+        />
+      }
+    >
+      <EuiDatePickerRange
+        className="euiDatePickerRange--inGroup"
+        endDateControl={<div />}
+        iconType={false}
+        isCustom={true}
+        startDateControl={<div />}
+      >
+        <button
+          className="euiSuperDatePicker__prettyFormat"
+          data-test-subj="superDatePickerShowDatesButton"
+          disabled={false}
+          onClick={[Function]}
+        >
+          <PrettyDuration
+            dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+            quickRanges={
+              Array [
+                Object {
+                  "end": "now/d",
+                  "label": "Today",
+                  "start": "now/d",
+                },
+                Object {
+                  "end": "now/w",
+                  "label": "This week",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now/M",
+                  "label": "This month",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now/y",
+                  "label": "This year",
+                  "start": "now/y",
+                },
+                Object {
+                  "end": "now-1d/d",
+                  "label": "Yesterday",
+                  "start": "now-1d/d",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Week to date",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Month to date",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Year to date",
+                  "start": "now/y",
+                },
+              ]
+            }
+            timeFrom="now-15m"
+            timeTo="now"
+          />
+        </button>
+      </EuiDatePickerRange>
+    </EuiFormControlLayout>
+  </EuiFlexItem>
+  <EuiFlexItem
+    grow={false}
+  >
+    <EuiSuperUpdateButton
+      data-test-subj="superDatePickerApplyTimeButton"
+      fill={true}
+      iconOnly={false}
+      isDisabled={false}
+      isLoading={false}
+      needsUpdate={false}
+      onClick={[Function]}
+      responsive={
+        Array [
+          "xs",
+          "s",
+        ]
+      }
+      showTooltip={true}
+      size="m"
+    />
+  </EuiFlexItem>
+</EuiFlexGroup>
+`;
+
+exports[`EuiSuperDatePicker props width can be full 1`] = `
+<EuiFlexGroup
+  className="euiSuperDatePicker__flexWrapper euiSuperDatePicker__flexWrapper--fullWidth"
+  gutterSize="s"
+  responsive={false}
+>
+  <EuiFlexItem>
+    <EuiFormControlLayout
+      className="euiSuperDatePicker"
+      isDisabled={false}
+      prepend={
+        <EuiQuickSelectPopover
+          applyTime={[Function]}
+          commonlyUsedRanges={
+            Array [
+              Object {
+                "end": "now/d",
+                "label": "Today",
+                "start": "now/d",
+              },
+              Object {
+                "end": "now/w",
+                "label": "This week",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now/M",
+                "label": "This month",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now/y",
+                "label": "This year",
+                "start": "now/y",
+              },
+              Object {
+                "end": "now-1d/d",
+                "label": "Yesterday",
+                "start": "now-1d/d",
+              },
+              Object {
+                "end": "now",
+                "label": "Week to date",
+                "start": "now/w",
+              },
+              Object {
+                "end": "now",
+                "label": "Month to date",
+                "start": "now/M",
+              },
+              Object {
+                "end": "now",
+                "label": "Year to date",
+                "start": "now/y",
+              },
+            ]
+          }
+          dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+          end="now"
+          isDisabled={false}
+          isPaused={true}
+          recentlyUsedRanges={Array []}
+          refreshInterval={1000}
+          start="now-15m"
+          timeOptions={
+            Object {
+              "commonDurationRanges": Array [
+                Object {
+                  "end": "now/d",
+                  "label": "Today",
+                  "start": "now/d",
+                },
+                Object {
+                  "end": "now/w",
+                  "label": "This week",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now/M",
+                  "label": "This month",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now/y",
+                  "label": "This year",
+                  "start": "now/y",
+                },
+                Object {
+                  "end": "now-1d/d",
+                  "label": "Yesterday",
+                  "start": "now-1d/d",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Week to date",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Month to date",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Year to date",
+                  "start": "now/y",
+                },
+              ],
+              "refreshUnitsOptions": Array [
+                Object {
+                  "text": "Seconds",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours",
+                  "value": "h",
+                },
+              ],
+              "relativeOptions": Array [
+                Object {
+                  "text": "Seconds ago",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes ago",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours ago",
+                  "value": "h",
+                },
+                Object {
+                  "text": "Days ago",
+                  "value": "d",
+                },
+                Object {
+                  "text": "Weeks ago",
+                  "value": "w",
+                },
+                Object {
+                  "text": "Months ago",
+                  "value": "M",
+                },
+                Object {
+                  "text": "Years ago",
+                  "value": "y",
+                },
+                Object {
+                  "text": "Seconds from now",
+                  "value": "s+",
+                },
+                Object {
+                  "text": "Minutes from now",
+                  "value": "m+",
+                },
+                Object {
+                  "text": "Hours from now",
+                  "value": "h+",
+                },
+                Object {
+                  "text": "Days from now",
+                  "value": "d+",
+                },
+                Object {
+                  "text": "Weeks from now",
+                  "value": "w+",
+                },
+                Object {
+                  "text": "Months from now",
+                  "value": "M+",
+                },
+                Object {
+                  "text": "Years from now",
+                  "value": "y+",
+                },
+              ],
+              "relativeRoundingLabels": Object {
+                "M": "Round to the month",
+                "d": "Round to the day",
+                "h": "Round to the hour",
+                "m": "Round to the minute",
+                "s": "Round to the second",
+                "w": "Round to the week",
+                "y": "Round to the year",
+              },
+              "timeTenseOptions": Array [
+                Object {
+                  "text": "Last",
+                  "value": "last",
+                },
+                Object {
+                  "text": "Next",
+                  "value": "next",
+                },
+              ],
+              "timeUnitsOptions": Array [
+                Object {
+                  "text": "Seconds",
+                  "value": "s",
+                },
+                Object {
+                  "text": "Minutes",
+                  "value": "m",
+                },
+                Object {
+                  "text": "Hours",
+                  "value": "h",
+                },
+                Object {
+                  "text": "Days",
+                  "value": "d",
+                },
+                Object {
+                  "text": "Weeks",
+                  "value": "w",
+                },
+                Object {
+                  "text": "Months",
+                  "value": "M",
+                },
+                Object {
+                  "text": "Years",
+                  "value": "y",
+                },
+              ],
+            }
+          }
+        />
+      }
+    >
+      <EuiDatePickerRange
+        className="euiDatePickerRange--inGroup"
+        endDateControl={<div />}
+        iconType={false}
+        isCustom={true}
+        startDateControl={<div />}
+      >
+        <button
+          className="euiSuperDatePicker__prettyFormat"
+          data-test-subj="superDatePickerShowDatesButton"
+          disabled={false}
+          onClick={[Function]}
+        >
+          <PrettyDuration
+            dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+            quickRanges={
+              Array [
+                Object {
+                  "end": "now/d",
+                  "label": "Today",
+                  "start": "now/d",
+                },
+                Object {
+                  "end": "now/w",
+                  "label": "This week",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now/M",
+                  "label": "This month",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now/y",
+                  "label": "This year",
+                  "start": "now/y",
+                },
+                Object {
+                  "end": "now-1d/d",
+                  "label": "Yesterday",
+                  "start": "now-1d/d",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Week to date",
+                  "start": "now/w",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Month to date",
+                  "start": "now/M",
+                },
+                Object {
+                  "end": "now",
+                  "label": "Year to date",
+                  "start": "now/y",
+                },
+              ]
+            }
+            timeFrom="now-15m"
+            timeTo="now"
+          />
+        </button>
+      </EuiDatePickerRange>
+    </EuiFormControlLayout>
+  </EuiFlexItem>
+  <EuiFlexItem
+    grow={false}
+  >
+    <EuiSuperUpdateButton
+      data-test-subj="superDatePickerApplyTimeButton"
+      fill={true}
+      iconOnly={false}
+      isDisabled={false}
+      isLoading={false}
+      needsUpdate={false}
+      onClick={[Function]}
+      responsive={
+        Array [
+          "xs",
+          "s",
+        ]
+      }
+      showTooltip={true}
+      size="m"
     />
   </EuiFlexItem>
 </EuiFlexGroup>

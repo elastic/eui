@@ -30,7 +30,8 @@ export default () => {
           + Add filter
         </EuiButtonEmpty>
       }
-      anchorPosition="downCenter">
+      anchorPosition="downCenter"
+    >
       <EuiPopoverTitle>
         <EuiFlexGroup alignItems="baseline">
           <EuiFlexItem>Add a filter</EuiFlexItem>

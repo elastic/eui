@@ -61,7 +61,8 @@ export const IconExample = {
               descriptive <EuiCode>title</EuiCode> based on the icon use.
             </>
           }
-          color="warning">
+          color="warning"
+        >
           <p>
             If no title is provided the icon is going to be purely decorative
             and it will get by default an{' '}
@@ -79,6 +80,14 @@ export const IconExample = {
             use the default size of{' '}
             <EuiCode language="js">size=&quot;m&quot;</EuiCode>.
           </p>
+          <p>
+            If you would like to contribute to our growing list of glyphs, you
+            can follow{' '}
+            <EuiLink to="https://github.com/elastic/eui/blob/main/wiki/creating-icons.md">
+              these guidelines
+            </EuiLink>
+            .
+          </p>
         </>
       ),
       demo: <Icons />,
@@ -95,14 +104,23 @@ export const IconExample = {
     },
     {
       title: 'Elastic logos',
+      wrapText: false,
       text: (
-        <p>
-          Product logos follow similar rules as app logos. Note the use of{' '}
-          <EuiCode>.euiIcon__fillNegative</EuiCode> on portions of the SVGs to
-          handle flipping colors for dark mode.
-        </p>
+        <>
+          <EuiText>
+            <p>
+              These logos are restricted in use to Elastic products or when
+              referencing Elastic products. They are multi-color with some
+              internal paths having a class of{' '}
+              <EuiCode>.euiIcon__fillNegative</EuiCode> to handle flipping
+              colors for dark mode. The only other colors most of them support
+              are ghost and text which turn them into a solid shape.
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <Logos />
+        </>
       ),
-      demo: <Logos />,
     },
     {
       title: 'Apps',
@@ -183,7 +201,8 @@ export const IconExample = {
           which accepts a named color from our palette or a valid&nbsp;
           <EuiLink
             target="_blank"
-            href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value">
+            href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value"
+          >
             CSS color data type
           </EuiLink>
           &nbsp;which will be passed down through the inline-style{' '}
@@ -204,8 +223,8 @@ export const IconExample = {
               Two-tone icons, like our app style icons, will behave similarly to
               normal glyphs when provided a specific color by applying the color
               to <strong>all</strong> the shapes within. You can force the icon
-              to match the parent's text color by passing{' '}
-              <EuiCode>color="inherit"</EuiCode> to the icon.
+              to match the parent&apos;s text color by passing{' '}
+              <EuiCode>color=&#34;inherit&#34;</EuiCode> to the icon.
             </p>
           </EuiText>
         </>

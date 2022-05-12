@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -30,7 +19,7 @@ import {
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
 import { EuiValidatableControl } from '../validatable_control';
-import { EuiFormControlLayoutIconsProps } from '../form_control_layout/form_control_layout_icons';
+import { getFormControlClassNameForIconCount } from '../form_control_layout/_num_icons';
 
 export interface EuiSelectOption
   extends OptionHTMLAttributes<HTMLOptionElement> {
@@ -87,6 +76,7 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
   prepend,
   append,
   onMouseUp,
+  disabled,
   ...rest
 }) => {
   // if this is injecting an empty option for `hasNoInitialSelection` then
@@ -102,8 +92,15 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
     if (onMouseUp) onMouseUp(e);
   };
 
+  const numIconsClass = getFormControlClassNameForIconCount({
+    isInvalid,
+    isLoading,
+    isDropdown: true,
+  });
+
   const classes = classNames(
     'euiSelect',
+    numIconsClass,
     {
       'euiSelect--fullWidth': fullWidth,
       'euiSelect--compressed': compressed,
@@ -129,20 +126,18 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
     selectDefaultValue = defaultValue || '';
   }
 
-  const icon: EuiFormControlLayoutIconsProps['icon'] = {
-    type: 'arrowDown',
-    side: 'right',
-  };
-
   return (
     <EuiFormControlLayout
-      icon={icon}
+      isDropdown={true}
       fullWidth={fullWidth}
       isLoading={isLoading}
+      isInvalid={isInvalid}
+      isDisabled={disabled}
       compressed={compressed}
       prepend={prepend}
       append={append}
-      inputId={id}>
+      inputId={id}
+    >
       <EuiValidatableControl isInvalid={isInvalid}>
         <select
           id={id}
@@ -152,7 +147,9 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
           defaultValue={selectDefaultValue}
           value={value}
           onMouseUp={handleMouseUp}
-          {...rest}>
+          disabled={disabled}
+          {...rest}
+        >
           {emptyOptionNode}
           {options.map((option, index) => {
             const { text, ...rest } = option;

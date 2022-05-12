@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { EuiSelect } from '../../../../src/components';
+import { useGeneratedHtmlId } from '../../../../src/services';
 import { DisplayToggles } from './display_toggles';
 
 export default () => {
@@ -12,6 +13,8 @@ export default () => {
 
   const [value, setValue] = useState(options[1].value);
 
+  const basicSelectId = useGeneratedHtmlId({ prefix: 'basicSelect' });
+
   const onChange = (e) => {
     setValue(e.target.value);
   };
@@ -20,7 +23,7 @@ export default () => {
     /* DisplayToggles wrapper for Docs only */
     <DisplayToggles canPrepend canAppend canReadOnly={false}>
       <EuiSelect
-        id="selectDocExample"
+        id={basicSelectId}
         options={options}
         value={value}
         onChange={(e) => onChange(e)}

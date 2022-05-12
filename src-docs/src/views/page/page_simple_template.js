@@ -8,7 +8,8 @@ export default ({ button = <></>, content }) => (
       pageTitle: 'Page title',
       rightSideItems: [button],
       tabs: [{ label: 'Tab 1', isSelected: true }, { label: 'Tab 2' }],
-    }}>
+    }}
+  >
     {content}
   </EuiPageTemplate>
 );

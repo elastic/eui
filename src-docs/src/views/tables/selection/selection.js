@@ -117,7 +117,7 @@ export const Table = () => {
         only: true,
         header: false,
         enlarge: true,
-        fullWidth: true,
+        width: '100%',
       },
       render: (name, item) => (
         <EuiFlexGroup responsive={false} alignItems="center">
@@ -205,6 +205,7 @@ export const Table = () => {
       <EuiSpacer size="l" />
 
       <EuiBasicTable
+        tableCaption="Demo for EuiBasicTable with selection"
         ref={tableRef}
         items={pageOfItems}
         itemId="id"

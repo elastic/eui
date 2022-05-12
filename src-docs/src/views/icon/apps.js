@@ -13,10 +13,12 @@ import {
 const iconTypes = [
   'addDataApp',
   'advancedSettingsApp',
+  'agentApp',
   'apmApp',
   'appSearchApp',
   'auditbeatApp',
   'canvasApp',
+  'casesApp',
   'codeApp',
   'consoleApp',
   'crossClusterReplicationApp',
@@ -25,6 +27,7 @@ const iconTypes = [
   'discoverApp',
   'emsApp',
   'filebeatApp',
+  'fleetApp',
   'gisApp',
   'graphApp',
   'grokApp',
@@ -32,12 +35,12 @@ const iconTypes = [
   'indexManagementApp',
   'indexPatternApp',
   'indexRollupApp',
-  'metricsApp',
   'lensApp',
   'logsApp',
   'machineLearningApp',
   'managementApp',
   'metricbeatApp',
+  'metricsApp',
   'monitoringApp',
   'notebookApp',
   'packetbeatApp',
@@ -71,13 +74,15 @@ export default () => (
           <EuiCopy
             display="block"
             textToCopy={iconType}
-            afterMessage={`${iconType} copied`}>
+            afterMessage={`${iconType} copied`}
+          >
             {(copy) => (
               <EuiPanel
                 hasShadow={false}
                 hasBorder={false}
                 onClick={copy}
-                paddingSize="s">
+                paddingSize="s"
+              >
                 <EuiIcon
                   className="eui-alignMiddle"
                   type={iconType}

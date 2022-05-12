@@ -11,6 +11,8 @@ import {
   EuiFlexItem,
   EuiSpacer,
   EuiSwitch,
+  EuiHorizontalRule,
+  EuiText,
 } from '../../../../../src/components';
 
 /*
@@ -39,7 +41,7 @@ const store = createDataStore();
 
 export const Table = () => {
   const [pageIndex, setPageIndex] = useState(0);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(10);
   const [showPerPageOptions, setShowPerPageOptions] = useState(true);
 
   const onTableChange = ({ page = {} }) => {
@@ -64,7 +66,6 @@ export const Table = () => {
       field: 'firstName',
       name: 'First Name',
       truncateText: true,
-      hideForMobile: true,
       mobileOptions: {
         show: false,
       },
@@ -84,7 +85,7 @@ export const Table = () => {
         header: false,
         only: true,
         enlarge: true,
-        fullWidth: true,
+        width: '100%',
       },
       render: (name, item) => (
         <EuiFlexGroup responsive={false} alignItems="center">
@@ -123,6 +124,9 @@ export const Table = () => {
       name: 'Online',
       dataType: 'boolean',
       render: (online) => renderStatus(online),
+      mobileOptions: {
+        show: false,
+      },
     },
   ];
 
@@ -130,9 +134,21 @@ export const Table = () => {
     pageIndex,
     pageSize,
     totalItemCount,
-    pageSizeOptions: [3, 5, 8],
-    hidePerPageOptions: !showPerPageOptions,
+    pageSizeOptions: [10, 0],
+    showPerPageOptions,
   };
+
+  const resultsCount =
+    pageSize === 0 ? (
+      <strong>All</strong>
+    ) : (
+      <>
+        <strong>
+          {pageSize * pageIndex + 1}-{pageSize * pageIndex + pageSize}
+        </strong>{' '}
+        of {totalItemCount}
+      </>
+    );
 
   return (
     <div>
@@ -141,13 +157,19 @@ export const Table = () => {
         label={
           <span>
             Hide per page options with{' '}
-            <EuiCode>pagination.hidePerPageOptions = true</EuiCode>
+            <EuiCode>pagination.showPerPageOptions = false</EuiCode>
           </span>
         }
         onChange={togglePerPageOptions}
       />
       <EuiSpacer size="xl" />
+      <EuiText size="xs">
+        Showing {resultsCount} <strong>Users</strong>
+      </EuiText>
+      <EuiSpacer size="s" />
+      <EuiHorizontalRule margin="none" style={{ height: 2 }} />
       <EuiBasicTable
+        tableCaption="Demo for EuiBasicTable with pagination"
         items={pageOfItems}
         columns={columns}
         pagination={pagination}

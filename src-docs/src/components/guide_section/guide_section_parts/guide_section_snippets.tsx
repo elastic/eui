@@ -12,14 +12,14 @@ export const GuideSectionSnippets: FunctionComponent<GuideSectionSnippets> = ({
   let snippetCode;
   if (typeof snippets === 'string') {
     snippetCode = (
-      <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
+      <EuiCodeBlock language="jsx" fontSize="m" paddingSize="m" isCopyable>
         {snippets}
       </EuiCodeBlock>
     );
   } else {
     snippetCode = snippets.map((snip, index) => (
       <React.Fragment key={`snippet${index}`}>
-        <EuiCodeBlock language="html" fontSize="m" paddingSize="m" isCopyable>
+        <EuiCodeBlock language="jsx" fontSize="m" paddingSize="m" isCopyable>
           {snip}
         </EuiCodeBlock>
         {index < snippets.length - 1 && <EuiSpacer size="xs" />}

@@ -7,6 +7,7 @@ import {
   EuiCode,
   EuiPageHeader,
   EuiPageHeaderSection,
+  EuiText,
 } from '../../../../src/components';
 
 import { pageHeaderConfig } from './playground';
@@ -16,10 +17,16 @@ const pageHeaderSource = require('!!raw-loader!./page_header');
 
 import PageHeaderTabs from './page_header_tabs';
 const pageHeaderTabsSource = require('!!raw-loader!./page_header_tabs');
+import PageHeaderTabsTitle from './page_header_tabs_title';
+const pageHeaderTabsTitleSource = require('!!raw-loader!./page_header_tabs_title');
 
 import PageHeaderCustom from './page_header_custom';
-import { EuiText } from '../../../../src/components/text';
 const pageHeaderCustomSource = require('!!raw-loader!./page_header_custom');
+
+import PageBreadcrumbs from './page_header_breadcrumbs';
+const pageBreadcrumbsSource = require('!!raw-loader!./page_header_breadcrumbs');
+import PageBreadcrumbsReturn from './page_header_breadcrumbs_return';
+const pageBreadcrumbsReturnSource = require('!!raw-loader!./page_header_breadcrumbs_return');
 
 export const PageHeaderExample = {
   title: 'Page header',
@@ -28,7 +35,7 @@ export const PageHeaderExample = {
       <p>
         While the <strong>EuiPageHeader</strong> component can be placed
         anywhere within your page layout, we recommend using it within the{' '}
-        <Link to="/layout/page">
+        <Link to="/templates/page-template">
           <strong>EuiPageTemplate</strong>
         </Link>{' '}
         component by passing the configuration props as its{' '}
@@ -74,21 +81,37 @@ export const PageHeaderExample = {
       ),
       demo: <PageHeader />,
       props: { EuiPageHeader },
-      snippet: `<EuiPageHeader
-  pageTitle="Page title"
-  tabs={[
-    { label:"Tab 1", isSelected: true },
-    { label:"Tab 2" }
-  ]}
-  description="Example of a description."
-  rightSideItems={[
-    <EuiButton fill>Button 1</EuiButton>,
-    <EuiButton>Button 2</EuiButton>
-  ]}
-/>`,
     },
     {
       title: 'Tabs in the page header',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: pageHeaderTabsTitleSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            A set of <EuiCode>tabs</EuiCode> can be displayed inside the page
+            header by passing an array of{' '}
+            <Link to="/navigation/tabs">
+              <strong>EuiTab</strong>
+            </Link>{' '}
+            objects using the <EuiCode>label</EuiCode> key for the tab content.
+            When displaying tabs it is recommended to also apply the{' '}
+            <EuiCode>bottomBorder</EuiCode> prop (on the{' '}
+            <strong>EuiPageHeader</strong> component not through{' '}
+            <EuiCode>tabsProps</EuiCode>) to create separation of the header and
+            content. You&apos;ll still need to manage the page content and
+            selected tab in your own instance.
+          </p>
+        </>
+      ),
+      demo: <PageHeaderTabsTitle />,
+      props: { EuiPageHeader },
+    },
+    {
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -102,19 +125,52 @@ export const PageHeaderExample = {
             <EuiCode>pageTitle</EuiCode>, <strong>EuiPageHeader</strong> will
             promote those tabs as if they are the page title. This means that
             any <EuiCode>description</EuiCode> or <EuiCode>children</EuiCode>{' '}
-            will sit <strong>below</strong> the tabs.
+            will sit <strong>below</strong> the tabs and should be describing
+            the currently selected tab.
           </p>
         </>
       ),
       demo: <PageHeaderTabs />,
       props: { EuiPageHeader },
-      snippet: `<EuiPageHeader
-  tabs={[
-    { label:"Tab 1", isSelected: true },
-    { label:"Tab 2" }
-  ]}
-  description="Example of a description."
-/>`,
+    },
+    {
+      title: 'Breadcrumbs in the page header',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: pageBreadcrumbsSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            <Link to="/navigation/breadcrumbs">Breadcrumbs</Link> are useful for
+            tracking in-page flows that{' '}
+            <strong>are not part of the entire application architecture</strong>
+            . To make this easy <strong>EuiPageHeader</strong> provides a{' '}
+            <EuiCode>breadcrumbs</EuiCode> prop that accepts the same
+            configuration as <EuiCode>EuiBreadrumbs.breadcrumbs</EuiCode>.
+          </p>
+        </>
+      ),
+      demo: <PageBreadcrumbs />,
+      props: { EuiPageHeader },
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: pageBreadcrumbsReturnSource,
+        },
+      ],
+      text: (
+        <p>
+          A common pattern is to use a single breadcrumb to return the user to a
+          listing page from which the current page was navigated to.
+        </p>
+      ),
+      demo: <PageBreadcrumbsReturn />,
+      props: { EuiPageHeader },
     },
     {
       title: 'Customizing the page header',

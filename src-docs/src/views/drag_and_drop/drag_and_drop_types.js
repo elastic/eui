@@ -69,7 +69,8 @@ export default () => {
             type="TYPE_ONE"
             spacing="m"
             withPanel
-            grow={false}>
+            grow={false}
+          >
             {list1.map(({ content, id }, idx) => (
               <EuiDraggable key={id} index={idx} draggableId={id} spacing="m">
                 {(provided, state) => (
@@ -88,7 +89,8 @@ export default () => {
             type="TYPE_ONE"
             spacing="m"
             withPanel
-            grow={false}>
+            grow={false}
+          >
             {list2.map(({ content, id }, idx) => (
               <EuiDraggable key={id} index={idx} draggableId={id} spacing="m">
                 {(provided, state) => (
@@ -107,7 +109,8 @@ export default () => {
             type="TYPE_TWO"
             spacing="m"
             withPanel
-            grow={true}>
+            grow={true}
+          >
             {list3.map(({ content, id }, idx) => (
               <EuiDraggable key={id} index={idx} draggableId={id} spacing="m">
                 {(provided, state) => (

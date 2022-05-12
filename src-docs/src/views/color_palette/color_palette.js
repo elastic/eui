@@ -60,7 +60,8 @@ export default () => (
               gutterSize="none"
               alignItems="flexStart"
               responsive={false}
-              wrap>
+              wrap
+            >
               {palette.palette.map((hexCode) => (
                 <ColorPaletteFlexItem
                   className="guideColorPalette__swatch--notRound"

@@ -1,21 +1,3 @@
-/*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const path = require('path');
@@ -2532,143 +2514,35 @@ let something: any;
 
         expect(result.code).toBe('let something;');
       });
-    });
-  });
 
-  describe('remove types from exports', () => {
-    it('removes sole type export from ExportNamedDeclaration', () => {
-      const result = transform(
-        `
-type Foo = string;
-export { Foo };
+      it('skips non-typescript imports', () => {
+        const result = transform(
+          `
+import something from './somewhere.txt';
 `,
-        babelOptions
-      );
-
-      expect(result.code).toBe('');
-    });
-
-    it('removes multiple type export from ExportNamedDeclaration', () => {
-      const result = transform(
-        `
-type Foo = string;
-type Bar = number | Foo;
-export { Foo, Bar };
-`,
-        babelOptions
-      );
-
-      expect(result.code).toBe('');
-    });
-
-    it('removes type exports from ExportNamedDeclaration, leaving legitimate exports', () => {
-      const result = transform(
-        `
-type Foo = string;
-type Bar = Foo | boolean;
-const A = 500;
-const B = { bar: A };
-export { Foo, A, Bar, B };
-`,
-        babelOptions
-      );
-
-      expect(result.code).toBe(`const A = 500;
-const B = {
-  bar: A
-};
-export { A, B };`);
-    });
-
-    it('removes type exports from ExportNamedDeclaration with a source', () => {
-      const result = transform(
-        `
-export { Foo, A } from './foo';
-`,
-        {
-          ...babelOptions,
-          plugins: [
-            [
-              './scripts/babel/proptypes-from-ts-props',
-              {
-                fs: {
-                  existsSync: () => true,
-                  statSync: () => ({ isDirectory: () => false }),
-                  readFileSync: filepath => {
-                    if (filepath.endsWith(`${path.sep}foo`)) {
+          {
+            ...babelOptions,
+            plugins: [
+              [
+                './scripts/babel/proptypes-from-ts-props',
+                {
+                  fs: {
+                    existsSync: () => true,
+                    statSync: () => ({ isDirectory: () => false }),
+                    readFileSync: () => {
                       return Buffer.from(`
-                        export type Foo = string;
+                        this is not valid javascript
                       `);
-                    }
-
-                    throw new Error(`Test tried to import from ${filepath}`);
+                    },
                   },
                 },
-              },
+              ],
             ],
-          ],
-        }
-      );
+          }
+        );
 
-      expect(result.code).toBe("export { A } from './foo';");
-    });
-
-    it('removes type exports from ExportNamedDeclaration when the imported name differs from the exported one', () => {
-      const result = transform(
-        `
-export { Foo as Bar, A as B } from './foo';
-`,
-        {
-          ...babelOptions,
-          plugins: [
-            [
-              './scripts/babel/proptypes-from-ts-props',
-              {
-                fs: {
-                  existsSync: () => true,
-                  statSync: () => ({ isDirectory: () => false }),
-                  readFileSync: filepath => {
-                    if (filepath.endsWith(`${path.sep}foo`)) {
-                      return Buffer.from(`
-                        export const A = 5;
-                        export type Foo = string;
-                      `);
-                    }
-
-                    throw new Error(`Test tried to import from ${filepath}`);
-                  },
-                },
-              },
-            ],
-          ],
-        }
-      );
-
-      expect(result.code).toBe("export { A as B } from './foo';");
-    });
-
-    it('removes type export statements', () => {
-      const result = transform(
-        `
-export type Foo = string;
-`,
-        babelOptions
-      );
-
-      expect(result.code).toBe('');
-    });
-
-    it('removes 3rd-party type exports', () => {
-      const result = transform(
-        `
-export { DraggableLocation, Draggable, DragDropContextProps } from 'react-beautiful-dnd';
-`,
-        babelOptions
-      );
-
-      expect(result.code).toBe(
-        "export { Draggable } from 'react-beautiful-dnd';"
-      );
+        expect(result.code).toBe("export {};");
+      });
     });
   });
 });

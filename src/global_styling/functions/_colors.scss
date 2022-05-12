@@ -72,7 +72,7 @@
 // Given $color, decide whether $lightText or $darkText should be used as the text color
 // ex: chooseLightOrDarkText(#EEE, #FFF, #000) would return #000 because it has
 //     a higher contrast than #FFF against a #EEE background.
-@function chooseLightOrDarkText($background, $lightText, $darkText) {
+@function chooseLightOrDarkText($background, $lightText: $euiColorGhost, $darkText: $euiColorInk) {
   $lightContrast: contrastRatio($background, $lightText);
   $darkContrast: contrastRatio($background, $darkText);
 

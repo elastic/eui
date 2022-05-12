@@ -40,14 +40,16 @@ export default () => {
 
       {toggleIdSelected && (
         <EuiBottomBar
-          affordForDisplacement={toggleIdSelected === 'bottomBarStandard'}>
+          affordForDisplacement={toggleIdSelected === 'bottomBarStandard'}
+        >
           <EuiFlexGroup justifyContent="flexEnd">
             <EuiFlexItem grow={false}>
               <EuiButton
                 onClick={() => setToggleIdSelected(null)}
                 color="ghost"
                 size="s"
-                iconType="cross">
+                iconType="cross"
+              >
                 close
               </EuiButton>
             </EuiFlexItem>

@@ -1,32 +1,24 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiTourStep } from './tour_step';
 
+jest.mock('../portal', () => ({
+  EuiPortal: ({ children }: any) => children,
+}));
+
 const steps = [
   {
     step: 1,
-    subtitle: 'Step 1',
     content: 'You are here',
   },
 ];
@@ -39,64 +31,92 @@ const config = {
 
 describe('EuiTourStep', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiTourStep {...config} {...steps[0]} {...requiredProps}>
+    const component = mount(
+      <EuiTourStep {...config} {...steps[0]} isStepOpen {...requiredProps}>
         <span>Test</span>
       </EuiTourStep>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component.render()).toMatchSnapshot();
+  });
+
+  test('can have subtitle', () => {
+    const component = mount(
+      <EuiTourStep
+        {...config}
+        {...steps[0]}
+        isStepOpen
+        subtitle="Subtitle"
+        {...requiredProps}
+      >
+        <span>Test</span>
+      </EuiTourStep>
+    );
+
+    expect(component.render()).toMatchSnapshot();
   });
 
   test('can be closed', () => {
-    const component = render(
+    const component = mount(
       <EuiTourStep
         {...config}
         {...steps[0]}
         isStepOpen={false}
-        {...requiredProps}>
+        {...requiredProps}
+      >
         <span>Test</span>
       </EuiTourStep>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component.render()).toMatchSnapshot();
   });
 
-  test('can set a minWidth', () => {
-    const component = render(
-      <EuiTourStep {...config} {...steps[0]} minWidth={240} {...requiredProps}>
+  test('can change the minWidth and maxWidth', () => {
+    const component = mount(
+      <EuiTourStep
+        {...config}
+        {...steps[0]}
+        minWidth={240}
+        maxWidth={420}
+        isStepOpen
+        {...requiredProps}
+      >
         <span>Test</span>
       </EuiTourStep>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component.render()).toMatchSnapshot();
   });
 
   test('can override the footer action', () => {
-    const component = render(
+    const component = mount(
       <EuiTourStep
         {...config}
         {...steps[0]}
+        isStepOpen
         footerAction={<button onClick={() => {}}>Test</button>}
-        {...requiredProps}>
+        {...requiredProps}
+      >
         <span>Test</span>
       </EuiTourStep>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component.render()).toMatchSnapshot();
   });
 
   test('can turn off the beacon', () => {
-    const component = render(
+    const component = mount(
       <EuiTourStep
         {...config}
         {...steps[0]}
+        isStepOpen
         decoration="none"
-        {...requiredProps}>
+        {...requiredProps}
+      >
         <span>Test</span>
       </EuiTourStep>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component.render()).toMatchSnapshot();
   });
 });

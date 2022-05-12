@@ -34,18 +34,9 @@
   }
 }
 
-.euiMarkdownEditorFooter__help {
-  justify-self: flex-end;
-
+.euiMarkdownEditorFooter__helpButton {
   // overrides the default button icon width size
   > svg {
     width: 26px;
-  }
-}
-
-.euiMarkdownEditorFooter__errors {
-  // overrides the default button icon width size
-  > svg {
-    color: $euiTextSubduedColor;
   }
 }

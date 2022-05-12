@@ -21,7 +21,6 @@ export const GuideSectionExampleText: FunctionComponent<GuideSectionExampleText>
   if (title) {
     titleNode = (
       <>
-        <EuiSpacer />
         <EuiTitle>
           <h2>{title}</h2>
         </EuiTitle>
@@ -40,7 +39,6 @@ export const GuideSectionExampleText: FunctionComponent<GuideSectionExampleText>
     <>
       {titleNode}
       {textNode}
-      {(titleNode || textNode) && <EuiSpacer />}
     </>
   );
 };

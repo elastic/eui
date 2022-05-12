@@ -1,7 +1,7 @@
-// Modifier naming and colors.
+// Used in mixin that's used in Kibana
 $euiCallOutTypes: (
   primary: $euiColorPrimary,
-  success: $euiColorSecondary,
+  success: $euiColorSuccess,
   warning: $euiColorWarning,
   danger: $euiColorDanger,
 );

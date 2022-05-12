@@ -36,14 +36,27 @@ exports[`EuiStepNumber props has titleSize is rendered 1`] = `
 </span>
 `;
 
-exports[`EuiStepNumber props isHollow is rendered 1`] = `
+exports[`EuiStepNumber props status complete is rendered 1`] = `
 <span
-  class="euiStepNumber euiStepNumber-isHollow"
+  class="euiStepNumber euiStepNumber--complete"
+>
+  <span
+    class="euiStepNumber__icon"
+    data-euiicon-type="check"
+  >
+    Step 1 is complete
+  </span>
+</span>
+`;
+
+exports[`EuiStepNumber props status current is rendered 1`] = `
+<span
+  class="euiStepNumber"
 >
   <span
     class="euiScreenReaderOnly"
   >
-    Step 1
+    Current step is 1
   </span>
   <span
     aria-hidden="true"
@@ -54,27 +67,16 @@ exports[`EuiStepNumber props isHollow is rendered 1`] = `
 </span>
 `;
 
-exports[`EuiStepNumber props status complete is rendered 1`] = `
-<span
-  class="euiStepNumber euiStepNumber--complete"
->
-  <span
-    aria-label="Step 1 is complete"
-    class="euiStepNumber__icon"
-    data-euiicon-type="check"
-  />
-</span>
-`;
-
 exports[`EuiStepNumber props status danger is rendered 1`] = `
 <span
   class="euiStepNumber euiStepNumber--danger"
 >
   <span
-    aria-label="Step 1 has errors"
     class="euiStepNumber__icon"
     data-euiicon-type="cross"
-  />
+  >
+    Step 1 has errors
+  </span>
 </span>
 `;
 
@@ -124,7 +126,9 @@ exports[`EuiStepNumber props status loading is rendered 1`] = `
     Step 1 is loading
   </span>
   <span
-    class="euiLoadingSpinner euiLoadingSpinner--xLarge euiStepNumber__loader"
+    aria-label="Loading"
+    class="euiLoadingSpinner euiStepNumber__loader css-1ow0yso-euiLoadingSpinner-xl"
+    role="progressbar"
   />
 </span>
 `;
@@ -134,9 +138,10 @@ exports[`EuiStepNumber props status warning is rendered 1`] = `
   class="euiStepNumber euiStepNumber--warning"
 >
   <span
-    aria-label="Step 1 has warnings"
     class="euiStepNumber__icon"
     data-euiicon-type="alert"
-  />
+  >
+    Step 1 has warnings
+  </span>
 </span>
 `;

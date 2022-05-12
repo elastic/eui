@@ -310,9 +310,16 @@ exports[`EuiBasicTable empty is rendered 1`] = `
           <EuiTableRowCell
             align="center"
             colSpan={1}
-            isMobileFullWidth={true}
+            mobileOptions={
+              Object {
+                "width": "100%",
+              }
+            }
           >
-            No items found
+            <EuiI18n
+              default="No items found"
+              token="euiBasicTable.noItemsMessage"
+            />
           </EuiTableRowCell>
         </EuiTableRow>
       </EuiTableBody>
@@ -379,7 +386,11 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
           <EuiTableRowCell
             align="center"
             colSpan={1}
-            isMobileFullWidth={true}
+            mobileOptions={
+              Object {
+                "width": "100%",
+              }
+            }
           >
             <p>
               no items, click 
@@ -456,7 +467,11 @@ exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
           <EuiTableRowCell
             align="center"
             colSpan={1}
-            isMobileFullWidth={true}
+            mobileOptions={
+              Object {
+                "width": "100%",
+              }
+            }
           >
             where my items at?
           </EuiTableRowCell>
@@ -994,18 +1009,17 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
       </EuiTableFooter>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -1195,75 +1209,69 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
       <EuiTableBody
         bodyRef={[Function]}
       >
-        <EuiKeyboardAccessible>
-          <EuiTableRow
-            className="customRowClass"
-            data-test-subj="row-1"
-            isSelected={false}
-            onClick={[Function]}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_0_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+        <EuiTableRow
+          className="customRowClass"
+          data-test-subj="row-1"
+          isSelected={false}
+          onClick={[Function]}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_0_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              setScopeRow={false}
-              textOnly={true}
-            >
-              name1
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </EuiKeyboardAccessible>
-        <EuiKeyboardAccessible>
-          <EuiTableRow
-            className="customRowClass"
-            data-test-subj="row-2"
-            isSelected={false}
-            onClick={[Function]}
+            }
+            setScopeRow={false}
+            textOnly={true}
           >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_1_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+            name1
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          className="customRowClass"
+          data-test-subj="row-2"
+          isSelected={false}
+          onClick={[Function]}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              setScopeRow={false}
-              textOnly={true}
-            >
-              name2
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </EuiKeyboardAccessible>
-        <EuiKeyboardAccessible>
-          <EuiTableRow
-            className="customRowClass"
-            data-test-subj="row-3"
-            isSelected={false}
-            onClick={[Function]}
+            }
+            setScopeRow={false}
+            textOnly={true}
           >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_2_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+            name2
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          className="customRowClass"
+          data-test-subj="row-3"
+          isSelected={false}
+          onClick={[Function]}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              setScopeRow={false}
-              textOnly={true}
-            >
-              name3
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </EuiKeyboardAccessible>
+            }
+            setScopeRow={false}
+            textOnly={true}
+          >
+            name3
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -1326,75 +1334,69 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
       <EuiTableBody
         bodyRef={[Function]}
       >
-        <EuiKeyboardAccessible>
-          <EuiTableRow
-            className="customClass"
-            data-test-subj="row"
-            isSelected={false}
-            onClick={[Function]}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_0_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+        <EuiTableRow
+          className="customClass"
+          data-test-subj="row"
+          isSelected={false}
+          onClick={[Function]}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_0_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              setScopeRow={false}
-              textOnly={true}
-            >
-              name1
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </EuiKeyboardAccessible>
-        <EuiKeyboardAccessible>
-          <EuiTableRow
-            className="customClass"
-            data-test-subj="row"
-            isSelected={false}
-            onClick={[Function]}
+            }
+            setScopeRow={false}
+            textOnly={true}
           >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_1_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+            name1
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          className="customClass"
+          data-test-subj="row"
+          isSelected={false}
+          onClick={[Function]}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              setScopeRow={false}
-              textOnly={true}
-            >
-              name2
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </EuiKeyboardAccessible>
-        <EuiKeyboardAccessible>
-          <EuiTableRow
-            className="customClass"
-            data-test-subj="row"
-            isSelected={false}
-            onClick={[Function]}
+            }
+            setScopeRow={false}
+            textOnly={true}
           >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_2_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+            name2
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          className="customClass"
+          data-test-subj="row"
+          isSelected={false}
+          onClick={[Function]}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              setScopeRow={false}
-              textOnly={true}
-            >
-              name3
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </EuiKeyboardAccessible>
+            }
+            setScopeRow={false}
+            textOnly={true}
+          >
+            name3
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -1429,7 +1431,12 @@ exports[`EuiBasicTable with initial selection 1`] = `
       },
     ]
   }
-  noItemsMessage="No items found"
+  noItemsMessage={
+    <EuiI18n
+      default="No items found"
+      token="euiBasicTable.noItemsMessage"
+    />
+  }
   responsive={true}
   selection={
     Object {
@@ -1475,7 +1482,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                       checked={false}
                       compressed={false}
                       disabled={false}
-                      id="_selection_column-checkbox_generated-id"
+                      id="_selection_column-checkbox_generated-id_mobile"
                       indeterminate={false}
                       label="Select all rows"
                       onChange={[Function]}
@@ -1488,7 +1495,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                           checked={false}
                           className="euiCheckbox__input"
                           disabled={false}
-                          id="_selection_column-checkbox_generated-id"
+                          id="_selection_column-checkbox_generated-id_mobile"
                           onChange={[Function]}
                           type="checkbox"
                         />
@@ -1497,7 +1504,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                         />
                         <label
                           className="euiCheckbox__label"
-                          htmlFor="_selection_column-checkbox_generated-id"
+                          htmlFor="_selection_column-checkbox_generated-id_mobile"
                         >
                           Select all rows
                         </label>
@@ -1564,7 +1571,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                           compressed={false}
                           data-test-subj="checkboxSelectAll"
                           disabled={false}
-                          id="_selection_column-checkbox_generated-id"
+                          id="_selection_column-checkbox_generated-id_desktop"
                           indeterminate={false}
                           label={null}
                           onChange={[Function]}
@@ -1579,7 +1586,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                               className="euiCheckbox__input"
                               data-test-subj="checkboxSelectAll"
                               disabled={false}
-                              id="_selection_column-checkbox_generated-id"
+                              id="_selection_column-checkbox_generated-id_desktop"
                               onChange={[Function]}
                               type="checkbox"
                             />
@@ -1680,7 +1687,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                             compressed={false}
                             data-test-subj="checkboxSelectRow-1"
                             disabled={false}
-                            id="_selection_column_1-checkbox"
+                            id="__table_generated-id_selection_column_1-checkbox"
                             indeterminate={false}
                             onChange={[Function]}
                             title="Select this row"
@@ -1695,7 +1702,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                                 className="euiCheckbox__input"
                                 data-test-subj="checkboxSelectRow-1"
                                 disabled={false}
-                                id="_selection_column_1-checkbox"
+                                id="__table_generated-id_selection_column_1-checkbox"
                                 onChange={[Function]}
                                 title="Select this row"
                                 type="checkbox"
@@ -1722,7 +1729,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                     textOnly={true}
                   >
                     <td
-                      className="euiTableRowCell"
+                      className="euiTableRowCell euiTableRowCell--middle"
                       style={
                         Object {
                           "width": undefined,
@@ -1773,7 +1780,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                             compressed={false}
                             data-test-subj="checkboxSelectRow-2"
                             disabled={false}
-                            id="_selection_column_2-checkbox"
+                            id="__table_generated-id_selection_column_2-checkbox"
                             indeterminate={false}
                             onChange={[Function]}
                             title="Select this row"
@@ -1788,7 +1795,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                                 className="euiCheckbox__input"
                                 data-test-subj="checkboxSelectRow-2"
                                 disabled={false}
-                                id="_selection_column_2-checkbox"
+                                id="__table_generated-id_selection_column_2-checkbox"
                                 onChange={[Function]}
                                 title="Select this row"
                                 type="checkbox"
@@ -1815,7 +1822,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                     textOnly={true}
                   >
                     <td
-                      className="euiTableRowCell"
+                      className="euiTableRowCell euiTableRowCell--middle"
                       style={
                         Object {
                           "width": undefined,
@@ -1866,7 +1873,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                             compressed={false}
                             data-test-subj="checkboxSelectRow-3"
                             disabled={false}
-                            id="_selection_column_3-checkbox"
+                            id="__table_generated-id_selection_column_3-checkbox"
                             indeterminate={false}
                             onChange={[Function]}
                             title="Select this row"
@@ -1881,7 +1888,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                                 className="euiCheckbox__input"
                                 data-test-subj="checkboxSelectRow-3"
                                 disabled={false}
-                                id="_selection_column_3-checkbox"
+                                id="__table_generated-id_selection_column_3-checkbox"
                                 onChange={[Function]}
                                 title="Select this row"
                                 type="checkbox"
@@ -1908,7 +1915,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                     textOnly={true}
                   >
                     <td
-                      className="euiTableRowCell"
+                      className="euiTableRowCell euiTableRowCell--middle"
                       style={
                         Object {
                           "width": undefined,
@@ -2350,18 +2357,129 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 1,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
+</div>
+`;
+
+exports[`EuiBasicTable with pagination - show all 1`] = `
+<div
+  className="euiBasicTable"
+>
+  <div>
+    <EuiTableHeaderMobile>
+      <EuiFlexGroup
+        alignItems="baseline"
+        justifyContent="spaceBetween"
+        responsive={false}
+      >
+        <EuiFlexItem
+          grow={false}
+        />
+        <EuiFlexItem
+          grow={false}
+        />
+      </EuiFlexGroup>
+    </EuiTableHeaderMobile>
+    <EuiTable
+      id="__table_generated-id"
+      responsive={true}
+      tableLayout="fixed"
+    >
+      <EuiScreenReaderOnly>
+        <caption
+          className="euiTableCaption"
+        >
+          <EuiDelayRender
+            delay={500}
+          >
+            <EuiI18n
+              default="This table contains {itemCount} rows out of {totalItemCount} rows; Page {page} of {pageCount}."
+              token="euiBasicTable.tableAutoCaptionWithPagination"
+              values={
+                Object {
+                  "itemCount": 2,
+                  "page": 1,
+                  "pageCount": 1,
+                  "totalItemCount": 2,
+                }
+              }
+            />
+          </EuiDelayRender>
+        </caption>
+      </EuiScreenReaderOnly>
+      <EuiTableHeader>
+        <EuiTableHeaderCell
+          align="left"
+          data-test-subj="tableHeaderCell_name_0"
+          description="description"
+          key="_data_h_name_0"
+        >
+          Name
+        </EuiTableHeaderCell>
+      </EuiTableHeader>
+      <EuiTableBody
+        bodyRef={[Function]}
+      >
+        <EuiTableRow
+          isSelected={false}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_0_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
+            setScopeRow={false}
+            textOnly={true}
+          >
+            name1
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          isSelected={false}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
+              }
+            }
+            setScopeRow={false}
+            textOnly={true}
+          >
+            name2
+          </EuiTableRowCell>
+        </EuiTableRow>
+      </EuiTableBody>
+    </EuiTable>
+  </div>
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
+      Object {
+        "tableCaption": undefined,
+      }
+    }
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -2481,18 +2599,17 @@ exports[`EuiBasicTable with pagination 1`] = `
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -2557,7 +2674,11 @@ exports[`EuiBasicTable with pagination and error 1`] = `
           <EuiTableRowCell
             align="center"
             colSpan={1}
-            isMobileFullWidth={true}
+            mobileOptions={
+              Object {
+                "width": "100%",
+              }
+            }
           >
             <EuiIcon
               color="danger"
@@ -2739,18 +2860,17 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -2870,19 +2990,17 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "hidePerPageOptions": true,
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -3069,18 +3187,17 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -3360,18 +3477,17 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -3558,18 +3674,17 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -3756,18 +3871,17 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -4065,18 +4179,17 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -4263,18 +4376,17 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 

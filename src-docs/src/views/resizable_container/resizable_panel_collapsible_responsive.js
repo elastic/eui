@@ -60,13 +60,15 @@ export default () => {
     <EuiPage paddingSize="none">
       <EuiResizableContainer
         direction={isMobile ? 'vertical' : 'horizontal'}
-        style={{ height: '400px' }}>
+        style={{ height: '400px' }}
+      >
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
             <EuiResizablePanel
               mode="collapsible"
               initialSize={20}
-              minSize="10%">
+              minSize="10%"
+            >
               <EuiListGroup flush>{itemElements}</EuiListGroup>
             </EuiResizablePanel>
 

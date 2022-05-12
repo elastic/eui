@@ -1,28 +1,18 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import { ReactElement, ReactNode, TdHTMLAttributes } from 'react';
-import { Direction, HorizontalAlignment } from '../../services';
+import { HorizontalAlignment } from '../../services';
 import { Pagination } from './pagination_bar';
 import { Action } from './action_types';
 import { Primitive } from '../../services/sort/comparators';
 import { CommonProps } from '../common';
+import { EuiTableRowCellMobileOptionsShape } from '../table/table_row_cell';
 
 export type ItemId<T> = string | number | ((item: T) => string);
 export type ItemIdResolved = string | number;
@@ -44,7 +34,9 @@ export interface EuiTableFieldDataColumnType<T>
   /**
    * A field of the item (may be a nested field)
    */
-  field: keyof T | string; // supports outer.inner key paths
+  // type hack used for better autocomplete support
+  // https://github.com/microsoft/TypeScript/issues/29729
+  field: keyof T | (string & {}); // supports outer.inner key paths
   /**
    * The display name of the column
    */
@@ -75,14 +67,9 @@ export interface EuiTableFieldDataColumnType<T>
    * Indicates whether this column should truncate its content when it doesn't fit
    */
   truncateText?: boolean;
-  isMobileHeader?: boolean;
-  mobileOptions?: {
-    show?: boolean;
-    only?: boolean;
+  mobileOptions?: Omit<EuiTableRowCellMobileOptionsShape, 'render'> & {
     render?: (item: T) => ReactNode;
-    header?: boolean;
   };
-  hideForMobile?: boolean;
   /**
    * Describe a custom renderer function for the content
    */
@@ -160,7 +147,7 @@ export interface EuiTableSortingType<T> {
    */
   sort?: {
     field: keyof T;
-    direction: Direction;
+    direction: 'asc' | 'desc';
   };
   /**
    * Enables/disables unsorting of table columns. Supported by EuiInMemoryTable.

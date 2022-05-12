@@ -11,7 +11,7 @@ jest.mock('enzyme', () => {
   };
 });
 
-afterEach(() => {
+afterAll(() => {
   while (mockMountedComponents.length) {
     const component = mockMountedComponents.pop();
     if (component.length === 1) {

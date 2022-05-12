@@ -28,6 +28,7 @@ import {
   EuiTableRowCellCheckbox,
   EuiTableSortMobile,
   EuiTableHeaderMobile,
+  EuiScreenReaderOnly,
 } from '../../../../../src/components';
 
 import {
@@ -248,7 +249,8 @@ export default class extends Component {
       },
       {
         id: 'type',
-        label: '',
+        label: 'Type',
+        isVisuallyHiddenLabel: true,
         alignment: LEFT_ALIGNMENT,
         width: '24px',
         cellProvider: (cell) => <EuiIcon type={cell} size="m" />,
@@ -273,7 +275,7 @@ export default class extends Component {
           only: true,
           header: false,
           enlarge: true,
-          fullWidth: true,
+          width: '100%',
         },
         render: (title, item) => (
           <span>
@@ -320,7 +322,8 @@ export default class extends Component {
       },
       {
         id: 'actions',
-        label: '',
+        label: 'Actions',
+        isVisuallyHiddenLabel: true,
         alignment: RIGHT_ALIGNMENT,
         isActionsPopover: true,
         width: '32px',
@@ -437,8 +440,10 @@ export default class extends Component {
   renderSelectAll = (mobile) => {
     return (
       <EuiCheckbox
-        id="selectAllCheckbox"
-        label={mobile ? 'Select all' : null}
+        id={mobile ? 'selectAllCheckboxMobile' : 'selectAllCheckboxDesktop'}
+        label={mobile ? 'Select all rows' : null}
+        aria-label="Select all rows"
+        title="Select all rows"
         checked={this.areAllItemsSelected()}
         onChange={this.toggleAll.bind(this)}
         type={mobile ? null : 'inList'}
@@ -473,6 +478,14 @@ export default class extends Component {
             {this.renderSelectAll()}
           </EuiTableHeaderCellCheckbox>
         );
+      } else if (column.isVisuallyHiddenLabel) {
+        headers.push(
+          <EuiTableHeaderCell key={column.id} width={column.width}>
+            <EuiScreenReaderOnly>
+              <span>{column.label}</span>
+            </EuiScreenReaderOnly>
+          </EuiTableHeaderCell>
+        );
       } else {
         headers.push(
           <EuiTableHeaderCell
@@ -486,7 +499,8 @@ export default class extends Component {
             isSortAscending={this.sortableProperties.isAscendingByName(
               column.id
             )}
-            mobileOptions={column.mobileOptions}>
+            mobileOptions={column.mobileOptions}
+          >
             {column.label}
           </EuiTableHeaderCell>
         );
@@ -510,6 +524,8 @@ export default class extends Component {
                 checked={this.isItemSelected(item.id)}
                 onChange={this.toggleItem.bind(this, item.id)}
                 type="inList"
+                title="Select this row"
+                aria-label="Select this row"
               />
             </EuiTableRowCellCheckbox>
           );
@@ -522,7 +538,8 @@ export default class extends Component {
               header={column.label}
               textOnly={false}
               hasActions={true}
-              align="right">
+              align="right"
+            >
               <EuiPopover
                 id={`${item.id}-actions`}
                 button={
@@ -537,7 +554,8 @@ export default class extends Component {
                 isOpen={this.isPopoverOpen(item.id)}
                 closePopover={() => this.closePopover(item.id)}
                 panelPaddingSize="none"
-                anchorPosition="leftCenter">
+                anchorPosition="leftCenter"
+              >
                 <EuiContextMenuPanel
                   items={[
                     <EuiContextMenuItem
@@ -545,7 +563,8 @@ export default class extends Component {
                       icon="pencil"
                       onClick={() => {
                         this.closePopover(item.id);
-                      }}>
+                      }}
+                    >
                       Edit
                     </EuiContextMenuItem>,
                     <EuiContextMenuItem
@@ -553,7 +572,8 @@ export default class extends Component {
                       icon="share"
                       onClick={() => {
                         this.closePopover(item.id);
-                      }}>
+                      }}
+                    >
                       Share
                     </EuiContextMenuItem>,
                     <EuiContextMenuItem
@@ -561,7 +581,8 @@ export default class extends Component {
                       icon="trash"
                       onClick={() => {
                         this.closePopover(item.id);
-                      }}>
+                      }}
+                    >
                       Delete
                     </EuiContextMenuItem>,
                   ]}
@@ -600,7 +621,8 @@ export default class extends Component {
             mobileOptions={{
               header: column.label,
               ...column.mobileOptions,
-            }}>
+            }}
+          >
             {child}
           </EuiTableRowCell>
         );
@@ -611,7 +633,8 @@ export default class extends Component {
           key={item.id}
           isSelected={this.isItemSelected(item.id)}
           isSelectable={true}
-          hasActions={true}>
+          hasActions={true}
+        >
           {cells}
         </EuiTableRow>
       );
@@ -651,7 +674,8 @@ export default class extends Component {
         footers.push(
           <EuiTableFooterCell
             key={`footer_${column.id}`}
-            align={column.alignment}>
+            align={column.alignment}
+          >
             {footer}
           </EuiTableFooterCell>
         );
@@ -659,7 +683,8 @@ export default class extends Component {
         footers.push(
           <EuiTableFooterCell
             key={`footer_empty_${footers.length - 1}`}
-            align={column.alignment}>
+            align={column.alignment}
+          >
             {undefined}
           </EuiTableFooterCell>
         );
@@ -711,7 +736,8 @@ export default class extends Component {
           <EuiFlexGroup
             responsive={false}
             justifyContent="spaceBetween"
-            alignItems="baseline">
+            alignItems="baseline"
+          >
             <EuiFlexItem grow={false}>{this.renderSelectAll(true)}</EuiFlexItem>
             <EuiFlexItem grow={false}>
               <EuiTableSortMobile items={this.getTableMobileSortItems()} />
@@ -730,6 +756,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiTablePagination
+          aria-label="Custom EuiTable demo"
           aria-controls={exampleId}
           activePage={this.pager.getCurrentPageIndex()}
           itemsPerPage={this.state.itemsPerPage}
@@ -737,6 +764,7 @@ export default class extends Component {
           pageCount={this.pager.getTotalPages()}
           onChangeItemsPerPage={this.onChangeItemsPerPage}
           onChangePage={this.onChangePage}
+          compressed
         />
       </div>
     );

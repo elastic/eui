@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -25,13 +14,13 @@ import React, {
   useCallback,
 } from 'react';
 import classnames from 'classnames';
-import tabbable from 'tabbable';
+import { tabbable, FocusableElement } from 'tabbable';
 
 import { CommonProps } from '../common';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiPopover, EuiPopoverProps } from './popover';
 import { EuiResizeObserver } from '../observer/resize_observer';
-import { cascadingMenuKeys } from '../../services';
+import { cascadingMenuKeys, useCombinedRefs } from '../../services';
 
 export interface _EuiInputPopoverProps
   extends Omit<EuiPopoverProps, 'button' | 'buttonRef'> {
@@ -53,14 +42,16 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   input,
   fullWidth = false,
   onPanelResize,
+  inputRef: _inputRef,
+  panelRef: _panelRef,
   ...props
 }) => {
   const [inputEl, setInputEl] = useState<HTMLElement | null>(null);
   const [inputElWidth, setInputElWidth] = useState<number>();
   const [panelEl, setPanelEl] = useState<HTMLElement | null>(null);
 
-  const inputRef = (node: HTMLElement | null) => setInputEl(node);
-  const panelRef = (node: HTMLElement | null) => setPanelEl(node);
+  const inputRef = useCombinedRefs([setInputEl, _inputRef]);
+  const panelRef = useCombinedRefs([setPanelEl, _panelRef]);
 
   const setPanelWidth = useCallback(
     (width?: number) => {
@@ -90,7 +81,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
 
   const onKeyDown = (event: React.KeyboardEvent) => {
     if (panelEl && event.key === cascadingMenuKeys.TAB) {
-      const tabbableItems = tabbable(panelEl).filter((el: HTMLElement) => {
+      const tabbableItems = tabbable(panelEl).filter((el: FocusableElement) => {
         return (
           Array.from(el.attributes)
             .map((el) => el.name)
@@ -126,7 +117,8 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
       buttonRef={inputRef}
       panelRef={panelRef}
       className={classes}
-      {...props}>
+      {...props}
+    >
       <EuiFocusTrap clickOutsideDisables={true} disabled={disableFocusTrap}>
         <div onKeyDown={onKeyDown}>{children}</div>
       </EuiFocusTrap>

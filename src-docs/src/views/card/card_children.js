@@ -39,7 +39,8 @@ export default () => {
               Wrap a lists with <strong>EuiText size=&quot;s&quot;</strong> to
               match the description text.
             </span>
-          }>
+          }
+        >
           <EuiText size="s">
             <ul>
               <li>Bullet 1</li>
@@ -61,7 +62,8 @@ export default () => {
                 </EuiButton>
               </EuiFlexItem>
             </EuiFlexGroup>
-          }>
+          }
+        >
           <EuiRadioGroup
             options={radios}
             idSelected={radios[0].id}
@@ -79,7 +81,8 @@ export default () => {
               Just be sure not to add any <EuiCode>onClick</EuiCode> handler to
               the card if the children are also interactable.
             </span>
-          }>
+          }
+        >
           <EuiCodeBlock language="html" paddingSize="s">
             {'<yoda>Hello, young Skywalker</yoda>'}
           </EuiCodeBlock>

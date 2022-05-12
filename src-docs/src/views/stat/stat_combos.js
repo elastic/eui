@@ -26,7 +26,8 @@ export default () => {
               title="8,888"
               description="Total widgets"
               textAlign="right"
-              isLoading={isLoading}>
+              isLoading={isLoading}
+            >
               <EuiIcon type="empty" />
             </EuiStat>
           </EuiPanel>
@@ -38,7 +39,8 @@ export default () => {
               description="Pending widgets"
               titleColor="accent"
               textAlign="right"
-              isLoading={isLoading}>
+              isLoading={isLoading}
+            >
               <EuiIcon type="clock" color="accent" />
             </EuiStat>
           </EuiPanel>
@@ -50,7 +52,8 @@ export default () => {
               description="Success widgets"
               titleColor="success"
               textAlign="right"
-              isLoading={isLoading}>
+              isLoading={isLoading}
+            >
               <EuiIcon type="check" color="success" />
             </EuiStat>
           </EuiPanel>
@@ -62,7 +65,8 @@ export default () => {
               description="Error widgets"
               titleColor="danger"
               textAlign="right"
-              isLoading={isLoading}>
+              isLoading={isLoading}
+            >
               <EuiIcon type="alert" color="danger" />
             </EuiStat>
           </EuiPanel>

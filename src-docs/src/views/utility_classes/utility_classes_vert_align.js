@@ -7,6 +7,7 @@ export default () => (
   <>
     <UtilityClassesSection
       code="eui-alignTop"
+      type="className"
       description={
         <p>
           Changes the element’s vertical alignment property to{' '}
@@ -28,6 +29,7 @@ export default () => (
     <EuiSpacer />
     <UtilityClassesSection
       code="eui-alignMiddle"
+      type="className"
       description={
         <p>
           Changes the element’s vertical alignment property to{' '}
@@ -51,6 +53,7 @@ export default () => (
     <EuiSpacer />
     <UtilityClassesSection
       code="eui-alignBottom"
+      type="className"
       description={
         <p>
           Changes the element’s vertical alignment property to{' '}
@@ -74,6 +77,7 @@ export default () => (
     <EuiSpacer />
     <UtilityClassesSection
       code="eui-alignBaseline"
+      type="className"
       description={
         <p>
           Changes the element’s vertical alignment property to{' '}

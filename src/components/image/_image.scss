@@ -15,6 +15,7 @@
   // Required for common usage of nesting within EuiText
   .euiImage__img {
     margin-bottom: 0;
+    max-width: 100%;
   }
 
   &.euiImage--hasShadow {

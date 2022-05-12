@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { ReactChild } from 'react';
@@ -25,6 +14,10 @@ import { EuiI18n, useEuiI18n } from './i18n';
 /* eslint-disable local/i18n */
 
 describe('EuiI18n', () => {
+  const mockMappingFunc = jest.fn((string: string) => string.toUpperCase());
+
+  beforeEach(() => jest.clearAllMocks());
+
   describe('default rendering', () => {
     describe('rendering to dom', () => {
       it('renders a basic string to the dom', () => {
@@ -81,7 +74,8 @@ describe('EuiI18n', () => {
           <EuiI18n
             token="test"
             default="This is a {type} with {special}."
-            values={{ type: 'string', special: 'values' }}>
+            values={{ type: 'string', special: 'values' }}
+          >
             {(result: ReactChild) => `Here's something cool: ${result}`}
           </EuiI18n>
         );
@@ -112,7 +106,8 @@ describe('EuiI18n', () => {
             defaults={[
               'This is the first basic string.',
               'This is the second basic string.',
-            ]}>
+            ]}
+          >
             {([one, two]: ReactChild[]) => (
               <div>
                 {one} {two}
@@ -141,7 +136,8 @@ describe('EuiI18n', () => {
           <EuiContext
             i18n={{
               mapping: { test: 'An overridden {type} with {special}.' },
-            }}>
+            }}
+          >
             <EuiI18n
               token="test"
               default="This is a {type} with {special}."
@@ -185,11 +181,13 @@ describe('EuiI18n', () => {
           <EuiContext
             i18n={{
               mapping: { test: 'An overridden {type} with {special}.' },
-            }}>
+            }}
+          >
             <EuiI18n
               token="test"
               default="This is a {type} with {special}."
-              values={{ type: 'string', special: 'values' }}>
+              values={{ type: 'string', special: 'values' }}
+            >
               {(result: ReactChild) => `Here's something cool: ${result}`}
             </EuiI18n>
           </EuiContext>
@@ -216,30 +214,48 @@ describe('EuiI18n', () => {
     });
 
     describe('render prop with multiple tokens', () => {
+      const multipleTokens = (
+        <EuiI18n
+          tokens={['test1', 'test2']}
+          defaults={[
+            'This is the first basic string.',
+            'This is the second basic string.',
+          ]}
+        >
+          {([one, two]: ReactChild[]) => (
+            <div>
+              {one} {two}
+            </div>
+          )}
+        </EuiI18n>
+      );
+      const multipleTokensMapping = {
+        test1: 'This is the first mapped value.',
+        test2: 'This is the second mapped value.',
+      };
+
       it('renders mapped render prop result to the dom', () => {
         const component = mount(
-          <EuiContext
-            i18n={{
-              mapping: {
-                test1: 'This is the first mapped value.',
-                test2: 'This is the second mapped value.',
-              },
-            }}>
-            <EuiI18n
-              tokens={['test1', 'test2']}
-              defaults={[
-                'This is the first basic string.',
-                'This is the second basic string.',
-              ]}>
-              {([one, two]: ReactChild[]) => (
-                <div>
-                  {one} {two}
-                </div>
-              )}
-            </EuiI18n>
+          <EuiContext i18n={{ mapping: multipleTokensMapping }}>
+            {multipleTokens}
           </EuiContext>
         );
         expect(component).toMatchSnapshot();
+      });
+
+      it('uses the mapping function if one is provided', () => {
+        const component = mount(
+          <EuiContext
+            i18n={{
+              mapping: multipleTokensMapping,
+              mappingFunc: mockMappingFunc,
+            }}
+          >
+            {multipleTokens}
+          </EuiContext>
+        );
+        expect(component).toMatchSnapshot();
+        expect(mockMappingFunc).toHaveBeenCalledTimes(2);
       });
     });
 
@@ -251,14 +267,16 @@ describe('EuiI18n', () => {
               mapping: {
                 test1: 'This is the mapped value.',
               },
-              mappingFunc: (value: string) => value.toUpperCase(),
-            }}>
+              mappingFunc: mockMappingFunc,
+            }}
+          >
             <EuiI18n token="test1" default="This is the basic string.">
               {(one: string) => <div aria-label={one}>{one}</div>}
             </EuiI18n>
           </EuiContext>
         );
         expect(component).toMatchSnapshot();
+        expect(mockMappingFunc).toHaveBeenCalledTimes(1);
       });
     });
   });
@@ -303,7 +321,7 @@ describe('EuiI18n', () => {
         expect(component).toMatchSnapshot();
       });
 
-      it('calls a function and renders the result to the dom', () => {
+      it('calls a function that returns JSX and renders the result to the dom', () => {
         const values = { type: 'callback', special: 'values' };
         const renderCallback = jest.fn(({ type, special }) => (
           <p>
@@ -317,6 +335,26 @@ describe('EuiI18n', () => {
         expect(component).toMatchSnapshot();
 
         expect(renderCallback).toHaveBeenCalledWith(values);
+      });
+
+      it('calls a function that returns a string and the i18n mapping function', () => {
+        const values = { type: 'callback', special: 'values' };
+        const renderCallback = jest.fn(
+          ({ type, special }) => `This is a ${type} with ${special}`
+        );
+        const Component = () => (
+          <div>{useEuiI18n('test', renderCallback, values)}</div>
+        );
+
+        const component = mount(
+          <EuiContext i18n={{ mappingFunc: mockMappingFunc }}>
+            <Component />
+          </EuiContext>
+        );
+
+        expect(component).toMatchSnapshot();
+        expect(renderCallback).toHaveBeenCalledWith(values);
+        expect(mockMappingFunc).toHaveBeenCalledTimes(1);
       });
     });
   });
@@ -333,7 +371,8 @@ describe('EuiI18n', () => {
             mapping: {
               token: 'This is the mapped value.',
             },
-          }}>
+          }}
+        >
           <Component />
         </EuiContext>
       );
@@ -354,7 +393,8 @@ describe('EuiI18n', () => {
             mapping: {
               myToken: 'In reverse order: {second}, then {first}',
             },
-          }}>
+          }}
+        >
           <Component />
         </EuiContext>
       );
@@ -381,7 +421,8 @@ describe('EuiI18n', () => {
               test1: 'first value',
               test2: 'second value',
             },
-          }}>
+          }}
+        >
           <Component />
         </EuiContext>
       );
@@ -400,8 +441,30 @@ describe('EuiI18n', () => {
               mapping: {
                 test1: 'This is the mapped value.',
               },
-              mappingFunc: (value: string) => value.toUpperCase(),
-            }}>
+              mappingFunc: mockMappingFunc,
+            }}
+          >
+            <Component />
+          </EuiContext>
+        );
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('i18nRenderFunc', () => {
+      it('uses user defined component render function', () => {
+        const Component = () => {
+          const value = useEuiI18n('test', 'placeholder {inside}', {
+            inside: <span>inside</span>,
+          });
+          return <section>{value}</section>;
+        };
+        const component = mount(
+          <EuiContext
+            i18n={{
+              render: (children) => () => <div>{children}</div>,
+            }}
+          >
             <Component />
           </EuiContext>
         );

@@ -18,11 +18,18 @@ export const GuideRuleDescription = ({
     headingNode = <h3>{heading}</h3>;
   }
 
+  let descriptionNode;
+  if (typeof description === 'string') {
+    descriptionNode = <p>{description}</p>;
+  } else {
+    descriptionNode = description;
+  }
+
   return (
     <div className={classes} {...rest}>
       <EuiText grow={false}>
         {headingNode}
-        <p>{description}</p>
+        {descriptionNode}
       </EuiText>
 
       {children}
@@ -34,5 +41,5 @@ GuideRuleDescription.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   heading: PropTypes.string,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.node.isRequired,
 };

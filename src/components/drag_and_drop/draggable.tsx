@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -52,6 +41,11 @@ export interface EuiDraggableProps
    */
   customDragHandle?: boolean;
   /**
+   * Whether the container has interactive children and should have `role="group"` instead of `"button"`.
+   * Setting this flag ensures your drag & drop container is keyboard and screen reader accessible.
+   */
+  hasInteractiveChildren?: boolean;
+  /**
    * Whether the item is currently in a position to be removed
    */
   isRemovable?: boolean;
@@ -66,6 +60,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
   customDragHandle = false,
   draggableId,
   isDragDisabled = false,
+  hasInteractiveChildren = false,
   isRemovable = false,
   index,
   children,
@@ -82,7 +77,8 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
       draggableId={draggableId}
       index={index}
       isDragDisabled={isDragDisabled}
-      {...rest}>
+      {...rest}
+    >
       {(provided, snapshot, rubric) => {
         const classes = classNames(
           'euiDraggable',
@@ -113,7 +109,23 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
               ref={provided.innerRef}
               data-test-subj={dataTestSubj}
               className={classes}
-              style={{ ...style, ...provided.draggableProps.style }}>
+              style={{ ...style, ...provided.draggableProps.style }}
+              // We use [role="group"] instead of [role="button"] when we expect a nested
+              // interactive element. Screen readers will cue users that this is a container
+              // and has one or more elements inside that are part of a related group.
+              role={
+                hasInteractiveChildren
+                  ? 'group'
+                  : provided.dragHandleProps?.role
+              }
+              // If the container includes an interactive element, we remove the tabindex=0
+              // because [role="group"] does not permit or warrant a tab stop
+              tabIndex={
+                hasInteractiveChildren
+                  ? undefined
+                  : provided.dragHandleProps?.tabIndex
+              }
+            >
               {cloneElement(DraggableElement, {
                 className: classNames(
                   DraggableElement.props.className,

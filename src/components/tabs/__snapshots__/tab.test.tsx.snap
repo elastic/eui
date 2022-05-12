@@ -1,6 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiTab Props is disabled 1`] = `
+exports[`EuiTab props append is rendered 1`] = `
+<button
+  aria-selected="false"
+  class="euiTab"
+  role="tab"
+  type="button"
+>
+  <span
+    class="euiTab__prepend"
+  >
+    Append
+  </span>
+  <span
+    class="euiTab__content"
+  >
+    children
+  </span>
+</button>
+`;
+
+exports[`EuiTab props disabled is rendered 1`] = `
 <button
   aria-selected="false"
   class="euiTab euiTab-isDisabled"
@@ -16,7 +36,7 @@ exports[`EuiTab Props is disabled 1`] = `
 </button>
 `;
 
-exports[`EuiTab renders anchor 1`] = `
+exports[`EuiTab props href renders anchor 1`] = `
 <a
   aria-label="aria-label"
   aria-selected="false"
@@ -34,7 +54,22 @@ exports[`EuiTab renders anchor 1`] = `
 </a>
 `;
 
-exports[`EuiTab renders button 1`] = `
+exports[`EuiTab props isSelected is rendered 1`] = `
+<button
+  aria-selected="true"
+  class="euiTab euiTab-isSelected"
+  role="tab"
+  type="button"
+>
+  <span
+    class="euiTab__content"
+  >
+    children
+  </span>
+</button>
+`;
+
+exports[`EuiTab props onClick renders button 1`] = `
 <button
   aria-label="aria-label"
   aria-selected="false"
@@ -51,15 +86,18 @@ exports[`EuiTab renders button 1`] = `
 </button>
 `;
 
-exports[`EuiTab renders isSelected 1`] = `
+exports[`EuiTab props prepend is rendered 1`] = `
 <button
-  aria-label="aria-label"
-  aria-selected="true"
-  class="euiTab testClass1 testClass2 euiTab-isSelected"
-  data-test-subj="test subject string"
+  aria-selected="false"
+  class="euiTab"
   role="tab"
   type="button"
 >
+  <span
+    class="euiTab__prepend"
+  >
+    Prepend
+  </span>
   <span
     class="euiTab__content"
   >

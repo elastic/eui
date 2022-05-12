@@ -60,7 +60,8 @@ export default () => {
             <EuiFlexGroup
               className="guideColorPalette__swatchHolder"
               gutterSize="none"
-              responsive={false}>
+              responsive={false}
+            >
               {paletteData[paletteName](Number(length)).map((hexCode) => (
                 <ColorPaletteFlexItem hexCode={hexCode} key={hexCode} />
               ))}

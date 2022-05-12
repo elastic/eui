@@ -11,6 +11,7 @@ import {
   EuiModalHeaderTitle,
   EuiSpacer,
 } from '../../../../src/components';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 const optionsStatic = [
   {
@@ -52,6 +53,7 @@ export default () => {
   const [selectedOptions, setSelected] = useState([options[2], options[4]]);
   const [isModalVisible, setModalVisible] = useState(false);
   const [isPopoverOpen, setPopover] = useState(false);
+  const containerPopoverId = useGeneratedHtmlId({ prefix: 'containerPopover' });
 
   const closeModal = () => {
     setModalVisible(false);
@@ -137,17 +139,19 @@ export default () => {
     <Fragment>
       <EuiFormRow
         label="Combo box"
-        helpText="This combo box is inside of a form row">
+        helpText="This combo box is inside of a form row"
+      >
         {comboBox}
       </EuiFormRow>
 
       <EuiSpacer />
 
       <EuiPopover
-        id="popover"
+        id={containerPopoverId}
         button={button}
         isOpen={isPopoverOpen}
-        closePopover={closePopover}>
+        closePopover={closePopover}
+      >
         <div style={{ width: '300px' }}>{comboBox}</div>
       </EuiPopover>
 

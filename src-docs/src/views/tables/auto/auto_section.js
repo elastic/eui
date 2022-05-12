@@ -1,12 +1,10 @@
 import React from 'react';
 import { GuideSectionTypes } from '../../../components';
-import { renderToHtml } from '../../../services';
 import { EuiCode } from '../../../../../src/components';
 
 import { Table } from './auto';
 
 const source = require('!!raw-loader!./auto');
-const html = renderToHtml(Table);
 const layoutSnippet = [
   `<EuiBasicTable
   columns={[
@@ -21,7 +19,12 @@ const layoutSnippet = [
       { field: 'column1', name: 'Column 1', truncateText: true, width: '20%' },
       { field: 'column2', name: 'Column 2' }
     ]}
-    tableLayout="fixed"
+/>`,
+  `<EuiBasicTable
+    columns={[
+      { field: 'column1', name: 'Column 1', valign: 'top' },
+      { field: 'column2', name: 'Column 2' }
+    ]}
 />`,
 ];
 
@@ -32,13 +35,9 @@ export const section = {
       type: GuideSectionTypes.JS,
       code: source,
     },
-    {
-      type: GuideSectionTypes.HTML,
-      code: html,
-    },
   ],
   text: (
-    <div>
+    <>
       <p>
         <strong>EuiBasicTable</strong> has a fixed layout by default. You can
         change it to <EuiCode>auto</EuiCode> using the{' '}
@@ -49,7 +48,12 @@ export const section = {
         <EuiCode>truncateText</EuiCode>, set the width of each column using the{' '}
         <EuiCode>width</EuiCode> prop.
       </p>
-    </div>
+      <p>
+        You can also set the vertical alignment (<EuiCode>valign</EuiCode>) at
+        the column level which will affect the cell contents for that entire
+        column excluding the header and footer.
+      </p>
+    </>
   ),
   snippet: layoutSnippet,
   demo: <Table />,

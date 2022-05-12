@@ -35,7 +35,8 @@ export default () => (
     <EuiComment
       username="janed"
       event="added a comment"
-      timestamp="Jan 1, 2020">
+      timestamp="Jan 1, 2020"
+    >
       {defaultBody}
     </EuiComment>
     <EuiComment
@@ -48,7 +49,8 @@ export default () => (
       username="janed"
       event="added a comment"
       timestamp="Jan 1, 2020"
-      timelineIcon="tag">
+      timelineIcon="tag"
+    >
       {iconStringBody}
     </EuiComment>
     <EuiComment
@@ -61,7 +63,8 @@ export default () => (
           size="l"
           name="Juana"
         />
-      }>
+      }
+    >
       {customIconBody}
     </EuiComment>
   </Fragment>

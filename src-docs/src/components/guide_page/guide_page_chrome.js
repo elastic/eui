@@ -12,6 +12,7 @@ import {
 
 import { EuiHighlight } from '../../../../src/components/highlight';
 import { EuiBadge } from '../../../../src/components/badge';
+import { slugify } from '../../../../src/services';
 
 export class GuidePageChrome extends Component {
   _isMounted = false;
@@ -74,25 +75,18 @@ export class GuidePageChrome extends Component {
     }, 250);
   };
 
-  onButtonClick() {
-    this.setState({
-      isPopoverOpen: !this.state.isPopoverOpen,
-    });
-  }
-
-  closePopover() {
-    this.setState({
-      isPopoverOpen: false,
-    });
-  }
-
   renderSubSections = (href, subSections = [], searchTerm = '') => {
+    let hasMatchingSubItem = false;
+
     const subSectionsWithTitles = subSections.filter((item) => {
       if (!item.title) {
         return false;
       }
 
       if (searchTerm) {
+        hasMatchingSubItem = this.searchSubSections(searchTerm, item);
+        if (hasMatchingSubItem) return true;
+
         return item.title.toLowerCase().indexOf(searchTerm) !== -1;
       }
 
@@ -104,22 +98,36 @@ export class GuidePageChrome extends Component {
       return;
     }
 
-    return subSectionsWithTitles.map(({ title, id }) => {
+    return subSectionsWithTitles.map(({ title, sections }) => {
+      const id = slugify(title);
+
       let name = title;
       if (searchTerm) {
         name = (
           <EuiHighlight
             className="guideSideNav__item--inSearch"
-            search={searchTerm}>
+            search={searchTerm}
+          >
             {title}
           </EuiHighlight>
         );
       }
 
+      const subSectionHref = `${href}/${id}`;
+      const subSectionHashIdHref = `${href}#${id}`;
+
+      const sectionHref = sections ? subSectionHref : subSectionHashIdHref;
+      const subItems = sections
+        ? this.renderSubSections(sectionHref, sections, searchTerm)
+        : undefined;
+
       return {
-        id: `subSection-${id}`,
+        id: sectionHref,
         name,
-        href: href.concat(`#${id}`),
+        href: sectionHref,
+        items: subItems,
+        isSelected: window.location.hash.includes(subSectionHref),
+        forceOpen: !!searchTerm,
       };
     });
   };
@@ -138,14 +146,8 @@ export class GuidePageChrome extends Component {
           return false;
         }
 
-        const itemSections = item.sections || [];
-        for (let i = 0; i < itemSections.length; i++) {
-          const sectionTitle = itemSections[i].title || '';
-          if (sectionTitle.toLowerCase().indexOf(searchTerm) !== -1) {
-            hasMatchingSubItem = true;
-            return true;
-          }
-        }
+        hasMatchingSubItem = this.searchSubSections(searchTerm, item);
+        if (hasMatchingSubItem) return true;
 
         if (item.name.toLowerCase().indexOf(searchTerm) !== -1) {
           return true;
@@ -154,6 +156,7 @@ export class GuidePageChrome extends Component {
 
       const items = matchingItems.map((item) => {
         const { name, path, sections, isNew } = item;
+
         const href = `#/${path}`;
 
         let newBadge;
@@ -170,7 +173,8 @@ export class GuidePageChrome extends Component {
           visibleName = (
             <EuiHighlight
               className="guideSideNav__item--inSearch"
-              search={searchTerm}>
+              search={searchTerm}
+            >
               {name}
             </EuiHighlight>
           );
@@ -202,6 +206,22 @@ export class GuidePageChrome extends Component {
     return sideNavSections;
   };
 
+  searchSubSections = (searchTerm, navItem) => {
+    const subSections = navItem.sections || [];
+
+    return subSections.some((subSection) => {
+      const subSectionTitle = subSection.title || '';
+      if (subSectionTitle.toLowerCase().includes(searchTerm)) {
+        return true;
+      }
+      if (subSection.sections) {
+        if (this.searchSubSections(searchTerm, subSection)) {
+          return true;
+        }
+      }
+    });
+  };
+
   render() {
     const sideNav = this.renderSideNav(this.props.navigation);
 
@@ -231,11 +251,13 @@ export class GuidePageChrome extends Component {
           style={{ height: '100%' }}
           direction="column"
           responsive={false}
-          gutterSize="none">
+          gutterSize="none"
+        >
           <EuiFlexItem
             role="search"
             grow={false}
-            className="guideSideNav__search">
+            className="guideSideNav__search"
+          >
             <EuiFieldSearch
               fullWidth
               placeholder="Search"

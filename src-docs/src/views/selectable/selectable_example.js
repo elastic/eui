@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -10,52 +8,35 @@ import {
   EuiSelectable,
   EuiSelectableMessage,
   EuiText,
-  EuiSpacer,
-  EuiSelectableTemplateSitewide,
-  EuiCodeBlock,
-  EuiAccordion,
 } from '../../../../src/components';
 
 import {
   EuiSelectableOptionProps,
   EuiSelectableOptionsList,
-  Options,
-  MetaData,
+  EuiSelectableSearchProps,
 } from './props';
-
 import Selectable from './selectable';
 const selectableSource = require('!!raw-loader!./selectable');
-const selectableHtml = renderToHtml(Selectable);
 
 import SelectablePopover from './selectable_popover';
 const selectablePopoverSource = require('!!raw-loader!./selectable_popover');
-const selectablePopoverHtml = renderToHtml(SelectablePopover);
 
 import SelectableSearch from './selectable_search';
 const selectableSearchSource = require('!!raw-loader!./selectable_search');
-const selectableSearchHtml = renderToHtml(SelectableSearch);
 
 import SelectableSingle from './selectable_single';
 const selectableSingleSource = require('!!raw-loader!./selectable_single');
-const selectableSingleHtml = renderToHtml(SelectableSingle);
 
 import SelectableExclusion from './selectable_exclusion';
 const selectableExclusionSource = require('!!raw-loader!./selectable_exclusion');
-const selectableExclusionHtml = renderToHtml(SelectableExclusion);
 
 import SelectableMessages from './selectable_messages';
 const selectableMessagesSource = require('!!raw-loader!./selectable_messages');
-const selectableMessagesHtml = renderToHtml(SelectableMessages);
 
 import SelectableCustomRender from './selectable_custom_render';
 const selectableCustomRenderSource = require('!!raw-loader!./selectable_custom_render');
-const selectableCustomRenderHtml = renderToHtml(SelectableCustomRender);
 
-import SearchOption from './sitewide_option';
-import Search from './search';
 import { EuiCallOut } from '../../../../src/components/call_out';
-const searchSource = require('!!raw-loader!./search');
-const searchHtml = renderToHtml(Search);
 
 export const SelectableExample = {
   title: 'Selectable',
@@ -91,10 +72,6 @@ export const SelectableExample = {
           type: GuideSectionTypes.JS,
           code: selectableSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableHtml,
-        },
       ],
       text: (
         <Fragment>
@@ -108,7 +85,8 @@ export const SelectableExample = {
           </p>
           <EuiCallOut
             iconType="check"
-            title="Selected options are based on the checked = on property">
+            title="Selected options are based on the checked = on property"
+          >
             <p>
               <strong>EuiSelectable</strong> offers the ability to{' '}
               <strong>exclude</strong> selections. Therefore, the{' '}
@@ -141,10 +119,6 @@ export const SelectableExample = {
           type: GuideSectionTypes.JS,
           code: selectableSearchSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableSearchHtml,
-        },
       ],
       text: (
         <Fragment>
@@ -152,7 +126,9 @@ export const SelectableExample = {
             To add a search component to the list, simply add the{' '}
             <EuiCode>searchable</EuiCode> prop. You can optionally pass in a{' '}
             <EuiCode>searchProps</EuiCode> object which will get passed down to
-            the actual <strong>EuiFieldSearch</strong> used.
+            the actual <strong>EuiFieldSearch</strong> used. In this example,
+            <EuiCode>onSearch</EuiCode> will return a second parameter, enabling
+            you to access the list of filtered items
           </p>
           <EuiCallOut
             iconType="search"
@@ -170,6 +146,7 @@ export const SelectableExample = {
         EuiSelectable,
         EuiSelectableOptionProps,
         EuiSelectableOptionsList,
+        EuiSelectableSearchProps,
       },
       demo: <SelectableSearch />,
       snippet: `<EuiSelectable
@@ -194,10 +171,6 @@ export const SelectableExample = {
         {
           type: GuideSectionTypes.JS,
           code: selectableSingleSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableSingleHtml,
         },
       ],
       text: (
@@ -231,10 +204,6 @@ export const SelectableExample = {
           type: GuideSectionTypes.JS,
           code: selectablePopoverSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectablePopoverHtml,
-        },
       ],
       text: (
         <Fragment>
@@ -246,11 +215,16 @@ export const SelectableExample = {
           <h3>Width and height</h3>
           <p>
             The width has been made to always be 100% of its container,
-            including stretching the search input. By default, the height is
-            capped at showing up to 7.5 items. It shows half of the last one to
-            help indicate that there are more options to scroll to. To stretch
-            the box to fill its container, pass &apos;full&apos; to the{' '}
-            <EuiCode>height</EuiCode> prop.
+            including stretching the search input. When used inside of{' '}
+            <Link to="layout/popover">
+              <strong>EuiPopover</strong>
+            </Link>
+            , we recommend setting a width (or min/max values) via CSS on the
+            element containing the list to avoid expansion and contraction. By
+            default, the height is capped at showing up to 7.5 items. It shows
+            half of the last one to help indicate that there are more options to
+            scroll to. To stretch the box to fill its container, pass
+            &apos;full&apos; to the <EuiCode>height</EuiCode> prop.
           </p>
           <h3>Flexbox</h3>
           <p>
@@ -270,10 +244,6 @@ export const SelectableExample = {
         {
           type: GuideSectionTypes.JS,
           code: selectableExclusionSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableExclusionHtml,
         },
       ],
       text: (
@@ -302,20 +272,17 @@ export const SelectableExample = {
           type: GuideSectionTypes.JS,
           code: selectableMessagesSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableMessagesHtml,
-        },
       ],
       text: (
         <Fragment>
           <p>
             The component comes with pre-composed messages for loading, empty,
             and no search result states. To display your own messages, pass{' '}
-            <EuiCode>loadingMessage</EuiCode>, <EuiCode>emptyMessage</EuiCode>,
-            or <EuiCode>noMatchesMessage</EuiCode> respectively. Alternatively,
-            you can replace the entire <EuiCode>list</EuiCode> display with your
-            own message for any state. In which case, we recommend wrapping your
+            <EuiCode>loadingMessage</EuiCode>, <EuiCode>emptyMessage</EuiCode>,{' '}
+            <EuiCode>errorMessage</EuiCode>, or{' '}
+            <EuiCode>noMatchesMessage</EuiCode> respectively. Alternatively, you
+            can replace the entire <EuiCode>list</EuiCode> display with your own
+            message for any state. In which case, we recommend wrapping your
             custom message in an <strong>EuiSelectableMessage</strong>{' '}
             component.
           </p>
@@ -331,6 +298,7 @@ export const SelectableExample = {
   isLoading={isLoading}
   loadingMessage={customLoadingMessage}
   emptyMessage={customEmptyMessage}
+  errorMessage={hasError ? errorMessage : undefined}
   noMatchesMessage={customNoMatchesMessage}>
   {list => list}
 </EuiSelectable>`,
@@ -350,16 +318,12 @@ export const SelectableExample = {
           type: GuideSectionTypes.JS,
           code: selectableCustomRenderSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableCustomRenderHtml,
-        },
       ],
       text: (
         <Fragment>
           <p>
             There are two object properties you can add to enhance the content
-            of you options, <EuiCode>option.prepend</EuiCode> and{' '}
+            of your options, <EuiCode>option.prepend</EuiCode> and{' '}
             <EuiCode>option.append</EuiCode>. These will add nodes before and
             after the option label respectively. They will not be included in
             the searchable content as this only matches against the label
@@ -380,6 +344,22 @@ export const SelectableExample = {
             similar to a title. Add one of these by setting the{' '}
             <EuiCode>option.isGroupLabel</EuiCode> to true.{' '}
           </p>
+          <h3>Row height and virtualization</h3>
+          <p>
+            When virtualization is on,{' '}
+            <strong>every row must be the same height</strong> in order for the
+            list to know how to scroll to the selected or highlighted option. It
+            applies the <EuiCode>listProps.rowHeight</EuiCode> (in pixels)
+            directly to each option hiding any overflow.
+          </p>
+          <p>
+            If <EuiCode>listProps.isVirtualized</EuiCode> is set to{' '}
+            <EuiCode>false</EuiCode>, each row will fit its contents and removes
+            all scrolling. Therefore, we recommend having a large enough
+            container to accommodate all options. You can also remove truncation
+            by setting <EuiCode>{'textWrap="wrap"'}</EuiCode> when
+            virtualization is off.
+          </p>
           <h3>Custom content</h3>
           <p>
             While it is best to stick to the{' '}
@@ -390,15 +370,17 @@ export const SelectableExample = {
             <EuiCode>searchValue</EuiCode> to use for highlighting.
           </p>
           <p>
-            In order for the list to know how to scroll to the selected or
-            highlighted option, it must also know the height of the rows. It
-            applies this pixel height directly to options. If your custom
-            content is taller than the default of <EuiCode>32px</EuiCode> tall,
-            you will need to recalculate this height and apply it via{' '}
-            <EuiCode>listProps.rowHeight</EuiCode>.
+            To provide data that can be used by the{' '}
+            <EuiCode>renderOption</EuiCode> function that does not match the
+            standard option API, use <EuiCode>option.data</EuiCode> which will
+            make custom data available in the <EuiCode>option</EuiCode>{' '}
+            parameter. See the <EuiCode>secondaryContent</EuiCode> configuration
+            in the following example.
           </p>
           <p>
-            <strong>Every row must be the same height.</strong>
+            Also, if your custom content is taller than the default{' '}
+            <EuiCode>listProps.rowHeight</EuiCode> of <EuiCode>32px</EuiCode>{' '}
+            tall, you will need to pass in a custom value to this prop.
           </p>
         </Fragment>
       ),
@@ -421,152 +403,6 @@ export const SelectableExample = {
     </Fragment>
   )}
 </EuiSelectable>`,
-    },
-    {
-      title: 'Sitewide search template',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: searchSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: searchHtml,
-        },
-      ],
-      text: (
-        <Fragment>
-          <p>
-            <strong>EuiSelectableTemplateSitewide</strong> is an opinionated
-            wrapper around <strong>EuiSelectable</strong> to provide a reusable
-            template across the Elastic products that will share the same global
-            search capabilities. It creates the search input that triggers a
-            popover containing the list of options.
-          </p>
-          <h3>Search input</h3>
-          <p>
-            The search ability of EuiSelectable is still hooked up to the
-            options provided. It will highlight the portion of the label that
-            matches the search string.
-          </p>
-          <EuiCallOut
-            size="s"
-            iconType="keyboardShortcut"
-            title="The demo showcases the possibility to allow a keyboard shortcut (command + K) to trigger the search input focus, but the template does not come with this ability."
-          />
-          <h3>Popover</h3>
-          <p>
-            The popover itself allows you to display a{' '}
-            <EuiCode>popoverTitle</EuiCode> node,{' '}
-            <EuiCode>popoverFooter</EuiCode> node, or pass any of the{' '}
-            <EuiCode>popoverProps</EuiCode> to the{' '}
-            <Link to="/layout/popover">
-              <strong>EuiPopover</strong>
-            </Link>{' '}
-            component.
-          </p>
-          <h3>Options</h3>
-          <p>
-            The <EuiCode>options</EuiCode> are the most opinionated portion of
-            the template. Their display is determined by the props passed in and
-            extends the normal <EuiCode>EuiSelectable.option</EuiCode> type. All
-            parts are optional with the exception of the label (B).
-          </p>
-
-          <SearchOption />
-          <EuiSpacer size="xs" />
-          <EuiAccordion
-            id="optionSnippet"
-            buttonContent={<small>Code snippet</small>}>
-            <EuiSpacer size="xs" />
-            <EuiCodeBlock language="ts" isCopyable paddingSize="s">
-              {`const options: EuiSelectableTemplateSitewideOption[] = [
-  {
-    label: 'Label',
-    icon: {
-      type: 'logoKibana'
-    }
-    avatar: {
-      name: 'Default',
-    },
-    meta: [
-      {
-        text: 'Meta',
-        type: 'application',
-      },
-      {
-        text: 'Deployment',
-        type: 'deployment',
-      },
-      {
-        text: 'Default display',
-      },
-    ],
-  }
-]`}
-            </EuiCodeBlock>
-          </EuiAccordion>
-          <EuiSpacer />
-          <ul style={{ listStyleType: 'upper-alpha' }}>
-            <li>
-              <EuiCode>label</EuiCode> (required): The name of the item itself.
-              By default, the search box will only use this to match the search
-              term against, but you can supply a separate{' '}
-              <EuiCode>searchableLabel</EuiCode> that combines the label and
-              meta data to search on.
-            </li>
-            <li>
-              <EuiCode>icon</EuiCode>: Only display the solution or
-              application&apos;s logo when the option links to the application
-              itself (Dashboard app) and not lower-level items such as
-              individual dashboards. Size and color are predetermined but can be
-              overridden.
-            </li>
-            <li>
-              <EuiCode>avatar</EuiCode>: Represents the Kibana Space that the
-              item is located in, <strong>if</strong> multiple spaces are
-              present. Type and size are predetermined but can be overridden.
-            </li>
-            <li>
-              <EuiCode>meta</EuiCode>: This bottom line should only contain
-              items if the option is a lower-level item (individual dashboard).
-              The display of which defaults to simple text, but if you pass one
-              of the predetermined <EuiCode>types</EuiCode>, they will be styled
-              according to the design pattern.
-            </li>
-          </ul>
-          <EuiCallOut
-            size="s"
-            iconType="clock"
-            title="The demo shows how you can temporarily replace the icon for a subset of options to display a short list of recently viewed options."
-          />
-          <h3>Selection</h3>
-          <p>
-            The options themselves are simply rendered as list items with no
-            interactive behavior like buttons or links. You must handle the
-            interaction when the component passes back the altered array of
-            options with the selected option having{' '}
-            <EuiCode>{"checked: 'on'"}</EuiCode>.
-          </p>
-          <h3>Popover toggle and responsiveness</h3>
-          <p>
-            The default display is to render the search input inline which
-            triggers a popover with the results. Or you can decide to trigger
-            the whole selectable component from a single button. By passing your
-            own button to <EuiCode>popoverButton</EuiCode>, the component will
-            use this to trigger the popover, putting the search inside.
-          </p>
-          <p>
-            This is a great way to handle reducing the size of the component for
-            smaller screens. The component offers a helper prop called{' '}
-            <EuiCode>popoverButtonBreakpoints</EuiCode> which will only render
-            the <EuiCode>popoverButton</EuiCode> if the window size matches
-            named breakpoint(s).
-          </p>
-        </Fragment>
-      ),
-      props: { EuiSelectableTemplateSitewide, Options, MetaData },
-      demo: <Search />,
     },
   ],
 };

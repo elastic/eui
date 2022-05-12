@@ -1,5 +1,19 @@
 # Consuming EUI
 
+## Installation
+
+To install the Elastic UI Framework into an existing project, use the `yarn` CLI (`npm` is not supported).
+
+```bash
+yarn add @elastic/eui
+```
+
+Note that EUI has [several `peerDependencies` requirements](package.json) that will also need to be installed if starting with a blank project.
+
+```bash
+yarn add @elastic/eui @elastic/datemath @emotion/react moment prop-types
+```
+
 ## Requirements and dependencies
 
 EUI expects that you polyfill ES2015 features, e.g. [`babel-polyfill`](https://babeljs.io/docs/usage/polyfill/). Without an ES2015 polyfill your app might throw errors on certain browsers.
@@ -26,15 +40,6 @@ import {
 } from '@elastic/eui';
 ```
 
-### Services
-
-Most services are published from the `lib/services` directory. Some are published from their module directories in this directory.
-
-```js
-import { keys } from '@elastic/eui/lib/services';
-import { Timer } from '@elastic/eui/lib/services/time';
-```
-
 ### Test
 
 Test utilities are published from the `lib/test` directory.
@@ -43,106 +48,44 @@ Test utilities are published from the `lib/test` directory.
 import { findTestSubject } from '@elastic/eui/lib/test';
 ```
 
-## Using EUI in a standalone project
+### Theming
 
-You can consume EUI in standalone projects, such as plugins and prototypes.
+As of April 2022 EUI is in the process of [migrating to Emotion JS for the CSS and theming layer](https://github.com/elastic/eui/issues/3912). Using EUI's theme layer with Emotion is [documented in our docs](https://elastic.github.io/eui/#/theming/theme-provider) and should cover the majority of your theming needs. Until the conversion is complete the components you consume may still contain soon-to-be-removed Sass styling. EUI's distribution also provides both a light and dark JSON token file that exposes these Sass variables (through an automatic process derived from the Sass) to make tokens from the individual Sass components available to consume if you need them. As components continue to convert to Emotion, these Sass-to-JS tokens in these files will degrade, eventually disappearing altogether. We therefor recommend not relying on the JSON dist of these tokens, and convert your applications to utilize EUI's Emotion powered [Theme Provider](https://elastic.github.io/eui/#/theming/theme-provider) and its related tokens instead. The following are provided as basic examples to show what that conversion might look like if you were using the older, legacy systems.
 
-### Importing compiled CSS
+#### A not-recommended, legacy method to consume theming variables from Sass
 
-Most of the time, you just need the compiled CSS, which provides the styling for the React components.
-
-```js
-import '@elastic/eui/dist/eui_theme_light.css';
-```
-
-Other compiled themes include:
-```js
-import '@elastic/eui/dist/eui_theme_dark.css';
-```
-```js
-import '@elastic/eui/dist/eui_theme_amsterdam_light.css';
-```
-```js
-import '@elastic/eui/dist/eui_theme_amsterdam_dark.css';
-```
-
-### Using our Sass variables on top of compiled CSS
-
-If you want to build **on top** of the EUI theme by accessing the Sass variables, functions, and mixins, you'll need to import the Sass globals in addition to the compiled CSS mentioned above. This will require `style`, `css`, `postcss`, and `sass` loaders.
-
-First import the correct colors file, followed by the globals file.
-
-```scss
-@import '@elastic/eui/src/themes/eui/eui_colors_light.scss';
-@import '@elastic/eui/src/themes/eui/eui_globals.scss';
-```
-
-For the dark theme, swap the first import for the dark colors file.
-
-```scss
-@import '@elastic/eui/src/themes/eui/eui_colors_dark.scss';
-@import '@elastic/eui/src/themes/eui/eui_globals.scss';
-```
-
-If you want to use the new, but in progress Amsterdam theme, you can import it similarly.
-
-```scss
-@import '@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_colors_light.scss';
-@import '@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_globals.scss';
-```
-
-### Using Sass to customize EUI
-
-EUI's Sass themes are token based, which can be altered to suite your theming needs like changing the primary color. Simply declare your token overrides before importing the whole EUI theme. This will re-compile **all of the EUI components** with your colors.
-
-*Do not use in conjunction with the compiled CSS.*
-
-Here is an example setup.
-
-```scss
-// mytheme.scss
-$euiColorPrimary: #7B61FF;
-
-@import '@elastic/eui/src/theme_light.scss';
-```
-
-### Fonts
-
-By default, EUI ships with a font stack that includes some outside, open source fonts. If your system is internet available you can include these by adding the following imports to your SCSS/CSS files, otherwise you'll need to bundle the physical fonts in your build. EUI will drop to System Fonts (which you may prefer) in their absence.
-
-```scss
-// index.scss
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700,700i');
-@import url('https://rsms.me/inter/inter-ui.css');
-```
-
-The Amsterdam theme uses the latest version of Inter that can be grabbed from Google Fonts as well.
-
-```scss
-// index.scss
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-```
-
-### Reusing the variables in JavaScript
-
-The Sass variables are also made available for consumption as json files. This enables reuse of values in css-in-js systems like [styled-components](https://www.styled-components.com). As the following example shows, it can also make the downstream components theme-aware without much extra effort:
-
-```js
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import styled, { ThemeProvider } from 'styled-components';
+```jsx
 import * as euiVars from '@elastic/eui/dist/eui_theme_light.json';
 
-const CustomComponent = styled.div`
-  color: ${props => props.theme.euiColorPrimary};
-  border: ${props => props.theme.euiBorderThin};
-`;
+const styles = {
+  color: euiVars.euiColorPrimary,
+  border: euiVars.euiBorderThin
+  padding: euiVars.euiPanelPaddingModifiers.paddingSmall
+};
 
-ReactDOM.render(
-  <ThemeProvider theme={euiVars}>
-    <CustomComponent>content</CustomComponent>
-  </ThemeProvider>
-, document.querySelector('#renderTarget'));
+export default () => (
+  <div style={styles} />
+)
+```
+
+#### A recommended method to consume theming variables using Emotion
+
+```jsx
+import { useEuiTheme } from '@elastic/eui';
+import { css } from '@emotion/react';
+
+
+export default () => {
+  const { euiTheme } = useEuiTheme();
+  const styles = css`
+    color: ${euiTheme.colors.primary};
+    border: ${euiTheme.border.thin};
+    padding: ${euiTheme.size.s};
+  `;
+  return (
+  <div css={styles} />
+  );
+};
 ```
 
 ### "Module build failed" or "Module parse failed: Unexpected token" error
@@ -153,7 +96,7 @@ If you get an error when importing a React component, you might need to configur
 
 To reduce EUI's impact to application bundle sizes, the icons are dynamically imported on-demand. This is problematic for some bundlers and/or deployments, so a method exists to preload specific icons an application needs.
 
-```javascript
+```js
 import { appendIconComponentCache } from '@elastic/eui/es/components/icon/icon';
 
 import { icon as EuiIconArrowDown } from '@elastic/eui/es/components/icon/assets/arrow_down';
@@ -164,18 +107,6 @@ appendIconComponentCache({
   arrowDown: EuiIconArrowDown,
   arrowLeft: EuiIconArrowLeft,
 });
-```
-
-## Customizing with `className`
-
-We do not recommend customizing EUI components by applying styles directly to EUI classes, eg. `.euiButton`. All components allow you to pass a custom `className` prop directly to the component which will then append this to the class list. Utilizing the cascade feature of CSS, you can then customize by overriding styles so long as your styles are imported **after** the EUI import.
-
-```html
-<EuiButton className="myCustomClass__button" />
-
-// Renders as:
-
-<button class="euiButton myCustomClass__button" />
 ```
 
 ## Using the `test-env` build
@@ -197,3 +128,28 @@ This eliminates the need to polyfill or transform the EUI build for an environme
 ### Mocked component files
 
 Besides babel transforms, the test environment build consumes mocked component files of the type `src/**/[name].testenv.*`. During the build, files of the type `src/**/[name].*` will be replaced by those with the `testenv` namespace. The purpose of this mocking is to further mitigate the impacts of time- and import-dependent rendering, and simplify environment output such as test snapshots. Information on creating mock component files can be found with [testing documentation](testing.md).
+
+## Using the `optimize` build (Beta)
+
+The `optimize` output directory is an opt-in intermediate step as we work towards dedicated, formal build output for development and production environments.
+
+When compiling with webpack, use the `resolve.alias` configuration to target the desired directory:
+
+```json
+resolve: {
+  alias: {
+    '@elastic/eui$': '@elastic/eui/optimize/lib'
+  }
+}
+```
+
+Designated "Beta" as included babel plugins may change and the output directory is likely to be renamed.
+
+### Notable differences
+
+* Absence of `propTypes`
+  * Significant bundle size decrease
+  * Likely not suitable for development environments
+* Runtime transforms
+  * Slight bundle size decrease
+  * Requires `@babel/runtime` be a consumer dependency

@@ -1,12 +1,10 @@
 import React, { Fragment } from 'react';
-import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import { ExternalBadge } from './shared';
 import { Sizes } from './sizes';
 import { Sparklines } from './sparklines';
 const sparklinesSource = require('!!raw-loader!./sparklines');
-const sparklinesHtml = renderToHtml(Sparklines);
 
 import { EuiCode, EuiCodeBlock } from '../../../../src/components';
 
@@ -38,10 +36,6 @@ export const ElasticChartsSparklinesExample = {
         {
           type: GuideSectionTypes.JS,
           code: sparklinesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: sparklinesHtml,
         },
       ],
       text: (

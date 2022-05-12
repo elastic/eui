@@ -50,7 +50,8 @@ export const ResizeObserverExample = () => {
           <div className="eui-displayInlineBlock" ref={resizeRef}>
             <EuiPanel
               className="eui-displayInlineBlock"
-              paddingSize={paddingSize}>
+              paddingSize={paddingSize}
+            >
               <ul>
                 {items.map((item) => (
                   <li key={item}>{item}</li>

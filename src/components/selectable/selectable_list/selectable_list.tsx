@@ -1,43 +1,57 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
-import React, { Component, HTMLAttributes, ReactNode, memo } from 'react';
+import React, {
+  Component,
+  HTMLAttributes,
+  ReactNode,
+  memo,
+  CSSProperties,
+} from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../../common';
-import {
-  EuiSelectableListItem,
-  EuiSelectableListItemProps,
-} from './selectable_list_item';
-import { EuiHighlight } from '../../highlight';
-import { EuiSelectableOption } from '../selectable_option';
-import AutoSizer from 'react-virtualized-auto-sizer';
 import {
   FixedSizeList,
   ListProps,
   ListChildComponentProps as ReactWindowListChildComponentProps,
   areEqual,
 } from 'react-window';
+import { CommonProps, ExclusiveUnion } from '../../common';
+import { EuiAutoSizer } from '../../auto_sizer';
+import { EuiHighlight } from '../../highlight';
+import { EuiSelectableOption } from '../selectable_option';
+import {
+  EuiSelectableListItem,
+  EuiSelectableListItemProps,
+} from './selectable_list_item';
 
 interface ListChildComponentProps<T>
-  extends ReactWindowListChildComponentProps {
+  extends Omit<ReactWindowListChildComponentProps, 'style'> {
   data: Array<EuiSelectableOption<T>>;
+  style?: CSSProperties;
 }
+
+export type EuiSelectableOptionsListVirtualizedProps = ExclusiveUnion<
+  {
+    /**
+     * Use virtualized rendering for list items with `react-window`.
+     * Sets each row's height to the value of `rowHeight`.
+     */
+    isVirtualized?: true;
+    /**
+     *  The height of each option in pixels. Defaults to `32`.
+     *  Has no effect if `isVirtualized=false`.
+     */
+    rowHeight: number;
+  },
+  {
+    isVirtualized: false;
+  }
+>;
 
 // Consumer Configurable Props via `EuiSelectable.listProps`
 export type EuiSelectableOptionsListProps = CommonProps &
@@ -48,10 +62,6 @@ export type EuiSelectableOptionsListProps = CommonProps &
      * directly to that option
      */
     activeOptionIndex?: number;
-    /**
-     *  The height of each option in pixels. Defaults to `32`
-     */
-    rowHeight: number;
     /**
      * Show the check/cross selection indicator icons
      */
@@ -72,7 +82,16 @@ export type EuiSelectableOptionsListProps = CommonProps &
      * The default content when `true` is `↩ to select/deselect/include/exclude`
      */
     onFocusBadge?: EuiSelectableListItemProps['onFocusBadge'];
-  };
+    /**
+     * Padding for the list items.
+     */
+    paddingSize?: EuiSelectableListItemProps['paddingSize'];
+    /**
+     * How to handle long text within the item.
+     * Wrapping only works if virtualization is off.
+     */
+    textWrap?: EuiSelectableListItemProps['textWrap'];
+  } & EuiSelectableOptionsListVirtualizedProps;
 
 export type EuiSelectableListProps<T> = EuiSelectableOptionsListProps & {
   /**
@@ -120,6 +139,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
   static defaultProps = {
     rowHeight: 32,
     searchValue: '',
+    isVirtualized: true,
   };
 
   listRef: FixedSizeList | null = null;
@@ -197,6 +217,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
 
   ListRow = memo(({ data, index, style }: ListChildComponentProps<T>) => {
     const option = data[index];
+    const { data: optionData, ..._option } = option;
     const {
       label,
       isGroupLabel,
@@ -207,8 +228,23 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       ref,
       key,
       searchableLabel,
+      data: _data,
       ...optionRest
     } = option;
+
+    const {
+      activeOptionIndex,
+      allowExclusions,
+      onFocusBadge,
+      paddingSize,
+      searchValue,
+      showIcons,
+      makeOptionId,
+      renderOption,
+      setActiveOptionIndex,
+      searchable,
+      textWrap,
+    } = this.props;
 
     if (isGroupLabel) {
       return (
@@ -217,7 +253,8 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
           className="euiSelectableList__groupLabel"
           style={style}
           // @ts-ignore complex
-          {...(optionRest as HTMLAttributes<HTMLLIElement>)}>
+          {...(optionRest as HTMLAttributes<HTMLLIElement>)}
+        >
           {prepend}
           {label}
           {append}
@@ -226,18 +263,19 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     }
 
     const labelCount = data.filter((option) => option.isGroupLabel).length;
+    const id = makeOptionId(index);
 
     return (
       <EuiSelectableListItem
-        id={this.props.makeOptionId(index)}
+        key={id}
+        id={id}
         style={style}
-        key={key || label.toLowerCase()}
         onMouseDown={() => {
-          this.props.setActiveOptionIndex(index);
+          setActiveOptionIndex(index);
         }}
         onClick={() => this.onAddOrRemoveOption(option)}
         ref={ref ? ref.bind(null, index) : undefined}
-        isFocused={this.props.activeOptionIndex === index}
+        isFocused={activeOptionIndex === index}
         title={searchableLabel || label}
         checked={checked}
         disabled={disabled}
@@ -245,14 +283,22 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
         append={append}
         aria-posinset={index + 1 - labelCount}
         aria-setsize={data.length - labelCount}
-        onFocusBadge={this.props.onFocusBadge}
-        allowExclusions={this.props.allowExclusions}
-        showIcons={this.props.showIcons}
-        {...(optionRest as EuiSelectableListItemProps)}>
-        {this.props.renderOption ? (
-          this.props.renderOption(option, this.props.searchValue)
+        onFocusBadge={onFocusBadge}
+        allowExclusions={allowExclusions}
+        showIcons={showIcons}
+        paddingSize={paddingSize}
+        searchable={searchable}
+        textWrap={textWrap}
+        {...(optionRest as EuiSelectableListItemProps)}
+      >
+        {renderOption ? (
+          renderOption(
+            // @ts-ignore complex
+            { ..._option, ...optionData },
+            this.props.searchValue
+          )
         ) : (
-          <EuiHighlight search={this.props.searchValue}>{label}</EuiHighlight>
+          <EuiHighlight search={searchValue}>{label}</EuiHighlight>
         )}
       </EuiSelectableListItem>
     );
@@ -275,6 +321,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       visibleOptions,
       allowExclusions,
       bordered,
+      paddingSize,
       searchable,
       onFocusBadge,
       listId,
@@ -282,6 +329,9 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby,
       'aria-describedby': ariaDescribedby,
+      role,
+      isVirtualized,
+      textWrap,
       ...rest
     } = this.props;
 
@@ -302,9 +352,9 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
 
       if (numVisibleMoreThanMax) {
         // Show only half of the last one to indicate there's more to scroll to
-        calculatedHeight = (maxVisibleOptions - 0.5) * rowHeight;
+        calculatedHeight = (maxVisibleOptions - 0.5) * rowHeight!;
       } else {
-        calculatedHeight = numVisibleOptions * rowHeight;
+        calculatedHeight = numVisibleOptions * rowHeight!;
       }
     }
 
@@ -319,25 +369,47 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
 
     return (
       <div className={classes} {...rest}>
-        <AutoSizer disableHeight={!heightIsFull}>
-          {({ width, height }) => (
-            <FixedSizeList
-              ref={this.setListRef}
-              outerRef={this.removeScrollableTabStop}
-              className="euiSelectableList__list"
-              data-skip-axe="scrollable-region-focusable"
-              width={width}
-              height={calculatedHeight || height}
-              itemCount={optionArray.length}
-              itemData={optionArray}
-              itemSize={rowHeight}
-              innerElementType="ul"
-              innerRef={this.setListBoxRef}
-              {...windowProps}>
-              {this.ListRow}
-            </FixedSizeList>
-          )}
-        </AutoSizer>
+        {isVirtualized ? (
+          <EuiAutoSizer disableHeight={!heightIsFull}>
+            {({ width, height }) => (
+              <FixedSizeList
+                ref={this.setListRef}
+                outerRef={this.removeScrollableTabStop}
+                className="euiSelectableList__list"
+                data-skip-axe="scrollable-region-focusable"
+                width={width}
+                height={calculatedHeight || height}
+                itemCount={optionArray.length}
+                itemData={optionArray}
+                itemSize={rowHeight!}
+                innerElementType="ul"
+                innerRef={this.setListBoxRef}
+                {...windowProps}
+              >
+                {this.ListRow}
+              </FixedSizeList>
+            )}
+          </EuiAutoSizer>
+        ) : (
+          <div
+            className="euiSelectableList__list"
+            ref={this.removeScrollableTabStop}
+          >
+            <ul ref={this.setListBoxRef}>
+              {optionArray.map((_, index) =>
+                React.createElement(
+                  this.ListRow,
+                  {
+                    key: index,
+                    data: optionArray,
+                    index,
+                  },
+                  null
+                )
+              )}
+            </ul>
+          </div>
+        )}
       </div>
     );
   }

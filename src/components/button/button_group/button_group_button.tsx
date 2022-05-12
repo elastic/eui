@@ -1,28 +1,17 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import classNames from 'classnames';
-import React, { FunctionComponent, useRef } from 'react';
+import React, { FunctionComponent } from 'react';
 import { EuiButtonDisplay } from '../button';
 import { EuiButtonGroupOptionProps, EuiButtonGroupProps } from './button_group';
 import { useInnerText } from '../../inner_text';
-import { htmlIdGenerator } from '../../../services';
+import { useGeneratedHtmlId } from '../../../services';
 
 type Props = EuiButtonGroupOptionProps & {
   /**
@@ -76,7 +65,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
 }) => {
   // Force element to be a button if disabled
   const el = isDisabled ? 'button' : element;
-  const newId = useRef(htmlIdGenerator()()).current;
+  const newId = useGeneratedHtmlId();
 
   let elementProps = {};
   let singleInput;
@@ -84,7 +73,6 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
     elementProps = {
       ...elementProps,
       htmlFor: newId,
-      onClick: () => onChange(id, value),
     };
     singleInput = (
       <input
@@ -139,10 +127,11 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
           : 'euiButtonGroupButton__textShift',
         ref: buttonTextRef,
         'data-text': innerText,
-        title: innerText,
       }}
+      title={innerText}
       {...elementProps}
-      {...rest}>
+      {...rest}
+    >
       {singleInput}
       {label}
     </EuiButtonDisplay>
