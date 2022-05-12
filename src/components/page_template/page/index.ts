@@ -7,4 +7,4 @@
  */
 
 export type { EuiPageProps } from './page';
-export { EuiPage, SIZES } from './page';
+export { EuiPage } from './page';

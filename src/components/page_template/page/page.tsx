@@ -8,36 +8,14 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../../common';
-import {
-  _EuiPageRestrictWidth,
-  setPropsForRestrictedPageWidth,
-} from '../_restrict_width';
-
-const paddingSizeToClassNameMap = {
-  none: null,
-  s: 'euiPage--paddingSmall',
-  m: 'euiPage--paddingMedium',
-  l: 'euiPage--paddingLarge',
-};
-
-const directionToClassNameMap = {
-  row: null,
-  column: 'euiPage--column',
-};
-
-export const SIZES = keysOf(paddingSizeToClassNameMap);
-export const DIRECTIONS = keysOf(directionToClassNameMap);
+import { CommonProps } from '../../common';
+import { useEuiTheme, useIsWithinBreakpoints } from '../../../services';
+import { _EuiThemeBreakpoint } from '../../../global_styling';
+import { euiPageStyles } from './page.styles';
 
 export interface EuiPageProps
   extends CommonProps,
-    HTMLAttributes<HTMLDivElement>,
-    _EuiPageRestrictWidth {
-  /**
-   * Adjust the padding.
-   * When using this setting it's best to be consistent throughout all similar usages
-   */
-  paddingSize?: typeof SIZES[number];
+    HTMLAttributes<HTMLDivElement> {
   /**
    * Adds `flex-grow: 1` to the whole page for stretching to fit vertically.
    * Must be wrapped inside a flexbox, preferrably with `min-height: 100vh`
@@ -48,36 +26,34 @@ export interface EuiPageProps
    * Flip to `column` when not including a sidebar.
    */
   direction?: 'row' | 'column';
+  /**
+   * When direction is `row`, it will flip to `column` when within these breakpoints
+   */
+  responsive?: _EuiThemeBreakpoint[];
 }
 
 export const EuiPage: FunctionComponent<EuiPageProps> = ({
   children,
-  restrictWidth = false,
-  style,
   className,
-  paddingSize = 'none',
   grow = true,
   direction = 'row',
+  responsive = ['xs', 's'],
   ...rest
 }) => {
-  const { widthClassName, newStyle } = setPropsForRestrictedPageWidth(
-    restrictWidth,
-    style
-  );
+  const themeContext = useEuiTheme();
+  const styles = euiPageStyles(themeContext);
+  const isResponding = useIsWithinBreakpoints(responsive);
 
-  const classes = classNames(
-    'euiPage',
-    paddingSizeToClassNameMap[paddingSize],
-    directionToClassNameMap[direction],
-    {
-      'euiPage--grow': grow,
-      [`euiPage--${widthClassName}`]: widthClassName,
-    },
-    className
-  );
+  const cssStyles = [
+    styles.euiPage,
+    styles[isResponding ? 'column' : direction],
+    grow && styles.grow,
+  ];
+
+  const classes = classNames('euiPageT', className);
 
   return (
-    <div className={classes} style={newStyle || style} {...rest}>
+    <div className={classes} css={cssStyles} {...rest}>
       {children}
     </div>
   );

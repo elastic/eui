@@ -8,7 +8,7 @@
 
 import React, { CSSProperties, FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
-import { EuiPage, EuiPageProps, SIZES } from './page';
+import { EuiPage, EuiPageProps } from './page';
 import { EuiPageSideBar, EuiPageSideBarProps } from './page_side_bar';
 import { EuiPageBody, EuiPageBodyProps } from './page_body';
 import { EuiPageHeader, EuiPageHeaderProps } from './page_header';
@@ -21,6 +21,8 @@ import {
 import { EuiBottomBarProps, EuiBottomBar } from '../bottom_bar';
 import { useIsWithinBreakpoints } from '../../services';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { _EuiPageRestrictWidth } from './_restrict_width';
+import { _EuiPaddingSize } from '../../global_styling';
 
 export const TEMPLATES = [
   'default',
@@ -29,66 +31,67 @@ export const TEMPLATES = [
   'empty',
 ] as const;
 
-export type EuiPageTemplateProps = Omit<EuiPageProps, 'paddingSize'> & {
-  /**
-   * Choose between 3 types of templates.
-   * `default`: Typical layout with nothing centered
-   * `centeredBody`: The panelled content is centered
-   * `centeredContent`: The content inside the panel is centered
-   * `empty`: Removes the panneling of the page content
-   */
-  template?: typeof TEMPLATES[number];
-  /**
-   * Padding size will not get applied to the over-arching #EuiPage,
-   * but will propogate through all the components to keep them in sync
-   */
-  paddingSize?: typeof SIZES[number];
-  /**
-   * Optionally include #EuiPageSideBar content.
-   * The inclusion of this will affect the whole layout
-   */
-  pageSideBar?: ReactNode;
-  /**
-   * Gets passed along to the #EuiPageSideBar component
-   */
-  pageSideBarProps?: EuiPageSideBarProps;
-  /**
-   * Optionally include an #EuiPageHeader by passing an object of its props
-   */
-  pageHeader?: EuiPageHeaderProps;
-  /**
-   * Gets passed along to the #EuiPageBody component
-   */
-  pageBodyProps?: EuiPageBodyProps;
-  /**
-   * Gets passed along to the #EuiPageContent component
-   */
-  pageContentProps?: EuiPageContentProps;
-  /**
-   * Gets passed along to the #EuiPageContentBody component
-   */
-  pageContentBodyProps?: EuiPageContentBodyProps;
-  /**
-   * Adds contents inside of an EuiBottomBar.
-   * Only works when `template = 'default'`
-   */
-  bottomBar?: EuiBottomBarProps['children'];
-  /**
-   * Gets passed along to the #EuiBottomBar component if `bottomBar` has contents
-   */
-  bottomBarProps?: EuiBottomBarProps;
-  /**
-   * Stretches or restricts the height to 100% of the parent;
-   * `true`: scrolls the EuiPageContentBody;
-   * `noscroll`: removes all scroll ability;
-   * Only works when `template = 'default | empty'` and breakpoint is `m` and above
-   */
-  fullHeight?: boolean | 'noscroll';
-  /**
-   * Minimum height in which to enforce scrolling
-   */
-  minHeight?: CSSProperties['minHeight'];
-};
+export type EuiPageTemplateProps = Omit<EuiPageProps, 'paddingSize'> &
+  _EuiPageRestrictWidth & {
+    /**
+     * Choose between 3 types of templates.
+     * `default`: Typical layout with nothing centered
+     * `centeredBody`: The panelled content is centered
+     * `centeredContent`: The content inside the panel is centered
+     * `empty`: Removes the panneling of the page content
+     */
+    template?: typeof TEMPLATES[number];
+    /**
+     * Padding size will not get applied to the over-arching #EuiPage,
+     * but will propogate through all the components to keep them in sync
+     */
+    paddingSize?: _EuiPaddingSize;
+    /**
+     * Optionally include #EuiPageSideBar content.
+     * The inclusion of this will affect the whole layout
+     */
+    pageSideBar?: ReactNode;
+    /**
+     * Gets passed along to the #EuiPageSideBar component
+     */
+    pageSideBarProps?: EuiPageSideBarProps;
+    /**
+     * Optionally include an #EuiPageHeader by passing an object of its props
+     */
+    pageHeader?: EuiPageHeaderProps;
+    /**
+     * Gets passed along to the #EuiPageBody component
+     */
+    pageBodyProps?: EuiPageBodyProps;
+    /**
+     * Gets passed along to the #EuiPageContent component
+     */
+    pageContentProps?: EuiPageContentProps;
+    /**
+     * Gets passed along to the #EuiPageContentBody component
+     */
+    pageContentBodyProps?: EuiPageContentBodyProps;
+    /**
+     * Adds contents inside of an EuiBottomBar.
+     * Only works when `template = 'default'`
+     */
+    bottomBar?: EuiBottomBarProps['children'];
+    /**
+     * Gets passed along to the #EuiBottomBar component if `bottomBar` has contents
+     */
+    bottomBarProps?: EuiBottomBarProps;
+    /**
+     * Stretches or restricts the height to 100% of the parent;
+     * `true`: scrolls the EuiPageContentBody;
+     * `noscroll`: removes all scroll ability;
+     * Only works when `template = 'default | empty'` and breakpoint is `m` and above
+     */
+    fullHeight?: boolean | 'noscroll';
+    /**
+     * Minimum height in which to enforce scrolling
+     */
+    minHeight?: CSSProperties['minHeight'];
+  };
 
 export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   template = 'default',
@@ -167,28 +170,28 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
      */
     case 'centeredBody':
       return pageSideBar ? (
-        <EuiPage
-          className={classes}
-          paddingSize="none"
-          grow={grow}
-          {...rest}
-          style={pageStyle}
-        >
+        <EuiPage className={classes} grow={grow} {...rest} style={pageStyle}>
           <EuiPageSideBar
             sticky
+            // @ts-expect-error New padding sizes
             paddingSize={paddingSize}
             {...pageSideBarProps}
           >
             {pageSideBar}
           </EuiPageSideBar>
 
-          <EuiPageBody paddingSize={paddingSize} {...pageBodyProps}>
+          <EuiPageBody
+            // @ts-expect-error New padding sizes
+            paddingSize={paddingSize}
+            {...pageBodyProps}
+          >
             {pageHeader && (
               <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
             )}
             <EuiPageContent
               verticalPosition="center"
               horizontalPosition="center"
+              // @ts-expect-error New padding sizes
               paddingSize={paddingSize}
               {...pageContentProps}
             >
@@ -202,13 +205,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           </EuiPageBody>
         </EuiPage>
       ) : (
-        <EuiPage
-          className={classes}
-          paddingSize={paddingSize}
-          grow={grow}
-          {...rest}
-          style={pageStyle}
-        >
+        <EuiPage className={classes} grow={grow} {...rest} style={pageStyle}>
           <EuiPageBody restrictWidth={restrictWidth} {...pageBodyProps}>
             {pageHeader && (
               <EuiPageHeader
@@ -223,6 +220,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               <EuiPageContent
                 verticalPosition="center"
                 horizontalPosition="center"
+                // @ts-expect-error New padding sizes
                 paddingSize={paddingSize}
                 {...pageContentProps}
               >
@@ -245,22 +243,22 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
      */
     case 'centeredContent':
       return pageSideBar ? (
-        <EuiPage
-          className={classes}
-          paddingSize="none"
-          grow={grow}
-          {...rest}
-          style={pageStyle}
-        >
+        <EuiPage className={classes} grow={grow} {...rest} style={pageStyle}>
           <EuiPageSideBar
             sticky
+            // @ts-expect-error New padding sizes
             paddingSize={paddingSize}
             {...pageSideBarProps}
           >
             {pageSideBar}
           </EuiPageSideBar>
 
-          <EuiPageBody panelled paddingSize={paddingSize} {...pageBodyProps}>
+          <EuiPageBody
+            panelled
+            // @ts-expect-error New padding sizes
+            paddingSize={paddingSize}
+            {...pageBodyProps}
+          >
             {pageHeader && (
               <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
             )}
@@ -269,6 +267,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               horizontalPosition="center"
               hasShadow={false}
               color="subdued"
+              // @ts-expect-error New padding sizes
               paddingSize={paddingSize}
               {...pageContentProps}
             >
@@ -282,13 +281,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           </EuiPageBody>
         </EuiPage>
       ) : (
-        <EuiPage
-          className={classes}
-          paddingSize="none"
-          grow={grow}
-          {...rest}
-          style={pageStyle}
-        >
+        <EuiPage className={classes} grow={grow} {...rest} style={pageStyle}>
           <EuiPageBody {...pageBodyProps}>
             {pageHeader && (
               <EuiPageHeader
@@ -302,6 +295,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               role={null}
               borderRadius="none"
               hasShadow={false}
+              // @ts-expect-error New padding sizes
               paddingSize={paddingSize}
               style={{ display: 'flex' }}
             >
@@ -310,6 +304,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
                 horizontalPosition="center"
                 hasShadow={false}
                 color="subdued"
+                // @ts-expect-error New padding sizes
                 paddingSize={paddingSize}
                 {...pageContentProps}
               >
@@ -331,22 +326,21 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
      */
     case 'empty':
       return pageSideBar ? (
-        <EuiPage
-          className={classes}
-          paddingSize="none"
-          grow={grow}
-          {...rest}
-          style={pageStyle}
-        >
+        <EuiPage className={classes} grow={grow} {...rest} style={pageStyle}>
           <EuiPageSideBar
             sticky
+            // @ts-expect-error New padding sizes
             paddingSize={paddingSize}
             {...pageSideBarProps}
           >
             {pageSideBar}
           </EuiPageSideBar>
 
-          <EuiPageBody paddingSize={paddingSize} {...pageBodyProps}>
+          <EuiPageBody
+            // @ts-expect-error New padding sizes
+            paddingSize={paddingSize}
+            {...pageBodyProps}
+          >
             {pageHeader && (
               <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
             )}
@@ -368,13 +362,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           </EuiPageBody>
         </EuiPage>
       ) : (
-        <EuiPage
-          className={classes}
-          paddingSize={paddingSize}
-          grow={grow}
-          {...rest}
-          style={pageStyle}
-        >
+        <EuiPage className={classes} grow={grow} {...rest} style={pageStyle}>
           <EuiPageBody restrictWidth={restrictWidth} {...pageBodyProps}>
             {pageHeader && (
               <EuiPageHeader
@@ -408,6 +396,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
       // Only the default template can display a bottom bar
       const bottomBarNode = bottomBar ? (
         <EuiBottomBar
+          // @ts-expect-error New padding sizes
           paddingSize={paddingSize}
           position={canFullHeight && fullHeight ? 'static' : 'sticky'}
           // Using uknown here because of the possible conflict with overriding props and position `sticky`
@@ -424,15 +413,10 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
       ) : undefined;
 
       return pageSideBar ? (
-        <EuiPage
-          className={classes}
-          paddingSize="none"
-          grow={grow}
-          {...rest}
-          style={pageStyle}
-        >
+        <EuiPage className={classes} grow={grow} {...rest} style={pageStyle}>
           <EuiPageSideBar
             sticky
+            // @ts-expect-error New padding sizes
             paddingSize={paddingSize}
             {...pageSideBarProps}
           >
@@ -473,13 +457,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           </EuiPageBody>
         </EuiPage>
       ) : (
-        <EuiPage
-          className={classes}
-          paddingSize="none"
-          grow={grow}
-          {...rest}
-          style={pageStyle}
-        >
+        <EuiPage className={classes} grow={grow} {...rest} style={pageStyle}>
           <EuiPageBody {...pageBodyProps}>
             {pageHeader && (
               <EuiPageHeader
@@ -498,6 +476,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
             >
               <EuiPageContentBody
                 restrictWidth={restrictWidth}
+                // @ts-expect-error New padding sizes
                 paddingSize={paddingSize}
                 {...pageContentBodyProps}
               >
