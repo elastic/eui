@@ -100,11 +100,6 @@ export type EuiTourStepProps = CommonProps &
     stepsTotal: number;
 
     /**
-     * Optional, standard DOM `style` attribute. Passed to the EuiPopover panel.
-     */
-    style?: CSSProperties;
-
-    /**
      * Smaller title text that appears atop each step in the tour. The subtitle gets wrapped in the appropriate heading level.
      */
     subtitle?: ReactNode;
@@ -138,7 +133,6 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   onFinish,
   step = 1,
   stepsTotal,
-  style,
   subtitle,
   title,
   decoration = 'beacon',
@@ -238,7 +232,6 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
     isOpen: isStepOpen,
     ownFocus: false,
     panelClassName: classes,
-    panelStyle: style,
     offset: hasBeacon ? 10 : 0,
     'aria-labelledby': titleId,
     arrowChildren: hasBeacon && <EuiBeacon className="euiTour__beacon" />,
