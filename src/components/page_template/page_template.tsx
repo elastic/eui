@@ -14,7 +14,7 @@ import {
   _EuiPageSidebarProps,
 } from './page_side_bar';
 import { _EuiPageInner as EuiPageBody, _EuiPageInnerProps } from './page_body';
-import { EuiPageHeader, EuiPageHeaderProps } from '../page';
+import { EuiPageHeader, EuiPageHeaderProps, EuiPageSection } from '../page';
 import {
   EuiPageContent,
   EuiPageContentBody,
@@ -527,4 +527,5 @@ export const EuiPageT = {
   Inner: EuiPageBody,
   Sidebar: EuiPageSideBar,
   Header: EuiPageHeader,
+  Section: EuiPageSection,
 };
