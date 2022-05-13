@@ -7,9 +7,8 @@ import {
   EuiButton,
   EuiButtonEmpty,
   EuiFlyout,
-  EuiPageContentBody,
-  EuiPanel,
   EuiPanelProps,
+  EuiPageSection,
 } from '../../../../src';
 
 import { slugify } from '../../../../src/services/string/slugify';
@@ -45,6 +44,7 @@ export interface GuideSectionProps
   snippet?: string | string[];
   color?: EuiPanelProps['color'];
   children?: ReactNode;
+  nested?: boolean;
 }
 
 export const GuideSectionCodeTypesMap = {
@@ -90,6 +90,7 @@ export const GuideSection: FunctionComponent<GuideSectionProps> = ({
   snippet,
   color,
   children,
+  nested,
 }) => {
   const { path } = useRouteMatch();
   const [renderingPlayground, setRenderingPlayground] = useState(false);
@@ -187,61 +188,59 @@ export const GuideSection: FunctionComponent<GuideSectionProps> = ({
   };
 
   return (
-    <EuiPanel
+    <EuiPageSection
       color={color || 'transparent'}
-      borderRadius="none"
       className="guideSection"
-      paddingSize="l"
+      paddingSize={nested ? 'none' : 'l'}
+      restrictWidth
       id={id}
     >
       {color && (children || text || title) && <EuiSpacer size="xxl" />}
-      <EuiPageContentBody restrictWidth>
-        <GuideSectionExampleText title={title} wrapText={wrapText}>
-          {text}
-        </GuideSectionExampleText>
+      <GuideSectionExampleText title={title} wrapText={wrapText}>
+        {text}
+      </GuideSectionExampleText>
 
-        {renderingPlayground && (
-          <EuiFlyout
-            onClose={() => setRenderingPlayground(false)}
-            size="l"
-            paddingSize="none"
-            closeButtonPosition="outside"
-          >
-            {renderPlayground()}
-          </EuiFlyout>
-        )}
-        {(demo || (fullScreen && fullScreen.showButton !== false)) && (
-          <>
-            {text && <EuiSpacer />}
-            <GuideSectionExample
-              example={
-                <EuiErrorBoundary>
-                  {/* eslint-disable-next-line no-nested-ternary */}
-                  {fullScreen == null ? (
-                    <div>{demo}</div>
-                  ) : demo == null ? (
-                    <EuiButton
-                      fill
-                      iconType="fullScreen"
-                      href={`#${path}/${fullScreen.slug}`}
-                    >
-                      Fullscreen demo
-                    </EuiButton>
-                  ) : (
-                    demo
-                  )}
-                </EuiErrorBoundary>
-              }
-              tabs={renderTabs()}
-              ghostBackground={ghostBackground}
-              demoPanelProps={demoPanelProps}
-              exampleToggles={exampleToggles}
-            />
-          </>
-        )}
+      {renderingPlayground && (
+        <EuiFlyout
+          onClose={() => setRenderingPlayground(false)}
+          size="l"
+          paddingSize="none"
+          closeButtonPosition="outside"
+        >
+          {renderPlayground()}
+        </EuiFlyout>
+      )}
+      {(demo || (fullScreen && fullScreen.showButton !== false)) && (
+        <>
+          {(nested || text) && <EuiSpacer />}
+          <GuideSectionExample
+            example={
+              <EuiErrorBoundary>
+                {/* eslint-disable-next-line no-nested-ternary */}
+                {fullScreen == null ? (
+                  <div>{demo}</div>
+                ) : demo == null ? (
+                  <EuiButton
+                    fill
+                    iconType="fullScreen"
+                    href={`#${path}/${fullScreen.slug}`}
+                  >
+                    Fullscreen demo
+                  </EuiButton>
+                ) : (
+                  demo
+                )}
+              </EuiErrorBoundary>
+            }
+            tabs={renderTabs()}
+            ghostBackground={ghostBackground}
+            demoPanelProps={demoPanelProps}
+            exampleToggles={exampleToggles}
+          />
+        </>
+      )}
 
-        {children}
-      </EuiPageContentBody>
-    </EuiPanel>
+      {children}
+    </EuiPageSection>
   );
 };
