@@ -14,12 +14,14 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { useCombinedRefs } from '../../services';
+import { useCombinedRefs, useEuiTheme } from '../../services';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
+import { euiBottomBarStyles } from './bottom_bar.styles';
+import { EuiThemeProvider } from '../../services/theme/provider';
 
 type BottomBarPaddingSize = 'none' | 's' | 'm' | 'l';
 
@@ -96,7 +98,7 @@ export type EuiBottomBarProps = CommonProps &
     left?: CSSProperties['left'];
   };
 
-export const EuiBottomBar = forwardRef<
+const _EuiBottomBar = forwardRef<
   HTMLElement, // type of element or component the ref will be passed to
   EuiBottomBarProps // what properties apart from `ref` the component accepts
 >(
@@ -119,6 +121,9 @@ export const EuiBottomBar = forwardRef<
     },
     ref
   ) => {
+    const euiTheme = useEuiTheme();
+    const styles = euiBottomBarStyles(euiTheme);
+
     // Force some props if `fixed` position, but not if the user has supplied these
     affordForDisplacement =
       position !== 'fixed' ? false : affordForDisplacement;
@@ -156,6 +161,13 @@ export const EuiBottomBar = forwardRef<
       className
     );
 
+    const cssStyles = [
+      styles.euiBottomBar,
+      styles[position],
+      styles[paddingSize],
+      { position },
+    ];
+
     const newStyle = {
       left,
       right,
@@ -173,11 +185,13 @@ export const EuiBottomBar = forwardRef<
           {(screenReaderHeading: string) => (
             // Though it would be better to use aria-labelledby than aria-label and not repeat the same string twice
             // A bug in voiceover won't list some landmarks in the rotor without an aria-label
+
             <section
               aria-label={
                 landmarkHeading ? landmarkHeading : screenReaderHeading
               }
               className={classes}
+              css={cssStyles}
               ref={setRef}
               style={newStyle}
               {...rest}
@@ -214,4 +228,16 @@ export const EuiBottomBar = forwardRef<
   }
 );
 
+export const EuiBottomBar = forwardRef<HTMLElement, EuiBottomBarProps>(
+  (props, ref) => {
+    const BottomBar = _EuiBottomBar;
+    return (
+      <EuiThemeProvider colorMode={'dark'}>
+        <BottomBar ref={ref} {...props} />
+      </EuiThemeProvider>
+    );
+  }
+);
+
 EuiBottomBar.displayName = 'EuiBottomBar';
+_EuiBottomBar.displayName = 'EuiBottomBar';

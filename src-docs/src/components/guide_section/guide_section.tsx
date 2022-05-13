@@ -7,6 +7,9 @@ import {
   EuiButton,
   EuiButtonEmpty,
   EuiFlyout,
+  EuiPageContentBody,
+  EuiPanel,
+  EuiPanelProps,
 } from '../../../../src';
 
 import { slugify } from '../../../../src/services/string/slugify';
@@ -40,6 +43,8 @@ export interface GuideSectionProps
   playground?: any;
   wrapText?: boolean;
   snippet?: string | string[];
+  color?: EuiPanelProps['color'];
+  children?: ReactNode;
 }
 
 export const GuideSectionCodeTypesMap = {
@@ -83,6 +88,8 @@ export const GuideSection: FunctionComponent<GuideSectionProps> = ({
   demoPanelProps,
   exampleToggles,
   snippet,
+  color,
+  children,
 }) => {
   const { path } = useRouteMatch();
   const [renderingPlayground, setRenderingPlayground] = useState(false);
@@ -180,51 +187,61 @@ export const GuideSection: FunctionComponent<GuideSectionProps> = ({
   };
 
   return (
-    <div className="guideSection" id={id}>
-      <GuideSectionExampleText title={title} wrapText={wrapText}>
-        {text}
-      </GuideSectionExampleText>
+    <EuiPanel
+      color={color || 'transparent'}
+      borderRadius="none"
+      className="guideSection"
+      paddingSize="l"
+      id={id}
+    >
+      {color && (children || text || title) && <EuiSpacer size="xxl" />}
+      <EuiPageContentBody restrictWidth>
+        <GuideSectionExampleText title={title} wrapText={wrapText}>
+          {text}
+        </GuideSectionExampleText>
 
-      {renderingPlayground && (
-        <EuiFlyout
-          onClose={() => setRenderingPlayground(false)}
-          size="l"
-          paddingSize="none"
-          closeButtonPosition="outside"
-        >
-          {renderPlayground()}
-        </EuiFlyout>
-      )}
+        {renderingPlayground && (
+          <EuiFlyout
+            onClose={() => setRenderingPlayground(false)}
+            size="l"
+            paddingSize="none"
+            closeButtonPosition="outside"
+          >
+            {renderPlayground()}
+          </EuiFlyout>
+        )}
+        {(demo || (fullScreen && fullScreen.showButton !== false)) && (
+          <>
+            {text && <EuiSpacer />}
+            <GuideSectionExample
+              example={
+                <EuiErrorBoundary>
+                  {/* eslint-disable-next-line no-nested-ternary */}
+                  {fullScreen == null ? (
+                    <div>{demo}</div>
+                  ) : demo == null ? (
+                    <EuiButton
+                      fill
+                      iconType="fullScreen"
+                      href={`#${path}/${fullScreen.slug}`}
+                    >
+                      Fullscreen demo
+                    </EuiButton>
+                  ) : (
+                    demo
+                  )}
+                </EuiErrorBoundary>
+              }
+              tabs={renderTabs()}
+              ghostBackground={ghostBackground}
+              demoPanelProps={demoPanelProps}
+              exampleToggles={exampleToggles}
+            />
+          </>
+        )}
 
-      {(demo || (fullScreen && fullScreen.showButton !== false)) && (
-        <>
-          <EuiSpacer />
-          <GuideSectionExample
-            example={
-              <EuiErrorBoundary>
-                {/* eslint-disable-next-line no-nested-ternary */}
-                {fullScreen == null ? (
-                  <div>{demo}</div>
-                ) : demo == null ? (
-                  <EuiButton
-                    fill
-                    iconType="fullScreen"
-                    href={`#${path}/${fullScreen.slug}`}
-                  >
-                    Fullscreen demo
-                  </EuiButton>
-                ) : (
-                  demo
-                )}
-              </EuiErrorBoundary>
-            }
-            tabs={renderTabs()}
-            ghostBackground={ghostBackground}
-            demoPanelProps={demoPanelProps}
-            exampleToggles={exampleToggles}
-          />
-        </>
-      )}
-    </div>
+        {children}
+      </EuiPageContentBody>
+    </EuiPanel>
   );
 };

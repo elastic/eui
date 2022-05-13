@@ -18,6 +18,7 @@ export default () => {
     <>
       <ThemeExample
         title={<code>.eui-scrollBar</code>}
+        type="className"
         description={
           <>
             <p>
@@ -45,7 +46,6 @@ export default () => {
             <ScrollContent />
           </div>
         }
-        snippetLanguage="tsx"
         snippet={`<div
   tabIndex={0}
   role="region"
@@ -61,6 +61,7 @@ export default () => {
       {!showSass && (
         <ThemeExample
           title={<code>useEuiScrollBar()</code>}
+          type="hook"
           description={
             <>
               <p>
@@ -91,13 +92,15 @@ export default () => {
               <ScrollContent />
             </div>
           }
-          snippet={'useEuiScrollBar()'}
+          snippet={'${useEuiScrollBar()}'}
+          snippetLanguage="emotion"
         />
       )}
 
       {showSass && (
         <ThemeExample
-          title={<code>@mixin euiScrollBar;</code>}
+          title={<code>@include euiScrollBar</code>}
+          type="mixin"
           description={
             <>
               <p>

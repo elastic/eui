@@ -181,11 +181,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 169,
+        "line": 181,
         "column": 8
       },
       "end": {
-        "line": 172,
+        "line": 184,
         "column": 9
       }
     },
@@ -197,11 +197,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 197,
+        "line": 211,
         "column": 14
       },
       "end": {
-        "line": 201,
+        "line": 215,
         "column": 16
       }
     },
@@ -213,11 +213,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 203,
+        "line": 217,
         "column": 14
       },
       "end": {
-        "line": 206,
+        "line": 220,
         "column": 16
       }
     },
@@ -3493,11 +3493,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 323,
+        "line": 329,
         "column": 8
       },
       "end": {
-        "line": 323,
+        "line": 329,
         "column": 78
       }
     },
@@ -3792,6 +3792,38 @@
     "filepath": "src/components/list_group/pinnable_list_group/pinnable_list_group.tsx"
   },
   {
+    "token": "euiLoadingStrings.ariaLabel",
+    "defString": "Loading",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 12,
+        "column": 9
+      },
+      "end": {
+        "line": 12,
+        "column": 61
+      }
+    },
+    "filepath": "src/components/loading/_loading_strings.tsx"
+  },
+  {
+    "token": "euiLoadingChart.ariaLabel",
+    "defString": "Loading",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 37,
+        "column": 27
+      },
+      "end": {
+        "line": 37,
+        "column": 77
+      }
+    },
+    "filepath": "src/components/loading/loading_chart.tsx"
+  },
+  {
     "token": "euiMark.highlightStart",
     "defString": "highlight start",
     "highlighting": "string",
@@ -4037,11 +4069,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 184,
+        "line": 228,
         "column": 12
       },
       "end": {
-        "line": 184,
+        "line": 228,
         "column": 80
       }
     },
@@ -4053,11 +4085,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 194,
+        "line": 238,
         "column": 12
       },
       "end": {
-        "line": 197,
+        "line": 241,
         "column": 14
       }
     },

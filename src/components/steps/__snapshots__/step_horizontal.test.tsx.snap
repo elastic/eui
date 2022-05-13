@@ -28,53 +28,6 @@ exports[`EuiStepHorizontal is rendered 1`] = `
 </button>
 `;
 
-exports[`EuiStepHorizontal props isComplete 1`] = `
-<button
-  class="euiStepHorizontal euiStepHorizontal-isComplete"
-  title="Step 1 is complete"
->
-  <span
-    class="euiStepNumber euiStepNumber--complete euiStepHorizontal__number"
-  >
-    <span
-      class="euiStepNumber__icon"
-      data-euiicon-type="check"
-    >
-      Step 1 is complete
-    </span>
-  </span>
-  <span
-    class="euiStepHorizontal__title"
-  />
-</button>
-`;
-
-exports[`EuiStepHorizontal props isSelected 1`] = `
-<button
-  class="euiStepHorizontal euiStepHorizontal-isSelected"
-  title="Current step is 1"
->
-  <span
-    class="euiStepNumber euiStepHorizontal__number"
-  >
-    <span
-      class="euiScreenReaderOnly"
-    >
-      Current step is 1
-    </span>
-    <span
-      aria-hidden="true"
-      class="euiStepNumber__number"
-    >
-      1
-    </span>
-  </span>
-  <span
-    class="euiStepHorizontal__title"
-  />
-</button>
-`;
-
 exports[`EuiStepHorizontal props status complete is rendered 1`] = `
 <button
   class="euiStepHorizontal euiStepHorizontal-isComplete"
@@ -169,6 +122,33 @@ exports[`EuiStepHorizontal props status disabled is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiStepHorizontal props status disabled overrides the passed status 1`] = `
+<button
+  class="euiStepHorizontal euiStepHorizontal-isDisabled"
+  disabled=""
+  title="Step 1 is disabled"
+>
+  <span
+    class="euiStepNumber euiStepNumber--disabled euiStepHorizontal__number"
+  >
+    <span
+      class="euiScreenReaderOnly"
+    >
+      Step 1 is disabled
+    </span>
+    <span
+      aria-hidden="true"
+      class="euiStepNumber__number"
+    >
+      1
+    </span>
+  </span>
+  <span
+    class="euiStepHorizontal__title"
+  />
+</button>
+`;
+
 exports[`EuiStepHorizontal props status incomplete is rendered 1`] = `
 <button
   class="euiStepHorizontal euiStepHorizontal-isIncomplete"
@@ -209,7 +189,9 @@ exports[`EuiStepHorizontal props status loading is rendered 1`] = `
       Step 1 is loading
     </span>
     <span
-      class="euiLoadingSpinner euiLoadingSpinner--xLarge euiStepNumber__loader"
+      aria-label="Loading"
+      class="euiLoadingSpinner euiStepNumber__loader css-1ow0yso-euiLoadingSpinner-xl"
+      role="progressbar"
     />
   </span>
   <span

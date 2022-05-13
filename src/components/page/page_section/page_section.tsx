@@ -20,10 +20,10 @@ import {
 } from './page_section.styles';
 
 import {
-  euiPaddingStyles,
   PADDING_SIZES,
   BACKGROUND_COLORS,
-  euiBackgroundColorStyles,
+  useEuiPaddingCSS,
+  useEuiBackgroundColorCSS,
 } from '../../../global_styling';
 
 export type EuiPageSectionProps = CommonProps &
@@ -66,9 +66,9 @@ export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
 }) => {
   const useTheme = useEuiTheme();
   const styles = euiPageSectionStyles(useTheme);
-  const inlinePadding = euiPaddingStyles(useTheme, 'inline');
-  const blockPadding = euiPaddingStyles(useTheme, 'block');
-  const colors = euiBackgroundColorStyles(useTheme);
+  const inlinePadding = useEuiPaddingCSS('horizontal');
+  const blockPadding = useEuiPaddingCSS('vertical');
+  const colors = useEuiBackgroundColorCSS();
   const width = euiPageSectionWidth(
     restrictWidth as _EuiPageRestrictWidth,
     alignment

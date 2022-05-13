@@ -5,8 +5,8 @@ import {
   EuiSpacer,
   useEuiTheme,
   _EuiShadowSizesDescriptions,
-  _EuiShadowSizes,
-  SHADOW_SIZE,
+  _EuiThemeShadowSize,
+  EuiThemeShadowSizes,
   EuiSwitch,
   transparentize,
   EuiDescribedFormGroup,
@@ -19,7 +19,7 @@ import { getDescription } from '../../../services/props/get_description';
 import {
   useEuiShadow,
   useEuiShadowFlat,
-} from '../../../../../src/themes/amsterdam/global_styling/mixins/_shadow';
+} from '../../../../../src/themes/amsterdam/global_styling/mixins/shadow';
 
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
@@ -29,7 +29,7 @@ const RenderShadow = ({
   size,
   color,
 }: {
-  size: _EuiShadowSizes;
+  size: _EuiThemeShadowSize;
   color?: string;
 }) => {
   const style = useEuiShadow(size, color);
@@ -57,30 +57,7 @@ const RenderFlatShadow = ({ color }: { color?: string }) => {
 
 export default () => {
   const { euiTheme } = useEuiTheme();
-  const [customColor, setCustomColor] = useState(false);
   const colorProps = getPropsFromComponent(EuiThemeColors);
-
-  const shadowItems = SHADOW_SIZE.map((shadow) => {
-    return {
-      id: shadow,
-      token: customColor
-        ? `useEuiShadow('${shadow}', euiTheme.colors.accent);`
-        : `useEuiShadow('${shadow}');`,
-      description: _EuiShadowSizesDescriptions[shadow],
-    };
-  });
-
-  const allShadows = shadowItems.concat([
-    {
-      // @ts-ignore TODO
-      id: 'flat',
-      token: customColor
-        ? 'useEuiShadowFlat(euiTheme.colors.accent);'
-        : 'useEuiShadowFlat();',
-      description:
-        'Similar to shadow medium but without the bottom depth. Useful for popovers that drop UP rather than DOWN.',
-    },
-  ]);
 
   return (
     <>
@@ -114,10 +91,12 @@ export default () => {
         snippet={
           'box-shadow: 0 ${euiTheme.size.xs} ${euiTheme.size.xs} ${transparentize(euiTheme.colors.shadow, 0.04)};'
         }
+        snippetLanguage="emotion"
       />
 
       <ThemeExample
-        title="Hooks"
+        title={<code>useEuiShadow(size)</code>}
+        type="hook"
         description={
           <>
             <p>
@@ -141,10 +120,41 @@ export default () => {
             </strong>
           </div>
         }
-        snippet={'css(useEuiShadow())'}
-        snippetLanguage="tsx"
+        snippet={'${useEuiShadow()}'}
+        snippetLanguage="emotion"
       />
+    </>
+  );
+};
 
+export const ShadowValuesJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const [customColor, setCustomColor] = useState(false);
+
+  const shadowItems = EuiThemeShadowSizes.map((shadow) => {
+    return {
+      id: shadow,
+      token: customColor
+        ? `useEuiShadow('${shadow}', euiTheme.colors.accent);`
+        : `useEuiShadow('${shadow}');`,
+      description: _EuiShadowSizesDescriptions[shadow],
+    };
+  });
+
+  const allShadows = shadowItems.concat([
+    {
+      // @ts-ignore TODO
+      id: 'flat',
+      token: customColor
+        ? 'useEuiShadowFlat(euiTheme.colors.accent);'
+        : 'useEuiShadowFlat();',
+      description:
+        'Similar to shadow medium but without the bottom depth. Useful for popovers that drop UP rather than DOWN.',
+    },
+  ]);
+
+  return (
+    <>
       <EuiPanel color="accent">
         <EuiDescribedFormGroup
           fullWidth
@@ -180,7 +190,7 @@ export default () => {
             />
           ) : (
             <RenderShadow
-              size={item.id as _EuiShadowSizes}
+              size={item.id as _EuiThemeShadowSize}
               color={customColor ? euiTheme.colors.accent : undefined}
             />
           )

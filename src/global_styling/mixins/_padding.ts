@@ -7,22 +7,58 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../services/theme';
+import { useEuiTheme, UseEuiTheme } from '../../services/theme';
+import { logicalSide, LogicalSides } from '../functions';
 
-// TODO: Make into a hook
-export const PADDING_SIZES = ['none', 's', 'm', 'l'] as const;
+export const PADDING_SIZES = ['none', 'xs', 's', 'm', 'l', 'xl'] as const;
+export type _EuiPaddingSize = typeof PADDING_SIZES[number];
 
-export const euiPaddingStyles = ({ euiTheme }: UseEuiTheme, side: string) => {
+export type EuiPaddingSize = {
+  /**
+   * Adjust the padding.
+   * When using this setting it's best to be consistent throughout all similar usages
+   */
+  paddingSize?: _EuiPaddingSize;
+};
+
+export const euiPaddingSize = (
+  size: _EuiPaddingSize,
+  { euiTheme }: UseEuiTheme
+) => {
+  switch (size) {
+    case 'none':
+      return null;
+    case 'm':
+      return euiTheme.size.base;
+    default:
+      return euiTheme.size[size];
+  }
+};
+
+export const useEuiPaddingSize = (size: _EuiPaddingSize) => {
+  const euiTheme = useEuiTheme();
+  return euiPaddingSize(size, euiTheme);
+};
+
+export const useEuiPaddingCSS = (side?: LogicalSides) => {
+  const property = side ? `padding-${logicalSide[side]}` : 'padding';
+
   return {
     none: null,
+    xs: css`
+      ${property}: ${useEuiPaddingSize('xs')};
+    `,
     s: css`
-      padding-${side}: ${euiTheme.size.s};
+      ${property}: ${useEuiPaddingSize('s')};
     `,
     m: css`
-      padding-${side}: ${euiTheme.size.m};
+      ${property}: ${useEuiPaddingSize('m')};
     `,
     l: css`
-      padding-${side}: ${euiTheme.size.l};
+      ${property}: ${useEuiPaddingSize('l')};
+    `,
+    xl: css`
+      ${property}: ${useEuiPaddingSize('xl')};
     `,
   };
 };

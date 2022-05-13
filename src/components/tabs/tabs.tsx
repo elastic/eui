@@ -15,15 +15,6 @@ import React, {
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 
-const displayToClassNameMap = {
-  condensed: 'euiTabs--condensed',
-  default: null,
-};
-
-export const DISPLAYS = keysOf(displayToClassNameMap);
-
-export type EuiTabsDisplaySizes = keyof typeof displayToClassNameMap;
-
 const sizeToClassNameMap = {
   s: 'euiTabs--small',
   m: null,
@@ -41,11 +32,6 @@ export type EuiTabsProps = CommonProps &
      * ReactNode to render as this component's content
      */
     children?: ReactNode;
-    /**
-     * **DEPRECATED IN AMSTERDAM**
-     * Choose `default` or alternative `condensed` display styles.
-     */
-    display?: EuiTabsDisplaySizes;
     /**
      * Evenly stretches each tab to fill the
      * horizontal space
@@ -69,7 +55,6 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
     {
       children,
       className,
-      display = 'default',
       bottomBorder = true,
       expand = false,
       size = 'm',
@@ -77,15 +62,9 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
     }: PropsWithChildren<EuiTabsProps>,
     ref
   ) => {
-    /**
-     * Temporary force of bottom border based on `display`
-     */
-    bottomBorder = display === 'condensed' ? false : bottomBorder;
-
     const classes = classNames(
       'euiTabs',
       sizeToClassNameMap[size],
-      displayToClassNameMap[display],
       {
         'euiTabs--expand': expand,
         'euiTabs--bottomBorder': bottomBorder,

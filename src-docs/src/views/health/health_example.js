@@ -41,6 +41,7 @@ export const HealthExample = {
       ),
       snippet: healthSnippet,
       props: { EuiHealth },
+      playground: healthConfig,
       demo: <Health />,
     },
     {
@@ -64,5 +65,4 @@ export const HealthExample = {
       demo: <HealthSize />,
     },
   ],
-  playground: healthConfig,
 };

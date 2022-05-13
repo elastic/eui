@@ -7,20 +7,14 @@
  */
 
 import React, { HTMLAttributes, FunctionComponent } from 'react';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import classNames from 'classnames';
+import { useEuiTheme } from '../..//services';
+import { useLoadingAriaLabel } from './_loading_strings';
+import { euiLoadingSpinnerStyles } from './loading_spinner.styles';
 
-const sizeToClassNameMap = {
-  s: 'euiLoadingSpinner--small',
-  m: 'euiLoadingSpinner--medium',
-  l: 'euiLoadingSpinner--large',
-  xl: 'euiLoadingSpinner--xLarge',
-  xxl: 'euiLoadingSpinner--xxLarge',
-};
-
-export const SIZES = keysOf(sizeToClassNameMap);
-
-export type EuiLoadingSpinnerSize = keyof typeof sizeToClassNameMap;
+export const SIZES = ['s', 'm', 'l', 'xl', 'xxl'] as const;
+export type EuiLoadingSpinnerSize = typeof SIZES[number];
 
 export type EuiLoadingSpinnerProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
@@ -30,13 +24,22 @@ export type EuiLoadingSpinnerProps = CommonProps &
 export const EuiLoadingSpinner: FunctionComponent<EuiLoadingSpinnerProps> = ({
   size = 'm',
   className,
+  'aria-label': ariaLabel,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiLoadingSpinner',
-    sizeToClassNameMap[size],
-    className
-  );
+  const euiTheme = useEuiTheme();
+  const styles = euiLoadingSpinnerStyles(euiTheme);
+  const cssStyles = [styles.euiLoadingSpinner, styles[size]];
+  const classes = classNames('euiLoadingSpinner', className);
+  const defaultLabel = useLoadingAriaLabel();
 
-  return <span className={classes} {...rest} />;
+  return (
+    <span
+      className={classes}
+      css={cssStyles}
+      role="progressbar"
+      aria-label={ariaLabel || defaultLabel}
+      {...rest}
+    />
+  );
 };

@@ -18,12 +18,13 @@ export default ({
 
   return (
     <>
-      <EuiPageSection restrictWidth={width} bottomBorder={bottomBorder}>
-        <EuiPageHeader
-          pageTitle="Page title"
-          description="Wrapping your EuiPageHeader with EuiPageSection will ensure proper stacking alongside other EuiPageSections."
-        />
-      </EuiPageSection>
+      <EuiPageHeader
+        paddingSize="l"
+        restrictWidth={width}
+        bottomBorder={bottomBorder}
+        pageTitle="Page title"
+        description="EuiPageHeader accepts similar border, restrict width and padding props as EuiPageSection."
+      />
       <EuiPageSection
         restrictWidth={width}
         color="subdued"

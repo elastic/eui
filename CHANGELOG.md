@@ -1,3 +1,62 @@
+## [`56.0.0`](https://github.com/elastic/eui/tree/v56.0.0)
+
+- Increased weight of `EuiLoadingSpinner` border ([#5845](https://github.com/elastic/eui/pull/5845))
+- Added `role` and default `aria-label` to `EuiLoadingLogo`, `EuiLoadingContent`, `EuiLoadingElastic`, and `EuiLoadingSpinner` ([#5845](https://github.com/elastic/eui/pull/5845))
+- Added `euiTextTruncate`, `euiTextWordBreak`, and `euiNumberFormat` CSS-in-JS text utilities ([#5854](https://github.com/elastic/eui/pull/5854))
+- Added `focus` token to global `EuiTheme` ([#5855](https://github.com/elastic/eui/pull/5855))
+- Added `euiFocusRing()` and `useEuiFocusRing()` function/hook for customizing focus outline ([#5855](https://github.com/elastic/eui/pull/5855))
+- Added the `focusTrapProps` prop to `EuiFlyout` to aid outside click detection and closing event ([#5860](https://github.com/elastic/eui/pull/5860))
+
+**Bug fixes**
+
+- Fixed a number of `EuiMarkdownEditor`'s default toolbar buttons to highlight when the text cursor is in a related location ([#5840](https://github.com/elastic/eui/pull/5840))
+- Fixed allotted animation size of `EuiLoadingLogo` ([#5845](https://github.com/elastic/eui/pull/5845))
+- Fixed `EuiLoadingElastic` in dark mode ([#5845](https://github.com/elastic/eui/pull/5845))
+- Fixed border-radius of nested `EuiSplitPanel`s ([#5855](https://github.com/elastic/eui/pull/5855))
+- Fixed `offset` of global focus `outline` ([#5855](https://github.com/elastic/eui/pull/5855))
+- Fixed `EuiCollapsibleNav` failing to close when the button is clicked ([#5860](https://github.com/elastic/eui/pull/5860))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiBottomBar` to Emotion ([#5823](https://github.com/elastic/eui/pull/5823))
+- Converted `EuiHealth` to Emotion ([#5832](https://github.com/elastic/eui/pull/5832))
+- Converted `EuiTitle` to Emotion ([#5842](https://github.com/elastic/eui/pull/5842))
+- Converted `EuiLoadingLogo`, `EuiLoadingContent`, `EuiLoadingElastic`, and `EuiLoadingSpinner`; Removed `$euiLoadingSpinnerSizes`, `$euiGradientStartStop`, and `$euiGradientMiddle` ([#5845](https://github.com/elastic/eui/pull/5845))
+- Converted `EuiSkipLink` to Emotion ([#5851](https://github.com/elastic/eui/pull/5851))
+
+**Breaking change**
+
+- As part of `EuiTitle`'s Emotion conversion, the line-height of `s` and `xxs` sized `EuiTitle`s have been slightly reduced ([#5842](https://github.com/elastic/eui/pull/5842))
+
+## [`55.1.1`](https://github.com/elastic/eui/tree/v55.1.1)
+
+**Note: this release is a backport containing changes originally made in `56.0.0`**
+
+- Added the `focusTrapProps` prop to `EuiFlyout` to aid outside click detection and closing event ([#5860](https://github.com/elastic/eui/pull/5860))
+
+## [`55.1.0`](https://github.com/elastic/eui/tree/v55.1.0)
+
+- Improved `EuiTimeline` a11y by using better semantic elements ([#5791](https://github.com/elastic/eui/pull/5791))
+- Replaced sass usage in `EuiAspectRatio` with inline styles using `aspect-ratio` property of css ([#5818](https://github.com/elastic/eui/pull/5818))
+- Improved accessibility of `EuiLoadingChart` ([#5821](https://github.com/elastic/eui/pull/5821))
+- Added `euiFontSize()` and `useEuiFontSize()` JS function and React hook for font sizing ([#5822](https://github.com/elastic/eui/pull/5822))
+- Added `levels` object to `EuiTheme` ([#5827](https://github.com/elastic/eui/pull/5827))
+- Updated the use of `@emotion/cache` to include all `@emotion` styles ([#5831](https://github.com/elastic/eui/pull/5831))
+
+**Bug fixes**
+
+- Fixed layout bug in `EuiAccordion` children that use `position: fixed;` ([#5806](https://github.com/elastic/eui/pull/5806))
+- Fixed `EuiFlyout` so that it no longer closes when a click starts inside the flyout but completes outside ([#5810](https://github.com/elastic/eui/pull/5810))
+- Fixed `EuiBasicTable` mobile styles being in sync between JS and Sass ([#5822](https://github.com/elastic/eui/pull/5822))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiSpacer` to Emotion; Removed `$spacerSizes` ([#5812](https://github.com/elastic/eui/pull/5812))
+- Converted `EuiBeacon` to Emotion ([#5814](https://github.com/elastic/eui/pull/5814))
+- Changed `euiCanAnimate` to a constant ([#5814](https://github.com/elastic/eui/pull/5814))
+- Converted `EuiHorizontalRule` to emotion; Removed `$ruleMargins` ([#5815](https://github.com/elastic/eui/pull/5815))
+- Converted `EuiLoadingChart` to Emotion ([#5821](https://github.com/elastic/eui/pull/5821))
+
 ## [`55.0.1`](https://github.com/elastic/eui/tree/v55.0.1)
 
 **Bug fixes**

@@ -25,7 +25,7 @@ exports[`EuiStep is rendered 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiTitle--small euiStep__title"
+      class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
     >
       First step
     </p>
@@ -63,7 +63,7 @@ exports[`EuiStep props headingElement 1`] = `
       </span>
     </span>
     <h3
-      class="euiTitle euiTitle--small euiStep__title"
+      class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
     >
       First step
     </h3>
@@ -96,7 +96,7 @@ exports[`EuiStep props status complete is rendered 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiTitle--small euiStep__title"
+      class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
     >
       First step
     </p>
@@ -134,7 +134,7 @@ exports[`EuiStep props status current is rendered 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiTitle--small euiStep__title"
+      class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
     >
       First step
     </p>
@@ -167,7 +167,7 @@ exports[`EuiStep props status danger is rendered 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiTitle--small euiStep__title"
+      class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
     >
       First step
     </p>
@@ -205,7 +205,7 @@ exports[`EuiStep props status disabled is rendered 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiTitle--small euiStep__title"
+      class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
     >
       First step
     </p>
@@ -228,7 +228,7 @@ exports[`EuiStep props status incomplete is rendered 1`] = `
     class="euiStep__titleWrapper"
   >
     <span
-      class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
+      class="euiStepNumber euiStepNumber--incomplete euiStep__circle"
     >
       <span
         class="euiScreenReaderOnly"
@@ -243,7 +243,7 @@ exports[`EuiStep props status incomplete is rendered 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiTitle--small euiStep__title"
+      class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
     >
       First step
     </p>
@@ -274,11 +274,13 @@ exports[`EuiStep props status loading is rendered 1`] = `
         Step 1 is loading
       </span>
       <span
-        class="euiLoadingSpinner euiLoadingSpinner--xLarge euiStepNumber__loader"
+        aria-label="Loading"
+        class="euiLoadingSpinner euiStepNumber__loader css-1ow0yso-euiLoadingSpinner-xl"
+        role="progressbar"
       />
     </span>
     <p
-      class="euiTitle euiTitle--small euiStep__title"
+      class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
     >
       First step
     </p>
@@ -311,7 +313,7 @@ exports[`EuiStep props status warning is rendered 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiTitle--small euiStep__title"
+      class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
     >
       First step
     </p>
@@ -349,7 +351,7 @@ exports[`EuiStep props step 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiTitle--small euiStep__title"
+      class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
     >
       First step
     </p>
@@ -387,7 +389,7 @@ exports[`EuiStep props titleSize 1`] = `
       </span>
     </span>
     <p
-      class="euiTitle euiTitle--xsmall euiStep__title"
+      class="euiTitle euiStep__title css-1c9cwui-euiTitle-xs"
     >
       First step
     </p>

@@ -44,8 +44,6 @@ const euiSizes = [
 ];
 
 export default () => {
-  const values = useJsonVars();
-
   return (
     <>
       <ThemeExample
@@ -63,7 +61,14 @@ export default () => {
         snippet={'padding: $euiSizeXS / 2;'}
         snippetLanguage="scss"
       />
+    </>
+  );
+};
 
+export const ScaleValuesSass = () => {
+  const values = useJsonVars();
+  return (
+    <>
       <ThemeValuesTable
         items={euiSizes.map((size) => {
           return {

@@ -180,14 +180,6 @@
     "gutterM": "12px",
     "gutterL": "24px"
   },
-  "ruleMargins": {
-    "marginXSmall": "8px",
-    "marginSmall": "12px",
-    "marginMedium": "16px",
-    "marginLarge": "24px",
-    "marginXLarge": "32px",
-    "marginXXLarge": "40px"
-  },
   "euiIconLoadingOpacity": 0.05,
   "euiIconColors": {
     "accent": "#f68fbe",
@@ -209,16 +201,6 @@
   },
   "euiKeyPadMenuSize": "96px",
   "euiKeyPadMenuMarginSize": "4px",
-  "euiLinkColors": {
-    "subdued": "#7a7f89",
-    "primary": "#36a2ef",
-    "success": "#7dded8",
-    "accent": "#f68fbe",
-    "warning": "#f3d371",
-    "danger": "#f86b63",
-    "text": "#dfe5ef",
-    "ghost": "#ffffff"
-  },
   "euiListGroupItemHoverBackground": "rgba(52, 55, 65, 0.25)",
   "euiListGroupItemHoverBackgroundGhost": "rgba(255, 255, 255, 0.09999999999999998)",
   "euiListGroupGutterTypes": {
@@ -236,15 +218,6 @@
     "small": "14px",
     "medium": "14px",
     "large": "22px"
-  },
-  "euiGradientStartStop": "#2e3039",
-  "euiGradientMiddle": "#282a31",
-  "euiLoadingSpinnerSizes": {
-    "small": "12px",
-    "medium": "16px",
-    "large": "24px",
-    "xLarge": "32px",
-    "xxLarge": "40px"
   },
   "euiMarkdownEditorMinHeight": "150px",
   "euiPopoverArrowSize": "12px",
@@ -305,14 +278,6 @@
   "euiSideNavBranchTextcolor": "#878b95",
   "euiSideNavSelectedTextcolor": "#36a2ef",
   "euiSideNavDisabledTextcolor": "#515761",
-  "spacerSizes": {
-    "xs": "4px",
-    "s": "8px",
-    "m": "16px",
-    "l": "24px",
-    "xl": "32px",
-    "xxl": "40px"
-  },
   "euiStepNumberSize": "32px",
   "euiStepNumberSmallSize": "24px",
   "euiStepNumberMargin": "16px",

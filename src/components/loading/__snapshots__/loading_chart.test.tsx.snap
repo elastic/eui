@@ -3,96 +3,105 @@
 exports[`EuiLoadingChart is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiLoadingChart testClass1 testClass2 euiLoadingChart--medium"
+  class="euiLoadingChart testClass1 testClass2 css-1ho1qj7-euiLoadingChart-m"
   data-test-subj="test subject string"
+  role="progressbar"
 >
   <span
-    class="euiLoadingChart__bar"
+    class="css-tw9h7t-euiLoadingChart__bar-m"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="css-1vttul-euiLoadingChart__bar-m"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="css-lpjfci-euiLoadingChart__bar-m"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="css-2dq8wt-euiLoadingChart__bar-m"
   />
 </span>
 `;
 
 exports[`EuiLoadingChart mono is rendered 1`] = `
 <span
-  class="euiLoadingChart euiLoadingChart--mono euiLoadingChart--medium"
+  aria-label="Loading"
+  class="euiLoadingChart euiLoadingChart--mono css-1ho1qj7-euiLoadingChart-m"
+  role="progressbar"
 >
   <span
-    class="euiLoadingChart__bar"
+    class="css-cudmsi-euiLoadingChart__bar-m"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="css-5h3vtb-euiLoadingChart__bar-m"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="css-15wun0c-euiLoadingChart__bar-m"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="css-1fegcsz-euiLoadingChart__bar-m"
   />
 </span>
 `;
 
 exports[`EuiLoadingChart size l is rendered 1`] = `
 <span
-  class="euiLoadingChart euiLoadingChart--large"
+  aria-label="Loading"
+  class="euiLoadingChart css-1xdgh7e-euiLoadingChart-l"
+  role="progressbar"
 >
   <span
-    class="euiLoadingChart__bar"
+    class="css-ylmmcx-euiLoadingChart__bar-l"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="css-10sp6p4-euiLoadingChart__bar-l"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="css-pny0of-euiLoadingChart__bar-l"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="css-iyiuk8-euiLoadingChart__bar-l"
   />
 </span>
 `;
 
 exports[`EuiLoadingChart size m is rendered 1`] = `
 <span
-  class="euiLoadingChart euiLoadingChart--medium"
+  aria-label="Loading"
+  class="euiLoadingChart css-1ho1qj7-euiLoadingChart-m"
+  role="progressbar"
 >
   <span
-    class="euiLoadingChart__bar"
+    class="css-tw9h7t-euiLoadingChart__bar-m"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="css-1vttul-euiLoadingChart__bar-m"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="css-lpjfci-euiLoadingChart__bar-m"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="css-2dq8wt-euiLoadingChart__bar-m"
   />
 </span>
 `;
 
 exports[`EuiLoadingChart size xl is rendered 1`] = `
 <span
-  class="euiLoadingChart euiLoadingChart--xLarge"
+  aria-label="Loading"
+  class="euiLoadingChart css-wh2pju-euiLoadingChart-xl"
+  role="progressbar"
 >
   <span
-    class="euiLoadingChart__bar"
+    class="css-16ok1x8-euiLoadingChart__bar-xl"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="css-3rl1i-euiLoadingChart__bar-xl"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="css-1q8ge0z-euiLoadingChart__bar-xl"
   />
   <span
-    class="euiLoadingChart__bar"
+    class="css-1fnxpnf-euiLoadingChart__bar-xl"
   />
 </span>
 `;
