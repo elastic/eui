@@ -11,7 +11,7 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
-import { _EuiPageOuter as EuiPageOuter } from './page';
+import { _EuiPageOuter as EuiPageOuter } from './page_outer';
 
 describe('_EuiPageOuter', () => {
   shouldRenderCustomStyles(<EuiPageOuter />);

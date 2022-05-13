@@ -11,7 +11,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { useEuiTheme, useIsWithinBreakpoints } from '../../../services';
 import { _EuiThemeBreakpoint } from '../../../global_styling';
-import { euiPageOuterStyles } from './page.styles';
+import { euiPageOuterStyles } from './page_outer.styles';
 
 export interface _EuiPageOuterProps
   extends CommonProps,

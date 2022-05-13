@@ -12,7 +12,7 @@ import { requiredProps } from '../../../test/required_props';
 import { PADDING_SIZES } from '../../../global_styling';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
-import { _EuiPageInner as EuiPageInner } from './page_body';
+import { _EuiPageInner as EuiPageInner } from './page_inner';
 
 describe('_EuiPageInner', () => {
   shouldRenderCustomStyles(<EuiPageInner />);

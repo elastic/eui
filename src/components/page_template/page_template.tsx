@@ -6,9 +6,9 @@
  * Side Public License, v 1.
  */
 
-import { _EuiPageOuter } from './page';
-import { _EuiPageSidebar } from './page_side_bar';
-import { _EuiPageInner } from './page_body';
+import { _EuiPageOuter } from './outer';
+import { _EuiPageInner } from './inner';
+import { _EuiPageSidebar } from './sidebar';
 import { EuiPageHeader, EuiPageSection } from '../page';
 
 export const EuiPageT = {

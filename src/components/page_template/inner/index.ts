@@ -6,5 +6,5 @@
  * Side Public License, v 1.
  */
 
-export type { _EuiPageInnerProps } from './page_body';
-export { _EuiPageInner } from './page_body';
+export type { _EuiPageInnerProps } from './page_inner';
+export { _EuiPageInner } from './page_inner';

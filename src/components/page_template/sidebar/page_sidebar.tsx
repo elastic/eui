@@ -16,7 +16,7 @@ import {
   _EuiThemeBreakpoint,
 } from '../../../global_styling';
 import { useEuiTheme, useIsWithinBreakpoints } from '../../../services';
-import { euiPageSidebarStyles } from './page_side_bar.styles';
+import { euiPageSidebarStyles } from './page_sidebar.styles';
 
 export interface _EuiPageSidebarProps
   extends CommonProps,

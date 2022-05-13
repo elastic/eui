@@ -15,7 +15,7 @@ import {
   _EuiPaddingSize,
 } from '../../../global_styling';
 import { useEuiTheme } from '../../../services';
-import { euiPageInnerStyles } from './page_body.styles';
+import { euiPageInnerStyles } from './page_inner.styles';
 
 type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType<any>;
 
