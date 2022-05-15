@@ -5,22 +5,23 @@ import {
   EuiPageT,
   EuiPageTemplateProps,
   EuiPageHeaderProps,
-  EuiEmptyPrompt,
-} from '../../../../../src';
+} from '../../../../src';
 
 export default ({
+  button = <></>,
   content = <></>,
   sidebar,
-  emptyPrompt = true,
+  emptyPrompt,
   header,
   panelled,
   restrictWidth,
   bottomBar,
   bottomBorder,
 }: {
+  button: ReactElement;
   content: ReactElement;
   sidebar?: ReactElement;
-  emptyPrompt?: boolean;
+  emptyPrompt?: ReactElement;
   bottomBar?: ReactElement;
   header?: EuiPageHeaderProps;
   panelled?: EuiPageTemplateProps['panelled'];
@@ -42,21 +43,17 @@ export default ({
           </strong>
         </EuiText>
       </EuiPageT.Section>
-      {header && <EuiPageT.Header {...header} />}
+      {header && <EuiPageT.Header {...header} rightSideItems={[button]} />}
       {/* <div>WRENCH</div>
       <div>WRENCH</div>
       <div>WRENCH</div> */}
       {emptyPrompt ? (
-        <EuiPageT.Section
-          color={header ? 'plain' : 'transparent'}
-          alignment={'center'}
+        <EuiPageT.EmptyPrompt
+          title={<span>No spice</span>}
+          footer={header ? undefined : button}
         >
-          <EuiEmptyPrompt
-            title={<span>No spice</span>}
-            body={content}
-            color={header || sidebar ? 'subdued' : 'plain'}
-          />
-        </EuiPageT.Section>
+          {emptyPrompt}
+        </EuiPageT.EmptyPrompt>
       ) : (
         <EuiPageT.Section>{content}</EuiPageT.Section>
       )}

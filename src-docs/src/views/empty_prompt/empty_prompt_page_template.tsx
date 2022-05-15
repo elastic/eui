@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  EuiPageTemplate,
+  EuiPageTemplate_Deprecated as EuiPageTemplate,
   EuiEmptyPrompt,
   EuiButton,
   EuiTitle,

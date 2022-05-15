@@ -18,7 +18,7 @@ import {
   EuiHeaderSectionItemButton,
   EuiIcon,
   EuiListGroupItem,
-  EuiPageTemplate,
+  EuiPageTemplate_Deprecated as EuiPageTemplate,
   EuiPopover,
   EuiPortal,
   EuiShowFor,

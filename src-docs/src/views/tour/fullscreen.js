@@ -5,7 +5,7 @@ import {
   EuiButtonEmpty,
   EuiColorPicker,
   EuiColorPickerSwatch,
-  EuiPageTemplate,
+  EuiPageTemplate_Deprecated as EuiPageTemplate,
   EuiSpacer,
   EuiStat,
   EuiTextArea,

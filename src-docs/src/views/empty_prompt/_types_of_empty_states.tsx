@@ -11,7 +11,7 @@ import {
   EuiKeyPadMenu,
   EuiFlexItem,
   EuiRadioGroupOption,
-  EuiPageTemplate,
+  EuiPageTemplate_Deprecated as EuiPageTemplate,
   EuiFlexGrid,
   EuiPanel,
   EuiKeyPadMenuItem,

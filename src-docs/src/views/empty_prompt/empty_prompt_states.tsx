@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import {
   EuiEmptyPrompt,
-  EuiPageTemplate,
+  EuiPageTemplate_Deprecated as EuiPageTemplate,
   EuiLoadingLogo,
   EuiButton,
   EuiEmptyPromptProps,

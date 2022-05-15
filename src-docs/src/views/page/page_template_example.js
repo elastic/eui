@@ -1,15 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { GuideSectionTypes } from '../../components';
 import { PageDemo } from './_page_demo';
 
 import {
   EuiCode,
-  EuiPage,
-  EuiPageBody,
-  EuiPageContent,
-  EuiPageContentBody,
   EuiPageHeader,
   EuiPageSideBar,
   EuiText,
@@ -19,32 +14,6 @@ import {
   EuiSpacer,
   EuiBottomBar,
 } from '../../../../src/components';
-
-import PageSidebarTemplate from './templates/page_sidebar';
-const PageSidebarTemplateSource = require('!!raw-loader!./templates/page_sidebar');
-
-import PageBottomBar from './composed/page_bottom_bar';
-const pageBottomBarSource = require('!!raw-loader!./composed/page_bottom_bar');
-import PageBottomBarTemplate from './templates/page_bottom_bar';
-const PageBottomBarTemplateSource = require('!!raw-loader!./templates/page_bottom_bar');
-
-import PageRestrictingWidth from './composed/page_restricting_width';
-const PageRestrictingWidthSource = require('!!raw-loader!./composed/page_restricting_width');
-import PageRestrictingWidthTemplate from './templates/page_restricting_width';
-const PageRestrictingWidthTemplateSource = require('!!raw-loader!./templates/page_restricting_width');
-
-import PageFullHeight from './composed/page_full_height';
-const PageFullHeightSource = require('!!raw-loader!./composed/page_full_height');
-import PageFullHeightTemplate from './templates/page_full_height';
-const PageFullHeightTemplateSource = require('!!raw-loader!./templates/page_full_height');
-
-import PageCustomContent from './composed/page_custom_content';
-const PageCustomContentSource = require('!!raw-loader!./composed/page_custom_content');
-import PageCustomContentTemplate from './templates/page_custom_content';
-const PageCustomContentTemplateSource = require('!!raw-loader!./templates/page_custom_content');
-
-import PageLegacy from './page';
-const PageLegacySource = require('!!raw-loader!./page');
 
 export const PageTemplateExample = {
   title: 'Page template',
@@ -108,6 +77,7 @@ export const PageTemplateExample = {
           </EuiText>
           <PageDemo
             slug="full-page"
+            showTabs
             sidebar={false}
             props={{
               EuiPageTemplate,
@@ -118,7 +88,7 @@ export const PageTemplateExample = {
       ),
       fullScreen: {
         slug: 'full-page',
-        demo: <PageDemo slug="full-page" fullscreen sidebar={false} />,
+        demo: <PageDemo slug="full-page" fullscreen showTabs sidebar={false} />,
         showButton: false,
       },
     },
@@ -292,6 +262,7 @@ export const PageTemplateExample = {
           </EuiText>
           <PageDemo
             slug="centered-body"
+            emptyPrompt
             toggleSidebar
             props={{ EuiPageTemplate, EuiEmptyPrompt }}
           />
@@ -300,168 +271,15 @@ export const PageTemplateExample = {
       fullScreen: {
         showButton: false,
         slug: 'centered-body',
-        demo: <PageDemo slug="centered-body" toggleSidebar fullscreen />,
-      },
-    },
-    {
-      title: 'Full height layout',
-      wrapText: false,
-      text: (
-        <>
-          <EuiText>
-            <p>
-              Though it is not recommended for most layouts, some require the
-              control of scrolling to be handled through child components. You
-              can achieve this through nested flex groups and overflow
-              properties; adding certain combinations of{' '}
-              <Link to="/utilities/css-utility-classes#overflows">
-                CSS overflow utility classes
-              </Link>{' '}
-              to these children. There are a few <strong>caveats</strong> to
-              understand when trying to achieve full height layouts with{' '}
-              <strong>EuiPageTemplate</strong>.
-            </p>
-            <ol>
-              <li>
-                Using the <EuiCode>{'fullHeight'}</EuiCode> prop adds an extra
-                layer of{' '}
-                <Link to="/layout/flex">
-                  <strong>EuiFlexGroup</strong> and <strong>EuiFlexItem</strong>
-                </Link>{' '}
-                around the template children to negate the negative margins.
-              </li>
-              <li>
-                Using <EuiCode>{'fullHeight=true'}</EuiCode> will automatically
-                add scrolling behavior to the <strong>EuiFlexItem</strong> that
-                wraps the children.
-              </li>
-              <li>
-                Using <EuiCode>{'fullHeight="noscroll"'}</EuiCode> removes all
-                scrolling behavior and your layouts will break if you do not
-                manually add them.
-              </li>
-              <li>
-                When using either values for <EuiCode>{'fullHeight'}</EuiCode>,
-                there will always be a minimum height of{' '}
-                <EuiCode>460px</EuiCode> to the page contents.
-              </li>
-              <li>
-                Full height layouts are restricted to{' '}
-                <strong>medium breakpoints</strong> and above. We recommend
-                retaining any responsive behavior and allowing normal page
-                scroll on smaller screens.
-              </li>
-            </ol>
-          </EuiText>
-          <EuiSpacer />
-          <EuiCallOut
-            color="warning"
-            iconType="accessibility"
-            size="s"
-            title={
-              <>
-                When applying the <EuiCode>.eui-yScroll</EuiCode> class, it is
-                recommended to also apply <EuiCode>tabindex=0</EuiCode> to
-                ensure keyboard users can scroll these containers.
-              </>
-            }
+        emptyPrompt: true,
+        demo: (
+          <PageDemo
+            slug="centered-body"
+            toggleSidebar
+            emptyPrompt={true}
+            fullscreen
           />
-          {/* <PageDemo
-            slug="full-height"
-            composed={PageFullHeight}
-            template={PageFullHeightTemplate}
-            showTemplates={['empty']}
-            source={{
-              template: PageFullHeightTemplateSource,
-              composed: PageFullHeightSource,
-            }}
-          /> */}
-        </>
-      ),
-      // fullScreen: {
-      //   showButton: false,
-      //   slug: 'full-height',
-      // demo: (
-      //   <PageDemo
-      //     slug="full-height"
-      //     composed={PageFullHeight}
-      //     template={PageFullHeightTemplate}
-      //     showTemplates={['empty']}
-      //     fullscreen
-      //   />
-      // ),
-      // },
-    },
-    {
-      title: 'Custom content',
-      text: (
-        <>
-          <EuiText>
-            <p>
-              You can ignore most of the configurations of{' '}
-              <strong>EuiPageTemplate</strong> and pass your own completely
-              custom content, with or without a custom page header. This allows
-              you to create dashboard style layouts with lots of panels or
-              prepend the page contents with a callout.
-            </p>
-          </EuiText>
-          {/* <PageDemo
-            slug="simple-custom-content"
-            composed={PageCustomContent}
-            template={PageCustomContentTemplate}
-            showTemplates={['empty']}
-            pageHeaderTabs={false}
-            source={{
-              template: PageCustomContentTemplateSource,
-              composed: PageCustomContentSource,
-            }}
-          /> */}
-        </>
-      ),
-      // fullScreen: {
-      //   showButton: false,
-      //   slug: 'simple-custom-content',
-      // demo: (
-      // <PageDemo
-      //   slug="simple-custom-content"
-      //   composed={PageCustomContent}
-      //   template={PageCustomContentTemplate}
-      //   showTemplates={['empty']}
-      //   pageHeaderTabs={false}
-      //   fullscreen
-      // />
-      // ),
-      // },
-    },
-    {
-      title: 'Legacy layout',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageLegacySource,
-        },
-      ],
-      text: (
-        <p>
-          In previous versions of EUI, we emulated page layouts where the{' '}
-          <strong>EuiPageContent</strong> had margins all around created by
-          padding on <strong>EuiPage</strong>. This layout is still achievable
-          but not through <strong>EuiPageTemplate</strong>. You must use the{' '}
-          <strong>EuiPage</strong> components manually as seen in this example.
-        </p>
-      ),
-      demo: (
-        <div className="guideDemo__highlightLayout--legacy">
-          <PageLegacy />
-        </div>
-      ),
-      props: {
-        EuiPage,
-        EuiPageBody,
-        EuiPageSideBar,
-        EuiPageHeader,
-        EuiPageContent,
-        EuiPageContentBody,
+        ),
       },
     },
   ],

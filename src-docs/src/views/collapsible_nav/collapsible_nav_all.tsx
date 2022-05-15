@@ -11,7 +11,7 @@ import {
   EuiIcon,
   EuiButton,
   EuiButtonEmpty,
-  EuiPageTemplate,
+  EuiPageTemplate_Deprecated as EuiPageTemplate,
   EuiPinnableListGroup,
   EuiPinnableListGroupItemProps,
   EuiFlexItem,
