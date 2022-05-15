@@ -36,6 +36,7 @@ export const PageSectionDemo: FunctionComponent = () => {
   return (
     <>
       <GuideSection
+        nested
         demoPanelProps={{
           color: 'subdued',
           paddingSize: 'none',

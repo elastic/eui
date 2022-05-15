@@ -40,6 +40,7 @@ export const PageConfigurationsDemo: FunctionComponent = () => {
 
   return (
     <GuideSection
+      nested
       demoPanelProps={{
         paddingSize: 'none',
         style: { overflow: 'hidden' },

@@ -20,10 +20,10 @@ import {
 } from './page_section.styles';
 
 import {
-  PADDING_SIZES,
   BACKGROUND_COLORS,
   useEuiPaddingCSS,
   useEuiBackgroundColorCSS,
+  _EuiPaddingSize,
 } from '../../../global_styling';
 
 export type EuiPageSectionProps = CommonProps &
@@ -37,7 +37,7 @@ export type EuiPageSectionProps = CommonProps &
     /**
      * Padding for all four sides
      */
-    paddingSize?: typeof PADDING_SIZES[number];
+    paddingSize?: _EuiPaddingSize;
     /**
      * Horizontal and/or vertical alignment of the section contents
      */

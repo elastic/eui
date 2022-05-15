@@ -196,8 +196,8 @@ export default () => {
   if (isSidebar) {
     demo = (
       <EuiPageTemplate
-        template="centeredContent"
-        pageContentProps={{ paddingSize: 'none' }}
+        // template="centeredContent"
+        // pageContentProps={{ paddingSize: 'none' }}
         pageSideBar={sideNav}
       >
         {euiEmptyPromptPreview}
@@ -206,8 +206,8 @@ export default () => {
   } else if (isEmpty) {
     demo = (
       <EuiPageTemplate
-        template="centeredBody"
-        pageContentProps={{ color: 'transparent' }}
+      // template="centeredBody"
+      // pageContentProps={{ color: 'transparent' }}
       >
         {euiEmptyPromptPreview}
       </EuiPageTemplate>

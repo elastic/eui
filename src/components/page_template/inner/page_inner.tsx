@@ -59,3 +59,5 @@ export const _EuiPageInner = <T extends ComponentTypes>({
     </Component>
   );
 };
+
+// _EuiPageInner.displayName = 'EuiPageInner';

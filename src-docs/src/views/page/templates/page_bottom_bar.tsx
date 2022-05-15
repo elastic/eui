@@ -4,18 +4,18 @@ import { EuiPageTemplateProps, EuiPageTemplate } from '../../../../../src';
 
 export default ({
   content = <></>,
-  sideNav,
-  pageHeader,
+  sidebar,
+  header,
   bottomBar,
 }: {
   content: ReactElement;
-  sideNav?: ReactElement;
-  pageHeader?: EuiPageTemplateProps['pageHeader'];
+  sidebar?: ReactElement;
+  header?: EuiPageTemplateProps['pageHeader'];
   bottomBar?: ReactElement;
 }) => (
   <EuiPageTemplate
-    pageSideBar={sideNav}
-    pageHeader={pageHeader}
+    pageSideBar={sidebar}
+    pageHeader={header}
     bottomBar={bottomBar}
   >
     {content}

@@ -3,21 +3,15 @@ import React, { ReactElement } from 'react';
 import { EuiPageTemplate, EuiPageTemplateProps } from '../../../../../src';
 
 export default ({
-  template,
   content = <></>,
-  sideNav,
-  pageHeader,
+  header,
+  panelled,
 }: {
-  template: EuiPageTemplateProps['template'];
   content: ReactElement;
-  sideNav?: ReactElement;
-  pageHeader?: EuiPageTemplateProps['pageHeader'];
+  header?: EuiPageTemplateProps['pageHeader'];
+  panelled?: EuiPageTemplateProps['panelled'];
 }) => (
-  <EuiPageTemplate
-    template={template}
-    pageSideBar={sideNav}
-    pageHeader={pageHeader}
-  >
+  <EuiPageTemplate pageHeader={header} panelled={panelled}>
     {content}
   </EuiPageTemplate>
 );

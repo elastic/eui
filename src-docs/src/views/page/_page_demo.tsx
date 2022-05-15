@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, {
   ComponentType,
   ReactElement,
@@ -14,13 +15,10 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiHeader,
-  EuiPageHeaderProps,
-  EuiEmptyPrompt,
+  EuiButtonGroup,
 } from '../../../../src';
-import {
-  EuiPageTemplateProps,
-  TEMPLATES,
-} from '../../../../src/components/page/page_template';
+import { EuiPageTemplateProps } from '../../../../src/components/page_template';
+import { ALIGNMENTS } from '../../../../src/components/page/page_section/page_section.styles';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
 import { useExitPath } from '../../services/routing/routing';
 import {
@@ -33,11 +31,10 @@ import contentCenterSvg from '../../images/content_center.svg';
 import sideNavSvg from '../../images/side_nav.svg';
 import singleSvg from '../../images/single.svg';
 
-import ComposedDemo, { composedSources } from './composed/_composed_demo';
-// @ts-ignore Importing from JS
-import TemplateExample from './templates/page_template';
+import CustomTemplateExample from './templates/page_template_custom';
+const CustomTemplateExampleSource = require('!!raw-loader!./templates/page_template_custom');
+
 import { GuideSectionTypes } from '../../components/guide_section/guide_section_types';
-const TemplateExampleSource = require('!!raw-loader!./templates/page_template');
 
 const ExitFullscreenDemoButton = () => {
   const exitPath = useExitPath();
@@ -48,77 +45,72 @@ const ExitFullscreenDemoButton = () => {
   );
 };
 
-/**
- * Because the discrete[by slug] usages of <PageDemo> are not rendered at the same time,
- * it is safe to cache their showTemplate status in a set rather than an approach triggering
- * React re-rendering. If that changes, moving this to a redux store, recoiljs atom(s), or similar
- * would resolve any introduced issue.
- */
-const demosAsIndividualComponents = new Set<string>();
-
-type TEMPLATE = typeof TEMPLATES[number];
+type TEMPLATE = typeof ALIGNMENTS[number];
 
 export const PageDemo: FunctionComponent<
   Pick<GuideSectionProps, 'props'> & {
     slug: string;
     fullscreen?: boolean;
     sidebar?: boolean;
+    bottomBar?: boolean;
     showTemplates?: TEMPLATE[];
     toggleSidebar?: boolean;
+    togglePageHeader?: boolean;
+    togglePanelled?: boolean;
+    toggleCentered?: boolean;
+    toggleRestrictedWidth?: boolean;
     pageHeaderTabs?: boolean;
-    composed: ComponentType<{
-      button: ReactElement;
-      content: ReactElement;
-      sideNav?: ReactElement;
-      bottomBar: ReactElement;
-      pageHeader?: EuiPageHeaderProps;
-      template: string;
-    }>;
     template: ComponentType<{
+      template?: string;
       button: ReactElement;
       content: ReactElement;
-      sideNav?: ReactElement;
-      bottomBar: ReactElement;
-      pageHeader?: EuiPageHeaderProps;
-      template: string;
+      sidebar?: EuiPageTemplateProps['pageSideBar'];
+      bottomBar?: EuiPageTemplateProps['bottomBar'];
+      header?: EuiPageTemplateProps['pageHeader'];
+      alignment?: EuiPageTemplateProps['alignment'];
+      restrictWidth?: EuiPageTemplateProps['restrictWidth'];
     }>;
     source?: {
       template: string;
-      composed: string;
     };
   }
 > = ({
   slug,
   fullscreen,
   toggleSidebar = false,
-  showTemplates = TEMPLATES,
+  togglePageHeader = true,
+  togglePanelled = true,
+  toggleCentered = false,
+  toggleRestrictedWidth = false,
+  showTemplates = [],
   pageHeaderTabs = true,
   sidebar = true,
-  composed = ComposedDemo,
-  template = TemplateExample,
+  bottomBar = false,
+  template = CustomTemplateExample,
   props,
   source,
 }) => {
   const { path } = useRouteMatch();
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
-  const [showTemplate, _setShowTemplate] = useState(
-    !demosAsIndividualComponents.has(slug)
-  );
-  const setShowTemplate = (cb: (showTemplate: boolean) => boolean) => {
-    _setShowTemplate((showing) => {
-      const nextValue = cb(showing);
-      demosAsIndividualComponents[nextValue ? 'delete' : 'add'](slug);
-      return nextValue;
-    });
-  };
 
   const [showSidebar, setShowSidebar] = useState<boolean>(sidebar);
+  const [showHeader, setShowHeader] = useState<boolean>(true);
+  const [showPanelled, setShowPanelled] = useState<boolean>(true);
+  const [showCentered, setShowCentered] = useState<boolean>(false);
+
+  // Restrict width combos
+  const [restrictWidth, setRestrictWidth] = useState<
+    EuiPageTemplateProps['restrictWidth']
+  >(true);
+  const [bottomBorder, setBottomBorder] = useState<
+    EuiPageTemplateProps['bottomBorder']
+  >(undefined);
 
   const [templateValue, setTemplateValue] = useState<TEMPLATE>(
-    showTemplates[0]
+    showTemplates.length ? showTemplates[0] : 'top'
   );
 
-  const centered = templateValue.includes('center');
+  const centered = templateValue.includes('center') || showCentered;
 
   const button = fullscreen ? (
     <ExitFullscreenDemoButton />
@@ -136,7 +128,7 @@ export const PageDemo: FunctionComponent<
     />
   );
 
-  let content = (
+  const content = (
     <>
       <EuiImage
         size={centered ? 'l' : 'fullWidth'}
@@ -156,87 +148,208 @@ export const PageDemo: FunctionComponent<
     </>
   );
 
-  const bottomBar = (
+  const _bottomBar = bottomBar ? (
     <EuiButton size="s" color="ghost">
       Save
     </EuiButton>
-  );
+  ) : undefined;
 
-  let pageHeaderProps: EuiPageTemplateProps['pageHeader'] = {
-    iconType: 'logoElastic',
-    pageTitle: 'Page title',
-    rightSideItems: [button],
-    tabs: pageHeaderTabs
-      ? [
-          { label: 'Tab 1', isSelected: true },
-          {
-            label: 'Tab 2',
-          },
-        ]
-      : undefined,
-  };
+  const pageHeaderProps: EuiPageTemplateProps['pageHeader'] = showHeader
+    ? {
+        iconType: 'logoElastic',
+        pageTitle: 'Page title',
+        rightSideItems: [button],
+        description: toggleRestrictedWidth ? (
+          <>{`Restricting the width to ${restrictWidth}.`}</>
+        ) : undefined,
+        tabs: pageHeaderTabs
+          ? [
+              { label: 'Tab 1', isSelected: true },
+              {
+                label: 'Tab 2',
+              },
+            ]
+          : undefined,
+      }
+    : undefined;
 
-  if (templateValue === 'centeredBody') {
-    pageHeaderProps = undefined;
-    content = (
-      <EuiEmptyPrompt
-        title={<span>No spice</span>}
-        body={content}
-        actions={button}
-      />
-    );
-  } else if (centered) {
-    content = (
-      <EuiEmptyPrompt
-        color="subdued"
-        title={<span>No spice</span>}
-        body={content}
-      />
-    );
-  }
+  // if (templateValue === 'center' && !showHeader) {
+  //   content = (
+  //     <EuiEmptyPrompt
+  //       color={!showSidebar && showPanelled ? 'plain' : 'subdued'}
+  //       hasShadow={!showSidebar}
+  //       title={<span>No spice</span>}
+  //       body={content}
+  //       actions={button}
+  //     />
+  //   );
+  // } else if (centered) {
+  //   content = (
+  //     <EuiEmptyPrompt
+  //       color="subdued"
+  //       title={<span>No spice</span>}
+  //       body={content}
+  //     />
+  //   );
+  // }
 
   const controls = (
     <EuiFlexGroup alignItems="center">
-      <EuiFlexItem>
-        <EuiSelect
-          compressed
-          prepend="Template"
-          aria-label="Template"
-          options={showTemplates.map((option) => {
-            return {
-              value: option,
-              text: option,
-            };
-          })}
-          onChange={(e) => setTemplateValue(e.target.value as TEMPLATE)}
-          value={templateValue}
-          disabled={showTemplates.length < 2}
-        />
-      </EuiFlexItem>
+      {showTemplates.length ? (
+        <EuiFlexItem>
+          <EuiSelect
+            compressed
+            prepend="Template"
+            aria-label="Template"
+            options={showTemplates.map((option) => {
+              return {
+                value: option,
+                text: option,
+              };
+            })}
+            onChange={(e) => setTemplateValue(e.target.value as TEMPLATE)}
+            value={templateValue}
+            disabled={showTemplates.length < 2}
+          />
+        </EuiFlexItem>
+      ) : undefined}
+      {toggleRestrictedWidth && (
+        <>
+          <EuiFlexItem grow={false}>
+            <div>
+              Restrict width:&emsp;
+              <EuiButtonGroup
+                options={[
+                  {
+                    id: 'radioTrue',
+                    label: 'true',
+                  },
+                  {
+                    id: 'radioFalse',
+                    label: 'false',
+                  },
+                  {
+                    id: 'radioPercent',
+                    label: '75%',
+                  },
+                ]}
+                idSelected={
+                  restrictWidth === true
+                    ? 'radioTrue'
+                    : restrictWidth === false
+                    ? 'radioFalse'
+                    : 'radioPercent'
+                }
+                onChange={(id) =>
+                  setRestrictWidth(
+                    id === 'radioTrue'
+                      ? true
+                      : id === 'radioFalse'
+                      ? false
+                      : '75%'
+                  )
+                }
+                name="restrictedWidthGroup"
+                legend={'Restriced width'}
+                buttonSize="compressed"
+                color="primary"
+              />
+            </div>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <div>
+              Bottom border:&emsp;
+              <EuiButtonGroup
+                options={[
+                  {
+                    id: 'borderTrue',
+                    label: 'true',
+                  },
+                  {
+                    id: 'borderFalse',
+                    label: 'false',
+                  },
+                  {
+                    id: 'borderExtended',
+                    label: 'extended',
+                  },
+                ]}
+                idSelected={
+                  bottomBorder === true || bottomBorder === undefined
+                    ? 'borderTrue'
+                    : bottomBorder === false
+                    ? 'borderFalse'
+                    : 'borderExtended'
+                }
+                onChange={(id) => {
+                  switch (id) {
+                    case 'borderExtended':
+                      setBottomBorder('extended');
+                      break;
+                    case 'borderFalse':
+                      setBottomBorder(false);
+                      break;
+                    default:
+                      setBottomBorder(true);
+                      break;
+                  }
+                }}
+                name="restrictedWidthGroup"
+                legend={'Restriced width'}
+                buttonSize="compressed"
+                color="primary"
+              />
+            </div>
+          </EuiFlexItem>
+        </>
+      )}
+      {togglePageHeader && (
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Page header"
+            checked={showHeader}
+            onChange={() => setShowHeader((showing) => !showing)}
+            compressed
+          />
+        </EuiFlexItem>
+      )}
       {toggleSidebar && (
         <EuiFlexItem grow={false}>
           <EuiSwitch
-            label="Show with sidebar"
+            label="Sidebar"
             checked={showSidebar}
             onChange={() => setShowSidebar((showing) => !showing)}
             compressed
           />
         </EuiFlexItem>
       )}
-      <EuiFlexItem grow={false}>
-        <EuiSwitch
-          label="Show with composed components"
-          checked={!showTemplate}
-          onChange={() => setShowTemplate((showing) => !showing)}
-          compressed
-        />
-      </EuiFlexItem>
+      {togglePanelled && (
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Panelled"
+            checked={showPanelled}
+            onChange={() => setShowPanelled((showing) => !showing)}
+            compressed
+          />
+        </EuiFlexItem>
+      )}
+
+      {toggleCentered && (
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Centered"
+            checked={showCentered}
+            onChange={() => setShowCentered((showing) => !showing)}
+            compressed
+          />
+        </EuiFlexItem>
+      )}
+      <EuiFlexItem grow={true} />
     </EuiFlexGroup>
   );
 
-  const Child = showTemplate ? template : composed;
-  const templateSource = source?.template || TemplateExampleSource;
-  const composedSource = source?.composed || composedSources[templateValue];
+  const Child = template;
+  const templateSource = source?.template || CustomTemplateExampleSource;
 
   return fullscreen ? (
     <>
@@ -246,10 +359,13 @@ export const PageDemo: FunctionComponent<
       <Child
         button={button}
         content={content}
-        sideNav={showSidebar ? sideNav : undefined}
-        bottomBar={bottomBar}
-        template={templateValue}
-        pageHeader={pageHeaderProps}
+        sidebar={showSidebar ? sideNav : undefined}
+        bottomBar={_bottomBar}
+        // template={templateValue}
+        header={pageHeaderProps}
+        panelled={showPanelled}
+        alignment={showCentered ? 'center' : undefined}
+        restrictWidth={restrictWidth}
       />
     </>
   ) : (
@@ -264,17 +380,21 @@ export const PageDemo: FunctionComponent<
           <Child
             button={button}
             content={content}
-            sideNav={showSidebar ? sideNav : undefined}
-            bottomBar={bottomBar}
-            template={templateValue}
-            pageHeader={pageHeaderProps}
+            sidebar={showSidebar ? sideNav : undefined}
+            bottomBar={_bottomBar}
+            // template={templateValue}
+            header={pageHeaderProps}
+            panelled={showPanelled}
+            alignment={showCentered ? 'center' : undefined}
+            restrictWidth={restrictWidth}
+            bottomBorder={bottomBorder}
           />
         </div>
       }
       source={[
         {
           type: GuideSectionTypes.TSX,
-          code: showTemplate ? templateSource : composedSource,
+          code: templateSource,
         },
       ]}
       props={props}

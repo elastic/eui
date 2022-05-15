@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiPageT } from './page_template';
+export { EuiPageT, EuiPageTemplateProps, EuiPageTemplate } from './page_template';
+export { TEMPLATES} from './_template';

@@ -6,22 +6,17 @@ export default ({
   content = <></>,
   sidebar,
   header,
-  restrictWidth,
+  panelled,
 }: {
   content: ReactElement;
-  sidebar?: ReactElement;
+  sidebar?: EuiPageTemplateProps['pageSideBar'];
   header?: EuiPageTemplateProps['pageHeader'];
-  restrictWidth?: EuiPageTemplateProps['restrictWidth'];
+  panelled?: EuiPageTemplateProps['panelled'];
 }) => (
   <EuiPageTemplate
-    restrictWidth={restrictWidth}
     pageSideBar={sidebar}
-    pageHeader={
-      header && {
-        ...header,
-        description: `Restricting the width to ${restrictWidth}.`,
-      }
-    }
+    pageHeader={header}
+    panelled={panelled}
   >
     {content}
   </EuiPageTemplate>

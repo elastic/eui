@@ -20,6 +20,9 @@ import {
   EuiBottomBar,
 } from '../../../../src/components';
 
+import PageSidebarTemplate from './templates/page_sidebar';
+const PageSidebarTemplateSource = require('!!raw-loader!./templates/page_sidebar');
+
 import PageBottomBar from './composed/page_bottom_bar';
 const pageBottomBarSource = require('!!raw-loader!./composed/page_bottom_bar');
 import PageBottomBarTemplate from './templates/page_bottom_bar';
@@ -139,6 +142,8 @@ export const PageTemplateExample = {
           </EuiText>
           <PageDemo
             slug="sidebar"
+            toggleSidebar={true}
+            togglePageHeader={false}
             props={{
               EuiPageTemplate,
               EuiPageSideBar,
@@ -148,7 +153,14 @@ export const PageTemplateExample = {
       ),
       fullScreen: {
         slug: 'sidebar',
-        demo: <PageDemo slug="sidebar" fullscreen />,
+        demo: (
+          <PageDemo
+            slug="sidebar"
+            fullscreen
+            toggleSidebar={true}
+            togglePageHeader={false}
+          />
+        ),
         showButton: false,
       },
     },
@@ -169,13 +181,10 @@ export const PageTemplateExample = {
           </EuiText>
           <PageDemo
             slug="restricting-page-width"
-            showTemplates={['default']}
-            composed={PageRestrictingWidth}
-            template={PageRestrictingWidthTemplate}
-            source={{
-              template: PageRestrictingWidthTemplateSource,
-              composed: PageRestrictingWidthSource,
-            }}
+            togglePageHeader={false}
+            toggleSidebar={true}
+            togglePanelled={false}
+            toggleRestrictedWidth={true}
             props={{
               EuiPageTemplate,
             }}
@@ -188,9 +197,10 @@ export const PageTemplateExample = {
         demo: (
           <PageDemo
             slug="restricting-page-width"
-            composed={PageRestrictingWidth}
-            template={PageRestrictingWidthTemplate}
-            showTemplates={['default']}
+            togglePageHeader={false}
+            toggleSidebar={true}
+            togglePanelled={false}
+            toggleRestrictedWidth={true}
             fullscreen
           />
         ),
@@ -232,14 +242,10 @@ export const PageTemplateExample = {
           />
           <PageDemo
             slug="bottom-bar"
-            showTemplates={['default']}
+            bottomBar
             toggleSidebar
-            composed={PageBottomBar}
-            template={PageBottomBarTemplate}
-            source={{
-              template: PageBottomBarTemplateSource,
-              composed: pageBottomBarSource,
-            }}
+            togglePageHeader={false}
+            togglePanelled={false}
             props={{
               EuiPageTemplate,
               EuiBottomBar,
@@ -253,10 +259,10 @@ export const PageTemplateExample = {
         demo: (
           <PageDemo
             slug="bottom-bar"
-            composed={PageBottomBar}
-            template={PageBottomBarTemplate}
-            showTemplates={['default']}
+            bottomBar
             toggleSidebar
+            togglePageHeader={false}
+            togglePanelled={false}
             fullscreen
           />
         ),
@@ -287,7 +293,6 @@ export const PageTemplateExample = {
           <PageDemo
             slug="centered-body"
             toggleSidebar
-            showTemplates={['centeredBody', 'centeredContent']}
             props={{ EuiPageTemplate, EuiEmptyPrompt }}
           />
         </>
@@ -295,14 +300,7 @@ export const PageTemplateExample = {
       fullScreen: {
         showButton: false,
         slug: 'centered-body',
-        demo: (
-          <PageDemo
-            slug="centered-body"
-            toggleSidebar
-            showTemplates={['centeredBody', 'centeredContent']}
-            fullscreen
-          />
-        ),
+        demo: <PageDemo slug="centered-body" toggleSidebar fullscreen />,
       },
     },
     {
@@ -368,7 +366,7 @@ export const PageTemplateExample = {
               </>
             }
           />
-          <PageDemo
+          {/* <PageDemo
             slug="full-height"
             composed={PageFullHeight}
             template={PageFullHeightTemplate}
@@ -377,22 +375,22 @@ export const PageTemplateExample = {
               template: PageFullHeightTemplateSource,
               composed: PageFullHeightSource,
             }}
-          />
+          /> */}
         </>
       ),
-      fullScreen: {
-        showButton: false,
-        slug: 'full-height',
-        demo: (
-          <PageDemo
-            slug="full-height"
-            composed={PageFullHeight}
-            template={PageFullHeightTemplate}
-            showTemplates={['empty']}
-            fullscreen
-          />
-        ),
-      },
+      // fullScreen: {
+      //   showButton: false,
+      //   slug: 'full-height',
+      // demo: (
+      //   <PageDemo
+      //     slug="full-height"
+      //     composed={PageFullHeight}
+      //     template={PageFullHeightTemplate}
+      //     showTemplates={['empty']}
+      //     fullscreen
+      //   />
+      // ),
+      // },
     },
     {
       title: 'Custom content',
@@ -407,7 +405,7 @@ export const PageTemplateExample = {
               prepend the page contents with a callout.
             </p>
           </EuiText>
-          <PageDemo
+          {/* <PageDemo
             slug="simple-custom-content"
             composed={PageCustomContent}
             template={PageCustomContentTemplate}
@@ -417,23 +415,23 @@ export const PageTemplateExample = {
               template: PageCustomContentTemplateSource,
               composed: PageCustomContentSource,
             }}
-          />
+          /> */}
         </>
       ),
-      fullScreen: {
-        showButton: false,
-        slug: 'simple-custom-content',
-        demo: (
-          <PageDemo
-            slug="simple-custom-content"
-            composed={PageCustomContent}
-            template={PageCustomContentTemplate}
-            showTemplates={['empty']}
-            pageHeaderTabs={false}
-            fullscreen
-          />
-        ),
-      },
+      // fullScreen: {
+      //   showButton: false,
+      //   slug: 'simple-custom-content',
+      // demo: (
+      // <PageDemo
+      //   slug="simple-custom-content"
+      //   composed={PageCustomContent}
+      //   template={PageCustomContentTemplate}
+      //   showTemplates={['empty']}
+      //   pageHeaderTabs={false}
+      //   fullscreen
+      // />
+      // ),
+      // },
     },
     {
       title: 'Legacy layout',
