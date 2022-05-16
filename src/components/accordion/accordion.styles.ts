@@ -96,8 +96,7 @@ export const euiAccordionOptionalActionStyles = () => ({
 });
 
 export const euiAccordionSpinnerStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiAccordion__spinner: css``,
-  isLoading: css`
+  euiAccordion__spinner: css`
     margin-right: ${euiTheme.size.xs};
   `,
 });

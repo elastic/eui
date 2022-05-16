@@ -283,10 +283,7 @@ export class EuiAccordionClass extends Component<
     ];
 
     const spinnerStyles = euiAccordionSpinnerStyles(theme);
-    const cssSpinnerStyles = [
-      spinnerStyles.euiAccordion__spinner,
-      isLoading && spinnerStyles.isLoading,
-    ];
+    const cssSpinnerStyles = [spinnerStyles.euiAccordion__spinner];
 
     const triggerWrapperStyles = euiAccordionTriggerWrapperStyles();
     const cssTriggerWrapperStyles = [
