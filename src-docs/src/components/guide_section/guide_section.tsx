@@ -27,10 +27,11 @@ import {
 import classNames from 'classnames';
 
 export interface GuideSectionProps
-  extends Pick<
-    GuideSectionExample,
-    'exampleToggles' | 'demoPanelProps' | 'ghostBackground'
-  > {
+  extends CommonProps,
+    Pick<
+      GuideSectionExample,
+      'exampleToggles' | 'demoPanelProps' | 'ghostBackground'
+    > {
   id?: string;
   title?: string;
   text?: ReactNode;

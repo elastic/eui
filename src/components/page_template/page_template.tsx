@@ -40,15 +40,13 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   // Shared props
   restrictWidth = true,
   paddingSize = 'l',
+  grow = true,
   bottomBorder,
   offset,
-  // Inner props
   panelled,
   // Outer props
-  minHeight = '460px',
   className,
-  grow = true,
-  direction,
+  minHeight = '460px',
   responsive,
   ...rest
 }) => {
@@ -86,6 +84,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
 
   const getSideBarProps = () => ({
     paddingSize,
+    responsive,
     sticky: { offset: _offset },
   });
 
@@ -95,7 +94,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   });
 
   const innerPanelled = () =>
-    panelled === false ? false : Boolean(sidebar.length);
+    panelled === false ? false : Boolean(sidebar.length > 0);
 
   React.Children.toArray(children).map((child, index) => {
     // All content types can have their props overridden by appending the child props spread at the end
@@ -164,10 +163,15 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   };
 
   return (
-    <EuiPageOuter {...rest} style={pageStyle} className={classes}>
+    <EuiPageOuter
+      {...rest}
+      responsive={responsive}
+      style={pageStyle}
+      className={classes}
+    >
       {sidebar}
 
-      <EuiPageInner panelled={innerPanelled()}>
+      <EuiPageInner border={sidebar.length > 0} panelled={innerPanelled()}>
         {sections}
         {bottomBar}
       </EuiPageInner>

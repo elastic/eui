@@ -17,8 +17,6 @@ export const euiPageInnerStyles = (euiThemeContent: UseEuiTheme) => ({
     flex-direction: column;
     align-items: stretch;
     flex: 1 1 100%;
-    border-left: ${euiThemeContent.euiTheme.border.width.thin} solid
-      ${transparentize(euiThemeContent.euiTheme.colors.lightShade, 0.7)};
     // Make sure that inner flex layouts don't get larger than this container
     ${logicalCSS('max-width', '100%')}
     ${logicalCSS('min-width', '0')}
@@ -26,10 +24,11 @@ export const euiPageInnerStyles = (euiThemeContent: UseEuiTheme) => ({
 
   panelled: css`
     background: ${euiBackgroundColor('plain', euiThemeContent)};
-    ${euiShadow(
-      euiThemeContent.euiTheme,
-      { size: 'm' },
-      euiThemeContent.colorMode
-    )}
+    ${euiShadow(euiThemeContent, 'm')}
+  `,
+
+  border: css`
+    border-left: ${euiThemeContent.euiTheme.border.width.thin} solid
+      ${transparentize(euiThemeContent.euiTheme.colors.lightShade, 0.7)};
   `,
 });

@@ -32,6 +32,10 @@ export type _EuiPageInnerProps<
      * Adds a white background and shadow to define the area
      */
     panelled?: boolean;
+    /**
+     * Adds a left side border, typically added when a side bar exists
+     */
+    border?: boolean;
   };
 
 export const _EuiPageInner = <T extends ComponentTypes>({
@@ -39,6 +43,7 @@ export const _EuiPageInner = <T extends ComponentTypes>({
   className,
   component: Component = 'div' as T,
   panelled,
+  border,
   paddingSize = 'none',
   ...rest
 }: PropsWithChildren<_EuiPageInnerProps<T>>) => {
@@ -49,6 +54,7 @@ export const _EuiPageInner = <T extends ComponentTypes>({
     styles.euiPageInner,
     useEuiPaddingCSS()[paddingSize as _EuiPaddingSize],
     panelled && styles.panelled,
+    border && styles.border,
   ];
 
   const classes = classNames('euiPageInner', className);
