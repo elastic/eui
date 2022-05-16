@@ -3,9 +3,10 @@ import { _EuiPageSidebarProps } from '../../../../src/components/page_template/s
 
 import {
   EuiText,
-  EuiPageT,
+  EuiPageTemplate,
   EuiPageTemplateProps,
   EuiPageHeaderProps,
+  EuiSpacer,
 } from '../../../../src';
 
 export default ({
@@ -34,38 +35,47 @@ export default ({
   grow?: EuiPageTemplateProps['grow'];
 }) => {
   return (
-    <EuiPageT.Outer
+    <EuiPageTemplate.Outer
       panelled={panelled}
       restrictWidth={restrictWidth}
       bottomBorder={bottomBorder}
       grow={grow}
     >
       {sidebar && (
-        <EuiPageT.Sidebar sticky={sidebarSticky}>{sidebar}</EuiPageT.Sidebar>
+        <EuiPageTemplate.Sidebar sticky={sidebarSticky}>
+          {sidebar}
+        </EuiPageTemplate.Sidebar>
       )}
-      <EuiPageT.Section color="subdued" bottomBorder="extended">
+      <EuiPageTemplate.Section color="subdued" bottomBorder="extended">
         <EuiText textAlign="center">
           <strong>
-            Stack EuiPageT sections and headers to create your custom content
-            order.
+            Stack EuiPageTemplate sections and headers to create your custom
+            content order.
           </strong>
         </EuiText>
-      </EuiPageT.Section>
-      {header && <EuiPageT.Header {...header} rightSideItems={[button]} />}
-      {/* <div>WRENCH</div>
+      </EuiPageTemplate.Section>
+      {header && (
+        <EuiPageTemplate.Header {...header} rightSideItems={[button]} />
+      )}
+      <>
+        <div>WRENCH</div>
+        <div>WRENCH</div>
+      </>
+      <EuiSpacer />
       <div>WRENCH</div>
-      <div>WRENCH</div> */}
       {emptyPrompt ? (
-        <EuiPageT.EmptyPrompt
+        <EuiPageTemplate.EmptyPrompt
           title={<span>No spice</span>}
           footer={header ? undefined : button}
         >
           {emptyPrompt}
-        </EuiPageT.EmptyPrompt>
+        </EuiPageTemplate.EmptyPrompt>
       ) : (
-        <EuiPageT.Section>{content}</EuiPageT.Section>
+        <EuiPageTemplate.Section>{content}</EuiPageTemplate.Section>
       )}
-      {bottomBar && <EuiPageT.BottomBar>{bottomBar}</EuiPageT.BottomBar>}
-    </EuiPageT.Outer>
+      {bottomBar && (
+        <EuiPageTemplate.BottomBar>{bottomBar}</EuiPageTemplate.BottomBar>
+      )}
+    </EuiPageTemplate.Outer>
   );
 };

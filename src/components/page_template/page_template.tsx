@@ -35,7 +35,7 @@ export type EuiPageTemplateProps = _EuiPageOuterProps &
      */
     offset?: number;
   };
-export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
+const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   children,
   // Shared props
   restrictWidth = true,
@@ -179,8 +179,8 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   );
 };
 
-export const EuiPageT = {
-  Outer: EuiPageTemplate,
+export const EuiPageTemplate = {
+  Outer: _EuiPageTemplate,
   Inner: EuiPageInner,
   Sidebar: EuiPageSidebar,
   Header: EuiPageHeader,

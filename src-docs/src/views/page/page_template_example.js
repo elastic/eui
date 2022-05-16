@@ -17,27 +17,33 @@ import {
 
 export const PageTemplateExample = {
   title: 'Page template',
+  isBeta: true,
+  isNew: true,
   intro: (
     <>
       <EuiText>
         <p>
-          You can use the provided <strong>EuiPageTemplate</strong> as a
-          shortcut for creating the different types of page layout patterns
-          described in these docs. It is somewhat opinionated, but still has the
-          ability to customize most of the inner components with props like{' '}
-          <EuiCode>pageSideBarProps</EuiCode> and{' '}
-          <EuiCode>pageContentProps</EuiCode>.
+          The new <strong>EuiPageTemplate</strong> is a namespaced component for
+          creating the different types of page layout patterns described in
+          these docs. It is somewhat opinionated, but still has the ability to
+          customize most of the inner components directly on their instance.
         </p>
       </EuiText>
       <EuiSpacer />
       <EuiCallOut
-        iconType="documentation"
-        title="The following examples showcase the both the template and custom built usages of the page components."
+        iconType="alert"
+        color="warning"
+        title="The previous version of EuiPageTemplate has been deprecated to EuiPageTemplate__Deprecated"
       >
         <p>
-          You&apos;ll find the code for each in their own tab and if you go to
-          fullscreen, you can see how they would behave in a typical application
-          layout.
+          To continue using the previous version, you can update your import
+          statement to{' '}
+          <EuiCode language="ts">
+            {
+              "import { EuiPageTemplate_Deprecated as EuiPageTemplate } from '@elastic/eui'"
+            }
+          </EuiCode>
+          .
         </p>
       </EuiCallOut>
       <EuiSpacer />
@@ -75,6 +81,17 @@ export const PageTemplateExample = {
               child.
             </p>
           </EuiText>
+          <EuiCallOut
+            iconType="alert"
+            color="warning"
+            title="Each direct child of EuiPageTemplate.Outer will be wrapped in EuiPageTemplate.Section"
+          >
+            <p>
+              This means be careful when placing spacers or other non-content
+              based components as direct children. React fragments will be
+              treated as a single child. .
+            </p>
+          </EuiCallOut>
           <PageDemo
             slug="full-page"
             showTabs
@@ -179,6 +196,7 @@ export const PageTemplateExample = {
     },
     {
       title: 'Showing a bottom bar',
+      wrapText: false,
       text: (
         <>
           <EuiText>
@@ -241,6 +259,7 @@ export const PageTemplateExample = {
     },
     {
       title: 'Empty pages or content',
+      wrapText: false,
       text: (
         <>
           <EuiText>

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { _EuiPageRestrictWidth } from '../../../../../src/components/page/_restrict_width';
 
-import { EuiEmptyPrompt, EuiPageT } from '../../../../../src';
+import { EuiEmptyPrompt, EuiPageTemplate } from '../../../../../src';
 
 export default ({
   content = <></>,
@@ -15,14 +15,16 @@ export default ({
   emptyPrompt?: boolean;
 }) => {
   return (
-    <EuiPageT.Outer>
+    <EuiPageTemplate.Outer>
       {sideBar && (
-        <EuiPageT.Sidebar paddingSize="l">{sideBar}</EuiPageT.Sidebar>
+        <EuiPageTemplate.Sidebar paddingSize="l">
+          {sideBar}
+        </EuiPageTemplate.Sidebar>
       )}
 
-      <EuiPageT.Inner panelled={Boolean(sideBar)}>
+      <EuiPageTemplate.Inner panelled={Boolean(sideBar)}>
         {pageHeader && (
-          <EuiPageT.Header
+          <EuiPageTemplate.Header
             bottomBorder={sideBar ? true : 'extended'}
             pageTitle="Page title"
             paddingSize="l"
@@ -30,7 +32,7 @@ export default ({
         )}
 
         {emptyPrompt ? (
-          <EuiPageT.Section
+          <EuiPageTemplate.Section
             color={pageHeader ? 'plain' : 'transparent'}
             alignment={'center'}
             grow
@@ -40,13 +42,13 @@ export default ({
               body={content}
               color={pageHeader || sideBar ? 'subdued' : 'plain'}
             />
-          </EuiPageT.Section>
+          </EuiPageTemplate.Section>
         ) : (
-          <EuiPageT.Section color={'plain'} alignment={'top'} grow>
+          <EuiPageTemplate.Section color={'plain'} alignment={'top'} grow>
             {content}
-          </EuiPageT.Section>
+          </EuiPageTemplate.Section>
         )}
-      </EuiPageT.Inner>
-    </EuiPageT.Outer>
+      </EuiPageTemplate.Inner>
+    </EuiPageTemplate.Outer>
   );
 };

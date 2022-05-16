@@ -7,5 +7,5 @@
  */
 
 export type { EuiPageTemplateProps } from './page_template';
-export { EuiPageT, EuiPageTemplate } from './page_template';
+export { EuiPageTemplate } from './page_template';
 export { TEMPLATES } from './_template';
