@@ -7,11 +7,11 @@
  */
 
 import React, {
-  FunctionComponent,
   ReactNode,
   HTMLAttributes,
   FormHTMLAttributes,
   useCallback,
+  forwardRef,
 } from 'react';
 import classNames from 'classnames';
 import { EuiCallOut } from '../call_out';
@@ -35,67 +35,78 @@ export type EuiFormProps = CommonProps &
     invalidCallout?: 'above' | 'none';
   };
 
-export const EuiForm: FunctionComponent<EuiFormProps> = ({
-  children,
-  className,
-  isInvalid,
-  error,
-  component = 'div',
-  invalidCallout = 'above',
-  ...rest
-}) => {
-  const handleFocus = useCallback((node) => {
-    node?.focus();
-  }, []);
+export const EuiForm = forwardRef<HTMLElement, EuiFormProps>(
+  (
+    {
+      children,
+      className,
+      isInvalid,
+      error,
+      component = 'div',
+      invalidCallout = 'above',
+      ...rest
+    },
+    ref
+  ) => {
+    const handleFocus = useCallback((node) => {
+      node?.focus();
+    }, []);
 
-  const classes = classNames('euiForm', className);
+    const classes = classNames('euiForm', className);
 
-  let optionalErrors: JSX.Element | null = null;
+    let optionalErrors: JSX.Element | null = null;
 
-  if (error) {
-    const errorTexts = Array.isArray(error) ? error : [error];
-    optionalErrors = (
-      <ul>
-        {errorTexts.map((error, index) => (
-          <li className="euiForm__error" key={index}>
-            {error}
-          </li>
-        ))}
-      </ul>
-    );
-  }
+    if (error) {
+      const errorTexts = Array.isArray(error) ? error : [error];
+      optionalErrors = (
+        <ul>
+          {errorTexts.map((error, index) => (
+            <li className="euiForm__error" key={index}>
+              {error}
+            </li>
+          ))}
+        </ul>
+      );
+    }
 
-  let optionalErrorAlert;
+    let optionalErrorAlert;
 
-  if (isInvalid && invalidCallout === 'above') {
-    optionalErrorAlert = (
-      <EuiI18n
-        token="euiForm.addressFormErrors"
-        default="Please address the highlighted errors."
+    if (isInvalid && invalidCallout === 'above') {
+      optionalErrorAlert = (
+        <EuiI18n
+          token="euiForm.addressFormErrors"
+          default="Please address the highlighted errors."
+        >
+          {(addressFormErrors: string) => (
+            <EuiCallOut
+              tabIndex={-1}
+              ref={handleFocus}
+              className="euiForm__errors"
+              title={addressFormErrors}
+              color="danger"
+              role="alert"
+              aria-live="assertive"
+            >
+              {optionalErrors}
+            </EuiCallOut>
+          )}
+        </EuiI18n>
+      );
+    }
+
+    const Element = component;
+
+    return (
+      <Element
+        // @ts-expect-error Element is a <div> or <form>, but TypeScript wants to support both
+        ref={ref}
+        className={classes}
+        {...(rest as HTMLAttributes<HTMLElement>)}
       >
-        {(addressFormErrors: string) => (
-          <EuiCallOut
-            tabIndex={-1}
-            ref={handleFocus}
-            className="euiForm__errors"
-            title={addressFormErrors}
-            color="danger"
-            role="alert"
-            aria-live="assertive"
-          >
-            {optionalErrors}
-          </EuiCallOut>
-        )}
-      </EuiI18n>
+        {optionalErrorAlert}
+        {children}
+      </Element>
     );
   }
-
-  const Element = component;
-
-  return (
-    <Element className={classes} {...(rest as HTMLAttributes<HTMLElement>)}>
-      {optionalErrorAlert}
-      {children}
-    </Element>
-  );
-};
+);
+EuiForm.displayName = 'EuiForm';

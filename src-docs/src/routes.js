@@ -4,7 +4,7 @@ import { slugify } from '../../src/services';
 
 import { createHashHistory } from 'history';
 
-import { GuidePage, GuideSection, GuideMarkdownFormat } from './components';
+import { GuideSection, GuideMarkdownFormat } from './components';
 
 import { GuideTabbedPage } from './components/guide_tabbed_page';
 
@@ -309,7 +309,7 @@ const createExample = (example, customTitle) => {
 
   const component = () => (
     <EuiErrorBoundary>
-      <GuidePage
+      <GuideTabbedPage
         title={title}
         isBeta={beta}
         playground={playgroundComponent}
@@ -317,7 +317,7 @@ const createExample = (example, customTitle) => {
         {...rest}
       >
         {renderedSections}
-      </GuidePage>
+      </GuideTabbedPage>
     </EuiErrorBoundary>
   );
 
@@ -330,24 +330,9 @@ const createExample = (example, customTitle) => {
   };
 };
 
-const createTabbedPage = ({
-  title,
-  pages,
-  isNew,
-  description,
-  showThemeLanguageToggle,
-  notice,
-  isBeta,
-}) => {
+const createTabbedPage = ({ title, pages, isNew, ...rest }) => {
   const component = () => (
-    <GuideTabbedPage
-      title={title}
-      pages={pages}
-      description={description}
-      showThemeLanguageToggle={showThemeLanguageToggle}
-      notice={notice}
-      isBeta={isBeta}
-    />
+    <GuideTabbedPage title={title} pages={pages} {...rest} />
   );
 
   const pagesSections = pages.map((page, index) => {
@@ -379,9 +364,9 @@ const createMarkdownExample = (file, name, intro) => {
   return {
     name,
     component: () => (
-      <GuidePage title={name}>
+      <GuideTabbedPage title={name}>
         <GuideMarkdownFormat grow={false}>{file.default}</GuideMarkdownFormat>
-      </GuidePage>
+      </GuideTabbedPage>
     ),
     sections: sections,
   };
