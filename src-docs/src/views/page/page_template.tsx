@@ -19,6 +19,7 @@ export default ({
   bottomBar,
   bottomBorder,
   sidebarSticky,
+  grow,
 }: {
   button: ReactElement;
   content: ReactElement;
@@ -30,12 +31,14 @@ export default ({
   restrictWidth?: EuiPageTemplateProps['restrictWidth'];
   bottomBorder?: EuiPageTemplateProps['bottomBorder'];
   sidebarSticky?: _EuiPageSidebarProps['sticky'];
+  grow?: EuiPageTemplateProps['grow'];
 }) => {
   return (
     <EuiPageT.Outer
       panelled={panelled}
       restrictWidth={restrictWidth}
       bottomBorder={bottomBorder}
+      grow={grow}
     >
       {sidebar && (
         <EuiPageT.Sidebar sticky={sidebarSticky}>{sidebar}</EuiPageT.Sidebar>

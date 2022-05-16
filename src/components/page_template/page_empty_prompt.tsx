@@ -51,7 +51,7 @@ export const _EuiPageEmptyPrompt: FunctionComponent<_EuiPageEmptyPromptProps> = 
 
   return (
     <EuiPageSection
-      paddingSize="none"
+      paddingSize={paddingSize}
       color={sectionColor}
       grow={grow}
       restrictWidth={restrictWidth}

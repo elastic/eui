@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { CSSProperties, FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 import { _EuiPageOuter as EuiPageOuter, _EuiPageOuterProps } from './outer';
@@ -17,6 +17,8 @@ import { _EuiPageEmptyPrompt as EuiPageEmptyPrompt } from './page_empty_prompt';
 import { EuiPageHeader, EuiPageSection } from '../page';
 import { _EuiPageRestrictWidth } from '../page/_restrict_width';
 import { _EuiPageBottomBorder } from '../page/_bottom_border';
+import { useEuiTheme } from '../../services';
+import { logicalStyle, logicalUnit } from '../../global_styling';
 
 export type EuiPageTemplateProps = _EuiPageOuterProps &
   Omit<_EuiPageInnerProps, 'component'> &
@@ -25,7 +27,13 @@ export type EuiPageTemplateProps = _EuiPageOuterProps &
     /**
      * Minimum height in which to enforce scrolling
      */
-    minHeight?: CSSProperties['minHeight'];
+    minHeight?: string;
+    /**
+     * To account for any fixed elements like headers,
+     * pass in the value of the total height of those fixed elements.
+     * Otherwise they will be calculated based on the data attributes on the body element.
+     */
+    offset?: number;
   };
 export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   children,
@@ -33,18 +41,23 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   restrictWidth = true,
   paddingSize = 'l',
   bottomBorder,
+  offset,
   // Inner props
   panelled,
   // Outer props
-  minHeight = 460,
+  minHeight = '460px',
   className,
-  grow,
+  grow = true,
   direction,
   responsive,
   ...rest
 }) => {
-  const classes = classNames('euiPageTemplate', className);
-  const pageStyle = { minHeight, ...rest.style };
+  const { euiTheme } = useEuiTheme();
+
+  const euiHeaderFixedCounter = document.body.getAttribute(
+    'data-fixed-headers'
+  );
+  const _offset = offset ?? euiTheme.base * 3 * Number(euiHeaderFixedCounter);
 
   // Sections include page header
   const sections: React.ReactElement[] = [];
@@ -73,6 +86,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
 
   const getSideBarProps = () => ({
     paddingSize,
+    sticky: { offset: _offset },
   });
 
   const getBottomBarProps = () => ({
@@ -83,7 +97,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   const innerPanelled = () =>
     panelled === false ? false : Boolean(sidebar.length);
 
-  React.Children.map(children, (child, index) => {
+  React.Children.toArray(children).map((child, index) => {
     // All content types can have their props overridden by appending the child props spread at the end
     if (React.isValidElement(child) && child.type === EuiPageSidebar) {
       sidebar.push(
@@ -139,8 +153,18 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
     }
   });
 
+  const _minHeight = grow
+    ? `max(${minHeight}, calc(100${logicalUnit.vh} - ${_offset}px))`
+    : minHeight;
+
+  const classes = classNames('euiPageTemplate', className);
+  const pageStyle = {
+    ...logicalStyle('min-height', _minHeight),
+    ...rest.style,
+  };
+
   return (
-    <EuiPageOuter style={pageStyle} className={classes} {...rest}>
+    <EuiPageOuter {...rest} style={pageStyle} className={classes}>
       {sidebar}
 
       <EuiPageInner panelled={innerPanelled()}>

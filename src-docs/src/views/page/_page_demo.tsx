@@ -284,6 +284,7 @@ export const PageDemo: FunctionComponent<
       bottomBorder={bottomBorder}
       emptyPrompt={_emptyPrompt}
       sidebarSticky={showSidebarSticky}
+      grow={fullscreen ? true : false}
     />
   );
 
