@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { _EuiPageSidebarProps } from '../../../../src/components/page_template/sidebar';
 
 import {
   EuiText,
@@ -17,6 +18,7 @@ export default ({
   restrictWidth,
   bottomBar,
   bottomBorder,
+  sidebarSticky,
 }: {
   button: ReactElement;
   content: ReactElement;
@@ -27,6 +29,7 @@ export default ({
   panelled?: EuiPageTemplateProps['panelled'];
   restrictWidth?: EuiPageTemplateProps['restrictWidth'];
   bottomBorder?: EuiPageTemplateProps['bottomBorder'];
+  sidebarSticky?: _EuiPageSidebarProps['sticky'];
 }) => {
   return (
     <EuiPageT.Outer
@@ -34,7 +37,9 @@ export default ({
       restrictWidth={restrictWidth}
       bottomBorder={bottomBorder}
     >
-      {sidebar && <EuiPageT.Sidebar>{sidebar}</EuiPageT.Sidebar>}
+      {sidebar && (
+        <EuiPageT.Sidebar sticky={sidebarSticky}>{sidebar}</EuiPageT.Sidebar>
+      )}
       <EuiPageT.Section color="subdued" bottomBorder="extended">
         <EuiText textAlign="center">
           <strong>

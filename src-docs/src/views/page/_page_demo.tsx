@@ -51,6 +51,7 @@ export const PageDemo: FunctionComponent<
     togglePanelled?: boolean;
     toggleRestrictedWidth?: boolean;
     toggleSidebar?: boolean;
+    toggleSidebarSticky?: boolean;
   }
 > = ({
   bottomBar,
@@ -64,6 +65,7 @@ export const PageDemo: FunctionComponent<
   togglePanelled = true,
   toggleRestrictedWidth = false,
   toggleSidebar = false,
+  toggleSidebarSticky = false,
 }) => {
   const { path } = useRouteMatch();
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
@@ -71,6 +73,7 @@ export const PageDemo: FunctionComponent<
   const [showHeader, setShowHeader] = useState<boolean>(true);
   const [showPanelled, setShowPanelled] = useState<boolean>(true);
   const [showSidebar, setShowSidebar] = useState<boolean>(sidebar);
+  const [showSidebarSticky, setShowSidebarSticky] = useState<boolean>(false);
 
   // Restrict width combos
   const [restrictWidth, setRestrictWidth] = useState<
@@ -245,6 +248,16 @@ export const PageDemo: FunctionComponent<
           />
         </EuiFlexItem>
       )}
+      {toggleSidebarSticky && (
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Fixed sidebar"
+            checked={showSidebarSticky}
+            onChange={() => setShowSidebarSticky((showing) => !showing)}
+            compressed
+          />
+        </EuiFlexItem>
+      )}
       {togglePanelled && (
         <EuiFlexItem grow={false}>
           <EuiSwitch
@@ -270,6 +283,7 @@ export const PageDemo: FunctionComponent<
       restrictWidth={restrictWidth}
       bottomBorder={bottomBorder}
       emptyPrompt={_emptyPrompt}
+      sidebarSticky={showSidebarSticky}
     />
   );
 

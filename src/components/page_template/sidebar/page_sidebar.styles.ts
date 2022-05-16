@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 import { euiYScroll } from '../../../global_styling';
-import { transparentize, UseEuiTheme } from '../../../services';
+import { UseEuiTheme } from '../../../services';
 
 export const euiPageSidebarStyles = ({ euiTheme }: UseEuiTheme) => ({
   /**
@@ -16,8 +16,6 @@ export const euiPageSidebarStyles = ({ euiTheme }: UseEuiTheme) => ({
    */
   euiPageSidebar: css`
     flex: 0 1 0%; /* 1 */
-    border-right: ${euiTheme.border.width.thin} solid
-      ${transparentize(euiTheme.colors.lightShade, 0.7)};
   `,
 
   sticky: css`

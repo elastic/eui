@@ -2,56 +2,56 @@
 
 exports[`_EuiPageInner component is rendered 1`] = `
 <main
-  class="euiPageInner css-afbd70-euiPageInner"
+  class="euiPageInner css-tpepwg-euiPageInner"
 />
 `;
 
 exports[`_EuiPageInner is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageInner testClass1 testClass2 css-afbd70-euiPageInner"
+  class="euiPageInner testClass1 testClass2 css-tpepwg-euiPageInner"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`_EuiPageInner paddingSize l is rendered 1`] = `
 <div
-  class="euiPageInner css-1988y1q-euiPageInner-l"
+  class="euiPageInner css-1efzufg-euiPageInner-l"
 />
 `;
 
 exports[`_EuiPageInner paddingSize m is rendered 1`] = `
 <div
-  class="euiPageInner css-bkn3wx-euiPageInner-m"
+  class="euiPageInner css-1vi36bk-euiPageInner-m"
 />
 `;
 
 exports[`_EuiPageInner paddingSize none is rendered 1`] = `
 <div
-  class="euiPageInner css-afbd70-euiPageInner"
+  class="euiPageInner css-tpepwg-euiPageInner"
 />
 `;
 
 exports[`_EuiPageInner paddingSize s is rendered 1`] = `
 <div
-  class="euiPageInner css-13sfhhz-euiPageInner-s"
+  class="euiPageInner css-gadb4n-euiPageInner-s"
 />
 `;
 
 exports[`_EuiPageInner paddingSize xl is rendered 1`] = `
 <div
-  class="euiPageInner css-tsy6jk-euiPageInner-xl"
+  class="euiPageInner css-1i5sda6-euiPageInner-xl"
 />
 `;
 
 exports[`_EuiPageInner paddingSize xs is rendered 1`] = `
 <div
-  class="euiPageInner css-1o37y8r-euiPageInner-xs"
+  class="euiPageInner css-ajj8tr-euiPageInner-xs"
 />
 `;
 
 exports[`_EuiPageInner panelled is rendered 1`] = `
 <div
-  class="euiPageInner css-1g767o6-euiPageInner-panelled"
+  class="euiPageInner css-4m7fv6-euiPageInner-panelled"
 />
 `;

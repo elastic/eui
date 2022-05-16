@@ -25,13 +25,15 @@ export interface _EuiPageSidebarProps
   /**
    * Adds `position: sticky` and affords for any fixed position headers.
    */
-  sticky?: {
-    /**
-     * To account for any fixed elements like headers,
-     * pass in the value of the total height of those fixed elements.
-     */
-    offset: number;
-  };
+  sticky?:
+    | boolean
+    | {
+        /**
+         * To account for any fixed elements like headers,
+         * pass in the value of the total height of those fixed elements.
+         */
+        offset?: number;
+      };
   /**
    * A minimum width is necessary to maintain size.
    * Be sure to take `paddingSize` into account.
@@ -69,13 +71,19 @@ export const _EuiPageSidebar: FunctionComponent<_EuiPageSidebarProps> = ({
     ...logicalStyle('min-width', isResponding ? '100%' : minWidth),
   };
   if (!isResponding && sticky) {
+    const euiHeaderFixedCounter = document.body.getAttribute(
+      'data-fixed-headers'
+    );
+
+    const offset =
+      typeof sticky === 'object'
+        ? sticky?.offset
+        : themeContext.euiTheme.base * 3 * Number(euiHeaderFixedCounter);
+
     inlineStyles = {
       ...inlineStyles,
-      ...logicalStyle('top', sticky.offset),
-      ...logicalStyle(
-        'max-height',
-        `calc(100${logicalUnit.vh} - ${sticky.offset}px)`
-      ),
+      ...logicalStyle('top', offset),
+      ...logicalStyle('max-height', `calc(100${logicalUnit.vh} - ${offset}px)`),
     };
   }
 

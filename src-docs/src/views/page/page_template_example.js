@@ -129,6 +129,7 @@ export const PageTemplateExample = {
             fullscreen
             toggleSidebar={true}
             togglePageHeader={false}
+            toggleSidebarSticky={true}
           />
         ),
         showButton: false,
