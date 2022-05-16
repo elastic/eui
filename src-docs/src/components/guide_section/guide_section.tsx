@@ -9,6 +9,8 @@ import {
   EuiFlyout,
   EuiPanelProps,
   EuiPageSection,
+  CommonProps,
+  useIsWithinBreakpoints,
 } from '../../../../src';
 
 import { slugify } from '../../../../src/services/string/slugify';
@@ -22,6 +24,7 @@ import {
   GuideSectionExampleTabs,
   GuideSectionExampleTabsProps,
 } from './guide_section_parts/guide_section_tabs';
+import classNames from 'classnames';
 
 export interface GuideSectionProps
   extends Pick<
@@ -91,8 +94,10 @@ export const GuideSection: FunctionComponent<GuideSectionProps> = ({
   color,
   children,
   nested,
+  className,
 }) => {
   const { path } = useRouteMatch();
+  const isLargeBreakpoint = useIsWithinBreakpoints(['m', 'l', 'xl']);
   const [renderingPlayground, setRenderingPlayground] = useState(false);
 
   const renderTabs = () => {
@@ -189,13 +194,13 @@ export const GuideSection: FunctionComponent<GuideSectionProps> = ({
 
   return (
     <EuiPageSection
-      color={color || 'transparent'}
-      className="guideSection"
+      id={id}
+      className={classNames('guideSection', className)}
+      color={!isLargeBreakpoint ? 'transparent' : color || 'transparent'}
       paddingSize={nested ? 'none' : 'l'}
       restrictWidth
-      id={id}
     >
-      {color && (children || text || title) && <EuiSpacer size="xxl" />}
+      <EuiSpacer size={(color || title) && isLargeBreakpoint ? 'xxl' : 'xs'} />
       <GuideSectionExampleText title={title} wrapText={wrapText}>
         {text}
       </GuideSectionExampleText>
@@ -241,6 +246,7 @@ export const GuideSection: FunctionComponent<GuideSectionProps> = ({
       )}
 
       {children}
+      <EuiSpacer size={color && isLargeBreakpoint ? 'xxl' : 'xs'} />
     </EuiPageSection>
   );
 };

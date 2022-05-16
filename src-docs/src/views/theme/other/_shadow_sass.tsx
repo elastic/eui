@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  EuiSpacer,
-  keysOf,
-  _EuiShadowSizesDescriptions,
-} from '../../../../../src';
+import { keysOf, _EuiShadowSizesDescriptions } from '../../../../../src';
 
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
@@ -75,7 +71,6 @@ export const ShadowValuesSass = () => {
           <div className={`guideSass__shadow guideSass__shadow--${item.id}`} />
         )}
       />
-      <EuiSpacer size="xl" />
     </>
   );
 };

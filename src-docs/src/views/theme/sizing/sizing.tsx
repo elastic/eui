@@ -2,8 +2,7 @@ import React, { useContext, useMemo } from 'react';
 
 import { EuiCallOut, EuiSpacer, EuiText, EuiTitle } from '../../../../../src';
 
-// @ts-ignore Importing from JS
-import { GuidePage } from '../../../components/guide_page';
+import { GuideTabbedPage } from '../../../components/guide_tabbed_page';
 import { GuideSection } from '../../../components/guide_section/guide_section';
 import { ThemeContext } from '../../../components/with_theme';
 
@@ -53,13 +52,13 @@ export default () => {
   }, [showSass]);
 
   return (
-    <GuidePage
+    <GuideTabbedPage
       title="Sizing"
       isBeta={!showSass}
       notice={<ThemeNotice />}
       showThemeLanguageToggle
     >
-      <GuideSection>
+      <GuideSection color="transparent">
         <EuiText grow={false}>
           <h2 id={`${sizingSections[0].id}`}>{`${sizingSections[0].title}`}</h2>
           <p>
@@ -83,7 +82,7 @@ export default () => {
         {scaleContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         {showSass ? <ScaleValuesSass /> : <ScaleValuesJS />}
       </GuideSection>
 
@@ -97,7 +96,7 @@ export default () => {
         {utilsContent}
       </GuideSection>
 
-      <GuideSection>
+      <GuideSection color="transparent">
         <EuiTitle>
           <h2 id={`${sizingSections[3].id}`}>{`${sizingSections[3].title}`}</h2>
         </EuiTitle>
@@ -106,6 +105,6 @@ export default () => {
 
         {paddingContent}
       </GuideSection>
-    </GuidePage>
+    </GuideTabbedPage>
   );
 };
