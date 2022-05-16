@@ -14,26 +14,37 @@ import React, {
   FunctionComponent,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf, ExclusiveUnion } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiIcon } from '../icon';
+import { useEuiTheme } from '../../services';
 
-const colorToClassNameMap = {
-  subdued: 'euiExpression--subdued',
-  primary: 'euiExpression--primary',
-  success: 'euiExpression--success',
-  accent: 'euiExpression--accent',
-  warning: 'euiExpression--warning',
-  danger: 'euiExpression--danger',
-};
+import { euiExpressionStyles } from './expression.style';
+
+// const colorToClassNameMap = {
+//   subdued: 'euiExpression--subdued',
+//   primary: 'euiExpression--primary',
+//   success: 'euiExpression--success',
+//   accent: 'euiExpression--accent',
+//   warning: 'euiExpression--warning',
+//   danger: 'euiExpression--danger',
+// };
 
 const textWrapToClassNameMap = {
   'break-word': null,
   truncate: 'euiExpression--truncate',
 };
 
-export const COLORS = keysOf(colorToClassNameMap);
+// export const COLORS = keysOf(colorToClassNameMap);
+export const COLORS = [
+  'subdued',
+  'primary',
+  'success',
+  'accent',
+  'warning',
+  'danger',
+] as const;
 
-export type ExpressionColor = keyof typeof colorToClassNameMap;
+export type ExpressionColor = typeof COLORS[number];
 
 const displayToClassNameMap = {
   inline: null,
@@ -117,6 +128,22 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
 }) => {
   const calculatedColor = isInvalid ? 'danger' : color;
 
+  const theme = useEuiTheme();
+  const styles = euiExpressionStyles(theme);
+  const cssStyles = [
+    styles.euiExpression,
+    onClick && styles.isClickable,
+    styles[color],
+    isActive && styles.isActive,
+    display === 'columns' && styles.columns,
+    textWrap === 'truncate' && styles.truncate,
+  ];
+  const cssDescriptionStyle = [
+    styles.euiExpression__description,
+    styles[color],
+    uppercase && styles.isUppercase,
+  ];
+
   const classes = classNames(
     'euiExpression',
     className,
@@ -126,7 +153,7 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
       'euiExpression-isUppercase': uppercase,
     },
     displayToClassNameMap[display],
-    colorToClassNameMap[calculatedColor],
+    // colorToClassNameMap[calculatedColor],
     textWrapToClassNameMap[textWrap]
   );
 
@@ -150,9 +177,10 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
   ) : undefined;
 
   return (
-    <Component className={classes} onClick={onClick} {...rest}>
+    <Component css={cssStyles} className={classes} onClick={onClick} {...rest}>
       <span
         className="euiExpression__description"
+        css={cssDescriptionStyle}
         style={customWidth}
         {...descriptionProps}
       >
