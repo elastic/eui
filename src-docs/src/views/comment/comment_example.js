@@ -187,9 +187,11 @@ export const CommentListExample = {
             <li>
               You can also show an icon by passing to the{' '}
               <EuiCode>avatarIcon</EuiCode> any of the icon types that{' '}
-              <strong>EuiIcon</strong> supports. The icon will show inside a{' '}
-              <EuiCode>subdued</EuiCode> avatar. Consider this option when
-              showing a system update.
+              <Link to="/display/icons">
+                <strong>EuiIcon</strong>
+              </Link>{' '}
+              supports. The icon will show inside a <EuiCode>subdued</EuiCode>{' '}
+              avatar. Consider this option when showing a system update.
             </li>
             <li>
               You can further customize the timeline avatar by passing to the{' '}
