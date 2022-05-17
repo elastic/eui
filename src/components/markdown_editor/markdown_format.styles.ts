@@ -18,7 +18,7 @@ import {
  * Mixins
  */
 // Internal utility for text scales/sizes
-const euiScaleText = (
+const euiScaleMarkdownFormatText = (
   euiTheme: UseEuiTheme['euiTheme'],
   options: _FontScaleOptions
 ) => {
@@ -79,25 +79,25 @@ export const euiMarkdownFormatStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiMarkdownFormat: css``,
   // Text sizes
   m: css`
-    ${euiScaleText(euiTheme, {
+    ${euiScaleMarkdownFormatText(euiTheme, {
       measurement: 'rem',
       customScale: 'm',
     })}
   `,
   s: css`
-    ${euiScaleText(euiTheme, {
+    ${euiScaleMarkdownFormatText(euiTheme, {
       measurement: 'rem',
       customScale: 's',
     })}
   `,
   xs: css`
-    ${euiScaleText(euiTheme, {
+    ${euiScaleMarkdownFormatText(euiTheme, {
       measurement: 'rem',
       customScale: 'xs',
     })}
   `,
   relative: css`
-    ${euiScaleText(euiTheme, {
+    ${euiScaleMarkdownFormatText(euiTheme, {
       measurement: 'em',
     })}
   `,
