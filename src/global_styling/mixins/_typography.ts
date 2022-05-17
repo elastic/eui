@@ -26,8 +26,8 @@ export type EuiThemeFontSize = {
  * Returns font-size and line-height
  */
 export const euiFontSize = (
+  { euiTheme }: UseEuiTheme,
   scale: _EuiThemeFontScale,
-  euiTheme: UseEuiTheme['euiTheme'],
   measurement: _EuiThemeFontSizeMeasurement = 'rem'
 ): EuiThemeFontSize => {
   return {
@@ -35,14 +35,12 @@ export const euiFontSize = (
     lineHeight: euiLineHeightFromBaseline(scale, euiTheme, measurement),
   };
 };
-
-// Hook version
 export const useEuiFontSize = (
   scale: _EuiThemeFontScale = 'm',
   measurement: _EuiThemeFontSizeMeasurement = 'rem'
 ): EuiThemeFontSize => {
-  const { euiTheme } = useEuiTheme();
-  return euiFontSize(scale, euiTheme, measurement);
+  const euiTheme = useEuiTheme();
+  return euiFontSize(euiTheme, scale, measurement);
 };
 
 /**
@@ -70,11 +68,10 @@ export const euiTextTruncate = (
 /**
  * Fixed-width numbers for tabular data
  */
-export const euiNumberFormat = (euiTheme: UseEuiTheme['euiTheme']) => `
+export const euiNumberFormat = ({ euiTheme }: UseEuiTheme) => `
   font-feature-settings: ${euiTheme.font.featureSettings}, 'tnum' 1;
 `;
-// Hook version
 export const useEuiNumberFormat = (): string => {
-  const { euiTheme } = useEuiTheme();
+  const euiTheme = useEuiTheme();
   return euiNumberFormat(euiTheme);
 };
