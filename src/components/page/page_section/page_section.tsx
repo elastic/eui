@@ -10,14 +10,11 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../../common';
 
 import { _EuiPageRestrictWidth } from '../_restrict_width';
+import { euiPageRestictWidthStyles } from '../_restrict_width.styles';
 import { _EuiPageBottomBorder } from '../_bottom_border';
 
 import { useEuiTheme } from '../../../services';
-import {
-  ALIGNMENTS,
-  euiPageSectionStyles,
-  euiPageSectionWidth,
-} from './page_section.styles';
+import { ALIGNMENTS, euiPageSectionStyles } from './page_section.styles';
 
 import {
   PADDING_SIZES,
@@ -69,7 +66,7 @@ export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
   const inlinePadding = useEuiPaddingCSS('horizontal');
   const blockPadding = useEuiPaddingCSS('vertical');
   const colors = useEuiBackgroundColorCSS();
-  const width = euiPageSectionWidth(
+  const width = euiPageRestictWidthStyles(
     restrictWidth as _EuiPageRestrictWidth,
     alignment
   );

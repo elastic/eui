@@ -6,7 +6,7 @@ exports[`EuiPageTemplate fullHeight is rendered with noscroll 1`] = `
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
@@ -26,7 +26,7 @@ exports[`EuiPageTemplate fullHeight is rendered with true 1`] = `
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
@@ -48,7 +48,7 @@ exports[`EuiPageTemplate is rendered 1`] = `
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
@@ -68,7 +68,7 @@ exports[`EuiPageTemplate restrict width can be set to a custom number 1`] = `
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
@@ -89,7 +89,7 @@ exports[`EuiPageTemplate restrict width can be turned off 1`] = `
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
@@ -109,10 +109,10 @@ exports[`EuiPageTemplate template centeredBody is rendered 1`] = `
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-default"
+    class="euiPageBody css-abz4z5-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
-      class="euiPageBody euiPageBody--borderRadiusNone"
+      class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
     >
       <div
         class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
@@ -134,11 +134,11 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageBodyProps 1`
 >
   <div
     aria-label="aria-label"
-    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-default testClass1 testClass2"
+    class="euiPageBody testClass1 testClass2 css-abz4z5-euiPageBody-euiPageRestictWidthStyles"
     data-test-subj="test subject string"
   >
     <div
-      class="euiPageBody euiPageBody--borderRadiusNone"
+      class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
     >
       <div
         class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
@@ -159,10 +159,10 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageContentBodyP
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-default"
+    class="euiPageBody css-abz4z5-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
-      class="euiPageBody euiPageBody--borderRadiusNone"
+      class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
     >
       <div
         class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
@@ -185,10 +185,10 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageContentProps
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-default"
+    class="euiPageBody css-abz4z5-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
-      class="euiPageBody euiPageBody--borderRadiusNone"
+      class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
     >
       <div
         aria-label="aria-label"
@@ -211,7 +211,7 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageHeader 1`] =
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-default"
+    class="euiPageBody css-abz4z5-euiPageBody-euiPageRestictWidthStyles"
   >
     <header
       aria-label="aria-label"
@@ -232,7 +232,7 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageHeader 1`] =
       </div>
     </header>
     <div
-      class="euiPageBody euiPageBody--borderRadiusNone"
+      class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
     >
       <div
         class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
@@ -253,10 +253,10 @@ exports[`EuiPageTemplate template centeredBody minHeight is rendered 1`] = `
   style="min-height:40vh"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-default"
+    class="euiPageBody css-abz4z5-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
-      class="euiPageBody euiPageBody--borderRadiusNone"
+      class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
     >
       <div
         class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
@@ -277,10 +277,10 @@ exports[`EuiPageTemplate template centeredBody paddingSize is rendered 1`] = `
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-default"
+    class="euiPageBody css-abz4z5-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
-      class="euiPageBody euiPageBody--borderRadiusNone"
+      class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
     >
       <div
         class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
@@ -301,10 +301,10 @@ exports[`EuiPageTemplate template centeredBody style is rendered 1`] = `
   style="min-height:460px;max-height:100vh"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-default"
+    class="euiPageBody css-abz4z5-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
-      class="euiPageBody euiPageBody--borderRadiusNone"
+      class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
     >
       <div
         class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
@@ -330,7 +330,7 @@ exports[`EuiPageTemplate template centeredBody with pageSideBar is rendered 1`] 
     Side Bar
   </div>
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+    class="euiPageBody css-1gszsf0-euiPageBody-l-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
@@ -357,7 +357,7 @@ exports[`EuiPageTemplate template centeredBody with pageSideBar is rendered with
     Side Bar
   </div>
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+    class="euiPageBody css-1gszsf0-euiPageBody-l-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
@@ -377,7 +377,7 @@ exports[`EuiPageTemplate template centeredContent is rendered 1`] = `
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
@@ -403,7 +403,7 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageBodyProps
 >
   <div
     aria-label="aria-label"
-    class="euiPageBody euiPageBody--borderRadiusNone testClass1 testClass2"
+    class="euiPageBody testClass1 testClass2 css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
     data-test-subj="test subject string"
   >
     <div
@@ -429,7 +429,7 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageContentBo
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
@@ -456,7 +456,7 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageContentPr
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
@@ -483,7 +483,7 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageHeader 1`
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
   >
     <header
       aria-label="aria-label"
@@ -527,7 +527,7 @@ exports[`EuiPageTemplate template centeredContent minHeight is rendered 1`] = `
   style="min-height:40vh"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
@@ -552,7 +552,7 @@ exports[`EuiPageTemplate template centeredContent paddingSize is rendered 1`] = 
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
@@ -577,7 +577,7 @@ exports[`EuiPageTemplate template centeredContent style is rendered 1`] = `
   style="min-height:460px;max-height:100vh"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
@@ -607,7 +607,7 @@ exports[`EuiPageTemplate template centeredContent with pageSideBar is rendered 1
     Side Bar
   </div>
   <div
-    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody css-1yhl9z-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
@@ -634,7 +634,7 @@ exports[`EuiPageTemplate template centeredContent with pageSideBar is rendered w
     Side Bar
   </div>
   <div
-    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody css-1yhl9z-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
@@ -654,7 +654,7 @@ exports[`EuiPageTemplate template default is rendered 1`] = `
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
@@ -675,7 +675,7 @@ exports[`EuiPageTemplate template default is rendered with pageBodyProps 1`] = `
 >
   <div
     aria-label="aria-label"
-    class="euiPageBody euiPageBody--borderRadiusNone testClass1 testClass2"
+    class="euiPageBody testClass1 testClass2 css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
     data-test-subj="test subject string"
   >
     <div
@@ -696,7 +696,7 @@ exports[`EuiPageTemplate template default is rendered with pageContentBodyProps 
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
@@ -718,7 +718,7 @@ exports[`EuiPageTemplate template default is rendered with pageContentProps 1`] 
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       aria-label="aria-label"
@@ -740,7 +740,7 @@ exports[`EuiPageTemplate template default is rendered with pageHeader 1`] = `
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
   >
     <header
       aria-label="aria-label"
@@ -779,7 +779,7 @@ exports[`EuiPageTemplate template default minHeight is rendered 1`] = `
   style="min-height:40vh"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
@@ -799,7 +799,7 @@ exports[`EuiPageTemplate template default paddingSize is rendered 1`] = `
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
@@ -819,7 +819,7 @@ exports[`EuiPageTemplate template default style is rendered 1`] = `
   style="min-height:460px;max-height:100vh"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
@@ -844,10 +844,10 @@ exports[`EuiPageTemplate template default with pageSideBar is rendered 1`] = `
     Side Bar
   </div>
   <div
-    class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody css-1yhl9z-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
-      class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+      class="euiPageBody css-1gszsf0-euiPageBody-l-euiPageRestictWidthStyles"
     >
       <div
         class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
@@ -875,10 +875,10 @@ exports[`EuiPageTemplate template default with pageSideBar is rendered with page
     Side Bar
   </div>
   <div
-    class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody css-1yhl9z-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
-      class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+      class="euiPageBody css-1gszsf0-euiPageBody-l-euiPageRestictWidthStyles"
     >
       <div
         class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
@@ -899,7 +899,7 @@ exports[`EuiPageTemplate template empty is rendered 1`] = `
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-default"
+    class="euiPageBody css-abz4z5-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
@@ -920,7 +920,7 @@ exports[`EuiPageTemplate template empty is rendered with pageBodyProps 1`] = `
 >
   <div
     aria-label="aria-label"
-    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-default testClass1 testClass2"
+    class="euiPageBody testClass1 testClass2 css-abz4z5-euiPageBody-euiPageRestictWidthStyles"
     data-test-subj="test subject string"
   >
     <div
@@ -941,7 +941,7 @@ exports[`EuiPageTemplate template empty is rendered with pageContentBodyProps 1`
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-default"
+    class="euiPageBody css-abz4z5-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
@@ -963,7 +963,7 @@ exports[`EuiPageTemplate template empty is rendered with pageContentProps 1`] = 
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-default"
+    class="euiPageBody css-abz4z5-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       aria-label="aria-label"
@@ -985,7 +985,7 @@ exports[`EuiPageTemplate template empty is rendered with pageHeader 1`] = `
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-default"
+    class="euiPageBody css-abz4z5-euiPageBody-euiPageRestictWidthStyles"
   >
     <header
       aria-label="aria-label"
@@ -1023,7 +1023,7 @@ exports[`EuiPageTemplate template empty minHeight is rendered 1`] = `
   style="min-height:40vh"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-default"
+    class="euiPageBody css-abz4z5-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
@@ -1043,7 +1043,7 @@ exports[`EuiPageTemplate template empty paddingSize is rendered 1`] = `
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-default"
+    class="euiPageBody css-abz4z5-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
@@ -1063,7 +1063,7 @@ exports[`EuiPageTemplate template empty style is rendered 1`] = `
   style="min-height:460px;max-height:100vh"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-default"
+    class="euiPageBody css-abz4z5-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
@@ -1088,7 +1088,7 @@ exports[`EuiPageTemplate template empty with pageSideBar is rendered 1`] = `
     Side Bar
   </div>
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+    class="euiPageBody css-1gszsf0-euiPageBody-l-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
@@ -1115,7 +1115,7 @@ exports[`EuiPageTemplate template empty with pageSideBar is rendered with pageSi
     Side Bar
   </div>
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
+    class="euiPageBody css-1gszsf0-euiPageBody-l-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
@@ -1135,7 +1135,7 @@ exports[`EuiPageTemplate with bottomBar is rendered 1`] = `
   style="min-height:460px"
 >
   <div
-    class="euiPageBody euiPageBody--borderRadiusNone"
+    class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
   >
     <div
       class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
