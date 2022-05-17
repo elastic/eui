@@ -9,6 +9,7 @@
 import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
+import { cloneElementWithCss } from '../../services/theme/clone_element';
 
 import { useEuiTheme } from '../../services';
 import { euiTextStyles } from './text.styles';
@@ -32,6 +33,11 @@ export type EuiTextProps = CommonProps &
      */
     color?: TextColor | CSSProperties['color'];
     grow?: boolean;
+    /**
+     * Set to true if you want to apply text styling to your child element
+     * instead of rendering a parent wrapper element
+     */
+    cloneElement?: boolean;
   };
 
 export const EuiText: FunctionComponent<EuiTextProps> = ({
@@ -41,6 +47,8 @@ export const EuiText: FunctionComponent<EuiTextProps> = ({
   textAlign,
   children,
   className,
+  style,
+  cloneElement,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -53,26 +61,29 @@ export const EuiText: FunctionComponent<EuiTextProps> = ({
 
   const classes = classNames('euiText', className);
 
-  let optionallyAlteredText;
+  const props = { css: cssStyles, className: classes, ...rest };
+
+  let text = cloneElement ? (
+    cloneElementWithCss(children, props)
+  ) : (
+    <div {...props}>{children}</div>
+  );
+
   if (color) {
-    optionallyAlteredText = (
-      <EuiTextColor color={color} component="div">
-        {children}
+    text = (
+      <EuiTextColor color={color} style={style} cloneElement>
+        {text}
       </EuiTextColor>
     );
   }
 
   if (textAlign) {
-    optionallyAlteredText = (
-      <EuiTextAlign textAlign={textAlign}>
-        {optionallyAlteredText || children}
+    text = (
+      <EuiTextAlign textAlign={textAlign} cloneElement>
+        {text}
       </EuiTextAlign>
     );
   }
 
-  return (
-    <div css={cssStyles} className={classes} {...rest}>
-      {optionallyAlteredText || children}
-    </div>
-  );
+  return text;
 };

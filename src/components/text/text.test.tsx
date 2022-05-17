@@ -38,5 +38,25 @@ describe('EuiText', () => {
         expect(component).toMatchSnapshot();
       });
     });
+
+    test('color & align', () => {
+      const component = render(
+        <EuiText {...requiredProps} color="danger" textAlign="center">
+          <p>Content</p>
+        </EuiText>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('cloneElement', () => {
+      const component = render(
+        <EuiText {...requiredProps} cloneElement>
+          <p>Content</p>
+        </EuiText>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });
