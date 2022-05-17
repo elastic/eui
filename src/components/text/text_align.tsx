@@ -8,6 +8,7 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../common';
+import { cloneElementWithCss } from '../../services/theme/clone_element';
 
 import { euiTextAlignStyles } from './text_align.styles';
 
@@ -17,19 +18,27 @@ export type TextAlignment = typeof ALIGNMENTS[number];
 export type EuiTextAlignProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     textAlign?: TextAlignment;
+    /**
+     * Set to true if you want to apply text styling to your child element
+     * instead of rendering a parent wrapper element
+     */
+    cloneElement?: boolean;
   };
 
 export const EuiTextAlign: FunctionComponent<EuiTextAlignProps> = ({
   children,
   textAlign = 'left',
+  cloneElement,
   ...rest
 }) => {
   const styles = euiTextAlignStyles();
   const cssStyles = [styles.euiTextAlign, styles[textAlign]];
 
-  return (
-    <div css={cssStyles} {...rest}>
-      {children}
-    </div>
-  );
+  const props = { css: cssStyles, ...rest };
+
+  if (cloneElement) {
+    return cloneElementWithCss(children, props);
+  } else {
+    return <div {...props}>{children}</div>;
+  }
 };

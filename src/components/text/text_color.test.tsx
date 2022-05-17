@@ -44,5 +44,15 @@ describe('EuiTextColor', () => {
         expect(component).toMatchSnapshot();
       });
     });
+
+    test('cloneElement', () => {
+      const component = render(
+        <EuiTextColor cloneElement>
+          <p>Content</p>
+        </EuiTextColor>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });

@@ -22,13 +22,25 @@ describe('EuiTextAlign', () => {
 
   shouldRenderCustomStyles(<EuiTextAlign textAlign="right" />);
 
-  describe('direction prop', () => {
-    ALIGNMENTS.forEach((direction) => {
-      test(`${direction} is rendered`, () => {
-        const component = render(<EuiTextAlign textAlign={direction} />);
+  describe('props', () => {
+    describe('direction', () => {
+      ALIGNMENTS.forEach((direction) => {
+        test(`${direction} is rendered`, () => {
+          const component = render(<EuiTextAlign textAlign={direction} />);
 
-        expect(component).toMatchSnapshot();
+          expect(component).toMatchSnapshot();
+        });
       });
+    });
+
+    test('cloneElement', () => {
+      const component = render(
+        <EuiTextAlign cloneElement>
+          <p>Content</p>
+        </EuiTextAlign>
+      );
+
+      expect(component).toMatchSnapshot();
     });
   });
 });
