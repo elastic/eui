@@ -186,7 +186,6 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
 
 export const EuiPageTemplate = {
   Outer: _EuiPageTemplate,
-  Inner: EuiPageInner,
   Sidebar: EuiPageSidebar,
   Header: EuiPageHeader,
   Section: EuiPageSection,
