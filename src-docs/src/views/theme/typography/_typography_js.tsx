@@ -118,7 +118,8 @@ export const FontWeightJS: FunctionComponent<ThemeRowType> = ({
 };
 
 export const FontWeightValuesJS = () => {
-  const { euiTheme } = useEuiTheme();
+  const euiThemeContext = useEuiTheme();
+  const { euiTheme } = euiThemeContext;
   const weightProps = getPropsFromComponent(EuiThemeFontWeight);
   const weightKeys = EuiThemeFontWeights;
 
@@ -200,7 +201,7 @@ export const FontScaleJS = () => {
 };
 
 export const FontScaleValuesJS = () => {
-  const { euiTheme } = useEuiTheme();
+  const euiThemeContext = useEuiTheme();
   const scaleKeys = EuiThemeFontScales;
 
   const measurementButtons = EuiThemeFontSizeMeasurements.map((m) => {
@@ -252,10 +253,11 @@ export const FontScaleValuesJS = () => {
               measurementSelected !== 'rem' ? `, '${measurementSelected}'` : ''
             })`,
             size: `${
-              euiFontSize(scale, euiTheme, measurementSelected).fontSize
+              euiFontSize(euiThemeContext, scale, measurementSelected).fontSize
             }`,
             lineHeight: `${
-              euiFontSize(scale, euiTheme, measurementSelected).lineHeight
+              euiFontSize(euiThemeContext, scale, measurementSelected)
+                .lineHeight
             }`,
             index,
           };
@@ -269,7 +271,7 @@ export const FontScaleValuesJS = () => {
             render: (sample, item) => (
               <div
                 css={css`
-                  ${euiFontSize(item.id, euiTheme, measurementSelected)}
+                  ${euiFontSize(euiThemeContext, item.id, measurementSelected)}
                 `}
               >
                 The quick brown fox jumped over the blue moon to catch a snail

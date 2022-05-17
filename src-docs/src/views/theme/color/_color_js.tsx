@@ -340,7 +340,7 @@ export const UtilsValuesJS = () => {
         return {
           id: color,
           token: `useEuiBackgroundColor('${color}')`,
-          value: euiBackgroundColor(color, euiTheme),
+          value: euiBackgroundColor(euiTheme, color),
         };
       })}
       render={(item) => <EuiColorPickerSwatch color={item.value} disabled />}
