@@ -65,7 +65,7 @@ export const AppView = ({ children, currentRoute }) => {
   return (
     <LinkWrapper>
       <GuidePageHeader onToggleLocale={toggleLocale} selectedLocale={locale} />
-      <EuiPageTemplate.Outer paddingSize="none" restrictWidth={false}>
+      <EuiPageTemplate paddingSize="none" restrictWidth={false}>
         <EuiPageTemplate.Sidebar className="guideSideNav" sticky>
           <GuidePageChrome
             currentRoute={currentRoute}
@@ -76,7 +76,7 @@ export const AppView = ({ children, currentRoute }) => {
         </EuiPageTemplate.Sidebar>
 
         {children({ theme })}
-      </EuiPageTemplate.Outer>
+      </EuiPageTemplate>
     </LinkWrapper>
   );
 };

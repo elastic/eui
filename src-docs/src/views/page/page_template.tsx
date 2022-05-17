@@ -25,7 +25,7 @@ export default ({
   grow?: EuiPageTemplateProps['grow'];
 }) => {
   return (
-    <EuiPageTemplate.Outer
+    <EuiPageTemplate
       panelled={panelled}
       restrictWidth={restrictWidth}
       bottomBorder={bottomBorder}
@@ -41,6 +41,6 @@ export default ({
       </EuiPageTemplate.Section>
       <EuiPageTemplate.Header {...header} rightSideItems={[button]} />
       <EuiPageTemplate.Section>{content}</EuiPageTemplate.Section>
-    </EuiPageTemplate.Outer>
+    </EuiPageTemplate>
   );
 };

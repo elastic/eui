@@ -37,7 +37,7 @@ export type EuiPageTemplateProps = _EuiPageOuterProps &
   };
 
 /**
- * Consumed via `EuiPageTemplate.Outer`,
+ * Consumed via `EuiPageTemplate`,
  * it controls and propogates most of the shared props per direct child
  */
 export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
@@ -184,11 +184,10 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   );
 };
 
-export const EuiPageTemplate = {
-  Outer: _EuiPageTemplate,
+export const EuiPageTemplate = Object.assign(_EuiPageTemplate, {
   Sidebar: EuiPageSidebar,
   Header: EuiPageHeader,
   Section: EuiPageSection,
   BottomBar: EuiPageBottomBar,
   EmptyPrompt: EuiPageEmptyPrompt,
-};
+});

@@ -25,7 +25,7 @@ export default ({
   grow?: EuiPageTemplateProps['grow'];
 }) => {
   return (
-    <EuiPageTemplate.Outer panelled={panelled} grow={grow}>
+    <EuiPageTemplate panelled={panelled} grow={grow}>
       {sidebar && (
         <EuiPageTemplate.Sidebar sticky={sidebarSticky}>
           {sidebar}
@@ -40,6 +40,6 @@ export default ({
       >
         {emptyPrompt}
       </EuiPageTemplate.EmptyPrompt>
-    </EuiPageTemplate.Outer>
+    </EuiPageTemplate>
   );
 };

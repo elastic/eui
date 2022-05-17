@@ -27,7 +27,7 @@ export default ({
   grow?: EuiPageTemplateProps['grow'];
 }) => {
   return (
-    <EuiPageTemplate.Outer restrictWidth={restrictWidth} grow={grow}>
+    <EuiPageTemplate restrictWidth={restrictWidth} grow={grow}>
       {sidebar && (
         <EuiPageTemplate.Sidebar sticky={sidebarSticky}>
           {sidebar}
@@ -40,6 +40,6 @@ export default ({
       {bottomBar && (
         <EuiPageTemplate.BottomBar>{bottomBar}</EuiPageTemplate.BottomBar>
       )}
-    </EuiPageTemplate.Outer>
+    </EuiPageTemplate>
   );
 };
