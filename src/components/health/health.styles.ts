@@ -10,19 +10,19 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { euiFontSize } from '../../global_styling';
 
-export const euiHealthStyles = ({ euiTheme }: UseEuiTheme) => ({
+export const euiHealthStyles = (euiTheme: UseEuiTheme) => ({
   euiHealth: css`
     display: inline-block;
   `,
   // Text sizes
   xs: css`
-    ${euiFontSize('xs', euiTheme)}
+    ${euiFontSize(euiTheme, 'xs')}
   `,
   s: css`
-    ${euiFontSize('s', euiTheme)}
+    ${euiFontSize(euiTheme, 's')}
   `,
   m: css`
-    ${euiFontSize('m', euiTheme)}
+    ${euiFontSize(euiTheme, 'm')}
   `,
   inherit: css`
     font-size: inherit;

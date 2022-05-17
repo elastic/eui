@@ -16,14 +16,15 @@ import { resetStyles as reset } from './reset';
 export interface EuiGlobalStylesProps {}
 
 export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
-  const { euiTheme, colorMode } = useEuiTheme();
+  const euiThemeContext = useEuiTheme();
+  const { euiTheme, colorMode } = euiThemeContext;
   const { base, colors, font } = euiTheme;
 
   /**
    * Declaring the top level scrollbar colors to match the theme also requires setting the sizes on Chrome
    * so that it knows to use custom styles. Therefore, we just reuse the same scrollbar mixin with thick size.
    */
-  const scrollbarStyles = euiScrollBarStyles(euiTheme, {
+  const scrollbarStyles = euiScrollBarStyles(euiThemeContext, {
     trackColor:
       colorMode === 'LIGHT'
         ? shade(colors.body, 0.03)
