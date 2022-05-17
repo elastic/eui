@@ -126,17 +126,13 @@ exports[`EuiSelectable errorMessage prop can render an element as the message 1`
     Filter options
   </p>
   <div
-    class="euiText euiSelectableMessage css-3vmilf-euiText-xs"
+    class="euiText euiSelectableMessage css-t2a0nb-euiText-xs-euiTextColor-subdued"
     data-test-subj="euiSelectableMessage"
     id="generated-id_messageContent"
   >
-    <div
-      class="css-xv0fhq-euiTextColor-subdued"
-    >
-      <span>
-        Element error!
-      </span>
-    </div>
+    <span>
+      Element error!
+    </span>
   </div>
 </div>
 `;
@@ -268,17 +264,13 @@ exports[`EuiSelectable errorMessage prop does renders the message when defined 1
     Filter options
   </p>
   <div
-    class="euiText euiSelectableMessage css-3vmilf-euiText-xs"
+    class="euiText euiSelectableMessage css-t2a0nb-euiText-xs-euiTextColor-subdued"
     data-test-subj="euiSelectableMessage"
     id="generated-id_messageContent"
   >
-    <div
-      class="css-xv0fhq-euiTextColor-subdued"
-    >
-      <p>
-        Error!
-      </p>
-    </div>
+    <p>
+      Error!
+    </p>
   </div>
 </div>
 `;
@@ -371,20 +363,16 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
     Filter options
   </p>
   <div
-    class="euiText euiSelectableMessage css-3vmilf-euiText-xs"
+    class="euiText euiSelectableMessage css-t2a0nb-euiText-xs-euiTextColor-subdued"
     data-test-subj="euiSelectableMessage"
     id="generated-id_messageContent"
   >
-    <div
-      class="css-xv0fhq-euiTextColor-subdued"
-    >
-      <p>
-        <strong>
-          default value
-        </strong>
-         doesn't match any options
-      </p>
-    </div>
+    <p>
+      <strong>
+        default value
+      </strong>
+       doesn't match any options
+    </p>
   </div>
   <div
     class="euiFormControlLayout euiFormControlLayout--fullWidth"
