@@ -66,8 +66,8 @@ export const PageTemplateExample = {
           <EuiText>
             <p>
               All templates should start with a wrapping{' '}
-              <EuiCode>EuiPageTemplate.Outer</EuiCode> to control some shared
-              settings like <EuiCode>paddingSize</EuiCode>,{' '}
+              <EuiCode>EuiPageTemplate</EuiCode> to control some shared settings
+              like <EuiCode>paddingSize</EuiCode>,{' '}
               <EuiCode>bottomBorder</EuiCode>, <EuiCode>restrictWidth</EuiCode>,
               and <EuiCode>panelled</EuiCode>. Then each direct child will be
               evaluated for if it is one of the other namespaced components. If
