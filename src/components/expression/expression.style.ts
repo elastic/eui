@@ -11,8 +11,8 @@ import {
   useEuiFontSize,
   logicalCSS,
   euiTextBreakWord,
+  euiTextTruncate,
 } from '../../global_styling';
-// import { useEuiFontSize } from '../../global_styling/mixins/_typography';
 import { UseEuiTheme } from '../../services';
 
 const _colorCSS = (color: string) => {
@@ -65,6 +65,15 @@ export const euiExpressionStyles = ({ euiTheme }: UseEuiTheme) => {
 
       &.euiExpression-isClickable {
         background-color: ${euiTheme.colors.lightestShade};
+
+        &:focus,
+        &:hover:not(:disabled) {
+          .euiExpression__description,
+          .euiExpression__value {
+            // inner child specificity so it inherits underline color from text color
+            text-decoration: underline;
+          }
+        }
       }
 
       .euiExpression__description {
@@ -87,6 +96,7 @@ export const euiExpressionStyles = ({ euiTheme }: UseEuiTheme) => {
 
       .euiExpression__description,
       .euiExpression__value {
+        ${euiTextTruncate()}
         display: inline-block;
         vertical-align: bottom;
       }

@@ -139,8 +139,7 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
     textWrap === 'truncate' && styles.truncate,
   ];
   const cssDescriptionStyle = [
-    styles.euiExpression__description,
-    styles[color],
+    isInvalid ? styles.danger : styles[color],
     uppercase && styles.isUppercase,
   ];
 
