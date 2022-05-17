@@ -249,7 +249,9 @@ export const FontScaleValuesJS = () => {
           return {
             id: scale,
             value: `useEuiFontSize('${scale}'${
-              measurementSelected !== 'rem' ? `, '${measurementSelected}'` : ''
+              measurementSelected !== 'rem'
+                ? `, { measurement: '${measurementSelected}' }`
+                : ''
             })`,
             size: `${
               euiFontSize(scale, euiTheme, { measurement: measurementSelected })
@@ -289,7 +291,7 @@ export const FontScaleValuesJS = () => {
             width: 'auto',
             valign: 'baseline',
             render: (value: React.ReactNode) => (
-              <EuiCode language="css">{value}</EuiCode>
+              <EuiCode language="js">{value}</EuiCode>
             ),
           },
           {
