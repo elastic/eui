@@ -1,3 +1,22 @@
+## [`58.0.0`](https://github.com/elastic/eui/tree/v58.0.0)
+
+- Updated `EuiForm` to use `forwardRef` ([#5866](https://github.com/elastic/eui/pull/5866))
+- Updated all CSS-in-JS shadow functions parameters to match a `(euiTheme, { color? })` order ([#5892](https://github.com/elastic/eui/pull/5892))
+- Updated `euiShadow()` parameters to `(euiTheme, size, { color? })` ([#5892](https://github.com/elastic/eui/pull/5892))
+
+**Bug fixes**
+
+- Fixed `EuiContextMenuPanel` (when used within an `EuiPopover`) to correctly return focus to its popover toggle in all scenarios, not just keyboard Escape press ([#5880](https://github.com/elastic/eui/pull/5880))
+- Fixed `EuiSelectableTemplateSitewide` to allow re-opening the search popover (if closed via Escape key) via the Enter key ([#5886](https://github.com/elastic/eui/pull/5886))
+- Fixed `EuiComboBox` by centering the enter badge in the list options. ([#5890](https://github.com/elastic/eui/pull/5890))
+- Fixed `EuiTour` position calculation issues caused by popover width styles ([#5897](https://github.com/elastic/eui/pull/5897))
+- Fixed `EuiIcon` from producing console warning in `React.StrictMode` ([#5899](https://github.com/elastic/eui/pull/5899))
+
+**Breaking changes**
+
+- Removed `watchedItemProps` from `EuiContextMenuPanel`, which now updates like a standard component and no longer needs this logic ([#5880](https://github.com/elastic/eui/pull/5880))
+- Removed `dist/eui.js` and `dist/eui.min.js` webpack bundles. Use the CommonJS (`dist/lib`) or ESM (`dist/es`) distributions instead. ([#5898](https://github.com/elastic/eui/pull/5898))
+
 ## [`57.0.0`](https://github.com/elastic/eui/tree/v57.0.0)
 
 - Updated `EuiMarkdownFormat` to allow `mailto:` links by default ([#5790](https://github.com/elastic/eui/pull/5790))
