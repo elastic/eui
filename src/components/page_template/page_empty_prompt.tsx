@@ -14,7 +14,7 @@ export type _EuiPageEmptyPromptProps = Omit<
   EuiPageSectionProps,
   'title' | 'paddingSize' | 'bottomBorder'
 > &
-  Omit<EuiEmptyPromptProps, 'body'> & {
+  EuiEmptyPromptProps & {
     panelled?: boolean;
   };
 
@@ -39,14 +39,14 @@ export const _EuiPageEmptyPrompt: FunctionComponent<_EuiPageEmptyPromptProps> = 
   let emptyPromptColor: EuiEmptyPromptProps['color'];
 
   if (panelled && color === undefined) {
-    sectionColor = 'transparent';
-    emptyPromptColor = 'plain';
+    sectionColor = 'plain';
+    emptyPromptColor = 'subdued';
   } else if (panelled && color !== 'plain') {
     sectionColor = 'plain';
-    emptyPromptColor = color || 'subdued';
+    emptyPromptColor = color;
   } else {
-    sectionColor = panelled ? 'plain' : 'transparent';
-    emptyPromptColor = color || 'subdued';
+    sectionColor = 'transparent';
+    emptyPromptColor = color || 'plain';
   }
 
   return (

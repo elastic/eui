@@ -1,7 +1,14 @@
 import React, { ReactElement } from 'react';
 import { _EuiPageRestrictWidth } from '../../../../../src/components/page/_restrict_width';
 
-import { EuiEmptyPrompt, EuiPageTemplate } from '../../../../../src';
+import {
+  EuiPage,
+  EuiPageSideBar,
+  EuiPageBody,
+  EuiEmptyPrompt,
+  EuiPageHeader,
+  EuiPageSection,
+} from '../../../../../src';
 
 export default ({
   content = <></>,
@@ -15,24 +22,22 @@ export default ({
   emptyPrompt?: boolean;
 }) => {
   return (
-    <EuiPageTemplate.Outer>
+    <EuiPage paddingSize="none">
       {sideBar && (
-        <EuiPageTemplate.Sidebar paddingSize="l">
+        <EuiPageSideBar paddingSize="l" sticky>
           {sideBar}
-        </EuiPageTemplate.Sidebar>
+        </EuiPageSideBar>
       )}
 
-      <EuiPageTemplate.Inner panelled={Boolean(sideBar)}>
+      <EuiPageBody paddingSize="none" panelled={Boolean(sideBar)}>
         {pageHeader && (
-          <EuiPageTemplate.Header
-            bottomBorder={sideBar ? true : 'extended'}
-            pageTitle="Page title"
-            paddingSize="l"
-          />
+          <EuiPageSection bottomBorder={sideBar ? true : 'extended'}>
+            <EuiPageHeader pageTitle="Page title" />
+          </EuiPageSection>
         )}
 
         {emptyPrompt ? (
-          <EuiPageTemplate.Section
+          <EuiPageSection
             color={pageHeader ? 'plain' : 'transparent'}
             alignment={'center'}
             grow
@@ -42,13 +47,13 @@ export default ({
               body={content}
               color={pageHeader || sideBar ? 'subdued' : 'plain'}
             />
-          </EuiPageTemplate.Section>
+          </EuiPageSection>
         ) : (
-          <EuiPageTemplate.Section color={'plain'} alignment={'top'} grow>
+          <EuiPageSection color={'plain'} alignment={'top'} grow>
             {content}
-          </EuiPageTemplate.Section>
+          </EuiPageSection>
         )}
-      </EuiPageTemplate.Inner>
-    </EuiPageTemplate.Outer>
+      </EuiPageBody>
+    </EuiPage>
   );
 };

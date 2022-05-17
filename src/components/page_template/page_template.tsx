@@ -35,7 +35,12 @@ export type EuiPageTemplateProps = _EuiPageOuterProps &
      */
     offset?: number;
   };
-const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
+
+/**
+ * Consumed via `EuiPageTemplate.Outer`,
+ * it controls and propogates most of the shared props per direct child
+ */
+export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   children,
   // Shared props
   restrictWidth = true,
@@ -128,7 +133,7 @@ const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
     ) {
       const section = React.cloneElement(child, {
         key: `emptyPrompt${index}`,
-        panelled: innerPanelled() ? false : panelled,
+        panelled: innerPanelled() ? true : panelled,
         grow: true,
         ...child.props,
       });

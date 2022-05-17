@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { _EuiPageSidebarProps } from '../../../../src/components/page_template/sidebar';
 
 import {
   EuiText,
@@ -10,28 +11,38 @@ import {
 export default ({
   button = <></>,
   content = <></>,
+  sidebar,
   header,
   panelled,
-  restrictWidth,
-  bottomBorder,
+  bottomBorder = true,
+  sidebarSticky,
   grow,
 }: {
   button: ReactElement;
   content: ReactElement;
-  header: EuiPageHeaderProps;
+  sidebar?: ReactElement;
+  header?: EuiPageHeaderProps;
   panelled?: EuiPageTemplateProps['panelled'];
-  restrictWidth?: EuiPageTemplateProps['restrictWidth'];
   bottomBorder?: EuiPageTemplateProps['bottomBorder'];
+  // For fullscreen only
+  sidebarSticky?: _EuiPageSidebarProps['sticky'];
   grow?: EuiPageTemplateProps['grow'];
 }) => {
   return (
     <EuiPageTemplate.Outer
       panelled={panelled}
-      restrictWidth={restrictWidth}
       bottomBorder={bottomBorder}
       grow={grow}
     >
-      <EuiPageTemplate.Section color="subdued" bottomBorder="extended">
+      {sidebar && (
+        <EuiPageTemplate.Sidebar sticky={sidebarSticky}>
+          {sidebar}
+        </EuiPageTemplate.Sidebar>
+      )}
+      {header && (
+        <EuiPageTemplate.Header {...header} rightSideItems={[button]} />
+      )}
+      <EuiPageTemplate.Section bottomBorder={bottomBorder}>
         <EuiText textAlign="center">
           <strong>
             Stack EuiPageTemplate sections and headers to create your custom
@@ -39,7 +50,6 @@ export default ({
           </strong>
         </EuiText>
       </EuiPageTemplate.Section>
-      <EuiPageTemplate.Header {...header} rightSideItems={[button]} />
       <EuiPageTemplate.Section>{content}</EuiPageTemplate.Section>
     </EuiPageTemplate.Outer>
   );

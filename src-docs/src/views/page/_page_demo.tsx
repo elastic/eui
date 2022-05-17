@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React, { useState, FunctionComponent } from 'react';
+import React, { useState, FunctionComponent, ReactElement } from 'react';
 import { useRouteMatch } from 'react-router';
 import {
   EuiImage,
@@ -39,40 +39,57 @@ const ExitFullscreenDemoButton = () => {
   );
 };
 
+type toggles = {
+  pageHeader?: boolean;
+  panelled?: boolean;
+  restrictedWidth?: boolean;
+  sidebar?: boolean;
+  sidebarSticky?: boolean;
+  border?: boolean;
+};
+
+type showing = {
+  bottomBar?: boolean;
+  emptyPrompt?: boolean;
+  tabs?: boolean;
+  sidebar?: boolean;
+};
+
 export const PageDemo: FunctionComponent<
   Pick<GuideSectionProps, 'props'> & {
-    bottomBar?: boolean;
-    emptyPrompt?: boolean;
     fullscreen?: boolean;
-    showTabs?: boolean;
-    sidebar?: boolean;
     slug: string;
-    togglePageHeader?: boolean;
-    togglePanelled?: boolean;
-    toggleRestrictedWidth?: boolean;
-    toggleSidebar?: boolean;
-    toggleSidebarSticky?: boolean;
+    show?: showing;
+    toggle?: toggles;
+    template?: ReactElement;
+    source?: string;
   }
 > = ({
-  bottomBar,
-  emptyPrompt,
   fullscreen,
-  showTabs,
   props,
-  sidebar = true,
   slug,
-  togglePageHeader = true,
-  togglePanelled = true,
-  toggleRestrictedWidth = false,
-  toggleSidebar = false,
-  toggleSidebarSticky = false,
+  show = {
+    sidebar: false,
+  },
+  toggle = {
+    pageHeader: false,
+    panelled: false,
+    restrictedWidth: false,
+    sidebar: false,
+    sidebarSticky: false,
+    border: false,
+  },
+  template: Template = CustomTemplateExample,
+  source = CustomTemplateExampleSource,
 }) => {
   const { path } = useRouteMatch();
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
 
   const [showHeader, setShowHeader] = useState<boolean>(true);
   const [showPanelled, setShowPanelled] = useState<boolean>(true);
-  const [showSidebar, setShowSidebar] = useState<boolean>(sidebar);
+  const [showSidebar, setShowSidebar] = useState<boolean>(
+    Boolean(show.sidebar)
+  );
   const [showSidebarSticky, setShowSidebarSticky] = useState<boolean>(false);
 
   // Restrict width combos
@@ -107,11 +124,11 @@ export const PageDemo: FunctionComponent<
     </>
   );
 
-  const _emptyPrompt = emptyPrompt ? (
+  const _emptyPrompt = show.emptyPrompt ? (
     <EuiImage size={'l'} alt="Fake paragraph" url={contentCenterSvg} />
   ) : undefined;
 
-  const _bottomBar = bottomBar ? (
+  const _bottomBar = show.bottomBar ? (
     <EuiButton size="s" color="ghost">
       Save
     </EuiButton>
@@ -122,10 +139,10 @@ export const PageDemo: FunctionComponent<
         iconType: 'logoElastic',
         pageTitle: 'Page title',
         rightSideItems: [button],
-        description: toggleRestrictedWidth ? (
+        description: toggle.restrictedWidth ? (
           <>{`Restricting the width to ${restrictWidth}.`}</>
         ) : undefined,
-        tabs: showTabs
+        tabs: show.tabs
           ? [
               { label: 'Tab 1', isSelected: true },
               {
@@ -138,97 +155,97 @@ export const PageDemo: FunctionComponent<
 
   const controls = (
     <EuiFlexGroup alignItems="center">
-      {toggleRestrictedWidth && (
-        <>
-          <EuiFlexItem grow={false}>
-            <div>
-              Restrict width:&emsp;
-              <EuiButtonGroup
-                options={[
-                  {
-                    id: 'radioTrue',
-                    label: 'true',
-                  },
-                  {
-                    id: 'radioFalse',
-                    label: 'false',
-                  },
-                  {
-                    id: 'radioPercent',
-                    label: '75%',
-                  },
-                ]}
-                idSelected={
-                  restrictWidth === true
-                    ? 'radioTrue'
-                    : restrictWidth === false
-                    ? 'radioFalse'
-                    : 'radioPercent'
-                }
-                onChange={(id) =>
-                  setRestrictWidth(
-                    id === 'radioTrue'
-                      ? true
-                      : id === 'radioFalse'
-                      ? false
-                      : '75%'
-                  )
-                }
-                name="restrictedWidthGroup"
-                legend={'Restriced width'}
-                buttonSize="compressed"
-                color="primary"
-              />
-            </div>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <div>
-              Bottom border:&emsp;
-              <EuiButtonGroup
-                options={[
-                  {
-                    id: 'borderTrue',
-                    label: 'true',
-                  },
-                  {
-                    id: 'borderFalse',
-                    label: 'false',
-                  },
-                  {
-                    id: 'borderExtended',
-                    label: 'extended',
-                  },
-                ]}
-                idSelected={
-                  bottomBorder === true || bottomBorder === undefined
-                    ? 'borderTrue'
-                    : bottomBorder === false
-                    ? 'borderFalse'
-                    : 'borderExtended'
-                }
-                onChange={(id) => {
-                  switch (id) {
-                    case 'borderExtended':
-                      setBottomBorder('extended');
-                      break;
-                    case 'borderFalse':
-                      setBottomBorder(false);
-                      break;
-                    default:
-                      setBottomBorder(true);
-                      break;
-                  }
-                }}
-                name="restrictedWidthGroup"
-                legend={'Restriced width'}
-                buttonSize="compressed"
-                color="primary"
-              />
-            </div>
-          </EuiFlexItem>
-        </>
+      {toggle.restrictedWidth && (
+        <EuiFlexItem grow={false}>
+          <div>
+            Restrict width:&emsp;
+            <EuiButtonGroup
+              options={[
+                {
+                  id: 'radioTrue',
+                  label: 'true',
+                },
+                {
+                  id: 'radioFalse',
+                  label: 'false',
+                },
+                {
+                  id: 'radioPercent',
+                  label: '75%',
+                },
+              ]}
+              idSelected={
+                restrictWidth === true
+                  ? 'radioTrue'
+                  : restrictWidth === false
+                  ? 'radioFalse'
+                  : 'radioPercent'
+              }
+              onChange={(id) =>
+                setRestrictWidth(
+                  id === 'radioTrue'
+                    ? true
+                    : id === 'radioFalse'
+                    ? false
+                    : '75%'
+                )
+              }
+              name="restrictedWidthGroup"
+              legend={'Restriced width'}
+              buttonSize="compressed"
+              color="primary"
+            />
+          </div>
+        </EuiFlexItem>
       )}
-      {togglePageHeader && (
+      {toggle.border && (
+        <EuiFlexItem grow={false}>
+          <div>
+            Bottom border:&emsp;
+            <EuiButtonGroup
+              options={[
+                {
+                  id: 'borderTrue',
+                  label: 'true',
+                },
+                {
+                  id: 'borderFalse',
+                  label: 'false',
+                },
+                {
+                  id: 'borderExtended',
+                  label: 'extended',
+                },
+              ]}
+              idSelected={
+                bottomBorder === true || bottomBorder === undefined
+                  ? 'borderTrue'
+                  : bottomBorder === false
+                  ? 'borderFalse'
+                  : 'borderExtended'
+              }
+              onChange={(id) => {
+                switch (id) {
+                  case 'borderExtended':
+                    setBottomBorder('extended');
+                    break;
+                  case 'borderFalse':
+                    setBottomBorder(false);
+                    break;
+                  default:
+                    setBottomBorder(true);
+                    break;
+                }
+              }}
+              name="restrictedWidthGroup"
+              legend={'Restriced width'}
+              buttonSize="compressed"
+              color="primary"
+            />
+          </div>
+        </EuiFlexItem>
+      )}
+      {toggle.pageHeader && (
         <EuiFlexItem grow={false}>
           <EuiSwitch
             label="Page header"
@@ -238,7 +255,7 @@ export const PageDemo: FunctionComponent<
           />
         </EuiFlexItem>
       )}
-      {toggleSidebar && (
+      {toggle.sidebar && (
         <EuiFlexItem grow={false}>
           <EuiSwitch
             label="Sidebar"
@@ -248,17 +265,17 @@ export const PageDemo: FunctionComponent<
           />
         </EuiFlexItem>
       )}
-      {toggleSidebarSticky && (
+      {toggle.sidebarSticky && (
         <EuiFlexItem grow={false}>
           <EuiSwitch
-            label="Fixed sidebar"
+            label="Sticky sidebar"
             checked={showSidebarSticky}
             onChange={() => setShowSidebarSticky((showing) => !showing)}
             compressed
           />
         </EuiFlexItem>
       )}
-      {togglePanelled && (
+      {toggle.panelled && (
         <EuiFlexItem grow={false}>
           <EuiSwitch
             label="Panelled"
@@ -273,7 +290,8 @@ export const PageDemo: FunctionComponent<
   );
 
   const render = (
-    <CustomTemplateExample
+    // @ts-expect-error Meh
+    <Template
       button={button}
       content={content}
       sidebar={showSidebar ? sideNav : undefined}
@@ -306,7 +324,7 @@ export const PageDemo: FunctionComponent<
       source={[
         {
           type: GuideSectionTypes.TSX,
-          code: CustomTemplateExampleSource,
+          code: source,
         },
       ]}
       props={props}

@@ -6,14 +6,23 @@ import { PageDemo } from './_page_demo';
 import {
   EuiCode,
   EuiPageHeader,
-  EuiPageSideBar,
   EuiText,
-  EuiEmptyPrompt,
-  EuiPageTemplate,
   EuiCallOut,
   EuiSpacer,
-  EuiBottomBar,
-} from '../../../../src/components';
+  EuiPageSection,
+} from '../../../../src';
+
+import { _EuiPageTemplate } from '../../../../src/components/page_template/page_template';
+import { _EuiPageSidebar } from '../../../../src/components/page_template/sidebar';
+import { _EuiPageBottomBar } from '../../../../src/components/page_template/page_bottom_bar';
+import { _EuiPageEmptyPrompt } from '../../../../src/components/page_template/page_empty_prompt';
+
+import Sidebar from './page_template_sidebar';
+const SidebarSource = require('!!raw-loader!./page_template_sidebar');
+import BottomBar from './page_template_bottom_bar';
+const BottomBarSource = require('!!raw-loader!./page_template_bottom_bar');
+import Empty from './page_template_empty';
+const EmptySource = require('!!raw-loader!./page_template_empty');
 
 export const PageTemplateExample = {
   title: 'Page template',
@@ -46,67 +55,113 @@ export const PageTemplateExample = {
           .
         </p>
       </EuiCallOut>
-      <EuiSpacer />
-      <EuiCallOut
-        color="danger"
-        iconType="alert"
-        title="Do not nest multiple EuiPageTemplate components."
-      >
-        <p>
-          The template is a very fragile component that will cause unexpected
-          results if nested.
-        </p>
-      </EuiCallOut>
     </>
   ),
   sections: [
     {
-      title: 'Simple page with header',
+      title: 'Simple page with header and sections',
       wrapText: false,
       text: (
         <>
           <EuiText>
             <p>
-              For ease of placing as specific page title using{' '}
-              <strong>EuiPageHeader</strong> within your page layouts,{' '}
-              <strong>EuiPageTemplate</strong> provides passing the{' '}
-              <strong>EuiPageHeader</strong> props directly to the{' '}
-              <EuiCode>pageHeader</EuiCode> prop.
+              All templates should start with a wrapping{' '}
+              <EuiCode>EuiPageTemplate.Outer</EuiCode> to control some shared
+              settings like <EuiCode>paddingSize</EuiCode>,{' '}
+              <EuiCode>bottomBorder</EuiCode>, <EuiCode>restrictWidth</EuiCode>,
+              and <EuiCode>panelled</EuiCode>. Then each direct child will be
+              evaluated for if it is one of the other namespaced components. If
+              so, it will place it in the appropriate spot and apply the
+              appropriate props based on the full configuration of child
+              elements. These namespaced components include:
             </p>
-            <p>
-              When a page header is provided this way, it will always be the
-              first content displayed within the page contents. For full
-              customization, we suggest providing the{' '}
-              <EuiCode>{'<EuiPageHeader />'}</EuiCode> component directly as a
-              child.
-            </p>
+            <ul>
+              <li>
+                <strong>EuiPageTemplate.Sidebar</strong> extends{' '}
+                <Link to="/layout/page-components#page-body-and-sidebar">
+                  <strong>EuiPageSidebar</strong>
+                </Link>
+              </li>
+              <li>
+                <strong>EuiPageTemplate.Header</strong> extends{' '}
+                <Link to="/layout/page-header">
+                  <strong>EuiPageHeader</strong>
+                </Link>
+              </li>
+              <li>
+                <strong>EuiPageTemplate.Section</strong> extends{' '}
+                <Link to="/layout/page-components#page-sections">
+                  <strong>EuiPageSection</strong>
+                </Link>
+              </li>
+              <li>
+                <strong>EuiPageTemplate.BottomBar</strong> extends{' '}
+                <Link to="/layout/bottom-bar">
+                  <strong>EuiBottomBar</strong>
+                </Link>
+              </li>
+              <li>
+                <strong>EuiPageTemplate.EmptyPrompt</strong> extends{' '}
+                <Link to="/display/empty-prompt">
+                  <strong>EuiEmptyPrompt</strong>
+                </Link>
+              </li>
+            </ul>
           </EuiText>
+          <EuiSpacer />
           <EuiCallOut
             iconType="alert"
             color="warning"
-            title="Each direct child of EuiPageTemplate.Outer will be wrapped in EuiPageTemplate.Section"
+            title="Each direct child that is not a namespaced component will be wrapped in EuiPageTemplate.Section"
           >
             <p>
-              This means be careful when placing spacers or other non-content
-              based components as direct children. React fragments will be
-              treated as a single child. .
+              So be careful when placing spacers or other non-content based
+              components as direct children. React fragments will be treated as
+              a single child.
             </p>
           </EuiCallOut>
+          <EuiSpacer />
+          <EuiText>
+            <p>
+              With the exception of Sidebar and BottomBar, the stacking order of
+              the page contents is determined by the order they are passed in.
+              You can also override the outer props by simply applying them
+              directly to the child element.
+            </p>
+          </EuiText>
           <PageDemo
             slug="full-page"
-            showTabs
-            sidebar={false}
+            toggle={{
+              panelled: true,
+              restrictedWidth: true,
+            }}
+            show={{
+              tabs: true,
+            }}
             props={{
-              EuiPageTemplate,
-              EuiPageHeader,
+              'EuiPageTemplate.Outer': _EuiPageTemplate,
+              'EuiPageTemplate.Header': EuiPageHeader,
+              'EuiPageTemplate.Section': EuiPageSection,
             }}
           />
         </>
       ),
       fullScreen: {
-        slug: 'full-page',
-        demo: <PageDemo slug="full-page" fullscreen showTabs sidebar={false} />,
         showButton: false,
+        slug: 'full-page',
+        demo: (
+          <PageDemo
+            slug="full-page"
+            fullscreen
+            toggle={{
+              panelled: true,
+              restrictedWidth: true,
+            }}
+            show={{
+              tabs: true,
+            }}
+          />
+        ),
       },
     },
     {
@@ -117,23 +172,44 @@ export const PageTemplateExample = {
           <EuiText>
             <p>
               If your application requires the use of side navigation or other
-              sidebar content, you can pass that content directly to{' '}
-              <EuiCode>pageSideBar</EuiCode>. The template will automatically
-              adjust the layout when this content is provided.
+              sidebar content, you can pass and{' '}
+              <strong>EuiPageTemplate.Sidebar</strong>
+              component containing your sidebar content. The template will
+              automatically adjust the layout when this content is provided.
             </p>
             <p>
-              You can make further adjustments to this portion of the template
-              through the <EuiCode>pageSideBarProps</EuiCode> prop which is an
-              object <strong>EuiPageSideBar</strong> props.
+              This component will set its content to stick to the top of the
+              browser window and scroll independently of the rest of the layout.
+              If you have any fixed{' '}
+              <Link to="/display/page-header">
+                <strong>EuiHeaders</strong>
+              </Link>
+              , these will be accounted for as well. You can turn this behavior
+              off with <EuiCode language="tsx">{'sticky={false}'}</EuiCode>.
+            </p>
+            <p>
+              Typically when a sidebar is included and{' '}
+              <EuiCode>restrictedWidth</EuiCode> is defined, we recommend
+              keeping the{' '}
+              <EuiCode language="tsx">{'borderBottom={true}'}</EuiCode> though
+              you can also expand particular sections with{' '}
+              <EuiCode language="tsx">{'borderBottom="extended"'}</EuiCode>.
             </p>
           </EuiText>
           <PageDemo
             slug="sidebar"
-            toggleSidebar={true}
-            togglePageHeader={false}
+            toggle={{
+              panelled: true,
+              sidebar: true,
+              border: true,
+            }}
+            show={{
+              sidebar: true,
+            }}
+            template={Sidebar}
+            source={SidebarSource}
             props={{
-              EuiPageTemplate,
-              EuiPageSideBar,
+              'EuiPageTemplate.Sidebar': _EuiPageSidebar,
             }}
           />
         </>
@@ -144,54 +220,19 @@ export const PageTemplateExample = {
           <PageDemo
             slug="sidebar"
             fullscreen
-            toggleSidebar={true}
-            togglePageHeader={false}
-            toggleSidebarSticky={true}
-          />
-        ),
-        showButton: false,
-      },
-    },
-    {
-      title: 'Restricting page width',
-      wrapText: false,
-      text: (
-        <>
-          <EuiText>
-            <p>
-              Most content does not scale well to the full width of the window.
-              You can restrict this to EUI&apos;s default max-width and center
-              the page by setting the <EuiCode>restrictWidth</EuiCode> prop to{' '}
-              <EuiCode>true</EuiCode>. You can also pass an integer to this
-              property to set the max-width to a custom pixel value or a string
-              with a custom measurement.
-            </p>
-          </EuiText>
-          <PageDemo
-            slug="restricting-page-width"
-            togglePageHeader={false}
-            toggleSidebar={true}
-            togglePanelled={false}
-            toggleRestrictedWidth={true}
-            props={{
-              EuiPageTemplate,
+            template={Sidebar}
+            toggle={{
+              panelled: true,
+              sidebar: true,
+              sidebarSticky: true,
+              border: true,
+            }}
+            show={{
+              sidebar: true,
             }}
           />
-        </>
-      ),
-      fullScreen: {
-        showButton: false,
-        slug: 'restricting-page-width',
-        demo: (
-          <PageDemo
-            slug="restricting-page-width"
-            togglePageHeader={false}
-            toggleSidebar={true}
-            togglePanelled={false}
-            toggleRestrictedWidth={true}
-            fullscreen
-          />
         ),
+        showButton: false,
       },
     },
     {
@@ -207,9 +248,9 @@ export const PageTemplateExample = {
               </Link>{' '}
               can be tricky to use and account for any sidebars.{' '}
               <strong>EuiPageTemplate</strong> handles this nicely by supplying
-              a <EuiCode>bottomBar</EuiCode> prop for passing the contents of
-              your bottom bar, and <EuiCode>bottomBarProps</EuiCode> that
-              extends <strong>EuiBottomBar</strong>.
+              a <strong>EuiPageTemplate.BottomBar</strong> component for passing
+              the contents of your bottom bar that extends{' '}
+              <strong>EuiBottomBar</strong>.
             </p>
             <p>
               It uses the <EuiCode>sticky</EuiCode> position so that it sticks
@@ -218,26 +259,38 @@ export const PageTemplateExample = {
               It also means not needing to accommodate for the height of the bar
               in the body element.
             </p>
+            <p>
+              It will also keep its content contstrained to the{' '}
+              <EuiCode>restrictedWidth</EuiCode> value so the contents are
+              always horizontally aligned.
+            </p>
           </EuiText>
           <EuiSpacer />
+
           <EuiCallOut
+            iconType="alert"
             color="warning"
-            title={
-              <>
-                <strong>EuiPageTemplate</strong> only supports bottom bars in
-                the <EuiCode>default</EuiCode> template.
-              </>
-            }
+            title="For proper alignment in case of short content, at least on EuiPageTemplate.Section must have grow = true."
           />
           <PageDemo
             slug="bottom-bar"
+            template={BottomBar}
+            source={BottomBarSource}
             bottomBar
             toggleSidebar
+            toggleRestrictedWidth
             togglePageHeader={false}
             togglePanelled={false}
+            toggle={{
+              restrictedWidth: true,
+              sidebar: true,
+            }}
+            show={{
+              bottomBar: true,
+              sidebar: true,
+            }}
             props={{
-              EuiPageTemplate,
-              EuiBottomBar,
+              'EuiPageTemplate.BottomBar': _EuiPageBottomBar,
             }}
           />
         </>
@@ -248,11 +301,17 @@ export const PageTemplateExample = {
         demo: (
           <PageDemo
             slug="bottom-bar"
-            bottomBar
-            toggleSidebar
-            togglePageHeader={false}
-            togglePanelled={false}
             fullscreen
+            template={BottomBar}
+            toggle={{
+              restrictedWidth: true,
+              sidebar: true,
+              sidebarSticky: true,
+            }}
+            show={{
+              bottomBar: true,
+              sidebar: true,
+            }}
           />
         ),
       },
@@ -269,22 +328,32 @@ export const PageTemplateExample = {
               <Link to="/display/empty-prompt">
                 <strong>EuiEmptyPrompt</strong>
               </Link>{' '}
-              to direct users on next steps. This prompt can be centered
-              vertically and horizontally by using{' '}
-              <EuiCode>{'template="centeredBody"'}</EuiCode>.
+              to direct users on next steps. Using{' '}
+              <strong>EuiPageTemplate.EmptyPrompt</strong> will automatically
+              center the prompt vertically and horizontally.
             </p>
             <p>
-              We do not typically recommend this template when used in
-              conjunction with a page header. Instead, we recommend using{' '}
-              <EuiCode>{'template="centeredContent"'}</EuiCode> with a{' '}
-              <EuiCode>subdued</EuiCode> <strong>EuiEmptyPrompt</strong> color.
+              The prompt&apos;s panel color depends on the other configurations
+              but can be manually passed in via the <EuiCode>color</EuiCode>{' '}
+              prop.
             </p>
           </EuiText>
           <PageDemo
             slug="centered-body"
-            emptyPrompt
-            toggleSidebar
-            props={{ EuiPageTemplate, EuiEmptyPrompt }}
+            template={Empty}
+            source={EmptySource}
+            toggle={{
+              pageHeader: true,
+              panelled: true,
+              sidebar: true,
+            }}
+            show={{
+              emptyPrompt: true,
+              sidebar: true,
+            }}
+            props={{
+              'EuiPageTemplate.EmptyPrompt': _EuiPageEmptyPrompt,
+            }}
           />
         </>
       ),
@@ -295,9 +364,17 @@ export const PageTemplateExample = {
         demo: (
           <PageDemo
             slug="centered-body"
-            toggleSidebar
-            emptyPrompt={true}
             fullscreen
+            template={Empty}
+            toggle={{
+              pageHeader: true,
+              panelled: true,
+              sidebar: true,
+            }}
+            show={{
+              emptyPrompt: true,
+              sidebar: true,
+            }}
           />
         ),
       },
