@@ -925,7 +925,7 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
           role="progressbar"
         />
         <div
-          class="euiText euiText--small"
+          class="euiText css-1oeurl1-euiText-s"
         >
           <p>
             Please wait

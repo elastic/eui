@@ -55,28 +55,24 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has mul
       Please address the highlighted errors.
     </p>
     <div
-      class="euiText css-1a1mxin-euiText-s-euiCallOut__description"
+      class="euiText css-1ojttwn-euiText-s-euiTextColor-default-euiCallOut__description"
     >
-      <div
-        class="css-7fidck-euiTextColor-default"
-      >
-        <ul>
-          <li
-            class="euiForm__error"
-          >
-            <span>
-              This is one error
-            </span>
-          </li>
-          <li
-            class="euiForm__error"
-          >
-            <span>
-              This is another error
-            </span>
-          </li>
-        </ul>
-      </div>
+      <ul>
+        <li
+          class="euiForm__error"
+        >
+          <span>
+            This is one error
+          </span>
+        </li>
+        <li
+          class="euiForm__error"
+        >
+          <span>
+            This is another error
+          </span>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
@@ -100,21 +96,17 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has one
       Please address the highlighted errors.
     </p>
     <div
-      class="euiText css-1a1mxin-euiText-s-euiCallOut__description"
+      class="euiText css-1ojttwn-euiText-s-euiTextColor-default-euiCallOut__description"
     >
-      <div
-        class="css-7fidck-euiTextColor-default"
-      >
-        <ul>
-          <li
-            class="euiForm__error"
-          >
-            <span>
-              This is one error
-            </span>
-          </li>
-        </ul>
-      </div>
+      <ul>
+        <li
+          class="euiForm__error"
+        >
+          <span>
+            This is one error
+          </span>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

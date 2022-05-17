@@ -15,13 +15,9 @@ exports[`EuiFormControlLayoutDelimited is rendered 1`] = `
       start
     </span>
     <div
-      class="euiText euiFormControlLayoutDelimited__delimeter css-1oeurl1-euiText-s"
+      class="euiText euiFormControlLayoutDelimited__delimeter css-11v1g52-euiText-s-euiTextColor-subdued"
     >
-      <div
-        class="css-xv0fhq-euiTextColor-subdued"
-      >
-        →
-      </div>
+      →
     </div>
     <span
       class="euiFormControlLayoutDelimited__input"
@@ -45,15 +41,11 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a node 1`]
       start
     </span>
     <div
-      class="euiText euiFormControlLayoutDelimited__delimeter css-1oeurl1-euiText-s"
+      class="euiText euiFormControlLayoutDelimited__delimeter css-11v1g52-euiText-s-euiTextColor-subdued"
     >
-      <div
-        class="css-xv0fhq-euiTextColor-subdued"
-      >
-        <span
-          data-euiicon-type="alert"
-        />
-      </div>
+      <span
+        data-euiicon-type="alert"
+      />
     </div>
     <span
       class="euiFormControlLayoutDelimited__input"
@@ -77,13 +69,9 @@ exports[`EuiFormControlLayoutDelimited props delimiter is rendered as a string 1
       start
     </span>
     <div
-      class="euiText euiFormControlLayoutDelimited__delimeter css-1oeurl1-euiText-s"
+      class="euiText euiFormControlLayoutDelimited__delimeter css-11v1g52-euiText-s-euiTextColor-subdued"
     >
-      <div
-        class="css-xv0fhq-euiTextColor-subdued"
-      >
-        +
-      </div>
+      +
     </div>
     <span
       class="euiFormControlLayoutDelimited__input"

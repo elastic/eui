@@ -49,15 +49,11 @@ exports[`EuiNotificationEvent is rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
-        class="euiText css-1oeurl1-euiText-s"
+        class="euiText css-11v1g52-euiText-s-euiTextColor-subdued"
       >
-        <div
-          class="css-xv0fhq-euiTextColor-subdued"
-        >
-          <p>
-            message
-          </p>
-        </div>
+        <p>
+          message
+        </p>
       </div>
     </div>
   </div>
@@ -114,15 +110,11 @@ exports[`EuiNotificationEvent props badgeColor is rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
-        class="euiText css-1oeurl1-euiText-s"
+        class="euiText css-11v1g52-euiText-s-euiTextColor-subdued"
       >
-        <div
-          class="css-xv0fhq-euiTextColor-subdued"
-        >
-          <p>
-            message
-          </p>
-        </div>
+        <p>
+          message
+        </p>
       </div>
     </div>
   </div>
@@ -230,15 +222,11 @@ exports[`EuiNotificationEvent props headingLevel is rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
-        class="euiText css-1oeurl1-euiText-s"
+        class="euiText css-11v1g52-euiText-s-euiTextColor-subdued"
       >
-        <div
-          class="css-xv0fhq-euiTextColor-subdued"
-        >
-          <p>
-            message
-          </p>
-        </div>
+        <p>
+          message
+        </p>
       </div>
     </div>
   </div>
@@ -300,15 +288,11 @@ exports[`EuiNotificationEvent props iconAriaLabel is rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
-        class="euiText css-1oeurl1-euiText-s"
+        class="euiText css-11v1g52-euiText-s-euiTextColor-subdued"
       >
-        <div
-          class="css-xv0fhq-euiTextColor-subdued"
-        >
-          <p>
-            message
-          </p>
-        </div>
+        <p>
+          message
+        </p>
       </div>
     </div>
   </div>
@@ -369,15 +353,11 @@ exports[`EuiNotificationEvent props iconType is rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
-        class="euiText css-1oeurl1-euiText-s"
+        class="euiText css-11v1g52-euiText-s-euiTextColor-subdued"
       >
-        <div
-          class="css-xv0fhq-euiTextColor-subdued"
-        >
-          <p>
-            message
-          </p>
-        </div>
+        <p>
+          message
+        </p>
       </div>
     </div>
   </div>
@@ -451,15 +431,11 @@ exports[`EuiNotificationEvent props isRead  is rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
-        class="euiText css-1oeurl1-euiText-s"
+        class="euiText css-11v1g52-euiText-s-euiTextColor-subdued"
       >
-        <div
-          class="css-xv0fhq-euiTextColor-subdued"
-        >
-          <p>
-            message
-          </p>
-        </div>
+        <p>
+          message
+        </p>
       </div>
     </div>
   </div>
@@ -515,15 +491,11 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
-        class="euiText css-1oeurl1-euiText-s"
+        class="euiText css-11v1g52-euiText-s-euiTextColor-subdued"
       >
-        <div
-          class="css-xv0fhq-euiTextColor-subdued"
-        >
-          <p>
-            message 1
-          </p>
-        </div>
+        <p>
+          message 1
+        </p>
       </div>
       <div
         class="euiAccordion euiNotificationEventMessages__accordion"
@@ -561,26 +533,18 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
                 class="euiNotificationEventMessages__accordionContent"
               >
                 <div
-                  class="euiText css-1oeurl1-euiText-s"
+                  class="euiText css-11v1g52-euiText-s-euiTextColor-subdued"
                 >
-                  <div
-                    class="css-xv0fhq-euiTextColor-subdued"
-                  >
-                    <p>
-                      message 2
-                    </p>
-                  </div>
+                  <p>
+                    message 2
+                  </p>
                 </div>
                 <div
-                  class="euiText css-1oeurl1-euiText-s"
+                  class="euiText css-11v1g52-euiText-s-euiTextColor-subdued"
                 >
-                  <div
-                    class="css-xv0fhq-euiTextColor-subdued"
-                  >
-                    <p>
-                      message 3
-                    </p>
-                  </div>
+                  <p>
+                    message 3
+                  </p>
                 </div>
               </div>
             </div>
@@ -641,15 +605,11 @@ exports[`EuiNotificationEvent props primaryAction is rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
-        class="euiText css-1oeurl1-euiText-s"
+        class="euiText css-11v1g52-euiText-s-euiTextColor-subdued"
       >
-        <div
-          class="css-xv0fhq-euiTextColor-subdued"
-        >
-          <p>
-            message
-          </p>
-        </div>
+        <p>
+          message
+        </p>
       </div>
     </div>
     <div
@@ -724,15 +684,11 @@ exports[`EuiNotificationEvent props primaryActionProps is rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
-        class="euiText css-1oeurl1-euiText-s"
+        class="euiText css-11v1g52-euiText-s-euiTextColor-subdued"
       >
-        <div
-          class="css-xv0fhq-euiTextColor-subdued"
-        >
-          <p>
-            message
-          </p>
-        </div>
+        <p>
+          message
+        </p>
       </div>
     </div>
     <div
@@ -812,15 +768,11 @@ exports[`EuiNotificationEvent props severity  is rendered 1`] = `
       class="euiNotificationEventMessages"
     >
       <div
-        class="euiText css-1oeurl1-euiText-s"
+        class="euiText css-11v1g52-euiText-s-euiTextColor-subdued"
       >
-        <div
-          class="css-xv0fhq-euiTextColor-subdued"
-        >
-          <p>
-            message
-          </p>
-        </div>
+        <p>
+          message
+        </p>
       </div>
     </div>
   </div>

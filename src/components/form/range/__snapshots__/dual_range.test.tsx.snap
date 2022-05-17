@@ -524,13 +524,9 @@ exports[`EuiDualRange props loading should display when showInput="inputWithPopo
             value="1"
           />
           <div
-            class="euiText euiFormControlLayoutDelimited__delimeter css-1oeurl1-euiText-s"
+            class="euiText euiFormControlLayoutDelimited__delimeter css-11v1g52-euiText-s-euiTextColor-subdued"
           >
-            <div
-              class="css-xv0fhq-euiTextColor-subdued"
-            >
-              →
-            </div>
+            →
           </div>
           <input
             aria-label="aria-label"
@@ -613,13 +609,9 @@ exports[`EuiDualRange props slider should display in popover 1`] = `
             value="1"
           />
           <div
-            class="euiText euiFormControlLayoutDelimited__delimeter css-1oeurl1-euiText-s"
+            class="euiText euiFormControlLayoutDelimited__delimeter css-11v1g52-euiText-s-euiTextColor-subdued"
           >
-            <div
-              class="css-xv0fhq-euiTextColor-subdued"
-            >
-              →
-            </div>
+            →
           </div>
           <input
             aria-label="aria-label"
