@@ -9,7 +9,7 @@ const dtsGenerator = require('dts-generator').default;
 const IGNORE_BUILD = ['**/webpack.config.js','**/*.d.ts'];
 const IGNORE_TESTS = ['**/*.test.js','**/*.test.ts','**/*.test.tsx','**/*.spec.tsx','**/test/internal/**/*.ts','**/test/internal/**/*.tsx','**/__mocks__/**'];
 const IGNORE_TESTENV = ['**/*.testenv.js','**/*.testenv.tsx','**/*.testenv.ts'];
-const IGNORE_PACKAGES = ['**/react-datepicker/test/**/*.js']
+const IGNORE_PACKAGES = ['**/react-datepicker/test/**/*.js', '**/themes/charts/themes.ts']
 
 function compileLib() {
   shell.mkdir('-p', 'lib/services', 'lib/test');
@@ -110,24 +110,6 @@ function compileLib() {
 function compileBundle() {
   shell.mkdir('-p', 'dist');
 
-  console.log('Building bundle...');
-  execSync('webpack --config=src/webpack.config.js', {
-    stdio: 'inherit',
-    env: {
-      ...process.env,
-      BABEL_MODULES: false,
-    },
-  });
-
-  console.log('Building minified bundle...');
-  execSync('NODE_ENV=production NODE_OPTIONS=--max-old-space-size=4096 webpack --config=src/webpack.config.js', {
-    stdio: 'inherit',
-    env: {
-      ...process.env,
-      BABEL_MODULES: false,
-    },
-  });
-
   console.log('Building test utils .d.ts files...');
   ['lib/test', 'optimize/lib/test', 'es/test', 'optimize/es/test'].forEach((dir) => {
     dtsGenerator({
@@ -150,7 +132,7 @@ function compileBundle() {
 
   console.log('Building chart theme module...');
   execSync(
-    'webpack src/themes/charts/themes.ts -o dist/eui_charts_theme.js --output-library-target="commonjs" --config=src/webpack.config.js',
+    'webpack --output-library-target="commonjs" --config=src/themes/charts/webpack.config.js',
     {
       stdio: 'inherit',
     }
