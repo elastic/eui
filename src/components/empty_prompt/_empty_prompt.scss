@@ -58,7 +58,7 @@
   }
 
   .euiEmptyPrompt__contentInner {
-    max-width: 36em; // TODO: Use euiTextConstrainedMaxWidth in text.styles.ts
+    max-width: $euiTextConstrainedMaxWidth;
     margin: auto;
   }
 
@@ -95,7 +95,7 @@
   }
 
   .euiEmptyPrompt__content {
-    max-width: 36em; // TODO: Use euiTextConstrainedMaxWidth in text.styles.ts
+    max-width: $euiTextConstrainedMaxWidth;
 
     @include euiBreakpoint('l', 'xl') {
       padding: $euiSizeL 0;
