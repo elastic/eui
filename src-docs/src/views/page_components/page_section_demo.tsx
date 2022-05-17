@@ -7,13 +7,13 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiPageSection,
-} from '../../../../../src';
+} from '../../../../src';
 
-import contentSvg from '../../../images/content.svg';
-import contentCenterSvg from '../../../images/content_center.svg';
+import contentSvg from '../../images/content.svg';
+import contentCenterSvg from '../../images/content_center.svg';
 
-import { GuideSection } from '../../../components/guide_section/guide_section';
-import { GuideSectionTypes } from '../../../components/guide_section/guide_section_types';
+import { GuideSection } from '../../components/guide_section/guide_section';
+import { GuideSectionTypes } from '../../components/guide_section/guide_section_types';
 
 import PageSection from './page_section';
 const PageSectionSource = require('!!raw-loader!./page_section');

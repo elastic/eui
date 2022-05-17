@@ -7,15 +7,15 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiPageSideBar,
-} from '../../../../../src';
+} from '../../../../src';
 
-import contentSvg from '../../../images/content.svg';
-import sideNavSvg from '../../../images/side_nav.svg';
-import contentCenterSvg from '../../../images/content_center.svg';
+import contentSvg from '../../images/content.svg';
+import sideNavSvg from '../../images/side_nav.svg';
+import contentCenterSvg from '../../images/content_center.svg';
 
 import PageConfigurations from './page_configurations';
-import { GuideSection } from '../../../components/guide_section/guide_section';
-import { GuideSectionTypes } from '../../../components/guide_section/guide_section_types';
+import { GuideSection } from '../../components/guide_section/guide_section';
+import { GuideSectionTypes } from '../../components/guide_section/guide_section_types';
 
 const PageConfigurationsSource = require('!!raw-loader!./page_configurations');
 // @ts-ignore Importing from JS

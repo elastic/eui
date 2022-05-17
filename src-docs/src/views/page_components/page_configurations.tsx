@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { _EuiPageRestrictWidth } from '../../../../../src/components/page/_restrict_width';
+import { _EuiPageRestrictWidth } from '../../../../src/components/page/_restrict_width';
 
 import {
   EuiPage,
@@ -8,7 +8,7 @@ import {
   EuiEmptyPrompt,
   EuiPageHeader,
   EuiPageSection,
-} from '../../../../../src';
+} from '../../../../src';
 
 export default ({
   content = <></>,

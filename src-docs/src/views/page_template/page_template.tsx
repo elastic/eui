@@ -22,6 +22,7 @@ export default ({
   panelled?: EuiPageTemplateProps['panelled'];
   restrictWidth?: EuiPageTemplateProps['restrictWidth'];
   bottomBorder?: EuiPageTemplateProps['bottomBorder'];
+  // For fullscreen only
   grow?: EuiPageTemplateProps['grow'];
 }) => {
   return (

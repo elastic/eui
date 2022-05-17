@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import { EuiPageHeader, EuiPageSection } from '../../../../../src/components';
+import { EuiPageHeader, EuiPageSection } from '../../../../src/components';
 
 export default ({
   content = <></>,

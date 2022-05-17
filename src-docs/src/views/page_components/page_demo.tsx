@@ -10,14 +10,14 @@ import {
   EuiPage,
   EuiPageBody,
   EuiPageSideBar,
-} from '../../../../../src';
+} from '../../../../src';
 
-import contentSvg from '../../../images/content.svg';
-import sideNavSvg from '../../../images/side_nav.svg';
+import contentSvg from '../../images/content.svg';
+import sideNavSvg from '../../images/side_nav.svg';
 
 import Page from './page';
-import { GuideSection } from '../../../components/guide_section/guide_section';
-import { GuideSectionTypes } from '../../../components/guide_section/guide_section_types';
+import { GuideSection } from '../../components/guide_section/guide_section';
+import { GuideSectionTypes } from '../../components/guide_section/guide_section_types';
 
 const PageSource = require('!!raw-loader!./page');
 // @ts-ignore Importing from JS

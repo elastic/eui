@@ -1,6 +1,6 @@
 import { PropTypes } from 'react-view';
-import { EuiPage, EuiPageSection } from '../../../../../src';
-import { propUtilityForPlayground } from '../../../services/playground';
+import { EuiPage, EuiPageSection } from '../../../../src';
+import { propUtilityForPlayground } from '../../services/playground';
 
 export const pageConfig = () => {
   const docgenInfo = Array.isArray(EuiPage.__docgenInfo)

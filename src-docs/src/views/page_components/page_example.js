@@ -15,9 +15,9 @@ import {
   EuiIcon,
 } from '../../../../src';
 
-import { PageComponentDemo } from './components/page_demo';
-import { PageSectionDemo } from './components/page_section_demo';
-import { PageConfigurationsDemo } from './components/page_configurations_demo';
+import { PageComponentDemo } from './page_demo';
+import { PageSectionDemo } from './page_section_demo';
+import { PageConfigurationsDemo } from './page_configurations_demo';
 
 export const PageExample = {
   title: 'Page components',

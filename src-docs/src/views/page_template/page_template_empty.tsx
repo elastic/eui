@@ -9,25 +9,24 @@ import {
 
 export default ({
   button = <></>,
-  content = <></>,
   sidebar,
+  emptyPrompt = <></>,
   header,
-  restrictWidth,
-  bottomBar,
+  panelled,
   sidebarSticky,
   grow,
 }: {
   button: ReactElement;
-  content: ReactElement;
   sidebar?: ReactElement;
-  bottomBar?: ReactElement;
+  emptyPrompt: ReactElement;
   header?: EuiPageHeaderProps;
-  restrictWidth?: EuiPageTemplateProps['restrictWidth'];
+  panelled?: EuiPageTemplateProps['panelled'];
+  // For fullscreen only
   sidebarSticky?: _EuiPageSidebarProps['sticky'];
   grow?: EuiPageTemplateProps['grow'];
 }) => {
   return (
-    <EuiPageTemplate restrictWidth={restrictWidth} grow={grow}>
+    <EuiPageTemplate panelled={panelled} grow={grow}>
       {sidebar && (
         <EuiPageTemplate.Sidebar sticky={sidebarSticky}>
           {sidebar}
@@ -36,10 +35,12 @@ export default ({
       {header && (
         <EuiPageTemplate.Header {...header} rightSideItems={[button]} />
       )}
-      <EuiPageTemplate.Section grow>{content}</EuiPageTemplate.Section>
-      {bottomBar && (
-        <EuiPageTemplate.BottomBar>{bottomBar}</EuiPageTemplate.BottomBar>
-      )}
+      <EuiPageTemplate.EmptyPrompt
+        title={<span>No spice</span>}
+        footer={header ? undefined : button}
+      >
+        {emptyPrompt}
+      </EuiPageTemplate.EmptyPrompt>
     </EuiPageTemplate>
   );
 };

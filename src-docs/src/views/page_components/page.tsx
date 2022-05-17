@@ -6,7 +6,7 @@ import {
   EuiPageSection,
   EuiPageSideBar,
   EuiPageBody,
-} from '../../../../../src';
+} from '../../../../src';
 
 export default ({
   content = <></>,
