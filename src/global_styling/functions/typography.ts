@@ -22,8 +22,11 @@ export interface _FontScaleOptions {
  * Calculates the font-size value based on the provided scale key
  * @param scale - The font scale key
  * @param theme - Requires the `base` and `font` keys
- * @param measurement - The returned string measurement
- * *
+ * @param options - Optional parameters
+ *   @param options.measurement - The returned string measurement
+ *   @param options.customScale - An additional custom scale multiplier to use against the current scale
+ *          This parameter can be used (e.g. by EuiText sizes) to get sizes of text smaller than the default
+ *
  * @returns string - Calculated font-size value
  */
 
@@ -52,8 +55,11 @@ export function euiFontSizeFromScale(
  *     text stays on the baseline, we pass a multiplier to calculate a line-height.
  * @param scale - The font scale key
  * @param theme - Requires the `base` and `font` keys
- * @param measurement - The returned string measurement
- * *
+ * @param options - Optional parameters
+ *   @param options.measurement - The returned string measurement
+ *   @param options.customScale - An additional custom scale multiplier to use against the current scale
+ *          This parameter can be used (e.g. by EuiText sizes) to get sizes of text smaller than the default
+ *
  * @returns string - Calculated line-height value aligned to baseline
  */
 
