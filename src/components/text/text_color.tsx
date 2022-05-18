@@ -39,8 +39,8 @@ export type EuiTextColorProps = CommonProps &
      */
     component?: 'div' | 'span';
     /**
-     * Set to true if you want to apply text styling to your child element
-     * instead of rendering a parent wrapper element
+     * Applies text styling to the child element instead of rendering a parent wrapper `span`/`div`.
+     * Must be used in conjunction with a single child element/tag, and not raw text.
      */
     cloneElement?: boolean;
   };
@@ -49,7 +49,7 @@ export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
   children,
   color = 'default',
   component = 'span',
-  cloneElement,
+  cloneElement = false,
   style,
   ...rest
 }) => {

@@ -34,8 +34,8 @@ export type EuiTextProps = CommonProps &
     color?: TextColor | CSSProperties['color'];
     grow?: boolean;
     /**
-     * Set to true if you want to apply text styling to your child element
-     * instead of rendering a parent wrapper element
+     * Applies text styling to the child element instead of rendering a parent wrapper `div`.
+     * Must be used in conjunction with a single child element/tag, and not raw text.
      */
     cloneElement?: boolean;
   };
@@ -48,7 +48,7 @@ export const EuiText: FunctionComponent<EuiTextProps> = ({
   children,
   className,
   style,
-  cloneElement,
+  cloneElement = false,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();

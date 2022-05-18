@@ -19,8 +19,8 @@ export type EuiTextAlignProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     textAlign?: TextAlignment;
     /**
-     * Set to true if you want to apply text styling to your child element
-     * instead of rendering a parent wrapper element
+     * Applies text styling to the child element instead of rendering a parent wrapper `div`.
+     * Must be used in conjunction with a single child element/tag, and not raw text.
      */
     cloneElement?: boolean;
   };
@@ -28,7 +28,7 @@ export type EuiTextAlignProps = CommonProps &
 export const EuiTextAlign: FunctionComponent<EuiTextAlignProps> = ({
   children,
   textAlign = 'left',
-  cloneElement,
+  cloneElement = false,
   ...rest
 }) => {
   const styles = euiTextAlignStyles();
