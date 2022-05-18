@@ -11,7 +11,7 @@ import {
   EuiKeyPadMenu,
   EuiFlexItem,
   EuiRadioGroupOption,
-  EuiPageTemplate_Deprecated as EuiPageTemplate,
+  EuiPageTemplate,
   EuiFlexGrid,
   EuiPanel,
   EuiKeyPadMenuItem,
@@ -32,16 +32,15 @@ import { GuideSectionTypes } from '../../components/guide_section/guide_section_
 import darkSidebar from '../../images/empty-prompt/thumbnail_dark_page-sidebar.svg';
 import darkEmpty from '../../images/empty-prompt/thumbnail_dark_page-empty.svg';
 import darkMultiple from '../../images/empty-prompt/thumbnail_dark_page-multiple.svg';
-import darkContent from '../../images/empty-prompt/thumbnail_dark_empty_content.svg';
 
 // images light
 import lightSidebar from '../../images/empty-prompt/thumbnail_light_page-sidebar.svg';
 import lightEmpty from '../../images/empty-prompt/thumbnail_light_page-empty.svg';
 import lightMultiple from '../../images/empty-prompt/thumbnail_light_page-multiple.svg';
-import lightContent from '../../images/empty-prompt/thumbnail_light_empty_content.svg';
 
 import sideNavSvg from '../../images/side_nav.svg';
 import singleSvg from '../../images/single.svg';
+import contentCenterSvg from '../../images/content_center.svg';
 
 export default () => {
   const themeContext = useContext(ThemeContext);
@@ -161,12 +160,14 @@ export default () => {
     : { layout: 'vertical' };
 
   const titleSize = isMultiple ? 's' : 'm';
-  const multipleLoadingPanel = isMultiple && radioUseCaseId === 'loading';
+  // const multipleLoadingPanel = isMultiple && radioUseCaseId === 'loading';
 
-  const multipleLoadingPanelStyles = multipleLoadingPanel && {
+  const centeringStyles = isMultiple && {
     style: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
       minWidth: '100%',
-      width: '100%',
     },
   };
 
@@ -180,76 +181,93 @@ export default () => {
 
   const euiEmptyPromptPreview = (
     <EuiEmptyPrompt
-      {...icon}
       {...layout}
-      {...multipleLoadingPanelStyles}
+      {...icon}
       title={currentUseCaseExample.title}
       titleSize={titleSize}
       {...body}
       {...actions}
+      {...centeringStyles}
       {...(panelProps as any)}
     />
   );
 
   let demo;
+  let code = reactElementToJSXString(euiEmptyPromptPreview);
 
   if (isSidebar) {
     demo = (
-      <EuiPageTemplate
-        // template="centeredContent"
-        // pageContentProps={{ paddingSize: 'none' }}
-        pageSideBar={sideNav}
-      >
-        {euiEmptyPromptPreview}
+      <EuiPageTemplate minHeight="0" offset={0} style={{ minHeight: 420 }}>
+        <EuiPageTemplate.Sidebar minWidth={'25%'} style={{ maxWidth: 200 }}>
+          {sideNav}
+        </EuiPageTemplate.Sidebar>
+        <EuiPageTemplate.Section alignment="center">
+          {euiEmptyPromptPreview}
+        </EuiPageTemplate.Section>
       </EuiPageTemplate>
     );
+    code = `<EuiPageTemplate>
+  <EuiPageTemplate.Sidebar />
+  <EuiPageTemplate.section alignment="center">
+    ${reactElementToJSXString(euiEmptyPromptPreview)}
+  </EuiPageTemplate.section>
+</EuiPageTemplate>`;
   } else if (isEmpty) {
     demo = (
       <EuiPageTemplate
-      // template="centeredBody"
-      // pageContentProps={{ color: 'transparent' }}
+        panelled={false}
+        minHeight="0"
+        style={{ minHeight: 420 }}
       >
-        {euiEmptyPromptPreview}
+        <EuiPageTemplate.Section alignment="center">
+          {euiEmptyPromptPreview}
+        </EuiPageTemplate.Section>
       </EuiPageTemplate>
     );
+    code = `<EuiPageTemplate panelled={false}>
+  <EuiPageTemplate.section alignment="center">
+    ${reactElementToJSXString(euiEmptyPromptPreview)}
+  </EuiPageTemplate.section>
+</EuiPageTemplate>`;
   } else if (isMultiple) {
     demo = (
-      <EuiPageTemplate pageSideBar={sideNav}>
+      <EuiPageTemplate
+        panelled={false}
+        minHeight="0"
+        style={{ minHeight: 420 }}
+      >
         <EuiFlexGrid columns={2}>
           <EuiFlexItem>{euiEmptyPromptPreview}</EuiFlexItem>
-          <EuiFlexItem style={{ minHeight: '200px' }}>
-            <EuiPanel hasBorder>
-              <EuiImage
-                width="fullWidth"
-                url={isDarkTheme ? darkContent : lightContent}
-                alt=""
-              />
+          <EuiFlexItem style={{ minHeight: '250px' }}>
+            <EuiPanel {...centeringStyles} hasBorder color="plain">
+              <EuiImage size="fullWidth" url={contentCenterSvg} alt="" />
             </EuiPanel>
           </EuiFlexItem>
-          <EuiFlexItem style={{ minHeight: '200px' }}>
-            <EuiPanel hasBorder>
-              <EuiImage
-                width="fullWidth"
-                url={isDarkTheme ? darkContent : lightContent}
-                alt=""
-              />
+          <EuiFlexItem style={{ minHeight: '250px' }}>
+            <EuiPanel {...centeringStyles} hasBorder color="plain">
+              <EuiImage size="fullWidth" url={contentCenterSvg} alt="" />
             </EuiPanel>
           </EuiFlexItem>
-          <EuiFlexItem style={{ minHeight: '200px' }}>
-            <EuiPanel hasBorder>
-              <EuiImage
-                width="fullWidth"
-                url={isDarkTheme ? darkContent : lightContent}
-                alt=""
-              />
+          <EuiFlexItem style={{ minHeight: '250px' }}>
+            <EuiPanel {...centeringStyles} hasBorder color="plain">
+              <EuiImage size="fullWidth" url={contentCenterSvg} alt="" />
             </EuiPanel>
           </EuiFlexItem>
         </EuiFlexGrid>
       </EuiPageTemplate>
     );
+    code = `<EuiPageTemplate panelled={false}>
+  <EuiFlexGrid columns={2}>
+    <EuiFlexItem>
+      ${reactElementToJSXString(euiEmptyPromptPreview)}
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiPanel hasBorder color="plain" />
+    </EuiFlexItem>
+    {...}
+  </EuiFlexGrid>
+</EuiPageTemplate>`;
   }
-
-  const code = reactElementToJSXString(demo);
 
   return (
     <>
@@ -386,6 +404,7 @@ export default () => {
       </EuiSplitPanel.Outer>
 
       <GuideSection
+        nested
         demo={<div className={'guideDemo__emptyPromptDemoPreview'}>{demo}</div>}
         source={[
           {

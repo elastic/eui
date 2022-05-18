@@ -18,7 +18,6 @@ import {
   EuiHeaderSectionItemButton,
   EuiIcon,
   EuiListGroupItem,
-  EuiPageTemplate_Deprecated as EuiPageTemplate,
   EuiPopover,
   EuiPortal,
   EuiShowFor,
@@ -374,7 +373,6 @@ export default () => {
       />
 
       {isAlertFlyoutVisible ? headerAlerts : null}
-      <EuiPageTemplate template="empty" />
     </>
   );
 };

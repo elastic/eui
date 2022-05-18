@@ -11,7 +11,7 @@ import {
   EuiIcon,
   EuiButton,
   EuiButtonEmpty,
-  EuiPageTemplate_Deprecated as EuiPageTemplate,
+  EuiPageTemplate,
   EuiPinnableListGroup,
   EuiPinnableListGroupItemProps,
   EuiFlexItem,
@@ -296,8 +296,10 @@ const CollapsibleNavAll = () => {
         ]}
       />
 
-      <EuiPageTemplate template="centeredBody">
-        <EuiImage size="fullWidth" alt="Fake paragraph" url={contentSvg} />
+      <EuiPageTemplate>
+        <EuiPageTemplate.EmptyPrompt>
+          <EuiImage size="fullWidth" alt="Fake paragraph" url={contentSvg} />
+        </EuiPageTemplate.EmptyPrompt>
       </EuiPageTemplate>
     </>
   );
