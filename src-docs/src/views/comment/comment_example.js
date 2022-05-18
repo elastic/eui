@@ -8,8 +8,10 @@ import {
   EuiCommentList,
   EuiCallOut,
   EuiText,
+  EuiSpacer,
 } from '../../../../src/components';
 import commentConfig from './playground';
+import CommentProps from './comment_props';
 
 import CommentList from './comment_list';
 const commentListSource = require('!!raw-loader!./comment_list');
@@ -25,31 +27,18 @@ const commentListSnippet = `<EuiCommentList
 ]}
 />`;
 
-import Comment from './comment';
-const commentSource = require('!!raw-loader!./comment');
-const commentSnippet = `<EuiComment component="div" username="janed">
-  {body}
-</EuiComment>`;
-
-import CommentEvent from './comment_event';
-const commentEventSource = require('!!raw-loader!./comment_event');
-const commentEventSnippet = [
-  `<EuiCommentList aria-label="Comment type regular example">
-  <EuiComment username="janed">
-    {body}
-  </EuiComment> 
-</EuiCommentList>`,
-  `<EuiCommentList aria-label="Comment type update example">
-  <EuiComment type="update" username="janed" />
-</EuiCommentList>
-`,
-  `<EuiCommentList aria-label="Comment type custom example">
-  <EuiComment type="custom" username="janed">
-    {custom}
-  </EuiComment>
-</EuiCommentList>
-`,
-];
+import CommentFlexible from './comment_flexible';
+const commentFlexibleSource = require('!!raw-loader!./comment_flexible');
+const commentFlexibleSnippet = `<EuiComment
+  eventIcon="pencil"
+  username="janed"
+  event={event}
+  timestamp={timestamp}
+  actions={customActions}
+>
+  {children}
+</EuiComment>
+`;
 
 import CommentAvatar from './comment_avatar';
 const commentAvatarSource = require('!!raw-loader!./comment_avatar');
@@ -133,26 +122,83 @@ export const CommentListExample = {
       demo: <CommentList />,
     },
     {
-      title: 'Comment',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: commentSource,
+          code: commentFlexibleSource,
         },
       ],
+      title: 'Comment',
       text: (
         <>
-          <p>
-            Use <strong>EuiComment</strong> to display comments. Each{' '}
-            <strong>EuiComment</strong> has two parts: an{' '}
-            <strong>avatar</strong> on the left and an <strong>event</strong> on
-            the right.
-          </p>
+          <EuiText>
+            <p>
+              The <strong>EuiComment</strong> is flexible and adapts the design
+              according to the props passed.
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <CommentProps snippet={commentFlexibleSnippet} />
+          <EuiSpacer />
+          <EuiText>
+            <ul style={{ listStyleType: 'upper-alpha' }}>
+              <li>
+                <EuiCode>avatar</EuiCode>: Shows an avatar that should indicate
+                who is the author of the comment. By default, the avatar show
+                initials that are generated from the <EuiCode>username</EuiCode>{' '}
+                prop. When no <EuiCode>username</EuiCode> is passed, you can
+                define an avatar by using the <EuiCode>avatarName</EuiCode> and{' '}
+                <EuiCode>avatarIcon</EuiCode> props.
+              </li>
+              <li>
+                <EuiCode>eventIcon</EuiCode>: Icon that shows before the
+                username. Use in conjunction with{' '}
+                <EuiCode>eventIconAriaLabel</EuiCode> to pass an aria label to
+                the event icon.
+              </li>
+              <li>
+                <EuiCode>username</EuiCode>: Author of the comment.
+              </li>
+              <li>
+                <EuiCode>event</EuiCode>: Shows inside a badge denoting what
+                type of event it is. Use in conjunction with{' '}
+                <EuiCode>severity</EuiCode> and <EuiCode>badgeColor</EuiCode> to
+                indicate the level of urgency.
+              </li>
+              <li>
+                <EuiCode>timestamp</EuiCode>: Time of occurrence of the event.
+              </li>
+              <li>
+                <EuiCode>actions</EuiCode>: Custom actions that the user can
+                perform from the comment&apos;s header. When having multiple
+                actions, consider grouping them in a nested menu system using a{' '}
+                <Link to="/layout/popover">
+                  <strong>EuiPopover</strong>
+                </Link>{' '}
+                with a{' '}
+                <Link to="/navigation/context-menu">
+                  <strong>EuiContextMenu</strong>
+                </Link>
+              </li>
+              <li>
+                <EuiCode>children</EuiCode>: Use this prop to pass a user
+                message or any custom component.
+              </li>
+            </ul>
+          </EuiText>
+          <EuiSpacer />
+          <EuiText>
+            <p>
+              The following demo shows how you can combine different props to
+              create different types of comments events like a regular, update,
+              update with a danger background and a custom one.
+            </p>
+          </EuiText>
         </>
       ),
-      props: { EuiComment },
-      snippet: commentSnippet,
-      demo: <Comment />,
+      props: { EuiCommentList, EuiComment },
+      snippet: commentFlexibleSnippet,
+      demo: <CommentFlexible />,
       playground: commentConfig,
     },
     {
@@ -207,44 +253,6 @@ export const CommentListExample = {
       props: { EuiComment },
       snippet: commentAvatarSnippet,
       demo: <CommentAvatar />,
-    },
-    {
-      title: 'Comment event',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: commentEventSource,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            The comment event can take different forms according to the props
-            passed.
-          </p>
-          <ol>
-            <li>
-              <strong>Regular</strong>: An event with{' '}
-              <EuiCode>children</EuiCode> and multiple metadata props (eg.
-              username, timestamp). Use this layout to display user comments.
-            </li>
-            <li>
-              <strong>Update</strong>: An event without{' '}
-              <EuiCode>children</EuiCode>. Use this layout to display logging
-              actions that either the user or the system has performed (e.g.
-              “jsmith edited a case” or “kibanamachine added the review label”).
-            </li>
-            <li>
-              <strong>Custom</strong>: An event with only a{' '}
-              <EuiCode>children</EuiCode>. Use this layout to display custom
-              components.
-            </li>
-          </ol>
-        </>
-      ),
-      props: { EuiComment },
-      snippet: commentEventSnippet,
-      demo: <CommentEvent />,
     },
     {
       title: 'Comment event actions',

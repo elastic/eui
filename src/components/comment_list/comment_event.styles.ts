@@ -56,18 +56,21 @@ export const euiCommentEventHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiCommentEvent__headerUsername: css`
     font-weight: ${euiTheme.font.weight.semiBold};
   `,
-  euiCommentEvent__headerEvent: css``,
+  euiCommentEvent__headerEvent: css`
+    align-items: center;
+    display: inline-flex;
+    /* the header event can have inline badges so we're adding some white-space and flex-wrap properties  */
+    white-space: pre-wrap;
+    flex-wrap: wrap;
+  `,
   euiCommentEvent__headerTimestamp: css``,
   euiCommentEvent__headerActions: css`
     display: flex;
     flex-wrap: wrap;
     gap: ${euiTheme.size.xs};
   `,
-  euiCommentEvent__headerEventMessage: css`
-    ${logicalCSS('padding-top', euiTheme.size.s)}
-  `,
   // variants
-  hasHeaderColor: css`
+  haseventColor: css`
     padding: 0;
   `,
 });

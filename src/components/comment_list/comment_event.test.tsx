@@ -56,20 +56,10 @@ describe('EuiCommentEvent', () => {
       });
     });
 
-    describe('headerColor', () => {
+    describe('eventColor', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiCommentEvent username="someuser" headerColor="danger" />
-        );
-
-        expect(component).toMatchSnapshot();
-      });
-    });
-
-    describe('eventMessage', () => {
-      it('is rendered', () => {
-        const component = render(
-          <EuiCommentEvent username="someuser" eventMessage="event message" />
+          <EuiCommentEvent username="someuser" eventColor="danger" />
         );
 
         expect(component).toMatchSnapshot();

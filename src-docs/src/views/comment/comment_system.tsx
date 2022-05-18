@@ -58,6 +58,13 @@ const initialComments: EuiCommentProps[] = [
     eventIconAriaLabel: 'tag',
   },
   {
+    username: 'system',
+    avatarIcon: 'dot',
+    event: 'pushed a new incident',
+    timestamp: 'on 4th March 2022',
+    eventColor: 'danger',
+  },
+  {
     username: 'tiago',
     event: 'added a comment',
     timestamp: 'on 4th March 2022',
@@ -70,7 +77,7 @@ const initialComments: EuiCommentProps[] = [
     ),
   },
   {
-    username: 'tiago',
+    username: 'emma',
     event: (
       <>
         marked case as <EuiBadge color="warning">In progress</EuiBadge>
@@ -127,16 +134,7 @@ export default () => {
 
   const commentsList = comments.map((comment, index) => {
     return (
-      <EuiComment
-        key={`comment-${index}`}
-        avatarName={comment.avatarName}
-        username={comment.username}
-        event={comment.event}
-        timestamp={comment.timestamp}
-        actions={comment.actions}
-        eventIcon={comment.eventIcon}
-        eventIconAriaLabel={comment.eventIconAriaLabel}
-      >
+      <EuiComment key={`comment-${index}`} {...comment}>
         {comment.children}
       </EuiComment>
     );
@@ -146,7 +144,7 @@ export default () => {
     <>
       <EuiCommentList aria-label="Comment system example">
         {commentsList}
-        <EuiComment avatarName="Juana">
+        <EuiComment avatarName="juana">
           <EuiMarkdownEditor
             aria-label="Markdown editor"
             aria-describedby={errorElementId.current}

@@ -50,9 +50,37 @@ exports[`EuiCommentEvent props event is rendered 1`] = `
             someuser
           </div>
           <div
-            class="css-4tdimm-euiCommentEvent__headerEvent"
+            class="css-ui5tce-euiCommentEvent__headerEvent"
           >
             commented
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCommentEvent props eventColor is rendered 1`] = `
+<div
+  class="euiCommentEvent css-a4j02z-euiCommentEvent-update"
+>
+  <div
+    class="css-1t5b9as-euiCommentEvent__header-haseventColor"
+  >
+    <div
+      class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--danger euiPanel--noShadow euiPanel--noBorder css-1rpkzr0-euiCommentEvent__headerPanel"
+    >
+      <div
+        class="css-1h0gm9q-euiCommentEvent__headerMain"
+      >
+        <div
+          class="css-1l51d77-euiCommentEvent__headerData"
+        >
+          <div
+            class="css-10865x4-euiCommentEvent__headerUsername"
+          >
+            someuser
           </div>
         </div>
       </div>
@@ -91,67 +119,6 @@ exports[`EuiCommentEvent props eventIcon and eventIconAriaLabel are rendered 1`]
               edit
             </span>
           </div>
-          <div
-            class="css-10865x4-euiCommentEvent__headerUsername"
-          >
-            someuser
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EuiCommentEvent props eventMessage is rendered 1`] = `
-<figure
-  class="euiCommentEvent css-a4j02z-euiCommentEvent-update"
->
-  <figcaption
-    class="css-1880yg5-euiCommentEvent__header"
-  >
-    <div
-      class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow css-1rpkzr0-euiCommentEvent__headerPanel"
-    >
-      <div
-        class="css-1h0gm9q-euiCommentEvent__headerMain"
-      >
-        <div
-          class="css-1l51d77-euiCommentEvent__headerData"
-        >
-          <div
-            class="css-10865x4-euiCommentEvent__headerUsername"
-          >
-            someuser
-          </div>
-        </div>
-      </div>
-      <div
-        class="css-vvb3qh-euiCommentEvent__headerEventMessage"
-      >
-        event message
-      </div>
-    </div>
-  </figcaption>
-</figure>
-`;
-
-exports[`EuiCommentEvent props headerColor is rendered 1`] = `
-<div
-  class="euiCommentEvent css-a4j02z-euiCommentEvent-update"
->
-  <div
-    class="css-bns8vz-euiCommentEvent__header-hasHeaderColor"
-  >
-    <div
-      class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--danger euiPanel--noShadow euiPanel--noBorder css-1rpkzr0-euiCommentEvent__headerPanel"
-    >
-      <div
-        class="css-1h0gm9q-euiCommentEvent__headerMain"
-      >
-        <div
-          class="css-1l51d77-euiCommentEvent__headerData"
-        >
           <div
             class="css-10865x4-euiCommentEvent__headerUsername"
           >

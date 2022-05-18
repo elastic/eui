@@ -37,15 +37,14 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
   avatarName,
   avatarIcon,
   avatarProps,
-  headerColor,
+  eventColor,
   eventIcon,
   eventIconAriaLabel,
-  eventMessage,
   ...rest
 }) => {
   const classes = classNames('euiComment', className);
 
-  const isTypeUpdate = !children && !eventMessage;
+  const isTypeUpdate = !children;
   const verticalAlign = isTypeUpdate ? 'center' : 'top';
 
   return (
@@ -68,10 +67,9 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
         actions={actions}
         event={event}
         timestamp={timestamp}
-        headerColor={headerColor}
+        eventColor={eventColor}
         eventIcon={eventIcon}
         eventIconAriaLabel={eventIconAriaLabel}
-        eventMessage={eventMessage}
       >
         {children}
       </EuiCommentEvent>

@@ -105,7 +105,7 @@ export const NotificationEventExample = {
           code: notificationEventFlexibleSource,
         },
       ],
-      title: 'A flexible component',
+      title: 'A flexible comment component',
       text: (
         <>
           <EuiText>

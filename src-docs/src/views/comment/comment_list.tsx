@@ -85,6 +85,7 @@ const comments: EuiCommentProps[] = [
   },
   {
     username: 'elohar',
+
     event: 'added a comment',
     timestamp: 'on Jan 14, 2020',
     children: longBody,

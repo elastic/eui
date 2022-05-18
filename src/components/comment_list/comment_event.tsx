@@ -50,13 +50,9 @@ export interface EuiCommentEventProps extends CommonProps {
    */
   eventIconAriaLabel?: string;
   /**
-   * A message that displays in the event header. Below the metadata.
+   * Background color for the comment's header.
    */
-  eventMessage?: ReactNode;
-  /**
-   * Background color for the event header.
-   */
-  headerColor?: EuiPanelProps['color'];
+  eventColor?: EuiPanelProps['color'];
 }
 
 export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
@@ -68,13 +64,12 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   timestamp,
   event,
   actions,
-  eventMessage,
-  headerColor,
+  eventColor,
 }) => {
   const classes = classNames('euiCommentEvent', className);
 
   const hasEventElements =
-    eventIcon || username || timestamp || event || actions || eventMessage;
+    eventIcon || username || timestamp || event || actions;
 
   const isTypeRegular = children && hasEventElements;
   const isTypeUpdate = !children && hasEventElements;
@@ -100,7 +95,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   const headerStyles = euiCommentEventHeaderStyles(euiTheme);
   const cssHeaderStyles = [
     headerStyles.euiCommentEvent__header,
-    headerColor && headerStyles.hasHeaderColor,
+    eventColor && headerStyles.haseventColor,
   ];
   const cssHeaderPanelStyles = headerStyles.euiCommentEvent__headerPanel;
   const cssHeaderUsernameStyles = headerStyles.euiCommentEvent__headerUsername;
@@ -110,17 +105,14 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   const cssHeaderMainStyles = headerStyles.euiCommentEvent__headerMain;
   const cssHeaderDataStyles = headerStyles.euiCommentEvent__headerData;
   const cssHeaderActionsStyles = headerStyles.euiCommentEvent__headerActions;
-  const cssHeaderEventMessageStyles =
-    headerStyles.euiCommentEvent__headerEventMessage;
 
-  const isFigure =
-    isTypeRegular || (isTypeUpdate && typeof eventMessage !== 'undefined');
+  const isFigure = isTypeRegular;
 
   const Element = isFigure ? 'figure' : 'div';
   const HeaderElement = isFigure ? 'figcaption' : 'div';
 
-  const panelProps = headerColor
-    ? { color: headerColor, paddingSize: 's' }
+  const panelProps = eventColor
+    ? { color: eventColor, paddingSize: 's' }
     : { color: 'transparent', paddingSize: 'none' };
 
   const eventHeader = (
@@ -151,10 +143,6 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
 
           {actions && <div css={cssHeaderActionsStyles}>{actions}</div>}
         </div>
-
-        {eventMessage && (
-          <div css={cssHeaderEventMessageStyles}>{eventMessage}</div>
-        )}
       </EuiPanel>
     </HeaderElement>
   );

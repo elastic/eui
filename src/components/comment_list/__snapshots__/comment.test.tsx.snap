@@ -222,7 +222,7 @@ exports[`EuiComment props event is rendered 1`] = `
                 someuser
               </div>
               <div
-                class="css-4tdimm-euiCommentEvent__headerEvent"
+                class="css-ui5tce-euiCommentEvent__headerEvent"
               >
                 commented
               </div>

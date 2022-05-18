@@ -122,7 +122,7 @@ export default () => {
         username="janed"
         event="added a comment"
         actions={customActions}
-        timestamp="Jan 1, 2020"
+        timestamp="on Jan 1, 2020"
       >
         {body}
       </EuiComment>
@@ -131,11 +131,12 @@ export default () => {
         avatarIcon="dot"
         event={
           <>
-            added an alert from <EuiLink>malware detection</EuiLink>
+            pushed a new incident <EuiLink>malware detection</EuiLink>
           </>
         }
         actions={updateActions}
-        timestamp="Jan 2, 2020"
+        timestamp="on Jan 2, 2020"
+        eventColor="danger"
       />
       {flyout}
     </EuiCommentList>
