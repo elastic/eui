@@ -8,26 +8,12 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
-import {
-  _EuiPageRestrictWidth,
-  setPropsForRestrictedPageWidth,
-} from './_restrict_width';
-
-const paddingSizeToClassNameMap = {
-  none: null,
-  s: 'euiPage--paddingSmall',
-  m: 'euiPage--paddingMedium',
-  l: 'euiPage--paddingLarge',
-};
-
-const directionToClassNameMap = {
-  row: null,
-  column: 'euiPage--column',
-};
-
-export const SIZES = keysOf(paddingSizeToClassNameMap);
-export const DIRECTIONS = keysOf(directionToClassNameMap);
+import { CommonProps } from '../common';
+import { _EuiPageRestrictWidth } from './_restrict_width';
+import { useEuiPaddingCSS, _EuiPaddingSize } from '../../global_styling';
+import { euiPageStyles } from './page.styles';
+import { euiPageRestictWidthStyles } from './_restrict_width.styles';
+import { useEuiTheme } from '../../services';
 
 export interface EuiPageProps
   extends CommonProps,
@@ -37,7 +23,7 @@ export interface EuiPageProps
    * Adjust the padding.
    * When using this setting it's best to be consistent throughout all similar usages
    */
-  paddingSize?: typeof SIZES[number];
+  paddingSize?: _EuiPaddingSize;
   /**
    * Adds `flex-grow: 1` to the whole page for stretching to fit vertically.
    * Must be wrapped inside a flexbox, preferrably with `min-height: 100vh`
@@ -53,31 +39,31 @@ export interface EuiPageProps
 export const EuiPage: FunctionComponent<EuiPageProps> = ({
   children,
   restrictWidth = false,
-  style,
   className,
   paddingSize = 'none',
   grow = true,
   direction = 'row',
   ...rest
 }) => {
-  const { widthClassName, newStyle } = setPropsForRestrictedPageWidth(
-    restrictWidth,
-    style
+  const euiTheme = useEuiTheme();
+  const styles = euiPageStyles(euiTheme);
+  const padding = useEuiPaddingCSS()[paddingSize as _EuiPaddingSize];
+  const width = euiPageRestictWidthStyles(
+    restrictWidth as _EuiPageRestrictWidth
   );
 
-  const classes = classNames(
-    'euiPage',
-    paddingSizeToClassNameMap[paddingSize],
-    directionToClassNameMap[direction],
-    {
-      'euiPage--grow': grow,
-      [`euiPage--${widthClassName}`]: widthClassName,
-    },
-    className
-  );
+  const stylesCSS = [
+    styles.euiPage,
+    styles[direction],
+    grow && styles.grow,
+    padding,
+    width,
+  ];
+
+  const classes = classNames('euiPage', className);
 
   return (
-    <div className={classes} style={newStyle || style} {...rest}>
+    <div css={stylesCSS} className={classes} {...rest}>
       {children}
     </div>
   );

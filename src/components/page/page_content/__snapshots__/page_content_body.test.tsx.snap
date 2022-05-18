@@ -10,13 +10,13 @@ exports[`EuiPageContentBody is rendered 1`] = `
 
 exports[`EuiPageContentBody paddingSize l is rendered 1`] = `
 <div
-  class="euiPageContentBody euiPage--paddingLarge"
+  class="euiPageContentBody euiPageContentBody--paddingLarge"
 />
 `;
 
 exports[`EuiPageContentBody paddingSize m is rendered 1`] = `
 <div
-  class="euiPageContentBody euiPage--paddingMedium"
+  class="euiPageContentBody euiPageContentBody--paddingMedium"
 />
 `;
 
@@ -28,7 +28,7 @@ exports[`EuiPageContentBody paddingSize none is rendered 1`] = `
 
 exports[`EuiPageContentBody paddingSize s is rendered 1`] = `
 <div
-  class="euiPageContentBody euiPage--paddingSmall"
+  class="euiPageContentBody euiPageContentBody--paddingSmall"
 />
 `;
 
