@@ -1,3 +1,15 @@
+## [`55.1.3`](https://github.com/elastic/eui/tree/v55.1.3)
+
+**Note: this release is a backport containing changes originally made in `58.0.0`**
+
+**Bug fixes**
+
+- Fixed `EuiContextMenuPanel` (when used within an `EuiPopover`) to correctly return focus to its popover toggle in all scenarios, not just keyboard Escape press ([#5880](https://github.com/elastic/eui/pull/5880))
+
+**Breaking changes**
+
+- Removed `watchedItemProps` from `EuiContextMenuPanel`, which now updates like a standard component and no longer needs this logic ([#5880](https://github.com/elastic/eui/pull/5880))
+
 ## [`55.1.2`](https://github.com/elastic/eui/tree/v55.1.2)
 
 - Updated `EuiOverlayMask` to accept a React ref ([#5876](https://github.com/elastic/eui/pull/5876))
