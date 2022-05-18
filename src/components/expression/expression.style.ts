@@ -8,24 +8,22 @@
 
 import { css } from '@emotion/react';
 import {
-  useEuiFontSize,
+  euiFontSize,
   logicalCSS,
   euiTextBreakWord,
   euiTextTruncate,
 } from '../../global_styling';
+import { transparentize } from '../../services/color';
 import { UseEuiTheme } from '../../services';
 
 const _colorCSS = (color: string) => {
   return `
     &:focus {
-      background-color: transparentize(${color}, .9);
+      background-color: ${transparentize(color, 0.1)};
     }
     &.euiExpression-isActive {
       border-bottom-color:  ${color};
       border-color:  ${color};
-    }
-    &.euiExpression__description {
-      color: ${color};
     }
   `;
 };
@@ -36,7 +34,7 @@ export const euiExpressionStyles = ({ euiTheme }: UseEuiTheme) => {
       ${euiTextBreakWord()};
       font-family: ${euiTheme.font.familyCode};
       border-bottom: ${euiTheme.border.width.thick} solid transparent;
-      ${useEuiFontSize('s')};
+      ${euiFontSize('s', euiTheme)};
       display: inline-block;
       text-align: left;
       padding: calc(${euiTheme.size.s} / 2) 0;
@@ -63,7 +61,7 @@ export const euiExpressionStyles = ({ euiTheme }: UseEuiTheme) => {
       padding: ${euiTheme.size.xs};
       border-radius: ${euiTheme.size.xs};
 
-      &.euiExpression-isClickable {
+      /* &.euiExpression-isClickable {
         background-color: ${euiTheme.colors.lightestShade};
 
         &:focus,
@@ -74,7 +72,7 @@ export const euiExpressionStyles = ({ euiTheme }: UseEuiTheme) => {
             text-decoration: underline;
           }
         }
-      }
+      } */
 
       .euiExpression__description {
         text-align: right;
@@ -105,8 +103,20 @@ export const euiExpressionStyles = ({ euiTheme }: UseEuiTheme) => {
     // States
     isClickable: css`
       cursor: pointer;
-      border-bottom: ${euiTheme.border.width.thick} dotted
-        ${euiTheme.border.color};
+      border-bottom: ${euiTheme.border.editable};
+    `,
+
+    'isClickable-columns': css`
+      background-color: ${euiTheme.colors.lightestShade};
+
+      &:focus,
+      &:hover:not(:disabled) {
+        .euiExpression__description,
+        .euiExpression__value {
+          // inner child specificity so it inherits underline color from text color
+          text-decoration: underline;
+        }
+      }
     `,
 
     isUppercase: css`
@@ -115,13 +125,26 @@ export const euiExpressionStyles = ({ euiTheme }: UseEuiTheme) => {
       }
     `,
 
-    isActive: css`
-      border-bottom-style: solid;
-      &.euiExpression--accent {
-        border-bottom-color: ${euiTheme.colors.accentText};
-        border-color: ${euiTheme.colors.accentText};
-      }
-    `,
+    // isActive: css`
+    //   border-bottom-style: solid;
+    //
+    //   &.euiExpression--accent {
+    //     border-bottom-color: ${euiTheme.colors.accentText};
+    //     border-color: ${euiTheme.colors.accentText};
+    //   }
+    // `,
+
+    isActive: {
+      base: css`
+        border-bottom-style: solid;
+      `,
+      subdued: css`
+        border-color: ${euiTheme.colors.subdued};
+      `,
+      accent: css`
+        border-color: ${euiTheme.colors.accent};
+      `,
+    },
 
     subdued: css(_colorCSS(euiTheme.colors.subdued)),
     primary: css(_colorCSS(euiTheme.colors.primaryText)),
@@ -129,5 +152,15 @@ export const euiExpressionStyles = ({ euiTheme }: UseEuiTheme) => {
     warning: css(_colorCSS(euiTheme.colors.warningText)),
     danger: css(_colorCSS(euiTheme.colors.dangerText)),
     accent: css(_colorCSS(euiTheme.colors.accentText)),
+  };
+};
+
+export const euiExpressionDescriptionStyles = ({ euiTheme }: UseEuiTheme) => {
+  return {
+    euiExpression__description: css``,
+    truncate: css``,
+    accent: css`
+      color: ${euiTheme.colors.accentText};
+    `,
   };
 };

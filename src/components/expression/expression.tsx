@@ -29,10 +29,10 @@ import { euiExpressionStyles } from './expression.style';
 //   danger: 'euiExpression--danger',
 // };
 
-const textWrapToClassNameMap = {
-  'break-word': null,
-  truncate: 'euiExpression--truncate',
-};
+// const textWrapToClassNameMap = {
+//   'break-word': null,
+//   truncate: 'euiExpression--truncate',
+// };
 
 // export const COLORS = keysOf(colorToClassNameMap);
 export const COLORS = [
@@ -46,10 +46,10 @@ export const COLORS = [
 
 export type ExpressionColor = typeof COLORS[number];
 
-const displayToClassNameMap = {
-  inline: null,
-  columns: 'euiExpression--columns',
-};
+// const displayToClassNameMap = {
+//   inline: null,
+//   columns: 'euiExpression--columns',
+// };
 
 export type EuiExpressionProps = CommonProps & {
   /**
@@ -81,7 +81,7 @@ export type EuiExpressionProps = CommonProps & {
   /**
    * Sets the display style for the expression. Defaults to `inline`
    */
-  display?: keyof typeof displayToClassNameMap;
+  display?: 'inline' | 'columns';
   /**
    * Forces color to display as `danger` and shows an `alert` icon
    */
@@ -96,7 +96,7 @@ export type EuiExpressionProps = CommonProps & {
   /**
    * Sets how to handle the wrapping of long text.
    */
-  textWrap?: keyof typeof textWrapToClassNameMap;
+  textWrap?: 'break-word' | 'truncate';
 };
 
 type Buttonlike = EuiExpressionProps &
@@ -133,8 +133,10 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
   const cssStyles = [
     styles.euiExpression,
     onClick && styles.isClickable,
+    onClick && display === 'columns' && styles['isClickable-columns'],
     styles[color],
-    isActive && styles.isActive,
+    isActive && styles.isActive.base,
+    isActive && styles.isActive['accent'],
     display === 'columns' && styles.columns,
     textWrap === 'truncate' && styles.truncate,
   ];
@@ -145,15 +147,15 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
 
   const classes = classNames(
     'euiExpression',
-    className,
-    {
-      'euiExpression-isActive': isActive,
-      'euiExpression-isClickable': onClick,
-      'euiExpression-isUppercase': uppercase,
-    },
-    displayToClassNameMap[display],
+    className
+    // {
+    //   'euiExpression-isActive': isActive,
+    //   'euiExpression-isClickable': onClick,
+    //   'euiExpression-isUppercase': uppercase,
+    // }
+    // displayToClassNameMap[display],
     // colorToClassNameMap[calculatedColor],
-    textWrapToClassNameMap[textWrap]
+    // textWrapToClassNameMap[textWrap]
   );
 
   const Component = onClick ? 'button' : 'span';
