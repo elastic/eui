@@ -13,8 +13,8 @@ import { EuiPageSideBar, EuiPageSideBarProps } from './page_side_bar';
 import { EuiPageBody, EuiPageBodyProps } from './page_body';
 import { EuiPageHeader, EuiPageHeaderProps } from './page_header';
 import {
-  EuiPageContent,
-  EuiPageContentBody,
+  EuiPageContent_Deprecated as EuiPageContent,
+  EuiPageContentBody_Deprecated as EuiPageContentBody,
   EuiPageContentProps,
   EuiPageContentBodyProps,
 } from './page_content';

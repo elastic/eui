@@ -38,7 +38,7 @@ export interface EuiPageContentBodyProps
  * **DEPRECATED**
  * Use EuiPageSection instead
  */
-export const EuiPageContentBody: FunctionComponent<EuiPageContentBodyProps> = ({
+export const EuiPageContentBody_Deprecated: FunctionComponent<EuiPageContentBodyProps> = ({
   children,
   restrictWidth = false,
   paddingSize = 'none',

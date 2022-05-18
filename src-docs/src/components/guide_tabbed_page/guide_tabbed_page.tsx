@@ -3,8 +3,8 @@ import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { slugify } from '../../../../src/services/string/slugify';
 import {
   EuiPageHeader,
-  EuiPageContent,
-  EuiPageContentBody,
+  EuiPageContent_Deprecated as EuiPageContent,
+  EuiPageContentBody_Deprecated as EuiPageContentBody,
   EuiBetaBadge,
   CommonProps,
   EuiHorizontalRule,

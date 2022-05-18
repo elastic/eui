@@ -19,10 +19,10 @@ export type {
   EuiPageContentHeaderSectionProps,
 } from './page_content';
 export {
-  EuiPageContent,
-  EuiPageContentBody,
-  EuiPageContentHeader,
-  EuiPageContentHeaderSection,
+  EuiPageContent_Deprecated,
+  EuiPageContentBody_Deprecated,
+  EuiPageContentHeader_Deprecated,
+  EuiPageContentHeaderSection_Deprecated,
 } from './page_content';
 
 export type {

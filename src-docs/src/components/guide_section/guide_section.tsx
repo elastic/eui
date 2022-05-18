@@ -7,7 +7,7 @@ import {
   EuiButton,
   EuiButtonEmpty,
   EuiFlyout,
-  EuiPageContentBody,
+  EuiPageContentBody_Deprecated as EuiPageContentBody,
   EuiPanel,
   EuiPanelProps,
   CommonProps,
