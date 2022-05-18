@@ -9,14 +9,11 @@ import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 
 export default () => {
-  const values = useJsonVars();
-  const euiBreakpoints = values.euiBreakpoints;
-  const euiBreakpointKeys = Object.keys(euiBreakpoints);
-
   return (
     <>
       <ThemeExample
-        title={'Mixin'}
+        title={<code>euiBreakpoint(sizes)</code>}
+        type="mixin"
         description={
           <p>
             Breakpoints in EUI are provided through the use of a Sass mixin{' '}
@@ -30,7 +27,8 @@ export default () => {
       />
 
       <ThemeExample
-        title={'Sass map'}
+        title={<code>$euiBreakpoints</code>}
+        type="Sass map"
         description={
           <p>
             The actual breakpoint values are provided through a map of values
@@ -43,7 +41,17 @@ export default () => {
         snippet="map-get($euiBreakpoints, 's')"
         snippetLanguage="scss"
       />
+    </>
+  );
+};
 
+export const BreakpointValuesSass = () => {
+  const values = useJsonVars();
+  const euiBreakpoints = values.euiBreakpoints;
+  const euiBreakpointKeys = Object.keys(euiBreakpoints);
+
+  return (
+    <>
       <ThemeValuesTable
         items={euiBreakpointKeys.map((size) => {
           return {

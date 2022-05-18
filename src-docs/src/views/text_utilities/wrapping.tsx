@@ -2,8 +2,14 @@ import React, { useContext } from 'react';
 
 import { ThemeContext } from '../../components/with_theme';
 
-import { EuiPanel, EuiCode } from '../../../../src';
+import {
+  EuiPanel,
+  EuiCode,
+  euiTextTruncate,
+  euiTextBreakWord,
+} from '../../../../src';
 import { ThemeExample } from '../theme/_components/_theme_example';
+import { css } from '@emotion/react';
 
 const maxWidth = 300;
 const longLink =
@@ -16,37 +22,76 @@ export default () => {
 
   return (
     <>
-      <ThemeExample
-        title={<code>.eui-textNoWrap</code>}
-        description={<p>Forces text not to wrap even in small containers.</p>}
-        example={
-          <EuiPanel
-            color="warning"
-            style={{ maxWidth }}
-            className="eui-textNoWrap"
-          >
-            This text will not to wrap but extend beyond the boundaries of the
-            yellow box.
-          </EuiPanel>
-        }
-        snippet={`<div className="eui-textNoWrap">
-  /* Your content */
-</div>`}
-      />
+      {/* Mixin */}
+      {showSass ? (
+        <ThemeExample
+          title={<code>@include euiTextTruncate</code>}
+          type="mixin"
+          description={
+            <>
+              <p>
+                Truncates text at 100% width of its parent and will display an
+                ellipsis.
+              </p>
+              <p>
+                <strong>Tip:</strong> When truncating text, it is recommended to
+                include the full text within an HTML <EuiCode>title</EuiCode>{' '}
+                attribute or by wrapping the element within an{' '}
+                <strong>EuiToolTip</strong>.
+              </p>
+            </>
+          }
+          snippet={'@include euiTextTruncate;'}
+          snippetLanguage="scss"
+        />
+      ) : (
+        <ThemeExample
+          title={<code>euiTextTruncate(maxWidth?)</code>}
+          type="function"
+          description={
+            <>
+              <p>
+                Truncates text at 100% width of its parent and will display an
+                ellipsis.
+              </p>
+              <p>
+                This utility accepts a single optional parameter for customizing
+                the maximum width of the truncated text. If not passed, it
+                defaults to <EuiCode language="css">max-width: 100%;</EuiCode>.
+              </p>
+              <p>
+                <strong>Tip:</strong> When truncating text, it is recommended to
+                include the full text within an HTML <EuiCode>title</EuiCode>{' '}
+                attribute or by wrapping the element within an{' '}
+                <strong>EuiToolTip</strong>.
+              </p>
+            </>
+          }
+          example={
+            <EuiPanel
+              color="warning"
+              css={css`
+                ${euiTextTruncate('300px')}
+              `}
+              title="This text will not to wrap but truncate beyond the boundaries of the yellow box."
+            >
+              This text will not to wrap but truncate beyond the boundaries of
+              the yellow box.
+            </EuiPanel>
+          }
+          snippet={'${euiTextTruncate()}'}
+          snippetLanguage="emotion"
+        />
+      )}
 
       <ThemeExample
         title={<code>.eui-textTruncate</code>}
+        type="className"
         description={
           <>
             <p>
-              Truncates text at 100% width of its parent and will display an
-              ellipsis.
-            </p>
-            <p>
-              <strong>Tip:</strong> When truncating text, it is recommended to
-              include the full text within an HTML <EuiCode>title</EuiCode>{' '}
-              attribute or by wrapping the element within an{' '}
-              <strong>EuiToolTip</strong>.
+              Applies the <EuiCode>euiTextTruncate()</EuiCode> styles as an
+              overriding CSS utility class.
             </p>
           </>
         }
@@ -67,47 +112,59 @@ export default () => {
   /* Your content */
 </div>`}
       />
+
       {/* Mixin */}
-      {!showSass ? (
+      {showSass ? (
         <ThemeExample
-          title={<code>euiTextTruncate(maxWidth?)</code>}
+          title={<code>@include euiTextBreakWord</code>}
+          type="mixin"
           description={
-            <>
-              <p>
-                Use this style function to apply truncation within your
-                CSS-in-JS styling.
-              </p>
-              <p>
-                This utility accepts a single optional parameter for customizing
-                the maximum width of the truncated text. If not passed, it
-                defaults to <EuiCode language="css">max-width: 100%;</EuiCode>.
-              </p>
-            </>
+            <p>
+              Wraps the text across lines like normal, but forces long words
+              like URLs to break.
+            </p>
           }
-          snippet={'${euiTextTruncate()}'}
-          snippetLanguage="emotion"
+          snippet={'@include euiTextBreakWord;'}
+          snippetLanguage="scss"
         />
       ) : (
         <ThemeExample
-          title={<code>include euiTextTruncate</code>}
+          title={<code>euiTextBreakWord()</code>}
+          type="function"
           description={
             <p>
-              Use this Sass mixin to apply truncation to your selectors. No
-              parameters are taken for this utility.
+              Wraps the text across lines like normal, but forces long words
+              like URLs to break.
             </p>
           }
-          snippet={'@include euiTextTruncate;'}
-          snippetLanguage="scss"
+          snippet={'${euiTextBreakWord()}'}
+          snippetLanguage="emotion"
+          example={
+            <EuiPanel
+              color="warning"
+              style={{ maxWidth }}
+              css={css`
+                ${euiTextBreakWord()}
+              `}
+              title="This text will not to wrap but truncate beyond the boundaries of the yellow box."
+            >
+              This text will wrap like normal but this long link {longLink} will
+              break mid-word.
+            </EuiPanel>
+          }
         />
       )}
 
       <ThemeExample
         title={<code>.eui-textBreakWord</code>}
+        type="className"
         description={
-          <p>
-            Wraps the text across lines like normal, but forces long words like
-            URLs to break.
-          </p>
+          <>
+            <p>
+              Applies the <EuiCode>euiTextBreakWord()</EuiCode> styles as an
+              overriding CSS utility class.
+            </p>
+          </>
         }
         example={
           <EuiPanel
@@ -123,35 +180,29 @@ export default () => {
   /* Your content */
 </div>`}
       />
-      {/* Mixin */}
-      {!showSass ? (
-        <ThemeExample
-          title={<code>euiTextBreakWord()</code>}
-          description={
-            <p>
-              Use this style function to apply break-word styles within your
-              CSS-in-JS styling. No parameters are taken for this utility.
-            </p>
-          }
-          snippet={'${euiTextBreakWord()}'}
-          snippetLanguage="emotion"
-        />
-      ) : (
-        <ThemeExample
-          title={<code>@include euiTextBreakWord</code>}
-          description={
-            <p>
-              Use this Sass mixin to apply break-word styling to your selectors.
-              No parameters are taken for this utility.
-            </p>
-          }
-          snippet={'@include euiTextBreakWord;'}
-          snippetLanguage="scss"
-        />
-      )}
+
+      <ThemeExample
+        title={<code>.eui-textNoWrap</code>}
+        type="className"
+        description={<p>Forces text not to wrap even in small containers.</p>}
+        example={
+          <EuiPanel
+            color="warning"
+            style={{ maxWidth }}
+            className="eui-textNoWrap"
+          >
+            This text will not to wrap but extend beyond the boundaries of the
+            yellow box.
+          </EuiPanel>
+        }
+        snippet={`<div className="eui-textNoWrap">
+  /* Your content */
+</div>`}
+      />
 
       <ThemeExample
         title={<code>.eui-textBreakAll</code>}
+        type="className"
         description={
           <p>
             Wraps the text across lines always forcing the last word on the line
@@ -176,6 +227,7 @@ export default () => {
 
       <ThemeExample
         title={<code>.eui-textBreakNormal</code>}
+        type="className"
         description={
           <p>
             Reverts the text back to the normal wrapping scheme of not forcing

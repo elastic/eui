@@ -13,36 +13,28 @@ import React, {
   MouseEventHandler,
 } from 'react';
 import classNames from 'classnames';
+import { getSecureRelForTarget, useEuiTheme } from '../../services';
+import { euiLinkStyles } from './link.styles';
 import { EuiIcon } from '../icon';
 import { EuiI18n, useEuiI18n } from '../i18n';
-import { CommonProps, ExclusiveUnion, keysOf } from '../common';
-import { getSecureRelForTarget } from '../../services';
+import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { validateHref } from '../../services/security/href_validator';
 
 export type EuiLinkType = 'button' | 'reset' | 'submit';
-export type EuiLinkColor =
-  | 'primary'
-  | 'subdued'
-  | 'success'
-  | 'accent'
-  | 'danger'
-  | 'warning'
-  | 'text'
-  | 'ghost';
 
-const colorsToClassNameMap: { [color in EuiLinkColor]: string } = {
-  primary: 'euiLink--primary',
-  subdued: 'euiLink--subdued',
-  success: 'euiLink--success',
-  accent: 'euiLink--accent',
-  danger: 'euiLink--danger',
-  warning: 'euiLink--warning',
-  ghost: 'euiLink--ghost',
-  text: 'euiLink--text',
-};
+export const COLORS = [
+  'primary',
+  'subdued',
+  'success',
+  'accent',
+  'danger',
+  'warning',
+  'text',
+  'ghost',
+] as const;
 
-export const COLORS = keysOf(colorsToClassNameMap);
+export type EuiLinkColor = typeof COLORS[number];
 
 export interface LinkButtonProps {
   type?: EuiLinkType;
@@ -100,20 +92,17 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
     },
     ref
   ) => {
+    const euiTheme = useEuiTheme();
+    const styles = euiLinkStyles(euiTheme);
+    const cssStyles = [styles.euiLink];
+    const cssScreenReaderTextStyles = [styles.euiLink__screenReaderText];
+    const cssExternalLinkIconStyles = [styles.euiLink__externalIcon];
+
     const isHrefValid = !href || validateHref(href);
     const disabled = _disabled || !isHrefValid;
 
-    const externalLinkIcon = (
-      <EuiIcon
-        aria-label={useEuiI18n('euiLink.external.ariaLabel', 'External link')}
-        size="s"
-        className="euiLink__externalIcon"
-        type="popout"
-      />
-    );
-
     const newTargetScreenreaderText = (
-      <EuiScreenReaderOnly>
+      <EuiScreenReaderOnly css={cssScreenReaderTextStyles}>
         <span>
           <EuiI18n
             token="euiLink.newTarget.screenReaderOnlyText"
@@ -123,13 +112,19 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
       </EuiScreenReaderOnly>
     );
 
+    const externalLinkIcon = (
+      <EuiIcon
+        aria-label={useEuiI18n('euiLink.external.ariaLabel', 'External link')}
+        size="s"
+        css={cssExternalLinkIconStyles}
+        type="popout"
+      />
+    );
+
     if (href === undefined || !isHrefValid) {
       const buttonProps = {
-        className: classNames(
-          'euiLink',
-          disabled ? 'euiLink-disabled' : colorsToClassNameMap[color],
-          className
-        ),
+        className: classNames('euiLink', className),
+        css: [cssStyles, disabled ? [styles.disabled] : styles[color]],
         type,
         onClick,
         disabled,
@@ -147,8 +142,10 @@ const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
     }
 
     const secureRel = getSecureRelForTarget({ href, target, rel });
+
     const anchorProps = {
-      className: classNames('euiLink', colorsToClassNameMap[color], className),
+      className: classNames('euiLink', className),
+      css: [cssStyles, styles[color]],
       href,
       target,
       rel: secureRel,

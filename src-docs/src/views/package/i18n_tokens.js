@@ -11,7 +11,8 @@ import {
   EuiText,
   EuiTitle,
 } from '../../../../src';
-import { GuidePage } from '../../components/guide_page';
+import { GuideTabbedPage } from '../../components/guide_tabbed_page';
+import { GuideSection } from '../../components';
 
 const columns = [
   {
@@ -60,46 +61,48 @@ const search = {
 export const I18nTokens = {
   name: 'I18n tokens',
   component: () => (
-    <GuidePage title="I18n tokens">
-      <EuiInMemoryTable
-        items={tokens}
-        columns={columns}
-        search={search}
-        pagination={{ initialPageSize: 50 }}
-      />
+    <GuideTabbedPage title="I18n tokens">
+      <GuideSection>
+        <EuiInMemoryTable
+          items={tokens}
+          columns={columns}
+          search={search}
+          pagination={{ initialPageSize: 50 }}
+        />
 
-      <EuiSpacer size="m" />
+        <EuiSpacer size="m" />
 
-      <EuiTitle size="m">
-        <span>Token changelog</span>
-      </EuiTitle>
+        <EuiTitle size="m">
+          <span>Token changelog</span>
+        </EuiTitle>
 
-      {tokenChangelog.map(({ version, changes }) => (
-        <EuiAccordion
-          key={version}
-          id={version}
-          buttonContent={<span>{version}</span>}
-        >
-          <EuiInMemoryTable
-            items={changes}
-            columns={[
-              {
-                field: 'changeType',
-                name: 'Change',
-                width: '100px',
-                render: (changeType) => (
-                  <EuiText color="subdued" size="xs">
-                    {changeType}
-                  </EuiText>
-                ),
-              },
-              { field: 'token', name: 'Token' },
-              { field: 'value', name: 'New Value' },
-            ]}
-          />
-          <EuiSpacer size="s" />
-        </EuiAccordion>
-      ))}
-    </GuidePage>
+        {tokenChangelog.map(({ version, changes }) => (
+          <EuiAccordion
+            key={version}
+            id={version}
+            buttonContent={<span>{version}</span>}
+          >
+            <EuiInMemoryTable
+              items={changes}
+              columns={[
+                {
+                  field: 'changeType',
+                  name: 'Change',
+                  width: '100px',
+                  render: (changeType) => (
+                    <EuiText color="subdued" size="xs">
+                      {changeType}
+                    </EuiText>
+                  ),
+                },
+                { field: 'token', name: 'Token' },
+                { field: 'value', name: 'New Value' },
+              ]}
+            />
+            <EuiSpacer size="s" />
+          </EuiAccordion>
+        ))}
+      </GuideSection>
+    </GuideTabbedPage>
   ),
 };

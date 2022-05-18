@@ -16,6 +16,7 @@ import {
   EuiAspectRatio,
   EuiIcon,
   EuiTextColor,
+  EuiHorizontalRule,
 } from '../../../../src/components';
 
 const codeBlockProps = {
@@ -296,6 +297,7 @@ export default {
               </li>
             </ul>
           </EuiText>
+          <EuiHorizontalRule />
         </>
       ),
     },
@@ -410,6 +412,7 @@ export default {
               </li>
             </ul>
           </EuiText>
+          <EuiHorizontalRule />
         </>
       ),
     },
@@ -503,6 +506,7 @@ export default {
               </li>
             </ul>
           </EuiText>
+          <EuiHorizontalRule />
         </>
       ),
     },
@@ -664,6 +668,7 @@ export default {
               </li>
             </ul>
           </EuiText>
+          <EuiHorizontalRule />
         </>
       ),
     },
@@ -762,6 +767,7 @@ export default {
     },
     {
       title: 'Learning resources',
+      color: 'subdued',
       wrapText: false,
       text: (
         <>
