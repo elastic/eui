@@ -11,6 +11,7 @@ import { UseEuiTheme } from '../../services';
 import {
   logicalCSS,
   euiFontSize,
+  euiBackgroundColor,
   _FontScaleOptions,
 } from '../../global_styling';
 
@@ -190,145 +191,150 @@ const euiScaleText = (
 /**
  * Styles
  */
-export const euiTextStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiText: css`
-    ${euiText(euiTheme, true)};
+export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
 
-    // EuiImage with floats are often used within EuiText.
-    clear: both;
+  return {
+    euiText: css`
+      ${euiText(euiTheme, true)};
 
-    // Style anchors that don't have a class. This prevents overwriting "buttons"
-    // and other stylized elements passed in.
-    a:not([class]) {
-      ${euiLinkCSS(euiTheme)}
-    }
+      // EuiImage with floats are often used within EuiText.
+      clear: both;
 
-    img {
-      display: block;
-      width: 100%;
-    }
-
-    ul {
-      list-style: disc;
-    }
-
-    ol {
-      list-style: decimal;
-    }
-
-    blockquote:not(.euiMarkdownFormat__blockquote) {
-      position: relative;
-      text-align: center;
-      margin-left: auto;
-      margin-right: auto;
-      font-family: Georgia, Times, Times New Roman, serif;
-      font-style: italic;
-      letter-spacing: normal;
-
-      p:last-child {
-        margin-bottom: 0;
+      // Style anchors that don't have a class. This prevents overwriting "buttons"
+      // and other stylized elements passed in.
+      a:not([class]) {
+        ${euiLinkCSS(euiTheme)}
       }
 
-      &:before,
-      &:after {
-        position: absolute;
-        content: '';
-        height: 2px;
-        width: 50%;
-        right: 0;
-        transform: translateX(-50%);
-        background: ${euiTheme.colors.darkShade};
+      img {
+        display: block;
+        width: 100%;
       }
 
-      &:before {
-        top: 0;
+      ul {
+        list-style: disc;
       }
 
-      &:after {
-        bottom: 0;
+      ol {
+        list-style: decimal;
       }
-    }
 
-    h1 {
-      ${euiTitle('l', euiTheme)}
-    }
+      blockquote:not(.euiMarkdownFormat__blockquote) {
+        position: relative;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: Georgia, Times, Times New Roman, serif;
+        font-style: italic;
+        letter-spacing: normal;
 
-    h2 {
-      ${euiTitle('m', euiTheme)}
-    }
+        p:last-child {
+          margin-bottom: 0;
+        }
 
-    h3 {
-      ${euiTitle('s', euiTheme)}
-    }
+        &:before,
+        &:after {
+          position: absolute;
+          content: '';
+          height: 2px;
+          width: 50%;
+          right: 0;
+          transform: translateX(-50%);
+          background: ${euiTheme.colors.darkShade};
+        }
 
-    h4,
-    dt {
-      ${euiTitle('xs', euiTheme)}
-    }
+        &:before {
+          top: 0;
+        }
 
-    h5 {
-      ${euiTitle('xxs', euiTheme)}
-    }
+        &:after {
+          bottom: 0;
+        }
+      }
 
-    h6 {
-      ${euiTitle('xxxs', euiTheme)}
-      text-transform: uppercase;
-    }
+      h1 {
+        ${euiTitle('l', euiTheme)}
+      }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    dt {
-      color: inherit;
-    }
+      h2 {
+        ${euiTitle('m', euiTheme)}
+      }
 
-    pre:not(.euiCodeBlock__pre) {
-      white-space: pre-wrap;
-      background: ${euiTheme.colors
-        .lightestShade}; // TODO: $euiCodeBlockBackgroundColor - switch to var once EuiCode is converted
-      color: ${euiTheme.colors
-        .text}; // TODO: $euiCodeBlockColor - switch to var once EuiCode is converted
-    }
+      h3 {
+        ${euiTitle('s', euiTheme)}
+      }
 
-    pre:not(.euiCodeBlock__pre),
-    pre:not(.euiCodeBlock__pre) code {
-      display: block;
-    }
+      h4,
+      dt {
+        ${euiTitle('xs', euiTheme)}
+      }
 
+      h5 {
+        ${euiTitle('xxs', euiTheme)}
+      }
 
-    > :last-child,
-    .euiTextColor > :last-child {
-      margin-bottom: 0 !important;
-    }
-  `,
-  constrainedWidth: css`
-    max-width: ${euiTextConstrainedMaxWidth};
-  `,
-  // Sizes
-  m: css`
-    ${euiScaleText(euiTheme, {
-      measurement: 'rem',
-      customScale: 'm',
-    })}
-  `,
-  s: css`
-    ${euiScaleText(euiTheme, {
-      measurement: 'rem',
-      customScale: 's',
-    })}
-  `,
-  xs: css`
-    ${euiScaleText(euiTheme, {
-      measurement: 'rem',
-      customScale: 'xs',
-    })}
-  `,
-  relative: css`
-    ${euiScaleText(euiTheme, {
-      measurement: 'em',
-    })}
-  `,
-});
+      h6 {
+        ${euiTitle('xxxs', euiTheme)}
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      dt {
+        color: inherit;
+      }
+
+      pre:not(.euiCodeBlock__pre) {
+        white-space: pre-wrap;
+        background: ${euiBackgroundColor(
+          'subdued',
+          euiThemeContext
+        )}; // TODO: $euiCodeBlockBackgroundColor - switch to var once EuiCode is converted
+        color: ${euiTheme.colors
+          .text}; // TODO: $euiCodeBlockColor - switch to var once EuiCode is converted
+      }
+
+      pre:not(.euiCodeBlock__pre),
+      pre:not(.euiCodeBlock__pre) code {
+        display: block;
+      }
+
+      > :last-child,
+      .euiTextColor > :last-child {
+        margin-bottom: 0 !important;
+      }
+    `,
+    constrainedWidth: css`
+      max-width: ${euiTextConstrainedMaxWidth};
+    `,
+    // Sizes
+    m: css`
+      ${euiScaleText(euiTheme, {
+        measurement: 'rem',
+        customScale: 'm',
+      })}
+    `,
+    s: css`
+      ${euiScaleText(euiTheme, {
+        measurement: 'rem',
+        customScale: 's',
+      })}
+    `,
+    xs: css`
+      ${euiScaleText(euiTheme, {
+        measurement: 'rem',
+        customScale: 'xs',
+      })}
+    `,
+    relative: css`
+      ${euiScaleText(euiTheme, {
+        measurement: 'em',
+      })}
+    `,
+  };
+};
