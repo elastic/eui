@@ -48,15 +48,5 @@ describe('EuiText', () => {
 
       expect(component).toMatchSnapshot();
     });
-
-    test('cloneElement', () => {
-      const component = render(
-        <EuiText {...requiredProps} cloneElement>
-          <p>Content</p>
-        </EuiText>
-      );
-
-      expect(component).toMatchSnapshot();
-    });
   });
 });

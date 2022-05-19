@@ -12,16 +12,6 @@ exports[`EuiText is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiText props cloneElement 1`] = `
-<p
-  aria-label="aria-label"
-  class="euiText testClass1 testClass2 css-1ovgvj3-euiText-m"
-  data-test-subj="test subject string"
->
-  Content
-</p>
-`;
-
 exports[`EuiText props color & align 1`] = `
 <div
   aria-label="aria-label"
