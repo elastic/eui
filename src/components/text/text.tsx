@@ -9,7 +9,6 @@
 import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-import { cloneElementWithCss } from '../../services/theme/clone_element';
 
 import { useEuiTheme } from '../../services';
 import { euiTextStyles } from './text.styles';
@@ -33,11 +32,6 @@ export type EuiTextProps = CommonProps &
      */
     color?: TextColor | CSSProperties['color'];
     grow?: boolean;
-    /**
-     * Applies text styling to the child element instead of rendering a parent wrapper `div`.
-     * Must be used in conjunction with a single child element/tag, and not raw text.
-     */
-    cloneElement?: boolean;
   };
 
 export const EuiText: FunctionComponent<EuiTextProps> = ({
@@ -48,7 +42,6 @@ export const EuiText: FunctionComponent<EuiTextProps> = ({
   children,
   className,
   style,
-  cloneElement = false,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -61,12 +54,10 @@ export const EuiText: FunctionComponent<EuiTextProps> = ({
 
   const classes = classNames('euiText', className);
 
-  const props = { css: cssStyles, className: classes, ...rest };
-
-  let text = cloneElement ? (
-    cloneElementWithCss(children, props)
-  ) : (
-    <div {...props}>{children}</div>
+  let text = (
+    <div css={cssStyles} className={classes} {...rest}>
+      {children}
+    </div>
   );
 
   if (color) {
