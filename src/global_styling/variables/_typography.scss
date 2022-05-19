@@ -77,4 +77,4 @@ $euiTitles: (
 ) !default;
 
 // TODO: Moved from EuiText - can be removed once all usages are converted to Emotion
-$euiTextConstrainedMaxWidth: 36em;
+$euiTextConstrainedMaxWidth: #{'max(64ch, 75%)'};
