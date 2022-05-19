@@ -226,7 +226,7 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
         position: relative;
         text-align: center;
         ${logicalCSS('margin-horizontal', 'auto')}
-        font-family: Georgia, Times, Times New Roman, serif;
+        font-family: ${euiTheme.font.familySerif};
         font-style: italic;
         letter-spacing: normal;
 
