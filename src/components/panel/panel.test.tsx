@@ -14,13 +14,13 @@ import { shouldRenderCustomStyles } from '../../test/internal';
 import { EuiPanel, SIZES, COLORS, BORDER_RADII } from './panel';
 
 describe('EuiPanel', () => {
+  shouldRenderCustomStyles(<EuiPanel />);
+
   test('is rendered', () => {
     const component = render(<EuiPanel {...requiredProps} />);
 
     expect(component).toMatchSnapshot();
   });
-
-  shouldRenderCustomStyles(<EuiPanel />);
 
   describe('props', () => {
     describe('hasShadow', () => {
