@@ -80,7 +80,7 @@ export const euiLinkStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     // Color styles
     primary: css(_colorCSS(euiTheme.colors.primaryText)),
-    subdued: css(_colorCSS(euiTheme.colors.subdued)),
+    subdued: css(_colorCSS(euiTheme.colors.subduedText)),
     success: css(_colorCSS(euiTheme.colors.successText)),
     accent: css(_colorCSS(euiTheme.colors.accentText)),
     danger: css(_colorCSS(euiTheme.colors.dangerText)),

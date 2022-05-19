@@ -15,7 +15,7 @@ export const euiTextColorStyles = ({ euiTheme }: UseEuiTheme) => ({
     color: ${euiTheme.colors.text};
   `,
   subdued: css`
-    color: ${euiTheme.colors.subdued};
+    color: ${euiTheme.colors.subduedText};
   `,
   success: css`
     color: ${euiTheme.colors.successText};
