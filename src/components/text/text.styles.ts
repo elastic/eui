@@ -53,6 +53,7 @@ const euiScaleText = (
     h5: euiTitle('xxs', euiTheme, options),
     h6: euiTitle('xxxs', euiTheme, options),
   };
+  // Generate margin-top for all headings that is twice the size of the current font scale
   const headingMarginTop = (
     headingFontSize: ReturnType<typeof euiTitle>['fontSize']
   ) => {
@@ -62,6 +63,7 @@ const euiScaleText = (
     }
     return `${marginTop}${measurement}`;
   };
+  // Generate margin-top for all headings that is half the size of the current font scale
   const headingMarginBottom = (
     headingFontSize: ReturnType<typeof euiTitle>['fontSize']
   ) => {
@@ -223,8 +225,7 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
       blockquote:not(.euiMarkdownFormat__blockquote) {
         position: relative;
         text-align: center;
-        margin-left: auto;
-        margin-right: auto;
+        ${logicalCSS('margin-horizontal', 'auto')}
         font-family: Georgia, Times, Times New Roman, serif;
         font-style: italic;
         letter-spacing: normal;
@@ -237,7 +238,7 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
         &:after {
           position: absolute;
           content: '';
-          height: 2px;
+          height: ${euiTheme.border.width.thick};
           width: 50%;
           right: 0;
           transform: translateX(-50%);
@@ -304,8 +305,7 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
         display: block;
       }
 
-      > :last-child,
-      .euiTextColor > :last-child {
+      > :last-child {
         margin-bottom: 0 !important;
       }
     `,
