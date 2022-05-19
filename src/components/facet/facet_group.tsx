@@ -15,7 +15,7 @@ import { EuiFlexGroup } from '../flex';
 import { useEuiTheme } from '../../services';
 import { euiFacetGroupStyles } from './facet_group.styles';
 
-export const LAYOUTS = ['vertical', 'horizontal'];
+export const LAYOUTS = ['vertical', 'horizontal'] as const;
 export type EuiFacetGroupLayout = typeof LAYOUTS[number];
 
 export const GUTTER_SIZES = ['none', 's', 'm', 'l'] as const;
@@ -43,7 +43,7 @@ export const EuiFacetGroup: FunctionComponent<EuiFacetGroupProps> = ({
 }) => {
   const theme = useEuiTheme();
   const styles = euiFacetGroupStyles(theme, layout);
-  const cssStyles = [styles.euiFacetGroup, styles[gutterSize]];
+  const cssStyles = [styles.euiFacetGroup, styles[gutterSize], styles[layout]];
 
   const classes = classNames('euiFacetGroup', className);
   const direction = layout === 'vertical' ? 'column' : 'row';

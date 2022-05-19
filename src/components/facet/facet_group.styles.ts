@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme, useEuiTheme } from '../../services';
+import { UseEuiTheme } from '../../services';
 import { EuiFacetGroupLayout } from './facet_group';
 import { logicalCSS } from '../../global_styling';
 
@@ -18,59 +18,56 @@ const _facetGroupGutterSize = ({
   gutterSize: string;
   layout: EuiFacetGroupLayout;
 }) => {
-  const { euiTheme } = useEuiTheme();
-  const buttonMarginVerticalSize = `calc(${euiTheme.size.m} / 2)`;
-
   const layoutStyles =
-    layout === 'horizontal'
-      ? `
+    layout === 'horizontal' &&
+    `
       display: flex;
       flex-direction: row;
-      gap: 0 ${gutterSize};`
-      : `
-      > [class*='euiFacetButton'] {
-        width: 100%;
-      }
-    `;
+      gap: 0 ${gutterSize};`;
 
-  return `
-    ${layoutStyles}
-
-    > [class*='euiFacetButton'] {
-      ${logicalCSS('margin-vertical', buttonMarginVerticalSize)};
-    }
-  `;
+  return layoutStyles;
 };
 
 export const euiFacetGroupStyles = (
   { euiTheme }: UseEuiTheme,
   layout: EuiFacetGroupLayout
-) => ({
-  // Base
-  euiFacetGroup: css``,
-  // Gutter sizes
-  none: css(
-    _facetGroupGutterSize({
-      gutterSize: '0',
-      layout,
-    })
-  ),
-  s: css(
-    _facetGroupGutterSize({
-      gutterSize: euiTheme.size.s,
-      layout,
-    })
-  ),
-  m: css(
-    _facetGroupGutterSize({
-      gutterSize: euiTheme.size.m,
-      layout,
-    })
-  ),
-  l: css(
-    _facetGroupGutterSize({
-      gutterSize: euiTheme.size.l,
-      layout,
-    })
-  ),
-});
+) => {
+  const buttonMarginVerticalSize = `calc(${euiTheme.size.m} / 2)`;
+
+  return {
+    // Base
+    euiFacetGroup: css`
+      > [class*='euiFacetButton'] {
+        ${logicalCSS('margin-vertical', buttonMarginVerticalSize)};
+      }
+    `,
+    // Gutter sizes
+    none: css(
+      _facetGroupGutterSize({
+        gutterSize: '0',
+        layout,
+      })
+    ),
+    s: css(
+      _facetGroupGutterSize({
+        gutterSize: euiTheme.size.s,
+        layout,
+      })
+    ),
+    m: css(
+      _facetGroupGutterSize({
+        gutterSize: euiTheme.size.m,
+        layout,
+      })
+    ),
+    l: css(
+      _facetGroupGutterSize({
+        gutterSize: euiTheme.size.l,
+        layout,
+      })
+    ),
+    // layouts
+    horizontal: css``,
+    vertical: css``,
+  };
+};

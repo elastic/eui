@@ -8,16 +8,8 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import {
-  euiFontSize,
-  euiTextTruncate,
-  euiCanAnimate,
-  euiTextShift,
-  logicalCSS,
-} from '../../global_styling';
+import { euiTextTruncate, euiTextShift } from '../../global_styling';
 
-import { euiButtonBaseCSS } from '../button/button.styles';
-import { euiButtonContentCSS } from '../button/button_content.styles';
 import { euiLinkFocusCSS } from '../link/link.styles';
 
 export const euiFacetButtonStyles = (_theme: UseEuiTheme) => {
@@ -26,20 +18,12 @@ export const euiFacetButtonStyles = (_theme: UseEuiTheme) => {
   return {
     // Base
     euiFacetButton: css`
-    ${euiButtonBaseCSS(_theme)}
-    ${euiFontSize('s', euiTheme)}
-    ${logicalCSS('height', euiTheme.size.xl)};
     text-align: left;
-    text-decoration: none;
-
-    ${euiCanAnimate} {
-      transition: all ${euiTheme.animation.fast} ease-in;
-    }
 
     &:hover,
     &:focus {
       // Make sure the quantity doesn't get an underline on hover
-      &:not(:disabled) [class*='euiFacetButton__text'] {
+      &:not(:disabled) .euiFacetButton__text {
         text-decoration: underline;
       }
     }
@@ -52,18 +36,9 @@ export const euiFacetButtonStyles = (_theme: UseEuiTheme) => {
       color: ${euiTheme.colors.disabledText};
       pointer-events: none;
 
-      [class*='euiFacetButton__content'] {
-        pointer-events: auto;
-        cursor: not-allowed;
-      }
-
       [class*='euiFacetButton__icon'],
       [class*='euiFacetButton__quantity'] {
         opacity: 0.5;
-      }
-
-      &:focus {
-        background-color: transparent;
       }
 
       &:hover,
@@ -82,27 +57,13 @@ export const euiFacetButtonStyles = (_theme: UseEuiTheme) => {
   };
 };
 
-export const euiFacetButtonContentStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiFacetButton__content: css`
-    ${euiButtonContentCSS(euiTheme)}
-  `,
-});
-
 export const euiFacetButtonContentElementsStyles = ({
   euiTheme,
 }: UseEuiTheme) => ({
-  euiFacetButton__icon: css`
-    ${euiCanAnimate} {
-      transition: all ${euiTheme.animation.fast} ease-in;
-    }
-  `,
+  euiFacetButton__content: css``,
   euiFacetButton__text: css`
     ${euiTextShift('bold', 'data-text', euiTheme)}
     ${euiTextTruncate()}
-
     flex-grow: 1;
-    vertical-align: middle;
   `,
-  euiFacetButton__spinner: css``,
-  euiFacetButton__quantity: css``,
 });

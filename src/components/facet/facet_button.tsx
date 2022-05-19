@@ -15,7 +15,6 @@ import React, {
   ReactElement,
 } from 'react';
 import classNames from 'classnames';
-
 import { CommonProps } from '../common';
 
 import { EuiNotificationBadge } from '../badge';
@@ -27,9 +26,9 @@ import { cloneElementWithCss } from '../../services/theme/clone_element';
 import { useEuiTheme } from '../../services';
 import {
   euiFacetButtonStyles,
-  euiFacetButtonContentStyles,
   euiFacetButtonContentElementsStyles,
 } from './facet_button.styles';
+import { EuiButtonDisplay } from '../button/button_display/button_display';
 
 export interface EuiFacetButtonProps
   extends CommonProps,
@@ -82,24 +81,17 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
   const styles = euiFacetButtonStyles(theme);
   const cssStyles = [styles.euiFacetButton, styles[selection]];
 
-  const contentStyles = euiFacetButtonContentStyles(theme);
-  const cssContentStyles = [contentStyles.euiFacetButton__content];
-
   const contentElementsStyles = euiFacetButtonContentElementsStyles(theme);
   const cssTextStyles = [contentElementsStyles.euiFacetButton__text];
-  const cssIconStyles = [contentElementsStyles.euiFacetButton__icon];
-  const cssSpinnerStyles = [contentElementsStyles.euiFacetButton__spinner];
-  const cssQuantityStyles = [contentElementsStyles.euiFacetButton__quantity];
 
   // Add quantity number if provided or loading indicator
   let buttonQuantity: ReactElement;
 
   if (isLoading) {
-    buttonQuantity = <EuiLoadingSpinner css={cssSpinnerStyles} size="m" />;
+    buttonQuantity = <EuiLoadingSpinner size="m" />;
   } else if (typeof quantity === 'number') {
     buttonQuantity = (
       <EuiNotificationBadge
-        css={cssQuantityStyles}
         className="euiFacetButton__quantity"
         size="m"
         color={!isSelected || isDisabled ? 'subdued' : 'accent'}
@@ -114,7 +106,6 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
 
   if (React.isValidElement<{ className?: string }>(icon)) {
     buttonIcon = cloneElementWithCss(icon, {
-      css: cssIconStyles,
       className: 'euiFacetButton__icon',
     });
   }
@@ -122,29 +113,28 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
   return (
     <EuiInnerText>
       {(ref, innerText) => (
-        <button
-          css={cssStyles}
+        <EuiButtonDisplay
           className={classes}
-          disabled={isDisabled}
-          type="button"
+          css={cssStyles}
+          element="button"
+          isDisabled={isDisabled}
           ref={buttonRef}
           title={rest['aria-label'] || innerText}
+          size="s"
           {...rest}
         >
-          <span css={cssContentStyles}>
-            {buttonIcon}
-
-            <span
-              css={cssTextStyles}
-              className="euiFacetButton__text"
-              data-text={innerText}
-              ref={ref}
-            >
-              {children}
-            </span>
-            {buttonQuantity}
+          {buttonIcon}
+          <span
+            css={cssTextStyles}
+            className="euiFacetButton__text"
+            data-text={innerText}
+            ref={ref}
+          >
+            {children}
           </span>
-        </button>
+
+          {buttonQuantity}
+        </EuiButtonDisplay>
       )}
     </EuiInnerText>
   );
