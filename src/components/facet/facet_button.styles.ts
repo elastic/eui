@@ -8,7 +8,11 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { euiTextTruncate, euiTextShift } from '../../global_styling';
+import {
+  euiTextTruncate,
+  euiTextShift,
+  logicalTextAlignCSS,
+} from '../../global_styling';
 
 import { euiLinkFocusCSS } from '../link/link.styles';
 
@@ -18,7 +22,7 @@ export const euiFacetButtonStyles = (_theme: UseEuiTheme) => {
   return {
     // Base
     euiFacetButton: css`
-    text-align: left;
+    ${logicalTextAlignCSS('left')}
 
     &:hover,
     &:focus {
