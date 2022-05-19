@@ -174,11 +174,11 @@ const euiScaleText = (
       font-size: ${euiFontSize('s', euiTheme, options).fontSize};
     }
 
-    pre {
+    pre:not(.euiCodeBlock__pre) {
       padding: ${fontSize};
     }
 
-    code {
+    code:not(.euiCode):not(.euiCodeBlock__code)  {
       font-size: .9em; // 90% of parent font size
     }
   `;
@@ -282,7 +282,7 @@ export const euiTextStyles = ({ euiTheme }: UseEuiTheme) => ({
       color: inherit;
     }
 
-    pre {
+    pre:not(.euiCodeBlock__pre) {
       white-space: pre-wrap;
       background: ${euiTheme.colors
         .lightestShade}; // TODO: $euiCodeBlockBackgroundColor - switch to var once EuiCode is converted
@@ -290,16 +290,11 @@ export const euiTextStyles = ({ euiTheme }: UseEuiTheme) => ({
         .text}; // TODO: $euiCodeBlockColor - switch to var once EuiCode is converted
     }
 
-    pre,
-    pre code {
+    pre:not(.euiCodeBlock__pre),
+    pre:not(.euiCodeBlock__pre) code {
       display: block;
     }
 
-    code {
-      // TODO: Use euiCodeFont mixin once EuiCode is converted
-      font-family: ${euiTheme.font.familyCode};
-      letter-spacing: normal;
-    }
 
     > :last-child,
     .euiTextColor > :last-child {
