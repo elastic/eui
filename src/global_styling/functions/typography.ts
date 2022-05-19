@@ -13,13 +13,15 @@ import {
 } from '../variables/typography';
 import { UseEuiTheme } from '../../services/theme/hooks';
 
-/**
- * @param measurement - The returned string measurement
- * @param customScale - An additional custom scale multiplier to use against the current scale
- *        This parameter can be used (e.g. by EuiText sizes) to get sizes of text smaller than the default
- */
 export interface _FontScaleOptions {
+  /**
+   * The returned string measurement
+   */
   measurement?: _EuiThemeFontSizeMeasurement;
+  /**
+   * An additional custom scale multiplier to use against the current scale
+   * This parameter can be used (e.g. by EuiText sizes) to get sizes of text smaller than the default
+   */
   customScale?: _EuiThemeFontScale;
 }
 
