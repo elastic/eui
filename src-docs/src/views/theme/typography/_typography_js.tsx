@@ -5,6 +5,7 @@ import {
   EuiBasicTable,
   EuiButtonGroup,
   EuiCode,
+  EuiCodeBlock,
   EuiDescribedFormGroup,
   EuiPanel,
   EuiSpacer,
@@ -250,7 +251,7 @@ export const FontScaleValuesJS = () => {
             id: scale,
             value: `useEuiFontSize('${scale}'${
               measurementSelected !== 'rem'
-                ? `, { measurement: '${measurementSelected}' }`
+                ? `,\n  { measurement: '${measurementSelected}' }\n`
                 : ''
             })`,
             size: `${
@@ -291,7 +292,9 @@ export const FontScaleValuesJS = () => {
             width: 'auto',
             valign: 'baseline',
             render: (value: React.ReactNode) => (
-              <EuiCode language="js">{value}</EuiCode>
+              <EuiCodeBlock language="js" paddingSize="s">
+                {value}
+              </EuiCodeBlock>
             ),
           },
           {
