@@ -10,7 +10,6 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
-import { EuiFlexGroup } from '../flex';
 
 import { useEuiTheme } from '../../services';
 import { euiFacetGroupStyles } from './facet_group.styles';
@@ -46,19 +45,10 @@ export const EuiFacetGroup: FunctionComponent<EuiFacetGroupProps> = ({
   const cssStyles = [styles.euiFacetGroup, styles[gutterSize], styles[layout]];
 
   const classes = classNames('euiFacetGroup', className);
-  const direction = layout === 'vertical' ? 'column' : 'row';
-  const wrap = layout === 'vertical' ? false : true;
 
   return (
-    <EuiFlexGroup
-      className={classes}
-      direction={direction}
-      wrap={wrap}
-      gutterSize="none"
-      css={cssStyles}
-      {...rest}
-    >
+    <div className={classes} css={cssStyles} {...rest}>
       {children}
-    </EuiFlexGroup>
+    </div>
   );
 };
