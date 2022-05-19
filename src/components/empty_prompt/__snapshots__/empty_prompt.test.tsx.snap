@@ -28,20 +28,16 @@ exports[`EuiEmptyPrompt is rendered 1`] = `
         >
           Title
         </h2>
-        <span
-          class="css-xv0fhq-euiTextColor-subdued"
+        <div
+          class="euiSpacer euiSpacer--m css-jv9za2-euiSpacer-m"
+        />
+        <div
+          class="euiText css-u14593-euiText-m-euiTextColor-subdued"
         >
-          <div
-            class="euiSpacer euiSpacer--m css-jv9za2-euiSpacer-m"
-          />
-          <div
-            class="euiText css-h22ihx-euiText-m"
-          >
-            <p>
-              Body
-            </p>
-          </div>
-        </span>
+          <p>
+            Body
+          </p>
+        </div>
         <div
           class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
         />
@@ -126,15 +122,11 @@ exports[`EuiEmptyPrompt props body renders alone 1`] = `
       <div
         class="euiEmptyPrompt__contentInner"
       >
-        <span
-          class="css-xv0fhq-euiTextColor-subdued"
+        <div
+          class="euiText css-u14593-euiText-m-euiTextColor-subdued"
         >
-          <div
-            class="euiText css-h22ihx-euiText-m"
-          >
-            body
-          </div>
-        </span>
+          body
+        </div>
       </div>
     </div>
   </div>
