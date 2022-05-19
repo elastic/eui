@@ -37,13 +37,13 @@ describe('euiFontSize', () => {
   it('handles the optional customScale property by multiplying it against the passed scale', () => {
     expect(
       testCustomHook(() => useEuiFontSize('m', { customScale: 'xs' })).return
-    ).toMatchSnapshot();
+    ).toMatchSnapshot({}, 'm scale with xs customScale');
     expect(
       testCustomHook(() => useEuiFontSize('l', { customScale: 'xxs' })).return
-    ).toMatchSnapshot();
+    ).toMatchSnapshot({}, 'l scale with xxs customScale');
     expect(
       testCustomHook(() => useEuiFontSize('s', { customScale: 'xl' })).return
-    ).toMatchSnapshot();
+    ).toMatchSnapshot({}, 's scale with xl customScale');
   });
 });
 
