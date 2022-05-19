@@ -20,7 +20,7 @@ export type EuiTextAlignProps = CommonProps &
     textAlign?: TextAlignment;
     /**
      * Applies text styling to the child element instead of rendering a parent wrapper `div`.
-     * Must be used in conjunction with a single child element/tag, and not raw text.
+     * Can only be used when wrapping a *single* child element/tag, and not raw text.
      */
     cloneElement?: boolean;
   };
