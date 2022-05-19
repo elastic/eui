@@ -17,7 +17,10 @@ import {
 import { euiLinkCSS } from '../link/link.styles';
 import { euiTitle } from '../title/title.styles';
 
-export const euiTextConstrainedMaxWidth = '36em';
+/**
+ * TODO: Make this a global value so it can be set by theme?
+ */
+export const euiTextConstrainedMaxWidth = 'max(64ch, 75%)';
 
 /**
  * Mixins
@@ -303,9 +306,6 @@ export const euiTextStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
   constrainedWidth: css`
     max-width: ${euiTextConstrainedMaxWidth};
-    // If the max-width is way too short of the width of the container,
-    // at least make it 2/3 of its parent
-    min-width: 75%;
   `,
   // Sizes
   m: css`
