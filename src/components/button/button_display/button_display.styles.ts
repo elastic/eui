@@ -17,14 +17,14 @@ import {
 // Does not include any visual styles
 export const euiButtonBaseCSS = () => {
   return `
-  display: inline-block;
-  appearance: none;
-  cursor: pointer;
-  text-align: center;
-  white-space: nowrap;
-  ${logicalCSS('max-width', '100%')};
-  vertical-align: middle;
-`;
+    display: inline-block;
+    appearance: none;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    ${logicalCSS('max-width', '100%')};
+    vertical-align: middle;
+  `;
 };
 
 export const euiButtonDisplayStyles = (
