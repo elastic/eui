@@ -26,7 +26,9 @@ import { cloneElementWithCss } from '../../services/theme/clone_element';
 import { useEuiTheme } from '../../services';
 import {
   euiFacetButtonStyles,
-  euiFacetButtonContentElementsStyles,
+  euiFacetButtonTextStyles,
+  euiFacetButtonIconStyles,
+  euiFacetButtonQuantityStyles,
 } from './facet_button.styles';
 import { EuiButtonDisplay } from '../button/button_display/button_display';
 
@@ -81,8 +83,14 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
   const styles = euiFacetButtonStyles(theme);
   const cssStyles = [styles.euiFacetButton, styles[selection]];
 
-  const contentElementsStyles = euiFacetButtonContentElementsStyles(theme);
-  const cssTextStyles = [contentElementsStyles.euiFacetButton__text];
+  const textStyles = euiFacetButtonTextStyles(theme);
+  const cssTextStyles = [textStyles.euiFacetButton__text, styles[selection]];
+
+  const quantityStyles = euiFacetButtonQuantityStyles();
+  const cssQuantityStyles = [quantityStyles.euiFacetButton__quantity];
+
+  const iconStyles = euiFacetButtonIconStyles();
+  const cssIconStyles = [iconStyles.euiFacetButton__icon];
 
   // Add quantity number if provided or loading indicator
   let buttonQuantity: ReactElement;
@@ -92,6 +100,7 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
   } else if (typeof quantity === 'number') {
     buttonQuantity = (
       <EuiNotificationBadge
+        css={cssQuantityStyles}
         className="euiFacetButton__quantity"
         size="m"
         color={!isSelected || isDisabled ? 'subdued' : 'accent'}
@@ -106,6 +115,7 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
 
   if (React.isValidElement<{ className?: string }>(icon)) {
     buttonIcon = cloneElementWithCss(icon, {
+      css: cssIconStyles,
       className: 'euiFacetButton__icon',
     });
   }

@@ -9,7 +9,6 @@
 import React, { forwardRef, HTMLAttributes } from 'react';
 // @ts-ignore module doesn't export `createElement`
 import { createElement } from '@emotion/react';
-import classNames from 'classnames';
 import { useEuiTheme } from '../../../services';
 
 import { EuiButtonProps } from '../button';
@@ -24,6 +23,10 @@ export type EuiButtonDisplayProps = Omit<EuiButtonProps, 'color'> &
      * Provide a valid element to render the element as
      */
     element?: 'a' | 'button' | 'span' | 'label';
+    /**
+     * The button text
+     */
+    text?: string;
   };
 
 /**
@@ -44,6 +47,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       fullWidth,
       minWidth,
       contentProps,
+      text,
       textProps,
       ...rest
     },
@@ -64,22 +68,15 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       isDisabled && styles.isDisabled,
     ];
 
-    const textClassNames = classNames(textProps && textProps.className);
-
-    const contentClassNames = classNames(
-      contentProps && contentProps.className
-    );
-
     const innerNode = (
       <EuiButtonDisplayContent
         isLoading={isLoading}
         isDisabled={buttonIsDisabled}
         iconType={iconType}
         iconSide={iconSide}
-        textProps={{ ...textProps, className: textClassNames }}
+        text={text}
+        textProps={{ ...textProps }}
         {...contentProps}
-        // className has to come last to override contentProps.className
-        className={contentClassNames}
       >
         {children}
       </EuiButtonDisplayContent>

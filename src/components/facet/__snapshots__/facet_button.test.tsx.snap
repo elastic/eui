@@ -3,15 +3,15 @@
 exports[`EuiFacetButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiFacetButton testClass1 testClass2 css-1vy4arh-euiButtonDisplay-s-euiFacetButton-unSelected"
+  class="euiFacetButton testClass1 testClass2 css-yxs46r-euiButtonDisplay-s-euiFacetButton-unSelected"
   data-test-subj="test subject string"
   title="aria-label"
 >
   <span
-    class=" css-v341i7-euiButtonDisplayContent"
+    class="css-v341i7-euiButtonDisplayContent"
   >
     <span
-      class="euiFacetButton__text css-129zrg2-euiFacetButton__text"
+      class="euiFacetButton__text css-15kc18g-euiFacetButton__text-unSelected"
     >
       Content
     </span>
@@ -21,17 +21,17 @@ exports[`EuiFacetButton is rendered 1`] = `
 
 exports[`EuiFacetButton props icon is rendered 1`] = `
 <button
-  class="euiFacetButton css-1vy4arh-euiButtonDisplay-s-euiFacetButton-unSelected"
+  class="euiFacetButton css-yxs46r-euiButtonDisplay-s-euiFacetButton-unSelected"
 >
   <span
-    class=" css-v341i7-euiButtonDisplayContent"
+    class="css-v341i7-euiButtonDisplayContent"
   >
     <span
-      class="euiFacetButton__icon"
+      class="euiFacetButton__icon css-xn8zfx-euiFacetButton__icon"
       data-euiicon-type="dot"
     />
     <span
-      class="euiFacetButton__text css-129zrg2-euiFacetButton__text"
+      class="euiFacetButton__text css-15kc18g-euiFacetButton__text-unSelected"
     >
       Content
     </span>
@@ -41,14 +41,14 @@ exports[`EuiFacetButton props icon is rendered 1`] = `
 
 exports[`EuiFacetButton props isDisabled is rendered 1`] = `
 <button
-  class="euiFacetButton css-a3g3ge-euiButtonDisplay-s-isDisabled-euiFacetButton-unSelected"
+  class="euiFacetButton css-243v8r-euiButtonDisplay-s-isDisabled-euiFacetButton-unSelected"
   disabled=""
 >
   <span
-    class=" css-yxnt2m-euiButtonDisplayContent-isDisabled"
+    class="css-yxnt2m-euiButtonDisplayContent-isDisabled"
   >
     <span
-      class="euiFacetButton__text css-129zrg2-euiFacetButton__text"
+      class="euiFacetButton__text css-15kc18g-euiFacetButton__text-unSelected"
     >
       Content
     </span>
@@ -58,14 +58,14 @@ exports[`EuiFacetButton props isDisabled is rendered 1`] = `
 
 exports[`EuiFacetButton props isLoading is rendered 1`] = `
 <button
-  class="euiFacetButton css-a3g3ge-euiButtonDisplay-s-isDisabled-euiFacetButton-unSelected"
+  class="euiFacetButton css-243v8r-euiButtonDisplay-s-isDisabled-euiFacetButton-unSelected"
   disabled=""
 >
   <span
-    class=" css-yxnt2m-euiButtonDisplayContent-isDisabled"
+    class="css-yxnt2m-euiButtonDisplayContent-isDisabled"
   >
     <span
-      class="euiFacetButton__text css-129zrg2-euiFacetButton__text"
+      class="euiFacetButton__text css-15kc18g-euiFacetButton__text-unSelected"
     >
       Content
     </span>
@@ -80,13 +80,13 @@ exports[`EuiFacetButton props isLoading is rendered 1`] = `
 
 exports[`EuiFacetButton props isSelected is rendered 1`] = `
 <button
-  class="euiFacetButton css-dxvpjg-euiButtonDisplay-s-euiFacetButton-isSelected"
+  class="euiFacetButton css-1u0ffnm-euiButtonDisplay-s-euiFacetButton-isSelected"
 >
   <span
-    class=" css-v341i7-euiButtonDisplayContent"
+    class="css-v341i7-euiButtonDisplayContent"
   >
     <span
-      class="euiFacetButton__text css-129zrg2-euiFacetButton__text"
+      class="euiFacetButton__text css-lsg4df-euiFacetButton__text-isSelected"
     >
       Content
     </span>
@@ -96,18 +96,18 @@ exports[`EuiFacetButton props isSelected is rendered 1`] = `
 
 exports[`EuiFacetButton props quantity is rendered 1`] = `
 <button
-  class="euiFacetButton css-1vy4arh-euiButtonDisplay-s-euiFacetButton-unSelected"
+  class="euiFacetButton css-yxs46r-euiButtonDisplay-s-euiFacetButton-unSelected"
 >
   <span
-    class=" css-v341i7-euiButtonDisplayContent"
+    class="css-v341i7-euiButtonDisplayContent"
   >
     <span
-      class="euiFacetButton__text css-129zrg2-euiFacetButton__text"
+      class="euiFacetButton__text css-15kc18g-euiFacetButton__text-unSelected"
     >
       Content
     </span>
     <span
-      class="euiNotificationBadge euiNotificationBadge--medium euiNotificationBadge--subdued euiFacetButton__quantity"
+      class="euiNotificationBadge euiNotificationBadge--medium euiNotificationBadge--subdued euiFacetButton__quantity css-1axxfch-euiFacetButton__quantity"
     >
       60
     </span>

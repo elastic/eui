@@ -40,11 +40,6 @@ export const euiFacetButtonStyles = (_theme: UseEuiTheme) => {
       color: ${euiTheme.colors.disabledText};
       pointer-events: none;
 
-      [class*='euiFacetButton__icon'],
-      [class*='euiFacetButton__quantity'] {
-        opacity: 0.5;
-      }
-
       &:hover,
       &:focus {
         text-decoration: none;
@@ -52,22 +47,33 @@ export const euiFacetButtonStyles = (_theme: UseEuiTheme) => {
     },
   `,
     // Selections
-    isSelected: css`
-      [class*='euiFacetButton__text'] {
-        font-weight: ${euiTheme.font.weight.bold};
-      }
-    `,
+    isSelected: css``,
     unSelected: css``,
   };
 };
 
-export const euiFacetButtonContentElementsStyles = ({
-  euiTheme,
-}: UseEuiTheme) => ({
-  euiFacetButton__content: css``,
+export const euiFacetButtonTextStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiFacetButton__text: css`
     ${euiTextShift('bold', 'data-text', euiTheme)}
     ${euiTextTruncate()}
     flex-grow: 1;
+  `,
+  isSelected: css`
+    font-weight: ${euiTheme.font.weight.bold};
+  `,
+  unSelected: css``,
+});
+
+export const euiFacetButtonIconStyles = () => ({
+  euiFacetButton__icon: css``,
+  isDisabled: css`
+    opacity: 0.5;
+  `,
+});
+
+export const euiFacetButtonQuantityStyles = () => ({
+  euiFacetButton__quantity: css``,
+  isDisabled: css`
+    opacity: 0.5;
   `,
 });
