@@ -29,7 +29,13 @@ describe('EuiFacetButton', () => {
     describe('isDisabled', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiFacetButton isDisabled>Content</EuiFacetButton>
+          <EuiFacetButton
+            isDisabled
+            quantity={6}
+            icon={<EuiIcon type="dot" color="success" />}
+          >
+            Content
+          </EuiFacetButton>
         );
 
         expect(component).toMatchSnapshot();

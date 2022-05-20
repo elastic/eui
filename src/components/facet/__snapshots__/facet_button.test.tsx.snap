@@ -27,7 +27,7 @@ exports[`EuiFacetButton props icon is rendered 1`] = `
     class="css-v341i7-euiButtonDisplayContent"
   >
     <span
-      class="euiFacetButton__icon css-xn8zfx-euiFacetButton__icon"
+      class="euiFacetButton__icon css-16myiw4-euiFacetButton__icon"
       data-euiicon-type="dot"
     />
     <span
@@ -48,9 +48,19 @@ exports[`EuiFacetButton props isDisabled is rendered 1`] = `
     class="css-yxnt2m-euiButtonDisplayContent-isDisabled"
   >
     <span
+      class="euiFacetButton__icon css-ypd0ba-euiFacetButton__icon-isDisabled"
+      color="success"
+      data-euiicon-type="dot"
+    />
+    <span
       class="euiFacetButton__text css-15kc18g-euiFacetButton__text-unSelected"
     >
       Content
+    </span>
+    <span
+      class="euiNotificationBadge euiNotificationBadge--medium euiNotificationBadge--subdued euiFacetButton__quantity css-scrf43-euiFacetButton__quantity-isDisabled"
+    >
+      6
     </span>
   </span>
 </button>
@@ -107,7 +117,7 @@ exports[`EuiFacetButton props quantity is rendered 1`] = `
       Content
     </span>
     <span
-      class="euiNotificationBadge euiNotificationBadge--medium euiNotificationBadge--subdued euiFacetButton__quantity css-1axxfch-euiFacetButton__quantity"
+      class="euiNotificationBadge euiNotificationBadge--medium euiNotificationBadge--subdued euiFacetButton__quantity css-1cz0qrb-euiFacetButton__quantity"
     >
       60
     </span>

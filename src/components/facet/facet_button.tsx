@@ -87,10 +87,16 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
   const cssTextStyles = [textStyles.euiFacetButton__text, styles[selection]];
 
   const quantityStyles = euiFacetButtonQuantityStyles();
-  const cssQuantityStyles = [quantityStyles.euiFacetButton__quantity];
+  const cssQuantityStyles = [
+    quantityStyles.euiFacetButton__quantity,
+    isDisabled && quantityStyles.isDisabled,
+  ];
 
   const iconStyles = euiFacetButtonIconStyles();
-  const cssIconStyles = [iconStyles.euiFacetButton__icon];
+  const cssIconStyles = [
+    iconStyles.euiFacetButton__icon,
+    isDisabled && quantityStyles.isDisabled,
+  ];
 
   // Add quantity number if provided or loading indicator
   let buttonQuantity: ReactElement;
