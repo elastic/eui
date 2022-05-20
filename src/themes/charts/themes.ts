@@ -6,12 +6,7 @@
  * Side Public License, v 1.
  */
 
-import {
-  PartialTheme,
-  LineAnnotationStyle,
-  RecursivePartial,
-  PartitionConfig,
-} from '@elastic/charts';
+import { PartialTheme, LineAnnotationSpec } from '@elastic/charts';
 
 import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
 import { DEFAULT_VISUALIZATION_COLOR } from '../../services/color/visualization_colors';
@@ -25,10 +20,8 @@ const fontFamily = `'Inter', 'Inter UI', -apple-system, BlinkMacSystemFont,
   'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`;
 
 export interface EuiChartThemeType {
-  lineAnnotation: LineAnnotationStyle;
+  lineAnnotation: LineAnnotationSpec['style'];
   theme: PartialTheme;
-  /** DEPRECATED: Use `theme.partition` config instead */
-  partition: RecursivePartial<PartitionConfig>;
 }
 
 function createTheme(colors: any): EuiChartThemeType {
@@ -45,25 +38,6 @@ function createTheme(colors: any): EuiChartThemeType {
         fill: colors.euiTextColor.rgba,
         padding: 0,
       },
-    },
-    partition: {
-      fontFamily: fontFamily,
-      minFontSize: 8,
-      maxFontSize: 16,
-      fillLabel: {
-        valueFont: {
-          fontWeight: 700,
-        },
-      },
-      linkLabel: {
-        maxCount: 5,
-        fontSize: 11,
-        textColor: colors.euiTextColor.rgba,
-      },
-      outerSizeRatio: 1,
-      circlePadding: 4,
-      sectorLineStroke: colors.euiColorEmptyShade.rgba,
-      sectorLineWidth: 1.5,
     },
     theme: {
       background: {

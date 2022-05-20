@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { GuideRule, GuideRuleExample } from '../../components';
+import { GuideRule, GuideRuleExample, GuideSection } from '../../components';
 
 import {
   EuiButton,
@@ -48,7 +48,7 @@ export const WritingExamples = () => {
   const modalStyles = { maxWidth: 480, transform: 'scale(.8)' };
 
   return (
-    <>
+    <GuideSection>
       <EuiText grow={false}>
         <h2 id="buttons">Buttons</h2>
 
@@ -681,6 +681,6 @@ export const WritingExamples = () => {
           </EuiText>
         </GuideRuleExample>
       </GuideRule>
-    </>
+    </GuideSection>
   );
 };

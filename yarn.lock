@@ -2400,12 +2400,13 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@elastic/charts@^46.0.1":
-  version "46.0.1"
-  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-46.0.1.tgz#2d3bd3de9e4f294ddd9d9969dca1dc1ed5c6f278"
-  integrity sha512-CWiyEHaxEk9zKOPOm4ISyAluXSxu6pqLdG+ARBu4jQx0t1ROe93vssICHq6JIrQdiMHn44pleQnWZzKzanZtDw==
+"@elastic/charts@^46.3.0":
+  version "46.3.0"
+  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-46.3.0.tgz#1139d562e66b7410464be2af766eae100643cf0d"
+  integrity sha512-CT6cl6QnhzYqVVCDK4EffNa7ahghDGXiSXvp6UHVhY5Kj2mnPMAe0o6J6f3xiFepmhH1/1NCgoJX9kWFLG6B6A==
   dependencies:
     "@popperjs/core" "^2.4.0"
+    bezier-easing "^2.1.0"
     chroma-js "^2.1.0"
     classnames "^2.2.6"
     d3-array "^1.2.4"
@@ -4765,6 +4766,11 @@ bcrypt-pbkdf@^1.0.0:
   integrity sha1-pDAdOJtqQ/m2f/PKEaP2Y342Dp4=
   dependencies:
     tweetnacl "^0.14.3"
+
+bezier-easing@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/bezier-easing/-/bezier-easing-2.1.0.tgz#c04dfe8b926d6ecaca1813d69ff179b7c2025d86"
+  integrity sha1-wE3+i5JtbsrKGBPWn/F5t8ICXYY=
 
 big.js@^5.2.2:
   version "5.2.2"

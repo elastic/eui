@@ -46,10 +46,10 @@ const logicalPaddings = {
 };
 
 const logicalPosition = {
-  top: 'inset-inline-start',
-  right: 'inset-block-start',
-  bottom: 'inset-inline-end',
-  left: 'inset-block-end',
+  top: 'inset-block-start',
+  right: 'inset-inline-start',
+  bottom: 'inset-block-end',
+  left: 'inset-inline-end',
   horizontal: 'inset-block',
   vertical: 'inset-inline',
   inset: 'inset',

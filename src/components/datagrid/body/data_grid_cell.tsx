@@ -697,7 +697,6 @@ export class EuiDataGridCell extends Component<
         data-gridcell-column-index={this.props.colIndex} // Affected by column reordering
         data-gridcell-row-index={this.props.rowIndex} // Index from data, not affected by sorting or pagination
         data-gridcell-visible-row-index={this.props.visibleRowIndex} // Affected by sorting & pagination
-        data-gridcell-id={`${this.props.colIndex},${this.props.rowIndex}`} // TODO: Deprecate in favor of the above 4 data attrs
         onKeyDown={handleCellKeyDown}
         onFocus={this.onFocus}
         onMouseEnter={() => {

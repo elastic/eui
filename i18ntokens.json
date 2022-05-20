@@ -3461,11 +3461,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 98,
+        "line": 92,
         "column": 27
       },
       "end": {
-        "line": 102,
+        "line": 96,
         "column": 3
       }
     },
@@ -3477,11 +3477,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 103,
+        "line": 97,
         "column": 30
       },
       "end": {
-        "line": 107,
+        "line": 101,
         "column": 3
       }
     },
@@ -3493,11 +3493,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 329,
+        "line": 331,
         "column": 8
       },
       "end": {
-        "line": 329,
+        "line": 331,
         "column": 78
       }
     },
@@ -3621,12 +3621,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 72,
-        "column": 6
+        "line": 76,
+        "column": 8
       },
       "end": {
-        "line": 75,
-        "column": 7
+        "line": 79,
+        "column": 9
       }
     },
     "filepath": "src/components/form/form.tsx"
@@ -3728,33 +3728,33 @@
     "filepath": "src/components/image/image.tsx"
   },
   {
-    "token": "euiLink.external.ariaLabel",
-    "defString": "External link",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 108,
-        "column": 20
-      },
-      "end": {
-        "line": 108,
-        "column": 77
-      }
-    },
-    "filepath": "src/components/link/link.tsx"
-  },
-  {
     "token": "euiLink.newTarget.screenReaderOnlyText",
     "defString": "(opens in a new tab or window)",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 118,
+        "line": 107,
         "column": 10
       },
       "end": {
-        "line": 121,
+        "line": 110,
         "column": 12
+      }
+    },
+    "filepath": "src/components/link/link.tsx"
+  },
+  {
+    "token": "euiLink.external.ariaLabel",
+    "defString": "External link",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 117,
+        "column": 20
+      },
+      "end": {
+        "line": 117,
+        "column": 77
       }
     },
     "filepath": "src/components/link/link.tsx"
@@ -4725,11 +4725,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 114,
+        "line": 115,
         "column": 30
       },
       "end": {
-        "line": 117,
+        "line": 118,
         "column": 3
       }
     },
@@ -4741,11 +4741,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 188,
+        "line": 192,
         "column": 8
       },
       "end": {
-        "line": 191,
+        "line": 195,
         "column": 10
       }
     },
@@ -4757,11 +4757,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 199,
+        "line": 203,
         "column": 8
       },
       "end": {
-        "line": 202,
+        "line": 206,
         "column": 10
       }
     },
@@ -4773,11 +4773,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 246,
+        "line": 251,
         "column": 12
       },
       "end": {
-        "line": 249,
+        "line": 254,
         "column": 14
       }
     },
@@ -5477,11 +5477,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 210,
+        "line": 208,
         "column": 10
       },
       "end": {
-        "line": 217,
+        "line": 215,
         "column": 11
       }
     },
@@ -5493,11 +5493,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 210,
+        "line": 208,
         "column": 10
       },
       "end": {
-        "line": 217,
+        "line": 215,
         "column": 11
       }
     },
@@ -5509,11 +5509,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 210,
+        "line": 208,
         "column": 10
       },
       "end": {
-        "line": 217,
+        "line": 215,
         "column": 11
       }
     },

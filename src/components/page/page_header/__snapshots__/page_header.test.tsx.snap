@@ -213,7 +213,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           class="euiBreadcrumb"
         >
           <a
-            class="euiLink euiLink--primary euiBreadcrumb__content customClass"
+            class="euiLink euiBreadcrumb__content customClass css-102pf9n-euiLink-primary"
             data-test-subj="breadcrumbsAnimals"
             href="#"
             rel="noreferrer"
@@ -306,7 +306,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       />
       <div
         aria-label="aria-label"
-        class="euiTabs euiTabs--large euiTabs--condensed testClass1 testClass2"
+        class="euiTabs euiTabs--large testClass1 testClass2"
         data-test-subj="test subject string"
         role="tablist"
       >

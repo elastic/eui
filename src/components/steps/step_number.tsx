@@ -46,11 +46,6 @@ export interface EuiStepNumberProps
   status?: EuiStepStatus;
   number?: number;
   /**
-   * **DEPRECATED IN AMSTERDAM**
-   * Uses a border and removes the step number.
-   */
-  isHollow?: boolean;
-  /**
    * Title sizing equivalent to EuiTitle, but only `m`, `s` and `xs`. Defaults to `s`
    */
   titleSize?: EuiStepProps['titleSize'];
@@ -60,7 +55,6 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   className,
   status,
   number,
-  isHollow,
   titleSize,
   ...rest
 }) => {
@@ -76,7 +70,6 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   const classes = classNames(
     'euiStepNumber',
     status ? statusToClassNameMap[status] : undefined,
-    { 'euiStepNumber-isHollow': isHollow },
     className
   );
 

@@ -15,7 +15,6 @@ import {
 import { getPropsFromComponent } from '../../../services/props/get_props';
 import { getDescription } from '../../../services/props/get_description';
 
-// TODO: Update imports
 import {
   useEuiShadow,
   useEuiShadowFlat,
@@ -57,30 +56,7 @@ const RenderFlatShadow = ({ color }: { color?: string }) => {
 
 export default () => {
   const { euiTheme } = useEuiTheme();
-  const [customColor, setCustomColor] = useState(false);
   const colorProps = getPropsFromComponent(EuiThemeColors);
-
-  const shadowItems = EuiThemeShadowSizes.map((shadow) => {
-    return {
-      id: shadow,
-      token: customColor
-        ? `useEuiShadow('${shadow}', euiTheme.colors.accent);`
-        : `useEuiShadow('${shadow}');`,
-      description: _EuiShadowSizesDescriptions[shadow],
-    };
-  });
-
-  const allShadows = shadowItems.concat([
-    {
-      // @ts-ignore TODO
-      id: 'flat',
-      token: customColor
-        ? 'useEuiShadowFlat(euiTheme.colors.accent);'
-        : 'useEuiShadowFlat();',
-      description:
-        'Similar to shadow medium but without the bottom depth. Useful for popovers that drop UP rather than DOWN.',
-    },
-  ]);
 
   return (
     <>
@@ -118,7 +94,8 @@ export default () => {
       />
 
       <ThemeExample
-        title="Hooks"
+        title={<code>useEuiShadow(size)</code>}
+        type="hook"
         description={
           <>
             <p>
@@ -145,7 +122,38 @@ export default () => {
         snippet={'${useEuiShadow()}'}
         snippetLanguage="emotion"
       />
+    </>
+  );
+};
 
+export const ShadowValuesJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const [customColor, setCustomColor] = useState(false);
+
+  const shadowItems = EuiThemeShadowSizes.map((shadow) => {
+    return {
+      id: shadow,
+      token: customColor
+        ? `useEuiShadow('${shadow}', euiTheme.colors.accent);`
+        : `useEuiShadow('${shadow}');`,
+      description: _EuiShadowSizesDescriptions[shadow],
+    };
+  });
+
+  const allShadows = shadowItems.concat([
+    {
+      // @ts-ignore TODO
+      id: 'flat',
+      token: customColor
+        ? 'useEuiShadowFlat(euiTheme.colors.accent);'
+        : 'useEuiShadowFlat();',
+      description:
+        'Similar to shadow medium but without the bottom depth. Useful for popovers that drop UP rather than DOWN.',
+    },
+  ]);
+
+  return (
+    <>
       <EuiPanel color="accent">
         <EuiDescribedFormGroup
           fullWidth
@@ -187,7 +195,6 @@ export default () => {
           )
         }
       />
-      <EuiSpacer size="xl" />
     </>
   );
 };
