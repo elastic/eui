@@ -21,10 +21,6 @@ const _colorCSS = (color: string) => {
     &:focus {
       background-color: ${transparentize(color, 0.1)};
     }
-    &.euiExpression-isActive {
-      border-bottom-color:  ${color};
-      border-color:  ${color};
-    }
   `;
 };
 
@@ -61,19 +57,6 @@ export const euiExpressionStyles = ({ euiTheme }: UseEuiTheme) => {
       padding: ${euiTheme.size.xs};
       border-radius: ${euiTheme.size.xs};
 
-      /* &.euiExpression-isClickable {
-        background-color: ${euiTheme.colors.lightestShade};
-
-        &:focus,
-        &:hover:not(:disabled) {
-          .euiExpression__description,
-          .euiExpression__value {
-            // inner child specificity so it inherits underline color from text color
-            text-decoration: underline;
-          }
-        }
-      } */
-
       .euiExpression__description {
         text-align: right;
         ${logicalCSS('margin-right', euiTheme.size.s)};
@@ -92,7 +75,7 @@ export const euiExpressionStyles = ({ euiTheme }: UseEuiTheme) => {
     truncate: css`
       max-width: 100%;
 
-      .euiExpression__description,
+      /* .euiExpression__description, */
       .euiExpression__value {
         ${euiTextTruncate()}
         display: inline-block;
@@ -119,27 +102,24 @@ export const euiExpressionStyles = ({ euiTheme }: UseEuiTheme) => {
       }
     `,
 
-    isUppercase: css`
-      &.euiExpression__description {
-        text-transform: uppercase;
-      }
-    `,
-
-    // isActive: css`
-    //   border-bottom-style: solid;
-    //
-    //   &.euiExpression--accent {
-    //     border-bottom-color: ${euiTheme.colors.accentText};
-    //     border-color: ${euiTheme.colors.accentText};
-    //   }
-    // `,
-
     isActive: {
       base: css`
         border-bottom-style: solid;
       `,
       subdued: css`
         border-color: ${euiTheme.colors.subdued};
+      `,
+      primary: css`
+        border-color: ${euiTheme.colors.primary};
+      `,
+      success: css`
+        border-color: ${euiTheme.colors.success};
+      `,
+      warning: css`
+        border-color: ${euiTheme.colors.warning};
+      `,
+      danger: css`
+        border-color: ${euiTheme.colors.danger};
       `,
       accent: css`
         border-color: ${euiTheme.colors.accent};
@@ -158,9 +138,31 @@ export const euiExpressionStyles = ({ euiTheme }: UseEuiTheme) => {
 export const euiExpressionDescriptionStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiExpression__description: css``,
-    truncate: css``,
+    truncate: css`
+      ${euiTextTruncate()}
+      display: inline-block;
+      vertical-align: bottom;
+    `,
+    subdued: css`
+      color: ${euiTheme.colors.subdued};
+    `,
+    primary: css`
+      color: ${euiTheme.colors.primaryText};
+    `,
+    success: css`
+      color: ${euiTheme.colors.successText};
+    `,
+    warning: css`
+      color: ${euiTheme.colors.warningText};
+    `,
+    danger: css`
+      color: ${euiTheme.colors.dangerText};
+    `,
     accent: css`
       color: ${euiTheme.colors.accentText};
+    `,
+    isUppercase: css`
+      text-transform: uppercase;
     `,
   };
 };

@@ -18,7 +18,10 @@ import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiIcon } from '../icon';
 import { useEuiTheme } from '../../services';
 
-import { euiExpressionStyles } from './expression.style';
+import {
+  euiExpressionStyles,
+  euiExpressionDescriptionStyles,
+} from './expression.style';
 
 // const colorToClassNameMap = {
 //   subdued: 'euiExpression--subdued',
@@ -136,13 +139,16 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
     onClick && display === 'columns' && styles['isClickable-columns'],
     styles[color],
     isActive && styles.isActive.base,
-    isActive && styles.isActive['accent'],
+    isActive && styles.isActive[color],
     display === 'columns' && styles.columns,
-    textWrap === 'truncate' && styles.truncate,
+    // textWrap === 'truncate' && styles.truncate,
   ];
+  const newDescriptionStyle = euiExpressionDescriptionStyles(theme);
   const cssDescriptionStyle = [
-    isInvalid ? styles.danger : styles[color],
-    uppercase && styles.isUppercase,
+    newDescriptionStyle.euiExpression__description,
+    isInvalid ? newDescriptionStyle.danger : newDescriptionStyle[color],
+    uppercase && newDescriptionStyle.isUppercase,
+    textWrap === 'truncate' && newDescriptionStyle.truncate,
   ];
 
   const classes = classNames(
