@@ -84,7 +84,10 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
   const cssStyles = [styles.euiFacetButton, styles[selection]];
 
   const textStyles = euiFacetButtonTextStyles(theme);
-  const cssTextStyles = [textStyles.euiFacetButton__text, styles[selection]];
+  const cssTextStyles = [
+    textStyles.euiFacetButton__text,
+    textStyles[selection],
+  ];
 
   const quantityStyles = euiFacetButtonQuantityStyles();
   const cssQuantityStyles = [

@@ -27,7 +27,7 @@ export const euiFacetButtonStyles = (_theme: UseEuiTheme) => {
     &:hover,
     &:focus {
       // Make sure the quantity doesn't get an underline on hover
-      &:not(:disabled) .euiFacetButton__text {
+      &:not(:disabled) [class*='euiFacetButton__text'] {
         text-decoration: underline;
       }
     }
