@@ -22,7 +22,6 @@ export default () => {
             onChange={setStartDate}
             startDate={startDate}
             endDate={endDate}
-            isInvalid={true}
             aria-label="Start date"
             showTimeSelect
           />
@@ -36,7 +35,6 @@ export default () => {
             endDate={endDate}
             aria-label="End date"
             showTimeSelect
-            disabled
           />
         }
       />

@@ -36,6 +36,12 @@
     // set any subsequent children in popper back to left align
     text-align: left;
   }
+
+  // Necessary for EuiSuperDatePicker
+  &--inGroup {
+    box-shadow: none;
+    padding: 0;
+  }
 }
 
 .euiDatePickerRange--isDisabled {
@@ -50,7 +56,8 @@
   align-self: stretch;
   height: auto;
   flex-grow: 0;
-  line-height: $euiFormControlLayoutGroupInputHeight - 2px;
+  display: flex;
+  align-items: center;
 }
 
 .euiDatePickerRange--isInvalid .euiDatePickerRange__delimeter {
