@@ -55,7 +55,7 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has mul
       Please address the highlighted errors.
     </p>
     <div
-      class="euiText css-1ojttwn-euiText-s-euiTextColor-default-euiCallOut__description"
+      class="euiText css-1uwb82d-euiText-s-euiTextColor-default-euiCallOut__description"
     >
       <ul>
         <li
@@ -96,7 +96,7 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has one
       Please address the highlighted errors.
     </p>
     <div
-      class="euiText css-1ojttwn-euiText-s-euiTextColor-default-euiCallOut__description"
+      class="euiText css-1uwb82d-euiText-s-euiTextColor-default-euiCallOut__description"
     >
       <ul>
         <li

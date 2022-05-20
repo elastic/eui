@@ -2,14 +2,14 @@
 
 exports[`EuiSelectableMessage bordered is rendered 1`] = `
 <div
-  class="euiText euiSelectableMessage euiSelectableMessage--bordered css-t2a0nb-euiText-xs-euiTextColor-subdued"
+  class="euiText euiSelectableMessage euiSelectableMessage--bordered css-l6nktn-euiText-xs-euiTextColor-subdued"
 />
 `;
 
 exports[`EuiSelectableMessage is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiText euiSelectableMessage testClass1 testClass2 css-t2a0nb-euiText-xs-euiTextColor-subdued"
+  class="euiText euiSelectableMessage testClass1 testClass2 css-l6nktn-euiText-xs-euiTextColor-subdued"
   data-test-subj="test subject string"
 />
 `;
