@@ -267,6 +267,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                               </div>
                               <div
                                 aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                                aria-label="Drag handle"
                                 class="euiFlexItem euiFlexItem--flexGrowZero"
                                 data-rbd-drag-handle-context-id="0"
                                 data-rbd-drag-handle-draggable-id="columnA"
@@ -274,19 +275,10 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                                 role="button"
                                 tabindex="0"
                               >
-                                <div
-                                  aria-describedby="rbd-hidden-text-0-hidden-text-0"
-                                  data-rbd-drag-handle-context-id="0"
-                                  data-rbd-drag-handle-draggable-id="columnA"
-                                  draggable="false"
-                                  role="button"
-                                  tabindex="0"
-                                >
-                                  <span
-                                    color="subdued"
-                                    data-euiicon-type="grab"
-                                  />
-                                </div>
+                                <span
+                                  color="subdued"
+                                  data-euiicon-type="grab"
+                                />
                               </div>
                             </div>
                           </div>
@@ -1204,6 +1196,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                                                                       </EuiFlexItem>
                                                                       <EuiFlexItem
                                                                         aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                                                                        aria-label="Drag handle"
                                                                         data-rbd-drag-handle-context-id="0"
                                                                         data-rbd-drag-handle-draggable-id="columnA"
                                                                         draggable={false}
@@ -1214,6 +1207,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                                                                       >
                                                                         <div
                                                                           aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                                                                          aria-label="Drag handle"
                                                                           className="euiFlexItem euiFlexItem--flexGrowZero"
                                                                           data-rbd-drag-handle-context-id="0"
                                                                           data-rbd-drag-handle-draggable-id="columnA"
@@ -1222,25 +1216,15 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                                                                           role="button"
                                                                           tabIndex={0}
                                                                         >
-                                                                          <div
-                                                                            aria-describedby="rbd-hidden-text-0-hidden-text-0"
-                                                                            data-rbd-drag-handle-context-id="0"
-                                                                            data-rbd-drag-handle-draggable-id="columnA"
-                                                                            draggable={false}
-                                                                            onDragStart={[Function]}
-                                                                            role="button"
-                                                                            tabIndex={0}
+                                                                          <EuiIcon
+                                                                            color="subdued"
+                                                                            type="grab"
                                                                           >
-                                                                            <EuiIcon
+                                                                            <span
                                                                               color="subdued"
-                                                                              type="grab"
-                                                                            >
-                                                                              <span
-                                                                                color="subdued"
-                                                                                data-euiicon-type="grab"
-                                                                              />
-                                                                            </EuiIcon>
-                                                                          </div>
+                                                                              data-euiicon-type="grab"
+                                                                            />
+                                                                          </EuiIcon>
                                                                         </div>
                                                                       </EuiFlexItem>
                                                                     </div>
