@@ -1,12 +1,11 @@
 @import '../../../../src/global_styling/mixins/helpers';
 
-$guideSideNavWidth: 240px;
-
-.guideBody { // sass-lint:disable-line no-ids
-  min-height: 100vh;
-}
-
 @include euiHeaderAffordForFixed;
+
+.guideBody {
+  // Override euiHeaderAffordForFixed mixin since the page template handles this now
+  padding-top: 0 !important; // sass-lint:disable-line no-important
+}
 
 .euiBody--headerIsFixed--double {
   @include euiHeaderAffordForFixed($euiHeaderHeightCompensation * 2);

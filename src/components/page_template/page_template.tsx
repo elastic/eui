@@ -6,14 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 import { _EuiPageOuter as EuiPageOuter, _EuiPageOuterProps } from './outer';
 import { _EuiPageInner as EuiPageInner, _EuiPageInnerProps } from './inner';
 import { _EuiPageSidebar as EuiPageSidebar } from './sidebar';
-import { _EuiPageBottomBar as EuiPageBottomBar } from './page_bottom_bar';
-import { _EuiPageEmptyPrompt as EuiPageEmptyPrompt } from './page_empty_prompt';
+import { _EuiPageBottomBar as EuiPageBottomBar } from './bottom_bar/page_bottom_bar';
+import { _EuiPageEmptyPrompt as EuiPageEmptyPrompt } from './empty_prompt/page_empty_prompt';
 import { EuiPageHeader, EuiPageSection } from '../page';
 import { _EuiPageRestrictWidth } from '../page/_restrict_width';
 import { _EuiPageBottomBorder } from '../page/_bottom_border';
@@ -21,7 +21,7 @@ import { useEuiTheme } from '../../services';
 import { logicalStyle, logicalUnit } from '../../global_styling';
 
 export type EuiPageTemplateProps = _EuiPageOuterProps &
-  Omit<_EuiPageInnerProps, 'component'> &
+  _EuiPageInnerProps &
   _EuiPageRestrictWidth &
   _EuiPageBottomBorder & {
     /**
@@ -47,7 +47,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   paddingSize = 'l',
   grow = true,
   bottomBorder,
-  offset,
+  offset: _offset,
   panelled,
   // Outer props
   className,
@@ -57,10 +57,17 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
 }) => {
   const { euiTheme } = useEuiTheme();
 
-  const euiHeaderFixedCounter = document.body.getAttribute(
-    'data-fixed-headers'
-  );
-  const _offset = offset ?? euiTheme.base * 3 * Number(euiHeaderFixedCounter);
+  const [offset, setOffset] = useState(_offset);
+
+  useEffect(() => {
+    if (_offset === undefined) {
+      const euiHeaderFixedCounter = document.body.getAttribute(
+        'data-fixed-headers'
+      );
+
+      setOffset(euiTheme.base * 3 * Number(euiHeaderFixedCounter));
+    }
+  }, [_offset, euiTheme.base]);
 
   // Sections include page header
   const sections: React.ReactElement[] = [];
@@ -158,12 +165,13 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   });
 
   const _minHeight = grow
-    ? `max(${minHeight}, calc(100${logicalUnit.vh} - ${_offset}px))`
+    ? `max(${minHeight}, calc(100${logicalUnit.vh})`
     : minHeight;
 
   const classes = classNames('euiPageTemplate', className);
   const pageStyle = {
     ...logicalStyle('min-height', _minHeight),
+    ...logicalStyle('padding-top', offset),
     ...rest.style,
   };
 

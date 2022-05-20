@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { CSSProperties, FunctionComponent, HTMLAttributes } from 'react';
+import React, {
+  CSSProperties,
+  FunctionComponent,
+  HTMLAttributes,
+  useEffect,
+  useState,
+} from 'react';
 import { CommonProps } from '../../common';
 import {
   EuiPaddingSize,
@@ -66,26 +72,33 @@ export const _EuiPageSidebar: FunctionComponent<_EuiPageSidebarProps> = ({
   ];
 
   // Inline styles for setting up width and sticky offsets
-  let inlineStyles = {
+  const [inlineStyles, setInlineStyles] = useState({
     ...style,
     ...logicalStyle('min-width', isResponding ? '100%' : minWidth),
-  };
-  if (!isResponding && sticky) {
-    const euiHeaderFixedCounter = document.body.getAttribute(
-      'data-fixed-headers'
-    );
+  });
 
-    const offset =
-      typeof sticky === 'object'
-        ? sticky?.offset
-        : themeContext.euiTheme.base * 3 * Number(euiHeaderFixedCounter);
+  useEffect(() => {
+    if (sticky) {
+      const euiHeaderFixedCounter = document.body.getAttribute(
+        'data-fixed-headers'
+      );
 
-    inlineStyles = {
-      ...inlineStyles,
-      ...logicalStyle('top', offset),
-      ...logicalStyle('max-height', `calc(100${logicalUnit.vh} - ${offset}px)`),
-    };
-  }
+      const offset =
+        typeof sticky === 'object'
+          ? sticky?.offset
+          : themeContext.euiTheme.base * 3 * Number(euiHeaderFixedCounter);
+
+      setInlineStyles({
+        ...style,
+        ...logicalStyle('min-width', isResponding ? '100%' : minWidth),
+        ...logicalStyle('top', offset),
+        ...logicalStyle(
+          'max-height',
+          `calc(100${logicalUnit.vh} - ${offset}px)`
+        ),
+      });
+    }
+  }, [style, sticky, themeContext.euiTheme.base, isResponding, minWidth]);
 
   return (
     <div className={className} css={cssStyles} style={inlineStyles} {...rest}>

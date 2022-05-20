@@ -7,14 +7,14 @@
  */
 
 import React, { FunctionComponent } from 'react';
-import { EuiEmptyPrompt, EuiEmptyPromptProps } from '../empty_prompt';
-import { EuiPageSection, EuiPageSectionProps } from '../page/page_section';
+import { EuiEmptyPrompt, EuiEmptyPromptProps } from '../../empty_prompt';
+import { EuiPageSection, EuiPageSectionProps } from '../../page/page_section';
 
 export type _EuiPageEmptyPromptProps = Omit<
   EuiPageSectionProps,
-  'title' | 'paddingSize' | 'bottomBorder'
+  'title' | 'bottomBorder'
 > &
-  EuiEmptyPromptProps & {
+  Omit<EuiEmptyPromptProps, 'paddingSize'> & {
     panelled?: boolean;
   };
 
@@ -24,7 +24,6 @@ export const _EuiPageEmptyPrompt: FunctionComponent<_EuiPageEmptyPromptProps> = 
   restrictWidth = false,
   paddingSize = 'l',
   grow = true,
-  contentProps,
   panelled,
   color,
   ...rest
@@ -58,6 +57,7 @@ export const _EuiPageEmptyPrompt: FunctionComponent<_EuiPageEmptyPromptProps> = 
       alignment={alignment}
     >
       <EuiEmptyPrompt
+        // @ts-expect-error Hasn't been updated to use all the new values yet
         paddingSize={paddingSize}
         color={emptyPromptColor}
         body={children}

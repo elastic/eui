@@ -15,6 +15,7 @@ export default ({
   restrictWidth,
   bottomBar,
   sidebarSticky,
+  offset,
   grow,
 }: {
   button: ReactElement;
@@ -25,10 +26,11 @@ export default ({
   restrictWidth?: EuiPageTemplateProps['restrictWidth'];
   // For fullscreen only
   sidebarSticky?: _EuiPageSidebarProps['sticky'];
+  offset?: EuiPageTemplateProps['offset'];
   grow?: EuiPageTemplateProps['grow'];
 }) => {
   return (
-    <EuiPageTemplate restrictWidth={restrictWidth} grow={grow}>
+    <EuiPageTemplate restrictWidth={restrictWidth} offset={offset} grow={grow}>
       {sidebar && (
         <EuiPageTemplate.Sidebar sticky={sidebarSticky}>
           {sidebar}

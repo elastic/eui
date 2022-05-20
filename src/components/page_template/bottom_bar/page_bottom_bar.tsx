@@ -7,10 +7,10 @@
  */
 
 import React, { FunctionComponent } from 'react';
-import { EuiPaddingSize } from '../../global_styling';
-import { EuiBottomBar, EuiBottomBarProps } from '../bottom_bar';
-import { EuiPageSection } from '../page/page_section';
-import { _EuiPageRestrictWidth } from '../page/_restrict_width';
+import { EuiPaddingSize } from '../../../global_styling';
+import { EuiBottomBar, EuiBottomBarProps } from '../../bottom_bar';
+import { EuiPageSection } from '../../page/page_section';
+import { _EuiPageRestrictWidth } from '../../page/_restrict_width';
 
 export interface _EuiPageBottomBarProps
   extends EuiPaddingSize,
@@ -19,7 +19,6 @@ export interface _EuiPageBottomBarProps
 
 export const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = ({
   children,
-  className,
   paddingSize,
   restrictWidth,
   style,
@@ -30,7 +29,7 @@ export const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = ({
       paddingSize={'none'}
       position="sticky"
       style={{ flexShrink: 0, ...style }}
-      // Using uknown here because of the possible conflict with overriding props and position `sticky`
+      // Using unknown here because of the possible conflict with overriding props and position `sticky`
       {...(rest as unknown)}
     >
       {/* Wrapping the contents with EuiPageContentBody allows us to match the restrictWidth to keep the contents aligned */}

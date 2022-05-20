@@ -14,8 +14,8 @@ import {
 
 import { _EuiPageTemplate } from '../../../../src/components/page_template/page_template';
 import { _EuiPageSidebar } from '../../../../src/components/page_template/sidebar';
-import { _EuiPageBottomBar } from '../../../../src/components/page_template/page_bottom_bar';
-import { _EuiPageEmptyPrompt } from '../../../../src/components/page_template/page_empty_prompt';
+import { _EuiPageBottomBar } from '../../../../src/components/page_template/bottom_bar/page_bottom_bar';
+import { _EuiPageEmptyPrompt } from '../../../../src/components/page_template/empty_prompt/page_empty_prompt';
 
 import Sidebar from './page_template_sidebar';
 const SidebarSource = require('!!raw-loader!./page_template_sidebar');
@@ -107,6 +107,12 @@ export const PageTemplateExample = {
                 </Link>
               </li>
             </ul>
+            <p>
+              With the exception of Sidebar and BottomBar, the stacking order of
+              the page contents is determined by the order they are passed in.
+              You can also override the outer props by simply applying them
+              directly to the child element.
+            </p>
           </EuiText>
           <EuiSpacer />
           <EuiCallOut
@@ -123,10 +129,12 @@ export const PageTemplateExample = {
           <EuiSpacer />
           <EuiText>
             <p>
-              With the exception of Sidebar and BottomBar, the stacking order of
-              the page contents is determined by the order they are passed in.
-              You can also override the outer props by simply applying them
-              directly to the child element.
+              If you have an fixed position{' '}
+              <Link to="/display/header">headers</Link>, the template will
+              automatically account for the padding <EuiCode>offset</EuiCode>{' '}
+              based on the total number of page headers. If you do not want the
+              template to calculate this, you can pass <EuiCode>0</EuiCode> in
+              as the manual <EuiCode>offset</EuiCode>.
             </p>
           </EuiText>
           <PageDemo

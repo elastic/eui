@@ -61,6 +61,6 @@ exports[`_EuiPageSidebar paddingSize xs is rendered 1`] = `
 exports[`_EuiPageSidebar sticky is rendered 1`] = `
 <div
   class="css-1vpm837-euiPageSidebar-sticky"
-  style="min-inline-size:260px;inset-block-start:100px;max-block-size:calc(100vb - 100px)"
+  style="min-inline-size:260px"
 />
 `;

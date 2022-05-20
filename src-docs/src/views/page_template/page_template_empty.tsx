@@ -14,6 +14,7 @@ export default ({
   header,
   panelled,
   sidebarSticky,
+  offset,
   grow,
 }: {
   button: ReactElement;
@@ -23,10 +24,11 @@ export default ({
   panelled?: EuiPageTemplateProps['panelled'];
   // For fullscreen only
   sidebarSticky?: _EuiPageSidebarProps['sticky'];
+  offset?: EuiPageTemplateProps['offset'];
   grow?: EuiPageTemplateProps['grow'];
 }) => {
   return (
-    <EuiPageTemplate panelled={panelled} grow={grow}>
+    <EuiPageTemplate panelled={panelled} offset={offset} grow={grow}>
       {sidebar && (
         <EuiPageTemplate.Sidebar sticky={sidebarSticky}>
           {sidebar}

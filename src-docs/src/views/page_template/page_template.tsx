@@ -14,6 +14,7 @@ export default ({
   panelled,
   restrictWidth,
   bottomBorder,
+  offset,
   grow,
 }: {
   button: ReactElement;
@@ -23,6 +24,7 @@ export default ({
   restrictWidth?: EuiPageTemplateProps['restrictWidth'];
   bottomBorder?: EuiPageTemplateProps['bottomBorder'];
   // For fullscreen only
+  offset?: EuiPageTemplateProps['offset'];
   grow?: EuiPageTemplateProps['grow'];
 }) => {
   return (
@@ -30,6 +32,7 @@ export default ({
       panelled={panelled}
       restrictWidth={restrictWidth}
       bottomBorder={bottomBorder}
+      offset={offset}
       grow={grow}
     >
       <EuiPageTemplate.Section color="subdued" bottomBorder="extended">

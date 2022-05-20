@@ -90,7 +90,9 @@ export const PageDemo: FunctionComponent<
   const [showSidebar, setShowSidebar] = useState<boolean>(
     Boolean(show.sidebar)
   );
-  const [showSidebarSticky, setShowSidebarSticky] = useState<boolean>(false);
+  const [showSidebarSticky, setShowSidebarSticky] = useState<boolean>(
+    fullscreen || false
+  );
 
   // Restrict width combos
   const [restrictWidth, setRestrictWidth] = useState<
@@ -303,6 +305,7 @@ export const PageDemo: FunctionComponent<
       emptyPrompt={_emptyPrompt}
       sidebarSticky={showSidebarSticky}
       grow={fullscreen ? true : false}
+      offset={fullscreen ? undefined : 0}
     />
   );
 
