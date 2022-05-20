@@ -16,56 +16,66 @@ exports[`euiTextStyles sizes m 1`] = `
     h2 {
       font-size: 1.9286rem;
       line-height: 2.2857rem;
-    }
-    h2:not(:last-child) {
-      margin-block-end: 0.57145rem;
-    }
-    * + h2 {
-      margin-block-start: 2.2858rem;
+
+      &:not(:first-child) {
+        margin-block-start: 2.2858rem;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 0.57145rem;
+      }
     }
 
     h3 {
       font-size: 1.5714rem;
       line-height: 1.7143rem;
-    }
-    h3:not(:last-child) {
-      margin-block-end: 0.57145rem;
-    }
-    * + h3 {
-      margin-block-start: 2.2858rem;
+
+      &:not(:first-child) {
+        margin-block-start: 2.2858rem;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 0.57145rem;
+      }
     }
 
     h4 {
       font-size: 1.1429rem;
       line-height: 1.7143rem;
-    }
-    h4:not(:last-child) {
-      margin-block-end: 0.57145rem;
-    }
-    * + h4 {
-      margin-block-start: 2.2858rem;
+
+      &:not(:first-child) {
+        margin-block-start: 2.2858rem;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 0.57145rem;
+      }
     }
 
     h5 {
       font-size: 1.0000rem;
       line-height: 1.4286rem;
-    }
-    h5:not(:last-child) {
-      margin-block-end: 0.57145rem;
-    }
-    * + h5 {
-      margin-block-start: 2.2858rem;
+
+      &:not(:first-child) {
+        margin-block-start: 2.2858rem;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 0.57145rem;
+      }
     }
 
     h6 {
       font-size: 0.8571rem;
       line-height: 1.1429rem;
-    }
-    h6:not(:last-child) {
-      margin-block-end: 0.57145rem;
-    }
-    * + h6 {
-      margin-block-start: 2.2858rem;
+
+      &:not(:first-child) {
+        margin-block-start: 2.2858rem;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 0.57145rem;
+      }
     }
 
     p,
@@ -107,11 +117,11 @@ exports[`euiTextStyles sizes m 1`] = `
       font-size: 1.0000rem;
     }
 
-    pre {
+    pre:not(.euiCodeBlock__pre) {
       padding: 1.1429rem;
     }
 
-    code {
+    code:not(.euiCode):not(.euiCodeBlock__code)  {
       font-size: .9em; // 90% of parent font size
     }
   ;;label:m;"
@@ -133,56 +143,66 @@ exports[`euiTextStyles sizes relative 1`] = `
     h2 {
       font-size: 1.6875em;
       line-height: 1.2495;
-    }
-    h2:not(:last-child) {
-      margin-block-end: 0.2962962962962963em;
-    }
-    * + h2 {
-      margin-block-start: 1.1851851851851851em;
+
+      &:not(:first-child) {
+        margin-block-start: 1.1851851851851851em;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 0.2962962962962963em;
+      }
     }
 
     h3 {
       font-size: 1.375em;
       line-height: 1.2495;
-    }
-    h3:not(:last-child) {
-      margin-block-end: 0.36363636363636365em;
-    }
-    * + h3 {
-      margin-block-start: 1.4545454545454546em;
+
+      &:not(:first-child) {
+        margin-block-start: 1.4545454545454546em;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 0.36363636363636365em;
+      }
     }
 
     h4 {
       font-size: 1em;
       line-height: 1.5000;
-    }
-    h4:not(:last-child) {
-      margin-block-end: 0.5em;
-    }
-    * + h4 {
-      margin-block-start: 2em;
+
+      &:not(:first-child) {
+        margin-block-start: 2em;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 0.5em;
+      }
     }
 
     h5 {
       font-size: 0.875em;
       line-height: 1.5000;
-    }
-    h5:not(:last-child) {
-      margin-block-end: 0.5714285714285714em;
-    }
-    * + h5 {
-      margin-block-start: 2.2857142857142856em;
+
+      &:not(:first-child) {
+        margin-block-start: 2.2857142857142856em;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 0.5714285714285714em;
+      }
     }
 
     h6 {
       font-size: 0.75em;
       line-height: 1.5000;
-    }
-    h6:not(:last-child) {
-      margin-block-end: 0.6666666666666666em;
-    }
-    * + h6 {
-      margin-block-start: 2.6666666666666665em;
+
+      &:not(:first-child) {
+        margin-block-start: 2.6666666666666665em;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 0.6666666666666666em;
+      }
     }
 
     p,
@@ -224,11 +244,11 @@ exports[`euiTextStyles sizes relative 1`] = `
       font-size: 0.875em;
     }
 
-    pre {
+    pre:not(.euiCodeBlock__pre) {
       padding: 1em;
     }
 
-    code {
+    code:not(.euiCode):not(.euiCodeBlock__code)  {
       font-size: .9em; // 90% of parent font size
     }
   ;;label:relative;"
@@ -250,56 +270,66 @@ exports[`euiTextStyles sizes s 1`] = `
     h2 {
       font-size: 1.6875rem;
       line-height: 2.0000rem;
-    }
-    h2:not(:last-child) {
-      margin-block-end: 0.5rem;
-    }
-    * + h2 {
-      margin-block-start: 2rem;
+
+      &:not(:first-child) {
+        margin-block-start: 2rem;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 0.5rem;
+      }
     }
 
     h3 {
       font-size: 1.3750rem;
       line-height: 1.7143rem;
-    }
-    h3:not(:last-child) {
-      margin-block-end: 0.5rem;
-    }
-    * + h3 {
-      margin-block-start: 2rem;
+
+      &:not(:first-child) {
+        margin-block-start: 2rem;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 0.5rem;
+      }
     }
 
     h4 {
       font-size: 1.0000rem;
       line-height: 1.4286rem;
-    }
-    h4:not(:last-child) {
-      margin-block-end: 0.5rem;
-    }
-    * + h4 {
-      margin-block-start: 2rem;
+
+      &:not(:first-child) {
+        margin-block-start: 2rem;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 0.5rem;
+      }
     }
 
     h5 {
       font-size: 0.8750rem;
       line-height: 1.1429rem;
-    }
-    h5:not(:last-child) {
-      margin-block-end: 0.5rem;
-    }
-    * + h5 {
-      margin-block-start: 2rem;
+
+      &:not(:first-child) {
+        margin-block-start: 2rem;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 0.5rem;
+      }
     }
 
     h6 {
       font-size: 0.7500rem;
       line-height: 1.1429rem;
-    }
-    h6:not(:last-child) {
-      margin-block-end: 0.5rem;
-    }
-    * + h6 {
-      margin-block-start: 2rem;
+
+      &:not(:first-child) {
+        margin-block-start: 2rem;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 0.5rem;
+      }
     }
 
     p,
@@ -341,11 +371,11 @@ exports[`euiTextStyles sizes s 1`] = `
       font-size: 0.8750rem;
     }
 
-    pre {
+    pre:not(.euiCodeBlock__pre) {
       padding: 1.0000rem;
     }
 
-    code {
+    code:not(.euiCode):not(.euiCodeBlock__code)  {
       font-size: .9em; // 90% of parent font size
     }
   ;;label:s;"
@@ -367,56 +397,66 @@ exports[`euiTextStyles sizes xs 1`] = `
     h2 {
       font-size: 1.4464rem;
       line-height: 1.7143rem;
-    }
-    h2:not(:last-child) {
-      margin-block-end: 0.42855rem;
-    }
-    * + h2 {
-      margin-block-start: 1.7142rem;
+
+      &:not(:first-child) {
+        margin-block-start: 1.7142rem;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 0.42855rem;
+      }
     }
 
     h3 {
       font-size: 1.1786rem;
       line-height: 1.4286rem;
-    }
-    h3:not(:last-child) {
-      margin-block-end: 0.42855rem;
-    }
-    * + h3 {
-      margin-block-start: 1.7142rem;
+
+      &:not(:first-child) {
+        margin-block-start: 1.7142rem;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 0.42855rem;
+      }
     }
 
     h4 {
       font-size: 0.8571rem;
       line-height: 1.1429rem;
-    }
-    h4:not(:last-child) {
-      margin-block-end: 0.42855rem;
-    }
-    * + h4 {
-      margin-block-start: 1.7142rem;
+
+      &:not(:first-child) {
+        margin-block-start: 1.7142rem;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 0.42855rem;
+      }
     }
 
     h5 {
       font-size: 0.7500rem;
       line-height: 1.1429rem;
-    }
-    h5:not(:last-child) {
-      margin-block-end: 0.42855rem;
-    }
-    * + h5 {
-      margin-block-start: 1.7142rem;
+
+      &:not(:first-child) {
+        margin-block-start: 1.7142rem;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 0.42855rem;
+      }
     }
 
     h6 {
       font-size: 0.6429rem;
       line-height: 0.8571rem;
-    }
-    h6:not(:last-child) {
-      margin-block-end: 0.42855rem;
-    }
-    * + h6 {
-      margin-block-start: 1.7142rem;
+
+      &:not(:first-child) {
+        margin-block-start: 1.7142rem;
+      }
+
+      &:not(:last-child) {
+        margin-block-end: 0.42855rem;
+      }
     }
 
     p,
@@ -458,11 +498,11 @@ exports[`euiTextStyles sizes xs 1`] = `
       font-size: 0.7500rem;
     }
 
-    pre {
+    pre:not(.euiCodeBlock__pre) {
       padding: 0.8571rem;
     }
 
-    code {
+    code:not(.euiCode):not(.euiCodeBlock__code)  {
       font-size: .9em; // 90% of parent font size
     }
   ;;label:xs;"

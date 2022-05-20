@@ -89,56 +89,81 @@ const euiScaleText = (
     h2 {
       font-size: ${headings.h2.fontSize};
       line-height: ${headings.h2.lineHeight};
-    }
-    h2:not(:last-child) {
-      ${logicalCSS('margin-bottom', headingMarginBottom(headings.h2.fontSize))}
-    }
-    * + h2 {
-      ${logicalCSS('margin-top', headingMarginTop(headings.h2.fontSize))}
+
+      &:not(:first-child) {
+        ${logicalCSS('margin-top', headingMarginTop(headings.h2.fontSize))}
+      }
+
+      &:not(:last-child) {
+        ${logicalCSS(
+          'margin-bottom',
+          headingMarginBottom(headings.h2.fontSize)
+        )}
+      }
     }
 
     h3 {
       font-size: ${headings.h3.fontSize};
       line-height: ${headings.h3.lineHeight};
-    }
-    h3:not(:last-child) {
-      ${logicalCSS('margin-bottom', headingMarginBottom(headings.h3.fontSize))}
-    }
-    * + h3 {
-      ${logicalCSS('margin-top', headingMarginTop(headings.h3.fontSize))}
+
+      &:not(:first-child) {
+        ${logicalCSS('margin-top', headingMarginTop(headings.h3.fontSize))}
+      }
+
+      &:not(:last-child) {
+        ${logicalCSS(
+          'margin-bottom',
+          headingMarginBottom(headings.h3.fontSize)
+        )}
+      }
     }
 
     h4 {
       font-size: ${headings.h4.fontSize};
       line-height: ${headings.h4.lineHeight};
-    }
-    h4:not(:last-child) {
-      ${logicalCSS('margin-bottom', headingMarginBottom(headings.h4.fontSize))}
-    }
-    * + h4 {
-      ${logicalCSS('margin-top', headingMarginTop(headings.h4.fontSize))}
+
+      &:not(:first-child) {
+        ${logicalCSS('margin-top', headingMarginTop(headings.h4.fontSize))}
+      }
+
+      &:not(:last-child) {
+        ${logicalCSS(
+          'margin-bottom',
+          headingMarginBottom(headings.h4.fontSize)
+        )}
+      }
     }
 
     h5 {
       font-size: ${headings.h5.fontSize};
       line-height: ${headings.h5.lineHeight};
-    }
-    h5:not(:last-child) {
-      ${logicalCSS('margin-bottom', headingMarginBottom(headings.h5.fontSize))}
-    }
-    * + h5 {
-      ${logicalCSS('margin-top', headingMarginTop(headings.h5.fontSize))}
+
+      &:not(:first-child) {
+        ${logicalCSS('margin-top', headingMarginTop(headings.h5.fontSize))}
+      }
+
+      &:not(:last-child) {
+        ${logicalCSS(
+          'margin-bottom',
+          headingMarginBottom(headings.h5.fontSize)
+        )}
+      }
     }
 
     h6 {
       font-size: ${headings.h6.fontSize};
       line-height: ${headings.h6.lineHeight};
-    }
-    h6:not(:last-child) {
-      ${logicalCSS('margin-bottom', headingMarginBottom(headings.h6.fontSize))}
-    }
-    * + h6 {
-      ${logicalCSS('margin-top', headingMarginTop(headings.h6.fontSize))}
+
+      &:not(:first-child) {
+        ${logicalCSS('margin-top', headingMarginTop(headings.h6.fontSize))}
+      }
+
+      &:not(:last-child) {
+        ${logicalCSS(
+          'margin-bottom',
+          headingMarginBottom(headings.h6.fontSize)
+        )}
+      }
     }
 
     p,
