@@ -16,7 +16,7 @@ export default () => {
   return (
     <>
       <EuiTitle>
-        <h2>Validation text</h2>
+        <h2>Validation error text</h2>
       </EuiTitle>
 
       <GuideRule
@@ -25,10 +25,10 @@ export default () => {
             Validation messages are needed when the user input differs from what
             the system expects and enforces:
             <ul>
-              <li>Indicating required fields that are still blank.</li>
+              <li>Required fields that are still blank.</li>
               <li>
-                Indicating a value is not correct, for one or several reasons
-                (forbidden characters, formatting, duplicate
+                Invalid values, for one or several reasons (forbidden
+                characters, formatting, duplicate).
               </li>
             </ul>
             Use clear language that helps users understand what they have to do.

@@ -8,6 +8,7 @@ import {
   EuiTitle,
   EuiFieldText,
   EuiFieldSearch,
+  EuiSpacer,
 } from '../../../../src/components';
 
 export default () => {
@@ -25,7 +26,6 @@ export default () => {
       </EuiTitle>
 
       <GuideRule
-        heading="Field labels"
         description={
           <p>
             Avoid long labels, but don&lsquo;t sacrifice clarity. If needed, put
@@ -57,6 +57,8 @@ export default () => {
         </GuideRuleExample>
       </GuideRule>
 
+      <EuiSpacer />
+
       <EuiTitle>
         <h2>Placeholder text</h2>
       </EuiTitle>
@@ -79,7 +81,7 @@ export default () => {
             label="Source"
             helpText="Enter CIDR or IP address. For example, `192.168.132.6/22`."
           >
-            <EuiFieldText placeholder="Search this" />
+            <EuiFieldText />
           </EuiFormRow>
         </GuideRuleExample>
         <GuideRuleExample
@@ -94,6 +96,8 @@ export default () => {
             <EuiFieldText placeholder="Type here" />
           </EuiFormRow>
         </GuideRuleExample>
+      </GuideRule>
+      <GuideRule>
         <GuideRuleExample
           panelDisplay="block"
           type="do"
@@ -111,7 +115,7 @@ export default () => {
               </EuiFormRow>
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
-              <EuiFormRow hasEmptyLabelSpace>
+              <EuiFormRow>
                 <EuiButton>Add</EuiButton>
               </EuiFormRow>
             </EuiFlexItem>
@@ -121,7 +125,7 @@ export default () => {
         <GuideRuleExample
           panelDisplay="block"
           type="do"
-          text="If space allows it, prefer following the rules described earlier."
+          text="If space allows it, prefer following the rule described earlier with labels outside of the fields."
         >
           <EuiFlexGroup style={{ maxWidth: 600 }}>
             <EuiFlexItem>
@@ -206,6 +210,8 @@ export default () => {
         </GuideRuleExample>
       </GuideRule>
 
+      <EuiSpacer />
+
       <EuiTitle>
         <h2>Hint text</h2>
       </EuiTitle>
@@ -217,17 +223,18 @@ export default () => {
             visible to the user. Use hint text to:
             <ul>
               <li>
-                explain why you are asking a certain question: &quot;We will
-                only email you if there is a problem with your order.&quot;
+                explain <strong>why you are asking a certain question</strong>:
+                &quot;We will only email you if there is a problem with your
+                order.&quot;
               </li>
               <li>
-                provide clarifying details on what to type: &quot;Enter the full
-                32-characters ID.&quot;
+                provide <strong>clarifying details</strong> on what to type:
+                &quot;Enter the full 32-characters ID.&quot;
               </li>
               <li>
-                tell the user where to find the information you&apos;re asking
-                for: &quot;Find the Elasticsearch cluster ID on the main
-                administration page of your deployment.&quot;
+                tell the user <strong>where to find the information</strong>{' '}
+                you&apos;re asking for: &quot;Find the Elasticsearch cluster ID
+                on the main administration page of your deployment.&quot;
               </li>
             </ul>
           </p>
