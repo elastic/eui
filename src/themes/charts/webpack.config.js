@@ -24,14 +24,10 @@ const plugins = [
   }),
   // run TypeScript during webpack build
   new ForkTsCheckerWebpackPlugin({
-    typescript: { configFile: path.resolve(__dirname, '..', 'tsconfig.json') },
+    typescript: {
+      configFile: path.resolve(__dirname, '..', '..', '..', 'tsconfig.json'),
+    },
     async: false, // makes errors more visible, but potentially less performant
-  }),
-
-  // Force EuiIcon's dynamic imports to be included in the single eui.js build,
-  // instead of being split out into multiple files
-  new webpack.optimize.LimitChunkCountPlugin({
-    maxChunks: 1,
   }),
 ];
 
@@ -45,26 +41,18 @@ module.exports = {
   devtool: isProduction ? 'source-map' : 'cheap-module-source-map',
 
   entry: {
-    guide: './index.ts',
+    guide: './themes.ts',
   },
 
   context: __dirname,
 
   output: {
-    path: path.resolve(__dirname, '../dist'),
-    filename: `eui${isProduction ? '.min' : ''}.js`,
+    path: path.resolve(__dirname, '../../../dist'),
+    filename: `eui_charts_theme${isProduction ? '.min' : ''}.js`,
   },
 
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
-  },
-
-  // Specify where these libraries should be found
-  externals: {
-    moment: 'window.moment',
-    'prop-types': 'window.PropTypes',
-    react: 'window.React',
-    'react-dom': 'window.ReactDOM',
   },
 
   module: {
@@ -83,10 +71,6 @@ module.exports = {
           'sass-loader',
         ],
         exclude: /node_modules/,
-      },
-      {
-        test: /\.(woff|woff2|ttf|eot|ico|png|gif|jpg|jpeg)(\?|$)/,
-        loader: 'file-loader',
       },
     ],
     strictExportPresence: isProduction,
