@@ -16,7 +16,7 @@ const ScrollToHash: FunctionComponent = () => {
     if (documentReadyState !== 'complete') return; // Wait for page to finish loading before scrolling
     const hash = location.hash.split('?')[0].replace('#', ''); // Remove any query params and the leading hash
     const element = document.getElementById(hash);
-    const headerOffset = 72;
+    const headerOffset = 48;
     if (element) {
       window.scrollTo({
         top: element.offsetTop - headerOffset,
