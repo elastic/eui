@@ -78,7 +78,7 @@
 
 .euiTableHeaderCellCheckbox {
   @include euiTableCellCheckbox;
-  border-top: none;
+  border: none;
 }
 
 .euiTableRow {
