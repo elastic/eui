@@ -3,7 +3,7 @@
 exports[`EuiEmptyPrompt is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge testClass1 testClass2"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <div
@@ -52,7 +52,7 @@ exports[`EuiEmptyPrompt is rendered 1`] = `
 
 exports[`EuiEmptyPrompt props actions renders alone 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
 >
   <div
     class="euiEmptyPrompt__main"
@@ -75,7 +75,7 @@ exports[`EuiEmptyPrompt props actions renders alone 1`] = `
 
 exports[`EuiEmptyPrompt props actions renders an array 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
 >
   <div
     class="euiEmptyPrompt__main"
@@ -111,7 +111,7 @@ exports[`EuiEmptyPrompt props actions renders an array 1`] = `
 
 exports[`EuiEmptyPrompt props body renders alone 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
 >
   <div
     class="euiEmptyPrompt__main"
@@ -135,7 +135,7 @@ exports[`EuiEmptyPrompt props body renders alone 1`] = `
 
 exports[`EuiEmptyPrompt props color accent is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--accent euiPanel--noShadow euiPanel--noBorder euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--accent euiPanel--noShadow euiPanel--noBorder euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
 >
   <div
     class="euiEmptyPrompt__main"
@@ -153,7 +153,7 @@ exports[`EuiEmptyPrompt props color accent is rendered 1`] = `
 
 exports[`EuiEmptyPrompt props color danger is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
 >
   <div
     class="euiEmptyPrompt__main"
@@ -171,7 +171,7 @@ exports[`EuiEmptyPrompt props color danger is rendered 1`] = `
 
 exports[`EuiEmptyPrompt props color plain is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
 >
   <div
     class="euiEmptyPrompt__main"
@@ -189,7 +189,7 @@ exports[`EuiEmptyPrompt props color plain is rendered 1`] = `
 
 exports[`EuiEmptyPrompt props color primary is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--primary euiPanel--noShadow euiPanel--noBorder euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--primary euiPanel--noShadow euiPanel--noBorder euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
 >
   <div
     class="euiEmptyPrompt__main"
@@ -207,7 +207,7 @@ exports[`EuiEmptyPrompt props color primary is rendered 1`] = `
 
 exports[`EuiEmptyPrompt props color subdued is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
 >
   <div
     class="euiEmptyPrompt__main"
@@ -225,7 +225,7 @@ exports[`EuiEmptyPrompt props color subdued is rendered 1`] = `
 
 exports[`EuiEmptyPrompt props color success is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--success euiPanel--noShadow euiPanel--noBorder euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--success euiPanel--noShadow euiPanel--noBorder euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
 >
   <div
     class="euiEmptyPrompt__main"
@@ -243,7 +243,7 @@ exports[`EuiEmptyPrompt props color success is rendered 1`] = `
 
 exports[`EuiEmptyPrompt props color transparent is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
 >
   <div
     class="euiEmptyPrompt__main"
@@ -261,7 +261,7 @@ exports[`EuiEmptyPrompt props color transparent is rendered 1`] = `
 
 exports[`EuiEmptyPrompt props color warning is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--warning euiPanel--noShadow euiPanel--noBorder euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--warning euiPanel--noShadow euiPanel--noBorder euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
 >
   <div
     class="euiEmptyPrompt__main"
@@ -279,7 +279,7 @@ exports[`EuiEmptyPrompt props color warning is rendered 1`] = `
 
 exports[`EuiEmptyPrompt props footer renders alone 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
 >
   <div
     class="euiEmptyPrompt__main"
@@ -302,7 +302,7 @@ exports[`EuiEmptyPrompt props footer renders alone 1`] = `
 
 exports[`EuiEmptyPrompt props icon renders alone 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
 >
   <div
     class="euiEmptyPrompt__main"
@@ -327,7 +327,7 @@ exports[`EuiEmptyPrompt props icon renders alone 1`] = `
 
 exports[`EuiEmptyPrompt props iconType renders alone 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
 >
   <div
     class="euiEmptyPrompt__main"
@@ -353,7 +353,7 @@ exports[`EuiEmptyPrompt props iconType renders alone 1`] = `
 
 exports[`EuiEmptyPrompt props iconType renders with iconColor 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
 >
   <div
     class="euiEmptyPrompt__main"
@@ -379,7 +379,7 @@ exports[`EuiEmptyPrompt props iconType renders with iconColor 1`] = `
 
 exports[`EuiEmptyPrompt props layout renders alone 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiEmptyPrompt euiEmptyPrompt--horizontal euiEmptyPrompt--paddingLarge"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--horizontal euiEmptyPrompt--paddingLarge"
 >
   <div
     class="euiEmptyPrompt__main"
@@ -397,7 +397,7 @@ exports[`EuiEmptyPrompt props layout renders alone 1`] = `
 
 exports[`EuiEmptyPrompt props paddingSize l is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
 >
   <div
     class="euiEmptyPrompt__main"
@@ -415,7 +415,7 @@ exports[`EuiEmptyPrompt props paddingSize l is rendered 1`] = `
 
 exports[`EuiEmptyPrompt props paddingSize m is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingMedium"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingMedium"
 >
   <div
     class="euiEmptyPrompt__main"
@@ -433,7 +433,7 @@ exports[`EuiEmptyPrompt props paddingSize m is rendered 1`] = `
 
 exports[`EuiEmptyPrompt props paddingSize none is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiEmptyPrompt euiEmptyPrompt--vertical"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical"
 >
   <div
     class="euiEmptyPrompt__main"
@@ -451,7 +451,7 @@ exports[`EuiEmptyPrompt props paddingSize none is rendered 1`] = `
 
 exports[`EuiEmptyPrompt props paddingSize s is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingSmall"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingSmall"
 >
   <div
     class="euiEmptyPrompt__main"
@@ -469,7 +469,7 @@ exports[`EuiEmptyPrompt props paddingSize s is rendered 1`] = `
 
 exports[`EuiEmptyPrompt props styles are rendered 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
   style="background:yellow;min-width:200px;max-width:600px"
 >
   <div
@@ -488,7 +488,7 @@ exports[`EuiEmptyPrompt props styles are rendered 1`] = `
 
 exports[`EuiEmptyPrompt props title renders alone 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiPanel--flexGrowZero euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
 >
   <div
     class="euiEmptyPrompt__main"

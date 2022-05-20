@@ -176,6 +176,7 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
     color: color,
     paddingSize: 'none',
     hasBorder: hasBorder,
+    grow: false,
     ...rest,
   };
 
