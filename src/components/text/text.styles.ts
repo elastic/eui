@@ -173,7 +173,9 @@ const euiScaleText = (
     blockquote,
     img,
     pre {
-      ${logicalCSS('margin-bottom', lineHeightSize)}
+      &:not(:last-child) {
+        ${logicalCSS('margin-bottom', lineHeightSize)}
+      }
     }
 
     ul,
@@ -255,10 +257,6 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
         font-style: italic;
         letter-spacing: normal;
 
-        p:last-child {
-          margin-bottom: 0;
-        }
-
         &:before,
         &:after {
           position: absolute;
@@ -328,10 +326,6 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
       pre:not(.euiCodeBlock__pre),
       pre:not(.euiCodeBlock__pre) code {
         display: block;
-      }
-
-      > :last-child {
-        margin-bottom: 0 !important;
       }
     `,
     constrainedWidth: css`
