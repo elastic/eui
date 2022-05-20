@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
+import Guidelines from './guidelines';
+
 import {
   EuiBadge,
   EuiCallOut,
@@ -131,6 +133,7 @@ const formControlLayoutRangeSource = require('!!raw-loader!./form_control_layout
 
 export const FormControlsExample = {
   title: 'Form controls',
+  guidelines: <Guidelines />,
   intro: (
     <>
       <EuiText>
@@ -187,13 +190,6 @@ export const FormControlsExample = {
           </p>
         </EuiCallOut>
         <EuiSpacer />
-
-        <p>
-          <strong>Placeholders should never replace a label</strong> but used as
-          a hint in addition to the label. Use the{' '}
-          <EuiCode>placeholder</EuiCode> prop to describe the expected value of
-          the input.
-        </p>
       </EuiText>
     </>
   ),
