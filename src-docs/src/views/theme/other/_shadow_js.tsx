@@ -15,7 +15,6 @@ import {
 import { getPropsFromComponent } from '../../../services/props/get_props';
 import { getDescription } from '../../../services/props/get_description';
 
-// TODO: Update imports
 import {
   useEuiShadow,
   useEuiShadowFlat,

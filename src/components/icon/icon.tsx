@@ -588,21 +588,29 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
 
     const { type } = props;
     const initialIcon = getInitialIcon(type);
-    let isLoading = false;
-
-    if (isEuiIconType(type) && initialIcon == null) {
-      isLoading = true;
-      this.loadIconComponent(type);
-    } else {
-      this.onIconLoad();
-    }
 
     this.state = {
       icon: initialIcon,
       iconTitle: undefined,
-      isLoading,
-      neededLoading: isLoading,
+      isLoading: false,
+      neededLoading: false,
     };
+  }
+
+  componentDidMount() {
+    const { type } = this.props;
+
+    if (isEuiIconType(type) && this.state.icon == null) {
+      //eslint-disable-next-line react/no-did-mount-set-state
+      this.setState({
+        neededLoading: true,
+        isLoading: true,
+      });
+
+      this.loadIconComponent(type);
+    } else {
+      this.onIconLoad();
+    }
   }
 
   componentDidUpdate(prevProps: EuiIconProps) {
