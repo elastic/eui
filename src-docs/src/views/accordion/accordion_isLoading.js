@@ -16,10 +16,14 @@ const idPrefix = htmlIdGenerator()();
 const toggleButtons = [
   {
     id: `${idPrefix}0`,
-    label: 'True',
+    label: 'False',
   },
   {
     id: `${idPrefix}1`,
+    label: 'True',
+  },
+  {
+    id: `${idPrefix}2`,
     label: 'Custom',
   },
 ];
@@ -42,6 +46,9 @@ export default () => {
     case 'True':
       isLoadingMessage = true;
       break;
+    case 'False':
+      isLoadingMessage = false;
+      break;
     case 'Custom':
       isLoadingMessage = 'This is a custom loading message';
       break;
@@ -62,7 +69,7 @@ export default () => {
       <EuiAccordion
         id={isLoadingAccordionId}
         initialIsOpen={true}
-        paddingSize="m"
+        paddingSize={isLoadingMessage ? 'm' : 'none'}
         buttonContent="Accordion is loading, click to toggle"
         extraAction={<EuiButton size="s">Extra action!</EuiButton>}
         isLoading

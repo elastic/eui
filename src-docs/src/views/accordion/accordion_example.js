@@ -305,9 +305,9 @@ export const AccordionExample = {
           <p>
             Manage the content of the accordion using{' '}
             <EuiCode>isLoadingMessage</EuiCode>. By default, it is set to{' '}
-            <EuiCode>true</EuiCode> and the content will show the loading
-            spinner and the default Loading message. Pass a node to show a
-            custom loading message.
+            <EuiCode>false</EuiCode> and the content will remain unaltered. Set
+            it to <EuiCode>true</EuiCode> to show a default loading message or
+            pass a node to show a custom loading message.
           </p>
         </>
       ),
