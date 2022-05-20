@@ -1,9 +1,19 @@
-import { useEffect, FunctionComponent } from 'react';
+import { useEffect, useState, FunctionComponent } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const ScrollToHash: FunctionComponent = () => {
   const location = useLocation();
+
+  const [documentReadyState, setReadyState] = useState(document.readyState);
   useEffect(() => {
+    const readyStateListener = () => setReadyState(document.readyState);
+    document.addEventListener('readystatechange', readyStateListener);
+    return () =>
+      document.removeEventListener('readystatechange', readyStateListener);
+  }, []);
+
+  useEffect(() => {
+    if (documentReadyState !== 'complete') return; // Wait for page to finish loading before scrolling
     const hash = location.hash.split('?')[0].replace('#', ''); // Remove any query params and the leading hash
     const element = document.getElementById(hash);
     const headerOffset = 72;
@@ -18,7 +28,7 @@ const ScrollToHash: FunctionComponent = () => {
         top: 0,
       });
     }
-  }, [location]);
+  }, [location, documentReadyState]);
   return null;
 };
 
