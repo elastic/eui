@@ -212,6 +212,18 @@ export const DragAndDropExample = {
             <EuiCode>provided.dragHandleProps</EuiCode> needs to be added to the
             intended handle element.
           </p>
+
+          <EuiCallOut
+            iconType="accessibility"
+            title={
+              <>
+                Custom drag handles <strong>require</strong> an accessible
+                label. Add an <EuiCode>{'aria-label="Drag handle"'}</EuiCode>{' '}
+                attribute to your React component or HTML element that receives
+                Draggable <EuiCode>{'provided.dragHandleProps'}</EuiCode>.
+              </>
+            }
+          />
         </React.Fragment>
       ),
       demo: <DragAndDropCustomHandle />,
