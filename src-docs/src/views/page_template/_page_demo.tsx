@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React, { useState, FunctionComponent, ReactElement } from 'react';
+import React, { useState, FunctionComponent } from 'react';
 import { useRouteMatch } from 'react-router';
 import {
   EuiImage,
@@ -61,8 +61,8 @@ export const PageDemo: FunctionComponent<
     slug: string;
     show?: showing;
     toggle?: toggles;
-    template?: ReactElement;
-    source?: string;
+    template?: any;
+    source?: any;
   }
 > = ({
   fullscreen,
@@ -292,7 +292,6 @@ export const PageDemo: FunctionComponent<
   );
 
   const render = (
-    // @ts-expect-error Meh
     <Template
       button={button}
       content={content}
