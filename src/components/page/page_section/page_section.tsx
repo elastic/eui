@@ -16,7 +16,7 @@ import { useEuiTheme } from '../../../services';
 import {
   ALIGNMENTS,
   euiPageSectionStyles,
-  euiPageSectionWidth,
+  euiPageSection__width,
 } from './page_section.styles';
 
 import {
@@ -54,7 +54,6 @@ export type EuiPageSectionProps = CommonProps &
 
 export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
   children,
-  className,
   alignment = 'top',
   restrictWidth = false,
   bottomBorder,
@@ -69,32 +68,29 @@ export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
   const inlinePadding = useEuiPaddingCSS('horizontal');
   const blockPadding = useEuiPaddingCSS('vertical');
   const colors = useEuiBackgroundColorCSS();
-  const width = euiPageSectionWidth(
+  const width = euiPageSection__width(
     restrictWidth as _EuiPageRestrictWidth,
     alignment
   );
 
+  const cssStyles = [
+    styles.euiPageSection,
+    grow && styles.grow,
+    inlinePadding[paddingSize],
+    bottomBorder === 'extended' && styles.border,
+    alignment && styles[alignment],
+    colors[color],
+  ];
+
+  const cssWidthStyles = [
+    width,
+    blockPadding[paddingSize],
+    bottomBorder === true && styles.border,
+  ];
+
   return (
-    <div
-      className={className}
-      css={[
-        styles.euiPageSection,
-        grow && styles.grow,
-        inlinePadding[paddingSize],
-        bottomBorder === 'extended' && styles.border,
-        alignment && styles[alignment],
-        colors[color],
-      ]}
-      {...rest}
-    >
-      <div
-        css={[
-          width,
-          blockPadding[paddingSize],
-          bottomBorder === true && styles.border,
-        ]}
-        {...contentProps}
-      >
+    <div css={cssStyles} {...rest}>
+      <div css={cssWidthStyles} {...contentProps}>
         {children}
       </div>
     </div>

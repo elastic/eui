@@ -54,7 +54,7 @@ export interface _EuiPageSidebarProps
 export const _EuiPageSidebar: FunctionComponent<_EuiPageSidebarProps> = ({
   children,
   className,
-  sticky,
+  sticky = false,
   paddingSize = 'none',
   minWidth = 260,
   responsive = ['xs', 's'],

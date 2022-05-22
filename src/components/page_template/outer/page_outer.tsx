@@ -7,7 +7,6 @@
  */
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
-import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { useEuiTheme, useIsWithinBreakpoints } from '../../../services';
 import { _EuiThemeBreakpoint } from '../../../global_styling';
@@ -34,7 +33,6 @@ export interface _EuiPageOuterProps
 
 export const _EuiPageOuter: FunctionComponent<_EuiPageOuterProps> = ({
   children,
-  className,
   grow = true,
   direction = 'row',
   responsive = ['xs', 's'],
@@ -50,10 +48,8 @@ export const _EuiPageOuter: FunctionComponent<_EuiPageOuterProps> = ({
     grow && styles.grow,
   ];
 
-  const classes = classNames('euiPageOuter', className);
-
   return (
-    <div className={classes} css={cssStyles} {...rest}>
+    <div css={cssStyles} {...rest}>
       {children}
     </div>
   );

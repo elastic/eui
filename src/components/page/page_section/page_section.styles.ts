@@ -37,7 +37,7 @@ export const euiPageSectionStyles = ({ euiTheme }: UseEuiTheme) => {
   };
 };
 
-export const euiPageSectionWidth = (
+export const euiPageSection__width = (
   restrictWidth: _EuiPageRestrictWidth,
   alignment: typeof ALIGNMENTS[number]
 ) => {

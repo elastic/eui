@@ -78,7 +78,7 @@ export const PageTemplateExample = {
             <ul>
               <li>
                 <strong>EuiPageTemplate.Sidebar</strong> extends{' '}
-                <Link to="/layout/page-components#page-body-and-sidebar">
+                <Link to="#providing-a-sidebar">
                   <strong>EuiPageSidebar</strong>
                 </Link>
               </li>

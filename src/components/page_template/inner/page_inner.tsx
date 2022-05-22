@@ -7,7 +7,6 @@
  */
 
 import React, { PropsWithChildren, ComponentType, ComponentProps } from 'react';
-import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import {
   EuiPaddingSize,
@@ -40,7 +39,6 @@ export type _EuiPageInnerProps<
 
 export const _EuiPageInner = <T extends ComponentTypes>({
   children,
-  className,
   component: Component = 'div' as T,
   panelled,
   border,
@@ -57,10 +55,8 @@ export const _EuiPageInner = <T extends ComponentTypes>({
     border && styles.border,
   ];
 
-  const classes = classNames('euiPageInner', className);
-
   return (
-    <Component className={classes} css={cssStyles} {...rest}>
+    <Component css={cssStyles} {...rest}>
       {children}
     </Component>
   );
