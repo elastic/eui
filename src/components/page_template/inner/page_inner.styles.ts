@@ -11,24 +11,38 @@ import { euiShadow } from '../../../themes/amsterdam/global_styling/mixins';
 import { euiBackgroundColor, logicalCSS } from '../../../global_styling';
 import { transparentize, UseEuiTheme } from '../../../services';
 
-export const euiPageInnerStyles = (euiThemeContent: UseEuiTheme) => ({
-  euiPageInner: css`
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    flex: 1 1 100%;
-    // Make sure that inner flex layouts don't get larger than this container
-    ${logicalCSS('max-width', '100%')}
-    ${logicalCSS('min-width', '0')}
-  `,
+export const euiPageInnerStyles = (euiThemeContent: UseEuiTheme) => {
+  const borderColor = transparentize(
+    euiThemeContent.euiTheme.colors.lightShade,
+    0.7
+  );
 
-  panelled: css`
-    background: ${euiBackgroundColor('plain', euiThemeContent)};
-    ${euiShadow(euiThemeContent, 'm')}
-  `,
+  return {
+    euiPageInner: css`
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      flex: 1 1 100%;
+      // Make sure that inner flex layouts don't get larger than this container
+      ${logicalCSS('max-width', '100%')}
+      ${logicalCSS('min-width', '0')}
+    `,
 
-  border: css`
-    border-left: ${euiThemeContent.euiTheme.border.width.thin} solid
-      ${transparentize(euiThemeContent.euiTheme.colors.lightShade, 0.7)};
-  `,
-});
+    panelled: css`
+      background: ${euiBackgroundColor('plain', euiThemeContent)};
+      ${euiShadow(euiThemeContent, 'm')}
+    `,
+
+    border: {
+      top: css`
+        border-top: ${euiThemeContent.euiTheme.border.width.thin} solid
+          ${borderColor};
+      `,
+
+      left: css`
+        border-left: ${euiThemeContent.euiTheme.border.width.thin} solid
+          ${borderColor};
+      `,
+    },
+  };
+};

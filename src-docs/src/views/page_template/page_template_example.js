@@ -147,7 +147,7 @@ export const PageTemplateExample = {
               tabs: true,
             }}
             props={{
-              'EuiPageTemplate.Outer': _EuiPageTemplate,
+              EuiPageTemplate: _EuiPageTemplate,
               'EuiPageTemplate.Header': EuiPageHeader,
               'EuiPageTemplate.Section': EuiPageSection,
             }}

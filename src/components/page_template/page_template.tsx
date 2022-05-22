@@ -21,9 +21,15 @@ import { useEuiTheme } from '../../services';
 import { logicalStyle, logicalUnit } from '../../global_styling';
 
 export type EuiPageTemplateProps = _EuiPageOuterProps &
-  _EuiPageInnerProps &
+  // We re-define the `border` prop below to be named more appropriately
+  Omit<_EuiPageInnerProps, 'border'> &
   _EuiPageRestrictWidth &
   _EuiPageBottomBorder & {
+    /**
+     * Applies a top or left border to the inner contents
+     * to add separation between content and sidebar when a sidebar exists.
+     */
+    contentBorder?: _EuiPageInnerProps['border'];
     /**
      * Minimum height in which to enforce scrolling
      */
@@ -49,10 +55,12 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   bottomBorder,
   offset: _offset,
   panelled,
+  // Inner props
+  contentBorder,
   // Outer props
   className,
   minHeight = '460px',
-  responsive,
+  responsive = ['xs', 's'],
   ...rest
 }) => {
   const { euiTheme } = useEuiTheme();
@@ -107,6 +115,9 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
 
   const innerPanelled = () =>
     panelled === false ? false : Boolean(sidebar.length > 0);
+
+  const innerBordered = () =>
+    contentBorder !== undefined ? contentBorder : Boolean(sidebar.length > 0);
 
   React.Children.toArray(children).map((child, index) => {
     // All content types can have their props overridden by appending the child props spread at the end
@@ -184,7 +195,11 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
     >
       {sidebar}
 
-      <EuiPageInner border={sidebar.length > 0} panelled={innerPanelled()}>
+      <EuiPageInner
+        border={innerBordered()}
+        panelled={innerPanelled()}
+        responsive={responsive}
+      >
         {sections}
         {bottomBar}
       </EuiPageInner>

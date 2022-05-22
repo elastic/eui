@@ -11,6 +11,8 @@ import {
   EuiHeader,
   EuiButtonGroup,
   EuiPageHeaderProps,
+  EuiHeaderLinks,
+  EuiHeaderSectionItem,
 } from '../../../../src';
 import { EuiPageTemplateProps } from '../../../../src/components/page_template';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
@@ -287,7 +289,6 @@ export const PageDemo: FunctionComponent<
           />
         </EuiFlexItem>
       )}
-      <EuiFlexItem grow={true} />
     </EuiFlexGroup>
   );
 
@@ -311,7 +312,11 @@ export const PageDemo: FunctionComponent<
   return fullscreen ? (
     <>
       <EuiHeader theme="dark" position="fixed" style={{ color: 'white' }}>
-        {controls}
+        <EuiHeaderSectionItem>
+          <EuiHeaderLinks popoverProps={{ panelPaddingSize: 'l' }}>
+            {controls}
+          </EuiHeaderLinks>
+        </EuiHeaderSectionItem>
       </EuiHeader>
       {render}
     </>

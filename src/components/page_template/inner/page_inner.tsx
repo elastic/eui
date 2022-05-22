@@ -12,8 +12,9 @@ import {
   EuiPaddingSize,
   useEuiPaddingCSS,
   _EuiPaddingSize,
+  _EuiThemeBreakpoint,
 } from '../../../global_styling';
-import { useEuiTheme } from '../../../services';
+import { useEuiTheme, useIsWithinBreakpoints } from '../../../services';
 import { euiPageInnerStyles } from './page_inner.styles';
 
 type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType<any>;
@@ -28,13 +29,18 @@ export type _EuiPageInnerProps<
      */
     component?: T;
     /**
-     * Adds a white background and shadow to define the area
+     * Adds a white background and shadow to define the area.
      */
     panelled?: boolean;
     /**
-     * Adds a left side border, typically added when a side bar exists
+     * Adds a single side border, based on the `responsive` state.
+     * Typically added when a side bar exists.
      */
     border?: boolean;
+    /**
+     * When direction is `row`, it will flip to `column` when within these breakpoints.
+     */
+    responsive?: _EuiThemeBreakpoint[];
   };
 
 export const _EuiPageInner = <T extends ComponentTypes>({
@@ -43,16 +49,25 @@ export const _EuiPageInner = <T extends ComponentTypes>({
   panelled,
   border,
   paddingSize = 'none',
+  responsive = ['xs', 's'],
   ...rest
 }: PropsWithChildren<_EuiPageInnerProps<T>>) => {
   const themeContext = useEuiTheme();
+  const isResponding = useIsWithinBreakpoints(responsive);
   const styles = euiPageInnerStyles(themeContext);
+
+  let borderSide: 'top' | 'left' | undefined;
+  if (border && isResponding) {
+    borderSide = 'top';
+  } else if (border) {
+    borderSide = 'left';
+  }
 
   const cssStyles = [
     styles.euiPageInner,
     useEuiPaddingCSS()[paddingSize as _EuiPaddingSize],
     panelled && styles.panelled,
-    border && styles.border,
+    borderSide && styles.border[borderSide],
   ];
 
   return (
@@ -61,5 +76,3 @@ export const _EuiPageInner = <T extends ComponentTypes>({
     </Component>
   );
 };
-
-// _EuiPageInner.displayName = 'EuiPageInner';

@@ -29,6 +29,12 @@ describe('_EuiPageInner', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('border is rendered', () => {
+    const component = render(<EuiPageInner border={true} />);
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('component is rendered', () => {
     const component = render(<EuiPageInner component="main" />);
 
