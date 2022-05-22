@@ -7,7 +7,7 @@ exports[`_EuiPageSidebar _EuiPageInnerProps is rendered 1`] = `
   style="min-block-size:max(460px, calc(100vb)"
 >
   <div
-    class="css-nq554q-euiPageInner"
+    class="css-6kpn8r-euiPageInner-left"
   />
 </div>
 `;

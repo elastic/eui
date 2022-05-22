@@ -33,7 +33,7 @@ describe('_EuiPageSidebar', () => {
 
   test('_EuiPageInnerProps is rendered', () => {
     const component = render(
-      <EuiPageTemplate component="main" panelled={false} />
+      <EuiPageTemplate component="main" contentBorder={true} panelled={false} />
     );
 
     expect(component).toMatchSnapshot();
