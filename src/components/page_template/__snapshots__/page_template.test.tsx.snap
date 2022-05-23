@@ -6,7 +6,7 @@ exports[`_EuiPageSidebar _EuiPageInnerProps is rendered 1`] = `
   component="main"
   style="min-block-size:max(460px, calc(100vb)"
 >
-  <div
+  <main
     class="css-6kpn8r-euiPageInner-left"
   />
 </div>
@@ -17,7 +17,7 @@ exports[`_EuiPageSidebar _EuiPageOuterProps is rendered 1`] = `
   class="euiPageTemplate css-9q99t7-euiPageOuter-column-grow"
   style="min-block-size:460px"
 >
-  <div
+  <main
     class="css-nq554q-euiPageInner"
   />
 </div>
@@ -28,7 +28,7 @@ exports[`_EuiPageSidebar bottomBorder is rendered as extended 1`] = `
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-block-size:max(460px, calc(100vb)"
 >
-  <div
+  <main
     class="css-nq554q-euiPageInner"
   />
 </div>
@@ -39,7 +39,7 @@ exports[`_EuiPageSidebar bottomBorder is rendered as true 1`] = `
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-block-size:max(460px, calc(100vb)"
 >
-  <div
+  <main
     class="css-nq554q-euiPageInner"
   />
 </div>
@@ -52,7 +52,7 @@ exports[`_EuiPageSidebar is rendered 1`] = `
   data-test-subj="test subject string"
   style="min-block-size:max(460px, calc(100vb)"
 >
-  <div
+  <main
     class="css-nq554q-euiPageInner"
   />
 </div>
@@ -63,7 +63,7 @@ exports[`_EuiPageSidebar minHeight is rendered 1`] = `
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-block-size:max(40vh, calc(100vb)"
 >
-  <div
+  <main
     class="css-nq554q-euiPageInner"
   />
 </div>
@@ -74,7 +74,7 @@ exports[`_EuiPageSidebar offset is rendered 1`] = `
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-block-size:max(460px, calc(100vb);padding-block-start:100px"
 >
-  <div
+  <main
     class="css-nq554q-euiPageInner"
   />
 </div>
@@ -85,7 +85,7 @@ exports[`_EuiPageSidebar paddingSize l is rendered 1`] = `
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-block-size:max(460px, calc(100vb)"
 >
-  <div
+  <main
     class="css-nq554q-euiPageInner"
   />
 </div>
@@ -96,7 +96,7 @@ exports[`_EuiPageSidebar paddingSize m is rendered 1`] = `
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-block-size:max(460px, calc(100vb)"
 >
-  <div
+  <main
     class="css-nq554q-euiPageInner"
   />
 </div>
@@ -107,7 +107,7 @@ exports[`_EuiPageSidebar paddingSize none is rendered 1`] = `
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-block-size:max(460px, calc(100vb)"
 >
-  <div
+  <main
     class="css-nq554q-euiPageInner"
   />
 </div>
@@ -118,7 +118,7 @@ exports[`_EuiPageSidebar paddingSize s is rendered 1`] = `
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-block-size:max(460px, calc(100vb)"
 >
-  <div
+  <main
     class="css-nq554q-euiPageInner"
   />
 </div>
@@ -129,7 +129,7 @@ exports[`_EuiPageSidebar paddingSize xl is rendered 1`] = `
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-block-size:max(460px, calc(100vb)"
 >
-  <div
+  <main
     class="css-nq554q-euiPageInner"
   />
 </div>
@@ -140,7 +140,7 @@ exports[`_EuiPageSidebar paddingSize xs is rendered 1`] = `
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-block-size:max(460px, calc(100vb)"
 >
-  <div
+  <main
     class="css-nq554q-euiPageInner"
   />
 </div>
@@ -151,7 +151,7 @@ exports[`_EuiPageSidebar restrict width can be set to a custom number 1`] = `
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-block-size:max(460px, calc(100vb)"
 >
-  <div
+  <main
     class="css-nq554q-euiPageInner"
   />
 </div>
@@ -162,7 +162,7 @@ exports[`_EuiPageSidebar restrict width can be set to a custom value and measure
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-block-size:max(460px, calc(100vb)"
 >
-  <div
+  <main
     class="css-nq554q-euiPageInner"
   />
 </div>
@@ -173,7 +173,7 @@ exports[`_EuiPageSidebar restrict width can be set to a default 1`] = `
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   style="min-block-size:max(460px, calc(100vb)"
 >
-  <div
+  <main
     class="css-nq554q-euiPageInner"
   />
 </div>

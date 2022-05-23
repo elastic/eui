@@ -36,7 +36,7 @@ describe('_EuiPageInner', () => {
   });
 
   test('component is rendered', () => {
-    const component = render(<EuiPageInner component="main" />);
+    const component = render(<EuiPageInner component="div" />);
 
     expect(component).toMatchSnapshot();
   });

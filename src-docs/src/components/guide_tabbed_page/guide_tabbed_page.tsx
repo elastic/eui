@@ -3,7 +3,6 @@ import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { slugify } from '../../../../src/services/string/slugify';
 import {
   EuiPageHeader,
-  EuiPageContent,
   EuiBetaBadge,
   CommonProps,
 } from '../../../../src/components';
@@ -197,16 +196,7 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
         {intro}
       </EuiPageHeader>
 
-      <EuiPageContent
-        role="main"
-        hasShadow={false}
-        paddingSize="none"
-        color="transparent"
-        hasBorder={false}
-        borderRadius="none"
-      >
-        <Switch>{pagesRoutes}</Switch>
-      </EuiPageContent>
+      <Switch>{pagesRoutes}</Switch>
     </>
   );
 };

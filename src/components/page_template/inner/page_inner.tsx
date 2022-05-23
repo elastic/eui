@@ -25,7 +25,7 @@ export type _EuiPageInnerProps<
   ComponentProps<T> &
   EuiPaddingSize & {
     /**
-     * Sets the HTML element for `EuiPageBody`.
+     * Sets which HTML element to render.
      */
     component?: T;
     /**
@@ -38,14 +38,14 @@ export type _EuiPageInnerProps<
      */
     border?: boolean;
     /**
-     * When direction is `row`, it will flip to `column` when within these breakpoints.
+     * Decides at which point the component will be 100vw.
      */
     responsive?: _EuiThemeBreakpoint[];
   };
 
 export const _EuiPageInner = <T extends ComponentTypes>({
   children,
-  component: Component = 'div' as T,
+  component: Component = 'main' as T,
   panelled,
   border,
   paddingSize = 'none',
