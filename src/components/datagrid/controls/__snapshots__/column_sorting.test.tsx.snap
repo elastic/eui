@@ -199,6 +199,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
               </div>
               <div
                 aria-describedby="rbd-hidden-text-0-hidden-text-0"
+                aria-label="Drag handle"
                 class="euiFlexItem euiFlexItem--flexGrowZero"
                 data-rbd-drag-handle-context-id="0"
                 data-rbd-drag-handle-draggable-id="columnA"
@@ -206,19 +207,10 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                 role="button"
                 tabindex="0"
               >
-                <div
-                  aria-describedby="rbd-hidden-text-0-hidden-text-0"
-                  data-rbd-drag-handle-context-id="0"
-                  data-rbd-drag-handle-draggable-id="columnA"
-                  draggable="false"
-                  role="button"
-                  tabindex="0"
-                >
-                  <span
-                    color="subdued"
-                    data-euiicon-type="grab"
-                  />
-                </div>
+                <span
+                  color="subdued"
+                  data-euiicon-type="grab"
+                />
               </div>
             </div>
           </div>
