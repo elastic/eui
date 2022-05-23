@@ -74,6 +74,22 @@ export const FontJS = () => {
       />
 
       <ThemeExample
+        title={<code>euiTheme.font.familySerif</code>}
+        description={getDescription(baseProps.familySerif)}
+        example={
+          <p
+            css={css`
+              font-family: ${euiTheme.font.familySerif};
+            `}
+          >
+            {euiTheme.font.familySerif}
+          </p>
+        }
+        snippet={'font-family: ${euiTheme.font.familySerif};'}
+        snippetLanguage="emotion"
+      />
+
+      <ThemeExample
         title={<code>euiTheme.font.featureSettings</code>}
         description={getDescription(baseProps.featureSettings)}
         example={
