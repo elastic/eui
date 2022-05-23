@@ -9,7 +9,7 @@
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
-import { PanelPaddingSize } from '../panel';
+import { PanelPaddingSize_Deprecated } from '../panel/panel';
 
 export type EuiPopoverTitleProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> &
@@ -18,7 +18,7 @@ export type EuiPopoverTitleProps = FunctionComponent<
        * Customize the all around padding of the popover title.
        * Leave `undefined` to inherit from the `panelPaddingSize` of the containing EuiPopover
        */
-      paddingSize?: PanelPaddingSize;
+      paddingSize?: PanelPaddingSize_Deprecated;
     }
 >;
 
