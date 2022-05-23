@@ -10,7 +10,7 @@ exports[`euiTextStyles sizes m 1`] = `
       line-height: 2.8571rem;
     }
     h1:not(:last-child) {
-      margin-block-end: 0.57145rem;
+      margin-block-end: 12px;
     }
 
     h2 {
@@ -18,11 +18,11 @@ exports[`euiTextStyles sizes m 1`] = `
       line-height: 2.2857rem;
 
       &:not(:first-child) {
-        margin-block-start: 2.2858rem;
+        margin-block-start: 24px;
       }
 
       &:not(:last-child) {
-        margin-block-end: 0.57145rem;
+        margin-block-end: 12px;
       }
     }
 
@@ -31,11 +31,11 @@ exports[`euiTextStyles sizes m 1`] = `
       line-height: 1.7143rem;
 
       &:not(:first-child) {
-        margin-block-start: 2.2858rem;
+        margin-block-start: 24px;
       }
 
       &:not(:last-child) {
-        margin-block-end: 0.57145rem;
+        margin-block-end: 12px;
       }
     }
 
@@ -44,11 +44,11 @@ exports[`euiTextStyles sizes m 1`] = `
       line-height: 1.7143rem;
 
       &:not(:first-child) {
-        margin-block-start: 2.2858rem;
+        margin-block-start: 24px;
       }
 
       &:not(:last-child) {
-        margin-block-end: 0.57145rem;
+        margin-block-end: 12px;
       }
     }
 
@@ -57,11 +57,11 @@ exports[`euiTextStyles sizes m 1`] = `
       line-height: 1.4286rem;
 
       &:not(:first-child) {
-        margin-block-start: 2.2858rem;
+        margin-block-start: 24px;
       }
 
       &:not(:last-child) {
-        margin-block-end: 0.57145rem;
+        margin-block-end: 12px;
       }
     }
 
@@ -70,11 +70,11 @@ exports[`euiTextStyles sizes m 1`] = `
       line-height: 1.1429rem;
 
       &:not(:first-child) {
-        margin-block-start: 2.2858rem;
+        margin-block-start: 24px;
       }
 
       &:not(:last-child) {
-        margin-block-end: 0.57145rem;
+        margin-block-end: 12px;
       }
     }
 
@@ -118,7 +118,7 @@ exports[`euiTextStyles sizes m 1`] = `
     }
 
     pre:not(.euiCodeBlock__pre) {
-      padding: 1.1429rem;
+      padding: 1.7143rem;
     }
 
     code:not(.euiCode):not(.euiCodeBlock__code)  {
@@ -137,7 +137,7 @@ exports[`euiTextStyles sizes relative 1`] = `
       line-height: 1.2495;
     }
     h1:not(:last-child) {
-      margin-block-end: 0.23529411764705882em;
+      margin-block-end: 12px;
     }
 
     h2 {
@@ -145,11 +145,11 @@ exports[`euiTextStyles sizes relative 1`] = `
       line-height: 1.2495;
 
       &:not(:first-child) {
-        margin-block-start: 1.1851851851851851em;
+        margin-block-start: 24px;
       }
 
       &:not(:last-child) {
-        margin-block-end: 0.2962962962962963em;
+        margin-block-end: 12px;
       }
     }
 
@@ -158,11 +158,11 @@ exports[`euiTextStyles sizes relative 1`] = `
       line-height: 1.2495;
 
       &:not(:first-child) {
-        margin-block-start: 1.4545454545454546em;
+        margin-block-start: 24px;
       }
 
       &:not(:last-child) {
-        margin-block-end: 0.36363636363636365em;
+        margin-block-end: 12px;
       }
     }
 
@@ -171,11 +171,11 @@ exports[`euiTextStyles sizes relative 1`] = `
       line-height: 1.5000;
 
       &:not(:first-child) {
-        margin-block-start: 2em;
+        margin-block-start: 24px;
       }
 
       &:not(:last-child) {
-        margin-block-end: 0.5em;
+        margin-block-end: 12px;
       }
     }
 
@@ -184,11 +184,11 @@ exports[`euiTextStyles sizes relative 1`] = `
       line-height: 1.5000;
 
       &:not(:first-child) {
-        margin-block-start: 2.2857142857142856em;
+        margin-block-start: 24px;
       }
 
       &:not(:last-child) {
-        margin-block-end: 0.5714285714285714em;
+        margin-block-end: 12px;
       }
     }
 
@@ -197,11 +197,11 @@ exports[`euiTextStyles sizes relative 1`] = `
       line-height: 1.5000;
 
       &:not(:first-child) {
-        margin-block-start: 2.6666666666666665em;
+        margin-block-start: 24px;
       }
 
       &:not(:last-child) {
-        margin-block-end: 0.6666666666666666em;
+        margin-block-end: 12px;
       }
     }
 
@@ -245,7 +245,7 @@ exports[`euiTextStyles sizes relative 1`] = `
     }
 
     pre:not(.euiCodeBlock__pre) {
-      padding: 1em;
+      padding: 1.5000em;
     }
 
     code:not(.euiCode):not(.euiCodeBlock__code)  {
@@ -264,7 +264,7 @@ exports[`euiTextStyles sizes s 1`] = `
       line-height: 2.5714rem;
     }
     h1:not(:last-child) {
-      margin-block-end: 0.5rem;
+      margin-block-end: 8px;
     }
 
     h2 {
@@ -272,11 +272,11 @@ exports[`euiTextStyles sizes s 1`] = `
       line-height: 2.0000rem;
 
       &:not(:first-child) {
-        margin-block-start: 2rem;
+        margin-block-start: 16px;
       }
 
       &:not(:last-child) {
-        margin-block-end: 0.5rem;
+        margin-block-end: 8px;
       }
     }
 
@@ -285,11 +285,11 @@ exports[`euiTextStyles sizes s 1`] = `
       line-height: 1.7143rem;
 
       &:not(:first-child) {
-        margin-block-start: 2rem;
+        margin-block-start: 16px;
       }
 
       &:not(:last-child) {
-        margin-block-end: 0.5rem;
+        margin-block-end: 8px;
       }
     }
 
@@ -298,11 +298,11 @@ exports[`euiTextStyles sizes s 1`] = `
       line-height: 1.4286rem;
 
       &:not(:first-child) {
-        margin-block-start: 2rem;
+        margin-block-start: 16px;
       }
 
       &:not(:last-child) {
-        margin-block-end: 0.5rem;
+        margin-block-end: 8px;
       }
     }
 
@@ -311,11 +311,11 @@ exports[`euiTextStyles sizes s 1`] = `
       line-height: 1.1429rem;
 
       &:not(:first-child) {
-        margin-block-start: 2rem;
+        margin-block-start: 16px;
       }
 
       &:not(:last-child) {
-        margin-block-end: 0.5rem;
+        margin-block-end: 8px;
       }
     }
 
@@ -324,11 +324,11 @@ exports[`euiTextStyles sizes s 1`] = `
       line-height: 1.1429rem;
 
       &:not(:first-child) {
-        margin-block-start: 2rem;
+        margin-block-start: 16px;
       }
 
       &:not(:last-child) {
-        margin-block-end: 0.5rem;
+        margin-block-end: 8px;
       }
     }
 
@@ -372,7 +372,7 @@ exports[`euiTextStyles sizes s 1`] = `
     }
 
     pre:not(.euiCodeBlock__pre) {
-      padding: 1.0000rem;
+      padding: 1.4286rem;
     }
 
     code:not(.euiCode):not(.euiCodeBlock__code)  {
@@ -391,7 +391,7 @@ exports[`euiTextStyles sizes xs 1`] = `
       line-height: 2.2857rem;
     }
     h1:not(:last-child) {
-      margin-block-end: 0.42855rem;
+      margin-block-end: 4px;
     }
 
     h2 {
@@ -399,11 +399,11 @@ exports[`euiTextStyles sizes xs 1`] = `
       line-height: 1.7143rem;
 
       &:not(:first-child) {
-        margin-block-start: 1.7142rem;
+        margin-block-start: 8px;
       }
 
       &:not(:last-child) {
-        margin-block-end: 0.42855rem;
+        margin-block-end: 4px;
       }
     }
 
@@ -412,11 +412,11 @@ exports[`euiTextStyles sizes xs 1`] = `
       line-height: 1.4286rem;
 
       &:not(:first-child) {
-        margin-block-start: 1.7142rem;
+        margin-block-start: 8px;
       }
 
       &:not(:last-child) {
-        margin-block-end: 0.42855rem;
+        margin-block-end: 4px;
       }
     }
 
@@ -425,11 +425,11 @@ exports[`euiTextStyles sizes xs 1`] = `
       line-height: 1.1429rem;
 
       &:not(:first-child) {
-        margin-block-start: 1.7142rem;
+        margin-block-start: 8px;
       }
 
       &:not(:last-child) {
-        margin-block-end: 0.42855rem;
+        margin-block-end: 4px;
       }
     }
 
@@ -438,11 +438,11 @@ exports[`euiTextStyles sizes xs 1`] = `
       line-height: 1.1429rem;
 
       &:not(:first-child) {
-        margin-block-start: 1.7142rem;
+        margin-block-start: 8px;
       }
 
       &:not(:last-child) {
-        margin-block-end: 0.42855rem;
+        margin-block-end: 4px;
       }
     }
 
@@ -451,11 +451,11 @@ exports[`euiTextStyles sizes xs 1`] = `
       line-height: 0.8571rem;
 
       &:not(:first-child) {
-        margin-block-start: 1.7142rem;
+        margin-block-start: 8px;
       }
 
       &:not(:last-child) {
-        margin-block-end: 0.42855rem;
+        margin-block-end: 4px;
       }
     }
 
@@ -499,7 +499,7 @@ exports[`euiTextStyles sizes xs 1`] = `
     }
 
     pre:not(.euiCodeBlock__pre) {
-      padding: 0.8571rem;
+      padding: 1.1429rem;
     }
 
     code:not(.euiCode):not(.euiCodeBlock__code)  {

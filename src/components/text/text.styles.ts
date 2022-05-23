@@ -42,7 +42,7 @@ const euiScaleText = (
   options: _FontScaleOptions
 ) => {
   const { fontSize, lineHeight } = euiFontSize('m', euiTheme, options);
-  const { measurement } = options;
+  const { measurement, customScale: _customScale } = options;
   const lineHeightSize = measurement === 'em' ? `${lineHeight}em` : lineHeight;
 
   const headings = {
@@ -53,26 +53,10 @@ const euiScaleText = (
     h5: euiTitle('xxs', euiTheme, options),
     h6: euiTitle('xxxs', euiTheme, options),
   };
-  // Generate margin-top for all headings that is twice the size of the current font scale
-  const headingMarginTop = (
-    headingFontSize: ReturnType<typeof euiTitle>['fontSize']
-  ) => {
-    let marginTop = parseFloat(String(fontSize)) * 2;
-    if (measurement === 'em') {
-      marginTop = marginTop / parseFloat(String(headingFontSize));
-    }
-    return `${marginTop}${measurement}`;
-  };
-  // Generate margin-top for all headings that is half the size of the current font scale
-  const headingMarginBottom = (
-    headingFontSize: ReturnType<typeof euiTitle>['fontSize']
-  ) => {
-    let marginBottom = parseFloat(String(fontSize)) / 2;
-    if (measurement === 'em') {
-      marginBottom = marginBottom / parseFloat(String(headingFontSize));
-    }
-    return `${marginBottom}${measurement}`;
-  };
+  // Generate margins for headings based on customScale (not on heading level)
+  const customScale = _customScale === 'xxxs' ? 'xxs' : _customScale || 'm';
+  const headingMarginTop = `${parseFloat(euiTheme.size[customScale]) * 2}px`;
+  const headingMarginBottom = euiTheme.size[customScale];
 
   return `
     font-size: ${fontSize};
@@ -83,7 +67,7 @@ const euiScaleText = (
       line-height: ${headings.h1.lineHeight};
     }
     h1:not(:last-child) {
-      ${logicalCSS('margin-bottom', headingMarginBottom(headings.h1.fontSize))}
+      ${logicalCSS('margin-bottom', headingMarginBottom)}
     }
 
     h2 {
@@ -91,14 +75,11 @@ const euiScaleText = (
       line-height: ${headings.h2.lineHeight};
 
       &:not(:first-child) {
-        ${logicalCSS('margin-top', headingMarginTop(headings.h2.fontSize))}
+        ${logicalCSS('margin-top', headingMarginTop)}
       }
 
       &:not(:last-child) {
-        ${logicalCSS(
-          'margin-bottom',
-          headingMarginBottom(headings.h2.fontSize)
-        )}
+        ${logicalCSS('margin-bottom', headingMarginBottom)}
       }
     }
 
@@ -107,14 +88,11 @@ const euiScaleText = (
       line-height: ${headings.h3.lineHeight};
 
       &:not(:first-child) {
-        ${logicalCSS('margin-top', headingMarginTop(headings.h3.fontSize))}
+        ${logicalCSS('margin-top', headingMarginTop)}
       }
 
       &:not(:last-child) {
-        ${logicalCSS(
-          'margin-bottom',
-          headingMarginBottom(headings.h3.fontSize)
-        )}
+        ${logicalCSS('margin-bottom', headingMarginBottom)}
       }
     }
 
@@ -123,14 +101,11 @@ const euiScaleText = (
       line-height: ${headings.h4.lineHeight};
 
       &:not(:first-child) {
-        ${logicalCSS('margin-top', headingMarginTop(headings.h4.fontSize))}
+        ${logicalCSS('margin-top', headingMarginTop)}
       }
 
       &:not(:last-child) {
-        ${logicalCSS(
-          'margin-bottom',
-          headingMarginBottom(headings.h4.fontSize)
-        )}
+        ${logicalCSS('margin-bottom', headingMarginBottom)}
       }
     }
 
@@ -139,14 +114,11 @@ const euiScaleText = (
       line-height: ${headings.h5.lineHeight};
 
       &:not(:first-child) {
-        ${logicalCSS('margin-top', headingMarginTop(headings.h5.fontSize))}
+        ${logicalCSS('margin-top', headingMarginTop)}
       }
 
       &:not(:last-child) {
-        ${logicalCSS(
-          'margin-bottom',
-          headingMarginBottom(headings.h5.fontSize)
-        )}
+        ${logicalCSS('margin-bottom', headingMarginBottom)}
       }
     }
 
@@ -155,14 +127,11 @@ const euiScaleText = (
       line-height: ${headings.h6.lineHeight};
 
       &:not(:first-child) {
-        ${logicalCSS('margin-top', headingMarginTop(headings.h6.fontSize))}
+        ${logicalCSS('margin-top', headingMarginTop)}
       }
 
       &:not(:last-child) {
-        ${logicalCSS(
-          'margin-bottom',
-          headingMarginBottom(headings.h6.fontSize)
-        )}
+        ${logicalCSS('margin-bottom', headingMarginBottom)}
       }
     }
 
