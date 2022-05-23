@@ -21,6 +21,7 @@ const emotionCache = createCache({
   key: 'eui-docs',
   container: document.querySelector('meta[name="emotion-styles"]'),
 });
+emotionCache.compat = true;
 
 export const AppContext = ({ children }) => {
   const { theme } = useContext(ThemeContext);
