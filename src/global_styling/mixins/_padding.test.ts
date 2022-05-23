@@ -22,13 +22,18 @@ describe('useEuiPaddingSize returns a static padding value', () => {
   });
 });
 
-describe('useEuiPaddingCSS hook returns the object of static background-color properties', () => {
-  describe('and each logical side', () => {
-    LOGICAL_SIDES.forEach((side) => {
-      it(side, () => {
-        expect(
-          testCustomHook(() => useEuiPaddingCSS(side)).return
-        ).toMatchSnapshot();
+describe('useEuiPaddingCSS hook returns an object of Emotion padding properties', () => {
+  LOGICAL_SIDES.forEach((side) => {
+    describe(`for side: ${side},`, () => {
+      const sizes = testCustomHook(() => useEuiPaddingCSS(side)).return as any;
+
+      describe('for each size:', () => {
+        Object.entries(sizes).map(([size, cssObj]) => {
+          it(size, () => {
+            const output = cssObj ? (cssObj as any).styles : cssObj;
+            expect(output).toMatchSnapshot();
+          });
+        });
       });
     });
   });
