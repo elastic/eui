@@ -11,7 +11,7 @@ import {
   EuiScreenReaderLive,
   EuiScreenReaderOnly,
   EuiSpacer,
-  euiScreenReaderOnlyStyles,
+  euiScreenReaderOnly,
   EuiText,
 } from '../../../../src';
 
@@ -215,7 +215,7 @@ export const AccessibilityExample = {
             snippetLanguage="html"
           />
           <ThemeExample
-            title={<code>euiScreenReaderOnlyStyles()</code>}
+            title={<code>euiScreenReaderOnly()</code>}
             description={
               <p>
                 This function allows you to apply the screen reader only CSS
@@ -225,12 +225,12 @@ export const AccessibilityExample = {
             example={
               <EuiText size="s">
                 <p>The next paragraph is hidden except for screen readers.</p>
-                <p css={css(euiScreenReaderOnlyStyles())}>
+                <p css={css(euiScreenReaderOnly())}>
                   I am hidden except for screen readers
                 </p>
               </EuiText>
             }
-            snippet={'<p css={css(euiScreenReaderOnlyStyles())} />'}
+            snippet={'<p css={css(euiScreenReaderOnly())} />'}
             snippetLanguage="ts"
           />
         </>
