@@ -7,6 +7,7 @@ import { ThemeExample } from '../theme/_components/_theme_example';
 export default () => (
   <ThemeExample
     title={<code>.eui-textInheritColor</code>}
+    type="className"
     description={
       <>
         <p>Forces the component to inherit its text color from its parent.</p>

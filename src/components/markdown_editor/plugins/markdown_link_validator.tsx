@@ -16,12 +16,19 @@ interface LinkOrTextNode {
   children?: Array<{ value: string }>;
 }
 
-export function markdownLinkValidator() {
+export interface EuiMarkdownLinkValidatorOptions {
+  allowRelative: boolean;
+  allowProtocols: string[];
+}
+
+export function euiMarkdownLinkValidator(
+  options: EuiMarkdownLinkValidatorOptions
+) {
   return (ast: any) => {
     visit(ast, 'link', (_node: unknown) => {
       const node = _node as LinkOrTextNode;
 
-      if (!validateUrl(node.url!)) {
+      if (!validateUrl(node.url!, options)) {
         mutateLinkToText(node);
       }
     });
@@ -29,15 +36,40 @@ export function markdownLinkValidator() {
 }
 
 export function mutateLinkToText(node: LinkOrTextNode) {
+  // this is an upsupported url, convert to a text node
   node.type = 'text';
-  node.value = `[${node.children![0]?.value || ''}](${node.url})`;
+
+  // and, if the link text matches the url there's only one value to show
+  // otherwise render as the markdown syntax so both text & url remain, unlinked
+  const linkText = node.children?.[0]?.value || '';
+  const linkUrl = node.url ?? '';
+  if (linkText === linkUrl) {
+    node.value = linkText;
+  } else {
+    node.value = `[${linkText}](${node.url})`;
+  }
+
   delete node.children;
   delete node.title;
   delete node.url;
   return node;
 }
 
-export function validateUrl(url: string) {
-  // A link is valid if it starts with http:, https:, or /
-  return /^(https?:|\/)/.test(url);
+export function validateUrl(
+  url: string,
+  { allowRelative, allowProtocols }: EuiMarkdownLinkValidatorOptions
+) {
+  // relative captures both relative paths `/` and protocols `//`
+  const isRelative = url.startsWith('/');
+  if (isRelative) {
+    return allowRelative;
+  }
+
+  try {
+    const parsedUrl = new URL(url);
+    return allowProtocols.indexOf(parsedUrl.protocol) !== -1;
+  } catch (e) {
+    // failed to parse input as url
+    return false;
+  }
 }

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { PartialTheme, LineAnnotationStyle } from '@elastic/charts';
+import { PartialTheme, LineAnnotationSpec } from '@elastic/charts';
 
 import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
 import { DEFAULT_VISUALIZATION_COLOR } from '../../services/color/visualization_colors';
@@ -20,7 +20,7 @@ const fontFamily = `'Inter', 'Inter UI', -apple-system, BlinkMacSystemFont,
   'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`;
 
 export interface EuiChartThemeType {
-  lineAnnotation: LineAnnotationStyle;
+  lineAnnotation: LineAnnotationSpec['style'];
   theme: PartialTheme;
 }
 

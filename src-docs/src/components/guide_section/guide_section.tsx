@@ -7,6 +7,11 @@ import {
   EuiButton,
   EuiButtonEmpty,
   EuiFlyout,
+  EuiPageContentBody,
+  EuiPanel,
+  EuiPanelProps,
+  CommonProps,
+  useIsWithinBreakpoints,
 } from '../../../../src';
 
 import { slugify } from '../../../../src/services/string/slugify';
@@ -20,8 +25,9 @@ import {
   GuideSectionExampleTabs,
   GuideSectionExampleTabsProps,
 } from './guide_section_parts/guide_section_tabs';
+import classNames from 'classnames';
 
-export interface GuideSection {
+export interface GuideSection extends CommonProps {
   id?: string;
   title?: string;
   text?: ReactNode;
@@ -37,6 +43,8 @@ export interface GuideSection {
   ghostBackground?: boolean;
   wrapText?: boolean;
   snippet?: string | string[];
+  color?: EuiPanelProps['color'];
+  children?: ReactNode;
 }
 
 export const GuideSectionCodeTypesMap = {
@@ -79,8 +87,12 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
   wrapText = true,
   demoPanelProps,
   snippet,
+  color,
+  children,
+  className,
 }) => {
   const { path } = useRouteMatch();
+  const isLargeBreakpoint = useIsWithinBreakpoints(['m', 'l', 'xl']);
   const [renderingPlayground, setRenderingPlayground] = useState(false);
 
   const renderTabs = () => {
@@ -176,49 +188,62 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
   };
 
   return (
-    <div className="guideSection" id={id}>
-      <GuideSectionExampleText title={title} wrapText={wrapText}>
-        {text}
-      </GuideSectionExampleText>
+    <EuiPanel
+      id={id}
+      className={classNames('guideSection', className)}
+      color={!isLargeBreakpoint ? 'transparent' : color || 'transparent'}
+      borderRadius="none"
+      paddingSize="l"
+      grow={false}
+    >
+      <EuiSpacer size={(color || title) && isLargeBreakpoint ? 'xxl' : 'xs'} />
+      <EuiPageContentBody restrictWidth>
+        <GuideSectionExampleText title={title} wrapText={wrapText}>
+          {text}
+        </GuideSectionExampleText>
 
-      {renderingPlayground && (
-        <EuiFlyout
-          onClose={() => setRenderingPlayground(false)}
-          size="l"
-          paddingSize="none"
-          closeButtonPosition="outside"
-        >
-          {renderPlayground()}
-        </EuiFlyout>
-      )}
-      {(demo || fullScreen) && (
-        <>
-          <EuiSpacer />
-          <GuideSectionExample
-            example={
-              <EuiErrorBoundary>
-                {/* eslint-disable-next-line no-nested-ternary */}
-                {fullScreen == null ? (
-                  <div>{demo}</div>
-                ) : demo == null ? (
-                  <EuiButton
-                    fill
-                    iconType="fullScreen"
-                    href={`#${path}/${fullScreen.slug}`}
-                  >
-                    Fullscreen demo
-                  </EuiButton>
-                ) : (
-                  demo
-                )}
-              </EuiErrorBoundary>
-            }
-            tabs={renderTabs()}
-            ghostBackground={ghostBackground}
-            demoPanelProps={demoPanelProps}
-          />
-        </>
-      )}
-    </div>
+        {renderingPlayground && (
+          <EuiFlyout
+            onClose={() => setRenderingPlayground(false)}
+            size="l"
+            paddingSize="none"
+            closeButtonPosition="outside"
+          >
+            {renderPlayground()}
+          </EuiFlyout>
+        )}
+        {(demo || fullScreen) && (
+          <>
+            {text && <EuiSpacer />}
+            <GuideSectionExample
+              example={
+                <EuiErrorBoundary>
+                  {/* eslint-disable-next-line no-nested-ternary */}
+                  {fullScreen == null ? (
+                    <div>{demo}</div>
+                  ) : demo == null ? (
+                    <EuiButton
+                      fill
+                      iconType="fullScreen"
+                      href={`#${path}/${fullScreen.slug}`}
+                    >
+                      Fullscreen demo
+                    </EuiButton>
+                  ) : (
+                    demo
+                  )}
+                </EuiErrorBoundary>
+              }
+              tabs={renderTabs()}
+              ghostBackground={ghostBackground}
+              demoPanelProps={demoPanelProps}
+            />
+          </>
+        )}
+
+        {children}
+        <EuiSpacer size={color && isLargeBreakpoint ? 'xxl' : 'xs'} />
+      </EuiPageContentBody>
+    </EuiPanel>
   );
 };

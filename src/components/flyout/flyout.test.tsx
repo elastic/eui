@@ -13,8 +13,8 @@ import { requiredProps, takeMountedSnapshot } from '../../test';
 import { EuiFlyout, SIZES, PADDING_SIZES, SIDES } from './flyout';
 
 jest.mock('../overlay_mask', () => ({
-  EuiOverlayMask: ({ headerZindexLocation, ...props }: any) => (
-    <div {...props} />
+  EuiOverlayMask: ({ headerZindexLocation, maskRef, ...props }: any) => (
+    <div {...props} ref={maskRef} />
   ),
 }));
 

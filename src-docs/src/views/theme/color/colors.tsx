@@ -1,9 +1,10 @@
 import React, { useContext, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { EuiCallOut, EuiCode, EuiSpacer, EuiText } from '../../../../../src';
+import { GuideSection } from '../../../components/guide_section/guide_section';
 
-// @ts-ignore Importing from JS
-import { GuidePage } from '../../../components/guide_page';
+import { GuideTabbedPage } from '../../../components/guide_tabbed_page';
 import { ThemeContext } from '../../../components/with_theme';
 
 import { ThemeNotice } from '../_components/_theme_notice';
@@ -11,9 +12,28 @@ import { ThemeNotice } from '../_components/_theme_notice';
 // @ts-ignore Importing JS
 import ColorsContrast from './contrast';
 
-import { BrandJS, ShadeJS, SpecialJS, TextJS, UtilsJS } from './_color_js';
-import { Link } from 'react-router-dom';
-import { BrandSass, ShadeSass, SpecialSass, TextSass } from './_color_sass';
+import {
+  BrandJS,
+  BrandValuesJS,
+  ShadeJS,
+  ShadeValuesJS,
+  SpecialJS,
+  SpecialValuesJS,
+  TextJS,
+  TextValuesJS,
+  UtilsJS,
+  UtilsValuesJS,
+} from './_color_js';
+import {
+  BrandSass,
+  BrandValuesSass,
+  ShadeSass,
+  ShadeValuesSass,
+  SpecialSass,
+  SpecialValuesSass,
+  TextSass,
+  TextValuesSass,
+} from './_color_sass';
 
 const tabs = [
   {
@@ -32,7 +52,7 @@ export const colorsSections = [
   { title: 'Text colors', id: 'text-colors' },
   { title: 'Shades', id: 'shades' },
   { title: 'Special colors', id: 'special-colors' },
-  { title: 'Utilities', id: 'utilities' },
+  { title: 'Background colors', id: 'background-colors' },
 ];
 
 export default () => {
@@ -105,7 +125,7 @@ export default () => {
   }, [showSass]);
 
   return (
-    <GuidePage
+    <GuideTabbedPage
       isBeta={!showSass && !selectedTabId.includes('contrast')}
       title="Colors"
       notice={<ThemeNotice />}
@@ -138,95 +158,111 @@ export default () => {
         </>
       }
     >
-      <EuiSpacer size="xl" />
-
       {selectedTabId.includes('contrast') ? (
         <ColorsContrast />
       ) : (
         <>
-          <EuiText grow={false}>
-            <h2
-              id={`${colorsSections[0].id}`}
-            >{`${colorsSections[0].title}`}</h2>
-            <p>
-              Elastic has two main brand colors. The other three are used for
-              statefulness like indicating between successful and dangerous
-              actions.
-            </p>
-          </EuiText>
+          <GuideSection color="subdued">
+            <EuiText grow={false}>
+              <h2
+                id={`${colorsSections[0].id}`}
+              >{`${colorsSections[0].title}`}</h2>
+              <p>
+                Elastic has two main brand colors. The other three are used for
+                statefulness like indicating between successful and dangerous
+                actions.
+              </p>
+            </EuiText>
 
-          <EuiSpacer size="xl" />
+            {brandContent}
+          </GuideSection>
 
-          {brandContent}
+          <GuideSection color="transparent">
+            {showSass ? <BrandValuesSass /> : <BrandValuesJS />}
+          </GuideSection>
 
-          <EuiSpacer size="xl" />
+          <GuideSection color="subdued">
+            <EuiText grow={false}>
+              <h2
+                id={`${colorsSections[1].id}`}
+              >{`${colorsSections[1].title}`}</h2>
+              <p>
+                Specific text colors calculated off either the brand or shade
+                colors.
+              </p>
+              <p>
+                Each brand color also has a corresponding text variant that has
+                been calculated for proper (at least 4.5) contrast against{' '}
+                <EuiCode>colors.body</EuiCode> and should be used specifically
+                when coloring text. As is used in{' '}
+                <Link to="/display/text#coloring-text">
+                  <strong>EuiTextColor</strong>
+                </Link>
+                .
+              </p>
+            </EuiText>
 
-          <EuiText grow={false}>
-            <h2
-              id={`${colorsSections[1].id}`}
-            >{`${colorsSections[1].title}`}</h2>
-            <p>
-              Specific text colors calculated off either the brand or shade
-              colors.
-            </p>
-            <p>
-              Each brand color also has a corresponding text variant that has
-              been calculated for proper (4.5) contrast against{' '}
-              <EuiCode>colors.body</EuiCode> and should be used specifically
-              when coloring text. As is used in{' '}
-              <Link to="/display/text#coloring-text">
-                <strong>EuiTextColor</strong>
-              </Link>
-              .
-            </p>
-          </EuiText>
+            {textContent}
+          </GuideSection>
 
-          <EuiSpacer size="xl" />
+          <GuideSection color="transparent">
+            {showSass ? <TextValuesSass /> : <TextValuesJS />}
+          </GuideSection>
 
-          {textContent}
+          <GuideSection color="subdued">
+            <EuiText grow={false}>
+              <h2
+                id={`${colorsSections[2].id}`}
+              >{`${colorsSections[2].title}`}</h2>
+              <p>
+                A six-color grayscale palette. Variation beyond these colors is
+                minimal and always done through computations against this set.
+              </p>
+            </EuiText>
 
-          <EuiSpacer size="xl" />
+            {shadesContent}
+          </GuideSection>
 
-          <EuiText grow={false}>
-            <h2
-              id={`${colorsSections[2].id}`}
-            >{`${colorsSections[2].title}`}</h2>
-            <p>
-              A six-color grayscale palette. Variation beyond these colors is
-              minimal and always done through computations against this set.
-            </p>
-          </EuiText>
+          <GuideSection color="transparent">
+            {showSass ? <ShadeValuesSass /> : <ShadeValuesJS />}
+          </GuideSection>
 
-          <EuiSpacer size="xl" />
+          <GuideSection color="subdued">
+            <EuiText grow={false}>
+              {' '}
+              <h2
+                id={`${colorsSections[3].id}`}
+              >{`${colorsSections[3].title}`}</h2>
+              <p>These are used a lot for special cases.</p>
+            </EuiText>
 
-          {shadesContent}
+            {specialContent}
+          </GuideSection>
 
-          <EuiSpacer size="xl" />
+          <GuideSection color="transparent">
+            {showSass ? <SpecialValuesSass /> : <SpecialValuesJS />}
+          </GuideSection>
 
-          <EuiText grow={false}>
-            <h2
-              id={`${colorsSections[3].id}`}
-            >{`${colorsSections[3].title}`}</h2>
-            <p>These are used a lot for special cases.</p>
-          </EuiText>
+          <GuideSection color="subdued">
+            <EuiText grow={false}>
+              <h2
+                id={`${colorsSections[4].id}`}
+              >{`${colorsSections[4].title}`}</h2>
+            </EuiText>
 
-          <EuiSpacer size="xl" />
+            <EuiSpacer size="m" />
 
-          {specialContent}
+            {utilsContent}
+          </GuideSection>
 
-          <EuiSpacer size="xl" />
-
-          <EuiText grow={false}>
-            <h2
-              id={`${colorsSections[4].id}`}
-            >{`${colorsSections[4].title}`}</h2>
-          </EuiText>
-
-          <EuiSpacer size="xl" />
-
-          {utilsContent}
+          {showSass ? undefined : (
+            <GuideSection color="transparent">
+              {' '}
+              <UtilsValuesJS />
+            </GuideSection>
+          )}
         </>
       )}
-    </GuidePage>
+    </GuideTabbedPage>
   );
 };

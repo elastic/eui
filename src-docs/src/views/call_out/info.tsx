@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiCallOut, EuiLink, EuiSpacer } from '../../../../src/components';
+import { EuiCallOut, EuiLink, EuiSpacer } from '../../../../src';
 
 export default () => (
   <div>
