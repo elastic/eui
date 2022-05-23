@@ -85,9 +85,7 @@ exports[`euiTextStyles sizes m 1`] = `
     blockquote,
     img,
     pre {
-      &:not(:last-child) {
-        margin-block-end: 1.7143rem;
-      }
+      margin-block-end: 1.7143rem;
     }
 
     ul,
@@ -214,9 +212,7 @@ exports[`euiTextStyles sizes relative 1`] = `
     blockquote,
     img,
     pre {
-      &:not(:last-child) {
-        margin-block-end: 1.5000em;
-      }
+      margin-block-end: 1.5000em;
     }
 
     ul,
@@ -343,9 +339,7 @@ exports[`euiTextStyles sizes s 1`] = `
     blockquote,
     img,
     pre {
-      &:not(:last-child) {
-        margin-block-end: 1.4286rem;
-      }
+      margin-block-end: 1.4286rem;
     }
 
     ul,
@@ -472,9 +466,7 @@ exports[`euiTextStyles sizes xs 1`] = `
     blockquote,
     img,
     pre {
-      &:not(:last-child) {
-        margin-block-end: 1.1429rem;
-      }
+      margin-block-end: 1.1429rem;
     }
 
     ul,
