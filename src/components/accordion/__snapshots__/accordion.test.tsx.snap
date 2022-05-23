@@ -1,20 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiAccordion behavior closes when clicked twice 1`] = `
-<<<<<<< HEAD
-<EuiAccordion
-  arrowDisplay="left"
-  buttonElement="button"
-  element="div"
-  id="18"
-  initialIsOpen={false}
-  isLoading={false}
-  isLoadingMessage={true}
-  paddingSize="none"
-=======
 <div
   class="euiAccordion"
->>>>>>> main
 >
   <div
     class="euiAccordion__triggerWrapper css-mrlcwq-euiAccordion__triggerWrapper"
@@ -67,20 +55,8 @@ exports[`EuiAccordion behavior closes when clicked twice 1`] = `
 `;
 
 exports[`EuiAccordion behavior opens when clicked once 1`] = `
-<<<<<<< HEAD
-<EuiAccordion
-  arrowDisplay="left"
-  buttonElement="button"
-  element="div"
-  id="16"
-  initialIsOpen={false}
-  isLoading={false}
-  isLoadingMessage={true}
-  paddingSize="none"
-=======
 <div
   class="euiAccordion euiAccordion-isOpen"
->>>>>>> main
 >
   <div
     class="euiAccordion__triggerWrapper css-mrlcwq-euiAccordion__triggerWrapper"
@@ -133,20 +109,8 @@ exports[`EuiAccordion behavior opens when clicked once 1`] = `
 `;
 
 exports[`EuiAccordion behavior opens when div is clicked if element is a div 1`] = `
-<<<<<<< HEAD
-<EuiAccordion
-  arrowDisplay="left"
-  buttonElement="button"
-  element="div"
-  id="17"
-  initialIsOpen={false}
-  isLoading={false}
-  isLoadingMessage={true}
-  paddingSize="none"
-=======
 <div
   class="euiAccordion euiAccordion-isOpen"
->>>>>>> main
 >
   <div
     class="euiAccordion__triggerWrapper css-mrlcwq-euiAccordion__triggerWrapper"
@@ -893,6 +857,15 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
         class="euiAccordion__buttonContent"
       />
     </button>
+    <div
+      class="euiAccordion__optionalAction css-lxr8cy-euiAccordion__optionalAction"
+    >
+      <span
+        aria-label="Loading"
+        class="euiLoadingSpinner css-155ohbx-euiLoadingSpinner-m"
+        role="progressbar"
+      />
+    </div>
   </div>
   <div
     aria-labelledby="generated-id"
@@ -903,24 +876,8 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
   >
     <div>
       <div
-<<<<<<< HEAD
-        class="euiAccordion__children-isLoading"
-      >
-        <span
-          aria-label="Loading"
-          class="euiLoadingSpinner euiAccordion__spinner css-155ohbx-euiLoadingSpinner-m"
-          role="progressbar"
-        />
-        <span
-          aria-hidden="true"
-        >
-          Loading
-        </span>
-      </div>
-=======
         class="euiAccordion__children-isLoading css-1dllee3-euiAccordion__children-isLoading"
       />
->>>>>>> main
     </div>
   </div>
 </div>
@@ -959,6 +916,15 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
         class="euiAccordion__buttonContent"
       />
     </button>
+    <div
+      class="euiAccordion__optionalAction css-lxr8cy-euiAccordion__optionalAction"
+    >
+      <span
+        aria-label="Loading"
+        class="euiLoadingSpinner css-155ohbx-euiLoadingSpinner-m"
+        role="progressbar"
+      />
+    </div>
   </div>
   <div
     aria-labelledby="generated-id"
