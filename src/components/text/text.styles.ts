@@ -208,7 +208,7 @@ const euiScaleText = (
     }
 
     pre:not(.euiCodeBlock__pre) {
-      padding: ${fontSize};
+      padding: ${lineHeightSize};
     }
 
     code:not(.euiCode):not(.euiCodeBlock__code)  {
