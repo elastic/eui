@@ -27,3 +27,11 @@
     border-left: 1px solid $euiColorLightShade;
   }
 }
+
+// the toolbar button icons normally starts wi
+.euiMarkdownEditorToolbar__buttons {
+  .euiIcon:not([data-icon-type^="editor"]) {
+    width: 14px;
+    height: 14px;
+  }
+}

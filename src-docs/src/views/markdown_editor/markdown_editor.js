@@ -16,7 +16,13 @@ import {
 } from '../../../..//src/components/markdown_editor';
 import * as MarkdownMentions from '../../../../src/components/markdown_editor/plugins/markdown_mentions';
 
-const initialContent = '@someone\n\nelse';
+const initialContent = `## 👋 Hello @miukimiu
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+CC @chandlerprall , @cchaos
+
+`;
 
 const dropHandlers = [
   {
@@ -43,13 +49,23 @@ const uiPlugins = getDefaultEuiMarkdownUiPlugins();
 
 const mentionsConfig = {
   options: [
-    { label: 'miukimiu', data: { first: 'Elizabet' } },
-    { label: 'chandlerprall', data: { first: 'Chandler' } },
-    { label: 'thompsongl', data: { first: 'Greg' } },
-    { label: 'cchaos', data: { first: 'Caroline' } },
-    { label: '1copenut', data: { first: 'Trevor' } },
-    { label: 'constancecchen', data: { first: 'Constance' } },
-    { label: 'snide', data: { first: 'Dave' } },
+    {
+      label: 'miukimiu',
+      data: { firstName: 'Elizabet', lastName: 'Oliveira' },
+    },
+    {
+      label: 'chandlerprall',
+      data: { firstName: 'Chandler', lastName: 'Prall' },
+    },
+    { label: 'thompsongl', data: { firstName: 'Greg', lastName: 'Thompson' } },
+    { label: 'cchaos', data: { firstName: 'Caroline', lastName: 'Horn' } },
+    { label: '1copenut', data: { firstName: 'Trevor', lastName: 'Pierce' } },
+    {
+      label: 'constancecchen',
+      data: { firstName: 'Constance', lastName: 'Chen' },
+    },
+    { label: 'breehall', data: { firstName: 'Bree', lastName: 'Hall' } },
+    { label: 'snide', data: { firstName: 'Dave', lastName: 'Snider' } },
   ],
 };
 

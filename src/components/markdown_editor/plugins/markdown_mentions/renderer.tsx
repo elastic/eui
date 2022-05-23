@@ -9,7 +9,7 @@
 import React, { FunctionComponent } from 'react';
 import { EuiMarkdownAstNodePosition } from '../../markdown_types';
 import { MentionsNodeDetails } from './types';
-import { EuiToolTip } from '../../../tool_tip';
+import { EuiToolTip, EuiAvatar } from '../../../../components';
 
 export const mentionsMarkdownRenderer: FunctionComponent<
   MentionsNodeDetails & {
@@ -17,9 +17,24 @@ export const mentionsMarkdownRenderer: FunctionComponent<
   }
 > = ({ config, mention }) => {
   const match = config.options.find(({ label }) => label === mention);
+
+  const { firstName, lastName } = match?.data;
+  const { label } = match;
+
+  const content = (
+    <div className="euiMarkdownMentions__rendererTooltip">
+      <div className="euiMarkdownMentions__rendererTooltipMain">
+        <EuiAvatar name={label} size="s" /> {label}
+      </div>
+
+      <div className="euiMarkdownMentions__rendererTooltipSecondary">
+        {firstName} {lastName}
+      </div>
+    </div>
+  );
   return (
-    <EuiToolTip content={match?.data?.first}>
-      <span>@{mention}</span>
+    <EuiToolTip content={content}>
+      <span className="euiMarkdownMentions__renderer">@{mention}</span>
     </EuiToolTip>
   );
 };

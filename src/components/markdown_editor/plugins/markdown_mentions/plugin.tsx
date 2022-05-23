@@ -12,12 +12,18 @@ import { EuiMarkdownEditorUiPlugin } from '../../markdown_types';
 import { MentionsNodeDetails } from './types';
 import { EuiSelectable, EuiSelectableProps } from '../../../selectable';
 import { keys } from '../../../../services/keys';
+import {
+  EuiHighlight,
+  EuiText,
+  EuiTextColor,
+  EuiAvatar,
+} from '../../../../components';
 
 export const mentionsPlugin: EuiMarkdownEditorUiPlugin<MentionsNodeDetails> = {
   name: 'mentionsPlugin',
   button: {
     label: 'Mention',
-    iconType: 'user',
+    iconType: 'userAvatar',
   },
   helpText: (
     <EuiCodeBlock language="md" paddingSize="s" fontSize="l">
@@ -66,12 +72,45 @@ export const mentionsPlugin: EuiMarkdownEditorUiPlugin<MentionsNodeDetails> = {
       }
     };
 
+    console.log(node?.config.options);
+
+    const renderOption = (option, searchValue) => {
+      console.log({ option });
+
+      return (
+        <EuiText size="s">
+          <span className="euiMarkdownMentions__item">
+            <EuiAvatar name={option.label} size="s" />
+
+            <span className="euiMarkdownMentions__itemLabel">
+              <EuiHighlight search={searchValue}>{option.label}</EuiHighlight>
+            </span>
+
+            <EuiTextColor
+              className="euiMarkdownMentions__itemFullName"
+              color="subdued"
+            >
+              <small>
+                {option.firstName} {option.lastName}
+              </small>
+            </EuiTextColor>
+          </span>
+        </EuiText>
+      );
+    };
+
     return (
       <EuiSelectable
+        className="euiMarkdownMentions"
         ref={selectableRef}
-        singleSelection
         options={node?.config.options}
         onChange={onChange}
+        height="full"
+        paddingSize="none"
+        renderOption={renderOption}
+        listProps={{
+          showIcons: false,
+        }}
       >
         {(list) => list}
       </EuiSelectable>

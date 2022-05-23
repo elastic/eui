@@ -563,14 +563,16 @@ export const EuiMarkdownEditor = forwardRef<
             {pluginEditorPlugin && 'popover' in pluginEditorPlugin && (
               <EuiPortal>
                 <EuiPanel
+                  className="euiMarkdownEditor__popover"
+                  paddingSize="none"
                   css={(function () {
                     const bounds = textareaRef.current!.getBoundingClientRect();
                     return {
                       position: 'fixed',
                       top: bounds.bottom,
                       left: bounds.left,
-                      width: 200,
-                      height: 100,
+                      width: 320,
+                      height: 200,
                     };
                   })()}
                 >
