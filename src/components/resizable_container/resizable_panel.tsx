@@ -33,9 +33,11 @@ import { EuiResizableCollapseButton } from './resizable_collapse_button';
 
 const panelPaddingValues = {
   none: 0,
+  xs: 4,
   s: 8,
   m: 16,
   l: 24,
+  xl: 32,
 };
 
 export interface ToggleOptions {
@@ -235,7 +237,6 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   }, [isCollapsed, isCollapsible, position, panels, panelId]);
 
   const padding = useMemo(() => {
-    // @ts-expect-error EuiPanel increased its available sizes
     return `${panelPaddingValues[paddingSize] * 2}px`;
   }, [paddingSize]);
 
