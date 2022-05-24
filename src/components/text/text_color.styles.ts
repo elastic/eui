@@ -35,4 +35,5 @@ export const euiTextColorStyles = ({ euiTheme }: UseEuiTheme) => ({
   inherit: css`
     color: inherit;
   `,
+  customColor: css``, // Handled by `style` tag - this is just here for a className hook
 });
