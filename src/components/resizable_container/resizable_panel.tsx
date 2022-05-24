@@ -21,11 +21,7 @@ import { CommonProps } from '../common';
 import { useEuiResizableContainerContext } from './context';
 import { useGeneratedHtmlId } from '../../services';
 import { EuiPanel } from '../panel';
-import {
-  PanelPaddingSize,
-  panelPaddingValues,
-  _EuiPanelProps,
-} from '../panel/panel';
+import { PanelPaddingSize_Deprecated, _EuiPanelProps } from '../panel/panel';
 import { useEuiI18n } from '../i18n';
 import {
   EuiResizablePanelController,
@@ -34,6 +30,15 @@ import {
   PanelPosition,
 } from './types';
 import { EuiResizableCollapseButton } from './resizable_collapse_button';
+
+const panelPaddingValues = {
+  none: 0,
+  xs: 4,
+  s: 8,
+  m: 16,
+  l: 24,
+  xl: 32,
+};
 
 export interface ToggleOptions {
   'data-test-subj'?: string;
@@ -140,7 +145,7 @@ export interface EuiResizablePanelProps
    * Padding to add directly to the wrapping `.euiResizablePanel` div
    * Gives space around the actual panel.
    */
-  wrapperPadding?: PanelPaddingSize;
+  wrapperPadding?: PanelPaddingSize_Deprecated;
 }
 
 const getPosition = (ref: HTMLDivElement) => {
