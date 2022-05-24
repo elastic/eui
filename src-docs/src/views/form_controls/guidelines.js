@@ -102,6 +102,7 @@ export default () => {
           panelDisplay="block"
           type="do"
           text="When space is limited and the UI is very simple, you can use field labels as placeholder text. This must stay an exception."
+          minHeight={94}
         >
           <EuiFlexGroup style={{ maxWidth: 600 }}>
             <EuiFlexItem>
