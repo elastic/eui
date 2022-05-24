@@ -243,6 +243,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   const classes = classNames(
     'euiResizablePanel',
     // @ts-expect-error EuiPanel increased its available sizes
+    // When we convert this component to Emotion, we should also increase sizes to match EuiPanel and remove this comment.
     paddingSizeToClassNameMap[wrapperPadding],
     {
       'euiResizablePanel--collapsible': isCollapsible,
