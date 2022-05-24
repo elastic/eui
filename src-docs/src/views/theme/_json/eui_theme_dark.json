@@ -1,11 +1,4 @@
 {
-  "paddingSizes": {
-    "xs": "4px",
-    "s": "8px",
-    "m": "16px",
-    "l": "24px",
-    "xl": "32px"
-  },
   "euiBadgeGroupGutterTypes": {
     "gutterExtraSmall": "4px",
     "gutterSmall": "8px"
@@ -566,7 +559,7 @@
   },
   "euiPanelBorderRadiusModifiers": {
     "borderRadiusNone": 0,
-    "borderRadiusMedium": "6px"
+    "borderRadiusMedium": "4px"
   },
   "euiPanelBackgroundColorModifiers": {
     "transparent": "rgba(0, 0, 0, 0)",
