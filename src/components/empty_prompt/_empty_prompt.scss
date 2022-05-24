@@ -50,6 +50,8 @@
   }
 }
 
+$euiEmptyPromptContentMaxWidth: 36em;
+
 .euiEmptyPrompt--vertical {
   .euiEmptyPrompt__main {
     display: flex;
@@ -58,7 +60,7 @@
   }
 
   .euiEmptyPrompt__contentInner {
-    max-width: $euiTextConstrainedMaxWidth;
+    max-width: $euiEmptyPromptContentMaxWidth;
     margin: auto;
   }
 
@@ -95,7 +97,7 @@
   }
 
   .euiEmptyPrompt__content {
-    max-width: $euiTextConstrainedMaxWidth;
+    max-width: $euiEmptyPromptContentMaxWidth;
 
     @include euiBreakpoint('l', 'xl') {
       padding: $euiSizeL 0;
