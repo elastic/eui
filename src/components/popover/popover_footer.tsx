@@ -9,7 +9,7 @@
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
-import { PanelPaddingSize_Deprecated } from '../panel/panel';
+import { PanelPaddingSize } from '../panel';
 
 export type EuiPopoverFooterProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> &
@@ -18,7 +18,7 @@ export type EuiPopoverFooterProps = FunctionComponent<
        * Customize the all around padding of the popover footer.
        * Leave `undefined` to inherit from the `panelPaddingSize` of the containing EuiPopover
        */
-      paddingSize?: PanelPaddingSize_Deprecated;
+      paddingSize?: PanelPaddingSize;
     }
 >;
 
@@ -39,6 +39,7 @@ export const EuiPopoverFooter: EuiPopoverFooterProps = ({
 }) => {
   const classes = classNames(
     'euiPopoverFooter',
+    // @ts-expect-error EuiPanel increased its available sizes
     paddingSize ? paddingSizeToClassNameMap[paddingSize] : null,
     className
   );

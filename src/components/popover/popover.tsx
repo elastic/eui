@@ -32,11 +32,7 @@ import {
 
 import { EuiScreenReaderOnly } from '../accessibility';
 
-import {
-  EuiPanel,
-  PanelPaddingSize_Deprecated,
-  EuiPanelProps,
-} from '../panel/panel';
+import { EuiPanel, PanelPaddingSize, EuiPanelProps } from '../panel';
 
 import { EuiPortal } from '../portal';
 
@@ -143,7 +139,7 @@ export interface EuiPopoverProps {
   /**
    * EuiPanel padding on all sides
    */
-  panelPaddingSize?: PanelPaddingSize_Deprecated;
+  panelPaddingSize?: PanelPaddingSize;
   /**
    * Standard DOM `style` attribute. Passed to the EuiPanel
    */
@@ -312,7 +308,7 @@ type PropsWithDefaults = Props & {
   hasArrow: boolean;
   isOpen: boolean;
   ownFocus: boolean;
-  panelPaddingSize: PanelPaddingSize_Deprecated;
+  panelPaddingSize: PanelPaddingSize;
 };
 
 export class EuiPopover extends Component<Props, State> {
