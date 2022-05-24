@@ -224,7 +224,7 @@ export default () => {
             visible to the user. Use hint text to:
             <ul>
               <li>
-                explain <strong>why you are asking a certain question</strong>:
+                Explain <strong>why you are asking a certain question</strong>:
                 &quot;We will only email you if there is a problem with your
                 order.&quot;
               </li>
