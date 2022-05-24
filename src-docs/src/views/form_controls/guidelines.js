@@ -87,7 +87,7 @@ export default () => {
         <GuideRuleExample
           panelDisplay="block"
           type="dont"
-          text="Be vague or use text that adds no value, such as “Type here”."
+          text="Use text that adds no value, such as “Type here”."
         >
           <EuiFormRow
             label="Source"
