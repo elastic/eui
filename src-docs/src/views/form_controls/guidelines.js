@@ -254,6 +254,7 @@ export default () => {
         </GuideRuleExample>
 
         <GuideRuleExample
+          panelDisplay="block"
           type="do"
           text="Use complete sentences and ending punctuation."
         >
