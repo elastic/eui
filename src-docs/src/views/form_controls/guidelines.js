@@ -233,7 +233,7 @@ export default () => {
                 &quot;Enter the full 32-characters ID.&quot;
               </li>
               <li>
-                tell the user <strong>where to find the information</strong>{' '}
+                Tell the user <strong>where to find the information</strong>{' '}
                 you&apos;re asking for: &quot;Find the Elasticsearch cluster ID
                 on the main administration page of your deployment.&quot;
               </li>
