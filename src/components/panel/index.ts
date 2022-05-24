@@ -6,6 +6,6 @@
  * Side Public License, v 1.
  */
 
-export type { EuiPanelProps, PanelPaddingSize } from './panel';
-export { EuiPanel, SIZES } from './panel';
+export type { EuiPanelProps } from './panel';
+export { EuiPanel } from './panel';
 export { EuiSplitPanel } from './split_panel';

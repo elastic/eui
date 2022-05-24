@@ -19,7 +19,9 @@ export const euiCallOutStyles = ({ euiTheme }: UseEuiTheme) => {
       ${logicalCSS('margin-right', euiTheme.size.s)};
     `,
     euiCallOut__description: css`
-      ${logicalCSS('margin-top', euiTheme.size.s)};
+      :not(:only-child) {
+        ${logicalCSS('margin-top', euiTheme.size.s)};
+      }
     `,
   };
 };

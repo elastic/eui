@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import { css } from '@emotion/react';
 import { useEuiTheme, UseEuiTheme } from '../../services/theme';
 import { logicalSide, LogicalSides } from '../functions';
 
@@ -36,19 +37,19 @@ export const useEuiPaddingCSS = (side?: LogicalSides) => {
 
   return {
     none: null,
-    xs: `
+    xs: css`
       ${property}: ${useEuiPaddingSize('xs')};
     `,
-    s: `
+    s: css`
       ${property}: ${useEuiPaddingSize('s')};
     `,
-    m: `
+    m: css`
       ${property}: ${useEuiPaddingSize('m')};
     `,
-    l: `
+    l: css`
       ${property}: ${useEuiPaddingSize('l')};
     `,
-    xl: `
+    xl: css`
       ${property}: ${useEuiPaddingSize('xl')};
     `,
   };

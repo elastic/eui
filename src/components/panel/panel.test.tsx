@@ -9,10 +9,13 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
-import { EuiPanel, SIZES, COLORS, BORDER_RADII } from './panel';
+import { EuiPanel, PANEL_SIZES, COLORS, BORDER_RADII } from './panel';
 
 describe('EuiPanel', () => {
+  shouldRenderCustomStyles(<EuiPanel />);
+
   test('is rendered', () => {
     const component = render(<EuiPanel {...requiredProps} />);
 
@@ -50,7 +53,7 @@ describe('EuiPanel', () => {
     });
 
     describe('paddingSize', () => {
-      SIZES.forEach((size) => {
+      PANEL_SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
           const component = render(<EuiPanel paddingSize={size} />);
 
