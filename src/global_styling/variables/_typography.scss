@@ -75,6 +75,3 @@ $euiTitles: (
     'letter-spacing': -.03em,
   ),
 ) !default;
-
-// TODO: Moved from EuiText - can be removed once all usages are converted to Emotion
-$euiTextConstrainedMaxWidth: #{'max(64ch, 75%)'};
