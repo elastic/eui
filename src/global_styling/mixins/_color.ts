@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import { css } from '@emotion/react';
 import { shade, tint, useEuiTheme, UseEuiTheme } from '../../services';
 
 export const BACKGROUND_COLORS = [
@@ -48,28 +49,28 @@ export const useEuiBackgroundColor = (color: EuiBackgroundColor) => {
 
 export const useEuiBackgroundColorCSS = () => {
   return {
-    transparent: `
+    transparent: css`
       background-color: ${useEuiBackgroundColor('transparent')};
     `,
-    plain: `
+    plain: css`
       background-color: ${useEuiBackgroundColor('plain')};
     `,
-    subdued: `
+    subdued: css`
       background-color: ${useEuiBackgroundColor('subdued')};
     `,
-    accent: `
+    accent: css`
       background-color: ${useEuiBackgroundColor('accent')};
     `,
-    primary: `
+    primary: css`
       background-color: ${useEuiBackgroundColor('primary')};
     `,
-    success: `
+    success: css`
       background-color: ${useEuiBackgroundColor('success')};
     `,
-    warning: `
+    warning: css`
       background-color: ${useEuiBackgroundColor('warning')};
     `,
-    danger: `
+    danger: css`
       background-color: ${useEuiBackgroundColor('danger')};
     `,
   };

@@ -14,7 +14,7 @@ import { EuiCard } from './card';
 
 import { EuiIcon } from '../icon';
 import { EuiI18n } from '../i18n';
-import { COLORS, SIZES } from '../panel/panel';
+import { COLORS, PANEL_SIZES } from '../panel/panel';
 
 describe('EuiCard', () => {
   test('is rendered', () => {
@@ -224,7 +224,7 @@ describe('EuiCard', () => {
     });
 
     describe('paddingSize', () => {
-      SIZES.forEach((size) => {
+      PANEL_SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
           const component = render(
             <EuiCard
