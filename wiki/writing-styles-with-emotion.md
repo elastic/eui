@@ -388,6 +388,23 @@ When naming your mixins & utilities, consider the following statements:
 - Always prefix publicly-exported functions with `eui` unless it's purely a generic helper utility with no specific EUI consideration
 - When creating both a returned string version and object version, append the function name with `CSS` for strings and `Style` for objects. Example: `euiMixinCSS()` vs `euiMixinStyle()`.
 
+### API pattern
+
+For consistency, use the following pattern for style mixins that accept required and/or optional arguments:
+
+```ts
+const euiMixin = (
+  euiTheme: UseEuiTheme;
+  required: RequiredProperty;
+  optional?: {
+    optionalKey1?: OptionalProperty;
+    optionalKey2?: OptionalProperty;
+  }
+) => {}
+```
+
+If the mixin does not accept required or optional properties, the argument can be removed.
+
 ## FAQ
 
 ### Can the `css` prop be forwarded to a nested element?
