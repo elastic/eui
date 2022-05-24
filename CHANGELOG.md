@@ -108,6 +108,18 @@
 
 - As part of `EuiTitle`'s Emotion conversion, the line-height of `s` and `xxs` sized `EuiTitle`s have been slightly reduced ([#5842](https://github.com/elastic/eui/pull/5842))
 
+## [`55.1.4`](https://github.com/elastic/eui/tree/v55.1.4)
+
+**Note: this release is a backport containing changes originally made in `58.1.0`**
+
+**Bug fixes**
+
+- Fixed `EuiMark`'s screen reader helpers causing scroll issues in Chrome ([#5921](https://github.com/elastic/eui/pull/5921))
+
+**CSS-in-JS conversions**
+
+- Renamed `euiScreenReaderOnlyStyles()` mixin to `euiScreenReaderOnly()` ([#5921](https://github.com/elastic/eui/pull/5921))
+
 ## [`55.1.3`](https://github.com/elastic/eui/tree/v55.1.3)
 
 **Note: this release is a backport containing changes originally made in `58.0.0`**
