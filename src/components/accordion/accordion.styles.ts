@@ -10,13 +10,13 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { euiFontSize } from '../../global_styling/mixins';
 
-export const euiAccordionButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
+export const euiAccordionButtonStyles = (euiThemeContext: UseEuiTheme) => ({
   euiAccordion__button: css`
-    ${euiFontSize('s', euiTheme)};
+    ${euiFontSize(euiThemeContext, 's')};
     align-items: center;
     display: flex;
     flex-grow: 1;
-    line-height: ${euiTheme.size.l};
+    line-height: ${euiThemeContext.euiTheme.size.l};
     text-align: left;
     width: 100%;
 
