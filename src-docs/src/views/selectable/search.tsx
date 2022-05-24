@@ -74,11 +74,17 @@ export default () => {
   /**
    * Do something with the selection based on the found option with `checked: on`
    */
-  const onChange = (updatedOptions: EuiSelectableTemplateSitewideOption[]) => {
+  const onChange = (
+    updatedOptions: EuiSelectableTemplateSitewideOption[],
+    event: React.MouseEvent | React.KeyboardEvent
+  ) => {
     const clickedItem = updatedOptions.find(
       (option) => option.checked === 'on'
     );
     if (!clickedItem) return;
+
+    console.log(event);
+    if (event.shiftKey || event.metaKey) alert('open in new tab');
   };
 
   return (
