@@ -229,7 +229,7 @@ export default () => {
                 order.&quot;
               </li>
               <li>
-                provide <strong>clarifying details</strong> on what to type:
+                Provide <strong>clarifying details</strong> on what to type:
                 &quot;Enter the full 32-characters ID.&quot;
               </li>
               <li>
