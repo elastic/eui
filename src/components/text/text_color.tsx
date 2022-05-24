@@ -59,7 +59,7 @@ export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
   const styles = euiTextColorStyles(euiTheme);
   const cssStyles = [
     styles.euiTextColor,
-    isNamedColor ? styles[color as TextColor] : undefined,
+    isNamedColor ? styles[color as TextColor] : styles.customColor,
   ];
 
   // We're checking if is a custom color.

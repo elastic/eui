@@ -18,7 +18,7 @@ exports[`EuiTextColor props cloneElement 1`] = `
 
 exports[`EuiTextColor props color is rendered with custom color 1`] = `
 <span
-  class="css-tseiet-euiTextColor"
+  class="css-3cjmlu-euiTextColor-customColor"
   style="color:#ff0000"
 >
   <p>
