@@ -194,13 +194,13 @@ exports[`EuiPageHeaderContent props breadcrumbs is rendered 1`] = `
     data-test-subj="test subject string"
   >
     <ol
-      class="euiBreadcrumbs__list"
+      class="euiBreadcrumbs__list css-1ifj11g-euiBreadcrumbs__list-isTruncated"
     >
       <li
-        class="euiBreadcrumb"
+        class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
       >
         <a
-          class="euiLink euiBreadcrumb__content customClass css-102pf9n-euiLink-primary"
+          class="euiLink euiBreadcrumb__content customClass css-tsivwr-euiLink-primary-euiBreadcrumb__content"
           data-test-subj="breadcrumbsAnimals"
           href="#"
           rel="noreferrer"
@@ -209,11 +209,11 @@ exports[`EuiPageHeaderContent props breadcrumbs is rendered 1`] = `
         </a>
       </li>
       <li
-        class="euiBreadcrumb euiBreadcrumb--last"
+        class="euiBreadcrumb euiBreadcrumb--last css-1czveci-euiBreadcrumb-isTruncated"
       >
         <span
           aria-current="page"
-          class="euiBreadcrumb__content"
+          class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
         >
           Edit
         </span>

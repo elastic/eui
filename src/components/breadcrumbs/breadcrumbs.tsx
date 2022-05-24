@@ -23,8 +23,15 @@ import { EuiInnerText } from '../inner_text';
 import { EuiLink, EuiLinkColor } from '../link';
 import { EuiPopover } from '../popover';
 import { EuiIcon } from '../icon';
-import { throttle } from '../../services';
+import { throttle, useEuiTheme } from '../../services';
 import { EuiBreakpointSize, getBreakpoint } from '../../services/breakpoint';
+
+import {
+  euiBreadcrumbsListStyles,
+  euiBreadcrumbsInPopoverStyles,
+  euiBreadcrumbStyles,
+  euiBreadcrumbContentStyles,
+} from './breadcrumbs.styles';
 
 const CONTENT_CLASSNAME = 'euiBreadcrumb__content';
 
@@ -95,91 +102,6 @@ const responsiveDefault: EuiBreadcrumbResponsiveMaxCount = {
   m: 4,
 };
 
-const limitBreadcrumbs = (
-  breadcrumbs: ReactNode[],
-  max: number,
-  allBreadcrumbs: EuiBreadcrumb[]
-) => {
-  const breadcrumbsAtStart = [];
-  const breadcrumbsAtEnd = [];
-  const limit = Math.min(max, breadcrumbs.length);
-  const start = Math.floor(limit / 2);
-  const overflowBreadcrumbs = allBreadcrumbs.slice(
-    start,
-    start + breadcrumbs.length - limit
-  );
-
-  if (overflowBreadcrumbs.length) {
-    overflowBreadcrumbs[overflowBreadcrumbs.length - 1]['aria-current'] =
-      'false';
-  }
-
-  for (let i = 0; i < limit; i++) {
-    // We'll alternate with displaying breadcrumbs at the end and at the start, but be biased
-    // towards breadcrumbs the end so that if max is an odd number, we'll have one more
-    // breadcrumb visible at the end than at the beginning.
-    const isEven = i % 2 === 0;
-
-    // We're picking breadcrumbs from the front AND the back, so we treat each iteration as a
-    // half-iteration.
-    const normalizedIndex = Math.floor(i * 0.5);
-    const indexOfBreadcrumb = isEven
-      ? breadcrumbs.length - 1 - normalizedIndex
-      : normalizedIndex;
-    const breadcrumb = breadcrumbs[indexOfBreadcrumb];
-
-    if (isEven) {
-      breadcrumbsAtEnd.unshift(breadcrumb);
-    } else {
-      breadcrumbsAtStart.push(breadcrumb);
-    }
-  }
-
-  const EuiBreadcrumbCollapsed = () => {
-    const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-    const ariaLabel = useEuiI18n(
-      'euiBreadcrumbs.collapsedBadge.ariaLabel',
-      'See collapsed breadcrumbs'
-    );
-
-    const ellipsisButton = (
-      <EuiLink
-        className={CONTENT_CLASSNAME}
-        color="subdued"
-        aria-label={ariaLabel}
-        title={ariaLabel}
-        onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-      >
-        &hellip; <EuiIcon type="arrowDown" size="s" />
-      </EuiLink>
-    );
-
-    return (
-      <li className="euiBreadcrumb euiBreadcrumb--collapsed">
-        <EuiPopover
-          button={ellipsisButton}
-          isOpen={isPopoverOpen}
-          closePopover={() => setIsPopoverOpen(false)}
-        >
-          <EuiBreadcrumbs
-            className="euiBreadcrumbs__inPopover"
-            breadcrumbs={overflowBreadcrumbs}
-            responsive={false}
-            truncate={false}
-            max={0}
-          />
-        </EuiPopover>
-      </li>
-    );
-  };
-
-  if (max < breadcrumbs.length) {
-    breadcrumbsAtStart.push(<EuiBreadcrumbCollapsed key="collapsed" />);
-  }
-
-  return [...breadcrumbsAtStart, ...breadcrumbsAtEnd];
-};
-
 export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   breadcrumbs,
   className,
@@ -210,6 +132,126 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
     };
   }, [responsive, functionToCallOnWindowResize]);
 
+  // Emotion styles
+  const euiTheme = useEuiTheme();
+
+  // Breadcrumb ordered list styles
+  const breadcrumbsListStyles = euiBreadcrumbsListStyles(euiTheme);
+  const cssBreadcrumbsListStyles = [
+    breadcrumbsListStyles.euiBreadcrumbs__list,
+    truncate && breadcrumbsListStyles.isTruncated,
+  ];
+
+  // Breadcrumb link styles in EuiPopover
+  const breadcrumbsInPopoverStyles = euiBreadcrumbsInPopoverStyles(euiTheme);
+  const cssBreadcrumbsInPopoverStyles = [
+    breadcrumbsInPopoverStyles.euiBreadcrumbs__inPopover,
+  ];
+
+  // Breadcrumb list item styles
+  const breadcrumbStyles = euiBreadcrumbStyles(euiTheme);
+  const cssBreadcrumbStyles = [
+    breadcrumbStyles.euiBreadcrumb,
+    truncate && breadcrumbStyles.isTruncated,
+  ];
+
+  const limitBreadcrumbs = (
+    breadcrumbs: ReactNode[],
+    max: number,
+    allBreadcrumbs: EuiBreadcrumb[]
+  ) => {
+    const breadcrumbsAtStart = [];
+    const breadcrumbsAtEnd = [];
+    const limit = Math.min(max, breadcrumbs.length);
+    const start = Math.floor(limit / 2);
+    const overflowBreadcrumbs = allBreadcrumbs.slice(
+      start,
+      start + breadcrumbs.length - limit
+    );
+
+    if (overflowBreadcrumbs.length) {
+      overflowBreadcrumbs[overflowBreadcrumbs.length - 1]['aria-current'] =
+        'false';
+    }
+
+    for (let i = 0; i < limit; i++) {
+      // We'll alternate with displaying breadcrumbs at the end and at the start, but be biased
+      // towards breadcrumbs the end so that if max is an odd number, we'll have one more
+      // breadcrumb visible at the end than at the beginning.
+      const isEven = i % 2 === 0;
+
+      // We're picking breadcrumbs from the front AND the back, so we treat each iteration as a
+      // half-iteration.
+      const normalizedIndex = Math.floor(i * 0.5);
+      const indexOfBreadcrumb = isEven
+        ? breadcrumbs.length - 1 - normalizedIndex
+        : normalizedIndex;
+      const breadcrumb = breadcrumbs[indexOfBreadcrumb];
+
+      if (isEven) {
+        breadcrumbsAtEnd.unshift(breadcrumb);
+      } else {
+        breadcrumbsAtStart.push(breadcrumb);
+      }
+    }
+
+    const EuiBreadcrumbCollapsed = () => {
+      const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+      const ariaLabel = useEuiI18n(
+        'euiBreadcrumbs.collapsedBadge.ariaLabel',
+        'See collapsed breadcrumbs'
+      );
+
+      // Emotion styles for collapsed breadcrumb list items.
+      // Declared here because the collapsed breadcrumb is determined
+      // conditionally by number of breadcrumbs instead of a prop.
+      const cssBreadcrumbStylesCollapsed = [
+        breadcrumbStyles.euiBreadcrumb,
+        breadcrumbStyles.isCollapsed,
+      ];
+
+      const ellipsisButton = (
+        <EuiLink
+          className={CONTENT_CLASSNAME}
+          color="subdued"
+          aria-label={ariaLabel}
+          title={ariaLabel}
+          onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+        >
+          &hellip; <EuiIcon type="arrowDown" size="s" />
+        </EuiLink>
+      );
+
+      return (
+        <li
+          className="euiBreadcrumb euiBreadcrumb--collapsed"
+          css={cssBreadcrumbStylesCollapsed}
+        >
+          <EuiPopover
+            button={ellipsisButton}
+            isOpen={isPopoverOpen}
+            closePopover={() => setIsPopoverOpen(false)}
+          >
+            <EuiBreadcrumbs
+              className="euiBreadcrumbs__inPopover"
+              css={cssBreadcrumbsInPopoverStyles}
+              breadcrumbs={overflowBreadcrumbs}
+              responsive={false}
+              truncate={false}
+              max={0}
+            />
+          </EuiPopover>
+        </li>
+      );
+    };
+
+    if (max < breadcrumbs.length) {
+      breadcrumbsAtStart.push(<EuiBreadcrumbCollapsed key="collapsed" />);
+    }
+
+    return [...breadcrumbsAtStart, ...breadcrumbsAtEnd];
+  };
+
   const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => {
     const {
       text,
@@ -220,13 +262,26 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
       ...breadcrumbRest
     } = breadcrumb;
     const isLastBreadcrumb = index === breadcrumbs.length - 1;
+
     const className = classNames('euiBreadcrumb', {
       'euiBreadcrumb--last': isLastBreadcrumb,
       'euiBreadcrumb--truncate': truncate,
     });
+
+    // Emotion styles for breadcrumb links, spans, and buttons.
+    // Individual object overrides to the `truncate` prop will
+    // not be available if styles are declared outside this
+    // const `breadcrumbElements` scope.
+    const breadcrumbContentStyles = euiBreadcrumbContentStyles(euiTheme);
+    const cssBreadcrumbContentStyles = [
+      breadcrumbContentStyles.euiBreadcrumb__content,
+      truncate && breadcrumbContentStyles.isTruncated,
+    ];
+
     const linkProps = {
       className: classNames(CONTENT_CLASSNAME, breadcrumbClassName),
       'aria-current': isLastBreadcrumb ? 'page' : undefined,
+      css: cssBreadcrumbContentStyles,
     } as { className: string; 'aria-current': AriaAttributes['aria-current'] };
 
     const link = (
@@ -260,7 +315,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
     );
 
     return (
-      <li className={className} key={index}>
+      <li className={className} key={index} css={cssBreadcrumbStyles}>
         {link}
       </li>
     );
@@ -293,7 +348,9 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
 
   return (
     <nav aria-label={ariaLabel} className={classes} {...rest}>
-      <ol className="euiBreadcrumbs__list">{limitedBreadcrumbs}</ol>
+      <ol className="euiBreadcrumbs__list" css={cssBreadcrumbsListStyles}>
+        {limitedBreadcrumbs}
+      </ol>
     </nav>
   );
 };

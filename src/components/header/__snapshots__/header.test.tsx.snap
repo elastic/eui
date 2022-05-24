@@ -43,14 +43,14 @@ exports[`EuiHeader sections render breadcrumbs and props 1`] = `
     class="euiBreadcrumbs euiHeaderBreadcrumbs euiBreadcrumbs--truncate"
   >
     <ol
-      class="euiBreadcrumbs__list"
+      class="euiBreadcrumbs__list css-1ifj11g-euiBreadcrumbs__list-isTruncated"
     >
       <li
-        class="euiBreadcrumb euiBreadcrumb--last"
+        class="euiBreadcrumb euiBreadcrumb--last css-1czveci-euiBreadcrumb-isTruncated"
       >
         <span
           aria-current="page"
-          class="euiBreadcrumb__content"
+          class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
         >
           Breadcrumb
         </span>

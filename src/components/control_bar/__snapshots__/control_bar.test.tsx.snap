@@ -20,24 +20,24 @@ exports[`EuiControlBar is rendered 1`] = `
       class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
     >
       <ol
-        class="euiBreadcrumbs__list"
+        class="euiBreadcrumbs__list css-1ifj11g-euiBreadcrumbs__list-isTruncated"
       >
         <li
-          class="euiBreadcrumb"
+          class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
         >
           <span
-            class="euiBreadcrumb__content"
+            class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
             title="src"
           >
             src
           </span>
         </li>
         <li
-          class="euiBreadcrumb euiBreadcrumb--last"
+          class="euiBreadcrumb euiBreadcrumb--last css-1czveci-euiBreadcrumb-isTruncated"
         >
           <span
             aria-current="page"
-            class="euiBreadcrumb__content"
+            class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
             title="components"
           >
             components
@@ -88,2288 +88,656 @@ exports[`EuiControlBar is rendered 1`] = `
 `;
 
 exports[`EuiControlBar props leftOffset is rendered 1`] = `
-<EuiControlBar
-  controls={
-    Array [
-      Object {
-        "breadcrumbs": Array [
-          Object {
-            "text": "src",
-          },
-          Object {
-            "text": "components",
-          },
-        ],
-        "controlType": "breadcrumbs",
-        "id": "current_file_path",
-        "responsive": false,
-      },
-      Object {
-        "controlType": "button",
-        "data-test-subj": "dts",
-        "id": "sound_the_alarm",
-        "label": "Sound the Alarm",
-        "onClick": [Function],
-      },
-      Object {
-        "controlType": "text",
-        "id": "close_the_hatch",
-        "text": "Close the Hatch",
-      },
-      Object {
-        "controlType": "divider",
-      },
-      Object {
-        "aria-label": "Sample Icon",
-        "color": "danger",
-        "controlType": "icon",
-        "iconType": "alert",
-        "id": "sample_icon",
-      },
-      Object {
-        "controlType": "spacer",
-      },
-      Object {
-        "controlType": "tab",
-        "id": "flight_815",
-        "label": "Flight 815",
-        "onClick": [Function],
-      },
-    ]
-  }
-  leftOffset={200}
-  position="fixed"
-  rightOffset={0}
-  showContent={false}
-  showOnMobile={false}
-  size="l"
->
-  <EuiPortal>
-    <Portal
-      containerInfo={
-        <div>
-          <section
-            aria-label="Page level controls"
-            class="euiControlBar euiControlBar--large euiControlBar--fixed"
-            style="left: 200px; right: 0px;"
-          >
-            <h2
-              class="euiScreenReaderOnly"
-            >
-              Page level controls
-            </h2>
-            <div
-              class="euiControlBar__controls"
-            >
-              <nav
-                aria-label="Breadcrumbs"
-                class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
-              >
-                <ol
-                  class="euiBreadcrumbs__list"
-                >
-                  <li
-                    class="euiBreadcrumb"
-                  >
-                    <span
-                      class="euiBreadcrumb__content"
-                      title="src"
-                    >
-                      src
-                    </span>
-                  </li>
-                  <li
-                    class="euiBreadcrumb euiBreadcrumb--last"
-                  >
-                    <span
-                      aria-current="page"
-                      class="euiBreadcrumb__content"
-                      title="components"
-                    >
-                      components
-                    </span>
-                  </li>
-                </ol>
-              </nav>
-              <button
-                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                data-test-subj="dts"
-                type="button"
-              >
-                <span
-                  class="euiButtonContent euiButton__content"
-                >
-                  <span
-                    class="euiButton__text"
-                  >
-                    Sound the Alarm
-                  </span>
-                </span>
-              </button>
-              <div
-                class="euiControlBar__text"
-              >
-                Close the Hatch
-              </div>
-              <div
-                class="euiControlBar__divider"
-              />
-              <span
-                class="euiControlBar__icon"
-                color="danger"
-                data-euiicon-type="alert"
-              >
-                Sample Icon
-              </span>
-              <div
-                class="euiControlBar__spacer"
-              />
-              <button
-                class="euiControlBar__tab"
-              >
-                Flight 815
-              </button>
-            </div>
-          </section>
-          <p
-            aria-live="assertive"
-            class="euiScreenReaderOnly"
-          >
-            There is a new region landmark with page level controls at the end of the document.
-          </p>
-        </div>
-      }
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiControlBar euiControlBar--large euiControlBar--fixed"
+    style="left: 200px; right: 0px;"
+  >
+    <h2
+      class="euiScreenReaderOnly"
     >
-      <EuiI18n
-        default="Page level controls"
-        token="euiControlBar.screenReaderHeading"
+      Page level controls
+    </h2>
+    <div
+      class="euiControlBar__controls"
+    >
+      <nav
+        aria-label="Breadcrumbs"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
       >
-        <section
-          aria-label="Page level controls"
-          className="euiControlBar euiControlBar--large euiControlBar--fixed"
-          style={
-            Object {
-              "left": 200,
-              "maxHeight": undefined,
-              "right": 0,
-            }
-          }
+        <ol
+          class="euiBreadcrumbs__list css-1ifj11g-euiBreadcrumbs__list-isTruncated"
         >
-          <EuiScreenReaderOnly>
-            <h2
-              className="euiScreenReaderOnly"
-            >
-              Page level controls
-            </h2>
-          </EuiScreenReaderOnly>
-          <div
-            className="euiControlBar__controls"
+          <li
+            class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
           >
-            <EuiBreadcrumbs
-              breadcrumbs={
-                Array [
-                  Object {
-                    "text": "src",
-                  },
-                  Object {
-                    "text": "components",
-                  },
-                ]
-              }
-              className="euiControlBar__breadcrumbs"
-              key="current_file_path"
-              responsive={false}
+            <span
+              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              title="src"
             >
-              <nav
-                aria-label="Breadcrumbs"
-                className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
-              >
-                <ol
-                  className="euiBreadcrumbs__list"
-                >
-                  <li
-                    className="euiBreadcrumb"
-                    key="0"
-                  >
-                    <EuiInnerText>
-                      <span
-                        className="euiBreadcrumb__content"
-                        title="src"
-                      >
-                        src
-                      </span>
-                    </EuiInnerText>
-                  </li>
-                  <li
-                    className="euiBreadcrumb euiBreadcrumb--last"
-                    key="1"
-                  >
-                    <EuiInnerText>
-                      <span
-                        aria-current="page"
-                        className="euiBreadcrumb__content"
-                        title="components"
-                      >
-                        components
-                      </span>
-                    </EuiInnerText>
-                  </li>
-                </ol>
-              </nav>
-            </EuiBreadcrumbs>
-            <EuiButton
-              className="euiControlBar__button"
-              color="ghost"
-              data-test-subj="dts"
-              key="sound_the_alarm1"
-              onClick={[Function]}
-              size="s"
+              src
+            </span>
+          </li>
+          <li
+            class="euiBreadcrumb euiBreadcrumb--last css-1czveci-euiBreadcrumb-isTruncated"
+          >
+            <span
+              aria-current="page"
+              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              title="components"
             >
-              <EuiButtonDisplay
-                baseClassName="euiButton"
-                className="euiControlBar__button"
-                color="ghost"
-                data-test-subj="dts"
-                disabled={false}
-                element="button"
-                isDisabled={false}
-                onClick={[Function]}
-                size="s"
-                type="button"
-              >
-                <button
-                  className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                  data-test-subj="dts"
-                  disabled={false}
-                  onClick={[Function]}
-                  style={
-                    Object {
-                      "minWidth": undefined,
-                    }
-                  }
-                  type="button"
-                >
-                  <EuiButtonContent
-                    className="euiButton__content"
-                    iconSide="left"
-                    textProps={
-                      Object {
-                        "className": "euiButton__text",
-                      }
-                    }
-                  >
-                    <span
-                      className="euiButtonContent euiButton__content"
-                    >
-                      <span
-                        className="euiButton__text"
-                      >
-                        Sound the Alarm
-                      </span>
-                    </span>
-                  </EuiButtonContent>
-                </button>
-              </EuiButtonDisplay>
-            </EuiButton>
-            <div
-              className="euiControlBar__text"
-              key="close_the_hatch"
-            >
-              Close the Hatch
-            </div>
-            <div
-              className="euiControlBar__divider"
-              key="divider3"
-            />
-            <EuiIcon
-              aria-label="Sample Icon"
-              className="euiControlBar__icon"
-              color="danger"
-              key="sample_icon4"
-              type="alert"
-            >
-              <span
-                className="euiControlBar__icon"
-                color="danger"
-                data-euiicon-type="alert"
-              >
-                Sample Icon
-              </span>
-            </EuiIcon>
-            <div
-              className="euiControlBar__spacer"
-              key="spacer5"
-            />
-            <button
-              className="euiControlBar__tab"
-              key="flight_8156"
-              onClick={[Function]}
-            >
-              Flight 815
-            </button>
-          </div>
-        </section>
-      </EuiI18n>
-      <EuiScreenReaderOnly>
-        <p
-          aria-live="assertive"
-          className="euiScreenReaderOnly"
+              components
+            </span>
+          </li>
+        </ol>
+      </nav>
+      <button
+        class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+        data-test-subj="dts"
+        type="button"
+      >
+        <span
+          class="euiButtonContent euiButton__content"
         >
-          <EuiI18n
-            default="There is a new region landmark with page level controls at the end of the document."
-            token="euiControlBar.screenReaderAnnouncement"
+          <span
+            class="euiButton__text"
           >
-            There is a new region landmark with page level controls at the end of the document.
-          </EuiI18n>
-        </p>
-      </EuiScreenReaderOnly>
-    </Portal>
-  </EuiPortal>
-</EuiControlBar>
+            Sound the Alarm
+          </span>
+        </span>
+      </button>
+      <div
+        class="euiControlBar__text"
+      >
+        Close the Hatch
+      </div>
+      <div
+        class="euiControlBar__divider"
+      />
+      <span
+        class="euiControlBar__icon"
+        color="danger"
+        data-euiicon-type="alert"
+      >
+        Sample Icon
+      </span>
+      <div
+        class="euiControlBar__spacer"
+      />
+      <button
+        class="euiControlBar__tab"
+      >
+        Flight 815
+      </button>
+    </div>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
 `;
 
 exports[`EuiControlBar props maxHeight is rendered 1`] = `
-<EuiControlBar
-  controls={
-    Array [
-      Object {
-        "breadcrumbs": Array [
-          Object {
-            "text": "src",
-          },
-          Object {
-            "text": "components",
-          },
-        ],
-        "controlType": "breadcrumbs",
-        "id": "current_file_path",
-        "responsive": false,
-      },
-      Object {
-        "controlType": "button",
-        "data-test-subj": "dts",
-        "id": "sound_the_alarm",
-        "label": "Sound the Alarm",
-        "onClick": [Function],
-      },
-      Object {
-        "controlType": "text",
-        "id": "close_the_hatch",
-        "text": "Close the Hatch",
-      },
-      Object {
-        "controlType": "divider",
-      },
-      Object {
-        "aria-label": "Sample Icon",
-        "color": "danger",
-        "controlType": "icon",
-        "iconType": "alert",
-        "id": "sample_icon",
-      },
-      Object {
-        "controlType": "spacer",
-      },
-      Object {
-        "controlType": "tab",
-        "id": "flight_815",
-        "label": "Flight 815",
-        "onClick": [Function],
-      },
-    ]
-  }
-  leftOffset={0}
-  maxHeight="20rem"
-  position="fixed"
-  rightOffset={0}
-  showContent={false}
-  showOnMobile={false}
-  size="l"
->
-  <EuiPortal>
-    <Portal
-      containerInfo={
-        <div>
-          <section
-            aria-label="Page level controls"
-            class="euiControlBar euiControlBar--large euiControlBar--fixed"
-            style="left: 0px; right: 0px; max-height: 20rem;"
-          >
-            <h2
-              class="euiScreenReaderOnly"
-            >
-              Page level controls
-            </h2>
-            <div
-              class="euiControlBar__controls"
-            >
-              <nav
-                aria-label="Breadcrumbs"
-                class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
-              >
-                <ol
-                  class="euiBreadcrumbs__list"
-                >
-                  <li
-                    class="euiBreadcrumb"
-                  >
-                    <span
-                      class="euiBreadcrumb__content"
-                      title="src"
-                    >
-                      src
-                    </span>
-                  </li>
-                  <li
-                    class="euiBreadcrumb euiBreadcrumb--last"
-                  >
-                    <span
-                      aria-current="page"
-                      class="euiBreadcrumb__content"
-                      title="components"
-                    >
-                      components
-                    </span>
-                  </li>
-                </ol>
-              </nav>
-              <button
-                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                data-test-subj="dts"
-                type="button"
-              >
-                <span
-                  class="euiButtonContent euiButton__content"
-                >
-                  <span
-                    class="euiButton__text"
-                  >
-                    Sound the Alarm
-                  </span>
-                </span>
-              </button>
-              <div
-                class="euiControlBar__text"
-              >
-                Close the Hatch
-              </div>
-              <div
-                class="euiControlBar__divider"
-              />
-              <span
-                class="euiControlBar__icon"
-                color="danger"
-                data-euiicon-type="alert"
-              >
-                Sample Icon
-              </span>
-              <div
-                class="euiControlBar__spacer"
-              />
-              <button
-                class="euiControlBar__tab"
-              >
-                Flight 815
-              </button>
-            </div>
-          </section>
-          <p
-            aria-live="assertive"
-            class="euiScreenReaderOnly"
-          >
-            There is a new region landmark with page level controls at the end of the document.
-          </p>
-        </div>
-      }
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiControlBar euiControlBar--large euiControlBar--fixed"
+    style="left: 0px; right: 0px; max-height: 20rem;"
+  >
+    <h2
+      class="euiScreenReaderOnly"
     >
-      <EuiI18n
-        default="Page level controls"
-        token="euiControlBar.screenReaderHeading"
+      Page level controls
+    </h2>
+    <div
+      class="euiControlBar__controls"
+    >
+      <nav
+        aria-label="Breadcrumbs"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
       >
-        <section
-          aria-label="Page level controls"
-          className="euiControlBar euiControlBar--large euiControlBar--fixed"
-          style={
-            Object {
-              "left": 0,
-              "maxHeight": "20rem",
-              "right": 0,
-            }
-          }
+        <ol
+          class="euiBreadcrumbs__list css-1ifj11g-euiBreadcrumbs__list-isTruncated"
         >
-          <EuiScreenReaderOnly>
-            <h2
-              className="euiScreenReaderOnly"
-            >
-              Page level controls
-            </h2>
-          </EuiScreenReaderOnly>
-          <div
-            className="euiControlBar__controls"
+          <li
+            class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
           >
-            <EuiBreadcrumbs
-              breadcrumbs={
-                Array [
-                  Object {
-                    "text": "src",
-                  },
-                  Object {
-                    "text": "components",
-                  },
-                ]
-              }
-              className="euiControlBar__breadcrumbs"
-              key="current_file_path"
-              responsive={false}
+            <span
+              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              title="src"
             >
-              <nav
-                aria-label="Breadcrumbs"
-                className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
-              >
-                <ol
-                  className="euiBreadcrumbs__list"
-                >
-                  <li
-                    className="euiBreadcrumb"
-                    key="0"
-                  >
-                    <EuiInnerText>
-                      <span
-                        className="euiBreadcrumb__content"
-                        title="src"
-                      >
-                        src
-                      </span>
-                    </EuiInnerText>
-                  </li>
-                  <li
-                    className="euiBreadcrumb euiBreadcrumb--last"
-                    key="1"
-                  >
-                    <EuiInnerText>
-                      <span
-                        aria-current="page"
-                        className="euiBreadcrumb__content"
-                        title="components"
-                      >
-                        components
-                      </span>
-                    </EuiInnerText>
-                  </li>
-                </ol>
-              </nav>
-            </EuiBreadcrumbs>
-            <EuiButton
-              className="euiControlBar__button"
-              color="ghost"
-              data-test-subj="dts"
-              key="sound_the_alarm1"
-              onClick={[Function]}
-              size="s"
+              src
+            </span>
+          </li>
+          <li
+            class="euiBreadcrumb euiBreadcrumb--last css-1czveci-euiBreadcrumb-isTruncated"
+          >
+            <span
+              aria-current="page"
+              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              title="components"
             >
-              <EuiButtonDisplay
-                baseClassName="euiButton"
-                className="euiControlBar__button"
-                color="ghost"
-                data-test-subj="dts"
-                disabled={false}
-                element="button"
-                isDisabled={false}
-                onClick={[Function]}
-                size="s"
-                type="button"
-              >
-                <button
-                  className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                  data-test-subj="dts"
-                  disabled={false}
-                  onClick={[Function]}
-                  style={
-                    Object {
-                      "minWidth": undefined,
-                    }
-                  }
-                  type="button"
-                >
-                  <EuiButtonContent
-                    className="euiButton__content"
-                    iconSide="left"
-                    textProps={
-                      Object {
-                        "className": "euiButton__text",
-                      }
-                    }
-                  >
-                    <span
-                      className="euiButtonContent euiButton__content"
-                    >
-                      <span
-                        className="euiButton__text"
-                      >
-                        Sound the Alarm
-                      </span>
-                    </span>
-                  </EuiButtonContent>
-                </button>
-              </EuiButtonDisplay>
-            </EuiButton>
-            <div
-              className="euiControlBar__text"
-              key="close_the_hatch"
-            >
-              Close the Hatch
-            </div>
-            <div
-              className="euiControlBar__divider"
-              key="divider3"
-            />
-            <EuiIcon
-              aria-label="Sample Icon"
-              className="euiControlBar__icon"
-              color="danger"
-              key="sample_icon4"
-              type="alert"
-            >
-              <span
-                className="euiControlBar__icon"
-                color="danger"
-                data-euiicon-type="alert"
-              >
-                Sample Icon
-              </span>
-            </EuiIcon>
-            <div
-              className="euiControlBar__spacer"
-              key="spacer5"
-            />
-            <button
-              className="euiControlBar__tab"
-              key="flight_8156"
-              onClick={[Function]}
-            >
-              Flight 815
-            </button>
-          </div>
-        </section>
-      </EuiI18n>
-      <EuiScreenReaderOnly>
-        <p
-          aria-live="assertive"
-          className="euiScreenReaderOnly"
+              components
+            </span>
+          </li>
+        </ol>
+      </nav>
+      <button
+        class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+        data-test-subj="dts"
+        type="button"
+      >
+        <span
+          class="euiButtonContent euiButton__content"
         >
-          <EuiI18n
-            default="There is a new region landmark with page level controls at the end of the document."
-            token="euiControlBar.screenReaderAnnouncement"
+          <span
+            class="euiButton__text"
           >
-            There is a new region landmark with page level controls at the end of the document.
-          </EuiI18n>
-        </p>
-      </EuiScreenReaderOnly>
-    </Portal>
-  </EuiPortal>
-</EuiControlBar>
+            Sound the Alarm
+          </span>
+        </span>
+      </button>
+      <div
+        class="euiControlBar__text"
+      >
+        Close the Hatch
+      </div>
+      <div
+        class="euiControlBar__divider"
+      />
+      <span
+        class="euiControlBar__icon"
+        color="danger"
+        data-euiicon-type="alert"
+      >
+        Sample Icon
+      </span>
+      <div
+        class="euiControlBar__spacer"
+      />
+      <button
+        class="euiControlBar__tab"
+      >
+        Flight 815
+      </button>
+    </div>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
 `;
 
 exports[`EuiControlBar props mobile is rendered 1`] = `
-<EuiControlBar
-  controls={
-    Array [
-      Object {
-        "breadcrumbs": Array [
-          Object {
-            "text": "src",
-          },
-          Object {
-            "text": "components",
-          },
-        ],
-        "controlType": "breadcrumbs",
-        "id": "current_file_path",
-        "responsive": false,
-      },
-      Object {
-        "controlType": "button",
-        "data-test-subj": "dts",
-        "id": "sound_the_alarm",
-        "label": "Sound the Alarm",
-        "onClick": [Function],
-      },
-      Object {
-        "controlType": "text",
-        "id": "close_the_hatch",
-        "text": "Close the Hatch",
-      },
-      Object {
-        "controlType": "divider",
-      },
-      Object {
-        "aria-label": "Sample Icon",
-        "color": "danger",
-        "controlType": "icon",
-        "iconType": "alert",
-        "id": "sample_icon",
-      },
-      Object {
-        "controlType": "spacer",
-      },
-      Object {
-        "controlType": "tab",
-        "id": "flight_815",
-        "label": "Flight 815",
-        "onClick": [Function],
-      },
-    ]
-  }
-  leftOffset={0}
-  position="fixed"
-  rightOffset={0}
-  showContent={false}
-  showOnMobile={true}
-  size="l"
->
-  <EuiPortal>
-    <Portal
-      containerInfo={
-        <div>
-          <section
-            aria-label="Page level controls"
-            class="euiControlBar euiControlBar--large euiControlBar--fixed euiControlBar--showOnMobile"
-            style="left: 0px; right: 0px;"
-          >
-            <h2
-              class="euiScreenReaderOnly"
-            >
-              Page level controls
-            </h2>
-            <div
-              class="euiControlBar__controls"
-            >
-              <nav
-                aria-label="Breadcrumbs"
-                class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
-              >
-                <ol
-                  class="euiBreadcrumbs__list"
-                >
-                  <li
-                    class="euiBreadcrumb"
-                  >
-                    <span
-                      class="euiBreadcrumb__content"
-                      title="src"
-                    >
-                      src
-                    </span>
-                  </li>
-                  <li
-                    class="euiBreadcrumb euiBreadcrumb--last"
-                  >
-                    <span
-                      aria-current="page"
-                      class="euiBreadcrumb__content"
-                      title="components"
-                    >
-                      components
-                    </span>
-                  </li>
-                </ol>
-              </nav>
-              <button
-                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                data-test-subj="dts"
-                type="button"
-              >
-                <span
-                  class="euiButtonContent euiButton__content"
-                >
-                  <span
-                    class="euiButton__text"
-                  >
-                    Sound the Alarm
-                  </span>
-                </span>
-              </button>
-              <div
-                class="euiControlBar__text"
-              >
-                Close the Hatch
-              </div>
-              <div
-                class="euiControlBar__divider"
-              />
-              <span
-                class="euiControlBar__icon"
-                color="danger"
-                data-euiicon-type="alert"
-              >
-                Sample Icon
-              </span>
-              <div
-                class="euiControlBar__spacer"
-              />
-              <button
-                class="euiControlBar__tab"
-              >
-                Flight 815
-              </button>
-            </div>
-          </section>
-          <p
-            aria-live="assertive"
-            class="euiScreenReaderOnly"
-          >
-            There is a new region landmark with page level controls at the end of the document.
-          </p>
-        </div>
-      }
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiControlBar euiControlBar--large euiControlBar--fixed euiControlBar--showOnMobile"
+    style="left: 0px; right: 0px;"
+  >
+    <h2
+      class="euiScreenReaderOnly"
     >
-      <EuiI18n
-        default="Page level controls"
-        token="euiControlBar.screenReaderHeading"
+      Page level controls
+    </h2>
+    <div
+      class="euiControlBar__controls"
+    >
+      <nav
+        aria-label="Breadcrumbs"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
       >
-        <section
-          aria-label="Page level controls"
-          className="euiControlBar euiControlBar--large euiControlBar--fixed euiControlBar--showOnMobile"
-          style={
-            Object {
-              "left": 0,
-              "maxHeight": undefined,
-              "right": 0,
-            }
-          }
+        <ol
+          class="euiBreadcrumbs__list css-1ifj11g-euiBreadcrumbs__list-isTruncated"
         >
-          <EuiScreenReaderOnly>
-            <h2
-              className="euiScreenReaderOnly"
-            >
-              Page level controls
-            </h2>
-          </EuiScreenReaderOnly>
-          <div
-            className="euiControlBar__controls"
+          <li
+            class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
           >
-            <EuiBreadcrumbs
-              breadcrumbs={
-                Array [
-                  Object {
-                    "text": "src",
-                  },
-                  Object {
-                    "text": "components",
-                  },
-                ]
-              }
-              className="euiControlBar__breadcrumbs"
-              key="current_file_path"
-              responsive={false}
+            <span
+              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              title="src"
             >
-              <nav
-                aria-label="Breadcrumbs"
-                className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
-              >
-                <ol
-                  className="euiBreadcrumbs__list"
-                >
-                  <li
-                    className="euiBreadcrumb"
-                    key="0"
-                  >
-                    <EuiInnerText>
-                      <span
-                        className="euiBreadcrumb__content"
-                        title="src"
-                      >
-                        src
-                      </span>
-                    </EuiInnerText>
-                  </li>
-                  <li
-                    className="euiBreadcrumb euiBreadcrumb--last"
-                    key="1"
-                  >
-                    <EuiInnerText>
-                      <span
-                        aria-current="page"
-                        className="euiBreadcrumb__content"
-                        title="components"
-                      >
-                        components
-                      </span>
-                    </EuiInnerText>
-                  </li>
-                </ol>
-              </nav>
-            </EuiBreadcrumbs>
-            <EuiButton
-              className="euiControlBar__button"
-              color="ghost"
-              data-test-subj="dts"
-              key="sound_the_alarm1"
-              onClick={[Function]}
-              size="s"
+              src
+            </span>
+          </li>
+          <li
+            class="euiBreadcrumb euiBreadcrumb--last css-1czveci-euiBreadcrumb-isTruncated"
+          >
+            <span
+              aria-current="page"
+              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              title="components"
             >
-              <EuiButtonDisplay
-                baseClassName="euiButton"
-                className="euiControlBar__button"
-                color="ghost"
-                data-test-subj="dts"
-                disabled={false}
-                element="button"
-                isDisabled={false}
-                onClick={[Function]}
-                size="s"
-                type="button"
-              >
-                <button
-                  className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                  data-test-subj="dts"
-                  disabled={false}
-                  onClick={[Function]}
-                  style={
-                    Object {
-                      "minWidth": undefined,
-                    }
-                  }
-                  type="button"
-                >
-                  <EuiButtonContent
-                    className="euiButton__content"
-                    iconSide="left"
-                    textProps={
-                      Object {
-                        "className": "euiButton__text",
-                      }
-                    }
-                  >
-                    <span
-                      className="euiButtonContent euiButton__content"
-                    >
-                      <span
-                        className="euiButton__text"
-                      >
-                        Sound the Alarm
-                      </span>
-                    </span>
-                  </EuiButtonContent>
-                </button>
-              </EuiButtonDisplay>
-            </EuiButton>
-            <div
-              className="euiControlBar__text"
-              key="close_the_hatch"
-            >
-              Close the Hatch
-            </div>
-            <div
-              className="euiControlBar__divider"
-              key="divider3"
-            />
-            <EuiIcon
-              aria-label="Sample Icon"
-              className="euiControlBar__icon"
-              color="danger"
-              key="sample_icon4"
-              type="alert"
-            >
-              <span
-                className="euiControlBar__icon"
-                color="danger"
-                data-euiicon-type="alert"
-              >
-                Sample Icon
-              </span>
-            </EuiIcon>
-            <div
-              className="euiControlBar__spacer"
-              key="spacer5"
-            />
-            <button
-              className="euiControlBar__tab"
-              key="flight_8156"
-              onClick={[Function]}
-            >
-              Flight 815
-            </button>
-          </div>
-        </section>
-      </EuiI18n>
-      <EuiScreenReaderOnly>
-        <p
-          aria-live="assertive"
-          className="euiScreenReaderOnly"
+              components
+            </span>
+          </li>
+        </ol>
+      </nav>
+      <button
+        class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+        data-test-subj="dts"
+        type="button"
+      >
+        <span
+          class="euiButtonContent euiButton__content"
         >
-          <EuiI18n
-            default="There is a new region landmark with page level controls at the end of the document."
-            token="euiControlBar.screenReaderAnnouncement"
+          <span
+            class="euiButton__text"
           >
-            There is a new region landmark with page level controls at the end of the document.
-          </EuiI18n>
-        </p>
-      </EuiScreenReaderOnly>
-    </Portal>
-  </EuiPortal>
-</EuiControlBar>
+            Sound the Alarm
+          </span>
+        </span>
+      </button>
+      <div
+        class="euiControlBar__text"
+      >
+        Close the Hatch
+      </div>
+      <div
+        class="euiControlBar__divider"
+      />
+      <span
+        class="euiControlBar__icon"
+        color="danger"
+        data-euiicon-type="alert"
+      >
+        Sample Icon
+      </span>
+      <div
+        class="euiControlBar__spacer"
+      />
+      <button
+        class="euiControlBar__tab"
+      >
+        Flight 815
+      </button>
+    </div>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
 `;
 
 exports[`EuiControlBar props position is rendered 1`] = `
-<EuiControlBar
-  controls={
-    Array [
-      Object {
-        "breadcrumbs": Array [
-          Object {
-            "text": "src",
-          },
-          Object {
-            "text": "components",
-          },
-        ],
-        "controlType": "breadcrumbs",
-        "id": "current_file_path",
-        "responsive": false,
-      },
-      Object {
-        "controlType": "button",
-        "data-test-subj": "dts",
-        "id": "sound_the_alarm",
-        "label": "Sound the Alarm",
-        "onClick": [Function],
-      },
-      Object {
-        "controlType": "text",
-        "id": "close_the_hatch",
-        "text": "Close the Hatch",
-      },
-      Object {
-        "controlType": "divider",
-      },
-      Object {
-        "aria-label": "Sample Icon",
-        "color": "danger",
-        "controlType": "icon",
-        "iconType": "alert",
-        "id": "sample_icon",
-      },
-      Object {
-        "controlType": "spacer",
-      },
-      Object {
-        "controlType": "tab",
-        "id": "flight_815",
-        "label": "Flight 815",
-        "onClick": [Function],
-      },
-    ]
-  }
-  leftOffset={0}
-  position="absolute"
-  rightOffset={0}
-  showContent={false}
-  showOnMobile={false}
-  size="l"
+<section
+  aria-label="Page level controls"
+  class="euiControlBar euiControlBar--large euiControlBar--absolute"
+  style="left: 0px; right: 0px;"
 >
-  <EuiI18n
-    default="Page level controls"
-    token="euiControlBar.screenReaderHeading"
+  <h2
+    class="euiScreenReaderOnly"
   >
-    <section
-      aria-label="Page level controls"
-      className="euiControlBar euiControlBar--large euiControlBar--absolute"
-      style={
-        Object {
-          "left": 0,
-          "maxHeight": undefined,
-          "right": 0,
-        }
-      }
+    Page level controls
+  </h2>
+  <div
+    class="euiControlBar__controls"
+  >
+    <nav
+      aria-label="Breadcrumbs"
+      class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
     >
-      <EuiScreenReaderOnly>
-        <h2
-          className="euiScreenReaderOnly"
-        >
-          Page level controls
-        </h2>
-      </EuiScreenReaderOnly>
-      <div
-        className="euiControlBar__controls"
+      <ol
+        class="euiBreadcrumbs__list css-1ifj11g-euiBreadcrumbs__list-isTruncated"
       >
-        <EuiBreadcrumbs
-          breadcrumbs={
-            Array [
-              Object {
-                "text": "src",
-              },
-              Object {
-                "text": "components",
-              },
-            ]
-          }
-          className="euiControlBar__breadcrumbs"
-          key="current_file_path"
-          responsive={false}
-        >
-          <nav
-            aria-label="Breadcrumbs"
-            className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
-          >
-            <ol
-              className="euiBreadcrumbs__list"
-            >
-              <li
-                className="euiBreadcrumb"
-                key="0"
-              >
-                <EuiInnerText>
-                  <span
-                    className="euiBreadcrumb__content"
-                    title="src"
-                  >
-                    src
-                  </span>
-                </EuiInnerText>
-              </li>
-              <li
-                className="euiBreadcrumb euiBreadcrumb--last"
-                key="1"
-              >
-                <EuiInnerText>
-                  <span
-                    aria-current="page"
-                    className="euiBreadcrumb__content"
-                    title="components"
-                  >
-                    components
-                  </span>
-                </EuiInnerText>
-              </li>
-            </ol>
-          </nav>
-        </EuiBreadcrumbs>
-        <EuiButton
-          className="euiControlBar__button"
-          color="ghost"
-          data-test-subj="dts"
-          key="sound_the_alarm1"
-          onClick={[Function]}
-          size="s"
-        >
-          <EuiButtonDisplay
-            baseClassName="euiButton"
-            className="euiControlBar__button"
-            color="ghost"
-            data-test-subj="dts"
-            disabled={false}
-            element="button"
-            isDisabled={false}
-            onClick={[Function]}
-            size="s"
-            type="button"
-          >
-            <button
-              className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-              data-test-subj="dts"
-              disabled={false}
-              onClick={[Function]}
-              style={
-                Object {
-                  "minWidth": undefined,
-                }
-              }
-              type="button"
-            >
-              <EuiButtonContent
-                className="euiButton__content"
-                iconSide="left"
-                textProps={
-                  Object {
-                    "className": "euiButton__text",
-                  }
-                }
-              >
-                <span
-                  className="euiButtonContent euiButton__content"
-                >
-                  <span
-                    className="euiButton__text"
-                  >
-                    Sound the Alarm
-                  </span>
-                </span>
-              </EuiButtonContent>
-            </button>
-          </EuiButtonDisplay>
-        </EuiButton>
-        <div
-          className="euiControlBar__text"
-          key="close_the_hatch"
-        >
-          Close the Hatch
-        </div>
-        <div
-          className="euiControlBar__divider"
-          key="divider3"
-        />
-        <EuiIcon
-          aria-label="Sample Icon"
-          className="euiControlBar__icon"
-          color="danger"
-          key="sample_icon4"
-          type="alert"
+        <li
+          class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
         >
           <span
-            className="euiControlBar__icon"
-            color="danger"
-            data-euiicon-type="alert"
+            class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+            title="src"
           >
-            Sample Icon
+            src
           </span>
-        </EuiIcon>
-        <div
-          className="euiControlBar__spacer"
-          key="spacer5"
-        />
-        <button
-          className="euiControlBar__tab"
-          key="flight_8156"
-          onClick={[Function]}
+        </li>
+        <li
+          class="euiBreadcrumb euiBreadcrumb--last css-1czveci-euiBreadcrumb-isTruncated"
         >
-          Flight 815
-        </button>
-      </div>
-    </section>
-  </EuiI18n>
-</EuiControlBar>
+          <span
+            aria-current="page"
+            class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+            title="components"
+          >
+            components
+          </span>
+        </li>
+      </ol>
+    </nav>
+    <button
+      class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+      data-test-subj="dts"
+      type="button"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <span
+          class="euiButton__text"
+        >
+          Sound the Alarm
+        </span>
+      </span>
+    </button>
+    <div
+      class="euiControlBar__text"
+    >
+      Close the Hatch
+    </div>
+    <div
+      class="euiControlBar__divider"
+    />
+    <span
+      class="euiControlBar__icon"
+      color="danger"
+      data-euiicon-type="alert"
+    >
+      Sample Icon
+    </span>
+    <div
+      class="euiControlBar__spacer"
+    />
+    <button
+      class="euiControlBar__tab"
+    >
+      Flight 815
+    </button>
+  </div>
+</section>
 `;
 
 exports[`EuiControlBar props rightOffset is rendered 1`] = `
-<EuiControlBar
-  controls={
-    Array [
-      Object {
-        "breadcrumbs": Array [
-          Object {
-            "text": "src",
-          },
-          Object {
-            "text": "components",
-          },
-        ],
-        "controlType": "breadcrumbs",
-        "id": "current_file_path",
-        "responsive": false,
-      },
-      Object {
-        "controlType": "button",
-        "data-test-subj": "dts",
-        "id": "sound_the_alarm",
-        "label": "Sound the Alarm",
-        "onClick": [Function],
-      },
-      Object {
-        "controlType": "text",
-        "id": "close_the_hatch",
-        "text": "Close the Hatch",
-      },
-      Object {
-        "controlType": "divider",
-      },
-      Object {
-        "aria-label": "Sample Icon",
-        "color": "danger",
-        "controlType": "icon",
-        "iconType": "alert",
-        "id": "sample_icon",
-      },
-      Object {
-        "controlType": "spacer",
-      },
-      Object {
-        "controlType": "tab",
-        "id": "flight_815",
-        "label": "Flight 815",
-        "onClick": [Function],
-      },
-    ]
-  }
-  leftOffset={0}
-  position="fixed"
-  rightOffset={200}
-  showContent={false}
-  showOnMobile={false}
-  size="l"
->
-  <EuiPortal>
-    <Portal
-      containerInfo={
-        <div>
-          <section
-            aria-label="Page level controls"
-            class="euiControlBar euiControlBar--large euiControlBar--fixed"
-            style="left: 0px; right: 200px;"
-          >
-            <h2
-              class="euiScreenReaderOnly"
-            >
-              Page level controls
-            </h2>
-            <div
-              class="euiControlBar__controls"
-            >
-              <nav
-                aria-label="Breadcrumbs"
-                class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
-              >
-                <ol
-                  class="euiBreadcrumbs__list"
-                >
-                  <li
-                    class="euiBreadcrumb"
-                  >
-                    <span
-                      class="euiBreadcrumb__content"
-                      title="src"
-                    >
-                      src
-                    </span>
-                  </li>
-                  <li
-                    class="euiBreadcrumb euiBreadcrumb--last"
-                  >
-                    <span
-                      aria-current="page"
-                      class="euiBreadcrumb__content"
-                      title="components"
-                    >
-                      components
-                    </span>
-                  </li>
-                </ol>
-              </nav>
-              <button
-                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                data-test-subj="dts"
-                type="button"
-              >
-                <span
-                  class="euiButtonContent euiButton__content"
-                >
-                  <span
-                    class="euiButton__text"
-                  >
-                    Sound the Alarm
-                  </span>
-                </span>
-              </button>
-              <div
-                class="euiControlBar__text"
-              >
-                Close the Hatch
-              </div>
-              <div
-                class="euiControlBar__divider"
-              />
-              <span
-                class="euiControlBar__icon"
-                color="danger"
-                data-euiicon-type="alert"
-              >
-                Sample Icon
-              </span>
-              <div
-                class="euiControlBar__spacer"
-              />
-              <button
-                class="euiControlBar__tab"
-              >
-                Flight 815
-              </button>
-            </div>
-          </section>
-          <p
-            aria-live="assertive"
-            class="euiScreenReaderOnly"
-          >
-            There is a new region landmark with page level controls at the end of the document.
-          </p>
-        </div>
-      }
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiControlBar euiControlBar--large euiControlBar--fixed"
+    style="left: 0px; right: 200px;"
+  >
+    <h2
+      class="euiScreenReaderOnly"
     >
-      <EuiI18n
-        default="Page level controls"
-        token="euiControlBar.screenReaderHeading"
+      Page level controls
+    </h2>
+    <div
+      class="euiControlBar__controls"
+    >
+      <nav
+        aria-label="Breadcrumbs"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
       >
-        <section
-          aria-label="Page level controls"
-          className="euiControlBar euiControlBar--large euiControlBar--fixed"
-          style={
-            Object {
-              "left": 0,
-              "maxHeight": undefined,
-              "right": 200,
-            }
-          }
+        <ol
+          class="euiBreadcrumbs__list css-1ifj11g-euiBreadcrumbs__list-isTruncated"
         >
-          <EuiScreenReaderOnly>
-            <h2
-              className="euiScreenReaderOnly"
-            >
-              Page level controls
-            </h2>
-          </EuiScreenReaderOnly>
-          <div
-            className="euiControlBar__controls"
+          <li
+            class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
           >
-            <EuiBreadcrumbs
-              breadcrumbs={
-                Array [
-                  Object {
-                    "text": "src",
-                  },
-                  Object {
-                    "text": "components",
-                  },
-                ]
-              }
-              className="euiControlBar__breadcrumbs"
-              key="current_file_path"
-              responsive={false}
+            <span
+              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              title="src"
             >
-              <nav
-                aria-label="Breadcrumbs"
-                className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
-              >
-                <ol
-                  className="euiBreadcrumbs__list"
-                >
-                  <li
-                    className="euiBreadcrumb"
-                    key="0"
-                  >
-                    <EuiInnerText>
-                      <span
-                        className="euiBreadcrumb__content"
-                        title="src"
-                      >
-                        src
-                      </span>
-                    </EuiInnerText>
-                  </li>
-                  <li
-                    className="euiBreadcrumb euiBreadcrumb--last"
-                    key="1"
-                  >
-                    <EuiInnerText>
-                      <span
-                        aria-current="page"
-                        className="euiBreadcrumb__content"
-                        title="components"
-                      >
-                        components
-                      </span>
-                    </EuiInnerText>
-                  </li>
-                </ol>
-              </nav>
-            </EuiBreadcrumbs>
-            <EuiButton
-              className="euiControlBar__button"
-              color="ghost"
-              data-test-subj="dts"
-              key="sound_the_alarm1"
-              onClick={[Function]}
-              size="s"
+              src
+            </span>
+          </li>
+          <li
+            class="euiBreadcrumb euiBreadcrumb--last css-1czveci-euiBreadcrumb-isTruncated"
+          >
+            <span
+              aria-current="page"
+              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              title="components"
             >
-              <EuiButtonDisplay
-                baseClassName="euiButton"
-                className="euiControlBar__button"
-                color="ghost"
-                data-test-subj="dts"
-                disabled={false}
-                element="button"
-                isDisabled={false}
-                onClick={[Function]}
-                size="s"
-                type="button"
-              >
-                <button
-                  className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                  data-test-subj="dts"
-                  disabled={false}
-                  onClick={[Function]}
-                  style={
-                    Object {
-                      "minWidth": undefined,
-                    }
-                  }
-                  type="button"
-                >
-                  <EuiButtonContent
-                    className="euiButton__content"
-                    iconSide="left"
-                    textProps={
-                      Object {
-                        "className": "euiButton__text",
-                      }
-                    }
-                  >
-                    <span
-                      className="euiButtonContent euiButton__content"
-                    >
-                      <span
-                        className="euiButton__text"
-                      >
-                        Sound the Alarm
-                      </span>
-                    </span>
-                  </EuiButtonContent>
-                </button>
-              </EuiButtonDisplay>
-            </EuiButton>
-            <div
-              className="euiControlBar__text"
-              key="close_the_hatch"
-            >
-              Close the Hatch
-            </div>
-            <div
-              className="euiControlBar__divider"
-              key="divider3"
-            />
-            <EuiIcon
-              aria-label="Sample Icon"
-              className="euiControlBar__icon"
-              color="danger"
-              key="sample_icon4"
-              type="alert"
-            >
-              <span
-                className="euiControlBar__icon"
-                color="danger"
-                data-euiicon-type="alert"
-              >
-                Sample Icon
-              </span>
-            </EuiIcon>
-            <div
-              className="euiControlBar__spacer"
-              key="spacer5"
-            />
-            <button
-              className="euiControlBar__tab"
-              key="flight_8156"
-              onClick={[Function]}
-            >
-              Flight 815
-            </button>
-          </div>
-        </section>
-      </EuiI18n>
-      <EuiScreenReaderOnly>
-        <p
-          aria-live="assertive"
-          className="euiScreenReaderOnly"
+              components
+            </span>
+          </li>
+        </ol>
+      </nav>
+      <button
+        class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+        data-test-subj="dts"
+        type="button"
+      >
+        <span
+          class="euiButtonContent euiButton__content"
         >
-          <EuiI18n
-            default="There is a new region landmark with page level controls at the end of the document."
-            token="euiControlBar.screenReaderAnnouncement"
+          <span
+            class="euiButton__text"
           >
-            There is a new region landmark with page level controls at the end of the document.
-          </EuiI18n>
-        </p>
-      </EuiScreenReaderOnly>
-    </Portal>
-  </EuiPortal>
-</EuiControlBar>
+            Sound the Alarm
+          </span>
+        </span>
+      </button>
+      <div
+        class="euiControlBar__text"
+      >
+        Close the Hatch
+      </div>
+      <div
+        class="euiControlBar__divider"
+      />
+      <span
+        class="euiControlBar__icon"
+        color="danger"
+        data-euiicon-type="alert"
+      >
+        Sample Icon
+      </span>
+      <div
+        class="euiControlBar__spacer"
+      />
+      <button
+        class="euiControlBar__tab"
+      >
+        Flight 815
+      </button>
+    </div>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
 `;
 
 exports[`EuiControlBar props showContent is rendered 1`] = `
-<EuiControlBar
-  controls={
-    Array [
-      Object {
-        "breadcrumbs": Array [
-          Object {
-            "text": "src",
-          },
-          Object {
-            "text": "components",
-          },
-        ],
-        "controlType": "breadcrumbs",
-        "id": "current_file_path",
-        "responsive": false,
-      },
-      Object {
-        "controlType": "button",
-        "data-test-subj": "dts",
-        "id": "sound_the_alarm",
-        "label": "Sound the Alarm",
-        "onClick": [Function],
-      },
-      Object {
-        "controlType": "text",
-        "id": "close_the_hatch",
-        "text": "Close the Hatch",
-      },
-      Object {
-        "controlType": "divider",
-      },
-      Object {
-        "aria-label": "Sample Icon",
-        "color": "danger",
-        "controlType": "icon",
-        "iconType": "alert",
-        "id": "sample_icon",
-      },
-      Object {
-        "controlType": "spacer",
-      },
-      Object {
-        "controlType": "tab",
-        "id": "flight_815",
-        "label": "Flight 815",
-        "onClick": [Function],
-      },
-    ]
-  }
-  leftOffset={0}
-  position="fixed"
-  rightOffset={0}
-  showContent={true}
-  showOnMobile={false}
-  size="l"
->
-  <EuiPortal>
-    <Portal
-      containerInfo={
-        <div>
-          <section
-            aria-label="Page level controls"
-            class="euiControlBar euiControlBar-isOpen euiControlBar--large euiControlBar--fixed"
-            style="left: 0px; right: 0px;"
-          >
-            <h2
-              class="euiScreenReaderOnly"
-            >
-              Page level controls
-            </h2>
-            <div
-              class="euiControlBar__controls"
-            >
-              <nav
-                aria-label="Breadcrumbs"
-                class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
-              >
-                <ol
-                  class="euiBreadcrumbs__list"
-                >
-                  <li
-                    class="euiBreadcrumb"
-                  >
-                    <span
-                      class="euiBreadcrumb__content"
-                      title="src"
-                    >
-                      src
-                    </span>
-                  </li>
-                  <li
-                    class="euiBreadcrumb euiBreadcrumb--last"
-                  >
-                    <span
-                      aria-current="page"
-                      class="euiBreadcrumb__content"
-                      title="components"
-                    >
-                      components
-                    </span>
-                  </li>
-                </ol>
-              </nav>
-              <button
-                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                data-test-subj="dts"
-                type="button"
-              >
-                <span
-                  class="euiButtonContent euiButton__content"
-                >
-                  <span
-                    class="euiButton__text"
-                  >
-                    Sound the Alarm
-                  </span>
-                </span>
-              </button>
-              <div
-                class="euiControlBar__text"
-              >
-                Close the Hatch
-              </div>
-              <div
-                class="euiControlBar__divider"
-              />
-              <span
-                class="euiControlBar__icon"
-                color="danger"
-                data-euiicon-type="alert"
-              >
-                Sample Icon
-              </span>
-              <div
-                class="euiControlBar__spacer"
-              />
-              <button
-                class="euiControlBar__tab"
-              >
-                Flight 815
-              </button>
-            </div>
-            <div
-              class="euiControlBar__content"
-            >
-              Content
-            </div>
-          </section>
-          <p
-            aria-live="assertive"
-            class="euiScreenReaderOnly"
-          >
-            There is a new region landmark with page level controls at the end of the document.
-          </p>
-        </div>
-      }
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiControlBar euiControlBar-isOpen euiControlBar--large euiControlBar--fixed"
+    style="left: 0px; right: 0px;"
+  >
+    <h2
+      class="euiScreenReaderOnly"
     >
-      <EuiI18n
-        default="Page level controls"
-        token="euiControlBar.screenReaderHeading"
+      Page level controls
+    </h2>
+    <div
+      class="euiControlBar__controls"
+    >
+      <nav
+        aria-label="Breadcrumbs"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
       >
-        <section
-          aria-label="Page level controls"
-          className="euiControlBar euiControlBar-isOpen euiControlBar--large euiControlBar--fixed"
-          style={
-            Object {
-              "left": 0,
-              "maxHeight": undefined,
-              "right": 0,
-            }
-          }
+        <ol
+          class="euiBreadcrumbs__list css-1ifj11g-euiBreadcrumbs__list-isTruncated"
         >
-          <EuiScreenReaderOnly>
-            <h2
-              className="euiScreenReaderOnly"
-            >
-              Page level controls
-            </h2>
-          </EuiScreenReaderOnly>
-          <div
-            className="euiControlBar__controls"
+          <li
+            class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
           >
-            <EuiBreadcrumbs
-              breadcrumbs={
-                Array [
-                  Object {
-                    "text": "src",
-                  },
-                  Object {
-                    "text": "components",
-                  },
-                ]
-              }
-              className="euiControlBar__breadcrumbs"
-              key="current_file_path"
-              responsive={false}
+            <span
+              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              title="src"
             >
-              <nav
-                aria-label="Breadcrumbs"
-                className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
-              >
-                <ol
-                  className="euiBreadcrumbs__list"
-                >
-                  <li
-                    className="euiBreadcrumb"
-                    key="0"
-                  >
-                    <EuiInnerText>
-                      <span
-                        className="euiBreadcrumb__content"
-                        title="src"
-                      >
-                        src
-                      </span>
-                    </EuiInnerText>
-                  </li>
-                  <li
-                    className="euiBreadcrumb euiBreadcrumb--last"
-                    key="1"
-                  >
-                    <EuiInnerText>
-                      <span
-                        aria-current="page"
-                        className="euiBreadcrumb__content"
-                        title="components"
-                      >
-                        components
-                      </span>
-                    </EuiInnerText>
-                  </li>
-                </ol>
-              </nav>
-            </EuiBreadcrumbs>
-            <EuiButton
-              className="euiControlBar__button"
-              color="ghost"
-              data-test-subj="dts"
-              key="sound_the_alarm1"
-              onClick={[Function]}
-              size="s"
-            >
-              <EuiButtonDisplay
-                baseClassName="euiButton"
-                className="euiControlBar__button"
-                color="ghost"
-                data-test-subj="dts"
-                disabled={false}
-                element="button"
-                isDisabled={false}
-                onClick={[Function]}
-                size="s"
-                type="button"
-              >
-                <button
-                  className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                  data-test-subj="dts"
-                  disabled={false}
-                  onClick={[Function]}
-                  style={
-                    Object {
-                      "minWidth": undefined,
-                    }
-                  }
-                  type="button"
-                >
-                  <EuiButtonContent
-                    className="euiButton__content"
-                    iconSide="left"
-                    textProps={
-                      Object {
-                        "className": "euiButton__text",
-                      }
-                    }
-                  >
-                    <span
-                      className="euiButtonContent euiButton__content"
-                    >
-                      <span
-                        className="euiButton__text"
-                      >
-                        Sound the Alarm
-                      </span>
-                    </span>
-                  </EuiButtonContent>
-                </button>
-              </EuiButtonDisplay>
-            </EuiButton>
-            <div
-              className="euiControlBar__text"
-              key="close_the_hatch"
-            >
-              Close the Hatch
-            </div>
-            <div
-              className="euiControlBar__divider"
-              key="divider3"
-            />
-            <EuiIcon
-              aria-label="Sample Icon"
-              className="euiControlBar__icon"
-              color="danger"
-              key="sample_icon4"
-              type="alert"
-            >
-              <span
-                className="euiControlBar__icon"
-                color="danger"
-                data-euiicon-type="alert"
-              >
-                Sample Icon
-              </span>
-            </EuiIcon>
-            <div
-              className="euiControlBar__spacer"
-              key="spacer5"
-            />
-            <button
-              className="euiControlBar__tab"
-              key="flight_8156"
-              onClick={[Function]}
-            >
-              Flight 815
-            </button>
-          </div>
-          <div
-            className="euiControlBar__content"
+              src
+            </span>
+          </li>
+          <li
+            class="euiBreadcrumb euiBreadcrumb--last css-1czveci-euiBreadcrumb-isTruncated"
           >
-            Content
-          </div>
-        </section>
-      </EuiI18n>
-      <EuiScreenReaderOnly>
-        <p
-          aria-live="assertive"
-          className="euiScreenReaderOnly"
+            <span
+              aria-current="page"
+              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              title="components"
+            >
+              components
+            </span>
+          </li>
+        </ol>
+      </nav>
+      <button
+        class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+        data-test-subj="dts"
+        type="button"
+      >
+        <span
+          class="euiButtonContent euiButton__content"
         >
-          <EuiI18n
-            default="There is a new region landmark with page level controls at the end of the document."
-            token="euiControlBar.screenReaderAnnouncement"
+          <span
+            class="euiButton__text"
           >
-            There is a new region landmark with page level controls at the end of the document.
-          </EuiI18n>
-        </p>
-      </EuiScreenReaderOnly>
-    </Portal>
-  </EuiPortal>
-</EuiControlBar>
+            Sound the Alarm
+          </span>
+        </span>
+      </button>
+      <div
+        class="euiControlBar__text"
+      >
+        Close the Hatch
+      </div>
+      <div
+        class="euiControlBar__divider"
+      />
+      <span
+        class="euiControlBar__icon"
+        color="danger"
+        data-euiicon-type="alert"
+      >
+        Sample Icon
+      </span>
+      <div
+        class="euiControlBar__spacer"
+      />
+      <button
+        class="euiControlBar__tab"
+      >
+        Flight 815
+      </button>
+    </div>
+    <div
+      class="euiControlBar__content"
+    >
+      Content
+    </div>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
 `;
 
 exports[`EuiControlBar props size is rendered 1`] = `
-<EuiControlBar
-  controls={
-    Array [
-      Object {
-        "breadcrumbs": Array [
-          Object {
-            "text": "src",
-          },
-          Object {
-            "text": "components",
-          },
-        ],
-        "controlType": "breadcrumbs",
-        "id": "current_file_path",
-        "responsive": false,
-      },
-      Object {
-        "controlType": "button",
-        "data-test-subj": "dts",
-        "id": "sound_the_alarm",
-        "label": "Sound the Alarm",
-        "onClick": [Function],
-      },
-      Object {
-        "controlType": "text",
-        "id": "close_the_hatch",
-        "text": "Close the Hatch",
-      },
-      Object {
-        "controlType": "divider",
-      },
-      Object {
-        "aria-label": "Sample Icon",
-        "color": "danger",
-        "controlType": "icon",
-        "iconType": "alert",
-        "id": "sample_icon",
-      },
-      Object {
-        "controlType": "spacer",
-      },
-      Object {
-        "controlType": "tab",
-        "id": "flight_815",
-        "label": "Flight 815",
-        "onClick": [Function],
-      },
-    ]
-  }
-  leftOffset={0}
-  position="fixed"
-  rightOffset={0}
-  showContent={false}
-  showOnMobile={false}
-  size="s"
->
-  <EuiPortal>
-    <Portal
-      containerInfo={
-        <div>
-          <section
-            aria-label="Page level controls"
-            class="euiControlBar euiControlBar--small euiControlBar--fixed"
-            style="left: 0px; right: 0px;"
-          >
-            <h2
-              class="euiScreenReaderOnly"
-            >
-              Page level controls
-            </h2>
-            <div
-              class="euiControlBar__controls"
-            >
-              <nav
-                aria-label="Breadcrumbs"
-                class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
-              >
-                <ol
-                  class="euiBreadcrumbs__list"
-                >
-                  <li
-                    class="euiBreadcrumb"
-                  >
-                    <span
-                      class="euiBreadcrumb__content"
-                      title="src"
-                    >
-                      src
-                    </span>
-                  </li>
-                  <li
-                    class="euiBreadcrumb euiBreadcrumb--last"
-                  >
-                    <span
-                      aria-current="page"
-                      class="euiBreadcrumb__content"
-                      title="components"
-                    >
-                      components
-                    </span>
-                  </li>
-                </ol>
-              </nav>
-              <button
-                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                data-test-subj="dts"
-                type="button"
-              >
-                <span
-                  class="euiButtonContent euiButton__content"
-                >
-                  <span
-                    class="euiButton__text"
-                  >
-                    Sound the Alarm
-                  </span>
-                </span>
-              </button>
-              <div
-                class="euiControlBar__text"
-              >
-                Close the Hatch
-              </div>
-              <div
-                class="euiControlBar__divider"
-              />
-              <span
-                class="euiControlBar__icon"
-                color="danger"
-                data-euiicon-type="alert"
-              >
-                Sample Icon
-              </span>
-              <div
-                class="euiControlBar__spacer"
-              />
-              <button
-                class="euiControlBar__tab"
-              >
-                Flight 815
-              </button>
-            </div>
-          </section>
-          <p
-            aria-live="assertive"
-            class="euiScreenReaderOnly"
-          >
-            There is a new region landmark with page level controls at the end of the document.
-          </p>
-        </div>
-      }
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiControlBar euiControlBar--small euiControlBar--fixed"
+    style="left: 0px; right: 0px;"
+  >
+    <h2
+      class="euiScreenReaderOnly"
     >
-      <EuiI18n
-        default="Page level controls"
-        token="euiControlBar.screenReaderHeading"
+      Page level controls
+    </h2>
+    <div
+      class="euiControlBar__controls"
+    >
+      <nav
+        aria-label="Breadcrumbs"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
       >
-        <section
-          aria-label="Page level controls"
-          className="euiControlBar euiControlBar--small euiControlBar--fixed"
-          style={
-            Object {
-              "left": 0,
-              "maxHeight": undefined,
-              "right": 0,
-            }
-          }
+        <ol
+          class="euiBreadcrumbs__list css-1ifj11g-euiBreadcrumbs__list-isTruncated"
         >
-          <EuiScreenReaderOnly>
-            <h2
-              className="euiScreenReaderOnly"
-            >
-              Page level controls
-            </h2>
-          </EuiScreenReaderOnly>
-          <div
-            className="euiControlBar__controls"
+          <li
+            class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
           >
-            <EuiBreadcrumbs
-              breadcrumbs={
-                Array [
-                  Object {
-                    "text": "src",
-                  },
-                  Object {
-                    "text": "components",
-                  },
-                ]
-              }
-              className="euiControlBar__breadcrumbs"
-              key="current_file_path"
-              responsive={false}
+            <span
+              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              title="src"
             >
-              <nav
-                aria-label="Breadcrumbs"
-                className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
-              >
-                <ol
-                  className="euiBreadcrumbs__list"
-                >
-                  <li
-                    className="euiBreadcrumb"
-                    key="0"
-                  >
-                    <EuiInnerText>
-                      <span
-                        className="euiBreadcrumb__content"
-                        title="src"
-                      >
-                        src
-                      </span>
-                    </EuiInnerText>
-                  </li>
-                  <li
-                    className="euiBreadcrumb euiBreadcrumb--last"
-                    key="1"
-                  >
-                    <EuiInnerText>
-                      <span
-                        aria-current="page"
-                        className="euiBreadcrumb__content"
-                        title="components"
-                      >
-                        components
-                      </span>
-                    </EuiInnerText>
-                  </li>
-                </ol>
-              </nav>
-            </EuiBreadcrumbs>
-            <EuiButton
-              className="euiControlBar__button"
-              color="ghost"
-              data-test-subj="dts"
-              key="sound_the_alarm1"
-              onClick={[Function]}
-              size="s"
+              src
+            </span>
+          </li>
+          <li
+            class="euiBreadcrumb euiBreadcrumb--last css-1czveci-euiBreadcrumb-isTruncated"
+          >
+            <span
+              aria-current="page"
+              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              title="components"
             >
-              <EuiButtonDisplay
-                baseClassName="euiButton"
-                className="euiControlBar__button"
-                color="ghost"
-                data-test-subj="dts"
-                disabled={false}
-                element="button"
-                isDisabled={false}
-                onClick={[Function]}
-                size="s"
-                type="button"
-              >
-                <button
-                  className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                  data-test-subj="dts"
-                  disabled={false}
-                  onClick={[Function]}
-                  style={
-                    Object {
-                      "minWidth": undefined,
-                    }
-                  }
-                  type="button"
-                >
-                  <EuiButtonContent
-                    className="euiButton__content"
-                    iconSide="left"
-                    textProps={
-                      Object {
-                        "className": "euiButton__text",
-                      }
-                    }
-                  >
-                    <span
-                      className="euiButtonContent euiButton__content"
-                    >
-                      <span
-                        className="euiButton__text"
-                      >
-                        Sound the Alarm
-                      </span>
-                    </span>
-                  </EuiButtonContent>
-                </button>
-              </EuiButtonDisplay>
-            </EuiButton>
-            <div
-              className="euiControlBar__text"
-              key="close_the_hatch"
-            >
-              Close the Hatch
-            </div>
-            <div
-              className="euiControlBar__divider"
-              key="divider3"
-            />
-            <EuiIcon
-              aria-label="Sample Icon"
-              className="euiControlBar__icon"
-              color="danger"
-              key="sample_icon4"
-              type="alert"
-            >
-              <span
-                className="euiControlBar__icon"
-                color="danger"
-                data-euiicon-type="alert"
-              >
-                Sample Icon
-              </span>
-            </EuiIcon>
-            <div
-              className="euiControlBar__spacer"
-              key="spacer5"
-            />
-            <button
-              className="euiControlBar__tab"
-              key="flight_8156"
-              onClick={[Function]}
-            >
-              Flight 815
-            </button>
-          </div>
-        </section>
-      </EuiI18n>
-      <EuiScreenReaderOnly>
-        <p
-          aria-live="assertive"
-          className="euiScreenReaderOnly"
+              components
+            </span>
+          </li>
+        </ol>
+      </nav>
+      <button
+        class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+        data-test-subj="dts"
+        type="button"
+      >
+        <span
+          class="euiButtonContent euiButton__content"
         >
-          <EuiI18n
-            default="There is a new region landmark with page level controls at the end of the document."
-            token="euiControlBar.screenReaderAnnouncement"
+          <span
+            class="euiButton__text"
           >
-            There is a new region landmark with page level controls at the end of the document.
-          </EuiI18n>
-        </p>
-      </EuiScreenReaderOnly>
-    </Portal>
-  </EuiPortal>
-</EuiControlBar>
+            Sound the Alarm
+          </span>
+        </span>
+      </button>
+      <div
+        class="euiControlBar__text"
+      >
+        Close the Hatch
+      </div>
+      <div
+        class="euiControlBar__divider"
+      />
+      <span
+        class="euiControlBar__icon"
+        color="danger"
+        data-euiicon-type="alert"
+      >
+        Sample Icon
+      </span>
+      <div
+        class="euiControlBar__spacer"
+      />
+      <button
+        class="euiControlBar__tab"
+      >
+        Flight 815
+      </button>
+    </div>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
 `;

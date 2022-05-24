@@ -78,7 +78,7 @@ describe('EuiControlBar', () => {
         <EuiControlBar controls={controls} showOnMobile />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('showContent is rendered', () => {
@@ -88,7 +88,7 @@ describe('EuiControlBar', () => {
         </EuiControlBar>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('size is rendered', () => {
@@ -98,7 +98,7 @@ describe('EuiControlBar', () => {
         </EuiControlBar>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('maxHeight is rendered', () => {
@@ -108,7 +108,7 @@ describe('EuiControlBar', () => {
         </EuiControlBar>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('leftOffset is rendered', () => {
@@ -118,7 +118,7 @@ describe('EuiControlBar', () => {
         </EuiControlBar>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('rightOffset is rendered', () => {
@@ -128,7 +128,7 @@ describe('EuiControlBar', () => {
         </EuiControlBar>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('position is rendered', () => {
@@ -138,7 +138,7 @@ describe('EuiControlBar', () => {
         </EuiControlBar>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
   });
 });
