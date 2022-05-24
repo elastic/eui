@@ -117,28 +117,30 @@ export default () => {
   ];
 
   return (
-    <EuiCommentList aria-label="Actions">
-      <EuiComment
-        username="janed"
-        event="added a comment"
-        actions={customActions}
-        timestamp="on Jan 1, 2020"
-      >
-        {body}
-      </EuiComment>
-      <EuiComment
-        username="system"
-        avatarIcon="dot"
-        event={
-          <>
-            pushed a new incident <EuiLink>malware detection</EuiLink>
-          </>
-        }
-        actions={updateActions}
-        timestamp="on Jan 2, 2020"
-        eventColor="danger"
-      />
+    <>
+      <EuiCommentList aria-label="Actions">
+        <EuiComment
+          username="janed"
+          event="added a comment"
+          actions={customActions}
+          timestamp="on Jan 1, 2020"
+        >
+          {body}
+        </EuiComment>
+        <EuiComment
+          username="system"
+          avatarIcon="dot"
+          event={
+            <>
+              pushed a new incident <EuiLink>malware detection</EuiLink>
+            </>
+          }
+          actions={updateActions}
+          timestamp="on Jan 2, 2020"
+          eventColor="danger"
+        />
+      </EuiCommentList>
       {flyout}
-    </EuiCommentList>
+    </>
   );
 };

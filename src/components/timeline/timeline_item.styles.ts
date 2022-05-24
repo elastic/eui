@@ -13,11 +13,11 @@ export const euiTimelineItemStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiTimelineItem: css`
     display: flex;
 
-    &:not(:last-of-type) {
+    &:not(:last-child) {
       padding-bottom: ${euiTheme.size.xl};
     }
 
-    &:first-of-type {
+    &:first-child {
       > [class*='euiTimelineItemIcon-center']::before {
         top: 50%;
         // Adding to the height the padding bottom from the parent container
@@ -25,13 +25,12 @@ export const euiTimelineItemStyles = ({ euiTheme }: UseEuiTheme) => ({
       }
     }
 
-    &:last-of-type {
-      > [class*='euiTimelineItemIcon']::before {
+    &:last-child {
+      > [class*='euiTimelineItemIcon-top']::before {
         display: none;
       }
 
-      &:not(:only-child) > [class*='euiTimelineItemIcon-center']::before {
-        display: flex;
+      > [class*='euiTimelineItemIcon-center']::before {
         top: 0;
         height: 50%;
       }

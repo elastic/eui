@@ -22,13 +22,15 @@ const copyAction = (
 );
 
 export default () => (
-  <EuiComment
-    username="janed"
-    event="added a comment"
-    actions={copyAction}
-    timestamp="on Jan 1, 2020"
-    component="div"
-  >
-    {body}
-  </EuiComment>
+  <div>
+    <EuiComment
+      username="janed"
+      event="added a comment"
+      actions={copyAction}
+      timestamp="on Jan 1, 2020"
+      component="div"
+    >
+      {body}
+    </EuiComment>
+  </div>
 );

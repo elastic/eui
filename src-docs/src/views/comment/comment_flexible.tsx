@@ -128,7 +128,9 @@ export default () => {
         color="primary"
       />
       <EuiSpacer />
-      <EuiComment component="div" {...comment} />
+      <div>
+        <EuiComment component="div" {...comment} />
+      </div>
     </>
   );
 };

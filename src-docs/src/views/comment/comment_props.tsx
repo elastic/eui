@@ -55,87 +55,87 @@ export default ({ snippet }: any) => {
       paddingSize="none"
       style={{ maxWidth: '540px' }}
     >
-      <EuiComment
-        avatarName="Avatar"
-        avatarProps={{ color: euiTheme.colors.primaryText }}
-        css={css`
-          overflow: initial;
-        `}
-      >
-        <div
-          css={css`
-            border-radius: ${euiTheme.border.radius.small};
-            border: ${euiTheme.border.thin};
-            ${useEuiFontSize('s')};
-          `}
+      <div>
+        <EuiComment
+          component="div"
+          avatarName="Avatar"
+          avatarProps={{ color: euiTheme.colors.primaryText }}
         >
           <div
             css={css`
-              border-radius: ${euiTheme.border.radius.small}
-                ${euiTheme.border.radius.small} 0 0;
-              padding: ${euiTheme.size.s};
-              background: ${euiTheme.colors.lightestShade};
-              border-bottom: ${euiTheme.border.thin};
-              display: flex;
+              border-radius: ${euiTheme.border.radius.small};
+              border: ${euiTheme.border.thin};
+              ${useEuiFontSize('s')};
             `}
           >
             <div
               css={css`
-                flex: 1;
+                border-radius: ${euiTheme.border.radius.small}
+                  ${euiTheme.border.radius.small} 0 0;
+                padding: ${euiTheme.size.s};
+                background: ${euiTheme.colors.lightestShade};
+                border-bottom: ${euiTheme.border.thin};
                 display: flex;
-                gap: ${euiTheme.size.xs};
+              `}
+            >
+              <div
+                css={css`
+                  flex: 1;
+                  display: flex;
+                  gap: ${euiTheme.size.xs};
+                  align-items: center;
+                `}
+              >
+                <span
+                  css={css`
+                    ${logicalCSS('margin-right', euiTheme.size.s)}
+                  `}
+                >
+                  <EuiAvatar
+                    name="event icon"
+                    size="s"
+                    color={euiTheme.colors.primaryText}
+                    initials="B"
+                  />
+                </span>
+
+                <HighlightedArea>
+                  <CircleIndicator name="C" /> username
+                </HighlightedArea>
+
+                <HighlightedArea>
+                  <CircleIndicator name="D" /> event
+                </HighlightedArea>
+
+                <HighlightedArea>
+                  <CircleIndicator name="E" /> timestamp
+                </HighlightedArea>
+              </div>
+
+              <HighlightedArea>
+                <CircleIndicator name="F" />
+                <EuiButtonIcon
+                  aria-hidden="true"
+                  iconType="boxesVertical"
+                  color="text"
+                />
+              </HighlightedArea>
+            </div>
+            <div
+              css={css`
+                position: relative;
+                padding: ${euiTheme.size.s};
+                display: flex;
                 align-items: center;
               `}
             >
-              <span
-                css={css`
-                  ${logicalCSS('margin-right', euiTheme.size.s)}
-                `}
-              >
-                <EuiAvatar
-                  name="event icon"
-                  size="s"
-                  color={euiTheme.colors.primaryText}
-                  initials="B"
-                />
-              </span>
-
               <HighlightedArea>
-                <CircleIndicator name="C" /> username
-              </HighlightedArea>
-
-              <HighlightedArea>
-                <CircleIndicator name="D" /> event
-              </HighlightedArea>
-
-              <HighlightedArea>
-                <CircleIndicator name="E" /> timestamp
+                <CircleIndicator name="G" /> children
               </HighlightedArea>
             </div>
-
-            <HighlightedArea>
-              <CircleIndicator name="F" />
-              <EuiButtonIcon
-                aria-hidden="true"
-                iconType="boxesVertical"
-                color="text"
-              />
-            </HighlightedArea>
           </div>
-          <div
-            css={css`
-              position: relative;
-              padding: ${euiTheme.size.s};
-              display: flex;
-              align-items: center;
-            `}
-          >
-            <HighlightedArea>
-              <CircleIndicator name="G" /> children
-            </HighlightedArea>
-          </div>
-        </div>
-      </EuiComment>
+        </EuiComment>
+      </div>
 
       <EuiSpacer size="xs" />
       <EuiAccordion
