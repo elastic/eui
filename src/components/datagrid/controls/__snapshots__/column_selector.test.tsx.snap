@@ -37,7 +37,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
   aria-describedby="generated-id"
   aria-live="off"
   aria-modal="true"
-  class="euiPanel euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop css-6zsgh2-euiPanel-grow-m-s-plain"
+  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop css-6zsgh2-euiPanel-grow-m-s-plain"
   data-autofocus="true"
   data-popover-panel="true"
   role="dialog"

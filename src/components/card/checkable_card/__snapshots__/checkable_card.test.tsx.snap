@@ -5,7 +5,7 @@ exports[`EuiCheckableCard is rendered 1`] = `
   class="euiPanel euiPanel--plain euiSplitPanel euiSplitPanel--row euiCheckableCard testClass1 testClass2 css-10vseit-euiPanel-m-plain-hasBorder"
 >
   <div
-    class="euiPanel euiPanel--subdued euiSplitPanel__inner css-pgk7sw-euiPanel-none-m-subdued-isClickable"
+    class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiSplitPanel__inner css-pgk7sw-euiPanel-none-m-subdued-isClickable"
   >
     <div
       aria-label="aria-label"
@@ -23,7 +23,7 @@ exports[`EuiCheckableCard is rendered 1`] = `
     </div>
   </div>
   <div
-    class="euiPanel euiPanel--transparent euiSplitPanel__inner css-cu48yn-euiPanel-grow-none-m-transparent"
+    class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiSplitPanel__inner css-cu48yn-euiPanel-grow-none-m-transparent"
   >
     <label
       class="euiCheckableCard__label"
@@ -40,7 +40,7 @@ exports[`EuiCheckableCard renders a checkbox when specified 1`] = `
   class="euiPanel euiPanel--plain euiSplitPanel euiSplitPanel--row euiCheckableCard testClass1 testClass2 css-10vseit-euiPanel-m-plain-hasBorder"
 >
   <div
-    class="euiPanel euiPanel--subdued euiSplitPanel__inner css-pgk7sw-euiPanel-none-m-subdued-isClickable"
+    class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiSplitPanel__inner css-pgk7sw-euiPanel-none-m-subdued-isClickable"
   >
     <div
       class="euiCheckbox euiCheckbox--noLabel"
@@ -58,7 +58,7 @@ exports[`EuiCheckableCard renders a checkbox when specified 1`] = `
     </div>
   </div>
   <div
-    class="euiPanel euiPanel--transparent euiSplitPanel__inner css-cu48yn-euiPanel-grow-none-m-transparent"
+    class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiSplitPanel__inner css-cu48yn-euiPanel-grow-none-m-transparent"
   >
     <label
       class="euiCheckableCard__label"
@@ -75,7 +75,7 @@ exports[`EuiCheckableCard renders children 1`] = `
   class="euiPanel euiPanel--plain euiSplitPanel euiSplitPanel--row euiCheckableCard css-10vseit-euiPanel-m-plain-hasBorder"
 >
   <div
-    class="euiPanel euiPanel--subdued euiSplitPanel__inner css-pgk7sw-euiPanel-none-m-subdued-isClickable"
+    class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiSplitPanel__inner css-pgk7sw-euiPanel-none-m-subdued-isClickable"
   >
     <div
       class="euiRadio euiRadio--noLabel"
@@ -91,7 +91,7 @@ exports[`EuiCheckableCard renders children 1`] = `
     </div>
   </div>
   <div
-    class="euiPanel euiPanel--transparent euiSplitPanel__inner css-cu48yn-euiPanel-grow-none-m-transparent"
+    class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiSplitPanel__inner css-cu48yn-euiPanel-grow-none-m-transparent"
   >
     <label
       aria-describedby="id-details"
@@ -115,7 +115,7 @@ exports[`EuiCheckableCard renders disabled 1`] = `
   class="euiPanel euiPanel--plain euiSplitPanel euiSplitPanel--row euiCheckableCard euiCheckableCard-isDisabled css-10vseit-euiPanel-m-plain-hasBorder"
 >
   <div
-    class="euiPanel euiPanel--subdued euiSplitPanel__inner css-esqli1-euiPanel-none-m-subdued"
+    class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiSplitPanel__inner css-esqli1-euiPanel-none-m-subdued"
   >
     <div
       class="euiRadio euiRadio--noLabel"
@@ -132,7 +132,7 @@ exports[`EuiCheckableCard renders disabled 1`] = `
     </div>
   </div>
   <div
-    class="euiPanel euiPanel--transparent euiSplitPanel__inner css-cu48yn-euiPanel-grow-none-m-transparent"
+    class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiSplitPanel__inner css-cu48yn-euiPanel-grow-none-m-transparent"
   >
     <label
       class="euiCheckableCard__label euiCheckableCard__label-isDisabled"
@@ -149,7 +149,7 @@ exports[`EuiCheckableCard renders panel props 1`] = `
   class="euiPanel euiPanel--plain euiSplitPanel euiSplitPanel--row euiCheckableCard css-1l0v6gd-euiPanel-m-plain-hasShadow"
 >
   <div
-    class="euiPanel euiPanel--subdued euiSplitPanel__inner css-pgk7sw-euiPanel-none-m-subdued-isClickable"
+    class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiSplitPanel__inner css-pgk7sw-euiPanel-none-m-subdued-isClickable"
   >
     <div
       class="euiRadio euiRadio--noLabel"
@@ -165,7 +165,7 @@ exports[`EuiCheckableCard renders panel props 1`] = `
     </div>
   </div>
   <div
-    class="euiPanel euiPanel--transparent euiSplitPanel__inner css-cu48yn-euiPanel-grow-none-m-transparent"
+    class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiSplitPanel__inner css-cu48yn-euiPanel-grow-none-m-transparent"
   >
     <label
       class="euiCheckableCard__label"

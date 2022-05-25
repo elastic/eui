@@ -58,7 +58,7 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
       &:hover,
       &:focus {
         ${euiShadow(euiThemeContext, 'l')};
-        transform: translateY(-${euiTheme.size.xxs});
+        transform: translateY(-2px);
         cursor: pointer;
       }
     `,
