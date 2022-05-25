@@ -3,9 +3,6 @@
 **Bug fixes**
 
 - Fixed `EuiPopover` padding by reverting removal of `EuiPanel` padding classes ([#5927](https://github.com/elastic/eui/pull/5927))
-
-**Bug fix**
-
 - Updated `EuiAccordion` to show loading spinner instead of extra actions when `isLoading` ([#5896](https://github.com/elastic/eui/pull/5896))
 
 ## [`58.1.0`](https://github.com/elastic/eui/tree/v58.1.0)
