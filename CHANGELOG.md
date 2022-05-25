@@ -1,3 +1,10 @@
+## [`58.1.1`](https://github.com/elastic/eui/tree/v58.1.1)
+
+**Bug fixes**
+
+- Fixed `EuiPopover` padding by reverting removal of `EuiPanel` padding classes ([#5927](https://github.com/elastic/eui/pull/5927))
+- Updated `EuiAccordion` to show loading spinner instead of extra actions when `isLoading` ([#5896](https://github.com/elastic/eui/pull/5896))
+
 ## [`58.1.0`](https://github.com/elastic/eui/tree/v58.1.0)
 
 - Updated `useEuiPaddingCSS()` and `useEuiBackgroundColorCSS()` to render `css` blocks so consuming components render the key name in the class ([#5891](https://github.com/elastic/eui/pull/5891))
