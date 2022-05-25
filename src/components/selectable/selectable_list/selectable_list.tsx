@@ -24,6 +24,7 @@ import { CommonProps, ExclusiveUnion } from '../../common';
 import { EuiAutoSizer } from '../../auto_sizer';
 import { EuiHighlight } from '../../highlight';
 import { EuiSelectableOption } from '../selectable_option';
+import { EuiSelectableOnChangeEvent } from '../selectable';
 import {
   EuiSelectableListItem,
   EuiSelectableListItemProps,
@@ -109,7 +110,10 @@ export type EuiSelectableListProps<T> = EuiSelectableOptionsListProps & {
   /**
    * Returns the array of options with altered checked state
    */
-  onOptionClick: (options: Array<EuiSelectableOption<T>>) => void;
+  onOptionClick: (
+    options: Array<EuiSelectableOption<T>>,
+    event: EuiSelectableOnChangeEvent
+  ) => void;
   /**
    * Custom render for the label portion of the option;
    * Takes (option, searchValue), returns ReactNode
@@ -273,7 +277,9 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
         onMouseDown={() => {
           setActiveOptionIndex(index);
         }}
-        onClick={() => this.onAddOrRemoveOption(option)}
+        onClick={(event) => {
+          this.onAddOrRemoveOption(option, event);
+        }}
         ref={ref ? ref.bind(null, index) : undefined}
         isFocused={activeOptionIndex === index}
         title={searchableLabel || label}
@@ -414,7 +420,10 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     );
   }
 
-  onAddOrRemoveOption = (option: EuiSelectableOption<T>) => {
+  onAddOrRemoveOption = (
+    option: EuiSelectableOption<T>,
+    event: EuiSelectableOnChangeEvent
+  ) => {
     if (option.disabled) {
       return;
     }
@@ -425,17 +434,20 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       visibleOptions.findIndex(({ label }) => label === option.label),
       () => {
         if (option.checked === 'on' && allowExclusions) {
-          this.onExcludeOption(option);
+          this.onExcludeOption(option, event);
         } else if (option.checked === 'on' || option.checked === 'off') {
-          this.onRemoveOption(option);
+          this.onRemoveOption(option, event);
         } else {
-          this.onAddOption(option);
+          this.onAddOption(option, event);
         }
       }
     );
   };
 
-  private onAddOption = (addedOption: EuiSelectableOption<T>) => {
+  private onAddOption = (
+    addedOption: EuiSelectableOption<T>,
+    event: EuiSelectableOnChangeEvent
+  ) => {
     const { onOptionClick, options, singleSelection } = this.props;
 
     const updatedOptions = options.map((option) => {
@@ -453,10 +465,13 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       return updatedOption;
     });
 
-    onOptionClick(updatedOptions);
+    onOptionClick(updatedOptions, event);
   };
 
-  private onRemoveOption = (removedOption: EuiSelectableOption<T>) => {
+  private onRemoveOption = (
+    removedOption: EuiSelectableOption<T>,
+    event: EuiSelectableOnChangeEvent
+  ) => {
     const { onOptionClick, singleSelection, options } = this.props;
 
     const updatedOptions = options.map((option) => {
@@ -469,10 +484,13 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       return updatedOption;
     });
 
-    onOptionClick(updatedOptions);
+    onOptionClick(updatedOptions, event);
   };
 
-  private onExcludeOption = (excludedOption: EuiSelectableOption<T>) => {
+  private onExcludeOption = (
+    excludedOption: EuiSelectableOption<T>,
+    event: EuiSelectableOnChangeEvent
+  ) => {
     const { onOptionClick, options } = this.props;
     excludedOption.checked = 'off';
 
@@ -486,6 +504,6 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       return updatedOption;
     });
 
-    onOptionClick(updatedOptions);
+    onOptionClick(updatedOptions, event);
   };
 }
