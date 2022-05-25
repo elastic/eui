@@ -21,7 +21,6 @@ import {
   EuiSelect,
   EuiTextArea,
   EuiText,
-  EuiSpacer,
 } from '../../../../src/components';
 
 import {
@@ -189,7 +188,6 @@ export const FormControlsExample = {
             <EuiCode>aria-labelledby</EuiCode> prop.
           </p>
         </EuiCallOut>
-        <EuiSpacer />
       </EuiText>
     </>
   ),

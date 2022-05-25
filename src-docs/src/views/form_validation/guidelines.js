@@ -1,16 +1,23 @@
 import React, { useState, Fragment } from 'react';
 import { GuideRule, GuideRuleExample } from '../../components';
-import { EuiTitle, EuiFieldText, EuiFormRow } from '../../../../src/components';
+import {
+  EuiTitle,
+  EuiFieldText,
+  EuiFormRow,
+  EuiSpacer,
+} from '../../../../src/components';
 
 export default () => {
   const [showErrors] = useState(true);
 
   let errors;
   let required;
+  let forbidden;
 
   if (showErrors) {
-    errors = ['This address already exists. Enter a different one.'];
+    errors = ['This address is already used. Enter a different one.'];
     required = ['Name is required.'];
+    forbidden = ["The key can't contain the `:` character."];
   }
 
   return (
@@ -24,6 +31,7 @@ export default () => {
           <p>
             Validation messages are needed when the user input differs from what
             the system expects and enforces:
+            <EuiSpacer />
             <ul>
               <li>Required fields that are still blank.</li>
               <li>
@@ -50,12 +58,16 @@ export default () => {
           type="do"
           text="Tell users what happened and how to fix it."
         >
-          <EuiFormRow
-            label="Email"
-            helpText="The email address must be valid."
-            isInvalid={showErrors}
-            error={errors}
-          >
+          <EuiFormRow label="Email" isInvalid={showErrors} error={errors}>
+            <EuiFieldText name="text" isInvalid={showErrors} />
+          </EuiFormRow>
+        </GuideRuleExample>
+        <GuideRuleExample
+          panelDisplay="block"
+          type="do"
+          text="Be as precise as possible to describe the problem."
+        >
+          <EuiFormRow label="Key" isInvalid={showErrors} error={forbidden}>
             <EuiFieldText name="text" isInvalid={showErrors} />
           </EuiFormRow>
         </GuideRuleExample>

@@ -39,10 +39,10 @@ export default () => {
           text="Say what the field is in the label. Use help text for additional information."
         >
           <EuiFormRow
-            label="Source"
-            helpText="Enter CIDR or IP address. For example, `192.168.132.6/22`."
+            label="Version"
+            helpText="Use the `major.minor` format. You can use wildcards `*` to span over multiple versions."
           >
-            <EuiFieldText />
+            <EuiFieldText placeholder="2.*" />
           </EuiFormRow>
         </GuideRuleExample>
 
@@ -50,8 +50,67 @@ export default () => {
           panelDisplay="block"
           type="dont"
           text="Put everything in the label. It's hard to scan."
+          minHeight={130}
         >
-          <EuiFormRow label="Source address (CIDR or IP, e.g. 192.168.132.6/22)">
+          <EuiFormRow label="Numeric version (e.g. `2.*`)">
+            <EuiFieldText />
+          </EuiFormRow>
+        </GuideRuleExample>
+      </GuideRule>
+
+      <EuiSpacer />
+
+      <EuiTitle>
+        <h2>Hint text</h2>
+      </EuiTitle>
+
+      <GuideRule
+        description={
+          <p>
+            Place hints and instructions outside a text field so it is always
+            visible to the user. Use hint text to:
+            <EuiSpacer />
+            <ul>
+              <li>
+                Explain <strong>why you are asking a certain question</strong>:
+                &quot;We will only email you if there is a problem with your
+                order.&quot;
+              </li>
+              <li>
+                Provide <strong>clarifying details</strong> on what to type:
+                &quot;Enter the full 32-characters ID.&quot;
+              </li>
+              <li>
+                Tell the user <strong>where to find the information</strong>{' '}
+                you&apos;re asking for: &quot;Find the Elasticsearch cluster ID
+                on the main administration page of your deployment.&quot;
+              </li>
+            </ul>
+          </p>
+        }
+      >
+        <GuideRuleExample
+          panelDisplay="block"
+          type="do"
+          text="Help users make the right decision by clarifying what goes inside a field."
+        >
+          <EuiFormRow
+            label="Timeout"
+            helpText="Use shorthand notation, such as 30s, 10m, or 1h."
+          >
+            <EuiFieldText />
+          </EuiFormRow>
+        </GuideRuleExample>
+
+        <GuideRuleExample
+          panelDisplay="block"
+          type="do"
+          text="Use complete sentences and ending punctuation."
+        >
+          <EuiFormRow
+            label="Name"
+            helpText="This is the name that will be visible to other users."
+          >
             <EuiFieldText />
           </EuiFormRow>
         </GuideRuleExample>
@@ -67,8 +126,40 @@ export default () => {
         heading="In fields"
         description={
           <p>
+            Use the placeholder property to describe the expected value of the
+            input or to provide a useful example.
+          </p>
+        }
+      >
+        <GuideRuleExample
+          panelDisplay="block"
+          type="do"
+          text="Provide a simple example that highlights the expected syntax or value."
+        >
+          <EuiFormRow
+            label="Phone number"
+            helpText="Include the international call prefix."
+          >
+            <EuiFieldText placeholder="+33600000000" />
+          </EuiFormRow>
+        </GuideRuleExample>
+        <GuideRuleExample
+          panelDisplay="block"
+          type="dont"
+          text="Start with `for example`, or `e.g.`."
+        >
+          <EuiFormRow label="Endpoint" helpText="Include the port number.">
+            <EuiFieldText placeholder="e.g. https://example.com:9500" />
+          </EuiFormRow>
+        </GuideRuleExample>
+      </GuideRule>
+
+      <GuideRule
+        description={
+          <p>
             Add placeholder text in addition to field labels and help text, not
-            as a replacement. And keep it short.
+            as a replacement. Omit it if it doesn&apos;t add value for users.
+            And keep it short.
           </p>
         }
       >
@@ -77,11 +168,8 @@ export default () => {
           type="do"
           text="Place info essential to completing the form outside the field so that it is always visible."
         >
-          <EuiFormRow
-            label="Source"
-            helpText="Enter CIDR or IP address. For example, `192.168.132.6/22`."
-          >
-            <EuiFieldText />
+          <EuiFormRow label="Source" helpText="Enter a valid IP address.">
+            <EuiFieldText placeholder="192.168.132.6" />
           </EuiFormRow>
         </GuideRuleExample>
         <GuideRuleExample
@@ -149,37 +237,6 @@ export default () => {
       </GuideRule>
 
       <GuideRule
-        description={
-          <p>
-            Use the placeholder property to describe the expected value of the
-            input or to provide a useful example.
-          </p>
-        }
-      >
-        <GuideRuleExample
-          panelDisplay="block"
-          type="do"
-          text="Provide a simple example that highlights the expected syntax or value."
-        >
-          <EuiFormRow
-            label="Phone number"
-            helpText="Include the international call prefix."
-          >
-            <EuiFieldText placeholder="+33600000000" />
-          </EuiFormRow>
-        </GuideRuleExample>
-        <GuideRuleExample
-          panelDisplay="block"
-          type="dont"
-          text="Start with `for example`, or `e.g.`."
-        >
-          <EuiFormRow label="Endpoint" helpText="Include the port number.">
-            <EuiFieldText placeholder="e.g. https://example.com:9500" />
-          </EuiFormRow>
-        </GuideRuleExample>
-      </GuideRule>
-
-      <GuideRule
         heading="In search bars"
         description={
           <p>In a search bar, be specific about what users can enter.</p>
@@ -208,63 +265,6 @@ export default () => {
             isClearable={isClearable}
             onChange={onChange}
           />
-        </GuideRuleExample>
-      </GuideRule>
-
-      <EuiSpacer />
-
-      <EuiTitle>
-        <h2>Hint text</h2>
-      </EuiTitle>
-
-      <GuideRule
-        description={
-          <p>
-            Place hints and instructions outside a text field so it is always
-            visible to the user. Use hint text to:
-            <ul>
-              <li>
-                Explain <strong>why you are asking a certain question</strong>:
-                &quot;We will only email you if there is a problem with your
-                order.&quot;
-              </li>
-              <li>
-                Provide <strong>clarifying details</strong> on what to type:
-                &quot;Enter the full 32-characters ID.&quot;
-              </li>
-              <li>
-                Tell the user <strong>where to find the information</strong>{' '}
-                you&apos;re asking for: &quot;Find the Elasticsearch cluster ID
-                on the main administration page of your deployment.&quot;
-              </li>
-            </ul>
-          </p>
-        }
-      >
-        <GuideRuleExample
-          panelDisplay="block"
-          type="do"
-          text="Help users make the right decision by clarifying what goes inside a field."
-        >
-          <EuiFormRow
-            label="Timeout"
-            helpText="Use shorthand notation, such as 30s, 10m, or 1h."
-          >
-            <EuiFieldText />
-          </EuiFormRow>
-        </GuideRuleExample>
-
-        <GuideRuleExample
-          panelDisplay="block"
-          type="do"
-          text="Use complete sentences and ending punctuation."
-        >
-          <EuiFormRow
-            label="Name"
-            helpText="This is the name that will be visible to other users."
-          >
-            <EuiFieldText />
-          </EuiFormRow>
         </GuideRuleExample>
       </GuideRule>
     </>
