@@ -113,8 +113,8 @@ type _EuiSuggestProps = CommonProps &
     maxHeight?: CSSProperties['maxHeight'];
 
     /**
-     * Control whether or not options get filtered internally or if consumer will filter
-     * Default: false
+     * Control whether or not options get filtered internally or if consumer will filter.
+     * Default `false`
      */
     isPreFiltered?: boolean;
   };
