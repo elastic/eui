@@ -71,6 +71,10 @@ export const euiFacetButtonIconStyles = () => ({
   `,
 });
 
+export const euiFacetButtonLoadingSpinnerStyles = () => ({
+  euiFacetButton__loadingSpinner: css``,
+});
+
 export const euiFacetButtonQuantityStyles = () => ({
   euiFacetButton__quantity: css``,
   isDisabled: css`

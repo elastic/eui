@@ -35,6 +35,19 @@ const spinnerColors = (main: string, highlight: string) => {
   return `${highlight} ${main} ${main} ${main}`;
 };
 
+export const euiLoadingSpinnerBorderColorsCSS = (
+  euiTheme: UseEuiTheme['euiTheme'],
+  main?: string,
+  highlight?: string
+) => {
+  const mainColor = main ? main : euiTheme.colors.lightShade;
+  const highlightColor = highlight ? highlight : euiTheme.colors.primary;
+
+  return `
+    border-color: ${highlightColor} ${mainColor} ${mainColor} ${mainColor};
+  `;
+};
+
 export const euiLoadingSpinnerStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiLoadingSpinner: css`

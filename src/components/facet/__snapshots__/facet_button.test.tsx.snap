@@ -45,7 +45,7 @@ exports[`EuiFacetButton props isDisabled is rendered 1`] = `
   disabled=""
 >
   <span
-    class="css-yxnt2m-euiButtonDisplayContent-isDisabled"
+    class="css-11j2vy4-euiButtonDisplayContent-isDisabled"
   >
     <span
       class="euiFacetButton__icon css-ypd0ba-euiFacetButton__icon-isDisabled"
@@ -72,7 +72,7 @@ exports[`EuiFacetButton props isLoading is rendered 1`] = `
   disabled=""
 >
   <span
-    class="css-yxnt2m-euiButtonDisplayContent-isDisabled"
+    class="css-11j2vy4-euiButtonDisplayContent-isDisabled"
   >
     <span
       class="euiFacetButton__text css-15kc18g-euiFacetButton__text-unSelected"
@@ -81,7 +81,7 @@ exports[`EuiFacetButton props isLoading is rendered 1`] = `
     </span>
     <span
       aria-label="Loading"
-      class="euiLoadingSpinner css-155ohbx-euiLoadingSpinner-m"
+      class="euiLoadingSpinner css-1y2hncs-euiLoadingSpinner-m-euiFacetButton__loadingSpinner"
       role="progressbar"
     />
   </span>

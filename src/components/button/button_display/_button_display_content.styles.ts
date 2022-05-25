@@ -8,6 +8,7 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 import { logicalCSS } from '../../../global_styling';
+import { euiLoadingSpinnerBorderColorsCSS } from '../../loading/loading_spinner.styles';
 
 export const euiButtonDisplayContentStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
@@ -35,13 +36,8 @@ export const euiButtonDisplayContentStyles = ({ euiTheme }: UseEuiTheme) => ({
     pointer-events: auto;
     cursor: not-allowed;
 
-    [class*='euiButtonDisplayContent__icon'] {
-      fill: currentColor;
-    }
-
-    // Not yet being used. Sass function euiLoadingSpinnerBorderColors() needs to be converted into CSS-in-JS
     [class*='euiButtonDisplayContent__spinner'] {
-      /* border-color: euiLoadingSpinnerBorderColors(currentColor); */
+      ${euiLoadingSpinnerBorderColorsCSS(euiTheme, 'currentColor')}
     }
   `,
 });

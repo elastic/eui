@@ -29,6 +29,7 @@ import {
   euiFacetButtonTextStyles,
   euiFacetButtonIconStyles,
   euiFacetButtonQuantityStyles,
+  euiFacetButtonLoadingSpinnerStyles,
 } from './facet_button.styles';
 import { EuiButtonDisplay } from '../button/button_display/_button_display';
 
@@ -101,11 +102,18 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
     isDisabled && quantityStyles.isDisabled,
   ];
 
+  const loadingSpinnerStyles = euiFacetButtonLoadingSpinnerStyles();
+  const cssLoadingSpinnerStyles = [
+    loadingSpinnerStyles.euiFacetButton__loadingSpinner,
+  ];
+
   // Add quantity number if provided or loading indicator
   let buttonQuantity: ReactElement;
 
   if (isLoading) {
-    buttonQuantity = <EuiLoadingSpinner size="m" />;
+    buttonQuantity = (
+      <EuiLoadingSpinner css={cssLoadingSpinnerStyles} size="m" />
+    );
   } else if (typeof quantity === 'number') {
     buttonQuantity = (
       <EuiNotificationBadge
