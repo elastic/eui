@@ -16,7 +16,7 @@ import {
   EuiButtonGroupProps,
 } from './button_group';
 
-import { COLORS } from '../button';
+import { COLORS } from '../_button_display';
 
 const SIZES: Array<EuiButtonGroupProps['buttonSize']> = [
   's',

@@ -325,7 +325,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
               onClick={[Function]}
               size="s"
             >
-              <EuiButtonDisplay
+              <EuiButtonDisplay_Deprecated
                 baseClassName="euiButton"
                 className="euiControlBar__button"
                 color="ghost"
@@ -349,7 +349,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                   }
                   type="button"
                 >
-                  <EuiButtonContent
+                  <EuiButtonContent_Deprecated
                     className="euiButton__content"
                     iconSide="left"
                     textProps={
@@ -367,9 +367,9 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                         Sound the Alarm
                       </span>
                     </span>
-                  </EuiButtonContent>
+                  </EuiButtonContent_Deprecated>
                 </button>
-              </EuiButtonDisplay>
+              </EuiButtonDisplay_Deprecated>
             </EuiButton>
             <div
               className="euiControlBar__text"
@@ -667,7 +667,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
               onClick={[Function]}
               size="s"
             >
-              <EuiButtonDisplay
+              <EuiButtonDisplay_Deprecated
                 baseClassName="euiButton"
                 className="euiControlBar__button"
                 color="ghost"
@@ -691,7 +691,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                   }
                   type="button"
                 >
-                  <EuiButtonContent
+                  <EuiButtonContent_Deprecated
                     className="euiButton__content"
                     iconSide="left"
                     textProps={
@@ -709,9 +709,9 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                         Sound the Alarm
                       </span>
                     </span>
-                  </EuiButtonContent>
+                  </EuiButtonContent_Deprecated>
                 </button>
-              </EuiButtonDisplay>
+              </EuiButtonDisplay_Deprecated>
             </EuiButton>
             <div
               className="euiControlBar__text"
@@ -1008,7 +1008,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
               onClick={[Function]}
               size="s"
             >
-              <EuiButtonDisplay
+              <EuiButtonDisplay_Deprecated
                 baseClassName="euiButton"
                 className="euiControlBar__button"
                 color="ghost"
@@ -1032,7 +1032,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                   }
                   type="button"
                 >
-                  <EuiButtonContent
+                  <EuiButtonContent_Deprecated
                     className="euiButton__content"
                     iconSide="left"
                     textProps={
@@ -1050,9 +1050,9 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                         Sound the Alarm
                       </span>
                     </span>
-                  </EuiButtonContent>
+                  </EuiButtonContent_Deprecated>
                 </button>
-              </EuiButtonDisplay>
+              </EuiButtonDisplay_Deprecated>
             </EuiButton>
             <div
               className="euiControlBar__text"
@@ -1253,7 +1253,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
           onClick={[Function]}
           size="s"
         >
-          <EuiButtonDisplay
+          <EuiButtonDisplay_Deprecated
             baseClassName="euiButton"
             className="euiControlBar__button"
             color="ghost"
@@ -1277,7 +1277,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
               }
               type="button"
             >
-              <EuiButtonContent
+              <EuiButtonContent_Deprecated
                 className="euiButton__content"
                 iconSide="left"
                 textProps={
@@ -1295,9 +1295,9 @@ exports[`EuiControlBar props position is rendered 1`] = `
                     Sound the Alarm
                   </span>
                 </span>
-              </EuiButtonContent>
+              </EuiButtonContent_Deprecated>
             </button>
-          </EuiButtonDisplay>
+          </EuiButtonDisplay_Deprecated>
         </EuiButton>
         <div
           className="euiControlBar__text"
@@ -1579,7 +1579,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
               onClick={[Function]}
               size="s"
             >
-              <EuiButtonDisplay
+              <EuiButtonDisplay_Deprecated
                 baseClassName="euiButton"
                 className="euiControlBar__button"
                 color="ghost"
@@ -1603,7 +1603,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                   }
                   type="button"
                 >
-                  <EuiButtonContent
+                  <EuiButtonContent_Deprecated
                     className="euiButton__content"
                     iconSide="left"
                     textProps={
@@ -1621,9 +1621,9 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                         Sound the Alarm
                       </span>
                     </span>
-                  </EuiButtonContent>
+                  </EuiButtonContent_Deprecated>
                 </button>
-              </EuiButtonDisplay>
+              </EuiButtonDisplay_Deprecated>
             </EuiButton>
             <div
               className="euiControlBar__text"
@@ -1925,7 +1925,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
               onClick={[Function]}
               size="s"
             >
-              <EuiButtonDisplay
+              <EuiButtonDisplay_Deprecated
                 baseClassName="euiButton"
                 className="euiControlBar__button"
                 color="ghost"
@@ -1949,7 +1949,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                   }
                   type="button"
                 >
-                  <EuiButtonContent
+                  <EuiButtonContent_Deprecated
                     className="euiButton__content"
                     iconSide="left"
                     textProps={
@@ -1967,9 +1967,9 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                         Sound the Alarm
                       </span>
                     </span>
-                  </EuiButtonContent>
+                  </EuiButtonContent_Deprecated>
                 </button>
-              </EuiButtonDisplay>
+              </EuiButtonDisplay_Deprecated>
             </EuiButton>
             <div
               className="euiControlBar__text"
@@ -2271,7 +2271,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
               onClick={[Function]}
               size="s"
             >
-              <EuiButtonDisplay
+              <EuiButtonDisplay_Deprecated
                 baseClassName="euiButton"
                 className="euiControlBar__button"
                 color="ghost"
@@ -2295,7 +2295,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
                   }
                   type="button"
                 >
-                  <EuiButtonContent
+                  <EuiButtonContent_Deprecated
                     className="euiButton__content"
                     iconSide="left"
                     textProps={
@@ -2313,9 +2313,9 @@ exports[`EuiControlBar props size is rendered 1`] = `
                         Sound the Alarm
                       </span>
                     </span>
-                  </EuiButtonContent>
+                  </EuiButtonContent_Deprecated>
                 </button>
-              </EuiButtonDisplay>
+              </EuiButtonDisplay_Deprecated>
             </EuiButton>
             <div
               className="euiControlBar__text"

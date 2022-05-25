@@ -10,8 +10,9 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiButton, COLORS, SIZES } from './button';
-import { ICON_SIDES } from './button_content';
+import { EuiButton } from './button';
+import { COLORS, SIZES } from './_button_display';
+import { ICON_SIDES } from './_button_content';
 
 describe('EuiButton', () => {
   test('is rendered', () => {

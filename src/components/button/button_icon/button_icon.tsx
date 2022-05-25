@@ -27,11 +27,11 @@ import { IconType, IconSize, EuiIcon } from '../../icon';
 
 import { EuiLoadingSpinner } from '../../loading';
 
-import { ButtonColor } from '../button';
+import { ButtonDisplayColor_Deprecated } from '../_button_display';
 
 import { validateHref } from '../../../services/security/href_validator';
 
-export type EuiButtonIconColor = ButtonColor;
+export type EuiButtonIconColor = ButtonDisplayColor_Deprecated;
 
 const displayToClassNameMap = {
   base: null,

@@ -30,7 +30,7 @@ import {
   euiFacetButtonIconStyles,
   euiFacetButtonQuantityStyles,
 } from './facet_button.styles';
-import { EuiButtonDisplay } from '../button/button_display/button_display';
+import { EuiButtonDisplay } from '../button/button_display/_button_display';
 
 export interface EuiFacetButtonProps
   extends CommonProps,

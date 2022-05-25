@@ -11,7 +11,7 @@ import { useEuiTheme } from '../../../services';
 import { CommonProps } from '../../common';
 import { EuiLoadingSpinner } from '../../loading';
 import { EuiIcon, IconType } from '../../icon';
-import { euiButtonDisplayContentStyles } from './button_display_content.styles';
+import { euiButtonDisplayContentStyles } from './_button_display_content.styles';
 
 export type ButtonContentIconSide = 'left' | 'right' | undefined;
 
@@ -19,7 +19,7 @@ export type EuiButtonDisplayContentType = HTMLAttributes<HTMLSpanElement>;
 
 /**
  * *INTERNAL ONLY*
- * This component is simply a helper component for reuse within other button components
+ * This component is simply a helper component for reuse within other button components.
  */
 export interface EuiButtonDisplayContentProps extends CommonProps {
   /**
@@ -31,10 +31,6 @@ export interface EuiButtonDisplayContentProps extends CommonProps {
    */
   iconSide?: ButtonContentIconSide;
   isLoading?: boolean;
-  /**
-   * The button text
-   */
-  text?: string;
   /**
    * Object of props passed to the <span/> wrapping the content's text/children only (not icon)
    */
@@ -52,7 +48,6 @@ export const EuiButtonDisplayContent: FunctionComponent<
 > = ({
   children,
   textProps,
-  text,
   isLoading = false,
   isDisabled = false,
   iconType,
@@ -87,11 +82,12 @@ export const EuiButtonDisplayContent: FunctionComponent<
     );
   }
 
+  const isText = typeof children === 'string';
+
   return (
     <span {...contentProps} css={cssStyles}>
       {icon}
-      {text && <span {...textProps}>{text}</span>}
-      {children}
+      {isText ? <span {...textProps}>{children}</span> : children}
     </span>
   );
 };

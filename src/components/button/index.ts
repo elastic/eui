@@ -6,8 +6,13 @@
  * Side Public License, v 1.
  */
 
-export type { ButtonColor, ButtonSize, EuiButtonProps } from './button';
-export { COLORS, EuiButton } from './button';
+export type {
+  ButtonDisplayColor_Deprecated as ButtonColor,
+  ButtonDisplaySize_Deprecated as ButtonSize,
+  EuiButtonDisplayCommonProps_Deprecated as EuiButtonProps,
+  COLORS,
+} from './_button_display';
+export { EuiButton } from './button';
 
 export type {
   EuiButtonEmptyColor,

@@ -12,10 +12,10 @@ import { CommonProps, keysOf } from '../common';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiIcon, IconType } from '../icon';
 
-export type ButtonContentIconSide = 'left' | 'right';
+export type ButtonContentIconSide_Deprecated = 'left' | 'right';
 
 const iconSideToClassNameMap: {
-  [side in ButtonContentIconSide]: string | null;
+  [side in ButtonContentIconSide_Deprecated]: string | null;
 } = {
   left: null,
   right: 'euiButtonContent--iconRight',
@@ -23,13 +23,14 @@ const iconSideToClassNameMap: {
 
 export const ICON_SIDES = keysOf(iconSideToClassNameMap);
 
-export type EuiButtonContentType = HTMLAttributes<HTMLSpanElement>;
+export type EuiButtonContentType_Deprecated = HTMLAttributes<HTMLSpanElement>;
 
 /**
  * *INTERNAL ONLY*
  * This component is simply a helper component for reuse within other button components
+ * This component has been deprecated in favor of the new EuiButtonDisplayContent.
  */
-export interface EuiButtonContentProps extends CommonProps {
+export interface EuiButtonContentProps_Deprecated extends CommonProps {
   /**
    * Any `type` accepted by EuiIcon
    */
@@ -37,7 +38,7 @@ export interface EuiButtonContentProps extends CommonProps {
   /**
    * Can only be one side `left` or `right`
    */
-  iconSide?: ButtonContentIconSide;
+  iconSide?: ButtonContentIconSide_Deprecated;
   isLoading?: boolean;
   /**
    * Object of props passed to the <span/> wrapping the content's text/children only (not icon)
@@ -50,8 +51,8 @@ export interface EuiButtonContentProps extends CommonProps {
   iconSize?: 's' | 'm';
 }
 
-export const EuiButtonContent: FunctionComponent<
-  EuiButtonContentType & EuiButtonContentProps
+export const EuiButtonContent_Deprecated: FunctionComponent<
+  EuiButtonContentType_Deprecated & EuiButtonContentProps_Deprecated
 > = ({
   children,
   textProps,
