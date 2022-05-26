@@ -1,3 +1,30 @@
+## [`58.1.1`](https://github.com/elastic/eui/tree/v58.1.1)
+
+**Bug fixes**
+
+- Fixed `EuiPopover` padding by reverting removal of `EuiPanel` padding classes ([#5927](https://github.com/elastic/eui/pull/5927))
+- Updated `EuiAccordion` to show loading spinner instead of extra actions when `isLoading` ([#5896](https://github.com/elastic/eui/pull/5896))
+
+## [`58.1.0`](https://github.com/elastic/eui/tree/v58.1.0)
+
+- Updated `useEuiPaddingCSS()` and `useEuiBackgroundColorCSS()` to render `css` blocks so consuming components render the key name in the class ([#5891](https://github.com/elastic/eui/pull/5891))
+- Added padding sizes `xs` and `xl` to `EuiPanel` ([#5891](https://github.com/elastic/eui/pull/5891))
+
+**Bug fixes**
+
+- Fixed `EuiSplitPanel` contained border radius by setting `overflow: hidden` ([#5891](https://github.com/elastic/eui/pull/5891))
+- Fixed `EuiCallOut` description top margin when only child ([#5891](https://github.com/elastic/eui/pull/5891))
+- Fixed height stretching of `EuiEmptyPrompt` by setting `grow=false` on the nested panel ([#5907](https://github.com/elastic/eui/pull/5907))
+- Fixed `EuiInMemoryTable`'s loading state from shifting layout ([#5914](https://github.com/elastic/eui/pull/5914))
+- Fixed accessibility errors with `EuiDataGrid`'s column sorting drag & drop handles ([#5916](https://github.com/elastic/eui/pull/5916))
+- Fixed `EuiMark`'s screen reader helpers causing scroll issues in Chrome ([#5921](https://github.com/elastic/eui/pull/5921))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiAccordion` to Emotion; Removed `$paddingSizes` ([#5826](https://github.com/elastic/eui/pull/5826))
+- Converted `EuiPanel` to Emotion ([#5891](https://github.com/elastic/eui/pull/5891))
+- Renamed `euiScreenReaderOnlyStyles()` mixin to `euiScreenReaderOnly()` ([#5921](https://github.com/elastic/eui/pull/5921))
+
 ## [`58.0.0`](https://github.com/elastic/eui/tree/v58.0.0)
 
 - Updated `EuiForm` to use `forwardRef` ([#5866](https://github.com/elastic/eui/pull/5866))
@@ -87,6 +114,18 @@
 **Breaking change**
 
 - As part of `EuiTitle`'s Emotion conversion, the line-height of `s` and `xxs` sized `EuiTitle`s have been slightly reduced ([#5842](https://github.com/elastic/eui/pull/5842))
+
+## [`55.1.4`](https://github.com/elastic/eui/tree/v55.1.4)
+
+**Note: this release is a backport containing changes originally made in `58.1.0`**
+
+**Bug fixes**
+
+- Fixed `EuiMark`'s screen reader helpers causing scroll issues in Chrome ([#5921](https://github.com/elastic/eui/pull/5921))
+
+**CSS-in-JS conversions**
+
+- Renamed `euiScreenReaderOnlyStyles()` mixin to `euiScreenReaderOnly()` ([#5921](https://github.com/elastic/eui/pull/5921))
 
 ## [`55.1.3`](https://github.com/elastic/eui/tree/v55.1.3)
 

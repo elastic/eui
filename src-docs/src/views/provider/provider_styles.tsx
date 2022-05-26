@@ -32,6 +32,7 @@ const cache = createCache({
   key: 'myApp',
   container: document.querySelector('meta[name="emotion-style-insert"]'),
 });
+cache.compat = true;
 
 <EuiProvider${colorMode === 'DARK' ? ' colorMode="dark"' : ''} cache={cache}'>
   {/* Content */}
