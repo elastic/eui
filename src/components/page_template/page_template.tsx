@@ -18,7 +18,7 @@ import { EuiPageHeader, EuiPageSection } from '../page';
 import { _EuiPageRestrictWidth } from '../page/_restrict_width';
 import { _EuiPageBottomBorder } from '../page/_bottom_border';
 import { useEuiTheme } from '../../services';
-import { logicalStyle, logicalUnit } from '../../global_styling';
+import { logicalStyle } from '../../global_styling';
 
 export type EuiPageTemplateProps = _EuiPageOuterProps &
   // We re-define the `border` prop below to be named more appropriately
@@ -175,9 +175,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
     }
   });
 
-  const _minHeight = grow
-    ? `max(${minHeight}, calc(100${logicalUnit.vh})`
-    : minHeight;
+  const _minHeight = grow ? `max(${minHeight}, 100vh` : minHeight;
 
   const classes = classNames('euiPageTemplate', className);
   const pageStyle = {

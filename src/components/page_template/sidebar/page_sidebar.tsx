@@ -17,7 +17,6 @@ import { CommonProps } from '../../common';
 import {
   EuiPaddingSize,
   logicalStyle,
-  logicalUnit,
   useEuiPaddingCSS,
   _EuiThemeBreakpoint,
 } from '../../../global_styling';
@@ -92,10 +91,7 @@ export const _EuiPageSidebar: FunctionComponent<_EuiPageSidebarProps> = ({
         ...style,
         ...logicalStyle('min-width', isResponding ? '100%' : minWidth),
         ...logicalStyle('top', offset),
-        ...logicalStyle(
-          'max-height',
-          `calc(100${logicalUnit.vh} - ${offset}px)`
-        ),
+        ...logicalStyle('max-height', `calc(100vh - ${offset}px)`),
       });
     }
   }, [style, sticky, themeContext.euiTheme.base, isResponding, minWidth]);

@@ -27,11 +27,6 @@ export const logicalSide = {
 export const LOGICAL_SIDES = keysOf(logicalSide);
 export type LogicalSides = typeof LOGICAL_SIDES[number];
 
-export const logicalUnit = {
-  vh: 'vb',
-  vw: 'vi',
-};
-
 const logicalMargins = {
   'margin-left': 'margin-inline-start',
   'margin-right': 'margin-inline-end',

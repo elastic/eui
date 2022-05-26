@@ -4,7 +4,7 @@ exports[`_EuiPageSidebar _EuiPageInnerProps is rendered 1`] = `
 <div
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
   component="main"
-  style="min-block-size:max(460px, calc(100vb)"
+  style="min-block-size:max(460px, 100vh"
 >
   <main
     class="css-6kpn8r-euiPageInner-left"
@@ -26,7 +26,7 @@ exports[`_EuiPageSidebar _EuiPageOuterProps is rendered 1`] = `
 exports[`_EuiPageSidebar bottomBorder is rendered as extended 1`] = `
 <div
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
-  style="min-block-size:max(460px, calc(100vb)"
+  style="min-block-size:max(460px, 100vh"
 >
   <main
     class="css-nq554q-euiPageInner"
@@ -37,7 +37,7 @@ exports[`_EuiPageSidebar bottomBorder is rendered as extended 1`] = `
 exports[`_EuiPageSidebar bottomBorder is rendered as true 1`] = `
 <div
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
-  style="min-block-size:max(460px, calc(100vb)"
+  style="min-block-size:max(460px, 100vh"
 >
   <main
     class="css-nq554q-euiPageInner"
@@ -50,7 +50,7 @@ exports[`_EuiPageSidebar is rendered 1`] = `
   aria-label="aria-label"
   class="euiPageTemplate testClass1 testClass2 css-1fesrzg-euiPageOuter-row-grow"
   data-test-subj="test subject string"
-  style="min-block-size:max(460px, calc(100vb)"
+  style="min-block-size:max(460px, 100vh"
 >
   <main
     class="css-nq554q-euiPageInner"
@@ -61,7 +61,7 @@ exports[`_EuiPageSidebar is rendered 1`] = `
 exports[`_EuiPageSidebar minHeight is rendered 1`] = `
 <div
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
-  style="min-block-size:max(40vh, calc(100vb)"
+  style="min-block-size:max(40vh, 100vh"
 >
   <main
     class="css-nq554q-euiPageInner"
@@ -72,7 +72,7 @@ exports[`_EuiPageSidebar minHeight is rendered 1`] = `
 exports[`_EuiPageSidebar offset is rendered 1`] = `
 <div
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
-  style="min-block-size:max(460px, calc(100vb);padding-block-start:100px"
+  style="min-block-size:max(460px, 100vh;padding-block-start:100px"
 >
   <main
     class="css-nq554q-euiPageInner"
@@ -83,7 +83,7 @@ exports[`_EuiPageSidebar offset is rendered 1`] = `
 exports[`_EuiPageSidebar paddingSize l is rendered 1`] = `
 <div
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
-  style="min-block-size:max(460px, calc(100vb)"
+  style="min-block-size:max(460px, 100vh"
 >
   <main
     class="css-nq554q-euiPageInner"
@@ -94,7 +94,7 @@ exports[`_EuiPageSidebar paddingSize l is rendered 1`] = `
 exports[`_EuiPageSidebar paddingSize m is rendered 1`] = `
 <div
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
-  style="min-block-size:max(460px, calc(100vb)"
+  style="min-block-size:max(460px, 100vh"
 >
   <main
     class="css-nq554q-euiPageInner"
@@ -105,7 +105,7 @@ exports[`_EuiPageSidebar paddingSize m is rendered 1`] = `
 exports[`_EuiPageSidebar paddingSize none is rendered 1`] = `
 <div
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
-  style="min-block-size:max(460px, calc(100vb)"
+  style="min-block-size:max(460px, 100vh"
 >
   <main
     class="css-nq554q-euiPageInner"
@@ -116,7 +116,7 @@ exports[`_EuiPageSidebar paddingSize none is rendered 1`] = `
 exports[`_EuiPageSidebar paddingSize s is rendered 1`] = `
 <div
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
-  style="min-block-size:max(460px, calc(100vb)"
+  style="min-block-size:max(460px, 100vh"
 >
   <main
     class="css-nq554q-euiPageInner"
@@ -127,7 +127,7 @@ exports[`_EuiPageSidebar paddingSize s is rendered 1`] = `
 exports[`_EuiPageSidebar paddingSize xl is rendered 1`] = `
 <div
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
-  style="min-block-size:max(460px, calc(100vb)"
+  style="min-block-size:max(460px, 100vh"
 >
   <main
     class="css-nq554q-euiPageInner"
@@ -138,7 +138,7 @@ exports[`_EuiPageSidebar paddingSize xl is rendered 1`] = `
 exports[`_EuiPageSidebar paddingSize xs is rendered 1`] = `
 <div
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
-  style="min-block-size:max(460px, calc(100vb)"
+  style="min-block-size:max(460px, 100vh"
 >
   <main
     class="css-nq554q-euiPageInner"
@@ -149,7 +149,7 @@ exports[`_EuiPageSidebar paddingSize xs is rendered 1`] = `
 exports[`_EuiPageSidebar restrict width can be set to a custom number 1`] = `
 <div
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
-  style="min-block-size:max(460px, calc(100vb)"
+  style="min-block-size:max(460px, 100vh"
 >
   <main
     class="css-nq554q-euiPageInner"
@@ -160,7 +160,7 @@ exports[`_EuiPageSidebar restrict width can be set to a custom number 1`] = `
 exports[`_EuiPageSidebar restrict width can be set to a custom value and measurement 1`] = `
 <div
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
-  style="min-block-size:max(460px, calc(100vb)"
+  style="min-block-size:max(460px, 100vh"
 >
   <main
     class="css-nq554q-euiPageInner"
@@ -171,7 +171,7 @@ exports[`_EuiPageSidebar restrict width can be set to a custom value and measure
 exports[`_EuiPageSidebar restrict width can be set to a default 1`] = `
 <div
   class="euiPageTemplate css-1fesrzg-euiPageOuter-row-grow"
-  style="min-block-size:max(460px, calc(100vb)"
+  style="min-block-size:max(460px, 100vh"
 >
   <main
     class="css-nq554q-euiPageInner"
