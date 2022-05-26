@@ -13,7 +13,7 @@ import {
   euiTextBreakWord,
   euiFontSize,
   _EuiThemeFontScale,
-  _EuiThemeFontSizeMeasurement,
+  _FontScaleOptions,
 } from '../../global_styling';
 import { EuiTitleSize } from './title';
 
@@ -30,7 +30,7 @@ type EuiThemeTitle = {
 export const euiTitle = (
   euiThemeContext: UseEuiTheme,
   scale: EuiTitleSize = 'm',
-  measurement: _EuiThemeFontSizeMeasurement = 'rem'
+  options?: _FontScaleOptions
 ): EuiThemeTitle => {
   const { euiTheme } = euiThemeContext;
   const titleScaleToFontSizeScaleMap: {
@@ -48,7 +48,7 @@ export const euiTitle = (
     ...euiFontSize(
       euiThemeContext,
       titleScaleToFontSizeScaleMap[scale],
-      measurement
+      options
     ),
     fontWeight: euiTheme.font.weight[euiTheme.font.title.weight],
     color: euiTheme.colors.title,
@@ -57,11 +57,11 @@ export const euiTitle = (
 
 // Hook version
 export const useEuiTitle = (
-  scale: EuiTitleSize = 'm',
-  measurement: _EuiThemeFontSizeMeasurement = 'rem'
+  scale: EuiTitleSize,
+  options?: _FontScaleOptions
 ): EuiThemeTitle => {
   const euiTheme = useEuiTheme();
-  return euiTitle(euiTheme, scale, measurement);
+  return euiTitle(euiTheme, scale, options);
 };
 
 /**

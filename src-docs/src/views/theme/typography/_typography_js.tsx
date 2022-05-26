@@ -5,6 +5,7 @@ import {
   EuiBasicTable,
   EuiButtonGroup,
   EuiCode,
+  EuiCodeBlock,
   EuiDescribedFormGroup,
   EuiPanel,
   EuiSpacer,
@@ -69,6 +70,22 @@ export const FontJS = () => {
           </p>
         }
         snippet={'font-family: ${euiTheme.font.familyCode};'}
+        snippetLanguage="emotion"
+      />
+
+      <ThemeExample
+        title={<code>euiTheme.font.familySerif</code>}
+        description={getDescription(baseProps.familySerif)}
+        example={
+          <p
+            css={css`
+              font-family: ${euiTheme.font.familySerif};
+            `}
+          >
+            {euiTheme.font.familySerif}
+          </p>
+        }
+        snippet={'font-family: ${euiTheme.font.familySerif};'}
         snippetLanguage="emotion"
       />
 
@@ -250,14 +267,19 @@ export const FontScaleValuesJS = () => {
           return {
             id: scale,
             value: `useEuiFontSize('${scale}'${
-              measurementSelected !== 'rem' ? `, '${measurementSelected}'` : ''
+              measurementSelected !== 'rem'
+                ? `,\n  { measurement: '${measurementSelected}' }\n`
+                : ''
             })`,
             size: `${
-              euiFontSize(euiThemeContext, scale, measurementSelected).fontSize
+              euiFontSize(euiThemeContext, scale, {
+                measurement: measurementSelected,
+              }).fontSize
             }`,
             lineHeight: `${
-              euiFontSize(euiThemeContext, scale, measurementSelected)
-                .lineHeight
+              euiFontSize(euiThemeContext, scale, {
+                measurement: measurementSelected,
+              }).lineHeight
             }`,
             index,
           };
@@ -271,7 +293,9 @@ export const FontScaleValuesJS = () => {
             render: (sample, item) => (
               <div
                 css={css`
-                  ${euiFontSize(euiThemeContext, item.id, measurementSelected)}
+                  ${euiFontSize(euiThemeContext, item.id, {
+                    measurement: measurementSelected,
+                  })}
                 `}
               >
                 The quick brown fox jumped over the blue moon to catch a snail
@@ -287,7 +311,9 @@ export const FontScaleValuesJS = () => {
             width: 'auto',
             valign: 'baseline',
             render: (value: React.ReactNode) => (
-              <EuiCode language="css">{value}</EuiCode>
+              <EuiCodeBlock language="js" paddingSize="s">
+                {value}
+              </EuiCodeBlock>
             ),
           },
           {

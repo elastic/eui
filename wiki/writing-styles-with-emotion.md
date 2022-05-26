@@ -404,6 +404,11 @@ const euiMixin = (
 ```
 
 If the mixin does not accept required or optional properties, the argument can be removed.
+## Writing unit tests for output styles
+
+If using complex utilities or calculations that leaves you unsure as to the output of your styles, it may be worth writing Jest snapshot tests to capture the final output. See [EuiText's style](https://github.com/elastic/eui/blob/main/src/components/text/text.styles.test.ts) [snapshots](https://github.com/elastic/eui/blob/main/src/components/text/__snapshots__/text.styles.test.ts.snap) or [EuiTitle](https://github.com/elastic/eui/blob/main/src/components/title/title.styles.test.ts) for an example of this.
+
+If writing straightforward or static CSS, unit tests should be unnecessary.
 
 ## FAQ
 
