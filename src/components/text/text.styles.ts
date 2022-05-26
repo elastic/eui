@@ -38,20 +38,21 @@ export const euiText = (
 
 // Internal utility for EuiText scales/sizes
 const euiScaleText = (
-  euiTheme: UseEuiTheme['euiTheme'],
+  euiThemeContext: UseEuiTheme,
   options: _FontScaleOptions
 ) => {
-  const { fontSize, lineHeight } = euiFontSize('m', euiTheme, options);
+  const { fontSize, lineHeight } = euiFontSize(euiThemeContext, 'm', options);
+  const { euiTheme } = euiThemeContext;
   const { measurement, customScale: _customScale } = options;
   const lineHeightSize = measurement === 'em' ? `${lineHeight}em` : lineHeight;
 
   const headings = {
-    h1: euiTitle('l', euiTheme, options),
-    h2: euiTitle('m', euiTheme, options),
-    h3: euiTitle('s', euiTheme, options),
-    h4: euiTitle('xs', euiTheme, options),
-    h5: euiTitle('xxs', euiTheme, options),
-    h6: euiTitle('xxxs', euiTheme, options),
+    h1: euiTitle(euiThemeContext, 'l', options),
+    h2: euiTitle(euiThemeContext, 'm', options),
+    h3: euiTitle(euiThemeContext, 's', options),
+    h4: euiTitle(euiThemeContext, 'xs', options),
+    h5: euiTitle(euiThemeContext, 'xxs', options),
+    h6: euiTitle(euiThemeContext, 'xxxs', options),
   };
   // Generate margins for headings based on customScale (not on heading level)
   const customScale = _customScale === 'xxxs' ? 'xxs' : _customScale || 'm';
@@ -166,12 +167,12 @@ const euiScaleText = (
     }
 
     .eui-definitionListReverse dt {
-      font-size: ${euiFontSize('xs', euiTheme, options).fontSize};
+      font-size: ${euiFontSize(euiThemeContext, 'xs', options).fontSize};
       color: ${euiTheme.colors.text};
     }
 
     small {
-      font-size: ${euiFontSize('s', euiTheme, options).fontSize};
+      font-size: ${euiFontSize(euiThemeContext, 's', options).fontSize};
     }
 
     pre:not(.euiCodeBlock__pre) {
@@ -249,28 +250,28 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       h1 {
-        ${euiTitle('l', euiTheme)}
+        ${euiTitle(euiThemeContext, 'l')}
       }
 
       h2 {
-        ${euiTitle('m', euiTheme)}
+        ${euiTitle(euiThemeContext, 'm')}
       }
 
       h3 {
-        ${euiTitle('s', euiTheme)}
+        ${euiTitle(euiThemeContext, 's')}
       }
 
       h4,
       dt {
-        ${euiTitle('xs', euiTheme)}
+        ${euiTitle(euiThemeContext, 'xs')}
       }
 
       h5 {
-        ${euiTitle('xxs', euiTheme)}
+        ${euiTitle(euiThemeContext, 'xxs')}
       }
 
       h6 {
-        ${euiTitle('xxxs', euiTheme)}
+        ${euiTitle(euiThemeContext, 'xxxs')}
         text-transform: uppercase;
       }
 
@@ -287,8 +288,8 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
       pre:not(.euiCodeBlock__pre) {
         white-space: pre-wrap;
         background: ${euiBackgroundColor(
-          'subdued',
-          euiThemeContext
+          euiThemeContext,
+          'subdued'
         )}; // TODO: $euiCodeBlockBackgroundColor - switch to var once EuiCode is converted
         color: ${euiTheme.colors
           .text}; // TODO: $euiCodeBlockColor - switch to var once EuiCode is converted
@@ -308,25 +309,25 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Sizes
     m: css`
-      ${euiScaleText(euiTheme, {
+      ${euiScaleText(euiThemeContext, {
         measurement: 'rem',
         customScale: 'm',
       })}
     `,
     s: css`
-      ${euiScaleText(euiTheme, {
+      ${euiScaleText(euiThemeContext, {
         measurement: 'rem',
         customScale: 's',
       })}
     `,
     xs: css`
-      ${euiScaleText(euiTheme, {
+      ${euiScaleText(euiThemeContext, {
         measurement: 'rem',
         customScale: 'xs',
       })}
     `,
     relative: css`
-      ${euiScaleText(euiTheme, {
+      ${euiScaleText(euiThemeContext, {
         measurement: 'em',
       })}
     `,

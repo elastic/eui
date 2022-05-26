@@ -388,6 +388,22 @@ When naming your mixins & utilities, consider the following statements:
 - Always prefix publicly-exported functions with `eui` unless it's purely a generic helper utility with no specific EUI consideration
 - When creating both a returned string version and object version, append the function name with `CSS` for strings and `Style` for objects. Example: `euiMixinCSS()` vs `euiMixinStyle()`.
 
+### API pattern
+
+For consistency, use the following pattern for style mixins that accept required and/or optional arguments:
+
+```ts
+const euiMixin = (
+  euiTheme: UseEuiTheme;
+  required: RequiredProperty;
+  optional?: {
+    optionalKey1?: OptionalProperty;
+    optionalKey2?: OptionalProperty;
+  }
+) => {}
+```
+
+If the mixin does not accept required or optional properties, the argument can be removed.
 ## Writing unit tests for output styles
 
 If using complex utilities or calculations that leaves you unsure as to the output of your styles, it may be worth writing Jest snapshot tests to capture the final output. See [EuiText's style](https://github.com/elastic/eui/blob/main/src/components/text/text.styles.test.ts) [snapshots](https://github.com/elastic/eui/blob/main/src/components/text/__snapshots__/text.styles.test.ts.snap) or [EuiTitle](https://github.com/elastic/eui/blob/main/src/components/title/title.styles.test.ts) for an example of this.
