@@ -10,8 +10,8 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiButton } from './button';
-import { COLORS, SIZES } from './_button_display_deprecated';
+import { EuiButton, COLORS, SIZES } from './button';
+
 import { ICON_SIDES } from './_button_content_deprecated';
 
 describe('EuiButton', () => {

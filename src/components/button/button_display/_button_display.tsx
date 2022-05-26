@@ -129,6 +129,10 @@ export type Props = ExclusiveUnion<
   EuiButtonDisplayPropsForButton
 >;
 
+/**
+ * The `color` is being ommited because the first component using this new component EuiFacetButton doesn't requiere a background color.
+ * But once we start using this component in buttons that can have a background we will require the color.
+ */
 export type EuiButtonDisplayProps = Omit<EuiButtonDisplayCommonProps, 'color'> &
   HTMLAttributes<HTMLElement> & {
     /**

@@ -9,8 +9,7 @@
 import React, { FunctionComponent, Ref } from 'react';
 import classNames from 'classnames';
 import { useEuiTheme } from '../../../services';
-import { EuiButton } from '../../button/button';
-import { EuiButtonDisplayCommonProps_Deprecated } from '../../button/_button_display_deprecated';
+import { EuiButton, EuiButtonProps } from '../../button/button';
 import { PropsForAnchor, PropsForButton, ExclusiveUnion } from '../../common';
 import { EuiScreenReaderOnly } from '../screen_reader_only';
 import { euiSkipLinkStyles } from './skip_link.styles';
@@ -18,7 +17,7 @@ import { euiSkipLinkStyles } from './skip_link.styles';
 export const POSITIONS = ['static', 'fixed', 'absolute'] as const;
 type Positions = typeof POSITIONS[number];
 
-interface EuiSkipLinkInterface extends EuiButtonDisplayCommonProps_Deprecated {
+interface EuiSkipLinkInterface extends EuiButtonProps {
   /**
    * Change the display position of the element when focused.
    * If 'fixed', the link will be fixed to the top left of the viewport
