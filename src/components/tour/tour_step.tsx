@@ -170,8 +170,6 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
     };
   }, [anchor]);
 
-  const newStyle: CSSProperties = { ...style, maxWidth, minWidth };
-
   const classes = classNames('euiTour', className);
 
   const finishButtonProps: EuiButtonEmptyProps = {
@@ -240,7 +238,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
     isOpen: isStepOpen,
     ownFocus: false,
     panelClassName: classes,
-    panelStyle: newStyle,
+    panelStyle: style,
     offset: hasBeacon ? 10 : 0,
     'aria-labelledby': titleId,
     arrowChildren: hasBeacon && <EuiBeacon className="euiTour__beacon" />,
@@ -248,7 +246,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   };
 
   const layout = (
-    <>
+    <div style={{ minWidth, maxWidth }}>
       <EuiPopoverTitle className="euiTourHeader" id={titleId}>
         {subtitle && (
           <EuiTitle size="xxxs" className="euiTourHeader__subtitle">
@@ -261,7 +259,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       </EuiPopoverTitle>
       <div className="euiTour__content">{content}</div>
       <EuiPopoverFooter className="euiTourFooter">{footer}</EuiPopoverFooter>
-    </>
+    </div>
   );
 
   if (!anchor && children) {

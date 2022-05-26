@@ -4,7 +4,7 @@ exports[`EuiHighlight behavior loose matching matches strings with different cas
 <span>
   different 
   <mark
-    class="euiMark css-qs5b6n-euiMarkStyles"
+    class="euiMark css-91ps61-euiMarkStyles"
   >
     case
   </mark>
@@ -15,19 +15,19 @@ exports[`EuiHighlight behavior loose matching matches strings with different cas
 exports[`EuiHighlight behavior matching applies to all matches 1`] = `
 <span>
   <mark
-    class="euiMark css-qs5b6n-euiMarkStyles"
+    class="euiMark css-91ps61-euiMarkStyles"
   >
     match
   </mark>
    
   <mark
-    class="euiMark css-qs5b6n-euiMarkStyles"
+    class="euiMark css-91ps61-euiMarkStyles"
   >
     match
   </mark>
    
   <mark
-    class="euiMark css-qs5b6n-euiMarkStyles"
+    class="euiMark css-91ps61-euiMarkStyles"
   >
     match
   </mark>
@@ -59,7 +59,7 @@ exports[`EuiHighlight behavior matching hasScreenReaderHelpText can be false 1`]
 exports[`EuiHighlight behavior matching only applies to first match 1`] = `
 <span>
   <mark
-    class="euiMark css-qs5b6n-euiMarkStyles"
+    class="euiMark css-91ps61-euiMarkStyles"
   >
     match
   </mark>

@@ -11,7 +11,7 @@ import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiButtonGroup, EuiButtonIcon } from '../../button';
 import { EuiDraggable } from '../../drag_and_drop';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
-import { EuiI18n } from '../../i18n';
+import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiIcon } from '../../icon';
 import { EuiText } from '../../text';
 import { EuiToken } from '../../token';
@@ -60,6 +60,11 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridCol
       'data-test-subj': `euiDataGridColumnSorting-sortColumn-${id}-desc`,
     },
   ];
+
+  const dragHandleAriaLabel = useEuiI18n(
+    'euiColumnSortingDraggable.dragHandleAriaLabel',
+    'Drag handle'
+  );
 
   return (
     <EuiDraggable draggableId={id} index={index} {...rest}>
@@ -154,10 +159,12 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridCol
                 )}
               </EuiI18n>
             </EuiFlexItem>
-            <EuiFlexItem grow={false} {...provided.dragHandleProps}>
-              <div {...provided.dragHandleProps}>
-                <EuiIcon type="grab" color="subdued" />
-              </div>
+            <EuiFlexItem
+              grow={false}
+              {...provided.dragHandleProps}
+              aria-label={dragHandleAriaLabel}
+            >
+              <EuiIcon type="grab" color="subdued" />
             </EuiFlexItem>
           </EuiFlexGroup>
         </div>

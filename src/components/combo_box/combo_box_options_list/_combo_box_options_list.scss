@@ -10,6 +10,11 @@
   &.euiPopover__panel-isAttached.euiComboBoxOptionsList--top { /* 1 */
     @include euiBottomShadowFlat;
   }
+
+  .euiFilterSelectItem__content {
+    // sass-lint:disable no-important
+    margin-block: 0 !important;
+  }
 }
 
 .euiComboBoxOptionsList__empty {

@@ -33,6 +33,7 @@ const euiCache = createCache({
   key: 'eui',
   container: document.querySelector('meta[name="eui-style-insert"]'),
 });
+cache.compat = true;
 
 <EuiProvider${
           colorMode === 'DARK' ? ' colorMode="dark"' : ''
