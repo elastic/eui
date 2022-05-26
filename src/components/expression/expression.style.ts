@@ -74,13 +74,6 @@ export const euiExpressionStyles = ({ euiTheme }: UseEuiTheme) => {
 
     truncate: css`
       max-width: 100%;
-
-      /* .euiExpression__description, */
-      .euiExpression__value {
-        ${euiTextTruncate()}
-        display: inline-block;
-        vertical-align: bottom;
-      }
     `,
 
     // States
@@ -163,6 +156,17 @@ export const euiExpressionDescriptionStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     isUppercase: css`
       text-transform: uppercase;
+    `,
+  };
+};
+
+export const euiExpressionValueStyles = ({}: UseEuiTheme) => {
+  return {
+    euiExpression__value: css``,
+    truncate: css`
+      ${euiTextTruncate()}
+      display: inline-block;
+      vertical-align: bottom;
     `,
   };
 };

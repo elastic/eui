@@ -21,6 +21,7 @@ import { useEuiTheme } from '../../services';
 import {
   euiExpressionStyles,
   euiExpressionDescriptionStyles,
+  euiExpressionValueStyles,
 } from './expression.style';
 
 // const colorToClassNameMap = {
@@ -141,14 +142,19 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
     isActive && styles.isActive.base,
     isActive && styles.isActive[color],
     display === 'columns' && styles.columns,
-    // textWrap === 'truncate' && styles.truncate,
+    textWrap === 'truncate' && styles.truncate,
   ];
-  const newDescriptionStyle = euiExpressionDescriptionStyles(theme);
-  const cssDescriptionStyle = [
-    newDescriptionStyle.euiExpression__description,
-    isInvalid ? newDescriptionStyle.danger : newDescriptionStyle[color],
-    uppercase && newDescriptionStyle.isUppercase,
-    textWrap === 'truncate' && newDescriptionStyle.truncate,
+  const descriptionStyles = euiExpressionDescriptionStyles(theme);
+  const cssDescriptionStyles = [
+    descriptionStyles.euiExpression__description,
+    isInvalid ? descriptionStyles.danger : descriptionStyles[color],
+    uppercase && descriptionStyles.isUppercase,
+    textWrap === 'truncate' && descriptionStyles.truncate,
+  ];
+  const valueStyles = euiExpressionValueStyles(theme);
+  const cssValueStyles = [
+    valueStyles.euiExpression__value,
+    textWrap === 'truncate' && valueStyles.truncate,
   ];
 
   const classes = classNames(
@@ -187,14 +193,18 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
     <Component css={cssStyles} className={classes} onClick={onClick} {...rest}>
       <span
         className="euiExpression__description"
-        css={cssDescriptionStyle}
+        css={cssDescriptionStyles}
         style={customWidth}
         {...descriptionProps}
       >
         {description}
       </span>{' '}
       {value && (
-        <span className="euiExpression__value" {...valueProps}>
+        <span
+          className="euiExpression__value"
+          css={cssValueStyles}
+          {...valueProps}
+        >
           {value}
         </span>
       )}
