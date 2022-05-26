@@ -18,8 +18,7 @@ export default () => {
         startDateControl={
           <EuiDatePicker
             selected={startDate}
-            // @ts-expect-error Help?
-            onChange={setStartDate}
+            onChange={(date) => date && setStartDate(date)}
             startDate={startDate}
             endDate={endDate}
             aria-label="Start date"
@@ -29,8 +28,7 @@ export default () => {
         endDateControl={
           <EuiDatePicker
             selected={endDate}
-            // @ts-expect-error Help?
-            onChange={setEndDate}
+            onChange={(date) => date && setEndDate(date)}
             startDate={startDate}
             endDate={endDate}
             aria-label="End date"
