@@ -124,7 +124,7 @@ exports[`EuiProvider applying modifications propagates \`modify\` 1`] = `
                 "computer": [Function],
                 "dependencies": Array [],
               },
-              "subdued": Computed {
+              "subduedText": Computed {
                 "computer": [Function],
                 "dependencies": Array [],
               },
@@ -196,7 +196,7 @@ exports[`EuiProvider applying modifications propagates \`modify\` 1`] = `
                 "computer": [Function],
                 "dependencies": Array [],
               },
-              "subdued": Computed {
+              "subduedText": Computed {
                 "computer": [Function],
                 "dependencies": Array [],
               },
@@ -246,6 +246,7 @@ exports[`EuiProvider applying modifications propagates \`modify\` 1`] = `
             },
             "family": "'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif",
             "familyCode": "'Roboto Mono', Menlo, Courier, monospace",
+            "familySerif": "Georgia, Times, Times New Roman, serif",
             "featureSettings": "'calt' 1, 'kern' 1, 'liga' 1",
             "lineHeightMultiplier": 1.5,
             "scale": Object {
@@ -449,7 +450,7 @@ exports[`EuiProvider changing color modes propagates \`colorMode\` 1`] = `
                 "computer": [Function],
                 "dependencies": Array [],
               },
-              "subdued": Computed {
+              "subduedText": Computed {
                 "computer": [Function],
                 "dependencies": Array [],
               },
@@ -521,7 +522,7 @@ exports[`EuiProvider changing color modes propagates \`colorMode\` 1`] = `
                 "computer": [Function],
                 "dependencies": Array [],
               },
-              "subdued": Computed {
+              "subduedText": Computed {
                 "computer": [Function],
                 "dependencies": Array [],
               },
@@ -571,6 +572,7 @@ exports[`EuiProvider changing color modes propagates \`colorMode\` 1`] = `
             },
             "family": "'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif",
             "familyCode": "'Roboto Mono', Menlo, Courier, monospace",
+            "familySerif": "Georgia, Times, Times New Roman, serif",
             "featureSettings": "'calt' 1, 'kern' 1, 'liga' 1",
             "lineHeightMultiplier": 1.5,
             "scale": Object {
@@ -773,7 +775,7 @@ exports[`EuiProvider is rendered 1`] = `
                 "computer": [Function],
                 "dependencies": Array [],
               },
-              "subdued": Computed {
+              "subduedText": Computed {
                 "computer": [Function],
                 "dependencies": Array [],
               },
@@ -845,7 +847,7 @@ exports[`EuiProvider is rendered 1`] = `
                 "computer": [Function],
                 "dependencies": Array [],
               },
-              "subdued": Computed {
+              "subduedText": Computed {
                 "computer": [Function],
                 "dependencies": Array [],
               },
@@ -895,6 +897,7 @@ exports[`EuiProvider is rendered 1`] = `
             },
             "family": "'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif",
             "familyCode": "'Roboto Mono', Menlo, Courier, monospace",
+            "familySerif": "Georgia, Times, Times New Roman, serif",
             "featureSettings": "'calt' 1, 'kern' 1, 'liga' 1",
             "lineHeightMultiplier": 1.5,
             "scale": Object {
@@ -1119,7 +1122,7 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to glo
                 "computer": [Function],
                 "dependencies": Array [],
               },
-              "subdued": Computed {
+              "subduedText": Computed {
                 "computer": [Function],
                 "dependencies": Array [],
               },
@@ -1191,7 +1194,7 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to glo
                 "computer": [Function],
                 "dependencies": Array [],
               },
-              "subdued": Computed {
+              "subduedText": Computed {
                 "computer": [Function],
                 "dependencies": Array [],
               },
@@ -1241,6 +1244,7 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to glo
             },
             "family": "'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif",
             "familyCode": "'Roboto Mono', Menlo, Courier, monospace",
+            "familySerif": "Georgia, Times, Times New Roman, serif",
             "featureSettings": "'calt' 1, 'kern' 1, 'liga' 1",
             "lineHeightMultiplier": 1.5,
             "scale": Object {
