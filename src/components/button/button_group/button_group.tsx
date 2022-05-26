@@ -13,8 +13,8 @@ import { EuiButtonGroupButton } from './button_group_button';
 import {
   colorToClassNameMap,
   ButtonDisplayColor_Deprecated,
-} from '../_button_display';
-import { EuiButtonContentProps_Deprecated } from '../_button_content';
+} from '../_button_display_deprecated';
+import { EuiButtonContentProps_Deprecated } from '../_button_content_deprecated';
 import { CommonProps } from '../../common';
 import { useGeneratedHtmlId } from '../../../services';
 

@@ -26,9 +26,10 @@ export const ICON_SIDES = keysOf(iconSideToClassNameMap);
 export type EuiButtonContentType_Deprecated = HTMLAttributes<HTMLSpanElement>;
 
 /**
- * *INTERNAL ONLY*
+ * *INTERNAL ONLY / DEPRECATED*
  * This component is simply a helper component for reuse within other button components
- * This component has been deprecated in favor of the new EuiButtonDisplayContent.
+ * This component has been deprecated in favor of the new EuiButtonDisplayContent
+ * that can be found in `src/components/button/button_display/_button_display_content.tsx`.
  */
 export interface EuiButtonContentProps_Deprecated extends CommonProps {
   /**

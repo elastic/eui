@@ -10,7 +10,7 @@ import React, { FunctionComponent, Ref } from 'react';
 import classNames from 'classnames';
 import { useEuiTheme } from '../../../services';
 import { EuiButton } from '../../button/button';
-import { EuiButtonDisplayCommonProps_Deprecated } from '../../button/_button_display';
+import { EuiButtonDisplayCommonProps_Deprecated } from '../../button/_button_display_deprecated';
 import { PropsForAnchor, PropsForButton, ExclusiveUnion } from '../../common';
 import { EuiScreenReaderOnly } from '../screen_reader_only';
 import { euiSkipLinkStyles } from './skip_link.styles';

@@ -27,6 +27,14 @@ export const euiButtonBaseCSS = () => {
   `;
 };
 
+const _buttonSize = (size: string) => {
+  return `
+    ${logicalCSS('height', size)};
+    // prevents descenders from getting cut off
+    line-height: ${size};
+  `;
+};
+
 export const euiButtonDisplayStyles = (
   { euiTheme }: UseEuiTheme,
   minWidth: string
@@ -51,15 +59,8 @@ export const euiButtonDisplayStyles = (
       width: 100%;
     `,
     // Sizes
-    s: css`
-      ${logicalCSS('height', euiTheme.size.xl)};
-      // prevents descenders from getting cut off
-      line-height: ${euiTheme.size.xl};
-    `,
-    m: css`
-      ${logicalCSS('height', euiTheme.size.xxl)};
-      // prevents descenders from getting cut off
-      line-height: ${euiTheme.size.xxl};
-    `,
+    xs: css(_buttonSize(euiTheme.size.l)),
+    s: css(_buttonSize(euiTheme.size.xl)),
+    m: css(_buttonSize(euiTheme.size.xxl)),
   };
 };

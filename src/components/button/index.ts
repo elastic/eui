@@ -11,7 +11,7 @@ export type {
   ButtonDisplaySize_Deprecated as ButtonSize,
   EuiButtonDisplayCommonProps_Deprecated as EuiButtonProps,
   COLORS,
-} from './_button_display';
+} from './_button_display_deprecated';
 export { EuiButton } from './button';
 
 export type {

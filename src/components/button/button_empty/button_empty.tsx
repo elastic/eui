@@ -22,7 +22,7 @@ import {
   EuiButtonContent_Deprecated as EuiButtonContent,
   EuiButtonContentProps_Deprecated as EuiButtonContentProps,
   EuiButtonContentType_Deprecated as EuiButtonContentType,
-} from '../_button_content';
+} from '../_button_content_deprecated';
 
 import { validateHref } from '../../../services/security/href_validator';
 

@@ -27,7 +27,7 @@ import { IconType, IconSize, EuiIcon } from '../../icon';
 
 import { EuiLoadingSpinner } from '../../loading';
 
-import { ButtonDisplayColor_Deprecated } from '../_button_display';
+import { ButtonDisplayColor_Deprecated } from '../_button_display_deprecated';
 
 import { validateHref } from '../../../services/security/href_validator';
 

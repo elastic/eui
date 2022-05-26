@@ -14,7 +14,7 @@ import { validateHref } from '../../services/security/href_validator';
 import {
   EuiButtonDisplayUnionProps_Deprecated,
   EuiButtonDisplay_Deprecated as EuiButtonDisplay,
-} from './_button_display';
+} from './_button_display_deprecated';
 
 /**
  * EuiButton is largely responsible for providing relevant props

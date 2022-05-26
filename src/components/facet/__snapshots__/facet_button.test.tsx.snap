@@ -3,7 +3,7 @@
 exports[`EuiFacetButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiFacetButton testClass1 testClass2 css-w3h89e-euiButtonDisplay-s-euiFacetButton-unSelected"
+  class="euiFacetButton testClass1 testClass2 css-g6l6jm-euiButtonDisplay-s-euiFacetButton-unSelected"
   data-test-subj="test subject string"
   title="aria-label"
 >
@@ -21,7 +21,7 @@ exports[`EuiFacetButton is rendered 1`] = `
 
 exports[`EuiFacetButton props icon is rendered 1`] = `
 <button
-  class="euiFacetButton css-w3h89e-euiButtonDisplay-s-euiFacetButton-unSelected"
+  class="euiFacetButton css-g6l6jm-euiButtonDisplay-s-euiFacetButton-unSelected"
 >
   <span
     class="css-v341i7-euiButtonDisplayContent"
@@ -41,7 +41,7 @@ exports[`EuiFacetButton props icon is rendered 1`] = `
 
 exports[`EuiFacetButton props isDisabled is rendered 1`] = `
 <button
-  class="euiFacetButton css-xykh1c-euiButtonDisplay-s-isDisabled-euiFacetButton-unSelected"
+  class="euiFacetButton css-olp08-euiButtonDisplay-s-isDisabled-euiFacetButton-unSelected"
   disabled=""
 >
   <span
@@ -68,7 +68,7 @@ exports[`EuiFacetButton props isDisabled is rendered 1`] = `
 
 exports[`EuiFacetButton props isLoading is rendered 1`] = `
 <button
-  class="euiFacetButton css-xykh1c-euiButtonDisplay-s-isDisabled-euiFacetButton-unSelected"
+  class="euiFacetButton css-olp08-euiButtonDisplay-s-isDisabled-euiFacetButton-unSelected"
   disabled=""
 >
   <span
@@ -90,7 +90,7 @@ exports[`EuiFacetButton props isLoading is rendered 1`] = `
 
 exports[`EuiFacetButton props isSelected is rendered 1`] = `
 <button
-  class="euiFacetButton css-a1zf0f-euiButtonDisplay-s-euiFacetButton-isSelected"
+  class="euiFacetButton css-1l679un-euiButtonDisplay-s-euiFacetButton-isSelected"
 >
   <span
     class="css-v341i7-euiButtonDisplayContent"
@@ -106,7 +106,7 @@ exports[`EuiFacetButton props isSelected is rendered 1`] = `
 
 exports[`EuiFacetButton props quantity is rendered 1`] = `
 <button
-  class="euiFacetButton css-w3h89e-euiButtonDisplay-s-euiFacetButton-unSelected"
+  class="euiFacetButton css-g6l6jm-euiButtonDisplay-s-euiFacetButton-unSelected"
 >
   <span
     class="css-v341i7-euiButtonDisplayContent"

@@ -19,7 +19,7 @@ import {
   EuiButtonContent_Deprecated as EuiButtonContent,
   EuiButtonContentProps_Deprecated as EuiButtonContentDisplayProps,
   EuiButtonContentType_Deprecated as EuiButtonContentType,
-} from './_button_content';
+} from './_button_content_deprecated';
 
 import {
   CommonProps,
@@ -143,9 +143,11 @@ export type EuiButtonDisplayProps_Deprecated = EuiButtonDisplayCommonProps_Depre
   };
 
 /**
+ * *INTERNAL ONLY / DEPRECATED*
  * EuiButtonDisplay is an internal-only component used for displaying
  * any element as a button.
- * This component has been deprecated in favor of the new EuiButtonDisplay.
+ * This component has been deprecated in favor of the new EuiButtonDisplay
+ * that can be found in `src/components/button/button_display/_button_display.tsx`
  */
 export const EuiButtonDisplay_Deprecated = forwardRef<
   HTMLElement,
