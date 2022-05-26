@@ -167,6 +167,8 @@ const webpackConfig = {
       }),
     ],
   },
+
+  stats: 'minimal',
 };
 
 // Inspired by `get-port-sync`, but propogates options
