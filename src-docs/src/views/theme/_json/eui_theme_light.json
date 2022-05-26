@@ -559,7 +559,7 @@
   },
   "euiPanelBorderRadiusModifiers": {
     "borderRadiusNone": 0,
-    "borderRadiusMedium": "6px"
+    "borderRadiusMedium": "4px"
   },
   "euiPanelBackgroundColorModifiers": {
     "transparent": "rgba(0, 0, 0, 0)",
