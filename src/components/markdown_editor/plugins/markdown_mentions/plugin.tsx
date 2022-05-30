@@ -11,13 +11,14 @@ import { EuiCodeBlock } from '../../../code';
 import { EuiMarkdownEditorUiPlugin } from '../../markdown_types';
 import { MentionsNodeDetails } from './types';
 import { EuiSelectable, EuiSelectableProps } from '../../../selectable';
-import { keys } from '../../../../services/keys';
+import { keys, useEuiTheme } from '../../../../services/';
 import {
   EuiHighlight,
   EuiText,
   EuiTextColor,
   EuiAvatar,
 } from '../../../../components';
+import { euiMarkdownMentionsStyles } from './markdown_mentions.styles';
 
 export const mentionsPlugin: EuiMarkdownEditorUiPlugin<MentionsNodeDetails> = {
   name: 'mentionsPlugin',
@@ -72,27 +73,25 @@ export const mentionsPlugin: EuiMarkdownEditorUiPlugin<MentionsNodeDetails> = {
       }
     };
 
-    console.log(node?.config.options);
+    const euiTheme = useEuiTheme();
+    const styles = euiMarkdownMentionsStyles(euiTheme);
+    const cssStyles = styles.euiMarkdownMentions;
+    const cssItemStyles = styles.euiMarkdownMentions__item;
+    const cssItemLabelStyles = styles.euiMarkdownMentions__itemLabel;
+    const cssItemFullNameStyles = styles.euiMarkdownMentions__itemFullName;
 
     const renderOption = (option, searchValue) => {
-      console.log({ option });
-
       return (
         <EuiText size="s">
-          <span className="euiMarkdownMentions__item">
+          <span css={cssItemStyles}>
             <EuiAvatar name={option.label} size="s" />
 
-            <span className="euiMarkdownMentions__itemLabel">
+            <span css={cssItemLabelStyles}>
               <EuiHighlight search={searchValue}>{option.label}</EuiHighlight>
             </span>
 
-            <EuiTextColor
-              className="euiMarkdownMentions__itemFullName"
-              color="subdued"
-            >
-              <small>
-                {option.firstName} {option.lastName}
-              </small>
+            <EuiTextColor css={cssItemFullNameStyles} color="subdued">
+              {option.firstName} {option.lastName}
             </EuiTextColor>
           </span>
         </EuiText>
@@ -101,15 +100,15 @@ export const mentionsPlugin: EuiMarkdownEditorUiPlugin<MentionsNodeDetails> = {
 
     return (
       <EuiSelectable
-        className="euiMarkdownMentions"
+        css={cssStyles}
         ref={selectableRef}
         options={node?.config.options}
         onChange={onChange}
         height="full"
-        paddingSize="none"
         renderOption={renderOption}
         listProps={{
           showIcons: false,
+          rowHeight: 36,
         }}
       >
         {(list) => list}

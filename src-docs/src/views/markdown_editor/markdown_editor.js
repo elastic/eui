@@ -16,9 +16,9 @@ import {
 } from '../../../..//src/components/markdown_editor';
 import * as MarkdownMentions from '../../../../src/components/markdown_editor/plugins/markdown_mentions';
 
-const initialContent = `## 👋 Hello @miukimiu
+const initialContent = `## 👋 Hi @miukimiu
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Can you take a look at [#malw-12](https://elastic.co)?
 
 CC @chandlerprall , @cchaos
 

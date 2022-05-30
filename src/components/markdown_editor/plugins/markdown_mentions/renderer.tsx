@@ -10,31 +10,50 @@ import React, { FunctionComponent } from 'react';
 import { EuiMarkdownAstNodePosition } from '../../markdown_types';
 import { MentionsNodeDetails } from './types';
 import { EuiToolTip, EuiAvatar } from '../../../../components';
+import { euiMarkdownMentionsStyles } from './markdown_mentions.styles';
+import { useEuiTheme } from '../../../../services';
 
 export const mentionsMarkdownRenderer: FunctionComponent<
   MentionsNodeDetails & {
     position: EuiMarkdownAstNodePosition;
   }
 > = ({ config, mention }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiMarkdownMentionsStyles(euiTheme);
+
+  const cssRendererStyles = styles.euiMarkdownMentions__renderer;
+  const cssRendererTooltipStyles = styles.euiMarkdownMentions__rendererTooltip;
+  const cssRendererTooltipAvatarStyles =
+    styles.euiMarkdownMentions__rendererTooltipAvatar;
+  const cssRendererTooltipMainContentStyles =
+    styles.euiMarkdownMentions__rendererTooltipMainContent;
+  const cssRendererTooltipUsernameStyles =
+    styles.euiMarkdownMentions__rendererTooltipUsername;
+  const cssRendererTooltipFullnameStyles =
+    styles.euiMarkdownMentions__rendererTooltipFullname;
+
   const match = config.options.find(({ label }) => label === mention);
 
   const { firstName, lastName } = match?.data;
   const { label } = match;
 
   const content = (
-    <div className="euiMarkdownMentions__rendererTooltip">
-      <div className="euiMarkdownMentions__rendererTooltipMain">
-        <EuiAvatar name={label} size="s" /> {label}
+    <div css={cssRendererTooltipStyles}>
+      <div css={cssRendererTooltipAvatarStyles}>
+        <EuiAvatar name={label} size="m" />
       </div>
 
-      <div className="euiMarkdownMentions__rendererTooltipSecondary">
-        {firstName} {lastName}
+      <div css={cssRendererTooltipMainContentStyles}>
+        <p css={cssRendererTooltipUsernameStyles}>@{label}</p>
+        <p css={cssRendererTooltipFullnameStyles}>
+          {firstName} {lastName}
+        </p>
       </div>
     </div>
   );
   return (
     <EuiToolTip content={content}>
-      <span className="euiMarkdownMentions__renderer">@{mention}</span>
+      <span css={cssRendererStyles}>@{mention}</span>
     </EuiToolTip>
   );
 };
