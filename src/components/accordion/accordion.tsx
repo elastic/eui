@@ -311,7 +311,7 @@ export class EuiAccordionClass extends Component<
 
     let optionalAction = null;
 
-    if (extraAction) {
+    if (isLoading || extraAction) {
       optionalAction = (
         <div
           className="euiAccordion__optionalAction"

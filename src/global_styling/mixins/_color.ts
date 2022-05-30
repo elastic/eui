@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import { css } from '@emotion/react';
 import { shade, tint, useEuiTheme, UseEuiTheme } from '../../services';
 
 export const BACKGROUND_COLORS = [
@@ -22,8 +23,8 @@ export const BACKGROUND_COLORS = [
 export type EuiBackgroundColor = typeof BACKGROUND_COLORS[number];
 
 export const euiBackgroundColor = (
-  color: EuiBackgroundColor,
-  { euiTheme, colorMode }: UseEuiTheme
+  { euiTheme, colorMode }: UseEuiTheme,
+  color: EuiBackgroundColor
 ) => {
   function tintOrShade(color: string) {
     return colorMode === 'DARK' ? shade(color, 0.7) : tint(color, 0.9);
@@ -43,33 +44,33 @@ export const euiBackgroundColor = (
 
 export const useEuiBackgroundColor = (color: EuiBackgroundColor) => {
   const euiTheme = useEuiTheme();
-  return euiBackgroundColor(color, euiTheme);
+  return euiBackgroundColor(euiTheme, color);
 };
 
 export const useEuiBackgroundColorCSS = () => {
   return {
-    transparent: `
+    transparent: css`
       background-color: ${useEuiBackgroundColor('transparent')};
     `,
-    plain: `
+    plain: css`
       background-color: ${useEuiBackgroundColor('plain')};
     `,
-    subdued: `
+    subdued: css`
       background-color: ${useEuiBackgroundColor('subdued')};
     `,
-    accent: `
+    accent: css`
       background-color: ${useEuiBackgroundColor('accent')};
     `,
-    primary: `
+    primary: css`
       background-color: ${useEuiBackgroundColor('primary')};
     `,
-    success: `
+    success: css`
       background-color: ${useEuiBackgroundColor('success')};
     `,
-    warning: `
+    warning: css`
       background-color: ${useEuiBackgroundColor('warning')};
     `,
-    danger: `
+    danger: css`
       background-color: ${useEuiBackgroundColor('danger')};
     `,
   };

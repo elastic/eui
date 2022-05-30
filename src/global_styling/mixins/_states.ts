@@ -26,11 +26,11 @@ export type _EuiFocusRingOffset =
 export const euiFocusRing = (
   euiTheme: UseEuiTheme['euiTheme'],
   offset: _EuiFocusRingOffset = 'center',
-  color?: CSSProperties['outlineColor']
+  options?: { color?: CSSProperties['outlineColor'] }
 ) => {
   // Width is enforced as a constant at the global theme layer
   const outlineWidth = euiTheme.focus.width;
-  const outlineColor = color || euiTheme.focus.color;
+  const outlineColor = options?.color || euiTheme.focus.color;
 
   let outlineOffset = offset;
   if (offset === 'inset') {
@@ -62,12 +62,10 @@ export const euiFocusRing = (
     }
   `;
 };
-
-// Hook version
 export const useEuiFocusRing = (
   offset?: _EuiFocusRingOffset,
   color?: CSSProperties['outlineColor']
 ) => {
   const { euiTheme } = useEuiTheme();
-  return euiFocusRing(euiTheme, offset, color);
+  return euiFocusRing(euiTheme, offset, { color });
 };
