@@ -12,6 +12,8 @@ import { VFileContents } from 'vfile';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { EuiText, EuiTextProps } from '../text/text';
+import { useEuiTheme } from '../../services';
+import { euiMarkdownFormatStyles } from './markdown_format.styles';
 import {
   defaultProcessingPlugins,
   defaultParsingPlugins,
@@ -53,10 +55,14 @@ export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
     }
   }, [children, processor]);
 
+  const euiTheme = useEuiTheme();
+  const styles = euiMarkdownFormatStyles(euiTheme);
+  const cssStyles = [styles.euiMarkdownFormat, styles[textSize]];
+
   const classes = classNames('euiMarkdownFormat', className);
 
   return (
-    <EuiText size={textSize} className={classes} {...rest}>
+    <EuiText size={textSize} css={cssStyles} className={classes} {...rest}>
       {result}
     </EuiText>
   );

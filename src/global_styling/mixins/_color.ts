@@ -23,8 +23,8 @@ export const BACKGROUND_COLORS = [
 export type EuiBackgroundColor = typeof BACKGROUND_COLORS[number];
 
 export const euiBackgroundColor = (
-  color: EuiBackgroundColor,
-  { euiTheme, colorMode }: UseEuiTheme
+  { euiTheme, colorMode }: UseEuiTheme,
+  color: EuiBackgroundColor
 ) => {
   function tintOrShade(color: string) {
     return colorMode === 'DARK' ? shade(color, 0.7) : tint(color, 0.9);
@@ -44,7 +44,7 @@ export const euiBackgroundColor = (
 
 export const useEuiBackgroundColor = (color: EuiBackgroundColor) => {
   const euiTheme = useEuiTheme();
-  return euiBackgroundColor(color, euiTheme);
+  return euiBackgroundColor(euiTheme, color);
 };
 
 export const useEuiBackgroundColorCSS = () => {
