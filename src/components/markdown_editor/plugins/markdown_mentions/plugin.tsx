@@ -23,7 +23,7 @@ export const mentionsPlugin: EuiMarkdownEditorUiPlugin<MentionsNodeDetails> = {
   name: 'mentionsPlugin',
   button: {
     label: 'Mention',
-    iconType: 'userAvatar',
+    iconType: 'mention',
   },
   helpText: (
     <EuiCodeBlock language="md" paddingSize="s" fontSize="l">

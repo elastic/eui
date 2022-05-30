@@ -286,6 +286,7 @@ const typeToPathMap = {
   managementApp: 'app_management',
   mapMarker: 'map_marker',
   memory: 'memory',
+  mention: 'mention',
   menu: 'menu',
   menuDown: 'menuDown',
   menuLeft: 'menuLeft',
