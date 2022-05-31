@@ -127,7 +127,7 @@ describe('date format', () => {
       expect(dateGranularity(parsed)).toBe(Granularity.DAY);
     });
 
-    const sunday = moment(now).subtract(now.day(), 'days');
+    const sunday = moment().day('Sunday');
     ['Sun', 'Sunday'].forEach((time) => {
       const parsed = dateFormat.parse(time);
       expect(parsed.utcOffset()).toBe(0);

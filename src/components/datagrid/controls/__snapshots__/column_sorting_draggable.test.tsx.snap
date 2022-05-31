@@ -142,14 +142,13 @@ exports[`EuiDataGridColumnSortingDraggable renders an EuiDraggable component of 
       </EuiI18n>
     </EuiFlexItem>
     <EuiFlexItem
+      aria-label="Drag handle"
       grow={false}
     >
-      <div>
-        <EuiIcon
-          color="subdued"
-          type="grab"
-        />
-      </div>
+      <EuiIcon
+        color="subdued"
+        type="grab"
+      />
     </EuiFlexItem>
   </EuiFlexGroup>
 </div>

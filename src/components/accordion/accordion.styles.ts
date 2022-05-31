@@ -10,23 +10,26 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { euiFontSize } from '../../global_styling/mixins';
 
-export const euiAccordionButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiAccordion__button: css`
-    ${euiFontSize('s', euiTheme)};
-    align-items: center;
-    display: flex;
-    flex-grow: 1;
-    line-height: ${euiTheme.size.l};
-    text-align: left;
-    width: 100%;
+export const euiAccordionButtonStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  return {
+    euiAccordion__button: css`
+      ${euiFontSize(euiThemeContext, 's')};
+      align-items: center;
+      display: flex;
+      flex-grow: 1;
+      line-height: ${euiTheme.size.l};
+      text-align: left;
+      width: 100%;
 
-    &:hover,
-    &:focus {
-      cursor: pointer;
-      text-decoration: underline;
-    }
-  `,
-});
+      &:hover,
+      &:focus {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    `,
+  };
+};
 
 export const euiAccordionChildrenStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiAccordion__children: css``,

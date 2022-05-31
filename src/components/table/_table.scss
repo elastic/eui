@@ -36,7 +36,7 @@
   @include euiTableCell;
   @include euiTitle('xxs');
   font-weight: $euiFontWeightMedium;
-  border-top: none;
+  border: none;
 
   .euiTableHeaderButton {
     text-align: left;
@@ -78,7 +78,7 @@
 
 .euiTableHeaderCellCheckbox {
   @include euiTableCellCheckbox;
-  border-top: none;
+  border: none;
 }
 
 .euiTableRow {
@@ -146,10 +146,8 @@
   @include euiTableCellCheckbox;
 }
 
-// Must come after .euiTableRowCell selector for border to be removed
 .euiTableFooterCell {
   background-color: $euiColorLightestShade;
-  border-bottom: none;
 }
 
 /**
