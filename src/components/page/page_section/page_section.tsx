@@ -20,7 +20,7 @@ import {
 } from './page_section.styles';
 
 import {
-  BACKGROUND_COLORS,
+  EuiBackgroundColor,
   useEuiPaddingCSS,
   useEuiBackgroundColorCSS,
   _EuiPaddingSize,
@@ -33,7 +33,7 @@ export type EuiPageSectionProps = CommonProps &
      * Background color of the section;
      * Usually a lightened form of the brand colors
      */
-    color?: typeof BACKGROUND_COLORS[number];
+    color?: EuiBackgroundColor;
     /**
      * Padding for all four sides
      */
