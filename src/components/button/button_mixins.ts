@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import { css } from '@emotion/react';
 import {
   shade,
   tint,
@@ -50,25 +51,25 @@ export const useEuiButtonColorCSS = () => {
   const euiTheme = useEuiTheme();
 
   return {
-    text: `
+    text: css`
       background-color: ${euiButtonColor('text', euiTheme)};
     `,
-    accent: `
+    accent: css`
       background-color: ${euiButtonColor('accent', euiTheme)};
     `,
-    primary: `
+    primary: css`
       background-color: ${euiButtonColor('primary', euiTheme)};
     `,
-    success: `
+    success: css`
       background-color: ${euiButtonColor('success', euiTheme)};
     `,
-    warning: `
+    warning: css`
       background-color: ${euiButtonColor('warning', euiTheme)};
     `,
-    danger: `
+    danger: css`
       background-color: ${euiButtonColor('danger', euiTheme)};
     `,
-    disabled: `
+    disabled: css`
       background-color: ${euiButtonColor('disabled', euiTheme)};
     `,
   };

@@ -45,6 +45,10 @@ export const contrastSections = [
   { title: 'Background colors', id: 'background-colors' },
 ];
 
+const background_colors = BACKGROUND_COLORS.filter(
+  (color) => color !== 'transparent'
+);
+
 export default () => {
   const euiTheme = useEuiTheme();
   const [showTextVariants, setShowTextVariants] = useState(true);
@@ -58,7 +62,7 @@ export default () => {
   });
 
   const [backgroundColors, setBackgroundColors] = useState<any>(
-    BACKGROUND_COLORS
+    background_colors
   );
   const [backgroundFunction, setBackgroundFunction] = useState<any>(
     'useEuiBackgroundColor'
@@ -71,12 +75,12 @@ export default () => {
     switch (id) {
       case 'container':
         setBackgroundSelected(id);
-        setBackgroundColors(BACKGROUND_COLORS);
+        setBackgroundColors(background_colors);
         setBackgroundFunction('useEuiBackgroundColor(color)');
         break;
       case 'hover':
         setBackgroundSelected(id);
-        setBackgroundColors(BACKGROUND_COLORS);
+        setBackgroundColors(background_colors);
         setBackgroundFunction("useEuiBackgroundColor(color, 'transparent')");
         break;
       case 'button':
