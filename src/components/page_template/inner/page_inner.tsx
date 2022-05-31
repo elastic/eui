@@ -16,7 +16,7 @@ import {
 import { useEuiTheme, useIsWithinBreakpoints } from '../../../services';
 import { euiPageInnerStyles } from './page_inner.styles';
 
-type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType<any>;
+type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType;
 
 export type _EuiPageInnerProps<
   T extends ComponentTypes = 'main'
@@ -57,7 +57,6 @@ export const _EuiPageInner = <T extends ComponentTypes>({
   const themeContext = useEuiTheme();
   const isResponding = useIsWithinBreakpoints(responsive);
   const styles = euiPageInnerStyles(themeContext);
-  // @ts-expect-error Help
   const paddingStyles = useEuiPaddingCSS()[paddingSize];
 
   let borderSide: 'top' | 'left' | undefined;
@@ -75,6 +74,7 @@ export const _EuiPageInner = <T extends ComponentTypes>({
   ];
 
   return (
+    // @ts-expect-error Generic element type mismatch
     <Component css={cssStyles} {...rest}>
       {children}
     </Component>
