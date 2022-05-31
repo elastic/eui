@@ -23,7 +23,7 @@ export const DisplayToggles = ({
   canAppend = false,
   canClear = false,
   children,
-  extras = undefined,
+  extras,
   spacerSize = 'l',
 }) => {
   const [disabled, setDisabled] = useState(false);
