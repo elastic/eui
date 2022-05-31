@@ -2400,10 +2400,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@elastic/charts@^46.4.0":
-  version "46.4.0"
-  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-46.4.0.tgz#607bb46e05e2902e546772343654c6e4f49d3441"
-  integrity sha512-d3le4bj2tg0PYi1BnJElFzZLh9StoUP4HaM1zJT4xONuJCftDwTTgHU5Lq2WahM23o+mUstOFySfQrN4luQcGA==
+"@elastic/charts@^46.5.0":
+  version "46.5.0"
+  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-46.5.0.tgz#8372b307fe044f94cd456cb85b3f24db287a5fba"
+  integrity sha512-UPxiVbnYE980uwjT4Uc6j7/NeWvwTdcQs/ZpPWqUxkpgelyLA5RPzw59H7HIn2LfL3cuEQd4Z/Fych2V3wCyrQ==
   dependencies:
     "@popperjs/core" "^2.4.0"
     bezier-easing "^2.1.0"
