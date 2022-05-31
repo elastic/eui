@@ -352,7 +352,7 @@ exports[`EuiPageHeaderContent props description is rendered 1`] = `
       class="euiFlexItem"
     >
       <div
-        class="euiText euiText--medium euiText--constrainedWidth"
+        class="euiText css-b6i93m-euiText-constrainedWidth-m"
       >
         <p>
           Description

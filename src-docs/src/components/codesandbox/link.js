@@ -167,6 +167,7 @@ const cache = createCache({
   key: 'codesandbox',
   container: document.querySelector('meta[name="emotion-styles"]'),
 });
+cache.compat = true;
 
 ReactDOM.render(
   <EuiProvider cache={cache} ${providerProps}>

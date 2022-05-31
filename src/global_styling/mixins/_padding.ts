@@ -22,8 +22,8 @@ export type EuiPaddingSize = {
 };
 
 export const euiPaddingSize = (
-  size: _EuiPaddingSize,
-  { euiTheme }: UseEuiTheme
+  { euiTheme }: UseEuiTheme,
+  size: _EuiPaddingSize
 ) => {
   switch (size) {
     case 'none':
@@ -37,7 +37,7 @@ export const euiPaddingSize = (
 
 export const useEuiPaddingSize = (size: _EuiPaddingSize) => {
   const euiTheme = useEuiTheme();
-  return euiPaddingSize(size, euiTheme);
+  return euiPaddingSize(euiTheme, size);
 };
 
 export const useEuiPaddingCSS = (side?: LogicalSides) => {

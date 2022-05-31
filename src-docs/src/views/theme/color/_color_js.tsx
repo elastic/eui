@@ -292,7 +292,7 @@ export const UtilsJS = () => {
         }
         example={
           <p css={[useEuiBackgroundColorCSS().accent, useEuiPaddingCSS().l]}>
-            <code>{useEuiBackgroundColorCSS().accent}</code>
+            <code>background-color: {useEuiBackgroundColor('accent')}</code>
           </p>
         }
         snippetLanguage="tsx"
@@ -340,7 +340,7 @@ export const UtilsValuesJS = () => {
         return {
           id: color,
           token: `useEuiBackgroundColor('${color}')`,
-          value: euiBackgroundColor(color, euiTheme),
+          value: euiBackgroundColor(euiTheme, color),
         };
       })}
       render={(item) => <EuiColorPickerSwatch color={item.value} disabled />}
