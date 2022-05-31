@@ -14,7 +14,7 @@ import { _EuiPageInner as EuiPageInner, _EuiPageInnerProps } from './inner';
 import { _EuiPageSidebar as EuiPageSidebar } from './sidebar';
 import { _EuiPageBottomBar as EuiPageBottomBar } from './bottom_bar/page_bottom_bar';
 import { _EuiPageEmptyPrompt as EuiPageEmptyPrompt } from './empty_prompt/page_empty_prompt';
-import { EuiPageHeader, EuiPageSection } from '../page';
+import { EuiPageHeader, EuiPageSection, EuiPageSectionProps } from '../page';
 import { _EuiPageRestrictWidth } from '../page/_restrict_width';
 import { _EuiPageBottomBorder } from '../page/_bottom_border';
 import { useEuiTheme } from '../../services';
@@ -96,7 +96,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
     bottomBorder: getBottomBorder(),
   });
 
-  const getSectionProps = () => ({
+  const getSectionProps = (): EuiPageSectionProps => ({
     restrictWidth,
     paddingSize,
     color: panelled === false ? 'transparent' : 'plain',
@@ -119,59 +119,67 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   const innerBordered = () =>
     contentBorder !== undefined ? contentBorder : Boolean(sidebar.length > 0);
 
-  React.Children.toArray(children).map((child, index) => {
+  React.Children.toArray(children).forEach((child, index) => {
+    if (!React.isValidElement(child)) return; // Skip non-components
+
     // All content types can have their props overridden by appending the child props spread at the end
-    if (React.isValidElement(child) && child.type === EuiPageSidebar) {
-      sidebar.push(
-        React.cloneElement(child, {
-          key: `sidebar${index}`,
-          ...getSideBarProps(),
+    switch (child.type) {
+      case EuiPageSidebar:
+        sidebar.push(
+          React.cloneElement(child, {
+            key: `sidebar${index}`,
+            ...getSideBarProps(),
+            ...child.props,
+          })
+        );
+        break;
+
+      case EuiPageBottomBar:
+        bottomBar = React.cloneElement(child, {
+          key: `bottomBar${index}`,
+          ...getBottomBarProps(),
           ...child.props,
-        })
-      );
-    } else if (
-      React.isValidElement(child) &&
-      child?.type === EuiPageBottomBar
-    ) {
-      bottomBar = React.cloneElement(child, {
-        key: `bottomBar${index}`,
-        ...getBottomBarProps(),
-        ...child.props,
-      });
-    } else if (React.isValidElement(child) && child?.type === EuiPageHeader) {
-      const header = React.cloneElement(child, {
-        key: `header${index}`,
-        ...getHeaderProps(),
-        ...child.props,
-      });
-      sections.push(header);
-    } else if (
-      React.isValidElement(child) &&
-      child?.type === EuiPageEmptyPrompt
-    ) {
-      const section = React.cloneElement(child, {
-        key: `emptyPrompt${index}`,
-        panelled: innerPanelled() ? true : panelled,
-        grow: true,
-        ...child.props,
-      });
-      sections.push(section);
-    } else if (React.isValidElement(child) && child?.type === EuiPageSection) {
-      const section = React.cloneElement(child, {
-        key: `section${index}`,
-        ...getSectionProps(),
-        grow: index + 1 === React.Children.toArray(children).length,
-        ...child.props,
-      });
-      sections.push(section);
-    } else if (React.isValidElement(child)) {
-      const section = (
-        // @ts-expect-error TODO
-        <EuiPageSection key={`section${index}`} {...getSectionProps()}>
-          {child}
-        </EuiPageSection>
-      );
-      sections.push(section);
+        });
+        break;
+
+      case EuiPageHeader:
+        sections.push(
+          React.cloneElement(child, {
+            key: `header${index}`,
+            ...getHeaderProps(),
+            ...child.props,
+          })
+        );
+        break;
+
+      case EuiPageEmptyPrompt:
+        sections.push(
+          React.cloneElement(child, {
+            key: `emptyPrompt${index}`,
+            panelled: innerPanelled() ? true : panelled,
+            grow: true,
+            ...child.props,
+          })
+        );
+        break;
+
+      case EuiPageSection:
+        sections.push(
+          React.cloneElement(child, {
+            key: `section${index}`,
+            ...getSectionProps(),
+            grow: index + 1 === React.Children.toArray(children).length,
+            ...child.props,
+          })
+        );
+        break;
+
+      default:
+        sections.push(
+          <EuiPageSection key={`section${index}`} {...getSectionProps()}>
+            {child}
+          </EuiPageSection>
+        );
     }
   });
 
