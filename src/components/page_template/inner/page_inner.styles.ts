@@ -11,9 +11,9 @@ import { euiShadow } from '../../../themes/amsterdam/global_styling/mixins';
 import { euiBackgroundColor, logicalCSS } from '../../../global_styling';
 import { transparentize, UseEuiTheme } from '../../../services';
 
-export const euiPageInnerStyles = (euiThemeContent: UseEuiTheme) => {
+export const euiPageInnerStyles = (euiThemeContext: UseEuiTheme) => {
   const borderColor = transparentize(
-    euiThemeContent.euiTheme.colors.lightShade,
+    euiThemeContext.euiTheme.colors.lightShade,
     0.7
   );
 
@@ -29,18 +29,18 @@ export const euiPageInnerStyles = (euiThemeContent: UseEuiTheme) => {
     `,
 
     panelled: css`
-      background: ${euiBackgroundColor('plain', euiThemeContent)};
-      ${euiShadow(euiThemeContent, 'm')}
+      background: ${euiBackgroundColor(euiThemeContext, 'plain')};
+      ${euiShadow(euiThemeContext, 'm')}
     `,
 
     border: {
       top: css`
-        border-top: ${euiThemeContent.euiTheme.border.width.thin} solid
+        border-top: ${euiThemeContext.euiTheme.border.width.thin} solid
           ${borderColor};
       `,
 
       left: css`
-        border-left: ${euiThemeContent.euiTheme.border.width.thin} solid
+        border-left: ${euiThemeContext.euiTheme.border.width.thin} solid
           ${borderColor};
       `,
     },

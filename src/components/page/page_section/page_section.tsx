@@ -23,7 +23,7 @@ import {
   EuiBackgroundColor,
   useEuiPaddingCSS,
   useEuiBackgroundColorCSS,
-  _EuiPaddingSize,
+  EuiPaddingSize,
 } from '../../../global_styling';
 
 export type EuiPageSectionProps = CommonProps &
@@ -37,7 +37,7 @@ export type EuiPageSectionProps = CommonProps &
     /**
      * Padding for all four sides
      */
-    paddingSize?: _EuiPaddingSize;
+    paddingSize?: EuiPaddingSize;
     /**
      * Horizontal and/or vertical alignment of the section contents
      */

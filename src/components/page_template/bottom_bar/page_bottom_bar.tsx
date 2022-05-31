@@ -7,13 +7,12 @@
  */
 
 import React, { FunctionComponent } from 'react';
-import { EuiPaddingSize } from '../../../global_styling';
 import { EuiBottomBar, EuiBottomBarProps } from '../../bottom_bar';
-import { EuiPageSection } from '../../page/page_section';
+import { EuiPageSection, EuiPageSectionProps } from '../../page/page_section';
 import { _EuiPageRestrictWidth } from '../../page/_restrict_width';
 
 export interface _EuiPageBottomBarProps
-  extends EuiPaddingSize,
+  extends Pick<EuiPageSectionProps, 'paddingSize'>,
     _EuiPageRestrictWidth,
     Omit<EuiBottomBarProps, 'paddingSize'> {}
 

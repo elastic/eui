@@ -11,7 +11,6 @@ import { CommonProps } from '../../common';
 import {
   EuiPaddingSize,
   useEuiPaddingCSS,
-  _EuiPaddingSize,
   _EuiThemeBreakpoint,
 } from '../../../global_styling';
 import { useEuiTheme, useIsWithinBreakpoints } from '../../../services';
@@ -22,8 +21,7 @@ type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType<any>;
 export type _EuiPageInnerProps<
   T extends ComponentTypes = 'main'
 > = CommonProps &
-  ComponentProps<T> &
-  EuiPaddingSize & {
+  ComponentProps<T> & {
     /**
      * Sets which HTML element to render.
      */
@@ -37,6 +35,10 @@ export type _EuiPageInnerProps<
      * Typically added when a side bar exists.
      */
     border?: boolean;
+    /**
+     * Adjust the overall padding.
+     */
+    paddingSize?: EuiPaddingSize;
     /**
      * Decides at which point the component will be 100vw.
      */
@@ -55,6 +57,8 @@ export const _EuiPageInner = <T extends ComponentTypes>({
   const themeContext = useEuiTheme();
   const isResponding = useIsWithinBreakpoints(responsive);
   const styles = euiPageInnerStyles(themeContext);
+  // @ts-expect-error Help
+  const paddingStyles = useEuiPaddingCSS()[paddingSize];
 
   let borderSide: 'top' | 'left' | undefined;
   if (border && isResponding) {
@@ -65,7 +69,7 @@ export const _EuiPageInner = <T extends ComponentTypes>({
 
   const cssStyles = [
     styles.euiPageInner,
-    useEuiPaddingCSS()[paddingSize as _EuiPaddingSize],
+    paddingStyles,
     panelled && styles.panelled,
     borderSide && styles.border[borderSide],
   ];

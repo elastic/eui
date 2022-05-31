@@ -10,7 +10,7 @@ import { css } from '@emotion/react';
 import { euiYScroll } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 
-export const euiPageSidebarStyles = ({ euiTheme }: UseEuiTheme) => ({
+export const euiPageSidebarStyles = (euiThemeContext: UseEuiTheme) => ({
   /**
    * 1. Prevent side bar width from changing when content width changes.
    */
@@ -19,7 +19,7 @@ export const euiPageSidebarStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
 
   sticky: css`
-    ${euiYScroll(euiTheme)}
+    ${euiYScroll(euiThemeContext)}
     flex-grow: 1;
     position: sticky;
   `,

@@ -25,8 +25,12 @@ import { euiPageSidebarStyles } from './page_sidebar.styles';
 
 export interface _EuiPageSidebarProps
   extends CommonProps,
-    HTMLAttributes<HTMLDivElement>,
-    EuiPaddingSize {
+    HTMLAttributes<HTMLDivElement> {
+  /**
+   * Adjust the padding.
+   * When using this setting it's best to be consistent throughout all similar usages
+   */
+  paddingSize?: EuiPaddingSize;
   /**
    * Adds `position: sticky` and affords for any fixed position headers.
    */
