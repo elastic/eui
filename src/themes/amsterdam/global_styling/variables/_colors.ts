@@ -66,7 +66,7 @@ export const special_colors: _EuiThemeSpecialColors = {
 export const text_colors: _EuiThemeTextColors = {
   text: computed(([darkestShade]) => darkestShade, ['colors.darkestShade']),
   title: computed(([text]) => shade(text, 0.5), ['colors.text']),
-  subdued: computed(makeHighContrastColor('colors.darkShade')),
+  subduedText: computed(makeHighContrastColor('colors.darkShade')),
   link: computed(([primaryText]) => primaryText, ['colors.primaryText']),
 };
 
@@ -119,7 +119,7 @@ export const dark_colors_ams: _EuiThemeColorsMode = {
   // Text
   text: '#DFE5EF',
   title: computed(([text]) => text, ['colors.text']),
-  subdued: computed(makeHighContrastColor('colors.mediumShade')),
+  subduedText: computed(makeHighContrastColor('colors.mediumShade')),
   link: computed(([primaryText]) => primaryText, ['colors.primaryText']),
 };
 

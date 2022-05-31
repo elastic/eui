@@ -3,7 +3,7 @@ import React from 'react';
 
 import {
   EuiCode,
-  euiScreenReaderOnlyStyles,
+  euiScreenReaderOnly,
   EuiText,
   useEuiFocusRing,
 } from '../../../../src';
@@ -17,6 +17,7 @@ export default () => {
     <>
       <ThemeExample
         title={<code>.euiScreenReaderOnly</code>}
+        type="className"
         description={
           <p>
             This utility class allows you to apply the screen reader only CSS
@@ -34,7 +35,8 @@ export default () => {
         snippet={'<p className="euiScreenReaderOnly" />'}
       />
       <ThemeExample
-        title={<code>euiScreenReaderOnlyStyles()</code>}
+        title={<code>euiScreenReaderOnly()</code>}
+        type="function"
         description={
           <p>
             This function allows you to apply the screen reader only CSS styles
@@ -44,15 +46,21 @@ export default () => {
         example={
           <EuiText size="s">
             <p>The next paragraph is hidden except for screen readers.</p>
-            <p css={css(euiScreenReaderOnlyStyles())}>
+            <p
+              css={css`
+                ${euiScreenReaderOnly()}
+              `}
+            >
               I am hidden except for screen readers
             </p>
           </EuiText>
         }
-        snippet={'<p css={css(euiScreenReaderOnlyStyles())} />'}
+        snippetLanguage="emotion"
+        snippet={'${euiScreenReaderOnly()}'}
       />
       <ThemeExample
         title={<code>useEuiFocusRing(offset?, color?)</code>}
+        type="hook"
         description={
           <p>
             By default, all interactable elements will inherit the{' '}

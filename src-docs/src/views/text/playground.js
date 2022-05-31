@@ -52,6 +52,12 @@ export const textColorConfig = () => {
     hidden: false,
   };
 
+  propsToUse.color = {
+    ...propsToUse.color,
+    type: PropTypes.String,
+    value: 'default',
+  };
+
   const setGhostBackground = {
     color: 'ghost',
   };

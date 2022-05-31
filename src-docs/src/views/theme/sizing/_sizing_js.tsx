@@ -296,7 +296,7 @@ side?: '${LOGICAL_SIDES.join("' | '")}';`}
             ]}
           >
             <code>
-              {logicals.left}: {useEuiPaddingSize('l')}
+              {logicals['padding-left']}: {useEuiPaddingSize('l')}
             </code>
           </p>
         }
