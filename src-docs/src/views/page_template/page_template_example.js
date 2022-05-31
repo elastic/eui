@@ -142,11 +142,12 @@ export const PageTemplateExample = {
           <EuiText>
             <p>
               If you have a fixed position{' '}
-              <Link to="/layout/header#fixed-header">headers</Link>, the template will
-              automatically account for the padding <EuiCode>offset</EuiCode>{' '}
-              based on the total number of page headers. If you do not want the
-              template to calculate this, you can pass <EuiCode>0</EuiCode> in
-              as the manual <EuiCode>offset</EuiCode>.
+              <Link to="/layout/header#fixed-header">headers</Link>, the
+              template will automatically account for the padding{' '}
+              <EuiCode>offset</EuiCode> based on the total number of page
+              headers. If you do not want the template to calculate this, you
+              can pass <EuiCode>0</EuiCode> in as the manual{' '}
+              <EuiCode>offset</EuiCode>.
             </p>
           </EuiText>
           <PageDemo
@@ -193,9 +194,9 @@ export const PageTemplateExample = {
             <p>
               If your application requires the use of side navigation or other
               sidebar content, you can pass and{' '}
-              <strong>EuiPageTemplate.Sidebar</strong>{' '}
-              component containing your sidebar content. The template will
-              automatically adjust the layout when this content is provided.
+              <strong>EuiPageTemplate.Sidebar</strong> component containing your
+              sidebar content. The template will automatically adjust the layout
+              when this content is provided.
             </p>
             <p>
               This component will set its content to stick to the top of the

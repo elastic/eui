@@ -78,14 +78,12 @@ export const _EuiPageSidebar: FunctionComponent<_EuiPageSidebarProps> = ({
 
   useEffect(() => {
     if (sticky) {
-      const euiHeaderFixedCounter = document.body.getAttribute(
-        'data-fixed-headers'
-      );
+      const euiHeaderFixedCounter = Number(document.body.dataset.fixedHeaders);
 
       const offset =
         typeof sticky === 'object'
           ? sticky?.offset
-          : themeContext.euiTheme.base * 3 * Number(euiHeaderFixedCounter);
+          : themeContext.euiTheme.base * 3 * euiHeaderFixedCounter;
 
       setInlineStyles({
         ...style,

@@ -69,11 +69,8 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
 
   useEffect(() => {
     if (_offset === undefined) {
-      const euiHeaderFixedCounter = document.body.getAttribute(
-        'data-fixed-headers'
-      );
-
-      setOffset(euiTheme.base * 3 * Number(euiHeaderFixedCounter));
+      const euiHeaderFixedCounter = Number(document.body.dataset.fixedHeaders);
+      setOffset(euiTheme.base * 3 * euiHeaderFixedCounter);
     }
   }, [_offset, euiTheme.base]);
 
