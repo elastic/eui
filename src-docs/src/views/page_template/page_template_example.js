@@ -290,7 +290,13 @@ export const PageTemplateExample = {
           <EuiCallOut
             iconType="alert"
             color="warning"
-            title="For proper alignment in case of short content, at least on EuiPageTemplate.Section must have grow = true."
+            title={
+              <>
+                For proper alignment in case of short content, at least on{' '}
+                <strong>EuiPageTemplate.Section</strong> must have{' '}
+                <EuiCode>{'grow={true}'}</EuiCode>.
+              </>
+            }
           />
           <PageDemo
             slug="bottom-bar"

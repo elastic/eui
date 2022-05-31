@@ -195,7 +195,7 @@ export const PageDemo: FunctionComponent<
                 )
               }
               name="restrictedWidthGroup"
-              legend={'Restriced width'}
+              legend={'Restricted width'}
               buttonSize="compressed"
               color="primary"
             />
@@ -241,8 +241,8 @@ export const PageDemo: FunctionComponent<
                     break;
                 }
               }}
-              name="restrictedWidthGroup"
-              legend={'Restriced width'}
+              name="bottomBorderGroup"
+              legend={'Bottom border'}
               buttonSize="compressed"
               color="primary"
             />
