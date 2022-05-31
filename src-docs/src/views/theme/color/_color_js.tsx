@@ -297,7 +297,7 @@ export const UtilsJS = () => {
         }
         example={
           <p css={[useEuiBackgroundColorCSS().accent, useEuiPaddingCSS().l]}>
-            <code>{useEuiBackgroundColorCSS().accent}</code>
+            <code>background-color: {useEuiBackgroundColor('accent')}</code>
           </p>
         }
         snippetLanguage="tsx"
@@ -386,11 +386,9 @@ export const UtilsValuesJS = () => {
               backgroundSelected === 'transparent'
                 ? `useEuiBackgroundColor('${color}', 'transparent')`
                 : `useEuiBackgroundColor('${color}')`,
-            value: euiBackgroundColor(
-              color,
-              euiTheme,
-              backgroundSelected as _EuiBackgroundColorMethod
-            ),
+            value: euiBackgroundColor(euiTheme, color, {
+              method: backgroundSelected as _EuiBackgroundColorMethod,
+            }),
           };
         })}
         render={(item) => (

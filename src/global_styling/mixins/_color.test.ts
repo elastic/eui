@@ -34,10 +34,14 @@ describe('useEuiBackgroundColor mixin returns a calculated background version', 
   });
 });
 
-describe('useEuiBackgroundColorCSS hook returns the object of static background-color properties', () => {
-  it('for each color', () => {
-    expect(
-      testCustomHook(() => useEuiBackgroundColorCSS()).return
-    ).toMatchSnapshot();
+describe('useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties', () => {
+  const colors = testCustomHook(useEuiBackgroundColorCSS).return as any;
+
+  describe('for each color:', () => {
+    Object.entries(colors).map(([color, cssObj]) => {
+      it(color, () => {
+        expect((cssObj as any).styles).toMatchSnapshot();
+      });
+    });
   });
 });
