@@ -90,7 +90,7 @@ type GroupAsDiv = EuiCollapsibleNavGroupInterface & {
    * with the option to add an iconType
    */
   title?: ReactNode;
-} & HTMLAttributes<HTMLDivElement>;
+} & Omit<HTMLAttributes<HTMLDivElement>, 'title'>;
 
 export type EuiCollapsibleNavGroupProps = ExclusiveUnion<
   GroupAsAccordion,
