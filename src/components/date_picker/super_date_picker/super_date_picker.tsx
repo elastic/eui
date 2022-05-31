@@ -433,6 +433,8 @@ export class EuiSuperDatePickerInternal extends Component<
           <EuiDatePickerRange
             className="euiDatePickerRange--inGroup"
             iconType={false}
+            isInvalid={isInvalid}
+            disabled={isDisabled}
             isCustom
             startDateControl={
               <EuiDatePopoverButton
