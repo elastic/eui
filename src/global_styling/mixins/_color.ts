@@ -16,6 +16,7 @@ import {
 } from '../../services';
 
 export const BACKGROUND_COLORS = [
+  'transparent',
   'plain',
   'subdued',
   'accent',
@@ -26,20 +27,22 @@ export const BACKGROUND_COLORS = [
 ] as const;
 
 export type _EuiBackgroundColor = typeof BACKGROUND_COLORS[number];
-/**
- * Use `opaque` for containers of unkown content.
- * Use `transparent` for interactive states like hover and focus.
- */
-export type _EuiBackgroundColorMethod = 'opaque' | 'transparent';
+export interface _EuiBackgroundColorOptions {
+  /**
+   * Use `opaque` for containers of unkown content.
+   * Use `transparent` for interactive states like hover and focus.
+   */
+  method?: 'opaque' | 'transparent';
+}
 
 export const euiBackgroundColor = (
   { euiTheme, colorMode }: UseEuiTheme,
   color: _EuiBackgroundColor,
-  options?: {
-    method: _EuiBackgroundColorMethod;
-  }
+  { method }: _EuiBackgroundColorOptions = {}
 ) => {
-  if (options && options.method === 'transparent') {
+  if (color === 'transparent') return 'transparent';
+
+  if (method === 'transparent') {
     if (color === 'plain') {
       return transparentize(euiTheme.colors.ghost, 0.2);
     } else if (color === 'subdued') {
@@ -65,16 +68,17 @@ export const euiBackgroundColor = (
 
 export const useEuiBackgroundColor = (
   color: _EuiBackgroundColor,
-  options?: {
-    method: _EuiBackgroundColorMethod;
-  }
+  { method }: _EuiBackgroundColorOptions = {}
 ) => {
   const euiTheme = useEuiTheme();
-  return euiBackgroundColor(euiTheme, color, options);
+  return euiBackgroundColor(euiTheme, color, { method });
 };
 
 export const useEuiBackgroundColorCSS = () => {
   return {
+    transparent: css`
+      background-color: ${useEuiBackgroundColor('transparent')};
+    `,
     plain: css`
       background-color: ${useEuiBackgroundColor('plain')};
     `,

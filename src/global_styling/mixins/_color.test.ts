@@ -25,8 +25,9 @@ describe('useEuiBackgroundColor mixin returns a calculated background version', 
       describe('as transparent', () => {
         it(color, () => {
           expect(
-            testCustomHook(() => useEuiBackgroundColor(color, 'transparent'))
-              .return
+            testCustomHook(() =>
+              useEuiBackgroundColor(color, { method: 'transparent' })
+            ).return
           ).toMatchSnapshot();
         });
       });

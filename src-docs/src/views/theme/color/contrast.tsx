@@ -313,7 +313,7 @@ export default () => {
                           color={color as keyof _EuiThemeColorsMode}
                           colorValue={useEuiBackgroundColor(
                             color as _EuiBackgroundColor,
-                            'transparent'
+                            { method: 'transparent' }
                           )}
                           hookName="useEuiBackgroundColor"
                           minimumContrast={contrastValue}

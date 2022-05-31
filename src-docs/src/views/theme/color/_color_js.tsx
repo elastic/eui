@@ -18,7 +18,7 @@ import {
   EuiDescribedFormGroup,
   EuiPanel,
   EuiSpacer,
-  _EuiBackgroundColorMethod,
+  _EuiBackgroundColorOptions,
 } from '../../../../../src';
 
 import { EuiThemeColors, ThemeRowType } from '../_props';
@@ -387,7 +387,7 @@ export const UtilsValuesJS = () => {
                 ? `useEuiBackgroundColor('${color}', 'transparent')`
                 : `useEuiBackgroundColor('${color}')`,
             value: euiBackgroundColor(euiTheme, color, {
-              method: backgroundSelected as _EuiBackgroundColorMethod,
+              method: backgroundSelected as _EuiBackgroundColorOptions['method'],
             }),
           };
         })}
