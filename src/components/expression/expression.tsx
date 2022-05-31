@@ -24,21 +24,6 @@ import {
   euiExpressionValueStyles,
 } from './expression.style';
 
-// const colorToClassNameMap = {
-//   subdued: 'euiExpression--subdued',
-//   primary: 'euiExpression--primary',
-//   success: 'euiExpression--success',
-//   accent: 'euiExpression--accent',
-//   warning: 'euiExpression--warning',
-//   danger: 'euiExpression--danger',
-// };
-
-// const textWrapToClassNameMap = {
-//   'break-word': null,
-//   truncate: 'euiExpression--truncate',
-// };
-
-// export const COLORS = keysOf(colorToClassNameMap);
 export const COLORS = [
   'subdued',
   'primary',
@@ -49,11 +34,6 @@ export const COLORS = [
 ] as const;
 
 export type ExpressionColor = typeof COLORS[number];
-
-// const displayToClassNameMap = {
-//   inline: null,
-//   columns: 'euiExpression--columns',
-// };
 
 export type EuiExpressionProps = CommonProps & {
   /**
@@ -157,18 +137,7 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
     textWrap === 'truncate' && valueStyles.truncate,
   ];
 
-  const classes = classNames(
-    'euiExpression',
-    className
-    // {
-    //   'euiExpression-isActive': isActive,
-    //   'euiExpression-isClickable': onClick,
-    //   'euiExpression-isUppercase': uppercase,
-    // }
-    // displayToClassNameMap[display],
-    // colorToClassNameMap[calculatedColor],
-    // textWrapToClassNameMap[textWrap]
-  );
+  const classes = classNames('euiExpression', className);
 
   const Component = onClick ? 'button' : 'span';
 
