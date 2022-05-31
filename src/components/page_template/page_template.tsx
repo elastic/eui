@@ -175,11 +175,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
         break;
 
       default:
-        sections.push(
-          <EuiPageSection key={`section${index}`} {...getSectionProps()}>
-            {child}
-          </EuiPageSection>
-        );
+        sections.push(child);
     }
   });
 

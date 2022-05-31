@@ -108,22 +108,34 @@ export const PageTemplateExample = {
               </li>
             </ul>
             <p>
-              With the exception of Sidebar and BottomBar, the stacking order of
-              the page contents is determined by the order they are passed in.
-              You can also override the outer props by simply applying them
-              directly to the child element.
+              With the exception of <EuiCode>.Sidebar</EuiCode> and{' '}
+              <EuiCode>.BottomBar</EuiCode>, the stacking order of the page
+              contents is determined by the order they are passed in. You can
+              also override the outer props by simply applying them directly to
+              the child element.
             </p>
           </EuiText>
           <EuiSpacer />
           <EuiCallOut
             iconType="alert"
             color="warning"
-            title="Each direct child that is not a namespaced component will be wrapped in EuiPageTemplate.Section"
+            title="Only direct children declared in the same component scope will be recognized."
           >
             <p>
-              So be careful when placing spacers or other non-content based
-              components as direct children. React fragments will be treated as
-              a single child.
+              If you declare your page contents in a different file, even when
+              using the namespaced components, the{' '}
+              <strong>EuiPageTemplate</strong> cannot determine the component
+              type because of the added layer of obfuscation. In these
+              instances, you will want to use{' '}
+              <Link to="/layout/page-header">
+                <strong>EuiPageHeader</strong>
+              </Link>{' '}
+              and{' '}
+              <Link to="/layout/page-components#page-sections">
+                <strong>EuiPageSection</strong>
+              </Link>{' '}
+              components directly, and pass the appropriate props to those
+              components.
             </p>
           </EuiCallOut>
           <EuiSpacer />
