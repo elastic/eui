@@ -129,8 +129,8 @@ export const PageTemplateExample = {
           <EuiSpacer />
           <EuiText>
             <p>
-              If you have an fixed position{' '}
-              <Link to="/display/header">headers</Link>, the template will
+              If you have a fixed position{' '}
+              <Link to="/layout/header#fixed-header">headers</Link>, the template will
               automatically account for the padding <EuiCode>offset</EuiCode>{' '}
               based on the total number of page headers. If you do not want the
               template to calculate this, you can pass <EuiCode>0</EuiCode> in
@@ -181,7 +181,7 @@ export const PageTemplateExample = {
             <p>
               If your application requires the use of side navigation or other
               sidebar content, you can pass and{' '}
-              <strong>EuiPageTemplate.Sidebar</strong>
+              <strong>EuiPageTemplate.Sidebar</strong>{' '}
               component containing your sidebar content. The template will
               automatically adjust the layout when this content is provided.
             </p>
@@ -268,7 +268,7 @@ export const PageTemplateExample = {
               in the body element.
             </p>
             <p>
-              It will also keep its content contstrained to the{' '}
+              It will also keep its content constrained to the{' '}
               <EuiCode>restrictedWidth</EuiCode> value so the contents are
               always horizontally aligned.
             </p>
