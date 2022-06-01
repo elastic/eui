@@ -42,7 +42,7 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       & + .euiExpression {
-        margin-left: ${euiTheme.size.s};
+        ${logicalCSS('margin-left', euiTheme.size.s)}
       }
     `,
 
@@ -51,7 +51,7 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
       border-color: transparent;
       // Ensures there's no flash of the dashed style before turning solid for the active state
       border-bottom-style: solid;
-      margin-bottom: ${euiTheme.size.xs};
+      ${logicalCSS('margin-bottom', euiTheme.size.xs)}
 
       width: 100%;
       display: flex;
@@ -59,7 +59,7 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
       border-radius: ${euiTheme.size.xs};
 
       .euiExpression__description {
-        text-align: right;
+        text-align: end;
         ${logicalCSS('margin-right', euiTheme.size.s)};
         flex-shrink: 0; // Ensures it doesn't get smaller in case the value is really long
       }
