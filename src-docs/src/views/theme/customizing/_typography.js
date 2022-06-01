@@ -57,6 +57,7 @@ export default ({ onThemeUpdate }) => {
 
   const fontFamilies = fontClone.family.split(',');
   const codeFontFamilies = fontClone.familyCode.split(',');
+  const serifFontFamilies = fontClone.familySerif.split(',');
 
   return (
     <div>
@@ -112,6 +113,23 @@ export default ({ onThemeUpdate }) => {
             const out = [...codeFontFamilies];
             out.splice(0, 1, value);
             updateFont('familyCode', out.join(','));
+          }}
+          stringProps={{
+            style: { width: 200 },
+          }}
+        />
+
+        <EuiSpacer />
+
+        <ThemeValue
+          property={'font'}
+          type={baseProps.familySerif}
+          name={'familySerif'}
+          value={serifFontFamilies[0]}
+          onUpdate={(value) => {
+            const out = [...serifFontFamilies];
+            out.splice(0, 1, value);
+            updateFont('familySerif', out.join(','));
           }}
           stringProps={{
             style: { width: 200 },
