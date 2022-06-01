@@ -1,7 +1,10 @@
 import React, { useContext } from 'react';
 import { EuiCode, EuiCallOut } from '../../../../../src';
 import { GuideSectionTypes } from '../../../components/guide_section/guide_section_types';
-import { GuideSection } from '../../../components/guide_section/guide_section';
+import {
+  GuideSection,
+  GuideSectionProps,
+} from '../../../components/guide_section/guide_section';
 import { ThemeContext } from '../../../components/with_theme';
 
 import Contrast from './contrast';
@@ -42,7 +45,7 @@ export const ContrastSections = () => {
     </EuiCode>
   );
 
-  const source: GuideSection['source'] = [
+  const source: GuideSectionProps['source'] = [
     showSass
       ? {
           type: GuideSectionTypes.SASS,
@@ -54,7 +57,7 @@ export const ContrastSections = () => {
         },
   ];
 
-  const demo: GuideSection['demo'] = showSass ? (
+  const demo: GuideSectionProps['demo'] = showSass ? (
     <div className="guideSass__contrastExample">
       <svg
         className="square"
@@ -71,7 +74,7 @@ export const ContrastSections = () => {
     <Contrast />
   );
 
-  const snippet: GuideSection['snippet'] = showSass
+  const snippet: GuideSectionProps['snippet'] = showSass
     ? undefined
     : 'const textColor = makeHighContrastColor(foreground)(background);';
 

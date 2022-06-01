@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`_EuiPageSidebar is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="testClass1 testClass2 css-o9x8qm-euiPageSidebar"
+  data-test-subj="test subject string"
+  style="min-inline-size:260px"
+/>
+`;
+
+exports[`_EuiPageSidebar minWidth is rendered 1`] = `
+<div
+  class="css-o9x8qm-euiPageSidebar"
+  style="min-inline-size:400px"
+/>
+`;
+
+exports[`_EuiPageSidebar paddingSize l is rendered 1`] = `
+<div
+  class="css-1v6co63-euiPageSidebar-l"
+  style="min-inline-size:260px"
+/>
+`;
+
+exports[`_EuiPageSidebar paddingSize m is rendered 1`] = `
+<div
+  class="css-1bloh3f-euiPageSidebar-m"
+  style="min-inline-size:260px"
+/>
+`;
+
+exports[`_EuiPageSidebar paddingSize none is rendered 1`] = `
+<div
+  class="css-o9x8qm-euiPageSidebar"
+  style="min-inline-size:260px"
+/>
+`;
+
+exports[`_EuiPageSidebar paddingSize s is rendered 1`] = `
+<div
+  class="css-i475ga-euiPageSidebar-s"
+  style="min-inline-size:260px"
+/>
+`;
+
+exports[`_EuiPageSidebar paddingSize xl is rendered 1`] = `
+<div
+  class="css-1rbnex8-euiPageSidebar-xl"
+  style="min-inline-size:260px"
+/>
+`;
+
+exports[`_EuiPageSidebar paddingSize xs is rendered 1`] = `
+<div
+  class="css-1e6u1fu-euiPageSidebar-xs"
+  style="min-inline-size:260px"
+/>
+`;
+
+exports[`_EuiPageSidebar sticky is rendered 1`] = `
+<div
+  class="css-1vpm837-euiPageSidebar-sticky"
+  style="min-inline-size:260px"
+/>
+`;

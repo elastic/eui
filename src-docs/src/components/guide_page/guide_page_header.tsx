@@ -132,21 +132,21 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
       ];
 
   return (
-    <EuiHeader
-      role="region"
-      aria-label="EUI Docs app bar"
-      position="fixed"
-      theme="dark"
-      sections={[
-        {
-          items: [renderLogo(), renderVersion()],
-          borders: 'none',
-        },
-        {
-          items: rightSideItems,
-          borders: 'none',
-        },
-      ]}
-    />
+    <header aria-label="EUI Docs app bar">
+      <EuiHeader
+        position="fixed"
+        theme="dark"
+        sections={[
+          {
+            items: [renderLogo(), renderVersion()],
+            borders: 'none',
+          },
+          {
+            items: rightSideItems,
+            borders: 'none',
+          },
+        ]}
+      />
+    </header>
   );
 };

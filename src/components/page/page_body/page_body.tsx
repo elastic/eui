@@ -55,7 +55,7 @@ export const EuiPageBody = <T extends ComponentTypes>({
   component: Component = 'div' as T,
   panelled,
   panelProps,
-  paddingSize,
+  paddingSize = 'none',
   borderRadius = 'none',
   ...rest
 }: PropsWithChildren<EuiPageBodyProps<T>>) => {
@@ -63,9 +63,6 @@ export const EuiPageBody = <T extends ComponentTypes>({
     restrictWidth,
     style
   );
-
-  const nonBreakingDefaultPadding = panelled ? 'l' : 'none';
-  paddingSize = paddingSize || nonBreakingDefaultPadding;
 
   const borderRadiusClass =
     borderRadius === 'none' ? 'euiPageBody--borderRadiusNone' : '';

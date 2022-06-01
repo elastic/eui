@@ -6,7 +6,6 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiSideNav,
-  EuiPageSideBar,
   EuiText,
 } from '../../../../src/components';
 
@@ -246,31 +245,29 @@ export class GuidePageChrome extends Component {
     }
 
     return (
-      <EuiPageSideBar className="guideSideNav" sticky>
-        <EuiFlexGroup
-          style={{ height: '100%' }}
-          direction="column"
-          responsive={false}
-          gutterSize="none"
+      <EuiFlexGroup
+        style={{ height: '100%' }}
+        direction="column"
+        responsive={false}
+        gutterSize="none"
+      >
+        <EuiFlexItem
+          role="search"
+          grow={false}
+          className="guideSideNav__search"
         >
-          <EuiFlexItem
-            role="search"
-            grow={false}
-            className="guideSideNav__search"
-          >
-            <EuiFieldSearch
-              fullWidth
-              placeholder="Search"
-              value={this.state.search}
-              onChange={this.onSearchChange}
-              aria-label="Search for a docs section"
-            />
-          </EuiFlexItem>
-          <EuiFlexItem className="guideSideNav__content">
-            {sideNavContent}
-          </EuiFlexItem>
-        </EuiFlexGroup>
-      </EuiPageSideBar>
+          <EuiFieldSearch
+            fullWidth
+            placeholder="Search"
+            value={this.state.search}
+            onChange={this.onSearchChange}
+            aria-label="Search for a docs section"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem className="guideSideNav__content">
+          {sideNavContent}
+        </EuiFlexItem>
+      </EuiFlexGroup>
     );
   }
 }

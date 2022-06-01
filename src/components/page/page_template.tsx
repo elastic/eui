@@ -29,7 +29,10 @@ export const TEMPLATES = [
   'empty',
 ] as const;
 
-export type EuiPageTemplateProps = Omit<EuiPageProps, 'paddingSize'> & {
+export type EuiPageTemplateProps_Deprecated = Omit<
+  EuiPageProps,
+  'paddingSize'
+> & {
   /**
    * Choose between 3 types of templates.
    * `default`: Typical layout with nothing centered
@@ -90,7 +93,12 @@ export type EuiPageTemplateProps = Omit<EuiPageProps, 'paddingSize'> & {
   minHeight?: CSSProperties['minHeight'];
 };
 
-export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
+/**
+ * This component has been deprecated in favor of the new
+ * namespaced version. You can still import this component
+ * for a period of time by importing `as EuiPageTemplate`.
+ */
+export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_Deprecated> = ({
   template = 'default',
   restrictWidth = true,
   grow = true,

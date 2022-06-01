@@ -1,0 +1,432 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`_EuiPageEmptyPrompt EuiEmptyPromptProps is rendered 1`] = `
+<div
+  class="css-t4t69r-euiPageSection-grow-l-center-transparent"
+>
+  <div
+    class="css-1isurur-euiPageSection__width-l"
+  >
+    <div
+      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--horizontal euiEmptyPrompt--paddingLarge css-1l0v6gd-euiPanel-m-plain-hasShadow"
+    >
+      <div
+        class="euiEmptyPrompt__main"
+      >
+        <div
+          class="euiEmptyPrompt__icon"
+        >
+          <span
+            color="subdued"
+            data-euiicon-type="alert"
+          />
+        </div>
+        <div
+          class="euiEmptyPrompt__content"
+        >
+          <div
+            class="euiEmptyPrompt__contentInner"
+          />
+        </div>
+      </div>
+      <div
+        class="euiEmptyPrompt__footer"
+      >
+        Footer
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`_EuiPageEmptyPrompt EuiPageSectionProps is rendered 1`] = `
+<div
+  class="css-14uzs5l-euiPageSection-l-horizontalCenter-transparent"
+>
+  <div
+    class="css-1isurur-euiPageSection__width-l"
+  >
+    <div
+      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge css-1l0v6gd-euiPanel-m-plain-hasShadow"
+    >
+      <div
+        class="euiEmptyPrompt__main"
+      >
+        <div
+          class="euiEmptyPrompt__content"
+        >
+          <div
+            class="euiEmptyPrompt__contentInner"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`_EuiPageEmptyPrompt is rendered 1`] = `
+<div
+  class="css-t4t69r-euiPageSection-grow-l-center-transparent"
+>
+  <div
+    class="css-1isurur-euiPageSection__width-l"
+  >
+    <div
+      aria-label="aria-label"
+      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge testClass1 testClass2 css-1l0v6gd-euiPanel-m-plain-hasShadow"
+      data-test-subj="test subject string"
+    >
+      <div
+        class="euiEmptyPrompt__main"
+      >
+        <div
+          class="euiEmptyPrompt__content"
+        >
+          <div
+            class="euiEmptyPrompt__contentInner"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`_EuiPageEmptyPrompt paddingSize l is rendered 1`] = `
+<div
+  class="css-t4t69r-euiPageSection-grow-l-center-transparent"
+>
+  <div
+    class="css-1isurur-euiPageSection__width-l"
+  >
+    <div
+      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge css-1l0v6gd-euiPanel-m-plain-hasShadow"
+    >
+      <div
+        class="euiEmptyPrompt__main"
+      >
+        <div
+          class="euiEmptyPrompt__content"
+        >
+          <div
+            class="euiEmptyPrompt__contentInner"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`_EuiPageEmptyPrompt paddingSize m is rendered 1`] = `
+<div
+  class="css-1of5mem-euiPageSection-grow-m-center-transparent"
+>
+  <div
+    class="css-vpjoli-euiPageSection__width-m"
+  >
+    <div
+      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingMedium css-1l0v6gd-euiPanel-m-plain-hasShadow"
+    >
+      <div
+        class="euiEmptyPrompt__main"
+      >
+        <div
+          class="euiEmptyPrompt__content"
+        >
+          <div
+            class="euiEmptyPrompt__contentInner"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`_EuiPageEmptyPrompt paddingSize none is rendered 1`] = `
+<div
+  class="css-ohxq9c-euiPageSection-grow-center-transparent"
+>
+  <div
+    class="css-27cbui-euiPageSection__width"
+  >
+    <div
+      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical css-1l0v6gd-euiPanel-m-plain-hasShadow"
+    >
+      <div
+        class="euiEmptyPrompt__main"
+      >
+        <div
+          class="euiEmptyPrompt__content"
+        >
+          <div
+            class="euiEmptyPrompt__contentInner"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`_EuiPageEmptyPrompt paddingSize s is rendered 1`] = `
+<div
+  class="css-8c7itt-euiPageSection-grow-s-center-transparent"
+>
+  <div
+    class="css-f2wptn-euiPageSection__width-s"
+  >
+    <div
+      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingSmall css-1l0v6gd-euiPanel-m-plain-hasShadow"
+    >
+      <div
+        class="euiEmptyPrompt__main"
+      >
+        <div
+          class="euiEmptyPrompt__content"
+        >
+          <div
+            class="euiEmptyPrompt__contentInner"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`_EuiPageEmptyPrompt paddingSize xl is rendered 1`] = `
+<div
+  class="css-4p4up4-euiPageSection-grow-xl-center-transparent"
+>
+  <div
+    class="css-1hug88n-euiPageSection__width-xl"
+  >
+    <div
+      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical css-1l0v6gd-euiPanel-m-plain-hasShadow"
+    >
+      <div
+        class="euiEmptyPrompt__main"
+      >
+        <div
+          class="euiEmptyPrompt__content"
+        >
+          <div
+            class="euiEmptyPrompt__contentInner"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`_EuiPageEmptyPrompt paddingSize xs is rendered 1`] = `
+<div
+  class="css-19tj2rw-euiPageSection-grow-xs-center-transparent"
+>
+  <div
+    class="css-1x16be8-euiPageSection__width-xs"
+  >
+    <div
+      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical css-1l0v6gd-euiPanel-m-plain-hasShadow"
+    >
+      <div
+        class="euiEmptyPrompt__main"
+      >
+        <div
+          class="euiEmptyPrompt__content"
+        >
+          <div
+            class="euiEmptyPrompt__contentInner"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`_EuiPageEmptyPrompt panelled is false and color is defined, then the prompt inherits the color 1`] = `
+<div
+  class="css-t4t69r-euiPageSection-grow-l-center-transparent"
+>
+  <div
+    class="css-1isurur-euiPageSection__width-l"
+  >
+    <div
+      class="euiPanel euiPanel--warning euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge css-1d4u1pi-euiPanel-m-warning"
+    >
+      <div
+        class="euiEmptyPrompt__main"
+      >
+        <div
+          class="euiEmptyPrompt__content"
+        >
+          <div
+            class="euiEmptyPrompt__contentInner"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`_EuiPageEmptyPrompt panelled is false and color is not defined, then the prompt is plain 1`] = `
+<div
+  class="css-t4t69r-euiPageSection-grow-l-center-transparent"
+>
+  <div
+    class="css-1isurur-euiPageSection__width-l"
+  >
+    <div
+      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge css-1l0v6gd-euiPanel-m-plain-hasShadow"
+    >
+      <div
+        class="euiEmptyPrompt__main"
+      >
+        <div
+          class="euiEmptyPrompt__content"
+        >
+          <div
+            class="euiEmptyPrompt__contentInner"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`_EuiPageEmptyPrompt panelled is true and color is defined, then the prompt inherits the color 1`] = `
+<div
+  class="css-mfx6ju-euiPageSection-grow-l-center-plain"
+>
+  <div
+    class="css-1isurur-euiPageSection__width-l"
+  >
+    <div
+      class="euiPanel euiPanel--accent euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge css-18gz4sh-euiPanel-m-accent"
+    >
+      <div
+        class="euiEmptyPrompt__main"
+      >
+        <div
+          class="euiEmptyPrompt__content"
+        >
+          <div
+            class="euiEmptyPrompt__contentInner"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`_EuiPageEmptyPrompt panelled is true and color is not defined, then the prompt is subdued 1`] = `
+<div
+  class="css-mfx6ju-euiPageSection-grow-l-center-plain"
+>
+  <div
+    class="css-1isurur-euiPageSection__width-l"
+  >
+    <div
+      class="euiPanel euiPanel--subdued euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge css-1v3b2de-euiPanel-m-subdued"
+    >
+      <div
+        class="euiEmptyPrompt__main"
+      >
+        <div
+          class="euiEmptyPrompt__content"
+        >
+          <div
+            class="euiEmptyPrompt__contentInner"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`_EuiPageEmptyPrompt restrict width can be set to a custom number 1`] = `
+<div
+  class="css-t4t69r-euiPageSection-grow-l-center-transparent"
+>
+  <div
+    class="css-6lxhcz-euiPageSection__width-l"
+  >
+    <div
+      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge css-1l0v6gd-euiPanel-m-plain-hasShadow"
+    >
+      <div
+        class="euiEmptyPrompt__main"
+      >
+        <div
+          class="euiEmptyPrompt__content"
+        >
+          <div
+            class="euiEmptyPrompt__contentInner"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`_EuiPageEmptyPrompt restrict width can be set to a custom value and measurement 1`] = `
+<div
+  class="css-t4t69r-euiPageSection-grow-l-center-transparent"
+>
+  <div
+    class="css-1dri2v-euiPageSection__width-l"
+  >
+    <div
+      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge css-1l0v6gd-euiPanel-m-plain-hasShadow"
+    >
+      <div
+        class="euiEmptyPrompt__main"
+      >
+        <div
+          class="euiEmptyPrompt__content"
+        >
+          <div
+            class="euiEmptyPrompt__contentInner"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`_EuiPageEmptyPrompt restrict width can be set to a default 1`] = `
+<div
+  class="css-t4t69r-euiPageSection-grow-l-center-transparent"
+>
+  <div
+    class="css-znxt8f-euiPageSection__width-l"
+  >
+    <div
+      class="euiPanel euiPanel--plain euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge css-1l0v6gd-euiPanel-m-plain-hasShadow"
+    >
+      <div
+        class="euiEmptyPrompt__main"
+      >
+        <div
+          class="euiEmptyPrompt__content"
+        >
+          <div
+            class="euiEmptyPrompt__contentInner"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

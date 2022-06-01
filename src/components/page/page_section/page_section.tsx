@@ -16,14 +16,14 @@ import { useEuiTheme } from '../../../services';
 import {
   ALIGNMENTS,
   euiPageSectionStyles,
-  euiPageSectionWidth,
+  euiPageSection__width,
 } from './page_section.styles';
 
 import {
-  PADDING_SIZES,
-  BACKGROUND_COLORS,
+  EuiBackgroundColor,
   useEuiPaddingCSS,
   useEuiBackgroundColorCSS,
+  EuiPaddingSize,
 } from '../../../global_styling';
 
 export type EuiPageSectionProps = CommonProps &
@@ -33,11 +33,11 @@ export type EuiPageSectionProps = CommonProps &
      * Background color of the section;
      * Usually a lightened form of the brand colors
      */
-    color?: typeof BACKGROUND_COLORS[number];
+    color?: EuiBackgroundColor;
     /**
      * Padding for all four sides
      */
-    paddingSize?: typeof PADDING_SIZES[number];
+    paddingSize?: EuiPaddingSize;
     /**
      * Horizontal and/or vertical alignment of the section contents
      */
@@ -54,7 +54,6 @@ export type EuiPageSectionProps = CommonProps &
 
 export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
   children,
-  className,
   alignment = 'top',
   restrictWidth = false,
   bottomBorder,
@@ -69,32 +68,29 @@ export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
   const inlinePadding = useEuiPaddingCSS('horizontal');
   const blockPadding = useEuiPaddingCSS('vertical');
   const colors = useEuiBackgroundColorCSS();
-  const width = euiPageSectionWidth(
+  const width = euiPageSection__width(
     restrictWidth as _EuiPageRestrictWidth,
     alignment
   );
 
+  const cssStyles = [
+    styles.euiPageSection,
+    grow && styles.grow,
+    inlinePadding[paddingSize],
+    bottomBorder === 'extended' && styles.border,
+    alignment && styles[alignment],
+    colors[color],
+  ];
+
+  const cssWidthStyles = [
+    width,
+    blockPadding[paddingSize],
+    bottomBorder === true && styles.border,
+  ];
+
   return (
-    <div
-      className={className}
-      css={[
-        styles.euiPageSection,
-        grow && styles.grow,
-        inlinePadding[paddingSize],
-        bottomBorder === 'extended' && styles.border,
-        alignment && styles[alignment],
-        colors[color],
-      ]}
-      {...rest}
-    >
-      <div
-        css={[
-          width,
-          blockPadding[paddingSize],
-          bottomBorder === true && styles.border,
-        ]}
-        {...contentProps}
-      >
+    <div css={cssStyles} {...rest}>
+      <div css={cssWidthStyles} {...contentProps}>
         {children}
       </div>
     </div>

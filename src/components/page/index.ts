@@ -42,5 +42,5 @@ export { EuiPageSection } from './page_section';
 export type { EuiPageSideBarProps } from './page_side_bar';
 export { EuiPageSideBar } from './page_side_bar';
 
-export type { EuiPageTemplateProps } from './page_template';
-export { EuiPageTemplate } from './page_template';
+export type { EuiPageTemplateProps_Deprecated } from './page_template';
+export { EuiPageTemplate_Deprecated } from './page_template';

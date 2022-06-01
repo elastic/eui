@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { EuiCode, EuiCallOut } from '../../../../../src';
 import { GuideSectionTypes } from '../../../components/guide_section/guide_section_types';
-import { GuideSection } from '../../../components/guide_section/guide_section';
+import { GuideSectionProps } from '../../../components/guide_section/guide_section';
 
 // @ts-ignore Importing from JS file
 import ContrastSimulated from './contrast_simulated';
@@ -16,7 +16,7 @@ export const SimulatingSections = () => {
   const currentLanguage = themeContext.themeLanguage;
   const showSass = currentLanguage.includes('sass');
 
-  const contrastDemos: GuideSection[] = [
+  const contrastDemos: GuideSectionProps[] = [
     {
       title: 'Simulating contrast with transparency',
       source: [
