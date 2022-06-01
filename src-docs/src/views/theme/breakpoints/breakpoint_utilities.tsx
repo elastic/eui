@@ -29,12 +29,12 @@ const hideForSource = require('!!raw-loader!./hide_for');
 import UtilityClassesResponsive from './utility_classes_responsive';
 
 function renderJsSizes(size: EuiBreakpointSize, index: number) {
-  let code = `'${size}': ${BREAKPOINTS[size]}px`;
+  let code = `'${size}': ${BREAKPOINTS[size]}`;
 
   if (size !== 'xl') {
-    code += `; // (to ${BREAKPOINTS[BREAKPOINT_KEYS[index - 1]] - 1}px)`;
+    code += `, // to ${BREAKPOINTS[BREAKPOINT_KEYS[index - 1]] - 1}`;
   } else {
-    code += ' +;';
+    code += ', // and up';
   }
 
   return code;
@@ -64,7 +64,7 @@ export default () => {
       );
       code += ` and (max-width: ${next - 1}px),`;
     } else {
-      code += ' +,';
+      code += ',';
     }
 
     return code;
@@ -97,12 +97,12 @@ export default () => {
                   return renderSassSizes(size, index);
                 })
                 .join('\n')
-            : // @ts-ignore Help?
-              BREAKPOINT_KEYS.reverse()
-                .map(function (size: EuiBreakpointSize, index: number) {
-                  return renderJsSizes(size, index);
-                })
-                .join('\n')}
+            : BREAKPOINT_KEYS.map(function (
+                size: EuiBreakpointSize,
+                index: number
+              ) {
+                return renderJsSizes(size, index);
+              }).join('\n')}
         </EuiCodeBlock>
       </GuideSection>
 

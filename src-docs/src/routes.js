@@ -463,11 +463,6 @@ const navigation = [
           },
         ],
       }),
-      // {
-      //   name: 'Typography',
-      //   component: Typography,
-      //   sections: typographySections,
-      // },
       {
         name: 'More tokens',
         component: Other,

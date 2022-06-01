@@ -9,8 +9,6 @@ import TextWrappingUtilities from './_text_wrapping';
 import TextNumberUtilities from './_text_numbers';
 import TextColorUtilities from './_text_color';
 
-// import { PaddingJS, UtilsJS } from './_sizing_js';
-
 // This array is used inside routes.js to create the sidenav sub-sections
 export const textUtilitiesSections = [
   {

@@ -13,7 +13,7 @@ import {
   transparentize,
   useEuiTheme,
   UseEuiTheme,
-} from '../../services';
+} from '../../../../services';
 
 export const BUTTON_COLORS = [
   'text',

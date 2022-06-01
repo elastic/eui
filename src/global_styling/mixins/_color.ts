@@ -29,7 +29,7 @@ export const BACKGROUND_COLORS = [
 export type _EuiBackgroundColor = typeof BACKGROUND_COLORS[number];
 export interface _EuiBackgroundColorOptions {
   /**
-   * Use `opaque` for containers of unkown content.
+   * Use `opaque` for containers of unknown content.
    * Use `transparent` for interactive states like hover and focus.
    */
   method?: 'opaque' | 'transparent';

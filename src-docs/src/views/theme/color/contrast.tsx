@@ -34,7 +34,7 @@ import {
   BUTTON_COLORS,
   euiButtonColor,
   _EuiButtonColor,
-} from '../../../../../src/components/button/button_mixins';
+} from '../../../../../src/themes/amsterdam/global_styling/mixins/button';
 import { GuideSection } from '../../../components/guide_section/guide_section';
 
 // This array is used inside routes.js to create the sidenav sub-sections
@@ -54,7 +54,11 @@ export default () => {
   const [showTextVariants, setShowTextVariants] = useState(true);
   const [contrastValue, setContrastValue] = useState(4.5);
 
-  const backgroundButtons = ['container', 'hover', 'button'].map((m) => {
+  const backgroundButtons = [
+    'container',
+    // 'hover', Commenting out for now since contrast can't be calculated on transparent values
+    'button',
+  ].map((m) => {
     return {
       id: m,
       label: m,
