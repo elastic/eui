@@ -302,4 +302,4 @@ export const EuiButtonDisplay_Deprecated = forwardRef<
     );
   }
 );
-EuiButtonDisplay_Deprecated.displayName = 'EuiButtonDisplay_Deprecated';
+EuiButtonDisplay_Deprecated.displayName = 'EuiButtonDisplay';
