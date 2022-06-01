@@ -36,14 +36,16 @@ const _buttonSize = (size: string) => {
 };
 
 export const euiButtonDisplayStyles = (
-  { euiTheme }: UseEuiTheme,
+  euiThemeContext: UseEuiTheme,
   minWidth: string
 ) => {
+  const { euiTheme } = euiThemeContext;
+
   return {
     // Base
     euiButtonDisplay: css`
       ${euiButtonBaseCSS()};
-      ${euiFontSize('s', euiTheme)};
+      ${euiFontSize(euiThemeContext, 's')};
       ${minWidth && `min-width: ${minWidth}`};
 
       ${euiCanAnimate} {

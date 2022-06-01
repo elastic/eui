@@ -16,13 +16,10 @@ import {
 
 import { euiLinkFocusCSS } from '../link/link.styles';
 
-export const euiFacetButtonStyles = (_theme: UseEuiTheme) => {
-  const { euiTheme } = _theme;
-
-  return {
-    // Base
-    euiFacetButton: css`
-    ${logicalTextAlignCSS('left')}
+export const euiFacetButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
+  // Base
+  euiFacetButton: css`
+    ${logicalTextAlignCSS('left')};
 
     &:hover,
     &:focus {
@@ -33,7 +30,7 @@ export const euiFacetButtonStyles = (_theme: UseEuiTheme) => {
     }
 
     &:focus:not(:disabled) [class*='euiFacetButton__text'] {
-      ${euiLinkFocusCSS(_theme)}
+      ${euiLinkFocusCSS(euiTheme)}
     }
 
     &:disabled {
@@ -44,13 +41,12 @@ export const euiFacetButtonStyles = (_theme: UseEuiTheme) => {
       &:focus {
         text-decoration: none;
       }
-    },
+    }
   `,
-    // Selections
-    isSelected: css``,
-    unSelected: css``,
-  };
-};
+  // Selections
+  isSelected: css``,
+  unSelected: css``,
+});
 
 export const euiFacetButtonTextStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiFacetButton__text: css`
