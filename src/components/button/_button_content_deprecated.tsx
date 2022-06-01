@@ -42,7 +42,8 @@ export interface EuiButtonContentProps extends CommonProps {
   iconSide?: ButtonContentIconSide;
   isLoading?: boolean;
   /**
-   * Object of props passed to the <span/> wrapping the content's text/children only (not icon)
+   * Object of props passed to the <span/> wrapping the content's text (only if the children is a `string`)
+   * It doesn't apply to the icon.
    */
   textProps?: HTMLAttributes<HTMLSpanElement> &
     CommonProps & {
