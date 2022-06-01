@@ -24,13 +24,14 @@ const _colorCSS = (color: string) => {
   `;
 };
 
-export const euiExpressionStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   return {
     euiExpression: css`
       ${euiTextBreakWord()};
       font-family: ${euiTheme.font.familyCode};
       border-bottom: ${euiTheme.border.width.thick} solid transparent;
-      ${euiFontSize('s', euiTheme)};
+      ${euiFontSize(euiThemeContext, 's')};
       display: inline-block;
       text-align: left;
       padding: calc(${euiTheme.size.s} / 2) 0;
@@ -100,7 +101,7 @@ export const euiExpressionStyles = ({ euiTheme }: UseEuiTheme) => {
         border-bottom-style: solid;
       `,
       subdued: css`
-        border-color: ${euiTheme.colors.subdued};
+        border-color: ${euiTheme.colors.subduedText};
       `,
       primary: css`
         border-color: ${euiTheme.colors.primary};
@@ -119,7 +120,7 @@ export const euiExpressionStyles = ({ euiTheme }: UseEuiTheme) => {
       `,
     },
 
-    subdued: css(_colorCSS(euiTheme.colors.subdued)),
+    subdued: css(_colorCSS(euiTheme.colors.subduedText)),
     primary: css(_colorCSS(euiTheme.colors.primaryText)),
     success: css(_colorCSS(euiTheme.colors.successText)),
     warning: css(_colorCSS(euiTheme.colors.warningText)),
@@ -137,7 +138,7 @@ export const euiExpressionDescriptionStyles = ({ euiTheme }: UseEuiTheme) => {
       vertical-align: bottom;
     `,
     subdued: css`
-      color: ${euiTheme.colors.subdued};
+      color: ${euiTheme.colors.subduedText};
     `,
     primary: css`
       color: ${euiTheme.colors.primaryText};
