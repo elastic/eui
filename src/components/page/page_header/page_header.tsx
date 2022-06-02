@@ -29,8 +29,12 @@ export interface EuiPageHeaderProps
     // The following are also inherited by page header content,
     // but we should explicitely set here too because we do things with the values
     _EuiPageRestrictWidth,
-    _EuiPageBottomBorder,
-    EuiPaddingSize {}
+    _EuiPageBottomBorder {
+  /**
+   * Adjust the overall padding.
+   */
+  paddingSize?: EuiPaddingSize;
+}
 
 export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   className,

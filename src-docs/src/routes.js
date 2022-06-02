@@ -28,7 +28,7 @@ import {
 
 // Templates
 
-import { PageTemplateExample } from './views/page/page_template_example';
+import { PageTemplateExample } from './views/page_template/page_template_example';
 
 import { SitewideSearchExample } from './views/selectable/selectable_sitewide_template_example';
 
@@ -169,7 +169,7 @@ import { OutsideClickDetectorExample } from './views/outside_click_detector/outs
 
 import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
 
-import { PageExample } from './views/page/page_example';
+import { PageExample } from './views/page_components/page_example';
 
 import { PageHeaderExample } from './views/page_header/page_header_example';
 

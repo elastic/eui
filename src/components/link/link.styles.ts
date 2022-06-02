@@ -32,16 +32,14 @@ export const euiLinkHoverCSS = () => {
   `;
 };
 
-export const euiLinkFocusCSS = ({ euiTheme }: UseEuiTheme) => {
+export const euiLinkFocusCSS = (euiTheme: UseEuiTheme['euiTheme']) => {
   return `
     text-decoration: underline;
     text-decoration-thickness: ${euiTheme.border.width.thick} !important;
   `;
 };
 
-export const euiLinkCSS = (_theme: UseEuiTheme) => {
-  const { euiTheme } = _theme;
-
+export const euiLinkCSS = (euiTheme: UseEuiTheme['euiTheme']) => {
   return `
     font-weight: ${euiTheme.font.weight.medium};
     text-align: left;
@@ -52,17 +50,15 @@ export const euiLinkCSS = (_theme: UseEuiTheme) => {
 
     &:focus {
       ${euiFocusRing(euiTheme, 'outset')}
-      ${euiLinkFocusCSS(_theme)}
+      ${euiLinkFocusCSS(euiTheme)}
     }
   `;
 };
 
-export const euiLinkStyles = (_theme: UseEuiTheme) => {
-  const { euiTheme } = _theme;
-
+export const euiLinkStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiLink: css`
-      ${euiLinkCSS(_theme)}
+      ${euiLinkCSS(euiTheme)}
       user-select: text;
 
       &[target='_blank'] {
@@ -84,7 +80,7 @@ export const euiLinkStyles = (_theme: UseEuiTheme) => {
     `,
     // Color styles
     primary: css(_colorCSS(euiTheme.colors.primaryText)),
-    subdued: css(_colorCSS(euiTheme.colors.subdued)),
+    subdued: css(_colorCSS(euiTheme.colors.subduedText)),
     success: css(_colorCSS(euiTheme.colors.successText)),
     accent: css(_colorCSS(euiTheme.colors.accentText)),
     danger: css(_colorCSS(euiTheme.colors.dangerText)),

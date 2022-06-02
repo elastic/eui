@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme, transparentize } from '../../services';
+import { euiScreenReaderOnly } from '../accessibility';
 
 export const euiMarkStyles = (
   { euiTheme, colorMode }: UseEuiTheme,
@@ -39,13 +40,7 @@ export const euiMarkStyles = (
     `
       &:before,
       &:after {
-        clip-path: inset(100%);
-        clip: rect(1px, 1px, 1px, 1px);
-        height: 1px;
-        overflow: hidden;
-        position: absolute;
-        white-space: nowrap;
-        width: 1px;
+        ${euiScreenReaderOnly()}
       }
 
       &:before {

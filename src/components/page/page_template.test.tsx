@@ -10,7 +10,10 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiPageTemplate, TEMPLATES } from './page_template';
+import {
+  EuiPageTemplate_Deprecated as EuiPageTemplate,
+  TEMPLATES,
+} from './page_template';
 
 describe('EuiPageTemplate', () => {
   test('is rendered', () => {

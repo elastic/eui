@@ -1,0 +1,13 @@
+
+.guideDemo__highlightLayout,
+.guideDemo__highlightLayout--playground,
+.guideDemo__highlightLayout--legacy {
+  overflow: hidden;
+  height: 460px;
+  display: flex;
+  flex-direction: column;
+}
+
+.guideDemo__highlightLayout--playground {
+  border: 1px solid $guideDemoHighlightColor;
+}

@@ -11,19 +11,11 @@ import { useEuiTheme, UseEuiTheme } from '../../services/theme';
 import { logicalSide, LogicalSides } from '../functions';
 
 export const PADDING_SIZES = ['none', 'xs', 's', 'm', 'l', 'xl'] as const;
-export type _EuiPaddingSize = typeof PADDING_SIZES[number];
-
-export type EuiPaddingSize = {
-  /**
-   * Adjust the padding.
-   * When using this setting it's best to be consistent throughout all similar usages
-   */
-  paddingSize?: _EuiPaddingSize;
-};
+export type EuiPaddingSize = typeof PADDING_SIZES[number];
 
 export const euiPaddingSize = (
-  size: _EuiPaddingSize,
-  { euiTheme }: UseEuiTheme
+  { euiTheme }: UseEuiTheme,
+  size: EuiPaddingSize
 ) => {
   switch (size) {
     case 'none':
@@ -35,9 +27,9 @@ export const euiPaddingSize = (
   }
 };
 
-export const useEuiPaddingSize = (size: _EuiPaddingSize) => {
+export const useEuiPaddingSize = (size: EuiPaddingSize) => {
   const euiTheme = useEuiTheme();
-  return euiPaddingSize(size, euiTheme);
+  return euiPaddingSize(euiTheme, size);
 };
 
 export const useEuiPaddingCSS = (side?: LogicalSides) => {

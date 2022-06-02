@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
+import { PAGE_MAX_WIDTH, _EuiPageRestrictWidth } from '../_restrict_width';
 
 export const ALIGNMENTS = ['top', 'center', 'horizontalCenter'] as const;
 export const euiPageSectionStyles = ({ euiTheme }: UseEuiTheme) => {
@@ -34,4 +35,27 @@ export const euiPageSectionStyles = ({ euiTheme }: UseEuiTheme) => {
       align-items: center;
     `,
   };
+};
+
+export const euiPageSection__width = (
+  restrictWidth: _EuiPageRestrictWidth,
+  alignment: typeof ALIGNMENTS[number]
+) => {
+  const width = alignment?.toLowerCase().includes('center') ? 'auto' : '100%';
+
+  if (restrictWidth === true) {
+    return css`
+      margin-left: auto;
+      margin-right: auto;
+      width: ${width};
+      max-width: ${PAGE_MAX_WIDTH};
+    `;
+  } else if (restrictWidth !== undefined) {
+    return css`
+      margin-left: auto;
+      margin-right: auto;
+      width: ${width};
+      max-width: ${restrictWidth};
+    `;
+  }
 };

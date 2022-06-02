@@ -5,12 +5,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 278,
-        "column": 14
+        "line": 338,
+        "column": 16
       },
       "end": {
-        "line": 278,
-        "column": 74
+        "line": 338,
+        "column": 76
       }
     },
     "filepath": "src/components/accordion/accordion.tsx"
@@ -1104,16 +1104,32 @@
     "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
   },
   {
+    "token": "euiColumnSortingDraggable.dragHandleAriaLabel",
+    "defString": "Drag handle",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 64,
+        "column": 30
+      },
+      "end": {
+        "line": 67,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
+  },
+  {
     "token": "euiColumnSortingDraggable.activeSortLabel",
     "defString": "{display} is sorting this data grid",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 74,
+        "line": 79,
         "column": 14
       },
       "end": {
-        "line": 78,
+        "line": 83,
         "column": 15
       }
     },
@@ -1125,11 +1141,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 90,
+        "line": 95,
         "column": 14
       },
       "end": {
-        "line": 94,
+        "line": 99,
         "column": 15
       }
     },
@@ -1141,11 +1157,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 128,
+        "line": 133,
         "column": 14
       },
       "end": {
-        "line": 132,
+        "line": 137,
         "column": 15
       }
     },
@@ -4597,11 +4613,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 330,
+        "line": 337,
         "column": 32
       },
       "end": {
-        "line": 333,
+        "line": 340,
         "column": 3
       }
     },

@@ -69,7 +69,31 @@ const logicalOverflow = {
   'overflow-y': 'overflow-inline',
 };
 
-const logicalRadius = {
+const logicalBorders = {
+  'border-horizontal': 'border-inline',
+  'border-horizontal-color': 'border-inline-color',
+  'border-horizontal-width': 'border-inline-width',
+  'border-horizontal-style': 'border-inline-style',
+  'border-vertical': 'border-block',
+  'border-vertical-color': 'border-block-color',
+  'border-vertical-width': 'border-block-width',
+  'border-vertical-style': 'border-block-style',
+  'border-bottom': 'border-block-end',
+  'border-bottom-color': 'border-block-end-color',
+  'border-bottom-style': 'border-block-end-style',
+  'border-bottom-width': 'border-block-end-width',
+  'border-top': 'border-block-start',
+  'border-top-color': 'border-block-start-color',
+  'border-top-style': 'border-block-start-style',
+  'border-top-width': 'border-block-start-width',
+  'border-right': 'border-inline-end',
+  'border-right-color': 'border-inline-end-color',
+  'border-right-style': 'border-inline-end-style',
+  'border-right-width': 'border-inline-end-width',
+  'border-left': 'border-inline-start',
+  'border-left-color': 'border-inline-start-color',
+  'border-left-style': 'border-inline-start-style',
+  'border-left-width': 'border-inline-start-width',
   'border-top-left-radius': 'border-start-start-radius',
   'border-top-right-radius': 'border-start-end-radius',
   'border-bottom-left-radius': 'border-end-start-radius',
@@ -82,7 +106,7 @@ export const logicals = {
   ...logicalPosition,
   ...logicalSize,
   ...logicalOverflow,
-  ...logicalRadius,
+  ...logicalBorders,
 };
 
 export const LOGICAL_PROPERTIES = keysOf(logicals);
@@ -109,7 +133,7 @@ export const logicalStyle = (property: LogicalProperties, value?: any) => {
   const camelCasedProperty = logicals[property].replace(/-\w/g, (str) =>
     str.charAt(1).toUpperCase()
   );
-  return { [camelCasedProperty]: `${value}` };
+  return { [camelCasedProperty]: value };
 };
 
 // Text alignment is separate because its the value that changes not the property

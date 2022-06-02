@@ -45,7 +45,7 @@ export const EuiPageBody = <T extends ComponentTypes>({
   component: Component = 'div' as T,
   panelled,
   panelProps,
-  paddingSize,
+  paddingSize = 'none',
   borderRadius = 'none',
   ...rest
 }: PropsWithChildren<EuiPageBodyProps<T>>) => {
