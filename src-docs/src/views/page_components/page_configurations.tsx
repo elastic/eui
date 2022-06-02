@@ -3,7 +3,7 @@ import { _EuiPageRestrictWidth } from '../../../../src/components/page/_restrict
 
 import {
   EuiPage,
-  EuiPageSideBar,
+  EuiPageSidebar,
   EuiPageBody,
   EuiEmptyPrompt,
   EuiPageHeader,
@@ -24,9 +24,9 @@ export default ({
   return (
     <EuiPage paddingSize="none">
       {sideBar && (
-        <EuiPageSideBar paddingSize="l" sticky>
+        <EuiPageSidebar paddingSize="l" sticky>
           {sideBar}
-        </EuiPageSideBar>
+        </EuiPageSidebar>
       )}
 
       <EuiPageBody paddingSize="none" panelled={Boolean(sideBar)}>

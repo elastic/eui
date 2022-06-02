@@ -10,7 +10,6 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../../common';
 
 import { _EuiPageRestrictWidth } from '../_restrict_width';
-import { euiPageRestictWidthStyles } from '../_restrict_width.styles';
 import { _EuiPageBottomBorder } from '../_bottom_border';
 
 import { useEuiTheme } from '../../../services';

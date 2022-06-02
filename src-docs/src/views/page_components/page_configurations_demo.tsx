@@ -6,7 +6,7 @@ import {
   EuiSwitch,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiPageSideBar,
+  EuiPageSidebar,
 } from '../../../../src';
 
 import contentSvg from '../../images/content.svg';
@@ -62,7 +62,7 @@ export const PageConfigurationsDemo: FunctionComponent = () => {
         },
       ]}
       props={{
-        EuiPageSideBar,
+        EuiPageSidebar,
       }}
       // playground={pageConfig}
       exampleToggles={

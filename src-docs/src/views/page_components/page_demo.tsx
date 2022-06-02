@@ -9,7 +9,7 @@ import {
   EuiPageProps,
   EuiPage,
   EuiPageBody,
-  EuiPageSideBar,
+  EuiPageSidebar,
 } from '../../../../src';
 
 import contentSvg from '../../images/content.svg';
@@ -66,7 +66,7 @@ export const PageComponentDemo: FunctionComponent = () => {
       props={{
         EuiPage,
         EuiPageBody,
-        EuiPageSideBar,
+        EuiPageSidebar,
       }}
       playground={pageConfig}
       exampleToggles={

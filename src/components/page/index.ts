@@ -40,7 +40,10 @@ export type { EuiPageSectionProps } from './page_section';
 export { EuiPageSection } from './page_section';
 
 export type { EuiPageSideBarProps } from './page_side_bar';
-export { EuiPageSideBar } from './page_side_bar';
+export { EuiPageSideBar_Deprecated } from './page_side_bar';
+
+export type { EuiPageSidebarProps } from './page_sidebar';
+export { EuiPageSidebar } from './page_sidebar';
 
 export type { EuiPageTemplateProps_Deprecated } from './page_template';
 export { EuiPageTemplate_Deprecated } from './page_template';

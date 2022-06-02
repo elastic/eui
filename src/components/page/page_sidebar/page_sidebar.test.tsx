@@ -12,7 +12,7 @@ import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { PADDING_SIZES } from '../../../global_styling';
 
-import { _EuiPageSidebar as EuiPageSidebar } from './page_sidebar';
+import { EuiPageSidebar } from './page_sidebar';
 
 describe('_EuiPageSidebar', () => {
   shouldRenderCustomStyles(<EuiPageSidebar />);

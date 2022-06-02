@@ -10,7 +10,7 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { _EuiPageRestrictWidth } from './_restrict_width';
-import { useEuiPaddingCSS, _EuiPaddingSize } from '../../global_styling';
+import { useEuiPaddingCSS, EuiPaddingSize } from '../../global_styling';
 import { euiPageStyles } from './page.styles';
 import { euiPageRestictWidthStyles } from './_restrict_width.styles';
 import { useEuiTheme } from '../../services';
@@ -23,7 +23,7 @@ export interface EuiPageProps
    * Adjust the padding.
    * When using this setting it's best to be consistent throughout all similar usages
    */
-  paddingSize?: _EuiPaddingSize;
+  paddingSize?: EuiPaddingSize;
   /**
    * Adds `flex-grow: 1` to the whole page for stretching to fit vertically.
    * Must be wrapped inside a flexbox, preferrably with `min-height: 100vh`
@@ -47,7 +47,7 @@ export const EuiPage: FunctionComponent<EuiPageProps> = ({
 }) => {
   const euiTheme = useEuiTheme();
   const styles = euiPageStyles(euiTheme);
-  const padding = useEuiPaddingCSS()[paddingSize as _EuiPaddingSize];
+  const padding = useEuiPaddingCSS()[paddingSize as EuiPaddingSize];
   const width = euiPageRestictWidthStyles(
     restrictWidth as _EuiPageRestrictWidth
   );

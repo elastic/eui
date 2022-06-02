@@ -8,8 +8,11 @@
 
 import React, { CSSProperties, FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
-import { EuiPage, EuiPageProps, SIZES } from './page';
-import { EuiPageSideBar, EuiPageSideBarProps } from './page_side_bar';
+import { EuiPage, EuiPageProps } from './page';
+import {
+  EuiPageSideBar_Deprecated as EuiPageSideBar,
+  EuiPageSideBarProps,
+} from './page_side_bar';
 import { EuiPageBody, EuiPageBodyProps } from './page_body';
 import { EuiPageHeader, EuiPageHeaderProps } from './page_header';
 import {
@@ -45,7 +48,7 @@ export type EuiPageTemplateProps_Deprecated = Omit<
    * Padding size will not get applied to the over-arching #EuiPage,
    * but will propogate through all the components to keep them in sync
    */
-  paddingSize?: typeof SIZES[number];
+  paddingSize?: 'none' | 's' | 'm' | 'l';
   /**
    * Optionally include #EuiPageSideBar content.
    * The inclusion of this will affect the whole layout

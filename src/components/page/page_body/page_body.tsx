@@ -12,7 +12,7 @@ import { CommonProps } from '../../common';
 import { _EuiPageRestrictWidth } from '../_restrict_width';
 import { euiPageRestictWidthStyles } from '../_restrict_width.styles';
 import { EuiPanel, EuiPanelProps } from '../../panel';
-import { useEuiPaddingCSS, _EuiPaddingSize } from '../../../global_styling';
+import { useEuiPaddingCSS, EuiPaddingSize } from '../../../global_styling';
 import { euiPageBodyStyles } from './page_body.styles';
 
 type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType<any>;
@@ -35,7 +35,7 @@ export type EuiPageBodyProps<T extends ComponentTypes = 'main'> = CommonProps &
     /**
      * Adjusts the padding
      */
-    paddingSize?: _EuiPaddingSize;
+    paddingSize?: EuiPaddingSize;
   };
 
 export const EuiPageBody = <T extends ComponentTypes>({
@@ -50,7 +50,7 @@ export const EuiPageBody = <T extends ComponentTypes>({
   ...rest
 }: PropsWithChildren<EuiPageBodyProps<T>>) => {
   const styles = euiPageBodyStyles();
-  const padding = useEuiPaddingCSS()[paddingSize as _EuiPaddingSize];
+  const padding = useEuiPaddingCSS()[paddingSize as EuiPaddingSize];
   const width = euiPageRestictWidthStyles(
     restrictWidth as _EuiPageRestrictWidth
   );
