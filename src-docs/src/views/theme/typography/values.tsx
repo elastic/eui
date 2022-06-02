@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import fonts from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../../src/global_styling/variables/_font_weight.scss';
 
 import { GuideSection } from '../../../components/guide_section/guide_section';
-import { GuideTabbedPage } from '../../../components/guide_tabbed_page';
 
 import {
   useEuiTheme,
@@ -37,6 +36,30 @@ import {
   FontWeightValuesSass,
   FontValuesSass,
 } from './_typography_sass';
+
+export const typographyInfo = {
+  title: 'Typography',
+  notice: <ThemeNotice />,
+  showThemeLanguageToggle: true,
+  description: (
+    <>
+      <p>
+        For most of your usages we recommend using{' '}
+        <Link to="/display/text">
+          <strong>EuiText</strong>
+        </Link>{' '}
+        or{' '}
+        <Link to="/display/title">
+          <strong>EuiTitle</strong>
+        </Link>{' '}
+        components directly <strong>instead</strong> of these theme tokens. Or
+        head to the{' '}
+        <Link to="/theming/typography/utilities">text utilities page</Link> for
+        helper classes and functions.
+      </p>
+    </>
+  ),
+};
 
 // This array is used inside routes.js to create the sidenav sub-sections
 export const typographySections = [
@@ -84,27 +107,7 @@ export default () => {
   }, [showSass]);
 
   return (
-    <GuideTabbedPage
-      title="Typography"
-      isBeta={!showSass}
-      notice={<ThemeNotice />}
-      showThemeLanguageToggle
-      description={
-        <>
-          For most of your usages we recommend using{' '}
-          <Link to="/display/text">
-            <strong>EuiText</strong>
-          </Link>{' '}
-          or{' '}
-          <Link to="/display/title">
-            <strong>EuiTitle</strong>
-          </Link>{' '}
-          components directly <strong>instead</strong> of these theme tokens. Or
-          head to the <Link to="/utilities/text">text utilities page</Link> for
-          helper classes and functions.
-        </>
-      }
-    >
+    <>
       <GuideSection color="subdued">
         <EuiText grow={false}>
           <h2
@@ -218,7 +221,7 @@ export default () => {
           <FontValuesSass />
         </GuideSection>
       )}
-    </GuideTabbedPage>
+    </>
   );
 };
 

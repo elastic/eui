@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { ThemeContext } from '../../components/with_theme';
+import { ThemeContext } from '../../../components/with_theme';
 
 import {
   EuiCode,
@@ -8,9 +8,9 @@ import {
   EuiFlexGrid,
   EuiFlexItem,
   useEuiNumberFormat,
-} from '../../../../src';
-import { ThemeExample } from '../theme/_components/_theme_example';
+} from '../../../../../src';
 import { css } from '@emotion/react';
+import { ThemeExample } from '../_components/_theme_example';
 
 export default () => {
   const themeContext = useContext(ThemeContext);

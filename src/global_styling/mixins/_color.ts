@@ -7,7 +7,13 @@
  */
 
 import { css } from '@emotion/react';
-import { shade, tint, useEuiTheme, UseEuiTheme } from '../../services';
+import {
+  shade,
+  tint,
+  transparentize,
+  useEuiTheme,
+  UseEuiTheme,
+} from '../../services';
 
 export const BACKGROUND_COLORS = [
   'transparent',
@@ -20,31 +26,52 @@ export const BACKGROUND_COLORS = [
   'danger',
 ] as const;
 
-export type EuiBackgroundColor = typeof BACKGROUND_COLORS[number];
+export type _EuiBackgroundColor = typeof BACKGROUND_COLORS[number];
+export interface _EuiBackgroundColorOptions {
+  /**
+   * Use `opaque` for containers of unknown content.
+   * Use `transparent` for interactive states like hover and focus.
+   */
+  method?: 'opaque' | 'transparent';
+}
 
 export const euiBackgroundColor = (
   { euiTheme, colorMode }: UseEuiTheme,
-  color: EuiBackgroundColor
+  color: _EuiBackgroundColor,
+  { method }: _EuiBackgroundColorOptions = {}
 ) => {
-  function tintOrShade(color: string) {
-    return colorMode === 'DARK' ? shade(color, 0.7) : tint(color, 0.9);
-  }
+  if (color === 'transparent') return 'transparent';
 
-  switch (color) {
-    case 'transparent':
-      return 'transparent';
-    case 'plain':
-      return euiTheme.colors.emptyShade;
-    case 'subdued':
-      return euiTheme.colors.body;
-    default:
-      return tintOrShade(euiTheme.colors[color]);
+  if (method === 'transparent') {
+    if (color === 'plain') {
+      return transparentize(euiTheme.colors.ghost, 0.2);
+    } else if (color === 'subdued') {
+      return transparentize(euiTheme.colors.lightShade, 0.2);
+    } else {
+      return transparentize(euiTheme.colors[color], 0.1);
+    }
+  } else {
+    function tintOrShade(color: string) {
+      return colorMode === 'DARK' ? shade(color, 0.8) : tint(color, 0.9);
+    }
+
+    switch (color) {
+      case 'plain':
+        return euiTheme.colors.emptyShade;
+      case 'subdued':
+        return euiTheme.colors.body;
+      default:
+        return tintOrShade(euiTheme.colors[color]);
+    }
   }
 };
 
-export const useEuiBackgroundColor = (color: EuiBackgroundColor) => {
+export const useEuiBackgroundColor = (
+  color: _EuiBackgroundColor,
+  { method }: _EuiBackgroundColorOptions = {}
+) => {
   const euiTheme = useEuiTheme();
-  return euiBackgroundColor(euiTheme, color);
+  return euiBackgroundColor(euiTheme, color, { method });
 };
 
 export const useEuiBackgroundColorCSS = () => {

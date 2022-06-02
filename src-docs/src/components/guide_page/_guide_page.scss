@@ -64,7 +64,11 @@ $guideSideNavWidth: 240px;
 }
 
 .euiSideNavItem--trunk > .euiSideNavItemButton .guideSideNav__item--inSearch .euiMark {
-  color: $euiColorPrimary;
+  color: $euiColorPrimaryText;
+}
+
+.guideSideNav__item--openSubTitle {
+  color: $euiTitleColor;
 }
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { EuiCode, EuiSpacer, EuiText } from '../../../../src/components';
-import { ThemeExample } from '../theme/_components/_theme_example';
+import { EuiCode, EuiSpacer } from '../../../../../src/components';
+import { ThemeExample } from '../_components/_theme_example';
 
 const wrappingExampleStyle = {
   background: 'rgba(254, 228, 181, 0.5)',
@@ -15,13 +15,6 @@ const wrappingDivExampleStyle = {
 
 export default () => (
   <>
-    <EuiText grow={false} size="m">
-      <p>
-        Breakpoint sizes are based on the overall browser window width. They
-        start at the mininumum values listed below until 1px before the next
-        breakpoint.
-      </p>
-    </EuiText>
     <ThemeExample
       title={<code>.eui-hideFor--[size]</code>}
       type="className"
