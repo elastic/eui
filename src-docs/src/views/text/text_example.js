@@ -91,13 +91,10 @@ export const TextExample = {
                 correctly.
               </li>
               <li>
-                Avoid nesting <strong>XHTML</strong> elements in a{' '}
-                <EuiCode>div</EuiCode> or <EuiCode>span</EuiCode>. The{' '}
-                <strong>EuiText</strong> always set the margin-bottom of the
-                last descendant element to zero. If an element is nested in a{' '}
-                <EuiCode>div</EuiCode>, the last descendant will be the{' '}
-                <EuiCode>div</EuiCode> and all its inner elements will get
-                margin bottoms.
+                Avoid wrapping all your <strong>XHTML</strong> elements in a{' '}
+                <EuiCode>div</EuiCode> or <EuiCode>span</EuiCode>. They&apos;re
+                going to be the direct descendants and for this reason, the
+                inner elements won&apos;t get the styles applied correctly.
               </li>
               <li>
                 Avoid nesting React components which would break their styling.
