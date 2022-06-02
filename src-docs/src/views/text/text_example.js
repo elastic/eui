@@ -93,8 +93,8 @@ export const TextExample = {
               <li>
                 Avoid wrapping all your <strong>XHTML</strong> elements in a{' '}
                 <EuiCode>div</EuiCode> or <EuiCode>span</EuiCode>. They&apos;re
-                going to be the direct descendants and for this reason, the
-                inner elements won&apos;t get the styles applied correctly.
+                going to be the direct descendants and the inner elements
+                won&apos;t get the styles applied correctly.
               </li>
               <li>
                 Avoid nesting React components which would break their styling.
