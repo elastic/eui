@@ -7,6 +7,10 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiPageSidebar,
+  EuiEmptyPrompt,
+  EuiPageBody,
+  EuiPageHeader,
+  EuiPageSection,
 } from '../../../../src';
 
 import contentSvg from '../../images/content.svg';
@@ -18,8 +22,6 @@ import { GuideSection } from '../../components/guide_section/guide_section';
 import { GuideSectionTypes } from '../../components/guide_section/guide_section_types';
 
 const PageConfigurationsSource = require('!!raw-loader!./page_configurations');
-// @ts-ignore Importing from JS
-// import { pageConfig } from './playground';
 
 export const PageConfigurationsDemo: FunctionComponent = () => {
   const [showSideBar, setShowSideBar] = useState(true);
@@ -63,8 +65,11 @@ export const PageConfigurationsDemo: FunctionComponent = () => {
       ]}
       props={{
         EuiPageSidebar,
+        EuiPageHeader,
+        EuiPageBody,
+        EuiPageSection,
+        EuiEmptyPrompt,
       }}
-      // playground={pageConfig}
       exampleToggles={
         <EuiFlexGroup wrap responsive={false}>
           <EuiFlexItem grow={false}>
