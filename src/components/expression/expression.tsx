@@ -22,7 +22,8 @@ import {
   euiExpressionStyles,
   euiExpressionDescriptionStyles,
   euiExpressionValueStyles,
-} from './expression.style';
+  euiExpressionIconStyles,
+} from './expression.styles';
 
 export const COLORS = [
   'subdued',
@@ -117,7 +118,6 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
   const cssStyles = [
     styles.euiExpression,
     onClick && styles.isClickable,
-    onClick && display === 'columns' && styles['isClickable-columns'],
     styles[color],
     isActive && styles.isActive.base,
     isActive && styles.isActive[color],
@@ -137,6 +137,9 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
     textWrap === 'truncate' && valueStyles.truncate,
   ];
 
+  const iconStyles = euiExpressionIconStyles(theme);
+  const cssIconStyles = [iconStyles.euiExpression__icon];
+
   const classes = classNames('euiExpression', className);
 
   const Component = onClick ? 'button' : 'span';
@@ -154,6 +157,7 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
     <EuiIcon
       className="euiExpression__icon"
       type="alert"
+      css={cssIconStyles}
       color={calculatedColor}
     />
   ) : undefined;

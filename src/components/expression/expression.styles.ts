@@ -81,17 +81,16 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
     isClickable: css`
       cursor: pointer;
       border-bottom: ${euiTheme.border.editable};
-    `,
+      &[class*='-columns'] {
+        background-color: ${euiTheme.colors.lightestShade};
 
-    'isClickable-columns': css`
-      background-color: ${euiTheme.colors.lightestShade};
-
-      &:focus,
-      &:hover:not(:disabled) {
-        .euiExpression__description,
-        .euiExpression__value {
-          // inner child specificity so it inherits underline color from text color
-          text-decoration: underline;
+        &:focus,
+        &:hover:not(:disabled) {
+          .euiExpression__description,
+          .euiExpression__value {
+            // inner child specificity so it inherits underline color from text color
+            text-decoration: underline;
+          }
         }
       }
     `,
@@ -168,6 +167,14 @@ export const euiExpressionValueStyles = ({}: UseEuiTheme) => {
       ${euiTextTruncate()}
       display: inline-block;
       vertical-align: bottom;
+    `,
+  };
+};
+
+export const euiExpressionIconStyles = ({ euiTheme }: UseEuiTheme) => {
+  return {
+    euiExpression__icon: css`
+      ${logicalCSS('margin-left', euiTheme.size.xs)};
     `,
   };
 };
