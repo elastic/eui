@@ -8,11 +8,14 @@ import {
   EuiText,
   EuiTextColor,
   EuiTextAlign,
+  EuiSpacer,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import { textConfig, textColorConfig } from './playground';
 
 import Text from './text';
+
 const textSource = require('!!raw-loader!./text');
 const textSnippet = `<EuiText grow={false}><!-- Raw HTML content --></EuiText>
 `;
@@ -74,9 +77,36 @@ export const TextExample = {
             <strong>EuiText</strong> is a generic catchall wrapper that will
             apply our standard typography styling and spacing to naked HTML.
             Because of its forced style it{' '}
-            <strong>only accepts raw XHTML</strong> and can not / should not be
-            used to wrap React components (which would break their styling).
+            <strong>only accepts raw XHTML</strong>.
           </p>
+
+          <EuiCallOut
+            title="When using EuiText, keep in mind:"
+            iconType="documentation"
+          >
+            <ul>
+              <li>
+                <strong>XHTML</strong> elements should be direct descendants of{' '}
+                <strong>EuiText</strong>. This will ensure styles are applied
+                correctly.
+              </li>
+              <li>
+                Avoid nesting <strong>XHTML</strong> elements in a{' '}
+                <EuiCode>div</EuiCode> or <EuiCode>span</EuiCode>. The{' '}
+                <strong>EuiText</strong> always set the margin-bottom of the
+                last descendant element to zero. If an element is nested in a{' '}
+                <EuiCode>div</EuiCode>, the last descendant will be the{' '}
+                <EuiCode>div</EuiCode> and all its inner elements will get
+                margin bottoms.
+              </li>
+              <li>
+                Avoid nesting React components which would break their styling.
+              </li>
+            </ul>
+          </EuiCallOut>
+
+          <EuiSpacer />
+
           <p>
             <strong>EuiText</strong> can ensure proper line-length for
             readability by setting a{' '}
