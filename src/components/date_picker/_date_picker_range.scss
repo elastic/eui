@@ -16,6 +16,7 @@
   }
 
   .euiFieldText.euiDatePicker {
+    height: $euiFormControlLayoutGroupInputHeight;
     // including all states
     box-shadow: none !important; // sass-lint:disable-line no-important
     text-align: center;
@@ -36,27 +37,29 @@
     text-align: left;
   }
 
+  // Necessary for EuiSuperDatePicker
   &--inGroup {
     box-shadow: none;
     padding: 0;
-
-    .euiDatePicker {
-      height: $euiFormControlLayoutGroupInputHeight;
-    }
-  }
-
-  // Direct descendent selectors to override `> span`
-
-  > .euiDatePickerRange__delimeter {
-    // override .euiFormControlLayout--group .euiText
-    background-color: transparent !important; // sass-lint:disable-line no-important
-    line-height: 1 !important; // sass-lint:disable-line no-important
-    flex: 0 0 auto;
-    padding-left: $euiFormControlPadding / 2;
-    padding-right: $euiFormControlPadding / 2;
   }
 }
 
-.euiDatePickerRange--readOnly {
+.euiDatePickerRange--isDisabled {
   background: $euiFormBackgroundDisabledColor;
+}
+
+.euiDatePickerRange--readOnly {
+  background: $euiFormBackgroundReadOnlyColor;
+}
+
+.euiDatePickerRange__delimeter {
+  align-self: stretch;
+  height: auto;
+  flex-grow: 0;
+  display: flex;
+  align-items: center;
+}
+
+.euiDatePickerRange--isInvalid .euiDatePickerRange__delimeter {
+  @include euiFormControlInvalidStyle;
 }

@@ -19,10 +19,10 @@ import {
  */
 // Internal utility for text scales/sizes
 const euiScaleMarkdownFormatText = (
-  euiTheme: UseEuiTheme['euiTheme'],
+  euiTheme: UseEuiTheme,
   options: _FontScaleOptions
 ) => {
-  const { fontSize, lineHeight } = euiFontSize('m', euiTheme, options);
+  const { fontSize, lineHeight } = euiFontSize(euiTheme, 'm', options);
   const { measurement } = options;
   const lineHeightSize = measurement === 'em' ? `${lineHeight}em` : lineHeight;
 
@@ -74,7 +74,7 @@ const euiScaleMarkdownFormatText = (
 /**
  * Styles
  */
-export const euiMarkdownFormatStyles = ({ euiTheme }: UseEuiTheme) => ({
+export const euiMarkdownFormatStyles = (euiTheme: UseEuiTheme) => ({
   // TODO: Remaining _markdown_format.scss styles
   euiMarkdownFormat: css``,
   // Text sizes

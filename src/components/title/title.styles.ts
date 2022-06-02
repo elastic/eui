@@ -28,10 +28,11 @@ type EuiThemeTitle = {
 };
 
 export const euiTitle = (
-  scale: EuiTitleSize,
-  euiTheme: UseEuiTheme['euiTheme'],
+  euiThemeContext: UseEuiTheme,
+  scale: EuiTitleSize = 'm',
   options?: _FontScaleOptions
 ): EuiThemeTitle => {
+  const { euiTheme } = euiThemeContext;
   const titleScaleToFontSizeScaleMap: {
     [size in EuiTitleSize]: _EuiThemeFontScale;
   } = {
@@ -44,7 +45,11 @@ export const euiTitle = (
   };
 
   return {
-    ...euiFontSize(titleScaleToFontSizeScaleMap[scale], euiTheme, options),
+    ...euiFontSize(
+      euiThemeContext,
+      titleScaleToFontSizeScaleMap[scale],
+      options
+    ),
     fontWeight: euiTheme.font.weight[euiTheme.font.title.weight],
     color: euiTheme.colors.title,
   };
@@ -55,19 +60,19 @@ export const useEuiTitle = (
   scale: EuiTitleSize,
   options?: _FontScaleOptions
 ): EuiThemeTitle => {
-  const { euiTheme } = useEuiTheme();
-  return euiTitle(scale, euiTheme, options);
+  const euiTheme = useEuiTheme();
+  return euiTitle(euiTheme, scale, options);
 };
 
 /**
  * Styles
  */
-export const euiTitleStyles = ({ euiTheme }: UseEuiTheme) => ({
+export const euiTitleStyles = (euiThemeContext: UseEuiTheme) => ({
   euiTitle: css`
     ${euiTextBreakWord()}
 
     & + & {
-      margin-top: ${euiTheme.size.l};
+      margin-top: ${euiThemeContext.euiTheme.size.l};
     }
   `,
   uppercase: css`
@@ -75,21 +80,21 @@ export const euiTitleStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
   // Sizes
   xxxs: css`
-    ${euiTitle('xxxs', euiTheme)}
+    ${euiTitle(euiThemeContext, 'xxxs')}
   `,
   xxs: css`
-    ${euiTitle('xxs', euiTheme)}
+    ${euiTitle(euiThemeContext, 'xxs')}
   `,
   xs: css`
-    ${euiTitle('xs', euiTheme)}
+    ${euiTitle(euiThemeContext, 'xs')}
   `,
   s: css`
-    ${euiTitle('s', euiTheme)}
+    ${euiTitle(euiThemeContext, 's')}
   `,
   m: css`
-    ${euiTitle('m', euiTheme)}
+    ${euiTitle(euiThemeContext, 'm')}
   `,
   l: css`
-    ${euiTitle('l', euiTheme)}
+    ${euiTitle(euiThemeContext, 'l')}
   `,
 });
