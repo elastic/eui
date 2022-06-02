@@ -156,7 +156,7 @@ export const BadgeExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Badges can have <EuiCode>onClick</EuiCode> events applied to the
             badge itself or the icon within the badge. The latter option is
@@ -174,7 +174,7 @@ export const BadgeExample = {
               most tag.
             </p>
           </EuiCallOut>
-        </div>
+        </>
       ),
       snippet: badgeButtonSnippet,
       demo: <BadgeButton />,
@@ -188,12 +188,10 @@ export const BadgeExample = {
         },
       ],
       text: (
-        <div>
-          <p>
-            Badges can work as health status indicators in places where there
-            are a lot of repeated statuses, e.g. in tables.
-          </p>
-        </div>
+        <p>
+          Badges can work as health status indicators in places where there are
+          a lot of repeated statuses, e.g. in tables.
+        </p>
       ),
       snippet: badgeHealthSnippet,
       demo: <BadgeHealth />,
@@ -207,12 +205,10 @@ export const BadgeExample = {
         },
       ],
       text: (
-        <div>
-          <p>
-            Badges can also be made to render anchor tags by passing an{' '}
-            <EuiCode>href</EuiCode>.
-          </p>
-        </div>
+        <p>
+          Badges can also be made to render anchor tags by passing an{' '}
+          <EuiCode>href</EuiCode>.
+        </p>
       ),
       snippet: badgeHrefSnippet,
       demo: <BadgeHref />,
@@ -257,7 +253,7 @@ export const BadgeExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             The <strong>EuiBetaBadge</strong> was created specifically to call
             out modules that are not in GA. Generally the labels used are
@@ -285,7 +281,7 @@ export const BadgeExample = {
             </Link>
             .
           </p>
-        </div>
+        </>
       ),
       props: { EuiBetaBadge },
       snippet: betaBadgeSnippet,

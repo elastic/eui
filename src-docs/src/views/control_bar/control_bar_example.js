@@ -123,7 +123,7 @@ export const ControlBarExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             <strong>EuiControlBar</strong> is a bottom positioned container and
             content well intended to provide additional view controls and
@@ -139,7 +139,7 @@ export const ControlBarExample = {
             expand, which makes it an easy way to display status information or
             fixed-position buttons.
           </p>
-        </div>
+        </>
       ),
       props: { EuiControlBar },
       snippet: controlBarSnippet,
@@ -154,7 +154,7 @@ export const ControlBarExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             This example demonstrates the use of tabs and reduces the size of
             the content with <EuiCode language="js">size=&quot;m&quot;</EuiCode>
@@ -166,7 +166,7 @@ export const ControlBarExample = {
             content with the <EuiCode>showContent</EuiCode> prop. When you want
             to display tab content, this is where you&apos;ll do it.
           </p>
-        </div>
+        </>
       ),
       props: { EuiControlBar },
       snippet: tabsBarSnippet,
@@ -181,7 +181,7 @@ export const ControlBarExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             The <strong>EuiControlBar</strong> is responsive in the sense that
             it utilizes flexbox and overflow scrolls. However, it makes no
@@ -198,7 +198,7 @@ export const ControlBarExample = {
             <EuiCode>controlTypes</EuiCode>. View the snippet tab to see an
             example.
           </p>
-        </div>
+        </>
       ),
       props: { EuiControlBar },
       snippet: mobileBarSnippet,
@@ -213,7 +213,7 @@ export const ControlBarExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             The <strong>EuiControlBar</strong> accepts an array of{' '}
             <EuiCode>controlTypes</EuiCode> that will be arranged in the order
@@ -279,7 +279,7 @@ export const ControlBarExample = {
             <EuiCode>leftOffset</EuiCode> or <EuiCode>rightOffset</EuiCode>{' '}
             props.
           </p>
-        </div>
+        </>
       ),
       props: {
         EuiControlBar,

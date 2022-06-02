@@ -50,7 +50,7 @@ export const ResponsiveExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             These components will either render or not render their children
             based on the current window width. Pass an array of named
@@ -70,7 +70,7 @@ export const ResponsiveExample = {
               return renderSizes(size, index);
             })}
           </EuiCodeBlock>
-        </div>
+        </>
       ),
       snippet: responsiveSnippet,
       props: { EuiShowFor, EuiHideFor, EuiBreakpointSize },

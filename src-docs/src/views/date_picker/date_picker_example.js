@@ -416,7 +416,7 @@ export const DatePickerExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Custom classes can be passed to various bits of the calendar and
             input.
@@ -436,7 +436,7 @@ export const DatePickerExample = {
               <EuiCode>popperClassName</EuiCode> will pass onto the popover.
             </li>
           </ul>
-        </div>
+        </>
       ),
       snippet: classesSnippet,
       demo: <Classes />,

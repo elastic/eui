@@ -176,7 +176,7 @@ export const StepsExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             To aid with accessibility and hierarchical headings, you can and
             should pass in a heading element to use for each step title. The
@@ -189,7 +189,7 @@ export const StepsExample = {
           <p>
             The style of the title will <strong>not</strong> be affected.
           </p>
-        </div>
+        </>
       ),
       snippet: headingElementStepsSnippet,
       demo: <HeadingElementSteps />,
