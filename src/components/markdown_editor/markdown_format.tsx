@@ -12,7 +12,7 @@ import { VFileContents } from 'vfile';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { EuiText, EuiTextProps } from '../text/text';
-import { useEuiTheme } from '../../services';
+import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
 import { euiMarkdownFormatStyles } from './markdown_format.styles';
 import {
   defaultProcessingPlugins,
@@ -32,12 +32,15 @@ export type EuiMarkdownFormatProps = CommonProps &
     textSize?: EuiTextProps['size'];
   };
 
-export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
+export const _EuiMarkdownFormat: FunctionComponent<
+  EuiMarkdownFormatProps & WithEuiSystemProps
+> = ({
   children,
   className,
   parsingPluginList = defaultParsingPlugins,
   processingPluginList = defaultProcessingPlugins,
   textSize = 'm',
+  euiTheme,
   ...rest
 }) => {
   const processor = useMemo(
@@ -55,7 +58,6 @@ export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
     }
   }, [children, processor]);
 
-  const euiTheme = useEuiTheme();
   const styles = euiMarkdownFormatStyles(euiTheme);
   const cssStyles = [styles.euiMarkdownFormat, styles[textSize]];
 
@@ -67,3 +69,5 @@ export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
     </EuiText>
   );
 };
+
+export const EuiMarkdownFormat = withEuiSystem(_EuiMarkdownFormat);

@@ -13,7 +13,7 @@ import React, {
   Ref,
 } from 'react';
 import classNames from 'classnames';
-import { useEuiTheme } from '../../services';
+import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
 import {
   useEuiBackgroundColorCSS,
   useEuiPaddingCSS,
@@ -94,7 +94,9 @@ export type EuiPanelProps = ExclusiveUnion<
   _EuiPanelDivlike
 >;
 
-export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
+export const _EuiPanel: FunctionComponent<
+  EuiPanelProps & WithEuiSystemProps
+> = ({
   children,
   className,
   paddingSize = 'm',
@@ -105,9 +107,9 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   grow = true,
   panelRef,
   element,
+  euiTheme,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
   // Shadows are only allowed when there's a white background (plain)
   const canHaveShadow = !hasBorder && color === 'plain';
   const canHaveBorder = color === 'plain' || color === 'transparent';
@@ -158,3 +160,5 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     </div>
   );
 };
+
+export const EuiPanel = withEuiSystem(_EuiPanel);
