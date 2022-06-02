@@ -126,10 +126,10 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
         onClick();
       }
     };
-    portalTarget.addEventListener('click', listener);
+    portalTarget.addEventListener('click', listener, { capture: true });
 
     return () => {
-      portalTarget.removeEventListener('click', listener);
+      portalTarget.removeEventListener('click', listener, { capture: true });
     };
   }, [onClick]);
 

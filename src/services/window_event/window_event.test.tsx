@@ -24,16 +24,27 @@ describe('EuiWindowEvent', () => {
     const handler = () => null;
     shallow(<EuiWindowEvent event="click" handler={handler} />);
     expect(window.addEventListener).toHaveBeenCalledTimes(1);
-    expect(window.addEventListener).toHaveBeenCalledWith('click', handler);
+    expect(window.addEventListener).toHaveBeenCalledWith(
+      'click',
+      handler,
+      undefined
+    );
   });
 
   test('removes handler on unmount', () => {
     const handler = () => null;
-    const wrapper = shallow(<EuiWindowEvent event="click" handler={handler} />);
+    const wrapper = shallow(
+      <EuiWindowEvent
+        event="click"
+        handler={handler}
+        options={{ capture: true }}
+      />
+    );
     wrapper.unmount();
     expect(window.removeEventListener).toHaveBeenLastCalledWith(
       'click',
-      handler
+      handler,
+      { capture: true }
     );
   });
 
@@ -41,18 +52,27 @@ describe('EuiWindowEvent', () => {
     const handler1 = () => null;
     const handler2 = () => null;
     const wrapper = shallow(
-      <EuiWindowEvent event="click" handler={handler1} />
+      <EuiWindowEvent event="click" handler={handler1} options={true} />
     );
 
-    expect(window.addEventListener).toHaveBeenLastCalledWith('click', handler1);
+    expect(window.addEventListener).toHaveBeenLastCalledWith(
+      'click',
+      handler1,
+      true
+    );
 
     wrapper.setProps({ event: 'hover', handler: handler2 });
 
     expect(window.removeEventListener).toHaveBeenLastCalledWith(
       'click',
-      handler1
+      handler1,
+      true
     );
-    expect(window.addEventListener).toHaveBeenLastCalledWith('hover', handler2);
+    expect(window.addEventListener).toHaveBeenLastCalledWith(
+      'hover',
+      handler2,
+      true
+    );
   });
 
   test('does not remove or re-attach handler if update is irrelevant', () => {

@@ -98,13 +98,21 @@ export class EuiOutsideClickDetector extends Component<
   };
 
   componentDidMount() {
-    document.addEventListener('mouseup', this.onClickOutside);
-    document.addEventListener('touchend', this.onClickOutside);
+    document.addEventListener('mouseup', this.onClickOutside, {
+      capture: true,
+    });
+    document.addEventListener('touchend', this.onClickOutside, {
+      capture: true,
+    });
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mouseup', this.onClickOutside);
-    document.removeEventListener('touchend', this.onClickOutside);
+    document.removeEventListener('mouseup', this.onClickOutside, {
+      capture: true,
+    });
+    document.removeEventListener('touchend', this.onClickOutside, {
+      capture: true,
+    });
   }
 
   onChildClick = (

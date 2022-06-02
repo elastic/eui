@@ -47,24 +47,24 @@ export default () => {
    * Hook up the keyboard shortcut for command+k to initiate focus into search input
    */
   useEffect(() => {
-    window.addEventListener('keydown', onWindowKeyDown);
+    window.addEventListener('keydown', onWindowKeyDown, { capture: true });
 
     return function cleanup() {
-      window.removeEventListener('resize', onWindowKeyDown);
+      window.removeEventListener('resize', onWindowKeyDown, { capture: true });
     };
   });
 
   const onWindowKeyDown = (e: any) => {
     if (e.metaKey && e.key.toLowerCase() === 'k') {
       e.preventDefault();
-      window.addEventListener('keyup', onWindowKeyUp);
+      window.addEventListener('keyup', onWindowKeyUp, { capture: true });
     }
   };
 
   const onWindowKeyUp = () => {
     searchRef && searchRef.focus();
     setLoading(true);
-    window.removeEventListener('keyup', onWindowKeyUp);
+    window.removeEventListener('keyup', onWindowKeyUp, { capture: true });
   };
 
   const onKeyUpCapture = (e: any) => {

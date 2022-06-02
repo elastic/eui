@@ -13,6 +13,7 @@ type EventNames = keyof WindowEventMap;
 interface Props<Ev extends EventNames> {
   event: Ev;
   handler: (this: Window, ev: WindowEventMap[Ev]) => any;
+  options?: boolean | AddEventListenerOptions;
 }
 
 export class EuiWindowEvent<E extends EventNames> extends Component<Props<E>> {
@@ -34,12 +35,12 @@ export class EuiWindowEvent<E extends EventNames> extends Component<Props<E>> {
     this.removeEvent(this.props);
   }
 
-  addEvent<Ev extends EventNames>({ event, handler }: Props<Ev>) {
-    window.addEventListener(event, handler);
+  addEvent<Ev extends EventNames>({ event, handler, options }: Props<Ev>) {
+    window.addEventListener(event, handler, options);
   }
 
-  removeEvent<Ev extends EventNames>({ event, handler }: Props<Ev>) {
-    window.removeEventListener(event, handler);
+  removeEvent<Ev extends EventNames>({ event, handler, options }: Props<Ev>) {
+    window.removeEventListener(event, handler, options);
   }
 
   render() {

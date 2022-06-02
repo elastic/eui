@@ -89,13 +89,21 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
   };
 
   addMouseupListener = () => {
-    document.addEventListener('mouseup', this.onMouseupOutside);
-    document.addEventListener('touchend', this.onMouseupOutside);
+    document.addEventListener('mouseup', this.onMouseupOutside, {
+      capture: true,
+    });
+    document.addEventListener('touchend', this.onMouseupOutside, {
+      capture: true,
+    });
   };
 
   removeMouseupListener = () => {
-    document.removeEventListener('mouseup', this.onMouseupOutside);
-    document.removeEventListener('touchend', this.onMouseupOutside);
+    document.removeEventListener('mouseup', this.onMouseupOutside, {
+      capture: true,
+    });
+    document.removeEventListener('touchend', this.onMouseupOutside, {
+      capture: true,
+    });
   };
 
   handleOutsideClick: ReactFocusOnProps['onClickOutside'] = (event) => {
