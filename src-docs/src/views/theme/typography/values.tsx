@@ -53,7 +53,8 @@ export const typographyInfo = {
           <strong>EuiTitle</strong>
         </Link>{' '}
         components directly <strong>instead</strong> of these theme tokens. Or
-        head to the <Link to="/utilities/text">text utilities page</Link> for
+        head to the{' '}
+        <Link to="/theming/typography/utilities">text utilities page</Link> for
         helper classes and functions.
       </p>
     </>
