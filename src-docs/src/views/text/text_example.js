@@ -81,20 +81,20 @@ export const TextExample = {
           </p>
 
           <EuiCallOut
-            title="When using EuiText, keep in mind:"
+            title={
+              <span>
+                When using <strong>EuiText</strong>, keep in mind:
+              </span>
+            }
             iconType="documentation"
           >
             <ul>
               <li>
-                <strong>XHTML</strong> elements should be direct descendants of{' '}
-                <strong>EuiText</strong>. This will ensure styles are applied
+                All your <strong>XHTML</strong> elements should be direct
+                descendants of <strong>EuiText</strong>. You should avoid
+                wrapping them in a <EuiCode>div</EuiCode> or{' '}
+                <EuiCode>span</EuiCode>. This will ensure styles are applied
                 correctly.
-              </li>
-              <li>
-                Avoid wrapping all your <strong>XHTML</strong> elements in a{' '}
-                <EuiCode>div</EuiCode> or <EuiCode>span</EuiCode>. They&apos;re
-                going to be the direct descendants and the inner elements
-                won&apos;t get the styles applied correctly.
               </li>
               <li>
                 Avoid nesting React components which would break their styling.
