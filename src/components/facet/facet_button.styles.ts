@@ -43,9 +43,6 @@ export const euiFacetButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
       }
     }
   `,
-  // Selections
-  isSelected: css``,
-  unSelected: css``,
 });
 
 export const euiFacetButtonTextStyles = ({ euiTheme }: UseEuiTheme) => ({

@@ -23,7 +23,6 @@ import {
   ExclusiveUnion,
   PropsForAnchor,
   PropsForButton,
-  keysOf,
 } from '../../common';
 
 import { euiButtonDisplayStyles } from './_button_display.styles';
@@ -32,38 +31,6 @@ import {
   EuiButtonDisplayContentProps,
   EuiButtonDisplayContentType,
 } from './_button_display_content';
-
-export type ButtonDisplayColor =
-  | 'primary'
-  | 'accent'
-  | 'success'
-  | 'warning'
-  | 'danger'
-  | 'ghost'
-  | 'text';
-
-export type ButtonDisplaySize = 's' | 'm';
-
-export const colorToClassNameMap: { [color in ButtonDisplayColor]: string } = {
-  primary: '--primary',
-  accent: '--accent',
-  success: '--success',
-  warning: '--warning',
-  danger: '--danger',
-  ghost: '--ghost',
-  text: '--text',
-};
-
-export const COLORS = keysOf(colorToClassNameMap);
-
-export const sizeToClassNameMap: {
-  [size in ButtonDisplaySize]: string | null;
-} = {
-  s: '--small',
-  m: null,
-};
-
-export const SIZES = keysOf(sizeToClassNameMap);
 
 /**
  * Extends EuiButtonDisplayContentProps which provides
@@ -78,14 +45,9 @@ export interface EuiButtonDisplayCommonProps
    */
   fill?: boolean;
   /**
-   * Any of our named colors.
-   */
-  color?: ButtonDisplayColor;
-  /**
    * Use size `s` in confined spaces
    */
-  size?: ButtonDisplaySize;
-
+  size?: 'xs' | 's' | 'm';
   /**
    * Applies the boolean state as the `aria-pressed` property to create a toggle button.
    * *Only use when the readable text does not change between states.*
@@ -129,11 +91,7 @@ export type Props = ExclusiveUnion<
   EuiButtonDisplayPropsForButton
 >;
 
-/**
- * The `color` is being ommited because the first component using this new component EuiFacetButton doesn't requiere a background color.
- * But once we start using this component in buttons that can have a background we will require the color.
- */
-export type EuiButtonDisplayProps = Omit<EuiButtonDisplayCommonProps, 'color'> &
+export type EuiButtonDisplayProps = EuiButtonDisplayCommonProps &
   HTMLAttributes<HTMLElement> & {
     /**
      * Provide a valid element to render the element as

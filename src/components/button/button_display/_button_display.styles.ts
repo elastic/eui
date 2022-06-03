@@ -9,8 +9,8 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 import {
   euiFontSize,
-  euiCanAnimate,
   logicalCSS,
+  logicalTextAlignStyle,
 } from '../../../global_styling';
 
 // Provides a solid reset and base for handling sizing layout
@@ -20,7 +20,7 @@ export const euiButtonBaseCSS = () => {
     display: inline-block;
     appearance: none;
     cursor: pointer;
-    text-align: center;
+    ${logicalTextAlignStyle('center')};
     white-space: nowrap;
     ${logicalCSS('max-width', '100%')};
     vertical-align: middle;
@@ -45,12 +45,7 @@ export const euiButtonDisplayStyles = (
     // Base
     euiButtonDisplay: css`
       ${euiButtonBaseCSS()};
-      ${euiFontSize(euiThemeContext, 's')};
-      ${minWidth && `min-width: ${minWidth}`};
-
-      ${euiCanAnimate} {
-        transition: transform ${euiTheme.animation.fast} ease-in;
-      }
+      ${minWidth && logicalCSS('min-width', minWidth)};
     `,
     // States
     isDisabled: css`
@@ -61,8 +56,8 @@ export const euiButtonDisplayStyles = (
       width: 100%;
     `,
     // Sizes
-    xs: css(_buttonSize(euiTheme.size.l)),
-    s: css(_buttonSize(euiTheme.size.xl)),
-    m: css(_buttonSize(euiTheme.size.xxl)),
+    xs: css(_buttonSize(euiTheme.size.l), euiFontSize(euiThemeContext, 'xs')),
+    s: css(_buttonSize(euiTheme.size.xl), euiFontSize(euiThemeContext, 's')),
+    m: css(_buttonSize(euiTheme.size.xxl), euiFontSize(euiThemeContext, 's')),
   };
 };
