@@ -44,9 +44,6 @@ export interface EuiButtonDisplayCommonProps
    * Make button a solid color for prominence
    */
   fill?: boolean;
-  /**
-   * Use size `s` in confined spaces
-   */
   size?: 'xs' | 's' | 'm';
   /**
    * Applies the boolean state as the `aria-pressed` property to create a toggle button.
