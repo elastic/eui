@@ -30,32 +30,32 @@
   //   }
   // }
 
-  &.euiButton-isDisabled {
+  &:disabled {
     @include euiButtonContentDisabled;
     // color: $euiButtonColorDisabledText;
     // border-color: $euiButtonColorDisabled;
 
-    &.euiButton--fill {
-      // Only increase the contrast of background color to text to 2.0 for disabled
-      // color: makeHighContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled, 2);
-      // background-color: $euiButtonColorDisabled;
-      // border-color: $euiButtonColorDisabled;
-
-      // &:hover,
-      // &:focus,
-      // &:focus-within {
-      //   background-color: $euiButtonColorDisabled;
-      //   border-color: $euiButtonColorDisabled;
-      // }
-    }
+    // &.euiButton--fill {
+    // Only increase the contrast of background color to text to 2.0 for disabled
+    // color: makeHighContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled, 2);
+    // background-color: $euiButtonColorDisabled;
+    // border-color: $euiButtonColorDisabled;
 
     // &:hover,
     // &:focus,
     // &:focus-within {
-    //   @include euiSlightShadow;
-    //   text-decoration: none;
+    //   background-color: $euiButtonColorDisabled;
+    //   border-color: $euiButtonColorDisabled;
     // }
   }
+
+  // &:hover,
+  // &:focus,
+  // &:focus-within {
+  //   @include euiSlightShadow;
+  //   text-decoration: none;
+  // }
+  // }
 }
 
 // Create button modifiers based upon the map.

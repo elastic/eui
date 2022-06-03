@@ -17,7 +17,7 @@
   @include euiCanAnimate {
     transition: transform $euiAnimSpeedNormal ease-in-out, background $euiAnimSpeedNormal ease-in-out;
 
-    &:hover:not([class*='isDisabled']) {
+    &:hover:not(:disabled) {
       transform: translateY(-1px);
     }
 
@@ -25,7 +25,7 @@
       animation: euiButtonActive $euiAnimSpeedNormal $euiAnimSlightBounce;
     }
 
-    &:active:not([class*='isDisabled']) {
+    &:active:not(:disabled) {
       transform: translateY(1px);
     }
   }
@@ -41,10 +41,10 @@
 
   font-weight: $euiButtonFontWeight;
   text-decoration: none;
-  transition: background-color $euiAnimSpeedNormal ease-in-out, border-color $euiAnimSpeedNormal ease-in-out;
+  transition: background-color $euiAnimSpeedNormal ease-in-out;
   outline-offset: -1px;
 
-  &:hover:not([class*='isDisabled']),
+  &:hover:not(:disabled),
   &:focus {
     text-decoration: underline;
   }

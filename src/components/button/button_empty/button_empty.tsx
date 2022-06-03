@@ -117,7 +117,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   iconType,
   iconSide = 'left',
   iconSize = 'm',
-  color = 'primary',
+  color: _color = 'primary',
   size = 'm',
   flush,
   isDisabled: _isDisabled,
@@ -133,10 +133,6 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   isSelected,
   ...rest
 }) => {
-  const buttonColorStyles = useEuiButtonColorCSS({
-    display: 'empty',
-  })[color === 'ghost' ? 'text' : color];
-
   const isHrefValid = !href || validateHref(href);
   const disabled = _disabled || !isHrefValid;
   const isDisabled = _isDisabled || !isHrefValid;
@@ -144,13 +140,23 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   // If in the loading state, force disabled to true
   const buttonIsDisabled = isLoading || isDisabled || disabled;
 
+  // eslint-disable-next-line no-nested-ternary
+  const color = buttonIsDisabled
+    ? 'disabled'
+    : _color === 'ghost'
+    ? 'text'
+    : _color;
+  const buttonColorStyles = useEuiButtonColorCSS({
+    display: 'empty',
+  })[color];
+
   const classes = classNames(
     'euiButtonEmpty',
     // colorToClassNameMap[color],
     size ? sizeToClassNameMap[size] : null,
     flush ? flushTypeToClassNameMap[flush] : null,
     {
-      'euiButtonEmpty-isDisabled': buttonIsDisabled,
+      // 'euiButtonEmpty-isDisabled': buttonIsDisabled,
     },
     className
   );

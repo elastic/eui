@@ -142,20 +142,26 @@ export const EuiButton: FunctionComponent<Props> = ({
   rel,
   type = 'button',
   buttonRef,
-  color = 'primary',
+  color: _color = 'primary',
   fill,
   ...rest
 }) => {
-  const buttonColorStyles = useEuiButtonColorCSS({
-    display: fill ? 'fill' : 'base',
-  })[color === 'ghost' ? 'text' : color];
-
   const isHrefValid = !href || validateHref(href);
   const disabled = _disabled || !isHrefValid;
   const isDisabled = _isDisabled || !isHrefValid;
 
   const buttonIsDisabled = rest.isLoading || isDisabled || disabled;
   const element = href && !isDisabled ? 'a' : 'button';
+
+  // eslint-disable-next-line no-nested-ternary
+  const color = buttonIsDisabled
+    ? 'disabled'
+    : _color === 'ghost'
+    ? 'text'
+    : _color;
+  const buttonColorStyles = useEuiButtonColorCSS({
+    display: fill ? 'fill' : 'base',
+  })[color];
 
   let elementProps = {};
   // Props for all elements
@@ -250,7 +256,7 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
         : null,
       // fill && `${baseClassName}--fill`,
       fullWidth && `${baseClassName}--fullWidth`,
-      buttonIsDisabled && `${baseClassName}-isDisabled`,
+      // buttonIsDisabled && `${baseClassName}-isDisabled`,
       className
     );
 
