@@ -10,7 +10,7 @@ import { _EuiThemeSize, euiCanAnimate } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import {
   EuiLoadingSpinnerSize,
-  EuiLoadingSpinnerColor,
+  EuiLoadingSpinnerProps,
 } from './loading_spinner';
 
 const _loadingSpinner = keyframes`
@@ -41,7 +41,7 @@ const spinnerColorsCSS = (border?: string, highlight?: string) => {
 
 export const euiLoadingSpinnerStyles = (
   { euiTheme }: UseEuiTheme,
-  color?: EuiLoadingSpinnerColor
+  color?: EuiLoadingSpinnerProps['color']
 ) => {
   return {
     euiLoadingSpinner: css`
