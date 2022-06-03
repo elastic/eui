@@ -9,7 +9,7 @@
 import React, { HTMLAttributes, FunctionComponent, Ref } from 'react';
 import { useEuiTheme } from '../../../services';
 import { CommonProps } from '../../common';
-import { EuiLoadingSpinner } from '../../loading';
+import { EuiLoadingSpinner, EuiLoadingSpinnerProps } from '../../loading';
 import { EuiIcon, IconType } from '../../icon';
 import { euiButtonDisplayContentStyles } from './_button_display_content.styles';
 
@@ -69,8 +69,25 @@ export const EuiButtonDisplayContent: FunctionComponent<
   // Add an icon to the button if one exists.
   let icon;
 
+  // When the button is disabled the text gets gray
+  // and in some buttons the background gets a light gray
+  // for better contrast we want to change the border of the spinner
+  // to have the same color of the text. This way we ensure the borders
+  // are always visible. The default spinner color could be very light.
+  const loadingSpinnerColor = isDisabled
+    ? ({
+        border: 'currentColor',
+      } as EuiLoadingSpinnerProps['color'])
+    : undefined;
+
   if (isLoading) {
-    icon = <EuiLoadingSpinner css={cssSpinnerStyles} size={iconSize} />;
+    icon = (
+      <EuiLoadingSpinner
+        css={cssSpinnerStyles}
+        size={iconSize}
+        color={loadingSpinnerColor}
+      />
+    );
   } else if (iconType) {
     icon = (
       <EuiIcon

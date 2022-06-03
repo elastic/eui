@@ -16,19 +16,30 @@ import { euiLoadingSpinnerStyles } from './loading_spinner.styles';
 export const SIZES = ['s', 'm', 'l', 'xl', 'xxl'] as const;
 export type EuiLoadingSpinnerSize = typeof SIZES[number];
 
+export type EuiLoadingSpinnerColor = {
+  border?: string;
+  highlight?: string;
+};
+
 export type EuiLoadingSpinnerProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     size?: EuiLoadingSpinnerSize;
+    /**
+     * Sets the color of the border and highlight
+     * It accepts any valid CSS color value as a `string`
+     */
+    color?: EuiLoadingSpinnerColor;
   };
 
 export const EuiLoadingSpinner: FunctionComponent<EuiLoadingSpinnerProps> = ({
   size = 'm',
   className,
   'aria-label': ariaLabel,
+  color,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
-  const styles = euiLoadingSpinnerStyles(euiTheme);
+  const styles = euiLoadingSpinnerStyles(euiTheme, color);
   const cssStyles = [styles.euiLoadingSpinner, styles[size]];
   const classes = classNames('euiLoadingSpinner', className);
   const defaultLabel = useLoadingAriaLabel();

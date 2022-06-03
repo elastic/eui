@@ -8,7 +8,6 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 import { logicalCSS } from '../../../global_styling';
-import { euiLoadingSpinnerBorderColorsCSS } from '../../loading/loading_spinner.styles';
 
 export const euiButtonDisplayContentStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
@@ -35,9 +34,5 @@ export const euiButtonDisplayContentStyles = ({ euiTheme }: UseEuiTheme) => ({
   isDisabled: css`
     pointer-events: auto;
     cursor: not-allowed;
-
-    [class*='euiButtonDisplayContent__spinner'] {
-      ${euiLoadingSpinnerBorderColorsCSS(euiTheme, 'currentColor')}
-    }
   `,
 });
