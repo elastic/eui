@@ -19,7 +19,7 @@ import {
 import { getSecureRelForTarget } from '../../../services';
 
 import {
-  EuiButtonContent_Deprecated as EuiButtonContent,
+  EuiButtonContentDeprecated as EuiButtonContent,
   EuiButtonContentProps,
   EuiButtonContentType,
 } from '../_button_content_deprecated';

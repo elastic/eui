@@ -30,7 +30,7 @@ import { getSecureRelForTarget } from '../../services';
 import {
   EuiButtonContentProps,
   EuiButtonContentType,
-  EuiButtonContent_Deprecated as EuiButtonContent,
+  EuiButtonContentDeprecated as EuiButtonContent,
 } from './_button_content_deprecated';
 import { validateHref } from '../../services/security/href_validator';
 
@@ -175,7 +175,7 @@ export const EuiButton: FunctionComponent<Props> = ({
 
   return (
     // eslint-disable-next-line react/jsx-pascal-case
-    <EuiButtonDisplay_Deprecated
+    <EuiButtonDisplayDeprecated
       element={element}
       baseClassName="euiButton"
       ref={buttonRef}
@@ -209,7 +209,7 @@ export type EuiButtonDisplayProps = EuiButtonProps &
  * This component has been deprecated in favor of the new EuiButtonDisplay
  * that can be found in `src/components/button/button_display/_button_display.tsx`
  */
-export const EuiButtonDisplay_Deprecated = forwardRef<
+export const EuiButtonDisplayDeprecated = forwardRef<
   HTMLElement,
   EuiButtonDisplayProps
 >(
@@ -302,4 +302,4 @@ export const EuiButtonDisplay_Deprecated = forwardRef<
     );
   }
 );
-EuiButtonDisplay_Deprecated.displayName = 'EuiButtonDisplay';
+EuiButtonDisplayDeprecated.displayName = 'EuiButtonDisplay';

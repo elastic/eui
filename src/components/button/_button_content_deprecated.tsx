@@ -53,7 +53,7 @@ export interface EuiButtonContentProps extends CommonProps {
   iconSize?: 's' | 'm';
 }
 
-export const EuiButtonContent_Deprecated: FunctionComponent<
+export const EuiButtonContentDeprecated: FunctionComponent<
   EuiButtonContentType & EuiButtonContentProps
 > = ({
   children,
