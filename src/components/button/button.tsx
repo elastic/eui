@@ -33,6 +33,7 @@ import {
   EuiButtonContent,
 } from './button_content';
 import { validateHref } from '../../services/security/href_validator';
+import { useEuiButtonColorCSS } from '../../themes/amsterdam/global_styling/mixins/button';
 
 export type ButtonColor =
   | 'primary'
@@ -141,8 +142,14 @@ export const EuiButton: FunctionComponent<Props> = ({
   rel,
   type = 'button',
   buttonRef,
+  color = 'primary',
+  fill,
   ...rest
 }) => {
+  const buttonColorStyles = useEuiButtonColorCSS({
+    display: fill ? 'fill' : 'base',
+  })[color === 'ghost' ? 'text' : color];
+
   const isHrefValid = !href || validateHref(href);
   const disabled = _disabled || !isHrefValid;
   const isDisabled = _isDisabled || !isHrefValid;
@@ -173,11 +180,14 @@ export const EuiButton: FunctionComponent<Props> = ({
     relObj.type = type as ButtonHTMLAttributes<HTMLButtonElement>['type'];
   }
 
+  const cssStyles = [buttonColorStyles];
+
   return (
     <EuiButtonDisplay
       element={element}
       baseClassName="euiButton"
       ref={buttonRef}
+      css={cssStyles}
       {...elementProps}
       {...relObj}
       {...rest}
@@ -214,9 +224,8 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       className,
       iconType,
       iconSide = 'left',
-      color = 'primary',
+      color,
       size = 'm',
-      fill = false,
       isDisabled,
       isLoading,
       isSelected,
@@ -235,11 +244,11 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       baseClassName,
       color && colorToClassNameMap[color]
         ? `${baseClassName}${colorToClassNameMap[color]}`
-        : `${baseClassName}${colorToClassNameMap.primary}`,
+        : undefined,
       size && sizeToClassNameMap[size]
         ? `${baseClassName}${sizeToClassNameMap[size]}`
         : null,
-      fill && `${baseClassName}--fill`,
+      // fill && `${baseClassName}--fill`,
       fullWidth && `${baseClassName}--fullWidth`,
       buttonIsDisabled && `${baseClassName}-isDisabled`,
       className

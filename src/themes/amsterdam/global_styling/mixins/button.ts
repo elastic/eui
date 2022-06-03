@@ -7,7 +7,11 @@
  */
 
 import { css } from '@emotion/react';
+import { euiBackgroundColor } from '../../../../global_styling';
 import {
+  hexToRgb,
+  isColorDark,
+  makeHighContrastColor,
   shade,
   tint,
   transparentize,
@@ -26,51 +30,134 @@ export const BUTTON_COLORS = [
 ] as const;
 
 export type _EuiButtonColor = typeof BUTTON_COLORS[number];
+export type _EuiButtonDisplay = 'base' | 'fill' | 'empty';
+
+export interface _EuiButtonOptions {
+  display?: _EuiButtonDisplay;
+}
 
 export const euiButtonColor = (
+  euiThemeContext: UseEuiTheme,
   color: _EuiButtonColor,
-  { euiTheme, colorMode }: UseEuiTheme
+  { display }: _EuiButtonOptions = {}
 ) => {
+  const { euiTheme, colorMode } = euiThemeContext;
   function tintOrShade(color: string) {
     return colorMode === 'DARK' ? shade(color, 0.7) : tint(color, 0.8);
   }
 
+  let foreground;
+  let background;
+
+  if (display === 'empty') {
+    let focusBackground;
+    switch (color) {
+      case 'disabled':
+        foreground = euiTheme.colors[`${color}Text`];
+        focusBackground = euiTheme.colors[color];
+        break;
+      case 'text':
+        foreground = euiTheme.colors[color];
+        focusBackground = euiBackgroundColor(euiThemeContext, 'subdued');
+        break;
+      default:
+        foreground = euiTheme.colors[`${color}Text`];
+        focusBackground = euiBackgroundColor(euiThemeContext, color);
+        break;
+    }
+    return {
+      color: foreground,
+      'background-color': focusBackground,
+    };
+  } else if (display === 'fill') {
+    return {
+      color: isColorDark(...hexToRgb(euiTheme.colors[color]))
+        ? euiTheme.colors.ghost
+        : euiTheme.colors.ink,
+      'background-color':
+        color === 'text' ? euiTheme.colors.darkShade : euiTheme.colors[color],
+    };
+  }
+
   switch (color) {
     case 'disabled':
-      return transparentize(euiTheme.colors.lightShade, 0.15);
+      foreground = euiTheme.colors.disabledText;
+      background = transparentize(euiTheme.colors.lightShade, 0.15);
+      break;
     case 'text':
-      return colorMode === 'DARK'
-        ? shade(euiTheme.colors.lightShade, 0.2)
-        : tint(euiTheme.colors.lightShade, 0.5);
+      foreground = euiTheme.colors[color];
+      background =
+        colorMode === 'DARK'
+          ? shade(euiTheme.colors.lightShade, 0.2)
+          : tint(euiTheme.colors.lightShade, 0.5);
+      break;
     default:
-      return tintOrShade(euiTheme.colors[color]);
+      foreground = euiTheme.colors[`${color}Text`];
+      background = tintOrShade(euiTheme.colors[color]);
+      break;
   }
-};
-
-export const useEuiButtonColorCSS = () => {
-  const euiTheme = useEuiTheme();
 
   return {
-    text: css`
-      background-color: ${euiButtonColor('text', euiTheme)};
-    `,
-    accent: css`
-      background-color: ${euiButtonColor('accent', euiTheme)};
-    `,
-    primary: css`
-      background-color: ${euiButtonColor('primary', euiTheme)};
-    `,
-    success: css`
-      background-color: ${euiButtonColor('success', euiTheme)};
-    `,
-    warning: css`
-      background-color: ${euiButtonColor('warning', euiTheme)};
-    `,
-    danger: css`
-      background-color: ${euiButtonColor('danger', euiTheme)};
-    `,
-    disabled: css`
-      background-color: ${euiButtonColor('disabled', euiTheme)};
-    `,
+    'background-color': background,
+    color: makeHighContrastColor(foreground)(background),
+  };
+};
+
+export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
+  const euiThemeContext = useEuiTheme();
+
+  function stylesByDisplay(
+    color: _EuiButtonColor,
+    display?: _EuiButtonDisplay
+  ) {
+    let empty;
+    switch (display) {
+      case 'empty':
+        empty = css`
+          color: ${euiButtonColor(euiThemeContext, color).color};
+
+          &:hover,
+          &:focus,
+          &:active {
+            background-color: ${euiBackgroundColor(euiThemeContext, color)};
+          }
+        `;
+      // break;
+
+      default:
+        return {
+          base: css`
+            ${euiButtonColor(euiThemeContext, color, options)}
+          `,
+          fill: css`
+            ${euiButtonColor(euiThemeContext, color, options)}
+          `,
+          empty,
+        };
+    }
+  }
+
+  return {
+    text: css(
+      stylesByDisplay('text', options.display)[options.display || 'base']
+    ),
+    accent: css(
+      stylesByDisplay('accent', options.display)[options.display || 'base']
+    ),
+    primary: css(
+      stylesByDisplay('primary', options.display)[options.display || 'base']
+    ),
+    success: css(
+      stylesByDisplay('success', options.display)[options.display || 'base']
+    ),
+    warning: css(
+      stylesByDisplay('warning', options.display)[options.display || 'base']
+    ),
+    danger: css(
+      stylesByDisplay('danger', options.display)[options.display || 'base']
+    ),
+    disabled: css(
+      stylesByDisplay('disabled', options.display)[options.display || 'base']
+    ),
   };
 };

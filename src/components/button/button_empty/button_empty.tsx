@@ -23,6 +23,7 @@ import {
   EuiButtonContentType,
 } from '../button_content';
 import { validateHref } from '../../../services/security/href_validator';
+import { useEuiButtonColorCSS } from '../../../themes/amsterdam/global_styling/mixins/button';
 
 export type EuiButtonEmptyColor =
   | 'primary'
@@ -132,6 +133,10 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   isSelected,
   ...rest
 }) => {
+  const buttonColorStyles = useEuiButtonColorCSS({
+    display: 'empty',
+  })[color === 'ghost' ? 'text' : color];
+
   const isHrefValid = !href || validateHref(href);
   const disabled = _disabled || !isHrefValid;
   const isDisabled = _isDisabled || !isHrefValid;
@@ -141,7 +146,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
 
   const classes = classNames(
     'euiButtonEmpty',
-    colorToClassNameMap[color],
+    // colorToClassNameMap[color],
     size ? sizeToClassNameMap[size] : null,
     flush ? flushTypeToClassNameMap[flush] : null,
     {
@@ -159,6 +164,8 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
     'euiButtonEmpty__text',
     textProps && textProps.className
   );
+
+  const cssStyles = [buttonColorStyles];
 
   const innerNode = (
     <EuiButtonContent
@@ -183,6 +190,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
     return (
       <a
         className={classes}
+        css={cssStyles}
         href={href}
         target={target}
         rel={secureRel}
@@ -198,6 +206,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
     <button
       disabled={buttonIsDisabled}
       className={classes}
+      css={cssStyles}
       type={type}
       ref={buttonRef as Ref<HTMLButtonElement>}
       aria-pressed={isSelected}

@@ -6,9 +6,9 @@
 .euiButtonEmpty {
   @include euiButton;
 
-  border-color: transparent;
-  background-color: transparent;
-  box-shadow: none;
+  // border-color: transparent;
+  // background-color: transparent;
+  // box-shadow: none;
   // sass-lint:disable-block no-important
   transform: none !important; /* 1 */
   animation: none !important; /* 1 */
@@ -67,40 +67,40 @@
   margin-left: $euiSizeS;
 }
 
-// Modifier naming and colors.
-$euiButtonEmptyTypes: (
-  primary: $euiColorPrimaryText,
-  danger: $euiColorDangerText,
-  disabled: $euiButtonColorDisabledText,
-  ghost: $euiColorGhost,
-  text: $euiTextColor,
-  success: $euiColorSuccessText,
-  warning: $euiColorWarningText,
-);
+// // Modifier naming and colors.
+// $euiButtonEmptyTypes: (
+//   primary: $euiColorPrimaryText,
+//   danger: $euiColorDangerText,
+//   disabled: $euiButtonColorDisabledText,
+//   ghost: $euiColorGhost,
+//   text: $euiTextColor,
+//   success: $euiColorSuccessText,
+//   warning: $euiColorWarningText,
+// );
 
 // Create button modifiers based upon the map.
-@each $name, $color in $euiButtonEmptyTypes {
-  .euiButtonEmpty--#{$name} {
-    @if ($name == 'ghost') {
-      // Ghost is unique and ALWAYS sits against a dark background.
-      color: $color;
-    } @else if ($name == 'text') {
-      // The default color is lighter than the normal text color, make the it the text color
-      color: $euiTextColor;
-    } @else {
-      // Other colors need to check their contrast against the page background color.
-      color: makeHighContrastColor($color, $euiColorEmptyShade);
-    }
+// @each $name, $color in $euiButtonEmptyTypes {
+//   .euiButtonEmpty--#{$name} {
+//     @if ($name == 'ghost') {
+//       // Ghost is unique and ALWAYS sits against a dark background.
+//       color: $color;
+//     } @else if ($name == 'text') {
+//       // The default color is lighter than the normal text color, make the it the text color
+//       color: $euiTextColor;
+//     } @else {
+//       // Other colors need to check their contrast against the page background color.
+//       color: makeHighContrastColor($color, $euiColorEmptyShade);
+//     }
 
-    &:focus {
-      background-color: transparentize($color, .9);
-    }
+//     &:focus {
+//       background-color: transparentize($color, .9);
+//     }
 
-    &:hover {
-      @if ($name == 'disabled') {
-        cursor: not-allowed;
-      }
-    }
-  }
-}
+//     &:hover {
+//       @if ($name == 'disabled') {
+//         cursor: not-allowed;
+//       }
+//     }
+//   }
+// }
 

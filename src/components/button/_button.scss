@@ -4,7 +4,6 @@
 // Our base button
 .euiButton {
   @include euiButton;
-  @include euiSlightShadow;
 
   border-radius: $euiBorderRadius;
   min-width: $euiButtonMinWidth;
@@ -23,44 +22,39 @@
     line-height: $euiButtonHeightSmall; // prevents descenders from getting cut off
   }
 
-  &:hover,
-  &:active {
-    @include euiSlightShadowHover;
-  }
-
-  &:not([class*='isDisabled']) {
-    &:hover,
-    &:focus,
-    &:focus-within {
-      background-color: transparentize($euiColorPrimary, .9);
-    }
-  }
+  // &:not([class*='isDisabled']) {
+  //   &:hover,
+  //   &:focus,
+  //   &:focus-within {
+  //     background-color: transparentize($euiColorPrimary, .9);
+  //   }
+  // }
 
   &.euiButton-isDisabled {
     @include euiButtonContentDisabled;
-    color: $euiButtonColorDisabledText;
-    border-color: $euiButtonColorDisabled;
+    // color: $euiButtonColorDisabledText;
+    // border-color: $euiButtonColorDisabled;
 
     &.euiButton--fill {
       // Only increase the contrast of background color to text to 2.0 for disabled
-      color: makeHighContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled, 2);
-      background-color: $euiButtonColorDisabled;
-      border-color: $euiButtonColorDisabled;
+      // color: makeHighContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled, 2);
+      // background-color: $euiButtonColorDisabled;
+      // border-color: $euiButtonColorDisabled;
 
-      &:hover,
-      &:focus,
-      &:focus-within {
-        background-color: $euiButtonColorDisabled;
-        border-color: $euiButtonColorDisabled;
-      }
+      // &:hover,
+      // &:focus,
+      // &:focus-within {
+      //   background-color: $euiButtonColorDisabled;
+      //   border-color: $euiButtonColorDisabled;
+      // }
     }
 
-    &:hover,
-    &:focus,
-    &:focus-within {
-      @include euiSlightShadow;
-      text-decoration: none;
-    }
+    // &:hover,
+    // &:focus,
+    // &:focus-within {
+    //   @include euiSlightShadow;
+    //   text-decoration: none;
+    // }
   }
 }
 
