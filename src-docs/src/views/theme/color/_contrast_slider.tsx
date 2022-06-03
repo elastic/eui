@@ -9,7 +9,6 @@ import {
   EuiIcon,
   EuiSwitch,
   EuiSpacer,
-  EuiPanel,
   EuiFlexGroupProps,
   EuiRangeProps,
 } from '../../../../../src/components';
@@ -110,57 +109,49 @@ export const ContrastSlider: FunctionComponent<ContrastSlider> = ({
   ];
 
   return (
-    <EuiFlexGroup
-      className="guideSection__emptyBox guideColorsPage__stickySlider"
-      justifyContent="center"
-      {...rest}
-    >
+    <EuiFlexGroup gutterSize="xl" justifyContent="center" {...rest}>
       <EuiFlexItem>
-        <EuiPanel paddingSize="l" color="subdued">
-          <EuiFormRow
-            id="ratingsRange"
-            label="Minimum color contrast combinations to show"
+        <EuiFormRow
+          id="ratingsRange"
+          label="Minimum color contrast combinations to show"
+          fullWidth
+        >
+          <EuiRange
+            min={0}
+            max={7}
+            step={0.5}
+            value={value}
+            onChange={(e) => {
+              setValue(e.currentTarget.value);
+              // @ts-ignore Help
+              onChange(e.currentTarget.value, checked);
+            }}
+            showTicks
+            ticks={ticks}
+            valueAppend="+"
             fullWidth
-          >
-            <EuiRange
-              min={0}
-              max={7}
-              step={0.5}
-              value={value}
-              onChange={(e) => {
-                setValue(e.currentTarget.value);
-                // @ts-ignore Help
-                onChange(e.currentTarget.value, checked);
-              }}
-              showTicks
-              ticks={ticks}
-              valueAppend="+"
-              fullWidth
-            />
-          </EuiFormRow>
-        </EuiPanel>
+          />
+        </EuiFormRow>
       </EuiFlexItem>
       <EuiFlexItem>
-        <EuiPanel paddingSize="l" color="subdued">
-          <EuiFormRow
-            labelType="legend"
-            label="Show text variant versions of core color tokens as the foreground"
-            hasChildLabel={false}
-          >
-            <div>
-              <EuiSpacer size="s" />
-              <EuiSwitch
-                label="Show text variant"
-                checked={showTextVariants}
-                onChange={(e) => {
-                  setChecked(e.target.checked);
-                  // @ts-ignore Help
-                  onChange(value, e.target.checked);
-                }}
-              />
-            </div>
-          </EuiFormRow>
-        </EuiPanel>
+        <EuiFormRow
+          labelType="legend"
+          label="Show text variant versions of core color tokens as the foreground"
+          hasChildLabel={false}
+        >
+          <div>
+            <EuiSpacer size="s" />
+            <EuiSwitch
+              label="Show text variant"
+              checked={showTextVariants}
+              onChange={(e) => {
+                setChecked(e.target.checked);
+                // @ts-ignore Help
+                onChange(value, e.target.checked);
+              }}
+            />
+          </div>
+        </EuiFormRow>
       </EuiFlexItem>
     </EuiFlexGroup>
   );

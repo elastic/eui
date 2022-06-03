@@ -46,7 +46,7 @@ exports[`EuiPanel props color primary is rendered 1`] = `
 
 exports[`EuiPanel props color subdued is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--subdued euiPanel--paddingMedium css-1b822ge-euiPanel-grow-m-m-subdued"
+  class="euiPanel euiPanel--subdued euiPanel--paddingMedium css-isico0-euiPanel-grow-m-m-subdued"
 />
 `;
 

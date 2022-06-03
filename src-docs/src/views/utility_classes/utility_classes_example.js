@@ -28,8 +28,8 @@ export const UtilityClassesExample = {
       <EuiSpacer size="m" />
       <EuiCallOut title="Responsive utilities have moved" iconType="symlink">
         For responsive specific utilities, go to the{' '}
-        <Link to="/utilities/responsive#utility-classes">
-          Responsive documentation page
+        <Link to="/theming/breakpoints/utilities">
+          Breakpoint utilities page
         </Link>
         .
       </EuiCallOut>

@@ -91,6 +91,7 @@
     "m": "4px",
     "l": "8px"
   },
+  "euiEmptyPromptContentMaxWidth": "36em",
   "euiExpressionColors": {
     "subdued": "#7a7f89",
     "primary": "#36a2ef",
@@ -303,17 +304,6 @@
   "euiTableActionsBorderColor": "rgba(83, 89, 102, 0.09999999999999998)",
   "euiTableHoverClickableColor": "rgba(54, 162, 239, 0.050000000000000044)",
   "euiTableFocusClickableColor": "rgba(54, 162, 239, 0.09999999999999998)",
-  "euiTextColors": {
-    "default": "#dfe5ef",
-    "subdued": "#7a7f89",
-    "success": "#7dded8",
-    "accent": "#f68fbe",
-    "warning": "#f3d371",
-    "danger": "#f86b63",
-    "ghost": "#ffffff",
-    "inherit": "inherit"
-  },
-  "euiTextConstrainedMaxWidth": "36em",
   "euiToastWidth": "320px",
   "euiToastTypes": {
     "primary": "#36a2ef",
