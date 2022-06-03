@@ -16,17 +16,20 @@ import { euiLoadingSpinnerStyles } from './loading_spinner.styles';
 export const SIZES = ['s', 'm', 'l', 'xl', 'xxl'] as const;
 export type EuiLoadingSpinnerSize = typeof SIZES[number];
 
+export type EuiLoadingSpinnerColor = {
+  border?: string;
+  highlight?: string;
+};
+
 export type EuiLoadingSpinnerProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
     size?: EuiLoadingSpinnerSize;
     /**
      * Sets the color of the border and highlight.
      * It accepts any valid CSS color value as a `string`
+     * See #EuiLoadingSpinnerColor
      */
-    color?: {
-      border?: string;
-      highlight?: string;
-    };
+    color?: EuiLoadingSpinnerColor;
   };
 
 export const EuiLoadingSpinner: FunctionComponent<EuiLoadingSpinnerProps> = ({
