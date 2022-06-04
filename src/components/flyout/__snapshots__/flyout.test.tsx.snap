@@ -25,7 +25,7 @@ Array [
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside"
+          class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-19g5rpb-empty-text-EuiButtonIcon"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >

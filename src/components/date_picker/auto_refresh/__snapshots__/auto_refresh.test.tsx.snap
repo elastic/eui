@@ -12,7 +12,7 @@ exports[`EuiAutoRefresh is rendered 1`] = `
         class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
       >
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend"
+          class="euiButtonEmpty euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend css-15qfgye-empty-text"
           type="button"
         >
           <span

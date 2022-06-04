@@ -246,7 +246,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       >
         <button
           aria-label="Bold"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall css-19g5rpb-empty-text-EuiButtonIcon"
           data-test-subj="euiMarkdownEditorToolbarButton"
           type="button"
         >
@@ -263,7 +263,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       >
         <button
           aria-label="Italic"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall css-19g5rpb-empty-text-EuiButtonIcon"
           data-test-subj="euiMarkdownEditorToolbarButton"
           type="button"
         >
@@ -283,7 +283,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       >
         <button
           aria-label="Unordered list"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall css-19g5rpb-empty-text-EuiButtonIcon"
           data-test-subj="euiMarkdownEditorToolbarButton"
           type="button"
         >
@@ -300,7 +300,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       >
         <button
           aria-label="Ordered list"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall css-19g5rpb-empty-text-EuiButtonIcon"
           data-test-subj="euiMarkdownEditorToolbarButton"
           type="button"
         >
@@ -317,7 +317,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       >
         <button
           aria-label="Task list"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall css-19g5rpb-empty-text-EuiButtonIcon"
           data-test-subj="euiMarkdownEditorToolbarButton"
           type="button"
         >
@@ -337,7 +337,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       >
         <button
           aria-label="Quote"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall css-19g5rpb-empty-text-EuiButtonIcon"
           data-test-subj="euiMarkdownEditorToolbarButton"
           type="button"
         >
@@ -354,7 +354,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       >
         <button
           aria-label="Code"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall css-19g5rpb-empty-text-EuiButtonIcon"
           data-test-subj="euiMarkdownEditorToolbarButton"
           type="button"
         >
@@ -371,7 +371,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       >
         <button
           aria-label="Link"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall css-19g5rpb-empty-text-EuiButtonIcon"
           data-test-subj="euiMarkdownEditorToolbarButton"
           type="button"
         >
@@ -391,7 +391,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       >
         <button
           aria-label="Tooltip"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall css-19g5rpb-empty-text-EuiButtonIcon"
           data-test-subj="euiMarkdownEditorToolbarButton"
           type="button"
         >
@@ -405,7 +405,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       </span>
     </div>
     <button
-      class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small"
+      class="euiButtonEmpty euiButtonEmpty--small css-15qfgye-empty-text"
       type="button"
     >
       <span
@@ -451,7 +451,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
         >
           <button
             aria-label="Show markdown help"
-            class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--small euiMarkdownEditorFooter__helpButton"
+            class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--small euiMarkdownEditorFooter__helpButton css-19g5rpb-empty-text-EuiButtonIcon"
             type="button"
           >
             <span

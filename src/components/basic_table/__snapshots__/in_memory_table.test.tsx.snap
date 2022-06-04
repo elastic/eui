@@ -1314,7 +1314,7 @@ exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
             class="euiPopover__anchor"
           >
             <button
-              class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
+              class="euiButtonEmpty euiButtonEmpty--xSmall css-15qfgye-empty-text"
               data-test-subj="tablePaginationPopoverButton"
               type="button"
             >

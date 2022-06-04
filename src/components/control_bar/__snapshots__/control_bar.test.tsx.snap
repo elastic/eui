@@ -46,7 +46,7 @@ exports[`EuiControlBar is rendered 1`] = `
       </ol>
     </nav>
     <button
-      class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+      class="euiButton euiButton--small euiControlBar__button css-1qontx6-base-text"
       data-test-subj="dts"
       type="button"
     >

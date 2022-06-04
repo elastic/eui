@@ -175,7 +175,7 @@ exports[`EuiAccordion is rendered 1`] = `
       aria-controls="0"
       aria-expanded="false"
       aria-labelledby="generated-id"
-      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton css-86d10e-euiAccordion__iconButton"
+      class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton css-ikukms-empty-text-EuiButtonIcon-euiAccordion__iconButton"
       tabindex="-1"
       type="button"
     >

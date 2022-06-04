@@ -2551,7 +2551,7 @@ Array [
               class="euiPopover__anchor"
             >
               <button
-                class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
+                class="euiButtonEmpty euiButtonEmpty--xSmall euiDataGrid__controlBtn css-15qfgye-empty-text"
                 data-test-subj="dataGridColumnSelectorButton"
                 type="button"
               >
@@ -2588,7 +2588,7 @@ Array [
               >
                 <button
                   aria-label="Display options"
-                  class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
+                  class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn css-19g5rpb-empty-text-EuiButtonIcon"
                   data-test-subj="dataGridDisplaySelectorButton"
                   type="button"
                 >
@@ -2607,7 +2607,7 @@ Array [
           >
             <button
               aria-label="Enter fullscreen"
-              class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
+              class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn css-19g5rpb-empty-text-EuiButtonIcon"
               data-test-subj="dataGridFullScreenButton"
               type="button"
             >

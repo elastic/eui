@@ -9,7 +9,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
     class="euiPopover__anchor"
   >
     <button
-      class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn euiDataGrid__controlBtn--active"
+      class="euiButtonEmpty euiButtonEmpty--xSmall euiDataGrid__controlBtn euiDataGrid__controlBtn--active css-15qfgye-empty-text"
       data-test-subj="dataGridColumnSortingButton"
       type="button"
     >
@@ -95,7 +95,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
               >
                 <button
                   aria-label="Remove Column A from data grid sort"
-                  class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGridColumnSorting__button"
+                  class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiDataGridColumnSorting__button css-19g5rpb-empty-text-EuiButtonIcon"
                   type="button"
                 >
                   <span
@@ -144,7 +144,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                     class="euiButtonGroup__buttons"
                   >
                     <label
-                      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small euiButtonGroupButton-isSelected"
+                      class="euiButtonGroupButton euiButtonGroupButton--small euiButtonGroupButton-isSelected css-184negg-fill-text-EuiButtonGroupButton"
                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
                       for="generated-id"
                       title="Low-High"
@@ -170,7 +170,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                       </span>
                     </label>
                     <label
-                      class="euiButtonGroupButton euiButtonGroupButton--text euiButtonGroupButton--small"
+                      class="euiButtonGroupButton euiButtonGroupButton--small  css-bv6q6d-empty-text-EuiButtonGroupButton"
                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
                       for="generated-id"
                       title="High-Low"
@@ -237,7 +237,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
               class="euiPopover__anchor"
             >
               <button
-                class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiButtonEmpty--flushLeft"
+                class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushLeft css-14wjao6-empty-primary"
                 data-test-subj="dataGridColumnSortingSelectionButton"
                 type="button"
               >
@@ -263,7 +263,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
           class="euiFlexItem euiFlexItem--flexGrowZero"
         >
           <button
-            class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiButtonEmpty--flushRight"
+            class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-14wjao6-empty-primary"
             data-test-subj="dataGridColumnSortingClearButton"
             type="button"
           >

@@ -195,7 +195,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </span>
     <button
       aria-label="Pin item"
-      class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction"
+      class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction css-1gfimnf-empty-primary-EuiButtonIcon"
       title="Pin item"
       type="button"
     >
@@ -222,7 +222,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </span>
     <button
       aria-label="bell"
-      class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow"
+      class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow css-1gfimnf-empty-primary-EuiButtonIcon"
       type="button"
     >
       <span
@@ -250,7 +250,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </a>
     <button
       aria-label="Pin item"
-      class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction"
+      class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction css-1gfimnf-empty-primary-EuiButtonIcon"
       title="Pin item"
       type="button"
     >
@@ -278,7 +278,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </button>
     <button
       aria-label="Unpin item"
-      class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow euiPinnableListGroup__itemExtraAction euiPinnableListGroup__itemExtraAction-pinned"
+      class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction euiListGroupItem__extraAction-alwaysShow euiPinnableListGroup__itemExtraAction euiPinnableListGroup__itemExtraAction-pinned css-1gfimnf-empty-primary-EuiButtonIcon"
       title="Unpin item"
       type="button"
     >
@@ -307,7 +307,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     </a>
     <button
       aria-label="Pin item"
-      class="euiButtonIcon euiButtonIcon--primary euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction"
+      class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiListGroupItem__extraAction euiPinnableListGroup__itemExtraAction css-1gfimnf-empty-primary-EuiButtonIcon"
       title="Pin item"
       type="button"
     >

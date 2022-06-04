@@ -802,7 +802,7 @@ exports[`EuiCard props selectable 1`] = `
   <button
     aria-checked="false"
     aria-describedby="generated-idTitle generated-idDescription"
-    class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text"
+    class="euiButtonEmpty euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text css-15qfgye-empty-text"
     role="switch"
     type="button"
   >

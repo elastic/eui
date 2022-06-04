@@ -27,7 +27,7 @@ Array [
     >
       <button
         aria-label="Closes this modal window"
-        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiModal__closeIcon"
+        class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiModal__closeIcon css-19g5rpb-empty-text-EuiButtonIcon"
         type="button"
       >
         <span
@@ -72,7 +72,7 @@ Array [
           class="euiModalFooter"
         >
           <button
-            class="euiButtonEmpty euiButtonEmpty--primary"
+            class="euiButtonEmpty css-14wjao6-empty-primary"
             data-test-subj="confirmModalCancelButton"
             type="button"
           >
@@ -87,7 +87,7 @@ Array [
             </span>
           </button>
           <button
-            class="euiButton euiButton--primary euiButton--fill"
+            class="euiButton css-1jctwrf-fill-primary"
             data-test-subj="confirmModalConfirmButton"
             type="button"
           >

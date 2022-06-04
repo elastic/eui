@@ -1,3 +1,6 @@
+// This file has lots of modifiers and is somewhat nesty by nature
+// sass-lint:disable nesting-depth
+
 .euiButtonGroupButton {
   @include euiButtonBase;
   @include euiFont;
@@ -5,7 +8,6 @@
 
   // sass-lint:disable-block indentation
   transition: background-color $euiAnimSpeedNormal ease-in-out,
-              border-color $euiAnimSpeedNormal ease-in-out,
               color $euiAnimSpeedNormal ease-in-out;
 
   // Allow button to shrink and truncate
@@ -31,73 +33,23 @@
     line-height: $euiButtonHeightSmall; // prevents descenders from getting cut off
   }
 
-  &:not([class*='isDisabled']) {
+  &:not(:disabled) {
     &:hover,
     &:focus,
     &:focus-within {
-      // background-color: transparentize($euiColorPrimary, .9);
       text-decoration: underline;
     }
   }
 
-  &.euiButtonGroupButton-isDisabled {
+  &:disabled {
     @include euiButtonContentDisabled;
-    // color: $euiButtonColorDisabledText;
 
-    // &.euiButtonGroupButton-isSelected {
-    //   color: makeHighContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled, 2);
-    //   background-color: $euiButtonColorDisabled;
-    //   border-color: $euiButtonColorDisabled;
-
-    //   &:hover,
-    //   &:focus,
-    //   &:focus-within {
-    //     background-color: $euiButtonColorDisabled;
-    //     border-color: $euiButtonColorDisabled;
-    //   }
-    // }
+    &.euiButtonGroupButton-isSelected {
+      color: makeHighContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled, 2);
+      background-color: $euiButtonColorDisabled;
+      border-color: $euiButtonColorDisabled;
+    }
   }
-
-  // @each $name, $color in $euiButtonTypes {
-  //   &.euiButtonGroupButton--#{$name}:not([class*='isDisabled']) {
-  //     @if ($name == 'ghost') {
-  //       // Ghost is unique and ALWAYS sits against a dark background.
-  //       // Compressed styles don't support ghost color, it defaults to the text color
-  //       color: $color;
-  //     } @else if ($name == 'text') {
-  //       // The default color is lighter than the normal text color, make the it the text color
-  //       color: $euiTextColor;
-  //     } @else {
-  //       // Other colors need to check their contrast against the page background color.
-  //       color: makeHighContrastColor($color, $euiPageBackgroundColor);
-  //     }
-
-  //     &.euiButtonGroupButton-isSelected {
-  //       background-color: $color;
-  //       border-color: $color;
-
-  //       // The function makes that hexes safe for theming
-  //       $fillTextColor: chooseLightOrDarkText($color, $euiColorGhost, $euiColorInk);
-
-  //       color: $fillTextColor;
-
-  //       &:hover,
-  //       &:focus,
-  //       &:focus-within {
-  //         $darkHighlightBg: darken($color, 5%);
-
-  //         background-color: $darkHighlightBg;
-  //         border-color: $darkHighlightBg;
-  //       }
-  //     }
-
-  //     &:hover,
-  //     &:focus,
-  //     &:focus-within {
-  //       background-color: transparentize($color, .9);
-  //     }
-  //   }
-  // }
 }
 
 .euiButtonGroupButton__textShift {
@@ -111,7 +63,23 @@
 .euiButtonGroup--medium,
 .euiButtonGroup--small {
   .euiButtonGroupButton {
-    border: $euiBorderThin;
+    border-radius: 0 !important; // sass-lint:disable-line no-important
+    font-weight: $euiButtonFontWeight;
+
+    &:focus,
+    &:focus-within {
+      outline-style: solid;
+      outline-color: lightOrDarkTheme($euiColorInk, $euiColorGhost);
+      outline-offset: -2px;
+
+      &:focus-visible {
+        outline-style: auto; // For chrome only
+      }
+    }
+
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
 
     &:not(:first-child) {
       margin-left: -1px;
@@ -126,32 +94,35 @@
     }
   }
 
-  // Fix ghost/disabled look specifically
-  .euiButtonGroupButton.euiButtonGroupButton-isDisabled.euiButtonGroupButton--ghost {
-    &,
-    &:hover,
-    &:focus,
-    &:focus-within {
-      color: $euiButtonColorGhostDisabled;
-    }
+  // // Fix ghost/disabled look specifically
+  // .euiButtonGroupButton.euiButtonGroupButton-isDisabled.euiButtonGroupButton--ghost {
+  //   &,
+  //   &:hover,
+  //   &:focus,
+  //   &:focus-within {
+  //     color: $euiButtonColorGhostDisabled;
+  //   }
 
-    .euiButtonGroup--isDisabled & {
-      border-color: $euiButtonColorGhostDisabled;
-    }
-
-    &.euiButtonGroupButton-isSelected {
-      background-color: $euiButtonColorGhostDisabled;
-      color: makeHighContrastColor($euiButtonColorGhostDisabled, $euiButtonColorGhostDisabled, 2);
-    }
-  }
+  //   &.euiButtonGroupButton-isSelected {
+  //     background-color: $euiButtonColorGhostDisabled;
+  //     color: makeHighContrastColor($euiButtonColorGhostDisabled, $euiButtonColorGhostDisabled, 2);
+  //   }
+  // }
 
   .euiButtonGroupButton-isSelected {
     z-index: 0;
   }
 
+  // Faux border for separation of selected buttons
   .euiButtonGroupButton-isSelected + .euiButtonGroupButton-isSelected {
     box-shadow: -1px 0 0 transparentize($euiColorEmptyShade, .9);
   }
+}
+
+.euiButtonGroup--small .euiButtonGroup__buttons {
+  // Use a moderately smaller radius on small buttons
+  // so that they don't appear completely rounded
+  border-radius: $euiBorderRadius * (2 / 3);
 }
 
 /**
@@ -163,7 +134,8 @@
     height: $euiFormControlCompressedHeight - 2px;
     line-height: $euiFormControlCompressedHeight - 2px; // prevents descenders from getting cut off
     font-size: $euiFontSizeS;
-    border-radius: $euiBorderRadius;
+    // Add 1 to the border radius to account for the background-clip
+    border-radius: $euiFormControlCompressedBorderRadius + 1;
     // Offset the background color from the border by 2px
     // by clipping background to before the padding starts
     padding: 2px;
@@ -178,10 +150,30 @@
       font-weight: $euiFontWeightSemiBold;
     }
 
-    &:not([class*='isDisabled']) {
+    &:not(:disabled) {
       &:focus,
       &:focus-within {
         outline: 2px solid $euiFocusRingColor;
+      }
+    }
+
+    @each $name, $color in $euiButtonTypes {
+      &--#{$name} {
+        // Complicated set of focus states depending on whether it's a button and can receive :focus,
+        // or an input and uses focus-within, and browser support for :focus-visible,
+        // and override nature of default theme
+        &:not(:disabled):focus,
+        &:not(:disabled):focus-within {
+          outline-color: $color;
+
+          &:focus-visible {
+            outline-style: auto; // For chrome only
+          }
+        }
+
+        &:not(:disabled):focus:not(:focus-visible) {
+          outline: none;
+        }
       }
     }
   }

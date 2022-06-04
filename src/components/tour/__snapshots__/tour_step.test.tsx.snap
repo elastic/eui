@@ -487,7 +487,7 @@ exports[`EuiTourStep is rendered 1`] = `
                 class="euiFlexItem euiFlexItem--flexGrowZero"
               >
                 <button
-                  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiButtonEmpty--flushRight"
+                  class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-15qfgye-empty-text"
                   type="button"
                 >
                   <span

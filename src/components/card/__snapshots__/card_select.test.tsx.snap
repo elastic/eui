@@ -4,7 +4,7 @@ exports[`EuiCardSelect is rendered 1`] = `
 <button
   aria-checked="false"
   aria-label="aria-label"
-  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text testClass1 testClass2"
+  class="euiButtonEmpty euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text testClass1 testClass2 css-15qfgye-empty-text"
   data-test-subj="test subject string"
   role="switch"
   type="button"

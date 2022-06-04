@@ -18,7 +18,7 @@ exports[`EuiHeaderLink can render as specific color 1`] = `
 exports[`EuiHeaderLink is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonEmpty euiButtonEmpty--text euiHeaderLink testClass1 testClass2"
+  class="euiButtonEmpty euiHeaderLink testClass1 testClass2 css-15qfgye-empty-text"
   data-test-subj="test subject string"
   type="button"
 >
