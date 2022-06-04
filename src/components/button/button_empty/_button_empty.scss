@@ -5,6 +5,7 @@
  */
 .euiButtonEmpty {
   @include euiButton;
+  border-radius: $euiBorderRadius;
 
   // border-color: transparent;
   // background-color: transparent;
@@ -26,21 +27,23 @@
 
   &.euiButtonEmpty--small {
     height: $euiButtonHeightSmall;
+    border-radius: $euiBorderRadius * .667;
   }
 
   &.euiButtonEmpty--xSmall {
     height: $euiButtonHeightXSmall;
-    font-size: $euiFontSizeS;
+    border-radius: $euiBorderRadius * .667;
+    font-size: $euiFontSizeXS;
   }
 
   &:disabled {
     @include euiButtonContentDisabled;
 
-    color: $euiButtonColorDisabledText;
+    // color: $euiButtonColorDisabledText;
 
-    &:focus {
-      background-color: transparent;
-    }
+    // &:focus {
+    //   background-color: transparent;
+    // }
 
     &:hover,
     &:focus {

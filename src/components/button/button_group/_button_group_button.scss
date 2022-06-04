@@ -35,69 +35,69 @@
     &:hover,
     &:focus,
     &:focus-within {
-      background-color: transparentize($euiColorPrimary, .9);
+      // background-color: transparentize($euiColorPrimary, .9);
       text-decoration: underline;
     }
   }
 
   &.euiButtonGroupButton-isDisabled {
     @include euiButtonContentDisabled;
-    color: $euiButtonColorDisabledText;
+    // color: $euiButtonColorDisabledText;
 
-    &.euiButtonGroupButton-isSelected {
-      color: makeHighContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled, 2);
-      background-color: $euiButtonColorDisabled;
-      border-color: $euiButtonColorDisabled;
+    // &.euiButtonGroupButton-isSelected {
+    //   color: makeHighContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled, 2);
+    //   background-color: $euiButtonColorDisabled;
+    //   border-color: $euiButtonColorDisabled;
 
-      &:hover,
-      &:focus,
-      &:focus-within {
-        background-color: $euiButtonColorDisabled;
-        border-color: $euiButtonColorDisabled;
-      }
-    }
+    //   &:hover,
+    //   &:focus,
+    //   &:focus-within {
+    //     background-color: $euiButtonColorDisabled;
+    //     border-color: $euiButtonColorDisabled;
+    //   }
+    // }
   }
 
-  @each $name, $color in $euiButtonTypes {
-    &.euiButtonGroupButton--#{$name}:not([class*='isDisabled']) {
-      @if ($name == 'ghost') {
-        // Ghost is unique and ALWAYS sits against a dark background.
-        // Compressed styles don't support ghost color, it defaults to the text color
-        color: $color;
-      } @else if ($name == 'text') {
-        // The default color is lighter than the normal text color, make the it the text color
-        color: $euiTextColor;
-      } @else {
-        // Other colors need to check their contrast against the page background color.
-        color: makeHighContrastColor($color, $euiPageBackgroundColor);
-      }
+  // @each $name, $color in $euiButtonTypes {
+  //   &.euiButtonGroupButton--#{$name}:not([class*='isDisabled']) {
+  //     @if ($name == 'ghost') {
+  //       // Ghost is unique and ALWAYS sits against a dark background.
+  //       // Compressed styles don't support ghost color, it defaults to the text color
+  //       color: $color;
+  //     } @else if ($name == 'text') {
+  //       // The default color is lighter than the normal text color, make the it the text color
+  //       color: $euiTextColor;
+  //     } @else {
+  //       // Other colors need to check their contrast against the page background color.
+  //       color: makeHighContrastColor($color, $euiPageBackgroundColor);
+  //     }
 
-      &.euiButtonGroupButton-isSelected {
-        background-color: $color;
-        border-color: $color;
+  //     &.euiButtonGroupButton-isSelected {
+  //       background-color: $color;
+  //       border-color: $color;
 
-        // The function makes that hexes safe for theming
-        $fillTextColor: chooseLightOrDarkText($color, $euiColorGhost, $euiColorInk);
+  //       // The function makes that hexes safe for theming
+  //       $fillTextColor: chooseLightOrDarkText($color, $euiColorGhost, $euiColorInk);
 
-        color: $fillTextColor;
+  //       color: $fillTextColor;
 
-        &:hover,
-        &:focus,
-        &:focus-within {
-          $darkHighlightBg: darken($color, 5%);
+  //       &:hover,
+  //       &:focus,
+  //       &:focus-within {
+  //         $darkHighlightBg: darken($color, 5%);
 
-          background-color: $darkHighlightBg;
-          border-color: $darkHighlightBg;
-        }
-      }
+  //         background-color: $darkHighlightBg;
+  //         border-color: $darkHighlightBg;
+  //       }
+  //     }
 
-      &:hover,
-      &:focus,
-      &:focus-within {
-        background-color: transparentize($color, .9);
-      }
-    }
-  }
+  //     &:hover,
+  //     &:focus,
+  //     &:focus-within {
+  //       background-color: transparentize($color, .9);
+  //     }
+  //   }
+  // }
 }
 
 .euiButtonGroupButton__textShift {

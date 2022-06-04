@@ -77,7 +77,7 @@ export const euiButtonFillColor = (
   euiThemeContext: UseEuiTheme,
   color: _EuiButtonColor
 ) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, colorMode } = euiThemeContext;
 
   let background;
   let foreground;
@@ -88,8 +88,9 @@ export const euiButtonFillColor = (
       foreground = euiButtonColor(euiThemeContext, color).color;
       break;
     case 'text':
-      background = euiTheme.colors.darkShade;
-      foreground = isColorDark(...hexToRgb(euiTheme.colors.darkShade))
+      background =
+        colorMode === 'DARK' ? euiTheme.colors.text : euiTheme.colors.darkShade;
+      foreground = isColorDark(...hexToRgb(background))
         ? euiTheme.colors.ghost
         : euiTheme.colors.ink;
       break;

@@ -30,6 +30,7 @@ import { EuiLoadingSpinner } from '../../loading';
 import { ButtonColor } from '../button';
 
 import { validateHref } from '../../../services/security/href_validator';
+import { useEuiButtonColorCSS } from '../../../themes/amsterdam/global_styling/mixins/button';
 
 export type EuiButtonIconColor = ButtonColor;
 
@@ -128,7 +129,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   className,
   iconType,
   iconSize = 'm',
-  color = 'primary',
+  color: _color = 'primary',
   isDisabled: _isDisabled,
   disabled,
   href,
@@ -154,12 +155,19 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
       buttons are screen-reader-inaccessible without them.`
     );
   }
+
+  // eslint-disable-next-line no-nested-ternary
+  const color = isDisabled ? 'disabled' : _color === 'ghost' ? 'text' : _color;
+  const buttonColorStyles = useEuiButtonColorCSS({
+    display,
+  })[color];
+
   const classes = classNames(
     'euiButtonIcon',
     {
-      'euiButtonIcon-isDisabled': isDisabled,
+      // 'euiButtonIcon-isDisabled': isDisabled,
     },
-    colorToClassNameMap[color],
+    // colorToClassNameMap[color],
     display && displayToClassNameMap[display],
     size && sizeToClassNameMap[size],
     className
@@ -196,6 +204,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
 
     return (
       <a
+        css={[buttonColorStyles]}
         tabIndex={isAriaHidden ? -1 : undefined}
         className={classes}
         href={href}
@@ -212,6 +221,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   let buttonType: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   return (
     <button
+      css={[buttonColorStyles]}
       tabIndex={isAriaHidden ? -1 : undefined}
       disabled={isDisabled}
       className={classes}

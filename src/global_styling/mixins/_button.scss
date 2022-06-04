@@ -15,7 +15,7 @@
 // Adds the focus (and hover) animation for translating up 1px
 @mixin euiButtonFocus {
   @include euiCanAnimate {
-    transition: transform $euiAnimSpeedNormal ease-in-out, background $euiAnimSpeedNormal ease-in-out;
+    transition: transform $euiAnimSpeedNormal ease-in-out, background-color $euiAnimSpeedNormal ease-in-out;
 
     &:hover:not(:disabled) {
       transform: translateY(-1px);
@@ -41,7 +41,6 @@
 
   font-weight: $euiButtonFontWeight;
   text-decoration: none;
-  transition: background-color $euiAnimSpeedNormal ease-in-out;
   outline-offset: -1px;
 
   &:hover:not(:disabled),
@@ -90,10 +89,6 @@
 @mixin euiButtonContentDisabled {
   pointer-events: auto;
   cursor: not-allowed;
-
-  .euiButtonContent__icon {
-    fill: currentColor;
-  }
 
   .euiButtonContent__spinner {
     border-color: euiLoadingSpinnerBorderColors(currentColor);
