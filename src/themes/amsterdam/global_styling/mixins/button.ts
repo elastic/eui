@@ -52,7 +52,7 @@ export const euiButtonColor = (
     case 'disabled':
       return {
         color: euiTheme.colors.disabledText,
-        'background-color': transparentize(euiTheme.colors.lightShade, 0.15),
+        backgroundColor: transparentize(euiTheme.colors.lightShade, 0.15),
       };
     case 'text':
       foreground = euiTheme.colors[color];
@@ -68,7 +68,7 @@ export const euiButtonColor = (
   }
 
   return {
-    'background-color': background,
+    backgroundColor: background,
     color: makeHighContrastColor(foreground)(background),
   };
 };
@@ -84,7 +84,7 @@ export const euiButtonFillColor = (
 
   switch (color) {
     case 'disabled':
-      background = euiButtonColor(euiThemeContext, color)['background-color'];
+      background = euiButtonColor(euiThemeContext, color).backgroundColor;
       foreground = euiButtonColor(euiThemeContext, color).color;
       break;
     case 'text':
@@ -104,7 +104,7 @@ export const euiButtonFillColor = (
 
   return {
     color: foreground,
-    'background-color': background,
+    backgroundColor: background,
   };
 };
 

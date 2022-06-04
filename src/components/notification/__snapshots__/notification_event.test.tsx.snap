@@ -616,7 +616,7 @@ exports[`EuiNotificationEvent props primaryAction is rendered 1`] = `
       class="euiNotificationEvent__primaryAction"
     >
       <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--small euiButtonEmpty--flushLeft"
+        class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushLeft css-14wjao6-empty-primary"
         data-test-subj="id-notificationEventPrimaryAction"
         type="button"
       >
@@ -695,7 +695,7 @@ exports[`EuiNotificationEvent props primaryActionProps is rendered 1`] = `
       class="euiNotificationEvent__primaryAction"
     >
       <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--small euiButtonEmpty--flushLeft"
+        class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushLeft css-14wjao6-empty-primary"
         data-test-subj="id-notificationEventPrimaryAction"
         type="button"
       >

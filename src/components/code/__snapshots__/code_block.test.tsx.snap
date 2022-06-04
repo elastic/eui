@@ -544,7 +544,7 @@ exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
   >
     <button
       aria-label="Expand"
-      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton"
+      class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton css-19g5rpb-empty-text-EuiButtonIcon"
       type="button"
     >
       <span
@@ -799,7 +799,7 @@ exports[`EuiCodeBlock virtualization renders a virtualized code block 1`] = `
   >
     <button
       aria-label="Expand"
-      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton"
+      class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton css-19g5rpb-empty-text-EuiButtonIcon"
       type="button"
     >
       <span

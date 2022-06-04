@@ -192,7 +192,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                 </ol>
               </nav>
               <button
-                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+                class="euiButton euiButton--small euiControlBar__button css-1qontx6-base-text"
                 data-test-subj="dts"
                 type="button"
               >
@@ -327,8 +327,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
             >
               <EuiButtonDisplay
                 baseClassName="euiButton"
-                className="euiControlBar__button"
-                color="ghost"
+                css="unknown styles"
                 data-test-subj="dts"
                 disabled={false}
                 element="button"
@@ -337,38 +336,104 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                 size="s"
                 type="button"
               >
-                <button
-                  className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                  data-test-subj="dts"
-                  disabled={false}
-                  onClick={[Function]}
-                  style={
+                <Insertion
+                  cache={
                     Object {
-                      "minWidth": undefined,
+                      "insert": [Function],
+                      "inserted": Object {
+                        "1qontx6-base-text": true,
+                      },
+                      "key": "css",
+                      "nonce": undefined,
+                      "registered": Object {
+                        "css-1qontx6-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;",
+                      },
+                      "sheet": StyleSheet {
+                        "_alreadyInsertedOrderInsensitiveRule": true,
+                        "_insertTag": [Function],
+                        "before": null,
+                        "container": <head>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-1qontx6-base-text{background-color:#e9edf3;color:#343741;}
+                          </style>
+                        </head>,
+                        "ctr": 1,
+                        "insertionPoint": undefined,
+                        "isSpeedy": false,
+                        "key": "css",
+                        "nonce": undefined,
+                        "prepend": undefined,
+                        "tags": Array [
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-1qontx6-base-text{background-color:#e9edf3;color:#343741;}
+                          </style>,
+                        ],
+                      },
                     }
                   }
+                  isStringTag={false}
+                  serialized={
+                    Object {
+                      "map": undefined,
+                      "name": "1qontx6-base-text",
+                      "next": undefined,
+                      "styles": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;",
+                      "toString": [Function],
+                    }
+                  }
+                />
+                <EuiButtonDisplay
+                  baseClassName="euiButton"
+                  className="euiControlBar__button css-1qontx6-base-text"
+                  data-test-subj="dts"
+                  disabled={false}
+                  element="button"
+                  isDisabled={false}
+                  onClick={[Function]}
+                  size="s"
                   type="button"
                 >
-                  <EuiButtonContent
-                    className="euiButton__content"
-                    iconSide="left"
-                    textProps={
+                  <button
+                    className="euiButton euiButton--small euiControlBar__button css-1qontx6-base-text"
+                    data-test-subj="dts"
+                    disabled={false}
+                    onClick={[Function]}
+                    style={
                       Object {
-                        "className": "euiButton__text",
+                        "minWidth": undefined,
                       }
                     }
+                    type="button"
                   >
-                    <span
-                      className="euiButtonContent euiButton__content"
+                    <EuiButtonContent
+                      className="euiButton__content"
+                      iconSide="left"
+                      textProps={
+                        Object {
+                          "className": "euiButton__text",
+                        }
+                      }
                     >
                       <span
-                        className="euiButton__text"
+                        className="euiButtonContent euiButton__content"
                       >
-                        Sound the Alarm
+                        <span
+                          className="euiButton__text"
+                        >
+                          Sound the Alarm
+                        </span>
                       </span>
-                    </span>
-                  </EuiButtonContent>
-                </button>
+                    </EuiButtonContent>
+                  </button>
+                </EuiButtonDisplay>
               </EuiButtonDisplay>
             </EuiButton>
             <div
@@ -534,7 +599,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                 </ol>
               </nav>
               <button
-                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+                class="euiButton euiButton--small euiControlBar__button css-1qontx6-base-text"
                 data-test-subj="dts"
                 type="button"
               >
@@ -669,8 +734,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
             >
               <EuiButtonDisplay
                 baseClassName="euiButton"
-                className="euiControlBar__button"
-                color="ghost"
+                css="unknown styles"
                 data-test-subj="dts"
                 disabled={false}
                 element="button"
@@ -679,38 +743,104 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                 size="s"
                 type="button"
               >
-                <button
-                  className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                  data-test-subj="dts"
-                  disabled={false}
-                  onClick={[Function]}
-                  style={
+                <Insertion
+                  cache={
                     Object {
-                      "minWidth": undefined,
+                      "insert": [Function],
+                      "inserted": Object {
+                        "1qontx6-base-text": true,
+                      },
+                      "key": "css",
+                      "nonce": undefined,
+                      "registered": Object {
+                        "css-1qontx6-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;",
+                      },
+                      "sheet": StyleSheet {
+                        "_alreadyInsertedOrderInsensitiveRule": true,
+                        "_insertTag": [Function],
+                        "before": null,
+                        "container": <head>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-1qontx6-base-text{background-color:#e9edf3;color:#343741;}
+                          </style>
+                        </head>,
+                        "ctr": 1,
+                        "insertionPoint": undefined,
+                        "isSpeedy": false,
+                        "key": "css",
+                        "nonce": undefined,
+                        "prepend": undefined,
+                        "tags": Array [
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-1qontx6-base-text{background-color:#e9edf3;color:#343741;}
+                          </style>,
+                        ],
+                      },
                     }
                   }
+                  isStringTag={false}
+                  serialized={
+                    Object {
+                      "map": undefined,
+                      "name": "1qontx6-base-text",
+                      "next": undefined,
+                      "styles": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;",
+                      "toString": [Function],
+                    }
+                  }
+                />
+                <EuiButtonDisplay
+                  baseClassName="euiButton"
+                  className="euiControlBar__button css-1qontx6-base-text"
+                  data-test-subj="dts"
+                  disabled={false}
+                  element="button"
+                  isDisabled={false}
+                  onClick={[Function]}
+                  size="s"
                   type="button"
                 >
-                  <EuiButtonContent
-                    className="euiButton__content"
-                    iconSide="left"
-                    textProps={
+                  <button
+                    className="euiButton euiButton--small euiControlBar__button css-1qontx6-base-text"
+                    data-test-subj="dts"
+                    disabled={false}
+                    onClick={[Function]}
+                    style={
                       Object {
-                        "className": "euiButton__text",
+                        "minWidth": undefined,
                       }
                     }
+                    type="button"
                   >
-                    <span
-                      className="euiButtonContent euiButton__content"
+                    <EuiButtonContent
+                      className="euiButton__content"
+                      iconSide="left"
+                      textProps={
+                        Object {
+                          "className": "euiButton__text",
+                        }
+                      }
                     >
                       <span
-                        className="euiButton__text"
+                        className="euiButtonContent euiButton__content"
                       >
-                        Sound the Alarm
+                        <span
+                          className="euiButton__text"
+                        >
+                          Sound the Alarm
+                        </span>
                       </span>
-                    </span>
-                  </EuiButtonContent>
-                </button>
+                    </EuiButtonContent>
+                  </button>
+                </EuiButtonDisplay>
               </EuiButtonDisplay>
             </EuiButton>
             <div
@@ -875,7 +1005,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                 </ol>
               </nav>
               <button
-                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+                class="euiButton euiButton--small euiControlBar__button css-1qontx6-base-text"
                 data-test-subj="dts"
                 type="button"
               >
@@ -1010,8 +1140,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
             >
               <EuiButtonDisplay
                 baseClassName="euiButton"
-                className="euiControlBar__button"
-                color="ghost"
+                css="unknown styles"
                 data-test-subj="dts"
                 disabled={false}
                 element="button"
@@ -1020,38 +1149,104 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                 size="s"
                 type="button"
               >
-                <button
-                  className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                  data-test-subj="dts"
-                  disabled={false}
-                  onClick={[Function]}
-                  style={
+                <Insertion
+                  cache={
                     Object {
-                      "minWidth": undefined,
+                      "insert": [Function],
+                      "inserted": Object {
+                        "1qontx6-base-text": true,
+                      },
+                      "key": "css",
+                      "nonce": undefined,
+                      "registered": Object {
+                        "css-1qontx6-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;",
+                      },
+                      "sheet": StyleSheet {
+                        "_alreadyInsertedOrderInsensitiveRule": true,
+                        "_insertTag": [Function],
+                        "before": null,
+                        "container": <head>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-1qontx6-base-text{background-color:#e9edf3;color:#343741;}
+                          </style>
+                        </head>,
+                        "ctr": 1,
+                        "insertionPoint": undefined,
+                        "isSpeedy": false,
+                        "key": "css",
+                        "nonce": undefined,
+                        "prepend": undefined,
+                        "tags": Array [
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-1qontx6-base-text{background-color:#e9edf3;color:#343741;}
+                          </style>,
+                        ],
+                      },
                     }
                   }
+                  isStringTag={false}
+                  serialized={
+                    Object {
+                      "map": undefined,
+                      "name": "1qontx6-base-text",
+                      "next": undefined,
+                      "styles": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;",
+                      "toString": [Function],
+                    }
+                  }
+                />
+                <EuiButtonDisplay
+                  baseClassName="euiButton"
+                  className="euiControlBar__button css-1qontx6-base-text"
+                  data-test-subj="dts"
+                  disabled={false}
+                  element="button"
+                  isDisabled={false}
+                  onClick={[Function]}
+                  size="s"
                   type="button"
                 >
-                  <EuiButtonContent
-                    className="euiButton__content"
-                    iconSide="left"
-                    textProps={
+                  <button
+                    className="euiButton euiButton--small euiControlBar__button css-1qontx6-base-text"
+                    data-test-subj="dts"
+                    disabled={false}
+                    onClick={[Function]}
+                    style={
                       Object {
-                        "className": "euiButton__text",
+                        "minWidth": undefined,
                       }
                     }
+                    type="button"
                   >
-                    <span
-                      className="euiButtonContent euiButton__content"
+                    <EuiButtonContent
+                      className="euiButton__content"
+                      iconSide="left"
+                      textProps={
+                        Object {
+                          "className": "euiButton__text",
+                        }
+                      }
                     >
                       <span
-                        className="euiButton__text"
+                        className="euiButtonContent euiButton__content"
                       >
-                        Sound the Alarm
+                        <span
+                          className="euiButton__text"
+                        >
+                          Sound the Alarm
+                        </span>
                       </span>
-                    </span>
-                  </EuiButtonContent>
-                </button>
+                    </EuiButtonContent>
+                  </button>
+                </EuiButtonDisplay>
               </EuiButtonDisplay>
             </EuiButton>
             <div
@@ -1255,8 +1450,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
         >
           <EuiButtonDisplay
             baseClassName="euiButton"
-            className="euiControlBar__button"
-            color="ghost"
+            css="unknown styles"
             data-test-subj="dts"
             disabled={false}
             element="button"
@@ -1265,38 +1459,104 @@ exports[`EuiControlBar props position is rendered 1`] = `
             size="s"
             type="button"
           >
-            <button
-              className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-              data-test-subj="dts"
-              disabled={false}
-              onClick={[Function]}
-              style={
+            <Insertion
+              cache={
                 Object {
-                  "minWidth": undefined,
+                  "insert": [Function],
+                  "inserted": Object {
+                    "1qontx6-base-text": true,
+                  },
+                  "key": "css",
+                  "nonce": undefined,
+                  "registered": Object {
+                    "css-1qontx6-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;",
+                  },
+                  "sheet": StyleSheet {
+                    "_alreadyInsertedOrderInsensitiveRule": true,
+                    "_insertTag": [Function],
+                    "before": null,
+                    "container": <head>
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .css-1qontx6-base-text{background-color:#e9edf3;color:#343741;}
+                      </style>
+                    </head>,
+                    "ctr": 1,
+                    "insertionPoint": undefined,
+                    "isSpeedy": false,
+                    "key": "css",
+                    "nonce": undefined,
+                    "prepend": undefined,
+                    "tags": Array [
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .css-1qontx6-base-text{background-color:#e9edf3;color:#343741;}
+                      </style>,
+                    ],
+                  },
                 }
               }
+              isStringTag={false}
+              serialized={
+                Object {
+                  "map": undefined,
+                  "name": "1qontx6-base-text",
+                  "next": undefined,
+                  "styles": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;",
+                  "toString": [Function],
+                }
+              }
+            />
+            <EuiButtonDisplay
+              baseClassName="euiButton"
+              className="euiControlBar__button css-1qontx6-base-text"
+              data-test-subj="dts"
+              disabled={false}
+              element="button"
+              isDisabled={false}
+              onClick={[Function]}
+              size="s"
               type="button"
             >
-              <EuiButtonContent
-                className="euiButton__content"
-                iconSide="left"
-                textProps={
+              <button
+                className="euiButton euiButton--small euiControlBar__button css-1qontx6-base-text"
+                data-test-subj="dts"
+                disabled={false}
+                onClick={[Function]}
+                style={
                   Object {
-                    "className": "euiButton__text",
+                    "minWidth": undefined,
                   }
                 }
+                type="button"
               >
-                <span
-                  className="euiButtonContent euiButton__content"
+                <EuiButtonContent
+                  className="euiButton__content"
+                  iconSide="left"
+                  textProps={
+                    Object {
+                      "className": "euiButton__text",
+                    }
+                  }
                 >
                   <span
-                    className="euiButton__text"
+                    className="euiButtonContent euiButton__content"
                   >
-                    Sound the Alarm
+                    <span
+                      className="euiButton__text"
+                    >
+                      Sound the Alarm
+                    </span>
                   </span>
-                </span>
-              </EuiButtonContent>
-            </button>
+                </EuiButtonContent>
+              </button>
+            </EuiButtonDisplay>
           </EuiButtonDisplay>
         </EuiButton>
         <div
@@ -1446,7 +1706,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                 </ol>
               </nav>
               <button
-                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+                class="euiButton euiButton--small euiControlBar__button css-1qontx6-base-text"
                 data-test-subj="dts"
                 type="button"
               >
@@ -1581,8 +1841,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
             >
               <EuiButtonDisplay
                 baseClassName="euiButton"
-                className="euiControlBar__button"
-                color="ghost"
+                css="unknown styles"
                 data-test-subj="dts"
                 disabled={false}
                 element="button"
@@ -1591,38 +1850,104 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                 size="s"
                 type="button"
               >
-                <button
-                  className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                  data-test-subj="dts"
-                  disabled={false}
-                  onClick={[Function]}
-                  style={
+                <Insertion
+                  cache={
                     Object {
-                      "minWidth": undefined,
+                      "insert": [Function],
+                      "inserted": Object {
+                        "1qontx6-base-text": true,
+                      },
+                      "key": "css",
+                      "nonce": undefined,
+                      "registered": Object {
+                        "css-1qontx6-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;",
+                      },
+                      "sheet": StyleSheet {
+                        "_alreadyInsertedOrderInsensitiveRule": true,
+                        "_insertTag": [Function],
+                        "before": null,
+                        "container": <head>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-1qontx6-base-text{background-color:#e9edf3;color:#343741;}
+                          </style>
+                        </head>,
+                        "ctr": 1,
+                        "insertionPoint": undefined,
+                        "isSpeedy": false,
+                        "key": "css",
+                        "nonce": undefined,
+                        "prepend": undefined,
+                        "tags": Array [
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-1qontx6-base-text{background-color:#e9edf3;color:#343741;}
+                          </style>,
+                        ],
+                      },
                     }
                   }
+                  isStringTag={false}
+                  serialized={
+                    Object {
+                      "map": undefined,
+                      "name": "1qontx6-base-text",
+                      "next": undefined,
+                      "styles": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;",
+                      "toString": [Function],
+                    }
+                  }
+                />
+                <EuiButtonDisplay
+                  baseClassName="euiButton"
+                  className="euiControlBar__button css-1qontx6-base-text"
+                  data-test-subj="dts"
+                  disabled={false}
+                  element="button"
+                  isDisabled={false}
+                  onClick={[Function]}
+                  size="s"
                   type="button"
                 >
-                  <EuiButtonContent
-                    className="euiButton__content"
-                    iconSide="left"
-                    textProps={
+                  <button
+                    className="euiButton euiButton--small euiControlBar__button css-1qontx6-base-text"
+                    data-test-subj="dts"
+                    disabled={false}
+                    onClick={[Function]}
+                    style={
                       Object {
-                        "className": "euiButton__text",
+                        "minWidth": undefined,
                       }
                     }
+                    type="button"
                   >
-                    <span
-                      className="euiButtonContent euiButton__content"
+                    <EuiButtonContent
+                      className="euiButton__content"
+                      iconSide="left"
+                      textProps={
+                        Object {
+                          "className": "euiButton__text",
+                        }
+                      }
                     >
                       <span
-                        className="euiButton__text"
+                        className="euiButtonContent euiButton__content"
                       >
-                        Sound the Alarm
+                        <span
+                          className="euiButton__text"
+                        >
+                          Sound the Alarm
+                        </span>
                       </span>
-                    </span>
-                  </EuiButtonContent>
-                </button>
+                    </EuiButtonContent>
+                  </button>
+                </EuiButtonDisplay>
               </EuiButtonDisplay>
             </EuiButton>
             <div
@@ -1787,7 +2112,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                 </ol>
               </nav>
               <button
-                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+                class="euiButton euiButton--small euiControlBar__button css-1qontx6-base-text"
                 data-test-subj="dts"
                 type="button"
               >
@@ -1927,8 +2252,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
             >
               <EuiButtonDisplay
                 baseClassName="euiButton"
-                className="euiControlBar__button"
-                color="ghost"
+                css="unknown styles"
                 data-test-subj="dts"
                 disabled={false}
                 element="button"
@@ -1937,38 +2261,104 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                 size="s"
                 type="button"
               >
-                <button
-                  className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                  data-test-subj="dts"
-                  disabled={false}
-                  onClick={[Function]}
-                  style={
+                <Insertion
+                  cache={
                     Object {
-                      "minWidth": undefined,
+                      "insert": [Function],
+                      "inserted": Object {
+                        "1qontx6-base-text": true,
+                      },
+                      "key": "css",
+                      "nonce": undefined,
+                      "registered": Object {
+                        "css-1qontx6-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;",
+                      },
+                      "sheet": StyleSheet {
+                        "_alreadyInsertedOrderInsensitiveRule": true,
+                        "_insertTag": [Function],
+                        "before": null,
+                        "container": <head>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-1qontx6-base-text{background-color:#e9edf3;color:#343741;}
+                          </style>
+                        </head>,
+                        "ctr": 1,
+                        "insertionPoint": undefined,
+                        "isSpeedy": false,
+                        "key": "css",
+                        "nonce": undefined,
+                        "prepend": undefined,
+                        "tags": Array [
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-1qontx6-base-text{background-color:#e9edf3;color:#343741;}
+                          </style>,
+                        ],
+                      },
                     }
                   }
+                  isStringTag={false}
+                  serialized={
+                    Object {
+                      "map": undefined,
+                      "name": "1qontx6-base-text",
+                      "next": undefined,
+                      "styles": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;",
+                      "toString": [Function],
+                    }
+                  }
+                />
+                <EuiButtonDisplay
+                  baseClassName="euiButton"
+                  className="euiControlBar__button css-1qontx6-base-text"
+                  data-test-subj="dts"
+                  disabled={false}
+                  element="button"
+                  isDisabled={false}
+                  onClick={[Function]}
+                  size="s"
                   type="button"
                 >
-                  <EuiButtonContent
-                    className="euiButton__content"
-                    iconSide="left"
-                    textProps={
+                  <button
+                    className="euiButton euiButton--small euiControlBar__button css-1qontx6-base-text"
+                    data-test-subj="dts"
+                    disabled={false}
+                    onClick={[Function]}
+                    style={
                       Object {
-                        "className": "euiButton__text",
+                        "minWidth": undefined,
                       }
                     }
+                    type="button"
                   >
-                    <span
-                      className="euiButtonContent euiButton__content"
+                    <EuiButtonContent
+                      className="euiButton__content"
+                      iconSide="left"
+                      textProps={
+                        Object {
+                          "className": "euiButton__text",
+                        }
+                      }
                     >
                       <span
-                        className="euiButton__text"
+                        className="euiButtonContent euiButton__content"
                       >
-                        Sound the Alarm
+                        <span
+                          className="euiButton__text"
+                        >
+                          Sound the Alarm
+                        </span>
                       </span>
-                    </span>
-                  </EuiButtonContent>
-                </button>
+                    </EuiButtonContent>
+                  </button>
+                </EuiButtonDisplay>
               </EuiButtonDisplay>
             </EuiButton>
             <div
@@ -2138,7 +2528,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
                 </ol>
               </nav>
               <button
-                class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+                class="euiButton euiButton--small euiControlBar__button css-1qontx6-base-text"
                 data-test-subj="dts"
                 type="button"
               >
@@ -2273,8 +2663,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
             >
               <EuiButtonDisplay
                 baseClassName="euiButton"
-                className="euiControlBar__button"
-                color="ghost"
+                css="unknown styles"
                 data-test-subj="dts"
                 disabled={false}
                 element="button"
@@ -2283,38 +2672,104 @@ exports[`EuiControlBar props size is rendered 1`] = `
                 size="s"
                 type="button"
               >
-                <button
-                  className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-                  data-test-subj="dts"
-                  disabled={false}
-                  onClick={[Function]}
-                  style={
+                <Insertion
+                  cache={
                     Object {
-                      "minWidth": undefined,
+                      "insert": [Function],
+                      "inserted": Object {
+                        "1qontx6-base-text": true,
+                      },
+                      "key": "css",
+                      "nonce": undefined,
+                      "registered": Object {
+                        "css-1qontx6-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;",
+                      },
+                      "sheet": StyleSheet {
+                        "_alreadyInsertedOrderInsensitiveRule": true,
+                        "_insertTag": [Function],
+                        "before": null,
+                        "container": <head>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-1qontx6-base-text{background-color:#e9edf3;color:#343741;}
+                          </style>
+                        </head>,
+                        "ctr": 1,
+                        "insertionPoint": undefined,
+                        "isSpeedy": false,
+                        "key": "css",
+                        "nonce": undefined,
+                        "prepend": undefined,
+                        "tags": Array [
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-1qontx6-base-text{background-color:#e9edf3;color:#343741;}
+                          </style>,
+                        ],
+                      },
                     }
                   }
+                  isStringTag={false}
+                  serialized={
+                    Object {
+                      "map": undefined,
+                      "name": "1qontx6-base-text",
+                      "next": undefined,
+                      "styles": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;",
+                      "toString": [Function],
+                    }
+                  }
+                />
+                <EuiButtonDisplay
+                  baseClassName="euiButton"
+                  className="euiControlBar__button css-1qontx6-base-text"
+                  data-test-subj="dts"
+                  disabled={false}
+                  element="button"
+                  isDisabled={false}
+                  onClick={[Function]}
+                  size="s"
                   type="button"
                 >
-                  <EuiButtonContent
-                    className="euiButton__content"
-                    iconSide="left"
-                    textProps={
+                  <button
+                    className="euiButton euiButton--small euiControlBar__button css-1qontx6-base-text"
+                    data-test-subj="dts"
+                    disabled={false}
+                    onClick={[Function]}
+                    style={
                       Object {
-                        "className": "euiButton__text",
+                        "minWidth": undefined,
                       }
                     }
+                    type="button"
                   >
-                    <span
-                      className="euiButtonContent euiButton__content"
+                    <EuiButtonContent
+                      className="euiButton__content"
+                      iconSide="left"
+                      textProps={
+                        Object {
+                          "className": "euiButton__text",
+                        }
+                      }
                     >
                       <span
-                        className="euiButton__text"
+                        className="euiButtonContent euiButton__content"
                       >
-                        Sound the Alarm
+                        <span
+                          className="euiButton__text"
+                        >
+                          Sound the Alarm
+                        </span>
                       </span>
-                    </span>
-                  </EuiButtonContent>
-                </button>
+                    </EuiButtonContent>
+                  </button>
+                </EuiButtonDisplay>
               </EuiButtonDisplay>
             </EuiButton>
             <div

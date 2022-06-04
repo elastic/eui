@@ -90,6 +90,12 @@
   pointer-events: auto;
   cursor: not-allowed;
 
+  &:hover,
+  &:focus,
+  &:focus-within {
+    text-decoration: none;
+  }
+
   .euiButtonContent__spinner {
     border-color: euiLoadingSpinnerBorderColors(currentColor);
   }

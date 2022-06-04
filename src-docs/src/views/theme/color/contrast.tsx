@@ -339,10 +339,8 @@ export default () => {
                             key={color}
                             color={color as keyof _EuiThemeColorsMode}
                             colorValue={
-                              euiButtonColor(
-                                euiTheme,
-                                color as _EuiButtonColor
-                              )['background-color']
+                              euiButtonColor(euiTheme, color as _EuiButtonColor)
+                                .backgroundColor
                             }
                             hookName="useEuiButtonColorCSS"
                             minimumContrast={contrastValue}

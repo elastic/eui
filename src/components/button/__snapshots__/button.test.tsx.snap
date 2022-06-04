@@ -3,7 +3,7 @@
 exports[`EuiButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButton euiButton--primary testClass1 testClass2"
+  class="euiButton testClass1 testClass2 css-1cfdt35-base-primary"
   data-test-subj="test subject string"
   type="button"
 >
@@ -21,7 +21,7 @@ exports[`EuiButton is rendered 1`] = `
 
 exports[`EuiButton props color accent is rendered 1`] = `
 <button
-  class="euiButton euiButton--accent"
+  class="euiButton css-v7plka-base-accent"
   type="button"
 >
   <span
@@ -36,7 +36,7 @@ exports[`EuiButton props color accent is rendered 1`] = `
 
 exports[`EuiButton props color danger is rendered 1`] = `
 <button
-  class="euiButton euiButton--danger"
+  class="euiButton css-1fiyep9-base-danger"
   type="button"
 >
   <span
@@ -51,7 +51,7 @@ exports[`EuiButton props color danger is rendered 1`] = `
 
 exports[`EuiButton props color ghost is rendered 1`] = `
 <button
-  class="euiButton euiButton--ghost"
+  class="euiButton css-1qontx6-base-text"
   type="button"
 >
   <span
@@ -66,7 +66,7 @@ exports[`EuiButton props color ghost is rendered 1`] = `
 
 exports[`EuiButton props color primary is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary"
+  class="euiButton css-1cfdt35-base-primary"
   type="button"
 >
   <span
@@ -81,7 +81,7 @@ exports[`EuiButton props color primary is rendered 1`] = `
 
 exports[`EuiButton props color success is rendered 1`] = `
 <button
-  class="euiButton euiButton--success"
+  class="euiButton css-7sca0q-base-success"
   type="button"
 >
   <span
@@ -96,7 +96,7 @@ exports[`EuiButton props color success is rendered 1`] = `
 
 exports[`EuiButton props color text is rendered 1`] = `
 <button
-  class="euiButton euiButton--text"
+  class="euiButton css-1qontx6-base-text"
   type="button"
 >
   <span
@@ -111,7 +111,7 @@ exports[`EuiButton props color text is rendered 1`] = `
 
 exports[`EuiButton props color warning is rendered 1`] = `
 <button
-  class="euiButton euiButton--warning"
+  class="euiButton css-1ccte3m-base-warning"
   type="button"
 >
   <span
@@ -126,7 +126,7 @@ exports[`EuiButton props color warning is rendered 1`] = `
 
 exports[`EuiButton props contentProps is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary"
+  class="euiButton css-1cfdt35-base-primary"
   type="button"
 >
   <span
@@ -145,7 +145,7 @@ exports[`EuiButton props contentProps is rendered 1`] = `
 
 exports[`EuiButton props fill is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary euiButton--fill"
+  class="euiButton css-1jctwrf-fill-primary"
   type="button"
 >
   <span
@@ -160,7 +160,7 @@ exports[`EuiButton props fill is rendered 1`] = `
 
 exports[`EuiButton props fullWidth is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary euiButton--fullWidth"
+  class="euiButton euiButton--fullWidth css-1cfdt35-base-primary"
   type="button"
 >
   <span
@@ -175,7 +175,7 @@ exports[`EuiButton props fullWidth is rendered 1`] = `
 
 exports[`EuiButton props href secures the rel attribute when the target is _blank 1`] = `
 <a
-  class="euiButton euiButton--primary"
+  class="euiButton css-1cfdt35-base-primary"
   href="#"
   rel="noopener noreferrer"
   target="_blank"
@@ -192,7 +192,7 @@ exports[`EuiButton props href secures the rel attribute when the target is _blan
 
 exports[`EuiButton props iconSide left is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary"
+  class="euiButton css-1cfdt35-base-primary"
   type="button"
 >
   <span
@@ -214,7 +214,7 @@ exports[`EuiButton props iconSide left is rendered 1`] = `
 
 exports[`EuiButton props iconSide right is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary"
+  class="euiButton css-1cfdt35-base-primary"
   type="button"
 >
   <span
@@ -236,7 +236,7 @@ exports[`EuiButton props iconSide right is rendered 1`] = `
 
 exports[`EuiButton props iconType is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary"
+  class="euiButton css-1cfdt35-base-primary"
   type="button"
 >
   <span
@@ -256,7 +256,7 @@ exports[`EuiButton props iconType is rendered 1`] = `
 
 exports[`EuiButton props isDisabled is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary euiButton-isDisabled"
+  class="euiButton css-1sppg2s-base-disabled"
   disabled=""
   type="button"
 >
@@ -272,7 +272,7 @@ exports[`EuiButton props isDisabled is rendered 1`] = `
 
 exports[`EuiButton props isDisabled renders a button even when href is defined 1`] = `
 <button
-  class="euiButton euiButton--primary euiButton-isDisabled"
+  class="euiButton css-1sppg2s-base-disabled"
   disabled=""
   type="button"
 >
@@ -288,7 +288,7 @@ exports[`EuiButton props isDisabled renders a button even when href is defined 1
 
 exports[`EuiButton props isDisabled renders if passed as disabled 1`] = `
 <button
-  class="euiButton euiButton--primary euiButton-isDisabled"
+  class="euiButton css-1sppg2s-base-disabled"
   disabled=""
   type="button"
 >
@@ -304,7 +304,7 @@ exports[`EuiButton props isDisabled renders if passed as disabled 1`] = `
 
 exports[`EuiButton props isLoading is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary euiButton-isDisabled"
+  class="euiButton css-1sppg2s-base-disabled"
   disabled=""
   type="button"
 >
@@ -326,7 +326,7 @@ exports[`EuiButton props isLoading is rendered 1`] = `
 exports[`EuiButton props isSelected is rendered as false 1`] = `
 <button
   aria-pressed="false"
-  class="euiButton euiButton--primary"
+  class="euiButton css-1cfdt35-base-primary"
   type="button"
 >
   <span
@@ -342,7 +342,7 @@ exports[`EuiButton props isSelected is rendered as false 1`] = `
 exports[`EuiButton props isSelected is rendered as true 1`] = `
 <button
   aria-pressed="true"
-  class="euiButton euiButton--primary"
+  class="euiButton css-1cfdt35-base-primary"
   type="button"
 >
   <span
@@ -357,7 +357,7 @@ exports[`EuiButton props isSelected is rendered as true 1`] = `
 
 exports[`EuiButton props minWidth is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary"
+  class="euiButton css-1cfdt35-base-primary"
   style="min-width:0"
   type="button"
 >
@@ -373,7 +373,7 @@ exports[`EuiButton props minWidth is rendered 1`] = `
 
 exports[`EuiButton props size m is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary"
+  class="euiButton css-1cfdt35-base-primary"
   type="button"
 >
   <span
@@ -388,7 +388,7 @@ exports[`EuiButton props size m is rendered 1`] = `
 
 exports[`EuiButton props size s is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary euiButton--small"
+  class="euiButton euiButton--small css-1cfdt35-base-primary"
   type="button"
 >
   <span
@@ -403,7 +403,7 @@ exports[`EuiButton props size s is rendered 1`] = `
 
 exports[`EuiButton props textProps is rendered 1`] = `
 <button
-  class="euiButton euiButton--primary"
+  class="euiButton css-1cfdt35-base-primary"
   type="button"
 >
   <span

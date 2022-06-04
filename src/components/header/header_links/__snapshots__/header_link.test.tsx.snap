@@ -2,7 +2,7 @@
 
 exports[`EuiHeaderLink can render as specific color 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--danger euiHeaderLink"
+  class="euiButtonEmpty euiHeaderLink css-hdemv5-empty-danger"
   type="button"
 >
   <span
@@ -34,7 +34,7 @@ exports[`EuiHeaderLink is rendered 1`] = `
 
 exports[`EuiHeaderLink is rendered as active 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--primary euiHeaderLink euiHeaderLink-isActive"
+  class="euiButtonEmpty euiHeaderLink euiHeaderLink-isActive css-14wjao6-empty-primary"
   type="button"
 >
   <span
