@@ -130,15 +130,20 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
     isInvalid ? descriptionStyles.danger : descriptionStyles[color],
     uppercase && descriptionStyles.isUppercase,
     textWrap === 'truncate' && descriptionStyles.truncate,
+    display === 'columns' && descriptionStyles.columns,
   ];
   const valueStyles = euiExpressionValueStyles(theme);
   const cssValueStyles = [
     valueStyles.euiExpression__value,
     textWrap === 'truncate' && valueStyles.truncate,
+    display === 'columns' && valueStyles.columns,
   ];
 
   const iconStyles = euiExpressionIconStyles(theme);
-  const cssIconStyles = [iconStyles.euiExpression__icon];
+  const cssIconStyles = [
+    iconStyles.euiExpression__icon,
+    display === 'columns' && iconStyles.columns,
+  ];
 
   const classes = classNames('euiExpression', className);
 

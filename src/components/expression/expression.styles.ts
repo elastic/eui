@@ -57,20 +57,6 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       padding: ${euiTheme.size.xs};
       border-radius: ${euiTheme.size.xs};
-
-      .euiExpression__description {
-        text-align: end;
-        ${logicalCSS('margin-right', euiTheme.size.s)};
-        flex-shrink: 0; // Ensures it doesn't get smaller in case the value is really long
-      }
-
-      .euiExpression__value {
-        flex-grow: 1;
-      }
-
-      .euiExpression__icon {
-        ${logicalCSS('margin-top', euiTheme.size.xs)};
-      }
     `,
 
     truncate: css`
@@ -86,8 +72,8 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
 
         &:focus,
         &:hover:not(:disabled) {
-          .euiExpression__description,
-          .euiExpression__value {
+          [class*='euiExpression__description'],
+          [class*='euiExpression__value'] {
             // inner child specificity so it inherits underline color from text color
             text-decoration: underline;
           }
@@ -157,6 +143,11 @@ export const euiExpressionDescriptionStyles = ({ euiTheme }: UseEuiTheme) => {
     isUppercase: css`
       text-transform: uppercase;
     `,
+    columns: css`
+      text-align: end;
+      ${logicalCSS('margin-right', euiTheme.size.s)};
+      flex-shrink: 0; // Ensures it doesn't get smaller in case the value is really long
+    `,
   };
 };
 
@@ -168,6 +159,9 @@ export const euiExpressionValueStyles = ({}: UseEuiTheme) => {
       display: inline-block;
       vertical-align: bottom;
     `,
+    columns: css`
+      flex-grow: 1;
+    `,
   };
 };
 
@@ -175,6 +169,9 @@ export const euiExpressionIconStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiExpression__icon: css`
       ${logicalCSS('margin-left', euiTheme.size.xs)};
+    `,
+    columns: css`
+      ${logicalCSS('margin-top', euiTheme.size.xs)};
     `,
   };
 };
