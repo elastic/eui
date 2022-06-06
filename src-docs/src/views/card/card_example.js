@@ -73,7 +73,7 @@ export const CardExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             At its core an <strong>EuiCard</strong> should contain a{' '}
             <EuiCode>title</EuiCode>,<EuiCode>description</EuiCode>, and an{' '}
@@ -87,7 +87,7 @@ export const CardExample = {
             changed via the <EuiCode>titleElement</EuiCode> prop without
             altering the visual size.
           </p>
-        </div>
+        </>
       ),
       props: { EuiCard },
       demo: <Card />,
@@ -111,7 +111,7 @@ export const CardExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Most of the time, cards should read from top to bottom (vertical).
             However, in some cases, you may want the icon to be to the left of
@@ -129,7 +129,7 @@ export const CardExample = {
               </span>
             }
           />
-        </div>
+        </>
       ),
       props: { EuiCard },
       demo: <CardLayout />,
@@ -153,7 +153,7 @@ export const CardExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Images can be added in place of, or in conjuction with, icons. Just
             pass a url into the <EuiCode>image</EuiCode> prop and it will expand
@@ -175,7 +175,7 @@ export const CardExample = {
               a style of <EuiCode>width: 100%</EuiCode>.
             </p>
           </EuiCallOut>
-        </div>
+        </>
       ),
       props: { EuiCard },
       demo: <CardImage />,

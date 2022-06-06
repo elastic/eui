@@ -543,7 +543,7 @@ export const ButtonExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             An <strong>EuiButtonGroup</strong> is for indicating{' '}
             <strong>selection</strong> only. They utilize the{' '}
@@ -563,7 +563,7 @@ export const ButtonExample = {
               </span>
             }
           />
-        </div>
+        </>
       ),
       demo: <ButtonGroup />,
       snippet: buttonGroupSnippet,

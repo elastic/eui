@@ -126,7 +126,7 @@ export const ToastExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             <strong>EuiToast</strong> allows for small notes that appear in the
             bottom right of the screen. They should be used for ephemeral, live
@@ -139,7 +139,7 @@ export const ToastExample = {
             a user should never be greeted with toasts when starting a session.
             Toasts should be brief and avoid long paragraphs of text or titling.
           </p>
-        </div>
+        </>
       ),
       demo: (
         <div style={{ maxWidth: 320 }}>
