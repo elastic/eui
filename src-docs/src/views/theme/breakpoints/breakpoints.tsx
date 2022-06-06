@@ -1,15 +1,15 @@
 import React, { useContext, useMemo } from 'react';
-import { Link } from 'react-router-dom';
 import { EuiSpacer, EuiText } from '../../../../../src';
 
-import { GuideTabbedPage } from '../../../components/guide_tabbed_page';
 import { GuideSection } from '../../../components/guide_section/guide_section';
 import { ThemeContext } from '../../../components/with_theme';
 
-import { ThemeNotice } from '../_components/_theme_notice';
-
 import JSContent, { BreakpointValuesJS } from './_breakpoints_js';
 import SassContent, { BreakpointValuesSass } from './_breakpoints_sass';
+
+export const breakpointSections = [
+  { title: 'Default values', id: 'default-values' },
+];
 
 export default () => {
   const themeContext = useContext(ThemeContext);
@@ -27,22 +27,12 @@ export default () => {
   }, [showSass]);
 
   return (
-    <GuideTabbedPage
-      isBeta={!showSass}
-      title="Breakpoints"
-      notice={<ThemeNotice />}
-      showThemeLanguageToggle
-      description={
-        <>
-          For most of your usages we recommend using the{' '}
-          <Link to="/utilities/responsive">responsive utilities</Link>{' '}
-          <strong>instead</strong> of consuming these theme tokens directly.
-        </>
-      }
-    >
+    <>
       <GuideSection color="subdued">
         <EuiText grow={false}>
-          <h2>Default values</h2>
+          <h2
+            id={`${breakpointSections[0].id}`}
+          >{`${breakpointSections[0].title}`}</h2>
           <p>
             If you want to align your custom responsive styles with EUI&apos;s
             breakpoints, or when using components that accept our named
@@ -56,6 +46,6 @@ export default () => {
       </GuideSection>
 
       <GuideSection color="transparent">{valuesContent}</GuideSection>
-    </GuideTabbedPage>
+    </>
   );
 };

@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
+import { css } from '@emotion/react';
 
-import { ThemeContext } from '../../components/with_theme';
+import { ThemeContext } from '../../../components/with_theme';
 
 import {
   EuiPanel,
   EuiCode,
   euiTextTruncate,
   euiTextBreakWord,
-} from '../../../../src';
-import { ThemeExample } from '../theme/_components/_theme_example';
-import { css } from '@emotion/react';
+} from '../../../../../src';
+import { ThemeExample } from '../_components/_theme_example';
 
 const maxWidth = 300;
 const longLink =
