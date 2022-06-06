@@ -260,7 +260,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
         />
         <div
-          class="euiText css-b6i93m-euiText-constrainedWidth-m"
+          class="euiText css-j3htvy-euiText-constrainedWidth-m"
         >
           <p>
             Description

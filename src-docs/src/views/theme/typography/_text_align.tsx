@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { EuiMark } from '../../../../src';
-import { ThemeExample } from '../theme/_components/_theme_example';
+import { EuiMark } from '../../../../../src';
+import { ThemeExample } from '../_components/_theme_example';
 
 export default () => (
   <>

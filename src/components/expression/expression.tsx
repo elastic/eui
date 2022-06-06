@@ -14,31 +14,27 @@ import React, {
   FunctionComponent,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf, ExclusiveUnion } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiIcon } from '../icon';
+import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
 
-const colorToClassNameMap = {
-  subdued: 'euiExpression--subdued',
-  primary: 'euiExpression--primary',
-  success: 'euiExpression--success',
-  accent: 'euiExpression--accent',
-  warning: 'euiExpression--warning',
-  danger: 'euiExpression--danger',
-};
+import {
+  euiExpressionStyles,
+  euiExpressionDescriptionStyles,
+  euiExpressionValueStyles,
+  euiExpressionIconStyles,
+} from './expression.styles';
 
-const textWrapToClassNameMap = {
-  'break-word': null,
-  truncate: 'euiExpression--truncate',
-};
+export const COLORS = [
+  'subdued',
+  'primary',
+  'success',
+  'accent',
+  'warning',
+  'danger',
+] as const;
 
-export const COLORS = keysOf(colorToClassNameMap);
-
-export type ExpressionColor = keyof typeof colorToClassNameMap;
-
-const displayToClassNameMap = {
-  inline: null,
-  columns: 'euiExpression--columns',
-};
+export type ExpressionColor = typeof COLORS[number];
 
 export type EuiExpressionProps = CommonProps & {
   /**
@@ -70,7 +66,7 @@ export type EuiExpressionProps = CommonProps & {
   /**
    * Sets the display style for the expression. Defaults to `inline`
    */
-  display?: keyof typeof displayToClassNameMap;
+  display?: 'inline' | 'columns';
   /**
    * Forces color to display as `danger` and shows an `alert` icon
    */
@@ -85,7 +81,7 @@ export type EuiExpressionProps = CommonProps & {
   /**
    * Sets how to handle the wrapping of long text.
    */
-  textWrap?: keyof typeof textWrapToClassNameMap;
+  textWrap?: 'break-word' | 'truncate';
 };
 
 type Buttonlike = EuiExpressionProps &
@@ -96,10 +92,9 @@ type Buttonlike = EuiExpressionProps &
 type Spanlike = EuiExpressionProps &
   Omit<HTMLAttributes<HTMLSpanElement>, 'value'>;
 
-export const EuiExpression: FunctionComponent<ExclusiveUnion<
-  Buttonlike,
-  Spanlike
->> = ({
+export const _EuiExpression: FunctionComponent<
+  ExclusiveUnion<Buttonlike, Spanlike> & WithEuiSystemProps
+> = ({
   className,
   description,
   descriptionProps,
@@ -113,22 +108,43 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
   onClick,
   isInvalid = false,
   textWrap = 'break-word',
+  euiTheme,
   ...rest
 }) => {
   const calculatedColor = isInvalid ? 'danger' : color;
 
-  const classes = classNames(
-    'euiExpression',
-    className,
-    {
-      'euiExpression-isActive': isActive,
-      'euiExpression-isClickable': onClick,
-      'euiExpression-isUppercase': uppercase,
-    },
-    displayToClassNameMap[display],
-    colorToClassNameMap[calculatedColor],
-    textWrapToClassNameMap[textWrap]
-  );
+  const styles = euiExpressionStyles(euiTheme);
+  const cssStyles = [
+    styles.euiExpression,
+    onClick && styles.isClickable,
+    styles[color],
+    isActive && styles.isActive.base,
+    isActive && styles.isActive[color],
+    display === 'columns' && styles.columns,
+    textWrap === 'truncate' && styles.truncate,
+  ];
+  const descriptionStyles = euiExpressionDescriptionStyles(euiTheme);
+  const cssDescriptionStyles = [
+    descriptionStyles.euiExpression__description,
+    isInvalid ? descriptionStyles.danger : descriptionStyles[color],
+    uppercase && descriptionStyles.isUppercase,
+    textWrap === 'truncate' && descriptionStyles.truncate,
+    display === 'columns' && descriptionStyles.columns,
+  ];
+  const valueStyles = euiExpressionValueStyles(euiTheme);
+  const cssValueStyles = [
+    valueStyles.euiExpression__value,
+    textWrap === 'truncate' && valueStyles.truncate,
+    display === 'columns' && valueStyles.columns,
+  ];
+
+  const iconStyles = euiExpressionIconStyles(euiTheme);
+  const cssIconStyles = [
+    iconStyles.euiExpression__icon,
+    display === 'columns' && iconStyles.columns,
+  ];
+
+  const classes = classNames('euiExpression', className);
 
   const Component = onClick ? 'button' : 'span';
 
@@ -145,21 +161,27 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
     <EuiIcon
       className="euiExpression__icon"
       type="alert"
+      css={cssIconStyles}
       color={calculatedColor}
     />
   ) : undefined;
 
   return (
-    <Component className={classes} onClick={onClick} {...rest}>
+    <Component css={cssStyles} className={classes} onClick={onClick} {...rest}>
       <span
         className="euiExpression__description"
+        css={cssDescriptionStyles}
         style={customWidth}
         {...descriptionProps}
       >
         {description}
       </span>{' '}
       {value && (
-        <span className="euiExpression__value" {...valueProps}>
+        <span
+          className="euiExpression__value"
+          css={cssValueStyles}
+          {...valueProps}
+        >
           {value}
         </span>
       )}
@@ -167,3 +189,5 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
     </Component>
   );
 };
+
+export const EuiExpression = withEuiSystem(_EuiExpression);

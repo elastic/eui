@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { EuiCode, EuiTextColor } from '../../../../src';
-import { ThemeExample } from '../theme/_components/_theme_example';
+import { EuiCode, EuiTextColor } from '../../../../../src';
+import { ThemeExample } from '../_components/_theme_example';
 
 export default () => (
   <ThemeExample

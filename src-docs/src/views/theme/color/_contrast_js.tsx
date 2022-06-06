@@ -4,20 +4,20 @@ import chroma from 'chroma-js';
 import {
   EuiText,
   EuiFlexGrid,
-  EuiBadge,
   EuiCopy,
   EuiFlexItem,
   useEuiTheme,
   EuiPanel,
   EuiHorizontalRule,
+  EuiListGroupItem,
 } from '../../../../../src';
 import { _EuiThemeColorsMode } from '../../../../../src/global_styling/variables/colors';
 
 import { getContrastRatings } from './_contrast_utilities';
 import { brandKeys, brandTextKeys, shadeKeys, textKeys } from './_color_js';
 
-const textColors = [...textKeys, 'ghost', 'ink'];
-const allowedColors = [...brandKeys, ...shadeKeys, 'ghost', 'ink'];
+const textColors = [...textKeys, 'disabledText', 'ghost', 'ink'];
+const allowedColors = [...brandKeys, ...shadeKeys, 'disabled', 'ghost', 'ink'];
 const textVariants = [...brandTextKeys, ...textColors];
 
 type ColorSection = {
@@ -152,12 +152,11 @@ color: $\{euiTheme.colors.${foreground}};`;
         textToCopy={textToCopy}
       >
         {(copy) => (
-          // @ts-ignore Bad badge types
-          <EuiBadge
-            className="guideColorSection__button"
+          <EuiListGroupItem
             iconType={contrastRating}
+            size="s"
             onClick={contrastIsAcceptableToCopy ? copy : undefined}
-            onClickAriaLabel={
+            aria-label={
               contrastIsAcceptableToCopy
                 ? 'Click to copy CSS-in-JS configurations'
                 : undefined
@@ -165,10 +164,10 @@ color: $\{euiTheme.colors.${foreground}};`;
             style={{
               backgroundColor: backgroundColor,
               color: foregroundColor,
+              borderRadius: euiTheme.border.radius.medium,
             }}
-          >
-            {sanitizeColorName(foreground)}
-          </EuiBadge>
+            label={sanitizeColorName(foreground)}
+          />
         )}
       </EuiCopy>
     </EuiFlexItem>

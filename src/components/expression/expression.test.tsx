@@ -9,10 +9,15 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiExpression, COLORS } from './expression';
 
 describe('EuiExpression', () => {
+  shouldRenderCustomStyles(
+    <EuiExpression description="the answer is" value="42" />
+  );
+
   test('renders', () => {
     const component = (
       <EuiExpression
