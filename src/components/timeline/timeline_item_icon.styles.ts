@@ -9,6 +9,15 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 
+const _gapAdjustment = (gap: string) => {
+  return `
+    // timeline vertical line
+    &::before {
+      height: calc(100% + ${gap});
+    }
+  `;
+};
+
 export const euiTimelineItemIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiTimelineItemIcon: css`
     display: flex;
@@ -23,8 +32,6 @@ export const euiTimelineItemIconStyles = ({ euiTheme }: UseEuiTheme) => ({
       top: 0;
       left: calc(${euiTheme.size.xxl} / 2);
       width: calc(${euiTheme.size.xs} / 2);
-      // Adding to the height the padding bottom from the parent container
-      height: calc(100% + ${euiTheme.size.xl});
       background-color: ${euiTheme.colors.lightShade};
     }
   `,
@@ -42,4 +49,8 @@ export const euiTimelineItemIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   center: css`
     align-items: center;
   `,
+  // gap
+  m: css(_gapAdjustment(euiTheme.size.base)),
+  l: css(_gapAdjustment(euiTheme.size.l)),
+  xl: css(_gapAdjustment(euiTheme.size.xl)),
 });

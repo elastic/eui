@@ -9,31 +9,44 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 
-export const euiTimelineItemStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiTimelineItem: css`
-    display: flex;
+const _gapAdjustment = (gap: string) => {
+  return `
+    gap: ${gap} 0;
 
-    &:not(:last-of-type) {
-      padding-bottom: ${euiTheme.size.xl};
+    &:not(:last-child) {
+      padding-bottom: ${gap};
     }
 
-    &:first-of-type {
-      > [class*='euiTimelineItemIcon-center']::before {
-        top: 50%;
-        // Adding to the height the padding bottom from the parent container
-        height: calc(50% + ${euiTheme.size.xl});
-      }
+    &:first-child {
+      height: calc(50% + ${gap});
     }
+  `;
+};
 
-    &:last-of-type {
-      > [class*='euiTimelineItemIcon']::before {
-        display: none;
+export const euiTimelineItemStyles = ({ euiTheme }: UseEuiTheme) => {
+  return {
+    euiTimelineItem: css`
+      display: flex;
+
+      &:first-child {
+        > [class*='euiTimelineItemIcon-center']::before {
+          top: 50%;
+        }
       }
 
-      &:not(:only-child) > [class*='euiTimelineItemIcon-center']::before {
-        top: 0;
-        height: 50%;
+      &:last-child {
+        > [class*='euiTimelineItemIcon-top']::before {
+          display: none;
+        }
+
+        > [class*='euiTimelineItemIcon-center']::before {
+          top: 0;
+          height: 50%;
+        }
       }
-    }
-  `,
-});
+    `,
+    m: css(_gapAdjustment(euiTheme.size.base)),
+    l: css(_gapAdjustment(euiTheme.size.l)),
+    xl: css(_gapAdjustment(euiTheme.size.xl)),
+  };
+};

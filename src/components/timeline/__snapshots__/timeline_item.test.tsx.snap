@@ -2,10 +2,10 @@
 
 exports[`EuiTimelineItem is rendered 1`] = `
 <li
-  class="css-1noe449-euiTimelineItem"
+  class="css-121ign9-euiTimelineItem-xl"
 >
   <div
-    class="css-1grznaw-euiTimelineItemIcon-center"
+    class="css-ra2sl0-euiTimelineItemIcon-center-xl"
   >
     <div
       class="css-irfkcc-euiTimelineItemIcon__content"
@@ -35,10 +35,10 @@ exports[`EuiTimelineItem is rendered 1`] = `
 
 exports[`EuiTimelineItem props EuiAvatar is passed as an icon 1`] = `
 <li
-  class="css-1noe449-euiTimelineItem"
+  class="css-121ign9-euiTimelineItem-xl"
 >
   <div
-    class="css-1grznaw-euiTimelineItemIcon-center"
+    class="css-ra2sl0-euiTimelineItemIcon-center-xl"
   >
     <div
       class="css-irfkcc-euiTimelineItemIcon__content"
@@ -70,10 +70,10 @@ exports[`EuiTimelineItem props EuiAvatar is passed as an icon 1`] = `
 
 exports[`EuiTimelineItem props iconAriaLabel is rendered 1`] = `
 <li
-  class="css-1noe449-euiTimelineItem"
+  class="css-121ign9-euiTimelineItem-xl"
 >
   <div
-    class="css-1grznaw-euiTimelineItemIcon-center"
+    class="css-ra2sl0-euiTimelineItemIcon-center-xl"
   >
     <div
       class="css-irfkcc-euiTimelineItemIcon__content"
@@ -105,10 +105,10 @@ exports[`EuiTimelineItem props iconAriaLabel is rendered 1`] = `
 
 exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
 <li
-  class="css-1noe449-euiTimelineItem"
+  class="css-121ign9-euiTimelineItem-xl"
 >
   <div
-    class="css-1grznaw-euiTimelineItemIcon-center"
+    class="css-ra2sl0-euiTimelineItemIcon-center-xl"
   >
     <div
       class="css-irfkcc-euiTimelineItemIcon__content"
@@ -138,10 +138,10 @@ exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
 
 exports[`EuiTimelineItem props verticalAlign top is rendered 1`] = `
 <li
-  class="css-1noe449-euiTimelineItem"
+  class="css-121ign9-euiTimelineItem-xl"
 >
   <div
-    class="css-1t86e7q-euiTimelineItemIcon-top"
+    class="css-xpnaq5-euiTimelineItemIcon-top-xl"
   >
     <div
       class="css-irfkcc-euiTimelineItemIcon__content"
