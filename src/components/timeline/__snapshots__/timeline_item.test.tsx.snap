@@ -68,6 +68,105 @@ exports[`EuiTimelineItem props EuiAvatar is passed as an icon 1`] = `
 </li>
 `;
 
+exports[`EuiTimelineItem props gap l is rendered 1`] = `
+<li
+  class="css-c3ozqf-euiTimelineItem-l"
+>
+  <div
+    class="css-1vzkfky-euiTimelineItemIcon-center-l"
+  >
+    <div
+      class="css-irfkcc-euiTimelineItemIcon__content"
+    >
+      <div
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user css-1wtzu6n-euiAvatar-m-user-subdued"
+        role="img"
+        title=""
+      >
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="dot"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-1a9m88x-euiTimelineItemEvent-center"
+  >
+    <p>
+      I'm the children
+    </p>
+  </div>
+</li>
+`;
+
+exports[`EuiTimelineItem props gap m is rendered 1`] = `
+<li
+  class="css-wgqh0-euiTimelineItem-m"
+>
+  <div
+    class="css-19hajh3-euiTimelineItemIcon-center-m"
+  >
+    <div
+      class="css-irfkcc-euiTimelineItemIcon__content"
+    >
+      <div
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user css-1wtzu6n-euiAvatar-m-user-subdued"
+        role="img"
+        title=""
+      >
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="dot"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-1a9m88x-euiTimelineItemEvent-center"
+  >
+    <p>
+      I'm the children
+    </p>
+  </div>
+</li>
+`;
+
+exports[`EuiTimelineItem props gap xl is rendered 1`] = `
+<li
+  class="css-121ign9-euiTimelineItem-xl"
+>
+  <div
+    class="css-ra2sl0-euiTimelineItemIcon-center-xl"
+  >
+    <div
+      class="css-irfkcc-euiTimelineItemIcon__content"
+    >
+      <div
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user css-1wtzu6n-euiAvatar-m-user-subdued"
+        role="img"
+        title=""
+      >
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="dot"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="css-1a9m88x-euiTimelineItemEvent-center"
+  >
+    <p>
+      I'm the children
+    </p>
+  </div>
+</li>
+`;
+
 exports[`EuiTimelineItem props iconAriaLabel is rendered 1`] = `
 <li
   class="css-121ign9-euiTimelineItem-xl"

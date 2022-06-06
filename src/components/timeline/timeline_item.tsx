@@ -23,7 +23,8 @@ import { euiTimelineItemStyles } from './timeline_item.styles';
 export const VERTICAL_ALIGN = ['top', 'center'] as const;
 export type EuiTimelineItemVerticalAlign = typeof VERTICAL_ALIGN[number];
 
-export type EuiTimelineItemGap = 'm' | 'l' | 'xl';
+export const GAP_SIZES = ['m', 'l', 'xl'] as const;
+export type EuiTimelineItemGap = typeof GAP_SIZES[number];
 
 export interface EuiTimelineItemProps
   extends Omit<HTMLAttributes<ElementType>, 'children'>,

@@ -9,7 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { EuiAvatar } from '../avatar';
-import { EuiTimelineItem, VERTICAL_ALIGN } from './timeline_item';
+import { EuiTimelineItem, VERTICAL_ALIGN, GAP_SIZES } from './timeline_item';
 
 describe('EuiTimelineItem', () => {
   test('is rendered', () => {
@@ -57,6 +57,20 @@ describe('EuiTimelineItem', () => {
       );
 
       expect(component).toMatchSnapshot();
+    });
+
+    describe('gap', () => {
+      GAP_SIZES.forEach((gap) => {
+        test(`${gap} is rendered`, () => {
+          const component = render(
+            <EuiTimelineItem icon="dot" gap={gap}>
+              <p>I&apos;m the children</p>
+            </EuiTimelineItem>
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
     });
   });
 });
