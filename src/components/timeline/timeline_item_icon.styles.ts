@@ -8,12 +8,13 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
+import { logicalCSS } from '../../global_styling';
 
 const _gapAdjustment = (gap: string) => {
   return `
     // timeline vertical line
     &::before {
-      height: calc(100% + ${gap});
+      ${logicalCSS('height', `calc(100% + ${gap})`)};
     }
   `;
 };
@@ -23,20 +24,20 @@ export const euiTimelineItemIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     display: flex;
     position: relative;
     flex-grow: 0;
-    margin-right: ${euiTheme.size.base};
+    ${logicalCSS('margin-right', euiTheme.size.base)};
 
     // timeline vertical line
     &::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: calc(${euiTheme.size.xxl} / 2);
-      width: calc(${euiTheme.size.xs} / 2);
+      ${logicalCSS('top', 0)};
+      ${logicalCSS('left', `calc(${euiTheme.size.xxl} / 2)`)};
+      ${logicalCSS('width', euiTheme.size.xxs)};
       background-color: ${euiTheme.colors.lightShade};
     }
   `,
   euiTimelineItemIcon__content: css`
-    min-width: ${euiTheme.size.xxl};
+    ${logicalCSS('min-width', euiTheme.size.xxl)};
     display: flex;
     justify-content: center;
     align-items: center;

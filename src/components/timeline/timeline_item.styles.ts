@@ -8,17 +8,18 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
+import { logicalCSS } from '../../global_styling';
 
 const _gapAdjustment = (gap: string) => {
   return `
     gap: ${gap} 0;
 
     &:not(:last-child) {
-      padding-bottom: ${gap};
+      ${logicalCSS('padding-bottom', gap)};
     }
 
     &:first-child {
-      height: calc(50% + ${gap});
+      ${logicalCSS('height', `calc(50% + ${gap})`)};
     }
   `;
 };
@@ -30,7 +31,7 @@ export const euiTimelineItemStyles = ({ euiTheme }: UseEuiTheme) => {
 
       &:first-child {
         > [class*='euiTimelineItemIcon-center']::before {
-          top: 50%;
+          ${logicalCSS('top', '50%')};
         }
       }
 
@@ -40,8 +41,8 @@ export const euiTimelineItemStyles = ({ euiTheme }: UseEuiTheme) => {
         }
 
         > [class*='euiTimelineItemIcon-center']::before {
-          top: 0;
-          height: 50%;
+          ${logicalCSS('top', '0')};
+          ${logicalCSS('height', '50%')};
         }
       }
     `,

@@ -6,13 +6,13 @@ exports[`EuiTimeline is rendered with items 1`] = `
   role="list"
 >
   <li
-    class="css-121ign9-euiTimelineItem-xl"
+    class="css-1qvj48w-euiTimelineItem-xl"
   >
     <div
-      class="css-ra2sl0-euiTimelineItemIcon-center-xl"
+      class="css-wkasdj-euiTimelineItemIcon-center-xl"
     >
       <div
-        class="css-irfkcc-euiTimelineItemIcon__content"
+        class="css-xt9hjx-euiTimelineItemIcon__content"
       >
         <div
           aria-label="email"
@@ -41,13 +41,13 @@ exports[`EuiTimeline is rendered with items 1`] = `
     </div>
   </li>
   <li
-    class="css-121ign9-euiTimelineItem-xl"
+    class="css-1qvj48w-euiTimelineItem-xl"
   >
     <div
-      class="css-xpnaq5-euiTimelineItemIcon-top-xl"
+      class="css-1wcd1kr-euiTimelineItemIcon-top-xl"
     >
       <div
-        class="css-irfkcc-euiTimelineItemIcon__content"
+        class="css-xt9hjx-euiTimelineItemIcon__content"
       >
         <div
           aria-label=""

@@ -2,13 +2,13 @@
 
 exports[`EuiTimelineItem is rendered 1`] = `
 <li
-  class="css-121ign9-euiTimelineItem-xl"
+  class="css-1qvj48w-euiTimelineItem-xl"
 >
   <div
-    class="css-ra2sl0-euiTimelineItemIcon-center-xl"
+    class="css-wkasdj-euiTimelineItemIcon-center-xl"
   >
     <div
-      class="css-irfkcc-euiTimelineItemIcon__content"
+      class="css-xt9hjx-euiTimelineItemIcon__content"
     >
       <div
         aria-label=""
@@ -35,13 +35,13 @@ exports[`EuiTimelineItem is rendered 1`] = `
 
 exports[`EuiTimelineItem props EuiAvatar is passed as an icon 1`] = `
 <li
-  class="css-121ign9-euiTimelineItem-xl"
+  class="css-1qvj48w-euiTimelineItem-xl"
 >
   <div
-    class="css-ra2sl0-euiTimelineItemIcon-center-xl"
+    class="css-wkasdj-euiTimelineItemIcon-center-xl"
   >
     <div
-      class="css-irfkcc-euiTimelineItemIcon__content"
+      class="css-xt9hjx-euiTimelineItemIcon__content"
     >
       <div
         aria-label="dot"
@@ -70,13 +70,13 @@ exports[`EuiTimelineItem props EuiAvatar is passed as an icon 1`] = `
 
 exports[`EuiTimelineItem props gap l is rendered 1`] = `
 <li
-  class="css-c3ozqf-euiTimelineItem-l"
+  class="css-v33z4y-euiTimelineItem-l"
 >
   <div
-    class="css-1vzkfky-euiTimelineItemIcon-center-l"
+    class="css-18i7fvx-euiTimelineItemIcon-center-l"
   >
     <div
-      class="css-irfkcc-euiTimelineItemIcon__content"
+      class="css-xt9hjx-euiTimelineItemIcon__content"
     >
       <div
         aria-label=""
@@ -103,13 +103,13 @@ exports[`EuiTimelineItem props gap l is rendered 1`] = `
 
 exports[`EuiTimelineItem props gap m is rendered 1`] = `
 <li
-  class="css-wgqh0-euiTimelineItem-m"
+  class="css-3s6uj7-euiTimelineItem-m"
 >
   <div
-    class="css-19hajh3-euiTimelineItemIcon-center-m"
+    class="css-1q39986-euiTimelineItemIcon-center-m"
   >
     <div
-      class="css-irfkcc-euiTimelineItemIcon__content"
+      class="css-xt9hjx-euiTimelineItemIcon__content"
     >
       <div
         aria-label=""
@@ -136,13 +136,13 @@ exports[`EuiTimelineItem props gap m is rendered 1`] = `
 
 exports[`EuiTimelineItem props gap xl is rendered 1`] = `
 <li
-  class="css-121ign9-euiTimelineItem-xl"
+  class="css-1qvj48w-euiTimelineItem-xl"
 >
   <div
-    class="css-ra2sl0-euiTimelineItemIcon-center-xl"
+    class="css-wkasdj-euiTimelineItemIcon-center-xl"
   >
     <div
-      class="css-irfkcc-euiTimelineItemIcon__content"
+      class="css-xt9hjx-euiTimelineItemIcon__content"
     >
       <div
         aria-label=""
@@ -169,13 +169,13 @@ exports[`EuiTimelineItem props gap xl is rendered 1`] = `
 
 exports[`EuiTimelineItem props iconAriaLabel is rendered 1`] = `
 <li
-  class="css-121ign9-euiTimelineItem-xl"
+  class="css-1qvj48w-euiTimelineItem-xl"
 >
   <div
-    class="css-ra2sl0-euiTimelineItemIcon-center-xl"
+    class="css-wkasdj-euiTimelineItemIcon-center-xl"
   >
     <div
-      class="css-irfkcc-euiTimelineItemIcon__content"
+      class="css-xt9hjx-euiTimelineItemIcon__content"
     >
       <div
         aria-label="icon aria label"
@@ -204,13 +204,13 @@ exports[`EuiTimelineItem props iconAriaLabel is rendered 1`] = `
 
 exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
 <li
-  class="css-121ign9-euiTimelineItem-xl"
+  class="css-1qvj48w-euiTimelineItem-xl"
 >
   <div
-    class="css-ra2sl0-euiTimelineItemIcon-center-xl"
+    class="css-wkasdj-euiTimelineItemIcon-center-xl"
   >
     <div
-      class="css-irfkcc-euiTimelineItemIcon__content"
+      class="css-xt9hjx-euiTimelineItemIcon__content"
     >
       <div
         aria-label=""
@@ -237,13 +237,13 @@ exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
 
 exports[`EuiTimelineItem props verticalAlign top is rendered 1`] = `
 <li
-  class="css-121ign9-euiTimelineItem-xl"
+  class="css-1qvj48w-euiTimelineItem-xl"
 >
   <div
-    class="css-xpnaq5-euiTimelineItemIcon-top-xl"
+    class="css-1wcd1kr-euiTimelineItemIcon-top-xl"
   >
     <div
-      class="css-irfkcc-euiTimelineItemIcon__content"
+      class="css-xt9hjx-euiTimelineItemIcon__content"
     >
       <div
         aria-label=""
