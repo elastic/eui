@@ -120,7 +120,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
             class="euiPopover__anchor"
           >
             <button
-              class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
+              class="euiButtonEmpty euiButtonEmpty--xSmall css-15qfgye-empty-text"
               data-test-subj="tablePaginationPopoverButton"
               type="button"
             >
@@ -160,7 +160,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           <a
             aria-controls="__table_generated-id"
             aria-label="Previous page"
-            class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton"
+            class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton css-19g5rpb-empty-text-EuiButtonIcon"
             data-test-subj="pagination-button-previous"
             href="#__table_generated-id"
             rel="noreferrer"
@@ -183,7 +183,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
               <a
                 aria-controls="__table_generated-id"
                 aria-label="Page 1 of 2"
-                class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiPaginationButton"
+                class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton css-15qfgye-empty-text"
                 data-test-subj="pagination-button-0"
                 href="#__table_generated-id"
                 rel="noreferrer"
@@ -206,7 +206,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                 aria-controls="__table_generated-id"
                 aria-current="true"
                 aria-label="Page 2 of 2"
-                class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiButtonEmpty-isDisabled euiPaginationButton euiPaginationButton-isActive"
+                class="euiButtonEmpty euiButtonEmpty--small euiPaginationButton euiPaginationButton-isActive css-13li5q5-empty-disabled"
                 data-test-subj="pagination-button-1"
                 disabled=""
                 type="button"
@@ -225,7 +225,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           </ul>
           <button
             aria-label="Next page"
-            class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton"
+            class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton css-1w4v2zr-empty-disabled-EuiButtonIcon"
             data-test-subj="pagination-button-next"
             disabled=""
             type="button"

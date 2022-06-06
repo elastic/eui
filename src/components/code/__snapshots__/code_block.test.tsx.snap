@@ -109,25 +109,115 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
         >
           <button
             aria-label="Collapse"
-            className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton"
+            css="unknown styles"
             onClick={[Function]}
             type="button"
           >
-            <EuiIcon
-              aria-hidden="true"
-              className="euiButtonIcon__icon"
-              color="inherit"
-              size="m"
-              type="fullScreenExit"
+            <Insertion
+              cache={
+                Object {
+                  "insert": [Function],
+                  "inserted": Object {
+                    "19g5rpb-empty-text-EuiButtonIcon": true,
+                  },
+                  "key": "css",
+                  "nonce": undefined,
+                  "registered": Object {},
+                  "sheet": StyleSheet {
+                    "_alreadyInsertedOrderInsensitiveRule": true,
+                    "_insertTag": [Function],
+                    "before": null,
+                    "container": <head>
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .css-19g5rpb-empty-text-EuiButtonIcon{color:#343741;}
+                      </style>
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .css-19g5rpb-empty-text-EuiButtonIcon:hover,.css-19g5rpb-empty-text-EuiButtonIcon:focus,.css-19g5rpb-empty-text-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
+                      </style>
+                      <style
+                        type="text/css"
+                      >
+                        
+ [data-focus-on-hidden] {
+   pointer-events: none !important;
+ }
+
+                      </style>
+                    </head>,
+                    "ctr": 2,
+                    "insertionPoint": undefined,
+                    "isSpeedy": false,
+                    "key": "css",
+                    "nonce": undefined,
+                    "prepend": undefined,
+                    "tags": Array [
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .css-19g5rpb-empty-text-EuiButtonIcon{color:#343741;}
+                      </style>,
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .css-19g5rpb-empty-text-EuiButtonIcon:hover,.css-19g5rpb-empty-text-EuiButtonIcon:focus,.css-19g5rpb-empty-text-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
+                      </style>,
+                    ],
+                  },
+                }
+              }
+              isStringTag={true}
+              serialized={
+                Object {
+                  "map": undefined,
+                  "name": "19g5rpb-empty-text-EuiButtonIcon",
+                  "next": undefined,
+                  "styles": "
+    color: #343741;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: rgba(211,218,230,0.2);
+    }
+  ;;label:empty;;;label:text;;;;label:EuiButtonIcon;;",
+                  "toString": [Function],
+                }
+              }
+            />
+            <button
+              aria-label="Collapse"
+              className="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton css-19g5rpb-empty-text-EuiButtonIcon"
+              onClick={[Function]}
+              type="button"
             >
-              <span
+              <EuiIcon
                 aria-hidden="true"
                 className="euiButtonIcon__icon"
                 color="inherit"
-                data-euiicon-type="fullScreenExit"
                 size="m"
-              />
-            </EuiIcon>
+                type="fullScreenExit"
+              >
+                <span
+                  aria-hidden="true"
+                  className="euiButtonIcon__icon"
+                  color="inherit"
+                  data-euiicon-type="fullScreenExit"
+                  size="m"
+                />
+              </EuiIcon>
+            </button>
           </button>
         </EuiButtonIcon>
       </EuiI18n>
