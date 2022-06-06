@@ -7,24 +7,9 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../services';
 import { logicalCSS } from '../../global_styling';
 
-const _gapAdjustment = (gap: string) => {
-  return `
-    gap: ${gap} 0;
-
-    &:not(:last-child) {
-      ${logicalCSS('padding-bottom', gap)};
-    }
-
-    &:first-child {
-      ${logicalCSS('height', `calc(50% + ${gap})`)};
-    }
-  `;
-};
-
-export const euiTimelineItemStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiTimelineItemStyles = () => {
   return {
     euiTimelineItem: css`
       display: flex;
@@ -46,8 +31,5 @@ export const euiTimelineItemStyles = ({ euiTheme }: UseEuiTheme) => {
         }
       }
     `,
-    m: css(_gapAdjustment(euiTheme.size.base)),
-    l: css(_gapAdjustment(euiTheme.size.l)),
-    xl: css(_gapAdjustment(euiTheme.size.xl)),
   };
 };

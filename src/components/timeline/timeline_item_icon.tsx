@@ -11,10 +11,7 @@ import { IconType } from '../icon';
 import { EuiAvatar } from '../avatar';
 import { useEuiTheme } from '../../services';
 import { euiTimelineItemIconStyles } from './timeline_item_icon.styles';
-import {
-  EuiTimelineItemVerticalAlign,
-  EuiTimelineItemGap,
-} from './timeline_item';
+import { EuiTimelineItemVerticalAlign } from './timeline_item';
 
 export interface EuiTimelineItemIconProps {
   /**
@@ -27,23 +24,17 @@ export interface EuiTimelineItemIconProps {
    * If no `aria-label` is passed we assume the icon is purely decorative.
    */
   iconAriaLabel?: string;
-  gap?: EuiTimelineItemGap;
 }
 
 export const EuiTimelineItemIcon: FunctionComponent<EuiTimelineItemIconProps> = ({
   icon,
   verticalAlign = 'center',
   iconAriaLabel,
-  gap = 'xl',
 }) => {
   const euiTheme = useEuiTheme();
   const styles = euiTimelineItemIconStyles(euiTheme);
 
-  const cssStyles = [
-    styles.euiTimelineItemIcon,
-    styles[verticalAlign],
-    styles[gap],
-  ];
+  const cssStyles = [styles.euiTimelineItemIcon, styles[verticalAlign]];
   const cssContentStyles = styles.euiTimelineItemIcon__content;
 
   const ariaLabel = iconAriaLabel ? iconAriaLabel : '';

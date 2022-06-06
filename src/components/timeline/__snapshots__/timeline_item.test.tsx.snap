@@ -2,10 +2,10 @@
 
 exports[`EuiTimelineItem is rendered 1`] = `
 <li
-  class="css-1qvj48w-euiTimelineItem-xl"
+  class="css-v1628u-euiTimelineItem"
 >
   <div
-    class="css-wkasdj-euiTimelineItemIcon-center-xl"
+    class="css-132tpe4-euiTimelineItemIcon-center"
   >
     <div
       class="css-xt9hjx-euiTimelineItemIcon__content"
@@ -35,10 +35,10 @@ exports[`EuiTimelineItem is rendered 1`] = `
 
 exports[`EuiTimelineItem props EuiAvatar is passed as an icon 1`] = `
 <li
-  class="css-1qvj48w-euiTimelineItem-xl"
+  class="css-v1628u-euiTimelineItem"
 >
   <div
-    class="css-wkasdj-euiTimelineItemIcon-center-xl"
+    class="css-132tpe4-euiTimelineItemIcon-center"
   >
     <div
       class="css-xt9hjx-euiTimelineItemIcon__content"
@@ -68,111 +68,12 @@ exports[`EuiTimelineItem props EuiAvatar is passed as an icon 1`] = `
 </li>
 `;
 
-exports[`EuiTimelineItem props gap l is rendered 1`] = `
-<li
-  class="css-v33z4y-euiTimelineItem-l"
->
-  <div
-    class="css-18i7fvx-euiTimelineItemIcon-center-l"
-  >
-    <div
-      class="css-xt9hjx-euiTimelineItemIcon__content"
-    >
-      <div
-        aria-label=""
-        class="euiAvatar euiAvatar--m euiAvatar--user css-1wtzu6n-euiAvatar-m-user-subdued"
-        role="img"
-        title=""
-      >
-        <span
-          class="euiAvatar__icon"
-          data-euiicon-type="dot"
-        />
-      </div>
-    </div>
-  </div>
-  <div
-    class="css-1a9m88x-euiTimelineItemEvent-center"
-  >
-    <p>
-      I'm the children
-    </p>
-  </div>
-</li>
-`;
-
-exports[`EuiTimelineItem props gap m is rendered 1`] = `
-<li
-  class="css-3s6uj7-euiTimelineItem-m"
->
-  <div
-    class="css-1q39986-euiTimelineItemIcon-center-m"
-  >
-    <div
-      class="css-xt9hjx-euiTimelineItemIcon__content"
-    >
-      <div
-        aria-label=""
-        class="euiAvatar euiAvatar--m euiAvatar--user css-1wtzu6n-euiAvatar-m-user-subdued"
-        role="img"
-        title=""
-      >
-        <span
-          class="euiAvatar__icon"
-          data-euiicon-type="dot"
-        />
-      </div>
-    </div>
-  </div>
-  <div
-    class="css-1a9m88x-euiTimelineItemEvent-center"
-  >
-    <p>
-      I'm the children
-    </p>
-  </div>
-</li>
-`;
-
-exports[`EuiTimelineItem props gap xl is rendered 1`] = `
-<li
-  class="css-1qvj48w-euiTimelineItem-xl"
->
-  <div
-    class="css-wkasdj-euiTimelineItemIcon-center-xl"
-  >
-    <div
-      class="css-xt9hjx-euiTimelineItemIcon__content"
-    >
-      <div
-        aria-label=""
-        class="euiAvatar euiAvatar--m euiAvatar--user css-1wtzu6n-euiAvatar-m-user-subdued"
-        role="img"
-        title=""
-      >
-        <span
-          class="euiAvatar__icon"
-          data-euiicon-type="dot"
-        />
-      </div>
-    </div>
-  </div>
-  <div
-    class="css-1a9m88x-euiTimelineItemEvent-center"
-  >
-    <p>
-      I'm the children
-    </p>
-  </div>
-</li>
-`;
-
 exports[`EuiTimelineItem props iconAriaLabel is rendered 1`] = `
 <li
-  class="css-1qvj48w-euiTimelineItem-xl"
+  class="css-v1628u-euiTimelineItem"
 >
   <div
-    class="css-wkasdj-euiTimelineItemIcon-center-xl"
+    class="css-132tpe4-euiTimelineItemIcon-center"
   >
     <div
       class="css-xt9hjx-euiTimelineItemIcon__content"
@@ -204,10 +105,10 @@ exports[`EuiTimelineItem props iconAriaLabel is rendered 1`] = `
 
 exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
 <li
-  class="css-1qvj48w-euiTimelineItem-xl"
+  class="css-v1628u-euiTimelineItem"
 >
   <div
-    class="css-wkasdj-euiTimelineItemIcon-center-xl"
+    class="css-132tpe4-euiTimelineItemIcon-center"
   >
     <div
       class="css-xt9hjx-euiTimelineItemIcon__content"
@@ -237,10 +138,10 @@ exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
 
 exports[`EuiTimelineItem props verticalAlign top is rendered 1`] = `
 <li
-  class="css-1qvj48w-euiTimelineItem-xl"
+  class="css-v1628u-euiTimelineItem"
 >
   <div
-    class="css-1wcd1kr-euiTimelineItemIcon-top-xl"
+    class="css-dwnjme-euiTimelineItemIcon-top"
   >
     <div
       class="css-xt9hjx-euiTimelineItemIcon__content"
