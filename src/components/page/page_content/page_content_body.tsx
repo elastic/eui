@@ -55,7 +55,7 @@ export const EuiPageContentBody_Deprecated: FunctionComponent<EuiPageContentBody
     'euiPageContentBody',
     paddingSizeToClassNameMap[paddingSize],
     {
-      [`euiPage--${widthClassName}`]: widthClassName,
+      [`euiPageContentBody--${widthClassName}`]: widthClassName,
     },
     className
   );

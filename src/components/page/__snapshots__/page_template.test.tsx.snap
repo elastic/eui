@@ -13,7 +13,7 @@ exports[`EuiPageTemplate fullHeight is rendered with noscroll 1`] = `
       role="main"
     >
       <div
-        class="euiPageContentBody euiPageContentBody--paddingLarge euiPage--restrictWidth-default"
+        class="euiPageContentBody euiPageContentBody--paddingLarge euiPageContentBody--restrictWidth-default"
       />
     </div>
   </div>
@@ -33,7 +33,7 @@ exports[`EuiPageTemplate fullHeight is rendered with true 1`] = `
       role="main"
     >
       <div
-        class="euiPageContentBody euiPageContentBody--paddingLarge euiPage--restrictWidth-default"
+        class="euiPageContentBody euiPageContentBody--paddingLarge euiPageContentBody--restrictWidth-default"
       />
     </div>
   </div>
@@ -55,7 +55,7 @@ exports[`EuiPageTemplate is rendered 1`] = `
       role="main"
     >
       <div
-        class="euiPageContentBody euiPageContentBody--paddingLarge euiPage--restrictWidth-default"
+        class="euiPageContentBody euiPageContentBody--paddingLarge euiPageContentBody--restrictWidth-default"
       />
     </div>
   </div>
@@ -75,7 +75,7 @@ exports[`EuiPageTemplate restrict width can be set to a custom number 1`] = `
       role="main"
     >
       <div
-        class="euiPageContentBody euiPageContentBody--paddingLarge euiPage--restrictWidth-custom"
+        class="euiPageContentBody euiPageContentBody--paddingLarge euiPageContentBody--restrictWidth-custom"
         style="max-width:1024px"
       />
     </div>
@@ -119,7 +119,7 @@ exports[`EuiPageTemplate template centeredBody is rendered 1`] = `
         role="main"
       >
         <div
-          class="euiPageContentBody euiPage--restrictWidth-default"
+          class="euiPageContentBody euiPageContentBody--restrictWidth-default"
         />
       </div>
     </div>
@@ -145,7 +145,7 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageBodyProps 1`
         role="main"
       >
         <div
-          class="euiPageContentBody euiPage--restrictWidth-default"
+          class="euiPageContentBody euiPageContentBody--restrictWidth-default"
         />
       </div>
     </div>
@@ -170,7 +170,7 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageContentBodyP
       >
         <div
           aria-label="aria-label"
-          class="euiPageContentBody euiPage--restrictWidth-default testClass1 testClass2"
+          class="euiPageContentBody euiPageContentBody--restrictWidth-default testClass1 testClass2"
           data-test-subj="test subject string"
         />
       </div>
@@ -197,7 +197,7 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageContentProps
         role="main"
       >
         <div
-          class="euiPageContentBody euiPage--restrictWidth-default"
+          class="euiPageContentBody euiPageContentBody--restrictWidth-default"
         />
       </div>
     </div>
@@ -232,6 +232,9 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageHeader 1`] =
       </div>
     </header>
     <div
+      class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
+    />
+    <div
       class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
     >
       <div
@@ -239,7 +242,7 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageHeader 1`] =
         role="main"
       >
         <div
-          class="euiPageContentBody euiPage--restrictWidth-default"
+          class="euiPageContentBody euiPageContentBody--restrictWidth-default"
         />
       </div>
     </div>
@@ -263,7 +266,7 @@ exports[`EuiPageTemplate template centeredBody minHeight is rendered 1`] = `
         role="main"
       >
         <div
-          class="euiPageContentBody euiPage--restrictWidth-default"
+          class="euiPageContentBody euiPageContentBody--restrictWidth-default"
         />
       </div>
     </div>
@@ -287,7 +290,7 @@ exports[`EuiPageTemplate template centeredBody paddingSize is rendered 1`] = `
         role="main"
       >
         <div
-          class="euiPageContentBody euiPage--restrictWidth-default"
+          class="euiPageContentBody euiPageContentBody--restrictWidth-default"
         />
       </div>
     </div>
@@ -311,7 +314,7 @@ exports[`EuiPageTemplate template centeredBody style is rendered 1`] = `
         role="main"
       >
         <div
-          class="euiPageContentBody euiPage--restrictWidth-default"
+          class="euiPageContentBody euiPageContentBody--restrictWidth-default"
         />
       </div>
     </div>
@@ -337,7 +340,7 @@ exports[`EuiPageTemplate template centeredBody with pageSideBar is rendered 1`] 
       role="main"
     >
       <div
-        class="euiPageContentBody euiPage--restrictWidth-default"
+        class="euiPageContentBody euiPageContentBody--restrictWidth-default"
       />
     </div>
   </div>
@@ -364,7 +367,7 @@ exports[`EuiPageTemplate template centeredBody with pageSideBar is rendered with
       role="main"
     >
       <div
-        class="euiPageContentBody euiPage--restrictWidth-default"
+        class="euiPageContentBody euiPageContentBody--restrictWidth-default"
       />
     </div>
   </div>
@@ -388,7 +391,7 @@ exports[`EuiPageTemplate template centeredContent is rendered 1`] = `
         role="main"
       >
         <div
-          class="euiPageContentBody euiPage--restrictWidth-default"
+          class="euiPageContentBody euiPageContentBody--restrictWidth-default"
         />
       </div>
     </div>
@@ -415,7 +418,7 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageBodyProps
         role="main"
       >
         <div
-          class="euiPageContentBody euiPage--restrictWidth-default"
+          class="euiPageContentBody euiPageContentBody--restrictWidth-default"
         />
       </div>
     </div>
@@ -441,7 +444,7 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageContentBo
       >
         <div
           aria-label="aria-label"
-          class="euiPageContentBody euiPage--restrictWidth-default testClass1 testClass2"
+          class="euiPageContentBody euiPageContentBody--restrictWidth-default testClass1 testClass2"
           data-test-subj="test subject string"
         />
       </div>
@@ -469,7 +472,7 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageContentPr
         role="main"
       >
         <div
-          class="euiPageContentBody euiPage--restrictWidth-default"
+          class="euiPageContentBody euiPageContentBody--restrictWidth-default"
         />
       </div>
     </div>
@@ -505,6 +508,9 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageHeader 1`
       </div>
     </header>
     <div
+      class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
+    />
+    <div
       class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--borderRadiusNone css-1nn8px6-euiPanel-grow-none-l-plain"
       style="display:flex"
     >
@@ -513,7 +519,7 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageHeader 1`
         role="main"
       >
         <div
-          class="euiPageContentBody euiPage--restrictWidth-default"
+          class="euiPageContentBody euiPageContentBody--restrictWidth-default"
         />
       </div>
     </div>
@@ -538,7 +544,7 @@ exports[`EuiPageTemplate template centeredContent minHeight is rendered 1`] = `
         role="main"
       >
         <div
-          class="euiPageContentBody euiPage--restrictWidth-default"
+          class="euiPageContentBody euiPageContentBody--restrictWidth-default"
         />
       </div>
     </div>
@@ -563,7 +569,7 @@ exports[`EuiPageTemplate template centeredContent paddingSize is rendered 1`] = 
         role="main"
       >
         <div
-          class="euiPageContentBody euiPage--restrictWidth-default"
+          class="euiPageContentBody euiPageContentBody--restrictWidth-default"
         />
       </div>
     </div>
@@ -588,7 +594,7 @@ exports[`EuiPageTemplate template centeredContent style is rendered 1`] = `
         role="main"
       >
         <div
-          class="euiPageContentBody euiPage--restrictWidth-default"
+          class="euiPageContentBody euiPageContentBody--restrictWidth-default"
         />
       </div>
     </div>
@@ -614,7 +620,7 @@ exports[`EuiPageTemplate template centeredContent with pageSideBar is rendered 1
       role="main"
     >
       <div
-        class="euiPageContentBody euiPage--restrictWidth-default"
+        class="euiPageContentBody euiPageContentBody--restrictWidth-default"
       />
     </div>
   </div>
@@ -641,7 +647,7 @@ exports[`EuiPageTemplate template centeredContent with pageSideBar is rendered w
       role="main"
     >
       <div
-        class="euiPageContentBody euiPage--restrictWidth-default"
+        class="euiPageContentBody euiPageContentBody--restrictWidth-default"
       />
     </div>
   </div>
@@ -661,7 +667,7 @@ exports[`EuiPageTemplate template default is rendered 1`] = `
       role="main"
     >
       <div
-        class="euiPageContentBody euiPageContentBody--paddingLarge euiPage--restrictWidth-default"
+        class="euiPageContentBody euiPageContentBody--paddingLarge euiPageContentBody--restrictWidth-default"
       />
     </div>
   </div>
@@ -683,7 +689,7 @@ exports[`EuiPageTemplate template default is rendered with pageBodyProps 1`] = `
       role="main"
     >
       <div
-        class="euiPageContentBody euiPageContentBody--paddingLarge euiPage--restrictWidth-default"
+        class="euiPageContentBody euiPageContentBody--paddingLarge euiPageContentBody--restrictWidth-default"
       />
     </div>
   </div>
@@ -704,7 +710,7 @@ exports[`EuiPageTemplate template default is rendered with pageContentBodyProps 
     >
       <div
         aria-label="aria-label"
-        class="euiPageContentBody euiPageContentBody--paddingLarge euiPage--restrictWidth-default testClass1 testClass2"
+        class="euiPageContentBody euiPageContentBody--paddingLarge euiPageContentBody--restrictWidth-default testClass1 testClass2"
         data-test-subj="test subject string"
       />
     </div>
@@ -727,7 +733,7 @@ exports[`EuiPageTemplate template default is rendered with pageContentProps 1`] 
       role="main"
     >
       <div
-        class="euiPageContentBody euiPageContentBody--paddingLarge euiPage--restrictWidth-default"
+        class="euiPageContentBody euiPageContentBody--paddingLarge euiPageContentBody--restrictWidth-default"
       />
     </div>
   </div>
@@ -762,11 +768,14 @@ exports[`EuiPageTemplate template default is rendered with pageHeader 1`] = `
       </div>
     </header>
     <div
+      class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
+    />
+    <div
       class="euiPanel euiPanel--plain euiPageContent euiPageContent--borderRadiusNone css-10ffim0-euiPanel-grow-none-plain"
       role="main"
     >
       <div
-        class="euiPageContentBody euiPageContentBody--paddingLarge euiPage--restrictWidth-default"
+        class="euiPageContentBody euiPageContentBody--paddingLarge euiPageContentBody--restrictWidth-default"
       />
     </div>
   </div>
@@ -786,7 +795,7 @@ exports[`EuiPageTemplate template default minHeight is rendered 1`] = `
       role="main"
     >
       <div
-        class="euiPageContentBody euiPageContentBody--paddingLarge euiPage--restrictWidth-default"
+        class="euiPageContentBody euiPageContentBody--paddingLarge euiPageContentBody--restrictWidth-default"
       />
     </div>
   </div>
@@ -806,7 +815,7 @@ exports[`EuiPageTemplate template default paddingSize is rendered 1`] = `
       role="main"
     >
       <div
-        class="euiPageContentBody euiPage--restrictWidth-default"
+        class="euiPageContentBody euiPageContentBody--restrictWidth-default"
       />
     </div>
   </div>
@@ -826,7 +835,7 @@ exports[`EuiPageTemplate template default style is rendered 1`] = `
       role="main"
     >
       <div
-        class="euiPageContentBody euiPageContentBody--paddingLarge euiPage--restrictWidth-default"
+        class="euiPageContentBody euiPageContentBody--paddingLarge euiPageContentBody--restrictWidth-default"
       />
     </div>
   </div>
@@ -854,7 +863,7 @@ exports[`EuiPageTemplate template default with pageSideBar is rendered 1`] = `
         role="main"
       >
         <div
-          class="euiPageContentBody euiPage--restrictWidth-default"
+          class="euiPageContentBody euiPageContentBody--restrictWidth-default"
         />
       </div>
     </div>
@@ -885,7 +894,7 @@ exports[`EuiPageTemplate template default with pageSideBar is rendered with page
         role="main"
       >
         <div
-          class="euiPageContentBody euiPage--restrictWidth-default"
+          class="euiPageContentBody euiPageContentBody--restrictWidth-default"
         />
       </div>
     </div>
@@ -1006,6 +1015,9 @@ exports[`EuiPageTemplate template empty is rendered with pageHeader 1`] = `
       </div>
     </header>
     <div
+      class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
+    />
+    <div
       class="euiPanel euiPanel--transparent euiPageContent euiPageContent--borderRadiusNone css-1k1l0tw-euiPanel-grow-none-transparent"
       role="main"
     >
@@ -1095,7 +1107,7 @@ exports[`EuiPageTemplate template empty with pageSideBar is rendered 1`] = `
       role="main"
     >
       <div
-        class="euiPageContentBody euiPage--restrictWidth-default"
+        class="euiPageContentBody euiPageContentBody--restrictWidth-default"
       />
     </div>
   </div>
@@ -1122,7 +1134,7 @@ exports[`EuiPageTemplate template empty with pageSideBar is rendered with pageSi
       role="main"
     >
       <div
-        class="euiPageContentBody euiPage--restrictWidth-default"
+        class="euiPageContentBody euiPageContentBody--restrictWidth-default"
       />
     </div>
   </div>
@@ -1142,7 +1154,7 @@ exports[`EuiPageTemplate with bottomBar is rendered 1`] = `
       role="main"
     >
       <div
-        class="euiPageContentBody euiPageContentBody--paddingLarge euiPage--restrictWidth-default"
+        class="euiPageContentBody euiPageContentBody--paddingLarge euiPageContentBody--restrictWidth-default"
       />
     </div>
     <section
@@ -1156,7 +1168,7 @@ exports[`EuiPageTemplate with bottomBar is rendered 1`] = `
         Page level controls
       </h2>
       <div
-        class="euiPageContentBody euiPage--restrictWidth-default"
+        class="euiPageContentBody euiPageContentBody--restrictWidth-default"
       >
         Bottom Bar
       </div>
