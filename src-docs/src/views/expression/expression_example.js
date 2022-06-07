@@ -133,7 +133,7 @@ export const ExpressionExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             There might be cases where displaying multiple{' '}
             <strong>EuiExpression</strong>s in a paragraph is not ideal. For
@@ -151,7 +151,7 @@ export const ExpressionExample = {
             <strong>EuiExpression</strong>s, make sure to set the same width for
             all descriptions.
           </p>
-        </div>
+        </>
       ),
       snippet: columnsSnippet,
       demo: <Columns />,

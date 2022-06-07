@@ -54,12 +54,10 @@ export const ImageExample = {
         },
       ],
       text: (
-        <div>
-          <p>
-            Use <strong>EuiImage</strong> when you need to place a static image
-            into a page with an optional caption.
-          </p>
-        </div>
+        <p>
+          Use <strong>EuiImage</strong> when you need to place a static image
+          into a page with an optional caption.
+        </p>
       ),
       props: { EuiImage },
       demo: <Image />,

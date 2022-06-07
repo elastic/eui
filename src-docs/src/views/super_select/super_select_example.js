@@ -63,7 +63,7 @@ export const SuperSelectExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             This is a simple replacement component for{' '}
             <strong>EuiSelect</strong> if you need more customization in either
@@ -87,7 +87,7 @@ export const SuperSelectExample = {
             &hellip; and the component will create a select styled button that
             triggers a popover of selectable items.
           </p>
-        </div>
+        </>
       ),
       props: { EuiSuperSelect },
       snippet: superSelectBasicSnippet,
