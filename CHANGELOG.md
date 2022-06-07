@@ -22,14 +22,11 @@ Fixed `EuiCollapsibleNavGroup` TypeScript error where `title` definition was bei
 
 - Renamed `euiTheme.colors.subdued` to `euiTheme.colors.subduedText` ([#5895](https://github.com/elastic/eui/pull/5895))
 
-**CSS-in-JS conversion**
+**CSS-in-JS conversions**
 
 - Converted `EuiText`, `EuiTextAlign`, and `EuiTextColor`, and removed their corresponding CSS modifier classes ([#5895](https://github.com/elastic/eui/pull/5895))
 - Partially converted `EuiMarkdownFormat`'s text size scaling styles ([#5895](https://github.com/elastic/eui/pull/5895))
 - Removed `$euiTextColors`, `euiScaleText()`, and `$euiTextConstrainedMaxWidth` Sass utilities ([#5895](https://github.com/elastic/eui/pull/5895))
-
-**CSS-in-JS conversions**
-
 - Converted `EuiExpression` to Emotion ([#5941](https://github.com/elastic/eui/pull/5941))
 
 ## [`58.1.1`](https://github.com/elastic/eui/tree/v58.1.1)
