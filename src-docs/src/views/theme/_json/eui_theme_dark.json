@@ -92,14 +92,6 @@
     "l": "8px"
   },
   "euiEmptyPromptContentMaxWidth": "36em",
-  "euiExpressionColors": {
-    "subdued": "#7a7f89",
-    "primary": "#36a2ef",
-    "success": "#7dded8",
-    "warning": "#f3d371",
-    "danger": "#f86b63",
-    "accent": "#f68fbe"
-  },
   "euiFacetGutterSizes": {
     "gutterNone": 0,
     "gutterSmall": "4px",
