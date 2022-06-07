@@ -180,7 +180,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
     }
   });
 
-  const _minHeight = grow ? `max(${minHeight}, 100vh` : minHeight;
+  const _minHeight = grow ? `max(${minHeight}, 100vh)` : minHeight;
 
   const classes = classNames('euiPageTemplate', className);
   const pageStyle = {
