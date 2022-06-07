@@ -92,8 +92,8 @@ export const TimelineExample = {
                 For accessibility, it is required to wrap your{' '}
                 <strong>EuiTimelineItem</strong>&apos;s with a{' '}
                 <strong>EuiTimeline</strong>. It is highly recommended to
-                provide a provide a descriptive <EuiCode>aria-label</EuiCode>,
-                or a text node ID of an external label to the{' '}
+                provide a descriptive <EuiCode>aria-label</EuiCode>, or a text
+                node ID of an external label to the{' '}
                 <EuiCode>aria-labelledby</EuiCode> prop of the{' '}
                 <strong>EuiTimeline</strong>.
               </>
