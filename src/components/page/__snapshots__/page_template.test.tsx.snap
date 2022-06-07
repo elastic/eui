@@ -232,9 +232,6 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageHeader 1`] =
       </div>
     </header>
     <div
-      class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
-    />
-    <div
       class="euiPageBody css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
     >
       <div
@@ -508,9 +505,6 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageHeader 1`
       </div>
     </header>
     <div
-      class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
-    />
-    <div
       class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--borderRadiusNone css-1nn8px6-euiPanel-grow-none-l-plain"
       style="display:flex"
     >
@@ -768,9 +762,6 @@ exports[`EuiPageTemplate template default is rendered with pageHeader 1`] = `
       </div>
     </header>
     <div
-      class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
-    />
-    <div
       class="euiPanel euiPanel--plain euiPageContent euiPageContent--borderRadiusNone css-10ffim0-euiPanel-grow-none-plain"
       role="main"
     >
@@ -1014,9 +1005,6 @@ exports[`EuiPageTemplate template empty is rendered with pageHeader 1`] = `
         </div>
       </div>
     </header>
-    <div
-      class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
-    />
     <div
       class="euiPanel euiPanel--transparent euiPageContent euiPageContent--borderRadiusNone css-1k1l0tw-euiPanel-grow-none-transparent"
       role="main"
