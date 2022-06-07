@@ -7,29 +7,16 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalCSS } from '../../global_styling';
 
 export const euiTimelineItemStyles = () => {
   return {
     euiTimelineItem: css`
       display: flex;
-
-      &:first-child {
-        > [class*='euiTimelineItemIcon-center']::before {
-          ${logicalCSS('top', '50%')};
-        }
-      }
-
-      &:last-child {
-        > [class*='euiTimelineItemIcon-top']::before {
-          display: none;
-        }
-
-        > [class*='euiTimelineItemIcon-center']::before {
-          ${logicalCSS('top', '0')};
-          ${logicalCSS('height', '50%')};
-        }
-      }
+      position: relative;
     `,
+    // Vertical alignments
+    // These classes are being targeted in timeline.styles.ts
+    top: css``,
+    center: css``,
   };
 };

@@ -16,16 +16,6 @@ export const euiTimelineItemIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     position: relative;
     flex-grow: 0;
     ${logicalCSS('margin-right', euiTheme.size.base)};
-
-    // timeline vertical line
-    &::before {
-      content: '';
-      position: absolute;
-      ${logicalCSS('top', 0)};
-      ${logicalCSS('left', `calc(${euiTheme.size.xxl} / 2)`)};
-      ${logicalCSS('width', euiTheme.size.xxs)};
-      background-color: ${euiTheme.colors.lightShade};
-    }
   `,
   euiTimelineItemIcon__content: css`
     ${logicalCSS('min-width', euiTheme.size.xxl)};

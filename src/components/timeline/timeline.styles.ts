@@ -14,9 +14,32 @@ const _gapAdjustment = (gap: string) => {
   return `
     gap: ${gap};
 
-    // timeline vertical line
-    [class*='euiTimelineItemIcon']::before {
+    // The vertical line height needs to be adjusted with the gap size
+    [class*='euiTimelineItem-']:not(:last-child)::before {
       ${logicalCSS('height', `calc(100% + ${gap})`)};
+    }
+  `;
+};
+
+// The vertical line should only appear when the EuiTimelineItem's
+// are wrapped in a EuiTimeline. That's why these styles live here.
+const timelineVerticalLine = (euiTheme: UseEuiTheme['euiTheme']) => {
+  return `  
+    [class*='euiTimelineItem-']::before {
+      content: '';
+      position: absolute;
+      ${logicalCSS('top', 0)};
+      ${logicalCSS('left', `calc(${euiTheme.size.xxl} / 2)`)};
+      ${logicalCSS('width', euiTheme.size.xxs)};
+      background-color: ${euiTheme.colors.lightShade};
+    }
+
+    > [class*='euiTimelineItem-center']:first-child::before {
+      ${logicalCSS('top', '50%')};
+    }
+  
+    > [class*='euiTimelineItem-center']:last-child:not(:only-child)::before {
+      ${logicalCSS('height', '50%')};
     }
   `;
 };
@@ -26,6 +49,7 @@ export const euiTimelineStyles = ({ euiTheme }: UseEuiTheme) => {
     euiTimeline: css`
       display: flex;
       flex-direction: column;
+      ${timelineVerticalLine(euiTheme)}
     `,
     m: css(_gapAdjustment(euiTheme.size.base)),
     l: css(_gapAdjustment(euiTheme.size.l)),

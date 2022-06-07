@@ -41,7 +41,7 @@ export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
   ...rest
 }) => {
   const styles = euiTimelineItemStyles();
-  const cssStyles = [styles.euiTimelineItem];
+  const cssStyles = [styles.euiTimelineItem, styles[verticalAlign]];
 
   return (
     <li css={cssStyles} {...rest}>

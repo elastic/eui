@@ -2,10 +2,10 @@
 
 exports[`EuiTimelineItem is rendered 1`] = `
 <li
-  class="css-v1628u-euiTimelineItem"
+  class="css-1wm3oim-euiTimelineItem-center"
 >
   <div
-    class="css-132tpe4-euiTimelineItemIcon-center"
+    class="css-2rivxd-euiTimelineItemIcon-center"
   >
     <div
       class="css-xt9hjx-euiTimelineItemIcon__content"
@@ -35,10 +35,10 @@ exports[`EuiTimelineItem is rendered 1`] = `
 
 exports[`EuiTimelineItem props EuiAvatar is passed as an icon 1`] = `
 <li
-  class="css-v1628u-euiTimelineItem"
+  class="css-1wm3oim-euiTimelineItem-center"
 >
   <div
-    class="css-132tpe4-euiTimelineItemIcon-center"
+    class="css-2rivxd-euiTimelineItemIcon-center"
   >
     <div
       class="css-xt9hjx-euiTimelineItemIcon__content"
@@ -70,10 +70,10 @@ exports[`EuiTimelineItem props EuiAvatar is passed as an icon 1`] = `
 
 exports[`EuiTimelineItem props iconAriaLabel is rendered 1`] = `
 <li
-  class="css-v1628u-euiTimelineItem"
+  class="css-1wm3oim-euiTimelineItem-center"
 >
   <div
-    class="css-132tpe4-euiTimelineItemIcon-center"
+    class="css-2rivxd-euiTimelineItemIcon-center"
   >
     <div
       class="css-xt9hjx-euiTimelineItemIcon__content"
@@ -105,10 +105,10 @@ exports[`EuiTimelineItem props iconAriaLabel is rendered 1`] = `
 
 exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
 <li
-  class="css-v1628u-euiTimelineItem"
+  class="css-1wm3oim-euiTimelineItem-center"
 >
   <div
-    class="css-132tpe4-euiTimelineItemIcon-center"
+    class="css-2rivxd-euiTimelineItemIcon-center"
   >
     <div
       class="css-xt9hjx-euiTimelineItemIcon__content"
@@ -138,10 +138,10 @@ exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
 
 exports[`EuiTimelineItem props verticalAlign top is rendered 1`] = `
 <li
-  class="css-v1628u-euiTimelineItem"
+  class="css-1wlaxn1-euiTimelineItem-top"
 >
   <div
-    class="css-dwnjme-euiTimelineItemIcon-top"
+    class="css-umics0-euiTimelineItemIcon-top"
   >
     <div
       class="css-xt9hjx-euiTimelineItemIcon__content"
