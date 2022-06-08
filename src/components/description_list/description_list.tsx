@@ -115,7 +115,7 @@ export const EuiDescriptionList: FunctionComponent<
         <EuiDescriptionListTitle
           key={`title-${index}`}
           {...titleProps}
-          //css={cssStyles}
+          css={cssStyles}
         >
           {item.title}
         </EuiDescriptionListTitle>,
@@ -123,7 +123,7 @@ export const EuiDescriptionList: FunctionComponent<
         <EuiDescriptionListDescription
           key={`description-${index}`}
           {...descriptionProps}
-          //css={cssStyles}
+          css={cssStyles}
         >
           {item.description}
         </EuiDescriptionListDescription>,

@@ -9,8 +9,12 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
+import { euiText } from '../text/text.styles';
+import { euiFontSize } from '../../global_styling';
 
-export const euiDescriptionListStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
+  const euiTheme = euiThemeContext.euiTheme;
+
   return {
     euiDescriptionList: css`
       &.euiDescriptionList--row {
@@ -21,20 +25,88 @@ export const euiDescriptionListStyles = ({ euiTheme }: UseEuiTheme) => {
         // Reversed makes the description larger than the title
         &.euiDescriptionList--reverse {
           .euiDescriptionList__title {
-            @include euiText;
-            @include euiFontSizeS;
+            ${euiText(euiTheme)};
+            ${euiFontSize(euiThemeContext, 's')};
           }
 
           .euiDescriptionList__description {
-            color: blue;
-            /* @include euiTitle('xs'); */
+            ${euiTitle(euiThemeContext, 'xs')}
           }
         }
+
+        // Compressed gets smaller fonts.
+        &.euiDescriptionList--compressed {
+          .euiDescriptionList__title {
+            ${euiTitle(euiThemeContext, 'xxs')}
+            line-height: ${euiTheme.size.l};
+          }
+
+          .euiDescriptionList__description {
+            ${euiFontSize(euiThemeContext, 's')};
+          }
+
+          &.euiDescriptionList--reverse {
+            .euiDescriptionList__title {
+              ${euiText(euiTheme)};
+              ${euiFontSize(euiThemeContext, 's')};
+            }
+
+            .euiDescriptionList__description {
+              ${euiTitle(euiThemeContext, 'xxs')};
+              line-height: ${euiTheme.size.l};
+            }
+          }
+        }
+      }
+
+      &.euiDescriptionList--column,
+      &.euiDescriptionList--responsiveColumn {
+        // Align the title to smash against the description.
+        &.euiDescriptionList--center {
+          .euiDescriptionList__title {
+            text-align: right;
+          }
+        }
+
+        &.euiDescriptionList--reverse {
+          .euiDescriptionList__title {
+            ${euiText(euiTheme)};
+            ${euiFontSize(euiThemeContext, 's')};
+          }
+
+          .euiDescriptionList__description {
+            ${euiTitle(euiThemeContext, 'xs')};
+            line-height: ${euiTheme.size.l};
+          }
+        }
+        &.euiDescriptionList--compressed {
+          .euiDescriptionList__title {
+            ${euiTitle(euiThemeContext, 'xxs')};
+            line-height: ${euiTheme.size.l};
+          }
+
+          .euiDescriptionList__description {
+            ${euiFontSize(euiThemeContext, 's')};
+          }
+
+          &.euiDescriptionList--reverse {
+            .euiDescriptionList__title {
+              ${euiText(euiTheme)};
+              ${euiFontSize(euiThemeContext, 's')};
+            }
+
+            .euiDescriptionList__description {
+              ${euiTitle(euiThemeContext, 'xs')};
+              line-height: ${euiTheme.size.l};
+            }
+          }
+        }
+        //->
       }
     `,
     'euiDescriptionList-row': css`
       &.euiDescriptionList__title {
-        ${euiTitle('xs', euiTheme)};
+        ${euiTitle(euiThemeContext, 'xs')}
         line-height: ${euiTheme.size.l};
         margin-top: ${euiTheme.size.base};
 
@@ -44,27 +116,65 @@ export const euiDescriptionListStyles = ({ euiTheme }: UseEuiTheme) => {
         }
       }
       &.euiDescriptionList__description {
-        /*${euiTheme.size.s} */
+        ${euiFontSize(euiThemeContext, 's')};
       }
     `,
-    'euiDescriptionList-column': css``,
-    'euiDescriptionList-responsiveColumn': css``,
+    'euiDescriptionList-column': css`
+      display: flex;
+      align-items: stretch;
+      flex-wrap: wrap;
+
+      > * {
+        margin-top: ${euiTheme.size.base};
+      }
+
+      // First two items don't have margin
+      > *:first-child,
+      > :nth-child(2) {
+        margin-top: 0;
+      }
+
+      &.euiDescriptionList__title {
+        ${euiTitle(euiThemeContext, 'xs')};
+        line-height: ${euiTheme.size.l};
+        width: 50%; // Flex-basis doesn't work in IE with padding
+        padding-right: ${euiTheme.size.s};
+      }
+
+      &.euiDescriptionList__description {
+        @include euiFontSize;
+        width: 50%; // Flex-basis doesn't work in IE with padding
+        padding-left: ${euiTheme.size.s};
+      }
+    `,
+    'euiDescriptionList-responsiveColumn': css`
+      display: flex;
+      align-items: stretch;
+      flex-wrap: wrap;
+
+      > * {
+        margin-top: ${euiTheme.size.base};
+      }
+
+      // First two items don't have margin
+      > *:first-child,
+      > :nth-child(2) {
+        margin-top: 0;
+      }
+
+      &.euiDescriptionList__title {
+        ${euiTitle(euiThemeContext, 'xs')};
+        line-height: ${euiTheme.size.l};
+        width: 50%; // Flex-basis doesn't work in IE with padding
+        padding-right: ${euiTheme.size.s};
+      }
+
+      &.euiDescriptionList__description {
+        @include euiFontSize;
+        width: 50%; // Flex-basis doesn't work in IE with padding
+        padding-left: ${euiTheme.size.s};
+      }
+    `,
     'euiDescriptionList-inline': css``,
   };
 };
-
-// return {
-//     euiDescriptionList: css``,
-//     'euiDescriptionList--row': css`
-//       .euiDescriptionList__title {
-//         ${euiTitle('xs', euiTheme)};
-//         line-height: ${euiTheme.size.l};
-//         margin-top: ${euiTheme.size.base};
-//         font-weight: bold;
-
-//         &:first-of-type {
-//           margin-top: 0;
-//         }
-//       }
-//     `,
-//   };

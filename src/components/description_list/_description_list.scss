@@ -24,7 +24,7 @@
     }
 
     // Reversed makes the description larger than the title
-    &.euiDescriptionList--reverse {
+    &.euiDescriptionList--reverse { 
       .euiDescriptionList__title {
         @include euiText;
         @include euiFontSizeS;
@@ -36,7 +36,7 @@
     }
 
     // Compressed gets smaller fonts.
-    &.euiDescriptionList--compressed {
+    &.euiDescriptionList--compressed { // <--
 
       .euiDescriptionList__title {
         @include euiTitle('xxs');
