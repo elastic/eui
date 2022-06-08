@@ -40,10 +40,6 @@ export interface EuiButtonDisplayCommonProps
   extends EuiButtonDisplayContentProps,
     CommonProps {
   children?: ReactNode;
-  /**
-   * Make button a solid color for prominence
-   */
-  fill?: boolean;
   size?: 'xs' | 's' | 'm';
   /**
    * Applies the boolean state as the `aria-pressed` property to create a toggle button.
