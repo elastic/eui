@@ -2,7 +2,7 @@
 
 exports[`EuiCard betaBadgeProps renders href 1`] = `
 <div
-  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned euiCard--hasBetaBadge"
+  class="euiPanel euiPanel--plain euiPanel--paddingLarge euiCard euiCard--centerAligned euiCard--hasBetaBadge css-1nsffwn-euiPanel-grow-m-l-plain-hasShadow"
 >
   <div
     class="euiCard__content"
@@ -14,7 +14,7 @@ exports[`EuiCard betaBadgeProps renders href 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -40,7 +40,7 @@ exports[`EuiCard betaBadgeProps renders href 1`] = `
 
 exports[`EuiCard horizontal selectable 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--isClickable euiCard euiCard--centerAligned euiCard--horizontal euiCard--isClickable euiCard--isSelectable euiCard--isSelectable--text"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned euiCard--horizontal euiCard--isClickable euiCard--isSelectable euiCard--isSelectable--text css-1mfocz8-euiPanel-grow-m-m-plain-hasShadow-isClickable"
 >
   <div
     class="euiCard__content"
@@ -52,7 +52,7 @@ exports[`EuiCard horizontal selectable 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -83,7 +83,7 @@ exports[`EuiCard horizontal selectable 1`] = `
 exports[`EuiCard is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned testClass1 testClass2"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned testClass1 testClass2 css-f2xo4o-euiPanel-grow-m-m-plain-hasShadow"
   data-test-subj="test subject string"
 >
   <div
@@ -96,7 +96,7 @@ exports[`EuiCard is rendered 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -109,7 +109,7 @@ exports[`EuiCard is rendered 1`] = `
 
 exports[`EuiCard props a null icon 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned css-f2xo4o-euiPanel-grow-m-m-plain-hasShadow"
 >
   <div
     class="euiCard__content"
@@ -121,7 +121,7 @@ exports[`EuiCard props a null icon 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -134,7 +134,7 @@ exports[`EuiCard props a null icon 1`] = `
 
 exports[`EuiCard props accepts div props like style 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned css-f2xo4o-euiPanel-grow-m-m-plain-hasShadow"
   style="min-width:0"
 >
   <div
@@ -147,7 +147,7 @@ exports[`EuiCard props accepts div props like style 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -160,7 +160,7 @@ exports[`EuiCard props accepts div props like style 1`] = `
 
 exports[`EuiCard props children 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned css-f2xo4o-euiPanel-grow-m-m-plain-hasShadow"
 >
   <div
     class="euiCard__content"
@@ -182,7 +182,7 @@ exports[`EuiCard props children 1`] = `
 
 exports[`EuiCard props children with description 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned css-f2xo4o-euiPanel-grow-m-m-plain-hasShadow"
 >
   <div
     class="euiCard__content"
@@ -194,7 +194,7 @@ exports[`EuiCard props children with description 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -212,7 +212,7 @@ exports[`EuiCard props children with description 1`] = `
 
 exports[`EuiCard props display accent is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--accent euiPanel--noShadow euiPanel--noBorder euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--accent euiPanel--paddingMedium euiCard euiCard--centerAligned css-1j7p6d2-euiPanel-grow-m-m-accent"
 >
   <div
     class="euiCard__content"
@@ -224,7 +224,7 @@ exports[`EuiCard props display accent is rendered 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -237,7 +237,7 @@ exports[`EuiCard props display accent is rendered 1`] = `
 
 exports[`EuiCard props display danger is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--danger euiPanel--paddingMedium euiCard euiCard--centerAligned css-dy8jp1-euiPanel-grow-m-m-danger"
 >
   <div
     class="euiCard__content"
@@ -249,7 +249,7 @@ exports[`EuiCard props display danger is rendered 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -262,7 +262,7 @@ exports[`EuiCard props display danger is rendered 1`] = `
 
 exports[`EuiCard props display plain is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned css-1l4493j-euiPanel-grow-m-m-plain"
 >
   <div
     class="euiCard__content"
@@ -274,7 +274,7 @@ exports[`EuiCard props display plain is rendered 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -287,7 +287,7 @@ exports[`EuiCard props display plain is rendered 1`] = `
 
 exports[`EuiCard props display primary is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--primary euiPanel--noShadow euiPanel--noBorder euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCard euiCard--centerAligned css-ydz1qa-euiPanel-grow-m-m-primary"
 >
   <div
     class="euiCard__content"
@@ -299,7 +299,7 @@ exports[`EuiCard props display primary is rendered 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -312,7 +312,7 @@ exports[`EuiCard props display primary is rendered 1`] = `
 
 exports[`EuiCard props display subdued is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiCard euiCard--centerAligned css-isico0-euiPanel-grow-m-m-subdued"
 >
   <div
     class="euiCard__content"
@@ -324,7 +324,7 @@ exports[`EuiCard props display subdued is rendered 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -337,7 +337,7 @@ exports[`EuiCard props display subdued is rendered 1`] = `
 
 exports[`EuiCard props display success is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--success euiPanel--noShadow euiPanel--noBorder euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--success euiPanel--paddingMedium euiCard euiCard--centerAligned css-1j07edk-euiPanel-grow-m-m-success"
 >
   <div
     class="euiCard__content"
@@ -349,7 +349,7 @@ exports[`EuiCard props display success is rendered 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -362,7 +362,7 @@ exports[`EuiCard props display success is rendered 1`] = `
 
 exports[`EuiCard props display transparent is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--transparent euiPanel--paddingMedium euiCard euiCard--centerAligned css-1w09o94-euiPanel-grow-m-m-transparent"
 >
   <div
     class="euiCard__content"
@@ -374,7 +374,7 @@ exports[`EuiCard props display transparent is rendered 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -387,7 +387,7 @@ exports[`EuiCard props display transparent is rendered 1`] = `
 
 exports[`EuiCard props display warning is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--warning euiPanel--noShadow euiPanel--noBorder euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--warning euiPanel--paddingMedium euiCard euiCard--centerAligned css-gn06xo-euiPanel-grow-m-m-warning"
 >
   <div
     class="euiCard__content"
@@ -399,7 +399,7 @@ exports[`EuiCard props display warning is rendered 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -412,7 +412,7 @@ exports[`EuiCard props display warning is rendered 1`] = `
 
 exports[`EuiCard props footer 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned css-f2xo4o-euiPanel-grow-m-m-plain-hasShadow"
 >
   <div
     class="euiCard__content"
@@ -424,7 +424,7 @@ exports[`EuiCard props footer 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -444,7 +444,7 @@ exports[`EuiCard props footer 1`] = `
 
 exports[`EuiCard props hasBorder 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--hasBorder euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned css-khmtme-euiPanel-grow-m-m-plain-hasBorder"
 >
   <div
     class="euiCard__content"
@@ -456,7 +456,7 @@ exports[`EuiCard props hasBorder 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -469,7 +469,7 @@ exports[`EuiCard props hasBorder 1`] = `
 
 exports[`EuiCard props horizontal 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned euiCard--horizontal"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned euiCard--horizontal css-f2xo4o-euiPanel-grow-m-m-plain-hasShadow"
 >
   <div
     class="euiCard__content"
@@ -481,7 +481,7 @@ exports[`EuiCard props horizontal 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -493,142 +493,40 @@ exports[`EuiCard props horizontal 1`] = `
 `;
 
 exports[`EuiCard props href supports href as a link 1`] = `
-<EuiCard
-  description="There"
-  href="#"
-  title="Hoi"
+<div
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned euiCard--isClickable css-1mfocz8-euiPanel-grow-m-m-plain-hasShadow-isClickable"
 >
-  <EuiPanel
-    className="euiCard euiCard--centerAligned euiCard--isClickable"
-    element="div"
-    hasShadow={true}
-    onClick={[Function]}
+  <div
+    class="euiCard__content"
   >
-    <div
-      className="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--isClickable euiCard euiCard--centerAligned euiCard--isClickable"
-      onClick={[Function]}
+    <span
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+      id="generated-idTitle"
     >
-      <div
-        className="euiCard__content"
+      <a
+        aria-describedby="generated-idDescription"
+        class="euiCard__titleAnchor"
+        href="#"
+        rel="noreferrer"
       >
-        <EuiTitle
-          className="euiCard__title"
-          id="generated-idTitle"
-          size="s"
-        >
-          <span
-            css="unknown styles"
-            id="generated-idTitle"
-            key="null"
-          >
-            <Insertion
-              cache={
-                Object {
-                  "insert": [Function],
-                  "inserted": Object {
-                    "1mr6cet-euiTitle-s": true,
-                  },
-                  "key": "css",
-                  "nonce": undefined,
-                  "registered": Object {},
-                  "sheet": StyleSheet {
-                    "_alreadyInsertedOrderInsensitiveRule": true,
-                    "_insertTag": [Function],
-                    "before": null,
-                    "container": <head>
-                      <style
-                        data-emotion="css"
-                        data-s=""
-                      >
-                        
-                        .css-1mr6cet-euiTitle-s{overflow-wrap:break-word!important;word-wrap:break-word!important;word-break:break-word;font-size:1.5714rem;line-height:1.7143rem;font-weight:700;color:#1a1c21;}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRpdGxlLnN0eWxlcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFxRlEiLCJmaWxlIjoidGl0bGUuc3R5bGVzLnRzIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIENvcHlyaWdodCBFbGFzdGljc2VhcmNoIEIuVi4gYW5kL29yIGxpY2Vuc2VkIHRvIEVsYXN0aWNzZWFyY2ggQi5WLiB1bmRlciBvbmVcbiAqIG9yIG1vcmUgY29udHJpYnV0b3IgbGljZW5zZSBhZ3JlZW1lbnRzLiBMaWNlbnNlZCB1bmRlciB0aGUgRWxhc3RpYyBMaWNlbnNlXG4gKiAyLjAgYW5kIHRoZSBTZXJ2ZXIgU2lkZSBQdWJsaWMgTGljZW5zZSwgdiAxOyB5b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdFxuICogaW4gY29tcGxpYW5jZSB3aXRoLCBhdCB5b3VyIGVsZWN0aW9uLCB0aGUgRWxhc3RpYyBMaWNlbnNlIDIuMCBvciB0aGUgU2VydmVyXG4gKiBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDEuXG4gKi9cblxuaW1wb3J0IHsgQ1NTUHJvcGVydGllcyB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0JztcbmltcG9ydCB7IFVzZUV1aVRoZW1lLCB1c2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcbmltcG9ydCB7XG4gIGV1aVRleHRCcmVha1dvcmQsXG4gIGV1aUZvbnRTaXplLFxuICBfRXVpVGhlbWVGb250U2NhbGUsXG4gIF9FdWlUaGVtZUZvbnRTaXplTWVhc3VyZW1lbnQsXG59IGZyb20gJy4uLy4uL2dsb2JhbF9zdHlsaW5nJztcbmltcG9ydCB7IEV1aVRpdGxlU2l6ZSB9IGZyb20gJy4vdGl0bGUnO1xuXG4vKipcbiAqIE1peGluXG4gKi9cbnR5cGUgRXVpVGhlbWVUaXRsZSA9IHtcbiAgZm9udFNpemU6IENTU1Byb3BlcnRpZXNbJ2ZvbnRTaXplJ107XG4gIGxpbmVIZWlnaHQ6IENTU1Byb3BlcnRpZXNbJ2xpbmVIZWlnaHQnXTtcbiAgZm9udFdlaWdodDogQ1NTUHJvcGVydGllc1snZm9udFdlaWdodCddO1xuICBjb2xvcjogQ1NTUHJvcGVydGllc1snY29sb3InXTtcbn07XG5cbmV4cG9ydCBjb25zdCBldWlUaXRsZSA9IChcbiAgc2NhbGU6IEV1aVRpdGxlU2l6ZSA9ICdtJyxcbiAgZXVpVGhlbWU6IFVzZUV1aVRoZW1lWydldWlUaGVtZSddLFxuICBtZWFzdXJlbWVudDogX0V1aVRoZW1lRm9udFNpemVNZWFzdXJlbWVudCA9ICdyZW0nXG4pOiBFdWlUaGVtZVRpdGxlID0+IHtcbiAgY29uc3QgdGl0bGVTY2FsZVRvRm9udFNpemVTY2FsZU1hcDoge1xuICAgIFtzaXplIGluIEV1aVRpdGxlU2l6ZV06IF9FdWlUaGVtZUZvbnRTY2FsZTtcbiAgfSA9IHtcbiAgICB4eHhzOiAneHMnLFxuICAgIHh4czogJ3MnLFxuICAgIHhzOiAnbScsXG4gICAgczogJ2wnLFxuICAgIG06ICd4bCcsXG4gICAgbDogJ3h4bCcsXG4gIH07XG5cbiAgcmV0dXJuIHtcbiAgICAuLi5ldWlGb250U2l6ZSh0aXRsZVNjYWxlVG9Gb250U2l6ZVNjYWxlTWFwW3NjYWxlXSwgZXVpVGhlbWUsIG1lYXN1cmVtZW50KSxcbiAgICBmb250V2VpZ2h0OiBldWlUaGVtZS5mb250LndlaWdodFtldWlUaGVtZS5mb250LnRpdGxlLndlaWdodF0sXG4gICAgY29sb3I6IGV1aVRoZW1lLmNvbG9ycy50aXRsZSxcbiAgfTtcbn07XG5cbi8vIEhvb2sgdmVyc2lvblxuZXhwb3J0IGNvbnN0IHVzZUV1aVRpdGxlID0gKFxuICBzY2FsZTogRXVpVGl0bGVTaXplID0gJ20nLFxuICBtZWFzdXJlbWVudDogX0V1aVRoZW1lRm9udFNpemVNZWFzdXJlbWVudCA9ICdyZW0nXG4pOiBFdWlUaGVtZVRpdGxlID0+IHtcbiAgY29uc3QgeyBldWlUaGVtZSB9ID0gdXNlRXVpVGhlbWUoKTtcbiAgcmV0dXJuIGV1aVRpdGxlKHNjYWxlLCBldWlUaGVtZSwgbWVhc3VyZW1lbnQpO1xufTtcblxuLyoqXG4gKiBTdHlsZXNcbiAqL1xuZXhwb3J0IGNvbnN0IGV1aVRpdGxlU3R5bGVzID0gKHsgZXVpVGhlbWUgfTogVXNlRXVpVGhlbWUpID0+ICh7XG4gIGV1aVRpdGxlOiBjc3NgXG4gICAgJHtldWlUZXh0QnJlYWtXb3JkfVxuXG4gICAgJiArICYge1xuICAgICAgbWFyZ2luLXRvcDogJHtldWlUaGVtZS5zaXplLmx9O1xuICAgIH1cbiAgYCxcbiAgdXBwZXJjYXNlOiBjc3NgXG4gICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgYCxcbiAgLy8gU2l6ZXNcbiAgeHh4czogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3h4eHMnLCBldWlUaGVtZSl9XG4gIGAsXG4gIHh4czogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3h4cycsIGV1aVRoZW1lKX1cbiAgYCxcbiAgeHM6IGNzc2BcbiAgICAke2V1aVRpdGxlKCd4cycsIGV1aVRoZW1lKX1cbiAgYCxcbiAgczogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3MnLCBldWlUaGVtZSl9XG4gIGAsXG4gIG06IGNzc2BcbiAgICAke2V1aVRpdGxlKCdtJywgZXVpVGhlbWUpfVxuICBgLFxuICBsOiBjc3NgXG4gICAgJHtldWlUaXRsZSgnbCcsIGV1aVRoZW1lKX1cbiAgYCxcbn0pO1xuIl19 */
-                      </style>
-                      <style
-                        data-emotion="css"
-                        data-s=""
-                      >
-                        
-                        .css-1mr6cet-euiTitle-s+.css-1mr6cet-euiTitle-s{margin-top:24px;}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRpdGxlLnN0eWxlcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFxRlEiLCJmaWxlIjoidGl0bGUuc3R5bGVzLnRzIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIENvcHlyaWdodCBFbGFzdGljc2VhcmNoIEIuVi4gYW5kL29yIGxpY2Vuc2VkIHRvIEVsYXN0aWNzZWFyY2ggQi5WLiB1bmRlciBvbmVcbiAqIG9yIG1vcmUgY29udHJpYnV0b3IgbGljZW5zZSBhZ3JlZW1lbnRzLiBMaWNlbnNlZCB1bmRlciB0aGUgRWxhc3RpYyBMaWNlbnNlXG4gKiAyLjAgYW5kIHRoZSBTZXJ2ZXIgU2lkZSBQdWJsaWMgTGljZW5zZSwgdiAxOyB5b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdFxuICogaW4gY29tcGxpYW5jZSB3aXRoLCBhdCB5b3VyIGVsZWN0aW9uLCB0aGUgRWxhc3RpYyBMaWNlbnNlIDIuMCBvciB0aGUgU2VydmVyXG4gKiBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDEuXG4gKi9cblxuaW1wb3J0IHsgQ1NTUHJvcGVydGllcyB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0JztcbmltcG9ydCB7IFVzZUV1aVRoZW1lLCB1c2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcbmltcG9ydCB7XG4gIGV1aVRleHRCcmVha1dvcmQsXG4gIGV1aUZvbnRTaXplLFxuICBfRXVpVGhlbWVGb250U2NhbGUsXG4gIF9FdWlUaGVtZUZvbnRTaXplTWVhc3VyZW1lbnQsXG59IGZyb20gJy4uLy4uL2dsb2JhbF9zdHlsaW5nJztcbmltcG9ydCB7IEV1aVRpdGxlU2l6ZSB9IGZyb20gJy4vdGl0bGUnO1xuXG4vKipcbiAqIE1peGluXG4gKi9cbnR5cGUgRXVpVGhlbWVUaXRsZSA9IHtcbiAgZm9udFNpemU6IENTU1Byb3BlcnRpZXNbJ2ZvbnRTaXplJ107XG4gIGxpbmVIZWlnaHQ6IENTU1Byb3BlcnRpZXNbJ2xpbmVIZWlnaHQnXTtcbiAgZm9udFdlaWdodDogQ1NTUHJvcGVydGllc1snZm9udFdlaWdodCddO1xuICBjb2xvcjogQ1NTUHJvcGVydGllc1snY29sb3InXTtcbn07XG5cbmV4cG9ydCBjb25zdCBldWlUaXRsZSA9IChcbiAgc2NhbGU6IEV1aVRpdGxlU2l6ZSA9ICdtJyxcbiAgZXVpVGhlbWU6IFVzZUV1aVRoZW1lWydldWlUaGVtZSddLFxuICBtZWFzdXJlbWVudDogX0V1aVRoZW1lRm9udFNpemVNZWFzdXJlbWVudCA9ICdyZW0nXG4pOiBFdWlUaGVtZVRpdGxlID0+IHtcbiAgY29uc3QgdGl0bGVTY2FsZVRvRm9udFNpemVTY2FsZU1hcDoge1xuICAgIFtzaXplIGluIEV1aVRpdGxlU2l6ZV06IF9FdWlUaGVtZUZvbnRTY2FsZTtcbiAgfSA9IHtcbiAgICB4eHhzOiAneHMnLFxuICAgIHh4czogJ3MnLFxuICAgIHhzOiAnbScsXG4gICAgczogJ2wnLFxuICAgIG06ICd4bCcsXG4gICAgbDogJ3h4bCcsXG4gIH07XG5cbiAgcmV0dXJuIHtcbiAgICAuLi5ldWlGb250U2l6ZSh0aXRsZVNjYWxlVG9Gb250U2l6ZVNjYWxlTWFwW3NjYWxlXSwgZXVpVGhlbWUsIG1lYXN1cmVtZW50KSxcbiAgICBmb250V2VpZ2h0OiBldWlUaGVtZS5mb250LndlaWdodFtldWlUaGVtZS5mb250LnRpdGxlLndlaWdodF0sXG4gICAgY29sb3I6IGV1aVRoZW1lLmNvbG9ycy50aXRsZSxcbiAgfTtcbn07XG5cbi8vIEhvb2sgdmVyc2lvblxuZXhwb3J0IGNvbnN0IHVzZUV1aVRpdGxlID0gKFxuICBzY2FsZTogRXVpVGl0bGVTaXplID0gJ20nLFxuICBtZWFzdXJlbWVudDogX0V1aVRoZW1lRm9udFNpemVNZWFzdXJlbWVudCA9ICdyZW0nXG4pOiBFdWlUaGVtZVRpdGxlID0+IHtcbiAgY29uc3QgeyBldWlUaGVtZSB9ID0gdXNlRXVpVGhlbWUoKTtcbiAgcmV0dXJuIGV1aVRpdGxlKHNjYWxlLCBldWlUaGVtZSwgbWVhc3VyZW1lbnQpO1xufTtcblxuLyoqXG4gKiBTdHlsZXNcbiAqL1xuZXhwb3J0IGNvbnN0IGV1aVRpdGxlU3R5bGVzID0gKHsgZXVpVGhlbWUgfTogVXNlRXVpVGhlbWUpID0+ICh7XG4gIGV1aVRpdGxlOiBjc3NgXG4gICAgJHtldWlUZXh0QnJlYWtXb3JkfVxuXG4gICAgJiArICYge1xuICAgICAgbWFyZ2luLXRvcDogJHtldWlUaGVtZS5zaXplLmx9O1xuICAgIH1cbiAgYCxcbiAgdXBwZXJjYXNlOiBjc3NgXG4gICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgYCxcbiAgLy8gU2l6ZXNcbiAgeHh4czogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3h4eHMnLCBldWlUaGVtZSl9XG4gIGAsXG4gIHh4czogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3h4cycsIGV1aVRoZW1lKX1cbiAgYCxcbiAgeHM6IGNzc2BcbiAgICAke2V1aVRpdGxlKCd4cycsIGV1aVRoZW1lKX1cbiAgYCxcbiAgczogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3MnLCBldWlUaGVtZSl9XG4gIGAsXG4gIG06IGNzc2BcbiAgICAke2V1aVRpdGxlKCdtJywgZXVpVGhlbWUpfVxuICBgLFxuICBsOiBjc3NgXG4gICAgJHtldWlUaXRsZSgnbCcsIGV1aVRoZW1lKX1cbiAgYCxcbn0pO1xuIl19 */
-                      </style>
-                    </head>,
-                    "ctr": 2,
-                    "insertionPoint": undefined,
-                    "isSpeedy": false,
-                    "key": "css",
-                    "nonce": undefined,
-                    "prepend": undefined,
-                    "tags": Array [
-                      <style
-                        data-emotion="css"
-                        data-s=""
-                      >
-                        
-                        .css-1mr6cet-euiTitle-s{overflow-wrap:break-word!important;word-wrap:break-word!important;word-break:break-word;font-size:1.5714rem;line-height:1.7143rem;font-weight:700;color:#1a1c21;}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRpdGxlLnN0eWxlcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFxRlEiLCJmaWxlIjoidGl0bGUuc3R5bGVzLnRzIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIENvcHlyaWdodCBFbGFzdGljc2VhcmNoIEIuVi4gYW5kL29yIGxpY2Vuc2VkIHRvIEVsYXN0aWNzZWFyY2ggQi5WLiB1bmRlciBvbmVcbiAqIG9yIG1vcmUgY29udHJpYnV0b3IgbGljZW5zZSBhZ3JlZW1lbnRzLiBMaWNlbnNlZCB1bmRlciB0aGUgRWxhc3RpYyBMaWNlbnNlXG4gKiAyLjAgYW5kIHRoZSBTZXJ2ZXIgU2lkZSBQdWJsaWMgTGljZW5zZSwgdiAxOyB5b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdFxuICogaW4gY29tcGxpYW5jZSB3aXRoLCBhdCB5b3VyIGVsZWN0aW9uLCB0aGUgRWxhc3RpYyBMaWNlbnNlIDIuMCBvciB0aGUgU2VydmVyXG4gKiBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDEuXG4gKi9cblxuaW1wb3J0IHsgQ1NTUHJvcGVydGllcyB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0JztcbmltcG9ydCB7IFVzZUV1aVRoZW1lLCB1c2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcbmltcG9ydCB7XG4gIGV1aVRleHRCcmVha1dvcmQsXG4gIGV1aUZvbnRTaXplLFxuICBfRXVpVGhlbWVGb250U2NhbGUsXG4gIF9FdWlUaGVtZUZvbnRTaXplTWVhc3VyZW1lbnQsXG59IGZyb20gJy4uLy4uL2dsb2JhbF9zdHlsaW5nJztcbmltcG9ydCB7IEV1aVRpdGxlU2l6ZSB9IGZyb20gJy4vdGl0bGUnO1xuXG4vKipcbiAqIE1peGluXG4gKi9cbnR5cGUgRXVpVGhlbWVUaXRsZSA9IHtcbiAgZm9udFNpemU6IENTU1Byb3BlcnRpZXNbJ2ZvbnRTaXplJ107XG4gIGxpbmVIZWlnaHQ6IENTU1Byb3BlcnRpZXNbJ2xpbmVIZWlnaHQnXTtcbiAgZm9udFdlaWdodDogQ1NTUHJvcGVydGllc1snZm9udFdlaWdodCddO1xuICBjb2xvcjogQ1NTUHJvcGVydGllc1snY29sb3InXTtcbn07XG5cbmV4cG9ydCBjb25zdCBldWlUaXRsZSA9IChcbiAgc2NhbGU6IEV1aVRpdGxlU2l6ZSA9ICdtJyxcbiAgZXVpVGhlbWU6IFVzZUV1aVRoZW1lWydldWlUaGVtZSddLFxuICBtZWFzdXJlbWVudDogX0V1aVRoZW1lRm9udFNpemVNZWFzdXJlbWVudCA9ICdyZW0nXG4pOiBFdWlUaGVtZVRpdGxlID0+IHtcbiAgY29uc3QgdGl0bGVTY2FsZVRvRm9udFNpemVTY2FsZU1hcDoge1xuICAgIFtzaXplIGluIEV1aVRpdGxlU2l6ZV06IF9FdWlUaGVtZUZvbnRTY2FsZTtcbiAgfSA9IHtcbiAgICB4eHhzOiAneHMnLFxuICAgIHh4czogJ3MnLFxuICAgIHhzOiAnbScsXG4gICAgczogJ2wnLFxuICAgIG06ICd4bCcsXG4gICAgbDogJ3h4bCcsXG4gIH07XG5cbiAgcmV0dXJuIHtcbiAgICAuLi5ldWlGb250U2l6ZSh0aXRsZVNjYWxlVG9Gb250U2l6ZVNjYWxlTWFwW3NjYWxlXSwgZXVpVGhlbWUsIG1lYXN1cmVtZW50KSxcbiAgICBmb250V2VpZ2h0OiBldWlUaGVtZS5mb250LndlaWdodFtldWlUaGVtZS5mb250LnRpdGxlLndlaWdodF0sXG4gICAgY29sb3I6IGV1aVRoZW1lLmNvbG9ycy50aXRsZSxcbiAgfTtcbn07XG5cbi8vIEhvb2sgdmVyc2lvblxuZXhwb3J0IGNvbnN0IHVzZUV1aVRpdGxlID0gKFxuICBzY2FsZTogRXVpVGl0bGVTaXplID0gJ20nLFxuICBtZWFzdXJlbWVudDogX0V1aVRoZW1lRm9udFNpemVNZWFzdXJlbWVudCA9ICdyZW0nXG4pOiBFdWlUaGVtZVRpdGxlID0+IHtcbiAgY29uc3QgeyBldWlUaGVtZSB9ID0gdXNlRXVpVGhlbWUoKTtcbiAgcmV0dXJuIGV1aVRpdGxlKHNjYWxlLCBldWlUaGVtZSwgbWVhc3VyZW1lbnQpO1xufTtcblxuLyoqXG4gKiBTdHlsZXNcbiAqL1xuZXhwb3J0IGNvbnN0IGV1aVRpdGxlU3R5bGVzID0gKHsgZXVpVGhlbWUgfTogVXNlRXVpVGhlbWUpID0+ICh7XG4gIGV1aVRpdGxlOiBjc3NgXG4gICAgJHtldWlUZXh0QnJlYWtXb3JkfVxuXG4gICAgJiArICYge1xuICAgICAgbWFyZ2luLXRvcDogJHtldWlUaGVtZS5zaXplLmx9O1xuICAgIH1cbiAgYCxcbiAgdXBwZXJjYXNlOiBjc3NgXG4gICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgYCxcbiAgLy8gU2l6ZXNcbiAgeHh4czogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3h4eHMnLCBldWlUaGVtZSl9XG4gIGAsXG4gIHh4czogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3h4cycsIGV1aVRoZW1lKX1cbiAgYCxcbiAgeHM6IGNzc2BcbiAgICAke2V1aVRpdGxlKCd4cycsIGV1aVRoZW1lKX1cbiAgYCxcbiAgczogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3MnLCBldWlUaGVtZSl9XG4gIGAsXG4gIG06IGNzc2BcbiAgICAke2V1aVRpdGxlKCdtJywgZXVpVGhlbWUpfVxuICBgLFxuICBsOiBjc3NgXG4gICAgJHtldWlUaXRsZSgnbCcsIGV1aVRoZW1lKX1cbiAgYCxcbn0pO1xuIl19 */
-                      </style>,
-                      <style
-                        data-emotion="css"
-                        data-s=""
-                      >
-                        
-                        .css-1mr6cet-euiTitle-s+.css-1mr6cet-euiTitle-s{margin-top:24px;}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRpdGxlLnN0eWxlcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFxRlEiLCJmaWxlIjoidGl0bGUuc3R5bGVzLnRzIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIENvcHlyaWdodCBFbGFzdGljc2VhcmNoIEIuVi4gYW5kL29yIGxpY2Vuc2VkIHRvIEVsYXN0aWNzZWFyY2ggQi5WLiB1bmRlciBvbmVcbiAqIG9yIG1vcmUgY29udHJpYnV0b3IgbGljZW5zZSBhZ3JlZW1lbnRzLiBMaWNlbnNlZCB1bmRlciB0aGUgRWxhc3RpYyBMaWNlbnNlXG4gKiAyLjAgYW5kIHRoZSBTZXJ2ZXIgU2lkZSBQdWJsaWMgTGljZW5zZSwgdiAxOyB5b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdFxuICogaW4gY29tcGxpYW5jZSB3aXRoLCBhdCB5b3VyIGVsZWN0aW9uLCB0aGUgRWxhc3RpYyBMaWNlbnNlIDIuMCBvciB0aGUgU2VydmVyXG4gKiBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDEuXG4gKi9cblxuaW1wb3J0IHsgQ1NTUHJvcGVydGllcyB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0JztcbmltcG9ydCB7IFVzZUV1aVRoZW1lLCB1c2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcbmltcG9ydCB7XG4gIGV1aVRleHRCcmVha1dvcmQsXG4gIGV1aUZvbnRTaXplLFxuICBfRXVpVGhlbWVGb250U2NhbGUsXG4gIF9FdWlUaGVtZUZvbnRTaXplTWVhc3VyZW1lbnQsXG59IGZyb20gJy4uLy4uL2dsb2JhbF9zdHlsaW5nJztcbmltcG9ydCB7IEV1aVRpdGxlU2l6ZSB9IGZyb20gJy4vdGl0bGUnO1xuXG4vKipcbiAqIE1peGluXG4gKi9cbnR5cGUgRXVpVGhlbWVUaXRsZSA9IHtcbiAgZm9udFNpemU6IENTU1Byb3BlcnRpZXNbJ2ZvbnRTaXplJ107XG4gIGxpbmVIZWlnaHQ6IENTU1Byb3BlcnRpZXNbJ2xpbmVIZWlnaHQnXTtcbiAgZm9udFdlaWdodDogQ1NTUHJvcGVydGllc1snZm9udFdlaWdodCddO1xuICBjb2xvcjogQ1NTUHJvcGVydGllc1snY29sb3InXTtcbn07XG5cbmV4cG9ydCBjb25zdCBldWlUaXRsZSA9IChcbiAgc2NhbGU6IEV1aVRpdGxlU2l6ZSA9ICdtJyxcbiAgZXVpVGhlbWU6IFVzZUV1aVRoZW1lWydldWlUaGVtZSddLFxuICBtZWFzdXJlbWVudDogX0V1aVRoZW1lRm9udFNpemVNZWFzdXJlbWVudCA9ICdyZW0nXG4pOiBFdWlUaGVtZVRpdGxlID0+IHtcbiAgY29uc3QgdGl0bGVTY2FsZVRvRm9udFNpemVTY2FsZU1hcDoge1xuICAgIFtzaXplIGluIEV1aVRpdGxlU2l6ZV06IF9FdWlUaGVtZUZvbnRTY2FsZTtcbiAgfSA9IHtcbiAgICB4eHhzOiAneHMnLFxuICAgIHh4czogJ3MnLFxuICAgIHhzOiAnbScsXG4gICAgczogJ2wnLFxuICAgIG06ICd4bCcsXG4gICAgbDogJ3h4bCcsXG4gIH07XG5cbiAgcmV0dXJuIHtcbiAgICAuLi5ldWlGb250U2l6ZSh0aXRsZVNjYWxlVG9Gb250U2l6ZVNjYWxlTWFwW3NjYWxlXSwgZXVpVGhlbWUsIG1lYXN1cmVtZW50KSxcbiAgICBmb250V2VpZ2h0OiBldWlUaGVtZS5mb250LndlaWdodFtldWlUaGVtZS5mb250LnRpdGxlLndlaWdodF0sXG4gICAgY29sb3I6IGV1aVRoZW1lLmNvbG9ycy50aXRsZSxcbiAgfTtcbn07XG5cbi8vIEhvb2sgdmVyc2lvblxuZXhwb3J0IGNvbnN0IHVzZUV1aVRpdGxlID0gKFxuICBzY2FsZTogRXVpVGl0bGVTaXplID0gJ20nLFxuICBtZWFzdXJlbWVudDogX0V1aVRoZW1lRm9udFNpemVNZWFzdXJlbWVudCA9ICdyZW0nXG4pOiBFdWlUaGVtZVRpdGxlID0+IHtcbiAgY29uc3QgeyBldWlUaGVtZSB9ID0gdXNlRXVpVGhlbWUoKTtcbiAgcmV0dXJuIGV1aVRpdGxlKHNjYWxlLCBldWlUaGVtZSwgbWVhc3VyZW1lbnQpO1xufTtcblxuLyoqXG4gKiBTdHlsZXNcbiAqL1xuZXhwb3J0IGNvbnN0IGV1aVRpdGxlU3R5bGVzID0gKHsgZXVpVGhlbWUgfTogVXNlRXVpVGhlbWUpID0+ICh7XG4gIGV1aVRpdGxlOiBjc3NgXG4gICAgJHtldWlUZXh0QnJlYWtXb3JkfVxuXG4gICAgJiArICYge1xuICAgICAgbWFyZ2luLXRvcDogJHtldWlUaGVtZS5zaXplLmx9O1xuICAgIH1cbiAgYCxcbiAgdXBwZXJjYXNlOiBjc3NgXG4gICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgYCxcbiAgLy8gU2l6ZXNcbiAgeHh4czogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3h4eHMnLCBldWlUaGVtZSl9XG4gIGAsXG4gIHh4czogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3h4cycsIGV1aVRoZW1lKX1cbiAgYCxcbiAgeHM6IGNzc2BcbiAgICAke2V1aVRpdGxlKCd4cycsIGV1aVRoZW1lKX1cbiAgYCxcbiAgczogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3MnLCBldWlUaGVtZSl9XG4gIGAsXG4gIG06IGNzc2BcbiAgICAke2V1aVRpdGxlKCdtJywgZXVpVGhlbWUpfVxuICBgLFxuICBsOiBjc3NgXG4gICAgJHtldWlUaXRsZSgnbCcsIGV1aVRoZW1lKX1cbiAgYCxcbn0pO1xuIl19 */
-                      </style>,
-                    ],
-                  },
-                }
-              }
-              isStringTag={true}
-              serialized={
-                Object {
-                  "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRpdGxlLnN0eWxlcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFxRlEiLCJmaWxlIjoidGl0bGUuc3R5bGVzLnRzIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIENvcHlyaWdodCBFbGFzdGljc2VhcmNoIEIuVi4gYW5kL29yIGxpY2Vuc2VkIHRvIEVsYXN0aWNzZWFyY2ggQi5WLiB1bmRlciBvbmVcbiAqIG9yIG1vcmUgY29udHJpYnV0b3IgbGljZW5zZSBhZ3JlZW1lbnRzLiBMaWNlbnNlZCB1bmRlciB0aGUgRWxhc3RpYyBMaWNlbnNlXG4gKiAyLjAgYW5kIHRoZSBTZXJ2ZXIgU2lkZSBQdWJsaWMgTGljZW5zZSwgdiAxOyB5b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdFxuICogaW4gY29tcGxpYW5jZSB3aXRoLCBhdCB5b3VyIGVsZWN0aW9uLCB0aGUgRWxhc3RpYyBMaWNlbnNlIDIuMCBvciB0aGUgU2VydmVyXG4gKiBTaWRlIFB1YmxpYyBMaWNlbnNlLCB2IDEuXG4gKi9cblxuaW1wb3J0IHsgQ1NTUHJvcGVydGllcyB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IGNzcyB9IGZyb20gJ0BlbW90aW9uL3JlYWN0JztcbmltcG9ydCB7IFVzZUV1aVRoZW1lLCB1c2VFdWlUaGVtZSB9IGZyb20gJy4uLy4uL3NlcnZpY2VzJztcbmltcG9ydCB7XG4gIGV1aVRleHRCcmVha1dvcmQsXG4gIGV1aUZvbnRTaXplLFxuICBfRXVpVGhlbWVGb250U2NhbGUsXG4gIF9FdWlUaGVtZUZvbnRTaXplTWVhc3VyZW1lbnQsXG59IGZyb20gJy4uLy4uL2dsb2JhbF9zdHlsaW5nJztcbmltcG9ydCB7IEV1aVRpdGxlU2l6ZSB9IGZyb20gJy4vdGl0bGUnO1xuXG4vKipcbiAqIE1peGluXG4gKi9cbnR5cGUgRXVpVGhlbWVUaXRsZSA9IHtcbiAgZm9udFNpemU6IENTU1Byb3BlcnRpZXNbJ2ZvbnRTaXplJ107XG4gIGxpbmVIZWlnaHQ6IENTU1Byb3BlcnRpZXNbJ2xpbmVIZWlnaHQnXTtcbiAgZm9udFdlaWdodDogQ1NTUHJvcGVydGllc1snZm9udFdlaWdodCddO1xuICBjb2xvcjogQ1NTUHJvcGVydGllc1snY29sb3InXTtcbn07XG5cbmV4cG9ydCBjb25zdCBldWlUaXRsZSA9IChcbiAgc2NhbGU6IEV1aVRpdGxlU2l6ZSA9ICdtJyxcbiAgZXVpVGhlbWU6IFVzZUV1aVRoZW1lWydldWlUaGVtZSddLFxuICBtZWFzdXJlbWVudDogX0V1aVRoZW1lRm9udFNpemVNZWFzdXJlbWVudCA9ICdyZW0nXG4pOiBFdWlUaGVtZVRpdGxlID0+IHtcbiAgY29uc3QgdGl0bGVTY2FsZVRvRm9udFNpemVTY2FsZU1hcDoge1xuICAgIFtzaXplIGluIEV1aVRpdGxlU2l6ZV06IF9FdWlUaGVtZUZvbnRTY2FsZTtcbiAgfSA9IHtcbiAgICB4eHhzOiAneHMnLFxuICAgIHh4czogJ3MnLFxuICAgIHhzOiAnbScsXG4gICAgczogJ2wnLFxuICAgIG06ICd4bCcsXG4gICAgbDogJ3h4bCcsXG4gIH07XG5cbiAgcmV0dXJuIHtcbiAgICAuLi5ldWlGb250U2l6ZSh0aXRsZVNjYWxlVG9Gb250U2l6ZVNjYWxlTWFwW3NjYWxlXSwgZXVpVGhlbWUsIG1lYXN1cmVtZW50KSxcbiAgICBmb250V2VpZ2h0OiBldWlUaGVtZS5mb250LndlaWdodFtldWlUaGVtZS5mb250LnRpdGxlLndlaWdodF0sXG4gICAgY29sb3I6IGV1aVRoZW1lLmNvbG9ycy50aXRsZSxcbiAgfTtcbn07XG5cbi8vIEhvb2sgdmVyc2lvblxuZXhwb3J0IGNvbnN0IHVzZUV1aVRpdGxlID0gKFxuICBzY2FsZTogRXVpVGl0bGVTaXplID0gJ20nLFxuICBtZWFzdXJlbWVudDogX0V1aVRoZW1lRm9udFNpemVNZWFzdXJlbWVudCA9ICdyZW0nXG4pOiBFdWlUaGVtZVRpdGxlID0+IHtcbiAgY29uc3QgeyBldWlUaGVtZSB9ID0gdXNlRXVpVGhlbWUoKTtcbiAgcmV0dXJuIGV1aVRpdGxlKHNjYWxlLCBldWlUaGVtZSwgbWVhc3VyZW1lbnQpO1xufTtcblxuLyoqXG4gKiBTdHlsZXNcbiAqL1xuZXhwb3J0IGNvbnN0IGV1aVRpdGxlU3R5bGVzID0gKHsgZXVpVGhlbWUgfTogVXNlRXVpVGhlbWUpID0+ICh7XG4gIGV1aVRpdGxlOiBjc3NgXG4gICAgJHtldWlUZXh0QnJlYWtXb3JkfVxuXG4gICAgJiArICYge1xuICAgICAgbWFyZ2luLXRvcDogJHtldWlUaGVtZS5zaXplLmx9O1xuICAgIH1cbiAgYCxcbiAgdXBwZXJjYXNlOiBjc3NgXG4gICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgYCxcbiAgLy8gU2l6ZXNcbiAgeHh4czogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3h4eHMnLCBldWlUaGVtZSl9XG4gIGAsXG4gIHh4czogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3h4cycsIGV1aVRoZW1lKX1cbiAgYCxcbiAgeHM6IGNzc2BcbiAgICAke2V1aVRpdGxlKCd4cycsIGV1aVRoZW1lKX1cbiAgYCxcbiAgczogY3NzYFxuICAgICR7ZXVpVGl0bGUoJ3MnLCBldWlUaGVtZSl9XG4gIGAsXG4gIG06IGNzc2BcbiAgICAke2V1aVRpdGxlKCdtJywgZXVpVGhlbWUpfVxuICBgLFxuICBsOiBjc3NgXG4gICAgJHtldWlUaXRsZSgnbCcsIGV1aVRoZW1lKX1cbiAgYCxcbn0pO1xuIl19 */",
-                  "name": "1mr6cet-euiTitle-s",
-                  "next": undefined,
-                  "styles": ";
-  overflow-wrap: break-word !important; // makes sure the long string will wrap and not bust out of the container
-  word-wrap: break-word !important; // spec says, they are literally just alternate names for each other but some browsers support one and not the other
-  word-break: break-word; // IE doesn't understand but that's ok
- &+&{margin-top:24px;};label:euiTitle;;;;font-size:1.5714rem;line-height:1.7143rem;font-weight:700;color:#1a1c21;;;label:s;;;;",
-                  "toString": [Function],
-                }
-              }
-            />
-            <span
-              className="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
-              id="generated-idTitle"
-            >
-              <a
-                aria-describedby="generated-idDescription"
-                className="euiCard__titleAnchor"
-                href="#"
-                rel="noreferrer"
-              >
-                Hoi
-              </a>
-            </span>
-          </span>
-        </EuiTitle>
-        <EuiText
-          className="euiCard__description"
-          id="generated-idDescription"
-          size="s"
-        >
-          <div
-            className="euiText euiText--small euiCard__description"
-            id="generated-idDescription"
-          >
-            <p>
-              There
-            </p>
-          </div>
-        </EuiText>
-      </div>
+        Hoi
+      </a>
+    </span>
+    <div
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
+      id="generated-idDescription"
+    >
+      <p>
+        There
+      </p>
     </div>
-  </EuiPanel>
-</EuiCard>
+  </div>
+</div>
 `;
 
 exports[`EuiCard props icon 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned euiCard--hasIcon"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned euiCard--hasIcon css-f2xo4o-euiPanel-grow-m-m-plain-hasShadow"
 >
   <div
     class="euiCard__top"
@@ -648,7 +546,7 @@ exports[`EuiCard props icon 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -661,7 +559,7 @@ exports[`EuiCard props icon 1`] = `
 
 exports[`EuiCard props image 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned css-f2xo4o-euiPanel-grow-m-m-plain-hasShadow"
 >
   <div
     class="euiCard__top"
@@ -687,7 +585,7 @@ exports[`EuiCard props image 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -700,7 +598,7 @@ exports[`EuiCard props image 1`] = `
 
 exports[`EuiCard props isDisabled 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiCard euiCard--centerAligned euiCard-isDisabled"
+  class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiCard euiCard--centerAligned euiCard-isDisabled css-isico0-euiPanel-grow-m-m-subdued"
 >
   <div
     class="euiCard__content"
@@ -718,7 +616,7 @@ exports[`EuiCard props isDisabled 1`] = `
       </button>
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -731,7 +629,7 @@ exports[`EuiCard props isDisabled 1`] = `
 
 exports[`EuiCard props paddingSize l is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingLarge euiCard euiCard--centerAligned css-1nsffwn-euiPanel-grow-m-l-plain-hasShadow"
 >
   <div
     class="euiCard__content"
@@ -743,7 +641,7 @@ exports[`EuiCard props paddingSize l is rendered 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -756,7 +654,7 @@ exports[`EuiCard props paddingSize l is rendered 1`] = `
 
 exports[`EuiCard props paddingSize m is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned css-f2xo4o-euiPanel-grow-m-m-plain-hasShadow"
 >
   <div
     class="euiCard__content"
@@ -768,7 +666,7 @@ exports[`EuiCard props paddingSize m is rendered 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -781,7 +679,7 @@ exports[`EuiCard props paddingSize m is rendered 1`] = `
 
 exports[`EuiCard props paddingSize none is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiCard euiCard--centerAligned css-n9us4v-euiPanel-grow-m-plain-hasShadow"
 >
   <div
     class="euiCard__content"
@@ -793,7 +691,7 @@ exports[`EuiCard props paddingSize none is rendered 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -806,7 +704,7 @@ exports[`EuiCard props paddingSize none is rendered 1`] = `
 
 exports[`EuiCard props paddingSize s is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiCard euiCard--centerAligned css-2969qh-euiPanel-grow-m-s-plain-hasShadow"
 >
   <div
     class="euiCard__content"
@@ -818,7 +716,57 @@ exports[`EuiCard props paddingSize s is rendered 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCard props paddingSize xl is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--plain euiCard euiCard--centerAligned css-1t67yy8-euiPanel-grow-m-xl-plain-hasShadow"
+>
+  <div
+    class="euiCard__content"
+  >
+    <span
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+      id="generated-idTitle"
+    >
+      Card title
+    </span>
+    <div
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCard props paddingSize xs is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--plain euiCard euiCard--centerAligned css-n593ms-euiPanel-grow-m-xs-plain-hasShadow"
+>
+  <div
+    class="euiCard__content"
+  >
+    <span
+      class="euiTitle euiCard__title css-1mr6cet-euiTitle-s"
+      id="generated-idTitle"
+    >
+      Card title
+    </span>
+    <div
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -831,7 +779,7 @@ exports[`EuiCard props paddingSize s is rendered 1`] = `
 
 exports[`EuiCard props selectable 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--isClickable euiCard euiCard--centerAligned euiCard--isClickable euiCard--isSelectable euiCard--isSelectable--text"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned euiCard--isClickable euiCard--isSelectable euiCard--isSelectable--text css-1mfocz8-euiPanel-grow-m-m-plain-hasShadow-isClickable"
 >
   <div
     class="euiCard__content"
@@ -843,7 +791,7 @@ exports[`EuiCard props selectable 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -873,7 +821,7 @@ exports[`EuiCard props selectable 1`] = `
 
 exports[`EuiCard props textAlign 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--rightAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--rightAligned css-f2xo4o-euiPanel-grow-m-m-plain-hasShadow"
 >
   <div
     class="euiCard__content"
@@ -885,7 +833,7 @@ exports[`EuiCard props textAlign 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -898,7 +846,7 @@ exports[`EuiCard props textAlign 1`] = `
 
 exports[`EuiCard props titleElement 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned css-f2xo4o-euiPanel-grow-m-m-plain-hasShadow"
 >
   <div
     class="euiCard__content"
@@ -910,7 +858,7 @@ exports[`EuiCard props titleElement 1`] = `
       Card title
     </h4>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -923,7 +871,7 @@ exports[`EuiCard props titleElement 1`] = `
 
 exports[`EuiCard props titleElement with nodes 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned css-f2xo4o-euiPanel-grow-m-m-plain-hasShadow"
 >
   <div
     class="euiCard__content"
@@ -935,7 +883,7 @@ exports[`EuiCard props titleElement with nodes 1`] = `
       Card title
     </h4>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>
@@ -948,7 +896,7 @@ exports[`EuiCard props titleElement with nodes 1`] = `
 
 exports[`EuiCard props titleSize 1`] = `
 <div
-  class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard euiCard--centerAligned css-f2xo4o-euiPanel-grow-m-m-plain-hasShadow"
 >
   <div
     class="euiCard__content"
@@ -960,7 +908,7 @@ exports[`EuiCard props titleSize 1`] = `
       Card title
     </span>
     <div
-      class="euiText euiText--small euiCard__description"
+      class="euiText euiCard__description css-1vkrgyt-euiText-s"
       id="generated-idDescription"
     >
       <p>

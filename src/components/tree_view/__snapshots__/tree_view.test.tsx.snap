@@ -2,7 +2,7 @@
 
 exports[`EuiTreeView is rendered 1`] = `
 <div
-  class="euiText euiText--medium euiTreeView__wrapper"
+  class="euiText euiTreeView__wrapper css-1lo1kz-euiText-m"
 >
   <p
     class="euiScreenReaderOnly"
@@ -44,7 +44,7 @@ exports[`EuiTreeView is rendered 1`] = `
         id="euiTreeView_generated-id_item_one"
       >
         <div
-          class="euiText euiText--medium euiTreeView__wrapper"
+          class="euiText euiTreeView__wrapper css-1lo1kz-euiText-m"
         >
           <ul
             aria-label="Item One child of aria-label"

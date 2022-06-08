@@ -50,6 +50,7 @@ export const ScrollExample = {
     },
     {
       title: 'Vertical (scroll-y)',
+      color: 'subdued',
       wrapText: false,
       text: (
         <>
@@ -98,6 +99,7 @@ export const ScrollExample = {
     },
     {
       title: 'Full height layout',
+      color: 'subdued',
       wrapText: false,
       text: (
         <>

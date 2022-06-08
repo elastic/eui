@@ -13,6 +13,7 @@ import React, {
   createRef,
   ReactElement,
   KeyboardEvent,
+  MouseEvent,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
@@ -32,6 +33,8 @@ import { EuiSelectableOption } from './selectable_option';
 import { EuiSelectableOptionsListProps } from './selectable_list/selectable_list';
 import { EuiSelectableSearchProps } from './selectable_search/selectable_search';
 import { Align } from 'react-window';
+
+export type EuiSelectableOnChangeEvent = KeyboardEvent | MouseEvent;
 
 type RequiredEuiSelectableOptionsListProps = Omit<
   EuiSelectableOptionsListProps,
@@ -92,9 +95,13 @@ export type EuiSelectableProps<T = {}> = CommonProps &
      */
     options: Array<EuiSelectableOption<T>>;
     /**
-     * Passes back the altered `options` array with selected options as
+     * Passes back the altered `options` array with selected options having `checked: 'on'`.
+     * Also passes back the React click/keyboard event as a second argument.
      */
-    onChange?: (options: Array<EuiSelectableOption<T>>) => void;
+    onChange?: (
+      options: Array<EuiSelectableOption<T>>,
+      event: EuiSelectableOnChangeEvent
+    ) => void;
     /**
      * Sets the single selection policy of
      * `false`: allows multiple selection
@@ -334,7 +341,8 @@ export class EuiSelectable<T = {}> extends Component<
         event.stopPropagation();
         if (this.state.activeOptionIndex != null && optionsList) {
           optionsList.onAddOrRemoveOption(
-            this.state.visibleOptions[this.state.activeOptionIndex]
+            this.state.visibleOptions[this.state.activeOptionIndex],
+            event
           );
         }
         break;
@@ -428,7 +436,10 @@ export class EuiSelectable<T = {}> extends Component<
     });
   };
 
-  onOptionClick = (options: Array<EuiSelectableOption<T>>) => {
+  onOptionClick = (
+    options: Array<EuiSelectableOption<T>>,
+    event: EuiSelectableOnChangeEvent
+  ) => {
     const { isPreFiltered, onChange } = this.props;
     const { searchValue } = this.state;
     const visibleOptions = getMatchingOptions(
@@ -440,7 +451,7 @@ export class EuiSelectable<T = {}> extends Component<
     this.setState({ visibleOptions });
 
     if (onChange) {
-      onChange(options);
+      onChange(options, event);
     }
   };
 

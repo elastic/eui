@@ -275,7 +275,7 @@ exports[`EuiToast is rendered 1`] = `
     </span>
   </div>
   <div
-    class="euiText euiText--small euiToastBody"
+    class="euiText euiToastBody css-1vkrgyt-euiText-s"
   >
     <p>
       Hi

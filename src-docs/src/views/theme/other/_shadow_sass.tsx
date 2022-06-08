@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  EuiSpacer,
-  keysOf,
-  _EuiShadowSizesDescriptions,
-} from '../../../../../src';
+import { keysOf, _EuiShadowSizesDescriptions } from '../../../../../src';
 
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
@@ -25,6 +21,7 @@ export default () => {
     <>
       <ThemeExample
         title="Mixins"
+        type={null}
         description={
           <>
             <p>
@@ -49,7 +46,13 @@ export default () => {
         snippet={'@include euiBottomShadow;'}
         snippetLanguage="scss"
       />
+    </>
+  );
+};
 
+export const ShadowValuesSass = () => {
+  return (
+    <>
       <ThemeValuesTable
         valign="middle"
         items={keysOf(shadows).map((shadow) => {
@@ -68,7 +71,6 @@ export default () => {
           <div className={`guideSass__shadow guideSass__shadow--${item.id}`} />
         )}
       />
-      <EuiSpacer size="xl" />
     </>
   );
 };

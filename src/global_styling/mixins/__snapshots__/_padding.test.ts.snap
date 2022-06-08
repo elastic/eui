@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: bottom, for each size: l 1`] = `"padding-block-end:24px;;label:l;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: bottom, for each size: m 1`] = `"padding-block-end:16px;;label:m;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: bottom, for each size: none 1`] = `null`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: bottom, for each size: s 1`] = `"padding-block-end:8px;;label:s;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: bottom, for each size: xl 1`] = `"padding-block-end:32px;;label:xl;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: bottom, for each size: xs 1`] = `"padding-block-end:4px;;label:xs;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: horizontal, for each size: l 1`] = `"padding-inline:24px;;label:l;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: horizontal, for each size: m 1`] = `"padding-inline:16px;;label:m;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: horizontal, for each size: none 1`] = `null`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: horizontal, for each size: s 1`] = `"padding-inline:8px;;label:s;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: horizontal, for each size: xl 1`] = `"padding-inline:32px;;label:xl;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: horizontal, for each size: xs 1`] = `"padding-inline:4px;;label:xs;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: left, for each size: l 1`] = `"padding-inline-start:24px;;label:l;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: left, for each size: m 1`] = `"padding-inline-start:16px;;label:m;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: left, for each size: none 1`] = `null`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: left, for each size: s 1`] = `"padding-inline-start:8px;;label:s;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: left, for each size: xl 1`] = `"padding-inline-start:32px;;label:xl;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: left, for each size: xs 1`] = `"padding-inline-start:4px;;label:xs;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: right, for each size: l 1`] = `"padding-inline-end:24px;;label:l;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: right, for each size: m 1`] = `"padding-inline-end:16px;;label:m;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: right, for each size: none 1`] = `null`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: right, for each size: s 1`] = `"padding-inline-end:8px;;label:s;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: right, for each size: xl 1`] = `"padding-inline-end:32px;;label:xl;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: right, for each size: xs 1`] = `"padding-inline-end:4px;;label:xs;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: top, for each size: l 1`] = `"padding-block-start:24px;;label:l;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: top, for each size: m 1`] = `"padding-block-start:16px;;label:m;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: top, for each size: none 1`] = `null`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: top, for each size: s 1`] = `"padding-block-start:8px;;label:s;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: top, for each size: xl 1`] = `"padding-block-start:32px;;label:xl;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: top, for each size: xs 1`] = `"padding-block-start:4px;;label:xs;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: vertical, for each size: l 1`] = `"padding-block:24px;;label:l;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: vertical, for each size: m 1`] = `"padding-block:16px;;label:m;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: vertical, for each size: none 1`] = `null`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: vertical, for each size: s 1`] = `"padding-block:8px;;label:s;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: vertical, for each size: xl 1`] = `"padding-block:32px;;label:xl;"`;
+
+exports[`useEuiPaddingCSS hook returns an object of Emotion padding properties for side: vertical, for each size: xs 1`] = `"padding-block:4px;;label:xs;"`;
+
+exports[`useEuiPaddingSize returns a static padding value for each size l 1`] = `"24px"`;
+
+exports[`useEuiPaddingSize returns a static padding value for each size m 1`] = `"16px"`;
+
+exports[`useEuiPaddingSize returns a static padding value for each size none 1`] = `null`;
+
+exports[`useEuiPaddingSize returns a static padding value for each size s 1`] = `"8px"`;
+
+exports[`useEuiPaddingSize returns a static padding value for each size xl 1`] = `"32px"`;
+
+exports[`useEuiPaddingSize returns a static padding value for each size xs 1`] = `"4px"`;

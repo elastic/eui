@@ -392,12 +392,10 @@
   background: $backgroundColor;
   color: makeHighContrastColor($euiColorWarning, $backgroundColor);
   padding: $euiSize;
-  border-left: $euiBorderThick;
-  border-color: $euiColorWarning;
 
   .square {
-    fill: makeGraphicContrastColor($euiColorWarning, $backgroundColor);
-    vertical-align: bottom;
+    color: makeGraphicContrastColor($euiColorWarning, $backgroundColor);
+    margin-right: $euiSizeXS;
   }
 }
 
@@ -414,7 +412,7 @@
 }
 
 .guideSass__shadeExample {
-  $backgroundColor: shade($euiColorSuccess, 20%);
+  $backgroundColor: shade($euiColorSuccess, 40%);
   background: $backgroundColor;
   color: chooseLightOrDarkText($backgroundColor);
   padding: $euiSize;

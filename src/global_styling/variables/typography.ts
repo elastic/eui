@@ -12,7 +12,7 @@ import { CSSProperties } from 'react';
  * Font units of measure
  */
 
-export const EuiThemeFontSizeMeasurements = ['px', 'rem', 'em'] as const;
+export const EuiThemeFontSizeMeasurements = ['rem', 'px', 'em'] as const;
 
 export type _EuiThemeFontSizeMeasurement = typeof EuiThemeFontSizeMeasurements[number];
 
@@ -49,6 +49,10 @@ export type _EuiThemeFontBase = {
    * The font family used for monospace UI elements like EuiCode
    */
   familyCode?: string;
+  /**
+   * The font family used for serif UI elements like blockquotes within EuiText
+   */
+  familySerif?: string;
   /**
    * Controls advanced features OpenType fonts.
    * https://developer.mozilla.org/en-US/docs/Web/CSS/font-feature-settings

@@ -27,7 +27,7 @@ export const WindowEventExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Use an <strong>EuiWindowEvent</strong> to safely and declaratively
             manage adding and auto-removing event listeners to the{' '}
@@ -41,7 +41,7 @@ export const WindowEventExample = {
             <EuiCode>keydown</EuiCode> event and listens for ESC key presses,
             which closes the open modal.
           </p>
-        </div>
+        </>
       ),
       components: { EuiWindowEvent },
       props: { EuiWindowEvent },
@@ -56,7 +56,7 @@ export const WindowEventExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <EuiCallOut
             title="Be careful with global listeners"
             color="warning"
@@ -76,7 +76,7 @@ export const WindowEventExample = {
             <strong>EuiWindowEvent</strong> listener will never be triggered,
             avoiding the conflict.
           </p>
-        </div>
+        </>
       ),
       components: { EuiWindowEvent },
       demo: <WindowEventConflict />,
@@ -90,7 +90,7 @@ export const WindowEventExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             For some DOM events, you have to listen on the window. One example
             of this is tracking <em>mouse position</em>. Below, when you click
@@ -104,7 +104,7 @@ export const WindowEventExample = {
             <strong>EuiWindowEvent</strong> component manages that
             unmount/unregister process for you.
           </p>
-        </div>
+        </>
       ),
       components: { EuiWindowEvent },
       demo: <MousePosition />,

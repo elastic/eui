@@ -95,7 +95,7 @@ describe('EuiCard', () => {
 
     describe('href', () => {
       it('supports href as a link', () => {
-        const component = mount(
+        const component = render(
           <EuiCard title="Hoi" description="There" href="#" />
         );
 

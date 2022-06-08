@@ -15,7 +15,8 @@ export class Timer {
   timeRemaining: number | undefined;
 
   constructor(callback: () => void, timeMs: number) {
-    this.id = setTimeout(this.finish, timeMs);
+    // No need to set timeout for Infinity timeMs.
+    this.id = timeMs !== Infinity ? setTimeout(this.finish, timeMs) : undefined;
     this.callback = callback;
     this.finishTime = Date.now() + timeMs;
     this.timeRemaining = undefined;
