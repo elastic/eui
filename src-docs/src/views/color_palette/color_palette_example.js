@@ -46,7 +46,7 @@ export const ColorPaletteExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Qualitative palettes are best suited for communicating and comparing
             discrete data series. EUI recommends using the{' '}
@@ -66,7 +66,7 @@ export const ColorPaletteExample = {
             brightened version of the base palette to create better contrast
             with text.
           </p>
-        </div>
+        </>
       ),
       demo: <ColorPalette />,
       snippet: [
@@ -84,7 +84,7 @@ export const ColorPaletteExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Quantitative palettes are best suited for displaying data on a
             continuum, as in the case of health statuses and large geographic or
@@ -101,7 +101,7 @@ export const ColorPaletteExample = {
             iconType="accessibility"
             title="The palette for status is the only palette that has proper contrast ratios. When using the other palettes, consider adding another form of the data for screen readers."
           />
-        </div>
+        </>
       ),
       demo: <ColorPaletteQuant />,
     },
@@ -114,7 +114,7 @@ export const ColorPaletteExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Use the <EuiCode>colorPalette</EuiCode> service to generate a
             custom, gradiated palette array of any length from one or more
@@ -123,7 +123,7 @@ export const ColorPaletteExample = {
             halves of the spectrums separately. If a middle point is not
             provided, it will graduate to light gray.
           </p>
-        </div>
+        </>
       ),
       demo: <ColorPaletteCustom />,
       snippet: [

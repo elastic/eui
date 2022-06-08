@@ -73,7 +73,7 @@ export const TreeViewExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             <strong>EuiTreeView</strong> does not accept{' '}
             <EuiCode>children</EuiCode> directly but requires an array of{' '}
@@ -100,7 +100,7 @@ export const TreeViewExample = {
               </>
             }
           />
-        </div>
+        </>
       ),
       demo: <TreeView />,
       snippet: treeViewSnippet,
@@ -116,7 +116,7 @@ export const TreeViewExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             <strong>EuiTreeView</strong> supports a compressed mode with the{' '}
             <EuiCode language="js">{'display="compressed"'}</EuiCode> setting.
@@ -143,7 +143,7 @@ export const TreeViewExample = {
             <EuiCode>className</EuiCode> should you need to style them
             individually.
           </p>
-        </div>
+        </>
       ),
       components: { EuiTreeView },
       demo: <TreeViewCompressed />,
