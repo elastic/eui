@@ -17,8 +17,8 @@ export const SIZES = ['s', 'm', 'l', 'xl', 'xxl'] as const;
 export type EuiLoadingSpinnerSize = typeof SIZES[number];
 
 export type EuiLoadingSpinnerColor = {
-  border?: string;
-  highlight?: string;
+  border?: CSSProperties['border-color'];
+  highlight?: CSSProperties['border-color'];
 };
 
 export type EuiLoadingSpinnerProps = CommonProps &
