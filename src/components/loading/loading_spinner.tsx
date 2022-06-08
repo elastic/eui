@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent } from 'react';
+import React, { HTMLAttributes, FunctionComponent, CSSProperties } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
 import { useEuiTheme } from '../..//services';
@@ -17,8 +17,8 @@ export const SIZES = ['s', 'm', 'l', 'xl', 'xxl'] as const;
 export type EuiLoadingSpinnerSize = typeof SIZES[number];
 
 export type EuiLoadingSpinnerColor = {
-  border?: CSSProperties['border-color'];
-  highlight?: CSSProperties['border-color'];
+  border?: CSSProperties['color'];
+  highlight?: CSSProperties['color'];
 };
 
 export type EuiLoadingSpinnerProps = CommonProps &
