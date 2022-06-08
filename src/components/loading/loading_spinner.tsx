@@ -26,7 +26,7 @@ export type EuiLoadingSpinnerProps = CommonProps &
     size?: EuiLoadingSpinnerSize;
     /**
      * Sets the color of the border and highlight.
-     * It accepts any valid CSS color value as a `string`
+     * Each key accepts any valid CSS color value as a `string`
      * See #EuiLoadingSpinnerColor
      */
     color?: EuiLoadingSpinnerColor;
