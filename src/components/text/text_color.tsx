@@ -66,7 +66,6 @@ export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
     styles.euiTextColor,
     isNamedColor ? styles[color as TextColor] : styles.customColor,
   ];
-  const childrenStyle = isValidElement(children) ? children.props.style : {};
 
   // We're checking if is a custom color.
   // If it is a custom color we set the `color` of the `.euiTextColor` div to that custom color.
@@ -74,15 +73,15 @@ export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
   const euiTextStyle = !isNamedColor
     ? {
         color: color,
-        ...childrenStyle,
         ...style,
       }
-    : { ...childrenStyle, ...style };
+    : { ...style };
 
   const props = { css: cssStyles, style: euiTextStyle, ...rest };
 
   if (isValidElement(children) && cloneElement) {
-    return cloneElementWithCss(children, props);
+    const childrenStyle = { ...children.props.style, ...euiTextStyle };
+    return cloneElementWithCss(children, { ...props, style: childrenStyle });
   } else {
     const Component = component;
     return <Component {...props}>{children}</Component>;
