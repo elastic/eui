@@ -78,7 +78,7 @@ export default () => {
               </li>
               <li>
                 Provide <strong>clarifying details</strong> on what to type:
-                &quot;Enter the full 32-characters ID.&quot;
+                &quot;Enter the full 32-character ID.&quot;
               </li>
               <li>
                 Tell the user <strong>where to find the information</strong>{' '}
