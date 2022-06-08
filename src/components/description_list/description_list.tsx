@@ -14,6 +14,9 @@ import { EuiDescriptionListTitle } from './description_list_title';
 import { EuiDescriptionListDescription } from './description_list_description';
 import { CommonProps, keysOf } from '../common';
 
+import { useEuiTheme } from '../../services';
+import { euiDescriptionListStyles } from './description_list.styles';
+
 export type EuiDescriptionListType = keyof typeof typesToClassNameMap;
 export type EuiDescriptionListAlignment = keyof typeof alignmentsToClassNameMap;
 export type EuiDescriptionListTextStyle = keyof typeof textStylesToClassNameMap;
@@ -87,6 +90,13 @@ export const EuiDescriptionList: FunctionComponent<
   type = 'row',
   ...rest
 }) => {
+  const theme = useEuiTheme();
+  const styles = euiDescriptionListStyles(theme);
+  const cssStyles = [
+    styles.euiDescriptionList,
+    styles[`euiDescriptionList-${type}`],
+  ];
+
   const classes = classNames(
     'euiDescriptionList',
     type ? typesToClassNameMap[type] : undefined,
@@ -102,13 +112,18 @@ export const EuiDescriptionList: FunctionComponent<
   if (listItems) {
     childrenOrListItems = listItems.map((item, index) => {
       return [
-        <EuiDescriptionListTitle key={`title-${index}`} {...titleProps}>
+        <EuiDescriptionListTitle
+          key={`title-${index}`}
+          {...titleProps}
+          //css={cssStyles}
+        >
           {item.title}
         </EuiDescriptionListTitle>,
 
         <EuiDescriptionListDescription
           key={`description-${index}`}
           {...descriptionProps}
+          //css={cssStyles}
         >
           {item.description}
         </EuiDescriptionListDescription>,
@@ -119,7 +134,7 @@ export const EuiDescriptionList: FunctionComponent<
   }
 
   return (
-    <dl className={classes} {...rest}>
+    <dl className={classes} {...rest} css={cssStyles}>
       {childrenOrListItems}
     </dl>
   );
