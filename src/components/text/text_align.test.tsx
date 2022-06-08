@@ -20,7 +20,11 @@ describe('EuiTextAlign', () => {
     expect(component).toMatchSnapshot();
   });
 
-  shouldRenderCustomStyles(<EuiTextAlign textAlign="right" />);
+  shouldRenderCustomStyles(
+    <EuiTextAlign textAlign="right">
+      <p>Content</p>
+    </EuiTextAlign>
+  );
 
   describe('props', () => {
     describe('direction', () => {

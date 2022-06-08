@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  CSSProperties,
+  isValidElement,
+} from 'react';
 import { CommonProps } from '../common';
 import { cloneElementWithCss } from '../../services/theme/clone_element';
 
@@ -61,6 +66,7 @@ export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
     styles.euiTextColor,
     isNamedColor ? styles[color as TextColor] : styles.customColor,
   ];
+  const childrenStyle = isValidElement(children) ? children.props.style : {};
 
   // We're checking if is a custom color.
   // If it is a custom color we set the `color` of the `.euiTextColor` div to that custom color.
@@ -68,13 +74,14 @@ export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
   const euiTextStyle = !isNamedColor
     ? {
         color: color,
+        ...childrenStyle,
         ...style,
       }
-    : { ...style };
+    : { ...childrenStyle, ...style };
 
   const props = { css: cssStyles, style: euiTextStyle, ...rest };
 
-  if (cloneElement) {
+  if (isValidElement(children) && cloneElement) {
     return cloneElementWithCss(children, props);
   } else {
     const Component = component;

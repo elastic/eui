@@ -56,7 +56,11 @@ describe('EuiTextColor', () => {
         expect(component).toMatchSnapshot();
       });
 
-      shouldRenderCustomStyles(<EuiTextColor cloneElement color="#fff" />);
+      shouldRenderCustomStyles(
+        <EuiTextColor cloneElement color="#fff">
+          <p>Content</p>
+        </EuiTextColor>
+      );
     });
   });
 });
