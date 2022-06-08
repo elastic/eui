@@ -24,7 +24,7 @@ export default () => {
       closePopover={closePopover}
       panelClassName="guideDemo__textLines"
     >
-      <EuiText color="danger" style={{ width: 100 }}>
+      <EuiText style={{ width: 100 }}>
         <p>This has a custom class that applies some grid lines.</p>
       </EuiText>
     </EuiPopover>
