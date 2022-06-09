@@ -76,9 +76,7 @@ export default () => {
         <Fragment>
           <strong>Option one</strong>
           <EuiText size="s" color="subdued">
-            <p className="euiTextColor--subdued">
-              Has a short description giving more detail to the option.
-            </p>
+            <p>Has a short description giving more detail to the option.</p>
           </EuiText>
         </Fragment>
       ),
@@ -90,9 +88,7 @@ export default () => {
         <Fragment>
           <strong>Option two</strong>
           <EuiText size="s" color="subdued">
-            <p className="euiTextColor--subdued">
-              Has a short description giving more detail to the option.
-            </p>
+            <p>Has a short description giving more detail to the option.</p>
           </EuiText>
         </Fragment>
       ),
@@ -104,9 +100,7 @@ export default () => {
         <Fragment>
           <strong>Option three</strong>
           <EuiText size="s" color="subdued">
-            <p className="euiTextColor--subdued">
-              Has a short description giving more detail to the option.
-            </p>
+            <p>Has a short description giving more detail to the option.</p>
           </EuiText>
         </Fragment>
       ),
