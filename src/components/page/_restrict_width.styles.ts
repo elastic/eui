@@ -7,10 +7,11 @@
  */
 
 import { css } from '@emotion/react';
+import { logicalCSS } from '../../global_styling';
 import { ALIGNMENTS } from './page_section/page_section.styles';
 import { PAGE_MAX_WIDTH, _EuiPageRestrictWidth } from './_restrict_width';
 
-export const euiPageRestictWidthStyles = (
+export const euiPageRestrictWidthStyles = (
   restrictWidth: _EuiPageRestrictWidth,
   alignment?: typeof ALIGNMENTS[number]
 ) => {
@@ -18,17 +19,15 @@ export const euiPageRestictWidthStyles = (
 
   if (restrictWidth === true) {
     return css`
-      margin-left: auto;
-      margin-right: auto;
-      width: ${width};
-      max-width: ${PAGE_MAX_WIDTH};
+      ${logicalCSS('margin-horizontal', 'auto')};
+      ${logicalCSS('width', width)};
+      ${logicalCSS('max-width', PAGE_MAX_WIDTH)};
     `;
   } else if (restrictWidth !== undefined) {
     return css`
-      margin-left: auto;
-      margin-right: auto;
-      width: ${width};
-      max-width: ${restrictWidth};
+      ${logicalCSS('margin-horizontal', 'auto')};
+      ${logicalCSS('width', width)};
+      ${logicalCSS('max-width', restrictWidth)};
     `;
   }
 };

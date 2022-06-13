@@ -12,7 +12,7 @@ import { CommonProps } from '../common';
 import { _EuiPageRestrictWidth } from './_restrict_width';
 import { useEuiPaddingCSS, EuiPaddingSize } from '../../global_styling';
 import { euiPageStyles } from './page.styles';
-import { euiPageRestictWidthStyles } from './_restrict_width.styles';
+import { euiPageRestrictWidthStyles } from './_restrict_width.styles';
 import { useEuiTheme } from '../../services';
 
 export interface EuiPageProps
@@ -48,7 +48,7 @@ export const EuiPage: FunctionComponent<EuiPageProps> = ({
   const euiTheme = useEuiTheme();
   const styles = euiPageStyles(euiTheme);
   const padding = useEuiPaddingCSS()[paddingSize as EuiPaddingSize];
-  const width = euiPageRestictWidthStyles(
+  const width = euiPageRestrictWidthStyles(
     restrictWidth as _EuiPageRestrictWidth
   );
 

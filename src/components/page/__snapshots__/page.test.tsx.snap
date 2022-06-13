@@ -2,75 +2,75 @@
 
 exports[`EuiPage direction can be row 1`] = `
 <div
-  class="euiPage css-1d9eeh1-euiPage-row-grow-euiPageRestictWidthStyles"
+  class="euiPage css-2q490-euiPage-row-grow-euiPageRestrictWidthStyles"
 />
 `;
 
 exports[`EuiPage grow can be false 1`] = `
 <div
-  class="euiPage css-ept7hg-euiPage-row-euiPageRestictWidthStyles"
+  class="euiPage css-1bsa4yw-euiPage-row-euiPageRestrictWidthStyles"
 />
 `;
 
 exports[`EuiPage is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPage testClass1 testClass2 css-1d9eeh1-euiPage-row-grow-euiPageRestictWidthStyles"
+  class="euiPage testClass1 testClass2 css-2q490-euiPage-row-grow-euiPageRestrictWidthStyles"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiPage paddingSize l is rendered 1`] = `
 <div
-  class="euiPage css-emgy6c-euiPage-row-grow-l-euiPageRestictWidthStyles"
+  class="euiPage css-xkfw2o-euiPage-row-grow-l-euiPageRestrictWidthStyles"
 />
 `;
 
 exports[`EuiPage paddingSize m is rendered 1`] = `
 <div
-  class="euiPage css-10uc2yv-euiPage-row-grow-m-euiPageRestictWidthStyles"
+  class="euiPage css-116k2nl-euiPage-row-grow-m-euiPageRestrictWidthStyles"
 />
 `;
 
 exports[`EuiPage paddingSize none is rendered 1`] = `
 <div
-  class="euiPage css-1d9eeh1-euiPage-row-grow-euiPageRestictWidthStyles"
+  class="euiPage css-2q490-euiPage-row-grow-euiPageRestrictWidthStyles"
 />
 `;
 
 exports[`EuiPage paddingSize s is rendered 1`] = `
 <div
-  class="euiPage css-xc0w4x-euiPage-row-grow-s-euiPageRestictWidthStyles"
+  class="euiPage css-1ljvjdn-euiPage-row-grow-s-euiPageRestrictWidthStyles"
 />
 `;
 
 exports[`EuiPage paddingSize xl is rendered 1`] = `
 <div
-  class="euiPage css-1ufmozm-euiPage-row-grow-xl-euiPageRestictWidthStyles"
+  class="euiPage css-1522w1z-euiPage-row-grow-xl-euiPageRestrictWidthStyles"
 />
 `;
 
 exports[`EuiPage paddingSize xs is rendered 1`] = `
 <div
-  class="euiPage css-1o4grjn-euiPage-row-grow-xs-euiPageRestictWidthStyles"
+  class="euiPage css-naxae4-euiPage-row-grow-xs-euiPageRestrictWidthStyles"
 />
 `;
 
 exports[`EuiPage restrict width can be set to a custom number 1`] = `
 <div
-  class="euiPage css-vpgzf7-euiPage-row-grow-euiPageRestictWidthStyles"
+  class="euiPage css-3hrgx0-euiPage-row-grow-euiPageRestrictWidthStyles"
 />
 `;
 
 exports[`EuiPage restrict width can be set to a custom value and does not override custom style 1`] = `
 <div
-  class="euiPage css-1vcr6lf-euiPage-row-grow-euiPageRestictWidthStyles"
+  class="euiPage css-1ex16mx-euiPage-row-grow-euiPageRestrictWidthStyles"
   style="color:red"
 />
 `;
 
 exports[`EuiPage restrict width can be set to a default 1`] = `
 <div
-  class="euiPage css-3u54hk-euiPage-row-grow-euiPageRestictWidthStyles"
+  class="euiPage css-1n2el8e-euiPage-row-grow-euiPageRestrictWidthStyles"
 />
 `;

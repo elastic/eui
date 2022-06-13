@@ -10,7 +10,7 @@ import React, { PropsWithChildren, ComponentType, ComponentProps } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { _EuiPageRestrictWidth } from '../_restrict_width';
-import { euiPageRestictWidthStyles } from '../_restrict_width.styles';
+import { euiPageRestrictWidthStyles } from '../_restrict_width.styles';
 import { EuiPanel, EuiPanelProps } from '../../panel';
 import { useEuiPaddingCSS, EuiPaddingSize } from '../../../global_styling';
 import { euiPageBodyStyles } from './page_body.styles';
@@ -51,7 +51,7 @@ export const EuiPageBody = <T extends ComponentTypes>({
 }: PropsWithChildren<EuiPageBodyProps<T>>) => {
   const styles = euiPageBodyStyles();
   const padding = useEuiPaddingCSS()[paddingSize as EuiPaddingSize];
-  const width = euiPageRestictWidthStyles(
+  const width = euiPageRestrictWidthStyles(
     restrictWidth as _EuiPageRestrictWidth
   );
 

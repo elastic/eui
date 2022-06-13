@@ -3,27 +3,27 @@
 exports[`EuiPageBody is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody testClass1 testClass2 css-c6c8s4-euiPageBody-euiPageRestictWidthStyles"
+  class="euiPageBody testClass1 testClass2 css-xtm66w-euiPageBody-euiPageRestrictWidthStyles"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiPageBody panelled also accepts panelProps 1`] = `
 <div
-  class="euiPanel euiPanel--subdued euiPageBody css-eltxgr-euiPanel-grow-none-subdued-euiPageBody-euiPageRestictWidthStyles"
+  class="euiPanel euiPanel--subdued euiPageBody css-boos0b-euiPanel-grow-none-subdued-euiPageBody-euiPageRestrictWidthStyles"
 />
 `;
 
 exports[`EuiPageBody panelled can be set to true 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPageBody css-10pvzin-euiPanel-grow-none-plain-hasShadow-euiPageBody-euiPageRestictWidthStyles"
+  class="euiPanel euiPanel--plain euiPageBody css-p9lgjy-euiPanel-grow-none-plain-hasShadow-euiPageBody-euiPageRestrictWidthStyles"
 />
 `;
 
 exports[`EuiPageBody restrict width can be set to a custom number 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody testClass1 testClass2 css-xgzueq-euiPageBody-euiPageRestictWidthStyles"
+  class="euiPageBody testClass1 testClass2 css-vi3p5b-euiPageBody-euiPageRestrictWidthStyles"
   data-test-subj="test subject string"
 />
 `;
@@ -31,7 +31,7 @@ exports[`EuiPageBody restrict width can be set to a custom number 1`] = `
 exports[`EuiPageBody restrict width can be set to a custom value and measurement 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody testClass1 testClass2 css-1iejxkd-euiPageBody-euiPageRestictWidthStyles"
+  class="euiPageBody testClass1 testClass2 css-b1fqrn-euiPageBody-euiPageRestrictWidthStyles"
   data-test-subj="test subject string"
 />
 `;
@@ -39,7 +39,7 @@ exports[`EuiPageBody restrict width can be set to a custom value and measurement
 exports[`EuiPageBody restrict width can be set to a default 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody testClass1 testClass2 css-abz4z5-euiPageBody-euiPageRestictWidthStyles"
+  class="euiPageBody testClass1 testClass2 css-bb4z1c-euiPageBody-euiPageRestrictWidthStyles"
   data-test-subj="test subject string"
 />
 `;
