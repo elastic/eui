@@ -8,7 +8,11 @@ exports[`_EuiPageSidebar _EuiPageInnerProps is rendered 1`] = `
 >
   <main
     class="css-6kpn8r-euiPageInner-left"
-  />
+  >
+    <div
+      id="testID"
+    />
+  </main>
 </div>
 `;
 
@@ -19,7 +23,11 @@ exports[`_EuiPageSidebar _EuiPageOuterProps is rendered 1`] = `
 >
   <main
     class="css-nq554q-euiPageInner"
-  />
+  >
+    <div
+      id="testID"
+    />
+  </main>
 </div>
 `;
 
@@ -30,7 +38,11 @@ exports[`_EuiPageSidebar bottomBorder is rendered as extended 1`] = `
 >
   <main
     class="css-nq554q-euiPageInner"
-  />
+  >
+    <div
+      id="testID"
+    />
+  </main>
 </div>
 `;
 
@@ -41,7 +53,11 @@ exports[`_EuiPageSidebar bottomBorder is rendered as true 1`] = `
 >
   <main
     class="css-nq554q-euiPageInner"
-  />
+  >
+    <div
+      id="testID"
+    />
+  </main>
 </div>
 `;
 
@@ -54,7 +70,11 @@ exports[`_EuiPageSidebar is rendered 1`] = `
 >
   <main
     class="css-nq554q-euiPageInner"
-  />
+  >
+    <div
+      id="testID"
+    />
+  </main>
 </div>
 `;
 
@@ -65,7 +85,11 @@ exports[`_EuiPageSidebar minHeight is rendered 1`] = `
 >
   <main
     class="css-nq554q-euiPageInner"
-  />
+  >
+    <div
+      id="testID"
+    />
+  </main>
 </div>
 `;
 
@@ -76,7 +100,11 @@ exports[`_EuiPageSidebar offset is rendered 1`] = `
 >
   <main
     class="css-nq554q-euiPageInner"
-  />
+  >
+    <div
+      id="testID"
+    />
+  </main>
 </div>
 `;
 
@@ -87,7 +115,11 @@ exports[`_EuiPageSidebar paddingSize l is rendered 1`] = `
 >
   <main
     class="css-nq554q-euiPageInner"
-  />
+  >
+    <div
+      id="testID"
+    />
+  </main>
 </div>
 `;
 
@@ -98,7 +130,11 @@ exports[`_EuiPageSidebar paddingSize m is rendered 1`] = `
 >
   <main
     class="css-nq554q-euiPageInner"
-  />
+  >
+    <div
+      id="testID"
+    />
+  </main>
 </div>
 `;
 
@@ -109,7 +145,11 @@ exports[`_EuiPageSidebar paddingSize none is rendered 1`] = `
 >
   <main
     class="css-nq554q-euiPageInner"
-  />
+  >
+    <div
+      id="testID"
+    />
+  </main>
 </div>
 `;
 
@@ -120,7 +160,11 @@ exports[`_EuiPageSidebar paddingSize s is rendered 1`] = `
 >
   <main
     class="css-nq554q-euiPageInner"
-  />
+  >
+    <div
+      id="testID"
+    />
+  </main>
 </div>
 `;
 
@@ -131,7 +175,11 @@ exports[`_EuiPageSidebar paddingSize xl is rendered 1`] = `
 >
   <main
     class="css-nq554q-euiPageInner"
-  />
+  >
+    <div
+      id="testID"
+    />
+  </main>
 </div>
 `;
 
@@ -142,7 +190,11 @@ exports[`_EuiPageSidebar paddingSize xs is rendered 1`] = `
 >
   <main
     class="css-nq554q-euiPageInner"
-  />
+  >
+    <div
+      id="testID"
+    />
+  </main>
 </div>
 `;
 
@@ -153,7 +205,11 @@ exports[`_EuiPageSidebar restrict width can be set to a custom number 1`] = `
 >
   <main
     class="css-nq554q-euiPageInner"
-  />
+  >
+    <div
+      id="testID"
+    />
+  </main>
 </div>
 `;
 
@@ -164,7 +220,11 @@ exports[`_EuiPageSidebar restrict width can be set to a custom value and measure
 >
   <main
     class="css-nq554q-euiPageInner"
-  />
+  >
+    <div
+      id="testID"
+    />
+  </main>
 </div>
 `;
 
@@ -175,6 +235,10 @@ exports[`_EuiPageSidebar restrict width can be set to a default 1`] = `
 >
   <main
     class="css-nq554q-euiPageInner"
-  />
+  >
+    <div
+      id="testID"
+    />
+  </main>
 </div>
 `;

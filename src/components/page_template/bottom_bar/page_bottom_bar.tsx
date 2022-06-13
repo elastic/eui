@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
+import { findElementBySelectorOrRef } from '../../../services';
 import { EuiBottomBar, EuiBottomBarProps } from '../../bottom_bar';
 import { EuiPageSection, EuiPageSectionProps } from '../../page/page_section';
 import { _EuiPageRestrictWidth } from '../../page/_restrict_width';
@@ -14,20 +15,48 @@ import { _EuiPageRestrictWidth } from '../../page/_restrict_width';
 export interface _EuiPageBottomBarProps
   extends Pick<EuiPageSectionProps, 'paddingSize'>,
     _EuiPageRestrictWidth,
-    Omit<EuiBottomBarProps, 'paddingSize'> {}
+    Omit<EuiBottomBarProps, 'paddingSize'> {
+  sibling?: string;
+}
 
 export const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = ({
   children,
   paddingSize,
   restrictWidth,
+  sibling,
   style,
   ...rest
 }) => {
+  const [hasValidAnchor, setHasValidAnchor] = useState<boolean>(false);
+  const animationFrameId = useRef<number>();
+  const siblingNode = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    animationFrameId.current = window.requestAnimationFrame(() => {
+      siblingNode.current = findElementBySelectorOrRef(sibling);
+      setHasValidAnchor(siblingNode.current ? true : false);
+    });
+
+    return () => {
+      animationFrameId.current &&
+        window.cancelAnimationFrame(animationFrameId.current);
+    };
+  }, [sibling]);
+
   return (
     <EuiBottomBar
       paddingSize={'none'}
       position="sticky"
       style={{ flexShrink: 0, ...style }}
+      usePortal={
+        hasValidAnchor && siblingNode.current
+          ? {
+              // @ts-expect-error Doesn't work anyway
+              sibling: siblingNode.current,
+              position: 'after',
+            }
+          : false
+      }
       // Using unknown here because of the possible conflict with overriding props and position `sticky`
       {...(rest as unknown)}
     >

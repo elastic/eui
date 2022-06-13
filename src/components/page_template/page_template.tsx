@@ -6,15 +6,29 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  CSSProperties,
+  FunctionComponent,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import classNames from 'classnames';
 
 import { _EuiPageOuter as EuiPageOuter, _EuiPageOuterProps } from './outer';
 import { _EuiPageInner as EuiPageInner, _EuiPageInnerProps } from './inner';
-import { _EuiPageBottomBar as EuiPageBottomBar } from './bottom_bar/page_bottom_bar';
-import { _EuiPageEmptyPrompt as EuiPageEmptyPrompt } from './empty_prompt/page_empty_prompt';
+import {
+  _EuiPageBottomBar as EuiPageBottomBar,
+  _EuiPageBottomBarProps,
+} from './bottom_bar/page_bottom_bar';
+import {
+  _EuiPageEmptyPrompt as EuiPageEmptyPrompt,
+  _EuiPageEmptyPromptProps,
+} from './empty_prompt/page_empty_prompt';
 import {
   EuiPageHeader,
+  EuiPageHeaderProps,
   EuiPageSection,
   EuiPageSectionProps,
   EuiPageSidebar,
@@ -23,6 +37,13 @@ import { _EuiPageRestrictWidth } from '../page/_restrict_width';
 import { _EuiPageBottomBorder } from '../page/_bottom_border';
 import { useEuiTheme } from '../../services';
 import { logicalStyle } from '../../global_styling';
+
+export const TemplateContext = createContext({
+  section: {},
+  header: {},
+  emptyPrompt: {},
+  bottomBar: {},
+});
 
 export type EuiPageTemplateProps = _EuiPageOuterProps &
   // We re-define the `border` prop below to be named more appropriately
@@ -37,7 +58,7 @@ export type EuiPageTemplateProps = _EuiPageOuterProps &
     /**
      * Minimum height in which to enforce scrolling
      */
-    minHeight?: string;
+    minHeight?: CSSProperties['minHeight'];
     /**
      * To account for any fixed elements like headers,
      * pass in the value of the total height of those fixed elements.
@@ -70,6 +91,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   const { euiTheme } = useEuiTheme();
 
   const [offset, setOffset] = useState(_offset);
+  const templateContext = useContext(TemplateContext);
 
   useEffect(() => {
     if (_offset === undefined) {
@@ -81,7 +103,6 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   // Sections include page header
   const sections: React.ReactElement[] = [];
   const sidebar: React.ReactElement[] = [];
-  let bottomBar;
 
   const getBottomBorder = () => {
     if (bottomBorder !== undefined) {
@@ -112,6 +133,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   const getBottomBarProps = () => ({
     restrictWidth,
     paddingSize,
+    sibling: '#testID',
   });
 
   const innerPanelled = () =>
@@ -135,46 +157,6 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
         );
         break;
 
-      case EuiPageBottomBar:
-        bottomBar = React.cloneElement(child, {
-          key: `bottomBar${index}`,
-          ...getBottomBarProps(),
-          ...child.props,
-        });
-        break;
-
-      case EuiPageHeader:
-        sections.push(
-          React.cloneElement(child, {
-            key: `header${index}`,
-            ...getHeaderProps(),
-            ...child.props,
-          })
-        );
-        break;
-
-      case EuiPageEmptyPrompt:
-        sections.push(
-          React.cloneElement(child, {
-            key: `emptyPrompt${index}`,
-            panelled: innerPanelled() ? true : panelled,
-            grow: true,
-            ...child.props,
-          })
-        );
-        break;
-
-      case EuiPageSection:
-        sections.push(
-          React.cloneElement(child, {
-            key: `section${index}`,
-            ...getSectionProps(),
-            grow: index + 1 === React.Children.toArray(children).length,
-            ...child.props,
-          })
-        );
-        break;
-
       default:
         sections.push(child);
     }
@@ -189,31 +171,70 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
     ...rest.style,
   };
 
-  return (
-    <EuiPageOuter
-      {...rest}
-      responsive={responsive}
-      style={pageStyle}
-      className={classes}
-    >
-      {sidebar}
+  templateContext.header = getHeaderProps();
+  templateContext.section = getSectionProps();
+  templateContext.emptyPrompt = {
+    panelled: innerPanelled() ? true : panelled,
+    grow: true,
+  };
+  templateContext.bottomBar = getBottomBarProps();
 
-      <EuiPageInner
-        border={innerBordered()}
-        panelled={innerPanelled()}
+  return (
+    <TemplateContext.Provider value={templateContext}>
+      <EuiPageOuter
+        {...rest}
         responsive={responsive}
+        style={pageStyle}
+        className={classes}
       >
-        {sections}
-        {bottomBar}
-      </EuiPageInner>
-    </EuiPageOuter>
+        {sidebar}
+
+        <EuiPageInner
+          border={innerBordered()}
+          panelled={innerPanelled()}
+          responsive={responsive}
+        >
+          {sections}
+          <div id="testID" />
+        </EuiPageInner>
+      </EuiPageOuter>
+    </TemplateContext.Provider>
   );
+};
+
+const _EuiPageSection: FunctionComponent<EuiPageSectionProps> = (props) => {
+  const templateContext = useContext(TemplateContext);
+
+  return <EuiPageSection {...templateContext.section} grow {...props} />;
+};
+
+const _EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = (props) => {
+  const templateContext = useContext(TemplateContext);
+
+  return <EuiPageHeader {...templateContext.header} {...props} />;
+};
+
+const _EuiPageEmptyPrompt: FunctionComponent<_EuiPageEmptyPromptProps> = (
+  props
+) => {
+  const templateContext = useContext(TemplateContext);
+
+  return <EuiPageEmptyPrompt {...templateContext.emptyPrompt} {...props} />;
+};
+
+const _EuiPageBottomBar: FunctionComponent<Omit<
+  _EuiPageBottomBarProps,
+  'sibling'
+>> = (props) => {
+  const { bottomBar } = useContext(TemplateContext);
+
+  return <EuiPageBottomBar {...bottomBar} {...props} />;
 };
 
 export const EuiPageTemplate = Object.assign(_EuiPageTemplate, {
   Sidebar: EuiPageSidebar,
-  Header: EuiPageHeader,
-  Section: EuiPageSection,
-  BottomBar: EuiPageBottomBar,
-  EmptyPrompt: EuiPageEmptyPrompt,
+  Header: _EuiPageHeader,
+  Section: _EuiPageSection,
+  BottomBar: _EuiPageBottomBar,
+  EmptyPrompt: _EuiPageEmptyPrompt,
 });
