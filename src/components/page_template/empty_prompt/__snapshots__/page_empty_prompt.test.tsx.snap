@@ -335,7 +335,7 @@ exports[`_EuiPageEmptyPrompt panelled is true and color is not defined, then the
     class="css-1isurur-euiPageSection__width-l"
   >
     <div
-      class="euiPanel euiPanel--subdued euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge css-1v3b2de-euiPanel-m-subdued"
+      class="euiPanel euiPanel--subdued euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge css-1wqem1z-euiPanel-m-subdued"
     >
       <div
         class="euiEmptyPrompt__main"

@@ -2,20 +2,20 @@
 
 exports[`_EuiPageOuter direction can be row 1`] = `
 <div
-  class="css-1fesrzg-euiPageOuter-row-grow"
+  class="css-18xranh-euiPageOuter-row-grow"
 />
 `;
 
 exports[`_EuiPageOuter grow can be false 1`] = `
 <div
-  class="css-17g110k-euiPageOuter-row"
+  class="css-14p3hur-euiPageOuter-row"
 />
 `;
 
 exports[`_EuiPageOuter is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="testClass1 testClass2 css-1fesrzg-euiPageOuter-row-grow"
+  class="testClass1 testClass2 css-18xranh-euiPageOuter-row-grow"
   data-test-subj="test subject string"
 />
 `;

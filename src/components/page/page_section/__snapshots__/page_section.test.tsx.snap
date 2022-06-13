@@ -94,7 +94,7 @@ exports[`EuiPageSection props color primary is rendered 1`] = `
 
 exports[`EuiPageSection props color subdued is rendered 1`] = `
 <div
-  class="css-5nbjgw-euiPageSection-l-top-subdued"
+  class="css-st0m45-euiPageSection-l-top-subdued"
 >
   <div
     class="css-10pkat8-euiPageSection__width-l"
