@@ -122,6 +122,7 @@ export const _EuiCallOut = forwardRef<
         paddingSize={size === 's' ? 's' : 'm'}
         className={classes}
         panelRef={ref}
+        grow={false}
         {...rest}
       >
         {header}

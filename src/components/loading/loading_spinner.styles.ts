@@ -5,11 +5,13 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
-
 import { css, keyframes } from '@emotion/react';
 import { _EuiThemeSize, euiCanAnimate } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { EuiLoadingSpinnerSize } from './loading_spinner';
+import {
+  EuiLoadingSpinnerSize,
+  EuiLoadingSpinnerProps,
+} from './loading_spinner';
 
 const _loadingSpinner = keyframes`
   from {
@@ -31,20 +33,25 @@ const spinnerSizes: {
   xxl: 'xxl',
 };
 
-const spinnerColors = (main: string, highlight: string) => {
-  return `${highlight} ${main} ${main} ${main}`;
+const spinnerColorsCSS = (border?: string, highlight?: string) => {
+  return `
+    border-color: ${highlight} ${border} ${border} ${border};
+  `;
 };
 
-export const euiLoadingSpinnerStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiLoadingSpinnerStyles = (
+  { euiTheme }: UseEuiTheme,
+  color?: EuiLoadingSpinnerProps['color']
+) => {
   return {
     euiLoadingSpinner: css`
       flex-shrink: 0; // Ensures it never scales down below its intended size
       display: inline-block;
       border-radius: 50%;
       border: ${euiTheme.border.thick};
-      border-color: ${spinnerColors(
-        euiTheme.border.color,
-        euiTheme.colors.primary
+      ${spinnerColorsCSS(
+        color?.border || euiTheme.colors.lightShade,
+        color?.highlight || euiTheme.colors.primary
       )};
 
       ${euiCanAnimate} {

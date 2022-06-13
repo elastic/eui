@@ -6,7 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  isValidElement,
+} from 'react';
 import { CommonProps } from '../common';
 import { cloneElementWithCss } from '../../services/theme/clone_element';
 
@@ -36,7 +40,7 @@ export const EuiTextAlign: FunctionComponent<EuiTextAlignProps> = ({
 
   const props = { css: cssStyles, ...rest };
 
-  if (cloneElement) {
+  if (isValidElement(children) && cloneElement) {
     return cloneElementWithCss(children, props);
   } else {
     return <div {...props}>{children}</div>;

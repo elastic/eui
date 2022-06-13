@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  CSSProperties,
+  isValidElement,
+} from 'react';
 import { CommonProps } from '../common';
 import { cloneElementWithCss } from '../../services/theme/clone_element';
 
@@ -76,8 +81,9 @@ export const _EuiTextColor: FunctionComponent<
 
   const props = { css: cssStyles, style: euiTextStyle, ...rest };
 
-  if (cloneElement) {
-    return cloneElementWithCss(children, props);
+  if (isValidElement(children) && cloneElement) {
+    const childrenStyle = { ...children.props.style, ...euiTextStyle };
+    return cloneElementWithCss(children, { ...props, style: childrenStyle });
   } else {
     const Component = component;
     return <Component {...props}>{children}</Component>;

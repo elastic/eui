@@ -48,5 +48,19 @@ describe('EuiText', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    test('style', () => {
+      const component = render(
+        <EuiText
+          {...requiredProps}
+          color="#fff"
+          style={{ backgroundColor: '#000' }}
+        >
+          <p>Content</p>
+        </EuiText>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });

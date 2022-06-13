@@ -17,11 +17,13 @@ import {
   keysOf,
 } from '../../common';
 import { getSecureRelForTarget } from '../../../services';
+
 import {
-  EuiButtonContent,
+  EuiButtonContentDeprecated as EuiButtonContent,
   EuiButtonContentProps,
   EuiButtonContentType,
-} from '../button_content';
+} from '../_button_content_deprecated';
+
 import { validateHref } from '../../../services/security/href_validator';
 
 export type EuiButtonEmptyColor =

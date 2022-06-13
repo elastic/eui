@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent } from 'react';
+import React, { HTMLAttributes, FunctionComponent, CSSProperties } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
 import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
@@ -16,15 +16,33 @@ import { euiLoadingSpinnerStyles } from './loading_spinner.styles';
 export const SIZES = ['s', 'm', 'l', 'xl', 'xxl'] as const;
 export type EuiLoadingSpinnerSize = typeof SIZES[number];
 
+export type EuiLoadingSpinnerColor = {
+  border?: CSSProperties['color'];
+  highlight?: CSSProperties['color'];
+};
+
 export type EuiLoadingSpinnerProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> & {
+  Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
     size?: EuiLoadingSpinnerSize;
+    /**
+     * Sets the color of the border and highlight.
+     * Each key accepts any valid CSS color value as a `string`
+     * See #EuiLoadingSpinnerColor
+     */
+    color?: EuiLoadingSpinnerColor;
   };
 
 export const _EuiLoadingSpinner: FunctionComponent<
   EuiLoadingSpinnerProps & WithEuiSystemProps
-> = ({ size = 'm', className, 'aria-label': ariaLabel, euiTheme, ...rest }) => {
-  const styles = euiLoadingSpinnerStyles(euiTheme);
+> = ({
+  size = 'm',
+  className,
+  'aria-label': ariaLabel,
+  color,
+  euiTheme,
+  ...rest
+}) => {
+  const styles = euiLoadingSpinnerStyles(euiTheme, color);
   const cssStyles = [styles.euiLoadingSpinner, styles[size]];
   const classes = classNames('euiLoadingSpinner', className);
   const defaultLabel = useLoadingAriaLabel();
