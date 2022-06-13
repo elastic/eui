@@ -91,7 +91,7 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
         const destinationEl = document.getElementById(destinationId);
         if (!destinationEl) return;
 
-        destinationEl.scrollTo();
+        destinationEl.scrollIntoView();
         destinationEl.tabIndex = -1; // Ensure the destination content is focusable
         destinationEl.focus({ preventScroll: true }); // Scrolling is already handled above, and focus's autoscroll behaves oddly around fixed headers
       },

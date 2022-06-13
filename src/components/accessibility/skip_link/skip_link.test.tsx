@@ -25,10 +25,10 @@ describe('EuiSkipLink', () => {
 
   describe('props', () => {
     test('overrideLinkBehavior prevents default link behavior and manually scrolls and focuses the destination', () => {
-      const scrollToSpy = jest.fn();
+      const scrollSpy = jest.fn();
       const focusSpy = jest.fn();
       jest.spyOn(document, 'getElementById').mockReturnValue({
-        scrollTo: scrollToSpy,
+        scrollIntoView: scrollSpy,
         focus: focusSpy,
       } as any);
 
@@ -40,7 +40,7 @@ describe('EuiSkipLink', () => {
       component.find('EuiButton').simulate('click', { preventDefault });
 
       expect(preventDefault).toHaveBeenCalled();
-      expect(scrollToSpy).toHaveBeenCalled();
+      expect(scrollSpy).toHaveBeenCalled();
       expect(focusSpy).toHaveBeenCalled();
     });
 
