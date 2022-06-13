@@ -34,7 +34,11 @@ export const mentionsMarkdownRenderer: FunctionComponent<
 
   const match = config.options.find(({ label }) => label === mention);
 
-  const { firstName, lastName } = match?.data;
+  if (!match) {
+    return <span>@{mention}</span>;
+  }
+
+  const { firstName, lastName } = match.data;
   const { label } = match;
 
   const content = (

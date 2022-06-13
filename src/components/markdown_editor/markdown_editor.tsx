@@ -17,6 +17,8 @@ import React, {
   useRef,
   forwardRef,
 } from 'react';
+// @ts-ignore no types for textarea-caret
+import getCaretCoordinates from 'textarea-caret';
 
 import unified, { PluggableList, Processor } from 'unified';
 import { VFileMessage } from 'vfile-message';
@@ -302,7 +304,7 @@ export const EuiMarkdownEditor = forwardRef<
               if (
                 child.position &&
                 child.position.start.offset < selectionStart &&
-                selectionStart < child.position.end.offset
+                selectionStart <= child.position.end.offset
               ) {
                 if (child.type === 'text') break outer; // don't dive into `text` nodes
                 node = child;
@@ -335,12 +337,9 @@ export const EuiMarkdownEditor = forwardRef<
 
       if (selectedNode) {
         const { type } = selectedNode;
-        // ******
-        // TODO: this also needs to verify the plugin type is a popover, not a modal editor
-        // ******
         if (markdownActions.styles.hasOwnProperty(type)) {
           const actionResult = markdownActions.do(type);
-          if (actionResult !== true)
+          if (actionResult !== true && 'popover' in actionResult)
             contextValue.openPluginEditor(actionResult);
         }
       }
@@ -566,17 +565,26 @@ export const EuiMarkdownEditor = forwardRef<
                   className="euiMarkdownEditor__popover"
                   paddingSize="none"
                   css={(function () {
+                    const caretPosition: {
+                      top: number;
+                      left: number;
+                      height: number;
+                    } = getCaretCoordinates(
+                      textareaRef.current!,
+                      textareaRef.current!.selectionStart
+                    );
                     const bounds = textareaRef.current!.getBoundingClientRect();
                     return {
                       position: 'fixed',
-                      top: bounds.bottom,
-                      left: bounds.left,
+                      top:
+                        bounds.top + caretPosition.top + caretPosition.height,
+                      left: bounds.left + caretPosition.left,
                       width: 320,
                       height: 200,
                     };
                   })()}
                 >
-                  {createElement(pluginEditorPlugin.popover!, {
+                  {createElement(pluginEditorPlugin.popover, {
                     node:
                       selectedNode &&
                       selectedNode.type === pluginEditorPlugin.name
