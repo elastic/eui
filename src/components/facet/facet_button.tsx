@@ -23,7 +23,7 @@ import { EuiLoadingSpinner } from '../loading';
 import { EuiInnerText } from '../inner_text';
 
 import { cloneElementWithCss } from '../../services/theme/clone_element';
-import { useEuiTheme } from '../../services';
+import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
 import {
   euiFacetButtonStyles,
   euiFacetButtonTextStyles,
@@ -61,7 +61,9 @@ export interface EuiFacetButtonProps
   quantity?: number;
 }
 
-export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
+export const _EuiFacetButton: FunctionComponent<
+  EuiFacetButtonProps & WithEuiSystemProps
+> = ({
   children,
   className,
   icon,
@@ -70,6 +72,7 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
   isSelected = false,
   quantity,
   buttonRef,
+  euiTheme,
   ...rest
 }) => {
   // If in the loading state, force disabled to true
@@ -79,12 +82,10 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
 
   const classes = classNames('euiFacetButton', className);
 
-  const theme = useEuiTheme();
-
-  const styles = euiFacetButtonStyles(theme);
+  const styles = euiFacetButtonStyles(euiTheme);
   const cssStyles = [styles.euiFacetButton];
 
-  const textStyles = euiFacetButtonTextStyles(theme);
+  const textStyles = euiFacetButtonTextStyles(euiTheme);
   const cssTextStyles = [
     textStyles.euiFacetButton__text,
     textStyles[selection],
@@ -166,3 +167,5 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
     </EuiInnerText>
   );
 };
+
+export const EuiFacetButton = withEuiSystem(_EuiFacetButton);
