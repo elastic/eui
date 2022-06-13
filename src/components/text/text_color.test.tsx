@@ -45,14 +45,22 @@ describe('EuiTextColor', () => {
       });
     });
 
-    test('cloneElement', () => {
-      const component = render(
-        <EuiTextColor cloneElement>
+    describe('cloneElement', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiTextColor cloneElement>
+            <p>Content</p>
+          </EuiTextColor>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      shouldRenderCustomStyles(
+        <EuiTextColor cloneElement color="#fff">
           <p>Content</p>
         </EuiTextColor>
       );
-
-      expect(component).toMatchSnapshot();
     });
   });
 });

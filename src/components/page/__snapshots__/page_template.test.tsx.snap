@@ -372,7 +372,7 @@ exports[`EuiPageTemplate template centeredContent is rendered 1`] = `
       style="display:flex"
     >
       <div
-        class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-o4m50l-euiPanel-grow-m-l-subdued"
+        class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-1f0qifb-euiPanel-grow-m-l-subdued"
         role="main"
       >
         <div
@@ -399,7 +399,7 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageBodyProps
       style="display:flex"
     >
       <div
-        class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-o4m50l-euiPanel-grow-m-l-subdued"
+        class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-1f0qifb-euiPanel-grow-m-l-subdued"
         role="main"
       >
         <div
@@ -424,7 +424,7 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageContentBo
       style="display:flex"
     >
       <div
-        class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-o4m50l-euiPanel-grow-m-l-subdued"
+        class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-1f0qifb-euiPanel-grow-m-l-subdued"
         role="main"
       >
         <div
@@ -452,7 +452,7 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageContentPr
     >
       <div
         aria-label="aria-label"
-        class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter testClass1 testClass2 css-o4m50l-euiPanel-grow-m-l-subdued"
+        class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter testClass1 testClass2 css-1f0qifb-euiPanel-grow-m-l-subdued"
         data-test-subj="test subject string"
         role="main"
       >
@@ -484,7 +484,7 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageHeader 1`
       style="display:flex"
     >
       <div
-        class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-o4m50l-euiPanel-grow-m-l-subdued"
+        class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-1f0qifb-euiPanel-grow-m-l-subdued"
         role="main"
       >
         <div
@@ -509,7 +509,7 @@ exports[`EuiPageTemplate template centeredContent minHeight is rendered 1`] = `
       style="display:flex"
     >
       <div
-        class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-o4m50l-euiPanel-grow-m-l-subdued"
+        class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-1f0qifb-euiPanel-grow-m-l-subdued"
         role="main"
       >
         <div
@@ -534,7 +534,7 @@ exports[`EuiPageTemplate template centeredContent paddingSize is rendered 1`] = 
       style="display:flex"
     >
       <div
-        class="euiPanel euiPanel--subdued euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-z6lae6-euiPanel-grow-m-subdued"
+        class="euiPanel euiPanel--subdued euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-16hyq28-euiPanel-grow-m-subdued"
         role="main"
       >
         <div
@@ -559,7 +559,7 @@ exports[`EuiPageTemplate template centeredContent style is rendered 1`] = `
       style="display:flex"
     >
       <div
-        class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-o4m50l-euiPanel-grow-m-l-subdued"
+        class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-1f0qifb-euiPanel-grow-m-l-subdued"
         role="main"
       >
         <div
@@ -585,7 +585,7 @@ exports[`EuiPageTemplate template centeredContent with pageSideBar is rendered 1
     class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge css-1fqxm0x-euiPanel-grow-none-l-plain-hasShadow"
   >
     <div
-      class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-o4m50l-euiPanel-grow-m-l-subdued"
+      class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-1f0qifb-euiPanel-grow-m-l-subdued"
       role="main"
     >
       <div
@@ -612,7 +612,7 @@ exports[`EuiPageTemplate template centeredContent with pageSideBar is rendered w
     class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge css-1fqxm0x-euiPanel-grow-none-l-plain-hasShadow"
   >
     <div
-      class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-o4m50l-euiPanel-grow-m-l-subdued"
+      class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-1f0qifb-euiPanel-grow-m-l-subdued"
       role="main"
     >
       <div

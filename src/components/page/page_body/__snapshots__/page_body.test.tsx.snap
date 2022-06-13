@@ -10,7 +10,7 @@ exports[`EuiPageBody is rendered 1`] = `
 
 exports[`EuiPageBody panelled also accepts panelProps 1`] = `
 <div
-  class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge css-lreqjq-euiPanel-grow-none-l-subdued"
+  class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge css-1gebzfy-euiPanel-grow-none-l-subdued"
 />
 `;
 

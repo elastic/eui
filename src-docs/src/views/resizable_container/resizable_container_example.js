@@ -199,7 +199,7 @@ export const ResizableContainerExample = {
       ],
       title: 'Horizontal resizing',
       text: (
-        <div>
+        <>
           <p>
             Simple resizable container with two panels and a resizer between.
             This is the most common case you&#39;ll need in your app. Just drag{' '}
@@ -219,7 +219,7 @@ export const ResizableContainerExample = {
               eliminate overflow scrolling
             </li>
           </ul>
-        </div>
+        </>
       ),
       props: {
         EuiResizableContainer,
@@ -238,7 +238,7 @@ export const ResizableContainerExample = {
       ],
       title: 'Resizable panel options',
       text: (
-        <div>
+        <>
           <p>
             Each <strong>EuiResizablePanel</strong> is simply an{' '}
             <strong>EuiPanel</strong> wrapped with a{' '}
@@ -254,7 +254,7 @@ export const ResizableContainerExample = {
             styles, but you can add them back in with <EuiCode>color</EuiCode>,{' '}
             <EuiCode>hasShadow</EuiCode>, and <EuiCode>paddingSize</EuiCode>.
           </p>
-        </div>
+        </>
       ),
       props: { EuiResizablePanel },
       snippet: panelsSnippet,
@@ -269,7 +269,7 @@ export const ResizableContainerExample = {
       ],
       title: 'Horizontal resizing with controlled widths',
       text: (
-        <div>
+        <>
           <p>
             Sometimes it&#39;s necessary to control panel sizes from the
             outside. For example to store sizes in{' '}
@@ -289,7 +289,7 @@ export const ResizableContainerExample = {
               </p>
             </EuiText>
           </EuiCallOut>
-        </div>
+        </>
       ),
       props: { EuiResizableContainer, EuiResizablePanel, EuiResizableButton },
       demo: <ResizableContainerResetValues />,
@@ -322,7 +322,7 @@ export const ResizableContainerExample = {
       ],
       title: 'Collapsible resizable panels',
       text: (
-        <div>
+        <>
           <p>
             Panels can be designated as collapsible, which allows them to hide
             content and automatically resize to a minimal width. The intent of
@@ -341,7 +341,7 @@ export const ResizableContainerExample = {
             <EuiCode>mode=collapsible</EuiCode> (there must be at least one{' '}
             <EuiCode>mode=main</EuiCode> panel).
           </p>
-        </div>
+        </>
       ),
       props: {
         EuiResizableContainer,
@@ -363,13 +363,11 @@ export const ResizableContainerExample = {
       ],
       title: 'Responsive layout',
       text: (
-        <div>
-          <p>
-            It is possible to dynamically change the{' '}
-            <EuiCode>direction</EuiCode> prop to allow for adapting layouts to
-            screen size. Resize the window to see the panel orientation change.
-          </p>
-        </div>
+        <p>
+          It is possible to dynamically change the <EuiCode>direction</EuiCode>{' '}
+          prop to allow for adapting layouts to screen size. Resize the window
+          to see the panel orientation change.
+        </p>
       ),
       snippet: responsiveSnippet,
       demo: <ResizablePanelCollapsibleResponsive />,
@@ -383,7 +381,7 @@ export const ResizableContainerExample = {
       ],
       title: 'Collapsible panel options',
       text: (
-        <div>
+        <>
           <p>
             An <strong>EuiResizablePanel</strong> marked as{' '}
             <EuiCode language="ts">{"mode={['collapsible']}"}</EuiCode> also
@@ -397,7 +395,7 @@ export const ResizableContainerExample = {
   position: 'top',
 }]}`}
           </EuiCodeBlock>
-        </div>
+        </>
       ),
       demo: <ResizablePanelCollapsibleOpts />,
       snippet: collapsibleOptsSnippet,
@@ -411,7 +409,7 @@ export const ResizableContainerExample = {
       ],
       title: 'Collapsible panels with external control',
       text: (
-        <div>
+        <>
           <p>
             <strong>EuiResizableContainer</strong> also provides action hooks
             for parent components to access internal methods, such as{' '}
@@ -439,7 +437,7 @@ export const ResizableContainerExample = {
             <EuiCode>menuLeft</EuiCode>, <EuiCode>menuRight</EuiCode>, etc, icon
             types.
           </p>
-        </div>
+        </>
       ),
       demo: <ResizablePanelCollapsibleExt />,
       snippet: collapsibleExtSnippet,

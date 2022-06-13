@@ -1,7 +1,7 @@
 @include euiBreakpoint('m', 'l', 'xl') {
   .guideColorsPage__stickySlider {
     position: sticky;
-    top: $euiHeaderHeightCompensation;
+    top: 0;
     z-index: $euiZLevel1 - 1; // Below header
   }
 }

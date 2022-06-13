@@ -3,7 +3,7 @@
 exports[`EuiText is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiText testClass1 testClass2 css-p6rn6t-euiText-m"
+  class="euiText testClass1 testClass2 css-1lo1kz-euiText-m"
   data-test-subj="test subject string"
 >
   <p>
@@ -15,7 +15,7 @@ exports[`EuiText is rendered 1`] = `
 exports[`EuiText props color & align 1`] = `
 <div
   aria-label="aria-label"
-  class="css-1pm8py9-euiText-m-euiTextColor-danger-euiTextAlign-center"
+  class="css-w0k17c-euiText-m-euiTextColor-danger-euiTextAlign-center"
   data-test-subj="test subject string"
 >
   <p>
@@ -27,8 +27,21 @@ exports[`EuiText props color & align 1`] = `
 exports[`EuiText props grow false 1`] = `
 <div
   aria-label="aria-label"
-  class="euiText testClass1 testClass2 css-b6i93m-euiText-constrainedWidth-m"
+  class="euiText testClass1 testClass2 css-j3htvy-euiText-constrainedWidth-m"
   data-test-subj="test subject string"
+>
+  <p>
+    Content
+  </p>
+</div>
+`;
+
+exports[`EuiText props style 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiText testClass1 testClass2 css-1rhs9x7-euiText-m-euiTextColor-customColor"
+  data-test-subj="test subject string"
+  style="background-color:#000;color:#fff"
 >
   <p>
     Content
