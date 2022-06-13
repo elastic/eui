@@ -10,10 +10,10 @@ import {
   EuiCallOut,
   EuiSpacer,
   EuiPageSection,
+  EuiPageSidebar,
 } from '../../../../src';
 
 import { _EuiPageTemplate } from '../../../../src/components/page_template/page_template';
-import { _EuiPageSidebar } from '../../../../src/components/page_template/sidebar';
 import { _EuiPageBottomBar } from '../../../../src/components/page_template/bottom_bar/page_bottom_bar';
 import { _EuiPageEmptyPrompt } from '../../../../src/components/page_template/empty_prompt/page_empty_prompt';
 
@@ -230,7 +230,7 @@ export const PageTemplateExample = {
             template={Sidebar}
             source={SidebarSource}
             props={{
-              'EuiPageTemplate.Sidebar': _EuiPageSidebar,
+              'EuiPageTemplate.Sidebar': EuiPageSidebar,
             }}
           />
         </>

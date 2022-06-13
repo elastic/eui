@@ -3,45 +3,43 @@
 exports[`EuiPageBody is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody euiPageBody--borderRadiusNone testClass1 testClass2"
+  class="euiPageBody testClass1 testClass2 css-xtm66w-euiPageBody-euiPageRestrictWidthStyles"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiPageBody panelled also accepts panelProps 1`] = `
 <div
-  class="euiPanel euiPanel--subdued euiPageBody euiPageBody--borderRadiusNone css-1ral150-euiPanel-grow-none-subdued"
+  class="euiPanel euiPanel--subdued euiPageBody css-boos0b-euiPanel-grow-none-subdued-euiPageBody-euiPageRestrictWidthStyles"
 />
 `;
 
 exports[`EuiPageBody panelled can be set to true 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPageBody euiPageBody--borderRadiusNone css-1a2dgrg-euiPanel-grow-none-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiPageBody css-p9lgjy-euiPanel-grow-none-plain-hasShadow-euiPageBody-euiPageRestrictWidthStyles"
 />
 `;
 
 exports[`EuiPageBody restrict width can be set to a custom number 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-custom testClass1 testClass2"
+  class="euiPageBody testClass1 testClass2 css-vi3p5b-euiPageBody-euiPageRestrictWidthStyles"
   data-test-subj="test subject string"
-  style="max-width:1024px"
 />
 `;
 
 exports[`EuiPageBody restrict width can be set to a custom value and measurement 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-custom testClass1 testClass2"
+  class="euiPageBody testClass1 testClass2 css-b1fqrn-euiPageBody-euiPageRestrictWidthStyles"
   data-test-subj="test subject string"
-  style="max-width:24rem"
 />
 `;
 
 exports[`EuiPageBody restrict width can be set to a default 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--restrictWidth-default testClass1 testClass2"
+  class="euiPageBody testClass1 testClass2 css-bb4z1c-euiPageBody-euiPageRestrictWidthStyles"
   data-test-subj="test subject string"
 />
 `;

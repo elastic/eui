@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react';
-import { _EuiPageSidebarProps } from '../../../../src/components/page_template/sidebar';
 
 import {
   EuiPageTemplate,
   EuiPageTemplateProps,
   EuiPageHeaderProps,
+  EuiPageSidebarProps,
 } from '../../../../src';
 
 export default ({
@@ -23,7 +23,7 @@ export default ({
   header?: EuiPageHeaderProps;
   panelled?: EuiPageTemplateProps['panelled'];
   // For fullscreen only
-  sidebarSticky?: _EuiPageSidebarProps['sticky'];
+  sidebarSticky?: EuiPageSidebarProps['sticky'];
   offset?: EuiPageTemplateProps['offset'];
   grow?: EuiPageTemplateProps['grow'];
 }) => {

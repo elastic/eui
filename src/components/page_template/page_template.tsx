@@ -11,10 +11,14 @@ import classNames from 'classnames';
 
 import { _EuiPageOuter as EuiPageOuter, _EuiPageOuterProps } from './outer';
 import { _EuiPageInner as EuiPageInner, _EuiPageInnerProps } from './inner';
-import { _EuiPageSidebar as EuiPageSidebar } from './sidebar';
 import { _EuiPageBottomBar as EuiPageBottomBar } from './bottom_bar/page_bottom_bar';
 import { _EuiPageEmptyPrompt as EuiPageEmptyPrompt } from './empty_prompt/page_empty_prompt';
-import { EuiPageHeader, EuiPageSection, EuiPageSectionProps } from '../page';
+import {
+  EuiPageHeader,
+  EuiPageSection,
+  EuiPageSectionProps,
+  EuiPageSidebar,
+} from '../page';
 import { _EuiPageRestrictWidth } from '../page/_restrict_width';
 import { _EuiPageBottomBorder } from '../page/_bottom_border';
 import { useEuiTheme } from '../../services';
@@ -176,7 +180,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
     }
   });
 
-  const _minHeight = grow ? `max(${minHeight}, 100vh` : minHeight;
+  const _minHeight = grow ? `max(${minHeight}, 100vh)` : minHeight;
 
   const classes = classNames('euiPageTemplate', className);
   const pageStyle = {

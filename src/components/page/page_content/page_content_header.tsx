@@ -20,7 +20,11 @@ export interface EuiPageContentHeaderProps
   responsive?: boolean;
 }
 
-export const EuiPageContentHeader: FunctionComponent<EuiPageContentHeaderProps> = ({
+/**
+ * **DEPRECATED**
+ * Use EuiPageHeader instead
+ */
+export const EuiPageContentHeader_Deprecated: FunctionComponent<EuiPageContentHeaderProps> = ({
   children,
   className,
   responsive = true,

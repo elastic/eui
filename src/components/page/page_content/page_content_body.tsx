@@ -16,9 +16,9 @@ import {
 
 const paddingSizeToClassNameMap = {
   none: null,
-  s: 'euiPage--paddingSmall',
-  m: 'euiPage--paddingMedium',
-  l: 'euiPage--paddingLarge',
+  s: 'euiPageContentBody--paddingSmall',
+  m: 'euiPageContentBody--paddingMedium',
+  l: 'euiPageContentBody--paddingLarge',
 };
 
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
@@ -38,7 +38,7 @@ export interface EuiPageContentBodyProps
  * **DEPRECATED**
  * Use EuiPageSection instead
  */
-export const EuiPageContentBody: FunctionComponent<EuiPageContentBodyProps> = ({
+export const EuiPageContentBody_Deprecated: FunctionComponent<EuiPageContentBodyProps> = ({
   children,
   restrictWidth = false,
   paddingSize = 'none',
@@ -55,7 +55,7 @@ export const EuiPageContentBody: FunctionComponent<EuiPageContentBodyProps> = ({
     'euiPageContentBody',
     paddingSizeToClassNameMap[paddingSize],
     {
-      [`euiPage--${widthClassName}`]: widthClassName,
+      [`euiPageContentBody--${widthClassName}`]: widthClassName,
     },
     className
   );

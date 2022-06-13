@@ -4,7 +4,7 @@ import {
   EuiPage,
   EuiPageProps,
   EuiPageSection,
-  EuiPageSideBar,
+  EuiPageSidebar,
   EuiPageBody,
 } from '../../../../src';
 
@@ -17,7 +17,7 @@ export default ({
   sideBar?: ReactElement;
 }) => (
   <EuiPage paddingSize="none" {...rest}>
-    {sideBar && <EuiPageSideBar paddingSize="l">{sideBar}</EuiPageSideBar>}
+    {sideBar && <EuiPageSidebar paddingSize="l">{sideBar}</EuiPageSidebar>}
     <EuiPageBody paddingSize="none" panelled={!!sideBar}>
       <EuiPageSection>{content}</EuiPageSection>
     </EuiPageBody>

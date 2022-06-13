@@ -21,7 +21,7 @@ import {
   EuiTitle,
   EuiFlexGrid,
   EuiFlexItem,
-  EuiPageContent,
+  EuiPageContent_Deprecated as EuiPageContent,
   EuiFormRow,
   EuiRange,
   EuiPage,
