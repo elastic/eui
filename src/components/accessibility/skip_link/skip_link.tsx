@@ -33,7 +33,7 @@ interface EuiSkipLinkInterface extends EuiButtonProps {
    * setting this flag to true will manually scroll to and focus the destination element
    * without changing the browser URL's hash
    */
-  overrideAnchorBehavior?: boolean;
+  overrideLinkBehavior?: boolean;
   /**
    * When position is fixed, this is forced to `0`
    */
@@ -58,7 +58,7 @@ export type EuiSkipLinkProps = ExclusiveUnion<propsForAnchor, propsForButton>;
 
 export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
   destinationId,
-  overrideAnchorBehavior,
+  overrideLinkBehavior,
   tabIndex,
   position = 'static',
   children,
@@ -82,7 +82,7 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
       href: `#${destinationId}`,
     };
   }
-  if (overrideAnchorBehavior) {
+  if (overrideLinkBehavior) {
     optionalProps = {
       ...optionalProps,
       onClick: (e: React.MouseEvent) => {

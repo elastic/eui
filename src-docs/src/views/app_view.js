@@ -72,7 +72,7 @@ export const AppView = ({ children, currentRoute }) => {
       <EuiSkipLink
         destinationId="start-of-content"
         position="fixed"
-        overrideAnchorBehavior
+        overrideLinkBehavior
       >
         Skip to content
       </EuiSkipLink>

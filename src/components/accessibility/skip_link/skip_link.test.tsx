@@ -24,7 +24,7 @@ describe('EuiSkipLink', () => {
   });
 
   describe('props', () => {
-    test('overrideAnchorBehavior prevents default link behavior and manually scrolls and focuses the destination', () => {
+    test('overrideLinkBehavior prevents default link behavior and manually scrolls and focuses the destination', () => {
       const scrollToSpy = jest.fn();
       const focusSpy = jest.fn();
       jest.spyOn(document, 'getElementById').mockReturnValue({
@@ -33,7 +33,7 @@ describe('EuiSkipLink', () => {
       } as any);
 
       const component = mount(
-        <EuiSkipLink destinationId="somewhere" overrideAnchorBehavior />
+        <EuiSkipLink destinationId="somewhere" overrideLinkBehavior />
       );
 
       const preventDefault = jest.fn();
