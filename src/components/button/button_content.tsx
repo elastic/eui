@@ -26,10 +26,8 @@ export const ICON_SIDES = keysOf(iconSideToClassNameMap);
 export type EuiButtonContentType = HTMLAttributes<HTMLSpanElement>;
 
 /**
- * *INTERNAL ONLY / DEPRECATED*
+ * *INTERNAL ONLY*
  * This component is simply a helper component for reuse within other button components
- * This component has been deprecated in favor of the new EuiButtonDisplayContent
- * that can be found in `src/components/button/button_display/_button_display_content.tsx`.
  */
 export interface EuiButtonContentProps extends CommonProps {
   /**
@@ -42,8 +40,7 @@ export interface EuiButtonContentProps extends CommonProps {
   iconSide?: ButtonContentIconSide;
   isLoading?: boolean;
   /**
-   * Object of props passed to the <span/> wrapping the content's text (only if the children is a `string`)
-   * It doesn't apply to the icon.
+   * Object of props passed to the <span/> wrapping the content's text/children only (not icon)
    */
   textProps?: HTMLAttributes<HTMLSpanElement> &
     CommonProps & {
@@ -53,7 +50,7 @@ export interface EuiButtonContentProps extends CommonProps {
   iconSize?: 's' | 'm';
 }
 
-export const EuiButtonContentDeprecated: FunctionComponent<
+export const EuiButtonContent: FunctionComponent<
   EuiButtonContentType & EuiButtonContentProps
 > = ({
   children,

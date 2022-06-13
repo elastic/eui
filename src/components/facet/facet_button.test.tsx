@@ -8,15 +8,12 @@
 
 import React from 'react';
 import { render, mount } from 'enzyme';
-import { requiredProps } from '../../test/';
-import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test/required_props';
 
 import { EuiFacetButton } from './facet_button';
 import { EuiIcon } from '../icon';
 
 describe('EuiFacetButton', () => {
-  shouldRenderCustomStyles(<EuiFacetButton>Content</EuiFacetButton>);
-
   test('is rendered', () => {
     const component = render(
       <EuiFacetButton {...requiredProps}>Content</EuiFacetButton>
@@ -29,13 +26,7 @@ describe('EuiFacetButton', () => {
     describe('isDisabled', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiFacetButton
-            isDisabled
-            quantity={6}
-            icon={<EuiIcon type="dot" color="success" />}
-          >
-            Content
-          </EuiFacetButton>
+          <EuiFacetButton isDisabled>Content</EuiFacetButton>
         );
 
         expect(component).toMatchSnapshot();

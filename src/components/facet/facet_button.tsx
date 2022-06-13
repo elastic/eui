@@ -15,23 +15,13 @@ import React, {
   ReactElement,
 } from 'react';
 import classNames from 'classnames';
+
 import { CommonProps } from '../common';
 
 import { EuiNotificationBadge } from '../badge';
 
 import { EuiLoadingSpinner } from '../loading';
 import { EuiInnerText } from '../inner_text';
-
-import { cloneElementWithCss } from '../../services/theme/clone_element';
-import { useEuiTheme } from '../../services';
-import {
-  euiFacetButtonStyles,
-  euiFacetButtonTextStyles,
-  euiFacetButtonIconStyles,
-  euiFacetButtonQuantityStyles,
-  euiFacetButtonLoadingSpinnerStyles,
-} from './facet_button.styles';
-import { EuiButtonDisplay } from '../button/button_display/_button_display';
 
 export interface EuiFacetButtonProps
   extends CommonProps,
@@ -75,49 +65,25 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
   // If in the loading state, force disabled to true
   isDisabled = isLoading ? true : isDisabled;
 
-  const selection = isSelected ? 'isSelected' : 'unSelected';
-
-  const classes = classNames('euiFacetButton', className);
-
-  const theme = useEuiTheme();
-
-  const styles = euiFacetButtonStyles(theme);
-  const cssStyles = [styles.euiFacetButton];
-
-  const textStyles = euiFacetButtonTextStyles(theme);
-  const cssTextStyles = [
-    textStyles.euiFacetButton__text,
-    textStyles[selection],
-  ];
-
-  const quantityStyles = euiFacetButtonQuantityStyles();
-  const cssQuantityStyles = [
-    quantityStyles.euiFacetButton__quantity,
-    isDisabled && quantityStyles.isDisabled,
-  ];
-
-  const iconStyles = euiFacetButtonIconStyles();
-  const cssIconStyles = [
-    iconStyles.euiFacetButton__icon,
-    isDisabled && quantityStyles.isDisabled,
-  ];
-
-  const loadingSpinnerStyles = euiFacetButtonLoadingSpinnerStyles();
-  const cssLoadingSpinnerStyles = [
-    loadingSpinnerStyles.euiFacetButton__loadingSpinner,
-  ];
+  const classes = classNames(
+    'euiFacetButton',
+    {
+      'euiFacetButton--isSelected': isSelected,
+      'euiFacetButton--unSelected': !isSelected,
+    },
+    className
+  );
 
   // Add quantity number if provided or loading indicator
   let buttonQuantity: ReactElement;
 
   if (isLoading) {
     buttonQuantity = (
-      <EuiLoadingSpinner css={cssLoadingSpinnerStyles} size="m" />
+      <EuiLoadingSpinner className="euiFacetButton__spinner" size="m" />
     );
   } else if (typeof quantity === 'number') {
     buttonQuantity = (
       <EuiNotificationBadge
-        css={cssQuantityStyles}
         className="euiFacetButton__quantity"
         size="m"
         color={!isSelected || isDisabled ? 'subdued' : 'accent'}
@@ -131,37 +97,34 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
   let buttonIcon: ReactElement;
 
   if (React.isValidElement<{ className?: string }>(icon)) {
-    buttonIcon = cloneElementWithCss(icon, {
-      css: cssIconStyles,
-      className: 'euiFacetButton__icon',
+    buttonIcon = React.cloneElement(icon, {
+      className: classNames(icon.props.className, 'euiFacetButton__icon'),
     });
   }
 
   return (
     <EuiInnerText>
       {(ref, innerText) => (
-        <EuiButtonDisplay
+        <button
           className={classes}
-          css={cssStyles}
-          element="button"
-          isDisabled={isDisabled}
+          disabled={isDisabled}
+          type="button"
           ref={buttonRef}
           title={rest['aria-label'] || innerText}
-          size="s"
           {...rest}
         >
-          {buttonIcon}
-          <span
-            css={cssTextStyles}
-            className="euiFacetButton__text"
-            data-text={innerText}
-            ref={ref}
-          >
-            {children}
+          <span className="euiFacetButton__content">
+            {buttonIcon}
+            <span
+              className="euiFacetButton__text"
+              data-text={innerText}
+              ref={ref}
+            >
+              {children}
+            </span>
+            {buttonQuantity}
           </span>
-
-          {buttonQuantity}
-        </EuiButtonDisplay>
+        </button>
       )}
     </EuiInnerText>
   );

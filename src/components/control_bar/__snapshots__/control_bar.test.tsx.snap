@@ -349,7 +349,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                   }
                   type="button"
                 >
-                  <EuiButtonContentDeprecated
+                  <EuiButtonContent
                     className="euiButton__content"
                     iconSide="left"
                     textProps={
@@ -367,7 +367,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                         Sound the Alarm
                       </span>
                     </span>
-                  </EuiButtonContentDeprecated>
+                  </EuiButtonContent>
                 </button>
               </EuiButtonDisplay>
             </EuiButton>
@@ -691,7 +691,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                   }
                   type="button"
                 >
-                  <EuiButtonContentDeprecated
+                  <EuiButtonContent
                     className="euiButton__content"
                     iconSide="left"
                     textProps={
@@ -709,7 +709,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                         Sound the Alarm
                       </span>
                     </span>
-                  </EuiButtonContentDeprecated>
+                  </EuiButtonContent>
                 </button>
               </EuiButtonDisplay>
             </EuiButton>
@@ -1032,7 +1032,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                   }
                   type="button"
                 >
-                  <EuiButtonContentDeprecated
+                  <EuiButtonContent
                     className="euiButton__content"
                     iconSide="left"
                     textProps={
@@ -1050,7 +1050,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                         Sound the Alarm
                       </span>
                     </span>
-                  </EuiButtonContentDeprecated>
+                  </EuiButtonContent>
                 </button>
               </EuiButtonDisplay>
             </EuiButton>
@@ -1277,7 +1277,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
               }
               type="button"
             >
-              <EuiButtonContentDeprecated
+              <EuiButtonContent
                 className="euiButton__content"
                 iconSide="left"
                 textProps={
@@ -1295,7 +1295,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
                     Sound the Alarm
                   </span>
                 </span>
-              </EuiButtonContentDeprecated>
+              </EuiButtonContent>
             </button>
           </EuiButtonDisplay>
         </EuiButton>
@@ -1603,7 +1603,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                   }
                   type="button"
                 >
-                  <EuiButtonContentDeprecated
+                  <EuiButtonContent
                     className="euiButton__content"
                     iconSide="left"
                     textProps={
@@ -1621,7 +1621,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                         Sound the Alarm
                       </span>
                     </span>
-                  </EuiButtonContentDeprecated>
+                  </EuiButtonContent>
                 </button>
               </EuiButtonDisplay>
             </EuiButton>
@@ -1949,7 +1949,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                   }
                   type="button"
                 >
-                  <EuiButtonContentDeprecated
+                  <EuiButtonContent
                     className="euiButton__content"
                     iconSide="left"
                     textProps={
@@ -1967,7 +1967,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                         Sound the Alarm
                       </span>
                     </span>
-                  </EuiButtonContentDeprecated>
+                  </EuiButtonContent>
                 </button>
               </EuiButtonDisplay>
             </EuiButton>
@@ -2295,7 +2295,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
                   }
                   type="button"
                 >
-                  <EuiButtonContentDeprecated
+                  <EuiButtonContent
                     className="euiButton__content"
                     iconSide="left"
                     textProps={
@@ -2313,7 +2313,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
                         Sound the Alarm
                       </span>
                     </span>
-                  </EuiButtonContentDeprecated>
+                  </EuiButtonContent>
                 </button>
               </EuiButtonDisplay>
             </EuiButton>

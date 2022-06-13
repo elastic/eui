@@ -5,6 +5,8 @@ import {
   EuiFacetGroup,
   EuiIcon,
   EuiAvatar,
+  EuiTitle,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import { euiPaletteColorBlind } from '../../../../src/services';
@@ -144,8 +146,22 @@ export default () => {
   };
 
   return (
-    <EuiFacetGroup style={{ maxWidth: 200 }}>
-      {facets('Vertical')}
-    </EuiFacetGroup>
+    <div>
+      <EuiTitle size="s">
+        <h3>Vertical</h3>
+      </EuiTitle>
+      <EuiFacetGroup style={{ maxWidth: 200 }}>
+        {facets('Vertical')}
+      </EuiFacetGroup>
+
+      <EuiSpacer />
+
+      <EuiTitle size="s">
+        <h3>Horizontal and large gutter</h3>
+      </EuiTitle>
+      <EuiFacetGroup layout="horizontal" gutterSize="l">
+        {facets('Horizontal')}
+      </EuiFacetGroup>
+    </div>
   );
 };

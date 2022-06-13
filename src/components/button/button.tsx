@@ -30,8 +30,8 @@ import { getSecureRelForTarget } from '../../services';
 import {
   EuiButtonContentProps,
   EuiButtonContentType,
-  EuiButtonContentDeprecated as EuiButtonContent,
-} from './_button_content_deprecated';
+  EuiButtonContent,
+} from './button_content';
 import { validateHref } from '../../services/security/href_validator';
 
 export type ButtonColor =
@@ -174,8 +174,7 @@ export const EuiButton: FunctionComponent<Props> = ({
   }
 
   return (
-    // eslint-disable-next-line react/jsx-pascal-case
-    <EuiButtonDisplayDeprecated
+    <EuiButtonDisplay
       element={element}
       baseClassName="euiButton"
       ref={buttonRef}
@@ -200,19 +199,13 @@ export type EuiButtonDisplayProps = EuiButtonProps &
   };
 
 /**
- * *DEPRECATED*
  * EuiButtonDisplay is an internal-only component used for displaying
  * any element as a button.
  * NOTE: This component *must* be below EuiButton in the file and
  * EuiButton must also set a displayName for react-docgen-typescript
  * to correctly set EuiButton's docgenInfo and display a props table.
- * This component has been deprecated in favor of the new EuiButtonDisplay
- * that can be found in `src/components/button/button_display/_button_display.tsx`
  */
-export const EuiButtonDisplayDeprecated = forwardRef<
-  HTMLElement,
-  EuiButtonDisplayProps
->(
+export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
   (
     {
       element = 'button',
@@ -302,4 +295,4 @@ export const EuiButtonDisplayDeprecated = forwardRef<
     );
   }
 );
-EuiButtonDisplayDeprecated.displayName = 'EuiButtonDisplay';
+EuiButtonDisplay.displayName = 'EuiButtonDisplay';
