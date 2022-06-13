@@ -32,7 +32,7 @@ exports[`EuiEmptyPrompt is rendered 1`] = `
           class="euiSpacer euiSpacer--m css-jv9za2-euiSpacer-m"
         />
         <div
-          class="euiText css-5rl7cs-euiText-m-euiTextColor-subdued"
+          class="euiText css-nexvet-euiText-m-euiTextColor-subdued"
         >
           <p>
             Body
@@ -123,7 +123,7 @@ exports[`EuiEmptyPrompt props body renders alone 1`] = `
         class="euiEmptyPrompt__contentInner"
       >
         <div
-          class="euiText css-5rl7cs-euiText-m-euiTextColor-subdued"
+          class="euiText css-nexvet-euiText-m-euiTextColor-subdued"
         >
           body
         </div>
@@ -207,7 +207,7 @@ exports[`EuiEmptyPrompt props color primary is rendered 1`] = `
 
 exports[`EuiEmptyPrompt props color subdued is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--subdued euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge css-1v3b2de-euiPanel-m-subdued"
+  class="euiPanel euiPanel--subdued euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge css-1wqem1z-euiPanel-m-subdued"
 >
   <div
     class="euiEmptyPrompt__main"

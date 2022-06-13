@@ -11,7 +11,7 @@ import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiButtonGroupButton } from './button_group_button';
 import { colorToClassNameMap, ButtonColor } from '../button';
-import { EuiButtonContentProps } from '../button_content';
+import { EuiButtonContentProps } from '../_button_content_deprecated';
 import { CommonProps } from '../../common';
 import { useGeneratedHtmlId } from '../../../services';
 

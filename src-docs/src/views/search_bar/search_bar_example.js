@@ -26,7 +26,7 @@ export const SearchBarExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             An <strong>EuiSearchBar</strong> is a toolbar that enables the user
             to create/define a search query. This can be done either by entering
@@ -203,7 +203,7 @@ export const SearchBarExample = {
               </li>
             </ul>
           </div>
-        </div>
+        </>
       ),
       props: propsInfo,
       demo: <SearchBar />,
@@ -217,15 +217,13 @@ export const SearchBarExample = {
         },
       ],
       text: (
-        <div>
-          <p>
-            An <strong>EuiSearchBar</strong> can have its query controlled by a
-            parent component by passing the <EuiCode>query</EuiCode> prop.
-            Changes to the query will be passed back up through the{' '}
-            <EuiCode>onChange</EuiCode> callback where the new query must be
-            stored in state and passed back into the search bar.
-          </p>
-        </div>
+        <p>
+          An <strong>EuiSearchBar</strong> can have its query controlled by a
+          parent component by passing the <EuiCode>query</EuiCode> prop. Changes
+          to the query will be passed back up through the{' '}
+          <EuiCode>onChange</EuiCode> callback where the new query must be
+          stored in state and passed back into the search bar.
+        </p>
       ),
       demo: <ControlledSearchBar />,
     },
@@ -238,12 +236,10 @@ export const SearchBarExample = {
         },
       ],
       text: (
-        <div>
-          <p>
-            An <strong>EuiSearchBar</strong> can have custom filter dropdowns
-            that control how a user can search.
-          </p>
-        </div>
+        <p>
+          An <strong>EuiSearchBar</strong> can have custom filter dropdowns that
+          control how a user can search.
+        </p>
       ),
       demo: <SearchBarFilters />,
     },

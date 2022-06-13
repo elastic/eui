@@ -100,7 +100,7 @@ export const ProgressExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Using the <EuiCode>position</EuiCode> prop we can align our bar to
             be <EuiCode>fixed</EuiCode> or <EuiCode>absolute</EuiCode>. In both
@@ -122,7 +122,7 @@ export const ProgressExample = {
               seen on the Snippet tab.
             </p>
           </EuiCallOut>
-        </div>
+        </>
       ),
       snippet: progressFixedSnippet,
       demo: <ProgressFixed />,
@@ -153,7 +153,7 @@ export const ProgressExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             <strong>EuiProgress</strong> supports a few options for{' '}
             <EuiCode>color</EuiCode>. You can pass any value from our basic
@@ -178,7 +178,7 @@ export const ProgressExample = {
               <EuiCode>valueText</EuiCode> will just use the custom color.
             </p>
           </EuiCallOut>
-        </div>
+        </>
       ),
       demo: <ProgressColors />,
       snippet: progressColorsSnippet,
@@ -192,7 +192,7 @@ export const ProgressExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Determinate progress bar can be used as simple bar charts. Use them
             with the <EuiCode>label</EuiCode> and <EuiCode>valueText</EuiCode>{' '}
@@ -206,7 +206,7 @@ export const ProgressExample = {
             to display a custom <EuiCode>valueText</EuiCode>, you can pass a
             node instead.
           </p>
-        </div>
+        </>
       ),
       demo: <ProgressChart />,
       snippet: progressChartSnippet,

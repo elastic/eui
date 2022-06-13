@@ -21,6 +21,16 @@ describe('useEuiBackgroundColor mixin returns a calculated background version', 
           testCustomHook(() => useEuiBackgroundColor(color)).return
         ).toMatchSnapshot();
       });
+
+      describe('as transparent', () => {
+        it(color, () => {
+          expect(
+            testCustomHook(() =>
+              useEuiBackgroundColor(color, { method: 'transparent' })
+            ).return
+          ).toMatchSnapshot();
+        });
+      });
     });
   });
 });

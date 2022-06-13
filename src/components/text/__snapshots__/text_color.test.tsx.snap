@@ -8,7 +8,7 @@ exports[`EuiTextColor is rendered 1`] = `
 />
 `;
 
-exports[`EuiTextColor props cloneElement 1`] = `
+exports[`EuiTextColor props cloneElement is rendered 1`] = `
 <p
   class="css-1jfxl0s-euiTextColor-default"
 >

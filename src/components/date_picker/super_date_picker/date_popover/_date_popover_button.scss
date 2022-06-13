@@ -26,11 +26,9 @@
   }
 
   &-isInvalid {
-    $backgroundColor: tintOrShade($euiColorDanger, 90%, 70%);
-    $textColor: makeHighContrastColor($euiColorDanger, $backgroundColor);
-
-    background-color: $backgroundColor;
-    color: $textColor;
+    @include euiFormControlInvalidStyle;
+    background-color: transparent;
+    color: $euiColorDangerText;
 
     &:focus,
     &.euiDatePopoverButton-isSelected {
