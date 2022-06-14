@@ -93,16 +93,7 @@ export const EuiStat: FunctionComponent<
   const cssStyles = [styles.euiStat, styles[textAlign]];
   const classes = classNames('euiStat', className);
 
-  const isNamedTitleColor = COLORS.includes(titleColor as TitleColor);
-  const titleStyles = euiStatTitleStyles(euiTheme);
-  const titleCssStyles = [
-    titleStyles.euiStat__title,
-    isNamedTitleColor && titleStyles[titleColor as TitleColor],
-    isLoading && titleStyles.isLoading,
-  ];
-  const titleClasses = classNames('euiStat__title');
-
-  const commonProps = {
+  const commonProps: HTMLAttributes<Element> = {
     'aria-hidden': true,
   };
 
@@ -112,22 +103,21 @@ export const EuiStat: FunctionComponent<
     </EuiText>
   );
 
-  const titlePropsWithColor = {
-    'aria-hidden': true,
-    style: {
-      color: `${titleColor}`,
-    },
-  };
-
+  const isNamedTitleColor = COLORS.includes(titleColor as TitleColor);
+  const titleStyles = euiStatTitleStyles(euiTheme);
+  const titleCssStyles = [
+    titleStyles.euiStat__title,
+    isNamedTitleColor && titleStyles[titleColor as TitleColor],
+    isLoading && titleStyles.isLoading,
+  ];
+  const titleProps = isNamedTitleColor
+    ? commonProps
+    : { ...commonProps, style: { color: titleColor } };
   const titleChildren = isLoading ? '--' : title;
 
-  const titleDisplay = isNamedTitleColor ? (
-    <EuiTitle size={titleSize} className={titleClasses} css={titleCssStyles}>
-      {createElement(titleElement, commonProps, titleChildren)}
-    </EuiTitle>
-  ) : (
-    <EuiTitle size={titleSize} className={titleClasses} css={titleCssStyles}>
-      {createElement(titleElement, titlePropsWithColor, titleChildren)}
+  const titleDisplay = (
+    <EuiTitle size={titleSize} className="euiStat__title" css={titleCssStyles}>
+      {createElement(titleElement, titleProps, titleChildren)}
     </EuiTitle>
   );
 
