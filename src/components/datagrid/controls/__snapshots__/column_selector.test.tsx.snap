@@ -57,7 +57,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
   <div>
     <div>
       <div
-        class="euiPopoverTitle"
+        class="euiPopoverTitle css-1s3mzar-euiPopoverTitle"
       >
         <div
           class="euiFormControlLayout euiFormControlLayout--compressed"

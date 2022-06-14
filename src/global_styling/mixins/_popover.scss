@@ -7,7 +7,5 @@
     @warn 'euiPopoverTitle only accepts "s" or "m" sizes';
   }
 
-  padding: $euiSizeM;
-  text-transform: uppercase;
   border-bottom: $euiBorderThin;
 }

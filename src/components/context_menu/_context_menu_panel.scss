@@ -51,7 +51,6 @@
   }
 
   &--small {
-    @include euiPopoverTitle('s');
     padding: ($euiSizeS * .75) $euiSizeS;
   }
 }
