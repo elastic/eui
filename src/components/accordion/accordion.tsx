@@ -15,11 +15,8 @@ import { EuiLoadingSpinner } from '../loading';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiText } from '../text';
 import { EuiI18n } from '../i18n';
-import {
-  htmlIdGenerator,
-  withEuiTheme,
-  WithEuiThemeProps,
-} from '../../services';
+import { htmlIdGenerator } from '../../services';
+import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
 import { EuiButtonIcon, EuiButtonIconProps } from '../button';
 import {
   euiAccordionButtonStyles,
@@ -112,8 +109,8 @@ export type EuiAccordionProps = CommonProps &
     isLoadingMessage?: boolean | ReactNode;
   };
 
-export class EuiAccordionClass extends Component<
-  WithEuiThemeProps & EuiAccordionProps,
+export class _EuiAccordion extends Component<
+  EuiAccordionProps & WithEuiSystemProps,
   { isOpen: boolean }
 > {
   static defaultProps = {
@@ -201,7 +198,7 @@ export class EuiAccordionClass extends Component<
       buttonProps,
       buttonElement: _ButtonElement = 'button',
       arrowProps,
-      theme,
+      euiTheme,
       ...rest
     } = this.props;
 
@@ -254,23 +251,23 @@ export class EuiAccordionClass extends Component<
     );
 
     // Emotion styles
-    const buttonStyles = euiAccordionButtonStyles(theme);
+    const buttonStyles = euiAccordionButtonStyles(euiTheme);
     const cssButtonStyles = [buttonStyles.euiAccordion__button];
 
-    const childrenStyles = euiAccordionChildrenStyles(theme);
+    const childrenStyles = euiAccordionChildrenStyles(euiTheme);
     const cssChildrenStyles = [
       childrenStyles.euiAccordion__children,
       isLoading && childrenStyles.isLoading,
       paddingSize === 'none' ? undefined : childrenStyles[paddingSize!],
     ];
 
-    const childWrapperStyles = euiAccordionChildWrapperStyles(theme);
+    const childWrapperStyles = euiAccordionChildWrapperStyles(euiTheme);
     const cssChildWrapperStyles = [
       childWrapperStyles.euiAccordion__childWrapper,
       isOpen && childWrapperStyles.isOpen,
     ];
 
-    const iconButtonStyles = euiAccordionIconButtonStyles(theme);
+    const iconButtonStyles = euiAccordionIconButtonStyles(euiTheme);
     const cssIconButtonStyles = [
       iconButtonStyles.euiAccordion__iconButton,
       isOpen && iconButtonStyles.isOpen,
@@ -282,7 +279,7 @@ export class EuiAccordionClass extends Component<
       optionalActionStyles.euiAccordion__optionalAction,
     ];
 
-    const spinnerStyles = euiAccordionSpinnerStyles(theme);
+    const spinnerStyles = euiAccordionSpinnerStyles(euiTheme);
     const cssSpinnerStyles = [spinnerStyles.euiAccordion__spinner];
 
     const triggerWrapperStyles = euiAccordionTriggerWrapperStyles();
@@ -403,4 +400,4 @@ export class EuiAccordionClass extends Component<
   }
 }
 
-export const EuiAccordion = withEuiTheme(EuiAccordionClass);
+export const EuiAccordion = withEuiSystem(_EuiAccordion);
