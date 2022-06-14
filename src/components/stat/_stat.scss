@@ -23,10 +23,6 @@
     animation: euiStatPulse 1.5s infinite ease-in-out;
   }
 
-  .euiStat__description {
-    color: map-get($titleColors, dark);
-  }
-
   &.euiStat--leftAligned {
     text-align: left;
     align-items: flex-start;
