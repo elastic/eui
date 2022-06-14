@@ -14,8 +14,8 @@ import { EuiTimelineItem, EuiTimelineItemProps } from './timeline_item';
 
 import { euiTimelineStyles } from './timeline.styles';
 
-export const GAP_SIZES = ['m', 'l', 'xl'] as const;
-export type EuiTimelineGap = typeof GAP_SIZES[number];
+export const GUTTER_SIZES = ['m', 'l', 'xl'] as const;
+export type EuiTimelineGutterSize = typeof GUTTER_SIZES[number];
 
 export interface EuiTimelineProps
   extends HTMLAttributes<HTMLOListElement>,
@@ -25,16 +25,16 @@ export interface EuiTimelineProps
    */
   items?: EuiTimelineItemProps[];
   /**
-   * Sets the size of the gap (gutter) between each timeline item
+   * Sets the size of the vertical space between each timeline item
    */
-  gap?: EuiTimelineGap;
+  gutterSize?: EuiTimelineGutterSize;
 }
 
 export const EuiTimeline: FunctionComponent<EuiTimelineProps> = ({
   className,
   items = [],
   children,
-  gap = 'xl',
+  gutterSize = 'xl',
   ...rest
 }) => {
   const classes = classNames('euiTimeline', className);
@@ -42,7 +42,7 @@ export const EuiTimeline: FunctionComponent<EuiTimelineProps> = ({
   const euiTheme = useEuiTheme();
   const styles = euiTimelineStyles(euiTheme);
 
-  const cssStyles = [styles.euiTimeline, styles[gap]];
+  const cssStyles = [styles.euiTimeline, styles[gutterSize]];
 
   return (
     // eslint-disable-next-line jsx-a11y/no-redundant-roles

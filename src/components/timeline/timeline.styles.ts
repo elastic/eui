@@ -10,13 +10,13 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { logicalCSS } from '../../global_styling';
 
-const _gapAdjustment = (gap: string) => {
+const _gutterSizeAdjustment = (gutterSize: string) => {
   return `
-    gap: ${gap};
+    gap: ${gutterSize};
 
-    // The vertical line height needs to be adjusted with the gap size
+    // The vertical line height needs to be adjusted with the gutter size
     [class*='euiTimelineItem-']:not(:last-child)::before {
-      ${logicalCSS('height', `calc(100% + ${gap})`)};
+      ${logicalCSS('height', `calc(100% + ${gutterSize})`)};
     }
   `;
 };
@@ -51,8 +51,8 @@ export const euiTimelineStyles = ({ euiTheme }: UseEuiTheme) => {
       flex-direction: column;
       ${timelineVerticalLine(euiTheme)}
     `,
-    m: css(_gapAdjustment(euiTheme.size.base)),
-    l: css(_gapAdjustment(euiTheme.size.l)),
-    xl: css(_gapAdjustment(euiTheme.size.xl)),
+    m: css(_gutterSizeAdjustment(euiTheme.size.base)),
+    l: css(_gutterSizeAdjustment(euiTheme.size.l)),
+    xl: css(_gutterSizeAdjustment(euiTheme.size.xl)),
   };
 };

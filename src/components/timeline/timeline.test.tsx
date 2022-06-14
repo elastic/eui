@@ -9,7 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { EuiAvatar } from '../avatar';
-import { EuiTimeline, EuiTimelineProps, GAP_SIZES } from './timeline';
+import { EuiTimeline, EuiTimelineProps, GUTTER_SIZES } from './timeline';
 
 const items: EuiTimelineProps['items'] = [
   {
@@ -39,12 +39,16 @@ describe('EuiTimeline', () => {
     expect(component).toMatchSnapshot();
   });
 
-  describe('gap', () => {
-    GAP_SIZES.forEach((gap) => {
-      test(`${gap} is rendered`, () => {
-        const component = render(<EuiTimeline items={items} gap={gap} />);
+  describe('props', () => {
+    describe('gutterSize', () => {
+      GUTTER_SIZES.forEach((gutterSize) => {
+        test(`${gutterSize} is rendered`, () => {
+          const component = render(
+            <EuiTimeline items={items} gutterSize={gutterSize} />
+          );
 
-        expect(component).toMatchSnapshot();
+          expect(component).toMatchSnapshot();
+        });
       });
     });
   });

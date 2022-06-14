@@ -1,236 +1,236 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiTimeline gap l is rendered 1`] = `
-<ol
-  class="euiTimeline css-ct871r-euiTimeline-l"
-  role="list"
->
-  <li
-    class="css-1wm3oim-euiTimelineItem-center"
-  >
-    <div
-      class="css-2rivxd-euiTimelineItemIcon-center"
-    >
-      <div
-        class="css-xt9hjx-euiTimelineItemIcon__content"
-      >
-        <div
-          aria-label="email"
-          class="euiAvatar euiAvatar--m euiAvatar--user css-1wtzu6n-euiAvatar-m-user-subdued"
-          role="img"
-          title="email"
-        >
-          <span
-            class="euiAvatar__icon"
-            data-euiicon-type="email"
-          >
-            email
-          </span>
-        </div>
-      </div>
-    </div>
-    <div
-      class="css-1a9m88x-euiTimelineItemEvent-center"
-    >
-      <p>
-        <strong>
-          janet@elastic.co
-        </strong>
-         was invited to the project
-      </p>
-    </div>
-  </li>
-  <li
-    class="css-1wlaxn1-euiTimelineItem-top"
-  >
-    <div
-      class="css-umics0-euiTimelineItemIcon-top"
-    >
-      <div
-        class="css-xt9hjx-euiTimelineItemIcon__content"
-      >
-        <div
-          aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user css-1wtzu6n-euiAvatar-m-user-subdued"
-          role="img"
-          title=""
-        >
-          <span
-            class="euiAvatar__icon"
-            data-euiicon-type="bolt"
-          />
-        </div>
-      </div>
-    </div>
-    <div
-      class="css-1waxxmm-euiTimelineItemEvent-top"
-    >
-      <p>
-        <strong>
-          janet@elastic.co
-        </strong>
-         was invited to the project
-      </p>
-    </div>
-  </li>
-</ol>
-`;
-
-exports[`EuiTimeline gap m is rendered 1`] = `
-<ol
-  class="euiTimeline css-bv86bq-euiTimeline-m"
-  role="list"
->
-  <li
-    class="css-1wm3oim-euiTimelineItem-center"
-  >
-    <div
-      class="css-2rivxd-euiTimelineItemIcon-center"
-    >
-      <div
-        class="css-xt9hjx-euiTimelineItemIcon__content"
-      >
-        <div
-          aria-label="email"
-          class="euiAvatar euiAvatar--m euiAvatar--user css-1wtzu6n-euiAvatar-m-user-subdued"
-          role="img"
-          title="email"
-        >
-          <span
-            class="euiAvatar__icon"
-            data-euiicon-type="email"
-          >
-            email
-          </span>
-        </div>
-      </div>
-    </div>
-    <div
-      class="css-1a9m88x-euiTimelineItemEvent-center"
-    >
-      <p>
-        <strong>
-          janet@elastic.co
-        </strong>
-         was invited to the project
-      </p>
-    </div>
-  </li>
-  <li
-    class="css-1wlaxn1-euiTimelineItem-top"
-  >
-    <div
-      class="css-umics0-euiTimelineItemIcon-top"
-    >
-      <div
-        class="css-xt9hjx-euiTimelineItemIcon__content"
-      >
-        <div
-          aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user css-1wtzu6n-euiAvatar-m-user-subdued"
-          role="img"
-          title=""
-        >
-          <span
-            class="euiAvatar__icon"
-            data-euiicon-type="bolt"
-          />
-        </div>
-      </div>
-    </div>
-    <div
-      class="css-1waxxmm-euiTimelineItemEvent-top"
-    >
-      <p>
-        <strong>
-          janet@elastic.co
-        </strong>
-         was invited to the project
-      </p>
-    </div>
-  </li>
-</ol>
-`;
-
-exports[`EuiTimeline gap xl is rendered 1`] = `
-<ol
-  class="euiTimeline css-lhonfq-euiTimeline-xl"
-  role="list"
->
-  <li
-    class="css-1wm3oim-euiTimelineItem-center"
-  >
-    <div
-      class="css-2rivxd-euiTimelineItemIcon-center"
-    >
-      <div
-        class="css-xt9hjx-euiTimelineItemIcon__content"
-      >
-        <div
-          aria-label="email"
-          class="euiAvatar euiAvatar--m euiAvatar--user css-1wtzu6n-euiAvatar-m-user-subdued"
-          role="img"
-          title="email"
-        >
-          <span
-            class="euiAvatar__icon"
-            data-euiicon-type="email"
-          >
-            email
-          </span>
-        </div>
-      </div>
-    </div>
-    <div
-      class="css-1a9m88x-euiTimelineItemEvent-center"
-    >
-      <p>
-        <strong>
-          janet@elastic.co
-        </strong>
-         was invited to the project
-      </p>
-    </div>
-  </li>
-  <li
-    class="css-1wlaxn1-euiTimelineItem-top"
-  >
-    <div
-      class="css-umics0-euiTimelineItemIcon-top"
-    >
-      <div
-        class="css-xt9hjx-euiTimelineItemIcon__content"
-      >
-        <div
-          aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user css-1wtzu6n-euiAvatar-m-user-subdued"
-          role="img"
-          title=""
-        >
-          <span
-            class="euiAvatar__icon"
-            data-euiicon-type="bolt"
-          />
-        </div>
-      </div>
-    </div>
-    <div
-      class="css-1waxxmm-euiTimelineItemEvent-top"
-    >
-      <p>
-        <strong>
-          janet@elastic.co
-        </strong>
-         was invited to the project
-      </p>
-    </div>
-  </li>
-</ol>
-`;
-
 exports[`EuiTimeline is rendered with items 1`] = `
 <ol
-  class="euiTimeline css-lhonfq-euiTimeline-xl"
+  class="euiTimeline css-1e8x68r-euiTimeline-xl"
+  role="list"
+>
+  <li
+    class="css-1wm3oim-euiTimelineItem-center"
+  >
+    <div
+      class="css-2rivxd-euiTimelineItemIcon-center"
+    >
+      <div
+        class="css-xt9hjx-euiTimelineItemIcon__content"
+      >
+        <div
+          aria-label="email"
+          class="euiAvatar euiAvatar--m euiAvatar--user css-1wtzu6n-euiAvatar-m-user-subdued"
+          role="img"
+          title="email"
+        >
+          <span
+            class="euiAvatar__icon"
+            data-euiicon-type="email"
+          >
+            email
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-1a9m88x-euiTimelineItemEvent-center"
+    >
+      <p>
+        <strong>
+          janet@elastic.co
+        </strong>
+         was invited to the project
+      </p>
+    </div>
+  </li>
+  <li
+    class="css-1wlaxn1-euiTimelineItem-top"
+  >
+    <div
+      class="css-umics0-euiTimelineItemIcon-top"
+    >
+      <div
+        class="css-xt9hjx-euiTimelineItemIcon__content"
+      >
+        <div
+          aria-label=""
+          class="euiAvatar euiAvatar--m euiAvatar--user css-1wtzu6n-euiAvatar-m-user-subdued"
+          role="img"
+          title=""
+        >
+          <span
+            class="euiAvatar__icon"
+            data-euiicon-type="bolt"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-1waxxmm-euiTimelineItemEvent-top"
+    >
+      <p>
+        <strong>
+          janet@elastic.co
+        </strong>
+         was invited to the project
+      </p>
+    </div>
+  </li>
+</ol>
+`;
+
+exports[`EuiTimeline props gutterSize l is rendered 1`] = `
+<ol
+  class="euiTimeline css-9o05xr-euiTimeline-l"
+  role="list"
+>
+  <li
+    class="css-1wm3oim-euiTimelineItem-center"
+  >
+    <div
+      class="css-2rivxd-euiTimelineItemIcon-center"
+    >
+      <div
+        class="css-xt9hjx-euiTimelineItemIcon__content"
+      >
+        <div
+          aria-label="email"
+          class="euiAvatar euiAvatar--m euiAvatar--user css-1wtzu6n-euiAvatar-m-user-subdued"
+          role="img"
+          title="email"
+        >
+          <span
+            class="euiAvatar__icon"
+            data-euiicon-type="email"
+          >
+            email
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-1a9m88x-euiTimelineItemEvent-center"
+    >
+      <p>
+        <strong>
+          janet@elastic.co
+        </strong>
+         was invited to the project
+      </p>
+    </div>
+  </li>
+  <li
+    class="css-1wlaxn1-euiTimelineItem-top"
+  >
+    <div
+      class="css-umics0-euiTimelineItemIcon-top"
+    >
+      <div
+        class="css-xt9hjx-euiTimelineItemIcon__content"
+      >
+        <div
+          aria-label=""
+          class="euiAvatar euiAvatar--m euiAvatar--user css-1wtzu6n-euiAvatar-m-user-subdued"
+          role="img"
+          title=""
+        >
+          <span
+            class="euiAvatar__icon"
+            data-euiicon-type="bolt"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-1waxxmm-euiTimelineItemEvent-top"
+    >
+      <p>
+        <strong>
+          janet@elastic.co
+        </strong>
+         was invited to the project
+      </p>
+    </div>
+  </li>
+</ol>
+`;
+
+exports[`EuiTimeline props gutterSize m is rendered 1`] = `
+<ol
+  class="euiTimeline css-kgkwa2-euiTimeline-m"
+  role="list"
+>
+  <li
+    class="css-1wm3oim-euiTimelineItem-center"
+  >
+    <div
+      class="css-2rivxd-euiTimelineItemIcon-center"
+    >
+      <div
+        class="css-xt9hjx-euiTimelineItemIcon__content"
+      >
+        <div
+          aria-label="email"
+          class="euiAvatar euiAvatar--m euiAvatar--user css-1wtzu6n-euiAvatar-m-user-subdued"
+          role="img"
+          title="email"
+        >
+          <span
+            class="euiAvatar__icon"
+            data-euiicon-type="email"
+          >
+            email
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-1a9m88x-euiTimelineItemEvent-center"
+    >
+      <p>
+        <strong>
+          janet@elastic.co
+        </strong>
+         was invited to the project
+      </p>
+    </div>
+  </li>
+  <li
+    class="css-1wlaxn1-euiTimelineItem-top"
+  >
+    <div
+      class="css-umics0-euiTimelineItemIcon-top"
+    >
+      <div
+        class="css-xt9hjx-euiTimelineItemIcon__content"
+      >
+        <div
+          aria-label=""
+          class="euiAvatar euiAvatar--m euiAvatar--user css-1wtzu6n-euiAvatar-m-user-subdued"
+          role="img"
+          title=""
+        >
+          <span
+            class="euiAvatar__icon"
+            data-euiicon-type="bolt"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="css-1waxxmm-euiTimelineItemEvent-top"
+    >
+      <p>
+        <strong>
+          janet@elastic.co
+        </strong>
+         was invited to the project
+      </p>
+    </div>
+  </li>
+</ol>
+`;
+
+exports[`EuiTimeline props gutterSize xl is rendered 1`] = `
+<ol
+  class="euiTimeline css-1e8x68r-euiTimeline-xl"
   role="list"
 >
   <li
