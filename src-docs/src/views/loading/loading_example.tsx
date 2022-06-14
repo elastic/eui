@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
-
+// @ts-ignore Importing from JS
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -12,13 +12,21 @@ import {
   EuiLoadingChart,
   EuiLoadingContent,
 } from '../../../../src/components';
+
 import {
   loadingElasticConfig,
   loadingChartConfig,
   loadingLogoConfig,
   loadingSpinnerConfig,
   loadingContentConfig,
+  // @ts-ignore Importing from JS
 } from './playground';
+
+import { EuiLoadingSpinnerColor as EuiLoadingSpinnerColorProps } from '../../../../src/components/loading/loading_spinner';
+
+export const EuiLoadingSpinnerColor: FunctionComponent<EuiLoadingSpinnerColorProps> = () => (
+  <div />
+);
 
 import LoadingLogo from './loading_kibana';
 const loadingLogoSource = require('!!raw-loader!./loading_kibana');
@@ -129,7 +137,7 @@ export const LoadingExample = {
           loading contexts.
         </p>
       ),
-      props: { EuiLoadingSpinner },
+      props: { EuiLoadingSpinner, EuiLoadingSpinnerColor },
       demo: <LoadingSpinner />,
       snippet: '<EuiLoadingSpinner size="m" />',
       playground: loadingSpinnerConfig,

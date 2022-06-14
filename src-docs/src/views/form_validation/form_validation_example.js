@@ -2,6 +2,8 @@ import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
+import Guidelines from './guidelines';
+
 import {
   EuiCode,
   EuiForm,
@@ -16,6 +18,7 @@ const validationSource = require('!!raw-loader!./validation');
 
 export const FormValidationExample = {
   title: 'Form validation',
+  guidelines: <Guidelines />,
   sections: [
     {
       text: (

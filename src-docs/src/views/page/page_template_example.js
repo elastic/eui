@@ -127,7 +127,7 @@ export const PageTemplateExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             EUI provides a family of components using the{' '}
             <EuiCode>EuiPage</EuiCode> prefix that work together to build
@@ -175,7 +175,7 @@ export const PageTemplateExample = {
             props like <EuiCode>pageSideBarProps</EuiCode> and{' '}
             <EuiCode>pageContentProps</EuiCode>.
           </p>
-        </div>
+        </>
       ),
       props: {
         EuiPageTemplate,

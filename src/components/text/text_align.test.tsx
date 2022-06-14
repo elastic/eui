@@ -20,7 +20,11 @@ describe('EuiTextAlign', () => {
     expect(component).toMatchSnapshot();
   });
 
-  shouldRenderCustomStyles(<EuiTextAlign textAlign="right" />);
+  shouldRenderCustomStyles(
+    <EuiTextAlign textAlign="right">
+      <p>Content</p>
+    </EuiTextAlign>
+  );
 
   describe('props', () => {
     describe('direction', () => {
@@ -33,14 +37,18 @@ describe('EuiTextAlign', () => {
       });
     });
 
-    test('cloneElement', () => {
-      const component = render(
-        <EuiTextAlign cloneElement>
-          <p>Content</p>
-        </EuiTextAlign>
-      );
+    describe('cloneElement', () => {
+      test('cloneElement', () => {
+        const component = render(
+          <EuiTextAlign cloneElement>
+            <p>Content</p>
+          </EuiTextAlign>
+        );
 
-      expect(component).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
+      });
+
+      shouldRenderCustomStyles(<EuiTextAlign cloneElement textAlign="right" />);
     });
   });
 });
