@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 import { logicalTextAlignCSS } from '../../global_styling';
+import { UseEuiTheme } from '../../services';
 
 export const euiStatStyles = () => ({
   euiStat: css``,
@@ -25,3 +26,28 @@ export const euiStatStyles = () => ({
     align-items: flex-end;
   `,
 });
+
+export const euiStatTitleStyles = ({ euiTheme }: UseEuiTheme) => {
+  return {
+    euiStat__title: css``,
+    // Colors
+    default: css`
+      color: ${euiTheme.colors.fullShade};
+    `,
+    subdued: css`
+      color: ${euiTheme.colors.subduedText};
+    `,
+    primary: css`
+      color: ${euiTheme.colors.primaryText};
+    `,
+    success: css`
+      color: ${euiTheme.colors.successText};
+    `,
+    danger: css`
+      color: ${euiTheme.colors.dangerText};
+    `,
+    accent: css`
+      color: ${euiTheme.colors.accentText};
+    `,
+  };
+};

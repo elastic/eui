@@ -13,7 +13,7 @@ import React, {
   ReactNode,
   createElement,
 } from 'react';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import classNames from 'classnames';
 
 import { EuiText } from '../text';
@@ -21,24 +21,18 @@ import { EuiTitle, EuiTitleSize } from '../title/title';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 
-import { euiStatStyles } from './stat.styles';
+import { useEuiTheme } from '../../services';
+import { euiStatStyles, euiStatTitleStyles } from './stat.styles';
 
-const colorToClassNameMap = {
-  default: null,
-  subdued: 'euiStat__title--subdued',
-  primary: 'euiStat__title--primary',
-  success: 'euiStat__title--success',
-  danger: 'euiStat__title--danger',
-  accent: 'euiStat__title--accent',
-};
-
-export const COLORS = keysOf(colorToClassNameMap);
-
-export const isColorClass = (
-  input: string
-): input is keyof typeof colorToClassNameMap => {
-  return colorToClassNameMap.hasOwnProperty(input);
-};
+export const COLORS = [
+  'default',
+  'subdued',
+  'primary',
+  'success',
+  'danger',
+  'accent',
+] as const;
+type TitleColor = typeof COLORS[number];
 
 export const ALIGNMENTS = ['left', 'center', 'right'] as const;
 
@@ -63,7 +57,7 @@ export interface EuiStatProps {
   /**
    * The color of the title text
    */
-  titleColor?: keyof typeof colorToClassNameMap | string;
+  titleColor?: TitleColor | string;
   /**
    * Size of the title. See EuiTitle for options ('s', 'm', 'l'... etc)
    */
@@ -94,13 +88,19 @@ export const EuiStat: FunctionComponent<
   descriptionElement = 'p',
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
   const styles = euiStatStyles();
   const cssStyles = [styles.euiStat, styles[textAlign]];
   const classes = classNames('euiStat', className);
 
+  const isNamedTitleColor = COLORS.includes(titleColor as TitleColor);
+  const titleStyles = euiStatTitleStyles(euiTheme);
+  const titleCssStyles = [
+    titleStyles.euiStat__title,
+    isNamedTitleColor && titleStyles[titleColor as TitleColor],
+  ];
   const titleClasses = classNames(
     'euiStat__title',
-    isColorClass(titleColor) ? colorToClassNameMap[titleColor] : null,
     {
       'euiStat__title-isLoading': isLoading,
     }
@@ -125,12 +125,12 @@ export const EuiStat: FunctionComponent<
 
   const titleChildren = isLoading ? '--' : title;
 
-  const titleDisplay = isColorClass(titleColor) ? (
-    <EuiTitle size={titleSize} className={titleClasses}>
+  const titleDisplay = isNamedTitleColor ? (
+    <EuiTitle size={titleSize} className={titleClasses} css={titleCssStyles}>
       {createElement(titleElement, commonProps, titleChildren)}
     </EuiTitle>
   ) : (
-    <EuiTitle size={titleSize} className={titleClasses}>
+    <EuiTitle size={titleSize} className={titleClasses} css={titleCssStyles}>
       {createElement(titleElement, titlePropsWithColor, titleChildren)}
     </EuiTitle>
   );

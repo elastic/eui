@@ -1,24 +1,4 @@
 .euiStat {
-  // Modifier naming and colors.
-  $titleColors: (
-    subdued: $euiTextSubduedColor,
-    primary: $euiColorPrimaryText,
-    success: $euiColorSuccessText,
-    danger: $euiColorDangerText,
-    accent: $euiColorAccentText,
-  );
-
-  .euiStat__title {
-    color: $euiColorFullShade;
-
-    // Create color classes based upon the map.
-    @each $name, $color in $titleColors {
-      &--#{$name} {
-        color: $color;
-      }
-    }
-  }
-
   .euiStat__title-isLoading {
     animation: euiStatPulse 1.5s infinite ease-in-out;
   }
