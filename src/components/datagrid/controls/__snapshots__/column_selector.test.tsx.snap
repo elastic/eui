@@ -45,7 +45,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
   tabindex="0"
 >
   <div
-    class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+    class="css-14sstxf-euiPopoverArrow-bottom"
     style="left: 10px; top: 0px;"
   />
   <p

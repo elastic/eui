@@ -31,7 +31,13 @@
 .euiPopover__panel {
   // Ignore linting for legibility of transition property, and the mixin performs an overwrite
   // sass-lint:disable-block indentation
-  @include euiBottomShadow;
+  // sass-lint:disable-block no-color-literals
+  // @include euiBottomShadow;
+  filter:
+    drop-shadow(0 1px 5px rgba($euiShadowColor, .1))
+    drop-shadow(0 3.6px 13px rgba($euiShadowColor, .07))
+    drop-shadow(0 8.4px 23px rgba($euiShadowColor, .06))
+    drop-shadow(0 23px 35px rgba($euiShadowColor, .05));
   position: absolute;
   min-width: $euiButtonMinWidth; /* 1 */
   max-width: calc(100vw - #{$euiSizeXL}); /* 3 */
@@ -69,113 +75,10 @@
     pointer-events: auto;
   }
 
-  .euiPopover__panelArrow {
-    position: absolute;
-    width: 0;
-    height: 0;
 
-    // This fakes a border on the arrow.
-    &:before {
-      position: absolute;
-      content: '';
-      height: 0;
-      width: 0;
-      filter: blur($euiSizeXS - 1px);
-      opacity: .2;
-    }
-
-    // This part of the arrow matches the panel.
-    &:after {
-      position: absolute;
-      content: '';
-      height: 0;
-      width: 0;
-    }
-
-    $arrowShadowCompensation: $euiSizeXS;
-
-    &.euiPopover__panelArrow--top {
-      &:before {
-        border-left: $euiPopoverArrowSize solid transparent;
-        border-right: $euiPopoverArrowSize solid transparent;
-        border-top: $euiPopoverArrowSize solid $euiBorderColor;
-        bottom: -$euiPopoverArrowSize;
-        border-top-color: $euiShadowColor;
-        clip-path: polygon(#{-$arrowShadowCompensation} 0, #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation} 0, #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation} #{$euiPopoverArrowSize + $arrowShadowCompensation}, #{-$arrowShadowCompensation} #{$euiPopoverArrowSize + $arrowShadowCompensation});
-      }
-
-      &:after {
-        bottom: -$euiPopoverArrowSize + 1;
-        border-left: $euiPopoverArrowSize solid transparent;
-        border-right: $euiPopoverArrowSize solid transparent;
-        border-top: $euiPopoverArrowSize solid $euiColorEmptyShade;
-      }
-    }
-
-    &.euiPopover__panelArrow--right {
-      &:before {
-        left: -$euiPopoverArrowSize;
-        top: 50%;
-        border-top: $euiPopoverArrowSize solid transparent;
-        border-bottom: $euiPopoverArrowSize solid transparent;
-        border-right: $euiPopoverArrowSize solid $euiBorderColor;
-        border-right-color: $euiShadowColor;
-        clip-path: polygon(#{-$arrowShadowCompensation} #{-$arrowShadowCompensation}, $euiPopoverArrowSize #{-$arrowShadowCompensation}, $euiPopoverArrowSize #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation}, #{-$arrowShadowCompensation} #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation});
-      }
-
-      &:after {
-        left: -$euiPopoverArrowSize + 1;
-        top: 50%;
-        border-top: $euiPopoverArrowSize solid transparent;
-        border-bottom: $euiPopoverArrowSize solid transparent;
-        border-right: $euiPopoverArrowSize solid $euiColorEmptyShade;
-      }
-    }
-
-    &.euiPopover__panelArrow--bottom {
-      &:before {
-        top: -$euiPopoverArrowSize;
-        border-left: $euiPopoverArrowSize solid transparent;
-        border-right: $euiPopoverArrowSize solid transparent;
-        border-bottom: $euiPopoverArrowSize solid $euiBorderColor;
-        border-bottom-color: $euiShadowColor;
-        clip-path: polygon(#{-$arrowShadowCompensation} #{-$arrowShadowCompensation}, #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation} #{-$arrowShadowCompensation}, #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation} $euiPopoverArrowSize, #{-$arrowShadowCompensation} $euiPopoverArrowSize);
-      }
-
-      &:after {
-        top: -$euiPopoverArrowSize + 1;
-        border-left: $euiPopoverArrowSize solid transparent;
-        border-right: $euiPopoverArrowSize solid transparent;
-        border-bottom: $euiPopoverArrowSize solid $euiColorEmptyShade;
-      }
-    }
-
-    &.euiPopover__panelArrow--left {
-      &:before {
-        top: 50%;
-        border-top: $euiPopoverArrowSize solid transparent;
-        border-bottom: $euiPopoverArrowSize solid transparent;
-        border-left: $euiPopoverArrowSize solid $euiBorderColor;
-        right: -$euiPopoverArrowSize;
-        border-left-color: $euiShadowColor;
-        clip-path: polygon(0 #{-$arrowShadowCompensation}, #{$euiPopoverArrowSize + $arrowShadowCompensation} #{-$arrowShadowCompensation}, #{$euiPopoverArrowSize + $arrowShadowCompensation} #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation}, 0 #{$euiPopoverArrowSize * 2 + $arrowShadowCompensation});
-
-      }
-
-      &:after {
-        right: -$euiPopoverArrowSize + 1;
-        top: 50%;
-        border-top: $euiPopoverArrowSize solid transparent;
-        border-bottom: $euiPopoverArrowSize solid transparent;
-        border-left: $euiPopoverArrowSize solid $euiColorEmptyShade;
-      }
-    }
-  }
-
-
-  &.euiPopover__panel-noArrow .euiPopover__panelArrow {
-    display: none;
-  }
+  // &.euiPopover__panel-noArrow .euiPopover__panelArrow {
+  //   display: none;
+  // }
 
   &.euiPopover__panel-isAttached.euiPopover__panel--bottom {
     border-top-color: transparentize($euiBorderColor, .2);

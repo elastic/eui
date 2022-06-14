@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiPopoverArrow position bottom is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="testClass1 testClass2 css-14sstxf-euiPopoverArrow-bottom"
+  data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiPopoverArrow position left is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="testClass1 testClass2 css-wo4rj5-euiPopoverArrow-left"
+  data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiPopoverArrow position right is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="testClass1 testClass2 css-1u9mok8-euiPopoverArrow-right"
+  data-test-subj="test subject string"
+/>
+`;
+
+exports[`EuiPopoverArrow position top is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="testClass1 testClass2 css-vck1dp-euiPopoverArrow-top"
+  data-test-subj="test subject string"
+/>
+`;

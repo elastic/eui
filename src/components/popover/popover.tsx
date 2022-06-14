@@ -46,6 +46,7 @@ import {
 
 import { EuiI18n } from '../i18n';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
+import { EuiPopoverArrow, EuiPopoverArrowPositions } from './popover_arrow';
 
 export const popoverAnchorPosition = [
   'upCenter',
@@ -296,7 +297,7 @@ interface State {
   isOpening: boolean;
   popoverStyles: CSSProperties;
   arrowStyles?: CSSProperties;
-  arrowPosition: any; // What should this be?
+  arrowPosition: EuiPopoverArrowPositions | null;
   openPosition: any; // What should this be?
   isOpenStable: boolean;
 }
@@ -728,12 +729,13 @@ export class EuiPopover extends Component<Props, State> {
     );
 
     const anchorClasses = classNames('euiPopover__anchor', anchorClassName);
+    const showArrow = hasArrow && !attachToAnchor;
 
     const panelClasses = classNames(
       'euiPopover__panel',
       `euiPopover__panel--${this.state.arrowPosition}`,
       { 'euiPopover__panel-isOpen': this.state.isOpening },
-      { 'euiPopover__panel-noArrow': !hasArrow || attachToAnchor },
+      // { 'euiPopover__panel-noArrow': !hasArrow || attachToAnchor },
       { 'euiPopover__panel-isAttached': attachToAnchor },
       panelClassName,
       panelProps?.className
@@ -778,11 +780,6 @@ export class EuiPopover extends Component<Props, State> {
         );
       }
 
-      const arrowClassNames = classNames(
-        'euiPopover__panelArrow',
-        `euiPopover__panelArrow--${this.state.arrowPosition}`
-      );
-
       const returnFocus = this.state.isOpenStable ? returnFocusConfig : false;
 
       panel = (
@@ -821,9 +818,14 @@ export class EuiPopover extends Component<Props, State> {
                   : undefined,
               }}
             >
-              <div className={arrowClassNames} style={this.state.arrowStyles}>
-                {arrowChildren}
-              </div>
+              {showArrow && this.state.arrowPosition && (
+                <EuiPopoverArrow
+                  position={this.state.arrowPosition}
+                  style={this.state.arrowStyles}
+                >
+                  {arrowChildren}
+                </EuiPopoverArrow>
+              )}
               {focusTrapScreenReaderText}
               <EuiMutationObserver
                 observerOptions={{
