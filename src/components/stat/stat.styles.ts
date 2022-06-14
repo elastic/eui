@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { css } from '@emotion/react';
-import { logicalTextAlignCSS } from '../../global_styling';
+import { css, keyframes } from '@emotion/react';
+import { logicalTextAlignCSS, euiCanAnimate } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiStatStyles = () => ({
@@ -49,5 +49,17 @@ export const euiStatTitleStyles = ({ euiTheme }: UseEuiTheme) => {
     accent: css`
       color: ${euiTheme.colors.accentText};
     `,
+    // Loading
+    isLoading: css`
+      ${euiCanAnimate} {
+        animation: ${euiStatPulse} 1.5s infinite ease-in-out;
+      }
+    `,
   };
 };
+
+const euiStatPulse = keyframes`
+  0% { opacity: 1; }
+  50% { opacity: .25; }
+  100% { opacity: 1; }
+`;

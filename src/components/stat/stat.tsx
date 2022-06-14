@@ -98,13 +98,9 @@ export const EuiStat: FunctionComponent<
   const titleCssStyles = [
     titleStyles.euiStat__title,
     isNamedTitleColor && titleStyles[titleColor as TitleColor],
+    isLoading && titleStyles.isLoading,
   ];
-  const titleClasses = classNames(
-    'euiStat__title',
-    {
-      'euiStat__title-isLoading': isLoading,
-    }
-  );
+  const titleClasses = classNames('euiStat__title');
 
   const commonProps = {
     'aria-hidden': true,
