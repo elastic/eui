@@ -15,10 +15,10 @@ export const euiTimelineItemIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     display: flex;
     position: relative;
     flex-grow: 0;
+    justify-content: center;
     ${logicalCSS('margin-right', euiTheme.size.base)};
   `,
   euiTimelineItemIcon__content: css`
-    ${logicalCSS('min-width', euiTheme.size.xxl)};
     display: flex;
     justify-content: center;
     align-items: center;

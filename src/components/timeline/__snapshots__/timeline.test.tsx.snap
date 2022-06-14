@@ -2,17 +2,17 @@
 
 exports[`EuiTimeline is rendered with items 1`] = `
 <ol
-  class="euiTimeline css-1e8x68r-euiTimeline-xl"
+  class="euiTimeline css-xiu9el-euiTimeline-xl"
   role="list"
 >
   <li
     class="css-1wm3oim-euiTimelineItem-center"
   >
     <div
-      class="css-2rivxd-euiTimelineItemIcon-center"
+      class="css-x8lrtq-euiTimelineItemIcon-center"
     >
       <div
-        class="css-xt9hjx-euiTimelineItemIcon__content"
+        class="css-kuz8oa-euiTimelineItemIcon__content"
       >
         <div
           aria-label="email"
@@ -44,10 +44,10 @@ exports[`EuiTimeline is rendered with items 1`] = `
     class="css-1wlaxn1-euiTimelineItem-top"
   >
     <div
-      class="css-umics0-euiTimelineItemIcon-top"
+      class="css-dka1ul-euiTimelineItemIcon-top"
     >
       <div
-        class="css-xt9hjx-euiTimelineItemIcon__content"
+        class="css-kuz8oa-euiTimelineItemIcon__content"
       >
         <div
           aria-label=""
@@ -78,17 +78,17 @@ exports[`EuiTimeline is rendered with items 1`] = `
 
 exports[`EuiTimeline props gutterSize l is rendered 1`] = `
 <ol
-  class="euiTimeline css-9o05xr-euiTimeline-l"
+  class="euiTimeline css-1mo6v1p-euiTimeline-l"
   role="list"
 >
   <li
     class="css-1wm3oim-euiTimelineItem-center"
   >
     <div
-      class="css-2rivxd-euiTimelineItemIcon-center"
+      class="css-x8lrtq-euiTimelineItemIcon-center"
     >
       <div
-        class="css-xt9hjx-euiTimelineItemIcon__content"
+        class="css-kuz8oa-euiTimelineItemIcon__content"
       >
         <div
           aria-label="email"
@@ -120,10 +120,10 @@ exports[`EuiTimeline props gutterSize l is rendered 1`] = `
     class="css-1wlaxn1-euiTimelineItem-top"
   >
     <div
-      class="css-umics0-euiTimelineItemIcon-top"
+      class="css-dka1ul-euiTimelineItemIcon-top"
     >
       <div
-        class="css-xt9hjx-euiTimelineItemIcon__content"
+        class="css-kuz8oa-euiTimelineItemIcon__content"
       >
         <div
           aria-label=""
@@ -154,17 +154,17 @@ exports[`EuiTimeline props gutterSize l is rendered 1`] = `
 
 exports[`EuiTimeline props gutterSize m is rendered 1`] = `
 <ol
-  class="euiTimeline css-kgkwa2-euiTimeline-m"
+  class="euiTimeline css-6cbmhw-euiTimeline-m"
   role="list"
 >
   <li
     class="css-1wm3oim-euiTimelineItem-center"
   >
     <div
-      class="css-2rivxd-euiTimelineItemIcon-center"
+      class="css-x8lrtq-euiTimelineItemIcon-center"
     >
       <div
-        class="css-xt9hjx-euiTimelineItemIcon__content"
+        class="css-kuz8oa-euiTimelineItemIcon__content"
       >
         <div
           aria-label="email"
@@ -196,10 +196,10 @@ exports[`EuiTimeline props gutterSize m is rendered 1`] = `
     class="css-1wlaxn1-euiTimelineItem-top"
   >
     <div
-      class="css-umics0-euiTimelineItemIcon-top"
+      class="css-dka1ul-euiTimelineItemIcon-top"
     >
       <div
-        class="css-xt9hjx-euiTimelineItemIcon__content"
+        class="css-kuz8oa-euiTimelineItemIcon__content"
       >
         <div
           aria-label=""
@@ -230,17 +230,17 @@ exports[`EuiTimeline props gutterSize m is rendered 1`] = `
 
 exports[`EuiTimeline props gutterSize xl is rendered 1`] = `
 <ol
-  class="euiTimeline css-1e8x68r-euiTimeline-xl"
+  class="euiTimeline css-xiu9el-euiTimeline-xl"
   role="list"
 >
   <li
     class="css-1wm3oim-euiTimelineItem-center"
   >
     <div
-      class="css-2rivxd-euiTimelineItemIcon-center"
+      class="css-x8lrtq-euiTimelineItemIcon-center"
     >
       <div
-        class="css-xt9hjx-euiTimelineItemIcon__content"
+        class="css-kuz8oa-euiTimelineItemIcon__content"
       >
         <div
           aria-label="email"
@@ -272,10 +272,10 @@ exports[`EuiTimeline props gutterSize xl is rendered 1`] = `
     class="css-1wlaxn1-euiTimelineItem-top"
   >
     <div
-      class="css-umics0-euiTimelineItemIcon-top"
+      class="css-dka1ul-euiTimelineItemIcon-top"
     >
       <div
-        class="css-xt9hjx-euiTimelineItemIcon__content"
+        class="css-kuz8oa-euiTimelineItemIcon__content"
       >
         <div
           aria-label=""

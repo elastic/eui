@@ -15,7 +15,7 @@ const _gutterSizeAdjustment = (gutterSize: string) => {
     gap: ${gutterSize};
 
     // The vertical line height needs to be adjusted with the gutter size
-    [class*='euiTimelineItem-']:not(:last-child)::before {
+    [class*='euiTimelineItem-']:not(:last-child) > [class*='euiTimelineItemIcon-']::before {
       ${logicalCSS('height', `calc(100% + ${gutterSize})`)};
     }
   `;
@@ -25,20 +25,19 @@ const _gutterSizeAdjustment = (gutterSize: string) => {
 // are wrapped in a EuiTimeline. That's why these styles live here.
 const timelineVerticalLine = (euiTheme: UseEuiTheme['euiTheme']) => {
   return `  
-    [class*='euiTimelineItem-']::before {
+    [class*='euiTimelineItem-'] > [class*='euiTimelineItemIcon-']::before {
       content: '';
       position: absolute;
       ${logicalCSS('top', 0)};
-      ${logicalCSS('left', `calc(${euiTheme.size.xxl} / 2)`)};
       ${logicalCSS('width', euiTheme.size.xxs)};
       background-color: ${euiTheme.colors.lightShade};
     }
 
-    > [class*='euiTimelineItem-center']:first-child::before {
+    > [class*='euiTimelineItem-center']:first-child > [class*='euiTimelineItemIcon-']::before {
       ${logicalCSS('top', '50%')};
     }
   
-    > [class*='euiTimelineItem-center']:last-child:not(:only-child)::before {
+    > [class*='euiTimelineItem-center']:last-child:not(:only-child) > [class*='euiTimelineItemIcon-']::before {
       ${logicalCSS('height', '50%')};
     }
   `;
