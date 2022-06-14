@@ -8,8 +8,10 @@
 
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
-import { PanelPaddingSize } from '../panel';
+import { EuiPaddingSize, useEuiPaddingCSS } from '../../global_styling';
+import { useEuiTheme } from '../../services';
+import { CommonProps } from '../common';
+import { euiPopoverFooterStyles } from './popover_footer.styles';
 
 export type EuiPopoverFooterProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> &
@@ -18,18 +20,9 @@ export type EuiPopoverFooterProps = FunctionComponent<
        * Customize the all around padding of the popover footer.
        * Leave `undefined` to inherit from the `panelPaddingSize` of the containing EuiPopover
        */
-      paddingSize?: PanelPaddingSize;
+      paddingSize?: EuiPaddingSize;
     }
 >;
-
-const paddingSizeToClassNameMap = {
-  none: 'euiPopoverFooter--paddingNone',
-  s: 'euiPopoverFooter--paddingSmall',
-  m: 'euiPopoverFooter--paddingMedium',
-  l: 'euiPopoverFooter--paddingLarge',
-};
-
-export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
 export const EuiPopoverFooter: EuiPopoverFooterProps = ({
   children,
@@ -37,16 +30,23 @@ export const EuiPopoverFooter: EuiPopoverFooterProps = ({
   paddingSize,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
+  const styles = euiPopoverFooterStyles(euiTheme);
+  const paddingStyles = useEuiPaddingCSS();
+  const cssStyles = [
+    styles.euiPopoverFooter,
+    paddingSize && paddingStyles[paddingSize],
+  ];
+
   const classes = classNames(
     'euiPopoverFooter',
-    // @ts-expect-error EuiPanel increased its available sizes.
-    // When we convert this component to Emotion, we should also increase sizes to match EuiPanel and remove this comment.
-    paddingSize ? paddingSizeToClassNameMap[paddingSize] : null,
+    // The following class is necessary to makeup for the panel padding
+    paddingSize ? `euiPopoverFooter--padding-${paddingSize}` : null,
     className
   );
 
   return (
-    <div className={classes} {...rest}>
+    <div css={cssStyles} className={classes} {...rest}>
       {children}
     </div>
   );

@@ -9,8 +9,10 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
-import { EuiPopoverFooter, PADDING_SIZES } from './popover_footer';
+import { EuiPopoverFooter } from './popover_footer';
+import { PADDING_SIZES } from '../../global_styling';
 
 describe('EuiPopoverFooter', () => {
   test('is rendered', () => {
@@ -18,6 +20,8 @@ describe('EuiPopoverFooter', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  shouldRenderCustomStyles(<EuiPopoverFooter />);
 
   describe('props', () => {
     describe('paddingSize', () => {

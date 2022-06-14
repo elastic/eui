@@ -11,9 +11,3 @@
   text-transform: uppercase;
   border-bottom: $euiBorderThin;
 }
-
-@mixin euiPopoverFooter {
-  @include euiFontSizeS;
-  padding: $euiSizeM;
-  border-top: $euiBorderThin;
-}

@@ -222,7 +222,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
       </div>
     </div>
     <div
-      class="euiPopoverFooter"
+      class="euiPopoverFooter css-dde5qt-euiPopoverFooter"
     >
       <div
         class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"

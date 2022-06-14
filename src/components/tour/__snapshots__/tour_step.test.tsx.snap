@@ -81,7 +81,7 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter"
+            class="euiPopoverFooter euiTourFooter css-dde5qt-euiPopoverFooter"
           >
             <div
               class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
@@ -188,7 +188,7 @@ exports[`EuiTourStep can have subtitle 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter"
+            class="euiPopoverFooter euiTourFooter css-dde5qt-euiPopoverFooter"
           >
             <div
               class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
@@ -290,7 +290,7 @@ exports[`EuiTourStep can override the footer action 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter"
+            class="euiPopoverFooter euiTourFooter css-dde5qt-euiPopoverFooter"
           >
             <div
               class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
@@ -376,7 +376,7 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter"
+            class="euiPopoverFooter euiTourFooter css-dde5qt-euiPopoverFooter"
           >
             <div
               class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
@@ -478,7 +478,7 @@ exports[`EuiTourStep is rendered 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter"
+            class="euiPopoverFooter euiTourFooter css-dde5qt-euiPopoverFooter"
           >
             <div
               class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
