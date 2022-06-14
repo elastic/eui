@@ -21,7 +21,13 @@
     margin: ($amount * -1) ($amount * -1) $amount;
 
     &:not([class*='euiPopoverTitle--padding']) {
-      padding: $euiSizeM $amount;
+      padding: $amount;
     }
   }
+}
+
+// Mainly for specificity, but don't add padding to the title if
+// neither the the panel nor the title has a padding modifier (aka NONE)
+.euiPopover__panel:not([class*='euiPanel--padding']) .euiPopoverTitle:not([class*='euiPopoverTitle--padding']) {
+  padding: 0;
 }

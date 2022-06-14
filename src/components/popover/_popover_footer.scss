@@ -21,7 +21,13 @@
     margin: $amount ($amount * -1) ($amount * -1);
 
     &:not([class*='euiPopoverFooter--padding']) {
-      padding: $euiSizeM $amount;
+      padding: $amount;
     }
   }
+}
+
+// Mainly for specificity, but don't add padding to the footer if
+// neither the the panel nor the footer has a padding modifier (aka NONE)
+.euiPopover__panel:not([class*='euiPanel--padding']) .euiPopoverFooter:not([class*='euiPopoverFooter--padding']) {
+  padding: 0;
 }
