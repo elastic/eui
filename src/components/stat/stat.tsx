@@ -21,6 +21,8 @@ import { EuiTitle, EuiTitleSize } from '../title/title';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 
+import { euiStatStyles } from './stat.styles';
+
 const colorToClassNameMap = {
   default: null,
   subdued: 'euiStat__title--subdued',
@@ -32,19 +34,13 @@ const colorToClassNameMap = {
 
 export const COLORS = keysOf(colorToClassNameMap);
 
-const textAlignToClassNameMap = {
-  left: 'euiStat--leftAligned',
-  center: 'euiStat--centerAligned',
-  right: 'euiStat--rightAligned',
-};
-
 export const isColorClass = (
   input: string
 ): input is keyof typeof colorToClassNameMap => {
   return colorToClassNameMap.hasOwnProperty(input);
 };
 
-export const ALIGNMENTS = keysOf(textAlignToClassNameMap);
+export const ALIGNMENTS = ['left', 'center', 'right'] as const;
 
 export interface EuiStatProps {
   /**
@@ -59,7 +55,7 @@ export interface EuiStatProps {
    * Flips the order of the description and title
    */
   reverse?: boolean;
-  textAlign?: keyof typeof textAlignToClassNameMap;
+  textAlign?: typeof ALIGNMENTS[number];
   /**
    * The (value) text
    */
@@ -98,11 +94,9 @@ export const EuiStat: FunctionComponent<
   descriptionElement = 'p',
   ...rest
 }) => {
-  const classes = classNames(
-    'euiStat',
-    textAlignToClassNameMap[textAlign],
-    className
-  );
+  const styles = euiStatStyles();
+  const cssStyles = [styles.euiStat, styles[textAlign]];
+  const classes = classNames('euiStat', className);
 
   const titleClasses = classNames(
     'euiStat__title',
@@ -167,7 +161,7 @@ export const EuiStat: FunctionComponent<
   );
 
   return (
-    <div className={classes} {...rest}>
+    <div css={cssStyles} className={classes} {...rest}>
       {statDisplay}
       {children}
     </div>
