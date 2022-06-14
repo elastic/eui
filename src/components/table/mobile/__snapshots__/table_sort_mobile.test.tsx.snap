@@ -5,11 +5,11 @@ exports[`EuiTableSortMobile is rendered 1`] = `
   class="euiTableSortMobile testClass1 testClass2"
 >
   <div
-    class="euiPopover euiPopover--anchorDownRight"
+    class="euiPopover euiPopover--anchorDownRight css-17g0ovn-EuiPopover"
     data-test-subj="test subject string"
   >
     <div
-      class="euiPopover__anchor"
+      class="euiPopover__anchor css-17g0ovn-EuiPopover"
     >
       <button
         class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiButtonEmpty--flushRight"

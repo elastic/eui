@@ -24,7 +24,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
     }
     closePopover={[Function]}
     data-test-subj="dataGridDisplaySelectorPopover"
-    display="inlineBlock"
+    display="inline-block"
     hasArrow={true}
     isOpen={false}
     ownFocus={true}

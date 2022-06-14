@@ -5,23 +5,24 @@
 // of transforms.
 
 .euiPopover {
-  display: inline-block;
+  // display: inline-block;
   position: relative;
   vertical-align: middle;
   max-width: 100%;
 }
 
-.euiPopover__anchor {
-  display: inline-block;
-}
+// .euiPopover__anchor {
+//   display: inline-block;
+// }
 
-.euiPopover--displayBlock {
-  display: block;
+// .euiPopover--displayBlock {
+//   display: block;
 
-  .euiPopover__anchor {
-    display: block;
-  }
-}
+//   .euiPopover__anchor {
+//     display: block;
+//   }
+// }
+// const translateDistance = 's';
 
 /**
  * 1. Can expand further, but it looks weird if it's smaller than the originating button.

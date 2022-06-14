@@ -47,6 +47,7 @@ import {
 import { EuiI18n } from '../i18n';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiPopoverArrow, EuiPopoverArrowPositions } from './popover_arrow';
+import { css } from '@emotion/react';
 
 export const popoverAnchorPosition = [
   'upCenter',
@@ -96,7 +97,7 @@ export interface EuiPopoverProps {
   /**
    * CSS display type for both the popover and anchor
    */
-  display?: keyof typeof displayToClassNameMap;
+  display?: CSSProperties['display'];
   /**
    * Object of props passed to EuiFocusTrap
    */
@@ -253,12 +254,12 @@ const anchorPositionToClassNameMap = {
 
 export const ANCHOR_POSITIONS = Object.keys(anchorPositionToClassNameMap);
 
-const displayToClassNameMap = {
-  inlineBlock: undefined,
-  block: 'euiPopover--displayBlock',
-};
+// const displayToClassNameMap = {
+//   inlineBlock: undefined,
+//   block: 'euiPopover--displayBlock',
+// };
 
-export const DISPLAY = Object.keys(displayToClassNameMap);
+// export const DISPLAY = Object.keys(displayToClassNameMap);
 
 const DEFAULT_POPOVER_STYLES = {
   top: 50,
@@ -304,8 +305,6 @@ interface State {
 
 type PropsWithDefaults = Props & {
   anchorPosition: PopoverAnchorPosition;
-  /** CSS display type for both the popover and anchor */
-  display: keyof typeof displayToClassNameMap;
   hasArrow: boolean;
   isOpen: boolean;
   ownFocus: boolean;
@@ -319,7 +318,7 @@ export class EuiPopover extends Component<Props, State> {
     anchorPosition: 'downCenter',
     panelPaddingSize: 'm',
     hasArrow: true,
-    display: 'inlineBlock',
+    display: 'inline-block',
   };
 
   static getDerivedStateFromProps(
@@ -718,16 +717,17 @@ export class EuiPopover extends Component<Props, State> {
       ...rest
     } = this.props;
 
+    const popoverStyles = [css(`display: ${display}`)];
     const classes = classNames(
       'euiPopover',
       anchorPosition ? anchorPositionToClassNameMap[anchorPosition] : null,
-      display ? displayToClassNameMap[display] : null,
       {
         'euiPopover-isOpen': this.state.isOpening,
       },
       className
     );
 
+    const anchorStyles = [css(`display: ${display}`)];
     const anchorClasses = classNames('euiPopover__anchor', anchorClassName);
     const showArrow = hasArrow && !attachToAnchor;
 
@@ -848,8 +848,12 @@ export class EuiPopover extends Component<Props, State> {
     // when disabled, so we still need to conditionally check for that ourselves
     if (ownFocus) {
       return (
-        <div className={classes} ref={popoverRef} {...rest}>
-          <div className={anchorClasses} ref={this.buttonRef}>
+        <div css={popoverStyles} className={classes} ref={popoverRef} {...rest}>
+          <div
+            css={anchorStyles}
+            className={anchorClasses}
+            ref={this.buttonRef}
+          >
             {button instanceof HTMLElement ? null : button}
           </div>
           {panel}
@@ -859,12 +863,17 @@ export class EuiPopover extends Component<Props, State> {
       return (
         <EuiOutsideClickDetector onOutsideClick={this.closePopover}>
           <div
+            css={popoverStyles}
             className={classes}
             ref={popoverRef}
             onKeyDown={this.onKeyDown}
             {...rest}
           >
-            <div className={anchorClasses} ref={this.buttonRef}>
+            <div
+              css={anchorStyles}
+              className={anchorClasses}
+              ref={this.buttonRef}
+            >
               {button instanceof HTMLElement ? null : button}
             </div>
             {panel}

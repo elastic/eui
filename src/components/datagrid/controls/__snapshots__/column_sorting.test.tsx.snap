@@ -2,11 +2,11 @@
 
 exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover allowing users to set column sorting 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft"
+  class="euiPopover euiPopover--anchorDownLeft css-17g0ovn-EuiPopover"
   data-test-subj="dataGridColumnSortingPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-17g0ovn-EuiPopover"
   >
     <button
       class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn euiDataGrid__controlBtn--active"
@@ -230,11 +230,11 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
           class="euiFlexItem euiFlexItem--flexGrowZero"
         >
           <div
-            class="euiPopover euiPopover--anchorDownLeft"
+            class="euiPopover euiPopover--anchorDownLeft css-17g0ovn-EuiPopover"
             data-test-subj="dataGridColumnSortingPopoverColumnSelection"
           >
             <div
-              class="euiPopover__anchor"
+              class="euiPopover__anchor css-17g0ovn-EuiPopover"
             >
               <button
                 class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiButtonEmpty--flushLeft"
