@@ -41,7 +41,6 @@ export const EuiText: FunctionComponent<EuiTextProps> = ({
   textAlign,
   children,
   className,
-  style,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -62,7 +61,7 @@ export const EuiText: FunctionComponent<EuiTextProps> = ({
 
   if (color) {
     text = (
-      <EuiTextColor color={color} style={style} cloneElement>
+      <EuiTextColor color={color} cloneElement>
         {text}
       </EuiTextColor>
     );

@@ -11,7 +11,7 @@ import { render, mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiButtonEmpty, COLORS, SIZES, FLUSH_TYPES } from './button_empty';
-import { ICON_SIDES } from '../button_content';
+import { ICON_SIDES } from '../_button_content_deprecated';
 
 describe('EuiButtonEmpty', () => {
   test('is rendered', () => {
