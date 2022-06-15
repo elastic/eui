@@ -236,7 +236,7 @@ export const euiImageFullScreenCloseIconStyles = ({
     ${logicalCSS('top', euiTheme.size.base)};
     ${logicalCSS('right', euiTheme.size.base)};
     pointer-events: none;
-    fill: ${euiTheme.colors.ghost};
+    fill: ${euiTheme.colors.ghost} !important;
   `,
 });
 
