@@ -15,6 +15,7 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
   />
   <EuiPopover
     anchorClassName="euiDataGridHeaderCell__anchor"
+    anchorPosition="downCenter"
     button={
       <button
         className="euiDataGridHeaderCell__button"
@@ -36,8 +37,11 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
       </button>
     }
     closePopover={[Function]}
+    display="inline-block"
+    hasArrow={true}
     isOpen={false}
     offset={7}
+    ownFocus={true}
     panelPaddingSize="none"
   >
     <div>

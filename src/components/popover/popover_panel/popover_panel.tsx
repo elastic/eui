@@ -8,10 +8,10 @@
 
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
+import { useEuiTheme } from '../../../services';
 import { EuiPanel, EuiPanelProps } from '../../panel';
 import { EuiPopoverArrowPositions } from '../popover_arrow';
-import { euiPopoverStyles } from '../popover.styles';
-import { useEuiTheme } from '../../../services';
+import { euiPopoverPanelStyles } from './popover_panel.styles';
 
 export type EuiPopoverPanelProps = EuiPanelProps & {
   isOpen?: boolean;
@@ -34,7 +34,7 @@ export const EuiPopoverPanel: FunctionComponent<EuiPopoverPanelProps> = ({
   const euiThemeContext = useEuiTheme();
   // Using BEM child class for BWC
   const classes = classNames('euiPopover__panel', className);
-  const styles = euiPopoverStyles(euiThemeContext);
+  const styles = euiPopoverPanelStyles(euiThemeContext);
 
   let panelCSS = [
     styles.euiPopover__panel,

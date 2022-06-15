@@ -28,8 +28,6 @@ import {
   getWaitDuration,
   performOnFrame,
   htmlIdGenerator,
-  withEuiTheme,
-  WithEuiThemeProps,
 } from '../../services';
 
 import { EuiScreenReaderOnly } from '../accessibility';
@@ -289,10 +287,7 @@ type PropsWithDefaults = Props & {
   panelPaddingSize: EuiPaddingSize;
 };
 
-export class EuiPopoverClass extends Component<
-  Props & WithEuiThemeProps,
-  State
-> {
+export class EuiPopover extends Component<Props, State> {
   static defaultProps: Partial<PropsWithDefaults> = {
     isOpen: false,
     ownFocus: true,
@@ -337,7 +332,7 @@ export class EuiPopoverClass extends Component<
   private hasSetInitialFocus: boolean = false;
   private descriptionId: string = htmlIdGenerator()();
 
-  constructor(props: Props & WithEuiThemeProps) {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -695,11 +690,10 @@ export class EuiPopoverClass extends Component<
       container,
       focusTrapProps,
       tabIndex: tabIndexProp,
-      theme,
       ...rest
     } = this.props;
 
-    const styles = euiPopoverStyles(theme);
+    const styles = euiPopoverStyles();
     const popoverStyles = [styles.euiPopover, css(`display: ${display}`)];
     const classes = classNames(
       'euiPopover',
@@ -857,6 +851,3 @@ export class EuiPopoverClass extends Component<
     }
   }
 }
-
-export const EuiPopover = withEuiTheme(EuiPopoverClass);
-EuiPopover.displayName = 'EuiPopover';
