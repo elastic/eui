@@ -7,12 +7,16 @@
  */
 
 import { css } from '@emotion/react';
+import { euiBackgroundColor } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 
-const arrowSize = 'm';
+export const arrowSize = 'm';
 
 export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+
+  // Match the background color of panels
+  const borderColor = euiBackgroundColor(euiThemeContext, 'plain');
 
   return {
     // Base
@@ -22,7 +26,7 @@ export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
       height: 0;
 
       // This part of the arrow matches the panel.
-      &:after {
+      &:before {
         position: absolute;
         content: '';
         height: 0;
@@ -32,44 +36,40 @@ export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
 
     // POSITIONS
     top: css`
-      &:after {
+      &:before {
         bottom: -${euiTheme.size[arrowSize]};
         border-left: ${euiTheme.size[arrowSize]} solid transparent;
         border-right: ${euiTheme.size[arrowSize]} solid transparent;
-        border-top: ${euiTheme.size[arrowSize]} solid
-          ${euiTheme.colors.emptyShade};
+        border-top: ${euiTheme.size[arrowSize]} solid ${borderColor};
       }
     `,
 
     bottom: css`
-      &:after {
+      &:before {
         top: -${euiTheme.size[arrowSize]};
         border-left: ${euiTheme.size[arrowSize]} solid transparent;
         border-right: ${euiTheme.size[arrowSize]} solid transparent;
-        border-bottom: ${euiTheme.size[arrowSize]} solid
-          ${euiTheme.colors.emptyShade};
+        border-bottom: ${euiTheme.size[arrowSize]} solid ${borderColor};
       }
     `,
 
     left: css`
-      &:after {
+      &:before {
         right: -${euiTheme.size[arrowSize]};
         top: 50%;
         border-top: ${euiTheme.size[arrowSize]} solid transparent;
         border-bottom: ${euiTheme.size[arrowSize]} solid transparent;
-        border-left: ${euiTheme.size[arrowSize]} solid
-          ${euiTheme.colors.emptyShade};
+        border-left: ${euiTheme.size[arrowSize]} solid ${borderColor};
       }
     `,
 
     right: css`
-      &:after {
+      &:before {
         left: -${euiTheme.size[arrowSize]};
         top: 50%;
         border-top: ${euiTheme.size[arrowSize]} solid transparent;
         border-bottom: ${euiTheme.size[arrowSize]} solid transparent;
-        border-right: ${euiTheme.size[arrowSize]} solid
-          ${euiTheme.colors.emptyShade};
+        border-right: ${euiTheme.size[arrowSize]} solid ${borderColor};
       }
     `,
   };

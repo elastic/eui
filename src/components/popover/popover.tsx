@@ -713,27 +713,6 @@ export class EuiPopoverClass extends Component<
     const anchorClasses = classNames('euiPopover__anchor', anchorClassName);
     const showArrow = hasArrow && !attachToAnchor;
 
-    // let panelCSS = [
-    //   styles.euiPopover__panel,
-    //   this.state.isOpening && styles.isOpen,
-    //   this.state.isOpening &&
-    //     this.state.arrowPosition &&
-    //     styles[this.state.arrowPosition],
-    // ];
-
-    // if (attachToAnchor) {
-    //   panelCSS = [
-    //     // @ts-ignore Help
-    //     ...panelCSS,
-    //     // @ts-ignore Help
-    //     this.state.isOpening && styles.attached.isOpen,
-    //     // @ts-ignore Help
-    //     this.state.arrowPosition && styles.attached[this.state.arrowPosition],
-    //   ];
-    // }
-
-    const panelClasses = classNames(panelClassName, panelProps?.className);
-
     let panel;
 
     if (!this.state.suppressingPopover && (isOpen || this.state.isClosing)) {
@@ -795,7 +774,7 @@ export class EuiPopoverClass extends Component<
               isOpen={this.state.isOpening}
               arrowPosition={this.state.arrowPosition}
               attached={attachToAnchor}
-              className={panelClasses}
+              className={classNames(panelClassName, panelProps?.className)}
               hasShadow={false}
               paddingSize={panelPaddingSize}
               tabIndex={tabIndex}

@@ -45,7 +45,8 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
   tabindex="0"
 >
   <div
-    class="css-14sstxf-euiPopoverArrow-bottom"
+    class="css-1ud6ob9-euiPopoverArrow-bottom"
+    data-popover-arrow="bottom"
     style="left: 10px; top: 0px;"
   />
   <p
