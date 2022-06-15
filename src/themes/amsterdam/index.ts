@@ -6,9 +6,5 @@
  * Side Public License, v 1.
  */
 
-export type { EUI_THEME } from './themes';
-export { EUI_THEMES, isDefaultTheme } from './themes';
-
-export { AMSTERDAM_NAME_KEY, EuiThemeAmsterdam } from './amsterdam/theme';
-
-export * from './amsterdam';
+// Only globally export the mixins we allow consumers to re-use
+export * from './global_styling/mixins/shadow';
