@@ -6,12 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent } from 'react';
+import React, { HTMLAttributes, FunctionComponent, useContext } from 'react';
 import classNames from 'classnames';
 import { EuiPaddingSize, useEuiPaddingCSS } from '../../global_styling';
 import { useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
 import { euiPopoverTitleStyles } from './popover_title.styles';
+import { EuiPopoverPanelContext } from './popover_panel/popover_panel';
 
 export type EuiPopoverTitleProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> &
@@ -30,20 +31,17 @@ export const EuiPopoverTitle: EuiPopoverTitleProps = ({
   paddingSize,
   ...rest
 }) => {
+  const { paddingSize: panelPadding } = useContext(EuiPopoverPanelContext);
   const euiTheme = useEuiTheme();
-  const styles = euiPopoverTitleStyles(euiTheme);
+  const styles = euiPopoverTitleStyles(euiTheme, panelPadding);
   const paddingStyles = useEuiPaddingCSS();
   const cssStyles = [
     styles.euiPopoverTitle,
-    paddingSize && paddingStyles[paddingSize],
+    // If a paddingSize is not directly provided, inherit from the EuiPopoverPanel
+    paddingStyles[paddingSize || panelPadding],
   ];
 
-  const classes = classNames(
-    'euiPopoverTitle',
-    // The following class is necessary to makeup for the panel padding
-    paddingSize ? `euiPopoverTitle--padding-${paddingSize}` : null,
-    className
-  );
+  const classes = classNames('euiPopoverTitle', className);
 
   return (
     <div css={cssStyles} className={classes} {...rest}>

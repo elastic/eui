@@ -6,12 +6,21 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { createContext, FunctionComponent, useContext } from 'react';
 import classNames from 'classnames';
 import { useEuiTheme } from '../../../services';
+import { EuiPaddingSize } from '../../../global_styling';
 import { EuiPanel, EuiPanelProps } from '../../panel';
 import { EuiPopoverArrowPositions } from '../popover_arrow';
 import { euiPopoverPanelStyles } from './popover_panel.styles';
+
+interface ContextShape {
+  paddingSize: EuiPaddingSize;
+}
+
+export const EuiPopoverPanelContext = createContext<ContextShape>({
+  paddingSize: 'l',
+});
 
 export type EuiPopoverPanelProps = EuiPanelProps & {
   isOpen?: boolean;
@@ -31,6 +40,9 @@ export const EuiPopoverPanel: FunctionComponent<EuiPopoverPanelProps> = ({
   attached,
   ...rest
 }) => {
+  const panelContext = useContext(EuiPopoverPanelContext);
+  if (rest.paddingSize) panelContext.paddingSize = rest.paddingSize;
+
   const euiThemeContext = useEuiTheme();
   // Using BEM child class for BWC
   const classes = classNames('euiPopover__panel', className);
@@ -54,14 +66,16 @@ export const EuiPopoverPanel: FunctionComponent<EuiPopoverPanelProps> = ({
   }
 
   return (
-    <EuiPanel
-      className={classes}
-      css={panelCSS}
-      data-popover-panel
-      data-popover-open={isOpen || undefined}
-      {...rest}
-    >
-      {children}
-    </EuiPanel>
+    <EuiPopoverPanelContext.Provider value={panelContext}>
+      <EuiPanel
+        className={classes}
+        css={panelCSS}
+        data-popover-panel
+        data-popover-open={isOpen || undefined}
+        {...rest}
+      >
+        {children}
+      </EuiPanel>
+    </EuiPopoverPanelContext.Provider>
   );
 };

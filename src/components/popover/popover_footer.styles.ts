@@ -7,17 +7,29 @@
  */
 
 import { css } from '@emotion/react';
-import { euiFontSize } from '../../global_styling';
+import {
+  euiFontSize,
+  euiPaddingSize,
+  EuiPaddingSize,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
-export const euiPopoverFooterStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiPopoverFooterStyles = (
+  euiThemeContext: UseEuiTheme,
+  panelPadding: EuiPaddingSize
+) => {
   const { euiTheme } = euiThemeContext;
+  // If the popover's containing panel has padding applied,
+  // ensure the title expands to cover that padding and
+  const panelPaddingSize = euiPaddingSize(euiThemeContext, panelPadding);
 
   return {
     // Base
     euiPopoverFooter: css`
       ${euiFontSize(euiThemeContext, 's')};
       border-top: ${euiTheme.border.thin};
+      // Negative margins for panel padding
+      margin: ${panelPaddingSize} -${panelPaddingSize} -${panelPaddingSize};
     `,
   };
 };

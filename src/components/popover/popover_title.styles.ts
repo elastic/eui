@@ -7,17 +7,26 @@
  */
 
 import { css } from '@emotion/react';
+import { EuiPaddingSize, euiPaddingSize } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
-export const euiPopoverTitleStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiPopoverTitleStyles = (
+  euiThemeContext: UseEuiTheme,
+  panelPadding: EuiPaddingSize
+) => {
   const { euiTheme } = euiThemeContext;
+  // If the popover's containing panel has padding applied,
+  // ensure the title expands to cover that padding and
+  const panelPaddingSize = euiPaddingSize(euiThemeContext, panelPadding);
 
   return {
     // Base
     euiPopoverTitle: css`
       ${euiTitle(euiThemeContext, 'xxs')};
       border-bottom: ${euiTheme.border.thin};
+      // Negative margins for panel padding
+      margin: -${panelPaddingSize} -${panelPaddingSize} ${panelPaddingSize};
     `,
   };
 };

@@ -3,43 +3,43 @@
 exports[`EuiPopoverTitle is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPopoverTitle testClass1 testClass2 css-1s3mzar-euiPopoverTitle"
+  class="euiPopoverTitle testClass1 testClass2 css-rqt07g-euiPopoverTitle-l"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiPopoverTitle props paddingSize l is rendered 1`] = `
 <div
-  class="euiPopoverTitle euiPopoverTitle--padding-l css-16q962k-euiPopoverTitle-l"
+  class="euiPopoverTitle css-rqt07g-euiPopoverTitle-l"
 />
 `;
 
 exports[`EuiPopoverTitle props paddingSize m is rendered 1`] = `
 <div
-  class="euiPopoverTitle euiPopoverTitle--padding-m css-1mvxywy-euiPopoverTitle-m"
+  class="euiPopoverTitle css-1m5c4fw-euiPopoverTitle-m"
 />
 `;
 
 exports[`EuiPopoverTitle props paddingSize none is rendered 1`] = `
 <div
-  class="euiPopoverTitle euiPopoverTitle--padding-none css-1s3mzar-euiPopoverTitle"
+  class="euiPopoverTitle css-16aebuh-euiPopoverTitle"
 />
 `;
 
 exports[`EuiPopoverTitle props paddingSize s is rendered 1`] = `
 <div
-  class="euiPopoverTitle euiPopoverTitle--padding-s css-ehrybn-euiPopoverTitle-s"
+  class="euiPopoverTitle css-bddi23-euiPopoverTitle-s"
 />
 `;
 
 exports[`EuiPopoverTitle props paddingSize xl is rendered 1`] = `
 <div
-  class="euiPopoverTitle euiPopoverTitle--padding-xl css-myo3pn-euiPopoverTitle-xl"
+  class="euiPopoverTitle css-kptoft-euiPopoverTitle-xl"
 />
 `;
 
 exports[`EuiPopoverTitle props paddingSize xs is rendered 1`] = `
 <div
-  class="euiPopoverTitle euiPopoverTitle--padding-xs css-by9pak-euiPopoverTitle-xs"
+  class="euiPopoverTitle css-1fc2srw-euiPopoverTitle-xs"
 />
 `;

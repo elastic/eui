@@ -58,7 +58,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
   <div>
     <div>
       <div
-        class="euiPopoverTitle css-1s3mzar-euiPopoverTitle"
+        class="euiPopoverTitle css-16plqtc-euiPopoverTitle-s"
       >
         <div
           class="euiFormControlLayout euiFormControlLayout--compressed"
@@ -223,7 +223,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
       </div>
     </div>
     <div
-      class="euiPopoverFooter css-dde5qt-euiPopoverFooter"
+      class="euiPopoverFooter css-kaxplu-euiPopoverFooter-s"
     >
       <div
         class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
