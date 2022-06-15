@@ -19,10 +19,20 @@ describe('replaceEmotionPrefix', () => {
       'emotion-euiComponent-primary-m'
     );
   });
+  it('matches EUI component Emotion classes with descendents', () => {
+    expect(replaceEmotionPrefix('css-abc1234-euiComponent__child')).toBe(
+      'emotion-euiComponent__child'
+    );
+  });
   it('matches chained EUI component Emotion classes', () => {
     expect(
       replaceEmotionPrefix('css-abc1234-euiComponentStyles-EuiComponent')
     ).toBe('emotion-euiComponentStyles-EuiComponent');
+  });
+  it('matches EUI component Emotion classes with uppercase start', () => {
+    expect(replaceEmotionPrefix('css-abc1234-EuiComponent')).toBe(
+      'emotion-EuiComponent'
+    );
   });
   it('does not match EUI Sass classes', () => {
     expect(replaceEmotionPrefix('euiMark')).toBe('euiMark');
