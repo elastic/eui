@@ -34,8 +34,6 @@ import {
 
 import { EuiScreenReaderOnly } from '../accessibility';
 
-import { EuiPanel, PanelPaddingSize, EuiPanelProps } from '../panel';
-
 import { EuiPortal } from '../portal';
 
 import { EuiMutationObserver } from '../observer/mutation_observer';
@@ -51,6 +49,9 @@ import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiPopoverArrow, EuiPopoverArrowPositions } from './popover_arrow';
 import { css } from '@emotion/react';
 import { euiPopoverStyles } from './popover.styles';
+import { EuiPopoverPanel } from './popover_panel';
+import { EuiPopoverPanelProps } from './popover_panel/popover_panel';
+import { EuiPaddingSize } from '../../global_styling';
 
 export const popoverAnchorPosition = [
   'upCenter',
@@ -144,7 +145,7 @@ export interface EuiPopoverProps {
   /**
    * EuiPanel padding on all sides
    */
-  panelPaddingSize?: PanelPaddingSize;
+  panelPaddingSize?: EuiPaddingSize;
   /**
    * Standard DOM `style` attribute. Passed to the EuiPanel
    */
@@ -152,7 +153,7 @@ export interface EuiPopoverProps {
   /**
    * Object of props passed to EuiPanel
    */
-  panelProps?: Omit<EuiPanelProps, 'style'>;
+  panelProps?: Omit<EuiPopoverPanelProps, 'style'>;
   panelRef?: RefCallback<HTMLElement | null>;
   popoverRef?: Ref<HTMLDivElement>;
   /**
@@ -288,7 +289,7 @@ type PropsWithDefaults = Props & {
   hasArrow: boolean;
   isOpen: boolean;
   ownFocus: boolean;
-  panelPaddingSize: PanelPaddingSize;
+  panelPaddingSize: EuiPaddingSize;
 };
 
 export class EuiPopoverClass extends Component<Props, State> {
@@ -712,30 +713,26 @@ export class EuiPopoverClass extends Component<Props, State> {
     const anchorClasses = classNames('euiPopover__anchor', anchorClassName);
     const showArrow = hasArrow && !attachToAnchor;
 
-    let panelCSS = [
-      styles.euiPopover__panel,
-      this.state.isOpening && styles.isOpen,
-      this.state.isOpening &&
-        this.state.arrowPosition &&
-        styles[this.state.arrowPosition],
-    ];
+    // let panelCSS = [
+    //   styles.euiPopover__panel,
+    //   this.state.isOpening && styles.isOpen,
+    //   this.state.isOpening &&
+    //     this.state.arrowPosition &&
+    //     styles[this.state.arrowPosition],
+    // ];
 
-    if (attachToAnchor) {
-      panelCSS = [
-        // @ts-ignore Help
-        ...panelCSS,
-        // @ts-ignore Help
-        this.state.isOpening && styles.attached.isOpen,
-        // @ts-ignore Help
-        this.state.arrowPosition && styles.attached[this.state.arrowPosition],
-      ];
-    }
+    // if (attachToAnchor) {
+    //   panelCSS = [
+    //     // @ts-ignore Help
+    //     ...panelCSS,
+    //     // @ts-ignore Help
+    //     this.state.isOpening && styles.attached.isOpen,
+    //     // @ts-ignore Help
+    //     this.state.arrowPosition && styles.attached[this.state.arrowPosition],
+    //   ];
+    // }
 
-    const panelClasses = classNames(
-      'euiPopover__panel',
-      panelClassName,
-      panelProps?.className
-    );
+    const panelClasses = classNames(panelClassName, panelProps?.className);
 
     let panel;
 
@@ -792,12 +789,12 @@ export class EuiPopoverClass extends Component<Props, State> {
               !ownFocus || !this.state.isOpenStable || this.state.isClosing
             }
           >
-            <EuiPanel
-              {...(panelProps as EuiPanelProps)}
-              data-popover-panel
-              data-popover-open={this.state.isOpening || undefined}
+            <EuiPopoverPanel
+              {...(panelProps as EuiPopoverPanelProps)}
               panelRef={this.panelRef}
-              css={panelCSS}
+              isOpen={this.state.isOpening}
+              arrowPosition={this.state.arrowPosition}
+              attached={attachToAnchor}
               className={panelClasses}
               hasShadow={false}
               paddingSize={panelPaddingSize}
@@ -836,7 +833,7 @@ export class EuiPopoverClass extends Component<Props, State> {
               >
                 {(mutationRef) => <div ref={mutationRef}>{children}</div>}
               </EuiMutationObserver>
-            </EuiPanel>
+            </EuiPopoverPanel>
           </EuiFocusTrap>
         </EuiPortal>
       );
