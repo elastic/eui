@@ -70,7 +70,7 @@ export const popoverAnchorPosition = [
 
 export type PopoverAnchorPosition = typeof popoverAnchorPosition[number];
 
-export interface EuiPopoverProps {
+export interface EuiPopoverProps extends CommonProps {
   /**
    * Class name passed to the direct parent of the button
    */
@@ -265,10 +265,7 @@ function getElementFromInitialFocus(
 const returnFocusConfig = { preventScroll: true };
 const closingTransitionTime = 250; // TODO: DRY out var when converting to CSS-in-JS
 
-export type Props = CommonProps &
-  HTMLAttributes<HTMLDivElement> &
-  EuiPopoverProps &
-  WithEuiThemeProps;
+export type Props = EuiPopoverProps & HTMLAttributes<HTMLDivElement>;
 
 interface State {
   prevProps: {
@@ -292,7 +289,10 @@ type PropsWithDefaults = Props & {
   panelPaddingSize: EuiPaddingSize;
 };
 
-export class EuiPopoverClass extends Component<Props, State> {
+export class EuiPopoverClass extends Component<
+  Props & WithEuiThemeProps,
+  State
+> {
   static defaultProps: Partial<PropsWithDefaults> = {
     isOpen: false,
     ownFocus: true,
@@ -337,7 +337,7 @@ export class EuiPopoverClass extends Component<Props, State> {
   private hasSetInitialFocus: boolean = false;
   private descriptionId: string = htmlIdGenerator()();
 
-  constructor(props: Props) {
+  constructor(props: Props & WithEuiThemeProps) {
     super(props);
 
     this.state = {

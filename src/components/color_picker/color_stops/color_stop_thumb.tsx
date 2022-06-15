@@ -108,6 +108,7 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
   const [numberInputRef, setNumberInputRef] = useState<HTMLInputElement | null>(
     null
   );
+  // @ts-expect-error Help: Wrapped HOC
   const popoverRef = useRef<EuiPopover>(null);
 
   useEffect(() => {

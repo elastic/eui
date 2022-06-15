@@ -272,7 +272,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
           display={popoverTrigger ? 'inline-block' : 'block'}
           {...popoverRest}
           panelRef={setPanelRef}
-          button={popoverTrigger ? popoverTrigger : search}
+          button={popoverTrigger ? popoverTrigger : search!}
           closePopover={closePopover}
         >
           <div style={{ width: popoverWidth, maxWidth: '100%' }}>
