@@ -314,10 +314,10 @@ exports[`EuiRange props levels should render 1`] = `
 
 exports[`EuiRange props loading should display when showInput="inputWithPopover" 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiInputPopover euiRange__popover css-1k1aqtq-EuiPopover"
+  class="euiPopover euiInputPopover euiRange__popover css-fwe1lp-euiPopover-EuiPopoverClass"
 >
   <div
-    class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+    class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
   >
     <div>
       <div
@@ -386,10 +386,10 @@ exports[`EuiRange props range should render 1`] = `
 
 exports[`EuiRange props slider should display in popover 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiInputPopover euiRange__popover css-1k1aqtq-EuiPopover"
+  class="euiPopover euiInputPopover euiRange__popover css-fwe1lp-euiPopover-EuiPopoverClass"
 >
   <div
-    class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+    class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
   >
     <div>
       <div

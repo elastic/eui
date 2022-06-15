@@ -6,10 +6,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-1k1aqtq-EuiPopover"
+      class="euiPopover euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-fwe1lp-euiPopover-EuiPopoverClass"
     >
       <div
-        class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+        class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
       >
         <div>
           <div
@@ -63,10 +63,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-1k1aqtq-EuiPopover"
+      class="euiPopover euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-fwe1lp-euiPopover-EuiPopoverClass"
     >
       <div
-        class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+        class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
       >
         <div>
           <div
@@ -260,7 +260,6 @@ exports[`EuiSuggest props isVirtualized 1`] = `
           className="euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
           closePopover={[Function]}
           display="block"
-          hasArrow={true}
           isOpen={false}
           ownFocus={false}
           panelPaddingSize="none"
@@ -273,401 +272,588 @@ exports[`EuiSuggest props isVirtualized 1`] = `
           }
           panelRef={[Function]}
         >
-          <EuiOutsideClickDetector
-            onOutsideClick={[Function]}
+          <EuiPopoverClass
+            anchorPosition="downLeft"
+            attachToAnchor={true}
+            button={
+              <EuiResizeObserver
+                onResize={[Function]}
+              >
+                [Function]
+              </EuiResizeObserver>
+            }
+            buttonRef={[Function]}
+            className="euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+            closePopover={[Function]}
+            display="block"
+            hasArrow={true}
+            isOpen={false}
+            ownFocus={false}
+            panelPaddingSize="none"
+            panelProps={
+              Object {
+                "aria-live": undefined,
+                "aria-modal": false,
+                "role": undefined,
+              }
+            }
+            panelRef={[Function]}
+            theme={
+              Object {
+                "colorMode": "LIGHT",
+                "euiTheme": Object {
+                  "animation": Object {
+                    "bounce": "cubic-bezier(.34, 1.61, .7, 1)",
+                    "extraFast": "90ms",
+                    "extraSlow": "500ms",
+                    "fast": "150ms",
+                    "normal": "250ms",
+                    "resistance": "cubic-bezier(.694, .0482, .335, 1)",
+                    "slow": "350ms",
+                  },
+                  "base": 16,
+                  "border": Object {
+                    "color": "#D3DAE6",
+                    "editable": "2px dotted #D3DAE6",
+                    "radius": Object {
+                      "medium": "6px",
+                      "small": "4px",
+                    },
+                    "thick": "2px solid #D3DAE6",
+                    "thin": "1px solid #D3DAE6",
+                    "width": Object {
+                      "thick": "2px",
+                      "thin": "1px",
+                    },
+                  },
+                  "breakpoint": Object {
+                    "l": 992,
+                    "m": 768,
+                    "s": 575,
+                    "xl": 1200,
+                    "xs": 0,
+                  },
+                  "colors": Object {
+                    "accent": "#F04E98",
+                    "accentText": "#ba3d76",
+                    "body": "#f7f8fc",
+                    "danger": "#BD271E",
+                    "dangerText": "#bd271e",
+                    "darkShade": "#69707D",
+                    "darkestShade": "#343741",
+                    "disabled": "#ABB4C4",
+                    "disabledText": "#a2abba",
+                    "emptyShade": "#FFF",
+                    "fullShade": "#000",
+                    "ghost": "#FFF",
+                    "highlight": "#fff9e8",
+                    "ink": "#000",
+                    "lightShade": "#D3DAE6",
+                    "lightestShade": "#F1F4FA",
+                    "link": "#006bb8",
+                    "mediumShade": "#98A2B3",
+                    "primary": "#07C",
+                    "primaryText": "#006bb8",
+                    "shadow": "#000",
+                    "subduedText": "#646a77",
+                    "success": "#00BFB3",
+                    "successText": "#007871",
+                    "text": "#343741",
+                    "title": "#1a1c21",
+                    "warning": "#FEC514",
+                    "warningText": "#83650a",
+                  },
+                  "focus": Object {
+                    "color": "currentColor",
+                    "width": "2px",
+                  },
+                  "font": Object {
+                    "baseline": 4,
+                    "body": Object {
+                      "scale": "s",
+                      "weight": "regular",
+                    },
+                    "family": "'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif",
+                    "familyCode": "'Roboto Mono', Menlo, Courier, monospace",
+                    "familySerif": "Georgia, Times, Times New Roman, serif",
+                    "featureSettings": "'calt' 1, 'kern' 1, 'liga' 1",
+                    "lineHeightMultiplier": 1.5,
+                    "scale": Object {
+                      "l": 1.375,
+                      "m": 1,
+                      "s": 0.875,
+                      "xl": 1.6875,
+                      "xs": 0.75,
+                      "xxl": 2.125,
+                      "xxs": 0.6875,
+                      "xxxs": 0.5625,
+                    },
+                    "title": Object {
+                      "weight": "bold",
+                    },
+                    "weight": Object {
+                      "bold": 700,
+                      "light": 300,
+                      "medium": 500,
+                      "regular": 400,
+                      "semiBold": 600,
+                    },
+                  },
+                  "levels": Object {
+                    "content": 0,
+                    "flyout": 1000,
+                    "header": 1000,
+                    "mask": 6000,
+                    "maskBelowHeader": 1000,
+                    "menu": 2000,
+                    "modal": 8000,
+                    "navigation": 6000,
+                    "toast": 9000,
+                  },
+                  "size": Object {
+                    "base": "16px",
+                    "l": "24px",
+                    "m": "12px",
+                    "s": "8px",
+                    "xl": "32px",
+                    "xs": "4px",
+                    "xxl": "40px",
+                    "xxs": "2px",
+                    "xxxl": "48px",
+                    "xxxxl": "64px",
+                  },
+                  "themeName": "EUI_THEME_AMSTERDAM",
+                },
+                "modifications": Object {},
+              }
+            }
           >
-            <div
-              css="unknown styles"
-              onKeyDown={[Function]}
-              onMouseDown={[Function]}
-              onMouseUp={[Function]}
-              onTouchEnd={[Function]}
-              onTouchStart={[Function]}
+            <EuiOutsideClickDetector
+              onOutsideClick={[Function]}
             >
-              <Insertion
-                cache={
-                  Object {
-                    "insert": [Function],
-                    "inserted": Object {
-                      "192zz00-euiLoadingSpinner-m": true,
-                      "1k1aqtq-EuiPopover": true,
-                      "animation-c24ia8": true,
-                    },
-                    "key": "css",
-                    "nonce": undefined,
-                    "registered": Object {},
-                    "sheet": StyleSheet {
-                      "_alreadyInsertedOrderInsensitiveRule": true,
-                      "_insertTag": [Function],
-                      "before": null,
-                      "container": <head>
-                        <style
-                          data-emotion="css"
-                          data-s=""
-                        >
-                          
-                          .css-1k1aqtq-EuiPopover{display:block;}
-                        </style>
-                        <style
-                          data-emotion="css"
-                          data-s=""
-                        >
-                          
-                          .css-192zz00-euiLoadingSpinner-m{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;display:inline-block;border-radius:50%;border:2px solid #D3DAE6;border-color:#07C #D3DAE6 #D3DAE6 #D3DAE6;width:16px;height:16px;border-width:calc(1px * 1.5);}
-                        </style>
-                        <style
-                          data-emotion="css"
-                          data-s=""
-                        >
-                          
-                          @media screen and (prefers-reduced-motion: no-preference){.css-192zz00-euiLoadingSpinner-m{-webkit-animation:animation-c24ia8 0.6s infinite linear;animation:animation-c24ia8 0.6s infinite linear;}}
-                        </style>
-                        <style
-                          data-emotion="css"
-                          data-s=""
-                        >
-                          
-                          @-webkit-keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
-                        </style>
-                        <style
-                          data-emotion="css"
-                          data-s=""
-                        >
-                          
-                          @keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
-                        </style>
-                      </head>,
-                      "ctr": 5,
-                      "insertionPoint": undefined,
-                      "isSpeedy": false,
-                      "key": "css",
-                      "nonce": undefined,
-                      "prepend": undefined,
-                      "tags": Array [
-                        <style
-                          data-emotion="css"
-                          data-s=""
-                        >
-                          
-                          .css-1k1aqtq-EuiPopover{display:block;}
-                        </style>,
-                        <style
-                          data-emotion="css"
-                          data-s=""
-                        >
-                          
-                          .css-192zz00-euiLoadingSpinner-m{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;display:inline-block;border-radius:50%;border:2px solid #D3DAE6;border-color:#07C #D3DAE6 #D3DAE6 #D3DAE6;width:16px;height:16px;border-width:calc(1px * 1.5);}
-                        </style>,
-                        <style
-                          data-emotion="css"
-                          data-s=""
-                        >
-                          
-                          @media screen and (prefers-reduced-motion: no-preference){.css-192zz00-euiLoadingSpinner-m{-webkit-animation:animation-c24ia8 0.6s infinite linear;animation:animation-c24ia8 0.6s infinite linear;}}
-                        </style>,
-                        <style
-                          data-emotion="css"
-                          data-s=""
-                        >
-                          
-                          @-webkit-keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
-                        </style>,
-                        <style
-                          data-emotion="css"
-                          data-s=""
-                        >
-                          
-                          @keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
-                        </style>,
-                      ],
-                    },
-                  }
-                }
-                isStringTag={true}
-                serialized={
-                  Object {
-                    "map": undefined,
-                    "name": "1k1aqtq-EuiPopover",
-                    "next": undefined,
-                    "styles": "display: block;label:EuiPopover;;;",
-                    "toString": [Function],
-                  }
-                }
-              />
               <div
-                className="euiPopover euiPopover--anchorDownLeft euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-1k1aqtq-EuiPopover"
+                css="unknown styles"
                 onKeyDown={[Function]}
                 onMouseDown={[Function]}
                 onMouseUp={[Function]}
                 onTouchEnd={[Function]}
                 onTouchStart={[Function]}
               >
-                <div
-                  css="unknown styles"
-                >
-                  <Insertion
-                    cache={
-                      Object {
-                        "insert": [Function],
-                        "inserted": Object {
-                          "192zz00-euiLoadingSpinner-m": true,
-                          "1k1aqtq-EuiPopover": true,
-                          "animation-c24ia8": true,
-                        },
+                <Insertion
+                  cache={
+                    Object {
+                      "insert": [Function],
+                      "inserted": Object {
+                        "192zz00-euiLoadingSpinner-m": true,
+                        "4fdlpz-EuiPopoverClass": true,
+                        "animation-c24ia8": true,
+                        "fwe1lp-euiPopover-EuiPopoverClass": true,
+                      },
+                      "key": "css",
+                      "nonce": undefined,
+                      "registered": Object {},
+                      "sheet": StyleSheet {
+                        "_alreadyInsertedOrderInsensitiveRule": true,
+                        "_insertTag": [Function],
+                        "before": null,
+                        "container": <head>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-fwe1lp-euiPopover-EuiPopoverClass{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                          </style>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-4fdlpz-EuiPopoverClass{display:block;}
+                          </style>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-192zz00-euiLoadingSpinner-m{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;display:inline-block;border-radius:50%;border:2px solid #D3DAE6;border-color:#07C #D3DAE6 #D3DAE6 #D3DAE6;width:16px;height:16px;border-width:calc(1px * 1.5);}
+                          </style>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            @media screen and (prefers-reduced-motion: no-preference){.css-192zz00-euiLoadingSpinner-m{-webkit-animation:animation-c24ia8 0.6s infinite linear;animation:animation-c24ia8 0.6s infinite linear;}}
+                          </style>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            @-webkit-keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
+                          </style>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            @keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
+                          </style>
+                        </head>,
+                        "ctr": 6,
+                        "insertionPoint": undefined,
+                        "isSpeedy": false,
                         "key": "css",
                         "nonce": undefined,
-                        "registered": Object {},
-                        "sheet": StyleSheet {
-                          "_alreadyInsertedOrderInsensitiveRule": true,
-                          "_insertTag": [Function],
-                          "before": null,
-                          "container": <head>
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              .css-1k1aqtq-EuiPopover{display:block;}
-                            </style>
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              .css-192zz00-euiLoadingSpinner-m{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;display:inline-block;border-radius:50%;border:2px solid #D3DAE6;border-color:#07C #D3DAE6 #D3DAE6 #D3DAE6;width:16px;height:16px;border-width:calc(1px * 1.5);}
-                            </style>
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              @media screen and (prefers-reduced-motion: no-preference){.css-192zz00-euiLoadingSpinner-m{-webkit-animation:animation-c24ia8 0.6s infinite linear;animation:animation-c24ia8 0.6s infinite linear;}}
-                            </style>
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              @-webkit-keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
-                            </style>
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              @keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
-                            </style>
-                          </head>,
-                          "ctr": 5,
-                          "insertionPoint": undefined,
-                          "isSpeedy": false,
+                        "prepend": undefined,
+                        "tags": Array [
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-fwe1lp-euiPopover-EuiPopoverClass{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                          </style>,
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-4fdlpz-EuiPopoverClass{display:block;}
+                          </style>,
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-192zz00-euiLoadingSpinner-m{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;display:inline-block;border-radius:50%;border:2px solid #D3DAE6;border-color:#07C #D3DAE6 #D3DAE6 #D3DAE6;width:16px;height:16px;border-width:calc(1px * 1.5);}
+                          </style>,
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            @media screen and (prefers-reduced-motion: no-preference){.css-192zz00-euiLoadingSpinner-m{-webkit-animation:animation-c24ia8 0.6s infinite linear;animation:animation-c24ia8 0.6s infinite linear;}}
+                          </style>,
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            @-webkit-keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
+                          </style>,
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            @keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
+                          </style>,
+                        ],
+                      },
+                    }
+                  }
+                  isStringTag={true}
+                  serialized={
+                    Object {
+                      "map": undefined,
+                      "name": "fwe1lp-euiPopover-EuiPopoverClass",
+                      "next": undefined,
+                      "styles": "position:relative;vertical-align:middle;max-width:100%;label:euiPopover;;;display: block;label:EuiPopoverClass;;;",
+                      "toString": [Function],
+                    }
+                  }
+                />
+                <div
+                  className="euiPopover euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-fwe1lp-euiPopover-EuiPopoverClass"
+                  onKeyDown={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchStart={[Function]}
+                >
+                  <div
+                    css="unknown styles"
+                  >
+                    <Insertion
+                      cache={
+                        Object {
+                          "insert": [Function],
+                          "inserted": Object {
+                            "192zz00-euiLoadingSpinner-m": true,
+                            "4fdlpz-EuiPopoverClass": true,
+                            "animation-c24ia8": true,
+                            "fwe1lp-euiPopover-EuiPopoverClass": true,
+                          },
                           "key": "css",
                           "nonce": undefined,
-                          "prepend": undefined,
-                          "tags": Array [
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              .css-1k1aqtq-EuiPopover{display:block;}
-                            </style>,
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              .css-192zz00-euiLoadingSpinner-m{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;display:inline-block;border-radius:50%;border:2px solid #D3DAE6;border-color:#07C #D3DAE6 #D3DAE6 #D3DAE6;width:16px;height:16px;border-width:calc(1px * 1.5);}
-                            </style>,
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              @media screen and (prefers-reduced-motion: no-preference){.css-192zz00-euiLoadingSpinner-m{-webkit-animation:animation-c24ia8 0.6s infinite linear;animation:animation-c24ia8 0.6s infinite linear;}}
-                            </style>,
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              @-webkit-keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
-                            </style>,
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              @keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
-                            </style>,
-                          ],
-                        },
+                          "registered": Object {},
+                          "sheet": StyleSheet {
+                            "_alreadyInsertedOrderInsensitiveRule": true,
+                            "_insertTag": [Function],
+                            "before": null,
+                            "container": <head>
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                .css-fwe1lp-euiPopover-EuiPopoverClass{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                              </style>
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                .css-4fdlpz-EuiPopoverClass{display:block;}
+                              </style>
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                .css-192zz00-euiLoadingSpinner-m{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;display:inline-block;border-radius:50%;border:2px solid #D3DAE6;border-color:#07C #D3DAE6 #D3DAE6 #D3DAE6;width:16px;height:16px;border-width:calc(1px * 1.5);}
+                              </style>
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                @media screen and (prefers-reduced-motion: no-preference){.css-192zz00-euiLoadingSpinner-m{-webkit-animation:animation-c24ia8 0.6s infinite linear;animation:animation-c24ia8 0.6s infinite linear;}}
+                              </style>
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                @-webkit-keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
+                              </style>
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                @keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
+                              </style>
+                            </head>,
+                            "ctr": 6,
+                            "insertionPoint": undefined,
+                            "isSpeedy": false,
+                            "key": "css",
+                            "nonce": undefined,
+                            "prepend": undefined,
+                            "tags": Array [
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                .css-fwe1lp-euiPopover-EuiPopoverClass{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                              </style>,
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                .css-4fdlpz-EuiPopoverClass{display:block;}
+                              </style>,
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                .css-192zz00-euiLoadingSpinner-m{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;display:inline-block;border-radius:50%;border:2px solid #D3DAE6;border-color:#07C #D3DAE6 #D3DAE6 #D3DAE6;width:16px;height:16px;border-width:calc(1px * 1.5);}
+                              </style>,
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                @media screen and (prefers-reduced-motion: no-preference){.css-192zz00-euiLoadingSpinner-m{-webkit-animation:animation-c24ia8 0.6s infinite linear;animation:animation-c24ia8 0.6s infinite linear;}}
+                              </style>,
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                @-webkit-keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
+                              </style>,
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                @keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
+                              </style>,
+                            ],
+                          },
+                        }
                       }
-                    }
-                    isStringTag={true}
-                    serialized={
-                      Object {
-                        "map": undefined,
-                        "name": "1k1aqtq-EuiPopover",
-                        "next": undefined,
-                        "styles": "display: block;label:EuiPopover;;;",
-                        "toString": [Function],
+                      isStringTag={true}
+                      serialized={
+                        Object {
+                          "map": undefined,
+                          "name": "4fdlpz-EuiPopoverClass",
+                          "next": undefined,
+                          "styles": "display: block;label:EuiPopoverClass;;;",
+                          "toString": [Function],
+                        }
                       }
-                    }
-                  />
-                  <div
-                    className="euiPopover__anchor css-1k1aqtq-EuiPopover"
-                  >
-                    <EuiResizeObserver
-                      onResize={[Function]}
+                    />
+                    <div
+                      className="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
                     >
-                      <div>
-                        <EuiI18n
-                          default="Filter options"
-                          token="euiSelectable.placeholderName"
-                        >
-                          <EuiSelectableSearch
-                            aria-activedescendant=""
-                            aria-label="aria-label"
-                            className="testClass1 testClass2"
-                            data-test-subj="test subject string"
-                            fullWidth={true}
-                            inputRef={[Function]}
-                            isLoading={false}
-                            isPreFiltered={false}
-                            key="listSearch"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onFocus={[Function]}
-                            onInput={[Function]}
-                            options={
-                              Array [
-                                Object {
-                                  "className": "euiSuggestItemOption",
-                                  "data": Object {
-                                    "description": "Description",
-                                    "label": "Field sample",
-                                    "type": Object {
-                                      "color": "tint4",
-                                      "iconType": "kqlField",
-                                    },
-                                  },
-                                  "label": "Field sample",
-                                  "truncate": true,
-                                },
-                                Object {
-                                  "className": "euiSuggestItemOption",
-                                  "data": Object {
-                                    "description": "Description",
-                                    "label": "Value sample",
-                                    "type": Object {
-                                      "color": "tint0",
-                                      "iconType": "kqlValue",
-                                    },
-                                  },
-                                  "label": "Value sample",
-                                  "truncate": true,
-                                },
-                              ]
-                            }
-                            placeholder="Filter options"
-                            value=""
+                      <EuiResizeObserver
+                        onResize={[Function]}
+                      >
+                        <div>
+                          <EuiI18n
+                            default="Filter options"
+                            token="euiSelectable.placeholderName"
                           >
-                            <EuiFieldSearch
+                            <EuiSelectableSearch
                               aria-activedescendant=""
-                              aria-haspopup="listbox"
                               aria-label="aria-label"
-                              autoComplete="off"
-                              className="euiSelectableSearch testClass1 testClass2"
-                              compressed={false}
+                              className="testClass1 testClass2"
                               data-test-subj="test subject string"
                               fullWidth={true}
-                              incremental={true}
                               inputRef={[Function]}
-                              isClearable={true}
                               isLoading={false}
+                              isPreFiltered={false}
+                              key="listSearch"
                               onBlur={[Function]}
                               onChange={[Function]}
                               onFocus={[Function]}
                               onInput={[Function]}
+                              options={
+                                Array [
+                                  Object {
+                                    "className": "euiSuggestItemOption",
+                                    "data": Object {
+                                      "description": "Description",
+                                      "label": "Field sample",
+                                      "type": Object {
+                                        "color": "tint4",
+                                        "iconType": "kqlField",
+                                      },
+                                    },
+                                    "label": "Field sample",
+                                    "truncate": true,
+                                  },
+                                  Object {
+                                    "className": "euiSuggestItemOption",
+                                    "data": Object {
+                                      "description": "Description",
+                                      "label": "Value sample",
+                                      "type": Object {
+                                        "color": "tint0",
+                                        "iconType": "kqlValue",
+                                      },
+                                    },
+                                    "label": "Value sample",
+                                    "truncate": true,
+                                  },
+                                ]
+                              }
                               placeholder="Filter options"
                               value=""
                             >
-                              <EuiFormControlLayout
+                              <EuiFieldSearch
+                                aria-activedescendant=""
+                                aria-haspopup="listbox"
+                                aria-label="aria-label"
+                                autoComplete="off"
+                                className="euiSelectableSearch testClass1 testClass2"
                                 compressed={false}
+                                data-test-subj="test subject string"
                                 fullWidth={true}
-                                icon="search"
+                                incremental={true}
+                                inputRef={[Function]}
+                                isClearable={true}
                                 isLoading={false}
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                onInput={[Function]}
+                                placeholder="Filter options"
+                                value=""
                               >
-                                <div
-                                  className="euiFormControlLayout euiFormControlLayout--fullWidth"
+                                <EuiFormControlLayout
+                                  compressed={false}
+                                  fullWidth={true}
+                                  icon="search"
+                                  isLoading={false}
                                 >
                                   <div
-                                    className="euiFormControlLayout__childrenWrapper"
+                                    className="euiFormControlLayout euiFormControlLayout--fullWidth"
                                   >
-                                    <EuiValidatableControl>
-                                      <input
-                                        aria-activedescendant=""
-                                        aria-haspopup="listbox"
-                                        aria-label="aria-label"
-                                        autoComplete="off"
-                                        className="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
-                                        data-test-subj="test subject string"
-                                        onBlur={[Function]}
-                                        onChange={[Function]}
-                                        onFocus={[Function]}
-                                        onInput={[Function]}
-                                        onKeyUp={[Function]}
-                                        placeholder="Filter options"
-                                        type="search"
-                                        value=""
-                                      />
-                                    </EuiValidatableControl>
-                                    <EuiFormControlLayoutIcons
-                                      compressed={false}
-                                      icon="search"
-                                      isLoading={false}
+                                    <div
+                                      className="euiFormControlLayout__childrenWrapper"
                                     >
-                                      <div
-                                        className="euiFormControlLayoutIcons"
-                                      >
-                                        <EuiFormControlLayoutCustomIcon
-                                          size="m"
+                                      <EuiValidatableControl>
+                                        <input
+                                          aria-activedescendant=""
+                                          aria-haspopup="listbox"
+                                          aria-label="aria-label"
+                                          autoComplete="off"
+                                          className="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
+                                          data-test-subj="test subject string"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onInput={[Function]}
+                                          onKeyUp={[Function]}
+                                          placeholder="Filter options"
                                           type="search"
+                                          value=""
+                                        />
+                                      </EuiValidatableControl>
+                                      <EuiFormControlLayoutIcons
+                                        compressed={false}
+                                        icon="search"
+                                        isLoading={false}
+                                      >
+                                        <div
+                                          className="euiFormControlLayoutIcons"
                                         >
-                                          <span
-                                            className="euiFormControlLayoutCustomIcon"
+                                          <EuiFormControlLayoutCustomIcon
+                                            size="m"
+                                            type="search"
                                           >
-                                            <EuiIcon
-                                              aria-hidden="true"
-                                              className="euiFormControlLayoutCustomIcon__icon"
-                                              size="m"
-                                              type="search"
+                                            <span
+                                              className="euiFormControlLayoutCustomIcon"
                                             >
-                                              <span
+                                              <EuiIcon
                                                 aria-hidden="true"
                                                 className="euiFormControlLayoutCustomIcon__icon"
-                                                data-euiicon-type="search"
                                                 size="m"
-                                              />
-                                            </EuiIcon>
-                                          </span>
-                                        </EuiFormControlLayoutCustomIcon>
-                                      </div>
-                                    </EuiFormControlLayoutIcons>
+                                                type="search"
+                                              >
+                                                <span
+                                                  aria-hidden="true"
+                                                  className="euiFormControlLayoutCustomIcon__icon"
+                                                  data-euiicon-type="search"
+                                                  size="m"
+                                                />
+                                              </EuiIcon>
+                                            </span>
+                                          </EuiFormControlLayoutCustomIcon>
+                                        </div>
+                                      </EuiFormControlLayoutIcons>
+                                    </div>
                                   </div>
-                                </div>
-                              </EuiFormControlLayout>
-                            </EuiFieldSearch>
-                          </EuiSelectableSearch>
-                        </EuiI18n>
-                      </div>
-                    </EuiResizeObserver>
+                                </EuiFormControlLayout>
+                              </EuiFieldSearch>
+                            </EuiSelectableSearch>
+                          </EuiI18n>
+                        </div>
+                      </EuiResizeObserver>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </EuiOutsideClickDetector>
+            </EuiOutsideClickDetector>
+          </EuiPopoverClass>
         </EuiPopover>
       </EuiInputPopover>
     </div>
@@ -825,7 +1011,6 @@ exports[`EuiSuggest props maxHeight 1`] = `
           className="euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
           closePopover={[Function]}
           display="block"
-          hasArrow={true}
           isOpen={false}
           ownFocus={false}
           panelPaddingSize="none"
@@ -838,401 +1023,588 @@ exports[`EuiSuggest props maxHeight 1`] = `
           }
           panelRef={[Function]}
         >
-          <EuiOutsideClickDetector
-            onOutsideClick={[Function]}
+          <EuiPopoverClass
+            anchorPosition="downLeft"
+            attachToAnchor={true}
+            button={
+              <EuiResizeObserver
+                onResize={[Function]}
+              >
+                [Function]
+              </EuiResizeObserver>
+            }
+            buttonRef={[Function]}
+            className="euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+            closePopover={[Function]}
+            display="block"
+            hasArrow={true}
+            isOpen={false}
+            ownFocus={false}
+            panelPaddingSize="none"
+            panelProps={
+              Object {
+                "aria-live": undefined,
+                "aria-modal": false,
+                "role": undefined,
+              }
+            }
+            panelRef={[Function]}
+            theme={
+              Object {
+                "colorMode": "LIGHT",
+                "euiTheme": Object {
+                  "animation": Object {
+                    "bounce": "cubic-bezier(.34, 1.61, .7, 1)",
+                    "extraFast": "90ms",
+                    "extraSlow": "500ms",
+                    "fast": "150ms",
+                    "normal": "250ms",
+                    "resistance": "cubic-bezier(.694, .0482, .335, 1)",
+                    "slow": "350ms",
+                  },
+                  "base": 16,
+                  "border": Object {
+                    "color": "#D3DAE6",
+                    "editable": "2px dotted #D3DAE6",
+                    "radius": Object {
+                      "medium": "6px",
+                      "small": "4px",
+                    },
+                    "thick": "2px solid #D3DAE6",
+                    "thin": "1px solid #D3DAE6",
+                    "width": Object {
+                      "thick": "2px",
+                      "thin": "1px",
+                    },
+                  },
+                  "breakpoint": Object {
+                    "l": 992,
+                    "m": 768,
+                    "s": 575,
+                    "xl": 1200,
+                    "xs": 0,
+                  },
+                  "colors": Object {
+                    "accent": "#F04E98",
+                    "accentText": "#ba3d76",
+                    "body": "#f7f8fc",
+                    "danger": "#BD271E",
+                    "dangerText": "#bd271e",
+                    "darkShade": "#69707D",
+                    "darkestShade": "#343741",
+                    "disabled": "#ABB4C4",
+                    "disabledText": "#a2abba",
+                    "emptyShade": "#FFF",
+                    "fullShade": "#000",
+                    "ghost": "#FFF",
+                    "highlight": "#fff9e8",
+                    "ink": "#000",
+                    "lightShade": "#D3DAE6",
+                    "lightestShade": "#F1F4FA",
+                    "link": "#006bb8",
+                    "mediumShade": "#98A2B3",
+                    "primary": "#07C",
+                    "primaryText": "#006bb8",
+                    "shadow": "#000",
+                    "subduedText": "#646a77",
+                    "success": "#00BFB3",
+                    "successText": "#007871",
+                    "text": "#343741",
+                    "title": "#1a1c21",
+                    "warning": "#FEC514",
+                    "warningText": "#83650a",
+                  },
+                  "focus": Object {
+                    "color": "currentColor",
+                    "width": "2px",
+                  },
+                  "font": Object {
+                    "baseline": 4,
+                    "body": Object {
+                      "scale": "s",
+                      "weight": "regular",
+                    },
+                    "family": "'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif",
+                    "familyCode": "'Roboto Mono', Menlo, Courier, monospace",
+                    "familySerif": "Georgia, Times, Times New Roman, serif",
+                    "featureSettings": "'calt' 1, 'kern' 1, 'liga' 1",
+                    "lineHeightMultiplier": 1.5,
+                    "scale": Object {
+                      "l": 1.375,
+                      "m": 1,
+                      "s": 0.875,
+                      "xl": 1.6875,
+                      "xs": 0.75,
+                      "xxl": 2.125,
+                      "xxs": 0.6875,
+                      "xxxs": 0.5625,
+                    },
+                    "title": Object {
+                      "weight": "bold",
+                    },
+                    "weight": Object {
+                      "bold": 700,
+                      "light": 300,
+                      "medium": 500,
+                      "regular": 400,
+                      "semiBold": 600,
+                    },
+                  },
+                  "levels": Object {
+                    "content": 0,
+                    "flyout": 1000,
+                    "header": 1000,
+                    "mask": 6000,
+                    "maskBelowHeader": 1000,
+                    "menu": 2000,
+                    "modal": 8000,
+                    "navigation": 6000,
+                    "toast": 9000,
+                  },
+                  "size": Object {
+                    "base": "16px",
+                    "l": "24px",
+                    "m": "12px",
+                    "s": "8px",
+                    "xl": "32px",
+                    "xs": "4px",
+                    "xxl": "40px",
+                    "xxs": "2px",
+                    "xxxl": "48px",
+                    "xxxxl": "64px",
+                  },
+                  "themeName": "EUI_THEME_AMSTERDAM",
+                },
+                "modifications": Object {},
+              }
+            }
           >
-            <div
-              css="unknown styles"
-              onKeyDown={[Function]}
-              onMouseDown={[Function]}
-              onMouseUp={[Function]}
-              onTouchEnd={[Function]}
-              onTouchStart={[Function]}
+            <EuiOutsideClickDetector
+              onOutsideClick={[Function]}
             >
-              <Insertion
-                cache={
-                  Object {
-                    "insert": [Function],
-                    "inserted": Object {
-                      "192zz00-euiLoadingSpinner-m": true,
-                      "1k1aqtq-EuiPopover": true,
-                      "animation-c24ia8": true,
-                    },
-                    "key": "css",
-                    "nonce": undefined,
-                    "registered": Object {},
-                    "sheet": StyleSheet {
-                      "_alreadyInsertedOrderInsensitiveRule": true,
-                      "_insertTag": [Function],
-                      "before": null,
-                      "container": <head>
-                        <style
-                          data-emotion="css"
-                          data-s=""
-                        >
-                          
-                          .css-1k1aqtq-EuiPopover{display:block;}
-                        </style>
-                        <style
-                          data-emotion="css"
-                          data-s=""
-                        >
-                          
-                          .css-192zz00-euiLoadingSpinner-m{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;display:inline-block;border-radius:50%;border:2px solid #D3DAE6;border-color:#07C #D3DAE6 #D3DAE6 #D3DAE6;width:16px;height:16px;border-width:calc(1px * 1.5);}
-                        </style>
-                        <style
-                          data-emotion="css"
-                          data-s=""
-                        >
-                          
-                          @media screen and (prefers-reduced-motion: no-preference){.css-192zz00-euiLoadingSpinner-m{-webkit-animation:animation-c24ia8 0.6s infinite linear;animation:animation-c24ia8 0.6s infinite linear;}}
-                        </style>
-                        <style
-                          data-emotion="css"
-                          data-s=""
-                        >
-                          
-                          @-webkit-keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
-                        </style>
-                        <style
-                          data-emotion="css"
-                          data-s=""
-                        >
-                          
-                          @keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
-                        </style>
-                      </head>,
-                      "ctr": 5,
-                      "insertionPoint": undefined,
-                      "isSpeedy": false,
-                      "key": "css",
-                      "nonce": undefined,
-                      "prepend": undefined,
-                      "tags": Array [
-                        <style
-                          data-emotion="css"
-                          data-s=""
-                        >
-                          
-                          .css-1k1aqtq-EuiPopover{display:block;}
-                        </style>,
-                        <style
-                          data-emotion="css"
-                          data-s=""
-                        >
-                          
-                          .css-192zz00-euiLoadingSpinner-m{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;display:inline-block;border-radius:50%;border:2px solid #D3DAE6;border-color:#07C #D3DAE6 #D3DAE6 #D3DAE6;width:16px;height:16px;border-width:calc(1px * 1.5);}
-                        </style>,
-                        <style
-                          data-emotion="css"
-                          data-s=""
-                        >
-                          
-                          @media screen and (prefers-reduced-motion: no-preference){.css-192zz00-euiLoadingSpinner-m{-webkit-animation:animation-c24ia8 0.6s infinite linear;animation:animation-c24ia8 0.6s infinite linear;}}
-                        </style>,
-                        <style
-                          data-emotion="css"
-                          data-s=""
-                        >
-                          
-                          @-webkit-keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
-                        </style>,
-                        <style
-                          data-emotion="css"
-                          data-s=""
-                        >
-                          
-                          @keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
-                        </style>,
-                      ],
-                    },
-                  }
-                }
-                isStringTag={true}
-                serialized={
-                  Object {
-                    "map": undefined,
-                    "name": "1k1aqtq-EuiPopover",
-                    "next": undefined,
-                    "styles": "display: block;label:EuiPopover;;;",
-                    "toString": [Function],
-                  }
-                }
-              />
               <div
-                className="euiPopover euiPopover--anchorDownLeft euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-1k1aqtq-EuiPopover"
+                css="unknown styles"
                 onKeyDown={[Function]}
                 onMouseDown={[Function]}
                 onMouseUp={[Function]}
                 onTouchEnd={[Function]}
                 onTouchStart={[Function]}
               >
-                <div
-                  css="unknown styles"
-                >
-                  <Insertion
-                    cache={
-                      Object {
-                        "insert": [Function],
-                        "inserted": Object {
-                          "192zz00-euiLoadingSpinner-m": true,
-                          "1k1aqtq-EuiPopover": true,
-                          "animation-c24ia8": true,
-                        },
+                <Insertion
+                  cache={
+                    Object {
+                      "insert": [Function],
+                      "inserted": Object {
+                        "192zz00-euiLoadingSpinner-m": true,
+                        "4fdlpz-EuiPopoverClass": true,
+                        "animation-c24ia8": true,
+                        "fwe1lp-euiPopover-EuiPopoverClass": true,
+                      },
+                      "key": "css",
+                      "nonce": undefined,
+                      "registered": Object {},
+                      "sheet": StyleSheet {
+                        "_alreadyInsertedOrderInsensitiveRule": true,
+                        "_insertTag": [Function],
+                        "before": null,
+                        "container": <head>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-fwe1lp-euiPopover-EuiPopoverClass{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                          </style>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-4fdlpz-EuiPopoverClass{display:block;}
+                          </style>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-192zz00-euiLoadingSpinner-m{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;display:inline-block;border-radius:50%;border:2px solid #D3DAE6;border-color:#07C #D3DAE6 #D3DAE6 #D3DAE6;width:16px;height:16px;border-width:calc(1px * 1.5);}
+                          </style>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            @media screen and (prefers-reduced-motion: no-preference){.css-192zz00-euiLoadingSpinner-m{-webkit-animation:animation-c24ia8 0.6s infinite linear;animation:animation-c24ia8 0.6s infinite linear;}}
+                          </style>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            @-webkit-keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
+                          </style>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            @keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
+                          </style>
+                        </head>,
+                        "ctr": 6,
+                        "insertionPoint": undefined,
+                        "isSpeedy": false,
                         "key": "css",
                         "nonce": undefined,
-                        "registered": Object {},
-                        "sheet": StyleSheet {
-                          "_alreadyInsertedOrderInsensitiveRule": true,
-                          "_insertTag": [Function],
-                          "before": null,
-                          "container": <head>
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              .css-1k1aqtq-EuiPopover{display:block;}
-                            </style>
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              .css-192zz00-euiLoadingSpinner-m{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;display:inline-block;border-radius:50%;border:2px solid #D3DAE6;border-color:#07C #D3DAE6 #D3DAE6 #D3DAE6;width:16px;height:16px;border-width:calc(1px * 1.5);}
-                            </style>
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              @media screen and (prefers-reduced-motion: no-preference){.css-192zz00-euiLoadingSpinner-m{-webkit-animation:animation-c24ia8 0.6s infinite linear;animation:animation-c24ia8 0.6s infinite linear;}}
-                            </style>
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              @-webkit-keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
-                            </style>
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              @keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
-                            </style>
-                          </head>,
-                          "ctr": 5,
-                          "insertionPoint": undefined,
-                          "isSpeedy": false,
+                        "prepend": undefined,
+                        "tags": Array [
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-fwe1lp-euiPopover-EuiPopoverClass{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                          </style>,
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-4fdlpz-EuiPopoverClass{display:block;}
+                          </style>,
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .css-192zz00-euiLoadingSpinner-m{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;display:inline-block;border-radius:50%;border:2px solid #D3DAE6;border-color:#07C #D3DAE6 #D3DAE6 #D3DAE6;width:16px;height:16px;border-width:calc(1px * 1.5);}
+                          </style>,
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            @media screen and (prefers-reduced-motion: no-preference){.css-192zz00-euiLoadingSpinner-m{-webkit-animation:animation-c24ia8 0.6s infinite linear;animation:animation-c24ia8 0.6s infinite linear;}}
+                          </style>,
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            @-webkit-keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
+                          </style>,
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            @keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
+                          </style>,
+                        ],
+                      },
+                    }
+                  }
+                  isStringTag={true}
+                  serialized={
+                    Object {
+                      "map": undefined,
+                      "name": "fwe1lp-euiPopover-EuiPopoverClass",
+                      "next": undefined,
+                      "styles": "position:relative;vertical-align:middle;max-width:100%;label:euiPopover;;;display: block;label:EuiPopoverClass;;;",
+                      "toString": [Function],
+                    }
+                  }
+                />
+                <div
+                  className="euiPopover euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-fwe1lp-euiPopover-EuiPopoverClass"
+                  onKeyDown={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchEnd={[Function]}
+                  onTouchStart={[Function]}
+                >
+                  <div
+                    css="unknown styles"
+                  >
+                    <Insertion
+                      cache={
+                        Object {
+                          "insert": [Function],
+                          "inserted": Object {
+                            "192zz00-euiLoadingSpinner-m": true,
+                            "4fdlpz-EuiPopoverClass": true,
+                            "animation-c24ia8": true,
+                            "fwe1lp-euiPopover-EuiPopoverClass": true,
+                          },
                           "key": "css",
                           "nonce": undefined,
-                          "prepend": undefined,
-                          "tags": Array [
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              .css-1k1aqtq-EuiPopover{display:block;}
-                            </style>,
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              .css-192zz00-euiLoadingSpinner-m{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;display:inline-block;border-radius:50%;border:2px solid #D3DAE6;border-color:#07C #D3DAE6 #D3DAE6 #D3DAE6;width:16px;height:16px;border-width:calc(1px * 1.5);}
-                            </style>,
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              @media screen and (prefers-reduced-motion: no-preference){.css-192zz00-euiLoadingSpinner-m{-webkit-animation:animation-c24ia8 0.6s infinite linear;animation:animation-c24ia8 0.6s infinite linear;}}
-                            </style>,
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              @-webkit-keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
-                            </style>,
-                            <style
-                              data-emotion="css"
-                              data-s=""
-                            >
-                              
-                              @keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
-                            </style>,
-                          ],
-                        },
+                          "registered": Object {},
+                          "sheet": StyleSheet {
+                            "_alreadyInsertedOrderInsensitiveRule": true,
+                            "_insertTag": [Function],
+                            "before": null,
+                            "container": <head>
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                .css-fwe1lp-euiPopover-EuiPopoverClass{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                              </style>
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                .css-4fdlpz-EuiPopoverClass{display:block;}
+                              </style>
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                .css-192zz00-euiLoadingSpinner-m{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;display:inline-block;border-radius:50%;border:2px solid #D3DAE6;border-color:#07C #D3DAE6 #D3DAE6 #D3DAE6;width:16px;height:16px;border-width:calc(1px * 1.5);}
+                              </style>
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                @media screen and (prefers-reduced-motion: no-preference){.css-192zz00-euiLoadingSpinner-m{-webkit-animation:animation-c24ia8 0.6s infinite linear;animation:animation-c24ia8 0.6s infinite linear;}}
+                              </style>
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                @-webkit-keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
+                              </style>
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                @keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
+                              </style>
+                            </head>,
+                            "ctr": 6,
+                            "insertionPoint": undefined,
+                            "isSpeedy": false,
+                            "key": "css",
+                            "nonce": undefined,
+                            "prepend": undefined,
+                            "tags": Array [
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                .css-fwe1lp-euiPopover-EuiPopoverClass{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                              </style>,
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                .css-4fdlpz-EuiPopoverClass{display:block;}
+                              </style>,
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                .css-192zz00-euiLoadingSpinner-m{-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;display:inline-block;border-radius:50%;border:2px solid #D3DAE6;border-color:#07C #D3DAE6 #D3DAE6 #D3DAE6;width:16px;height:16px;border-width:calc(1px * 1.5);}
+                              </style>,
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                @media screen and (prefers-reduced-motion: no-preference){.css-192zz00-euiLoadingSpinner-m{-webkit-animation:animation-c24ia8 0.6s infinite linear;animation:animation-c24ia8 0.6s infinite linear;}}
+                              </style>,
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                @-webkit-keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
+                              </style>,
+                              <style
+                                data-emotion="css"
+                                data-s=""
+                              >
+                                
+                                @keyframes animation-c24ia8{from{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform:rotate(0deg);}to{-webkit-transform:rotate(359deg);-moz-transform:rotate(359deg);-ms-transform:rotate(359deg);transform:rotate(359deg);}}
+                              </style>,
+                            ],
+                          },
+                        }
                       }
-                    }
-                    isStringTag={true}
-                    serialized={
-                      Object {
-                        "map": undefined,
-                        "name": "1k1aqtq-EuiPopover",
-                        "next": undefined,
-                        "styles": "display: block;label:EuiPopover;;;",
-                        "toString": [Function],
+                      isStringTag={true}
+                      serialized={
+                        Object {
+                          "map": undefined,
+                          "name": "4fdlpz-EuiPopoverClass",
+                          "next": undefined,
+                          "styles": "display: block;label:EuiPopoverClass;;;",
+                          "toString": [Function],
+                        }
                       }
-                    }
-                  />
-                  <div
-                    className="euiPopover__anchor css-1k1aqtq-EuiPopover"
-                  >
-                    <EuiResizeObserver
-                      onResize={[Function]}
+                    />
+                    <div
+                      className="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
                     >
-                      <div>
-                        <EuiI18n
-                          default="Filter options"
-                          token="euiSelectable.placeholderName"
-                        >
-                          <EuiSelectableSearch
-                            aria-activedescendant=""
-                            aria-label="aria-label"
-                            className="testClass1 testClass2"
-                            data-test-subj="test subject string"
-                            fullWidth={true}
-                            inputRef={[Function]}
-                            isLoading={false}
-                            isPreFiltered={false}
-                            key="listSearch"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onFocus={[Function]}
-                            onInput={[Function]}
-                            options={
-                              Array [
-                                Object {
-                                  "className": "euiSuggestItemOption",
-                                  "data": Object {
-                                    "description": "Description",
-                                    "label": "Field sample",
-                                    "type": Object {
-                                      "color": "tint4",
-                                      "iconType": "kqlField",
-                                    },
-                                  },
-                                  "label": "Field sample",
-                                  "truncate": undefined,
-                                },
-                                Object {
-                                  "className": "euiSuggestItemOption",
-                                  "data": Object {
-                                    "description": "Description",
-                                    "label": "Value sample",
-                                    "type": Object {
-                                      "color": "tint0",
-                                      "iconType": "kqlValue",
-                                    },
-                                  },
-                                  "label": "Value sample",
-                                  "truncate": undefined,
-                                },
-                              ]
-                            }
-                            placeholder="Filter options"
-                            value=""
+                      <EuiResizeObserver
+                        onResize={[Function]}
+                      >
+                        <div>
+                          <EuiI18n
+                            default="Filter options"
+                            token="euiSelectable.placeholderName"
                           >
-                            <EuiFieldSearch
+                            <EuiSelectableSearch
                               aria-activedescendant=""
-                              aria-haspopup="listbox"
                               aria-label="aria-label"
-                              autoComplete="off"
-                              className="euiSelectableSearch testClass1 testClass2"
-                              compressed={false}
+                              className="testClass1 testClass2"
                               data-test-subj="test subject string"
                               fullWidth={true}
-                              incremental={true}
                               inputRef={[Function]}
-                              isClearable={true}
                               isLoading={false}
+                              isPreFiltered={false}
+                              key="listSearch"
                               onBlur={[Function]}
                               onChange={[Function]}
                               onFocus={[Function]}
                               onInput={[Function]}
+                              options={
+                                Array [
+                                  Object {
+                                    "className": "euiSuggestItemOption",
+                                    "data": Object {
+                                      "description": "Description",
+                                      "label": "Field sample",
+                                      "type": Object {
+                                        "color": "tint4",
+                                        "iconType": "kqlField",
+                                      },
+                                    },
+                                    "label": "Field sample",
+                                    "truncate": undefined,
+                                  },
+                                  Object {
+                                    "className": "euiSuggestItemOption",
+                                    "data": Object {
+                                      "description": "Description",
+                                      "label": "Value sample",
+                                      "type": Object {
+                                        "color": "tint0",
+                                        "iconType": "kqlValue",
+                                      },
+                                    },
+                                    "label": "Value sample",
+                                    "truncate": undefined,
+                                  },
+                                ]
+                              }
                               placeholder="Filter options"
                               value=""
                             >
-                              <EuiFormControlLayout
+                              <EuiFieldSearch
+                                aria-activedescendant=""
+                                aria-haspopup="listbox"
+                                aria-label="aria-label"
+                                autoComplete="off"
+                                className="euiSelectableSearch testClass1 testClass2"
                                 compressed={false}
+                                data-test-subj="test subject string"
                                 fullWidth={true}
-                                icon="search"
+                                incremental={true}
+                                inputRef={[Function]}
+                                isClearable={true}
                                 isLoading={false}
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                onInput={[Function]}
+                                placeholder="Filter options"
+                                value=""
                               >
-                                <div
-                                  className="euiFormControlLayout euiFormControlLayout--fullWidth"
+                                <EuiFormControlLayout
+                                  compressed={false}
+                                  fullWidth={true}
+                                  icon="search"
+                                  isLoading={false}
                                 >
                                   <div
-                                    className="euiFormControlLayout__childrenWrapper"
+                                    className="euiFormControlLayout euiFormControlLayout--fullWidth"
                                   >
-                                    <EuiValidatableControl>
-                                      <input
-                                        aria-activedescendant=""
-                                        aria-haspopup="listbox"
-                                        aria-label="aria-label"
-                                        autoComplete="off"
-                                        className="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
-                                        data-test-subj="test subject string"
-                                        onBlur={[Function]}
-                                        onChange={[Function]}
-                                        onFocus={[Function]}
-                                        onInput={[Function]}
-                                        onKeyUp={[Function]}
-                                        placeholder="Filter options"
-                                        type="search"
-                                        value=""
-                                      />
-                                    </EuiValidatableControl>
-                                    <EuiFormControlLayoutIcons
-                                      compressed={false}
-                                      icon="search"
-                                      isLoading={false}
+                                    <div
+                                      className="euiFormControlLayout__childrenWrapper"
                                     >
-                                      <div
-                                        className="euiFormControlLayoutIcons"
-                                      >
-                                        <EuiFormControlLayoutCustomIcon
-                                          size="m"
+                                      <EuiValidatableControl>
+                                        <input
+                                          aria-activedescendant=""
+                                          aria-haspopup="listbox"
+                                          aria-label="aria-label"
+                                          autoComplete="off"
+                                          className="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2"
+                                          data-test-subj="test subject string"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          onFocus={[Function]}
+                                          onInput={[Function]}
+                                          onKeyUp={[Function]}
+                                          placeholder="Filter options"
                                           type="search"
+                                          value=""
+                                        />
+                                      </EuiValidatableControl>
+                                      <EuiFormControlLayoutIcons
+                                        compressed={false}
+                                        icon="search"
+                                        isLoading={false}
+                                      >
+                                        <div
+                                          className="euiFormControlLayoutIcons"
                                         >
-                                          <span
-                                            className="euiFormControlLayoutCustomIcon"
+                                          <EuiFormControlLayoutCustomIcon
+                                            size="m"
+                                            type="search"
                                           >
-                                            <EuiIcon
-                                              aria-hidden="true"
-                                              className="euiFormControlLayoutCustomIcon__icon"
-                                              size="m"
-                                              type="search"
+                                            <span
+                                              className="euiFormControlLayoutCustomIcon"
                                             >
-                                              <span
+                                              <EuiIcon
                                                 aria-hidden="true"
                                                 className="euiFormControlLayoutCustomIcon__icon"
-                                                data-euiicon-type="search"
                                                 size="m"
-                                              />
-                                            </EuiIcon>
-                                          </span>
-                                        </EuiFormControlLayoutCustomIcon>
-                                      </div>
-                                    </EuiFormControlLayoutIcons>
+                                                type="search"
+                                              >
+                                                <span
+                                                  aria-hidden="true"
+                                                  className="euiFormControlLayoutCustomIcon__icon"
+                                                  data-euiicon-type="search"
+                                                  size="m"
+                                                />
+                                              </EuiIcon>
+                                            </span>
+                                          </EuiFormControlLayoutCustomIcon>
+                                        </div>
+                                      </EuiFormControlLayoutIcons>
+                                    </div>
                                   </div>
-                                </div>
-                              </EuiFormControlLayout>
-                            </EuiFieldSearch>
-                          </EuiSelectableSearch>
-                        </EuiI18n>
-                      </div>
-                    </EuiResizeObserver>
+                                </EuiFormControlLayout>
+                              </EuiFieldSearch>
+                            </EuiSelectableSearch>
+                          </EuiI18n>
+                        </div>
+                      </EuiResizeObserver>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </EuiOutsideClickDetector>
+            </EuiOutsideClickDetector>
+          </EuiPopoverClass>
         </EuiPopover>
       </EuiInputPopover>
     </div>
@@ -1254,10 +1626,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-1k1aqtq-EuiPopover"
+      class="euiPopover euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-fwe1lp-euiPopover-EuiPopoverClass"
     >
       <div
-        class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+        class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
       >
         <div>
           <div
@@ -1311,10 +1683,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-1k1aqtq-EuiPopover"
+      class="euiPopover euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-fwe1lp-euiPopover-EuiPopoverClass"
     >
       <div
-        class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+        class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
       >
         <div>
           <div
@@ -1368,10 +1740,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiInputPopover euiInputPopover css-1k1aqtq-EuiPopover"
+      class="euiPopover euiInputPopover euiInputPopover css-fwe1lp-euiPopover-EuiPopoverClass"
     >
       <div
-        class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+        class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
       >
         <div>
           <div
@@ -1447,10 +1819,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-1k1aqtq-EuiPopover"
+      class="euiPopover euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-fwe1lp-euiPopover-EuiPopoverClass"
     >
       <div
-        class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+        class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
       >
         <div>
           <div
@@ -1513,10 +1885,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-1k1aqtq-EuiPopover"
+      class="euiPopover euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-fwe1lp-euiPopover-EuiPopoverClass"
     >
       <div
-        class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+        class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
       >
         <div>
           <div
@@ -1579,10 +1951,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-1k1aqtq-EuiPopover"
+      class="euiPopover euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-fwe1lp-euiPopover-EuiPopoverClass"
     >
       <div
-        class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+        class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
       >
         <div>
           <div
@@ -1636,10 +2008,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-1k1aqtq-EuiPopover"
+      class="euiPopover euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-fwe1lp-euiPopover-EuiPopoverClass"
     >
       <div
-        class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+        class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
       >
         <div>
           <div
@@ -1702,10 +2074,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-1k1aqtq-EuiPopover"
+      class="euiPopover euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-fwe1lp-euiPopover-EuiPopoverClass"
     >
       <div
-        class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+        class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
       >
         <div>
           <div
@@ -1768,10 +2140,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-1k1aqtq-EuiPopover"
+      class="euiPopover euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-fwe1lp-euiPopover-EuiPopoverClass"
     >
       <div
-        class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+        class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
       >
         <div>
           <div
@@ -1834,10 +2206,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-1k1aqtq-EuiPopover"
+      class="euiPopover euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-fwe1lp-euiPopover-EuiPopoverClass"
     >
       <div
-        class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+        class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
       >
         <div>
           <div
@@ -1891,10 +2263,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-1k1aqtq-EuiPopover"
+      class="euiPopover euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth css-fwe1lp-euiPopover-EuiPopoverClass"
     >
       <div
-        class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+        class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
       >
         <div>
           <div

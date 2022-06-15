@@ -3,20 +3,20 @@
 exports[`EuiPanel is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium testClass1 testClass2 css-f2xo4o-euiPanel-grow-m-m-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium testClass1 testClass2 css-1yzwxdg-euiPanel-grow-m-m-plain-hasShadow"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiPanel props borderRadius m is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium css-f2xo4o-euiPanel-grow-m-m-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium css-1yzwxdg-euiPanel-grow-m-m-plain-hasShadow"
 />
 `;
 
 exports[`EuiPanel props borderRadius none is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium css-32q63y-euiPanel-grow-none-m-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium css-bc85a2-euiPanel-grow-none-m-plain-hasShadow"
 />
 `;
 
@@ -34,7 +34,7 @@ exports[`EuiPanel props color danger is rendered 1`] = `
 
 exports[`EuiPanel props color plain is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium css-f2xo4o-euiPanel-grow-m-m-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium css-1yzwxdg-euiPanel-grow-m-m-plain-hasShadow"
 />
 `;
 
@@ -70,13 +70,13 @@ exports[`EuiPanel props color warning is rendered 1`] = `
 
 exports[`EuiPanel props grow can be false 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium css-18tunf7-euiPanel-m-m-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium css-nybkxs-euiPanel-m-m-plain-hasShadow"
 />
 `;
 
 exports[`EuiPanel props hasBorder can be false 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium css-f2xo4o-euiPanel-grow-m-m-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium css-1yzwxdg-euiPanel-grow-m-m-plain-hasShadow"
 />
 `;
 
@@ -94,36 +94,36 @@ exports[`EuiPanel props hasShadow can be false 1`] = `
 
 exports[`EuiPanel props paddingSize l is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingLarge css-1nsffwn-euiPanel-grow-m-l-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingLarge css-15y4d5v-euiPanel-grow-m-l-plain-hasShadow"
 />
 `;
 
 exports[`EuiPanel props paddingSize m is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium css-f2xo4o-euiPanel-grow-m-m-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium css-1yzwxdg-euiPanel-grow-m-m-plain-hasShadow"
 />
 `;
 
 exports[`EuiPanel props paddingSize none is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain css-n9us4v-euiPanel-grow-m-plain-hasShadow"
+  class="euiPanel euiPanel--plain css-1lsigof-euiPanel-grow-m-plain-hasShadow"
 />
 `;
 
 exports[`EuiPanel props paddingSize s is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingSmall css-2969qh-euiPanel-grow-m-s-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingSmall css-13ibqvb-euiPanel-grow-m-s-plain-hasShadow"
 />
 `;
 
 exports[`EuiPanel props paddingSize xl is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain css-1t67yy8-euiPanel-grow-m-xl-plain-hasShadow"
+  class="euiPanel euiPanel--plain css-1m1b03m-euiPanel-grow-m-xl-plain-hasShadow"
 />
 `;
 
 exports[`EuiPanel props paddingSize xs is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain css-n593ms-euiPanel-grow-m-xs-plain-hasShadow"
+  class="euiPanel euiPanel--plain css-1688qte-euiPanel-grow-m-xs-plain-hasShadow"
 />
 `;

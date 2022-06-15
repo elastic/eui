@@ -2,11 +2,11 @@
 
 exports[`EuiPopover children is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownCenter css-17g0ovn-EuiPopover"
+  class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
   id="1"
 >
   <div
-    class="euiPopover__anchor css-17g0ovn-EuiPopover"
+    class="euiPopover__anchor css-js174l-EuiPopoverClass"
   >
     <button />
   </div>
@@ -15,12 +15,12 @@ exports[`EuiPopover children is rendered 1`] = `
 
 exports[`EuiPopover is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownCenter testClass1 testClass2 css-17g0ovn-EuiPopover"
+  class="euiPopover testClass1 testClass2 css-wf9cq9-euiPopover-EuiPopoverClass"
   data-test-subj="test subject string"
   id="0"
 >
   <div
-    class="euiPopover__anchor css-17g0ovn-EuiPopover"
+    class="euiPopover__anchor css-js174l-EuiPopoverClass"
   >
     <button />
   </div>
@@ -29,11 +29,11 @@ exports[`EuiPopover is rendered 1`] = `
 
 exports[`EuiPopover props anchorClassName is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownCenter css-17g0ovn-EuiPopover"
+  class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
   id="3"
 >
   <div
-    class="euiPopover__anchor test css-17g0ovn-EuiPopover"
+    class="euiPopover__anchor test css-js174l-EuiPopoverClass"
   >
     <button />
   </div>
@@ -42,11 +42,11 @@ exports[`EuiPopover props anchorClassName is rendered 1`] = `
 
 exports[`EuiPopover props anchorPosition defaults to centerDown 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownCenter css-17g0ovn-EuiPopover"
+  class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
   id="6"
 >
   <div
-    class="euiPopover__anchor css-17g0ovn-EuiPopover"
+    class="euiPopover__anchor css-js174l-EuiPopoverClass"
   >
     <button />
   </div>
@@ -55,11 +55,11 @@ exports[`EuiPopover props anchorPosition defaults to centerDown 1`] = `
 
 exports[`EuiPopover props anchorPosition downRight is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownRight css-17g0ovn-EuiPopover"
+  class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
   id="8"
 >
   <div
-    class="euiPopover__anchor css-17g0ovn-EuiPopover"
+    class="euiPopover__anchor css-js174l-EuiPopoverClass"
   >
     <button />
   </div>
@@ -68,11 +68,11 @@ exports[`EuiPopover props anchorPosition downRight is rendered 1`] = `
 
 exports[`EuiPopover props anchorPosition leftCenter is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorLeftCenter css-17g0ovn-EuiPopover"
+  class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
   id="7"
 >
   <div
-    class="euiPopover__anchor css-17g0ovn-EuiPopover"
+    class="euiPopover__anchor css-js174l-EuiPopoverClass"
   >
     <button />
   </div>
@@ -82,11 +82,11 @@ exports[`EuiPopover props anchorPosition leftCenter is rendered 1`] = `
 exports[`EuiPopover props arrowChildren is rendered 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen css-17g0ovn-EuiPopover"
+    class="euiPopover euiPopover-isOpen css-wf9cq9-euiPopover-EuiPopoverClass"
     id="19"
   >
     <div
-      class="euiPopover__anchor css-17g0ovn-EuiPopover"
+      class="euiPopover__anchor css-js174l-EuiPopoverClass"
     >
       <button />
     </div>
@@ -107,8 +107,9 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen css-1l4493j-euiPanel-grow-m-m-plain"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel css-142ctn2-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
         data-autofocus="true"
+        data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
         style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
@@ -141,11 +142,11 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
 exports[`EuiPopover props buffer 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen css-17g0ovn-EuiPopover"
+    class="euiPopover euiPopover-isOpen css-wf9cq9-euiPopover-EuiPopoverClass"
     id="20"
   >
     <div
-      class="euiPopover__anchor css-17g0ovn-EuiPopover"
+      class="euiPopover__anchor css-js174l-EuiPopoverClass"
     >
       <button />
     </div>
@@ -166,8 +167,9 @@ exports[`EuiPopover props buffer 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen css-1l4493j-euiPanel-grow-m-m-plain"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel css-142ctn2-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
         data-autofocus="true"
+        data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
         style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
@@ -198,11 +200,11 @@ exports[`EuiPopover props buffer 1`] = `
 exports[`EuiPopover props buffer for all sides 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen css-17g0ovn-EuiPopover"
+    class="euiPopover euiPopover-isOpen css-wf9cq9-euiPopover-EuiPopoverClass"
     id="21"
   >
     <div
-      class="euiPopover__anchor css-17g0ovn-EuiPopover"
+      class="euiPopover__anchor css-js174l-EuiPopoverClass"
     >
       <button />
     </div>
@@ -223,8 +225,9 @@ exports[`EuiPopover props buffer for all sides 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen css-1l4493j-euiPanel-grow-m-m-plain"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel css-142ctn2-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
         data-autofocus="true"
+        data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
         style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
@@ -254,11 +257,11 @@ exports[`EuiPopover props buffer for all sides 1`] = `
 
 exports[`EuiPopover props display block is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownCenter css-1k1aqtq-EuiPopover"
+  class="euiPopover css-fwe1lp-euiPopover-EuiPopoverClass"
   id="2"
 >
   <div
-    class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+    class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
   >
     <button />
   </div>
@@ -268,11 +271,11 @@ exports[`EuiPopover props display block is rendered 1`] = `
 exports[`EuiPopover props focusTrapProps is rendered 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen css-17g0ovn-EuiPopover"
+    class="euiPopover euiPopover-isOpen css-wf9cq9-euiPopover-EuiPopoverClass"
     id="16"
   >
     <div
-      class="euiPopover__anchor css-17g0ovn-EuiPopover"
+      class="euiPopover__anchor css-js174l-EuiPopoverClass"
     >
       <button />
     </div>
@@ -293,8 +296,9 @@ exports[`EuiPopover props focusTrapProps is rendered 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen css-1l4493j-euiPanel-grow-m-m-plain"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel css-142ctn2-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
         data-autofocus="true"
+        data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
         style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
@@ -324,11 +328,11 @@ exports[`EuiPopover props focusTrapProps is rendered 1`] = `
 
 exports[`EuiPopover props isOpen defaults to false 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownCenter css-17g0ovn-EuiPopover"
+  class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
   id="9"
 >
   <div
-    class="euiPopover__anchor css-17g0ovn-EuiPopover"
+    class="euiPopover__anchor css-js174l-EuiPopoverClass"
   >
     <button />
   </div>
@@ -338,11 +342,11 @@ exports[`EuiPopover props isOpen defaults to false 1`] = `
 exports[`EuiPopover props isOpen renders true 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen css-17g0ovn-EuiPopover"
+    class="euiPopover euiPopover-isOpen css-wf9cq9-euiPopover-EuiPopoverClass"
     id="10"
   >
     <div
-      class="euiPopover__anchor css-17g0ovn-EuiPopover"
+      class="euiPopover__anchor css-js174l-EuiPopoverClass"
     >
       <button />
     </div>
@@ -363,8 +367,9 @@ exports[`EuiPopover props isOpen renders true 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen css-1l4493j-euiPanel-grow-m-m-plain"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel css-142ctn2-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
         data-autofocus="true"
+        data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
         style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
@@ -395,12 +400,12 @@ exports[`EuiPopover props isOpen renders true 1`] = `
 exports[`EuiPopover props offset with arrow 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen css-17g0ovn-EuiPopover"
+    class="euiPopover euiPopover-isOpen css-wf9cq9-euiPopover-EuiPopoverClass"
     id="17"
     offset="10"
   >
     <div
-      class="euiPopover__anchor css-17g0ovn-EuiPopover"
+      class="euiPopover__anchor css-js174l-EuiPopoverClass"
     >
       <button />
     </div>
@@ -421,8 +426,9 @@ exports[`EuiPopover props offset with arrow 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen css-1l4493j-euiPanel-grow-m-m-plain"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel css-142ctn2-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
         data-autofocus="true"
+        data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
         style="top: 26px; left: -22px; will-change: transform, opacity; z-index: 2000;"
@@ -453,12 +459,12 @@ exports[`EuiPopover props offset with arrow 1`] = `
 exports[`EuiPopover props offset without arrow 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen css-17g0ovn-EuiPopover"
+    class="euiPopover euiPopover-isOpen css-wf9cq9-euiPopover-EuiPopoverClass"
     id="18"
     offset="10"
   >
     <div
-      class="euiPopover__anchor css-17g0ovn-EuiPopover"
+      class="euiPopover__anchor css-js174l-EuiPopoverClass"
     >
       <button />
     </div>
@@ -479,8 +485,9 @@ exports[`EuiPopover props offset without arrow 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen css-1l4493j-euiPanel-grow-m-m-plain"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel css-142ctn2-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
         data-autofocus="true"
+        data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
         style="top: 18px; left: -22px; will-change: transform, opacity; z-index: 2000;"
@@ -507,11 +514,11 @@ exports[`EuiPopover props offset without arrow 1`] = `
 exports[`EuiPopover props ownFocus defaults to true 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen css-17g0ovn-EuiPopover"
+    class="euiPopover euiPopover-isOpen css-wf9cq9-euiPopover-EuiPopoverClass"
     id="11"
   >
     <div
-      class="euiPopover__anchor css-17g0ovn-EuiPopover"
+      class="euiPopover__anchor css-js174l-EuiPopoverClass"
     >
       <button />
     </div>
@@ -532,8 +539,9 @@ exports[`EuiPopover props ownFocus defaults to true 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen css-1l4493j-euiPanel-grow-m-m-plain"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel css-142ctn2-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
         data-autofocus="true"
+        data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
         style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
@@ -564,11 +572,11 @@ exports[`EuiPopover props ownFocus defaults to true 1`] = `
 exports[`EuiPopover props ownFocus renders false 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen css-17g0ovn-EuiPopover"
+    class="euiPopover euiPopover-isOpen css-wf9cq9-euiPopover-EuiPopoverClass"
     id="12"
   >
     <div
-      class="euiPopover__anchor css-17g0ovn-EuiPopover"
+      class="euiPopover__anchor css-js174l-EuiPopoverClass"
     >
       <button />
     </div>
@@ -588,7 +596,8 @@ exports[`EuiPopover props ownFocus renders false 1`] = `
       <div
         aria-live="assertive"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen css-1l4493j-euiPanel-grow-m-m-plain"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel css-142ctn2-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
+        data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
         style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
@@ -612,11 +621,11 @@ exports[`EuiPopover props ownFocus renders false 1`] = `
 exports[`EuiPopover props panelClassName is rendered 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen css-17g0ovn-EuiPopover"
+    class="euiPopover euiPopover-isOpen css-wf9cq9-euiPopover-EuiPopoverClass"
     id="13"
   >
     <div
-      class="euiPopover__anchor css-17g0ovn-EuiPopover"
+      class="euiPopover__anchor css-js174l-EuiPopoverClass"
     >
       <button />
     </div>
@@ -637,8 +646,9 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen test css-1l4493j-euiPanel-grow-m-m-plain"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel test css-142ctn2-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
         data-autofocus="true"
+        data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
         style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
@@ -669,11 +679,11 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
 exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen css-17g0ovn-EuiPopover"
+    class="euiPopover euiPopover-isOpen css-wf9cq9-euiPopover-EuiPopoverClass"
     id="14"
   >
     <div
-      class="euiPopover__anchor css-17g0ovn-EuiPopover"
+      class="euiPopover__anchor css-js174l-EuiPopoverClass"
     >
       <button />
     </div>
@@ -694,8 +704,9 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen css-6zsgh2-euiPanel-grow-m-s-plain"
+        class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel css-jp112-euiPanel-grow-m-s-plain-euiPopover__panel-isOpen-bottom"
         data-autofocus="true"
+        data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
         style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
@@ -726,11 +737,11 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
 exports[`EuiPopover props panelProps is rendered 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen css-17g0ovn-EuiPopover"
+    class="euiPopover euiPopover-isOpen css-wf9cq9-euiPopover-EuiPopoverClass"
     id="15"
   >
     <div
-      class="euiPopover__anchor css-17g0ovn-EuiPopover"
+      class="euiPopover__anchor css-js174l-EuiPopoverClass"
     >
       <button />
     </div>
@@ -751,8 +762,9 @@ exports[`EuiPopover props panelProps is rendered 1`] = `
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen testClass1 testClass2 css-1l4493j-euiPanel-grow-m-m-plain"
+        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel testClass1 testClass2 css-142ctn2-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-bottom"
         data-autofocus="true"
+        data-popover-open="true"
         data-popover-panel="true"
         data-test-subj="test subject string"
         role="dialog"

@@ -28,6 +28,8 @@ import {
   getWaitDuration,
   performOnFrame,
   htmlIdGenerator,
+  withEuiTheme,
+  WithEuiThemeProps,
 } from '../../services';
 
 import { EuiScreenReaderOnly } from '../accessibility';
@@ -48,6 +50,7 @@ import { EuiI18n } from '../i18n';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiPopoverArrow, EuiPopoverArrowPositions } from './popover_arrow';
 import { css } from '@emotion/react';
+import { euiPopoverStyles } from './popover.styles';
 
 export const popoverAnchorPosition = [
   'upCenter',
@@ -237,30 +240,6 @@ export function getPopoverAlignFromAnchorPosition(
   ];
 }
 
-const anchorPositionToClassNameMap = {
-  upCenter: 'euiPopover--anchorUpCenter',
-  upLeft: 'euiPopover--anchorUpLeft',
-  upRight: 'euiPopover--anchorUpRight',
-  downCenter: 'euiPopover--anchorDownCenter',
-  downLeft: 'euiPopover--anchorDownLeft',
-  downRight: 'euiPopover--anchorDownRight',
-  leftCenter: 'euiPopover--anchorLeftCenter',
-  leftUp: 'euiPopover--anchorLeftUp',
-  leftDown: 'euiPopover--anchorLeftDown',
-  rightCenter: 'euiPopover--anchorRightCenter',
-  rightUp: 'euiPopover--anchorRightUp',
-  rightDown: 'euiPopover--anchorRightDown',
-};
-
-export const ANCHOR_POSITIONS = Object.keys(anchorPositionToClassNameMap);
-
-// const displayToClassNameMap = {
-//   inlineBlock: undefined,
-//   block: 'euiPopover--displayBlock',
-// };
-
-// export const DISPLAY = Object.keys(displayToClassNameMap);
-
 const DEFAULT_POPOVER_STYLES = {
   top: 50,
   left: 50,
@@ -287,7 +266,8 @@ const closingTransitionTime = 250; // TODO: DRY out var when converting to CSS-i
 
 export type Props = CommonProps &
   HTMLAttributes<HTMLDivElement> &
-  EuiPopoverProps;
+  EuiPopoverProps &
+  WithEuiThemeProps;
 
 interface State {
   prevProps: {
@@ -311,7 +291,7 @@ type PropsWithDefaults = Props & {
   panelPaddingSize: PanelPaddingSize;
 };
 
-export class EuiPopover extends Component<Props, State> {
+export class EuiPopoverClass extends Component<Props, State> {
   static defaultProps: Partial<PropsWithDefaults> = {
     isOpen: false,
     ownFocus: true,
@@ -714,13 +694,14 @@ export class EuiPopover extends Component<Props, State> {
       container,
       focusTrapProps,
       tabIndex: tabIndexProp,
+      theme,
       ...rest
     } = this.props;
 
-    const popoverStyles = [css(`display: ${display}`)];
+    const styles = euiPopoverStyles(theme);
+    const popoverStyles = [styles.euiPopover, css(`display: ${display}`)];
     const classes = classNames(
       'euiPopover',
-      anchorPosition ? anchorPositionToClassNameMap[anchorPosition] : null,
       {
         'euiPopover-isOpen': this.state.isOpening,
       },
@@ -731,12 +712,27 @@ export class EuiPopover extends Component<Props, State> {
     const anchorClasses = classNames('euiPopover__anchor', anchorClassName);
     const showArrow = hasArrow && !attachToAnchor;
 
+    let panelCSS = [
+      styles.euiPopover__panel,
+      this.state.isOpening && styles.isOpen,
+      this.state.isOpening &&
+        this.state.arrowPosition &&
+        styles[this.state.arrowPosition],
+    ];
+
+    if (attachToAnchor) {
+      panelCSS = [
+        // @ts-ignore Help
+        ...panelCSS,
+        // @ts-ignore Help
+        this.state.isOpening && styles.attached.isOpen,
+        // @ts-ignore Help
+        this.state.arrowPosition && styles.attached[this.state.arrowPosition],
+      ];
+    }
+
     const panelClasses = classNames(
       'euiPopover__panel',
-      `euiPopover__panel--${this.state.arrowPosition}`,
-      { 'euiPopover__panel-isOpen': this.state.isOpening },
-      // { 'euiPopover__panel-noArrow': !hasArrow || attachToAnchor },
-      { 'euiPopover__panel-isAttached': attachToAnchor },
       panelClassName,
       panelProps?.className
     );
@@ -799,7 +795,9 @@ export class EuiPopover extends Component<Props, State> {
             <EuiPanel
               {...(panelProps as EuiPanelProps)}
               data-popover-panel
+              data-popover-open={this.state.isOpening || undefined}
               panelRef={this.panelRef}
+              css={panelCSS}
               className={panelClasses}
               hasShadow={false}
               paddingSize={panelPaddingSize}
@@ -883,3 +881,6 @@ export class EuiPopover extends Component<Props, State> {
     }
   }
 }
+
+export const EuiPopover = withEuiTheme(EuiPopoverClass);
+EuiPopover.displayName = 'EuiPopover';

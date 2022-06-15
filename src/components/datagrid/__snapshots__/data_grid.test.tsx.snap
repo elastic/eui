@@ -8,10 +8,10 @@ exports[`EuiDataGrid pagination renders 1`] = `
     class="euiFlexItem euiFlexItem--flexGrowZero"
   >
     <div
-      class="euiPopover euiPopover--anchorUpRight css-17g0ovn-EuiPopover"
+      class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
     >
       <div
-        class="euiPopover__anchor css-17g0ovn-EuiPopover"
+        class="euiPopover__anchor css-js174l-EuiPopoverClass"
       >
         <button
           class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
@@ -947,11 +947,11 @@ Array [
           class="euiDataGrid__leftControls"
         >
           <div
-            class="euiPopover euiPopover--anchorDownLeft css-17g0ovn-EuiPopover"
+            class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <div
-              class="euiPopover__anchor css-17g0ovn-EuiPopover"
+              class="euiPopover__anchor css-js174l-EuiPopoverClass"
             >
               <button
                 class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
@@ -983,11 +983,11 @@ Array [
           class="euiDataGrid__rightControls"
         >
           <div
-            class="euiPopover euiPopover--anchorDownRight css-17g0ovn-EuiPopover"
+            class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
             data-test-subj="dataGridDisplaySelectorPopover"
           >
             <div
-              class="euiPopover__anchor css-17g0ovn-EuiPopover"
+              class="euiPopover__anchor css-js174l-EuiPopoverClass"
             >
               <span
                 class="euiToolTipAnchor"
@@ -1064,11 +1064,11 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover euiPopover--anchorDownCenter css-17g0ovn-EuiPopover"
+                  class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
                   offset="7"
                 >
                   <div
-                    class="euiPopover__anchor euiDataGridHeaderCell__anchor css-17g0ovn-EuiPopover"
+                    class="euiPopover__anchor euiDataGridHeaderCell__anchor css-js174l-EuiPopoverClass"
                   >
                     <button
                       class="euiDataGridHeaderCell__button"
@@ -1107,11 +1107,11 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover euiPopover--anchorDownCenter css-17g0ovn-EuiPopover"
+                  class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
                   offset="7"
                 >
                   <div
-                    class="euiPopover__anchor euiDataGridHeaderCell__anchor css-17g0ovn-EuiPopover"
+                    class="euiPopover__anchor euiDataGridHeaderCell__anchor css-js174l-EuiPopoverClass"
                   >
                     <button
                       class="euiDataGridHeaderCell__button"
@@ -1367,11 +1367,11 @@ Array [
           class="euiDataGrid__leftControls"
         >
           <div
-            class="euiPopover euiPopover--anchorDownLeft css-17g0ovn-EuiPopover"
+            class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <div
-              class="euiPopover__anchor css-17g0ovn-EuiPopover"
+              class="euiPopover__anchor css-js174l-EuiPopoverClass"
             >
               <button
                 class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
@@ -1403,11 +1403,11 @@ Array [
           class="euiDataGrid__rightControls"
         >
           <div
-            class="euiPopover euiPopover--anchorDownRight css-17g0ovn-EuiPopover"
+            class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
             data-test-subj="dataGridDisplaySelectorPopover"
           >
             <div
-              class="euiPopover__anchor css-17g0ovn-EuiPopover"
+              class="euiPopover__anchor css-js174l-EuiPopoverClass"
             >
               <span
                 class="euiToolTipAnchor"
@@ -1503,11 +1503,11 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover euiPopover--anchorDownCenter css-17g0ovn-EuiPopover"
+                  class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
                   offset="7"
                 >
                   <div
-                    class="euiPopover__anchor euiDataGridHeaderCell__anchor css-17g0ovn-EuiPopover"
+                    class="euiPopover__anchor euiDataGridHeaderCell__anchor css-js174l-EuiPopoverClass"
                   >
                     <button
                       class="euiDataGridHeaderCell__button"
@@ -1546,11 +1546,11 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover euiPopover--anchorDownCenter css-17g0ovn-EuiPopover"
+                  class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
                   offset="7"
                 >
                   <div
-                    class="euiPopover__anchor euiDataGridHeaderCell__anchor css-17g0ovn-EuiPopover"
+                    class="euiPopover__anchor euiDataGridHeaderCell__anchor css-js174l-EuiPopoverClass"
                   >
                     <button
                       class="euiDataGridHeaderCell__button"
@@ -2125,11 +2125,11 @@ Array [
           class="euiDataGrid__leftControls"
         >
           <div
-            class="euiPopover euiPopover--anchorDownLeft css-17g0ovn-EuiPopover"
+            class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <div
-              class="euiPopover__anchor css-17g0ovn-EuiPopover"
+              class="euiPopover__anchor css-js174l-EuiPopoverClass"
             >
               <button
                 class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
@@ -2158,11 +2158,11 @@ Array [
           class="euiDataGrid__rightControls"
         >
           <div
-            class="euiPopover euiPopover--anchorDownRight css-17g0ovn-EuiPopover"
+            class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
             data-test-subj="dataGridDisplaySelectorPopover"
           >
             <div
-              class="euiPopover__anchor css-17g0ovn-EuiPopover"
+              class="euiPopover__anchor css-js174l-EuiPopoverClass"
             >
               <span
                 class="euiToolTipAnchor"
@@ -2239,11 +2239,11 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover euiPopover--anchorDownCenter css-17g0ovn-EuiPopover"
+                  class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
                   offset="7"
                 >
                   <div
-                    class="euiPopover__anchor euiDataGridHeaderCell__anchor css-17g0ovn-EuiPopover"
+                    class="euiPopover__anchor euiDataGridHeaderCell__anchor css-js174l-EuiPopoverClass"
                   >
                     <button
                       class="euiDataGridHeaderCell__button"
@@ -2282,11 +2282,11 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover euiPopover--anchorDownCenter css-17g0ovn-EuiPopover"
+                  class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
                   offset="7"
                 >
                   <div
-                    class="euiPopover__anchor euiDataGridHeaderCell__anchor css-17g0ovn-EuiPopover"
+                    class="euiPopover__anchor euiDataGridHeaderCell__anchor css-js174l-EuiPopoverClass"
                   >
                     <button
                       class="euiDataGridHeaderCell__button"
@@ -2544,11 +2544,11 @@ Array [
           class="euiDataGrid__leftControls"
         >
           <div
-            class="euiPopover euiPopover--anchorDownLeft css-17g0ovn-EuiPopover"
+            class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <div
-              class="euiPopover__anchor css-17g0ovn-EuiPopover"
+              class="euiPopover__anchor css-js174l-EuiPopoverClass"
             >
               <button
                 class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
@@ -2577,11 +2577,11 @@ Array [
           class="euiDataGrid__rightControls"
         >
           <div
-            class="euiPopover euiPopover--anchorDownRight css-17g0ovn-EuiPopover"
+            class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
             data-test-subj="dataGridDisplaySelectorPopover"
           >
             <div
-              class="euiPopover__anchor css-17g0ovn-EuiPopover"
+              class="euiPopover__anchor css-js174l-EuiPopoverClass"
             >
               <span
                 class="euiToolTipAnchor"
@@ -2658,11 +2658,11 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover euiPopover--anchorDownCenter css-17g0ovn-EuiPopover"
+                  class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
                   offset="7"
                 >
                   <div
-                    class="euiPopover__anchor euiDataGridHeaderCell__anchor css-17g0ovn-EuiPopover"
+                    class="euiPopover__anchor euiDataGridHeaderCell__anchor css-js174l-EuiPopoverClass"
                   >
                     <button
                       class="euiDataGridHeaderCell__button"
@@ -2701,11 +2701,11 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover euiPopover--anchorDownCenter css-17g0ovn-EuiPopover"
+                  class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
                   offset="7"
                 >
                   <div
-                    class="euiPopover__anchor euiDataGridHeaderCell__anchor css-17g0ovn-EuiPopover"
+                    class="euiPopover__anchor euiDataGridHeaderCell__anchor css-js174l-EuiPopoverClass"
                   >
                     <button
                       class="euiDataGridHeaderCell__button"

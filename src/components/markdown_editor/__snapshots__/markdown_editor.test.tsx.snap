@@ -196,10 +196,10 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
           class="euiMarkdownEditorFooter__actions"
         />
         <div
-          class="euiPopover euiPopover--anchorUpCenter css-17g0ovn-EuiPopover"
+          class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
         >
           <div
-            class="euiPopover__anchor css-17g0ovn-EuiPopover"
+            class="euiPopover__anchor css-js174l-EuiPopoverClass"
           >
             <button
               aria-label="Show markdown help"

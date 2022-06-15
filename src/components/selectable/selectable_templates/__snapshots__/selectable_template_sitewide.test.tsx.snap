@@ -6,10 +6,10 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiPopover euiPopover--anchorDownCenter css-1k1aqtq-EuiPopover"
+    class="euiPopover css-fwe1lp-euiPopover-EuiPopoverClass"
   >
     <div
-      class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+      class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
     >
       <div
         class="euiFormControlLayout euiFormControlLayout--fullWidth"
@@ -52,10 +52,10 @@ exports[`EuiSelectableTemplateSitewide props popoverButton is not rendered with 
   class="euiSelectable euiSelectableTemplateSitewide"
 >
   <div
-    class="euiPopover euiPopover--anchorDownCenter css-1k1aqtq-EuiPopover"
+    class="euiPopover css-fwe1lp-euiPopover-EuiPopoverClass"
   >
     <div
-      class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+      class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
     >
       <div
         class="euiFormControlLayout euiFormControlLayout--fullWidth"
@@ -98,10 +98,10 @@ exports[`EuiSelectableTemplateSitewide props popoverButton is rendered 1`] = `
   class="euiSelectable euiSelectableTemplateSitewide"
 >
   <div
-    class="euiPopover euiPopover--anchorDownCenter css-17g0ovn-EuiPopover"
+    class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
   >
     <div
-      class="euiPopover__anchor css-17g0ovn-EuiPopover"
+      class="euiPopover__anchor css-js174l-EuiPopoverClass"
     >
       <button>
         Button
@@ -116,10 +116,10 @@ exports[`EuiSelectableTemplateSitewide props popoverButton is rendered with popo
   class="euiSelectable euiSelectableTemplateSitewide"
 >
   <div
-    class="euiPopover euiPopover--anchorDownCenter css-17g0ovn-EuiPopover"
+    class="euiPopover css-wf9cq9-euiPopover-EuiPopoverClass"
   >
     <div
-      class="euiPopover__anchor css-17g0ovn-EuiPopover"
+      class="euiPopover__anchor css-js174l-EuiPopoverClass"
     >
       <button>
         Button
@@ -134,10 +134,10 @@ exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
   class="euiSelectable euiSelectableTemplateSitewide"
 >
   <div
-    class="euiPopover euiPopover--anchorDownCenter css-1k1aqtq-EuiPopover"
+    class="euiPopover css-fwe1lp-euiPopover-EuiPopoverClass"
   >
     <div
-      class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+      class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
     >
       <div
         class="euiFormControlLayout euiFormControlLayout--fullWidth"
@@ -180,10 +180,10 @@ exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
   class="euiSelectable euiSelectableTemplateSitewide"
 >
   <div
-    class="euiPopover euiPopover--anchorDownCenter customPopoverClass css-1k1aqtq-EuiPopover"
+    class="euiPopover customPopoverClass css-fwe1lp-euiPopover-EuiPopoverClass"
   >
     <div
-      class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+      class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
     >
       <div
         class="euiFormControlLayout euiFormControlLayout--fullWidth"
@@ -226,10 +226,10 @@ exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
   class="euiSelectable euiSelectableTemplateSitewide"
 >
   <div
-    class="euiPopover euiPopover--anchorDownCenter css-1k1aqtq-EuiPopover"
+    class="euiPopover css-fwe1lp-euiPopover-EuiPopoverClass"
   >
     <div
-      class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+      class="euiPopover__anchor css-4fdlpz-EuiPopoverClass"
     >
       <div
         class="euiFormControlLayout euiFormControlLayout--fullWidth"

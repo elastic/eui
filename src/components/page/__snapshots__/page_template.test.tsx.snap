@@ -115,7 +115,7 @@ exports[`EuiPageTemplate template centeredBody is rendered 1`] = `
       class="euiPageBody euiPageBody--borderRadiusNone"
     >
       <div
-        class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-1nsffwn-euiPanel-grow-m-l-plain-hasShadow"
+        class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-15y4d5v-euiPanel-grow-m-l-plain-hasShadow"
         role="main"
       >
         <div
@@ -141,7 +141,7 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageBodyProps 1`
       class="euiPageBody euiPageBody--borderRadiusNone"
     >
       <div
-        class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-1nsffwn-euiPanel-grow-m-l-plain-hasShadow"
+        class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-15y4d5v-euiPanel-grow-m-l-plain-hasShadow"
         role="main"
       >
         <div
@@ -165,7 +165,7 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageContentBodyP
       class="euiPageBody euiPageBody--borderRadiusNone"
     >
       <div
-        class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-1nsffwn-euiPanel-grow-m-l-plain-hasShadow"
+        class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-15y4d5v-euiPanel-grow-m-l-plain-hasShadow"
         role="main"
       >
         <div
@@ -192,7 +192,7 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageContentProps
     >
       <div
         aria-label="aria-label"
-        class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter testClass1 testClass2 css-1nsffwn-euiPanel-grow-m-l-plain-hasShadow"
+        class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter testClass1 testClass2 css-15y4d5v-euiPanel-grow-m-l-plain-hasShadow"
         data-test-subj="test subject string"
         role="main"
       >
@@ -223,7 +223,7 @@ exports[`EuiPageTemplate template centeredBody is rendered with pageHeader 1`] =
       class="euiPageBody euiPageBody--borderRadiusNone"
     >
       <div
-        class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-1nsffwn-euiPanel-grow-m-l-plain-hasShadow"
+        class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-15y4d5v-euiPanel-grow-m-l-plain-hasShadow"
         role="main"
       >
         <div
@@ -247,7 +247,7 @@ exports[`EuiPageTemplate template centeredBody minHeight is rendered 1`] = `
       class="euiPageBody euiPageBody--borderRadiusNone"
     >
       <div
-        class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-1nsffwn-euiPanel-grow-m-l-plain-hasShadow"
+        class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-15y4d5v-euiPanel-grow-m-l-plain-hasShadow"
         role="main"
       >
         <div
@@ -271,7 +271,7 @@ exports[`EuiPageTemplate template centeredBody paddingSize is rendered 1`] = `
       class="euiPageBody euiPageBody--borderRadiusNone"
     >
       <div
-        class="euiPanel euiPanel--plain euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-n9us4v-euiPanel-grow-m-plain-hasShadow"
+        class="euiPanel euiPanel--plain euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-1lsigof-euiPanel-grow-m-plain-hasShadow"
         role="main"
       >
         <div
@@ -295,7 +295,7 @@ exports[`EuiPageTemplate template centeredBody style is rendered 1`] = `
       class="euiPageBody euiPageBody--borderRadiusNone"
     >
       <div
-        class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-1nsffwn-euiPanel-grow-m-l-plain-hasShadow"
+        class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-15y4d5v-euiPanel-grow-m-l-plain-hasShadow"
         role="main"
       >
         <div
@@ -321,7 +321,7 @@ exports[`EuiPageTemplate template centeredBody with pageSideBar is rendered 1`] 
     class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
   >
     <div
-      class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-1nsffwn-euiPanel-grow-m-l-plain-hasShadow"
+      class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-15y4d5v-euiPanel-grow-m-l-plain-hasShadow"
       role="main"
     >
       <div
@@ -348,7 +348,7 @@ exports[`EuiPageTemplate template centeredBody with pageSideBar is rendered with
     class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
   >
     <div
-      class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-1nsffwn-euiPanel-grow-m-l-plain-hasShadow"
+      class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-15y4d5v-euiPanel-grow-m-l-plain-hasShadow"
       role="main"
     >
       <div
@@ -582,7 +582,7 @@ exports[`EuiPageTemplate template centeredContent with pageSideBar is rendered 1
     Side Bar
   </div>
   <div
-    class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge css-1fqxm0x-euiPanel-grow-none-l-plain-hasShadow"
+    class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge css-1kk1uyr-euiPanel-grow-none-l-plain-hasShadow"
   >
     <div
       class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-1f0qifb-euiPanel-grow-m-l-subdued"
@@ -609,7 +609,7 @@ exports[`EuiPageTemplate template centeredContent with pageSideBar is rendered w
     Side Bar
   </div>
   <div
-    class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge css-1fqxm0x-euiPanel-grow-none-l-plain-hasShadow"
+    class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge css-1kk1uyr-euiPanel-grow-none-l-plain-hasShadow"
   >
     <div
       class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter css-1f0qifb-euiPanel-grow-m-l-subdued"
@@ -806,7 +806,7 @@ exports[`EuiPageTemplate template default with pageSideBar is rendered 1`] = `
     Side Bar
   </div>
   <div
-    class="euiPanel euiPanel--plain euiPageBody euiPageBody--borderRadiusNone css-1a2dgrg-euiPanel-grow-none-plain-hasShadow"
+    class="euiPanel euiPanel--plain euiPageBody euiPageBody--borderRadiusNone css-ns2xct-euiPanel-grow-none-plain-hasShadow"
   >
     <div
       class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"
@@ -837,7 +837,7 @@ exports[`EuiPageTemplate template default with pageSideBar is rendered with page
     Side Bar
   </div>
   <div
-    class="euiPanel euiPanel--plain euiPageBody euiPageBody--borderRadiusNone css-1a2dgrg-euiPanel-grow-none-plain-hasShadow"
+    class="euiPanel euiPanel--plain euiPageBody euiPageBody--borderRadiusNone css-ns2xct-euiPanel-grow-none-plain-hasShadow"
   >
     <div
       class="euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge"

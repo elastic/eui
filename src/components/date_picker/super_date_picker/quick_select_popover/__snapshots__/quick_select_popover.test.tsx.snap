@@ -26,11 +26,7 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
     </EuiButtonEmpty>
   }
   closePopover={[Function]}
-  display="inline-block"
-  hasArrow={true}
   isOpen={false}
-  ownFocus={true}
-  panelPaddingSize="m"
 >
   <div
     className="euiQuickSelectPopover__content"
