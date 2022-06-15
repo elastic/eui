@@ -6,17 +6,17 @@ exports[`EuiTimeline is rendered with items 1`] = `
   role="list"
 >
   <li
-    class="css-1noe449-euiTimelineItem"
+    class="emotion-euiTimelineItem"
   >
     <div
-      class="css-1grznaw-euiTimelineItemIcon-center"
+      class="emotion-euiTimelineItemIcon-center"
     >
       <div
-        class="css-irfkcc-euiTimelineItemIcon__content"
+        class="emotion-euiTimelineItemIcon__content"
       >
         <div
           aria-label="email"
-          class="euiAvatar euiAvatar--m euiAvatar--user css-1wtzu6n-euiAvatar-m-user-subdued"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
           role="img"
           title="email"
         >
@@ -30,7 +30,7 @@ exports[`EuiTimeline is rendered with items 1`] = `
       </div>
     </div>
     <div
-      class="css-1a9m88x-euiTimelineItemEvent-center"
+      class="emotion-euiTimelineItemEvent-center"
     >
       <p>
         <strong>
@@ -41,17 +41,17 @@ exports[`EuiTimeline is rendered with items 1`] = `
     </div>
   </li>
   <li
-    class="css-1noe449-euiTimelineItem"
+    class="emotion-euiTimelineItem"
   >
     <div
-      class="css-1t86e7q-euiTimelineItemIcon-top"
+      class="emotion-euiTimelineItemIcon-top"
     >
       <div
-        class="css-irfkcc-euiTimelineItemIcon__content"
+        class="emotion-euiTimelineItemIcon__content"
       >
         <div
           aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user css-1wtzu6n-euiAvatar-m-user-subdued"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
           role="img"
           title=""
         >
@@ -63,7 +63,7 @@ exports[`EuiTimeline is rendered with items 1`] = `
       </div>
     </div>
     <div
-      class="css-1waxxmm-euiTimelineItemEvent-top"
+      class="emotion-euiTimelineItemEvent-top"
     >
       <p>
         <strong>
