@@ -23,35 +23,26 @@ import { useEuiI18n } from '../i18n';
 
 import { EuiFocusTrap } from '../focus_trap';
 
-import { keys } from '../../services';
+import { keys, useEuiTheme } from '../../services';
 import { useInnerText } from '../inner_text';
+import {
+  euiImageStyles,
+  euiImageImgStyles,
+  euiImageButtonStyles,
+  euiImageCaptionStyles,
+  euiImageIconStyles,
+  euiImageFullScreenImgStyles,
+  euiImageFullScreenCloseIconStyles,
+} from './image.styles';
 
-type ImageSize = 's' | 'm' | 'l' | 'xl' | 'fullWidth' | 'original';
-type Floats = 'left' | 'right';
-type Margins = 's' | 'm' | 'l' | 'xl';
+export const SIZES = ['s', 'm', 'l', 'xl', 'fullWidth', 'original'] as const;
+export type EuiImageSize = typeof SIZES[number];
 
-const sizeToClassNameMap: { [size in ImageSize]: string } = {
-  s: 'euiImage--small',
-  m: 'euiImage--medium',
-  l: 'euiImage--large',
-  xl: 'euiImage--xlarge',
-  fullWidth: 'euiImage--fullWidth',
-  original: 'euiImage--original',
-};
+const FLOATS = ['left', 'right'] as const;
+export type EuiImageFloat = typeof FLOATS[number];
 
-const marginToClassNameMap: { [margin in Margins]: string } = {
-  s: 'euiImage--marginSmall',
-  m: 'euiImage--marginMedium',
-  l: 'euiImage--marginLarge',
-  xl: 'euiImage--marginXlarge',
-};
-
-const floatToClassNameMap: { [float in Floats]: string } = {
-  left: 'euiImage--floatLeft',
-  right: 'euiImage--floatRight',
-};
-
-export const SIZES = Object.keys(sizeToClassNameMap);
+const MARGINS = ['s', 'm', 'l', 'xl'] as const;
+export type EuiImageMargin = typeof MARGINS[number];
 
 type FullScreenIconColor = 'light' | 'dark';
 
@@ -85,7 +76,7 @@ export type EuiImageProps = CommonProps &
      * `fullWidth` will set the figure to stretch to 100% of its container.
      * `string` and `number` types will max both the width or height, whichever is greater.
      */
-    size?: ImageSize | number | string;
+    size?: EuiImageSize | number | string;
     /**
      * Changes the color of the icon that floats above the image when it can be clicked to fullscreen.
      * The default value of `light` is fine unless your image has a white background, in which case you should change it to `dark`.
@@ -106,11 +97,11 @@ export type EuiImageProps = CommonProps &
     /**
      * Float the image to the left or right. Useful in large text blocks.
      */
-    float?: Floats;
+    float?: EuiImageFloat;
     /**
      * Margin around the image.
      */
-    margin?: Margins;
+    margin?: EuiImageMargin;
   };
 
 export const EuiImage: FunctionComponent<EuiImageProps> = ({
@@ -148,42 +139,63 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
 
   const customStyle: React.CSSProperties = { ...style };
 
-  let classes = classNames(
-    'euiImage',
-    {
-      'euiImage--hasShadow': hasShadow,
-      'euiImage--allowFullScreen': allowFullScreen,
-    },
-    margin ? marginToClassNameMap[margin] : null,
-    float ? floatToClassNameMap[float] : null,
-    className
-  );
+  const classes = classNames('euiImage', className);
 
-  if (typeof size === 'string' && SIZES.includes(size)) {
-    classes = `${classes} ${sizeToClassNameMap[size as ImageSize]}`;
+  const euiTheme = useEuiTheme();
+
+  const styles = euiImageStyles(euiTheme, size);
+  const cssStyles = [
+    styles.euiImage,
+    float && styles[float],
+    margin && styles[margin],
+    allowFullScreen && styles.allowFullScreen,
+    isFullScreenActive && styles.isFullScreenActive,
+  ];
+
+  const imgStyles = euiImageImgStyles(euiTheme);
+  let cssImgStyles;
+
+  if (typeof size === 'string' && SIZES.includes(size as EuiImageSize)) {
+    cssImgStyles = [
+      imgStyles.euiImage__img,
+      imgStyles[size as EuiImageSize],
+      hasShadow && imgStyles.hasShadow,
+    ];
   } else {
-    classes = `${classes}`;
-    customStyle.maxWidth = size;
-    customStyle.maxHeight = size;
-    // Set width back to auto to ensure aspect ratio is kept
-    customStyle.width = 'auto';
+    cssImgStyles = [imgStyles.euiImage__img, hasShadow && imgStyles.hasShadow];
+    cssStyles.push(styles.customSizeStyle);
   }
 
-  let allowFullScreenButtonClasses = 'euiImage__button';
+  const buttonStyles = euiImageButtonStyles(euiTheme);
+  const cssButtonStyles = [
+    buttonStyles.euiImage__button,
+    // when the button is not custom we need it to go full width
+    // to match the parent '.euiImage' width except when the size is original
+    typeof size === 'string' &&
+      size !== 'original' &&
+      SIZES.includes(size as EuiImageSize) &&
+      buttonStyles.fullWidth,
+  ];
 
-  // when the button is not custom we need it to go full width
-  // to match the parent '.euiImage' width except when the size is original
-  if (typeof size === 'string' && size !== 'original' && SIZES.includes(size)) {
-    allowFullScreenButtonClasses = `${allowFullScreenButtonClasses} euiImage__button--fullWidth`;
-  } else {
-    allowFullScreenButtonClasses = `${allowFullScreenButtonClasses}`;
-  }
+  const captionStyles = euiImageCaptionStyles(euiTheme);
+  const cssCaptionStyles = [captionStyles.euiImage__caption];
+
+  const iconStyles = euiImageIconStyles(euiTheme);
+  const cssIconStyles = [iconStyles.euiImage__icon];
+
+  const fullScreenImgStyles = euiImageFullScreenImgStyles(euiTheme);
+  const cssFullScreenImgStyles = [fullScreenImgStyles.euiImage__fullScreenImg];
+
+  const fullScreenCloseIconStyles = euiImageFullScreenCloseIconStyles(euiTheme);
+  const cssFullScreenCloseIconStyles = [
+    fullScreenCloseIconStyles.euiImage__fullScreenCloseIcon,
+  ];
 
   const [optionalCaptionRef, optionalCaptionText] = useInnerText();
   let optionalCaption;
   if (caption) {
     optionalCaption = (
-      <figcaption ref={optionalCaptionRef} className="euiImage__caption">
+      <figcaption ref={optionalCaptionRef} css={cssCaptionStyles}>
         {caption}
       </figcaption>
     );
@@ -193,7 +205,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     <EuiIcon
       type="fullScreen"
       color={fullScreenIconColorMap[fullScreenIconColor]}
-      className="euiImage__icon"
+      css={cssIconStyles}
     />
   );
 
@@ -204,18 +216,15 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     >
       <EuiFocusTrap clickOutsideDisables={true}>
         <>
-          <figure
-            className="euiImage euiImage-isFullScreen"
-            aria-label={optionalCaptionText}
-          >
+          <figure css={cssStyles} aria-label={optionalCaptionText}>
             <button
               type="button"
+              css={cssButtonStyles}
               aria-label={useEuiI18n(
                 'euiImage.closeImage',
                 'Close fullscreen {alt} image',
                 { alt }
               )}
-              className="euiImage__button"
               data-test-subj="deactivateFullScreenButton"
               onClick={closeFullScreen}
               onKeyDown={onKeyDown}
@@ -223,7 +232,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
               <img
                 src={src || url}
                 alt={alt}
-                className="euiImage-isFullScreen__img"
+                css={cssFullScreenImgStyles}
                 {...rest}
               />
             </button>
@@ -232,7 +241,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
           <EuiIcon
             type="cross"
             color="default"
-            className="euiImage-isFullScreenCloseIcon"
+            css={cssFullScreenCloseIconStyles}
           />
         </>
       </EuiFocusTrap>
@@ -245,23 +254,31 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     { alt }
   );
 
+  const img = (
+    <img
+      style={customStyle}
+      src={src || url}
+      alt={alt}
+      css={cssImgStyles}
+      {...rest}
+    />
+  );
+
   if (allowFullScreen) {
     return (
-      <figure className={classes} aria-label={optionalCaptionText}>
+      <figure
+        className={classes}
+        css={cssStyles}
+        aria-label={optionalCaptionText}
+      >
         <button
           type="button"
+          css={cssButtonStyles}
           aria-label={fullscreenLabel}
-          className={allowFullScreenButtonClasses}
           data-test-subj="activateFullScreenButton"
           onClick={openFullScreen}
         >
-          <img
-            style={customStyle}
-            src={src || url}
-            alt={alt}
-            className="euiImage__img"
-            {...rest}
-          />
+          {img}
           {allowFullScreenIcon}
         </button>
         {isFullScreenActive && fullScreenDisplay}
@@ -270,14 +287,12 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     );
   } else {
     return (
-      <figure className={classes} aria-label={optionalCaptionText}>
-        <img
-          style={customStyle}
-          src={src || url}
-          className="euiImage__img"
-          alt={alt}
-          {...rest}
-        />
+      <figure
+        className={classes}
+        css={cssStyles}
+        aria-label={optionalCaptionText}
+      >
+        {img}
         {optionalCaption}
       </figure>
     );
