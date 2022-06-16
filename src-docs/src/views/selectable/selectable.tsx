@@ -12,6 +12,7 @@ export default () => {
       options={options}
       listProps={{ bordered: true }}
       onChange={(newOptions) => setOptions(newOptions)}
+      onActiveOptionChange={(option) => console.log(option)}
     >
       {(list) => list}
     </EuiSelectable>
