@@ -2,10 +2,10 @@
 
 exports[`EuiSuperSelect is rendered 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor emotion-EuiPopover"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div>
       <input
@@ -53,10 +53,10 @@ exports[`EuiSuperSelect is rendered 1`] = `
 
 exports[`EuiSuperSelect props compressed is rendered 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor emotion-EuiPopover"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div>
       <input
@@ -104,10 +104,10 @@ exports[`EuiSuperSelect props compressed is rendered 1`] = `
 
 exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor emotion-EuiPopover"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div>
       <input
@@ -263,10 +263,10 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
 
 exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor emotion-EuiPopover"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div>
       <input
@@ -314,10 +314,10 @@ exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
 
 exports[`EuiSuperSelect props is rendered with a prepend and append 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor emotion-EuiPopover"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div>
       <input
@@ -375,10 +375,10 @@ exports[`EuiSuperSelect props is rendered with a prepend and append 1`] = `
 
 exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor emotion-EuiPopover"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div>
       <input
@@ -539,10 +539,10 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
 
 exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor emotion-EuiPopover"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div>
       <input
@@ -698,10 +698,10 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
 
 exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect goes-on-outermost-wrapper emotion-euiPopover-EuiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiSuperSelect goes-on-outermost-wrapper emotion-euiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor emotion-EuiPopover"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div>
       <input
@@ -860,10 +860,10 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
 
 exports[`EuiSuperSelect props select component is rendered 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor emotion-EuiPopover"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div>
       <input
@@ -909,10 +909,10 @@ exports[`EuiSuperSelect props select component is rendered 1`] = `
 
 exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiSuperSelect emotion-euiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor emotion-EuiPopover"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div>
       <input

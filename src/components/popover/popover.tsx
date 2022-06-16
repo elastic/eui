@@ -45,7 +45,6 @@ import {
 import { EuiI18n } from '../i18n';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiPopoverArrow, EuiPopoverArrowPositions } from './popover_arrow';
-import { css } from '@emotion/react';
 import { euiPopoverStyles } from './popover.styles';
 import { EuiPopoverPanel } from './popover_panel';
 import { EuiPopoverPanelProps } from './popover_panel/popover_panel';
@@ -694,7 +693,7 @@ export class EuiPopover extends Component<Props, State> {
     } = this.props;
 
     const styles = euiPopoverStyles();
-    const popoverStyles = [styles.euiPopover, css(`display: ${display}`)];
+    const popoverStyles = [styles.euiPopover, { display }];
     const classes = classNames(
       'euiPopover',
       {
@@ -703,7 +702,6 @@ export class EuiPopover extends Component<Props, State> {
       className
     );
 
-    const anchorStyles = [css(`display: ${display}`)];
     const anchorClasses = classNames('euiPopover__anchor', anchorClassName);
     const showArrow = hasArrow && !attachToAnchor;
 
@@ -817,11 +815,7 @@ export class EuiPopover extends Component<Props, State> {
     if (ownFocus) {
       return (
         <div css={popoverStyles} className={classes} ref={popoverRef} {...rest}>
-          <div
-            css={anchorStyles}
-            className={anchorClasses}
-            ref={this.buttonRef}
-          >
+          <div css={{ display }} className={anchorClasses} ref={this.buttonRef}>
             {button instanceof HTMLElement ? null : button}
           </div>
           {panel}
@@ -838,7 +832,7 @@ export class EuiPopover extends Component<Props, State> {
             {...rest}
           >
             <div
-              css={anchorStyles}
+              css={{ display }}
               className={anchorClasses}
               ref={this.buttonRef}
             >

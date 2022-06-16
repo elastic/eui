@@ -2,11 +2,11 @@
 
 exports[`EuiPopover children is rendered 1`] = `
 <div
-  class="euiPopover emotion-euiPopover-EuiPopover"
+  class="euiPopover emotion-euiPopover"
   id="1"
 >
   <div
-    class="euiPopover__anchor emotion-EuiPopover"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <button />
   </div>
@@ -15,12 +15,12 @@ exports[`EuiPopover children is rendered 1`] = `
 
 exports[`EuiPopover is rendered 1`] = `
 <div
-  class="euiPopover testClass1 testClass2 emotion-euiPopover-EuiPopover"
+  class="euiPopover testClass1 testClass2 emotion-euiPopover"
   data-test-subj="test subject string"
   id="0"
 >
   <div
-    class="euiPopover__anchor emotion-EuiPopover"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <button />
   </div>
@@ -29,11 +29,11 @@ exports[`EuiPopover is rendered 1`] = `
 
 exports[`EuiPopover props anchorClassName is rendered 1`] = `
 <div
-  class="euiPopover emotion-euiPopover-EuiPopover"
+  class="euiPopover emotion-euiPopover"
   id="3"
 >
   <div
-    class="euiPopover__anchor test emotion-EuiPopover"
+    class="euiPopover__anchor test css-16vtueo-render"
   >
     <button />
   </div>
@@ -42,11 +42,11 @@ exports[`EuiPopover props anchorClassName is rendered 1`] = `
 
 exports[`EuiPopover props anchorPosition defaults to centerDown 1`] = `
 <div
-  class="euiPopover emotion-euiPopover-EuiPopover"
+  class="euiPopover emotion-euiPopover"
   id="6"
 >
   <div
-    class="euiPopover__anchor emotion-EuiPopover"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <button />
   </div>
@@ -55,11 +55,11 @@ exports[`EuiPopover props anchorPosition defaults to centerDown 1`] = `
 
 exports[`EuiPopover props anchorPosition downRight is rendered 1`] = `
 <div
-  class="euiPopover emotion-euiPopover-EuiPopover"
+  class="euiPopover emotion-euiPopover"
   id="8"
 >
   <div
-    class="euiPopover__anchor emotion-EuiPopover"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <button />
   </div>
@@ -68,11 +68,11 @@ exports[`EuiPopover props anchorPosition downRight is rendered 1`] = `
 
 exports[`EuiPopover props anchorPosition leftCenter is rendered 1`] = `
 <div
-  class="euiPopover emotion-euiPopover-EuiPopover"
+  class="euiPopover emotion-euiPopover"
   id="7"
 >
   <div
-    class="euiPopover__anchor emotion-EuiPopover"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <button />
   </div>
@@ -82,11 +82,11 @@ exports[`EuiPopover props anchorPosition leftCenter is rendered 1`] = `
 exports[`EuiPopover props arrowChildren is rendered 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover-isOpen emotion-euiPopover-EuiPopover"
+    class="euiPopover euiPopover-isOpen emotion-euiPopover"
     id="19"
   >
     <div
-      class="euiPopover__anchor emotion-EuiPopover"
+      class="euiPopover__anchor css-16vtueo-render"
     >
       <button />
     </div>
@@ -143,11 +143,11 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
 exports[`EuiPopover props buffer 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover-isOpen emotion-euiPopover-EuiPopover"
+    class="euiPopover euiPopover-isOpen emotion-euiPopover"
     id="20"
   >
     <div
-      class="euiPopover__anchor emotion-EuiPopover"
+      class="euiPopover__anchor css-16vtueo-render"
     >
       <button />
     </div>
@@ -202,11 +202,11 @@ exports[`EuiPopover props buffer 1`] = `
 exports[`EuiPopover props buffer for all sides 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover-isOpen emotion-euiPopover-EuiPopover"
+    class="euiPopover euiPopover-isOpen emotion-euiPopover"
     id="21"
   >
     <div
-      class="euiPopover__anchor emotion-EuiPopover"
+      class="euiPopover__anchor css-16vtueo-render"
     >
       <button />
     </div>
@@ -260,11 +260,11 @@ exports[`EuiPopover props buffer for all sides 1`] = `
 
 exports[`EuiPopover props display block is rendered 1`] = `
 <div
-  class="euiPopover emotion-euiPopover-EuiPopover"
+  class="euiPopover emotion-euiPopover"
   id="2"
 >
   <div
-    class="euiPopover__anchor emotion-EuiPopover"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <button />
   </div>
@@ -274,11 +274,11 @@ exports[`EuiPopover props display block is rendered 1`] = `
 exports[`EuiPopover props focusTrapProps is rendered 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover-isOpen emotion-euiPopover-EuiPopover"
+    class="euiPopover euiPopover-isOpen emotion-euiPopover"
     id="16"
   >
     <div
-      class="euiPopover__anchor emotion-EuiPopover"
+      class="euiPopover__anchor css-16vtueo-render"
     >
       <button />
     </div>
@@ -332,11 +332,11 @@ exports[`EuiPopover props focusTrapProps is rendered 1`] = `
 
 exports[`EuiPopover props isOpen defaults to false 1`] = `
 <div
-  class="euiPopover emotion-euiPopover-EuiPopover"
+  class="euiPopover emotion-euiPopover"
   id="9"
 >
   <div
-    class="euiPopover__anchor emotion-EuiPopover"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <button />
   </div>
@@ -346,11 +346,11 @@ exports[`EuiPopover props isOpen defaults to false 1`] = `
 exports[`EuiPopover props isOpen renders true 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover-isOpen emotion-euiPopover-EuiPopover"
+    class="euiPopover euiPopover-isOpen emotion-euiPopover"
     id="10"
   >
     <div
-      class="euiPopover__anchor emotion-EuiPopover"
+      class="euiPopover__anchor css-16vtueo-render"
     >
       <button />
     </div>
@@ -405,12 +405,12 @@ exports[`EuiPopover props isOpen renders true 1`] = `
 exports[`EuiPopover props offset with arrow 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover-isOpen emotion-euiPopover-EuiPopover"
+    class="euiPopover euiPopover-isOpen emotion-euiPopover"
     id="17"
     offset="10"
   >
     <div
-      class="euiPopover__anchor emotion-EuiPopover"
+      class="euiPopover__anchor css-16vtueo-render"
     >
       <button />
     </div>
@@ -465,12 +465,12 @@ exports[`EuiPopover props offset with arrow 1`] = `
 exports[`EuiPopover props offset without arrow 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover-isOpen emotion-euiPopover-EuiPopover"
+    class="euiPopover euiPopover-isOpen emotion-euiPopover"
     id="18"
     offset="10"
   >
     <div
-      class="euiPopover__anchor emotion-EuiPopover"
+      class="euiPopover__anchor css-16vtueo-render"
     >
       <button />
     </div>
@@ -520,11 +520,11 @@ exports[`EuiPopover props offset without arrow 1`] = `
 exports[`EuiPopover props ownFocus defaults to true 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover-isOpen emotion-euiPopover-EuiPopover"
+    class="euiPopover euiPopover-isOpen emotion-euiPopover"
     id="11"
   >
     <div
-      class="euiPopover__anchor emotion-EuiPopover"
+      class="euiPopover__anchor css-16vtueo-render"
     >
       <button />
     </div>
@@ -579,11 +579,11 @@ exports[`EuiPopover props ownFocus defaults to true 1`] = `
 exports[`EuiPopover props ownFocus renders false 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover-isOpen emotion-euiPopover-EuiPopover"
+    class="euiPopover euiPopover-isOpen emotion-euiPopover"
     id="12"
   >
     <div
-      class="euiPopover__anchor emotion-EuiPopover"
+      class="euiPopover__anchor css-16vtueo-render"
     >
       <button />
     </div>
@@ -629,11 +629,11 @@ exports[`EuiPopover props ownFocus renders false 1`] = `
 exports[`EuiPopover props panelClassName is rendered 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover-isOpen emotion-euiPopover-EuiPopover"
+    class="euiPopover euiPopover-isOpen emotion-euiPopover"
     id="13"
   >
     <div
-      class="euiPopover__anchor emotion-EuiPopover"
+      class="euiPopover__anchor css-16vtueo-render"
     >
       <button />
     </div>
@@ -688,11 +688,11 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
 exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover-isOpen emotion-euiPopover-EuiPopover"
+    class="euiPopover euiPopover-isOpen emotion-euiPopover"
     id="14"
   >
     <div
-      class="euiPopover__anchor emotion-EuiPopover"
+      class="euiPopover__anchor css-16vtueo-render"
     >
       <button />
     </div>
@@ -747,11 +747,11 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
 exports[`EuiPopover props panelProps is rendered 1`] = `
 <div>
   <div
-    class="euiPopover euiPopover-isOpen emotion-euiPopover-EuiPopover"
+    class="euiPopover euiPopover-isOpen emotion-euiPopover"
     id="15"
   >
     <div
-      class="euiPopover__anchor emotion-EuiPopover"
+      class="euiPopover__anchor css-16vtueo-render"
     >
       <button />
     </div>

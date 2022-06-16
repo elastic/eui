@@ -114,10 +114,10 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
         class="euiFlexItem euiFlexItem--flexGrowZero"
       >
         <div
-          class="euiPopover emotion-euiPopover-EuiPopover"
+          class="euiPopover emotion-euiPopover"
         >
           <div
-            class="euiPopover__anchor emotion-EuiPopover"
+            class="euiPopover__anchor css-16vtueo-render"
           >
             <button
               class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
@@ -1308,10 +1308,10 @@ exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
         class="euiFlexItem euiFlexItem--flexGrowZero"
       >
         <div
-          class="euiPopover emotion-euiPopover-EuiPopover"
+          class="euiPopover emotion-euiPopover"
         >
           <div
-            class="euiPopover__anchor emotion-EuiPopover"
+            class="euiPopover__anchor css-16vtueo-render"
           >
             <button
               class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"

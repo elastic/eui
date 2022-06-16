@@ -985,8 +985,8 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                         Object {
                           "insert": [Function],
                           "inserted": Object {
-                            "1k1aqtq-EuiPopover": true,
-                            "sqpim8-euiPopover-EuiPopover": true,
+                            "6tb1tw-euiPopover": true,
+                            "zih94u-render": true,
                           },
                           "key": "css",
                           "nonce": undefined,
@@ -1001,14 +1001,14 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                                 data-s=""
                               >
                                 
-                                .emotion-euiPopover-EuiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
+                                .emotion-euiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                               </style>
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                .emotion-EuiPopover{display:block;}
+                                .css-zih94u-render{display:block;}
                               </style>
                             </head>,
                             "ctr": 2,
@@ -1023,14 +1023,14 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                                 data-s=""
                               >
                                 
-                                .emotion-euiPopover-EuiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
+                                .emotion-euiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                               </style>,
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                .emotion-EuiPopover{display:block;}
+                                .css-zih94u-render{display:block;}
                               </style>,
                             ],
                           },
@@ -1040,15 +1040,15 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                       serialized={
                         Object {
                           "map": undefined,
-                          "name": "sqpim8-euiPopover-EuiPopover",
+                          "name": "6tb1tw-euiPopover",
                           "next": undefined,
-                          "styles": "position:relative;vertical-align:middle;max-inline-size: 100%;;;label:euiPopover;;;display: block;label:EuiPopover;;;",
+                          "styles": "position:relative;vertical-align:middle;max-inline-size: 100%;;;label:euiPopover;;;display:block;;",
                           "toString": [Function],
                         }
                       }
                     />
                     <div
-                      className="euiPopover emotion-euiPopover-EuiPopover"
+                      className="euiPopover emotion-euiPopover"
                       onKeyDown={[Function]}
                       onMouseDown={[Function]}
                       onMouseUp={[Function]}
@@ -1063,8 +1063,8 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                             Object {
                               "insert": [Function],
                               "inserted": Object {
-                                "1k1aqtq-EuiPopover": true,
-                                "sqpim8-euiPopover-EuiPopover": true,
+                                "6tb1tw-euiPopover": true,
+                                "zih94u-render": true,
                               },
                               "key": "css",
                               "nonce": undefined,
@@ -1079,14 +1079,14 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                                     data-s=""
                                   >
                                     
-                                    .emotion-euiPopover-EuiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
+                                    .emotion-euiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                                   </style>
                                   <style
                                     data-emotion="css"
                                     data-s=""
                                   >
                                     
-                                    .emotion-EuiPopover{display:block;}
+                                    .css-zih94u-render{display:block;}
                                   </style>
                                 </head>,
                                 "ctr": 2,
@@ -1101,14 +1101,14 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                                     data-s=""
                                   >
                                     
-                                    .emotion-euiPopover-EuiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
+                                    .emotion-euiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                                   </style>,
                                   <style
                                     data-emotion="css"
                                     data-s=""
                                   >
                                     
-                                    .emotion-EuiPopover{display:block;}
+                                    .css-zih94u-render{display:block;}
                                   </style>,
                                 ],
                               },
@@ -1118,15 +1118,15 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                           serialized={
                             Object {
                               "map": undefined,
-                              "name": "1k1aqtq-EuiPopover",
+                              "name": "zih94u-render",
                               "next": undefined,
-                              "styles": "display: block;label:EuiPopover;;;",
+                              "styles": "display:block;;label:render;",
                               "toString": [Function],
                             }
                           }
                         />
                         <div
-                          className="euiPopover__anchor emotion-EuiPopover"
+                          className="euiPopover__anchor css-zih94u-render"
                         >
                           <div
                             className="react-datepicker__input-container"

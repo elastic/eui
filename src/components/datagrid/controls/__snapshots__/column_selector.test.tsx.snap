@@ -2,11 +2,11 @@
 
 exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popover allowing users to set column visibility and order 1`] = `
 <div
-  class="euiPopover emotion-euiPopover-EuiPopover"
+  class="euiPopover emotion-euiPopover"
   data-test-subj="dataGridColumnSelectorPopover"
 >
   <div
-    class="euiPopover__anchor emotion-EuiPopover"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <button
       class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
