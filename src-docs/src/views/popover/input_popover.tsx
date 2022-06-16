@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 
-import {
-  EuiInputPopover,
-  EuiFieldText,
-  EuiSpacer,
-} from '../../../../src/components';
+import { EuiInputPopover, EuiFieldText, EuiSpacer } from '../../../../src';
 
 export default () => {
   const [inputWidth, setInputWidth] = useState(200);

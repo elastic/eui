@@ -27,7 +27,7 @@ export default () => {
   const focusId = useGeneratedHtmlId();
   useEffect(() => {
     if (isPopoverOpen) {
-      document.getElementById(focusId).focus({ preventScroll: true });
+      document.getElementById(focusId)!.focus({ preventScroll: true });
     }
   }, [isPopoverOpen, focusId]);
 

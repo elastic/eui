@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { EuiButton, EuiPopover } from '../../../../src/components';
+import { EuiButton, EuiPopover } from '../../../../src';
 
 export default () => {
   const [isExampleShown, setIsExampleShown] = useState(false);

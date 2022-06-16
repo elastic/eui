@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 
-import { EuiPopover, EuiButton, EuiText } from '../../../../src/components';
+import {
+  EuiButton,
+  EuiFormRow,
+  EuiPopover,
+  EuiSpacer,
+  EuiFieldText,
+} from '../../../../src';
 
 export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -17,13 +23,20 @@ export default () => {
 
   return (
     <EuiPopover
+      initialFocus="#name"
       button={button}
       isOpen={isPopoverOpen}
       closePopover={closePopover}
     >
-      <EuiText style={{ width: 300 }}>
-        <p>Popover content that&rsquo;s wider than the default width</p>
-      </EuiText>
+      <EuiFormRow label="Enter name" id="name">
+        <EuiFieldText compressed name="input" />
+      </EuiFormRow>
+
+      <EuiSpacer />
+
+      <EuiButton size="s" fill>
+        Submit
+      </EuiButton>
     </EuiPopover>
   );
 };

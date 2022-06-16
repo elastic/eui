@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { EuiPopover, EuiButton, EuiText } from '../../../../src/components';
+import { EuiPopover, EuiButton, EuiText } from '../../../../src';
 
 export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);

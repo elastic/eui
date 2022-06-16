@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { EuiButton, EuiPopover } from '../../../../src/components';
+import { EuiPopover, EuiButton, EuiText } from '../../../../src';
 
 export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -10,8 +10,8 @@ export default () => {
   const closePopover = () => setIsPopoverOpen(false);
 
   const button = (
-    <EuiButton onClick={onButtonClick} fullWidth>
-      This button is expanded
+    <EuiButton iconType="arrowDown" iconSide="right" onClick={onButtonClick}>
+      Show popover
     </EuiButton>
   );
 
@@ -20,9 +20,10 @@ export default () => {
       button={button}
       isOpen={isPopoverOpen}
       closePopover={closePopover}
-      display="block"
     >
-      <div>This is a popover</div>
+      <EuiText style={{ width: 300 }}>
+        <p>Popover content that&rsquo;s wider than the default width</p>
+      </EuiText>
     </EuiPopover>
   );
 };
