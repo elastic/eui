@@ -2,11 +2,11 @@
 
 exports[`renders EuiColorStopThumb 1`] = `
 <div
-  class="euiPopover euiColorStopPopover testClass1 testClass2 css-1fy8l1r-euiPopover-EuiPopover"
+  class="euiPopover euiColorStopPopover testClass1 testClass2 emotion-euiPopover-EuiPopover"
   style="left:0%"
 >
   <div
-    class="euiPopover__anchor euiColorStopPopover__anchor css-17g0ovn-EuiPopover"
+    class="euiPopover__anchor euiColorStopPopover__anchor emotion-EuiPopover"
   >
     <button
       aria-disabled="false"
@@ -28,11 +28,11 @@ exports[`renders EuiColorStopThumb 1`] = `
 
 exports[`renders disabled EuiColorStopThumb 1`] = `
 <div
-  class="euiPopover euiColorStopPopover testClass1 testClass2 css-1fy8l1r-euiPopover-EuiPopover"
+  class="euiPopover euiColorStopPopover testClass1 testClass2 emotion-euiPopover-EuiPopover"
   style="left:0%"
 >
   <div
-    class="euiPopover__anchor euiColorStopPopover__anchor css-17g0ovn-EuiPopover"
+    class="euiPopover__anchor euiColorStopPopover__anchor emotion-EuiPopover"
   >
     <button
       aria-disabled="true"
@@ -55,11 +55,11 @@ exports[`renders disabled EuiColorStopThumb 1`] = `
 
 exports[`renders picker-only EuiColorStopThumb 1`] = `
 <div
-  class="euiPopover euiColorStopPopover testClass1 testClass2 css-1fy8l1r-euiPopover-EuiPopover"
+  class="euiPopover euiColorStopPopover testClass1 testClass2 emotion-euiPopover-EuiPopover"
   style="left:0%"
 >
   <div
-    class="euiPopover__anchor euiColorStopPopover__anchor css-17g0ovn-EuiPopover"
+    class="euiPopover__anchor euiColorStopPopover__anchor emotion-EuiPopover"
   >
     <button
       aria-disabled="false"
@@ -81,11 +81,11 @@ exports[`renders picker-only EuiColorStopThumb 1`] = `
 
 exports[`renders readOnly EuiColorStopThumb 1`] = `
 <div
-  class="euiPopover euiColorStopPopover testClass1 testClass2 css-1fy8l1r-euiPopover-EuiPopover"
+  class="euiPopover euiColorStopPopover testClass1 testClass2 emotion-euiPopover-EuiPopover"
   style="left:0%"
 >
   <div
-    class="euiPopover__anchor euiColorStopPopover__anchor css-17g0ovn-EuiPopover"
+    class="euiPopover__anchor euiColorStopPopover__anchor emotion-EuiPopover"
   >
     <button
       aria-disabled="false"
@@ -107,11 +107,11 @@ exports[`renders readOnly EuiColorStopThumb 1`] = `
 
 exports[`renders swatch-only EuiColorStopThumb 1`] = `
 <div
-  class="euiPopover euiColorStopPopover testClass1 testClass2 css-1fy8l1r-euiPopover-EuiPopover"
+  class="euiPopover euiColorStopPopover testClass1 testClass2 emotion-euiPopover-EuiPopover"
   style="left:0%"
 >
   <div
-    class="euiPopover__anchor euiColorStopPopover__anchor css-17g0ovn-EuiPopover"
+    class="euiPopover__anchor euiColorStopPopover__anchor emotion-EuiPopover"
   >
     <button
       aria-disabled="false"

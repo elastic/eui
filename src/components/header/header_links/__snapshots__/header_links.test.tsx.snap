@@ -73,10 +73,10 @@ exports[`EuiHeaderLinks popover props is rendered 1`] = `
   class="euiHeaderLinks"
 >
   <div
-    class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
+    class="euiPopover emotion-euiPopover-EuiPopover"
   >
     <div
-      class="euiPopover__anchor customAnchorClass css-17g0ovn-EuiPopover"
+      class="euiPopover__anchor customAnchorClass emotion-EuiPopover"
     >
       <button
         aria-label="Open menu"

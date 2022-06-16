@@ -2,11 +2,11 @@
 
 exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popover allowing users to set column visibility and order 1`] = `
 <div
-  class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
+  class="euiPopover emotion-euiPopover-EuiPopover"
   data-test-subj="dataGridColumnSelectorPopover"
 >
   <div
-    class="euiPopover__anchor css-17g0ovn-EuiPopover"
+    class="euiPopover__anchor emotion-EuiPopover"
   >
     <button
       class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
@@ -37,7 +37,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
   aria-describedby="generated-id"
   aria-live="off"
   aria-modal="true"
-  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel euiDataGrid__controlPopoverWithDragDrop css-1wxyg37-euiPanel-grow-m-s-plain-euiPopover__panel"
+  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel euiDataGrid__controlPopoverWithDragDrop emotion-euiPanel-grow-m-s-plain-euiPopover__panel"
   data-autofocus="true"
   data-popover-panel="true"
   role="dialog"
@@ -45,7 +45,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
   tabindex="0"
 >
   <div
-    class="css-1c2yt94-euiPopoverArrow-bottom"
+    class="emotion-euiPopoverArrow-bottom"
     data-popover-arrow="bottom"
     style="left: 10px; top: 0px;"
   />
@@ -58,7 +58,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
   <div>
     <div>
       <div
-        class="euiPopoverTitle css-97p3w2-euiPopoverTitle-s"
+        class="euiPopoverTitle emotion-euiPopoverTitle-s"
       >
         <div
           class="euiFormControlLayout euiFormControlLayout--compressed"
@@ -223,7 +223,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
       </div>
     </div>
     <div
-      class="euiPopoverFooter css-kcqbbh-euiPopoverFooter-s"
+      class="euiPopoverFooter emotion-euiPopoverFooter-s"
     >
       <div
         class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"

@@ -105,7 +105,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
   </div>
   <div>
     <div
-      class="euiSpacer euiSpacer--m css-jv9za2-euiSpacer-m"
+      class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
     />
     <div
       class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--wrap eui-xScroll"
@@ -114,10 +114,10 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
         class="euiFlexItem euiFlexItem--flexGrowZero"
       >
         <div
-          class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
+          class="euiPopover emotion-euiPopover-EuiPopover"
         >
           <div
-            class="euiPopover__anchor css-17g0ovn-EuiPopover"
+            class="euiPopover__anchor emotion-EuiPopover"
           >
             <button
               class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"
@@ -1299,7 +1299,7 @@ exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
   </div>
   <div>
     <div
-      class="euiSpacer euiSpacer--m css-jv9za2-euiSpacer-m"
+      class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
     />
     <div
       class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--wrap eui-xScroll"
@@ -1308,10 +1308,10 @@ exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
         class="euiFlexItem euiFlexItem--flexGrowZero"
       >
         <div
-          class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
+          class="euiPopover emotion-euiPopover-EuiPopover"
         >
           <div
-            class="euiPopover__anchor css-17g0ovn-EuiPopover"
+            class="euiPopover__anchor emotion-EuiPopover"
           >
             <button
               class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall"

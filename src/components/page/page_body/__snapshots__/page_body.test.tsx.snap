@@ -10,13 +10,13 @@ exports[`EuiPageBody is rendered 1`] = `
 
 exports[`EuiPageBody panelled also accepts panelProps 1`] = `
 <div
-  class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge css-1gebzfy-euiPanel-grow-none-l-subdued"
+  class="euiPanel euiPanel--subdued euiPanel--paddingLarge euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge emotion-euiPanel-grow-none-l-subdued"
 />
 `;
 
 exports[`EuiPageBody panelled can be set to true 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge css-1kk1uyr-euiPanel-grow-none-l-plain-hasShadow"
+  class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageBody euiPageBody--borderRadiusNone euiPageBody--paddingLarge emotion-euiPanel-grow-none-l-plain-hasShadow"
 />
 `;
 

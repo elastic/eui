@@ -14,10 +14,10 @@ exports[`EuiDatePickerRange disabled is rendered 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          class="euiPopover css-sqpim8-euiPopover-EuiPopover"
+          class="euiPopover emotion-euiPopover-EuiPopover"
         >
           <div
-            class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+            class="euiPopover__anchor emotion-EuiPopover"
           >
             <div
               class="react-datepicker__input-container"
@@ -66,10 +66,10 @@ exports[`EuiDatePickerRange disabled is rendered 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          class="euiPopover css-sqpim8-euiPopover-EuiPopover"
+          class="euiPopover emotion-euiPopover-EuiPopover"
         >
           <div
-            class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+            class="euiPopover__anchor emotion-EuiPopover"
           >
             <div
               class="react-datepicker__input-container"
@@ -106,10 +106,10 @@ exports[`EuiDatePickerRange is rendered 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          class="euiPopover css-sqpim8-euiPopover-EuiPopover"
+          class="euiPopover emotion-euiPopover-EuiPopover"
         >
           <div
-            class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+            class="euiPopover__anchor emotion-EuiPopover"
           >
             <div
               class="react-datepicker__input-container"
@@ -157,10 +157,10 @@ exports[`EuiDatePickerRange is rendered 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          class="euiPopover css-sqpim8-euiPopover-EuiPopover"
+          class="euiPopover emotion-euiPopover-EuiPopover"
         >
           <div
-            class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+            class="euiPopover__anchor emotion-EuiPopover"
           >
             <div
               class="react-datepicker__input-container"
@@ -194,10 +194,10 @@ exports[`EuiDatePickerRange isInvalid is rendered 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          class="euiPopover css-sqpim8-euiPopover-EuiPopover"
+          class="euiPopover emotion-euiPopover-EuiPopover"
         >
           <div
-            class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+            class="euiPopover__anchor emotion-EuiPopover"
           >
             <div
               class="react-datepicker__input-container"
@@ -245,10 +245,10 @@ exports[`EuiDatePickerRange isInvalid is rendered 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          class="euiPopover css-sqpim8-euiPopover-EuiPopover"
+          class="euiPopover emotion-euiPopover-EuiPopover"
         >
           <div
-            class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+            class="euiPopover__anchor emotion-EuiPopover"
           >
             <div
               class="react-datepicker__input-container"
@@ -282,10 +282,10 @@ exports[`EuiDatePickerRange readOnly is rendered 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          class="euiPopover css-sqpim8-euiPopover-EuiPopover"
+          class="euiPopover emotion-euiPopover-EuiPopover"
         >
           <div
-            class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+            class="euiPopover__anchor emotion-EuiPopover"
           >
             <div
               class="react-datepicker__input-container"
@@ -334,10 +334,10 @@ exports[`EuiDatePickerRange readOnly is rendered 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          class="euiPopover css-sqpim8-euiPopover-EuiPopover"
+          class="euiPopover emotion-euiPopover-EuiPopover"
         >
           <div
-            class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+            class="euiPopover__anchor emotion-EuiPopover"
           >
             <div
               class="react-datepicker__input-container"
@@ -374,10 +374,10 @@ exports[`EuiDatePickerRange uses individual EuiDatePicker props 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          class="euiPopover css-sqpim8-euiPopover-EuiPopover"
+          class="euiPopover emotion-euiPopover-EuiPopover"
         >
           <div
-            class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+            class="euiPopover__anchor emotion-EuiPopover"
           >
             <div
               class="react-datepicker__input-container"
@@ -425,10 +425,10 @@ exports[`EuiDatePickerRange uses individual EuiDatePicker props 1`] = `
         class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          class="euiPopover css-sqpim8-euiPopover-EuiPopover"
+          class="euiPopover emotion-euiPopover-EuiPopover"
         >
           <div
-            class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+            class="euiPopover__anchor emotion-EuiPopover"
           >
             <div
               class="react-datepicker__input-container"

@@ -9,33 +9,47 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { EuiAvatar } from '../avatar';
-import { EuiTimeline, EuiTimelineProps } from './timeline';
+import { EuiTimeline, EuiTimelineProps, GUTTER_SIZES } from './timeline';
+
+const items: EuiTimelineProps['items'] = [
+  {
+    icon: <EuiAvatar name="email" iconType="email" color="subdued" />,
+    verticalAlign: 'center',
+    children: (
+      <p>
+        <strong>janet@elastic.co</strong> was invited to the project
+      </p>
+    ),
+  },
+  {
+    icon: 'bolt',
+    verticalAlign: 'top',
+    children: (
+      <p>
+        <strong>janet@elastic.co</strong> was invited to the project
+      </p>
+    ),
+  },
+];
 
 describe('EuiTimeline', () => {
   test('is rendered with items', () => {
-    const items: EuiTimelineProps['items'] = [
-      {
-        icon: <EuiAvatar name="email" iconType="email" color="subdued" />,
-        verticalAlign: 'center',
-        children: (
-          <p>
-            <strong>janet@elastic.co</strong> was invited to the project
-          </p>
-        ),
-      },
-      {
-        icon: 'bolt',
-        verticalAlign: 'top',
-        children: (
-          <p>
-            <strong>janet@elastic.co</strong> was invited to the project
-          </p>
-        ),
-      },
-    ];
-
     const component = render(<EuiTimeline items={items} />);
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('props', () => {
+    describe('gutterSize', () => {
+      GUTTER_SIZES.forEach((gutterSize) => {
+        test(`${gutterSize} is rendered`, () => {
+          const component = render(
+            <EuiTimeline items={items} gutterSize={gutterSize} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
   });
 });

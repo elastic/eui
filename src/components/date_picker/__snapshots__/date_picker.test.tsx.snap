@@ -1001,14 +1001,14 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                                 data-s=""
                               >
                                 
-                                .css-sqpim8-euiPopover-EuiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
+                                .emotion-euiPopover-EuiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                               </style>
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                .css-1k1aqtq-EuiPopover{display:block;}
+                                .emotion-EuiPopover{display:block;}
                               </style>
                             </head>,
                             "ctr": 2,
@@ -1023,14 +1023,14 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                                 data-s=""
                               >
                                 
-                                .css-sqpim8-euiPopover-EuiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
+                                .emotion-euiPopover-EuiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                               </style>,
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                .css-1k1aqtq-EuiPopover{display:block;}
+                                .emotion-EuiPopover{display:block;}
                               </style>,
                             ],
                           },
@@ -1048,7 +1048,7 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                       }
                     />
                     <div
-                      className="euiPopover css-sqpim8-euiPopover-EuiPopover"
+                      className="euiPopover emotion-euiPopover-EuiPopover"
                       onKeyDown={[Function]}
                       onMouseDown={[Function]}
                       onMouseUp={[Function]}
@@ -1079,14 +1079,14 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                                     data-s=""
                                   >
                                     
-                                    .css-sqpim8-euiPopover-EuiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
+                                    .emotion-euiPopover-EuiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                                   </style>
                                   <style
                                     data-emotion="css"
                                     data-s=""
                                   >
                                     
-                                    .css-1k1aqtq-EuiPopover{display:block;}
+                                    .emotion-EuiPopover{display:block;}
                                   </style>
                                 </head>,
                                 "ctr": 2,
@@ -1101,14 +1101,14 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                                     data-s=""
                                   >
                                     
-                                    .css-sqpim8-euiPopover-EuiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
+                                    .emotion-euiPopover-EuiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                                   </style>,
                                   <style
                                     data-emotion="css"
                                     data-s=""
                                   >
                                     
-                                    .css-1k1aqtq-EuiPopover{display:block;}
+                                    .emotion-EuiPopover{display:block;}
                                   </style>,
                                 ],
                               },
@@ -1126,7 +1126,7 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                           }
                         />
                         <div
-                          className="euiPopover__anchor css-1k1aqtq-EuiPopover"
+                          className="euiPopover__anchor emotion-EuiPopover"
                         >
                           <div
                             className="react-datepicker__input-container"

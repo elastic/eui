@@ -501,10 +501,10 @@ exports[`EuiDualRange props levels should render 1`] = `
 
 exports[`EuiDualRange props loading should display when showInput="inputWithPopover" 1`] = `
 <div
-  class="euiPopover euiInputPopover euiRange__popover css-1gt8vry-euiPopover-EuiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiRange__popover emotion-euiPopover-EuiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+    class="euiPopover__anchor emotion-EuiPopover"
   >
     <div>
       <div
@@ -524,7 +524,7 @@ exports[`EuiDualRange props loading should display when showInput="inputWithPopo
             value="1"
           />
           <div
-            class="euiText euiFormControlLayoutDelimited__delimeter css-czh9ev-euiText-s-euiTextColor-subdued"
+            class="euiText euiFormControlLayoutDelimited__delimeter emotion-euiText-s-euiTextColor-subdued"
           >
             →
           </div>
@@ -543,7 +543,7 @@ exports[`EuiDualRange props loading should display when showInput="inputWithPopo
           >
             <span
               aria-label="Loading"
-              class="euiLoadingSpinner css-192zz00-euiLoadingSpinner-m"
+              class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
               role="progressbar"
             />
           </div>
@@ -586,10 +586,10 @@ exports[`EuiDualRange props range should render 1`] = `
 
 exports[`EuiDualRange props slider should display in popover 1`] = `
 <div
-  class="euiPopover euiInputPopover euiRange__popover css-1gt8vry-euiPopover-EuiPopover-EuiInputPopover"
+  class="euiPopover euiInputPopover euiRange__popover emotion-euiPopover-EuiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor css-1k1aqtq-EuiPopover"
+    class="euiPopover__anchor emotion-EuiPopover"
   >
     <div>
       <div
@@ -609,7 +609,7 @@ exports[`EuiDualRange props slider should display in popover 1`] = `
             value="1"
           />
           <div
-            class="euiText euiFormControlLayoutDelimited__delimeter css-czh9ev-euiText-s-euiTextColor-subdued"
+            class="euiText euiFormControlLayoutDelimited__delimeter emotion-euiText-s-euiTextColor-subdued"
           >
             →
           </div>

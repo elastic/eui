@@ -2,11 +2,11 @@
 
 exports[`CollapsedItemActions render 1`] = `
 <div
-  class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
+  class="euiPopover emotion-euiPopover-EuiPopover"
   id="id-actions"
 >
   <div
-    class="euiPopover__anchor css-17g0ovn-EuiPopover"
+    class="euiPopover__anchor emotion-EuiPopover"
   >
     <span
       class="euiToolTipAnchor"
