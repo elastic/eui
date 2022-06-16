@@ -90,6 +90,7 @@ export const EuiDescriptionList: FunctionComponent<
   type = 'row',
   ...rest
 }) => {
+  console.log(descriptionProps);
   const theme = useEuiTheme();
   const styles = euiDescriptionListStyles(theme);
   const cssStyles = [

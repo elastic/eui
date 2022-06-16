@@ -14,7 +14,7 @@ export const EuiDescriptionListDescription: FunctionComponent<
   CommonProps & HTMLAttributes<HTMLElement>
 > = ({ children, className, ...rest }) => {
   const classes = classNames('euiDescriptionList__description', className);
-
+  console.log(classes);
   return (
     <dd className={classes} {...rest}>
       {children}

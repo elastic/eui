@@ -11,6 +11,9 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiDescriptionListTitle } from './description_list_title';
+import { shouldRenderCustomStyles } from '../../test/internal';
+
+shouldRenderCustomStyles(<EuiDescriptionListTitle />);
 
 describe('EuiDescriptionListTitle', () => {
   test('is rendered', () => {
