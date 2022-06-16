@@ -27,10 +27,9 @@ export default () => {
   const inputTwo = (
     <EuiFieldText
       onFocus={() => {
-        setInputWidth(400);
+        setInputWidth(300);
         toggleIsPopoverOpenTwo();
       }}
-      style={{ width: inputWidth }}
       aria-label="Popover attached to an adjustable sized input element"
     />
   );
@@ -52,6 +51,7 @@ export default () => {
       <EuiInputPopover
         input={inputTwo}
         isOpen={isPopoverOpenTwo}
+        style={{ width: inputWidth }}
         closePopover={() => {
           toggleIsPopoverOpenTwo(false);
           setInputWidth(200);

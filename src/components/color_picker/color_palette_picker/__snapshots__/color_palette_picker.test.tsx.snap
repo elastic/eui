@@ -2,7 +2,7 @@
 
 exports[`EuiColorPalettePicker is rendered 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiInputPopover euiSuperSelect css-gfjvrb-euiPopover-EuiPopover-EuiInputPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -53,7 +53,7 @@ exports[`EuiColorPalettePicker is rendered 1`] = `
 
 exports[`EuiColorPalettePicker is rendered with a selected custom text 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiInputPopover euiSuperSelect css-gfjvrb-euiPopover-EuiPopover-EuiInputPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -106,7 +106,7 @@ exports[`EuiColorPalettePicker is rendered with a selected custom text 1`] = `
 
 exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiInputPopover euiSuperSelect css-gfjvrb-euiPopover-EuiPopover-EuiInputPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -217,7 +217,7 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
 
 exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiInputPopover euiSuperSelect css-gfjvrb-euiPopover-EuiPopover-EuiInputPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -290,7 +290,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
 
 exports[`EuiColorPalettePicker is rendered with a selected gradient palette with stops 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiInputPopover euiSuperSelect css-gfjvrb-euiPopover-EuiPopover-EuiInputPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -363,7 +363,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
 
 exports[`EuiColorPalettePicker is rendered with the prop selectionDisplay set as title  1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiInputPopover euiSuperSelect css-gfjvrb-euiPopover-EuiPopover-EuiInputPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -416,7 +416,7 @@ exports[`EuiColorPalettePicker is rendered with the prop selectionDisplay set as
 
 exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
 <div
-  class="euiPopover euiInputPopover euiSuperSelect css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiInputPopover euiSuperSelect css-gfjvrb-euiPopover-EuiPopover-EuiInputPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"

@@ -501,7 +501,7 @@ exports[`EuiDualRange props levels should render 1`] = `
 
 exports[`EuiDualRange props loading should display when showInput="inputWithPopover" 1`] = `
 <div
-  class="euiPopover euiInputPopover euiRange__popover css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiInputPopover euiRange__popover css-gfjvrb-euiPopover-EuiPopover-EuiInputPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -586,7 +586,7 @@ exports[`EuiDualRange props range should render 1`] = `
 
 exports[`EuiDualRange props slider should display in popover 1`] = `
 <div
-  class="euiPopover euiInputPopover euiRange__popover css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiInputPopover euiRange__popover css-gfjvrb-euiPopover-EuiPopover-EuiInputPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"

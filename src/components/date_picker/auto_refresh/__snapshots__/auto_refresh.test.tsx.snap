@@ -2,7 +2,7 @@
 
 exports[`EuiAutoRefresh is rendered 1`] = `
 <div
-  class="euiPopover euiInputPopover euiAutoRefresh testClass1 testClass2 css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiInputPopover euiAutoRefresh testClass1 testClass2 css-gfjvrb-euiPopover-EuiPopover-EuiInputPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -54,7 +54,7 @@ exports[`EuiAutoRefresh is rendered 1`] = `
 
 exports[`EuiAutoRefresh isPaused is false 1`] = `
 <div
-  class="euiPopover euiInputPopover euiAutoRefresh css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiInputPopover euiAutoRefresh css-gfjvrb-euiPopover-EuiPopover-EuiInputPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -105,7 +105,7 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
 
 exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
 <div
-  class="euiPopover euiInputPopover euiAutoRefresh css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiInputPopover euiAutoRefresh css-gfjvrb-euiPopover-EuiPopover-EuiInputPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
