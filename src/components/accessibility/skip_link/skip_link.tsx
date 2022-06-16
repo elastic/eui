@@ -29,6 +29,12 @@ interface EuiSkipLinkInterface extends EuiButtonProps {
    */
   destinationId: string;
   /**
+   * If default HTML anchor link behavior is not desired (e.g. for SPAs with hash routing),
+   * setting this flag to true will manually scroll to and focus the destination element
+   * without changing the browser URL's hash
+   */
+  overrideLinkBehavior?: boolean;
+  /**
    * When position is fixed, this is forced to `0`
    */
   tabIndex?: number;
@@ -52,6 +58,7 @@ export type EuiSkipLinkProps = ExclusiveUnion<propsForAnchor, propsForButton>;
 
 export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
   destinationId,
+  overrideLinkBehavior,
   tabIndex,
   position = 'static',
   children,
@@ -73,6 +80,21 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
   if (destinationId) {
     optionalProps = {
       href: `#${destinationId}`,
+    };
+  }
+  if (overrideLinkBehavior) {
+    optionalProps = {
+      ...optionalProps,
+      onClick: (e: React.MouseEvent) => {
+        e.preventDefault();
+
+        const destinationEl = document.getElementById(destinationId);
+        if (!destinationEl) return;
+
+        destinationEl.scrollIntoView();
+        destinationEl.tabIndex = -1; // Ensure the destination content is focusable
+        destinationEl.focus({ preventScroll: true }); // Scrolling is already handled above, and focus's autoscroll behaves oddly around fixed headers
+      },
     };
   }
 

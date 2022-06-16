@@ -1,3 +1,24 @@
+## [`59.1.0`](https://github.com/elastic/eui/tree/v59.1.0)
+
+- Added new `color` prop to `EuiLoadingSpinner` ([#5878](https://github.com/elastic/eui/pull/5878))
+- Added the `overrideLinkBehavior` prop to `EuiSkipLink` for applications that use hash routers ([#5957](https://github.com/elastic/eui/pull/5957))
+
+**Bug fixes**
+
+- Fixed `EuiSelectableMessage` flex layout when containing multiple children nodes ([#5966](https://github.com/elastic/eui/pull/5966))
+- Fixed export location of JS based shadow mixins ([#5970](https://github.com/elastic/eui/pull/5970))
+
+**CSS-in-JS**
+
+- Converted `EuiFacetGroup` and `EuiFacetButton` to Emotion and removed `$euiFacetGutterSizes` ([#5878](https://github.com/elastic/eui/pull/5878))
+
+## [`59.0.1`](https://github.com/elastic/eui/tree/v59.0.1)
+
+**Bug fixes**
+
+- Fixed custom styles from being overridden in `EuiText` and `EuiTextColor` ([#5960](https://github.com/elastic/eui/pull/5960))
+- Fixed `EuiCallOut` from consuming all available vertical height with `flex-grow` ([#5963](https://github.com/elastic/eui/pull/5963))
+
 ## [`59.0.0`](https://github.com/elastic/eui/tree/v59.0.0)
 
 - Added a new optional `cloneElement` prop to `EuiTextAlign` and `EuiTextColor` ([#5895](https://github.com/elastic/eui/pull/5895))

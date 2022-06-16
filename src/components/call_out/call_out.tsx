@@ -119,6 +119,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
         paddingSize={size === 's' ? 's' : 'm'}
         className={classes}
         panelRef={ref}
+        grow={false}
         {...rest}
       >
         {header}
