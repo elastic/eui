@@ -477,8 +477,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
         data-test-subj={`comboBoxOptionsList ${dataTestSubj}`}
         style={{ ...style, zIndex: zIndex }}
         isOpen
-        attached
-        arrowPosition={position}
+        isAttached
+        position={position}
         {...rest}
       >
         <div className="euiComboBoxOptionsList__rowWrap">

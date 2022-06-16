@@ -8,3 +8,47 @@ exports[`EuiPopoverPanel is rendered 1`] = `
   data-test-subj="test subject string"
 />
 `;
+
+exports[`EuiPopoverPanel props isAttached is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel-isOpen"
+  data-popover-open="true"
+  data-popover-panel="true"
+/>
+`;
+
+exports[`EuiPopoverPanel props isOpen is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel-isOpen"
+  data-popover-open="true"
+  data-popover-panel="true"
+/>
+`;
+
+exports[`EuiPopoverPanel props position bottom is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel"
+  data-popover-panel="true"
+/>
+`;
+
+exports[`EuiPopoverPanel props position left is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel"
+  data-popover-panel="true"
+/>
+`;
+
+exports[`EuiPopoverPanel props position right is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel"
+  data-popover-panel="true"
+/>
+`;
+
+exports[`EuiPopoverPanel props position top is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel"
+  data-popover-panel="true"
+/>
+`;

@@ -766,8 +766,8 @@ export class EuiPopover extends Component<Props, State> {
               {...(panelProps as EuiPopoverPanelProps)}
               panelRef={this.panelRef}
               isOpen={this.state.isOpening}
-              arrowPosition={this.state.arrowPosition}
-              attached={attachToAnchor}
+              position={this.state.arrowPosition}
+              isAttached={attachToAnchor}
               className={classNames(panelClassName, panelProps?.className)}
               hasShadow={false}
               paddingSize={panelPaddingSize}

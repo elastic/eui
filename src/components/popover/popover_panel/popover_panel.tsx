@@ -24,8 +24,8 @@ export const EuiPopoverPanelContext = createContext<ContextShape>({
 
 export type EuiPopoverPanelProps = EuiPanelProps & {
   isOpen?: boolean;
-  arrowPosition?: EuiPopoverArrowPositions | null;
-  attached?: boolean;
+  isAttached?: boolean;
+  position?: EuiPopoverArrowPositions | null;
 };
 
 /**
@@ -36,8 +36,8 @@ export const EuiPopoverPanel: FunctionComponent<EuiPopoverPanelProps> = ({
   children,
   className,
   isOpen,
-  arrowPosition,
-  attached,
+  isAttached,
+  position,
   ...rest
 }) => {
   const panelContext = useContext(EuiPopoverPanelContext);
@@ -51,17 +51,17 @@ export const EuiPopoverPanel: FunctionComponent<EuiPopoverPanelProps> = ({
   let panelCSS = [
     styles.euiPopover__panel,
     isOpen && styles.isOpen,
-    isOpen && arrowPosition && styles[arrowPosition],
+    isOpen && position && styles[position],
   ];
 
-  if (attached) {
+  if (isAttached) {
     panelCSS = [
       // @ts-ignore Help
       ...panelCSS,
       // @ts-ignore Help
       isOpen && styles.attached.isOpen,
       // @ts-ignore Help
-      arrowPosition && styles.attached[arrowPosition],
+      position && styles.attached[position],
     ];
   }
 
