@@ -27,6 +27,7 @@ import {
 } from '../../services';
 import { euiFormMaxWidth } from '../form/form.styles';
 import { css } from '@emotion/react';
+import { logicalCSS } from '../../global_styling';
 
 export interface _EuiInputPopoverProps
   extends Omit<EuiPopoverProps, 'button' | 'buttonRef'> {
@@ -110,7 +111,9 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   return (
     <EuiPopover
       css={css(
-        fullWidth ? undefined : `max-width: ${euiFormMaxWidth(euiThemeContext)}`
+        fullWidth
+          ? undefined
+          : logicalCSS('max-width', euiFormMaxWidth(euiThemeContext))
       )}
       ownFocus={false}
       button={

@@ -7,6 +7,7 @@
  */
 
 import { css } from '@emotion/react';
+import { logicalCSS } from '../../global_styling';
 
 export const euiPopoverStyles = () => {
   return {
@@ -14,7 +15,7 @@ export const euiPopoverStyles = () => {
     euiPopover: css`
       position: relative;
       vertical-align: middle;
-      max-width: 100%;
+      ${logicalCSS('max-width', '100%')};
     `,
   };
 };

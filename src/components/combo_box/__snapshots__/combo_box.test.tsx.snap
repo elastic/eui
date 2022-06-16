@@ -449,7 +449,7 @@ exports[`props options list is rendered 1`] = `
     </div>
   </div>
   <div
-    class="euiPanel euiPanel--plain euiPopover__panel euiComboBoxOptionsList css-1ip1g7u-euiPanel-grow-m-plain-euiPopover__panel-isOpen-bottom-isOpen-bottom"
+    class="euiPanel euiPanel--plain euiPopover__panel euiComboBoxOptionsList css-s8iu-euiPanel-grow-m-plain-euiPopover__panel-isOpen-bottom-isOpen-bottom"
     data-popover-open="true"
     data-popover-panel="true"
     data-test-subj="comboBoxOptionsList alsoGetsAppliedToOptionsList-optionsList"

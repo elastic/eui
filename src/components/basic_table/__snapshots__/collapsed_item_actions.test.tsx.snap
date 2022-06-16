@@ -2,7 +2,7 @@
 
 exports[`CollapsedItemActions render 1`] = `
 <div
-  class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+  class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
   id="id-actions"
 >
   <div

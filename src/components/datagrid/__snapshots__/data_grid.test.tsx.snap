@@ -8,7 +8,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
     class="euiFlexItem euiFlexItem--flexGrowZero"
   >
     <div
-      class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+      class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
     >
       <div
         class="euiPopover__anchor css-17g0ovn-EuiPopover"
@@ -947,7 +947,7 @@ Array [
           class="euiDataGrid__leftControls"
         >
           <div
-            class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+            class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <div
@@ -983,7 +983,7 @@ Array [
           class="euiDataGrid__rightControls"
         >
           <div
-            class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+            class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
             data-test-subj="dataGridDisplaySelectorPopover"
           >
             <div
@@ -1064,7 +1064,7 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+                  class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
                   offset="7"
                 >
                   <div
@@ -1107,7 +1107,7 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+                  class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
                   offset="7"
                 >
                   <div
@@ -1367,7 +1367,7 @@ Array [
           class="euiDataGrid__leftControls"
         >
           <div
-            class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+            class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <div
@@ -1403,7 +1403,7 @@ Array [
           class="euiDataGrid__rightControls"
         >
           <div
-            class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+            class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
             data-test-subj="dataGridDisplaySelectorPopover"
           >
             <div
@@ -1503,7 +1503,7 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+                  class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
                   offset="7"
                 >
                   <div
@@ -1546,7 +1546,7 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+                  class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
                   offset="7"
                 >
                   <div
@@ -2125,7 +2125,7 @@ Array [
           class="euiDataGrid__leftControls"
         >
           <div
-            class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+            class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <div
@@ -2158,7 +2158,7 @@ Array [
           class="euiDataGrid__rightControls"
         >
           <div
-            class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+            class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
             data-test-subj="dataGridDisplaySelectorPopover"
           >
             <div
@@ -2239,7 +2239,7 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+                  class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
                   offset="7"
                 >
                   <div
@@ -2282,7 +2282,7 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+                  class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
                   offset="7"
                 >
                   <div
@@ -2544,7 +2544,7 @@ Array [
           class="euiDataGrid__leftControls"
         >
           <div
-            class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+            class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <div
@@ -2577,7 +2577,7 @@ Array [
           class="euiDataGrid__rightControls"
         >
           <div
-            class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+            class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
             data-test-subj="dataGridDisplaySelectorPopover"
           >
             <div
@@ -2658,7 +2658,7 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+                  class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
                   offset="7"
                 >
                   <div
@@ -2701,7 +2701,7 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+                  class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
                   offset="7"
                 >
                   <div

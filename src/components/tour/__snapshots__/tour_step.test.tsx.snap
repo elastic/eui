@@ -2,7 +2,7 @@
 
 exports[`EuiTourStep can be closed 1`] = `
 <div
-  class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+  class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
   data-test-subj="test subject string"
   offset="10"
 >
@@ -18,7 +18,7 @@ exports[`EuiTourStep can be closed 1`] = `
 
 exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
 <div
-  class="euiPopover euiPopover-isOpen css-lisp4o-euiPopover-EuiPopover"
+  class="euiPopover euiPopover-isOpen css-1fy8l1r-euiPopover-EuiPopover"
   data-test-subj="test subject string"
   offset="10"
 >
@@ -47,14 +47,14 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 css-e657fw-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 css-1lajj8k-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left"
       data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
       style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
     >
       <div
-        class="css-acsy3l-euiPopoverArrow-left"
+        class="css-1wiifmr-euiPopoverArrow-left"
         data-popover-arrow="left"
         style="left: 0px; top: 10px;"
       >
@@ -68,7 +68,7 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
           style="min-width: 240px; max-width: 420px;"
         >
           <div
-            class="euiPopoverTitle euiTourHeader css-js0o9x-euiPopoverTitle-m"
+            class="euiPopoverTitle euiTourHeader css-142eibn-euiPopoverTitle-m"
             id="generated-id"
           >
             <h2
@@ -83,7 +83,7 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter css-1uxhxv3-euiPopoverFooter-m"
+            class="euiPopoverFooter euiTourFooter css-7rddk-euiPopoverFooter-m"
           >
             <div
               class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
@@ -122,7 +122,7 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
 
 exports[`EuiTourStep can have subtitle 1`] = `
 <div
-  class="euiPopover euiPopover-isOpen css-lisp4o-euiPopover-EuiPopover"
+  class="euiPopover euiPopover-isOpen css-1fy8l1r-euiPopover-EuiPopover"
   data-test-subj="test subject string"
   offset="10"
 >
@@ -151,14 +151,14 @@ exports[`EuiTourStep can have subtitle 1`] = `
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 css-e657fw-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 css-1lajj8k-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left"
       data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
       style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
     >
       <div
-        class="css-acsy3l-euiPopoverArrow-left"
+        class="css-1wiifmr-euiPopoverArrow-left"
         data-popover-arrow="left"
         style="left: 0px; top: 10px;"
       >
@@ -172,7 +172,7 @@ exports[`EuiTourStep can have subtitle 1`] = `
           style="min-width: 300px; max-width: 600px;"
         >
           <div
-            class="euiPopoverTitle euiTourHeader css-js0o9x-euiPopoverTitle-m"
+            class="euiPopoverTitle euiTourHeader css-142eibn-euiPopoverTitle-m"
             id="generated-id"
           >
             <h2
@@ -192,7 +192,7 @@ exports[`EuiTourStep can have subtitle 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter css-1uxhxv3-euiPopoverFooter-m"
+            class="euiPopoverFooter euiTourFooter css-7rddk-euiPopoverFooter-m"
           >
             <div
               class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
@@ -231,7 +231,7 @@ exports[`EuiTourStep can have subtitle 1`] = `
 
 exports[`EuiTourStep can override the footer action 1`] = `
 <div
-  class="euiPopover euiPopover-isOpen css-lisp4o-euiPopover-EuiPopover"
+  class="euiPopover euiPopover-isOpen css-1fy8l1r-euiPopover-EuiPopover"
   data-test-subj="test subject string"
   offset="10"
 >
@@ -260,14 +260,14 @@ exports[`EuiTourStep can override the footer action 1`] = `
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 css-e657fw-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 css-1lajj8k-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left"
       data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
       style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
     >
       <div
-        class="css-acsy3l-euiPopoverArrow-left"
+        class="css-1wiifmr-euiPopoverArrow-left"
         data-popover-arrow="left"
         style="left: 0px; top: 10px;"
       >
@@ -281,7 +281,7 @@ exports[`EuiTourStep can override the footer action 1`] = `
           style="min-width: 300px; max-width: 600px;"
         >
           <div
-            class="euiPopoverTitle euiTourHeader css-js0o9x-euiPopoverTitle-m"
+            class="euiPopoverTitle euiTourHeader css-142eibn-euiPopoverTitle-m"
             id="generated-id"
           >
             <h2
@@ -296,7 +296,7 @@ exports[`EuiTourStep can override the footer action 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter css-1uxhxv3-euiPopoverFooter-m"
+            class="euiPopoverFooter euiTourFooter css-7rddk-euiPopoverFooter-m"
           >
             <div
               class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
@@ -324,7 +324,7 @@ exports[`EuiTourStep can override the footer action 1`] = `
 
 exports[`EuiTourStep can turn off the beacon 1`] = `
 <div
-  class="euiPopover euiPopover-isOpen css-lisp4o-euiPopover-EuiPopover"
+  class="euiPopover euiPopover-isOpen css-1fy8l1r-euiPopover-EuiPopover"
   data-test-subj="test subject string"
   offset="0"
 >
@@ -353,14 +353,14 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 css-e657fw-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 css-1lajj8k-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left"
       data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
       style="top: -22px; left: -16px; will-change: transform, opacity; z-index: 2000;"
     >
       <div
-        class="css-acsy3l-euiPopoverArrow-left"
+        class="css-1wiifmr-euiPopoverArrow-left"
         data-popover-arrow="left"
         style="left: 0px; top: 10px;"
       />
@@ -369,7 +369,7 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
           style="min-width: 300px; max-width: 600px;"
         >
           <div
-            class="euiPopoverTitle euiTourHeader css-js0o9x-euiPopoverTitle-m"
+            class="euiPopoverTitle euiTourHeader css-142eibn-euiPopoverTitle-m"
             id="generated-id"
           >
             <h2
@@ -384,7 +384,7 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter css-1uxhxv3-euiPopoverFooter-m"
+            class="euiPopoverFooter euiTourFooter css-7rddk-euiPopoverFooter-m"
           >
             <div
               class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
@@ -423,7 +423,7 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
 
 exports[`EuiTourStep is rendered 1`] = `
 <div
-  class="euiPopover euiPopover-isOpen css-lisp4o-euiPopover-EuiPopover"
+  class="euiPopover euiPopover-isOpen css-1fy8l1r-euiPopover-EuiPopover"
   data-test-subj="test subject string"
   offset="10"
 >
@@ -452,14 +452,14 @@ exports[`EuiTourStep is rendered 1`] = `
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 css-e657fw-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 css-1lajj8k-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left"
       data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
       style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
     >
       <div
-        class="css-acsy3l-euiPopoverArrow-left"
+        class="css-1wiifmr-euiPopoverArrow-left"
         data-popover-arrow="left"
         style="left: 0px; top: 10px;"
       >
@@ -473,7 +473,7 @@ exports[`EuiTourStep is rendered 1`] = `
           style="min-width: 300px; max-width: 600px;"
         >
           <div
-            class="euiPopoverTitle euiTourHeader css-js0o9x-euiPopoverTitle-m"
+            class="euiPopoverTitle euiTourHeader css-142eibn-euiPopoverTitle-m"
             id="generated-id"
           >
             <h2
@@ -488,7 +488,7 @@ exports[`EuiTourStep is rendered 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter css-1uxhxv3-euiPopoverFooter-m"
+            class="euiPopoverFooter euiTourFooter css-7rddk-euiPopoverFooter-m"
           >
             <div
               class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"

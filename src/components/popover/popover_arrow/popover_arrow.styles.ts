@@ -7,69 +7,72 @@
  */
 
 import { css } from '@emotion/react';
-import { euiBackgroundColor } from '../../../global_styling';
+import {
+  euiBackgroundColor,
+  logicals,
+  logicalSizeCSS,
+} from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 
-export const arrowSize = 'm';
+export const popoverArrowSize = 'm';
 
 export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   // Match the background color of panels
   const borderColor = euiBackgroundColor(euiThemeContext, 'plain');
+  const arrowSize = euiTheme.size[popoverArrowSize];
 
   return {
     // Base
     euiPopoverArrow: css`
       position: absolute;
-      width: 0;
-      height: 0;
+      ${logicalSizeCSS(0, 0)}
 
       // This part of the arrow matches the panel.
       &:before {
-        position: absolute;
         content: '';
-        height: 0;
-        width: 0;
+        position: absolute;
+        ${logicalSizeCSS(0, 0)}
       }
     `,
 
     // POSITIONS
     top: css`
       &:before {
-        bottom: -${euiTheme.size[arrowSize]};
-        border-left: ${euiTheme.size[arrowSize]} solid transparent;
-        border-right: ${euiTheme.size[arrowSize]} solid transparent;
-        border-top: ${euiTheme.size[arrowSize]} solid ${borderColor};
+        ${logicals.bottom}: -${arrowSize};
+        ${logicals['border-left']}: ${arrowSize} solid transparent;
+        ${logicals['border-right']}: ${arrowSize} solid transparent;
+        ${logicals['border-top']}: ${arrowSize} solid ${borderColor};
       }
     `,
 
     bottom: css`
       &:before {
-        top: -${euiTheme.size[arrowSize]};
-        border-left: ${euiTheme.size[arrowSize]} solid transparent;
-        border-right: ${euiTheme.size[arrowSize]} solid transparent;
-        border-bottom: ${euiTheme.size[arrowSize]} solid ${borderColor};
+        ${logicals.top}: -${arrowSize};
+        ${logicals['border-left']}: ${arrowSize} solid transparent;
+        ${logicals['border-right']}: ${arrowSize} solid transparent;
+        ${logicals['border-bottom']}: ${arrowSize} solid ${borderColor};
       }
     `,
 
     left: css`
       &:before {
-        right: -${euiTheme.size[arrowSize]};
-        top: 50%;
-        border-top: ${euiTheme.size[arrowSize]} solid transparent;
-        border-bottom: ${euiTheme.size[arrowSize]} solid transparent;
-        border-left: ${euiTheme.size[arrowSize]} solid ${borderColor};
+        ${logicals.top}: 50%;
+        ${logicals.right}: -${arrowSize};
+        ${logicals['border-top']}: ${arrowSize} solid transparent;
+        ${logicals['border-bottom']}: ${arrowSize} solid transparent;
+        ${logicals['border-left']}: ${arrowSize} solid ${borderColor};
       }
     `,
 
     right: css`
       &:before {
-        left: -${euiTheme.size[arrowSize]};
-        top: 50%;
-        border-top: ${euiTheme.size[arrowSize]} solid transparent;
-        border-bottom: ${euiTheme.size[arrowSize]} solid transparent;
-        border-right: ${euiTheme.size[arrowSize]} solid ${borderColor};
+        ${logicals.top}: 50%;
+        ${logicals.left}: -${arrowSize};
+        ${logicals['border-top']}: ${arrowSize} solid transparent;
+        ${logicals['border-bottom']}: ${arrowSize} solid transparent;
+        ${logicals['border-right']}: ${arrowSize} solid ${borderColor};
       }
     `,
   };

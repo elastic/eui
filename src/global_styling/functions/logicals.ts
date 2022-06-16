@@ -47,9 +47,9 @@ const logicalPaddings = {
 
 const logicalPosition = {
   top: 'inset-block-start',
-  right: 'inset-inline-start',
+  right: 'inset-inline-end',
   bottom: 'inset-block-end',
-  left: 'inset-inline-end',
+  left: 'inset-inline-start',
   horizontal: 'inset-block',
   vertical: 'inset-inline',
   inset: 'inset',
@@ -134,6 +134,32 @@ export const logicalStyle = (property: LogicalProperties, value?: any) => {
     str.charAt(1).toUpperCase()
   );
   return { [camelCasedProperty]: `${value}` };
+};
+
+/**
+ *
+ * @param width A string value for the LTR width
+ * @param height A string value for the LTR height
+ * @returns `string` Returns the logical CSS properties for height and width
+ */
+export const logicalSizeCSS = (width: any, height: any) => {
+  return `
+    ${logicals.width}: ${width};
+    ${logicals.height}: ${height};
+  `;
+};
+
+/**
+ *
+ * @param width A string value for the LTR width
+ * @param height A string value for the LTR height
+ * @returns `object` Returns the logical CSS properties for height and width
+ */
+export const logicalSizeStyle = (width: any, height: any) => {
+  return {
+    [logicals.width]: width,
+    [logicals.height]: height,
+  };
 };
 
 // Text alignment is separate because its the value that changes not the property

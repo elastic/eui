@@ -7,7 +7,11 @@
  */
 
 import { css } from '@emotion/react';
-import { EuiPaddingSize, euiPaddingSize } from '../../global_styling';
+import {
+  EuiPaddingSize,
+  euiPaddingSize,
+  logicalCSS,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
@@ -24,7 +28,7 @@ export const euiPopoverTitleStyles = (
     // Base
     euiPopoverTitle: css`
       ${euiTitle(euiThemeContext, 'xxs')};
-      border-bottom: ${euiTheme.border.thin};
+      ${logicalCSS('border-bottom', euiTheme.border.thin)};
       // Negative margins for panel padding
       margin: -${panelPaddingSize} -${panelPaddingSize} ${panelPaddingSize};
     `,

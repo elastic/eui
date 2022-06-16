@@ -30,7 +30,7 @@ exports[`EuiDataGridBody renders 1`] = `
           style="margin-right:0px"
         />
         <div
-          class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+          class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
           offset="7"
         >
           <div
@@ -73,7 +73,7 @@ exports[`EuiDataGridBody renders 1`] = `
           style="margin-right:0px"
         />
         <div
-          class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+          class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
           offset="7"
         >
           <div

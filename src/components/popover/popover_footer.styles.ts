@@ -11,6 +11,7 @@ import {
   euiFontSize,
   euiPaddingSize,
   EuiPaddingSize,
+  logicalCSS,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
@@ -27,7 +28,7 @@ export const euiPopoverFooterStyles = (
     // Base
     euiPopoverFooter: css`
       ${euiFontSize(euiThemeContext, 's')};
-      border-top: ${euiTheme.border.thin};
+      ${logicalCSS('border-top', euiTheme.border.thin)};
       // Negative margins for panel padding
       margin: ${panelPaddingSize} -${panelPaddingSize} -${panelPaddingSize};
     `,

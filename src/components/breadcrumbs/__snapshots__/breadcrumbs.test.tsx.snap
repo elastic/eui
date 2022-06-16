@@ -34,7 +34,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
       class="euiBreadcrumb euiBreadcrumb--collapsed"
     >
       <div
-        class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+        class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
       >
         <div
           class="euiPopover__anchor css-17g0ovn-EuiPopover"
@@ -123,7 +123,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
       class="euiBreadcrumb euiBreadcrumb--collapsed"
     >
       <div
-        class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+        class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
       >
         <div
           class="euiPopover__anchor css-17g0ovn-EuiPopover"
@@ -286,7 +286,7 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
       class="euiBreadcrumb euiBreadcrumb--collapsed"
     >
       <div
-        class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+        class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
       >
         <div
           class="euiPopover__anchor css-17g0ovn-EuiPopover"
@@ -447,7 +447,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
       class="euiBreadcrumb euiBreadcrumb--collapsed"
     >
       <div
-        class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+        class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
       >
         <div
           class="euiPopover__anchor css-17g0ovn-EuiPopover"
@@ -536,7 +536,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
       class="euiBreadcrumb euiBreadcrumb--collapsed"
     >
       <div
-        class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+        class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
       >
         <div
           class="euiPopover__anchor css-17g0ovn-EuiPopover"
@@ -604,7 +604,7 @@ exports[`EuiBreadcrumbs props responsive is rendered with custom breakpoints 1`]
       class="euiBreadcrumb euiBreadcrumb--collapsed"
     >
       <div
-        class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+        class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
       >
         <div
           class="euiPopover__anchor css-17g0ovn-EuiPopover"
@@ -670,7 +670,7 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
       class="euiBreadcrumb euiBreadcrumb--collapsed"
     >
       <div
-        class="euiPopover css-lisp4o-euiPopover-EuiPopover"
+        class="euiPopover css-1fy8l1r-euiPopover-EuiPopover"
       >
         <div
           class="euiPopover__anchor css-17g0ovn-EuiPopover"

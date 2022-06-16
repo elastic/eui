@@ -3,7 +3,7 @@
 exports[`EuiPopoverPanel is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel testClass1 testClass2 css-f90qpc-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel testClass1 testClass2 css-1vr41cn-euiPanel-grow-m-m-plain-hasShadow-euiPopover__panel"
   data-popover-panel="true"
   data-test-subj="test subject string"
 />

@@ -6,7 +6,7 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiInputPopover css-18on9r1-euiPopover-EuiPopover-EuiInputPopover"
+      class="euiPopover euiInputPopover css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover"
     >
       <div
         class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -63,7 +63,7 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiInputPopover css-18on9r1-euiPopover-EuiPopover-EuiInputPopover"
+      class="euiPopover euiInputPopover css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover"
     >
       <div
         class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -276,9 +276,9 @@ exports[`EuiSuggest props isVirtualized 1`] = `
               Object {
                 "insert": [Function],
                 "inserted": Object {
-                  "18on9r1-euiPopover-EuiPopover-EuiInputPopover": true,
                   "192zz00-euiLoadingSpinner-m": true,
                   "1k1aqtq-EuiPopover": true,
+                  "1sycd0p-euiPopover-EuiPopover-EuiInputPopover": true,
                   "6qkby-EuiInputPopover": true,
                   "animation-c24ia8": true,
                 },
@@ -304,7 +304,7 @@ exports[`EuiSuggest props isVirtualized 1`] = `
                       data-s=""
                     >
                       
-                      .css-18on9r1-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                      .css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                     </style>
                     <style
                       data-emotion="css"
@@ -361,7 +361,7 @@ exports[`EuiSuggest props isVirtualized 1`] = `
                       data-s=""
                     >
                       
-                      .css-18on9r1-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                      .css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                     </style>,
                     <style
                       data-emotion="css"
@@ -456,9 +456,9 @@ exports[`EuiSuggest props isVirtualized 1`] = `
                     Object {
                       "insert": [Function],
                       "inserted": Object {
-                        "18on9r1-euiPopover-EuiPopover-EuiInputPopover": true,
                         "192zz00-euiLoadingSpinner-m": true,
                         "1k1aqtq-EuiPopover": true,
+                        "1sycd0p-euiPopover-EuiPopover-EuiInputPopover": true,
                         "6qkby-EuiInputPopover": true,
                         "animation-c24ia8": true,
                       },
@@ -484,7 +484,7 @@ exports[`EuiSuggest props isVirtualized 1`] = `
                             data-s=""
                           >
                             
-                            .css-18on9r1-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                            .css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                           </style>
                           <style
                             data-emotion="css"
@@ -541,7 +541,7 @@ exports[`EuiSuggest props isVirtualized 1`] = `
                             data-s=""
                           >
                             
-                            .css-18on9r1-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                            .css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                           </style>,
                           <style
                             data-emotion="css"
@@ -586,15 +586,15 @@ exports[`EuiSuggest props isVirtualized 1`] = `
                   serialized={
                     Object {
                       "map": undefined,
-                      "name": "18on9r1-euiPopover-EuiPopover-EuiInputPopover",
+                      "name": "1sycd0p-euiPopover-EuiPopover-EuiInputPopover",
                       "next": undefined,
-                      "styles": "position:relative;vertical-align:middle;max-width:100%;label:euiPopover;;;display: block;label:EuiPopover;;;;label:EuiInputPopover;;",
+                      "styles": "position:relative;vertical-align:middle;max-inline-size: 100%;;;label:euiPopover;;;display: block;label:EuiPopover;;;;label:EuiInputPopover;;",
                       "toString": [Function],
                     }
                   }
                 />
                 <div
-                  className="euiPopover euiInputPopover css-18on9r1-euiPopover-EuiPopover-EuiInputPopover"
+                  className="euiPopover euiInputPopover css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover"
                   onKeyDown={[Function]}
                   onMouseDown={[Function]}
                   onMouseUp={[Function]}
@@ -609,9 +609,9 @@ exports[`EuiSuggest props isVirtualized 1`] = `
                         Object {
                           "insert": [Function],
                           "inserted": Object {
-                            "18on9r1-euiPopover-EuiPopover-EuiInputPopover": true,
                             "192zz00-euiLoadingSpinner-m": true,
                             "1k1aqtq-EuiPopover": true,
+                            "1sycd0p-euiPopover-EuiPopover-EuiInputPopover": true,
                             "6qkby-EuiInputPopover": true,
                             "animation-c24ia8": true,
                           },
@@ -637,7 +637,7 @@ exports[`EuiSuggest props isVirtualized 1`] = `
                                 data-s=""
                               >
                                 
-                                .css-18on9r1-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                                .css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                               </style>
                               <style
                                 data-emotion="css"
@@ -694,7 +694,7 @@ exports[`EuiSuggest props isVirtualized 1`] = `
                                 data-s=""
                               >
                                 
-                                .css-18on9r1-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                                .css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                               </style>,
                               <style
                                 data-emotion="css"
@@ -1073,9 +1073,9 @@ exports[`EuiSuggest props maxHeight 1`] = `
               Object {
                 "insert": [Function],
                 "inserted": Object {
-                  "18on9r1-euiPopover-EuiPopover-EuiInputPopover": true,
                   "192zz00-euiLoadingSpinner-m": true,
                   "1k1aqtq-EuiPopover": true,
+                  "1sycd0p-euiPopover-EuiPopover-EuiInputPopover": true,
                   "6qkby-EuiInputPopover": true,
                   "animation-c24ia8": true,
                 },
@@ -1101,7 +1101,7 @@ exports[`EuiSuggest props maxHeight 1`] = `
                       data-s=""
                     >
                       
-                      .css-18on9r1-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                      .css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                     </style>
                     <style
                       data-emotion="css"
@@ -1158,7 +1158,7 @@ exports[`EuiSuggest props maxHeight 1`] = `
                       data-s=""
                     >
                       
-                      .css-18on9r1-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                      .css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                     </style>,
                     <style
                       data-emotion="css"
@@ -1253,9 +1253,9 @@ exports[`EuiSuggest props maxHeight 1`] = `
                     Object {
                       "insert": [Function],
                       "inserted": Object {
-                        "18on9r1-euiPopover-EuiPopover-EuiInputPopover": true,
                         "192zz00-euiLoadingSpinner-m": true,
                         "1k1aqtq-EuiPopover": true,
+                        "1sycd0p-euiPopover-EuiPopover-EuiInputPopover": true,
                         "6qkby-EuiInputPopover": true,
                         "animation-c24ia8": true,
                       },
@@ -1281,7 +1281,7 @@ exports[`EuiSuggest props maxHeight 1`] = `
                             data-s=""
                           >
                             
-                            .css-18on9r1-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                            .css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                           </style>
                           <style
                             data-emotion="css"
@@ -1338,7 +1338,7 @@ exports[`EuiSuggest props maxHeight 1`] = `
                             data-s=""
                           >
                             
-                            .css-18on9r1-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                            .css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                           </style>,
                           <style
                             data-emotion="css"
@@ -1383,15 +1383,15 @@ exports[`EuiSuggest props maxHeight 1`] = `
                   serialized={
                     Object {
                       "map": undefined,
-                      "name": "18on9r1-euiPopover-EuiPopover-EuiInputPopover",
+                      "name": "1sycd0p-euiPopover-EuiPopover-EuiInputPopover",
                       "next": undefined,
-                      "styles": "position:relative;vertical-align:middle;max-width:100%;label:euiPopover;;;display: block;label:EuiPopover;;;;label:EuiInputPopover;;",
+                      "styles": "position:relative;vertical-align:middle;max-inline-size: 100%;;;label:euiPopover;;;display: block;label:EuiPopover;;;;label:EuiInputPopover;;",
                       "toString": [Function],
                     }
                   }
                 />
                 <div
-                  className="euiPopover euiInputPopover css-18on9r1-euiPopover-EuiPopover-EuiInputPopover"
+                  className="euiPopover euiInputPopover css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover"
                   onKeyDown={[Function]}
                   onMouseDown={[Function]}
                   onMouseUp={[Function]}
@@ -1406,9 +1406,9 @@ exports[`EuiSuggest props maxHeight 1`] = `
                         Object {
                           "insert": [Function],
                           "inserted": Object {
-                            "18on9r1-euiPopover-EuiPopover-EuiInputPopover": true,
                             "192zz00-euiLoadingSpinner-m": true,
                             "1k1aqtq-EuiPopover": true,
+                            "1sycd0p-euiPopover-EuiPopover-EuiInputPopover": true,
                             "6qkby-EuiInputPopover": true,
                             "animation-c24ia8": true,
                           },
@@ -1434,7 +1434,7 @@ exports[`EuiSuggest props maxHeight 1`] = `
                                 data-s=""
                               >
                                 
-                                .css-18on9r1-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                                .css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                               </style>
                               <style
                                 data-emotion="css"
@@ -1491,7 +1491,7 @@ exports[`EuiSuggest props maxHeight 1`] = `
                                 data-s=""
                               >
                                 
-                                .css-18on9r1-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                                .css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                               </style>,
                               <style
                                 data-emotion="css"
@@ -1718,7 +1718,7 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiInputPopover css-18on9r1-euiPopover-EuiPopover-EuiInputPopover"
+      class="euiPopover euiInputPopover css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover"
     >
       <div
         class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -1775,7 +1775,7 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiInputPopover css-18on9r1-euiPopover-EuiPopover-EuiInputPopover"
+      class="euiPopover euiInputPopover css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover"
     >
       <div
         class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -1832,7 +1832,7 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiInputPopover css-gfjvrb-euiPopover-EuiPopover-EuiInputPopover"
+      class="euiPopover euiInputPopover css-1gt8vry-euiPopover-EuiPopover-EuiInputPopover"
     >
       <div
         class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -1911,7 +1911,7 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiInputPopover css-18on9r1-euiPopover-EuiPopover-EuiInputPopover"
+      class="euiPopover euiInputPopover css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover"
     >
       <div
         class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -1977,7 +1977,7 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiInputPopover css-18on9r1-euiPopover-EuiPopover-EuiInputPopover"
+      class="euiPopover euiInputPopover css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover"
     >
       <div
         class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -2043,7 +2043,7 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiInputPopover css-18on9r1-euiPopover-EuiPopover-EuiInputPopover"
+      class="euiPopover euiInputPopover css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover"
     >
       <div
         class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -2100,7 +2100,7 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiInputPopover css-18on9r1-euiPopover-EuiPopover-EuiInputPopover"
+      class="euiPopover euiInputPopover css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover"
     >
       <div
         class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -2166,7 +2166,7 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiInputPopover css-18on9r1-euiPopover-EuiPopover-EuiInputPopover"
+      class="euiPopover euiInputPopover css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover"
     >
       <div
         class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -2232,7 +2232,7 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiInputPopover css-18on9r1-euiPopover-EuiPopover-EuiInputPopover"
+      class="euiPopover euiInputPopover css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover"
     >
       <div
         class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -2298,7 +2298,7 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiInputPopover css-18on9r1-euiPopover-EuiPopover-EuiInputPopover"
+      class="euiPopover euiInputPopover css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover"
     >
       <div
         class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -2355,7 +2355,7 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiInputPopover css-18on9r1-euiPopover-EuiPopover-EuiInputPopover"
+      class="euiPopover euiInputPopover css-1sycd0p-euiPopover-EuiPopover-EuiInputPopover"
     >
       <div
         class="euiPopover__anchor css-1k1aqtq-EuiPopover"

@@ -2,7 +2,7 @@
 
 exports[`renders EuiColorPicker 1`] = `
 <div
-  class="euiPopover euiColorPicker__popoverAnchor css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiColorPicker__popoverAnchor css-sqpim8-euiPopover-EuiPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -56,7 +56,7 @@ exports[`renders EuiColorPicker 1`] = `
 
 exports[`renders EuiColorPicker with a clearable input 1`] = `
 <div
-  class="euiPopover euiColorPicker__popoverAnchor css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiColorPicker__popoverAnchor css-sqpim8-euiPopover-EuiPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -120,7 +120,7 @@ exports[`renders EuiColorPicker with a clearable input 1`] = `
 
 exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = `
 <div
-  class="euiPopover euiColorPicker__popoverAnchor css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiColorPicker__popoverAnchor css-sqpim8-euiPopover-EuiPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -174,7 +174,7 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
 
 exports[`renders EuiColorPicker with a custom placeholder 1`] = `
 <div
-  class="euiPopover euiColorPicker__popoverAnchor css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiColorPicker__popoverAnchor css-sqpim8-euiPopover-EuiPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -229,7 +229,7 @@ exports[`renders EuiColorPicker with a custom placeholder 1`] = `
 
 exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
 <div
-  class="euiPopover euiColorPicker__popoverAnchor css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiColorPicker__popoverAnchor css-sqpim8-euiPopover-EuiPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -284,7 +284,7 @@ exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
 
 exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
 <div
-  class="euiPopover euiColorPicker__popoverAnchor css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiColorPicker__popoverAnchor css-sqpim8-euiPopover-EuiPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -339,7 +339,7 @@ exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
 
 exports[`renders a EuiColorPicker with a prepend and append 1`] = `
 <div
-  class="euiPopover euiColorPicker__popoverAnchor css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiColorPicker__popoverAnchor css-sqpim8-euiPopover-EuiPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -403,7 +403,7 @@ exports[`renders a EuiColorPicker with a prepend and append 1`] = `
 
 exports[`renders a EuiColorPicker with an alpha range selector 1`] = `
 <div
-  class="euiPopover euiColorPicker__popoverAnchor css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiColorPicker__popoverAnchor css-sqpim8-euiPopover-EuiPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -457,7 +457,7 @@ exports[`renders a EuiColorPicker with an alpha range selector 1`] = `
 
 exports[`renders compressed EuiColorPicker 1`] = `
 <div
-  class="euiPopover euiColorPicker__popoverAnchor css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiColorPicker__popoverAnchor css-sqpim8-euiPopover-EuiPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -511,7 +511,7 @@ exports[`renders compressed EuiColorPicker 1`] = `
 
 exports[`renders disabled EuiColorPicker 1`] = `
 <div
-  class="euiPopover euiColorPicker__popoverAnchor css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiColorPicker__popoverAnchor css-sqpim8-euiPopover-EuiPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -553,7 +553,7 @@ exports[`renders disabled EuiColorPicker 1`] = `
 
 exports[`renders fullWidth EuiColorPicker 1`] = `
 <div
-  class="euiPopover euiColorPicker__popoverAnchor css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiColorPicker__popoverAnchor css-sqpim8-euiPopover-EuiPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"
@@ -779,7 +779,7 @@ exports[`renders inline EuiColorPicker 1`] = `
 
 exports[`renders readOnly EuiColorPicker 1`] = `
 <div
-  class="euiPopover euiColorPicker__popoverAnchor css-1u009a1-euiPopover-EuiPopover"
+  class="euiPopover euiColorPicker__popoverAnchor css-sqpim8-euiPopover-EuiPopover"
 >
   <div
     class="euiPopover__anchor css-1k1aqtq-EuiPopover"

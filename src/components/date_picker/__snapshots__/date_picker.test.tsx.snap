@@ -986,7 +986,7 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                           "insert": [Function],
                           "inserted": Object {
                             "1k1aqtq-EuiPopover": true,
-                            "1u009a1-euiPopover-EuiPopover": true,
+                            "sqpim8-euiPopover-EuiPopover": true,
                           },
                           "key": "css",
                           "nonce": undefined,
@@ -1001,7 +1001,7 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                                 data-s=""
                               >
                                 
-                                .css-1u009a1-euiPopover-EuiPopover{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                                .css-sqpim8-euiPopover-EuiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                               </style>
                               <style
                                 data-emotion="css"
@@ -1023,7 +1023,7 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                                 data-s=""
                               >
                                 
-                                .css-1u009a1-euiPopover-EuiPopover{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                                .css-sqpim8-euiPopover-EuiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                               </style>,
                               <style
                                 data-emotion="css"
@@ -1040,15 +1040,15 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                       serialized={
                         Object {
                           "map": undefined,
-                          "name": "1u009a1-euiPopover-EuiPopover",
+                          "name": "sqpim8-euiPopover-EuiPopover",
                           "next": undefined,
-                          "styles": "position:relative;vertical-align:middle;max-width:100%;label:euiPopover;;;display: block;label:EuiPopover;;;",
+                          "styles": "position:relative;vertical-align:middle;max-inline-size: 100%;;;label:euiPopover;;;display: block;label:EuiPopover;;;",
                           "toString": [Function],
                         }
                       }
                     />
                     <div
-                      className="euiPopover css-1u009a1-euiPopover-EuiPopover"
+                      className="euiPopover css-sqpim8-euiPopover-EuiPopover"
                       onKeyDown={[Function]}
                       onMouseDown={[Function]}
                       onMouseUp={[Function]}
@@ -1064,7 +1064,7 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                               "insert": [Function],
                               "inserted": Object {
                                 "1k1aqtq-EuiPopover": true,
-                                "1u009a1-euiPopover-EuiPopover": true,
+                                "sqpim8-euiPopover-EuiPopover": true,
                               },
                               "key": "css",
                               "nonce": undefined,
@@ -1079,7 +1079,7 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                                     data-s=""
                                   >
                                     
-                                    .css-1u009a1-euiPopover-EuiPopover{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                                    .css-sqpim8-euiPopover-EuiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                                   </style>
                                   <style
                                     data-emotion="css"
@@ -1101,7 +1101,7 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                                     data-s=""
                                   >
                                     
-                                    .css-1u009a1-euiPopover-EuiPopover{position:relative;vertical-align:middle;max-width:100%;display:block;}
+                                    .css-sqpim8-euiPopover-EuiPopover{position:relative;vertical-align:middle;max-inline-size:100%;display:block;}
                                   </style>,
                                   <style
                                     data-emotion="css"

@@ -13,12 +13,13 @@ import {
   euiShadowMedium,
 } from '../../../themes/amsterdam/global_styling/mixins';
 import { UseEuiTheme } from '../../../services';
+import { euiCanAnimate, logicalCSS } from '../../../global_styling';
 
 const translateDistance = 's';
 
 /**
  * 1. Can expand further, but it looks weird if it's smaller than the originating button.
- * 2. Animation happens on the panel. But don't animate when using the attached mode like for inputs
+ * 2. Animation happens on the panel. But don't animate position when using the attached mode like for inputs
  * 3. Make sure the panel stays within the window.
  */
 
@@ -29,8 +30,8 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
     // Base
     euiPopover__panel: css`
       position: absolute;
-      min-width: ${euiTheme.base * 7}px; /* 1 */
-      max-width: calc(100vw - ${euiTheme.size.xl}); /* 3 */
+      ${logicalCSS('min-width', `${euiTheme.base * 7}px`)}; /* 1 */
+      ${logicalCSS('max-width', `calc(100vw - ${euiTheme.size.xl})`)}; /* 3 */
       backface-visibility: hidden;
       pointer-events: none;
       opacity: 0; /* 2 */
@@ -46,10 +47,13 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
     isOpen: css`
       opacity: 1;
       pointer-events: auto;
-      transition: opacity ${euiTheme.animation.bounce}
-          ${euiTheme.animation.slow},
-        transform ${euiTheme.animation.bounce}
-          calc(${euiTheme.animation.slow} + 100ms); /* 2 */
+      ${euiCanAnimate} {
+        /* 2 */
+        transition: opacity ${euiTheme.animation.bounce}
+            ${euiTheme.animation.slow},
+          transform ${euiTheme.animation.bounce}
+            calc(${euiTheme.animation.slow} + 100ms);
+      }
     `,
 
     // Positions
@@ -70,8 +74,11 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
     attached: {
       isOpen: css`
         filter: none; // Necessary to remove the base shadow
-        transition: opacity ${euiTheme.animation.bounce}
-          ${euiTheme.animation.slow}; /* 2 */
+        ${euiCanAnimate} {
+          /* 2 */
+          transition: opacity ${euiTheme.animation.bounce}
+            ${euiTheme.animation.slow};
+        }
       `,
       top: css`
         ${euiShadowFlat(euiThemeContext)}
