@@ -16,7 +16,6 @@ export default () => {
         }}
         options={options}
         onChange={(newOptions) => setOptions(newOptions)}
-        onActiveOptionChange={(option) => console.log(option)}
       >
         {(list, search) => (
           <Fragment>
