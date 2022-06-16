@@ -9,6 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiStat, COLORS, ALIGNMENTS } from './stat';
 import { TITLE_SIZES } from '../title/title';
@@ -21,6 +22,8 @@ describe('EuiStat', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  shouldRenderCustomStyles(<EuiStat title="title" description="description" />);
 
   describe('props', () => {
     test('loading is rendered', () => {

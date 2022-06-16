@@ -92,12 +92,6 @@
     "l": "8px"
   },
   "euiEmptyPromptContentMaxWidth": "36em",
-  "euiFacetGutterSizes": {
-    "gutterNone": 0,
-    "gutterSmall": "4px",
-    "gutterMedium": "8px",
-    "gutterLarge": "12px"
-  },
   "gutterTypes": {
     "gutterExtraSmall": "4px",
     "gutterSmall": "8px",
