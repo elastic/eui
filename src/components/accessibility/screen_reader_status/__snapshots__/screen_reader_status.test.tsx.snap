@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiScreenReaderStatus it renders 1`] = `
+<div
+  class="euiScreenReaderOnly"
+  role="status"
+  tabindex="-1"
+/>
+`;
+
+exports[`EuiScreenReaderStatus it sets pageTitle using document title 1`] = `
+<EuiScreenReaderStatus>
+  <EuiScreenReaderOnly>
+    <div
+      className="euiScreenReaderOnly"
+      role="status"
+      tabIndex={-1}
+    >
+      Default title
+    </div>
+  </EuiScreenReaderOnly>
+</EuiScreenReaderStatus>
+`;
+
+exports[`EuiScreenReaderStatus it sets pageTitle using passed prop 1`] = `
+<EuiScreenReaderStatus
+  pageTitle="User-defined title"
+>
+  <EuiScreenReaderOnly>
+    <div
+      className="euiScreenReaderOnly"
+      role="status"
+      tabIndex={-1}
+    >
+      User-defined title
+    </div>
+  </EuiScreenReaderOnly>
+</EuiScreenReaderStatus>
+`;

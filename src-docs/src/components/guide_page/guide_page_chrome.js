@@ -8,6 +8,7 @@ import {
   EuiSideNav,
   EuiPageSideBar,
   EuiText,
+  EuiScreenReaderOnly,
 } from '../../../../src/components';
 
 import { EuiHighlight } from '../../../../src/components/highlight';
@@ -127,7 +128,16 @@ export class GuidePageChrome extends Component {
 
       return {
         id: sectionHref,
-        name: isCurrentlyOpenSubSection ? <strong>{name}</strong> : name,
+        name: isCurrentlyOpenSubSection ? (
+          <strong>{name}</strong>
+        ) : (
+          <>
+            {name}
+            <EuiScreenReaderOnly>
+              <span> - same page</span>
+            </EuiScreenReaderOnly>
+          </>
+        ),
         href: sectionHref,
         className: isCurrentlyOpenSubSection
           ? 'guideSideNav__item--openSubTitle'

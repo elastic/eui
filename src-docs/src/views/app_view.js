@@ -11,6 +11,7 @@ import {
   EuiPageBody,
   EuiSkipLink,
 } from '../../../src/components';
+import { EuiScreenReaderStatus } from '../../../src/components/accessibility/screen_reader_status';
 
 import { keys } from '../../../src/services';
 
@@ -69,6 +70,9 @@ export const AppView = ({ children, currentRoute }) => {
 
   return (
     <LinkWrapper>
+      <EuiScreenReaderStatus
+        pageTitle={`${currentRoute.name} - Elastic UI Framework`}
+      />
       <EuiSkipLink
         destinationId="start-of-content"
         position="fixed"
