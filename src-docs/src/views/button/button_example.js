@@ -12,6 +12,11 @@ import {
   EuiCallOut,
   EuiLink,
   EuiText,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiCard,
+  EuiPanel,
+  EuiSpacer,
 } from '../../../../src/components';
 
 import { EuiButtonGroupOptionProps } from '!!prop-loader!../../../../src/components/button/button_group/button_group';
@@ -256,6 +261,81 @@ export const ButtonExample = {
   ),
   sections: [
     {
+      text: (
+        <>
+          <EuiSpacer size="xl" />
+          <EuiFlexGroup wrap>
+            <EuiFlexItem>
+              <EuiCard
+                hasBorder
+                href="/#/navigation/button#basic-button"
+                image={
+                  <EuiPanel color="subdued">
+                    <EuiPanel color="subdued">
+                      <EuiButton fill>Primary action</EuiButton>
+                    </EuiPanel>
+                  </EuiPanel>
+                }
+                title="EuiButton"
+                titleSize="xs"
+              />
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <EuiCard
+                hasBorder
+                href="/#/navigation/button#basic-button"
+                image={
+                  <EuiPanel color="subdued">
+                    <EuiPanel color="subdued">
+                      <EuiButton>Secondary action</EuiButton>
+                    </EuiPanel>
+                  </EuiPanel>
+                }
+                title="EuiButton"
+                titleSize="xs"
+              />
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <EuiCard
+                hasBorder
+                href="/#/navigation/button#empty-button"
+                image={
+                  <EuiPanel color="subdued">
+                    <EuiPanel color="subdued">
+                      <EuiButtonEmpty>Tertiary action</EuiButtonEmpty>
+                    </EuiPanel>
+                  </EuiPanel>
+                }
+                title="EuiButtonEmpty"
+                titleSize="xs"
+              />
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <EuiCard
+                hasBorder
+                href="/#/navigation/button#icon-buttons"
+                image={
+                  <EuiPanel color="subdued">
+                    <EuiPanel color="subdued">
+                      <EuiButtonIcon
+                        display="base"
+                        size="m"
+                        iconType="refresh"
+                        aria-label="Button icon example with refresh icon"
+                      />
+                    </EuiPanel>
+                  </EuiPanel>
+                }
+                title="EuiButtonIcon"
+                titleSize="xs"
+              />
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </>
+      ),
+    },
+    {
+      title: 'Basic button',
       source: [
         {
           type: GuideSectionTypes.JS,
