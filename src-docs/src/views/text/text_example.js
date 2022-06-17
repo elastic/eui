@@ -8,11 +8,14 @@ import {
   EuiText,
   EuiTextColor,
   EuiTextAlign,
+  EuiSpacer,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import { textConfig, textColorConfig } from './playground';
 
 import Text from './text';
+
 const textSource = require('!!raw-loader!./text');
 const textSnippet = `<EuiText grow={false}><!-- Raw HTML content --></EuiText>
 `;
@@ -74,9 +77,33 @@ export const TextExample = {
             <strong>EuiText</strong> is a generic catchall wrapper that will
             apply our standard typography styling and spacing to naked HTML.
             Because of its forced style it{' '}
-            <strong>only accepts raw XHTML</strong> and can not / should not be
-            used to wrap React components (which would break their styling).
+            <strong>only accepts raw XHTML</strong>.
           </p>
+
+          <EuiCallOut
+            title={
+              <span>
+                When using <strong>EuiText</strong>, keep in mind:
+              </span>
+            }
+            iconType="documentation"
+          >
+            <ul>
+              <li>
+                All your <strong>XHTML</strong> elements should be direct
+                descendants of <strong>EuiText</strong>. You should avoid
+                wrapping them in a <EuiCode>div</EuiCode> or{' '}
+                <EuiCode>span</EuiCode>. This will ensure styles are applied
+                correctly.
+              </li>
+              <li>
+                Avoid nesting React components which would break their styling.
+              </li>
+            </ul>
+          </EuiCallOut>
+
+          <EuiSpacer />
+
           <p>
             <strong>EuiText</strong> can ensure proper line-length for
             readability by setting a{' '}

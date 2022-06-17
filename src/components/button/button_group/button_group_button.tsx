@@ -8,7 +8,7 @@
 
 import classNames from 'classnames';
 import React, { FunctionComponent } from 'react';
-import { EuiButtonDisplay } from '../button';
+import { EuiButtonDisplayDeprecated as EuiButtonDisplay } from '../button';
 import { EuiButtonGroupOptionProps, EuiButtonGroupProps } from './button_group';
 import { useInnerText } from '../../inner_text';
 import { useGeneratedHtmlId } from '../../../services';

@@ -11,8 +11,11 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test';
 
 import { EuiFacetGroup, LAYOUTS, GUTTER_SIZES } from './facet_group';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 describe('EuiFacetGroup', () => {
+  shouldRenderCustomStyles(<EuiFacetGroup>Content</EuiFacetGroup>);
+
   test('is rendered', () => {
     const component = render(<EuiFacetGroup {...requiredProps} />);
 

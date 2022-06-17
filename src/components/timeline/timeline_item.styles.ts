@@ -7,33 +7,16 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../services';
 
-export const euiTimelineItemStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiTimelineItem: css`
-    display: flex;
-
-    &:not(:last-of-type) {
-      padding-bottom: ${euiTheme.size.xl};
-    }
-
-    &:first-of-type {
-      > [class*='euiTimelineItemIcon-center']::before {
-        top: 50%;
-        // Adding to the height the padding bottom from the parent container
-        height: calc(50% + ${euiTheme.size.xl});
-      }
-    }
-
-    &:last-of-type {
-      > [class*='euiTimelineItemIcon']::before {
-        display: none;
-      }
-
-      &:not(:only-child) > [class*='euiTimelineItemIcon-center']::before {
-        top: 0;
-        height: 50%;
-      }
-    }
-  `,
-});
+export const euiTimelineItemStyles = () => {
+  return {
+    euiTimelineItem: css`
+      display: flex;
+      position: relative;
+    `,
+    // Vertical alignments
+    // These classes are being targeted in timeline.styles.ts
+    top: css``,
+    center: css``,
+  };
+};

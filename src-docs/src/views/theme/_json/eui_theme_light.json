@@ -92,20 +92,6 @@
     "l": "8px"
   },
   "euiEmptyPromptContentMaxWidth": "36em",
-  "euiExpressionColors": {
-    "subdued": "#69707d",
-    "primary": "#0071c2",
-    "success": "#007e77",
-    "warning": "#8a6a0a",
-    "danger": "#bd271e",
-    "accent": "#c4407c"
-  },
-  "euiFacetGutterSizes": {
-    "gutterNone": 0,
-    "gutterSmall": "4px",
-    "gutterMedium": "8px",
-    "gutterLarge": "12px"
-  },
   "gutterTypes": {
     "gutterExtraSmall": "4px",
     "gutterSmall": "8px",
