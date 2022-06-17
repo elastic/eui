@@ -255,7 +255,13 @@ export class EuiIconClass extends PureComponent<
     const appIconHasColor = color && color !== 'default';
 
     // parent is not one of
-    const classes = classNames('euiIcon', className);
+    const classes = classNames(
+      'euiIcon',
+      {
+        'euiIcon-isLoaded': !isLoading && neededLoading,
+      },
+      className
+    );
 
     // Emotion styles
     const styles = euiIconStyles(theme);
