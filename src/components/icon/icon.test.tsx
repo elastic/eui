@@ -30,7 +30,7 @@ beforeEach(() => clearIconComponentCache());
 
 const prettyHtml = cheerio.load('');
 
-function testIcon(props: PropsOf<EuiIcon>) {
+function testIcon(props: PropsOf<typeof EuiIcon>) {
   return () => {
     expect.assertions(1);
     return new Promise<void>((resolve) => {

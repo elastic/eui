@@ -7,25 +7,26 @@
  */
 
 import React, {
-  FunctionComponent,
-  useCallback,
+  PureComponent,
   ImgHTMLAttributes,
   ComponentType,
   SVGAttributes,
-  useState,
-  useEffect,
-  useRef,
 } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
 
+import { typeToPathMap } from './icons_map';
 import { icon as empty } from './assets/empty';
 import { enqueueStateChange } from '../../services/react';
 
-import { htmlIdGenerator } from '../../services';
-import { typeToPathMap } from './icons_map';
+import {
+  htmlIdGenerator,
+  withEuiTheme,
+  WithEuiThemeProps,
+} from '../../services';
 import { colorToClassMap, isNamedColor, NamedColor } from './named_colors';
+import { euiIconStyles } from './icon.styles';
 
 const getIsAppIcon = (iconType: IconType) => {
   if (typeof iconType !== 'string') return false;
@@ -45,16 +46,7 @@ export const COLORS: NamedColor[] = keysOf(colorToClassMap);
 // We accept arbitrary color strings, which are impossible to type.
 export type IconColor = string | NamedColor;
 
-const sizeToClassNameMap = {
-  original: null,
-  s: 'euiIcon--small',
-  m: 'euiIcon--medium',
-  l: 'euiIcon--large',
-  xl: 'euiIcon--xLarge',
-  xxl: 'euiIcon--xxLarge',
-};
-
-export const SIZES = ['s', 'm', 'l', 'xl', 'xl'] as const;
+export const SIZES = ['original', 's', 'm', 'l', 'xl', 'xxl'] as const;
 export type IconSize = typeof SIZES[number];
 
 export type EuiIconProps = CommonProps &
@@ -90,11 +82,18 @@ export type EuiIconProps = CommonProps &
     onIconLoad?: () => void;
   };
 
+interface State {
+  icon: undefined | ComponentType | string;
+  iconTitle: undefined | string;
+  isLoading: boolean;
+  neededLoading: boolean; // controls the fade-in animation, cached icons are immediately rendered
+}
+
 function isEuiIconType(x: EuiIconProps['type']): x is EuiIconType {
   return typeof x === 'string' && typeToPathMap.hasOwnProperty(x);
 }
 
-const getInitialIcon = (icon: EuiIconProps['type']) => {
+function getInitialIcon(icon: EuiIconProps['type']) {
   if (icon == null) {
     return undefined;
   }
@@ -106,7 +105,7 @@ const getInitialIcon = (icon: EuiIconProps['type']) => {
   }
 
   return icon;
-};
+}
 
 const generateId = htmlIdGenerator();
 
@@ -120,14 +119,6 @@ export const clearIconComponentCache = (iconType?: EuiIconType) => {
   }
 };
 
-function usePrevious<T>(value: T): T | undefined {
-  const ref = useRef<T>();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-}
-
 export const appendIconComponentCache = (iconTypeToIconComponentMap: {
   [iconType: string]: ComponentType;
 }) => {
@@ -138,180 +129,211 @@ export const appendIconComponentCache = (iconTypeToIconComponentMap: {
   }
 };
 
-export function useIsMounted() {
-  const isMountedRef = useRef(true);
-  const isMounted = useCallback(() => isMountedRef.current, []);
+export class EuiIconClass extends PureComponent<
+  EuiIconProps & WithEuiThemeProps,
+  State
+> {
+  isMounted = true;
+  constructor(props: EuiIconProps & WithEuiThemeProps) {
+    super(props);
 
-  useEffect(() => {
-    return () => void (isMountedRef.current = false);
-  }, []);
+    const { type } = props;
+    const initialIcon = getInitialIcon(type);
 
-  return isMounted;
-}
+    this.state = {
+      icon: initialIcon,
+      iconTitle: undefined,
+      isLoading: false,
+      neededLoading: false,
+    };
+  }
 
-export const EuiIcon: FunctionComponent<EuiIconProps> = ({
-  type,
-  size = 'm',
-  color,
-  className,
-  tabIndex,
-  title,
-  onIconLoad,
-  ...rest
-}) => {
-  const initialIcon = getInitialIcon(type);
-  const [icon, setIsIcon] = useState<any>(initialIcon);
-  const [iconTitle, setIsIconTitle] = useState<undefined | string>('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [neededLoading, setNeededLoading] = useState(false);
-  const previousType = usePrevious(type);
+  componentDidMount() {
+    const { type } = this.props;
 
-  const isMounted = useIsMounted();
+    if (isEuiIconType(type) && this.state.icon == null) {
+      //eslint-disable-next-line react/no-did-mount-set-state
+      this.setState({
+        neededLoading: true,
+        isLoading: true,
+      });
 
-  const loadIconComponent = useCallback(
-    (iconType: EuiIconType) => {
-      if (iconComponentCache.hasOwnProperty(iconType)) {
-        // exists in cache
-        setIsLoading(false);
-        setNeededLoading(false);
-        setIsIcon(iconComponentCache[iconType]);
-        onIconLoad?.();
-        return;
+      this.loadIconComponent(type);
+    } else {
+      this.onIconLoad();
+    }
+  }
+
+  componentDidUpdate(prevProps: EuiIconProps) {
+    const { type } = this.props;
+    if (type !== prevProps.type) {
+      if (isEuiIconType(type)) {
+        // eslint-disable-next-line react/no-did-update-set-state
+        this.setState({
+          neededLoading: iconComponentCache.hasOwnProperty(type),
+          isLoading: true,
+        });
+        this.loadIconComponent(type);
+      } else {
+        // eslint-disable-next-line react/no-did-update-set-state
+        this.setState({
+          icon: type,
+          neededLoading: true,
+          isLoading: false,
+        });
       }
+    }
+  }
 
-      import(
-        /* webpackChunkName: "icon.[request]" */
-        // It's important that we don't use a template string here, it
-        // stops webpack from building a dynamic require context.
-        // eslint-disable-next-line prefer-template
-        './assets/' + typeToPathMap[iconType]
-      ).then(({ icon }) => {
-        if (isMounted() && type === iconType) {
-          enqueueStateChange(() => {
-            setIsIcon(icon);
-            setIsIconTitle(iconType);
-            setIsLoading(false);
-            onIconLoad?.();
-          });
+  componentWillUnmount() {
+    this.isMounted = false;
+  }
+
+  loadIconComponent = (iconType: EuiIconType) => {
+    if (iconComponentCache.hasOwnProperty(iconType)) {
+      // exists in cache
+      this.setState({
+        isLoading: false,
+        neededLoading: false,
+        icon: iconComponentCache[iconType],
+      });
+      this.onIconLoad();
+      return;
+    }
+
+    import(
+      /* webpackChunkName: "icon.[request]" */
+      // It's important that we don't use a template string here, it
+      // stops webpack from building a dynamic require context.
+      // eslint-disable-next-line prefer-template
+      './assets/' + typeToPathMap[iconType]
+    ).then(({ icon }) => {
+      iconComponentCache[iconType] = icon;
+      enqueueStateChange(() => {
+        if (this.isMounted && this.props.type === iconType) {
+          this.setState(
+            {
+              icon,
+              iconTitle: iconType,
+              isLoading: false,
+            },
+            this.onIconLoad
+          );
         }
       });
-    },
-    [onIconLoad, isMounted, type]
-  );
+    });
+  };
 
-  useEffect(() => {
-    if (isEuiIconType(type) && icon == null) {
-      setNeededLoading(true);
-      setIsLoading(true);
-      loadIconComponent(type);
-    } else {
-      onIconLoad?.();
+  onIconLoad = () => {
+    const { onIconLoad } = this.props;
+    if (onIconLoad) {
+      onIconLoad();
     }
+  };
 
-    if (type !== previousType) {
-      if (isEuiIconType(type)) {
-        setNeededLoading(true);
-        setIsLoading(true);
-        loadIconComponent(type);
-      } else {
-        setIsIcon(type);
-        setNeededLoading(true);
-        setIsLoading(true);
-      }
-    }
-  }, [
-    icon,
-    onIconLoad,
-    type,
-    previousType,
-    isMounted,
-    isLoading,
-    neededLoading,
-    loadIconComponent,
-  ]);
+  render() {
+    const {
+      type,
+      size = 'm',
+      color,
+      className,
+      tabIndex,
+      title,
+      onIconLoad,
+      theme,
+      ...rest
+    } = this.props;
 
-  let optionalColorClass = null;
-  let optionalCustomStyles: any = null;
+    const { isLoading, neededLoading } = this.state;
 
-  if (color) {
-    if (isNamedColor(color)) {
-      optionalColorClass = colorToClassMap[color];
-    } else {
-      optionalCustomStyles = { color: color };
-      optionalColorClass = 'euiIcon--customColor';
-    }
-  }
+    const optionalCustomStyles =
+      color && !isNamedColor(color) ? { color: color } : null;
 
-  // These icons are a little special and get some extra CSS flexibility
-  const isAppIcon = getIsAppIcon(type);
+    // These icons are a little special and get some extra CSS flexibility
+    const isAppIcon = getIsAppIcon(type);
 
-  const appIconHasColor = color && color !== 'default';
+    const appIconHasColor = color && color !== 'default';
 
-  // parent is not one of
-  const classes = classNames(
-    'euiIcon',
-    sizeToClassNameMap[size],
-    optionalColorClass,
-    {
+    // parent is not one of
+    const classes = classNames('euiIcon', className);
+
+    // Emotion styles
+    const styles = euiIconStyles(theme);
+    const cssStyles = [
+      styles.euiIcon,
+      styles[size],
+      color && isNamedColor(color) && styles[color as NamedColor],
+      color && !isNamedColor(color) && styles.customColor,
       // The app icon only gets the .euiIcon--app class if no color is passed or if color="default" is passed
-      'euiIcon--app': isAppIcon && !appIconHasColor,
-      'euiIcon-isLoading': isLoading,
-      'euiIcon-isLoaded': !isLoading && neededLoading,
-    },
-    className
-  );
+      isAppIcon && !appIconHasColor && styles.app,
+      isLoading && styles.isLoading,
+      !isLoading && neededLoading && styles.isLoaded,
+    ];
 
-  const currentIcon = icon || empty;
+    const icon = this.state.icon || empty;
 
-  // This is a fix for IE and Edge, which ignores tabindex="-1" on an SVG, but respects
-  // focusable="false".
-  //   - If there's no tabindex specified, we'll default the icon to not be focusable,
-  //     which is how SVGs behave in Chrome, Safari, and FF.
-  //   - If tabindex is -1, then the consumer wants the icon to be focusable by JavaScript only.
-  //   - If the tabindex is 0, the consumer wants the icon to be keyboard focusable.
-  const focusable = tabIndex == null || tabIndex === -1 ? 'false' : 'true';
+    // This is a fix for IE and Edge, which ignores tabindex="-1" on an SVG, but respects
+    // focusable="false".
+    //   - If there's no tabindex specified, we'll default the icon to not be focusable,
+    //     which is how SVGs behave in Chrome, Safari, and FF.
+    //   - If tabindex is -1, then the consumer wants the icon to be focusable by JavaScript only.
+    //   - If the tabindex is 0, the consumer wants the icon to be keyboard focusable.
+    const focusable = tabIndex == null || tabIndex === -1 ? 'false' : 'true';
 
-  if (typeof currentIcon === 'string') {
-    return (
-      <img
-        alt={title ? title : ''}
-        src={currentIcon}
-        className={classes}
-        tabIndex={tabIndex}
-        {...(rest as ImgHTMLAttributes<HTMLImageElement>)}
-      />
-    );
-  } else {
-    const Svg = currentIcon;
+    if (typeof icon === 'string') {
+      return (
+        <img
+          alt={title ? title : ''}
+          src={icon}
+          className={classes}
+          css={cssStyles}
+          tabIndex={tabIndex}
+          {...(rest as ImgHTMLAttributes<HTMLImageElement>)}
+        />
+      );
+    } else {
+      const Svg = icon;
 
-    // If it's an empty icon, or if there is no aria-label, aria-labelledby, or title it gets aria-hidden true
-    const isAriaHidden =
-      currentIcon === empty ||
-      !(rest['aria-label'] || rest['aria-labelledby'] || title);
-    const hideIconEmpty = isAriaHidden && { 'aria-hidden': true };
+      // If it's an empty icon, or if there is no aria-label, aria-labelledby, or title it gets aria-hidden true
+      const isAriaHidden =
+        icon === empty ||
+        !(
+          this.props['aria-label'] ||
+          this.props['aria-labelledby'] ||
+          this.props.title
+        );
+      const hideIconEmpty = isAriaHidden && { 'aria-hidden': true };
 
-    let titleId: any;
+      let titleId: any;
 
-    // If no aria-label or aria-labelledby is provided but there's a title, a titleId is generated
-    //  The svg aria-labelledby attribute gets this titleId
-    //  The svg title element gets this titleId as an id
-    if (!rest['aria-label'] && !rest['aria-labelledby'] && title) {
-      titleId = { titleId: generateId() };
+      // If no aria-label or aria-labelledby is provided but there's a title, a titleId is generated
+      //  The svg aria-labelledby attribute gets this titleId
+      //  The svg title element gets this titleId as an id
+      if (
+        !this.props['aria-label'] &&
+        !this.props['aria-labelledby'] &&
+        title
+      ) {
+        titleId = { titleId: generateId() };
+      }
+
+      return (
+        <Svg
+          className={classes}
+          css={cssStyles}
+          style={optionalCustomStyles}
+          tabIndex={tabIndex}
+          focusable={focusable}
+          role="img"
+          title={title}
+          data-icon-type={this.state.iconTitle}
+          {...titleId}
+          {...rest}
+          {...hideIconEmpty}
+        />
+      );
     }
-
-    return (
-      <Svg
-        className={classes}
-        style={optionalCustomStyles}
-        tabIndex={tabIndex}
-        focusable={focusable}
-        role="img"
-        title={title}
-        data-icon-type={iconTitle}
-        {...titleId}
-        {...rest}
-        {...hideIconEmpty}
-      />
-    );
   }
-};
+}
+
+export const EuiIcon = withEuiTheme(EuiIconClass);

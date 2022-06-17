@@ -7,7 +7,7 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import { logicalCSS } from '../../global_styling';
+import { logicalCSS, euiCanAnimate } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 const _iconSize = (size: string) => {
@@ -21,7 +21,7 @@ const _iconLoadingOpacity = 0.05;
 
 const _iconLoading = keyframes`
   0% {
-    opacity:_iconLoadingOpacity;
+    opacity: ${_iconLoadingOpacity};
   }
 
   100% {
@@ -38,33 +38,23 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     fill: currentColor;
     transform: translate(0, 0); // Hack to fix Firefox "softness"
 
+    // TODO find out if this is still valid
+    // this focus was added 5 years ago
     &:focus {
       opacity: 1; // We often hide icons on hover. Make sure they appear on focus.
-      background: $euiFocusBackgroundColor;
+      /* background: $euiFocusBackgroundColor; */
     }
-  `,
-  // Colors
-  accent: css``,
-  danger: css``,
-  ghost: css``,
-  primary: css``,
-  success: css``,
-  subdued: css``,
-  text: css``,
-  warning: css``,
-  inherit: css``,
-  // Sizes
-  s: css(_iconSize(euiTheme.size.m)),
-  m: css(_iconSize(euiTheme.size.base)),
-  l: css(_iconSize(euiTheme.size.l)),
-  xl: css(_iconSize(euiTheme.size.xl)),
-  xxl: css(_iconSize(euiTheme.size.xxl)),
-  // Variants
-  app: css``,
-  logo: css`
-    /* // Really force all paths to inherit when the color is ghost/text (specifically for logos)
-    .euiIcon--ghost:not([data-type='logoElastic']),
-    .euiIcon--text:not([data-type='logoElastic']) {
+
+    // Use the negative fill on SVG elements that need to flip portions
+    // of the icon to light and dark compatible modes. You can see this
+    // in use on the Elastic logo icons.
+    .euiIcon__fillNegative {
+      fill: ${euiTheme.colors.darkestShade};
+    }
+
+    // Really force all paths to inherit when the color is ghost/text (specifically for logos)
+    [class*='-ghost']:not([data-type='logoElastic']),
+    [class*='-text']:not([data-type='logoElastic']) {
       *[fill],
       .euiIcon__fillNegative {
         fill: currentColor !important; // sass-lint:disable-line no-important
@@ -72,8 +62,8 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     }
 
     // Elastic logo specific colors
-    .euiIcon--ghost[data-type='logoElastic'],
-    .euiIcon--text[data-type='logoElastic'] {
+    [class*='-ghost'][data-type='logoElastic'],
+    [class*='-text'][data-type='logoElastic'] {
       *[fill] {
         fill: none !important; // sass-lint:disable-line no-important
       }
@@ -81,20 +71,65 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
       .outline {
         fill: currentColor !important; // sass-lint:disable-line no-important
       }
-    } */
+    }
   `,
+  // Colors
+  accent: css`
+    color: ${euiTheme.colors.accentText};
+  `,
+  danger: css`
+    color: ${euiTheme.colors.dangerText};
+  `,
+  ghost: css`
+    color: ${euiTheme.colors.ghost};
+  `,
+  primary: css`
+    color: ${euiTheme.colors.primaryText};
+  `,
+  success: css`
+    color: ${euiTheme.colors.successText};
+  `,
+  subdued: css`
+    color: ${euiTheme.colors.subduedText};
+  `,
+  text: css`
+    color: ${euiTheme.colors.title};
+  `,
+  warning: css`
+    color: ${euiTheme.colors.warningText};
+  `,
+  inherit: css`
+    color: inherit;
+  `,
+  default: css``,
+  customColor: css``,
+  // Sizes
+  original: css``,
+  s: css(_iconSize(euiTheme.size.m)),
+  m: css(_iconSize(euiTheme.size.base)),
+  l: css(_iconSize(euiTheme.size.l)),
+  xl: css(_iconSize(euiTheme.size.xl)),
+  xxl: css(_iconSize(euiTheme.size.xxl)),
+  // Variants
+  // App icons are two-toned. This provides the base color.
+  app: css`
+    fill: ${euiTheme.colors.text};
+
+    // This provides the default secondary color
+    .euiIcon__fillSecondary {
+      fill: ${euiTheme.colors.successText};
+    }
+  `,
+  logo: css``,
   isLoading: css`
-    opacity: _iconLoadingOpacity;
+    opacity: ${_iconLoadingOpacity};
     background-color: currentColor;
-    border-radius: ${euiTheme.border.radius.medium};
+    border-radius: ${euiTheme.border.radius.small};
   `,
   isLoaded: css`
-    // animation: _iconLoading $euiAnimSpeedNormal ease-in 0s 1 forwards;
-  `,
-});
-
-export const euiIconFillNegativeStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiIconFillNegative: css`
-    // animation: _iconLoading $euiAnimSpeedNormal ease-in 0s 1 forwards;
+    ${euiCanAnimate} {
+      animation: ${_iconLoading} ${euiTheme.animation.normal} ease-in 0s 1
+        forwards;
+    }
   `,
 });
