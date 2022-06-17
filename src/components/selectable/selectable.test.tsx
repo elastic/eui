@@ -334,6 +334,45 @@ describe('EuiSelectable', () => {
     });
   });
 
+  describe('onActiveOptionChange', () => {
+    it('calls the optional callback whenever the internal activeOptionIndex state changes', () => {
+      const callback = jest.fn();
+      const component = mount(
+        <EuiSelectable options={options} onActiveOptionChange={callback}>
+          {(list) => list}
+        </EuiSelectable>
+      );
+
+      component.simulate('keydown', { key: 'ArrowDown' });
+      expect(callback).toHaveBeenCalledWith(options[0]);
+
+      component.simulate('keydown', { key: 'ArrowUp' });
+      expect(callback).toHaveBeenCalledWith(options[2]);
+    });
+
+    it('handles the active option changing due to searching', () => {
+      const callback = jest.fn();
+      const component = mount(
+        <EuiSelectable
+          options={options}
+          searchable
+          searchProps={{ value: 'pandora' }}
+          onActiveOptionChange={callback}
+        >
+          {(list, search) => (
+            <>
+              {search}
+              {list}
+            </>
+          )}
+        </EuiSelectable>
+      );
+
+      component.simulate('keydown', { key: 'ArrowDown' });
+      expect(callback).toHaveBeenCalledWith(options[2]); // Pandora
+    });
+  });
+
   describe('errorMessage prop', () => {
     it('does not render the message when not defined', () => {
       const component = render(

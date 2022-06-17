@@ -103,6 +103,11 @@ export type EuiSelectableProps<T = {}> = CommonProps &
       event: EuiSelectableOnChangeEvent
     ) => void;
     /**
+     * Passes back the current active option whenever the user changes the currently
+     * highlighted option via keyboard navigation or searching.
+     */
+    onActiveOptionChange?: (option: EuiSelectableOption | null) => void;
+    /**
      * Sets the single selection policy of
      * `false`: allows multiple selection
      * `true`: only allows one selection
@@ -257,6 +262,19 @@ export class EuiSelectable<T = {}> extends Component<
     }
 
     return stateUpdate;
+  }
+
+  componentDidUpdate<T>(
+    prevProps: EuiSelectableProps<T>,
+    prevState: EuiSelectableState<T>
+  ) {
+    if (prevState.activeOptionIndex !== this.state.activeOptionIndex) {
+      const activeOption =
+        this.state.activeOptionIndex != null
+          ? this.state.visibleOptions[this.state.activeOptionIndex]
+          : null;
+      this.props.onActiveOptionChange?.(activeOption);
+    }
   }
 
   hasActiveOption = () => {
@@ -468,6 +486,7 @@ export class EuiSelectable<T = {}> extends Component<
       className,
       options,
       onChange,
+      onActiveOptionChange,
       searchable,
       searchProps,
       singleSelection,

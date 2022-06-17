@@ -8,28 +8,17 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
+import { logicalCSS } from '../../global_styling';
 
 export const euiTimelineItemIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiTimelineItemIcon: css`
     display: flex;
     position: relative;
     flex-grow: 0;
-    margin-right: ${euiTheme.size.base};
-
-    // timeline vertical line
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: calc(${euiTheme.size.xxl} / 2);
-      width: calc(${euiTheme.size.xs} / 2);
-      // Adding to the height the padding bottom from the parent container
-      height: calc(100% + ${euiTheme.size.xl});
-      background-color: ${euiTheme.colors.lightShade};
-    }
+    justify-content: center;
+    ${logicalCSS('margin-right', euiTheme.size.base)};
   `,
   euiTimelineItemIcon__content: css`
-    min-width: ${euiTheme.size.xxl};
     display: flex;
     justify-content: center;
     align-items: center;
