@@ -10,7 +10,7 @@ import classNames from 'classnames';
 import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiButtonGroupButton } from './button_group_button';
-import { colorToClassNameMap, ButtonColor } from '../button';
+import { colorToClassNameMap, EuiButtonColor } from '../button';
 import { EuiButtonContentProps } from '../_button_content_deprecated';
 import { CommonProps } from '../../common';
 import { useGeneratedHtmlId } from '../../../services';
@@ -60,7 +60,7 @@ export type EuiButtonGroupProps = CommonProps & {
   /**
    * Compressed styles don't support `ghost` color (Color will be changed to "text")
    */
-  color?: ButtonColor;
+  color?: EuiButtonColor;
   /**
    * Actual type is `'single' | 'multi'`.
    * Determines how the selection of the group should be handled.

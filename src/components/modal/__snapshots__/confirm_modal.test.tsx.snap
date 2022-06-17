@@ -87,15 +87,15 @@ Array [
             </span>
           </button>
           <button
-            class="euiButton css-1jctwrf-fill-primary"
+            class="euiButton emotion-euiButtonDisplay-m-m-fill-primary"
             data-test-subj="confirmModalConfirmButton"
             type="button"
           >
             <span
-              class="euiButtonContent euiButton__content"
+              class="emotion-euiButtonDisplayContent"
             >
               <span
-                class="euiButton__text"
+                class="eui-textTruncate"
               >
                 Confirm Button Text
               </span>
@@ -186,15 +186,15 @@ Array [
             </span>
           </button>
           <button
-            class="euiButton css-1jctwrf-fill-primary"
+            class="euiButton emotion-euiButtonDisplay-m-m-fill-primary"
             data-test-subj="confirmModalConfirmButton"
             type="button"
           >
             <span
-              class="euiButtonContent euiButton__content"
+              class="emotion-euiButtonDisplayContent"
             >
               <span
-                class="euiButton__text"
+                class="eui-textTruncate"
               >
                 Confirm Button Text
               </span>

@@ -23,11 +23,6 @@
     padding: 0 $euiSizeS;
   }
 
-  .euiButton__text {
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-
   &.euiButtonGroupButton--small {
     height: $euiButtonHeightSmall;
     line-height: $euiButtonHeightSmall; // prevents descenders from getting cut off

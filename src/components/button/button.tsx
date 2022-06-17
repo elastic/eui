@@ -10,7 +10,6 @@ import React, {
   forwardRef,
   FunctionComponent,
   Ref,
-  ButtonHTMLAttributes,
   CSSProperties,
   HTMLAttributes,
   ReactNode,
@@ -22,54 +21,28 @@ import {
   ExclusiveUnion,
   PropsForAnchor,
   PropsForButton,
-  keysOf,
 } from '../common';
 
-import { getSecureRelForTarget } from '../../services';
-
+import { EuiButtonContentDeprecated as EuiButtonContent } from './_button_content_deprecated';
 import {
-  EuiButtonContentProps,
-  EuiButtonContentType,
-  EuiButtonContentDeprecated as EuiButtonContent,
-} from './_button_content_deprecated';
-import { validateHref } from '../../services/security/href_validator';
-import { useEuiButtonColorCSS } from '../../themes/amsterdam/global_styling/mixins/button';
+  BUTTON_COLORS,
+  useEuiButtonColorCSS,
+  useEuiButtonFocusCSS,
+  _EuiButtonColor,
+} from '../../themes/amsterdam/global_styling/mixins/button';
+import {
+  EuiButtonDisplay,
+  EuiButtonDisplayCommonProps,
+  isButtonDisabled,
+} from './button_display/_button_display';
 
-export type ButtonColor =
-  | 'primary'
-  | 'accent'
-  | 'success'
-  | 'warning'
-  | 'danger'
-  | 'ghost'
-  | 'text';
+export const COLORS = [...BUTTON_COLORS, 'ghost'] as const;
+export type EuiButtonColor = _EuiButtonColor | 'ghost';
 
-export type ButtonSize = 's' | 'm';
+export const SIZES = ['s', 'm'] as const;
+export type EuiButtonSize = typeof SIZES[number];
 
-export const colorToClassNameMap: { [color in ButtonColor]: string } = {
-  primary: '--primary',
-  accent: '--accent',
-  success: '--success',
-  warning: '--warning',
-  danger: '--danger',
-  ghost: '--ghost',
-  text: '--text',
-};
-
-export const COLORS = keysOf(colorToClassNameMap);
-
-export const sizeToClassNameMap: { [size in ButtonSize]: string | null } = {
-  s: '--small',
-  m: null,
-};
-
-export const SIZES = keysOf(sizeToClassNameMap);
-
-/**
- * Extends EuiButtonContentProps which provides
- * `iconType`, `iconSide`, and `textProps`
- */
-export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
+interface BaseProps {
   children?: ReactNode;
   /**
    * Make button a solid color for prominence
@@ -78,38 +51,21 @@ export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
   /**
    * Any of our named colors.
    */
-  color?: ButtonColor;
+  color?: EuiButtonColor;
   /**
    * Use size `s` in confined spaces
    */
-  size?: ButtonSize;
+  size?: EuiButtonSize;
   /**
    * `disabled` is also allowed
    */
   isDisabled?: boolean;
-  /**
-   * Applies the boolean state as the `aria-pressed` property to create a toggle button.
-   * *Only use when the readable text does not change between states.*
-   */
-  isSelected?: boolean;
-  /**
-   * Extends the button to 100% width
-   */
-  fullWidth?: boolean;
-  /**
-   * Override the default minimum width
-   */
-  minWidth?: CSSProperties['minWidth'];
-  /**
-   * Force disables the button and changes the icon to a loading spinner
-   */
-  isLoading?: boolean;
-  /**
-   * Object of props passed to the <span/> wrapping the button's content
-   */
-  contentProps?: EuiButtonContentType;
-  style?: CSSProperties;
 }
+
+export interface EuiButtonProps
+  extends BaseProps,
+    Omit<EuiButtonDisplayCommonProps, 'size'>,
+    CommonProps {}
 
 export type EuiButtonPropsForAnchor = PropsForAnchor<
   EuiButtonProps,
@@ -135,23 +91,16 @@ export type Props = ExclusiveUnion<
  * and the logic for element-specific attributes
  */
 export const EuiButton: FunctionComponent<Props> = ({
-  isDisabled: _isDisabled,
-  disabled: _disabled,
-  href,
-  target,
-  rel,
-  type = 'button',
   buttonRef,
   color: _color = 'primary',
   fill,
   ...rest
 }) => {
-  const isHrefValid = !href || validateHref(href);
-  const disabled = _disabled || !isHrefValid;
-  const isDisabled = _isDisabled || !isHrefValid;
-
-  const buttonIsDisabled = rest.isLoading || isDisabled || disabled;
-  const element = href && !isDisabled ? 'a' : 'button';
+  const buttonIsDisabled = isButtonDisabled({
+    href: rest.href,
+    isDisabled: rest.isDisabled || rest.disabled,
+    isLoading: rest.isLoading,
+  });
 
   // eslint-disable-next-line no-nested-ternary
   const color = buttonIsDisabled
@@ -159,49 +108,32 @@ export const EuiButton: FunctionComponent<Props> = ({
     : _color === 'ghost'
     ? 'text'
     : _color;
+
   const buttonColorStyles = useEuiButtonColorCSS({
     display: fill ? 'fill' : 'base',
   })[color];
 
-  let elementProps = {};
-  // Props for all elements
-  elementProps = { ...elementProps, isDisabled: buttonIsDisabled };
-  // Element-specific attributes
-  if (element === 'button') {
-    elementProps = { ...elementProps, disabled: buttonIsDisabled };
-  }
+  const buttonFocusStyle = useEuiButtonFocusCSS();
 
-  const relObj: {
-    rel?: string;
-    href?: string;
-    type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
-    target?: string;
-  } = {};
-
-  if (href && !buttonIsDisabled) {
-    relObj.href = href;
-    relObj.rel = getSecureRelForTarget({ href, target, rel });
-    relObj.target = target;
-  } else {
-    relObj.type = type as ButtonHTMLAttributes<HTMLButtonElement>['type'];
-  }
-
-  const cssStyles = [buttonColorStyles];
+  const cssStyles = [buttonColorStyles, buttonFocusStyle];
 
   return (
-    // eslint-disable-next-line react/jsx-pascal-case
-    <EuiButtonDisplayDeprecated
-      element={element}
-      baseClassName="euiButton"
+    <EuiButtonDisplay
+      className="euiButton"
       ref={buttonRef}
       css={cssStyles}
-      {...elementProps}
-      {...relObj}
       {...rest}
     />
   );
 };
+
 EuiButton.displayName = 'EuiButton';
+
+// Use defaultProps for simple pass-through props
+EuiButton.defaultProps = {
+  minWidth: 112,
+  size: 'm',
+};
 
 export type EuiButtonDisplayProps = EuiButtonProps &
   HTMLAttributes<HTMLElement> & {
@@ -214,6 +146,23 @@ export type EuiButtonDisplayProps = EuiButtonProps &
      */
     baseClassName: string;
   };
+
+export const sizeToClassNameMap: { [size in EuiButtonSize]: string | null } = {
+  s: '--small',
+  m: null,
+};
+
+export const colorToClassNameMap: {
+  [color in EuiButtonColor]: string | null;
+} = {
+  primary: '--primary',
+  accent: '--accent',
+  success: '--success',
+  warning: '--warning',
+  danger: '--danger',
+  ghost: '--ghost',
+  text: '--text',
+};
 
 /**
  * *DEPRECATED*

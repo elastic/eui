@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { euiBackgroundColor } from '../../../../global_styling';
+import { euiBackgroundColor, euiCanAnimate } from '../../../../global_styling';
 import {
   hexToRgb,
   isColorDark,
@@ -26,7 +26,6 @@ export const BUTTON_COLORS = [
   'success',
   'warning',
   'danger',
-  'disabled',
 ] as const;
 
 export type _EuiButtonColor = typeof BUTTON_COLORS[number];
@@ -38,7 +37,7 @@ export interface _EuiButtonOptions {
 
 export const euiButtonColor = (
   euiThemeContext: UseEuiTheme,
-  color: _EuiButtonColor
+  color: _EuiButtonColor | 'disabled'
 ) => {
   const { euiTheme, colorMode } = euiThemeContext;
   function tintOrShade(color: string) {
@@ -75,7 +74,7 @@ export const euiButtonColor = (
 
 export const euiButtonFillColor = (
   euiThemeContext: UseEuiTheme,
-  color: _EuiButtonColor
+  color: _EuiButtonColor | 'disabled'
 ) => {
   const { euiTheme, colorMode } = euiThemeContext;
 
@@ -110,7 +109,7 @@ export const euiButtonFillColor = (
 
 export const euiButtonEmptyColor = (
   euiThemeContext: UseEuiTheme,
-  color: _EuiButtonColor
+  color: _EuiButtonColor | 'disabled'
 ) => {
   let foreground;
   let background;
@@ -148,13 +147,14 @@ export const euiButtonEmptyColor = (
 export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
   const euiThemeContext = useEuiTheme();
 
-  function stylesByDisplay(color: _EuiButtonColor) {
+  function stylesByDisplay(color: _EuiButtonColor | 'disabled') {
     return {
       base: css`
         ${euiButtonColor(euiThemeContext, color)}
       `,
       fill: css`
         ${euiButtonFillColor(euiThemeContext, color)}
+        outline-color: ${euiThemeContext.euiTheme.colors.fullShade};
       `,
       empty: css`
         ${euiButtonEmptyColor(euiThemeContext, color)}
@@ -171,4 +171,44 @@ export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
     danger: css(stylesByDisplay('danger')[options.display || 'base']),
     disabled: css(stylesByDisplay('disabled')[options.display || 'base']),
   };
+};
+
+export const useEuiButtonRadiusCSS = () => {
+  const { euiTheme } = useEuiTheme();
+
+  return {
+    xs: css`
+      border-radius: ${euiTheme.border.radius.small};
+    `,
+    s: css`
+      border-radius: ${euiTheme.border.radius.small};
+    `,
+    m: css`
+      border-radius: ${euiTheme.border.radius.medium};
+    `,
+  };
+};
+
+export const useEuiButtonFocusCSS = () => {
+  const { euiTheme } = useEuiTheme();
+
+  return `
+    ${euiCanAnimate} {
+      transition: transform ${euiTheme.animation.normal} ease-in-out,
+        background-color ${euiTheme.animation.normal} ease-in-out;
+
+      &:hover:not(:disabled) {
+        transform: translateY(-1px);
+      }
+
+      &:focus {
+        animation: euiButtonActive ${euiTheme.animation.normal}
+          ${euiTheme.animation.bounce};
+      }
+
+      &:active:not(:disabled) {
+        transform: translateY(1px);
+      }
+    }
+  `;
 };

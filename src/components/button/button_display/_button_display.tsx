@@ -9,14 +9,14 @@
 import React, {
   forwardRef,
   CSSProperties,
-  HTMLAttributes,
   ReactNode,
   Ref,
+  ButtonHTMLAttributes,
 } from 'react';
 
 // @ts-ignore module doesn't export `createElement`
 import { createElement } from '@emotion/react';
-import { useEuiTheme } from '../../../services';
+import { getSecureRelForTarget, useEuiTheme } from '../../../services';
 
 import {
   CommonProps,
@@ -31,6 +31,11 @@ import {
   EuiButtonDisplayContentProps,
   EuiButtonDisplayContentType,
 } from './_button_display_content';
+import { validateHref } from '../../../services/security/href_validator';
+import { useEuiButtonRadiusCSS } from '../../../themes/amsterdam/global_styling/mixins';
+
+const SIZES = ['xs', 's', 'm'] as const;
+export type EuiButtonDisplaySizes = typeof SIZES[number];
 
 /**
  * Extends EuiButtonDisplayContentProps which provides
@@ -40,7 +45,7 @@ export interface EuiButtonDisplayCommonProps
   extends EuiButtonDisplayContentProps,
     CommonProps {
   children?: ReactNode;
-  size?: 'xs' | 's' | 'm';
+  size?: EuiButtonDisplaySizes;
   /**
    * Applies the boolean state as the `aria-pressed` property to create a toggle button.
    * *Only use when the readable text does not change between states.*
@@ -79,18 +84,23 @@ export type EuiButtonDisplayPropsForButton = PropsForButton<
   }
 >;
 
-export type Props = ExclusiveUnion<
+export type EuiButtonDisplayProps = ExclusiveUnion<
   EuiButtonDisplayPropsForAnchor,
   EuiButtonDisplayPropsForButton
 >;
 
-export type EuiButtonDisplayProps = EuiButtonDisplayCommonProps &
-  HTMLAttributes<HTMLElement> & {
-    /**
-     * Provide a valid element to render the element as
-     */
-    element?: 'a' | 'button' | 'span' | 'label';
-  };
+export function isButtonDisabled({
+  href,
+  isDisabled,
+  isLoading,
+}: {
+  href?: string;
+  isDisabled?: boolean;
+  isLoading?: boolean;
+}) {
+  const isHrefValid = !href || validateHref(href);
+  return isLoading || isDisabled || !isHrefValid;
+}
 
 /**
  * EuiButtonDisplay is an internal-only component used for displaying
@@ -99,35 +109,45 @@ export type EuiButtonDisplayProps = EuiButtonDisplayCommonProps &
 export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
   (
     {
-      element = 'button',
       children,
       iconType,
       iconSide,
       size = 'm',
-      isDisabled = false,
+      isDisabled,
+      disabled,
       isLoading,
       isSelected,
       fullWidth,
       minWidth,
       contentProps,
       textProps,
+      href,
+      target,
+      rel,
+      type = 'button',
       ...rest
     },
     ref
   ) => {
-    const buttonIsDisabled = isLoading || isDisabled;
+    const buttonIsDisabled = isButtonDisabled({
+      href,
+      isDisabled: isDisabled || disabled,
+      isLoading,
+    });
 
     const minWidthPx: string =
-      minWidth === 'number' ? `${minWidth}px` : (minWidth as string);
+      typeof minWidth === 'number' ? `${minWidth}px` : (minWidth as string);
 
     const theme = useEuiTheme();
 
     const styles = euiButtonDisplayStyles(theme, minWidthPx);
+    const buttonRadiusStyle = useEuiButtonRadiusCSS()[size];
     const cssStyles = [
       styles.euiButtonDisplay,
       styles[size],
       fullWidth && styles.fullWidth,
-      isDisabled && styles.isDisabled,
+      buttonIsDisabled && styles.isDisabled,
+      buttonRadiusStyle,
     ];
 
     const innerNode = (
@@ -143,13 +163,39 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       </EuiButtonDisplayContent>
     );
 
+    const element = href && !buttonIsDisabled ? 'a' : 'button';
+    let elementProps = {};
+    // Element-specific attributes
+    if (element === 'button') {
+      elementProps = {
+        ...elementProps,
+        disabled: buttonIsDisabled,
+        'aria-pressed': isSelected,
+      };
+    }
+
+    const relObj: {
+      rel?: string;
+      href?: string;
+      type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
+      target?: string;
+    } = {};
+
+    if (href && !buttonIsDisabled) {
+      relObj.href = href;
+      relObj.rel = getSecureRelForTarget({ href, target, rel });
+      relObj.target = target;
+    } else {
+      relObj.type = type as ButtonHTMLAttributes<HTMLButtonElement>['type'];
+    }
+
     return createElement(
       element,
       {
         css: cssStyles,
-        disabled: element === 'button' && buttonIsDisabled,
-        'aria-pressed': element === 'button' ? isSelected : undefined,
         ref,
+        ...elementProps,
+        ...relObj,
         ...rest,
       },
       innerNode

@@ -2312,7 +2312,7 @@ exports[`EuiButtonGroup button props selection idSelected is rendered for single
   >
     <label
       aria-label="aria-label"
-      class="euiButtonGroupButton euiButtonGroupButton--small euiButtonGroupButton-isSelected testClass1 testClass2 css-184negg-fill-text-EuiButtonGroupButton"
+      class="euiButtonGroupButton euiButtonGroupButton--small euiButtonGroupButton-isSelected testClass1 testClass2 css-1i4llrh-fill-text-EuiButtonGroupButton"
       data-test-subj="test subject string"
       for="generated-id"
     >
@@ -2407,7 +2407,7 @@ exports[`EuiButtonGroup button props selection idToSelectedMap is rendered for m
     <button
       aria-label="aria-label"
       aria-pressed="true"
-      class="euiButtonGroupButton euiButtonGroupButton--small euiButtonGroupButton-isSelected testClass1 testClass2 css-184negg-fill-text-EuiButtonGroupButton"
+      class="euiButtonGroupButton euiButtonGroupButton--small euiButtonGroupButton-isSelected testClass1 testClass2 css-1i4llrh-fill-text-EuiButtonGroupButton"
       data-test-subj="test subject string"
       id="generated-id"
       type="button"
@@ -2429,7 +2429,7 @@ exports[`EuiButtonGroup button props selection idToSelectedMap is rendered for m
     </button>
     <button
       aria-pressed="true"
-      class="euiButtonGroupButton euiButtonGroupButton--small euiButtonGroupButton-isSelected css-184negg-fill-text-EuiButtonGroupButton"
+      class="euiButtonGroupButton euiButtonGroupButton--small euiButtonGroupButton-isSelected css-1i4llrh-fill-text-EuiButtonGroupButton"
       data-test-subj="button01"
       id="generated-id"
       type="button"

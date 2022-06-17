@@ -93,6 +93,7 @@ exports[`EuiQuickSelect is rendered 1`] = `
         aria-describedby="generated-id generated-id"
         className="euiQuickSelect__applyButton"
         disabled={false}
+        minWidth={112}
         onClick={[Function]}
         size="s"
       >
@@ -216,6 +217,7 @@ exports[`EuiQuickSelect prevQuickSelect 1`] = `
         aria-describedby="generated-id generated-id"
         className="euiQuickSelect__applyButton"
         disabled={false}
+        minWidth={112}
         onClick={[Function]}
         size="s"
       >

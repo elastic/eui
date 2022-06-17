@@ -154,7 +154,7 @@ exports[`EuiButtonIcon props display empty is rendered 1`] = `
 exports[`EuiButtonIcon props display fill is rendered 1`] = `
 <button
   aria-label="button"
-  class="euiButtonIcon euiButtonIcon--fill euiButtonIcon--xSmall css-10vgkp4-fill-primary-EuiButtonIcon"
+  class="euiButtonIcon euiButtonIcon--fill euiButtonIcon--xSmall css-32cbli-fill-primary-EuiButtonIcon"
   type="button"
 >
   <span

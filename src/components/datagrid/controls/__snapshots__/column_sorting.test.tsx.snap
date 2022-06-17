@@ -144,7 +144,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                     class="euiButtonGroup__buttons"
                   >
                     <label
-                      class="euiButtonGroupButton euiButtonGroupButton--small euiButtonGroupButton-isSelected css-184negg-fill-text-EuiButtonGroupButton"
+                      class="euiButtonGroupButton euiButtonGroupButton--small euiButtonGroupButton-isSelected css-1i4llrh-fill-text-EuiButtonGroupButton"
                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
                       for="generated-id"
                       title="Low-High"

@@ -27,12 +27,12 @@ import { IconType, IconSize, EuiIcon } from '../../icon';
 
 import { EuiLoadingSpinner } from '../../loading';
 
-import { ButtonColor } from '../button';
+import { EuiButtonColor } from '../button';
 
 import { validateHref } from '../../../services/security/href_validator';
 import { useEuiButtonColorCSS } from '../../../themes/amsterdam/global_styling/mixins/button';
 
-export type EuiButtonIconColor = ButtonColor;
+export type EuiButtonIconColor = EuiButtonColor;
 
 const displayToClassNameMap = {
   base: null,
