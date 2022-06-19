@@ -13,7 +13,7 @@ type EventNames = keyof WindowEventMap;
 interface Props<Ev extends EventNames> {
   event: Ev;
   handler: (this: Window, ev: WindowEventMap[Ev]) => any;
-  options?: boolean | AddEventListenerOptions;
+  options?: boolean | AddEventListenerOptions | EventListenerOptions;
 }
 
 export class EuiWindowEvent<E extends EventNames> extends Component<Props<E>> {

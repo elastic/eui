@@ -26,6 +26,7 @@ export interface EuiOutsideClickDetectorProps {
    */
   children: ReactElement<any>;
   onOutsideClick: (event: Event) => void;
+  isCapture?: boolean;
   isDisabled?: boolean;
   onMouseDown?: (event: ReactMouseEvent) => void;
   onMouseUp?: (event: ReactMouseEvent) => void;
@@ -99,19 +100,19 @@ export class EuiOutsideClickDetector extends Component<
 
   componentDidMount() {
     document.addEventListener('mouseup', this.onClickOutside, {
-      capture: true,
+      capture: this.props.isCapture,
     });
     document.addEventListener('touchend', this.onClickOutside, {
-      capture: true,
+      capture: this.props.isCapture,
     });
   }
 
   componentWillUnmount() {
     document.removeEventListener('mouseup', this.onClickOutside, {
-      capture: true,
+      capture: this.props.isCapture,
     });
     document.removeEventListener('touchend', this.onClickOutside, {
-      capture: true,
+      capture: this.props.isCapture,
     });
   }
 

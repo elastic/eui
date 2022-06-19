@@ -29,6 +29,7 @@ interface EuiFocusTrapInterface {
    * Reference to element that will get focus when the trap is initiated
    */
   initialFocus?: FocusTarget;
+  isCapture?: boolean;
   style?: CSSProperties;
   disabled?: boolean;
 }
@@ -49,6 +50,7 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
     returnFocus: true,
     noIsolation: true,
     scrollLock: false,
+    isCapture: false,
   };
 
   state: State = {
@@ -90,19 +92,19 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
 
   addMouseupListener = () => {
     document.addEventListener('mouseup', this.onMouseupOutside, {
-      capture: true,
+      capture: this.props.isCapture,
     });
     document.addEventListener('touchend', this.onMouseupOutside, {
-      capture: true,
+      capture: this.props.isCapture,
     });
   };
 
   removeMouseupListener = () => {
     document.removeEventListener('mouseup', this.onMouseupOutside, {
-      capture: true,
+      capture: this.props.isCapture,
     });
     document.removeEventListener('touchend', this.onMouseupOutside, {
-      capture: true,
+      capture: this.props.isCapture,
     });
   };
 
@@ -125,6 +127,7 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
       returnFocus,
       noIsolation,
       scrollLock,
+      isCapture,
       ...rest
     } = this.props;
     const isDisabled = disabled || this.state.hasBeenDisabledByClick;

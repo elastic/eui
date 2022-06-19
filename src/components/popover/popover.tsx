@@ -189,6 +189,10 @@ export interface EuiPopoverProps {
    * Usually takes the `id` of the popover title
    */
   'aria-labelledby'?: string;
+  /**
+   * Flag that allows to omit stopPropagation of the scroll/resize event
+   */
+  isCapture?: boolean;
 }
 
 type AnchorPosition = 'up' | 'right' | 'down' | 'left';
@@ -319,6 +323,7 @@ export class EuiPopover extends Component<Props, State> {
     panelPaddingSize: 'm',
     hasArrow: true,
     display: 'inlineBlock',
+    isCapture: false,
   };
 
   static getDerivedStateFromProps(
@@ -529,7 +534,7 @@ export class EuiPopover extends Component<Props, State> {
 
     if (this.props.repositionOnScroll) {
       window.addEventListener('scroll', this.positionPopoverFixed, {
-        capture: true,
+        capture: this.props.isCapture,
       });
     }
   }
@@ -544,11 +549,11 @@ export class EuiPopover extends Component<Props, State> {
     if (prevProps.repositionOnScroll !== this.props.repositionOnScroll) {
       if (this.props.repositionOnScroll) {
         window.addEventListener('scroll', this.positionPopoverFixed, {
-          capture: true,
+          capture: this.props.isCapture,
         });
       } else {
         window.removeEventListener('scroll', this.positionPopoverFixed, {
-          capture: true,
+          capture: this.props.isCapture,
         });
       }
     }
@@ -676,13 +681,13 @@ export class EuiPopover extends Component<Props, State> {
         isOpenStable: false,
       });
       window.removeEventListener('resize', this.positionPopoverFluid, {
-        capture: true,
+        capture: this.props.isCapture,
       });
     } else {
       // panel is coming into existence
       this.positionPopoverFluid();
       window.addEventListener('resize', this.positionPopoverFluid, {
-        capture: true,
+        capture: this.props.isCapture,
       });
     }
   };
