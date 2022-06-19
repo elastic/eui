@@ -24,12 +24,12 @@ exports[`EuiForm renders with error callout when isInvalid is "true" 1`] = `
 >
   <div
     aria-live="assertive"
-    class="euiPanel euiPanel--danger euiPanel--paddingMedium euiCallOut euiCallOut--danger euiForm__errors css-1u13ow-euiPanel-grow-none-m-danger-euiCallOut"
+    class="euiPanel euiPanel--danger euiPanel--paddingMedium euiCallOut euiCallOut--danger euiForm__errors emotion-euiPanel-none-m-danger-euiCallOut"
     role="alert"
     tabindex="-1"
   >
     <p
-      class="euiTitle euiCallOutHeader__title css-st4zhi-euiTitle-xs-euiCallOutHeader-danger"
+      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger"
     >
       Please address the highlighted errors.
     </p>
@@ -45,17 +45,17 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has mul
 >
   <div
     aria-live="assertive"
-    class="euiPanel euiPanel--danger euiPanel--paddingMedium euiCallOut euiCallOut--danger euiForm__errors css-1u13ow-euiPanel-grow-none-m-danger-euiCallOut"
+    class="euiPanel euiPanel--danger euiPanel--paddingMedium euiCallOut euiCallOut--danger euiForm__errors emotion-euiPanel-none-m-danger-euiCallOut"
     role="alert"
     tabindex="-1"
   >
     <p
-      class="euiTitle euiCallOutHeader__title css-st4zhi-euiTitle-xs-euiCallOutHeader-danger"
+      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger"
     >
       Please address the highlighted errors.
     </p>
     <div
-      class="euiText css-1cp7n4r-euiText-s-euiTextColor-default-euiCallOut__description"
+      class="euiText emotion-euiText-s-euiTextColor-default-euiCallOut__description"
     >
       <ul>
         <li
@@ -86,17 +86,17 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has one
 >
   <div
     aria-live="assertive"
-    class="euiPanel euiPanel--danger euiPanel--paddingMedium euiCallOut euiCallOut--danger euiForm__errors css-1u13ow-euiPanel-grow-none-m-danger-euiCallOut"
+    class="euiPanel euiPanel--danger euiPanel--paddingMedium euiCallOut euiCallOut--danger euiForm__errors emotion-euiPanel-none-m-danger-euiCallOut"
     role="alert"
     tabindex="-1"
   >
     <p
-      class="euiTitle euiCallOutHeader__title css-st4zhi-euiTitle-xs-euiCallOutHeader-danger"
+      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger"
     >
       Please address the highlighted errors.
     </p>
     <div
-      class="euiText css-1cp7n4r-euiText-s-euiTextColor-default-euiCallOut__description"
+      class="euiText emotion-euiText-s-euiTextColor-default-euiCallOut__description"
     >
       <ul>
         <li

@@ -1,8 +1,9 @@
 import { createSerializer, matchers } from "@emotion/jest";
+import { replaceEmotionPrefix } from '../../../src/test'
 
 expect.extend(matchers);
 
 module.exports = createSerializer({
-  classNameReplacer: (className) => className,
+  classNameReplacer: replaceEmotionPrefix,
   includeStyles: false,
 });

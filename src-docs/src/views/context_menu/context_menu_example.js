@@ -152,7 +152,7 @@ export const ContextMenuExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Context menu panels can be passed React elements through the{' '}
             <EuiCode>content</EuiCode> prop instead of <EuiCode>items</EuiCode>.
@@ -174,7 +174,7 @@ export const ContextMenuExample = {
             </Link>{' '}
             component.
           </p>
-        </div>
+        </>
       ),
       demo: <ContextMenuWithContent />,
     },

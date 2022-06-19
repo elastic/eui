@@ -52,7 +52,7 @@ exports[`EuiButtonContent props isLoading is rendered 1`] = `
 >
   <span
     aria-label="Loading"
-    class="euiLoadingSpinner euiButtonContent__spinner css-155ohbx-euiLoadingSpinner-m"
+    class="euiLoadingSpinner euiButtonContent__spinner emotion-euiLoadingSpinner-m"
     role="progressbar"
   />
   <span />
@@ -65,7 +65,7 @@ exports[`EuiButtonContent props isLoading replaces iconType with spinner 1`] = `
 >
   <span
     aria-label="Loading"
-    class="euiLoadingSpinner euiButtonContent__spinner css-155ohbx-euiLoadingSpinner-m"
+    class="euiLoadingSpinner euiButtonContent__spinner emotion-euiLoadingSpinner-m"
     role="progressbar"
   />
   <span />

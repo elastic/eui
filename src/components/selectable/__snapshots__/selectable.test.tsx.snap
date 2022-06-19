@@ -126,7 +126,7 @@ exports[`EuiSelectable errorMessage prop can render an element as the message 1`
     Filter options
   </p>
   <div
-    class="euiText euiSelectableMessage css-faz4lv-euiText-xs-euiTextColor-subdued"
+    class="euiText euiSelectableMessage emotion-euiText-xs-euiTextColor-subdued"
     data-test-subj="euiSelectableMessage"
     id="generated-id_messageContent"
   >
@@ -264,7 +264,7 @@ exports[`EuiSelectable errorMessage prop does renders the message when defined 1
     Filter options
   </p>
   <div
-    class="euiText euiSelectableMessage css-faz4lv-euiText-xs-euiTextColor-subdued"
+    class="euiText euiSelectableMessage emotion-euiText-xs-euiTextColor-subdued"
     data-test-subj="euiSelectableMessage"
     id="generated-id_messageContent"
   >
@@ -363,7 +363,7 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
     Filter options
   </p>
   <div
-    class="euiText euiSelectableMessage css-faz4lv-euiText-xs-euiTextColor-subdued"
+    class="euiText euiSelectableMessage emotion-euiText-xs-euiTextColor-subdued"
     data-test-subj="euiSelectableMessage"
     id="generated-id_messageContent"
   >

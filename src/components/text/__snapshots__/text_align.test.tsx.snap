@@ -3,14 +3,14 @@
 exports[`EuiTextAlign is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="testClass1 testClass2 css-90la4n-euiTextAlign-left"
+  class="testClass1 testClass2 emotion-euiTextAlign-left"
   data-test-subj="test subject string"
 />
 `;
 
-exports[`EuiTextAlign props cloneElement 1`] = `
+exports[`EuiTextAlign props cloneElement cloneElement 1`] = `
 <p
-  class="css-1sr0rpv-euiTextAlign-left"
+  class="emotion-euiTextAlign-left"
 >
   Content
 </p>
@@ -18,18 +18,18 @@ exports[`EuiTextAlign props cloneElement 1`] = `
 
 exports[`EuiTextAlign props direction center is rendered 1`] = `
 <div
-  class="css-155kyc0-euiTextAlign-center"
+  class="emotion-euiTextAlign-center"
 />
 `;
 
 exports[`EuiTextAlign props direction left is rendered 1`] = `
 <div
-  class="css-90la4n-euiTextAlign-left"
+  class="emotion-euiTextAlign-left"
 />
 `;
 
 exports[`EuiTextAlign props direction right is rendered 1`] = `
 <div
-  class="css-5onnip-euiTextAlign-right"
+  class="emotion-euiTextAlign-right"
 />
 `;
