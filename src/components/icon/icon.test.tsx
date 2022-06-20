@@ -20,7 +20,6 @@ import {
   appendIconComponentCache,
 } from './icon';
 import { PropsOf } from '../common';
-import * as reactServices from '../../services/react';
 import { icon as EuiIconVideoPlayer } from './assets/videoPlayer';
 
 jest.mock('./icon', () => {
