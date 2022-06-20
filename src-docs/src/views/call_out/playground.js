@@ -9,7 +9,7 @@ export default () => {
   const docgenInfo = Array.isArray(EuiCallOut.__docgenInfo)
     ? EuiCallOut.__docgenInfo[0]
     : EuiCallOut.__docgenInfo;
-  const propsToUse = propUtilityForPlayground(docgenInfo.props, true);
+  const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
   propsToUse.iconType = iconValidator(propsToUse.iconType);
 

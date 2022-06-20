@@ -6,7 +6,7 @@ export const bottomBarConfig = () => {
   const docgenInfo = Array.isArray(EuiBottomBar.__docgenInfo)
     ? EuiBottomBar.__docgenInfo[0]
     : EuiBottomBar.__docgenInfo;
-  const propsToUse = propUtilityForPlayground(docgenInfo.props, true);
+  const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
   propsToUse.children = {
     type: PropTypes.ReactNode,

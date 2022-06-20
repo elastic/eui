@@ -68,7 +68,6 @@ const propUtilityForPlayground = (props, withTheme = false) => {
 
   if (withTheme) {
     delete props.theme;
-    delete props.euiTheme;
   }
 
   for (const key in props) {
