@@ -171,19 +171,16 @@ export const TOKEN_MAP: {
     color: 'euiColorVis7',
   },
   tokenRepo: {
-    shape: 'rectangle',
+    shape: 'square',
     color: 'euiColorVis1',
-    fill: 'dark',
   },
   tokenSymbol: {
-    shape: 'rectangle',
+    shape: 'square',
     color: 'euiColorVis0',
-    fill: 'dark',
   },
   tokenFile: {
-    shape: 'rectangle',
-    color: 'gray',
-    fill: 'dark',
+    shape: 'square',
+    color: 'euiColorVis2',
   },
   tokenNamespace: {
     shape: 'square',

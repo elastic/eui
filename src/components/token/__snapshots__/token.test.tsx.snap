@@ -2,7 +2,7 @@
 
 exports[`EuiToken is rendered 1`] = `
 <span
-  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--small testClass1 testClass2"
+  class="euiToken testClass1 testClass2 emotion-euiToken-gray-circle-light-s"
   data-test-subj="test subject string"
 >
   <span
@@ -15,8 +15,7 @@ exports[`EuiToken is rendered 1`] = `
 
 exports[`EuiToken props color can be a custom hex 1`] = `
 <span
-  class="euiToken euiToken--circle euiToken--dark euiToken--small"
-  style="background-color:#FF0000;color:#000000"
+  class="euiToken emotion-euiToken-customColor-circle-dark-customBackground-s"
 >
   <span
     data-euiicon-type="dot"
@@ -26,7 +25,7 @@ exports[`EuiToken props color can be a custom hex 1`] = `
 
 exports[`EuiToken props color euiColorVis0 is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis0 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis0-circle-light-s"
 >
   <span
     data-euiicon-type="dot"
@@ -36,7 +35,7 @@ exports[`EuiToken props color euiColorVis0 is rendered 1`] = `
 
 exports[`EuiToken props color euiColorVis1 is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis1 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis1-circle-light-s"
 >
   <span
     data-euiicon-type="dot"
@@ -46,7 +45,7 @@ exports[`EuiToken props color euiColorVis1 is rendered 1`] = `
 
 exports[`EuiToken props color euiColorVis2 is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis2 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis2-circle-light-s"
 >
   <span
     data-euiicon-type="dot"
@@ -56,7 +55,7 @@ exports[`EuiToken props color euiColorVis2 is rendered 1`] = `
 
 exports[`EuiToken props color euiColorVis3 is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis3 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis3-circle-light-s"
 >
   <span
     data-euiicon-type="dot"
@@ -66,7 +65,7 @@ exports[`EuiToken props color euiColorVis3 is rendered 1`] = `
 
 exports[`EuiToken props color euiColorVis4 is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis4 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis4-circle-light-s"
 >
   <span
     data-euiicon-type="dot"
@@ -76,7 +75,7 @@ exports[`EuiToken props color euiColorVis4 is rendered 1`] = `
 
 exports[`EuiToken props color euiColorVis5 is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis5 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis5-circle-light-s"
 >
   <span
     data-euiicon-type="dot"
@@ -86,7 +85,7 @@ exports[`EuiToken props color euiColorVis5 is rendered 1`] = `
 
 exports[`EuiToken props color euiColorVis6 is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis6 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis6-circle-light-s"
 >
   <span
     data-euiicon-type="dot"
@@ -96,7 +95,7 @@ exports[`EuiToken props color euiColorVis6 is rendered 1`] = `
 
 exports[`EuiToken props color euiColorVis7 is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis7 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis7-circle-light-s"
 >
   <span
     data-euiicon-type="dot"
@@ -106,7 +105,7 @@ exports[`EuiToken props color euiColorVis7 is rendered 1`] = `
 
 exports[`EuiToken props color euiColorVis8 is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis8 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis8-circle-light-s"
 >
   <span
     data-euiicon-type="dot"
@@ -116,7 +115,7 @@ exports[`EuiToken props color euiColorVis8 is rendered 1`] = `
 
 exports[`EuiToken props color euiColorVis9 is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis9 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis9-circle-light-s"
 >
   <span
     data-euiicon-type="dot"
@@ -126,7 +125,7 @@ exports[`EuiToken props color euiColorVis9 is rendered 1`] = `
 
 exports[`EuiToken props color gray is rendered 1`] = `
 <span
-  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-gray-circle-light-s"
 >
   <span
     data-euiicon-type="dot"
@@ -136,7 +135,7 @@ exports[`EuiToken props color gray is rendered 1`] = `
 
 exports[`EuiToken props fill dark is rendered 1`] = `
 <span
-  class="euiToken euiToken--gray euiToken--circle euiToken--dark euiToken--small"
+  class="euiToken emotion-euiToken-gray-circle-dark-s"
 >
   <span
     data-euiicon-type="dot"
@@ -146,7 +145,7 @@ exports[`EuiToken props fill dark is rendered 1`] = `
 
 exports[`EuiToken props fill light is rendered 1`] = `
 <span
-  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-gray-circle-light-s"
 >
   <span
     data-euiicon-type="dot"
@@ -156,7 +155,7 @@ exports[`EuiToken props fill light is rendered 1`] = `
 
 exports[`EuiToken props fill none is rendered 1`] = `
 <span
-  class="euiToken euiToken--gray euiToken--circle euiToken--small"
+  class="euiToken emotion-euiToken-gray-circle-none-s"
 >
   <span
     data-euiicon-type="dot"
@@ -166,7 +165,7 @@ exports[`EuiToken props fill none is rendered 1`] = `
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenAlias is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis3 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis3-circle-light-m"
 >
   <span
     data-euiicon-type="tokenAlias"
@@ -176,7 +175,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenAlias is rendered 1`] =
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenAnnotation is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis5 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis5-square-light-m"
 >
   <span
     data-euiicon-type="tokenAnnotation"
@@ -186,7 +185,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenAnnotation is rendered 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenArray is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis7 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis7-square-light-m"
 >
   <span
     data-euiicon-type="tokenArray"
@@ -196,7 +195,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenArray is rendered 1`] =
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenBinary is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis4 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis4-square-light-m"
 >
   <span
     data-euiicon-type="tokenBinary"
@@ -206,7 +205,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenBinary is rendered 1`] 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenBoolean is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis7 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis7-square-light-m"
 >
   <span
     data-euiicon-type="tokenBoolean"
@@ -216,7 +215,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenBoolean is rendered 1`]
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenClass is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis1 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis1-circle-light-m"
 >
   <span
     data-euiicon-type="tokenClass"
@@ -226,7 +225,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenClass is rendered 1`] =
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenCompletionSuggester is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis1 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis1-square-light-m"
 >
   <span
     data-euiicon-type="tokenCompletionSuggester"
@@ -236,7 +235,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenCompletionSuggester is 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenConstant is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis0 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis0-circle-light-m"
 >
   <span
     data-euiicon-type="tokenConstant"
@@ -246,7 +245,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenConstant is rendered 1`
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenDate is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis6 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis6-square-light-m"
 >
   <span
     data-euiicon-type="tokenDate"
@@ -256,7 +255,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenDate is rendered 1`] = 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenDenseVector is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis2 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis2-square-light-m"
 >
   <span
     data-euiicon-type="tokenDenseVector"
@@ -266,7 +265,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenDenseVector is rendered
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenElement is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis3 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis3-square-light-m"
 >
   <span
     data-euiicon-type="tokenElement"
@@ -276,7 +275,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenElement is rendered 1`]
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenEnum is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis3 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis3-circle-light-m"
 >
   <span
     data-euiicon-type="tokenEnum"
@@ -286,7 +285,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenEnum is rendered 1`] = 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenEnumMember is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis7 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis7-square-light-m"
 >
   <span
     data-euiicon-type="tokenEnumMember"
@@ -296,7 +295,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenEnumMember is rendered 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenEvent is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis4 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis4-circle-light-m"
 >
   <span
     data-euiicon-type="tokenEvent"
@@ -306,7 +305,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenEvent is rendered 1`] =
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenException is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis0 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis0-circle-light-m"
 >
   <span
     data-euiicon-type="tokenException"
@@ -316,7 +315,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenException is rendered 1
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenField is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis0 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis0-circle-light-m"
 >
   <span
     data-euiicon-type="tokenField"
@@ -326,7 +325,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenField is rendered 1`] =
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenFile is rendered 1`] = `
 <span
-  class="euiToken euiToken--gray euiToken--rectangle euiToken--dark euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis2-square-light-m"
 >
   <span
     data-euiicon-type="tokenFile"
@@ -336,7 +335,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenFile is rendered 1`] = 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenFlattened is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis7 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis7-square-light-m"
 >
   <span
     data-euiicon-type="tokenFlattened"
@@ -346,7 +345,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenFlattened is rendered 1
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenFunction is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis2 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis2-circle-light-m"
 >
   <span
     data-euiicon-type="tokenFunction"
@@ -356,7 +355,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenFunction is rendered 1`
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenGeo is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis5 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis5-square-light-m"
 >
   <span
     data-euiicon-type="tokenGeo"
@@ -366,7 +365,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenGeo is rendered 1`] = `
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenHistogram is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis6 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis6-square-light-m"
 >
   <span
     data-euiicon-type="tokenHistogram"
@@ -376,7 +375,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenHistogram is rendered 1
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenIP is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis9 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis9-square-light-m"
 >
   <span
     data-euiicon-type="tokenIP"
@@ -386,7 +385,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenIP is rendered 1`] = `
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenInterface is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis9 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis9-circle-light-m"
 >
   <span
     data-euiicon-type="tokenInterface"
@@ -396,7 +395,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenInterface is rendered 1
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenJoin is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis5 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis5-square-light-m"
 >
   <span
     data-euiicon-type="tokenJoin"
@@ -406,7 +405,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenJoin is rendered 1`] = 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenKey is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis5 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis5-circle-light-m"
 >
   <span
     data-euiicon-type="tokenKey"
@@ -416,7 +415,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenKey is rendered 1`] = `
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenKeyword is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis1 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis1-square-light-m"
 >
   <span
     data-euiicon-type="tokenKeyword"
@@ -426,7 +425,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenKeyword is rendered 1`]
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenMethod is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis2 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis2-square-light-m"
 >
   <span
     data-euiicon-type="tokenMethod"
@@ -436,7 +435,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenMethod is rendered 1`] 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenModule is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis4 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis4-square-light-m"
 >
   <span
     data-euiicon-type="tokenModule"
@@ -446,7 +445,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenModule is rendered 1`] 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenNamespace is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis1 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis1-square-light-m"
 >
   <span
     data-euiicon-type="tokenNamespace"
@@ -456,7 +455,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenNamespace is rendered 1
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenNested is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis2 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis2-circle-light-m"
 >
   <span
     data-euiicon-type="tokenNested"
@@ -466,7 +465,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenNested is rendered 1`] 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenNull is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis2 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis2-square-light-m"
 >
   <span
     data-euiicon-type="tokenNull"
@@ -476,7 +475,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenNull is rendered 1`] = 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenNumber is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis0 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis0-square-light-m"
 >
   <span
     data-euiicon-type="tokenNumber"
@@ -486,7 +485,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenNumber is rendered 1`] 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenObject is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis3 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis3-circle-light-m"
 >
   <span
     data-euiicon-type="tokenObject"
@@ -496,7 +495,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenObject is rendered 1`] 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenOperator is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis4 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis4-circle-light-m"
 >
   <span
     data-euiicon-type="tokenOperator"
@@ -506,7 +505,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenOperator is rendered 1`
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenPackage is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis0 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis0-square-light-m"
 >
   <span
     data-euiicon-type="tokenPackage"
@@ -516,7 +515,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenPackage is rendered 1`]
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenParameter is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis4 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis4-square-light-m"
 >
   <span
     data-euiicon-type="tokenParameter"
@@ -526,7 +525,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenParameter is rendered 1
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenPercolator is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis6 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis6-square-light-m"
 >
   <span
     data-euiicon-type="tokenPercolator"
@@ -536,7 +535,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenPercolator is rendered 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenProperty is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis2 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis2-circle-light-m"
 >
   <span
     data-euiicon-type="tokenProperty"
@@ -546,7 +545,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenProperty is rendered 1`
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenRange is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis4 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis4-circle-light-m"
 >
   <span
     data-euiicon-type="tokenRange"
@@ -556,7 +555,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenRange is rendered 1`] =
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenRankFeature is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis8 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis8-square-light-m"
 >
   <span
     data-euiicon-type="tokenRankFeature"
@@ -566,7 +565,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenRankFeature is rendered
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenRankFeatures is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis3 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis3-square-light-m"
 >
   <span
     data-euiicon-type="tokenRankFeatures"
@@ -576,7 +575,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenRankFeatures is rendere
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenRepo is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis1 euiToken--rectangle euiToken--dark euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis1-square-light-m"
 >
   <span
     data-euiicon-type="tokenRepo"
@@ -586,7 +585,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenRepo is rendered 1`] = 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenSearchType is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis5 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis5-square-light-m"
 >
   <span
     data-euiicon-type="tokenSearchType"
@@ -596,7 +595,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenSearchType is rendered 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenShape is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis8 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis8-circle-light-m"
 >
   <span
     data-euiicon-type="tokenShape"
@@ -606,7 +605,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenShape is rendered 1`] =
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenString is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis1 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis1-square-light-m"
 >
   <span
     data-euiicon-type="tokenString"
@@ -616,7 +615,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenString is rendered 1`] 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenStruct is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis0 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis0-square-light-m"
 >
   <span
     data-euiicon-type="tokenStruct"
@@ -626,7 +625,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenStruct is rendered 1`] 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenSymbol is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis0 euiToken--rectangle euiToken--dark euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis0-square-light-m"
 >
   <span
     data-euiicon-type="tokenSymbol"
@@ -636,7 +635,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenSymbol is rendered 1`] 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenTag is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis9 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis9-square-light-m"
 >
   <span
     data-euiicon-type="tokenTag"
@@ -646,7 +645,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenTag is rendered 1`] = `
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenText is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis3 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis3-square-light-m"
 >
   <span
     data-euiicon-type="tokenText"
@@ -656,7 +655,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenText is rendered 1`] = 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenTokenCount is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis4 euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis4-square-light-m"
 >
   <span
     data-euiicon-type="tokenTokenCount"
@@ -666,7 +665,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenTokenCount is rendered 
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenVariable is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis7 euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-euiColorVis7-circle-light-m"
 >
   <span
     data-euiicon-type="tokenVariable"
@@ -676,17 +675,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenVariable is rendered 1`
 
 exports[`EuiToken props shape circle is rendered 1`] = `
 <span
-  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--small"
->
-  <span
-    data-euiicon-type="dot"
-  />
-</span>
-`;
-
-exports[`EuiToken props shape rectangle is rendered 1`] = `
-<span
-  class="euiToken euiToken--gray euiToken--rectangle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-gray-circle-light-s"
 >
   <span
     data-euiicon-type="dot"
@@ -696,7 +685,7 @@ exports[`EuiToken props shape rectangle is rendered 1`] = `
 
 exports[`EuiToken props shape square is rendered 1`] = `
 <span
-  class="euiToken euiToken--gray euiToken--square euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-gray-square-light-s"
 >
   <span
     data-euiicon-type="dot"
@@ -706,7 +695,7 @@ exports[`EuiToken props shape square is rendered 1`] = `
 
 exports[`EuiToken props size l is rendered 1`] = `
 <span
-  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--large"
+  class="euiToken emotion-euiToken-gray-circle-light-l"
 >
   <span
     data-euiicon-type="dot"
@@ -716,7 +705,7 @@ exports[`EuiToken props size l is rendered 1`] = `
 
 exports[`EuiToken props size m is rendered 1`] = `
 <span
-  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--medium"
+  class="euiToken emotion-euiToken-gray-circle-light-m"
 >
   <span
     data-euiicon-type="dot"
@@ -726,7 +715,7 @@ exports[`EuiToken props size m is rendered 1`] = `
 
 exports[`EuiToken props size s is rendered 1`] = `
 <span
-  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--small"
+  class="euiToken emotion-euiToken-gray-circle-light-s"
 >
   <span
     data-euiicon-type="dot"
@@ -736,7 +725,7 @@ exports[`EuiToken props size s is rendered 1`] = `
 
 exports[`EuiToken props size xs is rendered 1`] = `
 <span
-  class="euiToken euiToken--gray euiToken--circle euiToken--light euiToken--xsmall"
+  class="euiToken emotion-euiToken-gray-circle-light-s"
 >
   <span
     data-euiicon-type="dot"
