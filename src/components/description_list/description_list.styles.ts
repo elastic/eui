@@ -21,6 +21,7 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
     euiDescriptionList: css`
       &.euiDescriptionList--row {
         &.euiDescriptionList--center {
+
           text-align: center;
         }
 
@@ -63,6 +64,10 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
 
       &.euiDescriptionList--column,
       &.euiDescriptionList--responsiveColumn {
+        display: flex;
+        align-items: stretch;
+        flex-wrap: wrap;
+      
         // Align the title to smash against the description.
         &.euiDescriptionList--center {
           .euiDescriptionList__title {
@@ -83,6 +88,9 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
         }
 
         &.euiDescriptionList--compressed {
+          .euiDescriptionList__title {
+            text-align: right;
+          }
           .euiDescriptionList__title {
             ${euiTitle(euiThemeContext, 'xxs')};
             line-height: ${lineHeight};
@@ -125,22 +133,6 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
             }
           }
 
-          &.euiDescriptionList--inline {
-            &.euiDescriptionList--compressed {
-              .euiDescriptionList__title {
-                ${euiFontSize(euiThemeContext, 'xs')};
-                padding: 0 ${euiTheme.size.xs};
-              }
-
-              .euiDescriptionList__description {
-                ${euiFontSize(euiThemeContext, 'xs')};
-              }
-            }
-            &.euiDescriptionList--center {
-              text-align: center;
-            }
-          }
-        }
       }
     `,
     'euiDescriptionList-row': css`
@@ -159,10 +151,6 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     'euiDescriptionList-column': css`
-      display: flex;
-      align-items: stretch;
-      flex-wrap: wrap;
-
       > * {
         margin-top: ${euiTheme.size.base};
       }
@@ -236,9 +224,11 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
         display: inline;
         border-radius: ${euiTheme.border.radius.small};
         font-weight: ${euiTheme.font.weight.medium};
-        background-color: ${colorMode === 'DARK'
-          ? tint(euiTheme.colors.lightestShade, 0.5)
-          : euiTheme.colors.lightestShade};
+        background-color: ${
+          colorMode === 'DARK'
+            ? tint(euiTheme.colors.lightestShade, 0.5)
+            : euiTheme.colors.lightestShade
+        };
         padding: 1px ${euiTheme.size.xs};
         margin: 0 ${euiTheme.size.xs};
 
@@ -253,6 +243,21 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiFontSize(euiThemeContext, 's')};
         display: inline;
       }
+      
+      &.euiDescriptionList--compressed {
+        .euiDescriptionList__title {
+          ${euiFontSize(euiThemeContext, 'xs')};
+          padding: 0 ${euiTheme.size.xs};
+        }
+
+        .euiDescriptionList__description {
+          ${euiFontSize(euiThemeContext, 'xs')};
+        }
+      }
+      &.euiDescriptionList--center {
+        text-align: center;
+      }
+    }
     `,
   };
 };

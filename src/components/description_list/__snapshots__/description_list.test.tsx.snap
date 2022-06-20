@@ -2,39 +2,39 @@
 
 exports[` 1`] = `
 <dl
-  class="euiDescriptionList euiDescriptionList--row css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+  class="euiDescriptionList euiDescriptionList--row css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
 >
   <dt
-    class="euiDescriptionList__title css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+    class="euiDescriptionList__title css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
   >
     Title 1
   </dt>
   <dd
-    class="euiDescriptionList__description css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+    class="euiDescriptionList__description css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
   >
     Description 1
   </dd>
   <dt
-    class="euiDescriptionList__title css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+    class="euiDescriptionList__title css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
   >
     <em>
       Title 2
     </em>
   </dt>
   <dd
-    class="euiDescriptionList__description css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+    class="euiDescriptionList__description css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
   >
     <code>
       Description 2
     </code>
   </dd>
   <dt
-    class="euiDescriptionList__title css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+    class="euiDescriptionList__title css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
   >
     Title 3
   </dt>
   <dd
-    class="euiDescriptionList__description css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+    class="euiDescriptionList__description css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
   >
     Description 3
   </dd>
@@ -44,7 +44,7 @@ exports[` 1`] = `
 exports[`EuiDescriptionList is rendered 1`] = `
 <dl
   aria-label="aria-label"
-  class="euiDescriptionList euiDescriptionList--row testClass1 testClass2 css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+  class="euiDescriptionList euiDescriptionList--row testClass1 testClass2 css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
   data-test-subj="test subject string"
 >
   Content
@@ -53,40 +53,40 @@ exports[`EuiDescriptionList is rendered 1`] = `
 
 exports[`EuiDescriptionList props align center is rendered 1`] = `
 <dl
-  class="euiDescriptionList euiDescriptionList--row euiDescriptionList--center css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+  class="euiDescriptionList euiDescriptionList--row euiDescriptionList--center css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
 />
 `;
 
 exports[`EuiDescriptionList props align left is rendered 1`] = `
 <dl
-  class="euiDescriptionList euiDescriptionList--row css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+  class="euiDescriptionList euiDescriptionList--row css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
 />
 `;
 
 exports[`EuiDescriptionList props compressed is rendered 1`] = `
 <dl
-  class="euiDescriptionList euiDescriptionList--row euiDescriptionList--compressed css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+  class="euiDescriptionList euiDescriptionList--row euiDescriptionList--compressed css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
 />
 `;
 
 exports[`EuiDescriptionList props listItems descriptionProps is rendered 1`] = `
 <dl
-  class="euiDescriptionList euiDescriptionList--row css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+  class="euiDescriptionList euiDescriptionList--row css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
 >
   <dt
-    class="euiDescriptionList__title css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+    class="euiDescriptionList__title css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
   >
     Title 1
   </dt>
   <dd
     aria-label="aria-label"
-    class="euiDescriptionList__description testClass1 testClass2 css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+    class="euiDescriptionList__description testClass1 testClass2 css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
     data-test-subj="test subject string"
   >
     Description 1
   </dd>
   <dt
-    class="euiDescriptionList__title css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+    class="euiDescriptionList__title css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
   >
     <em>
       Title 2
@@ -94,7 +94,7 @@ exports[`EuiDescriptionList props listItems descriptionProps is rendered 1`] = `
   </dt>
   <dd
     aria-label="aria-label"
-    class="euiDescriptionList__description testClass1 testClass2 css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+    class="euiDescriptionList__description testClass1 testClass2 css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
     data-test-subj="test subject string"
   >
     <code>
@@ -102,13 +102,13 @@ exports[`EuiDescriptionList props listItems descriptionProps is rendered 1`] = `
     </code>
   </dd>
   <dt
-    class="euiDescriptionList__title css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+    class="euiDescriptionList__title css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
   >
     Title 3
   </dt>
   <dd
     aria-label="aria-label"
-    class="euiDescriptionList__description testClass1 testClass2 css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+    class="euiDescriptionList__description testClass1 testClass2 css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
     data-test-subj="test subject string"
   >
     Description 3
@@ -118,23 +118,23 @@ exports[`EuiDescriptionList props listItems descriptionProps is rendered 1`] = `
 
 exports[`EuiDescriptionList props listItems titleProps is rendered 1`] = `
 <dl
-  class="euiDescriptionList euiDescriptionList--row css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+  class="euiDescriptionList euiDescriptionList--row css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
 >
   <dt
     aria-label="aria-label"
-    class="euiDescriptionList__title testClass1 testClass2 css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+    class="euiDescriptionList__title testClass1 testClass2 css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
     data-test-subj="test subject string"
   >
     Title 1
   </dt>
   <dd
-    class="euiDescriptionList__description css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+    class="euiDescriptionList__description css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
   >
     Description 1
   </dd>
   <dt
     aria-label="aria-label"
-    class="euiDescriptionList__title testClass1 testClass2 css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+    class="euiDescriptionList__title testClass1 testClass2 css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
     data-test-subj="test subject string"
   >
     <em>
@@ -142,7 +142,7 @@ exports[`EuiDescriptionList props listItems titleProps is rendered 1`] = `
     </em>
   </dt>
   <dd
-    class="euiDescriptionList__description css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+    class="euiDescriptionList__description css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
   >
     <code>
       Description 2
@@ -150,13 +150,13 @@ exports[`EuiDescriptionList props listItems titleProps is rendered 1`] = `
   </dd>
   <dt
     aria-label="aria-label"
-    class="euiDescriptionList__title testClass1 testClass2 css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+    class="euiDescriptionList__title testClass1 testClass2 css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
     data-test-subj="test subject string"
   >
     Title 3
   </dt>
   <dd
-    class="euiDescriptionList__description css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+    class="euiDescriptionList__description css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
   >
     Description 3
   </dd>
@@ -165,24 +165,24 @@ exports[`EuiDescriptionList props listItems titleProps is rendered 1`] = `
 
 exports[`EuiDescriptionList props type column is rendered 1`] = `
 <dl
-  class="euiDescriptionList euiDescriptionList--column css-xdlzh4-euiDescriptionList-euiDescriptionList-column"
+  class="euiDescriptionList euiDescriptionList--column css-1uct37e-euiDescriptionList-euiDescriptionList-column"
 />
 `;
 
 exports[`EuiDescriptionList props type inline is rendered 1`] = `
 <dl
-  class="euiDescriptionList euiDescriptionList--inline css-421g5l-euiDescriptionList-euiDescriptionList-inline"
+  class="euiDescriptionList euiDescriptionList--inline css-16hpttr-euiDescriptionList-euiDescriptionList-inline"
 />
 `;
 
 exports[`EuiDescriptionList props type responsiveColumn is rendered 1`] = `
 <dl
-  class="euiDescriptionList euiDescriptionList--responsiveColumn css-ln1fl0-euiDescriptionList-euiDescriptionList-responsiveColumn"
+  class="euiDescriptionList euiDescriptionList--responsiveColumn css-bb3cqv-euiDescriptionList-euiDescriptionList-responsiveColumn"
 />
 `;
 
 exports[`EuiDescriptionList props type row is rendered 1`] = `
 <dl
-  class="euiDescriptionList euiDescriptionList--row css-1nqvb5o-euiDescriptionList-euiDescriptionList-row"
+  class="euiDescriptionList euiDescriptionList--row css-1hrpi3q-euiDescriptionList-euiDescriptionList-row"
 />
 `;
