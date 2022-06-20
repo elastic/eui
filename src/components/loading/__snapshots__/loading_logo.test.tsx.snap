@@ -3,12 +3,12 @@
 exports[`EuiLoadingLogo is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiLoadingLogo testClass1 testClass2 css-13bqtrs-euiLoadingLogo-m"
+  class="euiLoadingLogo testClass1 testClass2 emotion-euiLoadingLogo-m"
   data-test-subj="test subject string"
   role="progressbar"
 >
   <span
-    class="css-1jhdo6d-euiLoadingLogo__icon"
+    class="emotion-euiLoadingLogo__icon"
   >
     <span
       data-euiicon-type="logoKibana"
@@ -20,12 +20,12 @@ exports[`EuiLoadingLogo is rendered 1`] = `
 exports[`EuiLoadingLogo logo is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiLoadingLogo testClass1 testClass2 css-13bqtrs-euiLoadingLogo-m"
+  class="euiLoadingLogo testClass1 testClass2 emotion-euiLoadingLogo-m"
   data-test-subj="test subject string"
   role="progressbar"
 >
   <span
-    class="css-1jhdo6d-euiLoadingLogo__icon"
+    class="emotion-euiLoadingLogo__icon"
   >
     <span
       data-euiicon-type="logoElastic"
@@ -37,11 +37,11 @@ exports[`EuiLoadingLogo logo is rendered 1`] = `
 exports[`EuiLoadingLogo size l is rendered 1`] = `
 <span
   aria-label="Loading"
-  class="euiLoadingLogo css-fzes29-euiLoadingLogo-l"
+  class="euiLoadingLogo emotion-euiLoadingLogo-l"
   role="progressbar"
 >
   <span
-    class="css-1jhdo6d-euiLoadingLogo__icon"
+    class="emotion-euiLoadingLogo__icon"
   >
     <span
       data-euiicon-type="logoKibana"
@@ -53,11 +53,11 @@ exports[`EuiLoadingLogo size l is rendered 1`] = `
 exports[`EuiLoadingLogo size m is rendered 1`] = `
 <span
   aria-label="Loading"
-  class="euiLoadingLogo css-13bqtrs-euiLoadingLogo-m"
+  class="euiLoadingLogo emotion-euiLoadingLogo-m"
   role="progressbar"
 >
   <span
-    class="css-1jhdo6d-euiLoadingLogo__icon"
+    class="emotion-euiLoadingLogo__icon"
   >
     <span
       data-euiicon-type="logoKibana"
@@ -69,11 +69,11 @@ exports[`EuiLoadingLogo size m is rendered 1`] = `
 exports[`EuiLoadingLogo size xl is rendered 1`] = `
 <span
   aria-label="Loading"
-  class="euiLoadingLogo css-18xfku-euiLoadingLogo-xl"
+  class="euiLoadingLogo emotion-euiLoadingLogo-xl"
   role="progressbar"
 >
   <span
-    class="css-1jhdo6d-euiLoadingLogo__icon"
+    class="emotion-euiLoadingLogo__icon"
   >
     <span
       data-euiicon-type="logoKibana"

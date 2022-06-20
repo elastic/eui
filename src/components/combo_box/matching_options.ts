@@ -17,7 +17,7 @@ export const flattenOptionGroups = <T>(
       optionOrGroup: EuiComboBoxOptionOption<T>
     ) => {
       if (optionOrGroup.options) {
-        options.push(...optionOrGroup.options);
+        options = options.concat(optionOrGroup.options);
       } else {
         options.push(optionOrGroup);
       }
@@ -84,7 +84,7 @@ export const getMatchingOptions = <T>(
   sortMatchesBy: string
 ) => {
   const normalizedSearchValue = searchValue.trim().toLowerCase();
-  const matchingOptions: Array<EuiComboBoxOptionOption<T>> = [];
+  let matchingOptions: Array<EuiComboBoxOptionOption<T>> = [];
 
   options.forEach((option) => {
     if (option.options) {
@@ -107,7 +107,8 @@ export const getMatchingOptions = <T>(
           isGroupLabelOption: true,
         });
         // Add matching options for group
-        matchingOptions.push(...matchingOptionsForGroup);
+        // use concat over spreading to support large arrays - https://mathiasbynens.be/demo/javascript-argument-count
+        matchingOptions = matchingOptions.concat(matchingOptionsForGroup);
       }
     } else {
       collectMatchingOption(
