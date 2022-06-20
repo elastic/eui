@@ -121,6 +121,7 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     }
   `,
   logo: css``,
+  // Loading states
   isLoading: css`
     opacity: ${_iconLoadingOpacity};
     background-color: currentColor;
