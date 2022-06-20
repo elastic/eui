@@ -57,7 +57,7 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     [class*='-text']:not([data-type='logoElastic']) {
       *[fill],
       .euiIcon__fillNegative {
-        fill: currentColor !important; // sass-lint:disable-line no-important
+        fill: currentColor !important;
       }
     }
 
@@ -65,11 +65,11 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     [class*='-ghost'][data-type='logoElastic'],
     [class*='-text'][data-type='logoElastic'] {
       *[fill] {
-        fill: none !important; // sass-lint:disable-line no-important
+        fill: none !important;
       }
 
       .outline {
-        fill: currentColor !important; // sass-lint:disable-line no-important
+        fill: currentColor !important;
       }
     }
   `,
