@@ -3,7 +3,7 @@
 exports[`EuiSelectableTemplateSitewideOptions different configurations are formatted with euiSelectableTemplateSitewideFormatOptions() 1`] = `
 Array [
   Object {
-    "append": <ForwardRef(EuiAvatar)
+    "append": <EuiAvatar
       name="Default Space"
       size="s"
       type="space"

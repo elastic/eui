@@ -16,7 +16,7 @@ import React, {
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiIcon } from '../icon';
-import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
+import { useEuiTheme } from '../../services';
 
 import {
   euiExpressionStyles,
@@ -92,9 +92,10 @@ type Buttonlike = EuiExpressionProps &
 type Spanlike = EuiExpressionProps &
   Omit<HTMLAttributes<HTMLSpanElement>, 'value'>;
 
-export const _EuiExpression: FunctionComponent<
-  ExclusiveUnion<Buttonlike, Spanlike> & WithEuiSystemProps
-> = ({
+export const EuiExpression: FunctionComponent<ExclusiveUnion<
+  Buttonlike,
+  Spanlike
+>> = ({
   className,
   description,
   descriptionProps,
@@ -108,12 +109,12 @@ export const _EuiExpression: FunctionComponent<
   onClick,
   isInvalid = false,
   textWrap = 'break-word',
-  euiTheme,
   ...rest
 }) => {
   const calculatedColor = isInvalid ? 'danger' : color;
 
-  const styles = euiExpressionStyles(euiTheme);
+  const theme = useEuiTheme();
+  const styles = euiExpressionStyles(theme);
   const cssStyles = [
     styles.euiExpression,
     onClick && styles.isClickable,
@@ -123,7 +124,7 @@ export const _EuiExpression: FunctionComponent<
     display === 'columns' && styles.columns,
     textWrap === 'truncate' && styles.truncate,
   ];
-  const descriptionStyles = euiExpressionDescriptionStyles(euiTheme);
+  const descriptionStyles = euiExpressionDescriptionStyles(theme);
   const cssDescriptionStyles = [
     descriptionStyles.euiExpression__description,
     isInvalid ? descriptionStyles.danger : descriptionStyles[color],
@@ -131,14 +132,14 @@ export const _EuiExpression: FunctionComponent<
     textWrap === 'truncate' && descriptionStyles.truncate,
     display === 'columns' && descriptionStyles.columns,
   ];
-  const valueStyles = euiExpressionValueStyles(euiTheme);
+  const valueStyles = euiExpressionValueStyles(theme);
   const cssValueStyles = [
     valueStyles.euiExpression__value,
     textWrap === 'truncate' && valueStyles.truncate,
     display === 'columns' && valueStyles.columns,
   ];
 
-  const iconStyles = euiExpressionIconStyles(euiTheme);
+  const iconStyles = euiExpressionIconStyles(theme);
   const cssIconStyles = [
     iconStyles.euiExpression__icon,
     display === 'columns' && iconStyles.columns,
@@ -189,5 +190,3 @@ export const _EuiExpression: FunctionComponent<
     </Component>
   );
 };
-
-export const EuiExpression = withEuiSystem(_EuiExpression);

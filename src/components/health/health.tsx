@@ -8,7 +8,7 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
+import { useEuiTheme } from '../../services';
 import { euiHealthStyles } from './health.styles';
 
 import { CommonProps } from '../common';
@@ -32,9 +32,14 @@ export type EuiHealthProps = CommonProps &
     textSize?: typeof TEXT_SIZES[number];
   };
 
-export const _EuiHealth: FunctionComponent<
-  EuiHealthProps & WithEuiSystemProps
-> = ({ children, className, color, euiTheme, textSize = 's', ...rest }) => {
+export const EuiHealth: FunctionComponent<EuiHealthProps> = ({
+  children,
+  className,
+  color,
+  textSize = 's',
+  ...rest
+}) => {
+  const euiTheme = useEuiTheme();
   const styles = euiHealthStyles(euiTheme);
   const cssStyles = [styles.euiHealth, styles[textSize]];
   const classes = classNames('euiHealth', className);
@@ -50,5 +55,3 @@ export const _EuiHealth: FunctionComponent<
     </div>
   );
 };
-
-export const EuiHealth = withEuiSystem(_EuiHealth);

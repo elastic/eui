@@ -10,7 +10,7 @@ import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
-import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
+import { useEuiTheme } from '../../services';
 import { euiTextStyles } from './text.styles';
 
 import { TextColor, EuiTextColor } from './text_color';
@@ -34,16 +34,16 @@ export type EuiTextProps = CommonProps &
     grow?: boolean;
   };
 
-export const _EuiText: FunctionComponent<EuiTextProps & WithEuiSystemProps> = ({
+export const EuiText: FunctionComponent<EuiTextProps> = ({
   size = 'm',
   color,
   grow = true,
   textAlign,
   children,
   className,
-  euiTheme,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
   const styles = euiTextStyles(euiTheme);
   const cssStyles = [
     styles.euiText,
@@ -77,5 +77,3 @@ export const _EuiText: FunctionComponent<EuiTextProps & WithEuiSystemProps> = ({
 
   return text;
 };
-
-export const EuiText = withEuiSystem(_EuiText);

@@ -244,7 +244,6 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
 
           return (
             <EuiLink
-              // @ts-expect-error Ref forwarding type mismatch
               ref={ref}
               color={isLastBreadcrumb ? 'text' : 'subdued'}
               onClick={onClick}

@@ -8,7 +8,7 @@
 
 import React, { FunctionComponent, HTMLAttributes, ElementType } from 'react';
 import { CommonProps } from '../common';
-import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
+import { useEuiTheme } from '../../services';
 
 import {
   EuiTimelineItemEvent,
@@ -40,18 +40,16 @@ export interface EuiTimelineItemProps
   component?: ElementType;
 }
 
-export const _EuiTimelineItem: FunctionComponent<
-  EuiTimelineItemProps & WithEuiSystemProps
-> = ({
+export const EuiTimelineItem: FunctionComponent<EuiTimelineItemProps> = ({
   children,
   verticalAlign = 'center',
   icon,
   iconAriaLabel,
   className,
   component = 'li',
-  euiTheme,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
   const styles = euiTimelineItemStyles(euiTheme);
 
   const cssStyles = [styles.euiTimelineItem];
@@ -72,5 +70,3 @@ export const _EuiTimelineItem: FunctionComponent<
     </Element>
   );
 };
-
-export const EuiTimelineItem = withEuiSystem(_EuiTimelineItem);

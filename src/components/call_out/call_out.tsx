@@ -14,7 +14,7 @@ import { CommonProps } from '../common';
 import { IconType, EuiIcon } from '../icon';
 
 import { EuiText } from '../text';
-import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
+import { useEuiTheme } from '../../services';
 import { EuiPanel } from '../panel';
 import { EuiTitle } from '../title';
 
@@ -37,10 +37,7 @@ export type EuiCallOutProps = CommonProps &
     heading?: Heading;
   };
 
-export const _EuiCallOut = forwardRef<
-  HTMLDivElement,
-  EuiCallOutProps & WithEuiSystemProps
->(
+export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
   (
     {
       title,
@@ -50,17 +47,17 @@ export const _EuiCallOut = forwardRef<
       children,
       className,
       heading = 'p',
-      euiTheme,
       ...rest
     },
     ref
   ) => {
-    const styles = euiCallOutStyles(euiTheme);
+    const theme = useEuiTheme();
+    const styles = euiCallOutStyles(theme);
     const cssStyles = [styles.euiCallOut];
     const cssIconStyle = [styles.euiCallOut__icon];
     const cssDescriptionStyle = [styles.euiCallOut__description];
 
-    const headerStyles = euiCallOutHeadingStyles(euiTheme);
+    const headerStyles = euiCallOutHeadingStyles(theme);
     const cssHeaderStyles = [
       headerStyles.euiCallOutHeader,
       headerStyles[color],
@@ -132,6 +129,4 @@ export const _EuiCallOut = forwardRef<
     );
   }
 );
-_EuiCallOut.displayName = 'EuiCallOut';
-
-export const EuiCallOut = withEuiSystem<EuiCallOutProps>(_EuiCallOut);
+EuiCallOut.displayName = 'EuiCallOut';

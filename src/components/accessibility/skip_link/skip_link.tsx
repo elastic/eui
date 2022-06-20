@@ -8,9 +8,9 @@
 
 import React, { FunctionComponent, Ref } from 'react';
 import classNames from 'classnames';
+import { useEuiTheme } from '../../../services';
 import { EuiButton, EuiButtonProps } from '../../button/button';
 import { PropsForAnchor, PropsForButton, ExclusiveUnion } from '../../common';
-import { withEuiSystem, WithEuiSystemProps } from '../../provider/system';
 import { EuiScreenReaderOnly } from '../screen_reader_only';
 import { euiSkipLinkStyles } from './skip_link.styles';
 
@@ -28,6 +28,12 @@ interface EuiSkipLinkInterface extends EuiButtonProps {
    * will be prepended with a hash `#` and used as the link `href`
    */
   destinationId: string;
+  /**
+   * If default HTML anchor link behavior is not desired (e.g. for SPAs with hash routing),
+   * setting this flag to true will manually scroll to and focus the destination element
+   * without changing the browser URL's hash
+   */
+  overrideLinkBehavior?: boolean;
   /**
    * When position is fixed, this is forced to `0`
    */
@@ -50,17 +56,16 @@ type propsForButton = PropsForButton<
 
 export type EuiSkipLinkProps = ExclusiveUnion<propsForAnchor, propsForButton>;
 
-export const _EuiSkipLink: FunctionComponent<
-  EuiSkipLinkProps & WithEuiSystemProps
-> = ({
+export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
   destinationId,
+  overrideLinkBehavior,
   tabIndex,
   position = 'static',
   children,
   className,
-  euiTheme,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
   const styles = euiSkipLinkStyles(euiTheme);
 
   const classes = classNames('euiSkipLink', className);
@@ -75,6 +80,21 @@ export const _EuiSkipLink: FunctionComponent<
   if (destinationId) {
     optionalProps = {
       href: `#${destinationId}`,
+    };
+  }
+  if (overrideLinkBehavior) {
+    optionalProps = {
+      ...optionalProps,
+      onClick: (e: React.MouseEvent) => {
+        e.preventDefault();
+
+        const destinationEl = document.getElementById(destinationId);
+        if (!destinationEl) return;
+
+        destinationEl.scrollIntoView();
+        destinationEl.tabIndex = -1; // Ensure the destination content is focusable
+        destinationEl.focus({ preventScroll: true }); // Scrolling is already handled above, and focus's autoscroll behaves oddly around fixed headers
+      },
     };
   }
 
@@ -94,5 +114,3 @@ export const _EuiSkipLink: FunctionComponent<
     </EuiScreenReaderOnly>
   );
 };
-
-export const EuiSkipLink = withEuiSystem(_EuiSkipLink);

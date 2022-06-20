@@ -11,8 +11,11 @@ import { CommonProps, ExclusiveUnion } from '../common';
 import classNames from 'classnames';
 
 import { isColorDark, hexToRgb, isValidHex } from '../../services/color';
-import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
-import { euiPaletteColorBlindBehindText, toInitials } from '../../services';
+import {
+  euiPaletteColorBlindBehindText,
+  toInitials,
+  useEuiTheme,
+} from '../../services';
 import { IconType, EuiIcon, IconSize, IconColor } from '../icon';
 
 import { euiAvatarStyles } from './avatar.styles';
@@ -93,12 +96,9 @@ export type EuiAvatarProps = Omit<HTMLAttributes<HTMLDivElement>, 'color'> &
     isDisabled?: boolean;
   };
 
-export const _EuiAvatar: FunctionComponent<
-  EuiAvatarProps & WithEuiSystemProps
-> = ({
+export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   className,
   color,
-  euiTheme,
   imageUrl,
   initials,
   initialsLength,
@@ -112,6 +112,7 @@ export const _EuiAvatar: FunctionComponent<
   style,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
   const styles = euiAvatarStyles(euiTheme);
 
   const visColors = euiPaletteColorBlindBehindText();
@@ -198,8 +199,6 @@ export const _EuiAvatar: FunctionComponent<
     </div>
   );
 };
-
-export const EuiAvatar = withEuiSystem(_EuiAvatar);
 
 // TODO: Migrate to a service
 export const checkValidColor = (color: EuiAvatarProps['color']) => {

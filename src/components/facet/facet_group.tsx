@@ -11,7 +11,7 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 
-import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
+import { useEuiTheme } from '../../services';
 import { euiFacetGroupStyles } from './facet_group.styles';
 
 export const LAYOUTS = ['vertical', 'horizontal'] as const;
@@ -33,17 +33,15 @@ export type EuiFacetGroupProps = CommonProps &
     gutterSize?: EuiFacetGroupGutterSizes;
   };
 
-export const _EuiFacetGroup: FunctionComponent<
-  EuiFacetGroupProps & WithEuiSystemProps
-> = ({
+export const EuiFacetGroup: FunctionComponent<EuiFacetGroupProps> = ({
   children,
   className,
   layout = 'vertical',
   gutterSize = 'm',
-  euiTheme,
   ...rest
 }) => {
-  const styles = euiFacetGroupStyles(euiTheme, layout);
+  const theme = useEuiTheme();
+  const styles = euiFacetGroupStyles(theme, layout);
   const cssStyles = [styles.euiFacetGroup, styles[gutterSize], styles[layout]];
 
   const classes = classNames('euiFacetGroup', className);
@@ -54,5 +52,3 @@ export const _EuiFacetGroup: FunctionComponent<
     </div>
   );
 };
-
-export const EuiFacetGroup = withEuiSystem(_EuiFacetGroup);

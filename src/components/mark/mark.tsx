@@ -10,7 +10,7 @@ import React, { HTMLAttributes, FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 import { useEuiI18n } from '../i18n';
 import { CommonProps } from '../common';
-import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
+import { useEuiTheme } from '../../services';
 import { euiMarkStyles } from './mark.styles';
 export type EuiMarkProps = HTMLAttributes<HTMLElement> &
   CommonProps & {
@@ -25,19 +25,19 @@ export type EuiMarkProps = HTMLAttributes<HTMLElement> &
     children: ReactNode;
   };
 
-export const _EuiMark: FunctionComponent<EuiMarkProps & WithEuiSystemProps> = ({
+export const EuiMark: FunctionComponent<EuiMarkProps> = ({
   children,
   className,
-  euiTheme,
   hasScreenReaderHelpText = true,
   ...rest
 }) => {
+  const useTheme = useEuiTheme();
   const highlightStart = useEuiI18n(
     'euiMark.highlightStart',
     'highlight start'
   );
   const highlightEnd = useEuiI18n('euiMark.highlightEnd', 'highlight end');
-  const styles = euiMarkStyles(euiTheme, {
+  const styles = euiMarkStyles(useTheme, {
     hasScreenReaderHelpText,
     highlightStart,
     highlightEnd,
@@ -50,5 +50,3 @@ export const _EuiMark: FunctionComponent<EuiMarkProps & WithEuiSystemProps> = ({
     </mark>
   );
 };
-
-export const EuiMark = withEuiSystem(_EuiMark);

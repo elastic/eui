@@ -9,7 +9,7 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
+import { useEuiTheme } from '../../services';
 
 import {
   euiLoadingChartStyles,
@@ -27,17 +27,15 @@ export type EuiLoadingChartProps = CommonProps &
     mono?: boolean;
   };
 
-export const _EuiLoadingChart: FunctionComponent<
-  EuiLoadingChartProps & WithEuiSystemProps
-> = ({
+export const EuiLoadingChart: FunctionComponent<EuiLoadingChartProps> = ({
   size = 'm',
   mono = false,
   className,
   'aria-label': ariaLabel,
-  euiTheme,
   ...rest
 }) => {
   const defaultAriaLabel = useEuiI18n('euiLoadingChart.ariaLabel', 'Loading');
+  const euiTheme = useEuiTheme();
   const styles = euiLoadingChartStyles(euiTheme);
   const barStyles = euiLoadingChartBarStyles(euiTheme);
 
@@ -73,5 +71,3 @@ export const _EuiLoadingChart: FunctionComponent<
     </span>
   );
 };
-
-export const EuiLoadingChart = withEuiSystem(_EuiLoadingChart);

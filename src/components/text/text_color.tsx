@@ -15,7 +15,7 @@ import React, {
 import { CommonProps } from '../common';
 import { cloneElementWithCss } from '../../services/theme/clone_element';
 
-import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
+import { useEuiTheme } from '../../services';
 import { euiTextColorStyles } from './text_color.styles';
 
 export const COLORS = [
@@ -50,19 +50,17 @@ export type EuiTextColorProps = CommonProps &
     cloneElement?: boolean;
   };
 
-export const _EuiTextColor: FunctionComponent<
-  EuiTextColorProps & WithEuiSystemProps
-> = ({
+export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
   children,
   color = 'default',
   component = 'span',
   cloneElement = false,
   style,
-  euiTheme,
   ...rest
 }) => {
   const isNamedColor = COLORS.includes(color as TextColor);
 
+  const euiTheme = useEuiTheme();
   const styles = euiTextColorStyles(euiTheme);
   const cssStyles = [
     styles.euiTextColor,
@@ -89,5 +87,3 @@ export const _EuiTextColor: FunctionComponent<
     return <Component {...props}>{children}</Component>;
   }
 };
-
-export const EuiTextColor = withEuiSystem(_EuiTextColor);

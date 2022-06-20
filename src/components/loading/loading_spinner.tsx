@@ -9,7 +9,7 @@
 import React, { HTMLAttributes, FunctionComponent, CSSProperties } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
-import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
+import { useEuiTheme } from '../..//services';
 import { useLoadingAriaLabel } from './_loading_strings';
 import { euiLoadingSpinnerStyles } from './loading_spinner.styles';
 
@@ -32,16 +32,14 @@ export type EuiLoadingSpinnerProps = CommonProps &
     color?: EuiLoadingSpinnerColor;
   };
 
-export const _EuiLoadingSpinner: FunctionComponent<
-  EuiLoadingSpinnerProps & WithEuiSystemProps
-> = ({
+export const EuiLoadingSpinner: FunctionComponent<EuiLoadingSpinnerProps> = ({
   size = 'm',
   className,
   'aria-label': ariaLabel,
   color,
-  euiTheme,
   ...rest
 }) => {
+  const euiTheme = useEuiTheme();
   const styles = euiLoadingSpinnerStyles(euiTheme, color);
   const cssStyles = [styles.euiLoadingSpinner, styles[size]];
   const classes = classNames('euiLoadingSpinner', className);
@@ -57,5 +55,3 @@ export const _EuiLoadingSpinner: FunctionComponent<
     />
   );
 };
-
-export const EuiLoadingSpinner = withEuiSystem(_EuiLoadingSpinner);

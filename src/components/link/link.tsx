@@ -13,8 +13,7 @@ import React, {
   MouseEventHandler,
 } from 'react';
 import classNames from 'classnames';
-import { getSecureRelForTarget } from '../../services';
-import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
+import { getSecureRelForTarget, useEuiTheme } from '../../services';
 import { euiLinkStyles } from './link.styles';
 import { EuiIcon } from '../icon';
 import { EuiI18n, useEuiI18n } from '../i18n';
@@ -76,10 +75,7 @@ export type EuiLinkProps = ExclusiveUnion<
   EuiLinkAnchorProps
 >;
 
-export const _EuiLink = forwardRef<
-  HTMLAnchorElement | HTMLButtonElement,
-  EuiLinkProps & WithEuiSystemProps
->(
+const EuiLink = forwardRef<HTMLAnchorElement | HTMLButtonElement, EuiLinkProps>(
   (
     {
       children,
@@ -92,11 +88,11 @@ export const _EuiLink = forwardRef<
       type = 'button',
       onClick,
       disabled: _disabled,
-      euiTheme,
       ...rest
     },
     ref
   ) => {
+    const euiTheme = useEuiTheme();
     const styles = euiLinkStyles(euiTheme);
     const cssStyles = [styles.euiLink];
     const cssScreenReaderTextStyles = [styles.euiLink__screenReaderText];
@@ -171,6 +167,6 @@ export const _EuiLink = forwardRef<
     );
   }
 );
-_EuiLink.displayName = 'EuiLink';
 
-export const EuiLink = withEuiSystem<EuiLinkProps>(_EuiLink);
+EuiLink.displayName = 'EuiLink';
+export { EuiLink };

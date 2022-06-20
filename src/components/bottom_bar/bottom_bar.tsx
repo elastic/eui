@@ -14,15 +14,14 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { useCombinedRefs } from '../../services';
+import { useCombinedRefs, useEuiTheme } from '../../services';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
-import { withEuiSystem, WithEuiSystemProps } from '../provider/system';
-import { EuiThemeProvider } from '../../services/theme/provider';
 import { euiBottomBarStyles } from './bottom_bar.styles';
+import { EuiThemeProvider } from '../../services/theme/provider';
 
 type BottomBarPaddingSize = 'none' | 's' | 'm' | 'l';
 
@@ -99,9 +98,9 @@ export type EuiBottomBarProps = CommonProps &
     left?: CSSProperties['left'];
   };
 
-export const _EuiBottomBar = forwardRef<
+const _EuiBottomBar = forwardRef<
   HTMLElement, // type of element or component the ref will be passed to
-  EuiBottomBarProps & WithEuiSystemProps // what properties apart from `ref` the component accepts
+  EuiBottomBarProps // what properties apart from `ref` the component accepts
 >(
   (
     {
@@ -118,11 +117,11 @@ export const _EuiBottomBar = forwardRef<
       bottom = 0,
       top,
       style,
-      euiTheme,
       ...rest
     },
     ref
   ) => {
+    const euiTheme = useEuiTheme();
     const styles = euiBottomBarStyles(euiTheme);
 
     // Force some props if `fixed` position, but not if the user has supplied these
@@ -231,10 +230,9 @@ export const _EuiBottomBar = forwardRef<
 
 export const EuiBottomBar = forwardRef<HTMLElement, EuiBottomBarProps>(
   (props, ref) => {
-    const BottomBar = withEuiSystem<EuiBottomBarProps>(_EuiBottomBar);
+    const BottomBar = _EuiBottomBar;
     return (
-      <EuiThemeProvider colorMode="dark">
-        {/* @ts-expect-error double forward ref type */}
+      <EuiThemeProvider colorMode={'dark'}>
         <BottomBar ref={ref} {...props} />
       </EuiThemeProvider>
     );
