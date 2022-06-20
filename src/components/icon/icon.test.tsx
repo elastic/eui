@@ -20,6 +20,7 @@ import {
   appendIconComponentCache,
 } from './icon';
 import { PropsOf } from '../common';
+import * as reactServices from '../../services/react';
 import { icon as EuiIconVideoPlayer } from './assets/videoPlayer';
 
 jest.mock('./icon', () => {
@@ -129,23 +130,16 @@ describe('EuiIcon', () => {
   describe('appendIconComponentCache', () => {
     it('does nothing if not called', () => {
       const component = mount(<EuiIcon type="videoPlayer" />);
-
-      expect(
-        component.render().find('EuiIcon[type="videoPlayer"] > EuiIconEmpty')
-          .length
-      ).toBe(1);
+      expect(component.find('svg').prop('className')).toMatch('isLoading');
     });
 
-    it('injects the specified icon', () => {
+    it('preloads the specified icon into the cache', () => {
       appendIconComponentCache({
         videoPlayer: EuiIconVideoPlayer,
       });
       const component = mount(<EuiIcon type="videoPlayer" />);
-      expect(
-        component
-          .render()
-          .find('EuiIcon[type="videoPlayer"] > EuiIconVideoPlayer').length
-      ).toBe(1);
+      // Should not have either isLoading or isLoaded classes, because it was pre-loaded
+      expect(component.find('svg').prop('className')).not.toMatch('isLoading');
     });
 
     it('does not impact non-loaded icons', () => {
@@ -153,10 +147,7 @@ describe('EuiIcon', () => {
         videoPlayer: EuiIconVideoPlayer,
       });
       const component = mount(<EuiIcon type="accessibility" />);
-      expect(
-        component.render().find('EuiIcon[type="accessibility"] > EuiIconEmpty')
-          .length
-      ).toBe(1);
+      expect(component.find('svg').prop('className')).toMatch('isLoading');
     });
   });
 });
