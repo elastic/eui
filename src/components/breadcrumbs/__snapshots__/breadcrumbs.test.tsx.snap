@@ -13,7 +13,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
       class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass css-102pf9n-euiLink-primary"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -41,7 +41,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
         >
           <button
             aria-label="See collapsed breadcrumbs"
-            class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
             title="See collapsed breadcrumbs"
             type="button"
           >
@@ -57,7 +57,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
       class="euiBreadcrumb"
     >
       <button
-        class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
         type="button"
       >
         Reptiles
@@ -67,7 +67,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
       class="euiBreadcrumb euiBreadcrumb--truncate"
     >
       <a
-        class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
         href="#"
         rel="noreferrer"
         title="Boa constrictor has an error"
@@ -102,7 +102,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
       class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass css-102pf9n-euiLink-primary"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -130,7 +130,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
         >
           <button
             aria-label="See collapsed breadcrumbs"
-            class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
             title="See collapsed breadcrumbs"
             type="button"
           >
@@ -146,7 +146,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
       class="euiBreadcrumb euiBreadcrumb--truncate"
     >
       <a
-        class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
         href="#"
         rel="noreferrer"
         title="Boa constrictor has an error"
@@ -168,7 +168,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
     >
       <a
         aria-current="page"
-        class="euiLink euiBreadcrumb__content css-qzrsgm-euiLink-text"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-text"
         href="#"
         rel="noreferrer"
       >
@@ -191,7 +191,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
       class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass css-102pf9n-euiLink-primary"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -241,7 +241,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
     >
       <button
         aria-current="false"
-        class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
         type="button"
       >
         Reptiles
@@ -252,7 +252,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
     >
       <a
         aria-current="false"
-        class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
         href="#"
         rel="noreferrer"
         title="Boa constrictor has an error"
@@ -293,7 +293,7 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
         >
           <button
             aria-label="See collapsed breadcrumbs"
-            class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
             title="See collapsed breadcrumbs"
             type="button"
           >
@@ -331,7 +331,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
       class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass css-102pf9n-euiLink-primary"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -381,7 +381,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
     >
       <button
         aria-current="false"
-        class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
         type="button"
       >
         Reptiles
@@ -392,7 +392,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
     >
       <a
         aria-current="false"
-        class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
         href="#"
         rel="noreferrer"
         title="Boa constrictor has an error"
@@ -426,7 +426,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
       class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass css-102pf9n-euiLink-primary"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -454,7 +454,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
         >
           <button
             aria-label="See collapsed breadcrumbs"
-            class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
             title="See collapsed breadcrumbs"
             type="button"
           >
@@ -471,7 +471,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
     >
       <button
         aria-current="false"
-        class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
         type="button"
       >
         Reptiles
@@ -481,7 +481,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
       class="euiBreadcrumb euiBreadcrumb--truncate"
     >
       <a
-        class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
         href="#"
         rel="noreferrer"
         title="Boa constrictor has an error"
@@ -515,7 +515,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
       class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass css-102pf9n-euiLink-primary"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -543,7 +543,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
         >
           <button
             aria-label="See collapsed breadcrumbs"
-            class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
             title="See collapsed breadcrumbs"
             type="button"
           >
@@ -560,7 +560,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
     >
       <button
         aria-current="false"
-        class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
         type="button"
       >
         Reptiles
@@ -570,7 +570,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
       class="euiBreadcrumb euiBreadcrumb--truncate"
     >
       <a
-        class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
         href="#"
         rel="noreferrer"
         title="Boa constrictor has an error"
@@ -611,7 +611,7 @@ exports[`EuiBreadcrumbs props responsive is rendered with custom breakpoints 1`]
         >
           <button
             aria-label="See collapsed breadcrumbs"
-            class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
             title="See collapsed breadcrumbs"
             type="button"
           >
@@ -649,7 +649,7 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
       class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass css-102pf9n-euiLink-primary"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -677,7 +677,7 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
         >
           <button
             aria-label="See collapsed breadcrumbs"
-            class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+            class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
             title="See collapsed breadcrumbs"
             type="button"
           >
@@ -694,7 +694,7 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
     >
       <button
         aria-current="false"
-        class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
         type="button"
       >
         Reptiles
@@ -705,7 +705,7 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
     >
       <a
         aria-current="false"
-        class="euiLink euiBreadcrumb__content css-7rgcqt-euiLink-subdued"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
         href="#"
         rel="noreferrer"
         title="Boa constrictor has an error"
