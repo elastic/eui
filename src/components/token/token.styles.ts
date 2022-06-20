@@ -54,12 +54,12 @@ const _getTokenColor = (
       : euiTheme.colors.darkShade;
 
   const backgroundColor = isDarkMode
-    ? tint(iconColor, 0.9)
-    : shade(iconColor, 0.7);
+    ? shade(iconColor, 0.7)
+    : tint(iconColor, 0.9);
 
   const boxShadowColor = isDarkMode
-    ? tint(iconColor, 0.7)
-    : shade(iconColor, 0.6);
+    ? shade(iconColor, 0.6)
+    : tint(iconColor, 0.7);
 
   const textColor = isColorDark(...chroma(iconColorBehindText).rgb())
     ? euiTheme.colors.ghost
