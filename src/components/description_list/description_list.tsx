@@ -90,7 +90,6 @@ export const EuiDescriptionList: FunctionComponent<
   type = 'row',
   ...rest
 }) => {
-  console.log(descriptionProps);
   const theme = useEuiTheme();
   const styles = euiDescriptionListStyles(theme);
   const cssStyles = [
@@ -115,16 +114,16 @@ export const EuiDescriptionList: FunctionComponent<
       return [
         <EuiDescriptionListTitle
           key={`title-${index}`}
-          {...titleProps}
           css={cssStyles}
+          {...titleProps}
         >
           {item.title}
         </EuiDescriptionListTitle>,
 
         <EuiDescriptionListDescription
           key={`description-${index}`}
-          {...descriptionProps}
           css={cssStyles}
+          {...descriptionProps}
         >
           {item.description}
         </EuiDescriptionListDescription>,
@@ -135,7 +134,7 @@ export const EuiDescriptionList: FunctionComponent<
   }
 
   return (
-    <dl className={classes} {...rest} css={cssStyles}>
+    <dl className={classes} css={cssStyles} {...rest}>
       {childrenOrListItems}
     </dl>
   );
