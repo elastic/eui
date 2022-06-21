@@ -73,4 +73,17 @@ export const euiProgressStyles = ({ euiTheme }: UseEuiTheme) => ({
       }
     }
   `,
+  // Sizes
+  xs: css`
+    ${logicalCSS('height', euiTheme.size.xxs)}
+  `,
+  s: css`
+    ${logicalCSS('height', euiTheme.size.xs)}
+  `,
+  m: css`
+    ${logicalCSS('height', euiTheme.size.s)}
+  `,
+  l: css`
+    ${logicalCSS('height', euiTheme.size.m)}
+  `,
 });

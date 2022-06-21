@@ -1,20 +1,6 @@
 // This file uses uncommon vendor prefixes not covered by our compilers
 // sass-lint:disable no-vendor-prefixes
 
-// Progress bars come in different sizes.
-$euiProgressSizes: (
-  xs: $euiSizeXS / 2,
-  s: $euiSizeXS,
-  m: $euiSizeS,
-  l: $euiSize,
-);
-
-@each $name, $size in $euiProgressSizes {
-  .euiProgress--#{$name} {
-    height: $size;
-  }
-}
-
 // Progress bars can be set to fixed or absolute.
 .euiProgress--fixed {
   position: fixed;

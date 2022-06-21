@@ -23,16 +23,8 @@ import { isNil } from '../../services/predicate';
 import { useEuiTheme } from '../../services';
 import { euiProgressStyles } from './progress.styles';
 
-const sizeToClassNameMap = {
-  xs: 'euiProgress--xs',
-  s: 'euiProgress--s',
-  m: 'euiProgress--m',
-  l: 'euiProgress--l',
-};
-
-export const SIZES = keysOf(sizeToClassNameMap);
-
-export type EuiProgressSize = keyof typeof sizeToClassNameMap;
+export const SIZES = ['xs', 's', 'm', 'l'] as const;
+export type EuiProgressSize = typeof SIZES[number];
 
 export type ProgressColor =
   | 'primary'
@@ -170,11 +162,11 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
     styles.euiProgress,
     determinate && styles.native,
     !determinate && styles.indeterminate,
+    styles[size],
   ];
 
   const classes = classNames(
     'euiProgress',
-    sizeToClassNameMap[size],
     colorClass,
     positionsToClassNameMap[position],
     className
