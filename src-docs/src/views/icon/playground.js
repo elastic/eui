@@ -11,7 +11,6 @@ export default () => {
     ? IconProps.__docgenInfo[0]
     : IconProps.__docgenInfo;
 
-  console.log({ docgenInfo });
   const propsToUse = propUtilityForPlayground(docgenInfo.props, true);
 
   propsToUse.type = iconValidator({ ...propsToUse.type }, 'grid');
