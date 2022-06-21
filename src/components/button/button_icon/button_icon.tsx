@@ -27,12 +27,11 @@ import { IconType, IconSize, EuiIcon } from '../../icon';
 
 import { EuiLoadingSpinner } from '../../loading';
 
-import { EuiButtonColor } from '../button';
-
-import { validateHref } from '../../../services/security/href_validator';
-import { useEuiButtonColorCSS } from '../../../themes/amsterdam/global_styling/mixins/button';
-
-export type EuiButtonIconColor = EuiButtonColor;
+import {
+  useEuiButtonColorCSS,
+  _EuiButtonColor,
+} from '../../../themes/amsterdam/global_styling/mixins/button';
+import { isButtonDisabled } from '../button_display/_button_display';
 
 const displayToClassNameMap = {
   base: null,
@@ -48,7 +47,7 @@ export interface EuiButtonIconProps extends CommonProps {
   /**
    * Any of the named color palette options.
    */
-  color?: EuiButtonIconColor;
+  color?: _EuiButtonColor | 'ghost';
   'aria-label'?: string;
   'aria-labelledby'?: string;
   isDisabled?: boolean;
@@ -103,18 +102,6 @@ type Props = ExclusiveUnion<
   EuiButtonIconPropsForButton
 >;
 
-const colorToClassNameMap: { [color in EuiButtonIconColor]: string } = {
-  accent: 'euiButtonIcon--accent',
-  danger: 'euiButtonIcon--danger',
-  ghost: 'euiButtonIcon--ghost',
-  primary: 'euiButtonIcon--primary',
-  success: 'euiButtonIcon--success',
-  text: 'euiButtonIcon--text',
-  warning: 'euiButtonIcon--warning',
-};
-
-export const COLORS = keysOf(colorToClassNameMap);
-
 const sizeToClassNameMap = {
   xs: 'euiButtonIcon--xSmall',
   s: 'euiButtonIcon--small',
@@ -143,8 +130,11 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   isLoading,
   ...rest
 }) => {
-  const isHrefValid = !href || validateHref(href);
-  const isDisabled = _isDisabled || disabled || !isHrefValid || isLoading;
+  const isDisabled = isButtonDisabled({
+    isDisabled: _isDisabled || disabled,
+    href,
+    isLoading,
+  });
 
   const ariaHidden = rest['aria-hidden'];
   const isAriaHidden = ariaHidden === 'true' || ariaHidden === true;
@@ -164,11 +154,6 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
 
   const classes = classNames(
     'euiButtonIcon',
-    {
-      // 'euiButtonIcon-isDisabled': isDisabled,
-    },
-    // colorToClassNameMap[color],
-    display && displayToClassNameMap[display],
     size && sizeToClassNameMap[size],
     className
   );

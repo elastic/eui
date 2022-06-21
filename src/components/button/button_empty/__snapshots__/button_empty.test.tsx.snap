@@ -19,6 +19,21 @@ exports[`EuiButtonEmpty is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiButtonEmpty props color accent is rendered 1`] = `
+<button
+  class="euiButtonEmpty css-1gezeiz-empty-accent"
+  type="button"
+>
+  <span
+    class="euiButtonContent euiButtonEmpty__content"
+  >
+    <span
+      class="euiButtonEmpty__text"
+    />
+  </span>
+</button>
+`;
+
 exports[`EuiButtonEmpty props color danger is rendered 1`] = `
 <button
   class="euiButtonEmpty css-hdemv5-empty-danger"

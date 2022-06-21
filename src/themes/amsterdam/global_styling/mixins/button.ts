@@ -35,6 +35,12 @@ export interface _EuiButtonOptions {
   display?: _EuiButtonDisplay;
 }
 
+/**
+ * Creates the `base` version of button styles with proper text contrast.
+ * @param euiThemeContext
+ * @param color One of the named button colors or 'disabled'
+ * @returns Style object `{ backgroundColor, color }`
+ */
 export const euiButtonColor = (
   euiThemeContext: UseEuiTheme,
   color: _EuiButtonColor | 'disabled'
@@ -67,11 +73,17 @@ export const euiButtonColor = (
   }
 
   return {
-    backgroundColor: background,
     color: makeHighContrastColor(foreground)(background),
+    backgroundColor: background,
   };
 };
 
+/**
+ * Creates the `fill` version of buttons styles with proper text contrast.
+ * @param euiThemeContext
+ * @param color One of the named button colors or 'disabled'
+ * @returns Style object `{ backgroundColor, color }`
+ */
 export const euiButtonFillColor = (
   euiThemeContext: UseEuiTheme,
   color: _EuiButtonColor | 'disabled'
@@ -107,6 +119,12 @@ export const euiButtonFillColor = (
   };
 };
 
+/**
+ * Creates the `empty` version of button styles using the text-variant and adding interactive styles.
+ * @param euiThemeContext
+ * @param color One of the named button colors or 'disabled'
+ * @returns Style string including `hover, focus, active` states
+ */
 export const euiButtonEmptyColor = (
   euiThemeContext: UseEuiTheme,
   color: _EuiButtonColor | 'disabled'
@@ -144,6 +162,11 @@ export const euiButtonEmptyColor = (
   `;
 };
 
+/**
+ * Given the button display type, returns the Emotion based color keys.
+ * @param options Button display type
+ * @returns An object of `_EuiButtonColor` keys including `disabled`
+ */
 export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
   const euiThemeContext = useEuiTheme();
 
@@ -173,6 +196,10 @@ export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
   };
 };
 
+/**
+ * Based on the button size, creates the style properties.
+ * @returns An object of button size keys with Emption styles for `border-radius`
+ */
 export const useEuiButtonRadiusCSS = () => {
   const { euiTheme } = useEuiTheme();
 
@@ -189,6 +216,10 @@ export const useEuiButtonRadiusCSS = () => {
   };
 };
 
+/**
+ * Creates the translate animation when button is in focus.
+ * @returns string
+ */
 export const useEuiButtonFocusCSS = () => {
   const { euiTheme } = useEuiTheme();
 

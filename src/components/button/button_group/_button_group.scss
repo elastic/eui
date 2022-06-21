@@ -17,7 +17,6 @@
 }
 
 .euiButtonGroup__buttons {
-  // @include euiSlightShadow;
   border-radius: $euiBorderRadius + 1px; // Simply for the box-shadow
   max-width: 100%;
   display: flex;
