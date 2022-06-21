@@ -338,14 +338,14 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                     Object {
                       "insert": [Function],
                       "inserted": Object {
-                        "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                        "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                         "1oxrrah-euiButtonDisplayContent": true,
-                        "ms6n15-base-text": true,
+                        "1sophrw-base-text": true,
                       },
                       "key": "css",
                       "nonce": undefined,
                       "registered": Object {
-                        "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                        "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -375,21 +375,21 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                             data-s=""
                           >
                             
-                            .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                            .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                           </style>
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                            @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                           </style>
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                           </style>
                           <style
                             data-emotion="css"
@@ -425,21 +425,21 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                             data-s=""
                           >
                             
-                            .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                            .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                           </style>,
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                            @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                           </style>,
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                           </style>,
                           <style
                             data-emotion="css"
@@ -470,9 +470,9 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                   serialized={
                     Object {
                       "map": undefined,
-                      "name": "ms6n15-base-text",
+                      "name": "1sophrw-base-text",
                       "next": undefined,
-                      "styles": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                      "styles": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -496,7 +496,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                   }
                 />
                 <EuiButtonDisplay
-                  className="euiControlBar__button css-ms6n15-base-text"
+                  className="euiControlBar__button css-1sophrw-base-text"
                   data-test-subj="dts"
                   minWidth={112}
                   onClick={[Function]}
@@ -514,14 +514,14 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                         Object {
                           "insert": [Function],
                           "inserted": Object {
-                            "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                            "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                             "1oxrrah-euiButtonDisplayContent": true,
-                            "ms6n15-base-text": true,
+                            "1sophrw-base-text": true,
                           },
                           "key": "css",
                           "nonce": undefined,
                           "registered": Object {
-                            "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                            "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -551,21 +551,21 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                                 data-s=""
                               >
                                 
-                                .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                               </style>
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                               </style>
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                               </style>
                               <style
                                 data-emotion="css"
@@ -601,21 +601,21 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                                 data-s=""
                               >
                                 
-                                .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                               </style>,
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                               </style>,
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                               </style>,
                               <style
                                 data-emotion="css"
@@ -646,7 +646,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                       serialized={
                         Object {
                           "map": undefined,
-                          "name": "1aelc7r-euiButtonDisplay-s-s-base-text",
+                          "name": "11ukiv0-euiButtonDisplay-s-s-base-text",
                           "next": undefined,
                           "styles": "
     display: inline-block;
@@ -660,7 +660,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
     block-size: 32px;;
     // prevents descenders from getting cut off
     line-height: 32px;
-  font-size:1.0000rem;line-height:1.4286rem;;label:s;;;;;border-radius:4px;;label:s;;;background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+  font-size:1.0000rem;line-height:1.4286rem;;label:s;;;;;border-radius:4px;;label:s;;;color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -702,14 +702,14 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                               Object {
                                 "insert": [Function],
                                 "inserted": Object {
-                                  "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                                  "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                                   "1oxrrah-euiButtonDisplayContent": true,
-                                  "ms6n15-base-text": true,
+                                  "1sophrw-base-text": true,
                                 },
                                 "key": "css",
                                 "nonce": undefined,
                                 "registered": Object {
-                                  "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                                  "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -739,21 +739,21 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                                       data-s=""
                                     >
                                       
-                                      .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                      .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                                     </style>
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                      @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                                     </style>
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                                     </style>
                                     <style
                                       data-emotion="css"
@@ -789,21 +789,21 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                                       data-s=""
                                     >
                                       
-                                      .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                      .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                                     </style>,
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                      @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                                     </style>,
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                                     </style>,
                                     <style
                                       data-emotion="css"
@@ -1166,14 +1166,14 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                     Object {
                       "insert": [Function],
                       "inserted": Object {
-                        "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                        "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                         "1oxrrah-euiButtonDisplayContent": true,
-                        "ms6n15-base-text": true,
+                        "1sophrw-base-text": true,
                       },
                       "key": "css",
                       "nonce": undefined,
                       "registered": Object {
-                        "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                        "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -1203,21 +1203,21 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                             data-s=""
                           >
                             
-                            .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                            .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                           </style>
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                            @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                           </style>
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                           </style>
                           <style
                             data-emotion="css"
@@ -1253,21 +1253,21 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                             data-s=""
                           >
                             
-                            .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                            .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                           </style>,
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                            @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                           </style>,
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                           </style>,
                           <style
                             data-emotion="css"
@@ -1298,9 +1298,9 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                   serialized={
                     Object {
                       "map": undefined,
-                      "name": "ms6n15-base-text",
+                      "name": "1sophrw-base-text",
                       "next": undefined,
-                      "styles": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                      "styles": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -1324,7 +1324,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                   }
                 />
                 <EuiButtonDisplay
-                  className="euiControlBar__button css-ms6n15-base-text"
+                  className="euiControlBar__button css-1sophrw-base-text"
                   data-test-subj="dts"
                   minWidth={112}
                   onClick={[Function]}
@@ -1342,14 +1342,14 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                         Object {
                           "insert": [Function],
                           "inserted": Object {
-                            "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                            "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                             "1oxrrah-euiButtonDisplayContent": true,
-                            "ms6n15-base-text": true,
+                            "1sophrw-base-text": true,
                           },
                           "key": "css",
                           "nonce": undefined,
                           "registered": Object {
-                            "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                            "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -1379,21 +1379,21 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                                 data-s=""
                               >
                                 
-                                .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                               </style>
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                               </style>
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                               </style>
                               <style
                                 data-emotion="css"
@@ -1429,21 +1429,21 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                                 data-s=""
                               >
                                 
-                                .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                               </style>,
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                               </style>,
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                               </style>,
                               <style
                                 data-emotion="css"
@@ -1474,7 +1474,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                       serialized={
                         Object {
                           "map": undefined,
-                          "name": "1aelc7r-euiButtonDisplay-s-s-base-text",
+                          "name": "11ukiv0-euiButtonDisplay-s-s-base-text",
                           "next": undefined,
                           "styles": "
     display: inline-block;
@@ -1488,7 +1488,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
     block-size: 32px;;
     // prevents descenders from getting cut off
     line-height: 32px;
-  font-size:1.0000rem;line-height:1.4286rem;;label:s;;;;;border-radius:4px;;label:s;;;background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+  font-size:1.0000rem;line-height:1.4286rem;;label:s;;;;;border-radius:4px;;label:s;;;color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -1530,14 +1530,14 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                               Object {
                                 "insert": [Function],
                                 "inserted": Object {
-                                  "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                                  "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                                   "1oxrrah-euiButtonDisplayContent": true,
-                                  "ms6n15-base-text": true,
+                                  "1sophrw-base-text": true,
                                 },
                                 "key": "css",
                                 "nonce": undefined,
                                 "registered": Object {
-                                  "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                                  "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -1567,21 +1567,21 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                                       data-s=""
                                     >
                                       
-                                      .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                      .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                                     </style>
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                      @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                                     </style>
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                                     </style>
                                     <style
                                       data-emotion="css"
@@ -1617,21 +1617,21 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                                       data-s=""
                                     >
                                       
-                                      .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                      .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                                     </style>,
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                      @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                                     </style>,
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                                     </style>,
                                     <style
                                       data-emotion="css"
@@ -1993,14 +1993,14 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                     Object {
                       "insert": [Function],
                       "inserted": Object {
-                        "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                        "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                         "1oxrrah-euiButtonDisplayContent": true,
-                        "ms6n15-base-text": true,
+                        "1sophrw-base-text": true,
                       },
                       "key": "css",
                       "nonce": undefined,
                       "registered": Object {
-                        "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                        "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -2030,21 +2030,21 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                             data-s=""
                           >
                             
-                            .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                            .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                           </style>
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                            @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                           </style>
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                           </style>
                           <style
                             data-emotion="css"
@@ -2080,21 +2080,21 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                             data-s=""
                           >
                             
-                            .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                            .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                           </style>,
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                            @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                           </style>,
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                           </style>,
                           <style
                             data-emotion="css"
@@ -2125,9 +2125,9 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                   serialized={
                     Object {
                       "map": undefined,
-                      "name": "ms6n15-base-text",
+                      "name": "1sophrw-base-text",
                       "next": undefined,
-                      "styles": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                      "styles": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -2151,7 +2151,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                   }
                 />
                 <EuiButtonDisplay
-                  className="euiControlBar__button css-ms6n15-base-text"
+                  className="euiControlBar__button css-1sophrw-base-text"
                   data-test-subj="dts"
                   minWidth={112}
                   onClick={[Function]}
@@ -2169,14 +2169,14 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                         Object {
                           "insert": [Function],
                           "inserted": Object {
-                            "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                            "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                             "1oxrrah-euiButtonDisplayContent": true,
-                            "ms6n15-base-text": true,
+                            "1sophrw-base-text": true,
                           },
                           "key": "css",
                           "nonce": undefined,
                           "registered": Object {
-                            "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                            "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -2206,21 +2206,21 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                                 data-s=""
                               >
                                 
-                                .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                               </style>
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                               </style>
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                               </style>
                               <style
                                 data-emotion="css"
@@ -2256,21 +2256,21 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                                 data-s=""
                               >
                                 
-                                .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                               </style>,
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                               </style>,
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                               </style>,
                               <style
                                 data-emotion="css"
@@ -2301,7 +2301,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                       serialized={
                         Object {
                           "map": undefined,
-                          "name": "1aelc7r-euiButtonDisplay-s-s-base-text",
+                          "name": "11ukiv0-euiButtonDisplay-s-s-base-text",
                           "next": undefined,
                           "styles": "
     display: inline-block;
@@ -2315,7 +2315,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
     block-size: 32px;;
     // prevents descenders from getting cut off
     line-height: 32px;
-  font-size:1.0000rem;line-height:1.4286rem;;label:s;;;;;border-radius:4px;;label:s;;;background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+  font-size:1.0000rem;line-height:1.4286rem;;label:s;;;;;border-radius:4px;;label:s;;;color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -2357,14 +2357,14 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                               Object {
                                 "insert": [Function],
                                 "inserted": Object {
-                                  "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                                  "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                                   "1oxrrah-euiButtonDisplayContent": true,
-                                  "ms6n15-base-text": true,
+                                  "1sophrw-base-text": true,
                                 },
                                 "key": "css",
                                 "nonce": undefined,
                                 "registered": Object {
-                                  "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                                  "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -2394,21 +2394,21 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                                       data-s=""
                                     >
                                       
-                                      .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                      .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                                     </style>
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                      @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                                     </style>
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                                     </style>
                                     <style
                                       data-emotion="css"
@@ -2444,21 +2444,21 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                                       data-s=""
                                     >
                                       
-                                      .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                      .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                                     </style>,
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                      @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                                     </style>,
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                                     </style>,
                                     <style
                                       data-emotion="css"
@@ -2724,14 +2724,14 @@ exports[`EuiControlBar props position is rendered 1`] = `
                 Object {
                   "insert": [Function],
                   "inserted": Object {
-                    "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                    "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                     "1oxrrah-euiButtonDisplayContent": true,
-                    "ms6n15-base-text": true,
+                    "1sophrw-base-text": true,
                   },
                   "key": "css",
                   "nonce": undefined,
                   "registered": Object {
-                    "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                    "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -2761,21 +2761,21 @@ exports[`EuiControlBar props position is rendered 1`] = `
                         data-s=""
                       >
                         
-                        .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                        .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                       </style>
                       <style
                         data-emotion="css"
                         data-s=""
                       >
                         
-                        @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                        @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                       </style>
                       <style
                         data-emotion="css"
                         data-s=""
                       >
                         
-                        .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                        .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                       </style>
                       <style
                         data-emotion="css"
@@ -2811,21 +2811,21 @@ exports[`EuiControlBar props position is rendered 1`] = `
                         data-s=""
                       >
                         
-                        .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                        .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                       </style>,
                       <style
                         data-emotion="css"
                         data-s=""
                       >
                         
-                        @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                        @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                       </style>,
                       <style
                         data-emotion="css"
                         data-s=""
                       >
                         
-                        .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                        .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                       </style>,
                       <style
                         data-emotion="css"
@@ -2856,9 +2856,9 @@ exports[`EuiControlBar props position is rendered 1`] = `
               serialized={
                 Object {
                   "map": undefined,
-                  "name": "ms6n15-base-text",
+                  "name": "1sophrw-base-text",
                   "next": undefined,
-                  "styles": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                  "styles": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -2882,7 +2882,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
               }
             />
             <EuiButtonDisplay
-              className="euiControlBar__button css-ms6n15-base-text"
+              className="euiControlBar__button css-1sophrw-base-text"
               data-test-subj="dts"
               minWidth={112}
               onClick={[Function]}
@@ -2900,14 +2900,14 @@ exports[`EuiControlBar props position is rendered 1`] = `
                     Object {
                       "insert": [Function],
                       "inserted": Object {
-                        "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                        "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                         "1oxrrah-euiButtonDisplayContent": true,
-                        "ms6n15-base-text": true,
+                        "1sophrw-base-text": true,
                       },
                       "key": "css",
                       "nonce": undefined,
                       "registered": Object {
-                        "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                        "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -2937,21 +2937,21 @@ exports[`EuiControlBar props position is rendered 1`] = `
                             data-s=""
                           >
                             
-                            .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                            .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                           </style>
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                            @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                           </style>
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                           </style>
                           <style
                             data-emotion="css"
@@ -2987,21 +2987,21 @@ exports[`EuiControlBar props position is rendered 1`] = `
                             data-s=""
                           >
                             
-                            .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                            .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                           </style>,
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                            @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                           </style>,
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                           </style>,
                           <style
                             data-emotion="css"
@@ -3032,7 +3032,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
                   serialized={
                     Object {
                       "map": undefined,
-                      "name": "1aelc7r-euiButtonDisplay-s-s-base-text",
+                      "name": "11ukiv0-euiButtonDisplay-s-s-base-text",
                       "next": undefined,
                       "styles": "
     display: inline-block;
@@ -3046,7 +3046,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
     block-size: 32px;;
     // prevents descenders from getting cut off
     line-height: 32px;
-  font-size:1.0000rem;line-height:1.4286rem;;label:s;;;;;border-radius:4px;;label:s;;;background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+  font-size:1.0000rem;line-height:1.4286rem;;label:s;;;;;border-radius:4px;;label:s;;;color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -3088,14 +3088,14 @@ exports[`EuiControlBar props position is rendered 1`] = `
                           Object {
                             "insert": [Function],
                             "inserted": Object {
-                              "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                              "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                               "1oxrrah-euiButtonDisplayContent": true,
-                              "ms6n15-base-text": true,
+                              "1sophrw-base-text": true,
                             },
                             "key": "css",
                             "nonce": undefined,
                             "registered": Object {
-                              "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                              "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -3125,21 +3125,21 @@ exports[`EuiControlBar props position is rendered 1`] = `
                                   data-s=""
                                 >
                                   
-                                  .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                  .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                                 </style>
                                 <style
                                   data-emotion="css"
                                   data-s=""
                                 >
                                   
-                                  @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                  @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                                 </style>
                                 <style
                                   data-emotion="css"
                                   data-s=""
                                 >
                                   
-                                  .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                  .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                                 </style>
                                 <style
                                   data-emotion="css"
@@ -3175,21 +3175,21 @@ exports[`EuiControlBar props position is rendered 1`] = `
                                   data-s=""
                                 >
                                   
-                                  .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                  .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                                 </style>,
                                 <style
                                   data-emotion="css"
                                   data-s=""
                                 >
                                   
-                                  @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                  @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                                 </style>,
                                 <style
                                   data-emotion="css"
                                   data-s=""
                                 >
                                   
-                                  .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                  .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                                 </style>,
                                 <style
                                   data-emotion="css"
@@ -3536,14 +3536,14 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                     Object {
                       "insert": [Function],
                       "inserted": Object {
-                        "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                        "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                         "1oxrrah-euiButtonDisplayContent": true,
-                        "ms6n15-base-text": true,
+                        "1sophrw-base-text": true,
                       },
                       "key": "css",
                       "nonce": undefined,
                       "registered": Object {
-                        "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                        "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -3573,21 +3573,21 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                             data-s=""
                           >
                             
-                            .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                            .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                           </style>
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                            @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                           </style>
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                           </style>
                           <style
                             data-emotion="css"
@@ -3623,21 +3623,21 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                             data-s=""
                           >
                             
-                            .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                            .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                           </style>,
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                            @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                           </style>,
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                           </style>,
                           <style
                             data-emotion="css"
@@ -3668,9 +3668,9 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                   serialized={
                     Object {
                       "map": undefined,
-                      "name": "ms6n15-base-text",
+                      "name": "1sophrw-base-text",
                       "next": undefined,
-                      "styles": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                      "styles": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -3694,7 +3694,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                   }
                 />
                 <EuiButtonDisplay
-                  className="euiControlBar__button css-ms6n15-base-text"
+                  className="euiControlBar__button css-1sophrw-base-text"
                   data-test-subj="dts"
                   minWidth={112}
                   onClick={[Function]}
@@ -3712,14 +3712,14 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                         Object {
                           "insert": [Function],
                           "inserted": Object {
-                            "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                            "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                             "1oxrrah-euiButtonDisplayContent": true,
-                            "ms6n15-base-text": true,
+                            "1sophrw-base-text": true,
                           },
                           "key": "css",
                           "nonce": undefined,
                           "registered": Object {
-                            "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                            "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -3749,21 +3749,21 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                                 data-s=""
                               >
                                 
-                                .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                               </style>
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                               </style>
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                               </style>
                               <style
                                 data-emotion="css"
@@ -3799,21 +3799,21 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                                 data-s=""
                               >
                                 
-                                .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                               </style>,
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                               </style>,
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                               </style>,
                               <style
                                 data-emotion="css"
@@ -3844,7 +3844,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                       serialized={
                         Object {
                           "map": undefined,
-                          "name": "1aelc7r-euiButtonDisplay-s-s-base-text",
+                          "name": "11ukiv0-euiButtonDisplay-s-s-base-text",
                           "next": undefined,
                           "styles": "
     display: inline-block;
@@ -3858,7 +3858,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
     block-size: 32px;;
     // prevents descenders from getting cut off
     line-height: 32px;
-  font-size:1.0000rem;line-height:1.4286rem;;label:s;;;;;border-radius:4px;;label:s;;;background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+  font-size:1.0000rem;line-height:1.4286rem;;label:s;;;;;border-radius:4px;;label:s;;;color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -3900,14 +3900,14 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                               Object {
                                 "insert": [Function],
                                 "inserted": Object {
-                                  "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                                  "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                                   "1oxrrah-euiButtonDisplayContent": true,
-                                  "ms6n15-base-text": true,
+                                  "1sophrw-base-text": true,
                                 },
                                 "key": "css",
                                 "nonce": undefined,
                                 "registered": Object {
-                                  "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                                  "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -3937,21 +3937,21 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                                       data-s=""
                                     >
                                       
-                                      .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                      .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                                     </style>
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                      @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                                     </style>
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                                     </style>
                                     <style
                                       data-emotion="css"
@@ -3987,21 +3987,21 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                                       data-s=""
                                     >
                                       
-                                      .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                      .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                                     </style>,
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                      @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                                     </style>,
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                                     </style>,
                                     <style
                                       data-emotion="css"
@@ -4368,14 +4368,14 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                     Object {
                       "insert": [Function],
                       "inserted": Object {
-                        "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                        "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                         "1oxrrah-euiButtonDisplayContent": true,
-                        "ms6n15-base-text": true,
+                        "1sophrw-base-text": true,
                       },
                       "key": "css",
                       "nonce": undefined,
                       "registered": Object {
-                        "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                        "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -4405,21 +4405,21 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                             data-s=""
                           >
                             
-                            .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                            .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                           </style>
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                            @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                           </style>
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                           </style>
                           <style
                             data-emotion="css"
@@ -4455,21 +4455,21 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                             data-s=""
                           >
                             
-                            .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                            .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                           </style>,
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                            @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                           </style>,
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                           </style>,
                           <style
                             data-emotion="css"
@@ -4500,9 +4500,9 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                   serialized={
                     Object {
                       "map": undefined,
-                      "name": "ms6n15-base-text",
+                      "name": "1sophrw-base-text",
                       "next": undefined,
-                      "styles": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                      "styles": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -4526,7 +4526,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                   }
                 />
                 <EuiButtonDisplay
-                  className="euiControlBar__button css-ms6n15-base-text"
+                  className="euiControlBar__button css-1sophrw-base-text"
                   data-test-subj="dts"
                   minWidth={112}
                   onClick={[Function]}
@@ -4544,14 +4544,14 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                         Object {
                           "insert": [Function],
                           "inserted": Object {
-                            "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                            "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                             "1oxrrah-euiButtonDisplayContent": true,
-                            "ms6n15-base-text": true,
+                            "1sophrw-base-text": true,
                           },
                           "key": "css",
                           "nonce": undefined,
                           "registered": Object {
-                            "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                            "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -4581,21 +4581,21 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                                 data-s=""
                               >
                                 
-                                .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                               </style>
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                               </style>
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                               </style>
                               <style
                                 data-emotion="css"
@@ -4631,21 +4631,21 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                                 data-s=""
                               >
                                 
-                                .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                               </style>,
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                               </style>,
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                               </style>,
                               <style
                                 data-emotion="css"
@@ -4676,7 +4676,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                       serialized={
                         Object {
                           "map": undefined,
-                          "name": "1aelc7r-euiButtonDisplay-s-s-base-text",
+                          "name": "11ukiv0-euiButtonDisplay-s-s-base-text",
                           "next": undefined,
                           "styles": "
     display: inline-block;
@@ -4690,7 +4690,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
     block-size: 32px;;
     // prevents descenders from getting cut off
     line-height: 32px;
-  font-size:1.0000rem;line-height:1.4286rem;;label:s;;;;;border-radius:4px;;label:s;;;background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+  font-size:1.0000rem;line-height:1.4286rem;;label:s;;;;;border-radius:4px;;label:s;;;color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -4732,14 +4732,14 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                               Object {
                                 "insert": [Function],
                                 "inserted": Object {
-                                  "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                                  "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                                   "1oxrrah-euiButtonDisplayContent": true,
-                                  "ms6n15-base-text": true,
+                                  "1sophrw-base-text": true,
                                 },
                                 "key": "css",
                                 "nonce": undefined,
                                 "registered": Object {
-                                  "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                                  "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -4769,21 +4769,21 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                                       data-s=""
                                     >
                                       
-                                      .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                      .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                                     </style>
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                      @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                                     </style>
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                                     </style>
                                     <style
                                       data-emotion="css"
@@ -4819,21 +4819,21 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                                       data-s=""
                                     >
                                       
-                                      .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                      .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                                     </style>,
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                      @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                                     </style>,
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                                     </style>,
                                     <style
                                       data-emotion="css"
@@ -5200,14 +5200,14 @@ exports[`EuiControlBar props size is rendered 1`] = `
                     Object {
                       "insert": [Function],
                       "inserted": Object {
-                        "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                        "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                         "1oxrrah-euiButtonDisplayContent": true,
-                        "ms6n15-base-text": true,
+                        "1sophrw-base-text": true,
                       },
                       "key": "css",
                       "nonce": undefined,
                       "registered": Object {
-                        "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                        "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -5237,21 +5237,21 @@ exports[`EuiControlBar props size is rendered 1`] = `
                             data-s=""
                           >
                             
-                            .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                            .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                           </style>
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                            @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                           </style>
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                           </style>
                           <style
                             data-emotion="css"
@@ -5287,21 +5287,21 @@ exports[`EuiControlBar props size is rendered 1`] = `
                             data-s=""
                           >
                             
-                            .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                            .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                           </style>,
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                            @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                           </style>,
                           <style
                             data-emotion="css"
                             data-s=""
                           >
                             
-                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                            .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                           </style>,
                           <style
                             data-emotion="css"
@@ -5332,9 +5332,9 @@ exports[`EuiControlBar props size is rendered 1`] = `
                   serialized={
                     Object {
                       "map": undefined,
-                      "name": "ms6n15-base-text",
+                      "name": "1sophrw-base-text",
                       "next": undefined,
-                      "styles": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                      "styles": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -5358,7 +5358,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
                   }
                 />
                 <EuiButtonDisplay
-                  className="euiControlBar__button css-ms6n15-base-text"
+                  className="euiControlBar__button css-1sophrw-base-text"
                   data-test-subj="dts"
                   minWidth={112}
                   onClick={[Function]}
@@ -5376,14 +5376,14 @@ exports[`EuiControlBar props size is rendered 1`] = `
                         Object {
                           "insert": [Function],
                           "inserted": Object {
-                            "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                            "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                             "1oxrrah-euiButtonDisplayContent": true,
-                            "ms6n15-base-text": true,
+                            "1sophrw-base-text": true,
                           },
                           "key": "css",
                           "nonce": undefined,
                           "registered": Object {
-                            "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                            "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -5413,21 +5413,21 @@ exports[`EuiControlBar props size is rendered 1`] = `
                                 data-s=""
                               >
                                 
-                                .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                               </style>
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                               </style>
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                               </style>
                               <style
                                 data-emotion="css"
@@ -5463,21 +5463,21 @@ exports[`EuiControlBar props size is rendered 1`] = `
                                 data-s=""
                               >
                                 
-                                .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                               </style>,
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                               </style>,
                               <style
                                 data-emotion="css"
                                 data-s=""
                               >
                                 
-                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                               </style>,
                               <style
                                 data-emotion="css"
@@ -5508,7 +5508,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
                       serialized={
                         Object {
                           "map": undefined,
-                          "name": "1aelc7r-euiButtonDisplay-s-s-base-text",
+                          "name": "11ukiv0-euiButtonDisplay-s-s-base-text",
                           "next": undefined,
                           "styles": "
     display: inline-block;
@@ -5522,7 +5522,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
     block-size: 32px;;
     // prevents descenders from getting cut off
     line-height: 32px;
-  font-size:1.0000rem;line-height:1.4286rem;;label:s;;;;;border-radius:4px;;label:s;;;background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+  font-size:1.0000rem;line-height:1.4286rem;;label:s;;;;;border-radius:4px;;label:s;;;color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -5564,14 +5564,14 @@ exports[`EuiControlBar props size is rendered 1`] = `
                               Object {
                                 "insert": [Function],
                                 "inserted": Object {
-                                  "1aelc7r-euiButtonDisplay-s-s-base-text": true,
+                                  "11ukiv0-euiButtonDisplay-s-s-base-text": true,
                                   "1oxrrah-euiButtonDisplayContent": true,
-                                  "ms6n15-base-text": true,
+                                  "1sophrw-base-text": true,
                                 },
                                 "key": "css",
                                 "nonce": undefined,
                                 "registered": Object {
-                                  "css-ms6n15-base-text": "background-color:#e9edf3;color:#343741;;;label:base;;;label:text;;;
+                                  "css-1sophrw-base-text": "color:#343741;background-color:#e9edf3;;;label:base;;;label:text;;;
     @media screen and (prefers-reduced-motion: no-preference) {
       transition: transform 250ms ease-in-out,
         background-color 250ms ease-in-out;
@@ -5601,21 +5601,21 @@ exports[`EuiControlBar props size is rendered 1`] = `
                                       data-s=""
                                     >
                                       
-                                      .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                      .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                                     </style>
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                      @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                                     </style>
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                                     </style>
                                     <style
                                       data-emotion="css"
@@ -5651,21 +5651,21 @@ exports[`EuiControlBar props size is rendered 1`] = `
                                       data-s=""
                                     >
                                       
-                                      .css-ms6n15-base-text{background-color:#e9edf3;color:#343741;}
+                                      .css-1sophrw-base-text{color:#343741;background-color:#e9edf3;}
                                     </style>,
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      @media screen and (prefers-reduced-motion: no-preference){.css-ms6n15-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-ms6n15-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-ms6n15-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-ms6n15-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
+                                      @media screen and (prefers-reduced-motion: no-preference){.css-1sophrw-base-text{-webkit-transition:-webkit-transform 250ms ease-in-out,background-color 250ms ease-in-out;transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;}.css-1sophrw-base-text:hover:not(:disabled){-webkit-transform:translateY(-1px);-moz-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}.css-1sophrw-base-text:focus{-webkit-animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);animation:euiButtonActive 250ms cubic-bezier(.34, 1.61, .7, 1);}.css-1sophrw-base-text:active:not(:disabled){-webkit-transform:translateY(1px);-moz-transform:translateY(1px);-ms-transform:translateY(1px);transform:translateY(1px);}}
                                     </style>,
                                     <style
                                       data-emotion="css"
                                       data-s=""
                                     >
                                       
-                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;background-color:#e9edf3;color:#343741;}
+                                      .emotion-euiButtonDisplay-s-s-base-text{display:inline-block;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;cursor:pointer;white-space:nowrap;max-inline-size:100%;vertical-align:middle;min-inline-size:112px;font-weight:500;padding:0 12px;block-size:32px;line-height:32px;font-size:1.0000rem;line-height:1.4286rem;border-radius:4px;color:#343741;background-color:#e9edf3;}
                                     </style>,
                                     <style
                                       data-emotion="css"

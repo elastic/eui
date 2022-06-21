@@ -27,7 +27,7 @@ Array [
     >
       <button
         aria-label="Closes this modal window"
-        class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiModal__closeIcon css-19g5rpb-empty-text-EuiButtonIcon"
+        class="euiButtonIcon euiButtonIcon--xSmall euiModal__closeIcon css-19g5rpb-empty-text-EuiButtonIcon"
         type="button"
       >
         <span
@@ -142,7 +142,7 @@ Array [
     >
       <button
         aria-label="Closes this modal window"
-        class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiModal__closeIcon css-19g5rpb-empty-text-EuiButtonIcon"
+        class="euiButtonIcon euiButtonIcon--xSmall euiModal__closeIcon css-19g5rpb-empty-text-EuiButtonIcon"
         type="button"
       >
         <span

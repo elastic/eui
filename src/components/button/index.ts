@@ -9,15 +9,10 @@
 export type { EuiButtonColor, EuiButtonSize, EuiButtonProps } from './button';
 export { COLORS, EuiButton } from './button';
 
-export type {
-  EuiButtonEmptyColor,
-  EuiButtonEmptyProps,
-  EuiButtonEmptySizes,
-} from './button_empty';
+export type { EuiButtonEmptyProps, EuiButtonEmptySizes } from './button_empty';
 export { EuiButtonEmpty } from './button_empty';
 
 export type {
-  EuiButtonIconColor,
   EuiButtonIconProps,
   EuiButtonIconPropsForButton,
 } from './button_icon';

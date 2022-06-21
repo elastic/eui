@@ -9,11 +9,7 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import {
-  EuiButtonEmpty,
-  EuiButtonEmptyColor,
-  EuiButtonEmptyProps,
-} from '../button/button_empty';
+import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button/button_empty';
 
 import { EuiI18n } from '../i18n';
 
@@ -80,7 +76,7 @@ function euiCardSelectableText(
 }
 
 export function euiCardSelectableColor(
-  color: EuiButtonEmptyColor | undefined,
+  color: EuiButtonEmptyProps['color'] | undefined,
   isSelected: boolean | undefined
 ): string {
   let calculatedColor;

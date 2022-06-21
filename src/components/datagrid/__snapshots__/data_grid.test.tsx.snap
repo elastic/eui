@@ -54,7 +54,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
       <a
         aria-controls="generated-id"
         aria-label="Previous page"
-        class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton css-19g5rpb-empty-text-EuiButtonIcon"
+        class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton css-19g5rpb-empty-text-EuiButtonIcon"
         data-test-subj="pagination-button-previous"
         href="#generated-id"
         rel="noreferrer"
@@ -119,7 +119,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
       </ul>
       <button
         aria-label="Next page"
-        class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton css-1w4v2zr-empty-disabled-EuiButtonIcon"
+        class="euiButtonIcon euiButtonIcon--xSmall euiPaginationArrowButton css-1w4v2zr-empty-disabled-EuiButtonIcon"
         data-test-subj="pagination-button-next"
         disabled=""
         type="button"
@@ -994,7 +994,7 @@ Array [
               >
                 <button
                   aria-label="Display options"
-                  class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn css-19g5rpb-empty-text-EuiButtonIcon"
+                  class="euiButtonIcon euiButtonIcon--xSmall euiDataGrid__controlBtn css-19g5rpb-empty-text-EuiButtonIcon"
                   data-test-subj="dataGridDisplaySelectorButton"
                   type="button"
                 >
@@ -1013,7 +1013,7 @@ Array [
           >
             <button
               aria-label="Enter fullscreen"
-              class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn css-19g5rpb-empty-text-EuiButtonIcon"
+              class="euiButtonIcon euiButtonIcon--xSmall euiDataGrid__controlBtn css-19g5rpb-empty-text-EuiButtonIcon"
               data-test-subj="dataGridFullScreenButton"
               type="button"
             >
@@ -1414,7 +1414,7 @@ Array [
               >
                 <button
                   aria-label="Display options"
-                  class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn css-19g5rpb-empty-text-EuiButtonIcon"
+                  class="euiButtonIcon euiButtonIcon--xSmall euiDataGrid__controlBtn css-19g5rpb-empty-text-EuiButtonIcon"
                   data-test-subj="dataGridDisplaySelectorButton"
                   type="button"
                 >
@@ -1433,7 +1433,7 @@ Array [
           >
             <button
               aria-label="Enter fullscreen"
-              class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn css-19g5rpb-empty-text-EuiButtonIcon"
+              class="euiButtonIcon euiButtonIcon--xSmall euiDataGrid__controlBtn css-19g5rpb-empty-text-EuiButtonIcon"
               data-test-subj="dataGridFullScreenButton"
               type="button"
             >
@@ -2169,7 +2169,7 @@ Array [
               >
                 <button
                   aria-label="Display options"
-                  class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn css-19g5rpb-empty-text-EuiButtonIcon"
+                  class="euiButtonIcon euiButtonIcon--xSmall euiDataGrid__controlBtn css-19g5rpb-empty-text-EuiButtonIcon"
                   data-test-subj="dataGridDisplaySelectorButton"
                   type="button"
                 >
@@ -2188,7 +2188,7 @@ Array [
           >
             <button
               aria-label="Enter fullscreen"
-              class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn css-19g5rpb-empty-text-EuiButtonIcon"
+              class="euiButtonIcon euiButtonIcon--xSmall euiDataGrid__controlBtn css-19g5rpb-empty-text-EuiButtonIcon"
               data-test-subj="dataGridFullScreenButton"
               type="button"
             >
@@ -2588,7 +2588,7 @@ Array [
               >
                 <button
                   aria-label="Display options"
-                  class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn css-19g5rpb-empty-text-EuiButtonIcon"
+                  class="euiButtonIcon euiButtonIcon--xSmall euiDataGrid__controlBtn css-19g5rpb-empty-text-EuiButtonIcon"
                   data-test-subj="dataGridDisplaySelectorButton"
                   type="button"
                 >
@@ -2607,7 +2607,7 @@ Array [
           >
             <button
               aria-label="Enter fullscreen"
-              class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn css-19g5rpb-empty-text-EuiButtonIcon"
+              class="euiButtonIcon euiButtonIcon--xSmall euiDataGrid__controlBtn css-19g5rpb-empty-text-EuiButtonIcon"
               data-test-subj="dataGridFullScreenButton"
               type="button"
             >

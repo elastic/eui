@@ -110,6 +110,7 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
           <button
             aria-label="Collapse"
             css="unknown styles"
+            disabled={false}
             onClick={[Function]}
             type="button"
           >
@@ -198,7 +199,8 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
             />
             <button
               aria-label="Collapse"
-              className="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton css-19g5rpb-empty-text-EuiButtonIcon"
+              className="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton css-19g5rpb-empty-text-EuiButtonIcon"
+              disabled={false}
               onClick={[Function]}
               type="button"
             >
@@ -538,6 +540,7 @@ console.log(some);"
                     <button
                       aria-label="Copy"
                       css="unknown styles"
+                      disabled={false}
                       onBlur={[Function]}
                       onClick={[Function]}
                       onFocus={[Function]}
@@ -619,7 +622,8 @@ console.log(some);"
                       />
                       <button
                         aria-label="Copy"
-                        className="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall css-19g5rpb-empty-text-EuiButtonIcon"
+                        className="euiButtonIcon euiButtonIcon--xSmall css-19g5rpb-empty-text-EuiButtonIcon"
+                        disabled={false}
                         onBlur={[Function]}
                         onClick={[Function]}
                         onFocus={[Function]}
@@ -717,7 +721,7 @@ exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
   >
     <button
       aria-label="Expand"
-      class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton css-19g5rpb-empty-text-EuiButtonIcon"
+      class="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton css-19g5rpb-empty-text-EuiButtonIcon"
       type="button"
     >
       <span
@@ -972,7 +976,7 @@ exports[`EuiCodeBlock virtualization renders a virtualized code block 1`] = `
   >
     <button
       aria-label="Expand"
-      class="euiButtonIcon euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton css-19g5rpb-empty-text-EuiButtonIcon"
+      class="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton css-19g5rpb-empty-text-EuiButtonIcon"
       type="button"
     >
       <span
