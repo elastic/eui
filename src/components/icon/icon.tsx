@@ -250,8 +250,7 @@ export class EuiIconClass extends PureComponent<
 
     const { isLoading, neededLoading } = this.state;
 
-    const optionalCustomStyles =
-      color && !isNamedColor(color) ? { color: color } : null;
+    const isCustomColor = color && !isNamedColor(color);
 
     // These icons are a little special and get some extra CSS flexibility
     const isAppIcon = getIsAppIcon(type);
@@ -268,12 +267,12 @@ export class EuiIconClass extends PureComponent<
     );
 
     // Emotion styles
-    const styles = euiIconStyles(theme);
+    const styles = euiIconStyles(theme, color);
     const cssStyles = [
       styles.euiIcon,
       styles[size],
       color && isNamedColor(color) && styles[color as NamedColor],
-      color && !isNamedColor(color) && styles.customColor,
+      isCustomColor && styles.customColor,
       // The app icon only gets the .euiIcon--app class if no color is passed or if color="default" is passed
       isAppIcon && !appIconHasColor && styles.app,
       isLoading && styles.isLoading,
@@ -331,7 +330,6 @@ export class EuiIconClass extends PureComponent<
         <Svg
           className={classes}
           css={cssStyles}
-          style={optionalCustomStyles}
           tabIndex={tabIndex}
           focusable={focusable}
           role="img"
