@@ -11,6 +11,7 @@ import { findElementBySelectorOrRef } from '../../../services';
 import { EuiBottomBar, EuiBottomBarProps } from '../../bottom_bar';
 import { EuiPageSection, EuiPageSectionProps } from '../../page/page_section';
 import { _EuiPageRestrictWidth } from '../../page/_restrict_width';
+import { EuiPortal } from '../../portal';
 
 export interface _EuiPageBottomBarProps
   extends Pick<EuiPageSectionProps, 'paddingSize'>,
@@ -44,26 +45,28 @@ export const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = ({
   }, [sibling]);
 
   return (
-    <EuiBottomBar
-      paddingSize={'none'}
-      position="sticky"
-      style={{ flexShrink: 0, ...style }}
-      usePortal={
+    <EuiPortal
+      insert={
         hasValidAnchor && siblingNode.current
           ? {
-              // @ts-expect-error Doesn't work anyway
               sibling: siblingNode.current,
               position: 'after',
             }
-          : false
+          : undefined
       }
-      // Using unknown here because of the possible conflict with overriding props and position `sticky`
-      {...(rest as unknown)}
     >
-      {/* Wrapping the contents with EuiPageContentBody allows us to match the restrictWidth to keep the contents aligned */}
-      <EuiPageSection paddingSize={paddingSize} restrictWidth={restrictWidth}>
-        {children}
-      </EuiPageSection>
-    </EuiBottomBar>
+      <EuiBottomBar
+        paddingSize={'none'}
+        position="sticky"
+        style={{ flexShrink: 0, ...style }}
+        // Using unknown here because of the possible conflict with overriding props and position `sticky`
+        {...(rest as unknown)}
+      >
+        {/* Wrapping the contents with EuiPageContentBody allows us to match the restrictWidth to keep the contents aligned */}
+        <EuiPageSection paddingSize={paddingSize} restrictWidth={restrictWidth}>
+          {children}
+        </EuiPageSection>
+      </EuiBottomBar>
+    </EuiPortal>
   );
 };
