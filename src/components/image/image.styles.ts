@@ -27,7 +27,7 @@ const _convertToRem = (size: number) => {
 
 export const euiImageStyles = (
   euiThemeContext: UseEuiTheme,
-  size: EuiImageSize | number | string
+  hasShadow: boolean | undefined
 ) => {
   const { euiTheme } = euiThemeContext;
 
@@ -53,15 +53,13 @@ export const euiImageStyles = (
         }
       }
     `,
-    customSizeStyle: css`
-      max-width: ${typeof size === 'string' ? size : `${size}px`};
-      max-height: ${typeof size === 'string' ? size : `${size}px`};
-      // Set width back to auto to ensure aspect ratio is kept
-      width: auto;
-    `,
     allowFullScreen: css`
       &:hover .euiImage__caption {
         text-decoration: underline;
+      }
+
+      &[class*='-fullWidth'] {
+        width: 100%;
       }
 
       &:not([class*='-hasShadow']) [class*='euiImage__button']:hover,
@@ -74,7 +72,7 @@ export const euiImageStyles = (
         ${euiShadow(euiThemeContext, 's')};
       }
     `,
-    isFullScreenActive: css`
+    isFullScreen: css`
       position: relative;
       max-height: 80vh;
       max-width: 80vw;
@@ -125,7 +123,10 @@ export const euiImageStyles = (
   };
 };
 
-export const euiImageImgStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiImageImgStyles = (
+  euiThemeContext: UseEuiTheme,
+  size: EuiImageSize | number | string
+) => {
   return {
     // The image itself is full width within the container.
     euiImage__img: css`
@@ -153,12 +154,17 @@ export const euiImageImgStyles = (euiThemeContext: UseEuiTheme) => {
     xl: css`
       width: ${_convertToRem(600)};
     `,
-    fullWidth: css`
-      width: 100%;
-    `,
     original: css`
       width: auto;
       max-width: 100%;
+    `,
+
+    fullWidth: css``,
+    customSize: css`
+      max-width: ${typeof size === 'string' ? size : `${size}px`};
+      max-height: ${typeof size === 'string' ? size : `${size}px`};
+      // Set width back to auto to ensure aspect ratio is kept
+      width: auto;
     `,
   };
 };
@@ -168,6 +174,7 @@ export const euiImageButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiImage__button: css`
     position: relative;
     cursor: pointer;
+    line-height: 0;
 
     // transition the shadow
     transition: all ${euiTheme.animation.fast} ${euiTheme.animation.resistance};
@@ -213,17 +220,12 @@ export const euiImageIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
 });
 
-export const euiImageFullScreenImgStyles = ({ euiTheme }: UseEuiTheme) => ({
+export const euiImageFullScreenImgStyles = () => ({
   // Base
-  euiImage__fullScreenImg: css`
+  euiImage__fullScreen: css`
     position: relative;
     max-height: 80vh;
     max-width: 80vw;
-
-    ${euiCanAnimate} {
-      animation: ${euiImageFullScreen(euiTheme.size.xxxxl)}
-        ${euiTheme.animation.extraSlow} ${euiTheme.animation.bounce};
-    }
   `,
 });
 

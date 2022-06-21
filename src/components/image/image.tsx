@@ -120,6 +120,8 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
   ...rest
 }) => {
   const [isFullScreenActive, setIsFullScreenActive] = useState(false);
+  const isNamedSize =
+    typeof size === 'string' && SIZES.includes(size as EuiImageSize);
 
   const onKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === keys.ESCAPE) {
@@ -137,43 +139,40 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     setIsFullScreenActive(true);
   };
 
-  const customStyle: React.CSSProperties = { ...style };
-
   const classes = classNames('euiImage', className);
 
   const euiTheme = useEuiTheme();
 
-  const styles = euiImageStyles(euiTheme, size);
-  const cssStyles = [
+  const styles = euiImageStyles(euiTheme, hasShadow);
+  const cssFigureStyles = [
     styles.euiImage,
     float && styles[float],
     margin && styles[margin],
     allowFullScreen && styles.allowFullScreen,
-    isFullScreenActive && styles.isFullScreenActive,
   ];
 
-  const imgStyles = euiImageImgStyles(euiTheme);
-  let cssImgStyles;
+  const cssFigureFullScreen = [
+    styles.euiImage,
+    isFullScreenActive && styles.isFullScreen,
+  ];
 
-  if (typeof size === 'string' && SIZES.includes(size as EuiImageSize)) {
-    cssImgStyles = [
-      imgStyles.euiImage__img,
-      imgStyles[size as EuiImageSize],
-      hasShadow && imgStyles.hasShadow,
-    ];
-  } else {
-    cssImgStyles = [imgStyles.euiImage__img, hasShadow && imgStyles.hasShadow];
-    cssStyles.push(styles.customSizeStyle);
-  }
+  const imgStyles = euiImageImgStyles(euiTheme, size);
+  const cssImgStyles = [
+    imgStyles.euiImage__img,
+    isNamedSize && imgStyles[size as EuiImageSize],
+    !isNamedSize && imgStyles.customSize,
+    hasShadow && imgStyles.hasShadow,
+  ];
 
   const buttonStyles = euiImageButtonStyles(euiTheme);
   const cssButtonStyles = [
     buttonStyles.euiImage__button,
-    // when the button is not custom we need it to go full width
-    // to match the parent '.euiImage' width except when the size is original
-    typeof size === 'string' &&
+    // when the image button is not in full screen mode and the size is not custom
+    // we need the image button to go full width to match the parent '.euiImage'
+    // width except when the size is `original`
+    !isFullScreenActive &&
+      isNamedSize &&
       size !== 'original' &&
-      SIZES.includes(size as EuiImageSize) &&
       buttonStyles.fullWidth,
   ];
 
@@ -183,8 +182,8 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
   const iconStyles = euiImageIconStyles(euiTheme);
   const cssIconStyles = [iconStyles.euiImage__icon];
 
-  const fullScreenImgStyles = euiImageFullScreenImgStyles(euiTheme);
-  const cssFullScreenImgStyles = [fullScreenImgStyles.euiImage__fullScreenImg];
+  const fullScreenImgStyles = euiImageFullScreenImgStyles();
+  const cssFullScreenImgStyles = [fullScreenImgStyles.euiImage__fullScreen];
 
   const fullScreenCloseIconStyles = euiImageFullScreenCloseIconStyles(euiTheme);
   const cssFullScreenCloseIconStyles = [
@@ -216,7 +215,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     >
       <EuiFocusTrap clickOutsideDisables={true}>
         <>
-          <figure css={cssStyles} aria-label={optionalCaptionText}>
+          <figure css={cssFigureFullScreen} aria-label={optionalCaptionText}>
             <button
               type="button"
               css={cssButtonStyles}
@@ -254,23 +253,17 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     { alt }
   );
 
-  const img = (
-    <img
-      style={customStyle}
-      src={src || url}
-      alt={alt}
-      css={cssImgStyles}
-      {...rest}
-    />
+  const imageDisplay = (
+    <img src={src || url} alt={alt} css={cssImgStyles} {...rest} />
   );
 
-  if (allowFullScreen) {
-    return (
-      <figure
-        className={classes}
-        css={cssStyles}
-        aria-label={optionalCaptionText}
-      >
+  return (
+    <figure
+      className={classes}
+      css={cssFigureStyles}
+      aria-label={optionalCaptionText}
+    >
+      {allowFullScreen ? (
         <button
           type="button"
           css={cssButtonStyles}
@@ -278,23 +271,15 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
           data-test-subj="activateFullScreenButton"
           onClick={openFullScreen}
         >
-          {img}
+          {imageDisplay}
           {allowFullScreenIcon}
         </button>
-        {isFullScreenActive && fullScreenDisplay}
-        {optionalCaption}
-      </figure>
-    );
-  } else {
-    return (
-      <figure
-        className={classes}
-        css={cssStyles}
-        aria-label={optionalCaptionText}
-      >
-        {img}
-        {optionalCaption}
-      </figure>
-    );
-  }
+      ) : (
+        imageDisplay
+      )}
+
+      {isFullScreenActive && fullScreenDisplay}
+      {optionalCaption}
+    </figure>
+  );
 };
