@@ -1,34 +1,6 @@
 // This file uses uncommon vendor prefixes not covered by our compilers
 // sass-lint:disable no-vendor-prefixes
 
-// Progress bars can be set to fixed or absolute.
-.euiProgress--fixed {
-  position: fixed;
-  z-index: $euiZHeader + 1;
-}
-
-.euiProgress--absolute {
-  position: absolute;
-}
-
-.euiProgress--fixed,
-.euiProgress--absolute {
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: transparent;
-
-  &.euiProgress--native {
-    &::-webkit-progress-bar {
-      background-color: transparent;
-    }
-
-    &::-moz-progress-bar {
-      background-color: transparent;
-    }
-  }
-}
-
 @each $name, $color in $euiProgressColors {
   .euiProgress--#{$name} {
     &.euiProgress--native {

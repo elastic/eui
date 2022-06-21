@@ -92,15 +92,8 @@ const dataColorToClassNameMap: { [color in ProgressColor]: string } = {
   vis9: 'euiProgress__data--vis9',
 };
 
-const positionsToClassNameMap = {
-  fixed: 'euiProgress--fixed',
-  absolute: 'euiProgress--absolute',
-  static: '',
-};
-
-export const POSITIONS = keysOf(positionsToClassNameMap);
-
-export type EuiProgressPosition = keyof typeof positionsToClassNameMap;
+export const POSITIONS = ['fixed', 'absolute', 'static'] as const;
+export type EuiProgressPosition = typeof POSITIONS[number];
 
 export type EuiProgressProps = CommonProps & {
   size?: EuiProgressSize;
@@ -157,20 +150,16 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
   }
 
   const euiTheme = useEuiTheme();
-  const styles = euiProgressStyles(euiTheme);
+  const styles = euiProgressStyles(euiTheme, determinate);
   const cssStyles = [
     styles.euiProgress,
     determinate && styles.native,
     !determinate && styles.indeterminate,
     styles[size],
+    styles[position],
   ];
 
-  const classes = classNames(
-    'euiProgress',
-    colorClass,
-    positionsToClassNameMap[position],
-    className
-  );
+  const classes = classNames('euiProgress', colorClass, className);
   const dataClasses = classNames(
     'euiProgress__data',
     {

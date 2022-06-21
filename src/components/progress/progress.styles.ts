@@ -11,6 +11,24 @@ import { logicalCSS, euiCantAnimate } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 /**
+ * DRY utils for non-static positions
+ */
+const nonStaticPositioning = (isNative: boolean) => `
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  ${
+    isNative
+      ? `
+      &::-webkit-progress-bar {
+        background-color: transparent;
+      }`
+      : ''
+  }
+`;
+
+/**
  * Animations
  */
 const euiIndeterminateAnimation = keyframes`
@@ -25,9 +43,11 @@ const euiIndeterminateAnimation = keyframes`
 /**
  * Emotion styles
  */
-export const euiProgressStyles = ({ euiTheme }: UseEuiTheme) => ({
+export const euiProgressStyles = (
+  { euiTheme }: UseEuiTheme,
+  isNative: boolean
+) => ({
   euiProgress: css`
-    position: relative;
     overflow: hidden;
     background-color: ${euiTheme.colors.lightShade};
   `,
@@ -85,5 +105,18 @@ export const euiProgressStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
   l: css`
     ${logicalCSS('height', euiTheme.size.m)}
+  `,
+  // Positioning
+  fixed: css`
+    position: fixed;
+    z-index: ${Number(euiTheme.levels.header) + 1};
+    ${nonStaticPositioning(isNative)}}
+  `,
+  absolute: css`
+    position: absolute;
+    ${nonStaticPositioning(isNative)}
+  `,
+  static: css`
+    position: relative;
   `,
 });
