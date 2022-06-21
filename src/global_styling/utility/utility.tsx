@@ -9,13 +9,4 @@
 import React from 'react';
 import { Global, css } from '@emotion/react';
 
-export const EuiUtilityClasses = () => (
-  <Global
-    styles={css`
-      // TODO: Not this
-      .euiYolo {
-        color: coral;
-      }
-    `}
-  />
-);
+export const EuiUtilityClasses = () => <Global styles={css``} />;
