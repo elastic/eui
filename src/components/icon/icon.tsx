@@ -16,7 +16,7 @@ import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
 
-import { typeToPathMap } from './icons_map';
+import { typeToPathMap } from './icon_map';
 import { icon as empty } from './assets/empty';
 import { enqueueStateChange } from '../../services/react';
 
@@ -25,7 +25,11 @@ import {
   withEuiTheme,
   WithEuiThemeProps,
 } from '../../services';
-import { colorToClassMap, isNamedColor, NamedColor } from './named_colors';
+import {
+  COLORS as NAMED_COLORS,
+  isNamedColor,
+  NamedColor,
+} from './named_colors';
 import { euiIconStyles } from './icon.styles';
 
 const getIsAppIcon = (iconType: IconType) => {
@@ -41,7 +45,7 @@ export type EuiIconType = keyof typeof typeToPathMap;
 
 export type IconType = EuiIconType | string | ComponentType;
 
-export const COLORS: NamedColor[] = keysOf(colorToClassMap);
+export const COLORS = NAMED_COLORS;
 
 // We accept arbitrary color strings, which are impossible to type.
 export type IconColor = string | NamedColor;
