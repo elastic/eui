@@ -104,10 +104,10 @@ export const ProviderExample = {
           <p>
             For most applications, the above configuration will be enough to
             have styles ordered correctly. In advanced more cases, you may use
-            the <EuiCode>default</EuiCode>, <EuiCode>eui</EuiCode>,{' '}
-            <EuiCode>global</EuiCode>, and <EuiCode>utility</EuiCode> properties
-            on the <EuiCode>cache</EuiCode> prop to further define where
-            specific styles should be inserted. See{' '}
+            the <EuiCode>default</EuiCode>,<EuiCode>global</EuiCode>, and{' '}
+            <EuiCode>utility</EuiCode> properties on the{' '}
+            <EuiCode>cache</EuiCode> prop to further define where specific
+            styles should be inserted. See{' '}
             <EuiLink href="#/utilities/provider#euiprovider-props">
               the props documentation
             </EuiLink>{' '}

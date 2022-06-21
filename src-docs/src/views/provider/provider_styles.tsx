@@ -37,7 +37,7 @@ cache.compat = true;
 
 <EuiProvider${
           colorMode === 'DARK' ? ' colorMode="dark"' : ''
-        } cache={{eui: euiCache}}'>
+        } cache={euiCache}'>
   {/* Content */}
 </EuiProvider>
   `}
