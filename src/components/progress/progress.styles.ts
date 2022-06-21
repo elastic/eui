@@ -8,7 +8,40 @@
 
 import { css, keyframes } from '@emotion/react';
 import { logicalCSS, euiCantAnimate } from '../../global_styling';
-import { UseEuiTheme } from '../../services';
+import {
+  UseEuiTheme,
+  euiPaletteColorBlind,
+  makeHighContrastColor,
+} from '../../services';
+
+/**
+ * DRY utilities for native/determinate progress components vs non-native indeterminate
+ */
+const crossBrowserProgressValue = (cssProperties: string) => `
+  &::-webkit-progress-value {
+    ${cssProperties}
+  }
+  &::-moz-progress-bar {
+    ${cssProperties}
+  }
+`;
+const indeterminateProgressValue = (cssProperties: string) => `
+  &:before {
+    ${cssProperties}
+  }
+`;
+
+/**
+ * Color utilities
+ */
+const visColors = euiPaletteColorBlind();
+
+const nativeVsIndeterminateColor = (color: string, isNative: boolean) => {
+  const selectors = isNative
+    ? crossBrowserProgressValue
+    : indeterminateProgressValue;
+  return selectors(`background-color: ${color};`);
+};
 
 /**
  * DRY utils for non-static positions
@@ -65,12 +98,9 @@ export const euiProgressStyles = (
       background-color: ${euiTheme.colors.lightShade};
     }
 
-    &::-webkit-progress-value {
-      transition: width ${euiTheme.animation.normal} linear;
-    }
-    &::-moz-progress-bar {
-      transition: width ${euiTheme.animation.normal} linear;
-    }
+    ${crossBrowserProgressValue(
+      `transition: width ${euiTheme.animation.normal} linear;`
+    )}
   `,
   // An indeterminate bar has an unreliable end time. Because of a Firefox animation issue,
   // we apply this style to a <div> instead of a <progress> element.
@@ -118,5 +148,113 @@ export const euiProgressStyles = (
   `,
   static: css`
     position: relative;
+  `,
+  // Colors
+  primary: css`
+    ${nativeVsIndeterminateColor(euiTheme.colors.primary, isNative)}
+  `,
+  success: css`
+    ${nativeVsIndeterminateColor(euiTheme.colors.success, isNative)}
+  `,
+  warning: css`
+    ${nativeVsIndeterminateColor(euiTheme.colors.warning, isNative)}
+  `,
+  danger: css`
+    ${nativeVsIndeterminateColor(euiTheme.colors.danger, isNative)}
+  `,
+  subdued: css`
+    ${nativeVsIndeterminateColor(euiTheme.colors.subduedText, isNative)}
+  `,
+  accent: css`
+    ${nativeVsIndeterminateColor(euiTheme.colors.accent, isNative)}
+  `,
+  vis0: css`
+    ${nativeVsIndeterminateColor(visColors[0], isNative)}
+  `,
+  vis1: css`
+    ${nativeVsIndeterminateColor(visColors[1], isNative)}
+  `,
+  vis2: css`
+    ${nativeVsIndeterminateColor(visColors[2], isNative)}
+  `,
+  vis3: css`
+    ${nativeVsIndeterminateColor(visColors[3], isNative)}
+  `,
+  vis4: css`
+    ${nativeVsIndeterminateColor(visColors[4], isNative)}
+  `,
+  vis5: css`
+    ${nativeVsIndeterminateColor(visColors[5], isNative)}
+  `,
+  vis6: css`
+    ${nativeVsIndeterminateColor(visColors[6], isNative)}
+  `,
+  vis7: css`
+    ${nativeVsIndeterminateColor(visColors[7], isNative)}
+  `,
+  vis8: css`
+    ${nativeVsIndeterminateColor(visColors[8], isNative)}
+  `,
+  vis9: css`
+    ${nativeVsIndeterminateColor(visColors[9], isNative)}
+  `,
+  customColor: css`
+    ${nativeVsIndeterminateColor('currentColor', isNative)}
+  `,
+});
+
+export const euiProgressValueTextStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiProgress__valueText: css``,
+  // Colors
+  primary: css`
+    color: ${euiTheme.colors.primaryText};
+  `,
+  success: css`
+    color: ${euiTheme.colors.successText};
+  `,
+  warning: css`
+    color: ${euiTheme.colors.warningText};
+  `,
+  danger: css`
+    color: ${euiTheme.colors.dangerText};
+  `,
+  subdued: css`
+    color: ${euiTheme.colors.subduedText};
+  `,
+  accent: css`
+    color: ${euiTheme.colors.accentText};
+  `,
+  vis0: css`
+    color: ${makeHighContrastColor(visColors[0])(euiTheme)};
+  `,
+  vis1: css`
+    color: ${makeHighContrastColor(visColors[1])(euiTheme)};
+  `,
+  vis2: css`
+    color: ${makeHighContrastColor(visColors[2])(euiTheme)};
+  `,
+  vis3: css`
+    color: ${makeHighContrastColor(visColors[3])(euiTheme)};
+  `,
+  vis4: css`
+    color: ${makeHighContrastColor(visColors[4])(euiTheme)};
+  `,
+  vis5: css`
+    color: ${makeHighContrastColor(visColors[5])(euiTheme)};
+  `,
+  vis6: css`
+    color: ${makeHighContrastColor(visColors[6])(euiTheme)};
+  `,
+  vis7: css`
+    color: ${makeHighContrastColor(visColors[7])(euiTheme)};
+  `,
+  vis8: css`
+    color: ${makeHighContrastColor(visColors[8])(euiTheme)};
+  `,
+  vis9: css`
+    color: ${makeHighContrastColor(visColors[9])(euiTheme)};
+  `,
+  customColor: css`
+    color: currentColor;
   `,
 });

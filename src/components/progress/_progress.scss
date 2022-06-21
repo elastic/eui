@@ -1,34 +1,3 @@
-// This file uses uncommon vendor prefixes not covered by our compilers
-// sass-lint:disable no-vendor-prefixes
-
-@each $name, $color in $euiProgressColors {
-  .euiProgress--#{$name} {
-    &.euiProgress--native {
-      &::-webkit-progress-value {
-        background-color: $color;
-      }
-
-      &::-moz-progress-bar {
-        background-color: $color;
-      }
-    }
-
-    &.euiProgress--indeterminate {
-      &:before {
-        background-color: $color;
-      }
-    }
-  }
-
-  @if ($name != 'customColor') {
-    .euiProgress__data--#{$name} {
-      .euiProgress__valueText {
-        color: makeHighContrastColor($color);
-      }
-    }
-  }
-}
-
 .euiProgress__data {
   display: flex;
   justify-content: space-between;
