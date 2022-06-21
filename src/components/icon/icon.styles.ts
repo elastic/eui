@@ -42,11 +42,8 @@ export const euiIconStyles = (
     fill: currentColor;
     transform: translate(0, 0); // Hack to fix Firefox "softness"
 
-    // TODO find out if this is still valid
-    // this focus was added 5 years ago
     &:focus {
       opacity: 1; // We often hide icons on hover. Make sure they appear on focus.
-      /* background: $euiFocusBackgroundColor; */
     }
 
     // Use the negative fill on SVG elements that need to flip portions
