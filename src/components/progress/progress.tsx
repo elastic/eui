@@ -166,14 +166,14 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
 
   const euiTheme = useEuiTheme();
   const styles = euiProgressStyles(euiTheme);
-  const cssStyles = [styles.euiProgress];
+  const cssStyles = [
+    styles.euiProgress,
+    determinate && styles.native,
+    !determinate && styles.indeterminate,
+  ];
 
   const classes = classNames(
     'euiProgress',
-    {
-      'euiProgress--indeterminate': !determinate,
-      'euiProgress--native': determinate,
-    },
     sizeToClassNameMap[size],
     colorClass,
     positionsToClassNameMap[position],
