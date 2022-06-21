@@ -23,6 +23,8 @@ import { isNil } from '../../services/predicate';
 import { useEuiTheme } from '../../services';
 import {
   euiProgressStyles,
+  euiProgressDataStyles,
+  euiProgressLabelStyles,
   euiProgressValueTextStyles,
 } from './progress.styles';
 
@@ -108,6 +110,12 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
     isNamedColor ? styles[color as EuiProgressColor] : styles.customColor,
   ];
 
+  const dataStyles = euiProgressDataStyles(euiTheme);
+  const dataCssStyles = [
+    dataStyles.euiProgress__data,
+    size === 'l' && dataStyles[size],
+  ];
+  const labelCssStyles = [euiProgressLabelStyles.euiProgress__label];
   const valueTextStyles = euiProgressValueTextStyles(euiTheme);
   const valueTextCssStyles = [
     valueTextStyles.euiProgress__valueText,
@@ -117,13 +125,7 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
   ];
 
   const classes = classNames('euiProgress', className);
-  const dataClasses = classNames('euiProgress__data', {
-    'euiProgress__data--l': size === 'l',
-  });
-  const labelClasses = classNames(
-    'euiProgress__label',
-    labelProps && labelProps.className
-  );
+  const labelClasses = classNames('euiProgress__label', labelProps?.className);
 
   let valueRender: ReactNode;
   if (valueText === true) {
@@ -149,7 +151,7 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
     return (
       <Fragment>
         {label || valueText ? (
-          <div className={dataClasses}>
+          <div css={dataCssStyles} className="euiProgress__data">
             {label && (
               <EuiInnerText>
                 {(ref, innerText) => (
@@ -157,6 +159,7 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
                     title={innerText}
                     ref={ref}
                     {...labelProps}
+                    css={labelCssStyles}
                     className={labelClasses}
                   >
                     {label}

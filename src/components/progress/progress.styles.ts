@@ -7,12 +7,19 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import { logicalCSS, euiCantAnimate } from '../../global_styling';
+import {
+  logicalCSS,
+  logicalTextAlignCSS,
+  euiCantAnimate,
+  euiFontSize,
+  euiTextTruncate,
+} from '../../global_styling';
 import {
   UseEuiTheme,
   euiPaletteColorBlind,
   makeHighContrastColor,
 } from '../../services';
+import { euiText } from '../text/text.styles';
 
 /**
  * DRY utilities for native/determinate progress components vs non-native indeterminate
@@ -203,8 +210,38 @@ export const euiProgressStyles = (
   `,
 });
 
+/**
+ * Data styles
+ */
+export const euiProgressDataStyles = (euiThemeContext: UseEuiTheme) => ({
+  euiProgress__data: css`
+    display: flex;
+    justify-content: space-between;
+    gap: ${euiThemeContext.euiTheme.size.xs};
+    ${euiText(euiThemeContext.euiTheme)}
+    ${euiFontSize(euiThemeContext, 'xs')}
+  `,
+  // Sizes
+  l: css`
+    ${euiFontSize(euiThemeContext, 's')}
+  `,
+});
+
+export const euiProgressLabelStyles = {
+  euiProgress__label: css`
+    flex-grow: 1;
+    ${euiTextTruncate()}
+  `,
+};
+
 export const euiProgressValueTextStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiProgress__valueText: css``,
+  euiProgress__valueText: css`
+    flex-grow: 1;
+    flex-shrink: 0;
+    font-feature-settings: 'tnum' 1; // Tabular numbers ensure the line up nicely when right-aligned
+    ${logicalTextAlignCSS('right')}
+    ${euiTextTruncate()}
+  `,
   // Colors
   primary: css`
     color: ${euiTheme.colors.primaryText};
