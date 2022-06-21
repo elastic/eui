@@ -4,12 +4,15 @@ import {
   iconValidator,
 } from '../../services/playground';
 import { EuiIcon } from '../../../../src/components/';
+import { IconProps } from './props';
 
 export default () => {
-  const docgenInfo = Array.isArray(EuiIcon.__docgenInfo)
-    ? EuiIcon.__docgenInfo[0]
-    : EuiIcon.__docgenInfo;
-  const propsToUse = propUtilityForPlayground(docgenInfo.props);
+  const docgenInfo = Array.isArray(IconProps.__docgenInfo)
+    ? IconProps.__docgenInfo[0]
+    : IconProps.__docgenInfo;
+
+  console.log({ docgenInfo });
+  const propsToUse = propUtilityForPlayground(docgenInfo.props, true);
 
   propsToUse.type = iconValidator({ ...propsToUse.type }, 'grid');
 
