@@ -22,7 +22,9 @@ export const EuiPopoverPanelContext = createContext<ContextShape>({
   paddingSize: 'l',
 });
 
-export type EuiPopoverPanelProps = EuiPanelProps & {
+export type EuiPopoverPanelProps = EuiPanelProps;
+
+type EuiPopoverPanelInternalProps = {
   isOpen?: boolean;
   isAttached?: boolean;
   position?: EuiPopoverArrowPositions | null;
@@ -32,14 +34,9 @@ export type EuiPopoverPanelProps = EuiPanelProps & {
  * *INTERNAL ONLY*
  * Purely for re-use of styling
  */
-export const EuiPopoverPanel: FunctionComponent<EuiPopoverPanelProps> = ({
-  children,
-  className,
-  isOpen,
-  isAttached,
-  position,
-  ...rest
-}) => {
+export const EuiPopoverPanel: FunctionComponent<
+  EuiPopoverPanelProps & EuiPopoverPanelInternalProps
+> = ({ children, className, isOpen, isAttached, position, ...rest }) => {
   const panelContext = useContext(EuiPopoverPanelContext);
   if (rest.paddingSize) panelContext.paddingSize = rest.paddingSize;
 

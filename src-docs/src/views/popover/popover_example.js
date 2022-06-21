@@ -12,6 +12,8 @@ import {
   EuiCallOut,
 } from '../../../../src/components';
 
+import { EuiPopoverPanelProps } from '!!prop-loader!../../../../src/components/popover/popover_panel/_popover_panel';
+
 import Popover from './popover';
 const popoverSource = require('!!raw-loader!./popover');
 
@@ -171,7 +173,7 @@ export const PopoverExample = {
           </p>
         </>
       ),
-      props: { EuiPopover },
+      props: { EuiPopover, EuiPopoverPanelProps },
       snippet: popOverSnippet,
       demo: <Popover />,
     },
