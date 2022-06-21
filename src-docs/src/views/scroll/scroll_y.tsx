@@ -16,6 +16,7 @@ export default () => {
     <>
       <ThemeExample
         title={<code>.eui-yScroll</code>}
+        type="className"
         description={
           <>
             <p>
@@ -37,7 +38,6 @@ export default () => {
             <ScrollContent />
           </div>
         }
-        snippetLanguage="tsx"
         snippet={`<div
   tabIndex={0}
   role="region"
@@ -52,7 +52,8 @@ export default () => {
 
       {!showSass && (
         <ThemeExample
-          title={<code>{"useEuiOverflowScroll('y');"}</code>}
+          title={<code>{"useEuiOverflowScroll('y')"}</code>}
+          type="hook"
           description={
             <>
               <p>Styles hook for adding vertical scrolling to a container.</p>
@@ -82,7 +83,6 @@ export default () => {
               <ScrollContent />
             </div>
           }
-          snippetLanguage="tsx"
           snippet={
             `<div
   tabIndex={0}
@@ -102,7 +102,8 @@ export default () => {
 
       {showSass && (
         <ThemeExample
-          title={<code>@mixin euiYScroll;</code>}
+          title={<code>@include euiYScroll</code>}
+          type="mixin"
           description={
             <>
               <p>Sass mixin for adding horizontal scrolling to a container.</p>

@@ -5,6 +5,7 @@ import {
   EuiBasicTable,
   EuiButtonGroup,
   EuiCode,
+  EuiCodeBlock,
   EuiDescribedFormGroup,
   EuiPanel,
   EuiSpacer,
@@ -53,6 +54,7 @@ export const FontJS = () => {
           </p>
         }
         snippet={'font-family: ${euiTheme.font.family};'}
+        snippetLanguage="emotion"
       />
 
       <ThemeExample
@@ -68,6 +70,23 @@ export const FontJS = () => {
           </p>
         }
         snippet={'font-family: ${euiTheme.font.familyCode};'}
+        snippetLanguage="emotion"
+      />
+
+      <ThemeExample
+        title={<code>euiTheme.font.familySerif</code>}
+        description={getDescription(baseProps.familySerif)}
+        example={
+          <p
+            css={css`
+              font-family: ${euiTheme.font.familySerif};
+            `}
+          >
+            {euiTheme.font.familySerif}
+          </p>
+        }
+        snippet={'font-family: ${euiTheme.font.familySerif};'}
+        snippetLanguage="emotion"
       />
 
       <ThemeExample
@@ -83,6 +102,7 @@ export const FontJS = () => {
           </p>
         }
         snippet={'font-feature-settings: ${euiTheme.font.featureSettings};'}
+        snippetLanguage="emotion"
       />
     </>
   );
@@ -92,8 +112,6 @@ export const FontWeightJS: FunctionComponent<ThemeRowType> = ({
   description,
 }) => {
   const { euiTheme } = useEuiTheme();
-  const weightProps = getPropsFromComponent(EuiThemeFontWeight);
-  const weightKeys = EuiThemeFontWeights;
 
   return (
     <>
@@ -110,8 +128,20 @@ export const FontWeightJS: FunctionComponent<ThemeRowType> = ({
           </div>
         }
         snippet={'font-weight: ${euiTheme.font.weight.bold};'}
+        snippetLanguage="emotion"
       />
+    </>
+  );
+};
 
+export const FontWeightValuesJS = () => {
+  const euiThemeContext = useEuiTheme();
+  const { euiTheme } = euiThemeContext;
+  const weightProps = getPropsFromComponent(EuiThemeFontWeight);
+  const weightKeys = EuiThemeFontWeights;
+
+  return (
+    <>
       <ThemeValuesTable
         items={weightKeys.map((weight) => {
           return {
@@ -136,24 +166,11 @@ export const FontWeightJS: FunctionComponent<ThemeRowType> = ({
 };
 
 export const FontScaleJS = () => {
-  const { euiTheme } = useEuiTheme();
-  const scaleKeys = EuiThemeFontScales;
-
-  const measurementButtons = EuiThemeFontSizeMeasurements.map((m) => {
-    return {
-      id: m,
-      label: m,
-    };
-  });
-
-  const [measurementSelected, setMeasurementSelected] = useState(
-    measurementButtons[0].id
-  );
-
   return (
     <>
       <ThemeExample
         title={<code>useEuiFontSize()</code>}
+        type="hook"
         description={
           <p>
             Font sizing is provided through this React hook (or function
@@ -172,9 +189,11 @@ export const FontScaleJS = () => {
           </p>
         }
         snippet="${useEuiFontSize('l')}"
+        snippetLanguage="emotion"
       />
       <ThemeExample
         title={<code>useEuiFontSize().fontSize</code>}
+        type={null}
         description={
           <p>
             To use precisely only the <EuiCode>font-size</EuiCode> value, you
@@ -192,7 +211,29 @@ export const FontScaleJS = () => {
           </p>
         }
         snippet="font-size: ${useEuiFontSize('xs').fontSize};"
+        snippetLanguage="emotion"
       />
+    </>
+  );
+};
+
+export const FontScaleValuesJS = () => {
+  const euiThemeContext = useEuiTheme();
+  const scaleKeys = EuiThemeFontScales;
+
+  const measurementButtons = EuiThemeFontSizeMeasurements.map((m) => {
+    return {
+      id: m,
+      label: m,
+    };
+  });
+
+  const [measurementSelected, setMeasurementSelected] = useState(
+    measurementButtons[0].id
+  );
+
+  return (
+    <>
       <EuiPanel color="accent">
         <EuiDescribedFormGroup
           fullWidth
@@ -226,13 +267,19 @@ export const FontScaleJS = () => {
           return {
             id: scale,
             value: `useEuiFontSize('${scale}'${
-              measurementSelected !== 'rem' ? `, '${measurementSelected}'` : ''
+              measurementSelected !== 'rem'
+                ? `,\n  { measurement: '${measurementSelected}' }\n`
+                : ''
             })`,
             size: `${
-              euiFontSize(scale, euiTheme, measurementSelected).fontSize
+              euiFontSize(euiThemeContext, scale, {
+                measurement: measurementSelected,
+              }).fontSize
             }`,
             lineHeight: `${
-              euiFontSize(scale, euiTheme, measurementSelected).lineHeight
+              euiFontSize(euiThemeContext, scale, {
+                measurement: measurementSelected,
+              }).lineHeight
             }`,
             index,
           };
@@ -246,7 +293,9 @@ export const FontScaleJS = () => {
             render: (sample, item) => (
               <div
                 css={css`
-                  ${euiFontSize(item.id, euiTheme, measurementSelected)}
+                  ${euiFontSize(euiThemeContext, item.id, {
+                    measurement: measurementSelected,
+                  })}
                 `}
               >
                 The quick brown fox jumped over the blue moon to catch a snail
@@ -262,7 +311,9 @@ export const FontScaleJS = () => {
             width: 'auto',
             valign: 'baseline',
             render: (value: React.ReactNode) => (
-              <EuiCode language="css">{value}</EuiCode>
+              <EuiCodeBlock language="js" paddingSize="s">
+                {value}
+              </EuiCodeBlock>
             ),
           },
           {

@@ -106,7 +106,7 @@ export type _EuiThemeTextColors = {
   /**
    * Computed against `colors.mediumShade`
    */
-  subdued: ColorModeSwitch;
+  subduedText: ColorModeSwitch;
   /**
    * Computed against `colors.primaryText`
    */

@@ -9,6 +9,7 @@ import {
   EuiErrorBoundary,
   EuiPage,
   EuiPageBody,
+  EuiSkipLink,
 } from '../../../src/components';
 
 import { keys } from '../../../src/services';
@@ -68,6 +69,13 @@ export const AppView = ({ children, currentRoute }) => {
 
   return (
     <LinkWrapper>
+      <EuiSkipLink
+        destinationId="start-of-content"
+        position="fixed"
+        overrideLinkBehavior
+      >
+        Skip to content
+      </EuiSkipLink>
       <GuidePageHeader onToggleLocale={toggleLocale} selectedLocale={locale} />
       <EuiPage paddingSize="none">
         <EuiErrorBoundary>
@@ -79,7 +87,9 @@ export const AppView = ({ children, currentRoute }) => {
           />
         </EuiErrorBoundary>
 
-        <EuiPageBody panelled>{children({ theme })}</EuiPageBody>
+        <EuiPageBody paddingSize="none" panelled id="start-of-content">
+          {children({ theme })}
+        </EuiPageBody>
       </EuiPage>
     </LinkWrapper>
   );

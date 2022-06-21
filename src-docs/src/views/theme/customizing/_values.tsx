@@ -44,6 +44,7 @@ type ThemeValue = {
   numberProps?: EuiFieldNumberProps;
   stringProps?: EuiFieldTextProps;
   colorProps?: Partial<EuiColorPickerProps>;
+  forceUpdateType?: 'string' | 'number' | 'color';
 };
 
 export const ThemeValue: FunctionComponent<ThemeValue> = ({
@@ -58,6 +59,7 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
   numberProps,
   stringProps,
   colorProps,
+  forceUpdateType,
 }) => {
   const { euiTheme } = useEuiTheme();
 
@@ -87,7 +89,10 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
     debouncedOnUpdate(hex, isValid);
   };
   let exampleRender;
-  if (property === 'colors' || name.toLowerCase().includes('color')) {
+  if (
+    example !== null &&
+    (property === 'colors' || name.toLowerCase().includes('color'))
+  ) {
     exampleRender = (
       <EuiFlexItem grow={false}>
         <EuiColorPickerSwatch color={color} disabled />
@@ -107,7 +112,7 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
       <span
         css={css`
           font-weight: ${euiTheme.font.weight.light};
-          color: ${euiTheme.colors.subdued};
+          color: ${euiTheme.colors.subduedText};
         `}
       >
         : {humanizeType(type.custom.origin.type)}
@@ -120,57 +125,69 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
     descriptionRender = <>{getDescription(type)}</>;
   }
 
-  let valueRender;
-  if (
-    (property === 'colors' || name.toLowerCase().includes('color')) &&
-    onUpdate
-  ) {
-    valueRender = (
-      <EuiFlexItem grow={false}>
-        <EuiColorPicker
-          swatches={[]}
-          onChange={handleColorChange}
-          color={color}
-          isInvalid={!!errors}
+  const valueRender = () => {
+    if (!onUpdate) {
+      return (
+        <EuiText textAlign="right" size="s" color="subdued">
+          <code>{value}</code>
+        </EuiText>
+      );
+    }
+
+    let updateType = forceUpdateType;
+    if (
+      !updateType &&
+      (property === 'colors' || name.toLowerCase().includes('color'))
+    ) {
+      updateType = 'color';
+    } else if (!updateType && typeof value === 'number') {
+      updateType = 'number';
+    } else if (
+      !updateType &&
+      property !== 'colors' &&
+      !name.toLowerCase().includes('color') &&
+      typeof value === 'string'
+    ) {
+      updateType = 'string';
+    }
+
+    if (updateType === 'color') {
+      return (
+        <EuiFlexItem grow={false}>
+          <EuiColorPicker
+            swatches={[]}
+            onChange={handleColorChange}
+            color={color}
+            isInvalid={!!errors}
+            compressed
+            {...colorProps}
+          />
+        </EuiFlexItem>
+      );
+    } else if (updateType === 'number') {
+      return (
+        <EuiFieldNumber
           compressed
-          {...colorProps}
+          aria-label={`Update ${name} value`}
+          value={Number(value)}
+          onChange={(e) => onUpdate(Number(e.target.value))}
+          style={{ width: 64 }}
+          {...numberProps}
         />
-      </EuiFlexItem>
-    );
-  } else if (typeof value === 'number' && onUpdate) {
-    valueRender = (
-      <EuiFieldNumber
-        compressed
-        aria-label={`Update ${name} value`}
-        value={value}
-        onChange={(e) => onUpdate(Number(e.target.value))}
-        style={{ width: 64 }}
-        {...numberProps}
-      />
-    );
-  } else if (
-    property !== 'colors' &&
-    !name.toLowerCase().includes('color') &&
-    typeof value === 'string' &&
-    onUpdate
-  ) {
-    valueRender = (
-      <EuiFieldText
-        compressed
-        aria-label={`Update ${name} value`}
-        value={value}
-        onChange={(e) => onUpdate(e.target.value)}
-        style={{ width: 120 }}
-        {...stringProps}
-      />
-    );
-  } else {
-    valueRender = (
-      <EuiText textAlign="right" size="s" color="subdued">
-        <code>{value}</code>
-      </EuiText>
-    );
-  }
+      );
+    } else if (updateType === 'string') {
+      return (
+        <EuiFieldText
+          compressed
+          aria-label={`Update ${name} value`}
+          value={String(value)}
+          onChange={(e) => onUpdate(e.target.value)}
+          style={{ width: 120 }}
+          {...stringProps}
+        />
+      );
+    }
+  };
 
   name = property ? `${property}.${name}` : name;
 
@@ -193,7 +210,7 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
           </EuiToolTip>
         </EuiText>
       </EuiFlexItem>
-      <EuiFlexItem grow={false}>{valueRender}</EuiFlexItem>
+      <EuiFlexItem grow={false}>{valueRender()}</EuiFlexItem>
     </EuiFlexGroup>
   );
 };

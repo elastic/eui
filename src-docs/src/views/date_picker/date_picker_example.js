@@ -278,12 +278,14 @@ export const DatePickerExample = {
       ],
       text: (
         <p>
-          By passing <EuiCode>startDate</EuiCode> and <EuiCode>endDate</EuiCode>{' '}
-          props you can provide styling the range in between two dates. To
-          further style the group as a single control, use{' '}
-          <strong>EuiDatePickerRange</strong> and pass the date picker controls
-          into the <EuiCode>startDateControl</EuiCode> and{' '}
-          <EuiCode>endDateControl</EuiCode> props.
+          To create a single date range control, use{' '}
+          <strong>EuiDatePickerRange</strong> and pass individual{' '}
+          <strong>EuiDatePicker</strong> components into the{' '}
+          <EuiCode>startDateControl</EuiCode> and{' '}
+          <EuiCode>endDateControl</EuiCode> props. You can control the state of
+          both inputs as direct props on <strong>EuiDatePickerRange</strong> as
+          well as control each individually. Date specific props need to applied
+          to the individual components.
         </p>
       ),
       demo: <Range />,
@@ -414,7 +416,7 @@ export const DatePickerExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Custom classes can be passed to various bits of the calendar and
             input.
@@ -434,7 +436,7 @@ export const DatePickerExample = {
               <EuiCode>popperClassName</EuiCode> will pass onto the popover.
             </li>
           </ul>
-        </div>
+        </>
       ),
       snippet: classesSnippet,
       demo: <Classes />,

@@ -8,7 +8,6 @@
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const path = require('path');
 const webpack = require('webpack');
 
 const THEME_IMPORT = `'../../dist/eui_theme_${process.env.THEME}.css'`;
@@ -17,6 +16,8 @@ module.exports = {
   mode: 'development',
 
   devtool: 'cheap-module-source-map',
+
+  stats: 'minimal',
 
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
@@ -34,10 +35,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loaders: [
-          'style-loader',
-          'css-loader',
-        ],
+        loaders: ['style-loader', 'css-loader'],
         exclude: /node_modules/,
       },
       {
@@ -52,5 +50,5 @@ module.exports = {
     new webpack.DefinePlugin({
       THEME_IMPORT, // allow cypress/suport/index.js to require the correct css file
     }),
-  ]
+  ],
 };

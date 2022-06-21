@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: accent 1`] = `"#feedf5"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: as transparent accent 1`] = `"rgba(240,78,152,0.1)"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: as transparent danger 1`] = `"rgba(189,39,30,0.1)"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: as transparent plain 1`] = `"rgba(255,255,255,0.2)"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: as transparent primary 1`] = `"rgba(0,119,204,0.1)"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: as transparent subdued 1`] = `"rgba(211,218,230,0.2)"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: as transparent success 1`] = `"rgba(0,191,179,0.1)"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: as transparent transparent 1`] = `"transparent"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: as transparent warning 1`] = `"rgba(254,197,20,0.1)"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: danger 1`] = `"#f8e9e9"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: plain 1`] = `"#FFF"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: primary 1`] = `"#e6f1fa"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: subdued 1`] = `"#f7f8fc"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: success 1`] = `"#e6f9f7"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: transparent 1`] = `"transparent"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: warning 1`] = `"#fff9e8"`;
+
+exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: accent 1`] = `"background-color:#feedf5;;label:accent;"`;
+
+exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: danger 1`] = `"background-color:#f8e9e9;;label:danger;"`;
+
+exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: plain 1`] = `"background-color:#FFF;;label:plain;"`;
+
+exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: primary 1`] = `"background-color:#e6f1fa;;label:primary;"`;
+
+exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: subdued 1`] = `"background-color:#f7f8fc;;label:subdued;"`;
+
+exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: success 1`] = `"background-color:#e6f9f7;;label:success;"`;
+
+exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: transparent 1`] = `"background-color:transparent;;label:transparent;"`;
+
+exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: warning 1`] = `"background-color:#fff9e8;;label:warning;"`;

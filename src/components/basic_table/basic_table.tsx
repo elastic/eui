@@ -199,7 +199,7 @@ interface BasicTableProps<T> extends Omit<EuiTableProps, 'onChange'> {
    */
   itemIdToExpandedRowMap?: ItemIdToExpandedRowMap;
   /**
-   * A list of objects to who in the table - an item per row
+   * A list of objects to appear in the table - an item per row
    */
   items: T[];
   /**

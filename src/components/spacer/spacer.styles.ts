@@ -7,30 +7,30 @@
  */
 
 import { css } from '@emotion/react';
+import { logicals } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiSpacerStyles = ({ euiTheme }: UseEuiTheme) => ({
-  // base
   euiSpacer: css`
     flex-shrink: 0; // don't ever let this shrink in height if direct descendent of flex;
   `,
-  // variants
+  // Sizes
   xs: css`
-    height: ${euiTheme.size.xs};
+    ${logicals.height}: ${euiTheme.size.xs};
   `,
   s: css`
-    height: ${euiTheme.size.s};
+    ${logicals.height}: ${euiTheme.size.s};
   `,
   m: css`
-    height: ${euiTheme.size.base};
+    ${logicals.height}: ${euiTheme.size.base};
   `,
   l: css`
-    height: ${euiTheme.size.l};
+    ${logicals.height}: ${euiTheme.size.l};
   `,
   xl: css`
-    height: ${euiTheme.size.xl};
+    ${logicals.height}: ${euiTheme.size.xl};
   `,
   xxl: css`
-    height: ${euiTheme.size.xxl};
+    ${logicals.height}: ${euiTheme.size.xxl};
   `,
 });

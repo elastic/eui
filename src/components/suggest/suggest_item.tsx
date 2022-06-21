@@ -48,20 +48,6 @@ export interface _EuiSuggestItemPropsBase {
    * Truncates both label and description.
    */
   truncate?: boolean;
-
-  /**
-   * **DEPRECATED** Use `truncate` instead to specify truncation for both label and description.
-   *
-   * _Set the way in which 'description' is displayed, defaults to 'truncate'._
-   */
-  descriptionDisplay?: 'truncate' | 'wrap';
-
-  /**
-   * **DEPRECATED** Use `labelWidth` instead to specify a specific width.
-   *
-   * _Label display is 'fixed' by default. Label will increase its width beyond 50% if needed with 'expand'._
-   */
-  labelDisplay?: keyof typeof labelDisplayToClassMap;
 }
 
 type PropsForSpan = Omit<HTMLAttributes<HTMLSpanElement>, 'onClick'>;
@@ -125,22 +111,13 @@ const colorToClassNameMap: ColorToClassMap = {
 
 export const COLORS = keysOf(colorToClassNameMap);
 
-const labelDisplayToClassMap = {
-  fixed: 'euiSuggestItem__labelDisplay--fixed',
-  expand: 'euiSuggestItem__labelDisplay--expand',
-};
-
-export const DISPLAYS = keysOf(labelDisplayToClassMap);
-
 export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
   className,
   label,
   type,
-  labelDisplay: _labelDisplay = 'fixed',
   labelWidth = '50',
   description,
   truncate = true,
-  descriptionDisplay = 'truncate',
   onClick,
   ...rest
 }) => {
@@ -152,14 +129,13 @@ export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
     className
   );
 
-  const labelDisplay = !description ? 'expand' : _labelDisplay;
-
-  const labelClassNames = classNames('euiSuggestItem__label', {
-    [`euiSuggestItem__label--width${labelWidth}`]: labelDisplay === 'fixed',
-  });
+  const labelClassNames = classNames(
+    'euiSuggestItem__label',
+    `euiSuggestItem__label--width${labelWidth}`
+  );
 
   const descriptionClassNames = classNames('euiSuggestItem__description', {
-    'euiSuggestItem__description--wrap': descriptionDisplay === 'wrap',
+    'euiSuggestItem__description--wrap': !truncate,
   });
 
   let typeColorClass = '';

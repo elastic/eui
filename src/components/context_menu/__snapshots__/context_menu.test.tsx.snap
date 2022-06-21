@@ -19,7 +19,7 @@ exports[`EuiContextMenu can pass-through horizontal rule props 1`] = `
     </div>
     <div>
       <hr
-        class="euiHorizontalRule euiHorizontalRule--half euiHorizontalRule--marginSmall css-14bhqlx-euiHorizontalRule-half-s"
+        class="euiHorizontalRule euiHorizontalRule--half euiHorizontalRule--marginSmall emotion-euiHorizontalRule-half-s"
       />
     </div>
   </div>
@@ -67,7 +67,7 @@ exports[`EuiContextMenu panel item can be a separator line 1`] = `
         </span>
       </button>
       <hr
-        class="euiHorizontalRule euiHorizontalRule--full css-pnauuy-euiHorizontalRule-full"
+        class="euiHorizontalRule euiHorizontalRule--full emotion-euiHorizontalRule-full"
       />
       <button
         class="euiContextMenuItem"

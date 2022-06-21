@@ -198,7 +198,7 @@ describe('EuiAccordion', () => {
 
       component.find('button').at(0).simulate('click');
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     it('opens when div is clicked if element is a div', () => {
@@ -208,9 +208,9 @@ describe('EuiAccordion', () => {
         </EuiAccordion>
       );
 
-      component.find('.euiAccordion__button').simulate('click');
+      component.find('button').at(0).simulate('click');
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     it('closes when clicked twice', () => {
@@ -223,7 +223,7 @@ describe('EuiAccordion', () => {
       component.find('button').at(0).simulate('click');
       component.find('button').at(0).simulate('click');
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     it('accepts and calls an optional callback on open and close', () => {
@@ -242,14 +242,13 @@ describe('EuiAccordion', () => {
     });
 
     it('moves focus to the content when expanded', () => {
-      const component = mount<EuiAccordion>(<EuiAccordion id={getId()} />);
-      const accordionClass = component.instance();
-      const childWrapper = accordionClass.childWrapper;
+      const component = mount(<EuiAccordion id={getId()} />);
+      const childWrapper = component.find('div[role="region"]').getDOMNode();
 
       expect(childWrapper).not.toBeFalsy();
       expect(childWrapper).not.toBe(document.activeElement);
 
-      // click button
+      // click the button
       component.find('button').at(0).simulate('click');
 
       expect(childWrapper).toBe(document.activeElement);

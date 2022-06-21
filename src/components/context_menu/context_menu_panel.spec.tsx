@@ -8,7 +8,7 @@
 
 /// <reference types="../../../cypress/support"/>
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import { EuiPopover } from '../popover';
 import { EuiContextMenu } from './context_menu';
@@ -42,15 +42,6 @@ describe('EuiContextMenuPanel', () => {
       cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
     });
 
-    it('sets initial focus from `initialFocusedItemIndex`', () => {
-      cy.mount(
-        <EuiContextMenuPanel initialFocusedItemIndex={2}>
-          {children}
-        </EuiContextMenuPanel>
-      );
-      cy.focused().should('have.attr', 'data-test-subj', 'itemC');
-    });
-
     describe('with `children`', () => {
       it('ignores arrow key navigation, which only toggles for `items`', () => {
         cy.mount(<EuiContextMenuPanel>{children}</EuiContextMenuPanel>);
@@ -60,6 +51,20 @@ describe('EuiContextMenuPanel', () => {
     });
 
     describe('with `items`', () => {
+      it('sets initial focus from `initialFocusedItemIndex`', () => {
+        cy.mount(
+          <EuiContextMenuPanel items={items} initialFocusedItemIndex={2} />
+        );
+        cy.focused().should('have.attr', 'data-test-subj', 'itemC');
+      });
+
+      it('falls back to the panel if given an invalid `focusedItemIndex`', () => {
+        cy.mount(
+          <EuiContextMenuPanel items={items} initialFocusedItemIndex={99} />
+        );
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+      });
+
       it('focuses and registers any tabbable child as navigable menu items', () => {
         cy.mount(
           <EuiContextMenuPanel
@@ -74,6 +79,36 @@ describe('EuiContextMenuPanel', () => {
         );
         cy.realPress('{downarrow}');
         cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+      });
+
+      it('correctly re-finds navigable menu items if `items` changes', () => {
+        const DynanicItemsTest = () => {
+          const [dynamicItems, setDynamicItems] = useState([
+            items[0],
+            items[1],
+          ]);
+          const appendItems = () => setDynamicItems(items);
+          return (
+            <>
+              <EuiContextMenuPanel items={dynamicItems} />
+              <button data-test-subj="appendItems" onClick={appendItems}>
+                Append more items
+              </button>
+            </>
+          );
+        };
+        cy.mount(<DynanicItemsTest />);
+        cy.realPress('{downarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+        cy.realPress('{downarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemB');
+        cy.realPress('{downarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+
+        cy.get('[data-test-subj="appendItems"]').click();
+        cy.get('[data-test-subj="itemA"]').click();
+        cy.realPress('{uparrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemC');
       });
     });
 
@@ -123,16 +158,65 @@ describe('EuiContextMenuPanel', () => {
       });
     });
 
-    describe('when inside an EuiPopover', () => {
-      it('reclaims focus from the parent popover panel', () => {
-        cy.mount(
-          <EuiPopover isOpen={true} button={<button />}>
-            <EuiContextMenuPanel items={items} />
+    describe('within an EuiPopover', () => {
+      const ContextMenuInPopover: React.FC<any> = ({ children, ...rest }) => {
+        const [isOpen, setIsOpen] = useState(false);
+        const closePopover = () => setIsOpen(false);
+        const openPopover = () => setIsOpen(true);
+        return (
+          <EuiPopover
+            isOpen={isOpen}
+            closePopover={closePopover}
+            button={
+              <button data-test-subj="popoverToggle" onClick={openPopover}>
+                Toggle popover
+              </button>
+            }
+            {...rest}
+          >
+            <EuiContextMenuPanel>
+              {children}
+              <button onClick={closePopover}>
+                Closes popover from context menu
+              </button>
+            </EuiContextMenuPanel>
           </EuiPopover>
         );
-        cy.wait(400); // EuiPopover's updateFocus() takes ~350ms to run
+      };
+
+      const mountAndOpenPopover = (component = <ContextMenuInPopover />) => {
+        cy.realMount(component);
+        cy.get('[data-test-subj="popoverToggle"]').click();
+        cy.wait(350); // EuiPopover's updateFocus() takes ~350ms to run
+      };
+
+      it('reclaims focus from the parent popover panel', () => {
+        mountAndOpenPopover();
         cy.focused().should('not.have.attr', 'class', 'euiPopover__panel');
         cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+      });
+
+      it('does not hijack focus from the EuiPopover if `initialFocus` is set', () => {
+        mountAndOpenPopover(
+          <ContextMenuInPopover initialFocus="#testInitialFocus">
+            <input id="testInitialFocus" />
+          </ContextMenuInPopover>
+        );
+        cy.focused().should('not.have.attr', 'class', 'euiContextMenuPanel');
+        cy.focused().should('have.attr', 'id', 'testInitialFocus');
+      });
+
+      it('restores focus to the toggling button on popover close', () => {
+        mountAndOpenPopover();
+        cy.realPress('Tab');
+        cy.realPress('Enter');
+        cy.focused().should('have.attr', 'data-test-subj', 'popoverToggle');
+      });
+
+      it('restores focus to the toggling button on popover escape key', () => {
+        mountAndOpenPopover();
+        cy.realPress('{esc}');
+        cy.focused().should('have.attr', 'data-test-subj', 'popoverToggle');
       });
     });
   });
@@ -208,7 +292,7 @@ describe('EuiContextMenuPanel', () => {
         });
       });
 
-      it('does not lose focus while using left/right arrow navigation between panels', () => {
+      describe('panels', () => {
         const panels = [
           {
             id: 0,
@@ -245,21 +329,37 @@ describe('EuiContextMenuPanel', () => {
             initialFocusedItemIndex: 0,
           },
         ];
-        cy.mount(<EuiContextMenu panels={panels} initialPanelId={0} />);
-        cy.realPress('{downarrow}');
-        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
-        cy.realPress('{rightarrow}');
-        cy.focused().should('have.attr', 'data-test-subj', 'itemB');
-        cy.realPress('{rightarrow}');
-        cy.focused().should('have.attr', 'data-test-subj', 'itemC');
 
-        // Test extremely rapid left/right arrow usage
-        cy.repeatRealPress('{leftarrow}');
-        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
-        cy.repeatRealPress('{rightarrow}');
-        cy.focused().should('have.attr', 'data-test-subj', 'itemC');
-        cy.repeatRealPress('{leftarrow}');
-        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+        const FLAKY_WAIT = 100; // For some reason CI is flaking on these two tests in way that is hard to repro locally
+
+        it('does not lose focus while using left/right arrow navigation between panels', () => {
+          cy.mount(<EuiContextMenu panels={panels} initialPanelId={0} />);
+          cy.realPress('{downarrow}');
+          cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+          cy.realPress('{rightarrow}');
+          cy.wait(FLAKY_WAIT);
+          cy.focused().should('have.attr', 'data-test-subj', 'itemB');
+          cy.realPress('{rightarrow}');
+          cy.wait(FLAKY_WAIT);
+          cy.focused().should('have.attr', 'data-test-subj', 'itemC');
+        });
+
+        it('does not lose focus when inside an EuiPopover and during rapid left/right arrow usage', () => {
+          cy.mount(
+            <EuiPopover isOpen={true} button={<button />}>
+              <EuiContextMenu panels={panels} initialPanelId={0} />
+            </EuiPopover>
+          );
+          cy.wait(350); // Wait for EuiContextMenuPanel to reclaim focus from popover
+          cy.realPress('{downarrow}');
+          cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+          cy.repeatRealPress('{rightarrow}');
+          cy.wait(FLAKY_WAIT);
+          cy.focused().should('have.attr', 'data-test-subj', 'itemC');
+          cy.repeatRealPress('{leftarrow}');
+          cy.wait(FLAKY_WAIT);
+          cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+        });
       });
     });
 

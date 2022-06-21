@@ -21,6 +21,7 @@ const emotionCache = createCache({
   key: 'eui-docs',
   container: document.querySelector('meta[name="emotion-styles"]'),
 });
+emotionCache.compat = true;
 
 export const AppContext = ({ children }) => {
   const { theme } = useContext(ThemeContext);
@@ -62,6 +63,12 @@ export const AppContext = ({ children }) => {
           type="image/png"
           href={isLocalDev ? favicon96Dev : favicon96Prod}
           sizes="96x96"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10,300..700;0,300..700&family=Roboto+Mono:ital,wght@0,400..700;1,400..700&display=swap"
+          rel="stylesheet"
         />
       </Helmet>
       <EuiContext i18n={i18n}>{children}</EuiContext>

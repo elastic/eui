@@ -6,40 +6,43 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
-import classNames from 'classnames';
-import { CommonProps, keysOf } from '../common';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  isValidElement,
+} from 'react';
+import { CommonProps } from '../common';
+import { cloneElementWithCss } from '../../services/theme/clone_element';
 
-export const alignmentToClassNameMap = {
-  left: 'euiTextAlign--left',
-  right: 'euiTextAlign--right',
-  center: 'euiTextAlign--center',
-};
+import { euiTextAlignStyles } from './text_align.styles';
 
-export type TextAlignment = keyof typeof alignmentToClassNameMap;
-
-export const ALIGNMENTS = keysOf(alignmentToClassNameMap);
+export const ALIGNMENTS = ['left', 'right', 'center'] as const;
+export type TextAlignment = typeof ALIGNMENTS[number];
 
 export type EuiTextAlignProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     textAlign?: TextAlignment;
+    /**
+     * Applies text styling to the child element instead of rendering a parent wrapper `div`.
+     * Can only be used when wrapping a *single* child element/tag, and not raw text.
+     */
+    cloneElement?: boolean;
   };
 
 export const EuiTextAlign: FunctionComponent<EuiTextAlignProps> = ({
   children,
-  className,
   textAlign = 'left',
+  cloneElement = false,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiTextAlign',
-    alignmentToClassNameMap[textAlign],
-    className
-  );
+  const styles = euiTextAlignStyles();
+  const cssStyles = [styles.euiTextAlign, styles[textAlign]];
 
-  return (
-    <div className={classes} {...rest}>
-      {children}
-    </div>
-  );
+  const props = { css: cssStyles, ...rest };
+
+  if (isValidElement(children) && cloneElement) {
+    return cloneElementWithCss(children, props);
+  } else {
+    return <div {...props}>{children}</div>;
+  }
 };

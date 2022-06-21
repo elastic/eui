@@ -92,7 +92,7 @@ export interface EuiMarkdownFormatting {
 export interface EuiMarkdownAstNode {
   type: string;
   children?: EuiMarkdownAstNode[];
-  position: EuiMarkdownAstNodePosition;
+  position?: EuiMarkdownAstNodePosition;
 }
 export interface EuiMarkdownAstNodePosition {
   start: { line: number; column: number; offset: number };

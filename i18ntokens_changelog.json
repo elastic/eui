@@ -1,5 +1,25 @@
 [
   {
+    "version": "58.1.0",
+    "changes": [
+      {
+        "token": "euiColumnSortingDraggable.dragHandleAriaLabel",
+        "changeType": "added",
+        "value": "Drag handle"
+      }
+    ]
+  },
+  {
+    "version": "56.0.0",
+    "changes": [
+      {
+        "token": "euiLoadingStrings.ariaLabel",
+        "changeType": "added",
+        "value": "Loading"
+      }
+    ]
+  },
+  {
     "version": "55.1.0",
     "changes": [
       {

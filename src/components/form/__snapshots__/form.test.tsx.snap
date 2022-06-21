@@ -24,19 +24,15 @@ exports[`EuiForm renders with error callout when isInvalid is "true" 1`] = `
 >
   <div
     aria-live="assertive"
-    class="euiCallOut euiCallOut--danger euiForm__errors"
+    class="euiPanel euiPanel--danger euiPanel--paddingMedium euiCallOut euiCallOut--danger euiForm__errors emotion-euiPanel-none-m-danger-euiCallOut"
     role="alert"
     tabindex="-1"
   >
-    <div
-      class="euiCallOutHeader"
+    <p
+      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger"
     >
-      <span
-        class="euiCallOutHeader__title"
-      >
-        Please address the highlighted errors.
-      </span>
-    </div>
+      Please address the highlighted errors.
+    </p>
   </div>
 </div>
 `;
@@ -49,42 +45,34 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has mul
 >
   <div
     aria-live="assertive"
-    class="euiCallOut euiCallOut--danger euiForm__errors"
+    class="euiPanel euiPanel--danger euiPanel--paddingMedium euiCallOut euiCallOut--danger euiForm__errors emotion-euiPanel-none-m-danger-euiCallOut"
     role="alert"
     tabindex="-1"
   >
-    <div
-      class="euiCallOutHeader"
+    <p
+      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger"
     >
-      <span
-        class="euiCallOutHeader__title"
-      >
-        Please address the highlighted errors.
-      </span>
-    </div>
+      Please address the highlighted errors.
+    </p>
     <div
-      class="euiText euiText--small"
+      class="euiText emotion-euiText-s-euiTextColor-default-euiCallOut__description"
     >
-      <div
-        class="euiTextColor euiTextColor--default"
-      >
-        <ul>
-          <li
-            class="euiForm__error"
-          >
-            <span>
-              This is one error
-            </span>
-          </li>
-          <li
-            class="euiForm__error"
-          >
-            <span>
-              This is another error
-            </span>
-          </li>
-        </ul>
-      </div>
+      <ul>
+        <li
+          class="euiForm__error"
+        >
+          <span>
+            This is one error
+          </span>
+        </li>
+        <li
+          class="euiForm__error"
+        >
+          <span>
+            This is another error
+          </span>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
@@ -98,35 +86,27 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has one
 >
   <div
     aria-live="assertive"
-    class="euiCallOut euiCallOut--danger euiForm__errors"
+    class="euiPanel euiPanel--danger euiPanel--paddingMedium euiCallOut euiCallOut--danger euiForm__errors emotion-euiPanel-none-m-danger-euiCallOut"
     role="alert"
     tabindex="-1"
   >
-    <div
-      class="euiCallOutHeader"
+    <p
+      class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-danger"
     >
-      <span
-        class="euiCallOutHeader__title"
-      >
-        Please address the highlighted errors.
-      </span>
-    </div>
+      Please address the highlighted errors.
+    </p>
     <div
-      class="euiText euiText--small"
+      class="euiText emotion-euiText-s-euiTextColor-default-euiCallOut__description"
     >
-      <div
-        class="euiTextColor euiTextColor--default"
-      >
-        <ul>
-          <li
-            class="euiForm__error"
-          >
-            <span>
-              This is one error
-            </span>
-          </li>
-        </ul>
-      </div>
+      <ul>
+        <li
+          class="euiForm__error"
+        >
+          <span>
+            This is one error
+          </span>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

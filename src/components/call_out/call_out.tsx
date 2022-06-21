@@ -6,18 +6,27 @@
  * Side Public License, v 1.
  */
 
-import React, { forwardRef, Ref, HTMLAttributes, ReactNode } from 'react';
+import React, { forwardRef, HTMLAttributes, ReactNode } from 'react';
 
 import classNames from 'classnames';
 
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import { IconType, EuiIcon } from '../icon';
 
 import { EuiText } from '../text';
+import { useEuiTheme } from '../../services';
+import { EuiPanel } from '../panel';
+import { EuiTitle } from '../title';
 
-type Color = 'primary' | 'success' | 'warning' | 'danger';
+import { euiCallOutStyles, euiCallOutHeadingStyles } from './call_out.styles';
+
+export const COLORS = ['primary', 'success', 'warning', 'danger'] as const;
+export type Color = typeof COLORS[number];
+
+export const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'] as const;
+type Heading = typeof HEADINGS[number];
+
 type Size = 's' | 'm';
-type Heading = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
 
 export type EuiCallOutProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'title' | 'color'> & {
@@ -28,21 +37,6 @@ export type EuiCallOutProps = CommonProps &
     heading?: Heading;
   };
 
-const colorToClassNameMap: { [color in Color]: string } = {
-  primary: 'euiCallOut--primary',
-  success: 'euiCallOut--success',
-  warning: 'euiCallOut--warning',
-  danger: 'euiCallOut--danger',
-};
-
-export const COLORS = keysOf(colorToClassNameMap);
-export const HEADINGS: Heading[] = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'];
-
-const sizeToClassNameMap: { [size in Size]: string } = {
-  s: 'euiCallOut--small',
-  m: '',
-};
-
 export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
   (
     {
@@ -52,15 +46,28 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       iconType,
       children,
       className,
-      heading,
+      heading = 'p',
       ...rest
     },
-    ref: Ref<HTMLDivElement>
+    ref
   ) => {
+    const theme = useEuiTheme();
+    const styles = euiCallOutStyles(theme);
+    const cssStyles = [styles.euiCallOut];
+    const cssIconStyle = [styles.euiCallOut__icon];
+    const cssDescriptionStyle = [styles.euiCallOut__description];
+
+    const headerStyles = euiCallOutHeadingStyles(theme);
+    const cssHeaderStyles = [
+      headerStyles.euiCallOutHeader,
+      headerStyles[color],
+    ];
+
     const classes = classNames(
       'euiCallOut',
-      colorToClassNameMap[color],
-      sizeToClassNameMap[size],
+      {
+        [`euiCallOut--${color}`]: color,
+      },
       className
     );
 
@@ -69,7 +76,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
     if (iconType) {
       headerIcon = (
         <EuiIcon
-          className="euiCallOutHeader__icon"
+          css={cssIconStyle}
           type={iconType}
           size="m"
           aria-hidden="true"
@@ -79,37 +86,46 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
     }
 
     let optionalChildren;
-    if (children && size === 's') {
+    if (children) {
       optionalChildren = (
-        <EuiText size="xs" color="default">
-          {children}
-        </EuiText>
-      );
-    } else if (children) {
-      optionalChildren = (
-        <EuiText size="s" color="default">
+        <EuiText
+          css={cssDescriptionStyle}
+          size={size === 's' ? 'xs' : 's'}
+          color="default"
+        >
           {children}
         </EuiText>
       );
     }
 
-    const H: any = heading ? `${heading}` : 'span';
     let header;
-
     if (title) {
+      const H: Heading = heading;
       header = (
-        <div className="euiCallOutHeader">
-          {headerIcon}
-          <H className="euiCallOutHeader__title">{title}</H>
-        </div>
+        <EuiTitle size={size === 's' ? 'xxs' : 'xs'} css={cssHeaderStyles}>
+          <H className="euiCallOutHeader__title">
+            {headerIcon}
+            {title}
+          </H>
+        </EuiTitle>
       );
     }
+
     return (
-      <div className={classes} ref={ref} {...rest}>
+      <EuiPanel
+        borderRadius="none"
+        color={color}
+        css={cssStyles}
+        paddingSize={size === 's' ? 's' : 'm'}
+        className={classes}
+        panelRef={ref}
+        grow={false}
+        {...rest}
+      >
         {header}
 
         {optionalChildren}
-      </div>
+      </EuiPanel>
     );
   }
 );

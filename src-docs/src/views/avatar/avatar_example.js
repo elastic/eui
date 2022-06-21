@@ -62,16 +62,14 @@ export const AvatarExample = {
         },
       ],
       text: (
-        <div>
-          <p>
-            The <strong>EuiAvatar</strong> component typically creates a user
-            icon. It will accept <EuiCode>name</EuiCode> (required) and{' '}
-            <EuiCode>image</EuiCode> props and will configure the display and
-            accessibility as needed. By default, the background colors come from
-            the set of colors used for visualizations. Otherwise you can pass a
-            hex value to the <EuiCode>color</EuiCode> prop.
-          </p>
-        </div>
+        <p>
+          The <strong>EuiAvatar</strong> component typically creates a user
+          icon. It will accept <EuiCode>name</EuiCode> (required) and{' '}
+          <EuiCode>image</EuiCode> props and will configure the display and
+          accessibility as needed. By default, the background colors come from
+          the set of colors used for visualizations. Otherwise you can pass a
+          hex value to the <EuiCode>color</EuiCode> prop.
+        </p>
       ),
       props: { EuiAvatar },
       snippet: avatarSnippet,
@@ -87,18 +85,14 @@ export const AvatarExample = {
         },
       ],
       text: (
-        <div>
-          <p>
-            The initials displayed in the avatar try to be smart based on the
-            name prop. If the name contains spaces, it will display the first
-            character of each word,{' '}
-            <strong>always maxing out at 2 characters</strong>. You can
-            customize this by passing a combination of{' '}
-            <EuiCode>initialsLength</EuiCode> and/or <EuiCode>initials</EuiCode>{' '}
-            props. However, the avatar will still always max out at 2
-            characters.
-          </p>
-        </div>
+        <p>
+          The initials displayed in the avatar try to be smart based on the name
+          prop. If the name contains spaces, it will display the first character
+          of each word, <strong>always maxing out at 2 characters</strong>. You
+          can customize this by passing a combination of{' '}
+          <EuiCode>initialsLength</EuiCode> and/or <EuiCode>initials</EuiCode>{' '}
+          props. However, the avatar will still always max out at 2 characters.
+        </p>
       ),
       snippet: avatarInitialsSnippet,
       demo: <AvatarInitials />,
@@ -113,14 +107,12 @@ export const AvatarExample = {
         },
       ],
       text: (
-        <div>
-          <p>
-            The avatar <EuiCode>type</EuiCode>, which primarily defines the
-            shape, is keyworded and can be{' '}
-            <EuiCode language="js">&quot;user&quot;</EuiCode> (default) or{' '}
-            <EuiCode language="js">&quot;space&quot;</EuiCode> (for workspaces).
-          </p>
-        </div>
+        <p>
+          The avatar <EuiCode>type</EuiCode>, which primarily defines the shape,
+          is keyworded and can be{' '}
+          <EuiCode language="js">&quot;user&quot;</EuiCode> (default) or{' '}
+          <EuiCode language="js">&quot;space&quot;</EuiCode> (for workspaces).
+        </p>
       ),
       snippet: avatarTypesSnippet,
       demo: <AvatarTypes />,
@@ -135,7 +127,7 @@ export const AvatarExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Icons can also be displayed instead of initials or images. When
             simply passing an <EuiCode>iconType</EuiCode>, it will both size and
@@ -151,7 +143,7 @@ export const AvatarExample = {
             an accesible background color to match that of the icon&apos;s
             color.
           </p>
-        </div>
+        </>
       ),
       snippet: avatarIconsSnippet,
       demo: <AvatarIcons />,
@@ -166,14 +158,12 @@ export const AvatarExample = {
         },
       ],
       text: (
-        <div>
-          <p>
-            While <strong>EuiAvatar</strong> doesn&apos;t accept any interactive
-            behaviors itself, you can create a visually presented disabled
-            avatar by adding <EuiCode>isDisabled</EuiCode> when placed within a
-            disabled element.
-          </p>
-        </div>
+        <p>
+          While <strong>EuiAvatar</strong> doesn&apos;t accept any interactive
+          behaviors itself, you can create a visually presented disabled avatar
+          by adding <EuiCode>isDisabled</EuiCode> when placed within a disabled
+          element.
+        </p>
       ),
       snippet: avatarDisabledSnippet,
       demo: <AvatarDisabled />,

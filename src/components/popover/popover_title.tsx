@@ -39,6 +39,8 @@ export const EuiPopoverTitle: EuiPopoverTitleProps = ({
 }) => {
   const classes = classNames(
     'euiPopoverTitle',
+    // @ts-expect-error EuiPanel increased its available sizes
+    // When we convert this component to Emotion, we should also increase sizes to match EuiPanel and remove this comment.
     paddingSize ? paddingSizeToClassNameMap[paddingSize] : null,
     className
   );

@@ -226,12 +226,8 @@ describe('EuiSelectable', () => {
         },
       ];
 
-      const onChange = (options: OptionalOption[]) => {
-        jest.fn(() => options);
-      };
-
       const component = mount(
-        <EuiSelectable<OptionalOption> options={options} onChange={onChange}>
+        <EuiSelectable<OptionalOption> options={options}>
           {(list) => list}
         </EuiSelectable>
       );
@@ -260,12 +256,8 @@ describe('EuiSelectable', () => {
         },
       ];
 
-      const onChange = (options: ExtendedOption[]) => {
-        jest.fn(() => options);
-      };
-
       const component = mount(
-        <EuiSelectable<ExtendedOption> options={options} onChange={onChange}>
+        <EuiSelectable<ExtendedOption> options={options}>
           {(list) => list}
         </EuiSelectable>
       );
@@ -318,6 +310,66 @@ describe('EuiSelectable', () => {
       );
 
       expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('onChange', () => {
+    it('calls onChange with selected options array and click/keyboard event', () => {
+      const onChange = jest.fn();
+      const component = mount(
+        <EuiSelectable options={options} onChange={onChange}>
+          {(list) => list}
+        </EuiSelectable>
+      );
+
+      component.find('[role="option"]').first().simulate('click');
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange.mock.calls[0][0][0].checked).toEqual('on');
+      expect(onChange.mock.calls[0][1].type).toEqual('click');
+
+      component.simulate('keydown', { key: 'Enter', shiftKey: true });
+      expect(onChange).toHaveBeenCalledTimes(2);
+      expect(onChange.mock.calls[1][0][0].checked).toEqual('on');
+      expect(onChange.mock.calls[1][1].type).toEqual('keydown');
+    });
+  });
+
+  describe('onActiveOptionChange', () => {
+    it('calls the optional callback whenever the internal activeOptionIndex state changes', () => {
+      const callback = jest.fn();
+      const component = mount(
+        <EuiSelectable options={options} onActiveOptionChange={callback}>
+          {(list) => list}
+        </EuiSelectable>
+      );
+
+      component.simulate('keydown', { key: 'ArrowDown' });
+      expect(callback).toHaveBeenCalledWith(options[0]);
+
+      component.simulate('keydown', { key: 'ArrowUp' });
+      expect(callback).toHaveBeenCalledWith(options[2]);
+    });
+
+    it('handles the active option changing due to searching', () => {
+      const callback = jest.fn();
+      const component = mount(
+        <EuiSelectable
+          options={options}
+          searchable
+          searchProps={{ value: 'pandora' }}
+          onActiveOptionChange={callback}
+        >
+          {(list, search) => (
+            <>
+              {search}
+              {list}
+            </>
+          )}
+        </EuiSelectable>
+      );
+
+      component.simulate('keydown', { key: 'ArrowDown' });
+      expect(callback).toHaveBeenCalledWith(options[2]); // Pandora
     });
   });
 

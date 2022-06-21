@@ -15,7 +15,7 @@ import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSpacer } from '../spacer';
 import { EuiIcon, IconColor, IconType } from '../icon';
 import { isNamedColor } from '../icon/named_colors';
-import { EuiText, EuiTextColor } from '../text';
+import { EuiText } from '../text';
 import { EuiPanel, _EuiPanelDivlike } from '../panel/panel';
 
 const paddingSizeToClassNameMap = {
@@ -116,10 +116,10 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
 
     if (body) {
       bodyNode = (
-        <EuiTextColor color="subdued">
+        <>
           {title && <EuiSpacer size="m" />}
-          <EuiText>{body}</EuiText>
-        </EuiTextColor>
+          <EuiText color="subdued">{body}</EuiText>
+        </>
       );
     }
   }
@@ -176,6 +176,7 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
     color: color,
     paddingSize: 'none',
     hasBorder: hasBorder,
+    grow: false,
     ...rest,
   };
 

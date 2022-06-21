@@ -2,13 +2,30 @@ import React from 'react';
 import { css } from '@emotion/react';
 import { useEuiTheme } from '../../../../../src/services';
 
-import { EuiCode, EuiLink, keysOf } from '../../../../../src/components';
+import {
+  EuiCode,
+  EuiLink,
+  keysOf,
+  logicalCSS,
+  logicalStyle,
+  logicals,
+  EuiText,
+  useEuiPaddingSize,
+  useEuiBackgroundColor,
+  useEuiBackgroundColorCSS,
+  useEuiPaddingCSS,
+  EuiAccordion,
+  PADDING_SIZES,
+  LOGICAL_SIDES,
+  EuiPanel,
+} from '../../../../../src';
 
 import { ThemeExample } from '../_components/_theme_example';
 
 import { EuiThemeSize } from '../_props';
 import { getPropsFromComponent } from '../../../services/props/get_props';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
+import { htmlIdGenerator } from '../../../../../src/services/accessibility/html_id_generator.testenv';
 
 export const BaseJS = () => {
   const { euiTheme } = useEuiTheme();
@@ -39,14 +56,13 @@ export const BaseJS = () => {
         </div>
       }
       snippet={'padding: ${euiTheme.base * 2}px;'}
+      snippetLanguage="emotion"
     />
   );
 };
 
 export default () => {
   const { euiTheme } = useEuiTheme();
-  const sizes = euiTheme.size;
-  const themeSizeProps = getPropsFromComponent(EuiThemeSize);
 
   const wrappingExampleStyle = {
     background: euiTheme.colors.highlight,
@@ -69,16 +85,18 @@ export default () => {
           </div>
         }
         snippet={'padding: ${euiTheme.size.xl};'}
+        snippetLanguage="emotion"
       />
 
       <ThemeExample
         title={<code>calc()</code>}
+        type="CSS function"
         description={
           <p>
             When doing calculations on top of the named key values, you have to
             use the{' '}
             <EuiLink href="https://developer.mozilla.org/en-US/docs/Web/CSS/calc()">
-              CSS <EuiCode>calc()</EuiCode> method
+              CSS <EuiCode>calc()</EuiCode> function
             </EuiLink>{' '}
             because the value that is returned is a string value with the
             appended unit.
@@ -95,29 +113,227 @@ export default () => {
           </div>
         }
         snippet={'padding: calc(${euiTheme.size.base} * 2);'}
+        snippetLanguage="emotion"
+      />
+    </>
+  );
+};
+
+export const ScaleValuesJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const sizes = euiTheme.size;
+  const themeSizeProps = getPropsFromComponent(EuiThemeSize);
+
+  return (
+    <ThemeValuesTable
+      items={keysOf(sizes).map((size) => {
+        return {
+          id: size,
+          token: `size.${size}`,
+          type: themeSizeProps[size],
+          value: sizes[size],
+        };
+      })}
+      valign="middle"
+      sampleColumnProps={{ width: '100px' }}
+      render={(size) => (
+        <div
+          css={css`
+            width: ${size.value};
+            height: ${size.value};
+            border-radius: min(25%, ${euiTheme.border.radius.small});
+            background: ${euiTheme.colors.mediumShade};
+          `}
+        />
+      )}
+    />
+  );
+};
+
+export const UtilsJS = () => {
+  return (
+    <>
+      <EuiText grow={false}>
+        <p>
+          EUI utilizes{' '}
+          <EuiLink href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Logical_Properties">
+            logical CSS properties
+          </EuiLink>{' '}
+          to enable directional writing-modes. To encourage use of logical
+          properties, we provide a few{' '}
+          <EuiLink href="https://github.com/elastic/eui/blob/main/src/global_styling/functions/logicals.ts">
+            helper utilities
+          </EuiLink>{' '}
+          to convert certain directional properties to logical properties.
+        </p>
+      </EuiText>
+
+      <ThemeExample
+        title={<code>{'logicalCSS(property, value)'}</code>}
+        type="function"
+        description={
+          <p>
+            Returns the <strong>string version</strong> of the logical CSS
+            property version for the given{' '}
+            <EuiCode language="css">property: value</EuiCode> pair. Best used
+            when providing styles via Emotion&apos;s{' '}
+            <EuiCode>{'css``'}</EuiCode> method.
+          </p>
+        }
+        example={
+          <p
+            css={[
+              useEuiBackgroundColorCSS().warning,
+              logicalCSS('padding-left', '100px'),
+            ]}
+          >
+            <code>{logicalCSS('padding-left', '100px')}</code>
+          </p>
+        }
+        snippetLanguage="emotion"
+        snippet={"${logicalCSS('padding-left', '100px')};"}
       />
 
-      <ThemeValuesTable
-        items={keysOf(sizes).map((size) => {
-          return {
-            id: size,
-            token: `size.${size}`,
-            type: themeSizeProps[size],
-            value: sizes[size],
-          };
-        })}
-        valign="middle"
-        sampleColumnProps={{ width: '100px' }}
-        render={(size) => (
-          <div
+      <ThemeExample
+        title={<code>{'logicalStyle(property, value)'}</code>}
+        type="function"
+        description={
+          <p>
+            Returns the <strong>object version</strong> of the logical CSS
+            property version for the given{' '}
+            <EuiCode language="css">property: value</EuiCode> pair. Best used
+            when providing styles via React&apos;s <EuiCode>style</EuiCode>{' '}
+            property.
+          </p>
+        }
+        example={
+          <p
+            css={css(useEuiBackgroundColorCSS().warning)}
+            style={logicalStyle('padding-left', '100px')}
+          >
+            <code>{JSON.stringify(logicalStyle('padding-left', '100px'))}</code>
+          </p>
+        }
+        snippetLanguage="tsx"
+        snippet={"<p style={logicalStyle('padding-left', '100px')} />"}
+      />
+
+      <ThemeExample
+        title={<code>{'logicals[property]'}</code>}
+        type="object"
+        description={
+          <p>
+            An object that contains the logical property equivelants of the
+            given <EuiCode language="css">property</EuiCode>.
+          </p>
+        }
+        example={
+          <p
             css={css`
-              width: ${size.value};
-              height: ${size.value};
-              border-radius: min(25%, ${euiTheme.border.radius.small});
-              background: ${euiTheme.colors.mediumShade};
+              ${useEuiBackgroundColorCSS().warning};
+              ${logicals['padding-left']}: 100px;
             `}
-          />
-        )}
+          >
+            <code>{`${logicals['padding-left']}: 100px`}</code>
+          </p>
+        }
+        snippetLanguage="emotion"
+        snippet={"${logicals['padding-left']}: 100px;"}
+      />
+
+      <EuiPanel color="subdued">
+        <EuiAccordion
+          id={htmlIdGenerator()()}
+          buttonContent={<strong>All supported properties</strong>}
+          paddingSize="m"
+        >
+          <EuiText
+            css={css`
+              white-space: pre;
+              columns: 3;
+            `}
+            size="s"
+          >
+            <code>{Object.keys(logicals).join('\r\n')}</code>
+          </EuiText>
+        </EuiAccordion>
+      </EuiPanel>
+    </>
+  );
+};
+
+export const PaddingJS = () => {
+  return (
+    <>
+      <EuiText grow={false}>
+        <p>
+          Uniform padding is a common task within EUI and as a consumer. These
+          utiliies provide both contexts with simple helpers, that also provide
+          the logical property type.
+        </p>
+      </EuiText>
+
+      <ThemeExample
+        title={<code>{'useEuiPaddingCSS(side?)[size]'}</code>}
+        type="style hook"
+        props={`size: '${PADDING_SIZES.join("' | '")}';
+
+side?: '${LOGICAL_SIDES.join("' | '")}';`}
+        description={
+          <>
+            <p>
+              Returns an object of the available sizing keys containing the css
+              string of the logical CSS property version for the given{' '}
+              <EuiCode language="sass">side</EuiCode>.
+            </p>
+            <p>
+              This is best used to map component prop styles to padding output.
+            </p>
+          </>
+        }
+        example={
+          <p
+            css={[
+              useEuiBackgroundColorCSS().warning,
+              useEuiPaddingCSS('left').l,
+            ]}
+          >
+            <code>
+              {logicals['padding-left']}: {useEuiPaddingSize('l')}
+            </code>
+          </p>
+        }
+        snippetLanguage="tsx"
+        snippet={`const paddingStyles = useEuiPaddingCSS('left');
+const cssStyles = [paddingStyles['l']];
+
+<span css={cssStyles}>
+  /* Your content */
+</span>`}
+      />
+
+      <ThemeExample
+        title={<code>{'useEuiPadding(size)'}</code>}
+        type="hook"
+        description={
+          <p>
+            Returns just the padding size value for the given{' '}
+            <EuiCode>size</EuiCode>.
+          </p>
+        }
+        props={`size: '${PADDING_SIZES.join("' | '")}';`}
+        example={
+          <p
+            css={css`
+              background: ${useEuiBackgroundColor('warning')};
+              padding: ${useEuiPaddingSize('l')};
+            `}
+          >
+            <code>{useEuiPaddingSize('l')}</code>
+          </p>
+        }
+        snippetLanguage="emotion"
+        snippet={"padding: ${useEuiPadding('l')};"}
       />
     </>
   );

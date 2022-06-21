@@ -116,7 +116,7 @@ export const DescriptionListExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             Setting the <EuiCode>textStyle</EuiCode> prop to{' '}
             <EuiCode>reverse</EuiCode> will reverse the text styles of the{' '}
@@ -128,7 +128,7 @@ export const DescriptionListExample = {
             Adding this property to the <EuiCode>inline</EuiCode> type will not
             change anything.
           </p>
-        </div>
+        </>
       ),
       snippet: descriptionListReverseSnippet,
       demo: <DescriptionListReverse />,
