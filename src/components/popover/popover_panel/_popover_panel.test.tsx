@@ -11,8 +11,8 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
-import { EuiPopoverPanel } from './popover_panel';
-import { POSITIONS } from '../popover_arrow/popover_arrow';
+import { EuiPopoverPanel } from './_popover_panel';
+import { POSITIONS } from '../popover_arrow/_popover_arrow';
 
 describe('EuiPopoverPanel', () => {
   test('is rendered', () => {

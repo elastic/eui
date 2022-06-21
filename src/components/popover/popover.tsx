@@ -47,7 +47,7 @@ import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { EuiPopoverArrow, EuiPopoverArrowPositions } from './popover_arrow';
 import { euiPopoverStyles } from './popover.styles';
 import { EuiPopoverPanel } from './popover_panel';
-import { EuiPopoverPanelProps } from './popover_panel/popover_panel';
+import { EuiPopoverPanelProps } from './popover_panel/_popover_panel';
 import { EuiPaddingSize } from '../../global_styling';
 
 export const popoverAnchorPosition = [

@@ -11,7 +11,7 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
-import { EuiPopoverArrow, POSITIONS } from './popover_arrow';
+import { EuiPopoverArrow, POSITIONS } from './_popover_arrow';
 
 describe('EuiPopoverArrow', () => {
   shouldRenderCustomStyles(<EuiPopoverArrow position="left" />);

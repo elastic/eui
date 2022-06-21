@@ -6,4 +6,4 @@
  * Side Public License, v 1.
  */
 
-export { EuiPopoverPanel } from './popover_panel';
+export { EuiPopoverPanel } from './_popover_panel';

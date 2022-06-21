@@ -9,5 +9,5 @@
 export type {
   EuiPopoverArrowProps,
   EuiPopoverArrowPositions,
-} from './popover_arrow';
-export { EuiPopoverArrow } from './popover_arrow';
+} from './_popover_arrow';
+export { EuiPopoverArrow } from './_popover_arrow';

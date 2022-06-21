@@ -12,7 +12,7 @@ import { useEuiTheme } from '../../../services';
 import { EuiPaddingSize } from '../../../global_styling';
 import { EuiPanel, EuiPanelProps } from '../../panel';
 import { EuiPopoverArrowPositions } from '../popover_arrow';
-import { euiPopoverPanelStyles } from './popover_panel.styles';
+import { euiPopoverPanelStyles } from './_popover_panel.styles';
 
 interface ContextShape {
   paddingSize: EuiPaddingSize;
@@ -56,11 +56,8 @@ export const EuiPopoverPanel: FunctionComponent<EuiPopoverPanelProps> = ({
 
   if (isAttached) {
     panelCSS = [
-      // @ts-ignore Help
       ...panelCSS,
-      // @ts-ignore Help
       isOpen && styles.attached.isOpen,
-      // @ts-ignore Help
       position && styles.attached[position],
     ];
   }

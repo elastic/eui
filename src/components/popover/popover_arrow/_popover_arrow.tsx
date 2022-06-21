@@ -8,7 +8,7 @@
 
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps } from '../../common';
-import { euiPopoverArrowStyles } from './popover_arrow.styles';
+import { euiPopoverArrowStyles } from './_popover_arrow.styles';
 import { useEuiTheme } from '../../../services';
 
 export const POSITIONS = ['top', 'left', 'right', 'bottom'] as const;

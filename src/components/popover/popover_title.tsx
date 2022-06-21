@@ -12,7 +12,7 @@ import { EuiPaddingSize, useEuiPaddingCSS } from '../../global_styling';
 import { useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
 import { euiPopoverTitleStyles } from './popover_title.styles';
-import { EuiPopoverPanelContext } from './popover_panel/popover_panel';
+import { EuiPopoverPanelContext } from './popover_panel/_popover_panel';
 
 export type EuiPopoverTitleProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> &

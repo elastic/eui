@@ -87,8 +87,8 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiShadow(euiThemeContext, 'm')}
       `,
       // Satisfies TS
-      left: '',
-      right: '',
+      left: css``,
+      right: css``,
     },
   };
 };
