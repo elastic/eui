@@ -20,6 +20,9 @@ import { EuiInnerText } from '../inner_text';
 import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import { isNil } from '../../services/predicate';
 
+import { useEuiTheme } from '../../services';
+import { euiProgressStyles } from './progress.styles';
+
 const sizeToClassNameMap = {
   xs: 'euiProgress--xs',
   s: 'euiProgress--s',
@@ -160,6 +163,11 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
       colorClass = 'euiProgress--customColor';
     }
   }
+
+  const euiTheme = useEuiTheme();
+  const styles = euiProgressStyles(euiTheme);
+  const cssStyles = [styles.euiProgress];
+
   const classes = classNames(
     'euiProgress',
     {
@@ -239,6 +247,7 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
           </div>
         ) : undefined}
         <progress
+          css={cssStyles}
           className={classes}
           style={optionalCustomStyles}
           max={max}
@@ -251,6 +260,7 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
   } else {
     return (
       <div
+        css={cssStyles}
         style={optionalCustomStyles}
         className={classes}
         {...(rest as HTMLAttributes<HTMLDivElement>)}

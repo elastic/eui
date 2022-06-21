@@ -1,12 +1,6 @@
 // This file uses uncommon vendor prefixes not covered by our compilers
 // sass-lint:disable no-vendor-prefixes
 
-.euiProgress {
-  position: relative;
-  overflow: hidden;
-  background-color: $euiColorLightShade;
-}
-
 // Progress bars come in different sizes.
 $euiProgressSizes: (
   xs: $euiSizeXS / 2,
