@@ -71,7 +71,8 @@ export const AppView = ({ children, currentRoute }) => {
   return (
     <LinkWrapper>
       <EuiScreenReaderStatus
-        pageTitle={`${currentRoute.name} - Elastic UI Framework`}
+        statusMessage={`${currentRoute.name} - Elastic UI Framework`}
+        shouldReceiveFocus
       />
       <EuiSkipLink
         destinationId="start-of-content"

@@ -2,19 +2,19 @@
 
 exports[`EuiScreenReaderStatus it renders 1`] = `
 <div
+  aria-live="polite"
   class="euiScreenReaderOnly"
   role="status"
-  tabindex="-1"
 />
 `;
 
-exports[`EuiScreenReaderStatus it sets pageTitle using document title 1`] = `
+exports[`EuiScreenReaderStatus it sets \`statusMessage\` using document title 1`] = `
 <EuiScreenReaderStatus>
   <EuiScreenReaderOnly>
     <div
+      aria-live="polite"
       className="euiScreenReaderOnly"
       role="status"
-      tabIndex={-1}
     >
       Default title
     </div>
@@ -22,12 +22,30 @@ exports[`EuiScreenReaderStatus it sets pageTitle using document title 1`] = `
 </EuiScreenReaderStatus>
 `;
 
-exports[`EuiScreenReaderStatus it sets pageTitle using passed prop 1`] = `
+exports[`EuiScreenReaderStatus it sets \`statusMessage\` with user defined string 1`] = `
 <EuiScreenReaderStatus
-  pageTitle="User-defined title"
+  statusMessage="User-defined title"
 >
   <EuiScreenReaderOnly>
     <div
+      aria-live="polite"
+      className="euiScreenReaderOnly"
+      role="status"
+    >
+      User-defined title
+    </div>
+  </EuiScreenReaderOnly>
+</EuiScreenReaderStatus>
+`;
+
+exports[`EuiScreenReaderStatus it sets aria-live and tabindex correctly when \`shouldReceiveFocus\` is passed 1`] = `
+<EuiScreenReaderStatus
+  shouldReceiveFocus={true}
+  statusMessage="User-defined title"
+>
+  <EuiScreenReaderOnly>
+    <div
+      aria-live="off"
       className="euiScreenReaderOnly"
       role="status"
       tabIndex={-1}
