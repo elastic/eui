@@ -23,7 +23,7 @@ import { useEuiI18n } from '../i18n';
 
 import { EuiFocusTrap } from '../focus_trap';
 
-import { keys, useEuiTheme } from '../../services';
+import { keys, useEuiTheme, useIsWithinBreakpoints } from '../../services';
 import { useInnerText } from '../inner_text';
 import {
   euiImageStyles,
@@ -122,6 +122,9 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
   const [isFullScreenActive, setIsFullScreenActive] = useState(false);
   const isNamedSize =
     typeof size === 'string' && SIZES.includes(size as EuiImageSize);
+  const isSmallScreen = useIsWithinBreakpoints(['xs', 's', 'm']);
+  const hasFloatLeft = float === 'left';
+  const hasFloatRight = float === 'right';
 
   const onKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === keys.ESCAPE) {
@@ -143,7 +146,13 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
 
   const euiTheme = useEuiTheme();
 
-  const styles = euiImageStyles(euiTheme, hasShadow);
+  const styles = euiImageStyles(
+    euiTheme,
+    hasShadow,
+    hasFloatLeft,
+    hasFloatRight,
+    isSmallScreen
+  );
   const cssFigureStyles = [
     styles.euiImage,
     float && styles[float],
@@ -151,7 +160,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     allowFullScreen && styles.allowFullScreen,
   ];
 
-  const cssFigureFullScreen = [
+  const cssFullScreenFigureStyles = [
     styles.euiImage,
     isFullScreenActive && styles.isFullScreen,
   ];
@@ -215,7 +224,10 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     >
       <EuiFocusTrap clickOutsideDisables={true}>
         <>
-          <figure css={cssFigureFullScreen} aria-label={optionalCaptionText}>
+          <figure
+            css={cssFullScreenFigureStyles}
+            aria-label={optionalCaptionText}
+          >
             <button
               type="button"
               css={cssButtonStyles}

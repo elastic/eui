@@ -13,21 +13,64 @@ import {
   euiCanAnimate,
   logicalCSS,
 } from '../../global_styling';
-import {
-  UseEuiTheme,
-  isWithinBreakpoints,
-  transparentize,
-} from '../../services';
+import { UseEuiTheme, transparentize } from '../../services';
 import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
 import type { EuiImageSize } from './image';
 
 const _convertToRem = (size: number) => {
-  return `${size / 16}rem`;
+  return `${size / 16}rem !important`;
+};
+
+const _imageMargins = ({
+  size,
+  hasFloatLeft,
+  hasFloatRight,
+  isSmallScreen,
+}: {
+  size: string;
+  hasFloatLeft: boolean | undefined;
+  hasFloatRight: boolean | undefined;
+  isSmallScreen: boolean;
+}) => {
+  const hasFloat = hasFloatLeft || hasFloatRight;
+
+  let mainStyles;
+
+  if (hasFloat && isSmallScreen) {
+    mainStyles = `
+      ${logicalCSS('margin-horizontal', 'inherit')};
+      ${logicalCSS('margin-vertical', 'inherit')};
+    `;
+  } else {
+    mainStyles = `
+      ${logicalCSS('margin-horizontal', size)};
+      ${logicalCSS('margin-vertical', size)};
+    `;
+  }
+
+  const floatLeftStyles = `
+    ${logicalCSS('margin-left', '0')};
+    ${logicalCSS('margin-top', '0')};
+  `;
+
+  const floatRightStyles = `
+    ${logicalCSS('margin-right', '0')};
+    ${logicalCSS('margin-top', '0')};
+  `;
+
+  return `
+    ${mainStyles}
+    ${floatLeftStyles};
+    ${floatRightStyles};
+  `;
 };
 
 export const euiImageStyles = (
   euiThemeContext: UseEuiTheme,
-  hasShadow: boolean | undefined
+  hasShadow: boolean | undefined,
+  hasFloatLeft: boolean | undefined,
+  hasFloatRight: boolean | undefined,
+  isSmallScreen: boolean
 ) => {
   const { euiTheme } = euiThemeContext;
 
@@ -37,21 +80,8 @@ export const euiImageStyles = (
       display: inline-block;
       max-width: 100%;
       position: relative;
-      min-height: 1px; /* 1 */
       line-height: 0; // Fixes cropping when image is resized by forcing its height to be determined by the image not line-height
       flex-shrink: 0; // Don't ever let this shrink in height if direct descendent of flex
-
-      ${isWithinBreakpoints(window.innerWidth, ['xs', 's', 'm'])} {
-        &[class*='-left'],
-        &[class*='-right'] {
-          float: none;
-          // Return back to whatever margin settings were set without the float
-          margin-top: inherit;
-          margin-right: inherit;
-          margin-bottom: inherit;
-          margin-left: inherit;
-        }
-      }
     `,
     allowFullScreen: css`
       &:hover .euiImage__caption {
@@ -62,15 +92,17 @@ export const euiImageStyles = (
         width: 100%;
       }
 
-      &:not([class*='-hasShadow']) [class*='euiImage__button']:hover,
-      &:not([class*='-hasShadow']) [class*='euiImage__button']:focus {
-        ${euiShadow(euiThemeContext, 'm')};
-      }
-
-      &.euiImage--hasShadow .euiImage__button:hover,
-      &.euiImage--hasShadow .euiImage__button:focus {
-        ${euiShadow(euiThemeContext, 's')};
-      }
+      ${hasShadow
+        ? `
+          [class*='euiImage__button']:hover,
+          [class*='euiImage__button']:focus {
+            ${euiShadow(euiThemeContext, 'm')};
+          }`
+        : `
+          [class*='euiImage__button']:hover,
+          [class*='euiImage__button']:focus {
+            ${euiShadow(euiThemeContext, 's')};
+          }`}
     `,
     isFullScreen: css`
       position: relative;
@@ -97,28 +129,57 @@ export const euiImageStyles = (
       }
     `,
     // margins
-    s: css`
-      margin: ${euiTheme.size.s};
-    `,
-    m: css`
-      margin: ${euiTheme.size.base};
-    `,
-    l: css`
-      margin: ${euiTheme.size.l};
-    `,
-    xl: css`
-      margin: ${euiTheme.size.xl};
-    `,
+    s: css(
+      _imageMargins({
+        size: euiTheme.size.s,
+        hasFloatLeft,
+        hasFloatRight,
+        isSmallScreen,
+      })
+    ),
+    m: css(
+      _imageMargins({
+        size: euiTheme.size.base,
+        hasFloatLeft,
+        hasFloatRight,
+        isSmallScreen,
+      })
+    ),
+    l: css(
+      _imageMargins({
+        size: euiTheme.size.l,
+        hasFloatLeft,
+        hasFloatRight,
+        isSmallScreen,
+      })
+    ),
+    xl: css(
+      _imageMargins({
+        size: euiTheme.size.xl,
+        hasFloatLeft,
+        hasFloatRight,
+        isSmallScreen,
+      })
+    ),
     // floats
     left: css`
-      float: left;
-      margin-left: 0 !important;
-      margin-top: 0 !important;
+      ${isSmallScreen
+        ? `
+          float: none;
+        `
+        : `
+          float: left;
+          
+        `}
     `,
     right: css`
-      float: right;
-      margin-right: 0 !important;
-      margin-top: 0 !important;
+      ${isSmallScreen
+        ? `
+          float: none;
+        `
+        : `
+          float: right;
+        `}
     `,
   };
 };
@@ -132,9 +193,13 @@ export const euiImageImgStyles = (
     euiImage__img: css`
       width: 100%;
       vertical-align: middle;
-      // Required for common usage of nesting within EuiText
-      margin-bottom: 0 !important;
       max-width: 100%;
+
+      &,
+       // Required for common usage of nesting within EuiText
+      [class*='euiText'] & {
+        ${logicalCSS('margin-bottom', 0)};
+      }
     `,
     hasShadow: css`
       ${euiShadow(euiThemeContext, 's')};
