@@ -9,4 +9,14 @@
 import React from 'react';
 import { Global, css } from '@emotion/react';
 
-export const EuiUtilityClasses = () => <Global styles={css``} />;
+import { euiScreenReaderOnly } from '../../components/accessibility/screen_reader_only/screen_reader_only.styles';
+
+export const EuiUtilityClasses = () => (
+  <Global
+    styles={css`
+      .euiScreenReaderOnly {
+        ${euiScreenReaderOnly()}
+      }
+    `}
+  />
+);
