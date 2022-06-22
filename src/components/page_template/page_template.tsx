@@ -35,7 +35,7 @@ import {
 } from '../page';
 import { _EuiPageRestrictWidth } from '../page/_restrict_width';
 import { _EuiPageBottomBorder } from '../page/_bottom_border';
-import { useEuiTheme } from '../../services';
+import { useEuiTheme, useGeneratedHtmlId } from '../../services';
 import { logicalStyle } from '../../global_styling';
 
 export const TemplateContext = createContext({
@@ -93,6 +93,9 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   const [offset, setOffset] = useState(_offset);
   const templateContext = useContext(TemplateContext);
 
+  // Used as a target to insert the bottom bar component
+  const pageInnerId = useGeneratedHtmlId({ prefix: 'EuiPageTemplateInner' });
+
   useEffect(() => {
     if (_offset === undefined) {
       const euiHeaderFixedCounter = Number(document.body.dataset.fixedHeaders);
@@ -133,7 +136,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   const getBottomBarProps = () => ({
     restrictWidth,
     paddingSize,
-    sibling: '#testID',
+    sibling: pageInnerId,
   });
 
   const innerPanelled = () =>
@@ -145,13 +148,13 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   React.Children.toArray(children).forEach((child, index) => {
     if (!React.isValidElement(child)) return; // Skip non-components
 
-    // All content types can have their props overridden by appending the child props spread at the end
     switch (child.type) {
       case EuiPageSidebar:
         sidebar.push(
           React.cloneElement(child, {
             key: `sidebar${index}`,
             ...getSideBarProps(),
+            // Allow their props overridden by appending the child props spread at the end
             ...child.props,
           })
         );
@@ -190,12 +193,12 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
         {sidebar}
 
         <EuiPageInner
+          id={pageInnerId}
           border={innerBordered()}
           panelled={innerPanelled()}
           responsive={responsive}
         >
           {sections}
-          <div id="testID" />
         </EuiPageInner>
       </EuiPageOuter>
     </TemplateContext.Provider>
@@ -222,10 +225,9 @@ const _EuiPageEmptyPrompt: FunctionComponent<_EuiPageEmptyPromptProps> = (
   return <EuiPageEmptyPrompt {...templateContext.emptyPrompt} {...props} />;
 };
 
-const _EuiPageBottomBar: FunctionComponent<Omit<
-  _EuiPageBottomBarProps,
-  'sibling'
->> = (props) => {
+const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = (
+  props
+) => {
   const { bottomBar } = useContext(TemplateContext);
 
   return <EuiPageBottomBar {...bottomBar} {...props} />;

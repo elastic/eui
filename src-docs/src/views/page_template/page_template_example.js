@@ -116,30 +116,7 @@ export const PageTemplateExample = {
             </p>
           </EuiText>
           <EuiSpacer />
-          <EuiCallOut
-            iconType="alert"
-            color="warning"
-            title="Only direct children declared in the same component scope will be recognized."
-          >
-            <p>
-              If you declare your page contents in a different file, even when
-              using the namespaced components, the{' '}
-              <strong>EuiPageTemplate</strong> cannot determine the component
-              type because of the added layer of obfuscation. In these
-              instances, you will want to use{' '}
-              <Link to="/layout/page-header">
-                <strong>EuiPageHeader</strong>
-              </Link>{' '}
-              and{' '}
-              <Link to="/layout/page-components#page-sections">
-                <strong>EuiPageSection</strong>
-              </Link>{' '}
-              components directly, and pass the appropriate props to those
-              components.
-            </p>
-          </EuiCallOut>
-          <EuiSpacer />
-          <EuiText>
+          <EuiCallOut color="primary">
             <p>
               If you have a fixed position{' '}
               <Link to="/layout/header#fixed-header">headers</Link>, the
@@ -149,7 +126,7 @@ export const PageTemplateExample = {
               can pass <EuiCode>0</EuiCode> in as the manual{' '}
               <EuiCode>offset</EuiCode>.
             </p>
-          </EuiText>
+          </EuiCallOut>
           <PageDemo
             slug="full-page"
             toggle={{
@@ -217,6 +194,18 @@ export const PageTemplateExample = {
               <EuiCode language="tsx">{'borderBottom="extended"'}</EuiCode>.
             </p>
           </EuiText>
+          <EuiSpacer />
+          <EuiCallOut
+            iconType="alert"
+            color="warning"
+            title="Sidebars must be direct children declared in the same component."
+          >
+            <p>
+              In order for the template configurations to properly account for
+              the existence of a sidebar, it needs to clone the element which
+              can only be performed on direct children.
+            </p>
+          </EuiCallOut>
           <PageDemo
             slug="sidebar"
             toggle={{
@@ -293,7 +282,7 @@ export const PageTemplateExample = {
             color="warning"
             title={
               <>
-                For proper alignment in case of short content, at least on{' '}
+                For proper alignment in case of short content, at least one{' '}
                 <strong>EuiPageTemplate.Section</strong> must have{' '}
                 <EuiCode>{'grow={true}'}</EuiCode>.
               </>

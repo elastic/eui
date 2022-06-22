@@ -7,11 +7,11 @@
  */
 
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { findElementBySelectorOrRef } from '../../../services';
 import { EuiBottomBar, EuiBottomBarProps } from '../../bottom_bar';
 import { EuiPageSection, EuiPageSectionProps } from '../../page/page_section';
 import { _EuiPageRestrictWidth } from '../../page/_restrict_width';
-import { EuiPortal } from '../../portal';
 
 export interface _EuiPageBottomBarProps
   extends Pick<EuiPageSectionProps, 'paddingSize'>,
@@ -44,29 +44,22 @@ export const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = ({
     };
   }, [sibling]);
 
-  return (
-    <EuiPortal
-      insert={
-        hasValidAnchor && siblingNode.current
-          ? {
-              sibling: siblingNode.current,
-              position: 'after',
-            }
-          : undefined
-      }
+  const bar = (
+    <EuiBottomBar
+      paddingSize={'none'}
+      position="sticky"
+      style={{ flexShrink: 0, ...style }}
+      // Using unknown here because of the possible conflict with overriding props and position `sticky`
+      {...(rest as unknown)}
     >
-      <EuiBottomBar
-        paddingSize={'none'}
-        position="sticky"
-        style={{ flexShrink: 0, ...style }}
-        // Using unknown here because of the possible conflict with overriding props and position `sticky`
-        {...(rest as unknown)}
-      >
-        {/* Wrapping the contents with EuiPageContentBody allows us to match the restrictWidth to keep the contents aligned */}
-        <EuiPageSection paddingSize={paddingSize} restrictWidth={restrictWidth}>
-          {children}
-        </EuiPageSection>
-      </EuiBottomBar>
-    </EuiPortal>
+      {/* Wrapping the contents with EuiPageContentBody allows us to match the restrictWidth to keep the contents aligned */}
+      <EuiPageSection paddingSize={paddingSize} restrictWidth={restrictWidth}>
+        {children}
+      </EuiPageSection>
+    </EuiBottomBar>
   );
+
+  return hasValidAnchor && siblingNode.current
+    ? createPortal(bar, siblingNode.current)
+    : bar;
 };
