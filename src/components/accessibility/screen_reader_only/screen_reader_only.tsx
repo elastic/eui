@@ -34,7 +34,6 @@ export const EuiScreenReaderOnly: FunctionComponent<EuiScreenReaderOnlyProps> = 
   const classes = classNames(
     {
       euiScreenReaderOnly: !showOnFocus,
-      'euiScreenReaderOnly--showOnFocus': showOnFocus,
     },
     className,
     children.props.className
