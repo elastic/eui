@@ -2,12 +2,12 @@
 
 exports[`EuiImage is rendered 1`] = `
 <figure
-  class="euiImage testClass1 testClass2 euiImage--large"
+  class="euiImage testClass1 testClass2 emotion-euiImage"
 >
   <img
     alt="alt"
     aria-label="aria-label"
-    class="euiImage__img"
+    class="emotion-euiImage__img-l"
     data-test-subj="test subject string"
     src="/cat.jpg"
   />
@@ -16,23 +16,23 @@ exports[`EuiImage is rendered 1`] = `
 
 exports[`EuiImage is rendered and allows fullscreen 1`] = `
 <figure
-  class="euiImage euiImage--allowFullScreen testClass1 testClass2 euiImage--large"
+  class="euiImage testClass1 testClass2 emotion-euiImage-allowFullScreen"
 >
   <button
     aria-label="Open fullscreen alt image"
-    class="euiImage__button euiImage__button--fullWidth"
+    class="emotion-euiImage__button-fullWidth"
     data-test-subj="activateFullScreenButton"
     type="button"
   >
     <img
       alt="alt"
       aria-label="aria-label"
-      class="euiImage__img"
+      class="emotion-euiImage__img-l"
       data-test-subj="test subject string"
       src="/cat.jpg"
     />
     <span
-      class="euiImage__icon"
+      class="emotion-euiImage__icon"
       color="ghost"
       data-euiicon-type="fullScreen"
     />
@@ -42,11 +42,11 @@ exports[`EuiImage is rendered and allows fullscreen 1`] = `
 
 exports[`EuiImage is rendered with a float 1`] = `
 <figure
-  class="euiImage euiImage--floatLeft euiImage--original"
+  class="euiImage emotion-euiImage-left"
 >
   <img
     alt="alt"
-    class="euiImage__img"
+    class="emotion-euiImage__img-original"
     src="/cat.jpg"
   />
 </figure>
@@ -54,11 +54,11 @@ exports[`EuiImage is rendered with a float 1`] = `
 
 exports[`EuiImage is rendered with a margin 1`] = `
 <figure
-  class="euiImage euiImage--marginLarge euiImage--original"
+  class="euiImage emotion-euiImage-l"
 >
   <img
     alt="alt"
-    class="euiImage__img"
+    class="emotion-euiImage__img-original"
     src="/cat.jpg"
   />
 </figure>
@@ -66,15 +66,15 @@ exports[`EuiImage is rendered with a margin 1`] = `
 
 exports[`EuiImage is rendered with a node as the caption 1`] = `
 <figure
-  class="euiImage euiImage--original"
+  class="euiImage emotion-euiImage"
 >
   <img
     alt="alt"
-    class="euiImage__img"
+    class="emotion-euiImage__img-original"
     src="/cat.jpg"
   />
   <figcaption
-    class="euiImage__caption"
+    class="emotion-euiImage__caption"
   >
     <span>
       caption
@@ -85,24 +85,23 @@ exports[`EuiImage is rendered with a node as the caption 1`] = `
 
 exports[`EuiImage is rendered with custom size 1`] = `
 <figure
-  class="euiImage"
+  class="euiImage emotion-euiImage"
 >
   <img
     alt="alt"
-    class="euiImage__img"
+    class="emotion-euiImage__img-customSize"
     src="/cat.jpg"
-    style="max-width:50px;max-height:50px;width:auto"
   />
 </figure>
 `;
 
 exports[`EuiImage is rendered with src 1`] = `
 <figure
-  class="euiImage euiImage--floatLeft euiImage--original"
+  class="euiImage emotion-euiImage-left"
 >
   <img
     alt="alt"
-    class="euiImage__img"
+    class="emotion-euiImage__img-original"
     src="/cat.jpg"
   />
 </figure>
