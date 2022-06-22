@@ -114,7 +114,6 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
   allowFullScreen,
   fullScreenIconColor = 'light',
   alt,
-  style,
   float,
   margin,
   ...rest
@@ -225,6 +224,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
       <EuiFocusTrap clickOutsideDisables={true}>
         <>
           <figure
+            className={classes}
             css={cssFullScreenFigureStyles}
             aria-label={optionalCaptionText}
           >

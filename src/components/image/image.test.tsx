@@ -11,10 +11,13 @@ import { render, mount, ReactWrapper } from 'enzyme';
 import { requiredProps, findTestSubject } from '../../test';
 import { act } from 'react-dom/test-utils';
 import { keys } from '../../services';
+// import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiImage } from './image';
 
 describe('EuiImage', () => {
+  // shouldRenderCustomStyles(<EuiImage alt="alt" url="/cat.jpg" />);
+
   test('is rendered', () => {
     const component = render(
       <EuiImage alt="alt" size="l" url="/cat.jpg" {...requiredProps} />

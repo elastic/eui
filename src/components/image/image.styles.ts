@@ -17,8 +17,8 @@ import { UseEuiTheme, transparentize } from '../../services';
 import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
 import type { EuiImageSize } from './image';
 
-const _imageWidth = (size: number) => {
-  const width = `${size / 16}rem`;
+const _imageWidth = (euiTheme: UseEuiTheme['euiTheme'], size: number) => {
+  const width = `${size / euiTheme.base}rem`;
 
   return `
     &,
@@ -177,7 +177,6 @@ export const euiImageStyles = (
         `
         : `
           float: left;
-          
         `}
     `,
     right: css`
@@ -196,6 +195,8 @@ export const euiImageImgStyles = (
   euiThemeContext: UseEuiTheme,
   size: EuiImageSize | number | string
 ) => {
+  const { euiTheme } = euiThemeContext;
+
   return {
     // The image itself is full width within the container.
     euiImage__img: css`
@@ -215,10 +216,10 @@ export const euiImageImgStyles = (
     // Sizes
     // These sizes are mostly suggestions. Don't look too hard for meaning in their values.
     // Size is applied to the image, rather than the figure to work better with floats
-    s: css(_imageWidth(120)),
-    m: css(_imageWidth(200)),
-    l: css(_imageWidth(360)),
-    xl: css(_imageWidth(600)),
+    s: css(_imageWidth(euiTheme, 120)),
+    m: css(_imageWidth(euiTheme, 200)),
+    l: css(_imageWidth(euiTheme, 360)),
+    xl: css(_imageWidth(euiTheme, 600)),
     original: css`
       width: auto;
       max-width: 100%;
@@ -308,7 +309,7 @@ export const euiImageFullScreenCloseIconStyles = ({
 });
 
 const euiImageFullScreen = (size: string) => keyframes`
-    0% {
+  0% {
     opacity: 0;
     transform: translateY(${size});
   }
