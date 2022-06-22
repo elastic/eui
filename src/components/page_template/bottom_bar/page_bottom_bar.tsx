@@ -17,32 +17,37 @@ export interface _EuiPageBottomBarProps
   extends Pick<EuiPageSectionProps, 'paddingSize'>,
     _EuiPageRestrictWidth,
     Omit<EuiBottomBarProps, 'paddingSize'> {
-  sibling?: string;
+  /**
+   * The reference id of the element to insert into
+   */
+  parent?: string;
 }
 
 export const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = ({
   children,
   paddingSize,
   restrictWidth,
-  sibling,
+  parent,
   style,
   ...rest
 }) => {
+  // In order for the bottom bar to be placed at the end of the content,
+  // it must know what parent element to insert into
   const [hasValidAnchor, setHasValidAnchor] = useState<boolean>(false);
   const animationFrameId = useRef<number>();
-  const siblingNode = useRef<HTMLElement | null>(null);
+  const parentNode = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     animationFrameId.current = window.requestAnimationFrame(() => {
-      siblingNode.current = findElementBySelectorOrRef(sibling);
-      setHasValidAnchor(siblingNode.current ? true : false);
+      parentNode.current = findElementBySelectorOrRef(parent);
+      setHasValidAnchor(parentNode.current ? true : false);
     });
 
     return () => {
       animationFrameId.current &&
         window.cancelAnimationFrame(animationFrameId.current);
     };
-  }, [sibling]);
+  }, [parent]);
 
   const bar = (
     <EuiBottomBar
@@ -59,7 +64,7 @@ export const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = ({
     </EuiBottomBar>
   );
 
-  return hasValidAnchor && siblingNode.current
-    ? createPortal(bar, siblingNode.current)
+  return hasValidAnchor && parentNode.current
+    ? createPortal(bar, parentNode.current)
     : bar;
 };

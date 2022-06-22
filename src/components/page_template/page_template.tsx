@@ -135,7 +135,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   const getBottomBarProps = () => ({
     restrictWidth,
     paddingSize,
-    sibling: pageInnerId,
+    parent: pageInnerId,
   });
 
   const innerPanelled = () =>
