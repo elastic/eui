@@ -4,11 +4,12 @@ import React, { FunctionComponent } from 'react';
 import {
   EuiText,
   EuiFlexGrid,
-  EuiBadge,
   EuiCopy,
   EuiFlexItem,
   EuiPanel,
   EuiHorizontalRule,
+  EuiListGroupItem,
+  useEuiTheme,
 } from '../../../../../src';
 
 // @ts-ignore Importing from JS
@@ -121,6 +122,7 @@ const ColorsContrastItem: FunctionComponent<ColorsContrastItem> = ({
   background,
   minimumContrast,
 }) => {
+  const { euiTheme } = useEuiTheme();
   const palette = useJsonVars();
   const backgroundColor = palette[background];
   const foregroundColor = palette[foreground];
@@ -168,12 +170,11 @@ color: $${foreground};`;
         textToCopy={textToCopy}
       >
         {(copy) => (
-          // @ts-ignore Bad badge types
-          <EuiBadge
-            className="guideColorSection__button"
+          <EuiListGroupItem
             iconType={contrastRating}
+            size="s"
             onClick={contrastIsAcceptableToCopy ? copy : undefined}
-            onClickAriaLabel={
+            aria-label={
               contrastIsAcceptableToCopy
                 ? 'Click to copy Sass configurations'
                 : undefined
@@ -181,10 +182,10 @@ color: $${foreground};`;
             style={{
               backgroundColor: backgroundColor,
               color: foregroundColor,
+              borderRadius: euiTheme.border.radius.medium,
             }}
-          >
-            {sanitizeColorName(foreground)}
-          </EuiBadge>
+            label={sanitizeColorName(foreground)}
+          />
         )}
       </EuiCopy>
     </EuiFlexItem>

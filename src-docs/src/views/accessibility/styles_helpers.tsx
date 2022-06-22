@@ -17,6 +17,7 @@ export default () => {
     <>
       <ThemeExample
         title={<code>.euiScreenReaderOnly</code>}
+        type="className"
         description={
           <p>
             This utility class allows you to apply the screen reader only CSS
@@ -35,6 +36,7 @@ export default () => {
       />
       <ThemeExample
         title={<code>euiScreenReaderOnly()</code>}
+        type="function"
         description={
           <p>
             This function allows you to apply the screen reader only CSS styles
@@ -44,15 +46,21 @@ export default () => {
         example={
           <EuiText size="s">
             <p>The next paragraph is hidden except for screen readers.</p>
-            <p css={css(euiScreenReaderOnly())}>
+            <p
+              css={css`
+                ${euiScreenReaderOnly()}
+              `}
+            >
               I am hidden except for screen readers
             </p>
           </EuiText>
         }
-        snippet={'<p css={css(euiScreenReaderOnly())} />'}
+        snippetLanguage="emotion"
+        snippet={'${euiScreenReaderOnly()}'}
       />
       <ThemeExample
         title={<code>useEuiFocusRing(offset?, color?)</code>}
+        type="hook"
         description={
           <p>
             By default, all interactable elements will inherit the{' '}

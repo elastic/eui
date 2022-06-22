@@ -1,15 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import {
-  EuiSpacer,
-  EuiText,
-  EuiCallOut,
-  EuiHorizontalRule,
-} from '../../../../src/components';
+import { EuiSpacer, EuiText, EuiCallOut } from '../../../../src/components';
 import UtilityClassesDisplay from './utility_classes';
 import UtilityClassesVertAlign from './utility_classes_vert_align';
-import UtilityClassesResponsive from './utility_classes_responsive';
 
 export const UtilityClassesExample = {
   title: 'CSS utility classes',
@@ -29,7 +23,15 @@ export const UtilityClassesExample = {
       <EuiSpacer size="m" />
       <EuiCallOut title="Text utilities have moved" iconType="symlink">
         For text and typography specific utilities, go to the{' '}
-        <Link to="/utilities/text">Text documentation page</Link>.
+        <Link to="/theming/typography/utilities">Text documentation page</Link>.
+      </EuiCallOut>
+      <EuiSpacer size="m" />
+      <EuiCallOut title="Responsive utilities have moved" iconType="symlink">
+        For responsive specific utilities, go to the{' '}
+        <Link to="/theming/breakpoints/utilities">
+          Breakpoint utilities page
+        </Link>
+        .
       </EuiCallOut>
     </>
   ),
@@ -37,36 +39,13 @@ export const UtilityClassesExample = {
     {
       title: 'Display',
       wrapText: false,
-      text: (
-        <>
-          <EuiSpacer />
-          <UtilityClassesDisplay />
-          <EuiSpacer />
-          <EuiHorizontalRule />
-        </>
-      ),
+      text: <UtilityClassesDisplay />,
     },
     {
       title: 'Vertical alignment',
+      color: 'subdued',
       wrapText: false,
-      text: (
-        <>
-          <EuiSpacer />
-          <UtilityClassesVertAlign />
-          <EuiSpacer />
-          <EuiHorizontalRule />
-        </>
-      ),
-    },
-    {
-      title: 'Responsive',
-      wrapText: false,
-      text: (
-        <>
-          <EuiSpacer />
-          <UtilityClassesResponsive />
-        </>
-      ),
+      text: <UtilityClassesVertAlign />,
     },
   ],
 };

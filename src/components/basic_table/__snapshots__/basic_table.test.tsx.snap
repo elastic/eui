@@ -1448,7 +1448,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
       tabindex="-1"
     >
       <caption
-        class="euiScreenReaderOnly euiTableCaption css-4l8ha9-euiScreenReaderOnlyStyles"
+        class="euiScreenReaderOnly euiTableCaption emotion-euiScreenReaderOnlyStyles"
       />
       <thead>
         <tr>
@@ -1491,7 +1491,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                 Name
               </span>
               <span
-                class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
               >
                 description
               </span>

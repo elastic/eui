@@ -37,7 +37,7 @@ exports[`EuiColorPaletteDisplay props HTML attributes accepts span attributes 1`
   id="id"
 >
   <span
-    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
   >
     title
   </span>

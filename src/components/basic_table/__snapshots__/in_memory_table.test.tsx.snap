@@ -27,7 +27,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
       tabindex="-1"
     >
       <caption
-        class="euiScreenReaderOnly euiTableCaption css-4l8ha9-euiScreenReaderOnlyStyles"
+        class="euiScreenReaderOnly euiTableCaption emotion-euiScreenReaderOnlyStyles"
       />
       <thead>
         <tr>
@@ -47,7 +47,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                 Name
               </span>
               <span
-                class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
               >
                 description
               </span>
@@ -105,7 +105,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
   </div>
   <div>
     <div
-      class="euiSpacer euiSpacer--m css-jv9za2-euiSpacer-m"
+      class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
     />
     <div
       class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--wrap eui-xScroll"
@@ -152,7 +152,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           <span
             aria-atomic="true"
             aria-relevant="additions text"
-            class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             role="status"
           >
             Page 2 of 2
@@ -656,7 +656,7 @@ exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
       tabindex="-1"
     >
       <caption
-        class="euiScreenReaderOnly euiTableCaption css-4l8ha9-euiScreenReaderOnlyStyles"
+        class="euiScreenReaderOnly euiTableCaption emotion-euiScreenReaderOnlyStyles"
       />
       <thead>
         <tr>
@@ -676,7 +676,7 @@ exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
                 Name
               </span>
               <span
-                class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
               >
                 description
               </span>
@@ -756,7 +756,7 @@ exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
   </div>
   <div>
     <div
-      class="euiSpacer euiSpacer--m css-jv9za2-euiSpacer-m"
+      class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
     />
     <div
       class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--wrap eui-xScroll"

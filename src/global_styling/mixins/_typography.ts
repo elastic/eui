@@ -10,12 +10,10 @@ import { CSSProperties } from 'react';
 import {
   euiLineHeightFromBaseline,
   euiFontSizeFromScale,
+  _FontScaleOptions,
 } from '../functions/typography';
 import { useEuiTheme, UseEuiTheme } from '../../services/theme/hooks';
-import {
-  _EuiThemeFontScale,
-  _EuiThemeFontSizeMeasurement,
-} from '../variables/typography';
+import { _EuiThemeFontScale } from '../variables/typography';
 
 export type EuiThemeFontSize = {
   fontSize: CSSProperties['fontSize'];
@@ -26,23 +24,21 @@ export type EuiThemeFontSize = {
  * Returns font-size and line-height
  */
 export const euiFontSize = (
+  { euiTheme }: UseEuiTheme,
   scale: _EuiThemeFontScale,
-  euiTheme: UseEuiTheme['euiTheme'],
-  measurement: _EuiThemeFontSizeMeasurement = 'rem'
+  options?: _FontScaleOptions
 ): EuiThemeFontSize => {
   return {
-    fontSize: euiFontSizeFromScale(scale, euiTheme, measurement),
-    lineHeight: euiLineHeightFromBaseline(scale, euiTheme, measurement),
+    fontSize: euiFontSizeFromScale(scale, euiTheme, options),
+    lineHeight: euiLineHeightFromBaseline(scale, euiTheme, options),
   };
 };
-
-// Hook version
 export const useEuiFontSize = (
-  scale: _EuiThemeFontScale = 'm',
-  measurement: _EuiThemeFontSizeMeasurement = 'rem'
+  scale: _EuiThemeFontScale,
+  options?: _FontScaleOptions
 ): EuiThemeFontSize => {
-  const { euiTheme } = useEuiTheme();
-  return euiFontSize(scale, euiTheme, measurement);
+  const euiTheme = useEuiTheme();
+  return euiFontSize(euiTheme, scale, options);
 };
 
 /**
@@ -70,11 +66,10 @@ export const euiTextTruncate = (
 /**
  * Fixed-width numbers for tabular data
  */
-export const euiNumberFormat = (euiTheme: UseEuiTheme['euiTheme']) => `
+export const euiNumberFormat = ({ euiTheme }: UseEuiTheme) => `
   font-feature-settings: ${euiTheme.font.featureSettings}, 'tnum' 1;
 `;
-// Hook version
 export const useEuiNumberFormat = (): string => {
-  const { euiTheme } = useEuiTheme();
+  const euiTheme = useEuiTheme();
   return euiNumberFormat(euiTheme);
 };

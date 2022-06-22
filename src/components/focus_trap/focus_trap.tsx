@@ -98,14 +98,14 @@ export class EuiFocusTrap extends Component<EuiFocusTrapProps, State> {
     document.removeEventListener('touchend', this.onMouseupOutside);
   };
 
-  handleOutsideClick: ReactFocusOnProps['onClickOutside'] = (...args) => {
+  handleOutsideClick: ReactFocusOnProps['onClickOutside'] = (event) => {
     const { onClickOutside, clickOutsideDisables, closeOnMouseup } = this.props;
     if (clickOutsideDisables) {
       this.setState({ hasBeenDisabledByClick: true });
     }
 
     if (onClickOutside) {
-      closeOnMouseup ? this.addMouseupListener() : onClickOutside(...args);
+      closeOnMouseup ? this.addMouseupListener() : onClickOutside(event);
     }
   };
 

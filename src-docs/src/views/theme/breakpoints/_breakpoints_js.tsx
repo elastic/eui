@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { isWithinBreakpoints, useEuiTheme } from '../../../../../src/services';
+import {
+  isWithinBreakpoints,
+  useEuiTheme,
+  useIsWithinBreakpoints,
+} from '../../../../../src/services';
 
 import {
   EuiIcon,
@@ -7,21 +11,23 @@ import {
   throttle,
   EuiBreakpointSize,
   EuiCode,
+  EuiThemeBreakpoints,
 } from '../../../../../src';
 
-import { EuiThemeBreakpoints } from '../_props';
+import { EuiThemeBreakpoints as _EuiThemeBreakpoints } from '../_props';
 import { getPropsFromComponent } from '../../../services/props/get_props';
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 
 export default () => {
   const { euiTheme } = useEuiTheme();
-  const breakpoint = euiTheme.breakpoint;
-  const breakpointTypes = getPropsFromComponent(EuiThemeBreakpoints);
-  const breakpoints = Object.keys(breakpointTypes);
+  const isLargeBreakpoint = useIsWithinBreakpoints(['l', 'xl']);
 
   const [currentBreakpoint, setCurrentBreakpoint] = useState(
-    getBreakpoint(typeof window === 'undefined' ? 0 : window.innerWidth)
+    getBreakpoint(
+      typeof window === 'undefined' ? 0 : window.innerWidth,
+      euiTheme.breakpoint
+    )
   );
 
   const [withinBreakpoints, setWithinBreakpoints] = useState(
@@ -32,7 +38,7 @@ export default () => {
   );
 
   const functionToCallOnWindowResize = throttle(() => {
-    setCurrentBreakpoint(getBreakpoint(window.innerWidth));
+    setCurrentBreakpoint(getBreakpoint(window.innerWidth, euiTheme.breakpoint));
     setWithinBreakpoints(isWithinBreakpoints(window.innerWidth, ['xs', 's']));
     // reacts every 50ms to resize changes and always gets the final update
   }, 50);
@@ -48,7 +54,8 @@ export default () => {
   return (
     <>
       <ThemeExample
-        title={<code>getBreakpoint(width)</code>}
+        title={<code>getBreakpoint(width, breakpoints)</code>}
+        type="function"
         description={
           <p>
             Given the current <EuiCode>width</EuiCode>, this function returns
@@ -61,12 +68,13 @@ export default () => {
             Current breakpoint: <strong>{currentBreakpoint}</strong>
           </p>
         }
-        snippet="getBreakpoint(window.innerWidth)"
+        snippet="getBreakpoint(window.innerWidth, euiTheme.breakpoint)"
         snippetLanguage="js"
       />
 
       <ThemeExample
         title={<code>isWithinBreakpoints(width, sizes[])</code>}
+        type="function"
         description={
           <>
             <p>
@@ -85,9 +93,11 @@ export default () => {
         }
         example={
           <p>
-            Targeting mobile devices only{' '}
-            {withinBreakpoints && (
+            Targeting mobile devices only:{' '}
+            {withinBreakpoints ? (
               <EuiIcon type="checkInCircleFilled" color="success" />
+            ) : (
+              <EuiIcon type="cross" color="danger" />
             )}
           </p>
         }
@@ -95,8 +105,66 @@ export default () => {
         snippetLanguage="js"
       />
 
+      <ThemeExample
+        title={<code>useIsWithinBreakpoints(sizes[], isActive?)</code>}
+        type="hook"
+        description={
+          <>
+            <p>
+              This hook automatically sets up with resize listeners and
+              calculates the current breakpoint based on the{' '}
+              <strong>whole window width</strong>. The{' '}
+              <EuiCode>isActive</EuiCode> parameter allows it to easily be
+              turned on/off from within your component.
+            </p>
+          </>
+        }
+        example={
+          <p>
+            Targeting large devices only:{' '}
+            {isLargeBreakpoint ? (
+              <EuiIcon type="checkInCircleFilled" color="success" />
+            ) : (
+              <EuiIcon type="cross" color="danger" />
+            )}
+          </p>
+        }
+        snippet="useIsWithinBreakpoints(['l', 'xl'])"
+        snippetLanguage="js"
+      />
+    </>
+  );
+};
+
+export const BreakpointValuesJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const breakpoint = euiTheme.breakpoint;
+  const breakpointTypes = getPropsFromComponent(_EuiThemeBreakpoints);
+
+  const [currentBreakpoint, setCurrentBreakpoint] = useState(
+    getBreakpoint(
+      typeof window === 'undefined' ? 0 : window.innerWidth,
+      euiTheme.breakpoint
+    )
+  );
+
+  const functionToCallOnWindowResize = throttle(() => {
+    setCurrentBreakpoint(getBreakpoint(window.innerWidth, euiTheme.breakpoint));
+    // reacts every 50ms to resize changes and always gets the final update
+  }, 50);
+
+  useEffect(() => {
+    window.addEventListener('resize', functionToCallOnWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', functionToCallOnWindowResize);
+    };
+  }, [functionToCallOnWindowResize]);
+
+  return (
+    <>
       <ThemeValuesTable
-        items={breakpoints.map((size) => {
+        items={EuiThemeBreakpoints.map((size) => {
           return {
             id: size,
             token: `breakpoint.${size}`,

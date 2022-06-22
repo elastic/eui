@@ -8,6 +8,10 @@ import {
   EuiSpacer,
   EuiTitle,
   useEuiTheme,
+  EuiBadge,
+  logicalCSS,
+  useIsWithinBreakpoints,
+  useEuiPaddingCSS,
 } from '../../../../../src';
 import {
   _EuiSplitPanelInnerProps,
@@ -20,6 +24,7 @@ export type ThemeExample = {
   color?: _EuiSplitPanelOuterProps['color'];
   title?: ReactNode;
   description?: ReactNode;
+  type?: string | null;
   property?: string;
   example?: GuideSectionExample['example'];
   examplePanel?: _EuiSplitPanelInnerProps;
@@ -33,7 +38,8 @@ export type ThemeExample = {
 };
 
 export const ThemeExample: FunctionComponent<ThemeExample> = ({
-  color = 'subdued',
+  color,
+  type = 'token',
   title,
   description,
   example,
@@ -43,6 +49,8 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
   props,
 }) => {
   const { euiTheme } = useEuiTheme();
+  const isLargeBreakpoint = useIsWithinBreakpoints(['m', 'l', 'xl']);
+
   const finalSnippet =
     snippetLanguage === 'emotion'
       ? `css\`
@@ -53,17 +61,41 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
   return (
     <>
       <EuiSplitPanel.Outer
-        color={color}
+        color={isLargeBreakpoint ? color || 'transparent' : 'subdued'}
         direction="row"
         css={css`
-          margin-bottom: ${euiTheme.size.xl};
+          gap: ${euiTheme.size.xl};
+
+          ${useEuiPaddingCSS(isLargeBreakpoint ? 'vertical' : undefined).xl};
+          /* padding: ${euiTheme.size.xl}; */
+
+          :not(:first-child) {
+            margin-block-start: ${euiTheme.size.xl};
+          }
         `}
       >
-        <EuiSplitPanel.Inner style={{ flexShrink: 0 }}>
+        <EuiSplitPanel.Inner
+          paddingSize="none"
+          style={{
+            flexShrink: 0,
+          }}
+        >
           {title && (
             <>
-              <EuiTitle size="xs">
-                <h3>{title}</h3>
+              <EuiTitle size="xxs">
+                <h3>
+                  {title}{' '}
+                  {type && (
+                    <EuiBadge
+                      css={css`
+                        ${logicalCSS('margin-left', euiTheme.size.xs)}
+                      `}
+                      color={type.includes(' ') ? 'accent' : 'hollow'}
+                    >
+                      {type}
+                    </EuiBadge>
+                  )}
+                </h3>
               </EuiTitle>
 
               <EuiSpacer />
@@ -88,7 +120,12 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
         </EuiSplitPanel.Inner>
 
         {(example || snippet) && (
-          <EuiSplitPanel.Inner style={{ overflow: 'hidden' }}>
+          <EuiSplitPanel.Inner
+            paddingSize="none"
+            style={{
+              overflow: 'hidden',
+            }}
+          >
             <EuiSplitPanel.Outer
               direction="column"
               hasBorder={true}

@@ -13,7 +13,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiLink--subdued euiBreadcrumb__content customClass"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-subdued"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -25,7 +25,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       class="euiBreadcrumb"
     >
       <button
-        class="euiLink euiLink--subdued euiBreadcrumb__content"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
         type="button"
       >
         Reptiles
@@ -35,7 +35,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiLink--subdued euiBreadcrumb__content"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued"
         href="#"
         rel="noreferrer"
       >

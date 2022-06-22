@@ -19,7 +19,7 @@ exports[`EuiColorPalettePicker is rendered 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
@@ -70,7 +70,7 @@ exports[`EuiColorPalettePicker is rendered with a selected custom text 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: Plain text as a custom option, is selected
@@ -123,7 +123,7 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: 
@@ -131,7 +131,7 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
               class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
             >
               <span
-                class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
               >
                 Palette 1
               </span>
@@ -169,7 +169,7 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
               class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
             >
               <span
-                class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
               >
                 Palette 1
               </span>
@@ -234,12 +234,12 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: 
             <span
-              class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+              class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             >
               Linear Gradient
             </span>
@@ -258,7 +258,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
             type="button"
           >
             <span
-              class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+              class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             >
               Linear Gradient
             </span>
@@ -307,12 +307,12 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: 
             <span
-              class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+              class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             >
               Linear Gradient with stops
             </span>
@@ -331,7 +331,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
             type="button"
           >
             <span
-              class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+              class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             >
               Linear Gradient with stops
             </span>
@@ -380,7 +380,7 @@ exports[`EuiColorPalettePicker is rendered with the prop selectionDisplay set as
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: Palette 1, is selected
@@ -433,7 +433,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: 
@@ -441,7 +441,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
               class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
             >
               <span
-                class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
               >
                 Palette 1
               </span>
@@ -478,7 +478,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
               class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
             >
               <span
-                class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
               >
                 Palette 1
               </span>

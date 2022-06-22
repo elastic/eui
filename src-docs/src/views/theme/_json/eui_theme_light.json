@@ -1,11 +1,4 @@
 {
-  "paddingSizes": {
-    "xs": "4px",
-    "s": "8px",
-    "m": "16px",
-    "l": "24px",
-    "xl": "32px"
-  },
   "euiBadgeGroupGutterTypes": {
     "gutterExtraSmall": "4px",
     "gutterSmall": "8px"
@@ -98,20 +91,7 @@
     "m": "4px",
     "l": "8px"
   },
-  "euiExpressionColors": {
-    "subdued": "#69707d",
-    "primary": "#0071c2",
-    "success": "#007e77",
-    "warning": "#8a6a0a",
-    "danger": "#bd271e",
-    "accent": "#c4407c"
-  },
-  "euiFacetGutterSizes": {
-    "gutterNone": 0,
-    "gutterSmall": "4px",
-    "gutterMedium": "8px",
-    "gutterLarge": "12px"
-  },
+  "euiEmptyPromptContentMaxWidth": "36em",
   "gutterTypes": {
     "gutterExtraSmall": "4px",
     "gutterSmall": "8px",
@@ -201,16 +181,6 @@
   },
   "euiKeyPadMenuSize": "96px",
   "euiKeyPadMenuMarginSize": "4px",
-  "euiLinkColors": {
-    "subdued": "#69707d",
-    "primary": "#0071c2",
-    "success": "#007e77",
-    "accent": "#c4407c",
-    "warning": "#8a6a0a",
-    "danger": "#bd271e",
-    "text": "#343741",
-    "ghost": "#ffffff"
-  },
   "euiListGroupItemHoverBackground": "rgba(211, 218, 230, 0.25)",
   "euiListGroupItemHoverBackgroundGhost": "rgba(255, 255, 255, 0.09999999999999998)",
   "euiListGroupGutterTypes": {
@@ -320,17 +290,6 @@
   "euiTableActionsBorderColor": "rgba(152, 162, 179, 0.09999999999999998)",
   "euiTableHoverClickableColor": "rgba(0, 119, 204, 0.050000000000000044)",
   "euiTableFocusClickableColor": "rgba(0, 119, 204, 0.09999999999999998)",
-  "euiTextColors": {
-    "default": "#343741",
-    "subdued": "#69707d",
-    "success": "#00bfb3",
-    "accent": "#f04e98",
-    "warning": "#fec514",
-    "danger": "#bd271e",
-    "ghost": "#ffffff",
-    "inherit": "inherit"
-  },
-  "euiTextConstrainedMaxWidth": "36em",
   "euiToastWidth": "320px",
   "euiToastTypes": {
     "primary": "#0077cc",
@@ -416,7 +375,6 @@
     "success": "#00bfb3",
     "warning": "#fec514",
     "danger": "#bd271e",
-    "subdued": "#69707d",
     "ghost": "#ffffff",
     "text": "#69707d"
   },
@@ -577,7 +535,7 @@
   },
   "euiPanelBorderRadiusModifiers": {
     "borderRadiusNone": 0,
-    "borderRadiusMedium": "6px"
+    "borderRadiusMedium": "4px"
   },
   "euiPanelBackgroundColorModifiers": {
     "transparent": "rgba(0, 0, 0, 0)",

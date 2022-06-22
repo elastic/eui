@@ -1,5 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`euiFontSize handles the optional customScale property by multiplying it against the passed scale: l scale with xxs customScale 1`] = `
+Object {
+  "fontSize": "1.0804rem",
+  "lineHeight": "1.4286rem",
+}
+`;
+
+exports[`euiFontSize handles the optional customScale property by multiplying it against the passed scale: m scale with xs customScale 1`] = `
+Object {
+  "fontSize": "0.8571rem",
+  "lineHeight": "1.1429rem",
+}
+`;
+
+exports[`euiFontSize handles the optional customScale property by multiplying it against the passed scale: s scale with xl customScale 1`] = `
+Object {
+  "fontSize": "1.6875rem",
+  "lineHeight": "2.0000rem",
+}
+`;
+
 exports[`euiFontSize returns an object of font-size and line-height for each scale em l 1`] = `
 Object {
   "fontSize": "1.375em",

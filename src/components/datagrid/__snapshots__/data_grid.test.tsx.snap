@@ -46,7 +46,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
       <span
         aria-atomic="true"
         aria-relevant="additions text"
-        class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+        class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
         role="status"
       >
         Page 2 of 2
@@ -1138,7 +1138,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
-              data-gridcell-id="0,0"
               data-gridcell-row-index="0"
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
@@ -1159,7 +1158,7 @@ Array [
                     0, A
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 1; Column: 1
                   </p>
@@ -1170,7 +1169,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
-              data-gridcell-id="1,0"
               data-gridcell-row-index="0"
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
@@ -1191,7 +1189,7 @@ Array [
                     0, B
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 1; Column: 2
                   </p>
@@ -1202,7 +1200,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
-              data-gridcell-id="0,1"
               data-gridcell-row-index="1"
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
@@ -1223,7 +1220,7 @@ Array [
                     1, A
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 2; Column: 1
                   </p>
@@ -1234,7 +1231,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
-              data-gridcell-id="1,1"
               data-gridcell-row-index="1"
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
@@ -1255,7 +1251,7 @@ Array [
                     1, B
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 2; Column: 2
                   </p>
@@ -1266,7 +1262,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
-              data-gridcell-id="0,2"
               data-gridcell-row-index="2"
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
@@ -1287,7 +1282,7 @@ Array [
                     2, A
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 3; Column: 1
                   </p>
@@ -1298,7 +1293,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
-              data-gridcell-id="1,2"
               data-gridcell-row-index="2"
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
@@ -1319,7 +1313,7 @@ Array [
                     2, B
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 3; Column: 2
                   </p>
@@ -1602,7 +1596,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="leading"
               data-gridcell-column-index="0"
-              data-gridcell-id="0,0"
               data-gridcell-row-index="0"
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
@@ -1636,7 +1629,7 @@ Array [
                       0
                     </div>
                     <p
-                      class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                      class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                     >
                       Row: 1; Column: 1
                     </p>
@@ -1653,7 +1646,6 @@ Array [
               class="euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="1"
-              data-gridcell-id="1,0"
               data-gridcell-row-index="0"
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
@@ -1674,7 +1666,7 @@ Array [
                     0, A
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 1; Column: 2
                   </p>
@@ -1685,7 +1677,6 @@ Array [
               class="euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="2"
-              data-gridcell-id="2,0"
               data-gridcell-row-index="0"
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
@@ -1706,7 +1697,7 @@ Array [
                     0, B
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 1; Column: 3
                   </p>
@@ -1717,7 +1708,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="trailing"
               data-gridcell-column-index="3"
-              data-gridcell-id="3,0"
               data-gridcell-row-index="0"
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
@@ -1751,7 +1741,7 @@ Array [
                       0
                     </div>
                     <p
-                      class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                      class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                     >
                       Row: 1; Column: 4
                     </p>
@@ -1768,7 +1758,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="leading"
               data-gridcell-column-index="0"
-              data-gridcell-id="0,1"
               data-gridcell-row-index="1"
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
@@ -1802,7 +1791,7 @@ Array [
                       1
                     </div>
                     <p
-                      class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                      class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                     >
                       Row: 2; Column: 1
                     </p>
@@ -1819,7 +1808,6 @@ Array [
               class="euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="1"
-              data-gridcell-id="1,1"
               data-gridcell-row-index="1"
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
@@ -1840,7 +1828,7 @@ Array [
                     1, A
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 2; Column: 2
                   </p>
@@ -1851,7 +1839,6 @@ Array [
               class="euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="2"
-              data-gridcell-id="2,1"
               data-gridcell-row-index="1"
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
@@ -1872,7 +1859,7 @@ Array [
                     1, B
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 2; Column: 3
                   </p>
@@ -1883,7 +1870,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="trailing"
               data-gridcell-column-index="3"
-              data-gridcell-id="3,1"
               data-gridcell-row-index="1"
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
@@ -1917,7 +1903,7 @@ Array [
                       1
                     </div>
                     <p
-                      class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                      class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                     >
                       Row: 2; Column: 4
                     </p>
@@ -1934,7 +1920,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="leading"
               data-gridcell-column-index="0"
-              data-gridcell-id="0,2"
               data-gridcell-row-index="2"
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
@@ -1968,7 +1953,7 @@ Array [
                       2
                     </div>
                     <p
-                      class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                      class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                     >
                       Row: 3; Column: 1
                     </p>
@@ -1985,7 +1970,6 @@ Array [
               class="euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="1"
-              data-gridcell-id="1,2"
               data-gridcell-row-index="2"
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
@@ -2006,7 +1990,7 @@ Array [
                     2, A
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 3; Column: 2
                   </p>
@@ -2017,7 +2001,6 @@ Array [
               class="euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="2"
-              data-gridcell-id="2,2"
               data-gridcell-row-index="2"
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
@@ -2038,7 +2021,7 @@ Array [
                     2, B
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 3; Column: 3
                   </p>
@@ -2049,7 +2032,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="trailing"
               data-gridcell-column-index="3"
-              data-gridcell-id="3,2"
               data-gridcell-row-index="2"
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
@@ -2083,7 +2065,7 @@ Array [
                       2
                     </div>
                     <p
-                      class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                      class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                     >
                       Row: 3; Column: 4
                     </p>
@@ -2333,7 +2315,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
-              data-gridcell-id="0,0"
               data-gridcell-row-index="0"
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
@@ -2354,7 +2335,7 @@ Array [
                     0, A
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 1; Column: 1
                   </p>
@@ -2365,7 +2346,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
-              data-gridcell-id="1,0"
               data-gridcell-row-index="0"
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
@@ -2386,7 +2366,7 @@ Array [
                     0, B
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 1; Column: 2
                   </p>
@@ -2397,7 +2377,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
-              data-gridcell-id="0,1"
               data-gridcell-row-index="1"
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
@@ -2418,7 +2397,7 @@ Array [
                     1, A
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 2; Column: 1
                   </p>
@@ -2429,7 +2408,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
-              data-gridcell-id="1,1"
               data-gridcell-row-index="1"
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
@@ -2450,7 +2428,7 @@ Array [
                     1, B
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 2; Column: 2
                   </p>
@@ -2461,7 +2439,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
-              data-gridcell-id="0,2"
               data-gridcell-row-index="2"
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
@@ -2482,7 +2459,7 @@ Array [
                     2, A
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 3; Column: 1
                   </p>
@@ -2493,7 +2470,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
-              data-gridcell-id="1,2"
               data-gridcell-row-index="2"
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
@@ -2514,7 +2490,7 @@ Array [
                     2, B
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 3; Column: 2
                   </p>
@@ -2756,7 +2732,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
-              data-gridcell-id="0,0"
               data-gridcell-row-index="0"
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
@@ -2777,7 +2752,7 @@ Array [
                     0, A
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 1; Column: 1
                   </p>
@@ -2788,7 +2763,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
-              data-gridcell-id="1,0"
               data-gridcell-row-index="0"
               data-gridcell-visible-row-index="0"
               data-test-subj="dataGridRowCell"
@@ -2809,7 +2783,7 @@ Array [
                     0, B
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 1; Column: 2
                   </p>
@@ -2820,7 +2794,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
-              data-gridcell-id="0,1"
               data-gridcell-row-index="1"
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
@@ -2841,7 +2814,7 @@ Array [
                     1, A
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 2; Column: 1
                   </p>
@@ -2852,7 +2825,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
-              data-gridcell-id="1,1"
               data-gridcell-row-index="1"
               data-gridcell-visible-row-index="1"
               data-test-subj="dataGridRowCell"
@@ -2873,7 +2845,7 @@ Array [
                     1, B
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 2; Column: 2
                   </p>
@@ -2884,7 +2856,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
-              data-gridcell-id="0,2"
               data-gridcell-row-index="2"
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
@@ -2905,7 +2876,7 @@ Array [
                     2, A
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 3; Column: 1
                   </p>
@@ -2916,7 +2887,6 @@ Array [
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
-              data-gridcell-id="1,2"
               data-gridcell-row-index="2"
               data-gridcell-visible-row-index="2"
               data-test-subj="dataGridRowCell"
@@ -2937,7 +2907,7 @@ Array [
                     2, B
                   </div>
                   <p
-                    class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+                    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
                   >
                     Row: 3; Column: 2
                   </p>

@@ -21,11 +21,7 @@ import { CommonProps } from '../common';
 import { useEuiResizableContainerContext } from './context';
 import { useGeneratedHtmlId } from '../../services';
 import { EuiPanel } from '../panel';
-import {
-  PanelPaddingSize,
-  panelPaddingValues,
-  _EuiPanelProps,
-} from '../panel/panel';
+import { PanelPaddingSize, _EuiPanelProps } from '../panel/panel';
 import { useEuiI18n } from '../i18n';
 import {
   EuiResizablePanelController,
@@ -34,6 +30,15 @@ import {
   PanelPosition,
 } from './types';
 import { EuiResizableCollapseButton } from './resizable_collapse_button';
+
+const panelPaddingValues = {
+  none: 0,
+  xs: 4,
+  s: 8,
+  m: 16,
+  l: 24,
+  xl: 32,
+};
 
 export interface ToggleOptions {
   'data-test-subj'?: string;
@@ -237,6 +242,8 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
 
   const classes = classNames(
     'euiResizablePanel',
+    // @ts-expect-error EuiPanel increased its available sizes
+    // When we convert this component to Emotion, we should also increase sizes to match EuiPanel and remove this comment.
     paddingSizeToClassNameMap[wrapperPadding],
     {
       'euiResizablePanel--collapsible': isCollapsible,

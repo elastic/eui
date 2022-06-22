@@ -19,7 +19,7 @@ exports[`EuiSuperSelect is rendered 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
@@ -70,7 +70,7 @@ exports[`EuiSuperSelect props compressed is rendered 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
@@ -121,7 +121,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
@@ -165,7 +165,8 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
     <div
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiPopover__panel-isAttached"
+      class="euiPanel euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiPopover__panel-isAttached emotion-euiPanel-grow-m-plain"
+      data-popover-panel="true"
       role="dialog"
       style="top: 8px; left: 0px; will-change: transform, opacity; z-index: 2000;"
     >
@@ -188,7 +189,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
         >
           <div>
             <p
-              class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+              class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
               id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
               You are in a form selector and must select a single option. Use the up and down keys to navigate or escape to close.
@@ -282,7 +283,7 @@ exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
@@ -338,7 +339,7 @@ exports[`EuiSuperSelect props is rendered with a prepend and append 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
@@ -394,7 +395,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: Option #1, is selected
@@ -440,7 +441,8 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
     <div
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiPopover__panel-isAttached"
+      class="euiPanel euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiPopover__panel-isAttached emotion-euiPanel-grow-m-plain"
+      data-popover-panel="true"
       role="dialog"
       style="top: 8px; left: 0px; will-change: transform, opacity; z-index: 2000;"
     >
@@ -463,7 +465,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
         >
           <div>
             <p
-              class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+              class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
               id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
               You are in a form selector and must select a single option. Use the up and down keys to navigate or escape to close.
@@ -560,7 +562,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
@@ -604,7 +606,8 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
     <div
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiPopover__panel-isAttached"
+      class="euiPanel euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiPopover__panel-isAttached emotion-euiPanel-grow-m-plain"
+      data-popover-panel="true"
       role="dialog"
       style="top: 8px; left: 0px; will-change: transform, opacity; z-index: 2000;"
     >
@@ -627,7 +630,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
         >
           <div>
             <p
-              class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+              class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
               id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
               You are in a form selector and must select a single option. Use the up and down keys to navigate or escape to close.
@@ -721,7 +724,7 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: Option #2, is selected
@@ -767,7 +770,8 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
     <div
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiPopover__panel-isAttached goes-on-popover-panel"
+      class="euiPanel euiPanel--plain euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiPopover__panel-isAttached goes-on-popover-panel emotion-euiPanel-grow-m-plain"
+      data-popover-panel="true"
       role="dialog"
       style="top: 8px; left: 0px; will-change: transform, opacity; z-index: 2000;"
     >
@@ -790,7 +794,7 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
         >
           <div>
             <p
-              class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+              class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
               id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
               You are in a form selector and must select a single option. Use the up and down keys to navigate or escape to close.
@@ -885,7 +889,7 @@ exports[`EuiSuperSelect props select component is rendered 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
@@ -934,7 +938,7 @@ exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: Option #2, is selected

@@ -31,3 +31,242 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
   </div>
 </div>
 `;
+
+exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popover allowing users to set column visibility and order 2`] = `
+<div
+  aria-describedby="generated-id"
+  aria-live="off"
+  aria-modal="true"
+  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop emotion-euiPanel-grow-m-s-plain"
+  data-autofocus="true"
+  data-popover-panel="true"
+  role="dialog"
+  style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+  tabindex="0"
+>
+  <div
+    class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+    style="left: 10px; top: 0px;"
+  />
+  <p
+    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
+    id="generated-id"
+  >
+    You are in a dialog. To close this dialog, hit escape.
+  </p>
+  <div>
+    <div>
+      <div
+        class="euiPopoverTitle"
+      >
+        <div
+          class="euiFormControlLayout euiFormControlLayout--compressed"
+        >
+          <div
+            class="euiFormControlLayout__childrenWrapper"
+          >
+            <input
+              aria-label="Search columns"
+              class="euiFieldText euiFieldText--compressed"
+              data-test-subj="dataGridColumnSelectorSearch"
+              placeholder="Search"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="euiDataGrid__controlScroll"
+      >
+        <div
+          class="euiDroppable euiDroppable--noGrow"
+          data-rbd-droppable-context-id="0"
+          data-rbd-droppable-id="columnOrder"
+          data-test-subj="droppable"
+        >
+          <div
+            aria-describedby="rbd-hidden-text-0-hidden-text-0"
+            class="euiDraggable"
+            data-rbd-drag-handle-context-id="0"
+            data-rbd-drag-handle-draggable-id="columnA"
+            data-rbd-draggable-context-id="0"
+            data-rbd-draggable-id="columnA"
+            data-test-subj="draggable"
+            draggable="false"
+            role="button"
+            tabindex="0"
+          >
+            <div
+              class="euiDataGridColumnSelector__item false euiDraggable__item"
+              data-test-subj="dataGridColumnSelectorColumnItem-columnA"
+            >
+              <div
+                class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+              >
+                <div
+                  class="euiFlexItem"
+                >
+                  <div
+                    class="euiSwitch euiSwitch--compressed euiSwitch--mini"
+                  >
+                    <button
+                      aria-checked="true"
+                      aria-labelledby="generated-id"
+                      class="euiSwitch__button"
+                      data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnA"
+                      id="generated-id"
+                      name="columnA"
+                      role="switch"
+                      type="button"
+                    >
+                      <span
+                        class="euiSwitch__body"
+                      >
+                        <span
+                          class="euiSwitch__thumb"
+                        />
+                        <span
+                          class="euiSwitch__track"
+                        />
+                      </span>
+                    </button>
+                    <span
+                      class="euiSwitch__label"
+                      id="generated-id"
+                    >
+                      columnA
+                    </span>
+                  </div>
+                </div>
+                <div
+                  class="euiFlexItem euiFlexItem--flexGrowZero"
+                >
+                  <span
+                    color="subdued"
+                    data-euiicon-type="grab"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            aria-describedby="rbd-hidden-text-0-hidden-text-0"
+            class="euiDraggable"
+            data-rbd-drag-handle-context-id="0"
+            data-rbd-drag-handle-draggable-id="columnB"
+            data-rbd-draggable-context-id="0"
+            data-rbd-draggable-id="columnB"
+            data-test-subj="draggable"
+            draggable="false"
+            role="button"
+            tabindex="0"
+          >
+            <div
+              class="euiDataGridColumnSelector__item false euiDraggable__item"
+              data-test-subj="dataGridColumnSelectorColumnItem-columnB"
+            >
+              <div
+                class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
+              >
+                <div
+                  class="euiFlexItem"
+                >
+                  <div
+                    class="euiSwitch euiSwitch--compressed euiSwitch--mini"
+                  >
+                    <button
+                      aria-checked="true"
+                      aria-labelledby="generated-id"
+                      class="euiSwitch__button"
+                      data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnB"
+                      id="generated-id"
+                      name="columnB"
+                      role="switch"
+                      type="button"
+                    >
+                      <span
+                        class="euiSwitch__body"
+                      >
+                        <span
+                          class="euiSwitch__thumb"
+                        />
+                        <span
+                          class="euiSwitch__track"
+                        />
+                      </span>
+                    </button>
+                    <span
+                      class="euiSwitch__label"
+                      id="generated-id"
+                    >
+                      columnB
+                    </span>
+                  </div>
+                </div>
+                <div
+                  class="euiFlexItem euiFlexItem--flexGrowZero"
+                >
+                  <span
+                    color="subdued"
+                    data-euiicon-type="grab"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="euiDroppable__placeholder"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="euiPopoverFooter"
+    >
+      <div
+        class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
+      >
+        <div
+          class="euiFlexItem euiFlexItem--flexGrowZero"
+        >
+          <button
+            class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiButtonEmpty--flushLeft"
+            data-test-subj="dataGridColumnSelectorShowAllButton"
+            type="button"
+          >
+            <span
+              class="euiButtonContent euiButtonEmpty__content"
+            >
+              <span
+                class="euiButtonEmpty__text"
+              >
+                Show all
+              </span>
+            </span>
+          </button>
+        </div>
+        <div
+          class="euiFlexItem euiFlexItem--flexGrowZero"
+        >
+          <button
+            class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiButtonEmpty--flushRight"
+            data-test-subj="dataGridColumnSelectorHideAllButton"
+            type="button"
+          >
+            <span
+              class="euiButtonContent euiButtonEmpty__content"
+            >
+              <span
+                class="euiButtonEmpty__text"
+              >
+                Hide all
+              </span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

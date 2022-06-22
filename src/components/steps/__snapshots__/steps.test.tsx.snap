@@ -16,7 +16,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
         class="euiStepNumber euiStep__circle"
       >
         <span
-          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+          class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
         >
           Step 1
         </span>
@@ -28,7 +28,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
         </span>
       </span>
       <h2
-        class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
+        class="euiTitle euiStep__title emotion-euiTitle-s"
       >
         first title
       </h2>
@@ -51,7 +51,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
         class="euiStepNumber euiStep__circle"
       >
         <span
-          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+          class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
         >
           Step 2
         </span>
@@ -63,7 +63,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
         </span>
       </span>
       <h2
-        class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
+        class="euiTitle euiStep__title emotion-euiTitle-s"
       >
         second title
       </h2>
@@ -83,10 +83,10 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
       class="euiStep__titleWrapper"
     >
       <span
-        class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
+        class="euiStepNumber euiStepNumber--incomplete euiStep__circle"
       >
         <span
-          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+          class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
         >
           Step 3 is incomplete
         </span>
@@ -98,7 +98,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
         </span>
       </span>
       <h2
-        class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
+        class="euiTitle euiStep__title emotion-euiTitle-s"
       >
         third title
       </h2>
@@ -130,7 +130,7 @@ exports[`EuiSteps renders steps 1`] = `
         class="euiStepNumber euiStep__circle"
       >
         <span
-          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+          class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
         >
           Step 1
         </span>
@@ -142,7 +142,7 @@ exports[`EuiSteps renders steps 1`] = `
         </span>
       </span>
       <p
-        class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
+        class="euiTitle euiStep__title emotion-euiTitle-s"
       >
         first title
       </p>
@@ -165,7 +165,7 @@ exports[`EuiSteps renders steps 1`] = `
         class="euiStepNumber euiStep__circle"
       >
         <span
-          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+          class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
         >
           Step 2
         </span>
@@ -177,7 +177,7 @@ exports[`EuiSteps renders steps 1`] = `
         </span>
       </span>
       <p
-        class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
+        class="euiTitle euiStep__title emotion-euiTitle-s"
       >
         second title
       </p>
@@ -197,10 +197,10 @@ exports[`EuiSteps renders steps 1`] = `
       class="euiStep__titleWrapper"
     >
       <span
-        class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
+        class="euiStepNumber euiStepNumber--incomplete euiStep__circle"
       >
         <span
-          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+          class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
         >
           Step 3 is incomplete
         </span>
@@ -212,7 +212,7 @@ exports[`EuiSteps renders steps 1`] = `
         </span>
       </span>
       <p
-        class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
+        class="euiTitle euiStep__title emotion-euiTitle-s"
       >
         third title
       </p>
@@ -244,7 +244,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
         class="euiStepNumber euiStep__circle"
       >
         <span
-          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+          class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
         >
           Step 10
         </span>
@@ -256,7 +256,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
         </span>
       </span>
       <p
-        class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
+        class="euiTitle euiStep__title emotion-euiTitle-s"
       >
         first title
       </p>
@@ -279,7 +279,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
         class="euiStepNumber euiStep__circle"
       >
         <span
-          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+          class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
         >
           Step 11
         </span>
@@ -291,7 +291,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
         </span>
       </span>
       <p
-        class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
+        class="euiTitle euiStep__title emotion-euiTitle-s"
       >
         second title
       </p>
@@ -311,10 +311,10 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
       class="euiStep__titleWrapper"
     >
       <span
-        class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle"
+        class="euiStepNumber euiStepNumber--incomplete euiStep__circle"
       >
         <span
-          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+          class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
         >
           Step 12 is incomplete
         </span>
@@ -326,7 +326,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
         </span>
       </span>
       <p
-        class="euiTitle euiStep__title css-1mr6cet-euiTitle-s"
+        class="euiTitle euiStep__title emotion-euiTitle-s"
       >
         third title
       </p>
@@ -358,7 +358,7 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
         class="euiStepNumber euiStep__circle euiStepNumber--small"
       >
         <span
-          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+          class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
         >
           Step 1
         </span>
@@ -370,7 +370,7 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
         </span>
       </span>
       <p
-        class="euiTitle euiStep__title css-1c9cwui-euiTitle-xs"
+        class="euiTitle euiStep__title emotion-euiTitle-xs"
       >
         first title
       </p>
@@ -393,7 +393,7 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
         class="euiStepNumber euiStep__circle euiStepNumber--small"
       >
         <span
-          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+          class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
         >
           Step 2
         </span>
@@ -405,7 +405,7 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
         </span>
       </span>
       <p
-        class="euiTitle euiStep__title css-1c9cwui-euiTitle-xs"
+        class="euiTitle euiStep__title emotion-euiTitle-xs"
       >
         second title
       </p>
@@ -425,10 +425,10 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
       class="euiStep__titleWrapper"
     >
       <span
-        class="euiStepNumber euiStepNumber--incomplete euiStepNumber-isHollow euiStep__circle euiStepNumber--small"
+        class="euiStepNumber euiStepNumber--incomplete euiStep__circle euiStepNumber--small"
       >
         <span
-          class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+          class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
         >
           Step 3 is incomplete
         </span>
@@ -440,7 +440,7 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
         </span>
       </span>
       <p
-        class="euiTitle euiStep__title css-1c9cwui-euiTitle-xs"
+        class="euiTitle euiStep__title emotion-euiTitle-xs"
       >
         third title
       </p>

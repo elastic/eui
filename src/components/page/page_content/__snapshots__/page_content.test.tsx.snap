@@ -2,14 +2,14 @@
 
 exports[`EuiPageContent accepts panel props 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
+  class="euiPanel euiPanel--plain euiPageContent euiPageContent--borderRadiusNone emotion-euiPanel-grow-none-plain"
   role="main"
 />
 `;
 
 exports[`EuiPageContent horizontalPosition is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--horizontalCenter"
+  class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--horizontalCenter emotion-euiPanel-grow-m-l-plain-hasShadow"
   role="main"
 />
 `;
@@ -17,7 +17,7 @@ exports[`EuiPageContent horizontalPosition is rendered 1`] = `
 exports[`EuiPageContent is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent testClass1 testClass2"
+  class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent testClass1 testClass2 emotion-euiPanel-grow-m-l-plain-hasShadow"
   data-test-subj="test subject string"
   role="main"
 />
@@ -25,13 +25,13 @@ exports[`EuiPageContent is rendered 1`] = `
 
 exports[`EuiPageContent role can be removed 1`] = `
 <div
-  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent"
+  class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent emotion-euiPanel-grow-m-l-plain-hasShadow"
 />
 `;
 
 exports[`EuiPageContent verticalPosition is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter"
+  class="euiPanel euiPanel--plain euiPanel--paddingLarge euiPageContent euiPageContent--verticalCenter emotion-euiPanel-grow-m-l-plain-hasShadow"
   role="main"
 />
 `;

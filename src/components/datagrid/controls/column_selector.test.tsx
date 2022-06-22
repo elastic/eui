@@ -80,6 +80,9 @@ describe('useDataGridColumnSelector', () => {
       const component = mount(<MockComponent showColumnSelector={true} />);
       openPopover(component);
       expect(component.render()).toMatchSnapshot();
+      expect(
+        component.find('[data-popover-panel]').first().render()
+      ).toMatchSnapshot();
       closePopover(component);
     });
 

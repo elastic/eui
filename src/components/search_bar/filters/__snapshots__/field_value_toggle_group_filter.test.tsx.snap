@@ -6,7 +6,6 @@ Array [
     aria-pressed={true}
     hasActiveFilters={true}
     key="field_value_toggle_filter_item_0"
-    noDivider={true}
     onClick={[Function]}
     withNext={true}
   >
@@ -16,7 +15,6 @@ Array [
     aria-pressed={false}
     hasActiveFilters={false}
     key="field_value_toggle_filter_item_1"
-    noDivider={false}
     onClick={[Function]}
     withNext={false}
   >
@@ -31,7 +29,6 @@ Array [
     aria-pressed={true}
     hasActiveFilters={true}
     key="field_value_toggle_filter_item_0"
-    noDivider={true}
     onClick={[Function]}
     withNext={true}
   >
@@ -41,7 +38,6 @@ Array [
     aria-pressed={false}
     hasActiveFilters={false}
     key="field_value_toggle_filter_item_1"
-    noDivider={false}
     onClick={[Function]}
     withNext={false}
   >
@@ -56,7 +52,6 @@ Array [
     aria-pressed={true}
     hasActiveFilters={true}
     key="field_value_toggle_filter_item_0"
-    noDivider={true}
     onClick={[Function]}
     withNext={true}
   >
@@ -66,7 +61,6 @@ Array [
     aria-pressed={false}
     hasActiveFilters={false}
     key="field_value_toggle_filter_item_1"
-    noDivider={false}
     onClick={[Function]}
     withNext={false}
   >
@@ -81,7 +75,6 @@ Array [
     aria-pressed={false}
     hasActiveFilters={false}
     key="field_value_toggle_filter_item_0"
-    noDivider={true}
     onClick={[Function]}
     withNext={true}
   >
@@ -91,7 +84,6 @@ Array [
     aria-pressed={false}
     hasActiveFilters={false}
     key="field_value_toggle_filter_item_1"
-    noDivider={false}
     onClick={[Function]}
     withNext={false}
   >

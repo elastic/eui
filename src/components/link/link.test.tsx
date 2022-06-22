@@ -9,6 +9,7 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { EuiLink, COLORS } from './link';
 
 describe('EuiLink', () => {
@@ -18,6 +19,8 @@ describe('EuiLink', () => {
       expect(component).toMatchSnapshot();
     });
   });
+
+  shouldRenderCustomStyles(<EuiLink />);
 
   test('it supports both href and onClick', () => {
     const component = render(<EuiLink href="/imalink" onClick={() => null} />);

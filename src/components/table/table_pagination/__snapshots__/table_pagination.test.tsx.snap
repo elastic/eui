@@ -47,7 +47,7 @@ exports[`EuiTablePagination is rendered 1`] = `
       <span
         aria-atomic="true"
         aria-relevant="additions text"
-        class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+        class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
         role="status"
       >
         Page 2 of 5
@@ -210,7 +210,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
       <span
         aria-atomic="true"
         aria-relevant="additions text"
-        class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+        class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
         role="status"
       >
         Page 2 of 5

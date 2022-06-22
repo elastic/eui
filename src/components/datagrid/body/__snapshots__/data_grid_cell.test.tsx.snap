@@ -3,7 +3,7 @@
 exports[`EuiDataGridCell componentDidUpdate handles the cell popover by forwarding the cell's DOM node and contents to the parent popover context 1`] = `
 Array [
   <div
-    class="euiText euiText--medium"
+    class="euiText emotion-euiText-m"
   >
     <div>
       <button
@@ -41,7 +41,6 @@ exports[`EuiDataGridCell renders 1`] = `
   class="euiDataGridRowCell"
   data-gridcell-column-id="someColumn"
   data-gridcell-column-index="0"
-  data-gridcell-id="0,0"
   data-gridcell-row-index="0"
   data-gridcell-visible-row-index="0"
   data-test-subj="dataGridRowCell"
@@ -73,7 +72,7 @@ exports[`EuiDataGridCell renders 1`] = `
         </div>
       </div>
       <p
-        class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+        class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
       >
         Row: 1; Column: 1
       </p>

@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import { css } from '@emotion/react';
 import { useEuiTheme, UseEuiTheme } from '../../services/theme';
 import { logicalSide, LogicalSides } from '../functions';
 
@@ -13,8 +14,8 @@ export const PADDING_SIZES = ['none', 'xs', 's', 'm', 'l', 'xl'] as const;
 export type EuiPaddingSize = typeof PADDING_SIZES[number];
 
 export const euiPaddingSize = (
-  size: EuiPaddingSize,
-  { euiTheme }: UseEuiTheme
+  { euiTheme }: UseEuiTheme,
+  size: EuiPaddingSize
 ) => {
   switch (size) {
     case 'none':
@@ -28,7 +29,7 @@ export const euiPaddingSize = (
 
 export const useEuiPaddingSize = (size: EuiPaddingSize) => {
   const euiTheme = useEuiTheme();
-  return euiPaddingSize(size, euiTheme);
+  return euiPaddingSize(euiTheme, size);
 };
 
 export const useEuiPaddingCSS = (side?: LogicalSides) => {
@@ -36,19 +37,19 @@ export const useEuiPaddingCSS = (side?: LogicalSides) => {
 
   return {
     none: null,
-    xs: `
+    xs: css`
       ${property}: ${useEuiPaddingSize('xs')};
     `,
-    s: `
+    s: css`
       ${property}: ${useEuiPaddingSize('s')};
     `,
-    m: `
+    m: css`
       ${property}: ${useEuiPaddingSize('m')};
     `,
-    l: `
+    l: css`
       ${property}: ${useEuiPaddingSize('l')};
     `,
-    xl: `
+    xl: css`
       ${property}: ${useEuiPaddingSize('xl')};
     `,
   };

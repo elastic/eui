@@ -15,8 +15,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { EuiText } from '../text';
-import { IconType } from '../icon';
+import { IconType, EuiIcon } from '../icon';
 import { CommonProps } from '../common';
 import { EuiDatePickerProps } from './date_picker';
 
@@ -30,7 +29,11 @@ export type EuiDatePickerRangeProps = CommonProps & {
    * The end date `EuiDatePicker` element
    */
   endDateControl: ReactElement;
-  fullWidth?: boolean;
+
+  /**
+   * The start date `EuiDatePicker` element
+   */
+  startDateControl: ReactElement;
 
   /**
    * Pass either an icon type or set to `false` to remove icon entirely
@@ -41,12 +44,23 @@ export type EuiDatePickerRangeProps = CommonProps & {
    * Won't apply any additional props to start and end date components
    */
   isCustom?: boolean;
-  readOnly?: boolean;
 
   /**
-   * The start date `EuiDatePicker` element
+   * Will turn the range delimeter into an alert icon and pass through to each control
    */
-  startDateControl: ReactElement;
+  isInvalid?: boolean;
+
+  /**
+   * Passes through to each control
+   */
+  disabled?: boolean;
+
+  /**
+   * Passes through to each control
+   */
+  readOnly?: boolean;
+
+  fullWidth?: boolean;
 };
 
 export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
@@ -58,6 +72,8 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   fullWidth,
   isCustom,
   readOnly,
+  isInvalid,
+  disabled,
   ...rest
 }) => {
   const classes = classNames(
@@ -65,6 +81,8 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
     {
       'euiDatePickerRange--fullWidth': fullWidth,
       'euiDatePickerRange--readOnly': readOnly,
+      'euiDatePickerRange--isInvalid': isInvalid,
+      'euiDatePickerRange--isDisabled': disabled,
     },
     className
   );
@@ -76,10 +94,12 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
     startControl = cloneElement(
       startDateControl as ReactElement<EuiDatePickerProps>,
       {
-        fullWidth: fullWidth,
-        readOnly: readOnly,
         iconType: typeof iconType === 'boolean' ? undefined : iconType,
         showIcon: !!iconType,
+        fullWidth: fullWidth,
+        readOnly: readOnly,
+        disabled: disabled || startDateControl.props.disabled,
+        isInvalid: isInvalid || startDateControl.props.isInvalid,
         className: classNames(
           'euiDatePickerRange__start',
           startDateControl.props.className
@@ -93,7 +113,9 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
         showIcon: false,
         fullWidth: fullWidth,
         readOnly: readOnly,
-        popoverPlacement: 'bottom-end',
+        disabled: disabled || endDateControl.props.disabled,
+        isInvalid: isInvalid || endDateControl.props.isInvalid,
+        popoverPlacement: 'downRight',
         className: classNames(
           'euiDatePickerRange__end',
           endDateControl.props.className
@@ -102,6 +124,15 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
     );
   }
 
+  const delimiter = (
+    <span className="euiDatePickerRange__delimeter">
+      <EuiIcon
+        color={isInvalid ? 'danger' : 'subdued'}
+        type={isInvalid ? 'alert' : 'sortRight'}
+      />
+    </span>
+  );
+
   return (
     <div className={classes} {...rest}>
       {children ? (
@@ -109,13 +140,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
       ) : (
         <Fragment>
           {startControl}
-          <EuiText
-            className="euiDatePickerRange__delimeter"
-            size="s"
-            color="subdued"
-          >
-            →
-          </EuiText>
+          {delimiter}
           {endControl}
         </Fragment>
       )}

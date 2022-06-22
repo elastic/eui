@@ -18,6 +18,7 @@ export default () => {
     <>
       <ThemeExample
         title={<code>.eui-scrollBar</code>}
+        type="className"
         description={
           <>
             <p>
@@ -60,6 +61,7 @@ export default () => {
       {!showSass && (
         <ThemeExample
           title={<code>useEuiScrollBar()</code>}
+          type="hook"
           description={
             <>
               <p>
@@ -97,7 +99,8 @@ export default () => {
 
       {showSass && (
         <ThemeExample
-          title={<code>@mixin euiScrollBar;</code>}
+          title={<code>@include euiScrollBar</code>}
+          type="mixin"
           description={
             <>
               <p>

@@ -645,14 +645,14 @@ exports[`renders inline EuiColorPicker 1`] = `
       </span>
     </div>
     <label
-      class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+      class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
       for="undefined-hue"
     >
       Select the HSV color mode 'hue' value
     </label>
     <p
       aria-live="polite"
-      class="euiScreenReaderOnly css-4l8ha9-euiScreenReaderOnlyStyles"
+      class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
     >
       #ffeedd
     </p>
