@@ -17,11 +17,15 @@ import favicon16Dev from '../images/favicon/dev/favicon-16x16.png';
 import favicon32Dev from '../images/favicon/dev/favicon-32x32.png';
 import favicon96Dev from '../images/favicon/dev/favicon-96x96.png';
 
-const emotionCache = createCache({
-  key: 'eui-docs',
+const generalEmotionCache = createCache({
+  key: 'css',
   container: document.querySelector('meta[name="emotion-styles"]'),
 });
-emotionCache.compat = true;
+generalEmotionCache.compat = true;
+const utilityCache = createCache({
+  key: 'util',
+  container: document.querySelector('meta[name="emotion-styles-utility"]'),
+});
 
 export const AppContext = ({ children }) => {
   const { theme } = useContext(ThemeContext);
@@ -41,7 +45,10 @@ export const AppContext = ({ children }) => {
 
   return (
     <EuiProvider
-      cache={emotionCache}
+      cache={{
+        default: generalEmotionCache,
+        utility: utilityCache,
+      }}
       theme={EUI_THEMES.find((t) => t.value === theme)?.provider}
       colorMode={theme.includes('light') ? 'light' : 'dark'}
     >
