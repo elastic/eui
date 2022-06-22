@@ -16,11 +16,7 @@ export interface EuiScreenReaderStatusProps {
    */
   statusMessage?: string;
   /**
-   * Focuses the status message when set to true. Should only be used if
-   * the status message is at the top of the HTML source order AND the
-   * status message is being updated on client-side route change.
-   *
-   * See https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/status_role
+   * Focuses the status message and removes the live region when set to true.
    */
   shouldReceiveFocus?: boolean;
 }

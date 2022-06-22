@@ -9,18 +9,26 @@ import {
   EuiSkipLink,
   EuiScreenReaderLive,
   EuiScreenReaderOnly,
+  EuiScreenReaderStatus,
   EuiSpacer,
 } from '../../../../src';
 
 import ScreenReaderLive from './screen_reader_live';
 import ScreenReaderOnly from './screen_reader';
 import ScreenReaderFocus from './screen_reader_focus';
+import ScreenReaderStatus from './screen_reader_status';
 import SkipLink from './skip_link';
 import StylesHelpers from './styles_helpers';
 
 const screenReaderLiveSource = require('!!raw-loader!./screen_reader_live');
 const screenReaderOnlySource = require('!!raw-loader!./screen_reader');
+
 const screenReaderFocusSource = require('!!raw-loader!./screen_reader_focus');
+const screenReaderStatusSource = require('!!raw-loader!./screen_reader_status');
+const screenReaderStatusSnippet = [
+  '<EuiScreenReaderStatus statusMessage="User-defined message" />',
+  '<EuiScreenReaderStatus statusMessage="User-defined message" shouldReceiveFocus />',
+];
 
 const skipLinkSource = require('!!raw-loader!./skip_link');
 const skipLinkSnippet = [
@@ -127,7 +135,7 @@ export const AccessibilityExample = {
       text: (
         <>
           <p>
-            Using <EuiCode>EuiScreenReaderLive</EuiCode> to announce dynamic
+            Use <EuiCode>EuiScreenReaderLive</EuiCode> to announce dynamic
             content, such as status changes based on user interaction.
           </p>
           <p>
@@ -155,6 +163,58 @@ export const AccessibilityExample = {
         EuiScreenReaderLive,
       },
       demo: <ScreenReaderLive />,
+    },
+    {
+      title: 'Screen reader status',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: screenReaderStatusSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Use <EuiCode>EuiScreenReaderStatus</EuiCode> to announce status
+            changes such as content being loaded or client-side route changes.
+          </p>
+          <p>
+            The configurable <EuiCode>statusMessage</EuiCode> and{' '}
+            <EuiCode>shouldReceiveFocus</EuiCode> props default to{' '}
+            <EuiCode>document.title</EuiCode> and <EuiCode>false</EuiCode>{' '}
+            respectively.
+          </p>
+          <p>
+            Most users will want to pass a string to{' '}
+            <EuiCode>statusMessage</EuiCode>. This will add a non-focusable
+            status block to the page. This status will be read by screen readers
+            when there is a natural pause.
+          </p>
+          <p>
+            Passing <EuiCode>shouldReceiveFocus</EuiCode> sets keyboard focus on
+            the status block when
+            <EuiCode>EuiScreenReaderStatus</EuiCode> mounts, or the{' '}
+            <EuiCode>statusMessage</EuiCode> prop updates. Passing{' '}
+            <EuiCode>shouldReceiveFocus</EuiCode> also removes the live region.
+            This is useful for announcing client-side route changes to screen
+            readers and should <strong>only</strong> be used when the status
+            block is at the top of the HTML source order.
+          </p>
+          <p>
+            <EuiLink
+              href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/status_role"
+              external
+            >
+              ARIA role status guidelines
+            </EuiLink>
+          </p>
+        </>
+      ),
+      props: {
+        EuiScreenReaderStatus,
+      },
+      snippet: screenReaderStatusSnippet,
+      demo: <ScreenReaderStatus />,
     },
     {
       title: 'Skip link',
