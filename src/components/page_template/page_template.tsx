@@ -130,7 +130,6 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   const getSideBarProps = () => ({
     paddingSize,
     responsive,
-    sticky: { offset: _offset },
   });
 
   const getBottomBarProps = () => ({
