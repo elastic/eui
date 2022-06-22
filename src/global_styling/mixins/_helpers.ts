@@ -86,7 +86,7 @@ interface EuiOverflowShadowStyles {
   direction?: 'y' | 'x';
   side?: 'both' | 'start' | 'end';
 }
-const euiOverflowShadowStyles = (
+export const euiOverflowShadowStyles = (
   { euiTheme: { size } }: UseEuiTheme,
   { direction: _direction, side: _side }: EuiOverflowShadowStyles = {}
 ) => {

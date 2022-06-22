@@ -7,7 +7,11 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import { euiCanAnimate } from '../../global_styling';
+import {
+  euiCanAnimate,
+  euiYScrollWithShadows,
+  euiOverflowShadowStyles,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
 import { transparentize } from '../../services/color';
@@ -24,14 +28,14 @@ const euiFlyout = keyframes`
   }
 `;
 
-export const euiComponentNameStyles = ({
-  euiTheme,
-  colorMode,
-}: UseEuiTheme) => {
+export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
+  const euiTheme = euiThemeContext.euiTheme;
+  const colorMode = euiThemeContext.colorMode;
+
   return {
     euiFlyout: css`
       border-left: ${euiTheme.border.thin};
-      ${euiShadowXLarge(euiTheme, {}, colorMode)};
+      //${euiShadowXLarge(euiThemeContext, colorMode)};
       position: fixed;
       top: 0;
       bottom: 0;
@@ -60,7 +64,7 @@ export const euiComponentNameStyles = ({
     `,
     'euiFlyout--outside': css`
       // match dropshadow
-      ${euiShadowXLarge(euiTheme, {}, colorMode)}
+      //${euiShadowXLarge(euiThemeContext, colorMode)};
       right: auto;
       left: 0;
       // Override the hover and focus transitions of buttons
@@ -92,5 +96,49 @@ export const euiComponentNameStyles = ({
     //         max-width: ${Math.round(euiTheme.breakpoint.s * 0.7)}
     //     }
     // `,
+  };
+};
+
+export const euiFlyoutHeaderStyles = ({ euiTheme }: UseEuiTheme) => {
+  return {
+    euiFlyoutHeader: css`
+      flex-grow: 0;
+    `,
+    border: css`
+      border-bottom: ${euiTheme.border.thin};
+    `,
+  };
+};
+
+export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
+  return {
+    euiFlyoutBody: css`
+      flex-grow: 1;
+      overflow-y: hidden;
+      height: 100%;
+    `,
+    overflow: css`
+      ${euiYScrollWithShadows(euiThemeContext)};
+    `,
+    'overflow--hasBanner': css`
+      ${euiOverflowShadowStyles(euiThemeContext, {
+        direction: 'y',
+        side: 'end',
+      })};
+    `,
+    banner: css`
+      .euiCallOut {
+        border: none; // Remove border from callout when it is a flyout banner
+        border-radius: 0; // Ensures no border-radius in all themes
+      }
+    `,
+  };
+};
+
+export const euiFlyoutFooterStyles = ({ euiTheme }: UseEuiTheme) => {
+  return {
+    euiFlyoutFooter: css`
+      background: ${euiTheme.colors.lightestShade};
+    `,
   };
 };
