@@ -3,10 +3,6 @@ import { CommonProps } from '../../../../src/components/common';
 
 interface EuiOverlayMaskInterface extends CommonProps {
   /**
-   * Function that applies to clicking the mask itself and not the children
-   */
-  onClick?: () => void;
-  /**
    * ReactNode to render as this component's children
    */
   children?: ReactNode;

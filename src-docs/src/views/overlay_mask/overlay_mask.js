@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import {
+  EuiFocusTrap,
   EuiOverlayMask,
   EuiButton,
   EuiSpacer,
@@ -13,14 +14,16 @@ export default () => {
 
   const modal = (
     <React.Fragment>
-      <EuiOverlayMask
-        onClick={() => {
-          changeMask(false);
-        }}
-      >
-        <EuiTitle>
-          <h2> Click anywhere to close overlay. </h2>
-        </EuiTitle>
+      <EuiOverlayMask>
+        <EuiFocusTrap
+          onClickOutside={() => {
+            changeMask(false);
+          }}
+        >
+          <EuiTitle>
+            <h2> Click anywhere to close overlay. </h2>
+          </EuiTitle>
+        </EuiFocusTrap>
       </EuiOverlayMask>
     </React.Fragment>
   );

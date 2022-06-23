@@ -198,11 +198,11 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
   );
 
   const fullScreenDisplay = (
-    <EuiOverlayMask
-      data-test-subj="fullScreenOverlayMask"
-      onClick={closeFullScreen}
-    >
-      <EuiFocusTrap clickOutsideDisables={true}>
+    <EuiOverlayMask data-test-subj="fullScreenOverlayMask">
+      <EuiFocusTrap
+        onClickOutside={closeFullScreen}
+        clickOutsideDisables={true}
+      >
         <>
           <figure
             className="euiImage euiImage-isFullScreen"

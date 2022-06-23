@@ -29,7 +29,9 @@ export const OverlayMaskExample = {
             <strong>EuiOverlayMask</strong> is simply a display component used
             to obscure the main content to bring attention to its children or
             other content. It is best used in conjunction with hyper-focus
-            content areas like <Link to="/layout/modal">modals</Link> and{' '}
+            content areas like{' '}
+            <Link to="/utilities/focus-trap">EuiFocusTrap</Link>,{' '}
+            <Link to="/layout/modal">modals</Link> and{' '}
             <Link to="/layout/flyout">flyouts</Link>.
           </p>
           <p>
@@ -38,15 +40,15 @@ export const OverlayMaskExample = {
               many considerations
             </a>{' '}
             to make before choosing to use an overlay. At the very least, you
-            must provide a visible button to close the overlay. You can also
-            pass an <EuiCode>onClick</EuiCode> handler to handle closing the
-            overlay.
+            must provide a visible button to close the overlay.
           </p>
         </>
       ),
       props: { EuiOverlayMask: EuiOverlayMaskProps },
-      snippet: `<EuiOverlayMask onClick={() => {}}>
-  <!-- Content goes here -->
+      snippet: `<EuiOverlayMask>
+  <EuiFocusTrap onClickOutside={() => {}}
+    <!-- Content goes here -->
+  </EuiFocusTrap>
 </EuiOverlayMask>`,
       demo: <OverlayMask />,
     },
@@ -84,8 +86,7 @@ export const OverlayMaskExample = {
         </>
       ),
       props: { EuiOverlayMask: EuiOverlayMaskProps },
-      snippet: `<EuiOverlayMask onClick={toggleFlyOut} headerZindexLocation="below" />
-<EuiFlyout onClose={toggleFlyOut}></EuiFlyout>`,
+      snippet: '<EuiFlyout ownFocus onClose={toggleFlyOut}></EuiFlyout>',
       demo: <OverlayMaskHeader />,
     },
   ],

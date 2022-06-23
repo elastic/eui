@@ -28,10 +28,6 @@ import { useCombinedRefs } from '../../services';
 
 export interface EuiOverlayMaskInterface {
   /**
-   * Function that applies to clicking the mask itself and not the children
-   */
-  onClick?: () => void;
-  /**
    * ReactNode to render as this component's content
    */
   children?: ReactNode;
@@ -43,10 +39,6 @@ export interface EuiOverlayMaskInterface {
    * React ref to be passed to the wrapping container
    */
   maskRef?: Ref<HTMLDivElement> | MutableRefObject<HTMLDivElement>;
-  /**
-   * Flag that allows to omit stopPropagation of the click event on the mask
-   */
-  isCapture?: boolean;
 }
 
 export type EuiOverlayMaskProps = CommonProps &
@@ -59,10 +51,8 @@ export type EuiOverlayMaskProps = CommonProps &
 export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   className,
   children,
-  onClick,
   headerZindexLocation = 'above',
   maskRef,
-  isCapture,
   ...rest
 }) => {
   const overlayMaskNode = useRef<HTMLDivElement>();
@@ -121,24 +111,6 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
       className
     );
   }, [className, headerZindexLocation]);
-
-  useEffect(() => {
-    const portalTarget = overlayMaskNode.current;
-    if (!portalTarget || !onClick) return;
-
-    const listener = (e: Event) => {
-      if (e.target === portalTarget) {
-        onClick();
-      }
-    };
-    portalTarget.addEventListener('click', listener, { capture: isCapture });
-
-    return () => {
-      portalTarget.removeEventListener('click', listener, {
-        capture: isCapture,
-      });
-    };
-  }, [isCapture, onClick]);
 
   return isPortalTargetReady ? (
     <>{createPortal(children, overlayMaskNode.current!)}</>
