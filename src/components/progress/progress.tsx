@@ -20,7 +20,7 @@ import { EuiInnerText } from '../inner_text';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { isNil } from '../../services/predicate';
 
-import { useEuiTheme } from '../../services';
+import { useEuiTheme, makeHighContrastColor } from '../../services';
 import {
   euiProgressStyles,
   euiProgressDataStyles,
@@ -95,11 +95,14 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
   ...rest
 }) => {
   const determinate = !isNil(max);
-
   const isNamedColor = COLORS.includes(color as EuiProgressColor);
-  const optionalCustomStyles = !isNamedColor ? { color } : {};
 
   const euiTheme = useEuiTheme();
+  const customColorStyles = !isNamedColor ? { color } : {};
+  const customTextColorStyles = !isNamedColor
+    ? { color: makeHighContrastColor(color)(euiTheme.euiTheme) }
+    : {};
+
   const styles = euiProgressStyles(euiTheme, determinate);
   const cssStyles = [
     styles.euiProgress,
@@ -173,7 +176,7 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
                   <span
                     title={innerText}
                     ref={ref}
-                    style={optionalCustomStyles}
+                    style={customTextColorStyles}
                     css={valueTextCssStyles}
                     className="euiProgress__valueText"
                   >
@@ -187,7 +190,7 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
         <progress
           css={cssStyles}
           className={classes}
-          style={optionalCustomStyles}
+          style={customColorStyles}
           max={max}
           value={value}
           aria-hidden={label && valueText ? true : false}
@@ -199,7 +202,7 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
     return (
       <div
         css={cssStyles}
-        style={optionalCustomStyles}
+        style={customColorStyles}
         className={classes}
         {...(rest as HTMLAttributes<HTMLDivElement>)}
       />
