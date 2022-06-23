@@ -35,7 +35,11 @@ export default ({
       offset={offset}
       grow={grow}
     >
-      <EuiPageTemplate.Section color="subdued" bottomBorder="extended">
+      <EuiPageTemplate.Section
+        grow={false}
+        color="subdued"
+        bottomBorder="extended"
+      >
         <EuiText textAlign="center">
           <strong>
             Stack EuiPageTemplate sections and headers to create your custom

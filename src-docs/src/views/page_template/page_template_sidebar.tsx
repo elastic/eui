@@ -45,7 +45,7 @@ export default ({
       {header && (
         <EuiPageTemplate.Header {...header} rightSideItems={[button]} />
       )}
-      <EuiPageTemplate.Section bottomBorder={bottomBorder}>
+      <EuiPageTemplate.Section grow={false} bottomBorder={bottomBorder}>
         <EuiText textAlign="center">
           <strong>
             Stack EuiPageTemplate sections and headers to create your custom

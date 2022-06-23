@@ -6,7 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { findElementBySelectorOrRef } from '../../../services';
 import { EuiBottomBar, EuiBottomBarProps } from '../../bottom_bar';
 import { EuiPageSection, EuiPageSectionProps } from '../../page/page_section';
 import { _EuiPageRestrictWidth } from '../../page/_restrict_width';
@@ -14,16 +16,40 @@ import { _EuiPageRestrictWidth } from '../../page/_restrict_width';
 export interface _EuiPageBottomBarProps
   extends Pick<EuiPageSectionProps, 'paddingSize'>,
     _EuiPageRestrictWidth,
-    Omit<EuiBottomBarProps, 'paddingSize'> {}
+    Omit<EuiBottomBarProps, 'paddingSize'> {
+  /**
+   * The reference id of the element to insert into
+   */
+  parent?: string;
+}
 
 export const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = ({
   children,
   paddingSize,
   restrictWidth,
+  parent,
   style,
   ...rest
 }) => {
-  return (
+  // In order for the bottom bar to be placed at the end of the content,
+  // it must know what parent element to insert into
+  const [hasValidAnchor, setHasValidAnchor] = useState<boolean>(false);
+  const animationFrameId = useRef<number>();
+  const parentNode = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    animationFrameId.current = window.requestAnimationFrame(() => {
+      parentNode.current = findElementBySelectorOrRef(parent);
+      setHasValidAnchor(parentNode.current ? true : false);
+    });
+
+    return () => {
+      animationFrameId.current &&
+        window.cancelAnimationFrame(animationFrameId.current);
+    };
+  }, [parent]);
+
+  const bar = (
     <EuiBottomBar
       paddingSize={'none'}
       position="sticky"
@@ -37,4 +63,8 @@ export const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = ({
       </EuiPageSection>
     </EuiBottomBar>
   );
+
+  return hasValidAnchor && parentNode.current
+    ? createPortal(bar, parentNode.current)
+    : bar;
 };
