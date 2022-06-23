@@ -8,6 +8,7 @@
 
 import React, { CSSProperties, FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
+import { css } from '@emotion/react';
 import { EuiPage, EuiPageProps } from './page';
 import {
   EuiPageSideBar_Deprecated as EuiPageSideBar,
@@ -24,6 +25,7 @@ import {
 import { EuiBottomBarProps, EuiBottomBar } from '../bottom_bar';
 import { useIsWithinBreakpoints } from '../../services';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { useEuiPaddingSize } from '../../global_styling';
 
 export const TEMPLATES = [
   'default',
@@ -120,6 +122,9 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
   minHeight = 460,
   ...rest
 }) => {
+  // BWC page header margin to match padding
+  const headerMargin = css(`margin-bottom: ${useEuiPaddingSize(paddingSize)}`);
+
   /**
    * Full height ~madness~ logic
    */
@@ -195,7 +200,11 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
 
           <EuiPageBody paddingSize={paddingSize} {...pageBodyProps}>
             {pageHeader && (
-              <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
+              <EuiPageHeader
+                restrictWidth={restrictWidth}
+                css={headerMargin}
+                {...pageHeader}
+              />
             )}
             <EuiPageContent
               verticalPosition="center"
@@ -225,6 +234,7 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
               <EuiPageHeader
                 paddingSize="none"
                 restrictWidth={false}
+                css={headerMargin}
                 bottomBorder
                 {...pageHeader}
               />
@@ -273,7 +283,11 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
 
           <EuiPageBody panelled paddingSize={paddingSize} {...pageBodyProps}>
             {pageHeader && (
-              <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
+              <EuiPageHeader
+                restrictWidth={restrictWidth}
+                css={headerMargin}
+                {...pageHeader}
+              />
             )}
             <EuiPageContent
               verticalPosition="center"
@@ -305,6 +319,7 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
               <EuiPageHeader
                 paddingSize={paddingSize}
                 restrictWidth={restrictWidth}
+                bottomBorder="extended"
                 {...pageHeader}
               />
             )}
@@ -359,7 +374,12 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
 
           <EuiPageBody paddingSize={paddingSize} {...pageBodyProps}>
             {pageHeader && (
-              <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
+              <EuiPageHeader
+                restrictWidth={restrictWidth}
+                bottomBorder
+                css={headerMargin}
+                {...pageHeader}
+              />
             )}
             <EuiPageContent
               hasBorder={false}
@@ -391,6 +411,7 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
               <EuiPageHeader
                 paddingSize="none"
                 restrictWidth={false}
+                css={headerMargin}
                 bottomBorder
                 {...pageHeader}
               />
@@ -461,6 +482,7 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
                 <EuiPageHeader
                   bottomBorder
                   restrictWidth={restrictWidth}
+                  css={headerMargin}
                   {...pageHeader}
                 />
               )}
@@ -496,6 +518,7 @@ export const EuiPageTemplate_Deprecated: FunctionComponent<EuiPageTemplateProps_
               <EuiPageHeader
                 restrictWidth={restrictWidth}
                 paddingSize={paddingSize}
+                bottomBorder="extended"
                 {...pageHeader}
               />
             )}
