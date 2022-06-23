@@ -10,3 +10,5 @@ export type { EUI_THEME } from './themes';
 export { EUI_THEMES, isDefaultTheme } from './themes';
 
 export { AMSTERDAM_NAME_KEY, EuiThemeAmsterdam } from './amsterdam/theme';
+
+export * from './amsterdam';

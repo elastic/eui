@@ -3,48 +3,48 @@
 exports[`EuiPageSection is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="testClass1 testClass2 css-npj38n-euiPageSection-l-top-transparent"
+  class="testClass1 testClass2 emotion-euiPageSection-l-top-transparent"
   data-test-subj="test subject string"
 >
   <div
-    class="css-10pkat8-euiPageSection__width-l"
+    class="emotion-euiPageSection__width-l"
   />
 </div>
 `;
 
 exports[`EuiPageSection props alignment center is rendered 1`] = `
 <div
-  class="css-85enli-euiPageSection-l-center-transparent"
+  class="emotion-euiPageSection-l-center-transparent"
 >
   <div
-    class="css-1isurur-euiPageSection__width-l"
+    class="emotion-euiPageSection__width-l"
   />
 </div>
 `;
 
 exports[`EuiPageSection props alignment horizontalCenter is rendered 1`] = `
 <div
-  class="css-14uzs5l-euiPageSection-l-horizontalCenter-transparent"
+  class="emotion-euiPageSection-l-horizontalCenter-transparent"
 >
   <div
-    class="css-1isurur-euiPageSection__width-l"
+    class="emotion-euiPageSection__width-l"
   />
 </div>
 `;
 
 exports[`EuiPageSection props alignment top is rendered 1`] = `
 <div
-  class="css-npj38n-euiPageSection-l-top-transparent"
+  class="emotion-euiPageSection-l-top-transparent"
 >
   <div
-    class="css-10pkat8-euiPageSection__width-l"
+    class="emotion-euiPageSection__width-l"
   />
 </div>
 `;
 
 exports[`EuiPageSection props bottomBorder can be true 1`] = `
 <div
-  class="css-npj38n-euiPageSection-l-top-transparent"
+  class="emotion-euiPageSection-l-top-transparent"
 >
   <div
     class="css-zpl7n-euiPageSection__width-l-border"
@@ -54,91 +54,91 @@ exports[`EuiPageSection props bottomBorder can be true 1`] = `
 
 exports[`EuiPageSection props color accent is rendered 1`] = `
 <div
-  class="css-jdgeyb-euiPageSection-l-top-accent"
+  class="emotion-euiPageSection-l-top-accent"
 >
   <div
-    class="css-10pkat8-euiPageSection__width-l"
+    class="emotion-euiPageSection__width-l"
   />
 </div>
 `;
 
 exports[`EuiPageSection props color danger is rendered 1`] = `
 <div
-  class="css-1az1rt2-euiPageSection-l-top-danger"
+  class="emotion-euiPageSection-l-top-danger"
 >
   <div
-    class="css-10pkat8-euiPageSection__width-l"
+    class="emotion-euiPageSection__width-l"
   />
 </div>
 `;
 
 exports[`EuiPageSection props color plain is rendered 1`] = `
 <div
-  class="css-1z00izn-euiPageSection-l-top-plain"
+  class="emotion-euiPageSection-l-top-plain"
 >
   <div
-    class="css-10pkat8-euiPageSection__width-l"
+    class="emotion-euiPageSection__width-l"
   />
 </div>
 `;
 
 exports[`EuiPageSection props color primary is rendered 1`] = `
 <div
-  class="css-r3f5kg-euiPageSection-l-top-primary"
+  class="emotion-euiPageSection-l-top-primary"
 >
   <div
-    class="css-10pkat8-euiPageSection__width-l"
+    class="emotion-euiPageSection__width-l"
   />
 </div>
 `;
 
 exports[`EuiPageSection props color subdued is rendered 1`] = `
 <div
-  class="css-st0m45-euiPageSection-l-top-subdued"
+  class="emotion-euiPageSection-l-top-subdued"
 >
   <div
-    class="css-10pkat8-euiPageSection__width-l"
+    class="emotion-euiPageSection__width-l"
   />
 </div>
 `;
 
 exports[`EuiPageSection props color success is rendered 1`] = `
 <div
-  class="css-17kf5rd-euiPageSection-l-top-success"
+  class="emotion-euiPageSection-l-top-success"
 >
   <div
-    class="css-10pkat8-euiPageSection__width-l"
+    class="emotion-euiPageSection__width-l"
   />
 </div>
 `;
 
 exports[`EuiPageSection props color transparent is rendered 1`] = `
 <div
-  class="css-npj38n-euiPageSection-l-top-transparent"
+  class="emotion-euiPageSection-l-top-transparent"
 >
   <div
-    class="css-10pkat8-euiPageSection__width-l"
+    class="emotion-euiPageSection__width-l"
   />
 </div>
 `;
 
 exports[`EuiPageSection props color warning is rendered 1`] = `
 <div
-  class="css-6o8lyd-euiPageSection-l-top-warning"
+  class="emotion-euiPageSection-l-top-warning"
 >
   <div
-    class="css-10pkat8-euiPageSection__width-l"
+    class="emotion-euiPageSection__width-l"
   />
 </div>
 `;
 
 exports[`EuiPageSection props contentProps are passed down 1`] = `
 <div
-  class="css-npj38n-euiPageSection-l-top-transparent"
+  class="emotion-euiPageSection-l-top-transparent"
 >
   <div
     aria-label="aria-label"
-    class="testClass1 testClass2 css-10pkat8-euiPageSection__width-l"
+    class="testClass1 testClass2 emotion-euiPageSection__width-l"
     data-test-subj="test subject string"
   />
 </div>
@@ -146,80 +146,80 @@ exports[`EuiPageSection props contentProps are passed down 1`] = `
 
 exports[`EuiPageSection props grow can be true 1`] = `
 <div
-  class="css-1e0odcr-euiPageSection-grow-l-top-transparent"
+  class="emotion-euiPageSection-grow-l-top-transparent"
 >
   <div
-    class="css-10pkat8-euiPageSection__width-l"
+    class="emotion-euiPageSection__width-l"
   />
 </div>
 `;
 
 exports[`EuiPageSection props paddingSize l is rendered 1`] = `
 <div
-  class="css-npj38n-euiPageSection-l-top-transparent"
+  class="emotion-euiPageSection-l-top-transparent"
 >
   <div
-    class="css-10pkat8-euiPageSection__width-l"
+    class="emotion-euiPageSection__width-l"
   />
 </div>
 `;
 
 exports[`EuiPageSection props paddingSize m is rendered 1`] = `
 <div
-  class="css-11vpkfb-euiPageSection-m-top-transparent"
+  class="emotion-euiPageSection-m-top-transparent"
 >
   <div
-    class="css-r5o87e-euiPageSection__width-m"
+    class="emotion-euiPageSection__width-m"
   />
 </div>
 `;
 
 exports[`EuiPageSection props paddingSize none is rendered 1`] = `
 <div
-  class="css-utbtd9-euiPageSection-top-transparent"
+  class="emotion-euiPageSection-top-transparent"
 >
   <div
-    class="css-17q7k44-euiPageSection__width"
+    class="emotion-euiPageSection__width"
   />
 </div>
 `;
 
 exports[`EuiPageSection props paddingSize s is rendered 1`] = `
 <div
-  class="css-8fzuso-euiPageSection-s-top-transparent"
+  class="emotion-euiPageSection-s-top-transparent"
 >
   <div
-    class="css-x2ge1o-euiPageSection__width-s"
+    class="emotion-euiPageSection__width-s"
   />
 </div>
 `;
 
 exports[`EuiPageSection props paddingSize xl is rendered 1`] = `
 <div
-  class="css-kzwuy3-euiPageSection-xl-top-transparent"
+  class="emotion-euiPageSection-xl-top-transparent"
 >
   <div
-    class="css-1395yyy-euiPageSection__width-xl"
+    class="emotion-euiPageSection__width-xl"
   />
 </div>
 `;
 
 exports[`EuiPageSection props paddingSize xs is rendered 1`] = `
 <div
-  class="css-v3ihak-euiPageSection-xs-top-transparent"
+  class="emotion-euiPageSection-xs-top-transparent"
 >
   <div
-    class="css-1ebgf5s-euiPageSection__width-xs"
+    class="emotion-euiPageSection__width-xs"
   />
 </div>
 `;
 
 exports[`EuiPageSection props restrictWidth can be true 1`] = `
 <div
-  class="css-npj38n-euiPageSection-l-top-transparent"
+  class="emotion-euiPageSection-l-top-transparent"
 >
   <div
-    class="css-12fxf36-euiPageSection__width-l"
+    class="emotion-euiPageSection__width-l"
   />
 </div>
 `;

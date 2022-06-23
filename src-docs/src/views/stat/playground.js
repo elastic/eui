@@ -1,5 +1,5 @@
 import { PropTypes } from 'react-view';
-import { EuiStat } from '../../../../src/components/';
+import { EuiStat, COLORS } from '../../../../src/components/stat/stat';
 import { propUtilityForPlayground } from '../../services/playground';
 
 export default () => {
@@ -16,14 +16,8 @@ export default () => {
 
   propsToUse.titleColor = {
     ...propsToUse.titleColor,
-    options: {
-      primary: 'primary',
-      success: 'success',
-      danger: 'danger',
-      accent: 'accent',
-      text: 'text',
-    },
-    defaultValue: 'text',
+    options: COLORS.reduce((acc, color) => ({ ...acc, [color]: color }), {}),
+    defaultValue: COLORS[0],
     type: PropTypes.Enum,
   };
 

@@ -2,62 +2,62 @@
 
 exports[`_EuiPageInner border is rendered 1`] = `
 <main
-  class="css-6kpn8r-euiPageInner-left"
+  class="emotion-euiPageInner-left"
 />
 `;
 
 exports[`_EuiPageInner component is rendered 1`] = `
 <div
-  class="css-nq554q-euiPageInner"
+  class="emotion-euiPageInner"
 />
 `;
 
 exports[`_EuiPageInner is rendered 1`] = `
 <main
   aria-label="aria-label"
-  class="testClass1 testClass2 css-nq554q-euiPageInner"
+  class="testClass1 testClass2 emotion-euiPageInner"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`_EuiPageInner paddingSize l is rendered 1`] = `
 <main
-  class="css-1can1uw-euiPageInner-l"
+  class="emotion-euiPageInner-l"
 />
 `;
 
 exports[`_EuiPageInner paddingSize m is rendered 1`] = `
 <main
-  class="css-1fbw59e-euiPageInner-m"
+  class="emotion-euiPageInner-m"
 />
 `;
 
 exports[`_EuiPageInner paddingSize none is rendered 1`] = `
 <main
-  class="css-nq554q-euiPageInner"
+  class="emotion-euiPageInner"
 />
 `;
 
 exports[`_EuiPageInner paddingSize s is rendered 1`] = `
 <main
-  class="css-1rasddw-euiPageInner-s"
+  class="emotion-euiPageInner-s"
 />
 `;
 
 exports[`_EuiPageInner paddingSize xl is rendered 1`] = `
 <main
-  class="css-1r56j2k-euiPageInner-xl"
+  class="emotion-euiPageInner-xl"
 />
 `;
 
 exports[`_EuiPageInner paddingSize xs is rendered 1`] = `
 <main
-  class="css-1rijhyj-euiPageInner-xs"
+  class="emotion-euiPageInner-xs"
 />
 `;
 
 exports[`_EuiPageInner panelled is rendered 1`] = `
 <main
-  class="css-20xep6-euiPageInner-panelled"
+  class="emotion-euiPageInner-panelled"
 />
 `;

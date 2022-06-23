@@ -4,7 +4,7 @@ exports[`_EuiPageBottomBar is rendered 1`] = `
 Array [
   <section
     aria-label="aria-label"
-    class="euiBottomBar euiBottomBar--sticky testClass1 testClass2 css-1cjporg-euiBottomBar-sticky"
+    class="euiBottomBar euiBottomBar--sticky testClass1 testClass2 emotion-euiBottomBar-sticky"
     data-test-subj="test subject string"
     style="left:0;right:0;bottom:0;flex-shrink:0"
   >
@@ -14,10 +14,10 @@ Array [
       Page level controls
     </h2>
     <div
-      class="css-npj38n-euiPageSection-l-top-transparent"
+      class="emotion-euiPageSection-l-top-transparent"
     >
       <div
-        class="css-10pkat8-euiPageSection__width-l"
+        class="emotion-euiPageSection__width-l"
       />
     </div>
   </section>,
@@ -34,7 +34,7 @@ exports[`_EuiPageBottomBar paddingSize l is rendered 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky css-1cjporg-euiBottomBar-sticky"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky"
     style="left:0;right:0;bottom:0;flex-shrink:0"
   >
     <h2
@@ -43,10 +43,10 @@ Array [
       Page level controls
     </h2>
     <div
-      class="css-npj38n-euiPageSection-l-top-transparent"
+      class="emotion-euiPageSection-l-top-transparent"
     >
       <div
-        class="css-10pkat8-euiPageSection__width-l"
+        class="emotion-euiPageSection__width-l"
       />
     </div>
   </section>,
@@ -63,7 +63,7 @@ exports[`_EuiPageBottomBar paddingSize m is rendered 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky css-1cjporg-euiBottomBar-sticky"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky"
     style="left:0;right:0;bottom:0;flex-shrink:0"
   >
     <h2
@@ -72,10 +72,10 @@ Array [
       Page level controls
     </h2>
     <div
-      class="css-11vpkfb-euiPageSection-m-top-transparent"
+      class="emotion-euiPageSection-m-top-transparent"
     >
       <div
-        class="css-r5o87e-euiPageSection__width-m"
+        class="emotion-euiPageSection__width-m"
       />
     </div>
   </section>,
@@ -92,7 +92,7 @@ exports[`_EuiPageBottomBar paddingSize none is rendered 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky css-1cjporg-euiBottomBar-sticky"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky"
     style="left:0;right:0;bottom:0;flex-shrink:0"
   >
     <h2
@@ -101,10 +101,10 @@ Array [
       Page level controls
     </h2>
     <div
-      class="css-utbtd9-euiPageSection-top-transparent"
+      class="emotion-euiPageSection-top-transparent"
     >
       <div
-        class="css-17q7k44-euiPageSection__width"
+        class="emotion-euiPageSection__width"
       />
     </div>
   </section>,
@@ -121,7 +121,7 @@ exports[`_EuiPageBottomBar paddingSize s is rendered 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky css-1cjporg-euiBottomBar-sticky"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky"
     style="left:0;right:0;bottom:0;flex-shrink:0"
   >
     <h2
@@ -130,10 +130,10 @@ Array [
       Page level controls
     </h2>
     <div
-      class="css-8fzuso-euiPageSection-s-top-transparent"
+      class="emotion-euiPageSection-s-top-transparent"
     >
       <div
-        class="css-x2ge1o-euiPageSection__width-s"
+        class="emotion-euiPageSection__width-s"
       />
     </div>
   </section>,
@@ -150,7 +150,7 @@ exports[`_EuiPageBottomBar paddingSize xl is rendered 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky css-1cjporg-euiBottomBar-sticky"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky"
     style="left:0;right:0;bottom:0;flex-shrink:0"
   >
     <h2
@@ -159,10 +159,10 @@ Array [
       Page level controls
     </h2>
     <div
-      class="css-kzwuy3-euiPageSection-xl-top-transparent"
+      class="emotion-euiPageSection-xl-top-transparent"
     >
       <div
-        class="css-1395yyy-euiPageSection__width-xl"
+        class="emotion-euiPageSection__width-xl"
       />
     </div>
   </section>,
@@ -179,7 +179,7 @@ exports[`_EuiPageBottomBar paddingSize xs is rendered 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky css-1cjporg-euiBottomBar-sticky"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky"
     style="left:0;right:0;bottom:0;flex-shrink:0"
   >
     <h2
@@ -188,10 +188,10 @@ Array [
       Page level controls
     </h2>
     <div
-      class="css-v3ihak-euiPageSection-xs-top-transparent"
+      class="emotion-euiPageSection-xs-top-transparent"
     >
       <div
-        class="css-1ebgf5s-euiPageSection__width-xs"
+        class="emotion-euiPageSection__width-xs"
       />
     </div>
   </section>,
@@ -208,7 +208,7 @@ exports[`_EuiPageBottomBar restrict width can be set to a custom number 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky css-1cjporg-euiBottomBar-sticky"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky"
     style="left:0;right:0;bottom:0;flex-shrink:0"
   >
     <h2
@@ -217,10 +217,10 @@ Array [
       Page level controls
     </h2>
     <div
-      class="css-npj38n-euiPageSection-l-top-transparent"
+      class="emotion-euiPageSection-l-top-transparent"
     >
       <div
-        class="css-qz8oj4-euiPageSection__width-l"
+        class="emotion-euiPageSection__width-l"
       />
     </div>
   </section>,
@@ -237,7 +237,7 @@ exports[`_EuiPageBottomBar restrict width can be set to a custom value and measu
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky css-1cjporg-euiBottomBar-sticky"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky"
     style="left:0;right:0;bottom:0;flex-shrink:0"
   >
     <h2
@@ -246,10 +246,10 @@ Array [
       Page level controls
     </h2>
     <div
-      class="css-npj38n-euiPageSection-l-top-transparent"
+      class="emotion-euiPageSection-l-top-transparent"
     >
       <div
-        class="css-dr8xkq-euiPageSection__width-l"
+        class="emotion-euiPageSection__width-l"
       />
     </div>
   </section>,
@@ -266,7 +266,7 @@ exports[`_EuiPageBottomBar restrict width can be set to a default 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky css-1cjporg-euiBottomBar-sticky"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky"
     style="left:0;right:0;bottom:0;flex-shrink:0"
   >
     <h2
@@ -275,10 +275,10 @@ Array [
       Page level controls
     </h2>
     <div
-      class="css-npj38n-euiPageSection-l-top-transparent"
+      class="emotion-euiPageSection-l-top-transparent"
     >
       <div
-        class="css-12fxf36-euiPageSection__width-l"
+        class="emotion-euiPageSection__width-l"
       />
     </div>
   </section>,

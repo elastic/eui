@@ -5,7 +5,7 @@ import { toggleLocale as _toggleLocale } from '../actions';
 import { GuidePageChrome, ThemeContext, GuidePageHeader } from '../components';
 import { getLocale, getRoutes } from '../store';
 
-import { EuiPageTemplate } from '../../../src/components';
+import { EuiPageTemplate, EuiSkipLink } from '../../../src/components';
 
 import { keys } from '../../../src/services';
 
@@ -64,6 +64,13 @@ export const AppView = ({ children, currentRoute }) => {
 
   return (
     <LinkWrapper>
+      <EuiSkipLink
+        destinationId="start-of-content"
+        position="fixed"
+        overrideLinkBehavior
+      >
+        Skip to content
+      </EuiSkipLink>
       <GuidePageHeader onToggleLocale={toggleLocale} selectedLocale={locale} />
       <EuiPageTemplate paddingSize="none" restrictWidth={false}>
         <EuiPageTemplate.Sidebar className="guideSideNav" sticky>
@@ -75,7 +82,7 @@ export const AppView = ({ children, currentRoute }) => {
           />
         </EuiPageTemplate.Sidebar>
 
-        {children({ theme })}
+        <div id="start-of-content">{children({ theme })}</div>
       </EuiPageTemplate>
     </LinkWrapper>
   );
