@@ -49,7 +49,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
     style="left: 10px; top: 0px;"
   />
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
     id="generated-id"
   >
     You are in a dialog. To close this dialog, hit escape.
@@ -82,7 +82,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
             class="euiDataGridColumnSorting__item false euiDraggable__item"
           >
             <p
-              class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+              class=" emotion-euiScreenReaderOnly"
             >
               Column A is sorting this data grid
             </p>
@@ -136,7 +136,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                   class="euiButtonGroup euiButtonGroup--compressed euiButtonGroup--text euiButtonGroup--fullWidth euiDataGridColumnSorting__order"
                 >
                   <legend
-                    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+                    class=" emotion-euiScreenReaderOnly"
                   >
                     Select sorting method for Column A
                   </legend>

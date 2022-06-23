@@ -49,7 +49,7 @@ Array [
     </div>
   </div>,
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
     id="generated-id"
   >
     State: unchanged.
@@ -111,7 +111,7 @@ Array [
     </div>
   </div>,
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
     id="generated-id"
   >
     State: unchanged.
@@ -168,7 +168,7 @@ Array [
     </div>
   </div>,
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
     id="generated-id"
   >
     State: unchanged.
@@ -225,7 +225,7 @@ Array [
     </div>
   </div>,
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
     id="generated-id"
   >
     State: unchanged.
@@ -282,7 +282,7 @@ Array [
     </div>
   </div>,
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
     id="generated-id"
   >
     State: unchanged.
@@ -339,7 +339,7 @@ Array [
     </div>
   </div>,
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
     id="generated-id"
   >
     State: unchanged.
@@ -418,7 +418,7 @@ Array [
     </div>
   </div>,
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
     id="testId_generated-id"
   >
     State: unchanged.
@@ -484,7 +484,7 @@ Array [
     </div>
   </div>,
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
     id="generated-id"
   >
     State: loading.
@@ -550,7 +550,7 @@ Array [
     </div>
   </div>,
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
     id="generated-id"
   >
     State: saved.
@@ -607,7 +607,7 @@ Array [
     </div>
   </div>,
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
     id="generated-id"
   >
     State: unchanged.
@@ -673,7 +673,7 @@ Array [
     </div>
   </div>,
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
     id="generated-id"
   >
     State: unsaved.
@@ -739,7 +739,7 @@ Array [
     </div>
   </div>,
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
     id="generated-id"
   >
     State: loading.
@@ -805,7 +805,7 @@ Array [
     </div>
   </div>,
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
     id="generated-id"
   >
     State: saved.
@@ -862,7 +862,7 @@ Array [
     </div>
   </div>,
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
     id="generated-id"
   >
     State: unchanged.
@@ -928,7 +928,7 @@ Array [
     </div>
   </div>,
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
     id="generated-id"
   >
     State: unsaved.

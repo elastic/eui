@@ -5,7 +5,7 @@ exports[`EuiToast Props color danger is rendered 1`] = `
   class="euiToast euiToast--danger"
 >
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
   >
     A new notification appears
   </p>
@@ -28,7 +28,7 @@ exports[`EuiToast Props color primary is rendered 1`] = `
   class="euiToast euiToast--primary"
 >
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
   >
     A new notification appears
   </p>
@@ -51,7 +51,7 @@ exports[`EuiToast Props color success is rendered 1`] = `
   class="euiToast euiToast--success"
 >
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
   >
     A new notification appears
   </p>
@@ -74,7 +74,7 @@ exports[`EuiToast Props color warning is rendered 1`] = `
   class="euiToast euiToast--warning"
 >
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
   >
     A new notification appears
   </p>
@@ -97,7 +97,7 @@ exports[`EuiToast Props iconType is rendered 1`] = `
   class="euiToast"
 >
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
   >
     A new notification appears
   </p>
@@ -125,7 +125,7 @@ exports[`EuiToast Props title is rendered 1`] = `
   class="euiToast"
 >
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
   >
     A new notification appears
   </p>
@@ -150,7 +150,7 @@ exports[`EuiToast is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
+    class=" emotion-euiScreenReaderOnly"
   >
     A new notification appears
   </p>

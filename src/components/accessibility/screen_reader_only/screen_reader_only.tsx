@@ -30,13 +30,7 @@ export const EuiScreenReaderOnly: FunctionComponent<EuiScreenReaderOnlyProps> = 
   className,
   showOnFocus,
 }) => {
-  const classes = classNames(
-    {
-      euiScreenReaderOnly: !showOnFocus,
-    },
-    className,
-    children.props.className
-  );
+  const classes = classNames(className, children.props.className);
 
   const styles = euiScreenReaderOnlyStyles(showOnFocus);
   const cssStyles = [styles.euiScreenReaderOnly];
