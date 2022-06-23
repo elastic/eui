@@ -92,7 +92,15 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
         const destinationEl = document.getElementById(destinationId);
         if (!destinationEl) return;
 
-        destinationEl.scrollIntoView();
+        // Scroll to the top of the destination content only if it's ~mostly out of view
+        const destinationY = destinationEl.getBoundingClientRect().top;
+        const halfOfViewportHeight = window.innerHeight / 2;
+        if (
+          destinationY >= halfOfViewportHeight ||
+          window.scrollY >= destinationY + halfOfViewportHeight
+        ) {
+          destinationEl.scrollIntoView();
+        }
 
         // Ensure the destination content is focusable
         if (!isTabbable(destinationEl)) {
@@ -106,7 +114,7 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
           );
         }
 
-        destinationEl.focus({ preventScroll: true }); // Scrolling is already handled above, and focus's autoscroll behaves oddly around fixed headers
+        destinationEl.focus({ preventScroll: true }); // Scrolling is already handled above, and focus autoscroll behaves oddly on Chrome due to the fixed header
       },
     };
   }

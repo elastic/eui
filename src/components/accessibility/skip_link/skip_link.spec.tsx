@@ -84,5 +84,65 @@ describe('EuiSkipLink', () => {
           .should('have.attr', 'tabindex', '0');
       });
     });
+
+    describe('scroll behavior', () => {
+      it('should scroll down to the target element if it is out of the viewport', () => {
+        cy.realMount(
+          <div style={{ height: '1500px', paddingTop: '1400px' }}>
+            <EuiSkipLink
+              position="fixed"
+              destinationId="start-of-content"
+              overrideLinkBehavior
+            />
+            <main id="start-of-content">Hello world</main>
+          </div>
+        );
+        cy.window().its('scrollY').should('equal', 0);
+
+        cy.realPress('Tab');
+        cy.realPress('Enter');
+
+        cy.window().its('scrollY').should('not.equal', 0);
+      });
+
+      it('should scroll back up to the top of the target element if the user scrolled down past it', () => {
+        cy.realMount(
+          <div style={{ height: '1500px' }}>
+            <EuiSkipLink
+              position="fixed"
+              destinationId="start-of-content"
+              overrideLinkBehavior
+            />
+            <main id="start-of-content">Hello world</main>
+          </div>
+        );
+        cy.scrollTo('bottom');
+        cy.window().its('scrollY').should('not.equal', 0);
+
+        cy.realPress('Tab');
+        cy.realPress('Enter');
+
+        cy.window().its('scrollY').should('equal', 1); // Not sure why this isn't 0 - might be a Chrome thing
+      });
+
+      it('should not scroll if the element is already visible in the viewport', () => {
+        cy.realMount(
+          <div style={{ height: '1500px', paddingTop: '100px' }}>
+            <EuiSkipLink
+              position="fixed"
+              destinationId="start-of-content"
+              overrideLinkBehavior
+            />
+            <main id="start-of-content">Hello world</main>
+          </div>
+        );
+        cy.window().its('scrollY').should('equal', 0);
+
+        cy.realPress('Tab');
+        cy.realPress('Enter');
+
+        cy.window().its('scrollY').should('equal', 0);
+      });
+    });
   });
 });
