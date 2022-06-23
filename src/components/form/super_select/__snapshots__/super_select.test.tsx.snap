@@ -19,7 +19,7 @@ exports[`EuiSuperSelect is rendered 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
@@ -70,7 +70,7 @@ exports[`EuiSuperSelect props compressed is rendered 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
@@ -121,7 +121,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
@@ -189,7 +189,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
         >
           <div>
             <p
-              class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
+              class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
               id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
               You are in a form selector and must select a single option. Use the up and down keys to navigate or escape to close.
@@ -283,7 +283,7 @@ exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
@@ -339,7 +339,7 @@ exports[`EuiSuperSelect props is rendered with a prepend and append 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
@@ -395,7 +395,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: Option #1, is selected
@@ -465,7 +465,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
         >
           <div>
             <p
-              class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
+              class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
               id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
               You are in a form selector and must select a single option. Use the up and down keys to navigate or escape to close.
@@ -562,7 +562,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
@@ -630,7 +630,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
         >
           <div>
             <p
-              class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
+              class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
               id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
               You are in a form selector and must select a single option. Use the up and down keys to navigate or escape to close.
@@ -724,7 +724,7 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: Option #2, is selected
@@ -794,7 +794,7 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
         >
           <div>
             <p
-              class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
+              class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
               id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
               You are in a form selector and must select a single option. Use the up and down keys to navigate or escape to close.
@@ -889,7 +889,7 @@ exports[`EuiSuperSelect props select component is rendered 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
@@ -938,7 +938,7 @@ exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <span
-            class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
+            class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
             id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: Option #2, is selected

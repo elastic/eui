@@ -15,7 +15,7 @@ exports[`EuiLink allows for target and external to be controlled independently 1
   target="_blank"
 >
   <span
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles-euiLink__screenReaderText"
+    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
   >
     (opens in a new tab or window)
   </span>
@@ -153,7 +153,7 @@ exports[`EuiLink supports target 1`] = `
     External link
   </span>
   <span
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles-euiLink__screenReaderText"
+    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
   >
     (opens in a new tab or window)
   </span>

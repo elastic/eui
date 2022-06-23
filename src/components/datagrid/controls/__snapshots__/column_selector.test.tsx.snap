@@ -49,7 +49,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
     style="left: 10px; top: 0px;"
   />
   <p
-    class="euiScreenReaderOnly emotion-euiScreenReaderOnlyStyles"
+    class="euiScreenReaderOnly emotion-euiScreenReaderOnly"
     id="generated-id"
   >
     You are in a dialog. To close this dialog, hit escape.
