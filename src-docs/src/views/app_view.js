@@ -10,6 +10,7 @@ import {
   EuiPage,
   EuiPageBody,
   EuiSkipLink,
+  EuiScreenReaderLive,
 } from '../../../src/components';
 
 import { keys } from '../../../src/services';
@@ -69,6 +70,9 @@ export const AppView = ({ children, currentRoute }) => {
 
   return (
     <LinkWrapper>
+      <EuiScreenReaderLive isFocusable>
+        <span>{`${currentRoute.name} - Elastic UI Framework`}</span>
+      </EuiScreenReaderLive>
       <EuiSkipLink
         destinationId="start-of-content"
         position="fixed"

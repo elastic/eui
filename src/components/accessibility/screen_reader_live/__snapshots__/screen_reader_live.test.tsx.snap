@@ -21,6 +21,28 @@ exports[`EuiScreenReaderLive with a static configuration accepts \`aria-live\` 1
 </div>
 `;
 
+exports[`EuiScreenReaderLive with a static configuration accepts \`isFocusable\` 1`] = `
+<div
+  class="euiScreenReaderOnly"
+  tabindex="-1"
+>
+  <div
+    aria-atomic="true"
+    aria-live="off"
+    role="status"
+  />
+  <div
+    aria-atomic="true"
+    aria-live="off"
+    role="status"
+  >
+    <p>
+      This paragraph is not visible to sighted users but will be read by screenreaders.
+    </p>
+  </div>
+</div>
+`;
+
 exports[`EuiScreenReaderLive with a static configuration accepts \`role\` 1`] = `
 <div
   class="euiScreenReaderOnly"

@@ -145,6 +145,11 @@ export const AccessibilityExample = {
             for <EuiCode>role</EuiCode> to <EuiCode>aria-live</EuiCode> mapping.
           </p>
           <p>
+            If you need to manage focus, set the <EuiCode>isFocusable</EuiCode> prop to <EuiCode>true</EuiCode>.
+            This will set focus on the containing element on page load and when the <EuiCode>children</EuiCode>{' '}
+            prop updates. Screen readers will announce the text inside the live region as normal.
+          </p>
+          <p>
             Also consider other live region guidelines, such as that live
             regions must be present on initial page load, and should not be in a
             conditional JSX wrapper.
