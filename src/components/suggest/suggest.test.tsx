@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render, mount, shallow } from 'enzyme';
+import { render, shallow } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiSelectable } from '../selectable';
@@ -83,7 +83,7 @@ describe('EuiSuggest', () => {
     });
 
     test('isVirtualized', () => {
-      const component = mount(
+      const component = render(
         <EuiSuggest
           {...requiredProps}
           suggestions={sampleItems}
@@ -95,7 +95,7 @@ describe('EuiSuggest', () => {
     });
 
     test('maxHeight', () => {
-      const component = mount(
+      const component = render(
         <EuiSuggest
           {...requiredProps}
           suggestions={sampleItems}

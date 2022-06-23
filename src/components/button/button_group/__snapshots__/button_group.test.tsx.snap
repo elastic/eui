@@ -5,7 +5,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for multi
   class="euiButtonGroup euiButtonGroup--compressed euiButtonGroup--text"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -89,7 +89,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
   class="euiButtonGroup euiButtonGroup--compressed euiButtonGroup--text"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -182,7 +182,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
   class="euiButtonGroup euiButtonGroup--medium euiButtonGroup--text"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -266,7 +266,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
   class="euiButtonGroup euiButtonGroup--medium euiButtonGroup--text"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -359,7 +359,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -443,7 +443,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -536,7 +536,7 @@ exports[`EuiButtonGroup button props color accent is rendered for multi 1`] = `
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--accent"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -620,7 +620,7 @@ exports[`EuiButtonGroup button props color accent is rendered for single 1`] = `
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--accent"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -713,7 +713,7 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--danger"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -797,7 +797,7 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--danger"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -890,7 +890,7 @@ exports[`EuiButtonGroup button props color ghost is rendered for multi 1`] = `
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--ghost"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -974,7 +974,7 @@ exports[`EuiButtonGroup button props color ghost is rendered for single 1`] = `
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--ghost"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -1067,7 +1067,7 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--primary"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -1151,7 +1151,7 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--primary"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -1244,7 +1244,7 @@ exports[`EuiButtonGroup button props color success is rendered for multi 1`] = `
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--success"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -1328,7 +1328,7 @@ exports[`EuiButtonGroup button props color success is rendered for single 1`] = 
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--success"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -1421,7 +1421,7 @@ exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -1505,7 +1505,7 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -1598,7 +1598,7 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--warning"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -1682,7 +1682,7 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--warning"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -1776,7 +1776,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
   disabled=""
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -1863,7 +1863,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
   disabled=""
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -1949,7 +1949,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text euiButtonGroup--fullWidth"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -2033,7 +2033,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text euiButtonGroup--fullWidth"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -2126,7 +2126,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for multi 1`] = `
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -2210,7 +2210,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for single 1`] = `
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -2303,7 +2303,7 @@ exports[`EuiButtonGroup button props selection idSelected is rendered for single
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -2397,7 +2397,7 @@ exports[`EuiButtonGroup button props selection idToSelectedMap is rendered for m
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--text"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -2483,7 +2483,7 @@ exports[`EuiButtonGroup type multi is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>
@@ -2569,7 +2569,7 @@ exports[`EuiButtonGroup type single is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <legend
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     test
   </legend>

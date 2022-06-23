@@ -44,7 +44,7 @@ describe('EuiDataGridCell', () => {
   beforeEach(() => jest.clearAllMocks());
 
   it('renders', () => {
-    const component = mount(<EuiDataGridCell {...requiredProps} />);
+    const component = render(<EuiDataGridCell {...requiredProps} />);
     expect(component).toMatchSnapshot();
   });
 
