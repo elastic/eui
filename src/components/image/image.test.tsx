@@ -154,7 +154,9 @@ describe('EuiImage', () => {
       expect(overlayMask.length).toBe(1);
 
       act(() => {
-        (overlayMask[0] as HTMLElement).click();
+        (overlayMask[0] as HTMLElement).dispatchEvent(
+          new Event('mousedown', { bubbles: true })
+        );
       });
 
       overlayMask = document.querySelectorAll(

@@ -261,6 +261,7 @@ exports[`EuiSuggest props isVirtualized 1`] = `
           closePopover={[Function]}
           display="block"
           hasArrow={true}
+          isCapture={false}
           isOpen={false}
           ownFocus={false}
           panelPaddingSize="none"
@@ -274,6 +275,7 @@ exports[`EuiSuggest props isVirtualized 1`] = `
           panelRef={[Function]}
         >
           <EuiOutsideClickDetector
+            isCapture={false}
             onOutsideClick={[Function]}
           >
             <div
@@ -593,6 +595,7 @@ exports[`EuiSuggest props maxHeight 1`] = `
           closePopover={[Function]}
           display="block"
           hasArrow={true}
+          isCapture={false}
           isOpen={false}
           ownFocus={false}
           panelPaddingSize="none"
@@ -606,6 +609,7 @@ exports[`EuiSuggest props maxHeight 1`] = `
           panelRef={[Function]}
         >
           <EuiOutsideClickDetector
+            isCapture={false}
             onOutsideClick={[Function]}
           >
             <div

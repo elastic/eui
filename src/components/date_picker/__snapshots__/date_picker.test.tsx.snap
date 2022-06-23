@@ -964,12 +964,14 @@ exports[`EuiDatePicker popoverPlacement upRight is rendered 1`] = `
                 closePopover={[Function]}
                 display="block"
                 hasArrow={false}
+                isCapture={false}
                 isOpen={false}
                 ownFocus={false}
                 panelPaddingSize="none"
                 panelRef={[Function]}
               >
                 <EuiOutsideClickDetector
+                  isCapture={false}
                   onOutsideClick={[Function]}
                 >
                   <div

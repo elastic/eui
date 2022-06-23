@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import {
-  EuiOverlayMask,
   EuiButton,
   EuiFlyout,
   EuiTitle,
@@ -19,8 +18,7 @@ export default () => {
   if (flyOut) {
     flyout = (
       <React.Fragment>
-        <EuiOverlayMask headerZindexLocation="below" />
-        <EuiFlyout size="s" onClose={toggleFlyOut}>
+        <EuiFlyout size="s" onClose={toggleFlyOut} outsideClickCloses>
           <EuiFlyoutHeader>
             <EuiTitle>
               <h1>Click outside this flyout to close overlay. </h1>

@@ -26,6 +26,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
     data-test-subj="dataGridDisplaySelectorPopover"
     display="inlineBlock"
     hasArrow={true}
+    isCapture={false}
     isOpen={false}
     ownFocus={true}
     panelClassName="euiDataGrid__displayPopoverPanel"

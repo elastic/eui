@@ -201,7 +201,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     <EuiOverlayMask data-test-subj="fullScreenOverlayMask">
       <EuiFocusTrap
         onClickOutside={closeFullScreen}
-        clickOutsideDisables={true}
+        data-test-subj="fullScreenFocusTrap"
       >
         <>
           <figure

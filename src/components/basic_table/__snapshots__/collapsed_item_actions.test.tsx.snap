@@ -44,6 +44,7 @@ exports[`CollapsedItemActions render with href and _target provided 1`] = `
   display="inlineBlock"
   hasArrow={true}
   id="id-actions"
+  isCapture={false}
   isOpen={true}
   ownFocus={true}
   panelPaddingSize="none"

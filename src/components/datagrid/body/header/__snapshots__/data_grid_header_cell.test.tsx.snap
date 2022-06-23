@@ -39,6 +39,7 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
     closePopover={[Function]}
     display="inlineBlock"
     hasArrow={true}
+    isCapture={false}
     isOpen={false}
     offset={7}
     ownFocus={true}

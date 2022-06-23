@@ -704,6 +704,7 @@ export class EuiPopover extends Component<Props, State> {
       button,
       buttonRef,
       insert,
+      isCapture,
       isOpen,
       ownFocus,
       children,
@@ -870,7 +871,10 @@ export class EuiPopover extends Component<Props, State> {
       );
     } else {
       return (
-        <EuiOutsideClickDetector onOutsideClick={this.closePopover}>
+        <EuiOutsideClickDetector
+          onOutsideClick={this.closePopover}
+          isCapture={isCapture}
+        >
           <div
             className={classes}
             ref={popoverRef}
