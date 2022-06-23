@@ -43,7 +43,6 @@ export default ({
       {bottomBar && (
         <EuiPageTemplate.BottomBar>{bottomBar}</EuiPageTemplate.BottomBar>
       )}
-      <EuiPageTemplate.Section grow>{content}</EuiPageTemplate.Section>
     </EuiPageTemplate>
   );
 };
