@@ -8,6 +8,7 @@
 
 import React, { FunctionComponent, Ref } from 'react';
 import classNames from 'classnames';
+import { isTabbable } from 'tabbable';
 import { useEuiTheme } from '../../../services';
 import { EuiButton, EuiButtonProps } from '../../button/button';
 import { PropsForAnchor, PropsForButton, ExclusiveUnion } from '../../common';
@@ -92,7 +93,19 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
         if (!destinationEl) return;
 
         destinationEl.scrollIntoView();
-        destinationEl.tabIndex = -1; // Ensure the destination content is focusable
+
+        // Ensure the destination content is focusable
+        if (!isTabbable(destinationEl)) {
+          destinationEl.tabIndex = -1;
+          destinationEl.addEventListener(
+            'blur',
+            () => {
+              destinationEl.removeAttribute('tabindex');
+            },
+            { once: true }
+          );
+        }
+
         destinationEl.focus({ preventScroll: true }); // Scrolling is already handled above, and focus's autoscroll behaves oddly around fixed headers
       },
     };
