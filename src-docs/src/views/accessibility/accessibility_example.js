@@ -201,12 +201,15 @@ export const AccessibilityExample = {
             block is at the top of the HTML source order.
           </p>
           <p>
+            To learn more about the <EuiCode>status</EuiCode> role make sure to
+            read the{' '}
             <EuiLink
               href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/status_role"
               external
             >
-              ARIA role status guidelines
+              ARIA guidelines
             </EuiLink>
+            .
           </p>
         </>
       ),

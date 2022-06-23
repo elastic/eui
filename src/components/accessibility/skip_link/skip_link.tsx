@@ -103,6 +103,7 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
       <EuiButton
         css={cssStyles}
         className={classes}
+        color="ghost"
         tabIndex={position === 'fixed' ? 0 : tabIndex}
         size="s"
         fill
