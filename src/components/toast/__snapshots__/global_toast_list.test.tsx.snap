@@ -22,7 +22,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
     id="a"
   >
     <p
-      class=" emotion-euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       A new notification appears
     </p>
@@ -65,7 +65,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
     id="b"
   >
     <p
-      class=" emotion-euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       A new notification appears
     </p>
@@ -117,7 +117,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     id="a"
   >
     <p
-      class=" emotion-euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       A new notification appears
     </p>
@@ -160,7 +160,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     id="b"
   >
     <p
-      class=" emotion-euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       A new notification appears
     </p>

@@ -72,7 +72,7 @@ exports[`EuiDataGridCell renders 1`] = `
         </div>
       </div>
       <p
-        class=" emotion-euiScreenReaderOnly"
+        class="emotion-euiScreenReaderOnly"
       >
         Row: 1; Column: 1
       </p>

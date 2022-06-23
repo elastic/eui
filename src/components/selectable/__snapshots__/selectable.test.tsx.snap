@@ -5,7 +5,7 @@ exports[`EuiSelectable custom options with data 1`] = `
   class="euiSelectable"
 >
   <p
-    class=" emotion-euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
     id="generated-id_instructions"
   >
     Filter options
@@ -120,7 +120,7 @@ exports[`EuiSelectable errorMessage prop can render an element as the message 1`
   class="euiSelectable"
 >
   <p
-    class=" emotion-euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
     id="generated-id_instructions"
   >
     Filter options
@@ -142,7 +142,7 @@ exports[`EuiSelectable errorMessage prop does not render the message when not de
   class="euiSelectable"
 >
   <p
-    class=" emotion-euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
     id="generated-id_instructions"
   >
     Filter options
@@ -258,7 +258,7 @@ exports[`EuiSelectable errorMessage prop does renders the message when defined 1
   class="euiSelectable"
 >
   <p
-    class=" emotion-euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
     id="generated-id_instructions"
   >
     Filter options
@@ -336,7 +336,7 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
   class="euiSelectable"
 >
   <div
-    class=" emotion-euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     <div
       aria-atomic="true"
@@ -357,7 +357,7 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
     </div>
   </div>
   <p
-    class=" emotion-euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
     id="generated-id_instructions"
   >
     Filter options

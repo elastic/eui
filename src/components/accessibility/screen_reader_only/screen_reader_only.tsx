@@ -36,7 +36,7 @@ export const EuiScreenReaderOnly: FunctionComponent<EuiScreenReaderOnlyProps> = 
   const cssStyles = [styles.euiScreenReaderOnly];
 
   const props = {
-    className: classes,
+    className: classes.length ? classes : undefined,
     css: cssStyles,
   };
 

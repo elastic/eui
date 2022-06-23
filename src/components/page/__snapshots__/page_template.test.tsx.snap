@@ -1101,7 +1101,7 @@ exports[`EuiPageTemplate with bottomBar is rendered 1`] = `
       style="left:0;right:0;bottom:0"
     >
       <h2
-        class=" emotion-euiScreenReaderOnly"
+        class="emotion-euiScreenReaderOnly"
       >
         Page level controls
       </h2>
@@ -1113,7 +1113,7 @@ exports[`EuiPageTemplate with bottomBar is rendered 1`] = `
     </section>
     <p
       aria-live="assertive"
-      class=" emotion-euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       There is a new region landmark with page level controls at the end of the document.
     </p>

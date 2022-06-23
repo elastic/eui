@@ -69,7 +69,7 @@ exports[`EuiSelectableListItem props checked is off 1`] = `
       class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
     >
       <div
-        class=" emotion-euiScreenReaderOnly"
+        class="emotion-euiScreenReaderOnly"
       >
          - Checked option.
       </div>
@@ -97,7 +97,7 @@ exports[`EuiSelectableListItem props checked is on 1`] = `
       class="euiSelectableListItem__text euiSelectableListItem__text--truncate"
     >
       <div
-        class=" emotion-euiScreenReaderOnly"
+        class="emotion-euiScreenReaderOnly"
       >
          - Checked option.
       </div>

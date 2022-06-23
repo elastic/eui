@@ -47,7 +47,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                 Name
               </span>
               <span
-                class=" emotion-euiScreenReaderOnly"
+                class="emotion-euiScreenReaderOnly"
               >
                 description
               </span>
@@ -152,7 +152,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           <span
             aria-atomic="true"
             aria-relevant="additions text"
-            class=" emotion-euiScreenReaderOnly"
+            class="emotion-euiScreenReaderOnly"
             role="status"
           >
             Page 2 of 2
@@ -676,7 +676,7 @@ exports[`EuiInMemoryTable with pagination and "show all" page size 1`] = `
                 Name
               </span>
               <span
-                class=" emotion-euiScreenReaderOnly"
+                class="emotion-euiScreenReaderOnly"
               >
                 description
               </span>
