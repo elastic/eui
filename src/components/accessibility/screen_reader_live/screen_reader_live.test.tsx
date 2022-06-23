@@ -58,9 +58,7 @@ describe('EuiScreenReaderLive', () => {
 
     it('accepts `isFocusable`', () => {
       const component = render(
-        <EuiScreenReaderLive isFocusable>
-          {content}
-        </EuiScreenReaderLive>
+        <EuiScreenReaderLive isFocusable>{content}</EuiScreenReaderLive>
       );
 
       expect(component).toMatchSnapshot();

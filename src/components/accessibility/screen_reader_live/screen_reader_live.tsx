@@ -60,7 +60,7 @@ export const EuiScreenReaderLive: FunctionComponent<EuiScreenReaderLiveProps> = 
     if (focusRef.current !== null && isFocusable) {
       focusRef.current.focus();
     }
-  }, [children]);
+  }, [children, isFocusable]);
 
   return (
     /**
