@@ -19,19 +19,17 @@ const ScrollToHash: FunctionComponent = () => {
     const element = document.getElementById(hash);
     const headerOffset = 48;
     if (element) {
-      // Focus header for keyboard and screen reader users
+      // Focus element for keyboard and screen reader users
       if (!isTabbable(element)) {
         element.tabIndex = -1;
         element.addEventListener(
           'blur',
-          () => {
-            element.removeAttribute('tabindex');
-          },
+          () => element.removeAttribute('tabindex'),
           { once: true }
         );
         element.focus();
       }
-      // Scroll to header
+      // Scroll to element
       window.scrollTo({
         top: element.offsetTop - headerOffset,
         behavior: 'smooth',
