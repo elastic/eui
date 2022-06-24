@@ -16,7 +16,7 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps, ExclusiveUnion, keysOf } from '../common';
-import { getSecureRelForTarget } from '../../services';
+import { getSecureRelForTarget, useEuiTheme } from '../../services';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
 import { EuiBetaBadge, EuiBetaBadgeProps } from '../badge/beta_badge';
@@ -30,6 +30,7 @@ import { useGeneratedHtmlId } from '../../services/accessibility';
 import { validateHref } from '../../services/security/href_validator';
 import { EuiPanel, EuiPanelProps } from '../panel';
 import { EuiSpacer } from '../spacer';
+import { euiCardStyles, euiCardTextStyles } from './card.styles';
 
 type CardAlignment = 'left' | 'center' | 'right';
 
@@ -145,24 +146,14 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
      * Use a border style of card instead of shadow
      */
     hasBorder?: EuiPanelProps['hasBorder'];
-  } & (
-    | {
-        // description becomes optional when children is present
-        description?: NonNullable<ReactNode>;
-        children: ReactNode;
-      }
-    | {
-        // description is required if children is omitted
-        description: NonNullable<ReactNode>;
-      }
-  );
+  };
 
 export const EuiCard: FunctionComponent<EuiCardProps> = ({
   className,
   description,
   isDisabled: _isDisabled,
   title,
-  titleElement = 'span',
+  titleElement = 'p',
   titleSize = 's',
   icon,
   image,
@@ -184,6 +175,22 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   const isDisabled = _isDisabled || !isHrefValid;
   const isClickable =
     !isDisabled && (onClick || href || (selectable && !selectable.isDisabled));
+
+  const euiThemeContext = useEuiTheme();
+  const styles = euiCardStyles(euiThemeContext);
+  const cardStyles = [
+    styles.euiCard,
+    styles.aligned[textAlign],
+    isDisabled && styles.disabled,
+  ];
+
+  const textStyles = euiCardTextStyles(euiThemeContext);
+  const textCSS = [
+    textStyles.euiCard__text,
+    textStyles.aligned[textAlign],
+    isClickable && textStyles.interactive,
+    isDisabled && textStyles.disabled,
+  ];
 
   /**
    * For a11y, we simulate the same click that's provided on the title when clicking the whole card
@@ -314,6 +321,8 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     );
   }
 
+  const TitleElement = titleElement;
+
   /**
    * Wraps the title with the link (<a>) or button.
    * This makes the title element a11y friendly and gets described by its content if its interactable.
@@ -324,6 +333,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     theTitle = (
       <a
         className="euiCard__titleAnchor"
+        css={textCSS}
         onClick={onClick as React.MouseEventHandler<HTMLAnchorElement>}
         href={href}
         target={target}
@@ -340,6 +350,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     theTitle = (
       <button
         className="euiCard__titleButton"
+        css={textCSS}
         onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
         disabled={isDisabled}
         aria-describedby={`${optionalBetaBadgeID} ${ariaDesc}`}
@@ -351,19 +362,42 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       </button>
     );
   } else {
-    theTitle = title;
+    theTitle = <span css={textCSS}>{title}</span>;
   }
 
   /**
-   * Convert titleElement to a capital TitleElement
+   * Children and/or Description content
    */
+  let optionalChildren;
+  if (children) {
+    const childrenStyles = [styles.euiCard__children];
+    optionalChildren = <div css={childrenStyles}>{children}</div>;
+  }
 
-  const TitleElement = titleElement;
+  let optionalDescription;
+  if (description) {
+    const descriptionStyles = [styles.euiCard__description];
+    optionalDescription = (
+      <EuiText id={ariaDesc} size="s" css={descriptionStyles}>
+        <p>{description}</p>
+      </EuiText>
+    );
+  }
+
+  /**
+   * Footer content
+   */
+  let optionalFooter;
+  if (layout === 'vertical' && footer) {
+    const footerStyles = [styles.euiCard__footer];
+    optionalFooter = <div css={footerStyles}>{footer}</div>;
+  }
 
   return (
     <EuiPanel
       element="div"
       className={classes}
+      css={cardStyles}
       onClick={isClickable ? outerOnClick : undefined}
       color={isDisabled ? 'subdued' : display}
       hasShadow={isDisabled || display ? false : true}
@@ -379,24 +413,20 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
           className="euiCard__title"
           size={titleSize}
         >
+          {/* @ts-expect-error Why is `p` not allowed? */}
           <TitleElement>{theTitle}</TitleElement>
         </EuiTitle>
 
-        {description && (
-          <EuiText id={ariaDesc} size="s" className="euiCard__description">
-            <p>{description}</p>
-          </EuiText>
-        )}
+        {optionalDescription}
 
-        {children && <div className="euiCard__children">{children}</div>}
+        {optionalChildren}
       </div>
 
       {/* Beta badge should always be after the title/description but before any footer buttons */}
       {optionalBetaBadge}
 
-      {layout === 'vertical' && footer && (
-        <div className="euiCard__footer">{footer}</div>
-      )}
+      {optionalFooter}
+
       {optionalSelectButton}
     </EuiPanel>
   );

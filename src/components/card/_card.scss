@@ -8,28 +8,28 @@
 // EuiCard inherits most from EuiPanel, these styles are for content or other states
 
 .euiCard {
-  display: flex;
-  flex-direction: column;
-  min-height: 1px; /* 2 */
+  // display: flex;
+  // flex-direction: column;
+  // min-height: 1px; /* 2 */
 
   &.euiCard-isDisabled {
     // sass-lint:disable-block no-important
-    cursor: not-allowed !important; // duplicate property due to Chrome bug
-    transform: none !important;
-    box-shadow: none !important;
-    text-decoration: none !important;
-    background-color: transparentize($euiButtonColorDisabled, .9) !important;
-    color: $euiColorDisabledText;
+    // cursor: not-allowed !important; // duplicate property due to Chrome bug
+    // transform: none !important;
+    // box-shadow: none !important;
+    // text-decoration: none !important;
+    // background-color: transparentize($euiButtonColorDisabled, .9) !important;
+    // color: $euiColorDisabledText;
 
     .euiCard__top {
       filter: grayscale(100%);
     }
 
-    .euiCard__titleAnchor,
-    .euiCard__titleButton {
-      color: $euiColorDisabledText;
-      cursor: inherit;
-    }
+    // .euiCard__titleAnchor,
+    // .euiCard__titleButton {
+    //   // color: $euiColorDisabledText;
+    //   // cursor: inherit;
+    // }
 
     .euiCard__betaBadge:not(.euiBetaBadge-isClickable):not(.euiBetaBadge--hollow) {
       box-shadow: inset 0 0 0 1px $euiBorderColor;
@@ -42,28 +42,28 @@
     }
   }
 
-  &.euiCard--isClickable {
-    display: flex; // Override panel
-    width: 100%;
+  // &.euiCard--isClickable {
+  //   display: flex; // Override panel
+  //   width: 100%;
 
-    &:not(.euiCard-isDisabled) {
-      // Progressive Enhancement Only
-      // The title will still underline to simulate focus in IE
-      &:focus-within {
-        @include euiSlightShadowHover;
-        @include euiFocusRing('large');
-      }
+  //   &:not(.euiCard-isDisabled) {
+  //     // Progressive Enhancement Only
+  //     // The title will still underline to simulate focus in IE
+  //     &:focus-within {
+  //       @include euiSlightShadowHover;
+  //       @include euiFocusRing('large');
+  //     }
 
-      &:focus,
-      &:hover {
-        .euiCard__title,
-        .euiCard__titleAnchor,
-        .euiCard__titleButton {
-          text-decoration: underline;
-        }
-      }
-    }
-  }
+  //     // &:focus,
+  //     // &:hover {
+  //     //   .euiCard__title,
+  //     //   .euiCard__titleAnchor,
+  //     //   .euiCard__titleButton {
+  //     //     text-decoration: underline;
+  //     //   }
+  //     // }
+  //   }
+  // }
 
   .euiCard__top,
   .euiCard__content,
@@ -71,32 +71,32 @@
     width: 100%; // Fixes IE and ensures they always stretch no matter the flex layout
   }
 
-  &.euiCard--leftAligned {
-    text-align: left;
-    align-items: flex-start;
+  // &.euiCard--leftAligned {
+  //   // text-align: left;
+  //   // align-items: flex-start;
 
-    .euiCard__titleButton {
-      text-align: left;
-    }
-  }
+  //   .euiCard__titleButton {
+  //     text-align: left;
+  //   }
+  // }
 
-  &.euiCard--centerAligned {
-    text-align: center;
-    align-items: center;
-  }
+  // &.euiCard--centerAligned {
+  //   text-align: center;
+  //   align-items: center;
+  // }
 
-  &.euiCard--rightAligned {
-    text-align: right;
-    align-items: flex-end;
+  // &.euiCard--rightAligned {
+  //   // text-align: right;
+  //   // align-items: flex-end;
 
-    .euiCard__titleButton {
-      text-align: right;
-    }
-  }
+  //   .euiCard__titleButton {
+  //     text-align: right;
+  //   }
+  // }
 
-  &.euiCard-isSelected {
-    transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
-  }
+  // &.euiCard-isSelected {
+  //   // transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
+  // }
 }
 
 // This creates a bunch of sub selectors for the beta badge
@@ -144,6 +144,7 @@
   position: relative;
   min-height: 1px; /* 2 */
   font-size: 0;
+  margin-bottom: $euiCardSpacing;
 
   .euiCard__image {
     position: relative;
@@ -170,10 +171,10 @@
   }
 }
 
-.euiCard__footer:not(:empty) {
-  flex-grow: 0; /* 1 */
-  margin-top: $euiCardSpacing;
-}
+// .euiCard__footer:not(:empty) {
+//   flex-grow: 0; /* 1 */
+//   margin-top: $euiCardSpacing;
+// }
 
 // Without a border, the image should stand on it's own so it needs to have all corners rounded
 .euiCard[class*='transparent'] .euiCard__image {
@@ -187,29 +188,24 @@
 //   }
 // }
 
-// If an icon or image exists, add some space
-.euiCard__top + .euiCard__content {
-  margin-top: $euiCardSpacing;
-}
-
 .euiCard__content {
   flex-grow: 1; /* 1 */
 
-  .euiCard__description,
-  .euiCard__children {
-    margin-top: $euiCardSpacing / 2;
-  }
+  // .euiCard__description,
+  // .euiCard__children {
+  //   margin-top: $euiCardSpacing / 2;
+  // }
 
-  .euiCard__titleAnchor,
-  .euiCard__titleButton {
-    font: inherit;
-    color: inherit;
-    letter-spacing: inherit;
+  // .euiCard__titleAnchor,
+  // .euiCard__titleButton {
+  //   font: inherit;
+  //   color: inherit;
+  //   letter-spacing: inherit;
 
-    &:focus {
-      text-decoration: underline;
-    }
-  }
+  //   &:focus {
+  //     text-decoration: underline;
+  //   }
+  // }
 
 }
 
