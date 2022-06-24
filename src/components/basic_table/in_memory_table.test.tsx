@@ -510,7 +510,7 @@ describe('EuiInMemoryTable', () => {
         initialSelected: [{ id: '1', name: 'name1' }],
       },
     };
-    const component = mount(<EuiInMemoryTable {...props} />);
+    const component = shallow(<EuiInMemoryTable {...props} />);
 
     expect(component).toMatchSnapshot();
   });

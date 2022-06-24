@@ -1,3 +1,25 @@
+## [`60.0.0`](https://github.com/elastic/eui/tree/v60.0.0)
+
+- Added configuration options to `EuiProvider.cache` to enable more granular style insertion ([#5853](https://github.com/elastic/eui/pull/5853))
+- Added a utility classes component ([#5853](https://github.com/elastic/eui/pull/5853))
+- Added utility classes configuration options to `EuiProvider` ([#5853](https://github.com/elastic/eui/pull/5853))
+- Added `gutterSize` prop to `EuiTimeline` ([#5955](https://github.com/elastic/eui/pull/5955))
+- Added optional `onActiveOptionChange` callback to `EuiSelectable` ([#5978](https://github.com/elastic/eui/pull/5978))
+
+**Bug fixes**
+
+- Fixed bug in `EuiTimelineItem` where the vertical line was not showing on the last item when `verticalAlign` was set to `center` ([#5955](https://github.com/elastic/eui/pull/5955))
+- Fixed bug in `logicalCSS()` where the left and right `logicalPosition`s were wrong ([#5955](https://github.com/elastic/eui/pull/5955))
+- Fixed a maximum call stack error in `EuiComboBox` when an option group contains hundreds of thousands of options ([#5976](https://github.com/elastic/eui/pull/5976))
+
+**Breaking changes**
+
+- Removed `component` prop from `EuiTimelineItem`, which now defaults to `li`. Consequently, a `EuiTimeline` (`ol`) is required to wrap the timeline items ([#5955](https://github.com/elastic/eui/pull/5955))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiStat` to Emotion ([#5968](https://github.com/elastic/eui/pull/5968))
+
 ## [`59.1.0`](https://github.com/elastic/eui/tree/v59.1.0)
 
 - Added new `color` prop to `EuiLoadingSpinner` ([#5878](https://github.com/elastic/eui/pull/5878))

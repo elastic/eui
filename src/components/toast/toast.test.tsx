@@ -27,7 +27,7 @@ describe('EuiToast', () => {
     describe('title', () => {
       test('is rendered', () => {
         const component = <EuiToast title="toast title" />;
-        expect(mount(component)).toMatchSnapshot();
+        expect(render(component)).toMatchSnapshot();
       });
     });
 
@@ -35,7 +35,7 @@ describe('EuiToast', () => {
       COLORS.forEach((color) => {
         test(`${color} is rendered`, () => {
           const component = <EuiToast color={color} title="test title" />;
-          expect(mount(component)).toMatchSnapshot();
+          expect(render(component)).toMatchSnapshot();
         });
       });
     });
@@ -43,7 +43,7 @@ describe('EuiToast', () => {
     describe('iconType', () => {
       test('is rendered', () => {
         const component = <EuiToast iconType="user" title="test title" />;
-        expect(mount(component)).toMatchSnapshot();
+        expect(render(component)).toMatchSnapshot();
       });
     });
 
