@@ -107,9 +107,7 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
           destinationEl.tabIndex = -1;
           destinationEl.addEventListener(
             'blur',
-            () => {
-              destinationEl.removeAttribute('tabindex');
-            },
+            () => destinationEl.removeAttribute('tabindex'),
             { once: true }
           );
         }
