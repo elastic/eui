@@ -40,7 +40,7 @@
     @include euiButtonContentDisabled;
 
     &.euiButtonGroupButton-isSelected {
-      color: makeHighContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled, 2);
+      color: makeDisabledContrastColor($euiButtonColorDisabled, $euiButtonColorDisabled);
       background-color: $euiButtonColorDisabled;
       border-color: $euiButtonColorDisabled;
     }
@@ -76,8 +76,8 @@
       outline: none;
     }
 
-    &:not(:first-child) {
-      margin-left: -1px;
+    &:not(:first-child):not(.euiButtonGroupButton-isSelected):not(:disabled) {
+      box-shadow: -1px 0 0 0 transparentize($euiShadowColor, .95);
     }
 
     &:first-child {
@@ -148,12 +148,12 @@
     &:not(:disabled) {
       &:focus,
       &:focus-within {
-        outline: 2px solid $euiFocusRingColor;
+        outline: $euiFocusRingSize solid currentColor;
       }
     }
 
     @each $name, $color in $euiButtonTypes {
-      &--#{$name} {
+      &[class*='-fill-#{$name}'] {
         // Complicated set of focus states depending on whether it's a button and can receive :focus,
         // or an input and uses focus-within, and browser support for :focus-visible,
         // and override nature of default theme

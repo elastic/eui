@@ -4,7 +4,7 @@ exports[`EuiCardSelect is rendered 1`] = `
 <button
   aria-checked="false"
   aria-label="aria-label"
-  class="euiButtonEmpty euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text testClass1 testClass2 css-15qfgye-empty-text"
+  class="euiButtonEmpty euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text testClass1 testClass2 css-wvaqcf-empty-text"
   data-test-subj="test subject string"
   role="switch"
   type="button"
@@ -24,7 +24,7 @@ exports[`EuiCardSelect is rendered 1`] = `
 exports[`EuiCardSelect props can override color 1`] = `
 <button
   aria-checked="false"
-  class="euiButtonEmpty euiButtonEmpty--xSmall euiCardSelect euiCardSelect--danger css-hdemv5-empty-danger"
+  class="euiButtonEmpty euiButtonEmpty--xSmall euiCardSelect euiCardSelect--danger css-1v3a3p6-empty-danger"
   role="switch"
   type="button"
 >
@@ -43,7 +43,7 @@ exports[`EuiCardSelect props can override color 1`] = `
 exports[`EuiCardSelect props can override text 1`] = `
 <button
   aria-checked="false"
-  class="euiButtonEmpty euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text css-15qfgye-empty-text"
+  class="euiButtonEmpty euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text css-wvaqcf-empty-text"
   role="switch"
   type="button"
 >
@@ -62,7 +62,7 @@ exports[`EuiCardSelect props can override text 1`] = `
 exports[`EuiCardSelect props isDisabled 1`] = `
 <button
   aria-checked="false"
-  class="euiButtonEmpty euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text css-13li5q5-empty-disabled"
+  class="euiButtonEmpty euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text css-1at5a38-empty-disabled"
   disabled=""
   role="switch"
   type="button"
@@ -82,7 +82,7 @@ exports[`EuiCardSelect props isDisabled 1`] = `
 exports[`EuiCardSelect props isSelected 1`] = `
 <button
   aria-checked="true"
-  class="euiButtonEmpty euiButtonEmpty--xSmall euiCardSelect euiCardSelect--success css-15qfgye-empty-text"
+  class="euiButtonEmpty euiButtonEmpty--xSmall euiCardSelect euiCardSelect--success css-wvaqcf-empty-text"
   role="switch"
   type="button"
 >

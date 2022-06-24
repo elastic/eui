@@ -12,7 +12,7 @@ exports[`EuiTableSortMobile is rendered 1`] = `
       class="euiPopover__anchor"
     >
       <button
-        class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-14wjao6-empty-primary"
+        class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-9t7nyf-empty-primary"
         type="button"
       >
         <span

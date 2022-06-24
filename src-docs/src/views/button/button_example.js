@@ -704,8 +704,7 @@ export const ButtonExample = {
       demoPanelProps: { color: 'subdued' },
     },
     {
-      title: 'Ghost',
-      ghostBackground: true,
+      title: 'Ghost vs. dark mode',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -714,19 +713,24 @@ export const ButtonExample = {
       ],
       text: (
         <p>
-          For buttons on dark color backgrounds, you can pass{' '}
-          <EuiCode language="js">{'color="ghost"'}</EuiCode> to any of the
-          button components on this page. These should be used extremely rarely,
-          and are only for placing buttons on top of dark or image-based
-          backgrounds. A good example of their use is in the{' '}
+          For buttons on dark color backgrounds, it is recommended to wrap the
+          entire area in{' '}
+          <EuiCode language="js">
+            {'<EuiThemeProvider colorMode="dark">'}
+          </EuiCode>{' '}
+          to invert all colors to dark mode. The legacy{' '}
+          <EuiCode language="js">{'color="ghost"'}</EuiCode> now uses this
+          method and is set for deprecation. An example usage of inverted
+          buttons is in combination with{' '}
           <Link to="/layout/bottom-bar">
             <strong>EuiBottomBar</strong>
           </Link>{' '}
-          component.
+          which already wraps its children in dark mode.
         </p>
       ),
       snippet: buttonGhostSnippet,
       demo: <ButtonGhost />,
+      demoPanelProps: { paddingSize: 'none' },
     },
   ],
   guidelines: <Guidelines />,

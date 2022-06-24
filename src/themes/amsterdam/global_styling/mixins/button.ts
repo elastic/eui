@@ -123,7 +123,7 @@ export const euiButtonFillColor = (
  * Creates the `empty` version of button styles using the text-variant and adding interactive styles.
  * @param euiThemeContext
  * @param color One of the named button colors or 'disabled'
- * @returns Style string including `hover, focus, active` states
+ * @returns Style object `{ backgroundColor, color }` where `background` is typically used for interactive states
  */
 export const euiButtonEmptyColor = (
   euiThemeContext: UseEuiTheme,
@@ -151,15 +151,10 @@ export const euiButtonEmptyColor = (
       break;
   }
 
-  return `
-    color: ${foreground};
-
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: ${background};
-    }
-  `;
+  return {
+    color: foreground,
+    backgroundColor: background,
+  };
 };
 
 /**
@@ -177,10 +172,21 @@ export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
       `,
       fill: css`
         ${euiButtonFillColor(euiThemeContext, color)}
-        outline-color: ${euiThemeContext.euiTheme.colors.fullShade};
+
+        // Use full shade for outline-color except for dark mode text buttons which need to stay currentColor
+        outline-color: ${euiThemeContext.colorMode === 'DARK' &&
+        color === 'text'
+          ? 'currentColor'
+          : euiThemeContext.euiTheme.colors.fullShade};
       `,
       empty: css`
-        ${euiButtonEmptyColor(euiThemeContext, color)}
+        color: ${euiButtonEmptyColor(euiThemeContext, color).color};
+
+        &:focus,
+        &:active {
+          background-color: ${euiButtonEmptyColor(euiThemeContext, color)
+            .backgroundColor};
+        }
       `,
     };
   }

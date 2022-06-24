@@ -63,7 +63,7 @@ exports[`EuiCard horizontal selectable 1`] = `
   <button
     aria-checked="false"
     aria-describedby="generated-idTitle generated-idDescription"
-    class="euiButtonEmpty euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text css-15qfgye-empty-text"
+    class="euiButtonEmpty euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text css-wvaqcf-empty-text"
     role="switch"
     type="button"
   >
@@ -802,7 +802,7 @@ exports[`EuiCard props selectable 1`] = `
   <button
     aria-checked="false"
     aria-describedby="generated-idTitle generated-idDescription"
-    class="euiButtonEmpty euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text css-15qfgye-empty-text"
+    class="euiButtonEmpty euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text css-wvaqcf-empty-text"
     role="switch"
     type="button"
   >

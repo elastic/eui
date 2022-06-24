@@ -3,7 +3,7 @@
 exports[`EuiFilterButton does not render a badge or count if numFilters is not passed 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonEmpty euiFilterButton testClass1 testClass2 css-15qfgye-empty-text"
+  class="euiButtonEmpty euiFilterButton testClass1 testClass2 css-wvaqcf-empty-text"
   data-test-subj="test subject string"
   type="button"
 >
@@ -24,7 +24,7 @@ exports[`EuiFilterButton does not render a badge or count if numFilters is not p
 exports[`EuiFilterButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonEmpty euiFilterButton testClass1 testClass2 css-15qfgye-empty-text"
+  class="euiButtonEmpty euiFilterButton testClass1 testClass2 css-wvaqcf-empty-text"
   data-test-subj="test subject string"
   type="button"
 >
@@ -44,7 +44,7 @@ exports[`EuiFilterButton is rendered 1`] = `
 
 exports[`EuiFilterButton props grow can be turned off 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton--noGrow css-15qfgye-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton--noGrow css-wvaqcf-empty-text"
   type="button"
 >
   <span
@@ -63,7 +63,7 @@ exports[`EuiFilterButton props grow can be turned off 1`] = `
 
 exports[`EuiFilterButton props iconType and iconSide is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton--hasIcon css-15qfgye-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton--hasIcon css-wvaqcf-empty-text"
   type="button"
 >
   <span
@@ -87,7 +87,7 @@ exports[`EuiFilterButton props iconType and iconSide is rendered 1`] = `
 
 exports[`EuiFilterButton props isDisabled is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton css-13li5q5-empty-disabled"
+  class="euiButtonEmpty euiFilterButton css-1at5a38-empty-disabled"
   disabled=""
   type="button"
 >
@@ -107,7 +107,7 @@ exports[`EuiFilterButton props isDisabled is rendered 1`] = `
 
 exports[`EuiFilterButton props isSelected is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton-isSelected css-15qfgye-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-isSelected css-wvaqcf-empty-text"
   type="button"
 >
   <span
@@ -126,7 +126,7 @@ exports[`EuiFilterButton props isSelected is rendered 1`] = `
 
 exports[`EuiFilterButton props numActiveFilters and hasActiveFilters is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters css-15qfgye-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters css-wvaqcf-empty-text"
   type="button"
 >
   <span
@@ -151,7 +151,7 @@ exports[`EuiFilterButton props numActiveFilters and hasActiveFilters is rendered
 
 exports[`EuiFilterButton props numFilters is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton-hasNotification css-15qfgye-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-hasNotification css-wvaqcf-empty-text"
   type="button"
 >
   <span
@@ -176,7 +176,7 @@ exports[`EuiFilterButton props numFilters is rendered 1`] = `
 
 exports[`EuiFilterButton props type is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton css-15qfgye-empty-text"
+  class="euiButtonEmpty euiFilterButton css-wvaqcf-empty-text"
   type="button"
 >
   <span
@@ -195,7 +195,7 @@ exports[`EuiFilterButton props type is rendered 1`] = `
 
 exports[`EuiFilterButton props withNext is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiFilterButton euiFilterButton--withNext css-15qfgye-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton--withNext css-wvaqcf-empty-text"
   type="button"
 >
   <span
@@ -215,7 +215,7 @@ exports[`EuiFilterButton props withNext is rendered 1`] = `
 exports[`EuiFilterButton renders zero properly 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonEmpty euiFilterButton euiFilterButton-hasNotification testClass1 testClass2 css-15qfgye-empty-text"
+  class="euiButtonEmpty euiFilterButton euiFilterButton-hasNotification testClass1 testClass2 css-wvaqcf-empty-text"
   data-test-subj="test subject string"
   type="button"
 >

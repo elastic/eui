@@ -374,7 +374,7 @@ exports[`EuiNotificationEvent props isRead  is rendered 1`] = `
   >
     <button
       aria-label="Mark title as unread"
-      class="euiButtonIcon euiButtonIcon--xSmall euiNotificationEventReadButton euiNotificationEventReadButton--isRead css-1gfimnf-empty-primary-EuiButtonIcon"
+      class="euiButtonIcon euiButtonIcon--xSmall euiNotificationEventReadButton euiNotificationEventReadButton--isRead css-l12df3-empty-primary-hoverStyles-EuiButtonIcon"
       data-test-subj="id-notificationEventReadButton"
       title="Mark as unread"
       type="button"
@@ -616,7 +616,7 @@ exports[`EuiNotificationEvent props primaryAction is rendered 1`] = `
       class="euiNotificationEvent__primaryAction"
     >
       <button
-        class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushLeft css-14wjao6-empty-primary"
+        class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushLeft css-9t7nyf-empty-primary"
         data-test-subj="id-notificationEventPrimaryAction"
         type="button"
       >
@@ -695,7 +695,7 @@ exports[`EuiNotificationEvent props primaryActionProps is rendered 1`] = `
       class="euiNotificationEvent__primaryAction"
     >
       <button
-        class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushLeft css-14wjao6-empty-primary"
+        class="euiButtonEmpty euiButtonEmpty--small euiButtonEmpty--flushLeft css-9t7nyf-empty-primary"
         data-test-subj="id-notificationEventPrimaryAction"
         type="button"
       >

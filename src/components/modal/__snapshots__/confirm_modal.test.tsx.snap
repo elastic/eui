@@ -27,7 +27,7 @@ Array [
     >
       <button
         aria-label="Closes this modal window"
-        class="euiButtonIcon euiButtonIcon--xSmall euiModal__closeIcon css-19g5rpb-empty-text-EuiButtonIcon"
+        class="euiButtonIcon euiButtonIcon--xSmall euiModal__closeIcon css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
         type="button"
       >
         <span
@@ -72,7 +72,7 @@ Array [
           class="euiModalFooter"
         >
           <button
-            class="euiButtonEmpty css-14wjao6-empty-primary"
+            class="euiButtonEmpty css-9t7nyf-empty-primary"
             data-test-subj="confirmModalCancelButton"
             type="button"
           >
@@ -142,7 +142,7 @@ Array [
     >
       <button
         aria-label="Closes this modal window"
-        class="euiButtonIcon euiButtonIcon--xSmall euiModal__closeIcon css-19g5rpb-empty-text-EuiButtonIcon"
+        class="euiButtonIcon euiButtonIcon--xSmall euiModal__closeIcon css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
         type="button"
       >
         <span
@@ -171,7 +171,7 @@ Array [
           class="euiModalFooter"
         >
           <button
-            class="euiButtonEmpty css-14wjao6-empty-primary"
+            class="euiButtonEmpty css-9t7nyf-empty-primary"
             data-test-subj="confirmModalCancelButton"
             type="button"
           >

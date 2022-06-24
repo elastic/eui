@@ -9,7 +9,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
     class="euiPopover__anchor"
   >
     <button
-      class="euiButtonEmpty euiButtonEmpty--xSmall euiDataGrid__controlBtn css-15qfgye-empty-text"
+      class="euiButtonEmpty euiButtonEmpty--xSmall euiDataGrid__controlBtn css-wvaqcf-empty-text"
       data-test-subj="dataGridColumnSelectorButton"
       type="button"
     >
@@ -231,7 +231,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
           class="euiFlexItem euiFlexItem--flexGrowZero"
         >
           <button
-            class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushLeft css-14wjao6-empty-primary"
+            class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushLeft css-9t7nyf-empty-primary"
             data-test-subj="dataGridColumnSelectorShowAllButton"
             type="button"
           >
@@ -250,7 +250,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
           class="euiFlexItem euiFlexItem--flexGrowZero"
         >
           <button
-            class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-14wjao6-empty-primary"
+            class="euiButtonEmpty euiButtonEmpty--xSmall euiButtonEmpty--flushRight css-9t7nyf-empty-primary"
             data-test-subj="dataGridColumnSelectorHideAllButton"
             type="button"
           >

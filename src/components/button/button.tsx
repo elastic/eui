@@ -35,6 +35,7 @@ import {
   EuiButtonDisplayCommonProps,
   isButtonDisabled,
 } from './button_display/_button_display';
+import { EuiThemeProvider } from '../../services';
 
 export const COLORS = [...BUTTON_COLORS, 'ghost'] as const;
 export type EuiButtonColor = _EuiButtonColor | 'ghost';
@@ -49,7 +50,8 @@ interface BaseProps {
    */
   fill?: boolean;
   /**
-   * Any of our named colors.
+   * Any of the named color palette options.
+   * **`'ghost'` is set for deprecation. Use EuiThemeProvide.colorMode = 'dark' instead.**
    */
   color?: EuiButtonColor;
   /**
@@ -90,12 +92,9 @@ export type Props = ExclusiveUnion<
  * EuiButton is largely responsible for providing relevant props
  * and the logic for element-specific attributes
  */
-export const EuiButton: FunctionComponent<Props> = ({
-  buttonRef,
-  color: _color = 'primary',
-  fill,
-  ...rest
-}) => {
+export const EuiButton: FunctionComponent<Props> = (props) => {
+  const { buttonRef, color: _color = 'primary', fill, ...rest } = props;
+
   const buttonIsDisabled = isButtonDisabled({
     href: rest.href,
     isDisabled: rest.isDisabled || rest.disabled,
@@ -103,19 +102,24 @@ export const EuiButton: FunctionComponent<Props> = ({
   });
 
   // eslint-disable-next-line no-nested-ternary
-  const color = buttonIsDisabled
-    ? 'disabled'
-    : _color === 'ghost'
-    ? 'text'
-    : _color;
+  const color = buttonIsDisabled ? 'disabled' : _color;
 
   const buttonColorStyles = useEuiButtonColorCSS({
     display: fill ? 'fill' : 'base',
-  })[color];
+  })[color === 'ghost' ? 'text' : color];
 
   const buttonFocusStyle = useEuiButtonFocusCSS();
 
   const cssStyles = [buttonColorStyles, buttonFocusStyle];
+
+  if (_color === 'ghost') {
+    // INCEPTION: If `ghost`, re-implement with a wrapping dark mode theme provider
+    return (
+      <EuiThemeProvider colorMode="dark">
+        <EuiButton {...props} color="text" />
+      </EuiThemeProvider>
+    );
+  }
 
   return (
     <EuiButtonDisplay
@@ -133,6 +137,7 @@ EuiButton.displayName = 'EuiButton';
 EuiButton.defaultProps = {
   minWidth: 112,
   size: 'm',
+  color: 'primary',
 };
 
 export type EuiButtonDisplayProps = EuiButtonProps &

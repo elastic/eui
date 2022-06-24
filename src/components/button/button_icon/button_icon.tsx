@@ -14,7 +14,11 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { getSecureRelForTarget } from '../../../services';
+import {
+  EuiThemeProvider,
+  getSecureRelForTarget,
+  useEuiTheme,
+} from '../../../services';
 import {
   CommonProps,
   ExclusiveUnion,
@@ -28,10 +32,12 @@ import { IconType, IconSize, EuiIcon } from '../../icon';
 import { EuiLoadingSpinner } from '../../loading';
 
 import {
+  euiButtonEmptyColor,
   useEuiButtonColorCSS,
   _EuiButtonColor,
 } from '../../../themes/amsterdam/global_styling/mixins/button';
 import { isButtonDisabled } from '../button_display/_button_display';
+import { css } from '@emotion/react';
 
 const displayToClassNameMap = {
   base: null,
@@ -46,6 +52,7 @@ export interface EuiButtonIconProps extends CommonProps {
   iconType: IconType;
   /**
    * Any of the named color palette options.
+   * **`'ghost'` is set for deprecation. Use EuiThemeProvide.colorMode = 'dark' instead.**
    */
   color?: _EuiButtonColor | 'ghost';
   'aria-label'?: string;
@@ -112,24 +119,27 @@ export type EuiButtonIconSizes = keyof typeof sizeToClassNameMap;
 
 export const SIZES = keysOf(sizeToClassNameMap);
 
-export const EuiButtonIcon: FunctionComponent<Props> = ({
-  className,
-  iconType,
-  iconSize = 'm',
-  color: _color = 'primary',
-  isDisabled: _isDisabled,
-  disabled,
-  href,
-  type = 'button',
-  display = 'empty',
-  target,
-  rel,
-  size = 'xs',
-  buttonRef,
-  isSelected,
-  isLoading,
-  ...rest
-}) => {
+export const EuiButtonIcon: FunctionComponent<Props> = (props) => {
+  const {
+    className,
+    iconType,
+    iconSize = 'm',
+    color: _color = 'primary',
+    isDisabled: _isDisabled,
+    disabled,
+    href,
+    type = 'button',
+    display = 'empty',
+    target,
+    rel,
+    size = 'xs',
+    buttonRef,
+    isSelected,
+    isLoading,
+    ...rest
+  } = props;
+
+  const euiThemeContext = useEuiTheme();
   const isDisabled = isButtonDisabled({
     isDisabled: _isDisabled || disabled,
     href,
@@ -152,11 +162,31 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
     display,
   })[color];
 
+  // Temporary extra style for empty `:hover` state until we decide how to handle universally
+  const hoverStyles =
+    display === 'empty'
+      ? css`
+          &:hover {
+            background-color: ${euiButtonEmptyColor(euiThemeContext, color)
+              .backgroundColor};
+          }
+        `
+      : css``;
+
   const classes = classNames(
     'euiButtonIcon',
     size && sizeToClassNameMap[size],
     className
   );
+
+  if (_color === 'ghost') {
+    // INCEPTION: If `ghost`, re-implement with a wrapping dark mode theme provider
+    return (
+      <EuiThemeProvider colorMode="dark">
+        <EuiButtonIcon {...props} color="text" />
+      </EuiThemeProvider>
+    );
+  }
 
   // Add an icon to the button if one exists.
   let buttonIcon;
@@ -189,7 +219,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
 
     return (
       <a
-        css={[buttonColorStyles]}
+        css={[buttonColorStyles, hoverStyles]}
         tabIndex={isAriaHidden ? -1 : undefined}
         className={classes}
         href={href}
@@ -206,7 +236,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   let buttonType: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   return (
     <button
-      css={[buttonColorStyles]}
+      css={[buttonColorStyles, hoverStyles]}
       tabIndex={isAriaHidden ? -1 : undefined}
       disabled={isDisabled}
       className={classes}

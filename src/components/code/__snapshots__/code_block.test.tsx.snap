@@ -119,7 +119,7 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
                 Object {
                   "insert": [Function],
                   "inserted": Object {
-                    "19g5rpb-empty-text-EuiButtonIcon": true,
+                    "dsw53p-empty-text-hoverStyles-EuiButtonIcon": true,
                   },
                   "key": "css",
                   "nonce": undefined,
@@ -134,14 +134,21 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
                         data-s=""
                       >
                         
-                        .css-19g5rpb-empty-text-EuiButtonIcon{color:#343741;}
+                        .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon{color:#343741;}
                       </style>
                       <style
                         data-emotion="css"
                         data-s=""
                       >
                         
-                        .css-19g5rpb-empty-text-EuiButtonIcon:hover,.css-19g5rpb-empty-text-EuiButtonIcon:focus,.css-19g5rpb-empty-text-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
+                        .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:focus,.css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
+                      </style>
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:hover{background-color:rgba(211,218,230,0.2);}
                       </style>
                       <style
                         type="text/css"
@@ -153,7 +160,7 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
 
                       </style>
                     </head>,
-                    "ctr": 2,
+                    "ctr": 3,
                     "insertionPoint": undefined,
                     "isSpeedy": false,
                     "key": "css",
@@ -165,14 +172,21 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
                         data-s=""
                       >
                         
-                        .css-19g5rpb-empty-text-EuiButtonIcon{color:#343741;}
+                        .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon{color:#343741;}
                       </style>,
                       <style
                         data-emotion="css"
                         data-s=""
                       >
                         
-                        .css-19g5rpb-empty-text-EuiButtonIcon:hover,.css-19g5rpb-empty-text-EuiButtonIcon:focus,.css-19g5rpb-empty-text-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
+                        .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:focus,.css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
+                      </style>,
+                      <style
+                        data-emotion="css"
+                        data-s=""
+                      >
+                        
+                        .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:hover{background-color:rgba(211,218,230,0.2);}
                       </style>,
                     ],
                   },
@@ -182,24 +196,16 @@ exports[`EuiCodeBlock fullscreen displays content in fullscreen mode 1`] = `
               serialized={
                 Object {
                   "map": undefined,
-                  "name": "19g5rpb-empty-text-EuiButtonIcon",
+                  "name": "dsw53p-empty-text-hoverStyles-EuiButtonIcon",
                   "next": undefined,
-                  "styles": "
-    color: #343741;
-
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: rgba(211,218,230,0.2);
-    }
-  ;;label:empty;;;label:text;;;;label:EuiButtonIcon;;",
+                  "styles": "color:#343741;&:focus,&:active{background-color:rgba(211,218,230,0.2);};label:empty;;;label:text;;;&:hover{background-color:rgba(211,218,230,0.2);};label:hoverStyles;;;;label:EuiButtonIcon;;",
                   "toString": [Function],
                 }
               }
             />
             <button
               aria-label="Collapse"
-              className="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton css-19g5rpb-empty-text-EuiButtonIcon"
+              className="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
               disabled={false}
               onClick={[Function]}
               type="button"
@@ -551,7 +557,7 @@ console.log(some);"
                           Object {
                             "insert": [Function],
                             "inserted": Object {
-                              "19g5rpb-empty-text-EuiButtonIcon": true,
+                              "dsw53p-empty-text-hoverStyles-EuiButtonIcon": true,
                             },
                             "key": "css",
                             "nonce": undefined,
@@ -566,17 +572,24 @@ console.log(some);"
                                   data-s=""
                                 >
                                   
-                                  .css-19g5rpb-empty-text-EuiButtonIcon{color:#343741;}
+                                  .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon{color:#343741;}
                                 </style>
                                 <style
                                   data-emotion="css"
                                   data-s=""
                                 >
                                   
-                                  .css-19g5rpb-empty-text-EuiButtonIcon:hover,.css-19g5rpb-empty-text-EuiButtonIcon:focus,.css-19g5rpb-empty-text-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
+                                  .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:focus,.css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
+                                </style>
+                                <style
+                                  data-emotion="css"
+                                  data-s=""
+                                >
+                                  
+                                  .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:hover{background-color:rgba(211,218,230,0.2);}
                                 </style>
                               </head>,
-                              "ctr": 2,
+                              "ctr": 3,
                               "insertionPoint": undefined,
                               "isSpeedy": false,
                               "key": "css",
@@ -588,14 +601,21 @@ console.log(some);"
                                   data-s=""
                                 >
                                   
-                                  .css-19g5rpb-empty-text-EuiButtonIcon{color:#343741;}
+                                  .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon{color:#343741;}
                                 </style>,
                                 <style
                                   data-emotion="css"
                                   data-s=""
                                 >
                                   
-                                  .css-19g5rpb-empty-text-EuiButtonIcon:hover,.css-19g5rpb-empty-text-EuiButtonIcon:focus,.css-19g5rpb-empty-text-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
+                                  .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:focus,.css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:active{background-color:rgba(211,218,230,0.2);}
+                                </style>,
+                                <style
+                                  data-emotion="css"
+                                  data-s=""
+                                >
+                                  
+                                  .css-dsw53p-empty-text-hoverStyles-EuiButtonIcon:hover{background-color:rgba(211,218,230,0.2);}
                                 </style>,
                               ],
                             },
@@ -605,24 +625,16 @@ console.log(some);"
                         serialized={
                           Object {
                             "map": undefined,
-                            "name": "19g5rpb-empty-text-EuiButtonIcon",
+                            "name": "dsw53p-empty-text-hoverStyles-EuiButtonIcon",
                             "next": undefined,
-                            "styles": "
-    color: #343741;
-
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: rgba(211,218,230,0.2);
-    }
-  ;;label:empty;;;label:text;;;;label:EuiButtonIcon;;",
+                            "styles": "color:#343741;&:focus,&:active{background-color:rgba(211,218,230,0.2);};label:empty;;;label:text;;;&:hover{background-color:rgba(211,218,230,0.2);};label:hoverStyles;;;;label:EuiButtonIcon;;",
                             "toString": [Function],
                           }
                         }
                       />
                       <button
                         aria-label="Copy"
-                        className="euiButtonIcon euiButtonIcon--xSmall css-19g5rpb-empty-text-EuiButtonIcon"
+                        className="euiButtonIcon euiButtonIcon--xSmall css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
                         disabled={false}
                         onBlur={[Function]}
                         onClick={[Function]}
@@ -721,7 +733,7 @@ exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
   >
     <button
       aria-label="Expand"
-      class="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton css-19g5rpb-empty-text-EuiButtonIcon"
+      class="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
       type="button"
     >
       <span
@@ -976,7 +988,7 @@ exports[`EuiCodeBlock virtualization renders a virtualized code block 1`] = `
   >
     <button
       aria-label="Expand"
-      class="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton css-19g5rpb-empty-text-EuiButtonIcon"
+      class="euiButtonIcon euiButtonIcon--xSmall euiCodeBlock__fullScreenButton css-dsw53p-empty-text-hoverStyles-EuiButtonIcon"
       type="button"
     >
       <span

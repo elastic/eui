@@ -16,7 +16,7 @@ import {
   PropsForButton,
   keysOf,
 } from '../../common';
-import { getSecureRelForTarget } from '../../../services';
+import { EuiThemeProvider, getSecureRelForTarget } from '../../../services';
 
 import {
   EuiButtonContentDeprecated as EuiButtonContent,
@@ -56,7 +56,8 @@ export interface CommonEuiButtonEmptyProps
   extends EuiButtonContentProps,
     CommonProps {
   /**
-   * Any of our named colors
+   * Any of the named color palette options.
+   * **`'ghost'` is set for deprecation. Use EuiThemeProvide.colorMode = 'dark' instead.**
    */
   color?: _EuiButtonColor | 'ghost';
   size?: EuiButtonEmptySizes;
@@ -97,28 +98,32 @@ export type EuiButtonEmptyProps = ExclusiveUnion<
   EuiButtonEmptyPropsForButton
 >;
 
-export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
-  children,
-  className,
-  iconType,
-  iconSide = 'left',
-  iconSize = 'm',
-  color: _color = 'primary',
-  size = 'm',
-  flush,
-  isDisabled: _isDisabled,
-  disabled,
-  isLoading,
-  href,
-  target,
-  rel,
-  type = 'button',
-  buttonRef,
-  contentProps,
-  textProps,
-  isSelected,
-  ...rest
-}) => {
+export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = (
+  props
+) => {
+  const {
+    children,
+    className,
+    iconType,
+    iconSide = 'left',
+    iconSize = 'm',
+    color: _color = 'primary',
+    size = 'm',
+    flush,
+    isDisabled: _isDisabled,
+    disabled,
+    isLoading,
+    href,
+    target,
+    rel,
+    type = 'button',
+    buttonRef,
+    contentProps,
+    textProps,
+    isSelected,
+    ...rest
+  } = props;
+
   const isDisabled = isButtonDisabled({
     isDisabled: _isDisabled || disabled,
     href,
@@ -130,6 +135,15 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   const buttonColorStyles = useEuiButtonColorCSS({
     display: 'empty',
   })[color];
+
+  if (_color === 'ghost') {
+    // INCEPTION: If `ghost`, re-implement with a wrapping dark mode theme provider
+    return (
+      <EuiThemeProvider colorMode="dark">
+        <EuiButtonEmpty {...props} color="text" />
+      </EuiThemeProvider>
+    );
+  }
 
   const classes = classNames(
     'euiButtonEmpty',

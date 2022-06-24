@@ -12,7 +12,7 @@ exports[`EuiAutoRefresh is rendered 1`] = `
         class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
       >
         <button
-          class="euiButtonEmpty euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend css-15qfgye-empty-text"
+          class="euiButtonEmpty euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend css-wvaqcf-empty-text"
           type="button"
         >
           <span
@@ -64,7 +64,7 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
         class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
       >
         <button
-          class="euiButtonEmpty euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend css-15qfgye-empty-text"
+          class="euiButtonEmpty euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend css-wvaqcf-empty-text"
           type="button"
         >
           <span
@@ -115,7 +115,7 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
         class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
       >
         <button
-          class="euiButtonEmpty euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend css-15qfgye-empty-text"
+          class="euiButtonEmpty euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend css-wvaqcf-empty-text"
           type="button"
         >
           <span
@@ -163,7 +163,7 @@ exports[`EuiAutoRefreshButton is rendered 1`] = `
   >
     <button
       aria-label="aria-label"
-      class="euiButtonEmpty euiButtonEmpty--small euiAutoRefreshButton testClass1 testClass2 css-15qfgye-empty-text"
+      class="euiButtonEmpty euiButtonEmpty--small euiAutoRefreshButton testClass1 testClass2 css-wvaqcf-empty-text"
       data-test-subj="test subject string"
       title="Auto refresh is off"
       type="button"
@@ -195,7 +195,7 @@ exports[`EuiAutoRefreshButton isPaused is false 1`] = `
     class="euiPopover__anchor"
   >
     <button
-      class="euiButtonEmpty euiButtonEmpty--small euiAutoRefreshButton css-15qfgye-empty-text"
+      class="euiButtonEmpty euiButtonEmpty--small euiAutoRefreshButton css-wvaqcf-empty-text"
       title="Auto refresh is on and set to 1 second"
       type="button"
     >
@@ -226,7 +226,7 @@ exports[`EuiAutoRefreshButton refreshInterval is rendered 1`] = `
     class="euiPopover__anchor"
   >
     <button
-      class="euiButtonEmpty euiButtonEmpty--small euiAutoRefreshButton css-15qfgye-empty-text"
+      class="euiButtonEmpty euiButtonEmpty--small euiAutoRefreshButton css-wvaqcf-empty-text"
       title="Auto refresh is on and set to 2 seconds"
       type="button"
     >
