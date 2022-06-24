@@ -22,7 +22,7 @@ exports[`EuiScreenReaderLive with a static configuration accepts \`aria-live\` 1
 </div>
 `;
 
-exports[`EuiScreenReaderLive with a static configuration accepts \`isFocusable\` 1`] = `
+exports[`EuiScreenReaderLive with a static configuration accepts \`focusRegionOnTextChange\` 1`] = `
 <div
   class="emotion-euiScreenReaderOnly"
   tabindex="-1"

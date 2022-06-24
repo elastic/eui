@@ -56,7 +56,7 @@ describe('EuiScreenReaderLive', () => {
       expect(component).toMatchSnapshot();
     });
 
-    it('accepts `isFocusable`', () => {
+    it('accepts `focusRegionOnTextChange`', () => {
       const component = render(
         <EuiScreenReaderLive focusRegionOnTextChange>
           {content}
