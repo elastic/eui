@@ -7,9 +7,11 @@
  */
 
 import { css } from '@emotion/react';
+import { EuiCardProps } from '..';
 import {
   euiPaddingSize,
   logicalCSS,
+  logicals,
   logicalTextAlignCSS,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
@@ -26,10 +28,15 @@ const halfPaddingKey = 's';
  * 4. Ensures the contents always stretch no matter the flex layout
  */
 
-export const euiCardStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiCardStyles = (
+  euiThemeContext: UseEuiTheme,
+  paddingSize: EuiCardProps['paddingSize'],
+  color: EuiCardProps['display']
+) => {
   const { euiTheme } = euiThemeContext;
-  const padding = euiPaddingSize(euiThemeContext, paddingKey);
-  const halfPadding = euiPaddingSize(euiThemeContext, halfPaddingKey);
+  const paddingAmount = euiPaddingSize(euiThemeContext, paddingSize!);
+  const spacing = euiPaddingSize(euiThemeContext, paddingKey);
+  const halfSpacing = euiPaddingSize(euiThemeContext, halfPaddingKey);
 
   return {
     euiCard: css`
@@ -62,19 +69,73 @@ export const euiCardStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.disabledText};
     `,
 
+    euiCard__content: css`
+      width: 100%; /* 4 */
+      flex-grow: 1;
+    `,
+
     euiCard__children: css`
-      ${logicalCSS('margin-top', halfPadding)};
+      ${logicalCSS('margin-top', halfSpacing)};
     `,
 
     euiCard__description: css`
-      ${logicalCSS('margin-top', halfPadding)};
+      ${logicalCSS('margin-top', halfSpacing)};
     `,
 
     euiCard__footer: css`
       width: 100%; /* 4 */
       flex-grow: 0; /* 1 */
-      ${logicalCSS('margin-top', padding)};
+      ${logicalCSS('margin-top', spacing)};
     `,
+
+    euiCard__top: css`
+      width: 100%; /* 4 */
+      flex-grow: 0; /* 1 */
+      position: relative;
+      min-height: 1px; /* 2 */
+      font-size: 0;
+      ${logicalCSS('margin-bottom', spacing)};
+    `,
+
+    euiCard__image: css`
+      position: relative;
+      overflow: hidden;
+
+      // Padding based sizing & negative margins
+      width: calc(100% + (${paddingAmount} * 2));
+      left: -${paddingAmount};
+      top: -${paddingAmount};
+      // ensure the parent is only as tall as the image
+      margin-bottom: -${paddingAmount};
+
+      // match border radius, minus 1px because it's inside a border
+      ${logicals['border-top-left-radius']}: calc(${euiTheme.border.radius
+        .medium} - 1px);
+      ${logicals['border-top-right-radius']}: calc(${euiTheme.border.radius
+        .medium} - 1px);
+
+      ${color === 'transparent'
+        ? `border-radius: ${euiTheme.border.radius.medium};`
+        : undefined}
+
+      img {
+        width: 100%;
+      }
+    `,
+
+    icon: {
+      euiCard__icon: css`
+        ${logicalCSS('margin-top', halfSpacing)};
+      `,
+
+      withImage: css`
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        // Important needed to override current Sass styles on .euiIcon
+        transform: translate(-50%, calc(-50% + -${paddingAmount})) !important;
+      `,
+    },
   };
 };
 

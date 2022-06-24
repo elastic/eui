@@ -172,7 +172,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   layout = 'vertical',
   selectable,
   display,
-  paddingSize,
+  paddingSize = 'm',
   ...rest
 }) => {
   const isHrefValid = !href || validateHref(href);
@@ -181,12 +181,14 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     !isDisabled && (onClick || href || (selectable && !selectable.isDisabled));
 
   const euiThemeContext = useEuiTheme();
-  const styles = euiCardStyles(euiThemeContext);
+  const styles = euiCardStyles(euiThemeContext, paddingSize, display);
   const cardStyles = [
     styles.euiCard,
     styles.aligned[textAlign],
     isDisabled && styles.disabled,
   ];
+
+  const contentStyles = [styles.euiCard__content];
 
   const textStyles = euiCardTextStyles(euiThemeContext);
   const textCSS = [
@@ -249,8 +251,9 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   let imageNode;
   if (image && layout === 'vertical') {
     if (isValidElement(image) || typeof image === 'string') {
+      const imageStyles = [styles.euiCard__image];
       imageNode = (
-        <div className="euiCard__image">
+        <div className="euiCard__image" css={imageStyles}>
           {isValidElement(image) ? image : <img src={image} alt="" />}
         </div>
       );
@@ -261,15 +264,22 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   let iconNode;
   if (icon) {
+    const iconStyles = [
+      styles.icon.euiCard__icon,
+      imageNode && styles.icon.withImage,
+    ];
     iconNode = React.cloneElement(icon, {
       className: classNames(icon.props.className, 'euiCard__icon'),
+      css: iconStyles,
     });
   }
 
   let optionalCardTop;
   if (imageNode || iconNode) {
+    const topStyles = [styles.euiCard__top];
+
     optionalCardTop = (
-      <div className="euiCard__top">
+      <div className="euiCard__top" css={topStyles}>
         {imageNode}
         {iconNode}
       </div>
@@ -306,7 +316,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     );
 
     // Increase padding size when there is a beta badge unless it's already determined
-    paddingSize = paddingSize || 'l';
+    // paddingSize = paddingSize || 'l';
   }
 
   /**
@@ -419,7 +429,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     >
       {optionalCardTop}
 
-      <div className="euiCard__content">
+      <div className="euiCard__content" css={contentStyles}>
         <EuiTitle
           id={`${ariaId}Title`}
           className="euiCard__title"

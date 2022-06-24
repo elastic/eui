@@ -65,11 +65,11 @@
   //   }
   // }
 
-  .euiCard__top,
-  .euiCard__content,
-  .euiCard__footer {
-    width: 100%; // Fixes IE and ensures they always stretch no matter the flex layout
-  }
+  // .euiCard__top,
+  // .euiCard__content,
+  // .euiCard__footer {
+  //   width: 100%; // Fixes IE and ensures they always stretch no matter the flex layout
+  // }
 
   // &.euiCard--leftAligned {
   //   // text-align: left;
@@ -111,65 +111,65 @@
 // }
 
 
-@each $modifier, $paddingAmount in $euiPanelPaddingModifiers {
-  .euiCard[class*='#{$modifier}'] {
-    padding: $paddingAmount;
+// @each $modifier, $paddingAmount in $euiPanelPaddingModifiers {
+//   .euiCard[class*='#{$modifier}'] {
+//     // padding: $paddingAmount;
 
-    // &.euiCard--isSelectable {
-    //   padding-bottom: $paddingAmount + $euiCardBottomNodeHeight;
-    // }
+//     // &.euiCard--isSelectable {
+//     //   padding-bottom: $paddingAmount + $euiCardBottomNodeHeight;
+//     // }
 
-    .euiCard__top {
+//     .euiCard__top {
 
-      .euiCard__image {
-        width: calc(100% + (#{$paddingAmount} * 2));
-        left: $paddingAmount * -1;
-        top: $paddingAmount * -1;
-        margin-bottom: $paddingAmount * -1; // ensure the parent is only as tall as the image
+//       .euiCard__image {
+//         // width: calc(100% + (#{$paddingAmount} * 2));
+//         // left: $paddingAmount * -1;
+//         // top: $paddingAmount * -1;
+//         // margin-bottom: $paddingAmount * -1; // ensure the parent is only as tall as the image
 
-        // IF both exist, position the icon centered on top of image
-        // sass-lint:disable-block nesting-depth
-        + .euiCard__icon {
-          transform: translate(-50%, -75%); // Fallback for IE as it doesn't accept calcs in translates
-          transform: translate(-50%, calc(-50% + #{$paddingAmount * -1})); // sass-lint:disable-line no-duplicate-properties
-        }
-      }
-    }
+//         // IF both exist, position the icon centered on top of image
+//         // sass-lint:disable-block nesting-depth
+//         + .euiCard__icon {
+//           transform: translate(-50%, -75%); // Fallback for IE as it doesn't accept calcs in translates
+//           transform: translate(-50%, calc(-50% + #{$paddingAmount * -1})); // sass-lint:disable-line no-duplicate-properties
+//         }
+//       }
+//     }
 
-  }
-}
+//   }
+// }
 
-.euiCard__top {
-  flex-grow: 0; /* 1 */
-  position: relative;
-  min-height: 1px; /* 2 */
-  font-size: 0;
-  margin-bottom: $euiCardSpacing;
+// .euiCard__top {
+//   flex-grow: 0; /* 1 */
+//   position: relative;
+//   min-height: 1px; /* 2 */
+//   font-size: 0;
+//   margin-bottom: $euiCardSpacing;
 
-  .euiCard__image {
-    position: relative;
+//   .euiCard__image {
+//     position: relative;
 
-    // match border radius, minus 1px because it's inside a border
-    border-top-left-radius: $euiBorderRadius - 1px;
-    border-top-right-radius: $euiBorderRadius - 1px;
-    overflow: hidden;
+//     // match border radius, minus 1px because it's inside a border
+//     border-top-left-radius: $euiBorderRadius - 1px;
+//     border-top-right-radius: $euiBorderRadius - 1px;
+//     overflow: hidden;
 
-    img {
-      width: 100%;
-    }
+//     // img {
+//     //   width: 100%;
+//     // }
 
-    // IF both exist, position the icon centered on top of image
-    + .euiCard__icon {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-    }
-  }
+//     // IF both exist, position the icon centered on top of image
+//     + .euiCard__icon {
+//       position: absolute;
+//       top: 50%;
+//       left: 50%;
+//     }
+//   }
 
-  .euiCard__icon {
-    margin-top: $euiCardSpacing / 2;
-  }
-}
+//   .euiCard__icon {
+//     margin-top: $euiCardSpacing / 2;
+//   }
+// }
 
 // .euiCard__footer:not(:empty) {
 //   flex-grow: 0; /* 1 */
@@ -177,9 +177,9 @@
 // }
 
 // Without a border, the image should stand on it's own so it needs to have all corners rounded
-.euiCard[class*='transparent'] .euiCard__image {
-  border-radius: $euiBorderRadius;
-}
+// .euiCard[class*='transparent'] .euiCard__image {
+//   border-radius: $euiBorderRadius;
+// }
 
 // @each $name, $color in $euiCardSelectButtonBorders {
 //   .euiCard--isSelectable--#{$name}.euiCard-isSelected:not(.euiCard-isDisabled) {
@@ -188,26 +188,26 @@
 //   }
 // }
 
-.euiCard__content {
-  flex-grow: 1; /* 1 */
+// .euiCard__content {
+//   flex-grow: 1; /* 1 */
 
-  // .euiCard__description,
-  // .euiCard__children {
-  //   margin-top: $euiCardSpacing / 2;
-  // }
+//   // .euiCard__description,
+//   // .euiCard__children {
+//   //   margin-top: $euiCardSpacing / 2;
+//   // }
 
-  // .euiCard__titleAnchor,
-  // .euiCard__titleButton {
-  //   font: inherit;
-  //   color: inherit;
-  //   letter-spacing: inherit;
+//   // .euiCard__titleAnchor,
+//   // .euiCard__titleButton {
+//   //   font: inherit;
+//   //   color: inherit;
+//   //   letter-spacing: inherit;
 
-  //   &:focus {
-  //     text-decoration: underline;
-  //   }
-  // }
+//   //   &:focus {
+//   //     text-decoration: underline;
+//   //   }
+//   // }
 
-}
+// }
 
 .euiCard.euiCard--horizontal {
   .euiCard__content,
