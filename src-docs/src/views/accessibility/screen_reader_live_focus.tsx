@@ -45,7 +45,7 @@ export default () => {
   return (
     <>
       <EuiPageTemplate
-        pageSideBar={<EuiSideNav items={sideNav} />}
+        pageSideBar={<EuiSideNav items={sideNav} isOpenOnMobile />}
         pageHeader={{
           iconType: 'logoElastic',
           pageTitle: pageTitle,
