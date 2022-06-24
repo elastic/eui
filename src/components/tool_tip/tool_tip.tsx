@@ -13,10 +13,11 @@ import React, {
   ReactElement,
   ReactNode,
   MouseEvent as ReactMouseEvent,
+  HTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
 
-import { keysOf } from '../common';
+import { CommonProps, keysOf } from '../common';
 import { EuiPortal } from '../portal';
 import { EuiToolTipPopover } from './tool_tip_popover';
 import { enqueueStateChange } from '../../services/react';
@@ -70,9 +71,13 @@ const DEFAULT_TOOLTIP_STYLES: ToolTipStyles = {
 
 export interface EuiToolTipProps {
   /**
-   * Passes onto the the trigger.
+   * Passes onto the span wrapping the trigger.
    */
   anchorClassName?: string;
+  /**
+   * Passes onto the span wrapping the trigger.
+   */
+  anchorProps?: CommonProps & HTMLAttributes<HTMLSpanElement>;
   /**
    * The in-view trigger for your tooltip.
    */
@@ -290,6 +295,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
       children,
       className,
       anchorClassName,
+      anchorProps,
       content,
       title,
       delay,
@@ -339,6 +345,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
       <span
         ref={(anchor) => (this.anchor = anchor)}
         className={anchorClasses}
+        {...anchorProps}
         onMouseOver={this.showToolTip}
         onMouseOut={this.onMouseOut}
       >

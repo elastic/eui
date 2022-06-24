@@ -30,7 +30,11 @@ import { useGeneratedHtmlId } from '../../services/accessibility';
 import { validateHref } from '../../services/security/href_validator';
 import { EuiPanel, EuiPanelProps } from '../panel';
 import { EuiSpacer } from '../spacer';
-import { euiCardStyles, euiCardTextStyles } from './card.styles';
+import {
+  euiCardBetaBadgeStyles,
+  euiCardStyles,
+  euiCardTextStyles,
+} from './card.styles';
 
 type CardAlignment = 'left' | 'center' | 'right';
 
@@ -278,19 +282,27 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   let optionalBetaBadge;
   let optionalBetaBadgeID = '';
+  let optionalBetaCSS;
   if (betaBadgeProps?.label) {
+    const betaStyles = euiCardBetaBadgeStyles(euiThemeContext);
+    optionalBetaCSS = betaStyles.hasBetaBadge;
+    const anchorCSS = [betaStyles.euiCard__betaBadgeAnchor];
+    const badgeCSS = [betaStyles.euiCard__betaBadge];
+
     optionalBetaBadgeID = `${ariaId}BetaBadge`;
     optionalBetaBadge = (
-      <span className="euiCard__betaBadgeWrapper">
-        <EuiBetaBadge
-          id={optionalBetaBadgeID}
-          {...(betaBadgeProps as EuiBetaBadgeProps)}
-          className={classNames(
-            'euiCard__betaBadge',
-            betaBadgeProps?.className
-          )}
-        />
-      </span>
+      <EuiBetaBadge
+        css={badgeCSS}
+        color={
+          isDisabled && !betaBadgeProps.onClick && !betaBadgeProps.href
+            ? 'subdued'
+            : 'hollow'
+        }
+        {...betaBadgeProps}
+        // @ts-expect-error Help?
+        anchorProps={{ css: anchorCSS, ...betaBadgeProps.anchorProps }}
+        id={optionalBetaBadgeID}
+      />
     );
 
     // Increase padding size when there is a beta badge unless it's already determined
@@ -397,7 +409,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     <EuiPanel
       element="div"
       className={classes}
-      css={cardStyles}
+      css={[...cardStyles, optionalBetaCSS]}
       onClick={isClickable ? outerOnClick : undefined}
       color={isDisabled ? 'subdued' : display}
       hasShadow={isDisabled || display ? false : true}

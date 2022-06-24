@@ -19,7 +19,7 @@ import { CommonProps, ExclusiveUnion, keysOf } from '../../common';
 
 import { getSecureRelForTarget } from '../../../services';
 
-import { EuiToolTip, ToolTipPositions } from '../../tool_tip';
+import { EuiToolTip, EuiToolTipProps, ToolTipPositions } from '../../tool_tip';
 
 import { EuiIcon, IconType } from '../../icon';
 
@@ -107,6 +107,11 @@ type BadgeProps = {
   tooltipPosition?: ToolTipPositions;
 
   /**
+   * Passes onto the span wrapping the badge
+   */
+  anchorProps?: EuiToolTipProps['anchorProps'];
+
+  /**
    * Optional title will be supplied as tooltip title or title attribute
    * otherwise the label will be used
    */
@@ -131,6 +136,7 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
   color = 'hollow',
   tooltipContent,
   tooltipPosition = 'top',
+  anchorProps,
   title,
   iconType,
   onClick,
@@ -209,6 +215,7 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
           position={tooltipPosition}
           content={tooltipContent}
           title={title || label}
+          anchorProps={anchorProps}
         >
           {content}
         </EuiToolTip>
@@ -223,6 +230,7 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
           position={tooltipPosition}
           content={tooltipContent}
           title={title || label}
+          anchorProps={anchorProps}
         >
           <span tabIndex={0} className={classes} role="button" {...rest}>
             {icon || label}

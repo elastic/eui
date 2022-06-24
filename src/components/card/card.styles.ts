@@ -15,6 +15,9 @@ import {
 import { UseEuiTheme } from '../../services';
 import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins';
 
+const paddingKey = 'm';
+const halfPaddingKey = 's';
+
 /**
  * 1. Footer is always at the bottom.
  * 2. Fix for IE where the image correctly resizes in width but doesn't collapse its height
@@ -25,8 +28,8 @@ import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins';
 
 export const euiCardStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const padding = euiPaddingSize(euiThemeContext, 'm');
-  const halfPadding = euiPaddingSize(euiThemeContext, 's');
+  const padding = euiPaddingSize(euiThemeContext, paddingKey);
+  const halfPadding = euiPaddingSize(euiThemeContext, halfPaddingKey);
 
   return {
     euiCard: css`
@@ -105,6 +108,37 @@ export const euiCardTextStyles = (euiThemeContext: UseEuiTheme) => {
 
     disabled: css`
       color: ${euiTheme.colors.disabledText};
+    `,
+  };
+};
+
+export const euiCardBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
+  const padding = euiPaddingSize(euiThemeContext, paddingKey);
+
+  return {
+    hasBetaBadge: css`
+      position: relative;
+      // Ensure badges are visible outside of the whole card
+      overflow: visible;
+    `,
+
+    euiCard__betaBadgeAnchor: css`
+      // Ensure there's no extra inherited height for proper translate value
+      line-height: 0;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      // Get above abs positioned image
+      z-index: 3;
+      // Todo: $euiButtonMinWidth
+      // Extend beta badges to at least 30% of the container's width or 112px (whichever is smaller)
+      min-width: min(30%, 112px);
+      max-width: calc(100% - (${padding} * 2));
+    `,
+
+    euiCard__betaBadge: css`
+      width: 100%;
     `,
   };
 };

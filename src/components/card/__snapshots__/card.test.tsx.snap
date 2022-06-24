@@ -2,7 +2,7 @@
 
 exports[`EuiCard betaBadgeProps renders href 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiPanel--paddingLarge euiCard euiCard--centerAligned euiCard--hasBetaBadge emotion-euiPanel-grow-m-l-plain-hasShadow-euiCard-center"
+  class="euiPanel euiPanel--plain euiPanel--paddingLarge euiCard euiCard--centerAligned euiCard--hasBetaBadge emotion-euiPanel-grow-m-l-plain-hasShadow-euiCard-center-hasBetaBadge"
 >
   <div
     class="euiCard__content"
@@ -26,19 +26,15 @@ exports[`EuiCard betaBadgeProps renders href 1`] = `
       </p>
     </div>
   </div>
-  <span
-    class="euiCard__betaBadgeWrapper"
+  <a
+    class="euiBetaBadge euiBetaBadge-isClickable euiBetaBadge--hollow emotion-euiCard__betaBadge"
+    href="http://www.elastic.co/"
+    id="generated-idBetaBadge"
+    rel=""
+    title="Link"
   >
-    <a
-      class="euiBetaBadge euiBetaBadge-isClickable euiBetaBadge--hollow euiCard__betaBadge"
-      href="http://www.elastic.co/"
-      id="generated-idBetaBadge"
-      rel=""
-      title="Link"
-    >
-      Link
-    </a>
-  </span>
+    Link
+  </a>
 </div>
 `;
 
