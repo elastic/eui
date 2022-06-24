@@ -82,11 +82,9 @@ export const EuiScreenReaderLive: FunctionComponent<EuiScreenReaderLiveProps> = 
         <div
           role={role}
           aria-atomic="true"
-          // Setting the aria-hidden attribute prevents VO from announcing route changes
-          // differently depending on which status region currently has text.
+          // Setting `aria-hidden` and setting `aria-live` to "off" prevents
+          // double announcements from VO when `focusRegionOnTextChange` is true
           aria-hidden={toggle ? undefined : 'true'}
-          // Setting the aria-live to "off" when focusRegionOnTextChange prevents double
-          // announcement by VO + Firefox on MacOS, likely other pairings.
           aria-live={focusRegionOnTextChange ? 'off' : ariaLive}
         >
           {isActive && toggle ? children : ''}
