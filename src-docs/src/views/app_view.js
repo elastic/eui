@@ -70,10 +70,11 @@ export const AppView = ({ children, currentRoute }) => {
 
   return (
     <LinkWrapper>
-      <EuiScreenReaderLive isFocusable>
+      <EuiScreenReaderLive focusRegionOnTextChange>
         <span>{`${currentRoute.name} - Elastic UI Framework`}</span>
       </EuiScreenReaderLive>
       <EuiSkipLink
+        color="ghost"
         destinationId="start-of-content"
         position="fixed"
         overrideLinkBehavior

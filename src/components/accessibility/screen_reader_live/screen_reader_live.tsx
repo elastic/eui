@@ -38,10 +38,12 @@ export interface EuiScreenReaderLiveProps {
    */
   'aria-live'?: AriaAttributes['aria-live'];
   /**
-   * Adds a tabindex={-1} to containing div. Focus is set on first
-   * component render and updates to `children` prop.
+   * On `children`/text change, the region will auto-focus itself, causing screen readers
+   * to automatically read out the text content. This prop should primarily be used for
+   * navigation or page changes, where programmatically resetting focus location back to
+   * a certain part of the page is desired.
    */
-  isFocusable?: boolean;
+  focusRegionOnTextChange?: boolean;
 }
 
 export const EuiScreenReaderLive: FunctionComponent<EuiScreenReaderLiveProps> = ({
@@ -49,18 +51,20 @@ export const EuiScreenReaderLive: FunctionComponent<EuiScreenReaderLiveProps> = 
   isActive = true,
   role = 'status',
   'aria-live': ariaLive = 'polite',
-  isFocusable = false,
+  focusRegionOnTextChange = false,
 }) => {
   const [toggle, setToggle] = useState(false);
   const focusRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setToggle((toggle) => !toggle);
+  }, [children]);
 
-    if (focusRef.current !== null && isFocusable) {
+  useEffect(() => {
+    if (focusRef.current !== null && focusRegionOnTextChange) {
       focusRef.current.focus();
     }
-  }, [children, isFocusable]);
+  }, [focusRegionOnTextChange]);
 
   return (
     /**
@@ -74,20 +78,20 @@ export const EuiScreenReaderLive: FunctionComponent<EuiScreenReaderLiveProps> = 
      * for more examples of the double region approach.
      */
     <EuiScreenReaderOnly>
-      <div ref={focusRef} tabIndex={isFocusable ? -1 : undefined}>
+      <div ref={focusRef} tabIndex={focusRegionOnTextChange ? -1 : undefined}>
         <div
           role={role}
           aria-atomic="true"
-          // Setting the aria-live to "off" when isFocusable prevents double
+          // Setting the aria-live to "off" when focusRegionOnTextChange prevents double
           // announcement by VO + Firefox on MacOS, likely other pairings.
-          aria-live={isFocusable ? 'off' : ariaLive}
+          aria-live={focusRegionOnTextChange ? 'off' : ariaLive}
         >
           {isActive && toggle ? children : ''}
         </div>
         <div
           role={role}
           aria-atomic="true"
-          aria-live={isFocusable ? 'off' : ariaLive}
+          aria-live={focusRegionOnTextChange ? 'off' : ariaLive}
         >
           {isActive && !toggle ? children : ''}
         </div>

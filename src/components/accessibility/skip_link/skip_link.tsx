@@ -38,6 +38,17 @@ interface EuiSkipLinkInterface extends EuiButtonProps {
    * When position is fixed, this is forced to `0`
    */
   tabIndex?: number;
+  /**
+   * Set skip link to one of the EUI named colors
+   */
+  color?:
+    | 'text'
+    | 'success'
+    | 'accent'
+    | 'danger'
+    | 'warning'
+    | 'ghost'
+    | 'primary';
 }
 
 type propsForAnchor = PropsForAnchor<
@@ -63,6 +74,7 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
   position = 'static',
   children,
   className,
+  color = 'primary',
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -103,7 +115,7 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
       <EuiButton
         css={cssStyles}
         className={classes}
-        color="ghost"
+        color={color}
         tabIndex={position === 'fixed' ? 0 : tabIndex}
         size="s"
         fill

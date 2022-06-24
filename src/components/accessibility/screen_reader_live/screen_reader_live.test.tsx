@@ -58,7 +58,9 @@ describe('EuiScreenReaderLive', () => {
 
     it('accepts `isFocusable`', () => {
       const component = render(
-        <EuiScreenReaderLive isFocusable>{content}</EuiScreenReaderLive>
+        <EuiScreenReaderLive focusRegionOnTextChange>
+          {content}
+        </EuiScreenReaderLive>
       );
 
       expect(component).toMatchSnapshot();
@@ -102,7 +104,9 @@ describe('EuiScreenReaderLive', () => {
   describe('with focus behavior', () => {
     it('sets focus correctly', () => {
       const component = mount(
-        <EuiScreenReaderLive isFocusable={true}>{content}</EuiScreenReaderLive>
+        <EuiScreenReaderLive focusRegionOnTextChange={true}>
+          {content}
+        </EuiScreenReaderLive>
       );
 
       const focusableDiv = component.find('div').at(0);
