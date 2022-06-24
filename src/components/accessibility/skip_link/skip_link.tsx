@@ -9,7 +9,7 @@
 import React, { FunctionComponent, Ref } from 'react';
 import classNames from 'classnames';
 import { useEuiTheme } from '../../../services';
-import { EuiButton, EuiButtonProps, ButtonColor } from '../../button/button';
+import { EuiButton, EuiButtonProps } from '../../button/button';
 import { PropsForAnchor, PropsForButton, ExclusiveUnion } from '../../common';
 import { EuiScreenReaderOnly } from '../screen_reader_only';
 import { euiSkipLinkStyles } from './skip_link.styles';
@@ -38,10 +38,6 @@ interface EuiSkipLinkInterface extends EuiButtonProps {
    * When position is fixed, this is forced to `0`
    */
   tabIndex?: number;
-  /**
-   * Set skip link to one of the EUI named colors
-   */
-  color?: ButtonColor;
 }
 
 type propsForAnchor = PropsForAnchor<
@@ -67,7 +63,6 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
   position = 'static',
   children,
   className,
-  color,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -108,7 +103,6 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
       <EuiButton
         css={cssStyles}
         className={classes}
-        color={color}
         tabIndex={position === 'fixed' ? 0 : tabIndex}
         size="s"
         fill
