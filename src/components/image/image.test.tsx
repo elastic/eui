@@ -76,6 +76,22 @@ describe('EuiImage', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('is rendered with wrapperProps', () => {
+    const component = render(
+      <EuiImage
+        alt="alt"
+        caption={<span>caption</span>}
+        url="/cat.jpg"
+        wrapperProps={{
+          className: 'wrapperProps-className',
+          style: { border: '2px solid red' },
+        }}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   describe('Fullscreen behaviour', () => {
     let component: ReactWrapper;
 
