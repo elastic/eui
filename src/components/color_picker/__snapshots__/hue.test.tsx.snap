@@ -3,14 +3,14 @@
 exports[`EuiHue accepts a hex value 1`] = `
 Array [
   <label
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
     for="undefined-hue"
   >
     Select the HSV color mode 'hue' value
   </label>,
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     #00FFFF
   </p>,
@@ -35,14 +35,14 @@ Array [
 exports[`EuiHue accepts a hue value 1`] = `
 Array [
   <label
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
     for="undefined-hue"
   >
     Select the HSV color mode 'hue' value
   </label>,
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   />,
   <div
     class="euiHue testClass1 testClass2"
@@ -65,14 +65,14 @@ Array [
 exports[`EuiHue is rendered 1`] = `
 Array [
   <label
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
     for="undefined-hue"
   >
     Select the HSV color mode 'hue' value
   </label>,
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   />,
   <div
     class="euiHue testClass1 testClass2"

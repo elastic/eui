@@ -77,7 +77,7 @@ describe('EuiScreenReaderLive', () => {
     };
 
     it('initially renders screen reader content in the first live region', () => {
-      const component = mount(<Component />);
+      const component = render(<Component />);
 
       expect(component).toMatchSnapshot();
     });
@@ -87,7 +87,7 @@ describe('EuiScreenReaderLive', () => {
 
       findTestSubject(component, 'increment').simulate('click');
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
   });
 });

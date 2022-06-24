@@ -6,11 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { mount } from 'enzyme';
-import { requiredProps, takeMountedSnapshot } from '../../test';
+import React, { ReactNode } from 'react';
+import { render } from 'enzyme';
+import { requiredProps } from '../../test';
 
 import { EuiControlBar, Control } from './control_bar';
+
+jest.mock('../portal', () => ({
+  EuiPortal: ({ children }: { children: ReactNode }) => children,
+}));
 
 const handleClick = () => {
   console.log('You clicked');
@@ -65,16 +69,15 @@ const controls: Control[] = [
 
 describe('EuiControlBar', () => {
   test('is rendered', () => {
-    const component = takeMountedSnapshot(
-      mount(<EuiControlBar controls={controls} {...requiredProps} />)
+    const component = render(
+      <EuiControlBar controls={controls} {...requiredProps} />
     );
-
     expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     test('mobile is rendered', () => {
-      const component = mount(
+      const component = render(
         <EuiControlBar controls={controls} showOnMobile />
       );
 
@@ -82,7 +85,7 @@ describe('EuiControlBar', () => {
     });
 
     test('showContent is rendered', () => {
-      const component = mount(
+      const component = render(
         <EuiControlBar controls={controls} showContent>
           Content
         </EuiControlBar>
@@ -92,7 +95,7 @@ describe('EuiControlBar', () => {
     });
 
     test('size is rendered', () => {
-      const component = mount(
+      const component = render(
         <EuiControlBar controls={controls} size="s">
           Content
         </EuiControlBar>
@@ -102,7 +105,7 @@ describe('EuiControlBar', () => {
     });
 
     test('maxHeight is rendered', () => {
-      const component = mount(
+      const component = render(
         <EuiControlBar controls={controls} maxHeight="20rem">
           Content
         </EuiControlBar>
@@ -112,7 +115,7 @@ describe('EuiControlBar', () => {
     });
 
     test('leftOffset is rendered', () => {
-      const component = mount(
+      const component = render(
         <EuiControlBar controls={controls} leftOffset={200}>
           Content
         </EuiControlBar>
@@ -122,7 +125,7 @@ describe('EuiControlBar', () => {
     });
 
     test('rightOffset is rendered', () => {
-      const component = mount(
+      const component = render(
         <EuiControlBar controls={controls} rightOffset={200}>
           Content
         </EuiControlBar>
@@ -132,7 +135,7 @@ describe('EuiControlBar', () => {
     });
 
     test('position is rendered', () => {
-      const component = mount(
+      const component = render(
         <EuiControlBar controls={controls} position="absolute">
           Content
         </EuiControlBar>
