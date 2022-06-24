@@ -114,7 +114,7 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
           );
         }
 
-        destinationEl.focus({ preventScroll: true }); // Scrolling is already handled above, and focus autoscroll behaves oddly on Chrome due to the fixed header
+        destinationEl.focus({ preventScroll: true }); // Scrolling is already handled above, and focus autoscroll behaves oddly on Chrome around fixed headers
       },
     };
   }
