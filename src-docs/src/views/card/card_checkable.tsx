@@ -6,9 +6,8 @@ import {
   EuiRadioGroup,
   EuiTitle,
   EuiFormFieldset,
-} from '../../../../src/components';
-
-import { useGeneratedHtmlId } from '../../../../src/services';
+  useGeneratedHtmlId,
+} from '../../../../src';
 
 export default () => {
   const radioGroupId = useGeneratedHtmlId({ prefix: 'radioGroup' });

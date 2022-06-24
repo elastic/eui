@@ -41,7 +41,6 @@ export const euiCardStyles = (
     card: {
       euiCard: css`
         display: flex;
-        flex-direction: column;
 
         // Progressive enhancement where we apply the outline to the whole card
         // when the internal text button has focus
@@ -66,7 +65,9 @@ export const euiCardStyles = (
       },
 
       layout: {
-        vertical: css``,
+        vertical: css`
+          flex-direction: column;
+        `,
         horizontal: css`
           flex-direction: row;
           align-items: flex-start; /* 3 */
@@ -75,10 +76,7 @@ export const euiCardStyles = (
 
       disabled: css`
         cursor: not-allowed; // duplicate property due to Chrome bug
-        background-color: ${euiButtonColor(
-          'disabled',
-          euiThemeContext
-        )} !important;
+        background-color: ${euiButtonColor('disabled', euiThemeContext)};
         color: ${euiTheme.colors.disabledText};
       `,
     },
@@ -90,10 +88,13 @@ export const euiCardStyles = (
 
       layout: {
         vertical: css`
-          width: 100%; /* 4 */
+          ${logicalCSS('width', '100%')}; /* 4 */
         `,
         horizontal: css`
-          width: auto; // Makes sure the top shrinks and the content grows
+          ${logicalCSS(
+            'width',
+            'auto'
+          )}; // Makes sure the top shrinks and the content grows
         `,
       },
     },
@@ -107,26 +108,29 @@ export const euiCardStyles = (
     `,
 
     euiCard__footer: css`
-      width: 100%; /* 4 */
       flex-grow: 0; /* 1 */
+      ${logicalCSS('width', '100%')}; /* 4 */
       ${logicalCSS('margin-top', spacing)};
     `,
 
     top: {
       euiCard__top: css`
         flex-grow: 0; /* 1 */
-        position: relative;
-        min-height: 1px; /* 2 */
         font-size: 0;
+        position: relative;
+        ${logicalCSS('min-height', '1px')}; /* 2 */
         ${logicalCSS('margin-bottom', spacing)};
       `,
 
       layout: {
         vertical: css`
-          width: 100%; /* 4 */
+          ${logicalCSS('width', '100%')}; /* 4 */
         `,
         horizontal: css`
-          width: auto; // Makes sure the top shrinks and the content grows
+          ${logicalCSS(
+            'width',
+            'auto'
+          )}; // Makes sure the top shrinks and the content grows
         `,
       },
 
@@ -140,11 +144,11 @@ export const euiCardStyles = (
       overflow: hidden;
 
       // Padding based sizing & negative margins
-      width: calc(100% + (${paddingAmount} * 2));
-      left: -${paddingAmount};
-      top: -${paddingAmount};
+      ${logicalCSS('width', `calc(100% + (${paddingAmount} * 2))`)};
+      ${logicalCSS('left', `-${paddingAmount}`)};
+      ${logicalCSS('top', `-${paddingAmount}`)};
       // ensure the parent is only as tall as the image
-      margin-bottom: -${paddingAmount};
+      ${logicalCSS('margin-bottom', `-${paddingAmount}`)};
 
       // match border radius, minus 1px because it's inside a border
       ${logicals['border-top-left-radius']}: calc(${euiTheme.border.radius
@@ -157,7 +161,7 @@ export const euiCardStyles = (
         : undefined}
 
       img {
-        width: 100%;
+        ${logicalCSS('width', '100%')}; /* 4 */
       }
     `,
 
@@ -166,8 +170,8 @@ export const euiCardStyles = (
 
       withImage: css`
         position: absolute;
-        top: 50%;
-        left: 50%;
+        ${logicalCSS('top', '50%')};
+        ${logicalCSS('left', '50%')};
         // Important needed to override current Sass styles on .euiIcon
         transform: translate(-50%, calc(-50% + -${paddingAmount})) !important;
       `,
@@ -232,6 +236,7 @@ export const euiCardBetaBadgeStyles = (
   euiThemeContext: UseEuiTheme,
   paddingSize: EuiCardProps['paddingSize']
 ) => {
+  const { euiTheme } = euiThemeContext;
   const padding = euiPaddingSize(euiThemeContext, paddingSize!);
 
   return {
@@ -239,25 +244,27 @@ export const euiCardBetaBadgeStyles = (
       position: relative;
       // Ensure badges are visible outside of the whole card
       overflow: visible;
+      // Increase top padding to make room
+      ${logicalCSS('padding-top', `calc(${padding} + ${euiTheme.size.s})`)};
     `,
 
     euiCard__betaBadgeAnchor: css`
       // Ensure there's no extra inherited height for proper translate value
       line-height: 0;
       position: absolute;
-      top: 0;
-      left: 50%;
+      ${logicalCSS('top', '0')};
+      ${logicalCSS('left', '50%')};
       transform: translateX(-50%) translateY(-50%);
       // Get above abs positioned image
       z-index: 3;
       // Todo: $euiButtonMinWidth
       // Extend beta badges to at least 30% of the container's width or 112px (whichever is smaller)
-      min-width: min(30%, 112px);
-      max-width: calc(100% - (${padding} * 2));
+      ${logicalCSS('min-width', 'min(30%, 112px)')};
+      ${logicalCSS('max-width', `calc(100% - (${padding} * 2))`)};
     `,
 
     euiCard__betaBadge: css`
-      width: 100%;
+      ${logicalCSS('width', '100%')};
     `,
   };
 };

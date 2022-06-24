@@ -9,7 +9,7 @@ import {
   EuiLink,
   EuiSpacer,
   EuiText,
-} from '../../../../src/components';
+} from '../../../../src';
 
 export default () => (
   <EuiFlexGroup gutterSize="l">

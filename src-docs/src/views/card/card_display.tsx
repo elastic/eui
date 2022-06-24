@@ -6,7 +6,7 @@ import {
   EuiFlexItem,
   EuiIcon,
   EuiSpacer,
-} from '../../../../src/components';
+} from '../../../../src';
 
 export default () => (
   <div>
