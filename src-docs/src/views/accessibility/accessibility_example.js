@@ -158,7 +158,7 @@ export const AccessibilityExample = {
       },
       snippet: `<EuiScreenReaderLive>
   <!-- visually hidden announced content -->
-</EuiScreenReaderOnly>`,
+</EuiScreenReaderLive>`,
       demo: <ScreenReaderLive />,
     },
     {
