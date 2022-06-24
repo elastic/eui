@@ -71,7 +71,7 @@ export const AppView = ({ children, currentRoute }) => {
   return (
     <LinkWrapper>
       <EuiScreenReaderLive focusRegionOnTextChange>
-        <span>{`${currentRoute.name} - Elastic UI Framework`}</span>
+        {`${currentRoute.name} - Elastic UI Framework`}
       </EuiScreenReaderLive>
       <EuiSkipLink
         color="ghost"

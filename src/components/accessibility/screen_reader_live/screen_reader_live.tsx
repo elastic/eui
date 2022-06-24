@@ -64,7 +64,7 @@ export const EuiScreenReaderLive: FunctionComponent<EuiScreenReaderLiveProps> = 
     if (focusRef.current !== null && focusRegionOnTextChange) {
       focusRef.current.focus();
     }
-  }, [focusRegionOnTextChange]);
+  }, [toggle, focusRegionOnTextChange]);
 
   return (
     /**
