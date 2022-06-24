@@ -60,18 +60,21 @@ exports[`EuiCard horizontal selectable 1`] = `
       </p>
     </div>
   </div>
+  <div
+    class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
+  />
   <button
     aria-checked="false"
     aria-describedby="generated-idTitle generated-idDescription"
-    class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text"
+    class="euiButton euiButton--text euiButton--fullWidth emotion-euiCardSelect"
     role="switch"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonEmpty__content"
+      class="euiButtonContent euiButton__content"
     >
       <span
-        class="euiButtonEmpty__text"
+        class="euiButton__text"
       >
         Select
       </span>
@@ -799,18 +802,21 @@ exports[`EuiCard props selectable 1`] = `
       </p>
     </div>
   </div>
+  <div
+    class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
+  />
   <button
     aria-checked="false"
     aria-describedby="generated-idTitle generated-idDescription"
-    class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiCardSelect euiCardSelect--text"
+    class="euiButton euiButton--text euiButton--fullWidth emotion-euiCardSelect"
     role="switch"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonEmpty__content"
+      class="euiButtonContent euiButton__content"
     >
       <span
-        class="euiButtonEmpty__text"
+        class="euiButton__text"
       >
         Select
       </span>

@@ -106,18 +106,18 @@
   background-color: $euiColorEmptyShade;
 }
 
-.euiCard--isSelectable {
-  position: relative;
-}
+// .euiCard--isSelectable {
+//   position: relative;
+// }
 
 
 @each $modifier, $paddingAmount in $euiPanelPaddingModifiers {
   .euiCard[class*='#{$modifier}'] {
     padding: $paddingAmount;
 
-    &.euiCard--isSelectable {
-      padding-bottom: $paddingAmount + $euiCardBottomNodeHeight;
-    }
+    // &.euiCard--isSelectable {
+    //   padding-bottom: $paddingAmount + $euiCardBottomNodeHeight;
+    // }
 
     .euiCard__top {
 
@@ -128,6 +128,7 @@
         margin-bottom: $paddingAmount * -1; // ensure the parent is only as tall as the image
 
         // IF both exist, position the icon centered on top of image
+        // sass-lint:disable-block nesting-depth
         + .euiCard__icon {
           transform: translate(-50%, -75%); // Fallback for IE as it doesn't accept calcs in translates
           transform: translate(-50%, calc(-50% + #{$paddingAmount * -1})); // sass-lint:disable-line no-duplicate-properties
@@ -179,12 +180,12 @@
   border-radius: $euiBorderRadius;
 }
 
-@each $name, $color in $euiCardSelectButtonBorders {
-  .euiCard--isSelectable--#{$name}.euiCard-isSelected:not(.euiCard-isDisabled) {
-    // Override .euiPanel.has--Border
-    border-color: $color !important; // sass-lint:disable-line no-important
-  }
-}
+// @each $name, $color in $euiCardSelectButtonBorders {
+//   .euiCard--isSelectable--#{$name}.euiCard-isSelected:not(.euiCard-isDisabled) {
+//     Override .euiPanel.has--Border
+//     border-color: $color !important; // sass-lint:disable-line no-important
+//   }
+// }
 
 // If an icon or image exists, add some space
 .euiCard__top + .euiCard__content {

@@ -9,7 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
-import { shouldRenderCustomStyles } from '../../../test/internal';
+// import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiCheckableCard } from './checkable_card';
 

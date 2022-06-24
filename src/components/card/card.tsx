@@ -29,6 +29,7 @@ import {
 import { useGeneratedHtmlId } from '../../services/accessibility';
 import { validateHref } from '../../services/security/href_validator';
 import { EuiPanel, EuiPanelProps } from '../panel';
+import { EuiSpacer } from '../spacer';
 
 type CardAlignment = 'left' | 'center' | 'right';
 
@@ -300,13 +301,16 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   let optionalSelectButton;
   if (selectable) {
     optionalSelectButton = (
-      <EuiCardSelect
-        aria-describedby={`${ariaId}Title ${ariaDesc}`}
-        {...selectable}
-        buttonRef={(node) => {
-          link = node;
-        }}
-      />
+      <>
+        {paddingSize !== 'none' && <EuiSpacer size={paddingSize || 'm'} />}
+        <EuiCardSelect
+          aria-describedby={`${ariaId}Title ${ariaDesc}`}
+          {...selectable}
+          buttonRef={(node: HTMLAnchorElement | HTMLButtonElement | null) => {
+            link = node;
+          }}
+        />
+      </>
     );
   }
 
