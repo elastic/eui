@@ -198,3 +198,9 @@ export const useEuiOverflowScroll = (
   const euiTheme = useEuiTheme();
   return euiOverflowScroll(euiTheme, { direction, mask });
 };
+
+/**
+ * A constant storing the support for the `:has()` selector through a
+ * media query that will only apply the content it is supported.
+ */
+export const euiSupportsHas = '@supports(selector(:has(p)))';

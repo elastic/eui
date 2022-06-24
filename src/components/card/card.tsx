@@ -183,17 +183,23 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   const euiThemeContext = useEuiTheme();
   const styles = euiCardStyles(euiThemeContext, paddingSize, display);
   const cardStyles = [
-    styles.euiCard,
-    styles.aligned[textAlign],
-    isDisabled && styles.disabled,
+    styles.card.euiCard,
+    // Text alignment should always be left when horizontal
+    styles.card.aligned[layout === 'horizontal' ? 'left' : textAlign],
+    styles.card.layout[layout],
+    isDisabled && styles.card.disabled,
   ];
 
-  const contentStyles = [styles.euiCard__content];
+  const contentStyles = [
+    styles.content.euiCard__content,
+    styles.content.layout[layout],
+  ];
 
   const textStyles = euiCardTextStyles(euiThemeContext);
   const textCSS = [
     textStyles.euiCard__text,
-    textStyles.aligned[textAlign],
+    // Text alignment should always be left when horizontal
+    textStyles.aligned[layout === 'horizontal' ? 'left' : textAlign],
     isClickable && textStyles.interactive,
     isDisabled && textStyles.disabled,
   ];
@@ -266,6 +272,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   if (icon) {
     const iconStyles = [
       styles.icon.euiCard__icon,
+      styles.icon.layout[layout],
       imageNode && styles.icon.withImage,
     ];
     iconNode = React.cloneElement(icon, {
@@ -276,7 +283,11 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   let optionalCardTop;
   if (imageNode || iconNode) {
-    const topStyles = [styles.euiCard__top];
+    const topStyles = [
+      styles.top.euiCard__top,
+      styles.top.layout[layout],
+      isDisabled && styles.top.disabled,
+    ];
 
     optionalCardTop = (
       <div className="euiCard__top" css={topStyles}>
@@ -294,7 +305,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   let optionalBetaBadgeID = '';
   let optionalBetaCSS;
   if (betaBadgeProps?.label) {
-    const betaStyles = euiCardBetaBadgeStyles(euiThemeContext);
+    const betaStyles = euiCardBetaBadgeStyles(euiThemeContext, paddingSize);
     optionalBetaCSS = betaStyles.hasBetaBadge;
     const anchorCSS = [betaStyles.euiCard__betaBadgeAnchor];
     const badgeCSS = [betaStyles.euiCard__betaBadge];
