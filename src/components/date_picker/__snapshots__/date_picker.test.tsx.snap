@@ -189,7 +189,7 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
             tabindex="0"
           >
             <span
-              class="euiScreenReaderOnly"
+              class="emotion-euiScreenReaderOnly"
             />
             <div
               class="react-datepicker__week"
@@ -592,7 +592,7 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
             tabindex="0"
           >
             <span
-              class="euiScreenReaderOnly"
+              class="emotion-euiScreenReaderOnly"
             />
             <div
               class="react-datepicker__week"
