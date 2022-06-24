@@ -145,11 +145,13 @@ export const AccessibilityExample = {
             for <EuiCode>role</EuiCode> to <EuiCode>aria-live</EuiCode> mapping.
           </p>
           <p>
-            If you need to manage focus, set the <EuiCode>isFocusable</EuiCode>{' '}
-            prop to <EuiCode>true</EuiCode>. This will set focus on the
-            containing element on page load and when the{' '}
-            <EuiCode>children</EuiCode> prop updates. Screen readers will
-            announce the text inside the live region as normal.
+            The <EuiCode>focusRegionOnTextChange</EuiCode> prop will
+            automatically focus the live region (causing screen readers to read
+            out the text content) whenever <EuiCode>children</EuiCode> changes.
+            This is primarily useful for announcing navigation or page changes,
+            when programmatically resetting focus location back to a certain
+            part of the page (where the <EuiCode>EuiScreenReaderLive</EuiCode>{' '}
+            is placed) is desired.
           </p>
           <p>
             Also consider other live region guidelines, such as that live
