@@ -99,7 +99,7 @@ describe('useImperativeGridRef', () => {
 
     it('should paginate to cells that are not on the current page', () => {
       ref.current.setFocusedCell({ rowIndex: 50, colIndex: 0 });
-      cy.get('.euiPagination .euiScreenReaderOnly').should(
+      cy.get('.euiPagination [class*="euiScreenReaderOnly"]').should(
         'have.text',
         'Page 3 of 4'
       );
@@ -148,7 +148,7 @@ describe('useImperativeGridRef', () => {
 
     it('should paginate to cells that are not on the current page', () => {
       ref.current.openCellPopover({ rowIndex: 99, colIndex: 5 });
-      cy.get('.euiPagination .euiScreenReaderOnly').should(
+      cy.get('.euiPagination [class*="euiScreenReaderOnly"]').should(
         'have.text',
         'Page 4 of 4'
       );
