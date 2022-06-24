@@ -23,7 +23,7 @@ import {
   PADDING_SIZES,
 } from '../../global_styling';
 import { CommonProps, ExclusiveUnion, keysOf } from '../common';
-import { euiPanelStyles } from './panel.style';
+import { euiPanelStyles } from './panel.styles';
 
 export const SIZES = PADDING_SIZES;
 
