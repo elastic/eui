@@ -25,11 +25,8 @@ import {
   withEuiTheme,
   WithEuiThemeProps,
 } from '../../services';
-import {
-  COLORS as NAMED_COLORS,
-  isNamedColor,
-  NamedColor,
-} from './named_colors';
+export { COLORS } from './named_colors';
+import { isNamedColor, NamedColor } from './named_colors';
 import { euiIconStyles } from './icon.styles';
 
 const getIsAppIcon = (iconType: IconType) => {
@@ -44,8 +41,6 @@ export const TYPES = keysOf(typeToPathMap);
 export type EuiIconType = keyof typeof typeToPathMap;
 
 export type IconType = EuiIconType | string | ComponentType;
-
-export const COLORS = NAMED_COLORS;
 
 // We accept arbitrary color strings, which are impossible to type.
 export type IconColor = string | NamedColor;
