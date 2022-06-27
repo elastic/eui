@@ -254,14 +254,13 @@ export class EuiIconClass extends PureComponent<
 
     // These icons are a little special and get some extra CSS flexibility
     const isAppIcon = getIsAppIcon(type);
-
+    // App color styles are only applied if no color is passed or if color="default" is passed
     const appIconHasColor = color && color !== 'default';
 
     // The Elastic logo should be an outline in text and ghost mode
     const isElasticLogoOutline =
       type === 'logoElastic' && (color === 'ghost' || color === 'text');
 
-    // parent is not one of
     const classes = classNames(
       'euiIcon',
       {
@@ -270,7 +269,6 @@ export class EuiIconClass extends PureComponent<
       className
     );
 
-    // Emotion styles
     const styles = euiIconStyles(theme, color);
     const cssStyles = [
       styles.euiIcon,
@@ -278,7 +276,6 @@ export class EuiIconClass extends PureComponent<
       color && isNamedColor(color) && styles[color as NamedColor],
       isCustomColor && styles.customColor,
       isElasticLogoOutline && styles.logoElasticOutline,
-      // The app icon only gets the .euiIcon--app class if no color is passed or if color="default" is passed
       isAppIcon && !appIconHasColor && styles.app,
       isLoading && styles.isLoading,
       !isLoading && neededLoading && styles.isLoaded,
