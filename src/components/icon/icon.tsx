@@ -344,4 +344,4 @@ export class EuiIconClass extends PureComponent<
   }
 }
 
-export const EuiIcon = withEuiTheme(EuiIconClass);
+export const EuiIcon = withEuiTheme<EuiIconProps>(EuiIconClass);

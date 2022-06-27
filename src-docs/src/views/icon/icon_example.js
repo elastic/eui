@@ -11,8 +11,6 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { IconProps } from './props';
-
 import iconConfig from './playground';
 
 import Icons from './icons';
@@ -50,7 +48,7 @@ export const IconExample = {
         </p>
       ),
       demo: <EuiIcon type="grid" />,
-      props: { EuiIcon: IconProps },
+      props: { EuiIcon },
       playground: iconConfig,
     },
     {
