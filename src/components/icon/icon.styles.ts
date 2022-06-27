@@ -52,27 +52,6 @@ export const euiIconStyles = (
     .euiIcon__fillNegative {
       fill: ${euiTheme.colors.darkestShade};
     }
-
-    // Really force all paths to inherit when the color is ghost/text (specifically for logos)
-    [class*='-ghost']:not([data-type='logoElastic']),
-    [class*='-text']:not([data-type='logoElastic']) {
-      *[fill],
-      .euiIcon__fillNegative {
-        fill: currentColor !important;
-      }
-    }
-
-    // Elastic logo specific colors
-    [class*='-ghost'][data-type='logoElastic'],
-    [class*='-text'][data-type='logoElastic'] {
-      *[fill] {
-        fill: none !important;
-      }
-
-      .outline {
-        fill: currentColor !important;
-      }
-    }
   `,
   // Colors
   accent: css`
@@ -83,6 +62,12 @@ export const euiIconStyles = (
   `,
   ghost: css`
     color: ${euiTheme.colors.ghost};
+
+    // Really force all paths to inherit (specifically for logos)
+    *[fill],
+    .euiIcon__fillNegative {
+      fill: currentColor !important;
+    }
   `,
   primary: css`
     color: ${euiTheme.colors.primaryText};
@@ -95,6 +80,12 @@ export const euiIconStyles = (
   `,
   text: css`
     color: ${euiTheme.colors.title};
+
+    // Really force all paths to inherit (specifically for logos)
+    *[fill],
+    .euiIcon__fillNegative {
+      fill: currentColor !important;
+    }
   `,
   warning: css`
     color: ${euiTheme.colors.warningText};
@@ -105,6 +96,16 @@ export const euiIconStyles = (
   default: css``,
   customColor: css`
     color: ${color};
+  `,
+  logoElasticOutline: css`
+    // Elastic logo specific colors
+    *[fill] {
+      fill: none !important;
+    }
+
+    .outline {
+      fill: currentColor !important;
+    }
   `,
   // Sizes
   original: css``,

@@ -257,6 +257,10 @@ export class EuiIconClass extends PureComponent<
 
     const appIconHasColor = color && color !== 'default';
 
+    // The Elastic logo should be an outline in text and ghost mode
+    const isElasticLogoOutline =
+      type === 'logoElastic' && (color === 'ghost' || color === 'text');
+
     // parent is not one of
     const classes = classNames(
       'euiIcon',
@@ -273,6 +277,7 @@ export class EuiIconClass extends PureComponent<
       styles[size],
       color && isNamedColor(color) && styles[color as NamedColor],
       isCustomColor && styles.customColor,
+      isElasticLogoOutline && styles.logoElasticOutline,
       // The app icon only gets the .euiIcon--app class if no color is passed or if color="default" is passed
       isAppIcon && !appIconHasColor && styles.app,
       isLoading && styles.isLoading,
