@@ -26,10 +26,10 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
 
         // Reversed makes the description larger than the title
         &.euiDescriptionList--reverse {
-          .euiDescriptionList__title {
+          /* .euiDescriptionList__title {
             ${euiText(euiTheme)};
             ${euiFontSize(euiThemeContext, 's')};
-          }
+          } */
 
           .euiDescriptionList__description {
             ${euiTitle(euiThemeContext, 'xs')}
@@ -38,20 +38,20 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
 
         // Compressed gets smaller fonts.
         &.euiDescriptionList--compressed {
-          .euiDescriptionList__title {
+          /* .euiDescriptionList__title {
             ${euiTitle(euiThemeContext, 'xxs')}
             line-height: ${lineHeight};
-          }
+          } */
 
           .euiDescriptionList__description {
             ${euiFontSize(euiThemeContext, 's')};
           }
 
           &.euiDescriptionList--reverse {
-            .euiDescriptionList__title {
+            /* .euiDescriptionList__title {
               ${euiText(euiTheme)};
               ${euiFontSize(euiThemeContext, 's')};
-            }
+            } */
 
             .euiDescriptionList__description {
               ${euiTitle(euiThemeContext, 'xxs')};
@@ -68,17 +68,17 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
         flex-wrap: wrap;
 
         // Align the title to smash against the description.
-        &.euiDescriptionList--center {
+        /* &.euiDescriptionList--center {
           .euiDescriptionList__title {
             text-align: right;
           }
-        }
+        } */
 
         &.euiDescriptionList--reverse {
-          .euiDescriptionList__title {
+          /* .euiDescriptionList__title {
             ${euiText(euiTheme)};
             ${euiFontSize(euiThemeContext, 's')};
-          }
+          } */
 
           .euiDescriptionList__description {
             ${euiTitle(euiThemeContext, 'xs')};
@@ -87,23 +87,23 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
         }
 
         &.euiDescriptionList--compressed {
-          .euiDescriptionList__title {
+          /* .euiDescriptionList__title {
             text-align: right;
           }
           .euiDescriptionList__title {
             ${euiTitle(euiThemeContext, 'xxs')};
             line-height: ${lineHeight};
-          }
+          } */
 
           .euiDescriptionList__description {
             ${euiFontSize(euiThemeContext, 's')};
           }
 
           &.euiDescriptionList--reverse {
-            .euiDescriptionList__title {
+            /* .euiDescriptionList__title {
               ${euiText(euiTheme)};
               ${euiFontSize(euiThemeContext, 's')};
-            }
+            } */
 
             .euiDescriptionList__description {
               ${euiTitle(euiThemeContext, 'xxs')};
@@ -136,7 +136,7 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     row: css`
-      .euiDescriptionList__title {
+      /* .euiDescriptionList__title {
         ${euiTitle(euiThemeContext, 'xs')}
         line-height: ${lineHeight};
         margin-top: ${euiTheme.size.base};
@@ -145,7 +145,7 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
         &:first-of-type {
           margin-top: 0;
         }
-      }
+      } */
       .euiDescriptionList__description {
         ${euiFontSize(euiThemeContext, 's')};
       }
@@ -162,12 +162,12 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
         margin-top: 0;
       }
 
-      .euiDescriptionList__title {
+      /* .euiDescriptionList__title {
         ${euiTitle(euiThemeContext, 'xs')};
         line-height: ${lineHeight};
         width: 50%; // Flex-basis doesn't work in IE with padding
         padding-right: ${euiTheme.size.s};
-      }
+      } */
 
       .euiDescriptionList__description {
         ${euiFontSize(euiThemeContext, 's')};
@@ -191,12 +191,12 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
         margin-top: 0;
       }
 
-      &.euiDescriptionList__title {
+      /* &.euiDescriptionList__title {
         ${euiTitle(euiThemeContext, 'xs')};
         line-height: ${lineHeight};
         width: 50%; // Flex-basis doesn't work in IE with padding
         padding-right: ${euiTheme.size.s};
-      }
+      } */
 
       &.euiDescriptionList__description {
         ${euiFontSize(euiThemeContext, 's')};
@@ -221,14 +221,14 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     inline: css`
-      &.euiDescriptionList__title {
+      /* &.euiDescriptionList__title {
         ${euiFontSize(euiThemeContext, 's')};
         display: inline;
         border-radius: ${euiTheme.border.radius.small};
         font-weight: ${euiTheme.font.weight.medium};
         background-color: ${colorMode === 'DARK'
-          ? tint(euiTheme.colors.lightestShade, 0.5)
-          : euiTheme.colors.lightestShade};
+        ? tint(euiTheme.colors.lightestShade, 0.5)
+        : euiTheme.colors.lightestShade};
         padding: 1px ${euiTheme.size.xs};
         margin: 0 ${euiTheme.size.xs};
 
@@ -237,7 +237,7 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
           margin-left: 0;
         }
         ${euiTheme.colors.lightestShade}
-      }
+      } */
 
       &.euiDescriptionList__description {
         ${euiFontSize(euiThemeContext, 's')};
@@ -245,10 +245,10 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &.euiDescriptionList--compressed {
-        .euiDescriptionList__title {
+        /* .euiDescriptionList__title {
           ${euiFontSize(euiThemeContext, 'xs')};
           padding: 0 ${euiTheme.size.xs};
-        }
+        } */
 
         .euiDescriptionList__description {
           ${euiFontSize(euiThemeContext, 'xs')};
