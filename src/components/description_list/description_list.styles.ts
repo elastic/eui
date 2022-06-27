@@ -21,7 +21,6 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
     euiDescriptionList: css`
       &.euiDescriptionList--row {
         &.euiDescriptionList--center {
-
           text-align: center;
         }
 
@@ -67,7 +66,7 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
         display: flex;
         align-items: stretch;
         flex-wrap: wrap;
-      
+
         // Align the title to smash against the description.
         &.euiDescriptionList--center {
           .euiDescriptionList__title {
@@ -132,10 +131,11 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
               }
             }
           }
-
+        }
       }
     `,
-    'euiDescriptionList-row': css`
+
+    row: css`
       .euiDescriptionList__title {
         ${euiTitle(euiThemeContext, 'xs')}
         line-height: ${lineHeight};
@@ -150,7 +150,8 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiFontSize(euiThemeContext, 's')};
       }
     `,
-    'euiDescriptionList-column': css`
+
+    column: css`
       > * {
         margin-top: ${euiTheme.size.base};
       }
@@ -174,7 +175,8 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
         padding-left: ${euiTheme.size.s};
       }
     `,
-    'euiDescriptionList-responsiveColumn': css`
+
+    responsiveColumn: css`
       display: flex;
       align-items: stretch;
       flex-wrap: wrap;
@@ -218,17 +220,15 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
 
-    'euiDescriptionList-inline': css`
+    inline: css`
       &.euiDescriptionList__title {
         ${euiFontSize(euiThemeContext, 's')};
         display: inline;
         border-radius: ${euiTheme.border.radius.small};
         font-weight: ${euiTheme.font.weight.medium};
-        background-color: ${
-          colorMode === 'DARK'
-            ? tint(euiTheme.colors.lightestShade, 0.5)
-            : euiTheme.colors.lightestShade
-        };
+        background-color: ${colorMode === 'DARK'
+          ? tint(euiTheme.colors.lightestShade, 0.5)
+          : euiTheme.colors.lightestShade};
         padding: 1px ${euiTheme.size.xs};
         margin: 0 ${euiTheme.size.xs};
 
@@ -243,7 +243,7 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiFontSize(euiThemeContext, 's')};
         display: inline;
       }
-      
+
       &.euiDescriptionList--compressed {
         .euiDescriptionList__title {
           ${euiFontSize(euiThemeContext, 'xs')};
@@ -257,7 +257,6 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
       &.euiDescriptionList--center {
         text-align: center;
       }
-    }
     `,
   };
 };

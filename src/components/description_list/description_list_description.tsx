@@ -10,9 +10,15 @@ import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
-export const EuiDescriptionListDescription: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLElement>
-> = ({ children, className, ...rest }) => {
+interface EuiDescriptionListDescriptionProps
+  extends CommonProps,
+    HTMLAttributes<HTMLElement> {}
+
+export const EuiDescriptionListDescription: FunctionComponent<EuiDescriptionListDescriptionProps> = ({
+  children,
+  className,
+  ...rest
+}) => {
   const classes = classNames('euiDescriptionList__description', className);
   return (
     <dd className={classes} {...rest}>

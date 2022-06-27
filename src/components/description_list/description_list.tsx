@@ -92,10 +92,7 @@ export const EuiDescriptionList: FunctionComponent<
 }) => {
   const theme = useEuiTheme();
   const styles = euiDescriptionListStyles(theme);
-  const cssStyles = [
-    styles.euiDescriptionList,
-    styles[`euiDescriptionList-${type}`],
-  ];
+  const cssStyles = [styles.euiDescriptionList, styles[type]];
 
   const classes = classNames(
     'euiDescriptionList',
