@@ -113,9 +113,7 @@ export const EuiDescriptionList: FunctionComponent<
           key={`title-${index}`}
           type={type}
           compressed={compressed}
-          align={align}
           textStyle={textStyle}
-          // css={cssStyles}
           {...titleProps}
         >
           {item.title}

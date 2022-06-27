@@ -13,33 +13,6 @@ import { euiTitle } from '../title/title.styles';
 
 export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
-
-  const sharedColumnStyles = () => {
-    return `
-      width: 50%; // Flex-basis doesn't work in IE with padding
-      padding-right: ${euiTheme.size.s};
-    `;
-  };
-
-  const sharedInlineStyles = () => {
-    return `
-      display: inline;
-      border-radius: ${euiTheme.border.radius.small};
-      font-weight: ${euiTheme.font.weight.medium};
-      background-color: ${
-        colorMode === 'DARK'
-          ? tint(euiTheme.colors.lightestShade, 0.5)
-          : euiTheme.colors.lightestShade
-      };
-      margin: 0 ${euiTheme.size.xs};
-
-      // Make sure the first <dt> doesn't get a margin.
-      &:first-of-type {
-        margin-left: 0;
-      }
-    `;
-  };
-
   return {
     euiDescriptionList__title: css`
       ${euiTextBreakWord()};
@@ -49,60 +22,55 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
 
-    // Row types
-    row: css`
-      ${euiTitle(euiThemeContext, 'xs')};
-    `,
+    // This nested block handles just the font styling based on compressed and reverse
+    fontStyles: {
+      normal: css`
+        ${euiTitle(euiThemeContext, 'xs')};
+      `,
+      reverse: css`
+        ${euiFontSize(euiThemeContext, 's')};
+      `,
+      compressed: css`
+        ${euiTitle(euiThemeContext, 'xxs')}
+      `,
+      right: css`
+        text-align: right;
+      `,
+    },
 
-    rowReverse: css`
-      ${euiFontSize(euiThemeContext, 's')};
-    `,
-
-    rowCompressed: css`
-      ${euiTitle(euiThemeContext, 'xxs')}
-    `,
-
-    rowCompressedReverse: css`
-      ${euiFontSize(euiThemeContext, 's')};
-    `,
+    // Row types is the default DOM layout
+    row: css``,
 
     // Column types
     column: css`
-      ${euiTitle(euiThemeContext, 'xs')};
-      ${sharedColumnStyles()};
-    `,
-
-    columnReverse: css`
-      ${euiFontSize(euiThemeContext, 's')};
-      ${sharedColumnStyles()};
-    `,
-
-    columnCompressed: css`
-      ${euiTitle(euiThemeContext, 'xxs')};
-      ${sharedColumnStyles()};
-    `,
-
-    columnCompressedReverse: css`
-      ${euiFontSize(euiThemeContext, 's')};
-      ${sharedColumnStyles()};
-    `,
-
-    columnCenter: css`
-      // Align the title to smash against the description.
-      text-align: right;
+      width: 50%; // Flex-basis doesn't work in IE with padding
+      padding-right: ${euiTheme.size.s};
     `,
 
     // Inline types
-    inline: css`
-      ${euiFontSize(euiThemeContext, 's')};
-      ${sharedInlineStyles()};
-      padding: 1px ${euiTheme.size.xs};
-    `,
+    inlineStyles: {
+      inline: css`
+        display: inline;
+        border-radius: ${euiTheme.border.radius.small};
+        font-weight: ${euiTheme.font.weight.medium};
+        background-color: ${colorMode === 'DARK'
+          ? tint(euiTheme.colors.lightestShade, 0.5)
+          : euiTheme.colors.lightestShade};
+        margin: 0 ${euiTheme.size.xs};
 
-    inlineCompressed: css`
-      ${euiFontSize(euiThemeContext, 'xs')};
-      ${sharedInlineStyles()};
-      padding: 0 ${euiTheme.size.xs};
-    `,
+        // Make sure the first <dt> doesn't get a margin.
+        &:first-of-type {
+          margin-left: 0;
+        }
+      `,
+      normal: css`
+        ${euiFontSize(euiThemeContext, 's')};
+        padding: 1px ${euiTheme.size.xs};
+      `,
+      compressed: css`
+        ${euiFontSize(euiThemeContext, 'xs')};
+        padding: 0 ${euiTheme.size.xs};
+      `,
+    },
   };
 };
