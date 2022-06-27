@@ -115,16 +115,16 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
         &.euiDescriptionList--responsiveColumn {
           ${euiBreakpoint(['xs', 's'])} {
             &.euiDescriptionList--center {
-              .euiDescriptionList__title,
+              /* .euiDescriptionList__title, */
               .euiDescriptionList__description {
                 text-align: center;
               }
             }
 
             &.euiDescriptionList--reverse {
-              .euiDescriptionList__title {
+              /* .euiDescriptionList__title {
                 ${euiFontSize(euiThemeContext, 's')};
-              }
+              } */
 
               .euiDescriptionList__description {
                 ${euiTitle(euiThemeContext, 'xs')};
@@ -207,7 +207,7 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiBreakpoint(['xs', 's'])} {
         display: block;
 
-        &.euiDescriptionList__title,
+        /* &.euiDescriptionList__title, */
         &.euiDescriptionList__description {
           width: 100%;
           padding: 0;

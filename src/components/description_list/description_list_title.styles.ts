@@ -7,71 +7,84 @@
  */
 
 import { css } from '@emotion/react';
-import { euiFontSize } from '../../global_styling';
+import { euiFontSize, euiTextBreakWord } from '../../global_styling';
 import { tint, UseEuiTheme } from '../../services';
-import { euiText } from '../text/text.styles';
 import { euiTitle } from '../title/title.styles';
 
 export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
-  const { lineHeight } = euiFontSize(euiThemeContext, 's');
 
-  return {
-    euiDescriptionList__title: css``,
+  const sharedColumnStyles = () => {
+    return `
+      width: 50%; // Flex-basis doesn't work in IE with padding
+      padding-right: ${euiTheme.size.s};
+    `;
+  };
 
-    // TYpes
-    row: css`
-      ${euiTitle(euiThemeContext, 'xs')}
-      line-height: ${lineHeight};
-      margin-top: ${euiTheme.size.base};
-
-      // Make sure the first <dt> doesn't get a margin.
-      &:first-of-type {
-        margin-top: 0;
-      }
-    `,
-    inline: css`
-      ${euiFontSize(euiThemeContext, 's')};
+  const sharedInlineStyles = () => {
+    return `
       display: inline;
       border-radius: ${euiTheme.border.radius.small};
       font-weight: ${euiTheme.font.weight.medium};
-      background-color: ${colorMode === 'DARK'
-        ? tint(euiTheme.colors.lightestShade, 0.5)
-        : euiTheme.colors.lightestShade};
-      padding: 1px ${euiTheme.size.xs};
+      background-color: ${
+        colorMode === 'DARK'
+          ? tint(euiTheme.colors.lightestShade, 0.5)
+          : euiTheme.colors.lightestShade
+      };
       margin: 0 ${euiTheme.size.xs};
 
       // Make sure the first <dt> doesn't get a margin.
       &:first-of-type {
         margin-left: 0;
       }
+    `;
+  };
+
+  return {
+    euiDescriptionList__title: css`
+      ${euiTextBreakWord()};
+      // Add margin only to the non-first <dt>.
+      &:not(:first-of-type) {
+        margin-top: ${euiTheme.size.base};
+      }
     `,
-    column: css`
+
+    // Row types
+    row: css`
       ${euiTitle(euiThemeContext, 'xs')};
-      line-height: ${lineHeight};
-      width: 50%; // Flex-basis doesn't work in IE with padding
-      padding-right: ${euiTheme.size.s};
-    `,
-    responsiveColumn: css`
-      ${euiTitle(euiThemeContext, 'xs')};
-      line-height: ${lineHeight};
-      width: 50%; // Flex-basis doesn't work in IE with padding
-      padding-right: ${euiTheme.size.s};
     `,
 
     rowReverse: css`
-      ${euiText(euiTheme)};
       ${euiFontSize(euiThemeContext, 's')};
     `,
 
     rowCompressed: css`
       ${euiTitle(euiThemeContext, 'xxs')}
-      line-height: ${lineHeight};
     `,
 
     rowCompressedReverse: css`
-      ${euiText(euiTheme)};
       ${euiFontSize(euiThemeContext, 's')};
+    `,
+
+    // Column types
+    column: css`
+      ${euiTitle(euiThemeContext, 'xs')};
+      ${sharedColumnStyles()};
+    `,
+
+    columnReverse: css`
+      ${euiFontSize(euiThemeContext, 's')};
+      ${sharedColumnStyles()};
+    `,
+
+    columnCompressed: css`
+      ${euiTitle(euiThemeContext, 'xxs')};
+      ${sharedColumnStyles()};
+    `,
+
+    columnCompressedReverse: css`
+      ${euiFontSize(euiThemeContext, 's')};
+      ${sharedColumnStyles()};
     `,
 
     columnCenter: css`
@@ -79,61 +92,17 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
       text-align: right;
     `,
 
-    columnReverse: css`
-      ${euiText(euiTheme)};
+    // Inline types
+    inline: css`
       ${euiFontSize(euiThemeContext, 's')};
-    `,
-
-    columnCompressed: css`
-      ${euiTitle(euiThemeContext, 'xxs')};
-      line-height: ${lineHeight};
-      text-align: right;
-    `,
-
-    columnCompressedReverse: css`
-      ${euiText(euiTheme)};
-      ${euiFontSize(euiThemeContext, 's')};
+      ${sharedInlineStyles()};
+      padding: 1px ${euiTheme.size.xs};
     `,
 
     inlineCompressed: css`
       ${euiFontSize(euiThemeContext, 'xs')};
+      ${sharedInlineStyles()};
       padding: 0 ${euiTheme.size.xs};
     `,
-
-    // // Text styles
-    // normal: css``,
-    // reverse: css`
-    //   /* ${euiText(euiTheme)};
-    //   ${euiFontSize(euiThemeContext, 's')}; */
-    // `,
-
-    // // Compressed
-    // compressed: css`
-    //   /* ${euiTitle(euiThemeContext, 'xxs')}
-    //   line-height: ${lineHeight}; */
-    // `,
-
-    // reverseNormal: css``,
-
-    // Types
-    // row: {
-    //   nonCompressed: {
-    //     normal: css``,
-    //     reverse: css`
-    //       ${euiText(euiTheme)};
-    //       ${euiFontSize(euiThemeContext, 's')};
-    //     `,
-    //   },
-    //   compressed: {
-    //     normal: css`
-    //       ${euiTitle(euiThemeContext, 'xxs')}
-    //       line-height: ${lineHeight};
-    //     `,
-    //     reverse: css`
-    //       ${euiText(euiTheme)};
-    //       ${euiFontSize(euiThemeContext, 's')};
-    //     `,
-    //   },
-    // },
   };
 };
