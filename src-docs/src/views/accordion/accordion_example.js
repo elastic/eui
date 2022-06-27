@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiCallOut } from '../../../../src/components';
-import { EuiAccordion } from './accordion_props';
+import { EuiAccordion, EuiCode, EuiCallOut } from '../../../../src/components';
 
 import { accordionConfig } from './playground';
 
