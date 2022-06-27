@@ -255,7 +255,7 @@ exports[`EuiButtonIcon props isLoading is rendered 1`] = `
 >
   <span
     aria-label="Loading"
-    class="euiLoadingSpinner css-192zz00-euiLoadingSpinner-m"
+    class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
     role="progressbar"
   />
 </button>

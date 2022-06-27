@@ -3,7 +3,7 @@
 exports[`EuiTitle is rendered 1`] = `
 <h1
   aria-label="aria-label"
-  class="euiTitle testClass1 testClass2 css-1w464ad-euiTitle-m"
+  class="euiTitle testClass1 testClass2 emotion-euiTitle-m"
   data-test-subj="test subject string"
 >
   Title
@@ -13,7 +13,7 @@ exports[`EuiTitle is rendered 1`] = `
 exports[`EuiTitle renders children element className 1`] = `
 <h1
   aria-label="aria-label"
-  class="euiTitle testClass1 testClass2 test css-1w464ad-euiTitle-m"
+  class="euiTitle testClass1 testClass2 test emotion-euiTitle-m"
   data-test-subj="test subject string"
 >
   Title

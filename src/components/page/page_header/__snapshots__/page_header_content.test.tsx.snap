@@ -27,7 +27,7 @@ exports[`EuiPageHeaderContent props alignItems bottom is rendered 1`] = `
       class="euiFlexItem"
     >
       <h1
-        class="euiTitle css-1bexacr-euiTitle-l"
+        class="euiTitle emotion-euiTitle-l"
       >
         Page title
       </h1>
@@ -69,7 +69,7 @@ exports[`EuiPageHeaderContent props alignItems center is rendered 1`] = `
       class="euiFlexItem"
     >
       <h1
-        class="euiTitle css-1bexacr-euiTitle-l"
+        class="euiTitle emotion-euiTitle-l"
       >
         Page title
       </h1>
@@ -111,7 +111,7 @@ exports[`EuiPageHeaderContent props alignItems stretch is rendered 1`] = `
       class="euiFlexItem"
     >
       <h1
-        class="euiTitle css-1bexacr-euiTitle-l"
+        class="euiTitle emotion-euiTitle-l"
       >
         Page title
       </h1>
@@ -153,7 +153,7 @@ exports[`EuiPageHeaderContent props alignItems top is rendered 1`] = `
       class="euiFlexItem"
     >
       <h1
-        class="euiTitle css-1bexacr-euiTitle-l"
+        class="euiTitle emotion-euiTitle-l"
       >
         Page title
       </h1>
@@ -200,7 +200,7 @@ exports[`EuiPageHeaderContent props breadcrumbs is rendered 1`] = `
         class="euiBreadcrumb"
       >
         <a
-          class="euiLink euiBreadcrumb__content customClass css-102pf9n-euiLink-primary"
+          class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary"
           data-test-subj="breadcrumbsAnimals"
           href="#"
           rel="noreferrer"
@@ -221,7 +221,7 @@ exports[`EuiPageHeaderContent props breadcrumbs is rendered 1`] = `
     </ol>
   </nav>
   <div
-    class="euiSpacer euiSpacer--s css-78drzl-euiSpacer-s"
+    class="euiSpacer euiSpacer--s emotion-euiSpacer-s"
   />
   <div
     class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
@@ -248,7 +248,7 @@ exports[`EuiPageHeaderContent props children is rendered 1`] = `
     class="euiPageHeaderContent__bottom"
   >
     <div
-      class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
+      class="euiSpacer euiSpacer--l emotion-euiSpacer-l"
     />
     <p>
       Anything
@@ -272,7 +272,7 @@ exports[`EuiPageHeaderContent props children is rendered 2`] = `
     class="euiPageHeaderContent__bottom"
   >
     <div
-      class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
+      class="euiSpacer euiSpacer--l emotion-euiSpacer-l"
     />
     Child
   </div>
@@ -290,7 +290,7 @@ exports[`EuiPageHeaderContent props children is rendered even if content props a
       class="euiFlexItem"
     >
       <h1
-        class="euiTitle css-1bexacr-euiTitle-l"
+        class="euiTitle emotion-euiTitle-l"
       >
         Page title
       </h1>
@@ -322,11 +322,11 @@ exports[`EuiPageHeaderContent props children is rendered even if content props a
     class="euiPageHeaderContent__bottom"
   >
     <div
-      class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
+      class="euiSpacer euiSpacer--l emotion-euiSpacer-l"
     />
     Child
     <div
-      class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
+      class="euiSpacer euiSpacer--l emotion-euiSpacer-l"
     />
     <div
       class="euiTabs euiTabs--large"
@@ -372,7 +372,7 @@ exports[`EuiPageHeaderContent props description is rendered 1`] = `
       class="euiFlexItem"
     >
       <div
-        class="euiText css-j3htvy-euiText-constrainedWidth-m"
+        class="euiText emotion-euiText-constrainedWidth-m"
       >
         <p>
           Description
@@ -394,7 +394,7 @@ exports[`EuiPageHeaderContent props pageTitle is rendered 1`] = `
       class="euiFlexItem"
     >
       <h1
-        class="euiTitle css-1bexacr-euiTitle-l"
+        class="euiTitle emotion-euiTitle-l"
       >
         Page title
       </h1>
@@ -414,7 +414,7 @@ exports[`EuiPageHeaderContent props pageTitle is rendered with icon 1`] = `
       class="euiFlexItem"
     >
       <h1
-        class="euiTitle css-1bexacr-euiTitle-l"
+        class="euiTitle emotion-euiTitle-l"
       >
         <span
           class="euiPageHeaderContent__titleIcon"
@@ -438,7 +438,7 @@ exports[`EuiPageHeaderContent props pageTitle is rendered with icon and iconProp
       class="euiFlexItem"
     >
       <h1
-        class="euiTitle css-1bexacr-euiTitle-l"
+        class="euiTitle emotion-euiTitle-l"
       >
         <span
           class="euiPageHeaderContent__titleIcon testClass1 testClass2"
@@ -466,7 +466,7 @@ exports[`EuiPageHeaderContent props pageTitle is rendered with pageTitleProps 1`
     >
       <h1
         aria-label="aria-label"
-        class="euiTitle testClass1 testClass2 css-1bexacr-euiTitle-l"
+        class="euiTitle testClass1 testClass2 emotion-euiTitle-l"
         data-test-subj="test subject string"
       >
         Page title
@@ -589,7 +589,7 @@ exports[`EuiPageHeaderContent props tabs is rendered 1`] = `
       class="euiFlexItem"
     >
       <h1
-        class="euiScreenReaderOnly"
+        class="emotion-euiScreenReaderOnly"
       >
         Tab 1
       </h1>
@@ -638,7 +638,7 @@ exports[`EuiPageHeaderContent props tabs is rendered with tabsProps 1`] = `
       class="euiFlexItem"
     >
       <h1
-        class="euiScreenReaderOnly"
+        class="emotion-euiScreenReaderOnly"
       >
         Tab 1
       </h1>

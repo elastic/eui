@@ -11,7 +11,7 @@ exports[`EuiStepHorizontal is rendered 1`] = `
     class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
   >
     <span
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Step 1 is incomplete
     </span>
@@ -58,7 +58,7 @@ exports[`EuiStepHorizontal props status current is rendered 1`] = `
     class="euiStepNumber euiStepHorizontal__number"
   >
     <span
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Current step is 1
     </span>
@@ -105,7 +105,7 @@ exports[`EuiStepHorizontal props status disabled is rendered 1`] = `
     class="euiStepNumber euiStepNumber--disabled euiStepHorizontal__number"
   >
     <span
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Step 1 is disabled
     </span>
@@ -132,7 +132,7 @@ exports[`EuiStepHorizontal props status disabled overrides the passed status 1`]
     class="euiStepNumber euiStepNumber--disabled euiStepHorizontal__number"
   >
     <span
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Step 1 is disabled
     </span>
@@ -158,7 +158,7 @@ exports[`EuiStepHorizontal props status incomplete is rendered 1`] = `
     class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
   >
     <span
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Step 1 is incomplete
     </span>
@@ -184,13 +184,13 @@ exports[`EuiStepHorizontal props status loading is rendered 1`] = `
     class="euiStepNumber euiStepNumber--loading euiStepHorizontal__number"
   >
     <span
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Step 1 is loading
     </span>
     <span
       aria-label="Loading"
-      class="euiLoadingSpinner euiStepNumber__loader css-xfvye6-euiLoadingSpinner-xl"
+      class="euiLoadingSpinner euiStepNumber__loader emotion-euiLoadingSpinner-xl"
       role="progressbar"
     />
   </span>
@@ -230,7 +230,7 @@ exports[`EuiStepHorizontal props step 1`] = `
     class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
   >
     <span
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Step 5 is incomplete
     </span>
@@ -256,7 +256,7 @@ exports[`EuiStepHorizontal props title 1`] = `
     class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
   >
     <span
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Step 1 is incomplete
     </span>

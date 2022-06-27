@@ -106,24 +106,71 @@ module.exports = function(fileSource) {
   if (types.length > 0) {
     types.map(member => {
       const displayName = member.name.escapedText;
+
       const props = {};
-      const generatedTypes = [];
+      const type = checker.getTypeAtLocation(member);
       if (member.type && member.type.types) {
+        // this is a composite type, e.g. type A = B | C
+        const generatedTypes = [];
+
         member.type.types.map(member => {
           const type = checker.getTypeAtLocation(member);
           const stringType = checker.typeToString(type);
           generatedTypes.push(stringType);
         });
+
+        props[displayName] = {
+          name: displayName,
+          type: {
+            name: generatedTypes.toString(),
+          },
+        };
+      } else if (type?.symbol?.members) {
+        // this type has direct members, e.g. type A = { value: string }
+        type.symbol.members.forEach(
+          ({ escapedName, valueDeclaration }) => {
+            if (valueDeclaration == undefined) {
+              // nothing to read from
+              return;
+            }
+            const typeString = checker.typeToString(checker.getTypeAtLocation(valueDeclaration))
+
+            const description = member.jsDoc ? member.jsDoc[0].comment : '';
+            const propName = escapedName;
+
+            generatedType = {
+              name: 'enum',
+              raw: typeString,
+              value: typeString,
+            };
+
+            props[propName] = setPropInfo(
+              {
+                name: typeString,
+              },
+              propName,
+              !valueDeclaration?.questionToken,
+              description
+            );
+          }
+        );
+      } else {
+        // unknown, but let's pass through TS's take on it
+        const propType = checker.getTypeAtLocation(member.type);
+        if (propType.types) {
+          props[displayName] = {
+            name: displayName,
+            type: {
+              name: checker.typeToString(propType),
+            },
+          };
+        }
       }
-      props[displayName] = {
-        name: displayName,
-        type: {
-          name: generatedTypes.toString(),
-        },
-      };
+
       docsInfo.push(generateDocInfo(displayName, props));
     });
   }
+
   /**
    * Append all the types and interfaces to the file as objects.
    */
