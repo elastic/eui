@@ -89,21 +89,6 @@
     }
   }
 
-  // // Fix ghost/disabled look specifically
-  // .euiButtonGroupButton.euiButtonGroupButton-isDisabled.euiButtonGroupButton--ghost {
-  //   &,
-  //   &:hover,
-  //   &:focus,
-  //   &:focus-within {
-  //     color: $euiButtonColorGhostDisabled;
-  //   }
-
-  //   &.euiButtonGroupButton-isSelected {
-  //     background-color: $euiButtonColorGhostDisabled;
-  //     color: makeHighContrastColor($euiButtonColorGhostDisabled, $euiButtonColorGhostDisabled, 2);
-  //   }
-  // }
-
   .euiButtonGroupButton-isSelected {
     z-index: 0;
   }

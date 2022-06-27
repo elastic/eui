@@ -205,7 +205,7 @@ export const EuiButtonDisplayDeprecated = forwardRef<
     },
     ref
   ) => {
-    const buttonIsDisabled = isLoading || isDisabled;
+    const buttonIsDisabled = isButtonDisabled({ isLoading, isDisabled });
 
     const classes = classNames(
       baseClassName,
@@ -215,9 +215,7 @@ export const EuiButtonDisplayDeprecated = forwardRef<
       size && sizeToClassNameMap[size]
         ? `${baseClassName}${sizeToClassNameMap[size]}`
         : null,
-      // fill && `${baseClassName}--fill`,
       fullWidth && `${baseClassName}--fullWidth`,
-      // buttonIsDisabled && `${baseClassName}-isDisabled`,
       className
     );
 
