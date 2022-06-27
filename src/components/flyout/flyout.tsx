@@ -28,6 +28,7 @@ import {
   EuiBreakpointSize,
   isWithinMinBreakpoint,
   throttle,
+  useEuiTheme,
 } from '../../services';
 
 import { CommonProps, keysOf, PropsOfElement } from '../common';
@@ -37,6 +38,7 @@ import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
+import { euiFlyoutStyles } from './flyout.styles';
 
 const typeToClassNameMap = {
   push: 'euiFlyout--push',
@@ -309,6 +311,15 @@ export const EuiFlyout = forwardRef(
       newStyle = { ...style, width: size };
     }
 
+    const euiTheme = useEuiTheme();
+    const styles = euiFlyoutStyles(euiTheme);
+
+    const cssStyles = [
+      styles.euiFlyout,
+      styles.euiFlyout__closeButton,
+      styles[closeButtonPosition],
+    ];
+
     const classes = classnames(
       'euiFlyout',
       typeToClassNameMap[type as _EuiFlyoutType],
@@ -388,6 +399,7 @@ export const EuiFlyout = forwardRef(
           tabIndex={-1}
           style={newStyle || style}
           ref={setRef}
+          css={cssStyles}
         >
           {closeButton}
           {children}

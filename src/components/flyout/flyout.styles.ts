@@ -30,12 +30,12 @@ const euiFlyout = keyframes`
 
 export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
-  const colorMode = euiThemeContext.colorMode;
+  //const colorMode = euiThemeContext.colorMode;
 
   return {
     euiFlyout: css`
       border-left: ${euiTheme.border.thin};
-      //${euiShadowXLarge(euiThemeContext, colorMode)};
+      ${euiShadowXLarge(euiThemeContext)};
       position: fixed;
       top: 0;
       bottom: 0;
@@ -62,9 +62,9 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       top: ${euiTheme.size.s};
       z-index: 3;
     `,
-    'euiFlyout--outside': css`
+    outside: css`
       // match dropshadow
-      //${euiShadowXLarge(euiThemeContext, colorMode)};
+      ${euiShadowXLarge(euiThemeContext)};
       right: auto;
       left: 0;
       // Override the hover and focus transitions of buttons
@@ -78,7 +78,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         transform: translateX(calc(100% + #{${euiTheme.size.l}})) !important;
       }
     `,
-    'euiFlyout--inside': css``,
+    inside: css``,
     euiFlyoutBody__banner: css`
       overflow-x: hidden;
     `,
