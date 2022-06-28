@@ -1,6 +1,5 @@
 // Components
 
-@import 'accessibility/index';
 @import 'accordion/index';
 @import 'badge/index';
 @import 'basic_table/index';
@@ -38,7 +37,6 @@
 @import 'panel/index';
 @import 'page/index'; // Page needs to come after Panel for cascade specificity
 @import 'portal/index';
-@import 'progress/index';
 @import 'tree_view/index';
 @import 'resizable_container/index';
 @import 'side_nav/index';

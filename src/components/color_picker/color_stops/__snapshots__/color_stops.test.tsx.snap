@@ -8,7 +8,7 @@ exports[`renders EuiColorStops 1`] = `
 >
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
@@ -119,7 +119,7 @@ exports[`renders compressed EuiColorStops 1`] = `
 >
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
@@ -230,7 +230,7 @@ exports[`renders disabled EuiColorStops 1`] = `
 >
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Test:  Disabled. Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
@@ -344,7 +344,7 @@ exports[`renders empty EuiColorStops 1`] = `
 >
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
@@ -380,7 +380,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
 >
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
@@ -491,7 +491,7 @@ exports[`renders free-range EuiColorStops 1`] = `
 >
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
@@ -527,7 +527,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
 >
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
@@ -638,7 +638,7 @@ exports[`renders max-only EuiColorStops 1`] = `
 >
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
@@ -674,7 +674,7 @@ exports[`renders min-only EuiColorStops 1`] = `
 >
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
@@ -710,7 +710,7 @@ exports[`renders readOnly EuiColorStops 1`] = `
 >
   <p
     aria-live="polite"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Test: Read-only.  Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>

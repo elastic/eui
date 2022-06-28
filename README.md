@@ -22,6 +22,13 @@ To install and use the correct node version with `nvm`:
 nvm install
 ```
 
+> **Notes:** if you are running on an **M1 Apple device**, you might want to the following
+> - downgrade to node v14 (`lts/fermium` aka `v14.19.3` works)
+> - make sure that you're running your terminal in Rosetta mode
+    >  - select the `Terminal` application in the Finder (Applications -> Utilities)
+>  - right-click and select `Get Info` then check the `Open using Rosetta` check-box
+>  - close the window and restart your Terminal
+
 ### Documentation
 
 You can run the documentation locally at [http://localhost:8030/](http://localhost:8030/) by running the following.

@@ -82,7 +82,10 @@ const webpackConfig = {
         loaders: employCache([
           {
             loader: 'style-loader',
-            options: { injectType: 'lazySingletonStyleTag' },
+            options: {
+              injectType: 'lazySingletonStyleTag',
+              insert: 'meta[name="sass-styles-compiled"]',
+            },
           },
           'css-loader',
           'postcss-loader',
