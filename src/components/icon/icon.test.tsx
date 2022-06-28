@@ -129,7 +129,7 @@ describe('EuiIcon', () => {
   describe('appendIconComponentCache', () => {
     it('does nothing if not called', () => {
       const component = mount(<EuiIcon type="videoPlayer" />);
-      expect(component.find('svg').prop('className')).toMatch('isLoading');
+      expect(component.find('svg').prop('data-is-loading')).toEqual(true);
     });
 
     it('preloads the specified icon into the cache', () => {
@@ -137,8 +137,8 @@ describe('EuiIcon', () => {
         videoPlayer: EuiIconVideoPlayer,
       });
       const component = mount(<EuiIcon type="videoPlayer" />);
-      // Should not have either isLoading or isLoaded classes, because it was pre-loaded
-      expect(component.find('svg').prop('className')).not.toMatch('isLoading');
+      // Should not have either data-is-loading attr set to true, because it was pre-loaded
+      expect(component.find('svg').prop('data-is-loading')).not.toEqual(true);
     });
 
     it('does not impact non-loaded icons', () => {
@@ -146,7 +146,7 @@ describe('EuiIcon', () => {
         videoPlayer: EuiIconVideoPlayer,
       });
       const component = mount(<EuiIcon type="accessibility" />);
-      expect(component.find('svg').prop('className')).toMatch('isLoading');
+      expect(component.find('svg').prop('data-is-loading')).toEqual(true);
     });
   });
 });

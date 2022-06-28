@@ -245,7 +245,8 @@ export class EuiIconClass extends PureComponent<
       ...rest
     } = this.props;
 
-    const { isLoading, neededLoading } = this.state;
+    const { isLoading, neededLoading, iconTitle } = this.state;
+    const isLoaded = !isLoading && neededLoading;
 
     const isCustomColor = color && !isNamedColor(color);
 
@@ -265,13 +266,7 @@ export class EuiIconClass extends PureComponent<
     const isElasticLogoOutline =
       type === 'logoElastic' && (color === 'ghost' || color === 'text');
 
-    const classes = classNames(
-      'euiIcon',
-      {
-        'euiIcon-isLoaded': !isLoading && neededLoading,
-      },
-      className
-    );
+    const classes = classNames('euiIcon', className);
 
     // Emotion styles
     const styles = euiIconStyles(theme);
@@ -341,7 +336,9 @@ export class EuiIconClass extends PureComponent<
           focusable={focusable}
           role="img"
           title={title}
-          data-icon-type={this.state.iconTitle}
+          data-icon-type={iconTitle}
+          data-is-loaded={isLoaded}
+          data-is-loading={isLoading}
           {...titleId}
           {...rest}
           {...hideIconEmpty}
