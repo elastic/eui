@@ -9,8 +9,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import cheerio from 'cheerio';
-
 import {
   EuiIcon,
   SIZES,
@@ -30,7 +30,7 @@ beforeEach(() => clearIconComponentCache());
 
 const prettyHtml = cheerio.load('');
 
-function testIcon(props: PropsOf<EuiIcon>) {
+function testIcon(props: PropsOf<typeof EuiIcon>) {
   return () => {
     expect.assertions(1);
     return new Promise<void>((resolve) => {
@@ -46,6 +46,8 @@ function testIcon(props: PropsOf<EuiIcon>) {
 
 describe('EuiIcon', () => {
   test('is rendered', testIcon({ type: 'search', ...requiredProps }));
+
+  shouldRenderCustomStyles(<EuiIcon type="videoPlayer" />);
 
   describe('props', () => {
     describe('other props', () => {
@@ -127,20 +129,16 @@ describe('EuiIcon', () => {
   describe('appendIconComponentCache', () => {
     it('does nothing if not called', () => {
       const component = mount(<EuiIcon type="videoPlayer" />);
-      expect(
-        component.find('EuiIcon[type="videoPlayer"] > EuiIconEmpty').length
-      ).toBe(1);
+      expect(component.find('svg').prop('data-is-loading')).toEqual(true);
     });
 
-    it('injects the specified icon', () => {
+    it('preloads the specified icon into the cache', () => {
       appendIconComponentCache({
         videoPlayer: EuiIconVideoPlayer,
       });
       const component = mount(<EuiIcon type="videoPlayer" />);
-      expect(
-        component.find('EuiIcon[type="videoPlayer"] > EuiIconVideoPlayer')
-          .length
-      ).toBe(1);
+      // Should not have either data-is-loading attr set to true, because it was pre-loaded
+      expect(component.find('svg').prop('data-is-loading')).not.toEqual(true);
     });
 
     it('does not impact non-loaded icons', () => {
@@ -148,9 +146,7 @@ describe('EuiIcon', () => {
         videoPlayer: EuiIconVideoPlayer,
       });
       const component = mount(<EuiIcon type="accessibility" />);
-      expect(
-        component.find('EuiIcon[type="accessibility"] > EuiIconEmpty').length
-      ).toBe(1);
+      expect(component.find('svg').prop('data-is-loading')).toEqual(true);
     });
   });
 });
