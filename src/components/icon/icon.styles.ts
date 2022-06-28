@@ -9,7 +9,6 @@
 import { css, keyframes } from '@emotion/react';
 import { logicalCSS, euiCanAnimate } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { EuiIconProps } from './icon';
 
 const _iconSize = (size: string) => {
   return `
@@ -30,10 +29,7 @@ const _iconLoading = keyframes`
   }
 `;
 
-export const euiIconStyles = (
-  { euiTheme }: UseEuiTheme,
-  color: EuiIconProps['color']
-) => ({
+export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiIcon: css`
     flex-shrink: 0; // Ensures it never scales down below its intended size
@@ -94,9 +90,6 @@ export const euiIconStyles = (
     color: inherit;
   `,
   default: css``,
-  customColor: css`
-    color: ${color};
-  `,
   logoElasticOutline: css`
     // Elastic logo specific colors
     *[fill] {

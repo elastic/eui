@@ -11,6 +11,7 @@ import React, {
   ImgHTMLAttributes,
   ComponentType,
   SVGAttributes,
+  CSSProperties,
 } from 'react';
 import classNames from 'classnames';
 
@@ -240,12 +241,20 @@ export class EuiIconClass extends PureComponent<
       title,
       onIconLoad,
       theme,
+      style,
       ...rest
     } = this.props;
 
     const { isLoading, neededLoading } = this.state;
 
     const isCustomColor = color && !isNamedColor(color);
+
+    const optionalCustomStyles: CSSProperties | undefined = isCustomColor
+      ? {
+          color: color,
+          ...style,
+        }
+      : style;
 
     // These icons are a little special and get some extra CSS flexibility
     const isAppIcon = getIsAppIcon(type);
@@ -264,12 +273,12 @@ export class EuiIconClass extends PureComponent<
       className
     );
 
-    const styles = euiIconStyles(theme, color);
+    // Emotion styles
+    const styles = euiIconStyles(theme);
     const cssStyles = [
       styles.euiIcon,
       styles[size],
       color && isNamedColor(color) && styles[color as NamedColor],
-      isCustomColor && styles.customColor,
       isElasticLogoOutline && styles.logoElasticOutline,
       isAppIcon && !appIconHasColor && styles.app,
       isLoading && styles.isLoading,
@@ -326,6 +335,7 @@ export class EuiIconClass extends PureComponent<
       return (
         <Svg
           className={classes}
+          style={optionalCustomStyles}
           css={cssStyles}
           tabIndex={tabIndex}
           focusable={focusable}
