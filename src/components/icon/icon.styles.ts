@@ -17,7 +17,7 @@ const iconSize = (size: string) => {
   `;
 };
 
-const iconLoadingOpacity = 0.05;
+export const iconLoadingOpacity = 0.05;
 
 const iconLoading = keyframes`
   0% {
@@ -38,14 +38,11 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     fill: currentColor;
     transform: translate(0, 0); // Hack to fix Firefox "softness"
 
-    &:focus {
-      opacity: 1; // We often hide icons on hover. Make sure they appear on focus.
-    }
-
-    // Use the negative fill on SVG elements that need to flip portions
-    // of the icon to light and dark compatible modes. You can see this
-    // in use on the Elastic logo icons.
+    // Note: This className is hard-coded into our SVGs and cannot be converted to Emotion
     .euiIcon__fillNegative {
+      // Use the negative fill on SVG elements that need to flip portions
+      // of the icon to light and dark compatible modes. You can see this
+      // in use on the Elastic logo icons.
       fill: ${euiTheme.colors.darkestShade};
     }
   `,
@@ -112,8 +109,9 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   app: css`
     fill: ${euiTheme.colors.text};
 
-    // This provides the default secondary color
+    // Note: This className is hard-coded into our SVGs and cannot be converted to Emotion
     .euiIcon__fillSecondary {
+      // This provides the default secondary color
       fill: ${euiTheme.colors.successText};
     }
   `,
