@@ -10,11 +10,10 @@ import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import {
-  EuiDescriptionListAlignment,
   EuiDescriptionListTextStyle,
   EuiDescriptionListType,
 } from './description_list';
-import { useEuiTheme } from '../../services';
+import { useEuiTheme, useIsWithinBreakpoints } from '../../services';
 import { euiDescriptionListDescriptionStyles } from './description_list_description.styles';
 
 interface EuiDescriptionListDescriptionProps
@@ -33,43 +32,43 @@ interface EuiDescriptionListDescriptionProps
    * Smaller text and condensed spacing
    */
   compressed?: boolean;
-  /**
-   * Text alignment
-   */
-  align?: EuiDescriptionListAlignment;
 }
 
 export const EuiDescriptionListDescription: FunctionComponent<EuiDescriptionListDescriptionProps> = ({
   children,
   className,
-  type,
-  textStyle,
+  type = 'row',
+  textStyle = 'normal',
   compressed,
-  align,
   ...rest
 }) => {
   const theme = useEuiTheme();
   const styles = euiDescriptionListDescriptionStyles(theme);
+
+  const isMobile = useIsWithinBreakpoints(['xs', 's']);
+
+  let fontStyles = compressed
+    ? [styles.fontStyles.compressed]
+    : [styles.fontStyles[textStyle]];
+
+  let typeStyles;
+  if (type === 'responsiveColumn') {
+    // Responsive columns are only column style at larger breakpoints
+    typeStyles = !isMobile ? [styles.column] : [styles.row];
+  } else if (type === 'inline') {
+    // Inline styles have nested keys for type and font
+    typeStyles = [styles.inlineStyles.inline];
+    fontStyles = compressed
+      ? [styles.inlineStyles.compressed]
+      : [styles.inlineStyles.normal];
+  } else {
+    typeStyles = [styles[type]];
+  }
+
   const cssStyles = [
     styles.euiDescriptionList__description,
-    type && styles[type],
-    type === 'row' && textStyle === 'reverse' && styles.rowReverse,
-    type === 'row' && compressed && styles.rowCompressed,
-    type === 'row' &&
-      textStyle === 'reverse' &&
-      compressed &&
-      styles.rowCompressedReverse,
-    (type === 'column' || type === 'responsiveColumn') &&
-      textStyle === 'reverse' &&
-      styles.columnReverse,
-    (type === 'column' || type === 'responsiveColumn') &&
-      compressed &&
-      styles.columnCompressed,
-    (type === 'column' || type === 'responsiveColumn') &&
-      compressed &&
-      textStyle === 'reverse' &&
-      styles.columnCompressedReverse,
-    type === 'inline' && compressed && styles.inlineCompressed,
+    ...fontStyles,
+    ...typeStyles,
   ];
 
   const classes = classNames('euiDescriptionList__description', className);

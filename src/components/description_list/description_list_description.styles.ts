@@ -15,56 +15,42 @@ export const euiDescriptionListDescriptionStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
   const { euiTheme } = euiThemeContext;
-  const { lineHeight } = euiFontSize(euiThemeContext, 's');
 
   return {
     euiDescriptionList__description: css``,
 
-    // Types
-    row: css`
-      ${euiFontSize(euiThemeContext, 's')};
-    `,
-    inline: css`
-      ${euiFontSize(euiThemeContext, 's')};
-      display: inline;
-    `,
+    // This nested block handles just the font styling based on compressed and reverse
+    fontStyles: {
+      normal: css`
+        ${euiFontSize(euiThemeContext, 's')};
+      `,
+      reverse: css`
+        ${euiTitle(euiThemeContext, 'xs')}
+      `,
+      compressed: css`
+        ${euiFontSize(euiThemeContext, 's')};
+      `,
+    },
+
+    // Row type is the default DOM layout
+    row: undefined,
+
     column: css`
-      ${euiFontSize(euiThemeContext, 's')};
-      width: 50%; // Flex-basis doesn't work in IE with padding
-      padding-left: ${euiTheme.size.s};
-    `,
-    responsiveColumn: css`
-      ${euiFontSize(euiThemeContext, 's')};
       width: 50%; // Flex-basis doesn't work in IE with padding
       padding-left: ${euiTheme.size.s};
     `,
 
-    // Modifier combinations
-    rowReverse: css`
-      ${euiTitle(euiThemeContext, 'xs')}
-    `,
-    rowCompressed: css`
-      ${euiFontSize(euiThemeContext, 's')};
-    `,
-    rowCompressedReverse: css`
-      ${euiTitle(euiThemeContext, 'xxs')};
-      line-height: ${lineHeight};
-    `,
-
-    columnReverse: css`
-      ${euiTitle(euiThemeContext, 'xs')};
-      line-height: ${lineHeight};
-    `,
-    columnCompressed: css`
-      ${euiFontSize(euiThemeContext, 's')};
-    `,
-    columnCompressedReverse: css`
-      ${euiTitle(euiThemeContext, 'xxs')};
-      line-height: ${lineHeight};
-    `,
-
-    inlineCompressed: css`
-      ${euiFontSize(euiThemeContext, 'xs')};
-    `,
+    // Nested inline styles for type and font
+    inlineStyles: {
+      inline: css`
+        display: inline;
+      `,
+      compressed: css`
+        ${euiFontSize(euiThemeContext, 'xs')};
+      `,
+      normal: css`
+        ${euiFontSize(euiThemeContext, 's')};
+      `,
+    },
   };
 };

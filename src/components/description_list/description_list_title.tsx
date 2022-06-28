@@ -10,6 +10,7 @@ import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import {
+  EuiDescriptionListAlignment,
   EuiDescriptionListTextStyle,
   EuiDescriptionListType,
 } from './description_list';
@@ -32,6 +33,10 @@ interface EuiDescriptionListTitleProps
    * Smaller text and condensed spacing
    */
   compressed?: boolean;
+  /**
+   * Text alignment for Description Title
+   */
+  align: EuiDescriptionListAlignment;
 }
 
 export const EuiDescriptionListTitle: FunctionComponent<EuiDescriptionListTitleProps> = ({
@@ -40,6 +45,7 @@ export const EuiDescriptionListTitle: FunctionComponent<EuiDescriptionListTitleP
   type = 'row',
   textStyle = 'normal',
   compressed,
+  align,
   ...rest
 }) => {
   const theme = useEuiTheme();
@@ -56,7 +62,8 @@ export const EuiDescriptionListTitle: FunctionComponent<EuiDescriptionListTitleP
   if (type === 'responsiveColumn') {
     // Responsive columns are only column style at larger breakpoints
     typeStyles = !isMobile ? [styles.column] : [styles.row];
-    alignStyles = !isMobile ? [styles.fontStyles.right] : undefined;
+    alignStyles =
+      align === 'center' && !isMobile ? [styles.fontStyles.right] : undefined;
   } else if (type === 'inline') {
     // Inline styles have nested keys for type and font
     typeStyles = [styles.inlineStyles.inline];
@@ -66,7 +73,9 @@ export const EuiDescriptionListTitle: FunctionComponent<EuiDescriptionListTitleP
   } else {
     // Column and row are the rest
     typeStyles = [styles[type]];
-    alignStyles = type === 'column' ? [styles.fontStyles.right] : undefined;
+    if (align === 'center' && type === 'column') {
+      alignStyles = [styles.fontStyles.right];
+    }
   }
 
   const cssStyles = [

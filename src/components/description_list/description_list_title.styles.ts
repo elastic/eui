@@ -7,7 +7,11 @@
  */
 
 import { css } from '@emotion/react';
-import { euiFontSize, euiTextBreakWord } from '../../global_styling';
+import {
+  euiFontSize,
+  euiTextBreakWord,
+  logicalTextAlignCSS,
+} from '../../global_styling';
 import { tint, UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
@@ -34,12 +38,12 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiTitle(euiThemeContext, 'xxs')}
       `,
       right: css`
-        text-align: right;
+        ${logicalTextAlignCSS('right')};
       `,
     },
 
     // Row types is the default DOM layout
-    row: css``,
+    row: undefined,
 
     // Column types
     column: css`
