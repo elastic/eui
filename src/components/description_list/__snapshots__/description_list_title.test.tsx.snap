@@ -3,7 +3,7 @@
 exports[`EuiDescriptionListTitle is rendered 1`] = `
 <dt
   aria-label="aria-label"
-  class="euiDescriptionList__title testClass1 testClass2 emotion-euiDescriptionList__title-normal-row"
+  class="euiDescriptionList__title testClass1 testClass2 emotion-euiDescriptionList__title-normal"
   data-test-subj="test subject string"
 >
   Content

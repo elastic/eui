@@ -9,6 +9,8 @@ import {
   EuiDescriptionListDescription,
 } from '../../../../src/components';
 
+import { descriptionListConfig } from './playground';
+
 import DescriptionList from './description_list';
 const descriptionListSource = require('!!raw-loader!./description_list');
 const descriptionListSnippet = [
@@ -106,6 +108,7 @@ export const DescriptionListExample = {
       },
       snippet: descriptionListSnippet,
       demo: <DescriptionList />,
+      playground: descriptionListConfig,
     },
     {
       title: 'Reverse style',

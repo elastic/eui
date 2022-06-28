@@ -3,7 +3,7 @@
 exports[`EuiDescriptionListDescription is rendered 1`] = `
 <dd
   aria-label="aria-label"
-  class="euiDescriptionList__description testClass1 testClass2"
+  class="euiDescriptionList__description testClass1 testClass2 css-1u82jm0-normal"
   data-test-subj="test subject string"
 >
   Content

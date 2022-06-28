@@ -36,7 +36,7 @@ interface EuiDescriptionListDescriptionProps
   /**
    * Text alignment for Description Title
    */
-  align: EuiDescriptionListAlignment;
+  align?: EuiDescriptionListAlignment;
 }
 
 export const EuiDescriptionListDescription: FunctionComponent<EuiDescriptionListDescriptionProps> = ({
@@ -45,7 +45,7 @@ export const EuiDescriptionListDescription: FunctionComponent<EuiDescriptionList
   type = 'row',
   textStyle = 'normal',
   compressed,
-  align,
+  align = 'left',
   ...rest
 }) => {
   const theme = useEuiTheme();
