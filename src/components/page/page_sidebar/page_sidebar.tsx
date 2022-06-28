@@ -59,7 +59,7 @@ export const EuiPageSidebar: FunctionComponent<EuiPageSidebarProps> = ({
   className,
   sticky = false,
   paddingSize = 'none',
-  minWidth = 260,
+  minWidth = 248,
   responsive = ['xs', 's'],
   style,
   ...rest

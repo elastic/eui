@@ -19,7 +19,7 @@ export const euiPageSidebarStyles = (euiThemeContext: UseEuiTheme) => ({
   `,
 
   sticky: css`
-    ${euiYScroll(euiThemeContext)}
+    ${euiYScroll(euiThemeContext, { height: 'auto' })};
     flex-grow: 1;
     position: sticky;
   `,

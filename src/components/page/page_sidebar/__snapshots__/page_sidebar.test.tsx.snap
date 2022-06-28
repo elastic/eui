@@ -5,7 +5,7 @@ exports[`_EuiPageSidebar is rendered 1`] = `
   aria-label="aria-label"
   class="testClass1 testClass2 emotion-euiPageSidebar"
   data-test-subj="test subject string"
-  style="min-inline-size:260px"
+  style="min-inline-size:248px"
 />
 `;
 
@@ -19,48 +19,48 @@ exports[`_EuiPageSidebar minWidth is rendered 1`] = `
 exports[`_EuiPageSidebar paddingSize l is rendered 1`] = `
 <div
   class="emotion-euiPageSidebar-l"
-  style="min-inline-size:260px"
+  style="min-inline-size:248px"
 />
 `;
 
 exports[`_EuiPageSidebar paddingSize m is rendered 1`] = `
 <div
   class="emotion-euiPageSidebar-m"
-  style="min-inline-size:260px"
+  style="min-inline-size:248px"
 />
 `;
 
 exports[`_EuiPageSidebar paddingSize none is rendered 1`] = `
 <div
   class="emotion-euiPageSidebar"
-  style="min-inline-size:260px"
+  style="min-inline-size:248px"
 />
 `;
 
 exports[`_EuiPageSidebar paddingSize s is rendered 1`] = `
 <div
   class="emotion-euiPageSidebar-s"
-  style="min-inline-size:260px"
+  style="min-inline-size:248px"
 />
 `;
 
 exports[`_EuiPageSidebar paddingSize xl is rendered 1`] = `
 <div
   class="emotion-euiPageSidebar-xl"
-  style="min-inline-size:260px"
+  style="min-inline-size:248px"
 />
 `;
 
 exports[`_EuiPageSidebar paddingSize xs is rendered 1`] = `
 <div
   class="emotion-euiPageSidebar-xs"
-  style="min-inline-size:260px"
+  style="min-inline-size:248px"
 />
 `;
 
 exports[`_EuiPageSidebar sticky is rendered 1`] = `
 <div
   class="emotion-euiPageSidebar-sticky"
-  style="min-inline-size:260px"
+  style="min-inline-size:248px"
 />
 `;
