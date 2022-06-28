@@ -10,18 +10,18 @@ import { css, keyframes } from '@emotion/react';
 import { logicalCSS, euiCanAnimate } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
-const _iconSize = (size: string) => {
+const iconSize = (size: string) => {
   return `
     ${logicalCSS('width', size)};
     ${logicalCSS('height', size)};
   `;
 };
 
-const _iconLoadingOpacity = 0.05;
+const iconLoadingOpacity = 0.05;
 
-const _iconLoading = keyframes`
+const iconLoading = keyframes`
   0% {
-    opacity: ${_iconLoadingOpacity};
+    opacity: ${iconLoadingOpacity};
   }
 
   100% {
@@ -102,11 +102,11 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
   // Sizes
   original: css``,
-  s: css(_iconSize(euiTheme.size.m)),
-  m: css(_iconSize(euiTheme.size.base)),
-  l: css(_iconSize(euiTheme.size.l)),
-  xl: css(_iconSize(euiTheme.size.xl)),
-  xxl: css(_iconSize(euiTheme.size.xxl)),
+  s: css(iconSize(euiTheme.size.m)),
+  m: css(iconSize(euiTheme.size.base)),
+  l: css(iconSize(euiTheme.size.l)),
+  xl: css(iconSize(euiTheme.size.xl)),
+  xxl: css(iconSize(euiTheme.size.xxl)),
   // Variants
   // App icons are two-toned. This provides the base color.
   app: css`
@@ -120,13 +120,13 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   logo: css``,
   // Loading states
   isLoading: css`
-    opacity: ${_iconLoadingOpacity};
+    opacity: ${iconLoadingOpacity};
     background-color: currentColor;
     border-radius: ${euiTheme.border.radius.small};
   `,
   isLoaded: css`
     ${euiCanAnimate} {
-      animation: ${_iconLoading} ${euiTheme.animation.normal} ease-in 0s 1
+      animation: ${iconLoading} ${euiTheme.animation.normal} ease-in 0s 1
         forwards;
     }
   `,
