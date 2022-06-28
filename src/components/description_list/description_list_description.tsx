@@ -50,17 +50,22 @@ export const EuiDescriptionListDescription: FunctionComponent<EuiDescriptionList
 }) => {
   const theme = useEuiTheme();
   const styles = euiDescriptionListDescriptionStyles(theme);
-
   const isMobile = useIsWithinBreakpoints(['xs', 's']);
 
-  let fontStyles = compressed
-    ? [styles.fontStyles.compressed]
-    : [styles.fontStyles[textStyle]];
+  let alignStyles;
+
+  let fontStyles = [styles.fontStyles[textStyle]];
+  if (compressed && textStyle === 'reverse') {
+    // Only render compressed style if text style is reverse
+    fontStyles = [styles.fontStyles.compressed];
+  }
 
   let typeStyles;
   if (type === 'responsiveColumn') {
     // Responsive columns are only column style at larger breakpoints
     typeStyles = !isMobile ? [styles.column] : [styles.row];
+    alignStyles =
+      align === 'center' && !isMobile ? [styles.fontStyles.left] : undefined;
   } else if (type === 'inline') {
     // Inline styles have nested keys for type and font
     typeStyles = [styles.inlineStyles.inline];
@@ -69,10 +74,10 @@ export const EuiDescriptionListDescription: FunctionComponent<EuiDescriptionList
       : [styles.inlineStyles.normal];
   } else {
     typeStyles = [styles[type]];
+    if (align === 'center' && type === 'column') {
+      alignStyles = [styles.fontStyles.left];
+    }
   }
-
-  const alignStyles =
-    align === 'center' && type !== 'row' ? [styles.fontStyles.left] : undefined;
 
   const cssStyles = [
     styles.euiDescriptionList__description,

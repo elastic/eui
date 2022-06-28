@@ -7,42 +7,15 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../services';
-import { euiBreakpoint } from '../../global_styling';
 
-export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
-  const euiTheme = euiThemeContext.euiTheme;
-
+export const euiDescriptionListStyles = () => {
   return {
-    euiDescriptionList: undefined,
-    // Row types is the default DOM layout
-    row: undefined,
-    column: css`
-      > * {
-        margin-top: ${euiTheme.size.base};
-      }
-
-      // First two items don't have margin
-      > *:first-child,
-      > :nth-child(2) {
-        margin-top: 0;
-      }
-    `,
-    responsiveColumn: css`
-      > * {
-        margin-top: ${euiTheme.size.base};
-      }
-
-      ${euiBreakpoint(['xs', 's'])} {
-        display: block;
-      }
-    `,
-    inline: undefined,
+    euiDescriptionList: css``,
 
     // Flex display for column and responsive column
-    flex: css`
+    column: css`
       display: flex;
-      align-items: stretch;
+      align-items: baseline;
       flex-wrap: wrap;
     `,
 
@@ -50,6 +23,6 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
     center: css`
       text-align: center;
     `,
-    left: undefined,
+    left: css``,
   };
 };

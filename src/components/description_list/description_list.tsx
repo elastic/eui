@@ -14,7 +14,7 @@ import { EuiDescriptionListTitle } from './description_list_title';
 import { EuiDescriptionListDescription } from './description_list_description';
 import { CommonProps, keysOf } from '../common';
 
-import { useEuiTheme } from '../../services';
+import { useIsWithinBreakpoints } from '../../services';
 import { euiDescriptionListStyles } from './description_list.styles';
 
 export type EuiDescriptionListType = keyof typeof typesToClassNameMap;
@@ -90,13 +90,14 @@ export const EuiDescriptionList: FunctionComponent<
   type = 'row',
   ...rest
 }) => {
-  const theme = useEuiTheme();
-  const styles = euiDescriptionListStyles(theme);
+  const styles = euiDescriptionListStyles();
+  const isMobile = useIsWithinBreakpoints(['xs', 's']);
+
   const cssStyles = [
     styles.euiDescriptionList,
-    styles[type],
     styles[align],
-    (type === 'column' || type === 'responsiveColumn') && styles.flex,
+    (type === 'column' || (type === 'responsiveColumn' && !isMobile)) &&
+      styles.column,
   ];
 
   const classes = classNames(

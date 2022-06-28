@@ -28,7 +28,7 @@ export const euiDescriptionListDescriptionStyles = (
         ${euiTitle(euiThemeContext, 'xs')}
       `,
       compressed: css`
-        ${euiFontSize(euiThemeContext, 's')};
+        ${euiTitle(euiThemeContext, 'xxs')}
       `,
       // Align description text left when DecriptionList is centered
       left: css`
@@ -42,6 +42,10 @@ export const euiDescriptionListDescriptionStyles = (
     column: css`
       width: 50%; // Flex-basis doesn't work in IE with padding
       padding-left: ${euiTheme.size.s};
+
+      &:not(:first-of-type) {
+        margin-top: ${euiTheme.size.base};
+      }
     `,
 
     // Nested inline styles for type and font

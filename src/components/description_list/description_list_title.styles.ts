@@ -43,7 +43,7 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
     },
 
     // Row types is the default DOM layout
-    row: undefined,
+    row: css``,
 
     // Column types
     column: css`

@@ -54,9 +54,11 @@ export const EuiDescriptionListTitle: FunctionComponent<EuiDescriptionListTitleP
 
   let alignStyles;
 
-  let fontStyles = compressed
-    ? [styles.fontStyles.compressed]
-    : [styles.fontStyles[textStyle]];
+  let fontStyles = [styles.fontStyles[textStyle]];
+  if (compressed && textStyle === 'normal') {
+    // Only render compressed style if text style is normal
+    fontStyles = [styles.fontStyles.compressed];
+  }
 
   let typeStyles;
   if (type === 'responsiveColumn') {
