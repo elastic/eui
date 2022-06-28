@@ -41,6 +41,15 @@ $euiFormInputGroupLabelBackground: tintOrShade($euiColorLightShade, 50%, 15%) !d
 $euiFormInputGroupBorder: 1px solid shadeOrTint($euiFormInputGroupLabelBackground, 2%, 4%) !default;
 $euiSwitchOffColor: lightOrDarkTheme(transparentize($euiColorMediumShade, .8), transparentize($euiColorMediumShade, .3)) !default;
 
+// Icons sizes
+$euiFormControlIconSizes: (
+  small: $euiSizeM,
+  medium: $euiSize,
+  large: $euiSizeL,
+  xLarge: $euiSizeXL,
+  xxLarge: $euiSizeXXL
+);
+
 // Control Layout
 $euiFormControlLayoutGroupInputHeight: $euiFormControlHeight - 2px !default;
 $euiFormControlLayoutGroupInputCompressedHeight: $euiFormControlCompressedHeight - 2px !default;
