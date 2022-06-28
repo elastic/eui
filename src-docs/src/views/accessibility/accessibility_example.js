@@ -13,12 +13,14 @@ import {
 } from '../../../../src';
 
 import ScreenReaderLive from './screen_reader_live';
+import ScreenReaderLiveFocus from './screen_reader_live_focus';
 import ScreenReaderOnly from './screen_reader';
 import ScreenReaderFocus from './screen_reader_focus';
 import SkipLink from './skip_link';
 import StylesHelpers from './styles_helpers';
 
 const screenReaderLiveSource = require('!!raw-loader!./screen_reader_live');
+const screenReaderLiveFocusSource = require('!!raw-loader!./screen_reader_live_focus');
 const screenReaderOnlySource = require('!!raw-loader!./screen_reader');
 const screenReaderFocusSource = require('!!raw-loader!./screen_reader_focus');
 
@@ -154,7 +156,49 @@ export const AccessibilityExample = {
       props: {
         EuiScreenReaderLive,
       },
+      snippet: `<EuiScreenReaderLive>
+  <!-- visually hidden announced content -->
+</EuiScreenReaderLive>`,
       demo: <ScreenReaderLive />,
+    },
+    {
+      text: (
+        <>
+          <h3>Auto-focusing the live region on text change</h3>
+          <p>
+            The <EuiCode>focusRegionOnTextChange</EuiCode> prop will
+            automatically focus the <EuiCode>EuiScreenReaderLive</EuiCode>{' '}
+            region (causing screen readers to read out the text content)
+            whenever <EuiCode>children</EuiCode> changes.
+          </p>
+          <p>
+            This is primarily useful for announcing navigation or page changes,
+            when programmatically resetting focus location back to a certain
+            part of the page (where the <EuiCode>EuiScreenReaderLive</EuiCode>{' '}
+            is placed) is desired.
+          </p>
+          <p>
+            <em>
+              Using a screen reader, click the following navigation links and
+              notice that when the new page is announced, focus is also set to
+              the top of the body content.
+            </em>
+          </p>
+        </>
+      ),
+      props: {
+        EuiScreenReaderLive,
+      },
+      snippet: `<EuiScreenReaderLive focusRegionOnTextChange>
+  <!-- visually hidden content, focused and announced on text change -->
+</EuiScreenReaderLive>`,
+      demo: <ScreenReaderLiveFocus />,
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: screenReaderLiveFocusSource,
+        },
+      ],
     },
     {
       title: 'Skip link',
