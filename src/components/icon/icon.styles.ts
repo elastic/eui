@@ -87,6 +87,7 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     color: inherit;
   `,
   default: css``,
+  customColor: css``,
   logoElasticOutline: css`
     // Elastic logo specific colors
     *[fill] {

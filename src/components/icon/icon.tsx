@@ -274,6 +274,7 @@ export class EuiIconClass extends PureComponent<
       styles.euiIcon,
       styles[size],
       color && isNamedColor(color) && styles[color as NamedColor],
+      isCustomColor && styles.customColor,
       isElasticLogoOutline && styles.logoElasticOutline,
       isAppIcon && !appIconHasColor && styles.app,
       isLoading && styles.isLoading,
