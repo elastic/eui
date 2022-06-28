@@ -59,7 +59,7 @@ if (args.dry_run) {
 
     // build may have generated a new i18ntokens.json file, dirtying the git workspace
     // it's important to track those changes with this release, so determine the changes and write them
-    // to i18ntokens_changelog.json, comitting both to the workspace before running `npm version`
+    // to i18ntokens_changelog.json, committing both to the workspace before running `npm version`
     execSync(`npm run update-token-changelog -- ${versionTarget}`, execOptions);
 
     // Update CHANGELOG.md
