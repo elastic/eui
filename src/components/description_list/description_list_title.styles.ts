@@ -76,5 +76,10 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
         padding: 0 ${euiTheme.size.xs};
       `,
     },
+
+    mobile: css`
+      width: 100%;
+      padding: 0;
+    `,
   };
 };

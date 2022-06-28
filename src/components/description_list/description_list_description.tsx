@@ -10,6 +10,7 @@ import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 import {
+  EuiDescriptionListAlignment,
   EuiDescriptionListTextStyle,
   EuiDescriptionListType,
 } from './description_list';
@@ -32,6 +33,10 @@ interface EuiDescriptionListDescriptionProps
    * Smaller text and condensed spacing
    */
   compressed?: boolean;
+  /**
+   * Text alignment for Description Title
+   */
+  align: EuiDescriptionListAlignment;
 }
 
 export const EuiDescriptionListDescription: FunctionComponent<EuiDescriptionListDescriptionProps> = ({
@@ -40,6 +45,7 @@ export const EuiDescriptionListDescription: FunctionComponent<EuiDescriptionList
   type = 'row',
   textStyle = 'normal',
   compressed,
+  align,
   ...rest
 }) => {
   const theme = useEuiTheme();
@@ -65,10 +71,15 @@ export const EuiDescriptionListDescription: FunctionComponent<EuiDescriptionList
     typeStyles = [styles[type]];
   }
 
+  const alignStyles =
+    align === 'center' && type !== 'row' ? [styles.fontStyles.left] : undefined;
+
   const cssStyles = [
     styles.euiDescriptionList__description,
+    isMobile && styles.mobile,
     ...fontStyles,
     ...typeStyles,
+    alignStyles,
   ];
 
   const classes = classNames('euiDescriptionList__description', className);

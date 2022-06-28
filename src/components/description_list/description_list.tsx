@@ -92,7 +92,12 @@ export const EuiDescriptionList: FunctionComponent<
 }) => {
   const theme = useEuiTheme();
   const styles = euiDescriptionListStyles(theme);
-  const cssStyles = [styles.euiDescriptionList, styles[type]];
+  const cssStyles = [
+    styles.euiDescriptionList,
+    styles[type],
+    styles[align],
+    (type === 'column' || type === 'responsiveColumn') && styles.flex,
+  ];
 
   const classes = classNames(
     'euiDescriptionList',
@@ -125,6 +130,7 @@ export const EuiDescriptionList: FunctionComponent<
           type={type}
           compressed={compressed}
           textStyle={textStyle}
+          align={align}
           {...descriptionProps}
         >
           {item.description}

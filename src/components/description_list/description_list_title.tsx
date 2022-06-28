@@ -80,6 +80,7 @@ export const EuiDescriptionListTitle: FunctionComponent<EuiDescriptionListTitleP
 
   const cssStyles = [
     styles.euiDescriptionList__title,
+    isMobile && styles.mobile,
     ...fontStyles,
     ...typeStyles,
     alignStyles,

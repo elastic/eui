@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { euiFontSize } from '../../global_styling';
+import { euiFontSize, logicalTextAlignCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
@@ -17,7 +17,7 @@ export const euiDescriptionListDescriptionStyles = (
   const { euiTheme } = euiThemeContext;
 
   return {
-    euiDescriptionList__description: css``,
+    euiDescriptionList__description: undefined,
 
     // This nested block handles just the font styling based on compressed and reverse
     fontStyles: {
@@ -29,6 +29,10 @@ export const euiDescriptionListDescriptionStyles = (
       `,
       compressed: css`
         ${euiFontSize(euiThemeContext, 's')};
+      `,
+      // Align description text left when DecriptionList is centered
+      left: css`
+        ${logicalTextAlignCSS('left')};
       `,
     },
 
@@ -52,5 +56,10 @@ export const euiDescriptionListDescriptionStyles = (
         ${euiFontSize(euiThemeContext, 's')};
       `,
     },
+
+    mobile: css`
+      width: 100%;
+      padding: 0;
+    `,
   };
 };
