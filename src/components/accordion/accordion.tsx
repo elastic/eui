@@ -403,4 +403,4 @@ export class EuiAccordionClass extends Component<
   }
 }
 
-export const EuiAccordion = withEuiTheme(EuiAccordionClass);
+export const EuiAccordion = withEuiTheme<EuiAccordionProps>(EuiAccordionClass);
