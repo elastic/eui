@@ -32,16 +32,17 @@ const descriptionListSnippet = [
 
 import DescriptionListColumn from './description_list_column';
 const descriptionListColumnSource = require('!!raw-loader!./description_list_column');
-const descriptionListColumnSnippet = [
-  `<EuiDescriptionList
+const descriptionListColumnSnippet = `<EuiDescriptionList
   type="column"
   listItems={favoriteVideoGames}
-/>`,
-  `<EuiDescriptionList
+/>`;
+
+import DescriptionListResponsiveColumn from './description_list_column_responsive';
+const descriptionListResponsiveColumnSource = require('!!raw-loader!./description_list_column_responsive');
+const descriptionListResponsiveColumnSnippet = `<EuiDescriptionList
   type="responsiveColumn"
   listItems={favoriteVideoGames}
-/>`,
-];
+/>`;
 
 import DescriptionListStyling from './description_list_styling';
 const descriptionListStylingSource = require('!!raw-loader!./description_list_styling');
@@ -151,14 +152,31 @@ export const DescriptionListExample = {
             <EuiCode>column</EuiCode> description lists can be presented in an
             inline, column format.
           </p>
-          <p>
-            To return to the typical row format on smaller screens set{' '}
-            <EuiCode>type</EuiCode> to <EuiCode>responsiveColumn</EuiCode>.
-          </p>
         </Fragment>
       ),
       snippet: descriptionListColumnSnippet,
       demo: <DescriptionListColumn />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: descriptionListResponsiveColumnSource,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            To return to the typical row format on smaller screens set{' '}
+            <EuiCode>type</EuiCode> to <EuiCode>responsiveColumn</EuiCode>.{' '}
+            <em>
+              The following list will is only column format on larger screens.
+            </em>
+          </p>
+        </Fragment>
+      ),
+      snippet: descriptionListResponsiveColumnSnippet,
+      demo: <DescriptionListResponsiveColumn />,
     },
     {
       title: 'Inline',
