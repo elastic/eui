@@ -1482,22 +1482,20 @@ exports[`EuiIcon props type consoleApp is rendered 1`] = `
 </svg>
 `;
 
-exports[`EuiIcon props type containerImage is rendered 1`] = `
+exports[`EuiIcon props type container is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
-  data-icon-type="containerImage"
+  data-icon-type="container"
   fill="none"
   focusable="false"
-  height="16"
   role="img"
   viewBox="0 0 16 16"
-  width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
     clip-rule="evenodd"
-    d="M5 4V1h10v10h-3v-1h2V2H6v2H5zM1 15V5h10v10H1zm1-1V6h8v8H2zm6-6v1H4V8h4zm0 4v-1H4v1h4z"
+    d="M0 2.5A.5.5 0 01.5 2h15a.5.5 0 010 1H15v10h.5a.5.5 0 010 1H.5a.5.5 0 010-1H1V3H.5a.5.5 0 01-.5-.5zM2 3h12v10H2V3zm3 2a.5.5 0 00-.5.5v5a.5.5 0 001 0v-5A.5.5 0 005 5zm5.5.5a.5.5 0 011 0v5a.5.5 0 01-1 0v-5zM8 5a.5.5 0 00-.5.5v5a.5.5 0 001 0v-5A.5.5 0 008 5z"
     fill-rule="evenodd"
   />
 </svg>

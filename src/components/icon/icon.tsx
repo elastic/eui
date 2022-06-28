@@ -79,7 +79,7 @@ const typeToPathMap = {
   compute: 'compute',
   console: 'console',
   consoleApp: 'app_console',
-  containerImage: 'containerImage',
+  container: 'container',
   continuityAbove: 'continuityAbove',
   continuityAboveBelow: 'continuityAboveBelow',
   continuityBelow: 'continuityBelow',

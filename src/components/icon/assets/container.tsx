@@ -14,17 +14,15 @@ interface SVGRProps {
   titleId?: string;
 }
 
-const EuiIconContainerImage = ({
+const EuiIconContainer = ({
   title,
   titleId,
   ...props
 }: React.SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
-    width={16}
-    height={16}
-    viewBox="0 0 16 16"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 16 16"
     aria-labelledby={titleId}
     {...props}
   >
@@ -32,9 +30,9 @@ const EuiIconContainerImage = ({
     <path
       fillRule="evenodd"
       clipRule="evenodd"
-      d="M5 4V1h10v10h-3v-1h2V2H6v2H5zM1 15V5h10v10H1zm1-1V6h8v8H2zm6-6v1H4V8h4zm0 4v-1H4v1h4z"
+      d="M0 2.5A.5.5 0 01.5 2h15a.5.5 0 010 1H15v10h.5a.5.5 0 010 1H.5a.5.5 0 010-1H1V3H.5a.5.5 0 01-.5-.5zM2 3h12v10H2V3zm3 2a.5.5 0 00-.5.5v5a.5.5 0 001 0v-5A.5.5 0 005 5zm5.5.5a.5.5 0 011 0v5a.5.5 0 01-1 0v-5zM8 5a.5.5 0 00-.5.5v5a.5.5 0 001 0v-5A.5.5 0 008 5z"
     />
   </svg>
 );
 
-export const icon = EuiIconContainerImage;
+export const icon = EuiIconContainer;

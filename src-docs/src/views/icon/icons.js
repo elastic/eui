@@ -49,7 +49,7 @@ export const iconTypes = [
   'color',
   'compute',
   'console',
-  'containerImage',
+  'container',
   'continuityAbove',
   'continuityAboveBelow',
   'continuityBelow',
