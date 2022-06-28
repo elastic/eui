@@ -337,8 +337,8 @@ export class EuiIconClass extends PureComponent<
           role="img"
           title={title}
           data-icon-type={iconTitle}
-          data-is-loaded={isLoaded}
-          data-is-loading={isLoading}
+          data-is-loaded={isLoaded || undefined}
+          data-is-loading={isLoading || undefined}
           {...titleId}
           {...rest}
           {...hideIconEmpty}
