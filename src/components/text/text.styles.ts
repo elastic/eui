@@ -206,7 +206,7 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
 
       img {
         display: block;
-        width: 100%;
+        max-width: 100%;
       }
 
       ul {

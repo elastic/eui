@@ -59,7 +59,7 @@ Array [
             class="euiModalBody__overflow"
           >
             <div
-              class="euiText emotion-euiText-m"
+              class="euiText css-qqidm-euiText-m"
               data-test-subj="confirmModalBodyText"
             >
               <p>
