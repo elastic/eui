@@ -6,6 +6,7 @@ exports[`EuiScreenReaderLive with a static configuration accepts \`aria-live\` 1
 >
   <div
     aria-atomic="true"
+    aria-hidden="true"
     aria-live="assertive"
     role="status"
   />
@@ -21,12 +22,36 @@ exports[`EuiScreenReaderLive with a static configuration accepts \`aria-live\` 1
 </div>
 `;
 
+exports[`EuiScreenReaderLive with a static configuration accepts \`focusRegionOnTextChange\` 1`] = `
+<div
+  class="emotion-euiScreenReaderOnly"
+  tabindex="-1"
+>
+  <div
+    aria-atomic="true"
+    aria-hidden="true"
+    aria-live="off"
+    role="status"
+  />
+  <div
+    aria-atomic="true"
+    aria-live="off"
+    role="status"
+  >
+    <p>
+      This paragraph is not visible to sighted users but will be read by screenreaders.
+    </p>
+  </div>
+</div>
+`;
+
 exports[`EuiScreenReaderLive with a static configuration accepts \`role\` 1`] = `
 <div
   class="emotion-euiScreenReaderOnly"
 >
   <div
     aria-atomic="true"
+    aria-hidden="true"
     aria-live="polite"
     role="log"
   />
@@ -48,6 +73,7 @@ exports[`EuiScreenReaderLive with a static configuration does not render screen 
 >
   <div
     aria-atomic="true"
+    aria-hidden="true"
     aria-live="polite"
     role="status"
   />
@@ -65,6 +91,7 @@ exports[`EuiScreenReaderLive with a static configuration renders screen reader c
 >
   <div
     aria-atomic="true"
+    aria-hidden="true"
     aria-live="polite"
     role="status"
   />
@@ -92,6 +119,7 @@ exports[`EuiScreenReaderLive with dynamic properties alternates rendering screen
   >
     <div
       aria-atomic="true"
+      aria-hidden="true"
       aria-live="polite"
       role="status"
     />
@@ -120,6 +148,7 @@ exports[`EuiScreenReaderLive with dynamic properties initially renders screen re
   >
     <div
       aria-atomic="true"
+      aria-hidden="true"
       aria-live="polite"
       role="status"
     />
