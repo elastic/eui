@@ -10,7 +10,7 @@ import React, { createContext, FunctionComponent, useContext } from 'react';
 import classNames from 'classnames';
 import { useEuiTheme } from '../../../services';
 import { EuiPaddingSize } from '../../../global_styling';
-import { EuiPanel, EuiPanelProps } from '../../panel';
+import { EuiPanel, _EuiPanelDivlike } from '../../panel/panel';
 import { EuiPopoverArrowPositions } from '../popover_arrow';
 import { euiPopoverPanelStyles } from './_popover_panel.styles';
 
@@ -22,7 +22,7 @@ export const EuiPopoverPanelContext = createContext<ContextShape>({
   paddingSize: 'l',
 });
 
-export type EuiPopoverPanelProps = EuiPanelProps;
+export type EuiPopoverPanelProps = _EuiPanelDivlike;
 
 type EuiPopoverPanelInternalProps = {
   isOpen?: boolean;

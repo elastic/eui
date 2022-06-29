@@ -21,7 +21,6 @@ import {
 
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiHighlight } from '../../highlight';
-import { EuiPanel } from '../../panel';
 import { EuiText } from '../../text';
 import { EuiLoadingSpinner } from '../../loading';
 import { EuiComboBoxTitle } from './combo_box_title';
@@ -46,7 +45,7 @@ import { EuiPopoverPanel } from '../../popover/popover_panel';
 const OPTION_CONTENT_CLASSNAME = 'euiComboBoxOption__content';
 
 export type EuiComboBoxOptionsListProps<T> = CommonProps &
-  ComponentProps<typeof EuiPanel> & {
+  ComponentProps<typeof EuiPopoverPanel> & {
     'data-test-subj': string;
     activeOptionIndex?: number;
     areAllOptionsSelected?: boolean;

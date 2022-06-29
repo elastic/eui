@@ -12,7 +12,7 @@ import {
   EuiCallOut,
 } from '../../../../src/components';
 
-import { EuiPopoverPanelProps } from '!!prop-loader!../../../../src/components/popover/popover_panel/_popover_panel';
+import { EuiPopoverPanelProps } from './props';
 
 import Popover from './popover';
 const popoverSource = require('!!raw-loader!./popover');
