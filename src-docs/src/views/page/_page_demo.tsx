@@ -102,7 +102,7 @@ export const PageDemo: FunctionComponent<{
   );
 
   const bottomBar = (
-    <EuiButton size="s" color="ghost">
+    <EuiButton size="s" color="text">
       Save
     </EuiButton>
   );

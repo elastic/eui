@@ -268,9 +268,9 @@ export const ButtonExample = {
             <EuiFlexItem>
               <EuiCard
                 hasBorder
-                href="/#/navigation/button#basic-button"
+                href="#/navigation/button#basic-button"
                 image={
-                  <EuiPanel color="subdued">
+                  <EuiPanel color="subdued" borderRadius="none">
                     <EuiPanel color="subdued">
                       <EuiButton fill>Primary action</EuiButton>
                     </EuiPanel>
@@ -283,9 +283,9 @@ export const ButtonExample = {
             <EuiFlexItem>
               <EuiCard
                 hasBorder
-                href="/#/navigation/button#basic-button"
+                href="#/navigation/button#basic-button"
                 image={
-                  <EuiPanel color="subdued">
+                  <EuiPanel color="subdued" borderRadius="none">
                     <EuiPanel color="subdued">
                       <EuiButton>Secondary action</EuiButton>
                     </EuiPanel>
@@ -298,9 +298,9 @@ export const ButtonExample = {
             <EuiFlexItem>
               <EuiCard
                 hasBorder
-                href="/#/navigation/button#empty-button"
+                href="#/navigation/button#empty-button"
                 image={
-                  <EuiPanel color="subdued">
+                  <EuiPanel color="subdued" borderRadius="none">
                     <EuiPanel color="subdued">
                       <EuiButtonEmpty>Tertiary action</EuiButtonEmpty>
                     </EuiPanel>
@@ -313,9 +313,9 @@ export const ButtonExample = {
             <EuiFlexItem>
               <EuiCard
                 hasBorder
-                href="/#/navigation/button#icon-buttons"
+                href="#/navigation/button#icon-buttons"
                 image={
-                  <EuiPanel color="subdued">
+                  <EuiPanel color="subdued" borderRadius="none">
                     <EuiPanel color="subdued">
                       <EuiButtonIcon
                         display="base"
