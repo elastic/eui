@@ -13,15 +13,15 @@ import { findTestSubject } from '../../../test';
 
 import { EuiScreenReaderLive } from './screen_reader_live';
 
+const content = (
+  <p>
+    This paragraph is not visible to sighted users but will be read by
+    screenreaders.
+  </p>
+);
+
 describe('EuiScreenReaderLive', () => {
   describe('with a static configuration', () => {
-    const content = (
-      <p>
-        This paragraph is not visible to sighted users but will be read by
-        screenreaders.
-      </p>
-    );
-
     it('renders screen reader content when active', () => {
       const component = render(
         <EuiScreenReaderLive isActive={true}>{content}</EuiScreenReaderLive>
@@ -49,6 +49,16 @@ describe('EuiScreenReaderLive', () => {
     it('accepts `aria-live`', () => {
       const component = render(
         <EuiScreenReaderLive aria-live="assertive">
+          {content}
+        </EuiScreenReaderLive>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    it('accepts `focusRegionOnTextChange`', () => {
+      const component = render(
+        <EuiScreenReaderLive focusRegionOnTextChange>
           {content}
         </EuiScreenReaderLive>
       );
@@ -88,6 +98,20 @@ describe('EuiScreenReaderLive', () => {
       findTestSubject(component, 'increment').simulate('click');
 
       expect(component.render()).toMatchSnapshot();
+    });
+  });
+
+  describe('with focus behavior', () => {
+    it('sets focus correctly', () => {
+      const component = mount(
+        <EuiScreenReaderLive focusRegionOnTextChange={true}>
+          {content}
+        </EuiScreenReaderLive>
+      );
+
+      const focusableDiv = component.find('div').at(0);
+
+      expect(focusableDiv.is(':focus')).toBe(true);
     });
   });
 });

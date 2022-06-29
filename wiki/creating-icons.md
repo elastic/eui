@@ -60,7 +60,7 @@ Create a new feature branch against this repo and make the following changes:
 
 _1. Add your glyph to the `EuiIcon` component_
 - Add your SVG file to the `/src/components/icon/svgs` folder
-- Add a reference in the `/src/components/icon/icon.tsx` file (in alphabetical order)
+- Add a reference in the `/src/components/icon/icon_map.ts` file (in alphabetical order)
 
 _2. Display the icon in the docs_
 - Add the icon name to `/src-docs/src/views/icon/icons.js` *

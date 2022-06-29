@@ -160,25 +160,6 @@
     "gutterM": "12px",
     "gutterL": "24px"
   },
-  "euiIconLoadingOpacity": 0.05,
-  "euiIconColors": {
-    "accent": "#f04e98",
-    "danger": "#bd271e",
-    "ghost": "#ffffff",
-    "primary": "#0077cc",
-    "success": "#00a39a",
-    "subdued": "#69707d",
-    "text": "#343741",
-    "warning": "#b28a0d",
-    "inherit": "inherit"
-  },
-  "euiIconSizes": {
-    "small": "12px",
-    "medium": "16px",
-    "large": "24px",
-    "xLarge": "32px",
-    "xxLarge": "40px"
-  },
   "euiKeyPadMenuSize": "96px",
   "euiKeyPadMenuMarginSize": "4px",
   "euiListGroupItemHoverBackground": "rgba(211, 218, 230, 0.25)",
@@ -479,6 +460,13 @@
   "euiFormInputGroupLabelBackground": "#e9edf3",
   "euiFormInputGroupBorder": "none",
   "euiSwitchOffColor": "rgba(152, 162, 179, 0.19999999999999996)",
+  "euiFormControlIconSizes": {
+    "small": "12px",
+    "medium": "16px",
+    "large": "24px",
+    "xLarge": "32px",
+    "xxLarge": "40px"
+  },
   "euiFormControlLayoutGroupInputHeight": "38px",
   "euiFormControlLayoutGroupInputCompressedHeight": "30px",
   "euiFormControlLayoutGroupInputCompressedBorderRadius": "1px",
