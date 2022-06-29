@@ -149,6 +149,7 @@ export interface EuiDataGridHeaderCellWrapperProps {
   headerIsInteractive: boolean;
   width?: number | null;
   className?: string;
+  title?: string;
 }
 
 export type EuiDataGridFooterRowProps = CommonProps &

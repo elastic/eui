@@ -122,6 +122,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       width={width}
       headerIsInteractive={headerIsInteractive}
       className={classes}
+      title={displayAsText || id}
       {...ariaProps}
     >
       {column.isResizable !== false && width != null ? (

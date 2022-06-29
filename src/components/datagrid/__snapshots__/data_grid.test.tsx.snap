@@ -1057,6 +1057,7 @@ Array [
                 role="columnheader"
                 style="width:100px"
                 tabindex="-1"
+                title="A"
               >
                 <div
                   class="euiDataGridColumnResizer"
@@ -1100,6 +1101,7 @@ Array [
                 role="columnheader"
                 style="width:100px"
                 tabindex="-1"
+                title="B"
               >
                 <div
                   class="euiDataGridColumnResizer"
@@ -1496,6 +1498,7 @@ Array [
                 role="columnheader"
                 style="width:100px"
                 tabindex="-1"
+                title="A"
               >
                 <div
                   class="euiDataGridColumnResizer"
@@ -1539,6 +1542,7 @@ Array [
                 role="columnheader"
                 style="width:100px"
                 tabindex="-1"
+                title="B"
               >
                 <div
                   class="euiDataGridColumnResizer"
@@ -2232,6 +2236,7 @@ Array [
                 role="columnheader"
                 style="width:100px"
                 tabindex="-1"
+                title="A"
               >
                 <div
                   class="euiDataGridColumnResizer"
@@ -2275,6 +2280,7 @@ Array [
                 role="columnheader"
                 style="width:100px"
                 tabindex="-1"
+                title="B"
               >
                 <div
                   class="euiDataGridColumnResizer"
@@ -2651,6 +2657,7 @@ Array [
                 role="columnheader"
                 style="width:100px"
                 tabindex="-1"
+                title="A"
               >
                 <div
                   class="euiDataGridColumnResizer"
@@ -2694,6 +2701,7 @@ Array [
                 role="columnheader"
                 style="width:100px"
                 tabindex="-1"
+                title="B"
               >
                 <div
                   class="euiDataGridColumnResizer"

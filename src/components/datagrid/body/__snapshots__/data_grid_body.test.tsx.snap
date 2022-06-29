@@ -23,6 +23,7 @@ exports[`EuiDataGridBody renders 1`] = `
         role="columnheader"
         style="width:100px"
         tabindex="-1"
+        title="columnA"
       >
         <div
           class="euiDataGridColumnResizer"
@@ -66,6 +67,7 @@ exports[`EuiDataGridBody renders 1`] = `
         role="columnheader"
         style="width:100px"
         tabindex="-1"
+        title="columnB"
       >
         <div
           class="euiDataGridColumnResizer"

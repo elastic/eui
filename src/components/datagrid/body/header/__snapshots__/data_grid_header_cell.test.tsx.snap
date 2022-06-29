@@ -6,6 +6,7 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
   headerIsInteractive={false}
   id="someColumn"
   index={0}
+  title="someColumn"
   width={50}
 >
   <EuiDataGridColumnResizer
