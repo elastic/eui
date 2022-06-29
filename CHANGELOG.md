@@ -1,3 +1,9 @@
+## [`60.1.1`](https://github.com/elastic/eui/tree/v60.1.1)
+
+**Bug fixes**
+
+Fixed issue with `EuiPanel` where the `Emotion` styles were not being passed when it was rendered as a button ([#6010](https://github.com/elastic/eui/pull/6010))
+
 ## [`60.1.0`](https://github.com/elastic/eui/tree/v60.1.0)
 
 - Added `focusRegionOnTextChange` prop to `EuiScreenReaderLive` ([#5995](https://github.com/elastic/eui/pull/5995))
