@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[` 1`] = `
+<button
+  aria-label="aria-label"
+  class="euiPanel euiPanel--plain euiPanel--paddingMedium testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-hasShadow-isClickable"
+  data-test-subj="test subject string"
+/>
+`;
+
 exports[`EuiPanel is rendered 1`] = `
 <div
   aria-label="aria-label"
