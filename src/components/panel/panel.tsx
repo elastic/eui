@@ -140,6 +140,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
       <button
         ref={panelRef as Ref<HTMLButtonElement>}
         className={classes}
+        css={cssStyles}
         {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
       >
         {children}
