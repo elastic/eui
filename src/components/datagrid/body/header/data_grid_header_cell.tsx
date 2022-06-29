@@ -122,7 +122,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       width={width}
       headerIsInteractive={headerIsInteractive}
       className={classes}
-      title={displayAsText || id}
       {...ariaProps}
     >
       {column.isResizable !== false && width != null ? (
@@ -141,7 +140,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       {!showColumnActions ? (
         <>
           {sortingArrow}
-          <div className="euiDataGridHeaderCell__content">
+          <div
+            className="euiDataGridHeaderCell__content"
+            title={displayAsText || id}
+          >
             {display || displayAsText || id}
           </div>
         </>
@@ -159,7 +161,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               }}
             >
               {sortingArrow}
-              <div className="euiDataGridHeaderCell__content">
+              <div
+                className="euiDataGridHeaderCell__content"
+                title={displayAsText || id}
+              >
                 {display || displayAsText || id}
               </div>
               <EuiIcon
