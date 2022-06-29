@@ -28,6 +28,12 @@ describe('EuiPageSection', () => {
 
         expect(component).toMatchSnapshot();
       });
+
+      test('can be custom', () => {
+        const component = render(<EuiPageSection restrictWidth={1000} />);
+
+        expect(component).toMatchSnapshot();
+      });
     });
 
     describe('bottomBorder', () => {

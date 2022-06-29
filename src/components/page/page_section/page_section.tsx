@@ -9,15 +9,14 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../../common';
 
-import { _EuiPageRestrictWidth } from '../_restrict_width';
+import {
+  setStyleForRestrictedPageWidth,
+  _EuiPageRestrictWidth,
+} from '../_restrict_width';
 import { _EuiPageBottomBorder } from '../_bottom_border';
 
 import { useEuiTheme } from '../../../services';
-import {
-  ALIGNMENTS,
-  euiPageSectionStyles,
-  euiPageSection__width,
-} from './page_section.styles';
+import { ALIGNMENTS, euiPageSectionStyles } from './page_section.styles';
 
 import {
   useEuiPaddingCSS,
@@ -63,15 +62,17 @@ export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
   contentProps,
   ...rest
 }) => {
+  // Set max-width as a style prop
+  const widthStyles = setStyleForRestrictedPageWidth(
+    restrictWidth,
+    contentProps?.style
+  );
+
   const useTheme = useEuiTheme();
   const styles = euiPageSectionStyles(useTheme);
   const inlinePadding = useEuiPaddingCSS('horizontal');
   const blockPadding = useEuiPaddingCSS('vertical');
   const colors = useEuiBackgroundColorCSS();
-  const width = euiPageSection__width(
-    restrictWidth as _EuiPageRestrictWidth,
-    alignment
-  );
 
   const cssStyles = [
     styles.euiPageSection,
@@ -82,15 +83,15 @@ export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
     colors[color],
   ];
 
-  const cssWidthStyles = [
-    width,
+  const cssContentStyles = [
+    styles.euiPageSection__content,
     blockPadding[paddingSize],
     bottomBorder === true && styles.border,
   ];
 
   return (
     <div css={cssStyles} {...rest}>
-      <div css={cssWidthStyles} {...contentProps}>
+      <div css={cssContentStyles} {...contentProps} style={widthStyles}>
         {children}
       </div>
     </div>

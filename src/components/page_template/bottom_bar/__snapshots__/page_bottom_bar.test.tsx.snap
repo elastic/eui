@@ -17,7 +17,7 @@ Array [
       class="emotion-euiPageSection-l-top-transparent"
     >
       <div
-        class="emotion-euiPageSection__width-l"
+        class="emotion-euiPageSection__content-l"
       />
     </div>
   </section>,
@@ -46,7 +46,7 @@ Array [
       class="emotion-euiPageSection-l-top-transparent"
     >
       <div
-        class="emotion-euiPageSection__width-l"
+        class="emotion-euiPageSection__content-l"
       />
     </div>
   </section>,
@@ -75,7 +75,7 @@ Array [
       class="emotion-euiPageSection-m-top-transparent"
     >
       <div
-        class="emotion-euiPageSection__width-m"
+        class="emotion-euiPageSection__content-m"
       />
     </div>
   </section>,
@@ -104,7 +104,7 @@ Array [
       class="emotion-euiPageSection-top-transparent"
     >
       <div
-        class="emotion-euiPageSection__width"
+        class="emotion-euiPageSection__content"
       />
     </div>
   </section>,
@@ -133,7 +133,7 @@ Array [
       class="emotion-euiPageSection-s-top-transparent"
     >
       <div
-        class="emotion-euiPageSection__width-s"
+        class="emotion-euiPageSection__content-s"
       />
     </div>
   </section>,
@@ -162,7 +162,7 @@ Array [
       class="emotion-euiPageSection-xl-top-transparent"
     >
       <div
-        class="emotion-euiPageSection__width-xl"
+        class="emotion-euiPageSection__content-xl"
       />
     </div>
   </section>,
@@ -191,7 +191,7 @@ Array [
       class="emotion-euiPageSection-xs-top-transparent"
     >
       <div
-        class="emotion-euiPageSection__width-xs"
+        class="emotion-euiPageSection__content-xs"
       />
     </div>
   </section>,
@@ -220,7 +220,8 @@ Array [
       class="emotion-euiPageSection-l-top-transparent"
     >
       <div
-        class="emotion-euiPageSection__width-l"
+        class="emotion-euiPageSection__content-l"
+        style="max-width:1024px"
       />
     </div>
   </section>,
@@ -249,7 +250,8 @@ Array [
       class="emotion-euiPageSection-l-top-transparent"
     >
       <div
-        class="emotion-euiPageSection__width-l"
+        class="emotion-euiPageSection__content-l"
+        style="max-width:24rem"
       />
     </div>
   </section>,
@@ -278,7 +280,8 @@ Array [
       class="emotion-euiPageSection-l-top-transparent"
     >
       <div
-        class="emotion-euiPageSection__width-l"
+        class="emotion-euiPageSection__content-l"
+        style="max-width:1200px"
       />
     </div>
   </section>,
