@@ -103,8 +103,6 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
   setIsFullScreen,
   wrapperProps,
 }) => {
-  const isNamedSize =
-    typeof size === 'string' && SIZES.includes(size as EuiImageWrapperSize);
   const isSmallScreen = useIsWithinBreakpoints(['xs', 's', 'm']);
   const hasFloatLeft = float === 'left';
   const hasFloatRight = float === 'right';
@@ -134,7 +132,6 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
 
   const styles = euiImageWrapperStyles(
     euiTheme,
-    hasShadow,
     hasFloatLeft,
     hasFloatRight,
     isSmallScreen
@@ -144,6 +141,7 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
     float && styles[float],
     margin && styles[margin],
     allowFullScreen && styles.allowFullScreen,
+    size === 'fullWidth' && styles.fullWidth,
   ];
 
   const cssFullScreenFigureStyles = [
@@ -151,20 +149,17 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
     isFullScreen && styles.isFullScreen,
   ];
 
-  const buttonStyles = euiImageWrapperButtonStyles(euiTheme);
+  const buttonStyles = euiImageWrapperButtonStyles(euiTheme, hasShadow);
   const cssButtonStyles = [
     buttonStyles.euiImageWrapper__button,
-    // when the image button is not in full screen mode and the size is not custom
-    // we need the image button to go full width to match the parent '.euiImage'
-    // width except when the size is `original`
-    !isFullScreen &&
-      isNamedSize &&
-      size !== 'original' &&
-      buttonStyles.fullWidth,
+    !isFullScreen && size === 'fullWidth' && buttonStyles.fullWidth,
   ];
 
   const captionStyles = euiImageWrapperCaptionStyles(euiTheme);
-  const cssCaptionStyles = [captionStyles.euiImageWrapper__caption];
+  const cssCaptionStyles = [
+    captionStyles.euiImageWrapper__caption,
+    isFullScreen && captionStyles.isFullScreen,
+  ];
 
   const iconStyles = euiImageWrapperIconStyles(euiTheme);
   const cssIconStyles = [iconStyles.euiImageWrapper__icon];
@@ -188,13 +183,13 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
 
   const allowFullScreenIcon = (
     <EuiIcon
+      css={cssIconStyles}
       type="fullScreen"
       color={
         fullScreenIconColorMap[
           fullScreenIconColor as EuiImageWrapperFullScreenIconColor
         ]
       }
-      css={cssIconStyles}
     />
   );
 
@@ -234,7 +229,7 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
             {optionalCaption}
           </figure>
           <EuiIcon
-            type="cross"
+            type="fullScreenExit"
             color="default"
             css={cssFullScreenCloseIconStyles}
           />

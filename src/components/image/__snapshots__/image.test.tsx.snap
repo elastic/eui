@@ -95,6 +95,7 @@ exports[`EuiImage is rendered with custom size 1`] = `
     alt="alt"
     class="euiImage emotion-euiImage-customSize"
     src="/cat.jpg"
+    style="max-width:50px;max-height:50px"
   />
 </figure>
 `;

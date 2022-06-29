@@ -50,7 +50,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
   src,
   size = 'original',
   hasShadow,
-  fullScreenIconColor,
+  style,
   wrapperProps,
   ...rest
 }) => {
@@ -63,7 +63,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
 
   const euiTheme = useEuiTheme();
 
-  const imgStyles = euiImageStyles(euiTheme, size);
+  const imgStyles = euiImageStyles(euiTheme);
 
   const cssStyles = isFullScreen
     ? [imgStyles.fullScreen]
@@ -74,21 +74,34 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
         hasShadow && imgStyles.hasShadow,
       ];
 
+  const isCustomSize = !isFullScreen && !isNamedSize && size !== 'original';
+
+  const customSize = typeof size === 'string' ? size : `${size}px`;
+
+  const styles = isCustomSize
+    ? {
+        ...style,
+        maxWidth: customSize,
+        maxHeight: customSize,
+      }
+    : style;
+
   return (
     <EuiImageWrapper
       {...(rest as EuiImageWrapperProps)}
       hasShadow={hasShadow}
-      fullScreenIconColor={fullScreenIconColor}
+      size={size}
       wrapperProps={wrapperProps}
       setIsFullScreen={setIsFullScreen}
       isFullScreen={isFullScreen}
     >
       <img
         className={classes}
-        {...(rest as ImageProps)}
+        style={styles}
         src={src || url}
         alt={rest.alt}
         css={cssStyles}
+        {...(rest as ImageProps)}
       />
     </EuiImageWrapper>
   );

@@ -10,65 +10,50 @@ import { css } from '@emotion/react';
 import { logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
-import type { EuiImageSize } from './image';
+export const euiImageStyles = (euiThemeContext: UseEuiTheme) => ({
+  euiImage: css`
+    vertical-align: middle;
+    max-width: 100%;
 
-const _imageWidth = (euiTheme: UseEuiTheme['euiTheme'], size: number) => {
-  const width = `${size / euiTheme.base}rem`;
-
-  return `
     &,
     // Required for common usage of nesting within EuiText
     [class*='euiText'] & {
-      width: ${width};
+      ${logicalCSS('margin-bottom', 0)};
     }
-  `;
-};
+  `,
+  hasShadow: css`
+    ${euiShadow(euiThemeContext, 's')};
+  `,
+  // Sizes
+  // These sizes are mostly suggestions. Don't look too hard for meaning in their values.
+  // Size is applied to the image, rather than the wrapper figure to work better with floats
+  s: css`
+    width: 100px;
+  `,
+  m: css`
+    width: 200px;
+  `,
+  l: css`
+    width: 360px;
+  `,
+  xl: css`
+    width: 600px;
+  `,
+  original: css`
+    width: auto;
+  `,
 
-export const euiImageStyles = (
-  euiThemeContext: UseEuiTheme,
-  size: EuiImageSize | number | string
-) => {
-  const { euiTheme } = euiThemeContext;
-
-  return {
-    // The image itself is full width within the container.
-    euiImage: css`
-      width: 100%;
-      vertical-align: middle;
-      max-width: 100%;
-
-      &,
-       // Required for common usage of nesting within EuiText
-      [class*='euiText'] & {
-        ${logicalCSS('margin-bottom', 0)};
-      }
-    `,
-    hasShadow: css`
-      ${euiShadow(euiThemeContext, 's')};
-    `,
-    // Sizes
-    // These sizes are mostly suggestions. Don't look too hard for meaning in their values.
-    // Size is applied to the image, rather than the figure to work better with floats
-    s: css(_imageWidth(euiTheme, 120)),
-    m: css(_imageWidth(euiTheme, 200)),
-    l: css(_imageWidth(euiTheme, 360)),
-    xl: css(_imageWidth(euiTheme, 600)),
-    original: css`
-      width: auto;
-      max-width: 100%;
-    `,
-
-    fullWidth: css``,
-    customSize: css`
-      max-width: ${typeof size === 'string' ? size : `${size}px`};
-      max-height: ${typeof size === 'string' ? size : `${size}px`};
-      // Set width back to auto to ensure aspect ratio is kept
-      width: auto;
-    `,
-    fullScreen: css`
-      position: relative;
-      max-height: 80vh;
-      max-width: 80vw;
-    `,
-  };
-};
+  fullWidth: css`
+    width: 100%;
+  `,
+  customSize: css`
+    // A custom max-width and max-height is set in the style tag
+    // We set the width back to auto to ensure aspect ratio is kept
+    width: auto;
+  `,
+  fullScreen: css`
+    position: relative;
+    max-height: 80vh;
+    max-width: 80vw;
+  `,
+});

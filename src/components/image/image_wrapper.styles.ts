@@ -62,7 +62,6 @@ const _imageMargins = ({
 
 export const euiImageWrapperStyles = (
   euiThemeContext: UseEuiTheme,
-  hasShadow: boolean | undefined,
   hasFloatLeft: boolean | undefined,
   hasFloatRight: boolean | undefined,
   isSmallScreen: boolean
@@ -79,48 +78,22 @@ export const euiImageWrapperStyles = (
       flex-shrink: 0; // Don't ever let this shrink in height if direct descendent of flex
     `,
     allowFullScreen: css`
-      &:hover .euiImageWrapper__caption {
+      &:hover [class*='euiImageWrapper__caption'] {
         text-decoration: underline;
       }
-
-      &[class*='-fullWidth'] {
-        width: 100%;
-      }
-
-      ${hasShadow
-        ? `
-          [class*='euiImageWrapper__button']:hover,
-          [class*='euiImageWrapper__button']:focus {
-            ${euiShadow(euiThemeContext, 'm')};
-          }`
-        : `
-          [class*='euiImageWrapper__button']:hover,
-          [class*='euiImageWrapper__button']:focus {
-            ${euiShadow(euiThemeContext, 's')};
-          }`}
     `,
     isFullScreen: css`
       position: relative;
       max-height: 80vh;
       max-width: 80vw;
+
       ${euiCanAnimate} {
         animation: ${euiImageFullScreen(euiTheme.size.xxxxl)}
           ${euiTheme.animation.extraSlow} ${euiTheme.animation.bounce};
       }
 
-      [class*='euiImageWrapper__caption'] {
-        color: ${euiTheme.colors.ghost};
-        text-shadow: 0 1px 2px ${transparentize(euiTheme.colors.ink, 0.6)};
-      }
-
-      &:hover {
-        [class*='euiImageWrapper__button'] {
-          ${euiShadow(euiThemeContext, 's')};
-        }
-
-        [class*='euiImageWrapper__caption'] {
-          text-decoration: underline;
-        }
+      &:hover [class*='euiImageWrapper__caption'] {
+        text-decoration: underline;
       }
     `,
     // margins
@@ -175,32 +148,52 @@ export const euiImageWrapperStyles = (
           float: right;
         `}
     `,
+    // sizes
+    fullWidth: css`
+      width: 100%;
+    `,
   };
 };
 
-export const euiImageWrapperButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
-  // Base
-  euiImageWrapper__button: css`
-    position: relative;
-    cursor: pointer;
-    line-height: 0;
+export const euiImageWrapperButtonStyles = (
+  euiThemeContext: UseEuiTheme,
+  hasShadow: boolean | undefined
+) => {
+  const { euiTheme } = euiThemeContext;
 
-    // transition the shadow
-    transition: all ${euiTheme.animation.fast} ${euiTheme.animation.resistance};
+  return {
+    // Base
+    euiImageWrapper__button: css`
+      position: relative;
+      cursor: pointer;
+      line-height: 0;
 
-    &:focus {
-      ${euiFocusRing(euiTheme, 'outset')}
-    }
+      &:hover,
+      &:focus {
+        ${hasShadow
+          ? `${euiShadow(euiThemeContext, 'm')};`
+          : `${euiShadow(euiThemeContext, 's')};`}
+      }
 
-    &:hover [class*='euiImageWrapper__icon'] {
-      visibility: visible;
-      fill-opacity: 1;
-    }
-  `,
-  fullWidth: css`
-    width: 100%;
-  `,
-});
+      ${euiCanAnimate} {
+        transition: box-shadow ${euiTheme.animation.fast}
+          ${euiTheme.animation.resistance};
+      }
+
+      &:focus {
+        ${euiFocusRing(euiTheme, 'outset')}
+      }
+
+      &:hover [class*='euiImageWrapper__icon'] {
+        visibility: visible;
+        fill-opacity: 1;
+      }
+    `,
+    fullWidth: css`
+      width: 100%;
+    `,
+  };
+};
 
 export const euiImageWrapperCaptionStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -211,6 +204,10 @@ export const euiImageWrapperCaptionStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiFontSize(euiThemeContext, 's')};
       ${logicalCSS('margin-top', euiTheme.size.xs)};
       text-align: center;
+    `,
+    isFullScreen: css`
+      color: ${euiTheme.colors.ghost};
+      text-shadow: 0 1px 2px ${transparentize(euiTheme.colors.ink, 0.6)};
     `,
   };
 };
@@ -224,8 +221,11 @@ export const euiImageWrapperIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     ${logicalCSS('top', euiTheme.size.base)};
     ${logicalCSS('right', euiTheme.size.base)};
     cursor: pointer;
-    transition: fill-opacity ${euiTheme.animation.slow}
-      ${euiTheme.animation.resistance};
+
+    ${euiCanAnimate} {
+      transition: fill-opacity ${euiTheme.animation.slow}
+        ${euiTheme.animation.resistance};
+    }
   `,
 });
 
