@@ -224,9 +224,10 @@ const _EuiPageEmptyPrompt: FunctionComponent<_EuiPageEmptyPromptProps> = (
   return <EuiPageEmptyPrompt {...templateContext.emptyPrompt} {...props} />;
 };
 
-const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = (
-  props
-) => {
+const _EuiPageBottomBar: FunctionComponent<Omit<
+  _EuiPageBottomBarProps,
+  'paddingSize' // Don't let consumers adjust paddingSize because it needs to match page contents
+>> = (props) => {
   const { bottomBar } = useContext(TemplateContext);
 
   return <EuiPageBottomBar {...bottomBar} {...props} />;

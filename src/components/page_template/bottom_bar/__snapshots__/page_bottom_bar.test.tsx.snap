@@ -4,9 +4,9 @@ exports[`_EuiPageBottomBar is rendered 1`] = `
 Array [
   <section
     aria-label="aria-label"
-    class="euiBottomBar euiBottomBar--sticky testClass1 testClass2 emotion-euiBottomBar-sticky"
+    class="euiBottomBar euiBottomBar--sticky testClass1 testClass2 emotion-euiBottomBar-sticky-bar"
     data-test-subj="test subject string"
-    style="left:0;right:0;bottom:0;flex-shrink:0"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -34,8 +34,8 @@ exports[`_EuiPageBottomBar paddingSize l is rendered 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky"
-    style="left:0;right:0;bottom:0;flex-shrink:0"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -63,8 +63,8 @@ exports[`_EuiPageBottomBar paddingSize m is rendered 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky"
-    style="left:0;right:0;bottom:0;flex-shrink:0"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -92,8 +92,8 @@ exports[`_EuiPageBottomBar paddingSize none is rendered 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky"
-    style="left:0;right:0;bottom:0;flex-shrink:0"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -121,8 +121,8 @@ exports[`_EuiPageBottomBar paddingSize s is rendered 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky"
-    style="left:0;right:0;bottom:0;flex-shrink:0"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -150,8 +150,8 @@ exports[`_EuiPageBottomBar paddingSize xl is rendered 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky"
-    style="left:0;right:0;bottom:0;flex-shrink:0"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -179,8 +179,8 @@ exports[`_EuiPageBottomBar paddingSize xs is rendered 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky"
-    style="left:0;right:0;bottom:0;flex-shrink:0"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -208,8 +208,8 @@ exports[`_EuiPageBottomBar restrict width can be set to a custom number 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky"
-    style="left:0;right:0;bottom:0;flex-shrink:0"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -238,8 +238,8 @@ exports[`_EuiPageBottomBar restrict width can be set to a custom value and measu
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky"
-    style="left:0;right:0;bottom:0;flex-shrink:0"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"
@@ -268,8 +268,8 @@ exports[`_EuiPageBottomBar restrict width can be set to a default 1`] = `
 Array [
   <section
     aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky"
-    style="left:0;right:0;bottom:0;flex-shrink:0"
+    class="euiBottomBar euiBottomBar--sticky emotion-euiBottomBar-sticky-bar"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="euiScreenReaderOnly"

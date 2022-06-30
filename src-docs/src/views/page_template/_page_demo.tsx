@@ -13,6 +13,7 @@ import {
   EuiPageHeaderProps,
   EuiHeaderLinks,
   EuiHeaderSectionItem,
+  EuiButtonEmpty,
 } from '../../../../src';
 import { EuiPageTemplateProps } from '../../../../src/components/page_template';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
@@ -133,9 +134,20 @@ export const PageDemo: FunctionComponent<
   ) : undefined;
 
   const _bottomBar = show.bottomBar ? (
-    <EuiButton size="s" color="ghost">
-      Save
-    </EuiButton>
+    <EuiFlexGroup
+      alignItems="center"
+      justifyContent="spaceBetween"
+      responsive={false}
+    >
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty size="s" color="ghost">
+          10 selected
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButton color="ghost">Share</EuiButton>
+      </EuiFlexItem>
+    </EuiFlexGroup>
   ) : undefined;
 
   const pageHeaderProps: EuiPageHeaderProps | undefined = showHeader

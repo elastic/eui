@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import { css } from '@emotion/react';
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { findElementBySelectorOrRef } from '../../../services';
@@ -28,7 +29,6 @@ export const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = ({
   paddingSize,
   restrictWidth,
   parent,
-  style,
   ...rest
 }) => {
   // In order for the bottom bar to be placed at the end of the content,
@@ -53,7 +53,11 @@ export const _EuiPageBottomBar: FunctionComponent<_EuiPageBottomBarProps> = ({
     <EuiBottomBar
       paddingSize={'none'}
       position="sticky"
-      style={{ flexShrink: 0, ...style }}
+      // Hide the overflow in case of larger flex margins than padding
+      css={css`
+        overflow: hidden;
+        flex-shrink: 0;
+      `}
       // Using unknown here because of the possible conflict with overriding props and position `sticky`
       {...(rest as unknown)}
     >
