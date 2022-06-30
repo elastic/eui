@@ -397,7 +397,6 @@ exports[`EuiPopover props offset with arrow 1`] = `
   <div
     class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen"
     id="17"
-    offset="10"
   >
     <div
       class="euiPopover__anchor"
@@ -455,7 +454,6 @@ exports[`EuiPopover props offset without arrow 1`] = `
   <div
     class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen"
     id="18"
-    offset="10"
   >
     <div
       class="euiPopover__anchor"

@@ -707,6 +707,7 @@ export class EuiPopover extends Component<Props, State> {
       initialFocus,
       attachToAnchor,
       display,
+      offset,
       onTrapDeactivation,
       buffer,
       'aria-label': ariaLabel,

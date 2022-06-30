@@ -31,7 +31,6 @@ exports[`EuiDataGridBody renders 1`] = `
         />
         <div
           class="euiPopover euiPopover--anchorDownCenter eui-fullWidth"
-          offset="7"
         >
           <div
             class="euiPopover__anchor eui-fullWidth"
@@ -75,7 +74,6 @@ exports[`EuiDataGridBody renders 1`] = `
         />
         <div
           class="euiPopover euiPopover--anchorDownCenter eui-fullWidth"
-          offset="7"
         >
           <div
             class="euiPopover__anchor eui-fullWidth"

@@ -1065,7 +1065,6 @@ Array [
                 />
                 <div
                   class="euiPopover euiPopover--anchorDownCenter eui-fullWidth"
-                  offset="7"
                 >
                   <div
                     class="euiPopover__anchor eui-fullWidth"
@@ -1109,7 +1108,6 @@ Array [
                 />
                 <div
                   class="euiPopover euiPopover--anchorDownCenter eui-fullWidth"
-                  offset="7"
                 >
                   <div
                     class="euiPopover__anchor eui-fullWidth"
@@ -1506,7 +1504,6 @@ Array [
                 />
                 <div
                   class="euiPopover euiPopover--anchorDownCenter eui-fullWidth"
-                  offset="7"
                 >
                   <div
                     class="euiPopover__anchor eui-fullWidth"
@@ -1550,7 +1547,6 @@ Array [
                 />
                 <div
                   class="euiPopover euiPopover--anchorDownCenter eui-fullWidth"
-                  offset="7"
                 >
                   <div
                     class="euiPopover__anchor eui-fullWidth"
@@ -2244,7 +2240,6 @@ Array [
                 />
                 <div
                   class="euiPopover euiPopover--anchorDownCenter eui-fullWidth"
-                  offset="7"
                 >
                   <div
                     class="euiPopover__anchor eui-fullWidth"
@@ -2288,7 +2283,6 @@ Array [
                 />
                 <div
                   class="euiPopover euiPopover--anchorDownCenter eui-fullWidth"
-                  offset="7"
                 >
                   <div
                     class="euiPopover__anchor eui-fullWidth"
@@ -2665,7 +2659,6 @@ Array [
                 />
                 <div
                   class="euiPopover euiPopover--anchorDownCenter eui-fullWidth"
-                  offset="7"
                 >
                   <div
                     class="euiPopover__anchor eui-fullWidth"
@@ -2709,7 +2702,6 @@ Array [
                 />
                 <div
                   class="euiPopover euiPopover--anchorDownCenter eui-fullWidth"
-                  offset="7"
                 >
                   <div
                     class="euiPopover__anchor eui-fullWidth"
