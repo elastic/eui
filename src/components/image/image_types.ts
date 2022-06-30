@@ -117,10 +117,10 @@ export type EuiImageProps = ImageProps &
 
 export type EuiImageWrapperProps = EuiImageCommonWrapperProps &
   EuiImageAllowFullScreenProps &
-  EuiImageButtonProps &
+  Omit<EuiImageButtonProps, 'onClick'> &
   EuiImageCaptionProps;
 
 export type EuiImageFullScreenWrapperProps = EuiImageCommonWrapperProps &
   EuiImageAllowFullScreenProps &
-  EuiImageButtonProps &
+  Omit<EuiImageButtonProps, 'onClick'> &
   EuiImageCaptionProps;
