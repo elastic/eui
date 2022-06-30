@@ -429,6 +429,9 @@ export default () => {
         }}
         onColumnResize={onColumnResize.current}
         ref={gridRef}
+        virtualizationOptions={{
+          onItemsRendered: (items) => console.log('onItemsRendered', items),
+        }}
       />
     </DataContext.Provider>
   );
