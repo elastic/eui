@@ -252,7 +252,7 @@ export const usePopoverArrowNavigation = () => {
     popoverScreenReaderText: (
       <EuiI18n
         token="euiDataGridHeaderCell.actionsPopoverScreenReaderText"
-        default="To navigate through the list of column actions, press the Tab or Up/Down arrow keys."
+        default="To navigate through the list of column actions, press the Tab or Up and Down arrow keys."
       />
     ),
   };
