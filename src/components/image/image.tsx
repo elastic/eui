@@ -63,22 +63,22 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
 
   const euiTheme = useEuiTheme();
 
-  const imgStyles = euiImageStyles(euiTheme);
+  const styles = euiImageStyles(euiTheme);
 
   const cssStyles = isFullScreen
-    ? [imgStyles.fullScreen]
+    ? [styles.fullScreen]
     : [
-        imgStyles.euiImage,
-        isNamedSize && imgStyles[size as EuiImageSize],
-        !isNamedSize && imgStyles.customSize,
-        hasShadow && imgStyles.hasShadow,
+        styles.euiImage,
+        isNamedSize && styles[size as EuiImageSize],
+        !isNamedSize && styles.customSize,
+        hasShadow && styles.hasShadow,
       ];
 
   const isCustomSize = !isFullScreen && !isNamedSize && size !== 'original';
 
   const customSize = typeof size === 'string' ? size : `${size}px`;
 
-  const styles = isCustomSize
+  const imageStyle = isCustomSize
     ? {
         ...style,
         maxWidth: customSize,
@@ -97,7 +97,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     >
       <img
         className={classes}
-        style={styles}
+        style={imageStyle}
         src={src || url}
         alt={rest.alt}
         css={cssStyles}
