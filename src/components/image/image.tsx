@@ -39,6 +39,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
   style,
   wrapperProps,
   fullScreenIconColor,
+  allowFullScreen,
   ...rest
 }) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -88,6 +89,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
         setIsFullScreen={setIsFullScreen}
         isFullWidth={isFullWidth}
         fullScreenIconColor={fullScreenIconColor}
+        allowFullScreen={allowFullScreen}
       >
         <img
           className={classes}
@@ -99,7 +101,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
         />
       </EuiImageWrapper>
 
-      {isFullScreen && (
+      {allowFullScreen && isFullScreen && (
         <EuiImageFullScreenWrapper
           {...(rest as EuiImageFullScreenWrapperProps)}
           alt={rest.alt}
@@ -108,6 +110,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
           setIsFullScreen={setIsFullScreen}
           fullScreenIconColor={fullScreenIconColor}
           isFullWidth={isFullWidth}
+          allowFullScreen={allowFullScreen}
         >
           <img
             className={classes}

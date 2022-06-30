@@ -72,21 +72,7 @@ export const euiImageWrapperStyles = (
       flex-shrink: 0; // Don't ever let this shrink in height if direct descendent of flex
     `,
     allowFullScreen: css`
-      &:hover [class*='euiImageWrapper__caption'] {
-        text-decoration: underline;
-      }
-    `,
-    isFullScreen: css`
-      position: relative;
-      max-height: 80vh;
-      max-width: 80vw;
-
-      ${euiCanAnimate} {
-        animation: ${euiImageFullScreen(euiTheme.size.xxxxl)}
-          ${euiTheme.animation.extraSlow} ${euiTheme.animation.bounce};
-      }
-
-      &:hover [class*='euiImageWrapper__caption'] {
+      &:hover [class*='euiImageCaption'] {
         text-decoration: underline;
       }
     `,

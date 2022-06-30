@@ -7,14 +7,8 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import {
-  euiFocusRing,
-  euiFontSize,
-  logicalCSS,
-  euiCanAnimate,
-} from '../../global_styling';
-import { UseEuiTheme, transparentize } from '../../services';
-import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
+import { logicalCSS, euiCanAnimate } from '../../global_styling';
+import { UseEuiTheme } from '../../services';
 
 export const euiImageFullscreenWrapperStyles = (
   euiThemeContext: UseEuiTheme
@@ -38,7 +32,7 @@ export const euiImageFullscreenWrapperStyles = (
           ${euiTheme.animation.extraSlow} ${euiTheme.animation.bounce};
       }
 
-      &:hover [class*='euiImageFullscreenWrapper__caption'] {
+      &:hover [class*='euiImageCaption'] {
         text-decoration: underline;
       }
     `,
@@ -46,25 +40,6 @@ export const euiImageFullscreenWrapperStyles = (
     // sizes
     fullWidth: css`
       width: 100%;
-    `,
-  };
-};
-
-export const euiImageFullscreenWrapperCaptionStyles = (
-  euiThemeContext: UseEuiTheme
-) => {
-  const { euiTheme } = euiThemeContext;
-
-  return {
-    // Base
-    euiImageFullscreenWrapper__caption: css`
-      ${euiFontSize(euiThemeContext, 's')};
-      ${logicalCSS('margin-top', euiTheme.size.xs)};
-      text-align: center;
-    `,
-    isFullScreen: css`
-      color: ${euiTheme.colors.ghost};
-      text-shadow: 0 1px 2px ${transparentize(euiTheme.colors.ink, 0.6)};
     `,
   };
 };
