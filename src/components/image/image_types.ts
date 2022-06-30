@@ -10,7 +10,7 @@ import { HTMLAttributes, ReactNode, ImgHTMLAttributes } from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
 
 export const SIZES = ['s', 'm', 'l', 'xl', 'fullWidth', 'original'] as const;
-export type EuiImageWrapperSize = typeof SIZES[number];
+export type EuiImageSize = typeof SIZES[number];
 
 const FLOATS = ['left', 'right'] as const;
 export type EuiImageWrapperFloat = typeof FLOATS[number];
@@ -45,12 +45,6 @@ export type EuiImageCommonWrapperProps = CommonProps & {
 };
 
 export type EuiImageAllowFullScreenProps = {
-  /**
-   * Accepts `s` / `m` / `l` / `xl` / `original` / `fullWidth` / or a CSS size of `number` or `string`.
-   * `fullWidth` will set the figure to stretch to 100% of its container.
-   * `string` and `number` types will max both the width or height, whichever is greater.
-   */
-  size?: EuiImageWrapperSize | number | string;
   /**
    * When set to `true` will make the image clickable to a larger version
    */
@@ -113,7 +107,14 @@ export type EuiImageProps = ImageProps &
   Omit<
     EuiImageButtonProps,
     'onClick' | 'onKeyDown' | 'isFullScreen' | 'isFullWidth' | 'allowFullScreen'
-  >;
+  > & {
+    /**
+     * Accepts `s` / `m` / `l` / `xl` / `original` / `fullWidth` / or a CSS size of `number` or `string`.
+     * `fullWidth` will set the figure to stretch to 100% of its container.
+     * `string` and `number` types will max both the width or height, whichever is greater.
+     */
+    size?: EuiImageSize | number | string;
+  };
 
 export type EuiImageWrapperProps = EuiImageCommonWrapperProps &
   EuiImageAllowFullScreenProps &

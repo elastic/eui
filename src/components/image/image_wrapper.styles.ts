@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { css, keyframes } from '@emotion/react';
-import { logicalCSS, euiCanAnimate } from '../../global_styling';
+import { css } from '@emotion/react';
+import { logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 const _imageMargins = ({
@@ -134,15 +134,3 @@ export const euiImageWrapperStyles = (
     `,
   };
 };
-
-const euiImageFullScreen = (size: string) => keyframes`
-  0% {
-    opacity: 0;
-    transform: translateY(${size});
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;

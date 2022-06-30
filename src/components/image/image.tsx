@@ -19,16 +19,10 @@ import type {
   ImageProps,
   EuiImageWrapperProps,
   EuiImageFullScreenWrapperProps,
+  EuiImageSize,
 } from './image_types';
 
-export const SIZES = ['s', 'm', 'l', 'xl', 'fullWidth', 'original'] as const;
-export type EuiImageSize = typeof SIZES[number];
-
-const FLOATS = ['left', 'right'] as const;
-export type EuiImageFloat = typeof FLOATS[number];
-
-const MARGINS = ['s', 'm', 'l', 'xl'] as const;
-export type EuiImageMargin = typeof MARGINS[number];
+import { SIZES } from './image_types';
 
 export const EuiImage: FunctionComponent<EuiImageProps> = ({
   className,
@@ -83,7 +77,6 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
         {...(rest as EuiImageWrapperProps)}
         alt={rest.alt}
         hasShadow={hasShadow}
-        size={size}
         wrapperProps={wrapperProps}
         isFullScreen={isFullScreen}
         setIsFullScreen={setIsFullScreen}

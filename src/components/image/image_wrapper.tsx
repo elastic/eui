@@ -21,7 +21,6 @@ import { EuiImageButton } from './image_button';
 import { EuiImageCaption } from './image_caption';
 
 export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
-  size = 'original',
   caption,
   hasShadow,
   allowFullScreen,
@@ -61,7 +60,7 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
     float && styles[float],
     margin && styles[margin],
     allowFullScreen && styles.allowFullScreen,
-    size === 'fullWidth' && styles.fullWidth,
+    isFullWidth && styles.fullWidth,
   ];
 
   const [optionalCaptionRef, optionalCaptionText] = useInnerText();

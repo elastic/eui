@@ -28,7 +28,6 @@ exports[`EuiImage is rendered and allows fullscreen 1`] = `
     type="button"
   >
     <img
-      allowfullscreen=""
       alt="alt"
       aria-label="aria-label"
       class="euiImage testClass1 testClass2 emotion-euiImage-allowFullScreen-l"
