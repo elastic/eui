@@ -7,14 +7,16 @@
  */
 
 import { css } from '@emotion/react';
+import { logicalCSS } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 
 export const ALIGNMENTS = ['top', 'center', 'horizontalCenter'] as const;
 export const euiPageSectionStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiPageSection: css`
-      width: 100%;
-      min-width: 0; // Make sure that inner flex layouts don't get larger than this container
+      ${logicalCSS('width', '100%')};
+      // Make sure that inner flex layouts don't get larger than this container
+      ${logicalCSS('min-width', '0')};
       display: flex;
       flex-direction: column;
     `,
@@ -22,23 +24,23 @@ export const euiPageSectionStyles = ({ euiTheme }: UseEuiTheme) => {
       flex-grow: 1;
     `,
     border: css`
-      border-bottom: ${euiTheme.border.thin};
+      ${logicalCSS('border-bottom', euiTheme.border.thin)};
     `,
     // Alignments
     top: css``,
     center: css`
-      width: auto;
+      ${logicalCSS('width', 'auto')};
       align-items: center;
       justify-content: center;
     `,
     horizontalCenter: css`
-      width: auto;
+      ${logicalCSS('width', 'auto')};
       align-items: center;
     `,
 
     euiPageSection__content: css`
-      width: 100%;
-      margin: auto;
+      ${logicalCSS('width', '100%')};
+      ${logicalCSS('margin-horizontal', 'auto')};
     `,
   };
 };
