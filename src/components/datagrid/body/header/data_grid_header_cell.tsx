@@ -140,13 +140,17 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       {!showColumnActions ? (
         <>
           {sortingArrow}
-          <div className="euiDataGridHeaderCell__content">
+          <div
+            className="euiDataGridHeaderCell__content"
+            title={displayAsText || id}
+          >
             {display || displayAsText || id}
           </div>
         </>
       ) : (
         <EuiPopover
-          anchorClassName="euiDataGridHeaderCell__anchor"
+          className="eui-fullWidth"
+          anchorClassName="eui-fullWidth"
           panelPaddingSize="none"
           offset={7}
           button={
@@ -158,7 +162,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               }}
             >
               {sortingArrow}
-              <div className="euiDataGridHeaderCell__content">
+              <div
+                className="euiDataGridHeaderCell__content"
+                title={displayAsText || id}
+              >
                 {display || displayAsText || id}
               </div>
               <EuiIcon

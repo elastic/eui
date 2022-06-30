@@ -16,11 +16,6 @@
   align-items: center;
   display: flex;
 
-  > * {
-    max-width: 100%;
-    width: 100%;
-  }
-
   &.euiDataGridHeaderCell--numeric {
     text-align: right;
   }
@@ -43,10 +38,6 @@
 
     .euiDataGridHeaderCell__sortingArrow {
       margin-right: $euiSizeXS;
-    }
-
-    .euiDataGridHeaderCell__anchor {
-      width: 100%;
     }
 
     .euiDataGridHeaderCell__button {
