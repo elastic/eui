@@ -23,6 +23,7 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
       >
         <div
           className="euiDataGridHeaderCell__content"
+          title="someColumn"
         >
           someColumn
         </div>
