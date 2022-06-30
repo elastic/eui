@@ -30,11 +30,11 @@ exports[`EuiDataGridBody renders 1`] = `
           style="margin-right:0px"
         />
         <div
-          class="euiPopover euiPopover--anchorDownCenter"
+          class="euiPopover euiPopover--anchorDownCenter eui-fullWidth"
           offset="7"
         >
           <div
-            class="euiPopover__anchor euiDataGridHeaderCell__anchor"
+            class="euiPopover__anchor eui-fullWidth"
           >
             <button
               class="euiDataGridHeaderCell__button"
@@ -74,11 +74,11 @@ exports[`EuiDataGridBody renders 1`] = `
           style="margin-right:0px"
         />
         <div
-          class="euiPopover euiPopover--anchorDownCenter"
+          class="euiPopover euiPopover--anchorDownCenter eui-fullWidth"
           offset="7"
         >
           <div
-            class="euiPopover__anchor euiDataGridHeaderCell__anchor"
+            class="euiPopover__anchor eui-fullWidth"
           >
             <button
               class="euiDataGridHeaderCell__button"

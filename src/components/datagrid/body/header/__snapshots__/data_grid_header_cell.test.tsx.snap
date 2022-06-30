@@ -14,7 +14,7 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
     setColumnWidth={[MockFunction]}
   />
   <EuiPopover
-    anchorClassName="euiDataGridHeaderCell__anchor"
+    anchorClassName="eui-fullWidth"
     anchorPosition="downCenter"
     button={
       <button
@@ -37,6 +37,7 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
         />
       </button>
     }
+    className="eui-fullWidth"
     closePopover={[Function]}
     display="inlineBlock"
     hasArrow={true}
