@@ -1,3 +1,24 @@
+## [`60.1.1`](https://github.com/elastic/eui/tree/v60.1.1)
+
+**Bug fixes**
+
+Fixed issue with `EuiPanel` where the `Emotion` styles were not being passed when it was rendered as a button ([#6010](https://github.com/elastic/eui/pull/6010))
+
+## [`60.1.0`](https://github.com/elastic/eui/tree/v60.1.0)
+
+- Added `focusRegionOnTextChange` prop to `EuiScreenReaderLive` ([#5995](https://github.com/elastic/eui/pull/5995))
+- Enhanced `EuiSkipLink`'s `overrideLinkBehavior` scroll and focus UX ([#5996](https://github.com/elastic/eui/pull/5996))
+
+**Bug fixes**
+
+- Fixed `EuiAccordion` props type not being correctly inferred ([#5974](https://github.com/elastic/eui/pull/5974))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiScreenReaderOnly` to Emotion ([#5846](https://github.com/elastic/eui/pull/5846))
+- Converted `EuiIcon` to Emotion; removed `$euiIconLoadingOpacity`, `$euiIconColors`, and `$euiIconSizes` ([#5967](https://github.com/elastic/eui/pull/5967))
+- Converted `EuiProgress` to Emotion and removed `$euiProgressColors` and `$euiProgressSizes` ([#5986](https://github.com/elastic/eui/pull/5986))
+
 ## [`60.0.0`](https://github.com/elastic/eui/tree/v60.0.0)
 
 - Added configuration options to `EuiProvider.cache` to enable more granular style insertion ([#5853](https://github.com/elastic/eui/pull/5853))

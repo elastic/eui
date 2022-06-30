@@ -81,5 +81,13 @@ describe('EuiPanel', () => {
         });
       });
     });
+
+    describe('onClick', () => {
+      const component = render(
+        <EuiPanel {...requiredProps} onClick={jest.fn()} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });
