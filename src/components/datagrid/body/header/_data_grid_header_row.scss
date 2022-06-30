@@ -16,11 +16,6 @@
   align-items: center;
   display: flex;
 
-  > * {
-    max-width: 100%;
-    width: 100%;
-  }
-
   &.euiDataGridHeaderCell--numeric {
     text-align: right;
   }
