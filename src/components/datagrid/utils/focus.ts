@@ -69,10 +69,10 @@ export const useFocus = ({
 
   const setFocusedCell = useCallback(
     (nextFocusedCell: EuiDataGridFocusedCell) => {
+      // If the x/y coordinates remained the same, don't update
       if (
-        focusedCell &&
-        nextFocusedCell[0] === focusedCell[0] &&
-        nextFocusedCell[1] === focusedCell[1]
+        nextFocusedCell[0] === focusedCell?.[0] &&
+        nextFocusedCell[1] === focusedCell?.[1]
       ) {
         return;
       }
