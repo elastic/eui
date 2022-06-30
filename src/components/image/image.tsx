@@ -42,7 +42,10 @@ type ImageProps = CommonProps &
   Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'>;
 
 export type EuiImageProps = ImageProps &
-  Omit<EuiImageWrapperProps, 'isFullScreen' | 'setIsFullScreen'>;
+  Omit<
+    EuiImageWrapperProps,
+    'isFullScreen' | 'setIsFullScreen' | 'allowFullScreenImg'
+  >;
 
 export const EuiImage: FunctionComponent<EuiImageProps> = ({
   className,
@@ -65,14 +68,14 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
 
   const styles = euiImageStyles(euiTheme);
 
-  const cssStyles = isFullScreen
-    ? [styles.fullScreen]
-    : [
-        styles.euiImage,
-        isNamedSize && styles[size as EuiImageSize],
-        !isNamedSize && styles.customSize,
-        hasShadow && styles.hasShadow,
-      ];
+  const cssStyles = [
+    styles.euiImage,
+    isNamedSize && styles[size as EuiImageSize],
+    !isNamedSize && styles.customSize,
+    hasShadow && styles.hasShadow,
+  ];
+
+  const cssIsFullScreenStyles = [styles.euiImage, styles.isFullScreen];
 
   const isCustomSize = !isFullScreen && !isNamedSize && size !== 'original';
 
@@ -94,6 +97,16 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
       wrapperProps={wrapperProps}
       setIsFullScreen={setIsFullScreen}
       isFullScreen={isFullScreen}
+      fullScreenImg={
+        <img
+          className={classes}
+          style={imageStyle}
+          src={src || url}
+          alt={rest.alt}
+          css={cssIsFullScreenStyles}
+          {...(rest as ImageProps)}
+        />
+      }
     >
       <img
         className={classes}

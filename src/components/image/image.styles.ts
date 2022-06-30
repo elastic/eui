@@ -10,16 +10,24 @@ import { css } from '@emotion/react';
 import { logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
+
 export const euiImageStyles = (euiThemeContext: UseEuiTheme) => ({
-  euiImage: css`
+  euiImage: css``,
+  // image modes
+  allowFullScreen: css`
     vertical-align: middle;
     max-width: 100%;
 
     &,
-    // Required for common usage of nesting within EuiText
-    [class*='euiText'] & {
+  // Required for common usage of nesting within EuiText
+  [class*='euiText'] & {
       ${logicalCSS('margin-bottom', 0)};
     }
+  `,
+  isFullScreen: css`
+    position: relative;
+    max-height: 80vh;
+    max-width: 80vw;
   `,
   hasShadow: css`
     ${euiShadow(euiThemeContext, 's')};
@@ -50,10 +58,5 @@ export const euiImageStyles = (euiThemeContext: UseEuiTheme) => ({
     // A custom max-width and max-height is set in the style tag
     // We set the width back to auto to ensure aspect ratio is kept
     width: auto;
-  `,
-  fullScreen: css`
-    position: relative;
-    max-height: 80vh;
-    max-width: 80vw;
   `,
 });

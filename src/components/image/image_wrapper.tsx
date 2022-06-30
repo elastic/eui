@@ -11,20 +11,16 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 
-import { EuiIcon } from '../../components/icon';
-import { EuiFocusTrap } from '../../components/focus_trap';
-import { EuiOverlayMask } from '../../components/overlay_mask';
 import { useEuiI18n } from '../i18n';
 
 import { keys, useEuiTheme, useIsWithinBreakpoints } from '../../services';
 import { useInnerText } from '../inner_text';
-import {
-  euiImageWrapperStyles,
-  euiImageWrapperButtonStyles,
-  euiImageWrapperCaptionStyles,
-  euiImageWrapperIconStyles,
-  euiImageWrapperFullScreenCloseIconStyles,
-} from './image_wrapper.styles';
+import { euiImageWrapperStyles } from './image_wrapper.styles';
+
+import { EuiImageButton } from './image_button';
+
+import { EuiImageCaption } from './image_caption';
+import { EuiImageFullscreenWrapper } from './image_fullscreen_wrapper';
 
 export const SIZES = ['s', 'm', 'l', 'xl', 'fullWidth', 'original'] as const;
 export type EuiImageWrapperSize = typeof SIZES[number];
@@ -34,15 +30,6 @@ export type EuiImageWrapperFloat = typeof FLOATS[number];
 
 const MARGINS = ['s', 'm', 'l', 'xl'] as const;
 export type EuiImageWrapperMargin = typeof MARGINS[number];
-
-export type EuiImageWrapperFullScreenIconColor = 'light' | 'dark';
-
-const fullScreenIconColorMap: {
-  [color in EuiImageWrapperFullScreenIconColor]: string;
-} = {
-  light: 'ghost',
-  dark: 'default',
-};
 
 export type EuiImageWrapperProps = CommonProps & {
   /**
@@ -56,11 +43,6 @@ export type EuiImageWrapperProps = CommonProps & {
    * `string` and `number` types will max both the width or height, whichever is greater.
    */
   size?: EuiImageWrapperSize | number | string;
-  /**
-   * Changes the color of the icon that floats above the image when it can be clicked to fullscreen.
-   * The default value of `light` is fine unless your image has a white background, in which case you should change it to `dark`.
-   */
-  fullScreenIconColor?: EuiImageWrapperFullScreenIconColor;
   /**
    * Provides the visible caption to the image
    */
@@ -85,6 +67,7 @@ export type EuiImageWrapperProps = CommonProps & {
    * Props to add to the wrapping `.euiImageWrapper` figure
    */
   wrapperProps?: HTMLAttributes<HTMLDivElement>;
+  fullScreenImg?: ReactNode;
   isFullScreen: boolean;
   setIsFullScreen: (isFullScreen: boolean) => void;
 };
@@ -94,7 +77,6 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
   caption,
   hasShadow,
   allowFullScreen,
-  fullScreenIconColor = 'light',
   alt,
   float,
   margin,
@@ -102,6 +84,7 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
   isFullScreen,
   setIsFullScreen,
   wrapperProps,
+  fullScreenImg,
 }) => {
   const isSmallScreen = useIsWithinBreakpoints(['xs', 's', 'm']);
   const hasFloatLeft = float === 'left';
@@ -144,99 +127,21 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
     size === 'fullWidth' && styles.fullWidth,
   ];
 
-  const cssFullScreenFigureStyles = [
-    styles.euiImageWrapper,
-    isFullScreen && styles.isFullScreen,
-  ];
-
-  const buttonStyles = euiImageWrapperButtonStyles(euiTheme, hasShadow);
-  const cssButtonStyles = [
-    buttonStyles.euiImageWrapper__button,
-    !isFullScreen && size === 'fullWidth' && buttonStyles.fullWidth,
-  ];
-
-  const captionStyles = euiImageWrapperCaptionStyles(euiTheme);
-  const cssCaptionStyles = [
-    captionStyles.euiImageWrapper__caption,
-    isFullScreen && captionStyles.isFullScreen,
-  ];
-
-  const iconStyles = euiImageWrapperIconStyles(euiTheme);
-  const cssIconStyles = [iconStyles.euiImageWrapper__icon];
-
-  const fullScreenCloseIconStyles = euiImageWrapperFullScreenCloseIconStyles(
-    euiTheme
-  );
-  const cssFullScreenCloseIconStyles = [
-    fullScreenCloseIconStyles.euiImageWrapper__fullScreenCloseIcon,
-  ];
-
   const [optionalCaptionRef, optionalCaptionText] = useInnerText();
-  let optionalCaption;
-  if (caption) {
-    optionalCaption = (
-      <figcaption ref={optionalCaptionRef} css={cssCaptionStyles}>
-        {caption}
-      </figcaption>
-    );
-  }
 
-  const allowFullScreenIcon = (
-    <EuiIcon
-      css={cssIconStyles}
-      type="fullScreen"
-      color={
-        fullScreenIconColorMap[
-          fullScreenIconColor as EuiImageWrapperFullScreenIconColor
-        ]
-      }
-    />
-  );
-
-  const fullscreenLabel = useEuiI18n(
+  const openImageLabel = useEuiI18n(
     'euiImageWrapper.openImage',
     'Open fullscreen {alt} image',
     { alt }
   );
 
-  const fullScreen = (
-    <EuiOverlayMask
-      data-test-subj="fullScreenOverlayMask"
-      onClick={closeFullScreen}
-    >
-      <EuiFocusTrap clickOutsideDisables={true}>
-        <>
-          <figure
-            {...wrapperProps}
-            className={classes}
-            css={cssFullScreenFigureStyles}
-            aria-label={optionalCaptionText}
-          >
-            <button
-              type="button"
-              css={cssButtonStyles}
-              aria-label={useEuiI18n(
-                'euiImageWrapper.closeImage',
-                'Close fullscreen {alt} image',
-                { alt }
-              )}
-              data-test-subj="deactivateFullScreenButton"
-              onClick={closeFullScreen}
-              onKeyDown={onKeyDown}
-            >
-              {children}
-            </button>
-            {optionalCaption}
-          </figure>
-          <EuiIcon
-            type="fullScreenExit"
-            color="default"
-            css={cssFullScreenCloseIconStyles}
-          />
-        </>
-      </EuiFocusTrap>
-    </EuiOverlayMask>
+  const closeImageLabel = useEuiI18n(
+    'euiImageWrapper.closeImage',
+    'Close fullscreen {alt} image',
+    { alt }
   );
+
+  const isFullWidth = size === 'fullWidth';
 
   return (
     <figure
@@ -246,22 +151,54 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
       aria-label={optionalCaptionText}
     >
       {allowFullScreen ? (
-        <button
-          type="button"
-          css={cssButtonStyles}
-          aria-label={fullscreenLabel}
-          data-test-subj="activateFullScreenButton"
-          onClick={openFullScreen}
-        >
-          {children}
-          {allowFullScreenIcon}
-        </button>
+        <>
+          <EuiImageButton
+            hasShadow={hasShadow}
+            onClick={openFullScreen}
+            aria-label={openImageLabel}
+            data-test-subj="activateFullScreenButton"
+            isFullScreen={isFullScreen}
+            isFullWidth={isFullWidth}
+            allowFullScreen={allowFullScreen}
+          >
+            {children}
+          </EuiImageButton>
+        </>
       ) : (
-        children
+        <>{children}</>
       )}
 
-      {isFullScreen && fullScreen}
-      {optionalCaption}
+      <EuiImageCaption ref={optionalCaptionRef} caption={caption} />
+
+      {isFullScreen && (
+        <EuiImageFullscreenWrapper
+          {...wrapperProps}
+          aria-label={optionalCaptionText}
+          onClick={closeFullScreen}
+          alt={alt}
+          buttonNode={
+            <EuiImageButton
+              hasShadow={hasShadow}
+              onClick={closeFullScreen}
+              onKeyDown={onKeyDown}
+              aria-label={closeImageLabel}
+              data-test-subj="deactivateFullScreenButton"
+              isFullScreen={isFullScreen}
+              isFullWidth={isFullWidth}
+              allowFullScreen={allowFullScreen}
+            >
+              {fullScreenImg}
+            </EuiImageButton>
+          }
+          captionNode={
+            <EuiImageCaption
+              caption={caption}
+              ref={optionalCaptionRef}
+              isOnOverlayMask={isFullScreen}
+            />
+          }
+        />
+      )}
     </figure>
   );
 };

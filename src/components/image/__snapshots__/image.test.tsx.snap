@@ -11,6 +11,9 @@ exports[`EuiImage is rendered 1`] = `
     data-test-subj="test subject string"
     src="/cat.jpg"
   />
+  <figcaption
+    class="emotion-euiImageCaption"
+  />
 </figure>
 `;
 
@@ -20,7 +23,7 @@ exports[`EuiImage is rendered and allows fullscreen 1`] = `
 >
   <button
     aria-label="Open fullscreen alt image"
-    class="emotion-euiImageWrapper__button"
+    class="emotion-euiImageButton"
     data-test-subj="activateFullScreenButton"
     type="button"
   >
@@ -33,11 +36,14 @@ exports[`EuiImage is rendered and allows fullscreen 1`] = `
       src="/cat.jpg"
     />
     <span
-      class="emotion-euiImageWrapper__icon"
+      class="emotion-euiImageButton__icon"
       color="ghost"
       data-euiicon-type="fullScreen"
     />
   </button>
+  <figcaption
+    class="emotion-euiImageCaption"
+  />
 </figure>
 `;
 
@@ -51,6 +57,9 @@ exports[`EuiImage is rendered with a float 1`] = `
     float="left"
     src="/cat.jpg"
   />
+  <figcaption
+    class="emotion-euiImageCaption"
+  />
 </figure>
 `;
 
@@ -63,6 +72,9 @@ exports[`EuiImage is rendered with a margin 1`] = `
     class="euiImage emotion-euiImage-original"
     margin="l"
     src="/cat.jpg"
+  />
+  <figcaption
+    class="emotion-euiImageCaption"
   />
 </figure>
 `;
@@ -78,7 +90,7 @@ exports[`EuiImage is rendered with a node as the caption 1`] = `
     src="/cat.jpg"
   />
   <figcaption
-    class="emotion-euiImageWrapper__caption"
+    class="emotion-euiImageCaption"
   >
     <span>
       caption
@@ -97,6 +109,9 @@ exports[`EuiImage is rendered with custom size 1`] = `
     src="/cat.jpg"
     style="max-width:50px;max-height:50px"
   />
+  <figcaption
+    class="emotion-euiImageCaption"
+  />
 </figure>
 `;
 
@@ -109,6 +124,9 @@ exports[`EuiImage is rendered with src 1`] = `
     class="euiImage emotion-euiImage-original"
     float="left"
     src="/cat.jpg"
+  />
+  <figcaption
+    class="emotion-euiImageCaption"
   />
 </figure>
 `;
@@ -125,7 +143,7 @@ exports[`EuiImage is rendered with wrapperProps 1`] = `
     src="/cat.jpg"
   />
   <figcaption
-    class="emotion-euiImageWrapper__caption"
+    class="emotion-euiImageCaption"
   >
     <span>
       caption

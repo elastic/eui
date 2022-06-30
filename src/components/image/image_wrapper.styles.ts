@@ -7,14 +7,8 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import {
-  euiFocusRing,
-  euiFontSize,
-  logicalCSS,
-  euiCanAnimate,
-} from '../../global_styling';
-import { UseEuiTheme, transparentize } from '../../services';
-import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
+import { logicalCSS, euiCanAnimate } from '../../global_styling';
+import { UseEuiTheme } from '../../services';
 
 const _imageMargins = ({
   size,
@@ -154,93 +148,6 @@ export const euiImageWrapperStyles = (
     `,
   };
 };
-
-export const euiImageWrapperButtonStyles = (
-  euiThemeContext: UseEuiTheme,
-  hasShadow: boolean | undefined
-) => {
-  const { euiTheme } = euiThemeContext;
-
-  return {
-    // Base
-    euiImageWrapper__button: css`
-      position: relative;
-      cursor: pointer;
-      line-height: 0;
-
-      &:hover,
-      &:focus {
-        ${hasShadow
-          ? `${euiShadow(euiThemeContext, 'm')};`
-          : `${euiShadow(euiThemeContext, 's')};`}
-      }
-
-      ${euiCanAnimate} {
-        transition: box-shadow ${euiTheme.animation.fast}
-          ${euiTheme.animation.resistance};
-      }
-
-      &:focus {
-        ${euiFocusRing(euiTheme, 'outset')}
-      }
-
-      &:hover [class*='euiImageWrapper__icon'] {
-        visibility: visible;
-        fill-opacity: 1;
-      }
-    `,
-    fullWidth: css`
-      width: 100%;
-    `,
-  };
-};
-
-export const euiImageWrapperCaptionStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
-
-  return {
-    // Base
-    euiImageWrapper__caption: css`
-      ${euiFontSize(euiThemeContext, 's')};
-      ${logicalCSS('margin-top', euiTheme.size.xs)};
-      text-align: center;
-    `,
-    isFullScreen: css`
-      color: ${euiTheme.colors.ghost};
-      text-shadow: 0 1px 2px ${transparentize(euiTheme.colors.ink, 0.6)};
-    `,
-  };
-};
-
-export const euiImageWrapperIconStyles = ({ euiTheme }: UseEuiTheme) => ({
-  // Base
-  euiImageWrapper__icon: css`
-    visibility: hidden;
-    fill-opacity: 0;
-    position: absolute;
-    ${logicalCSS('top', euiTheme.size.base)};
-    ${logicalCSS('right', euiTheme.size.base)};
-    cursor: pointer;
-
-    ${euiCanAnimate} {
-      transition: fill-opacity ${euiTheme.animation.slow}
-        ${euiTheme.animation.resistance};
-    }
-  `,
-});
-
-export const euiImageWrapperFullScreenCloseIconStyles = ({
-  euiTheme,
-}: UseEuiTheme) => ({
-  // Base
-  euiImageWrapper__fullScreenCloseIcon: css`
-    position: absolute;
-    ${logicalCSS('top', euiTheme.size.base)};
-    ${logicalCSS('right', euiTheme.size.base)};
-    pointer-events: none;
-    fill: ${euiTheme.colors.ghost} !important;
-  `,
-});
 
 const euiImageFullScreen = (size: string) => keyframes`
   0% {
