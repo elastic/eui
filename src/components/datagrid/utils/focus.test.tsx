@@ -60,15 +60,21 @@ describe('useFocus', () => {
   });
 
   describe('focusedCell / setFocusedCell', () => {
-    it('gets and sets the focusedCell state', () => {
-      const {
-        return: { focusedCell, setFocusedCell },
-        getUpdatedState,
-      } = testCustomHook(() => useFocus(mockArgs));
-      expect(focusedCell).toEqual(undefined);
+    const {
+      return: { focusedCell, setFocusedCell },
+      getUpdatedState,
+    } = testCustomHook(() => useFocus(mockArgs));
 
+    it('gets and sets the focusedCell state', () => {
+      expect(focusedCell).toEqual(undefined);
       act(() => setFocusedCell([2, 2]));
       expect(getUpdatedState().focusedCell).toEqual([2, 2]);
+    });
+
+    it('does not update if setFocusedCell is called with the same cell X/Y coordinates', () => {
+      const focusedCellInMemory = getUpdatedState().focusedCell;
+      act(() => getUpdatedState().setFocusedCell([2, 2]));
+      expect(getUpdatedState().focusedCell).toBe(focusedCellInMemory); // Would fail if the exact same array wasn't returned
     });
   });
 
