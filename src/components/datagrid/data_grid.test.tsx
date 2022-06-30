@@ -2354,9 +2354,8 @@ describe('EuiDataGrid', () => {
 
       // enable the grid to accept focus
       act(() =>
-        component
-          .find('div [data-test-subj="euiDataGridBody"][onFocus]')
-          .props().onFocus!({} as React.FocusEvent)
+        component.find('div [data-test-subj="euiDataGridBody"]').props()
+          .onKeyUp!({ key: keys.TAB } as React.KeyboardEvent)
       );
       component.update();
 
@@ -2552,9 +2551,8 @@ describe('EuiDataGrid', () => {
 
       // enable the grid to accept focus
       act(() =>
-        component
-          .find('div [data-test-subj="euiDataGridBody"][onFocus]')
-          .props().onFocus!({} as React.FocusEvent)
+        component.find('div [data-test-subj="euiDataGridBody"]').props()
+          .onKeyUp!({ key: keys.TAB } as React.KeyboardEvent)
       );
       component.update();
 
