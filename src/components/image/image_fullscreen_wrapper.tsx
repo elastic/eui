@@ -6,59 +6,36 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
-
-import { CommonProps } from '../common';
+import React, { FunctionComponent } from 'react';
 
 import { EuiIcon } from '../icon';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask } from '../overlay_mask';
 import { useEuiI18n } from '../i18n';
-import { useEuiTheme } from '../../services';
+import { useEuiTheme, keys } from '../../services';
+import { useInnerText } from '../inner_text';
 
 import {
   euiImageFullscreenWrapperStyles,
   euiImageFullscreenWrapperFullScreenCloseIconStyles,
 } from './image_fullscreen_wrapper.styles';
 
-export const SIZES = ['s', 'm', 'l', 'xl', 'fullWidth', 'original'] as const;
-export type EuiImageFullscreenWrapperSize = typeof SIZES[number];
+import type { EuiImageFullScreenWrapperProps } from './image_types';
 
-const FLOATS = ['left', 'right'] as const;
-export type EuiImageFullscreenWrapperFloat = typeof FLOATS[number];
+import { EuiImageButton } from './image_button';
+import { EuiImageCaption } from './image_caption';
 
-const MARGINS = ['s', 'm', 'l', 'xl'] as const;
-export type EuiImageFullscreenWrapperMargin = typeof MARGINS[number];
-
-export type EuiImageFullscreenWrapperFullScreenIconColor = 'light' | 'dark';
-
-export type EuiImageFullscreenWrapperProps = CommonProps & {
-  /**
-   * Separate from the caption is a title on the alt tag itself.
-   * This one is required for accessibility.
-   */
-  alt: string;
-  /**
-   * When set to `true` (default) will apply a slight shadow to the image
-   */
-  hasShadow?: boolean;
-  /**
-   * Props to add to the wrapping `.euiImageFullscreenWrapper` figure
-   */
-  wrapperProps?: HTMLAttributes<HTMLDivElement>;
-  captionNode?: ReactNode;
-  buttonNode?: ReactNode;
-  onClick: () => void;
-};
-
-export const EuiImageFullscreenWrapper: FunctionComponent<EuiImageFullscreenWrapperProps> = ({
+export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageFullScreenWrapperProps> = ({
   hasShadow,
+  caption,
   alt,
+  children,
+  isFullScreen,
+  setIsFullScreen,
   wrapperProps,
-  onClick,
-  captionNode,
-  buttonNode,
-  ...rest
+  allowFullScreen,
+  isFullWidth,
+  fullScreenIconColor,
 }) => {
   const euiTheme = useEuiTheme();
 
@@ -73,17 +50,56 @@ export const EuiImageFullscreenWrapper: FunctionComponent<EuiImageFullscreenWrap
     fullScreenCloseIconStyles.euiImageFullscreenWrapper__fullScreenCloseIcon,
   ];
 
+  const onKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === keys.ESCAPE) {
+      event.preventDefault();
+      event.stopPropagation();
+      closeFullScreen();
+    }
+  };
+
+  const closeFullScreen = () => {
+    setIsFullScreen(false);
+  };
+
+  const closeImageLabel = useEuiI18n(
+    'euiImageFullscreenWrapper.closeImage',
+    'Close fullscreen {alt} image',
+    { alt }
+  );
+
+  const [optionalCaptionRef, optionalCaptionText] = useInnerText();
+
   return (
-    <EuiOverlayMask data-test-subj="fullScreenOverlayMask" onClick={onClick}>
+    <EuiOverlayMask
+      data-test-subj="fullScreenOverlayMask"
+      onClick={closeFullScreen}
+    >
       <EuiFocusTrap clickOutsideDisables={true}>
         <>
           <figure
             {...wrapperProps}
             css={cssStyles}
-            aria-label={rest['aria-label']}
+            aria-label={optionalCaptionText}
           >
-            {buttonNode}
-            {captionNode}
+            <EuiImageButton
+              hasShadow={hasShadow}
+              onClick={closeFullScreen}
+              onKeyDown={onKeyDown}
+              aria-label={closeImageLabel}
+              data-test-subj="deactivateFullScreenButton"
+              isFullScreen={isFullScreen}
+              isFullWidth={isFullWidth}
+              allowFullScreen={allowFullScreen}
+              fullScreenIconColor={fullScreenIconColor}
+            >
+              {children}
+            </EuiImageButton>
+            <EuiImageCaption
+              caption={caption}
+              ref={optionalCaptionRef}
+              isOnOverlayMask={isFullScreen}
+            />
           </figure>
           <EuiIcon
             type="fullScreenExit"

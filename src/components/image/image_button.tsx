@@ -6,9 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
-
-import { CommonProps } from '../common';
+import React, { FunctionComponent } from 'react';
 import { useEuiTheme } from '../../services';
 
 import {
@@ -16,36 +14,16 @@ import {
   euiImageButtonIconStyles,
 } from './image_button.styles';
 import { EuiIcon } from '../icon';
-
-export type EuiImageButtonIconColor = 'light' | 'dark';
+import type {
+  EuiImageButtonProps,
+  EuiImageButtonIconColor,
+} from './image_types';
 
 const fullScreenIconColorMap: {
   [color in EuiImageButtonIconColor]: string;
 } = {
   light: 'ghost',
   dark: 'default',
-};
-
-export type EuiImageButtonProps = CommonProps & {
-  /**
-   * When set to `true` (default) will apply a slight shadow to the image
-   */
-  hasShadow?: boolean;
-  /**
-   * Changes the color of the icon that floats above the image when it can be clicked to fullscreen.
-   * The default value of `light` is fine unless your image has a white background, in which case you should change it to `dark`.
-   */
-  fullScreenIconColor?: EuiImageButtonIconColor;
-  /**
-   * Props to add to the wrapping `.euiImageFullscreenWrapper` figure
-   */
-  wrapperProps?: HTMLAttributes<HTMLDivElement>;
-  captionNode?: ReactNode;
-  onClick: () => void;
-  onKeyDown?: (e: React.KeyboardEvent) => void;
-  isFullScreen: boolean;
-  isFullWidth: boolean;
-  allowFullScreen: boolean | undefined;
 };
 
 export const EuiImageButton: FunctionComponent<EuiImageButtonProps> = ({
@@ -83,7 +61,7 @@ export const EuiImageButton: FunctionComponent<EuiImageButtonProps> = ({
       {...rest}
     >
       {children}
-      {allowFullScreen && (
+      {allowFullScreen && !isFullScreen && (
         <EuiIcon css={cssIconStyles} type="fullScreen" color={iconColor} />
       )}
     </button>

@@ -6,20 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { forwardRef, Ref, ReactNode } from 'react';
+import React, { forwardRef, Ref } from 'react';
 
 import { useEuiTheme } from '../../services';
-import { CommonProps } from '../common';
-import { euiImageCaptionStyles } from './image_caption.styles';
 
-export type EuiImageCaptionProps = CommonProps & {
-  /**
-   * Provides the visible caption to the image
-   */
-  caption?: ReactNode;
-  isOnOverlayMask?: boolean;
-  ref?: any;
-};
+import { euiImageCaptionStyles } from './image_caption.styles';
+import type { EuiImageCaptionProps } from './image_types';
 
 export const EuiImageCaption = forwardRef<HTMLDivElement, EuiImageCaptionProps>(
   ({ caption, isOnOverlayMask = false }, ref: Ref<HTMLDivElement>) => {

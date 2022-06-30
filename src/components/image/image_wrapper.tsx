@@ -6,71 +6,19 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
-
-import { CommonProps } from '../common';
 
 import { useEuiI18n } from '../i18n';
 
-import { keys, useEuiTheme, useIsWithinBreakpoints } from '../../services';
+import { useEuiTheme, useIsWithinBreakpoints } from '../../services';
 import { useInnerText } from '../inner_text';
+
+import type { EuiImageWrapperProps } from './image_types';
+
 import { euiImageWrapperStyles } from './image_wrapper.styles';
-
 import { EuiImageButton } from './image_button';
-
 import { EuiImageCaption } from './image_caption';
-import { EuiImageFullscreenWrapper } from './image_fullscreen_wrapper';
-
-export const SIZES = ['s', 'm', 'l', 'xl', 'fullWidth', 'original'] as const;
-export type EuiImageWrapperSize = typeof SIZES[number];
-
-const FLOATS = ['left', 'right'] as const;
-export type EuiImageWrapperFloat = typeof FLOATS[number];
-
-const MARGINS = ['s', 'm', 'l', 'xl'] as const;
-export type EuiImageWrapperMargin = typeof MARGINS[number];
-
-export type EuiImageWrapperProps = CommonProps & {
-  /**
-   * Separate from the caption is a title on the alt tag itself.
-   * This one is required for accessibility.
-   */
-  alt: string;
-  /**
-   * Accepts `s` / `m` / `l` / `xl` / `original` / `fullWidth` / or a CSS size of `number` or `string`.
-   * `fullWidth` will set the figure to stretch to 100% of its container.
-   * `string` and `number` types will max both the width or height, whichever is greater.
-   */
-  size?: EuiImageWrapperSize | number | string;
-  /**
-   * Provides the visible caption to the image
-   */
-  caption?: ReactNode;
-  /**
-   * When set to `true` (default) will apply a slight shadow to the image
-   */
-  hasShadow?: boolean;
-  /**
-   * When set to `true` will make the image clickable to a larger version
-   */
-  allowFullScreen?: boolean;
-  /**
-   * Float the image to the left or right. Useful in large text blocks.
-   */
-  float?: EuiImageWrapperFloat;
-  /**
-   * Margin around the image.
-   */
-  margin?: EuiImageWrapperMargin;
-  /**
-   * Props to add to the wrapping `.euiImageWrapper` figure
-   */
-  wrapperProps?: HTMLAttributes<HTMLDivElement>;
-  fullScreenImg?: ReactNode;
-  isFullScreen: boolean;
-  setIsFullScreen: (isFullScreen: boolean) => void;
-};
 
 export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
   size = 'original',
@@ -84,23 +32,12 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
   isFullScreen,
   setIsFullScreen,
   wrapperProps,
-  fullScreenImg,
+  fullScreenIconColor,
+  isFullWidth,
 }) => {
   const isSmallScreen = useIsWithinBreakpoints(['xs', 's', 'm']);
   const hasFloatLeft = float === 'left';
   const hasFloatRight = float === 'right';
-
-  const onKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === keys.ESCAPE) {
-      event.preventDefault();
-      event.stopPropagation();
-      closeFullScreen();
-    }
-  };
-
-  const closeFullScreen = () => {
-    setIsFullScreen(false);
-  };
 
   const openFullScreen = () => {
     setIsFullScreen(true);
@@ -135,14 +72,6 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
     { alt }
   );
 
-  const closeImageLabel = useEuiI18n(
-    'euiImageWrapper.closeImage',
-    'Close fullscreen {alt} image',
-    { alt }
-  );
-
-  const isFullWidth = size === 'fullWidth';
-
   return (
     <figure
       {...wrapperProps}
@@ -151,54 +80,23 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
       aria-label={optionalCaptionText}
     >
       {allowFullScreen ? (
-        <>
-          <EuiImageButton
-            hasShadow={hasShadow}
-            onClick={openFullScreen}
-            aria-label={openImageLabel}
-            data-test-subj="activateFullScreenButton"
-            isFullScreen={isFullScreen}
-            isFullWidth={isFullWidth}
-            allowFullScreen={allowFullScreen}
-          >
-            {children}
-          </EuiImageButton>
-        </>
+        <EuiImageButton
+          hasShadow={hasShadow}
+          onClick={openFullScreen}
+          aria-label={openImageLabel}
+          data-test-subj="activateFullScreenButton"
+          isFullScreen={isFullScreen}
+          isFullWidth={isFullWidth}
+          allowFullScreen={allowFullScreen}
+          fullScreenIconColor={fullScreenIconColor}
+        >
+          {children}
+        </EuiImageButton>
       ) : (
-        <>{children}</>
+        children
       )}
 
       <EuiImageCaption ref={optionalCaptionRef} caption={caption} />
-
-      {isFullScreen && (
-        <EuiImageFullscreenWrapper
-          {...wrapperProps}
-          aria-label={optionalCaptionText}
-          onClick={closeFullScreen}
-          alt={alt}
-          buttonNode={
-            <EuiImageButton
-              hasShadow={hasShadow}
-              onClick={closeFullScreen}
-              onKeyDown={onKeyDown}
-              aria-label={closeImageLabel}
-              data-test-subj="deactivateFullScreenButton"
-              isFullScreen={isFullScreen}
-              isFullWidth={isFullWidth}
-              allowFullScreen={allowFullScreen}
-            >
-              {fullScreenImg}
-            </EuiImageButton>
-          }
-          captionNode={
-            <EuiImageCaption
-              caption={caption}
-              ref={optionalCaptionRef}
-              isOnOverlayMask={isFullScreen}
-            />
-          }
-        />
-      )}
     </figure>
   );
 };
