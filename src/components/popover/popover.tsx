@@ -149,6 +149,13 @@ export interface EuiPopoverProps {
    */
   panelProps?: Omit<EuiPanelProps, 'style'>;
   panelRef?: RefCallback<HTMLElement | null>;
+  /**
+   * Optional screen reader instructions to announce upon popover open,
+   * in addition to EUI's default popover instructions for Escape on close.
+   * Useful for popovers that may have additional keyboard capabilities such as
+   * arrow navigation.
+   */
+  popoverScreenReaderText?: string | ReactNode;
   popoverRef?: Ref<HTMLDivElement>;
   /**
    * When `true`, the popover's position is re-calculated when the user
@@ -699,6 +706,7 @@ export class EuiPopover extends Component<Props, State> {
       panelProps,
       panelRef,
       panelStyle,
+      popoverScreenReaderText,
       popoverRef,
       hasArrow,
       arrowChildren,
@@ -765,15 +773,18 @@ export class EuiPopover extends Component<Props, State> {
       }
 
       let focusTrapScreenReaderText;
-      if (ownFocus) {
+      if (ownFocus || popoverScreenReaderText) {
         ariaDescribedby = this.descriptionId;
         focusTrapScreenReaderText = (
           <EuiScreenReaderOnly>
             <p id={this.descriptionId}>
-              <EuiI18n
-                token="euiPopover.screenReaderAnnouncement"
-                default="You are in a dialog. To close this dialog, hit escape."
-              />
+              {ownFocus && (
+                <EuiI18n
+                  token="euiPopover.screenReaderAnnouncement"
+                  default="You are in a dialog. To close this dialog, hit escape."
+                />
+              )}
+              {popoverScreenReaderText}
             </p>
           </EuiScreenReaderOnly>
         );
