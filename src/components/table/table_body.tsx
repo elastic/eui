@@ -6,11 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, Ref } from 'react';
+import React, { FunctionComponent, ReactNode, Ref } from 'react';
 import { CommonProps } from '../common';
 
 export type EuiTableBodyProps = CommonProps & {
   bodyRef?: Ref<HTMLTableSectionElement>;
+  children?: ReactNode;
 };
 
 export const EuiTableBody: FunctionComponent<EuiTableBodyProps> = ({
