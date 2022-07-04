@@ -7,7 +7,7 @@ exports[`EuiImage is rendered 1`] = `
   <img
     alt="alt"
     aria-label="aria-label"
-    class="euiImage testClass1 testClass2 emotion-euiImage-allowFullScreen-l"
+    class="euiImage testClass1 testClass2 emotion-euiImage-l"
     data-test-subj="test subject string"
     src="/cat.jpg"
   />
@@ -30,7 +30,7 @@ exports[`EuiImage is rendered and allows fullscreen 1`] = `
     <img
       alt="alt"
       aria-label="aria-label"
-      class="euiImage testClass1 testClass2 emotion-euiImage-allowFullScreen-l"
+      class="euiImage testClass1 testClass2 emotion-euiImage-l"
       data-test-subj="test subject string"
       src="/cat.jpg"
     />
@@ -52,7 +52,7 @@ exports[`EuiImage is rendered with a float 1`] = `
 >
   <img
     alt="alt"
-    class="euiImage emotion-euiImage-allowFullScreen-original"
+    class="euiImage emotion-euiImage-original"
     float="left"
     src="/cat.jpg"
   />
@@ -68,7 +68,7 @@ exports[`EuiImage is rendered with a margin 1`] = `
 >
   <img
     alt="alt"
-    class="euiImage emotion-euiImage-allowFullScreen-original"
+    class="euiImage emotion-euiImage-original"
     margin="l"
     src="/cat.jpg"
   />
@@ -85,7 +85,7 @@ exports[`EuiImage is rendered with a node as the caption 1`] = `
   <img
     alt="alt"
     caption="[object Object]"
-    class="euiImage emotion-euiImage-allowFullScreen-original"
+    class="euiImage emotion-euiImage-original"
     src="/cat.jpg"
   />
   <figcaption
@@ -104,7 +104,7 @@ exports[`EuiImage is rendered with custom size 1`] = `
 >
   <img
     alt="alt"
-    class="euiImage emotion-euiImage-allowFullScreen-customSize"
+    class="euiImage emotion-euiImage-customSize"
     src="/cat.jpg"
     style="max-width:50px;max-height:50px"
   />
@@ -120,7 +120,7 @@ exports[`EuiImage is rendered with src 1`] = `
 >
   <img
     alt="alt"
-    class="euiImage emotion-euiImage-allowFullScreen-original"
+    class="euiImage emotion-euiImage-original"
     float="left"
     src="/cat.jpg"
   />
@@ -138,7 +138,7 @@ exports[`EuiImage is rendered with wrapperProps 1`] = `
   <img
     alt="alt"
     caption="[object Object]"
-    class="euiImage emotion-euiImage-allowFullScreen-original"
+    class="euiImage emotion-euiImage-original"
     src="/cat.jpg"
   />
   <figcaption

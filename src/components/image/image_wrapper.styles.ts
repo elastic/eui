@@ -76,7 +76,7 @@ export const euiImageWrapperStyles = (
         text-decoration: underline;
       }
     `,
-    // margins
+    // Margins
     s: css(
       _imageMargins({
         size: euiTheme.size.s,
@@ -109,7 +109,7 @@ export const euiImageWrapperStyles = (
         isSmallScreen,
       })
     ),
-    // floats
+    // Floats
     left: css`
       ${isSmallScreen
         ? `
@@ -128,7 +128,7 @@ export const euiImageWrapperStyles = (
           float: right;
         `}
     `,
-    // sizes
+    // Sizes
     fullWidth: css`
       width: 100%;
     `,

@@ -36,8 +36,7 @@ export const euiImageFullscreenWrapperStyles = (
         text-decoration: underline;
       }
     `,
-
-    // sizes
+    // Sizes
     fullWidth: css`
       width: 100%;
     `,

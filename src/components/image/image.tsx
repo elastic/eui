@@ -49,7 +49,6 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
 
   const cssStyles = [
     styles.euiImage,
-    styles.allowFullScreen,
     isNamedSize && styles[size as EuiImageSize],
     !isNamedSize && styles.customSize,
     hasShadow && styles.hasShadow,

@@ -12,18 +12,17 @@ import { UseEuiTheme } from '../../services';
 import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
 
 export const euiImageStyles = (euiThemeContext: UseEuiTheme) => ({
-  euiImage: css``,
-  // image modes
-  allowFullScreen: css`
+  euiImage: css`
     vertical-align: middle;
     max-width: 100%;
 
     &,
-  // Required for common usage of nesting within EuiText
-  [class*='euiText'] & {
+    // Required for common usage of nesting within EuiText
+    [class*='euiText'] & {
       ${logicalCSS('margin-bottom', 0)};
     }
   `,
+  // Variations
   isFullScreen: css`
     position: relative;
     max-height: 80vh;
