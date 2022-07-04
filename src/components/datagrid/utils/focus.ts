@@ -67,10 +67,22 @@ export const useFocus = ({
     EuiDataGridFocusedCell | undefined
   >(undefined);
 
-  const setFocusedCell = useCallback((focusedCell: EuiDataGridFocusedCell) => {
-    _setFocusedCell(focusedCell);
-    setIsFocusedCellInView(true); // scrolling.ts ensures focused cells are fully in view
-  }, []);
+  const setFocusedCell = useCallback(
+    (nextFocusedCell: EuiDataGridFocusedCell) => {
+      // If the x/y coordinates remained the same, don't update. This keeps the focusedCell
+      // reference stable, and allows it to be used in places that need reference equality.
+      if (
+        nextFocusedCell[0] === focusedCell?.[0] &&
+        nextFocusedCell[1] === focusedCell?.[1]
+      ) {
+        return;
+      }
+
+      _setFocusedCell(nextFocusedCell);
+      setIsFocusedCellInView(true); // scrolling.ts ensures focused cells are fully in view
+    },
+    [focusedCell]
+  );
 
   const previousCell = useRef<EuiDataGridFocusedCell | undefined>(undefined);
   useEffect(() => {
