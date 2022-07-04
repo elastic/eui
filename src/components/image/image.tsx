@@ -26,6 +26,7 @@ import { SIZES } from './image_types';
 
 export const EuiImage: FunctionComponent<EuiImageProps> = ({
   className,
+  alt,
   url,
   src,
   size = 'original',
@@ -70,48 +71,39 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
 
   const isFullWidth = size === 'fullWidth';
 
+  const commonWrapperProps = {
+    alt: alt,
+    hasShadow: hasShadow,
+    wrapperProps: wrapperProps,
+    isFullScreen: isFullScreen,
+    setIsFullScreen: setIsFullScreen,
+    fullScreenIconColor: fullScreenIconColor,
+    isFullWidth: isFullWidth,
+    allowFullScreen: allowFullScreen,
+  };
+
+  const commonImgProps = {
+    className: classes,
+    style: imageStyle,
+    src: src || url,
+    ...rest,
+  } as ImageProps;
+
   return (
     <>
       <EuiImageWrapper
         {...(rest as EuiImageWrapperProps)}
-        alt={rest.alt}
-        hasShadow={hasShadow}
-        wrapperProps={wrapperProps}
-        isFullScreen={isFullScreen}
-        setIsFullScreen={setIsFullScreen}
-        isFullWidth={isFullWidth}
-        fullScreenIconColor={fullScreenIconColor}
-        allowFullScreen={allowFullScreen}
+        {...commonWrapperProps}
       >
-        <img
-          className={classes}
-          style={imageStyle}
-          src={src || url}
-          alt={rest.alt}
-          css={cssStyles}
-          {...(rest as ImageProps)}
-        />
+        <img alt={alt} css={cssStyles} {...commonImgProps} />
       </EuiImageWrapper>
 
       {allowFullScreen && isFullScreen && (
         <EuiImageFullScreenWrapper
           {...(rest as EuiImageFullScreenWrapperProps)}
-          alt={rest.alt}
-          hasShadow={hasShadow}
-          isFullScreen={isFullScreen}
-          setIsFullScreen={setIsFullScreen}
-          fullScreenIconColor={fullScreenIconColor}
-          isFullWidth={isFullWidth}
-          allowFullScreen={allowFullScreen}
+          {...commonWrapperProps}
         >
-          <img
-            className={classes}
-            style={imageStyle}
-            src={src || url}
-            alt={rest.alt}
-            css={cssIsFullScreenStyles}
-            {...(rest as ImageProps)}
-          />
+          <img alt={alt} css={cssIsFullScreenStyles} {...commonImgProps} />
         </EuiImageFullScreenWrapper>
       )}
     </>
