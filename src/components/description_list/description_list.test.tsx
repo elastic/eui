@@ -10,7 +10,8 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiDescriptionList, TYPES, ALIGNMENTS } from './description_list';
+import { EuiDescriptionList } from './description_list';
+import { TYPES, ALIGNMENTS } from './description_list_types';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
 shouldRenderCustomStyles(<EuiDescriptionList />);

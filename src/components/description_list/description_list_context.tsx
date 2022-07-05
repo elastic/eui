@@ -10,10 +10,10 @@ import React, { createContext } from 'react';
 import { EuiDescriptionListProps } from './description_list_types';
 
 interface DescriptionListContextProps {
-  align: EuiDescriptionListProps['align'];
+  align?: EuiDescriptionListProps['align'];
   compressed?: EuiDescriptionListProps['compressed'];
-  textStyle: EuiDescriptionListProps['textStyle'];
-  type: EuiDescriptionListProps['type'];
+  textStyle?: EuiDescriptionListProps['textStyle'];
+  type?: EuiDescriptionListProps['type'];
 }
 
 export const EuiDescriptionListContext = createContext<EuiDescriptionListProps>(

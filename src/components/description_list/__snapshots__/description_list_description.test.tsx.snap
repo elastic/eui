@@ -1,5 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations align center alignment is rendered 1`] = `
+<dd
+  class="euiDescriptionList__description css-1u82jm0-normal"
+/>
+`;
+
+exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations compressed is rendered 1`] = `
+<dd
+  class="euiDescriptionList__description css-1u82jm0-normal"
+/>
+`;
+
+exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations text styles reversed text is rendered 1`] = `
+<dd
+  class="euiDescriptionList__description css-1rfi2ir-reverse"
+/>
+`;
+
+exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations type column is rendered 1`] = `
+<dd
+  class="euiDescriptionList__description css-q3sljd-normal-column"
+/>
+`;
+
+exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations type inline is rendered 1`] = `
+<dd
+  class="euiDescriptionList__description css-1u41wgb-normal-inline"
+/>
+`;
+
+exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations type responsiveColumn is rendered 1`] = `
+<dd
+  class="euiDescriptionList__description css-q3sljd-normal-column"
+/>
+`;
+
+exports[`EuiDescriptionListDescription EuiDescriptionListDescription prop variations type row is rendered 1`] = `
+<dd
+  class="euiDescriptionList__description css-1u82jm0-normal"
+/>
+`;
+
 exports[`EuiDescriptionListDescription is rendered 1`] = `
 <dd
   aria-label="aria-label"
