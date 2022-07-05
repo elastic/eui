@@ -287,6 +287,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
      */
     useImperativeGridRef({
       ref,
+      gridRef,
       setIsFullScreen,
       focusContext,
       cellPopoverContext,
