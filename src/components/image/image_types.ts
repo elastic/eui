@@ -26,7 +26,6 @@ export type EuiImageCommonWrapperProps = CommonProps & {
    * This one is required for accessibility.
    */
   alt: string;
-
   /**
    * When set to `true` (default) will apply a slight shadow to the image
    */
@@ -35,12 +34,10 @@ export type EuiImageCommonWrapperProps = CommonProps & {
    * When set to `true` will make the image clickable to a larger version
    */
   allowFullScreen?: boolean;
-
   /**
    * Props to add to the wrapping figure element
    */
   wrapperProps?: HTMLAttributes<HTMLDivElement>;
-
   setIsFullScreen: (isFullScreen: boolean) => void;
 };
 
@@ -100,7 +97,7 @@ export type ImageProps = CommonProps &
   _EuiImageSrcOrUrl &
   Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'>;
 
-export type EuiImageProps = ImageProps &
+export type EuiImageProps = Omit<ImageProps, 'alt'> &
   EuiImageAllowFullScreenProps &
   Omit<EuiImageCommonWrapperProps, 'isFullScreen' | 'setIsFullScreen'> &
   Omit<EuiImageCaptionProps, 'isOnOverlayMask'> &
