@@ -6,48 +6,29 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent } from 'react';
+import React, { HTMLAttributes, FunctionComponent, useContext } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-import {
-  EuiDescriptionListAlignment,
-  EuiDescriptionListTextStyle,
-  EuiDescriptionListType,
-} from './description_list';
 import { useEuiTheme, useIsWithinBreakpoints } from '../../services';
 import { euiDescriptionListDescriptionStyles } from './description_list_description.styles';
+import { EuiDescriptionListContext } from './description_list_context';
 
 interface EuiDescriptionListDescriptionProps
   extends CommonProps,
-    HTMLAttributes<HTMLElement> {
-  /**
-   * How each item should be laid out
-   */
-  type?: EuiDescriptionListType;
-  /**
-   * How should the content be styled, by default
-   * this will emphasize the title
-   */
-  textStyle?: EuiDescriptionListTextStyle;
-  /**
-   * Smaller text and condensed spacing
-   */
-  compressed?: boolean;
-  /**
-   * Text alignment for Description Title
-   */
-  align?: EuiDescriptionListAlignment;
-}
+    HTMLAttributes<HTMLElement> {}
 
 export const EuiDescriptionListDescription: FunctionComponent<EuiDescriptionListDescriptionProps> = ({
   children,
   className,
-  type = 'row',
-  textStyle = 'normal',
-  compressed,
-  align = 'left',
   ...rest
 }) => {
+  const {
+    type = 'row',
+    textStyle = 'normal',
+    compressed,
+    align = 'left',
+  } = useContext(EuiDescriptionListContext);
+
   const theme = useEuiTheme();
   const styles = euiDescriptionListDescriptionStyles(theme);
   const isMobile = useIsWithinBreakpoints(['xs', 's']);

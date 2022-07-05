@@ -6,75 +6,25 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, ReactNode, FunctionComponent } from 'react';
+import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 import { EuiDescriptionListTitle } from './description_list_title';
 
 import { EuiDescriptionListDescription } from './description_list_description';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 
 import { useIsWithinBreakpoints } from '../../services';
 import { euiDescriptionListStyles } from './description_list.styles';
 
-export type EuiDescriptionListType = keyof typeof typesToClassNameMap;
-export type EuiDescriptionListAlignment = keyof typeof alignmentsToClassNameMap;
-export type EuiDescriptionListTextStyle = keyof typeof textStylesToClassNameMap;
+import {
+  EuiDescriptionListProps,
+  typesToClassNameMap,
+  alignmentsToClassNameMap,
+  textStylesToClassNameMap,
+} from './description_list_types';
 
-export interface EuiDescriptionListProps {
-  listItems?: Array<{
-    title: NonNullable<ReactNode>;
-    description: NonNullable<ReactNode>;
-  }>;
-  /**
-   * Text alignment
-   */
-  align?: EuiDescriptionListAlignment;
-  /**
-   * Smaller text and condensed spacing
-   */
-  compressed?: boolean;
-  /**
-   * How should the content be styled, by default
-   * this will emphasize the title
-   */
-  textStyle?: EuiDescriptionListTextStyle;
-  /**
-   * How each item should be laid out
-   */
-  type?: EuiDescriptionListType;
-  /**
-   * Props object to be passed to `EuiDescriptionListTitle`
-   */
-  titleProps?: HTMLAttributes<HTMLElement> & CommonProps;
-  /**
-   * Props object to be passed to `EuiDescriptionListDescription`
-   */
-  descriptionProps?: HTMLAttributes<HTMLElement> & CommonProps;
-}
-
-const typesToClassNameMap = {
-  row: 'euiDescriptionList--row',
-  inline: 'euiDescriptionList--inline',
-  column: 'euiDescriptionList--column',
-  responsiveColumn: 'euiDescriptionList--responsiveColumn',
-};
-
-export const TYPES = keysOf(typesToClassNameMap);
-
-const alignmentsToClassNameMap = {
-  center: 'euiDescriptionList--center',
-  left: '',
-};
-
-export const ALIGNMENTS = keysOf(alignmentsToClassNameMap);
-
-const textStylesToClassNameMap = {
-  normal: '',
-  reverse: 'euiDescriptionList--reverse',
-};
-
-export const TEXT_STYLES = keysOf(textStylesToClassNameMap);
+import { EuiDescriptionListContextProvider } from './description_list_context';
 
 export const EuiDescriptionList: FunctionComponent<
   CommonProps & HTMLAttributes<HTMLDListElement> & EuiDescriptionListProps
@@ -117,10 +67,10 @@ export const EuiDescriptionList: FunctionComponent<
       return [
         <EuiDescriptionListTitle
           key={`title-${index}`}
-          type={type}
-          compressed={compressed}
-          textStyle={textStyle}
-          align={align}
+          //type={type}
+          // compressed={compressed}
+          // textStyle={textStyle}
+          // align={align}
           {...titleProps}
         >
           {item.title}
@@ -128,10 +78,10 @@ export const EuiDescriptionList: FunctionComponent<
 
         <EuiDescriptionListDescription
           key={`description-${index}`}
-          type={type}
-          compressed={compressed}
-          textStyle={textStyle}
-          align={align}
+          //type={type}
+          // compressed={compressed}
+          // textStyle={textStyle}
+          // align={align}
           {...descriptionProps}
         >
           {item.description}
@@ -143,8 +93,15 @@ export const EuiDescriptionList: FunctionComponent<
   }
 
   return (
-    <dl className={classes} css={cssStyles} {...rest}>
-      {childrenOrListItems}
-    </dl>
+    <EuiDescriptionListContextProvider
+      type={type}
+      compressed={compressed}
+      textStyle={textStyle}
+      align={align}
+    >
+      <dl className={classes} css={cssStyles} {...rest}>
+        {childrenOrListItems}
+      </dl>
+    </EuiDescriptionListContextProvider>
   );
 };
