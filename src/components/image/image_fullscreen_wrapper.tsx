@@ -7,6 +7,7 @@
  */
 
 import React, { FunctionComponent } from 'react';
+import classNames from 'classnames';
 
 import { EuiIcon } from '../icon';
 import { EuiFocusTrap } from '../focus_trap';
@@ -50,6 +51,11 @@ export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageFullScreenWrap
     fullScreenCloseIconStyles.euiImageFullscreenWrapper__fullScreenCloseIcon,
   ];
 
+  const classes = classNames(
+    'euiImageFullScreenWrapper',
+    wrapperProps && wrapperProps.className
+  );
+
   const onKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === keys.ESCAPE) {
       event.preventDefault();
@@ -79,6 +85,7 @@ export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageFullScreenWrap
         <>
           <figure
             {...wrapperProps}
+            className={classes}
             css={cssStyles}
             aria-label={optionalCaptionText}
           >
