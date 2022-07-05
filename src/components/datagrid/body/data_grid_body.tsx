@@ -455,13 +455,17 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       <Grid
         {...(virtualizationOptions ? virtualizationOptions : {})}
         ref={gridRef}
+        className={classNames(
+          'euiDataGrid__virtualized',
+          virtualizationOptions?.className
+        )}
         onItemsRendered={(itemsRendered) => {
           gridItemsRendered.current = itemsRendered;
+          virtualizationOptions?.onItemsRendered?.(itemsRendered);
         }}
         innerElementType={InnerElement}
         outerRef={outerGridRef}
         innerRef={innerGridRef}
-        className="euiDataGrid__virtualized"
         columnCount={visibleColCount}
         width={finalWidth}
         columnWidth={getColumnWidth}
