@@ -1,3 +1,10 @@
+## [`60.1.2`](https://github.com/elastic/eui/tree/v60.1.2)
+
+**Bug fixes**
+
+- Fixed EuiSelectable's `onChange` callback not passing back a persisted event on React 16 ([#6026](https://github.com/elastic/eui/pull/6026))
+- Fixed `EuiText` not correctly inheriting `className`s when both the `color` and `textAlign` props were passed ([#6027](https://github.com/elastic/eui/pull/6027))
+
 ## [`60.1.1`](https://github.com/elastic/eui/tree/v60.1.1)
 
 **Bug fixes**
