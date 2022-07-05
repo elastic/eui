@@ -22,16 +22,6 @@ describe('EuiCommentEvent', () => {
   });
 
   describe('props', () => {
-    describe('type', () => {
-      it('is rendered', () => {
-        const component = render(
-          <EuiCommentEvent username="someuser" type="update" />
-        );
-
-        expect(component).toMatchSnapshot();
-      });
-    });
-
     describe('timestamp', () => {
       it('is rendered', () => {
         const component = render(
@@ -46,6 +36,30 @@ describe('EuiCommentEvent', () => {
       it('is rendered', () => {
         const component = render(
           <EuiCommentEvent event="commented" username="someuser" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('eventIcon and eventIconAriaLabel', () => {
+      it('are rendered', () => {
+        const component = render(
+          <EuiCommentEvent
+            username="someuser"
+            eventIcon="pencil"
+            eventIconAriaLabel="edit"
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('eventColor', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiCommentEvent username="someuser" eventColor="danger" />
         );
 
         expect(component).toMatchSnapshot();

@@ -1,49 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiCommentList is rendered 1`] = `
-<div
+<ol
   aria-label="aria-label"
-  class="euiCommentList testClass1 testClass2"
+  class="euiTimeline euiCommentList testClass1 testClass2 emotion-euiTimeline-xl"
   data-test-subj="test subject string"
+  role="list"
 >
-  <div
-    class="euiComment"
+  <li
+    class="emotion-euiTimelineItem-center"
   >
     <div
-      class="euiCommentTimeline"
+      class="emotion-euiTimelineItemIcon-center"
     >
       <div
-        class="euiCommentTimeline__content"
+        class="emotion-euiTimelineItemIcon__content"
       >
         <div
-          class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
+          aria-label="janed"
+          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user"
+          role="img"
+          style="background-color:#f1d86f;color:#000000"
+          title="janed"
         >
           <span
-            data-euiicon-type="user"
-          />
+            aria-hidden="true"
+          >
+            j
+          </span>
         </div>
       </div>
     </div>
-    <figure
-      class="euiCommentEvent euiCommentEvent--regular"
+    <div
+      class="emotion-euiTimelineItemEvent-center"
     >
-      <figcaption
-        class="euiCommentEvent__header"
+      <div
+        class="euiCommentEvent emotion-euiCommentEvent-update"
       >
         <div
-          class="euiCommentEvent__headerData"
+          class="emotion-euiCommentEvent__header"
         >
           <div
-            class="euiCommentEvent__headerUsername"
+            class="euiPanel euiPanel--transparent emotion-euiPanel-grow-m-transparent-euiCommentEvent__headerPanel"
           >
-            janed
+            <div
+              class="emotion-euiCommentEvent__headerMain"
+            >
+              <div
+                class="emotion-euiCommentEvent__headerData"
+              >
+                <div
+                  class="emotion-euiCommentEvent__headerUsername"
+                >
+                  janed
+                </div>
+              </div>
+            </div>
           </div>
-          <div
-            class="euiCommentEvent__headerEvent"
-          />
         </div>
-      </figcaption>
-    </figure>
-  </div>
-</div>
+      </div>
+    </div>
+  </li>
+</ol>
 `;
