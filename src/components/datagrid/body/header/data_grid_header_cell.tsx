@@ -15,6 +15,7 @@ import React, {
   useState,
   useRef,
   useCallback,
+  useMemo,
 } from 'react';
 import { tabbable, FocusableElement } from 'tabbable';
 import { keys } from '../../../../services';
@@ -26,7 +27,10 @@ import { EuiListGroup } from '../../../list_group';
 import { EuiPopover } from '../../../popover';
 import { DataGridSortingContext } from '../../utils/sorting';
 import { DataGridFocusContext } from '../../utils/focus';
-import { EuiDataGridHeaderCellProps } from '../../data_grid_types';
+import {
+  EuiDataGridHeaderCellProps,
+  EuiDataGridSorting,
+} from '../../data_grid_types';
 
 import { getColumnActions } from './column_actions';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
@@ -53,45 +57,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     [`euiDataGridHeaderCell--${columnType}`]: columnType,
   });
 
-  const ariaProps: {
-    'aria-sort'?: AriaAttributes['aria-sort'];
-    'aria-describedby'?: AriaAttributes['aria-describedby'];
-  } = {};
-  const screenReaderId = useGeneratedHtmlId();
-  const actionsAriaId = useGeneratedHtmlId({
-    prefix: 'euiDataGridCellHeader',
-    suffix: 'actions',
-  });
-
   const { setFocusedCell, focusFirstVisibleInteractiveCell } = useContext(
     DataGridFocusContext
   );
-
   const { sorting } = useContext(DataGridSortingContext);
-  let sortString;
-  if (sorting) {
-    const sortedColumnIds = new Set(sorting.columns.map(({ id }) => id));
-    if (sortedColumnIds.has(id)) {
-      if (sorting.columns.length === 1) {
-        const sortDirection = sorting.columns[0].direction;
-
-        let sortValue: HTMLAttributes<HTMLDivElement>['aria-sort'] = 'other';
-        if (sortDirection === 'asc') {
-          sortValue = 'ascending';
-        }
-        if (sortDirection === 'desc') {
-          sortValue = 'descending';
-        }
-
-        ariaProps['aria-sort'] = sortValue;
-      } else {
-        sortString = sorting.columns
-          .map((col) => `Sorted by ${col.id} ${col.direction}`)
-          .join(' then ');
-        ariaProps['aria-describedby'] = screenReaderId;
-      }
-    }
-  }
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const popoverArrowNavigationProps = usePopoverArrowNavigation();
@@ -110,15 +79,18 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
   });
 
   const showColumnActions = columnActions && columnActions.length > 0;
-  const sortedColumn = sorting?.columns.find((col) => col.id === id);
-  const sortingArrow = sortedColumn ? (
-    <EuiIcon
-      type={sortedColumn.direction === 'asc' ? 'sortUp' : 'sortDown'}
-      color="text"
-      className="euiDataGridHeaderCell__sortingArrow"
-      data-test-subj={`dataGridHeaderCellSortingIcon-${id}`}
-    />
-  ) : null;
+
+  const {
+    sortingArrow,
+    ariaProps,
+    sortString,
+    screenReaderId,
+  } = useSortingUtils({ sorting, id });
+
+  const actionsAriaId = useGeneratedHtmlId({
+    prefix: 'euiDataGridCellHeader',
+    suffix: 'actions',
+  });
 
   return (
     <EuiDataGridHeaderCellWrapper
@@ -205,6 +177,70 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       )}
     </EuiDataGridHeaderCellWrapper>
   );
+};
+
+/**
+ * Column sorting utility helpers
+ */
+export const useSortingUtils = ({
+  sorting,
+  id,
+}: {
+  sorting?: EuiDataGridSorting;
+  id: string;
+}) => {
+  const sortedColumn = useMemo(
+    () => sorting?.columns.find((col) => col.id === id),
+    [sorting, id]
+  );
+
+  /**
+   * Arrow icon
+   */
+  const sortingArrow = sortedColumn ? (
+    <EuiIcon
+      type={sortedColumn.direction === 'asc' ? 'sortUp' : 'sortDown'}
+      color="text"
+      className="euiDataGridHeaderCell__sortingArrow"
+      data-test-subj={`dataGridHeaderCellSortingIcon-${id}`}
+    />
+  ) : null;
+
+  /**
+   * ariaProps and sorting
+   */
+  const screenReaderId = useGeneratedHtmlId();
+
+  const ariaProps: {
+    'aria-sort'?: AriaAttributes['aria-sort'];
+    'aria-describedby'?: AriaAttributes['aria-describedby'];
+  } = {};
+
+  let sortString;
+  if (sorting) {
+    if (sortedColumn) {
+      if (sorting.columns.length === 1) {
+        const sortDirection = sorting.columns[0].direction;
+
+        let sortValue: HTMLAttributes<HTMLDivElement>['aria-sort'] = 'other';
+        if (sortDirection === 'asc') {
+          sortValue = 'ascending';
+        }
+        if (sortDirection === 'desc') {
+          sortValue = 'descending';
+        }
+
+        ariaProps['aria-sort'] = sortValue;
+      } else {
+        sortString = sorting.columns
+          .map((col) => `Sorted by ${col.id} ${col.direction}`)
+          .join(' then ');
+        ariaProps['aria-describedby'] = screenReaderId;
+      }
+    }
+  }
+
+  return { sortingArrow, ariaProps, sortString, screenReaderId };
 };
 
 /**

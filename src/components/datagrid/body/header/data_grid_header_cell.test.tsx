@@ -10,13 +10,12 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { testCustomHook } from '../../../../test/internal';
 
-import { EuiDataGridSorting } from '../../data_grid_types';
-import { DataGridSortingContext } from '../../utils/sorting';
 import { DataGridFocusContext } from '../../utils/focus';
 import { mockFocusContext } from '../../utils/__mocks__/focus_context';
 
 import {
   EuiDataGridHeaderCell,
+  useSortingUtils,
   usePopoverArrowNavigation,
 } from './data_grid_header_cell';
 
@@ -43,70 +42,61 @@ describe('EuiDataGridHeaderCell', () => {
   });
 
   describe('sorting', () => {
-    const sortingContext = {
-      onSort: jest.fn(),
-      columns: [],
-    } as EuiDataGridSorting;
-
-    const mountWithContext = (props = {}, sorting = {}) => {
-      return mount(
-        <DataGridSortingContext.Provider
-          value={{
-            sorting: { ...sortingContext, ...sorting },
-            sortedRowMap: [],
-            getCorrectRowIndex: jest.fn(),
-          }}
-        >
-          <EuiDataGridHeaderCell {...requiredProps} {...props} />
-        </DataGridSortingContext.Provider>
-      );
-    };
-
     describe('if the current column is being sorted', () => {
-      it('renders a ascending sort arrow', () => {
-        const component = mountWithContext(
-          { column: { id: 'test' } },
-          { columns: [{ id: 'test', direction: 'asc' }] }
+      it('renders an ascending sort arrow', () => {
+        const {
+          return: { sortingArrow },
+        } = testCustomHook(useSortingUtils, {
+          sorting: { columns: [{ id: 'test', direction: 'asc' }] },
+          id: 'test',
+        });
+        expect(shallow(sortingArrow).prop('data-euiicon-type')).toEqual(
+          'sortUp'
         );
-        const arrowIcon = component.find('EuiIcon').first();
-        expect(arrowIcon.prop('type')).toEqual('sortUp');
       });
 
       it('renders a descending sort arrow', () => {
-        const component = mountWithContext(
-          { column: { id: 'test' } },
-          { columns: [{ id: 'test', direction: 'desc' }] }
+        const {
+          return: { sortingArrow },
+        } = testCustomHook(useSortingUtils, {
+          sorting: { columns: [{ id: 'test', direction: 'desc' }] },
+          id: 'test',
+        });
+        expect(shallow(sortingArrow).prop('data-euiicon-type')).toEqual(
+          'sortDown'
         );
-        const arrowIcon = component.find('EuiIcon').first();
-        expect(arrowIcon.prop('type')).toEqual('sortDown');
       });
     });
 
     describe('if the current column is not being sorted', () => {
       it('does not render an arrow even if other columns are sorted', () => {
-        const component = mountWithContext(
-          { column: { id: 'test' } },
-          { columns: [{ id: 'other', direction: 'asc' }] }
-        );
-        expect(
-          component.find('.euiDataGridHeaderCell__sortingArrow')
-        ).toHaveLength(0);
+        const {
+          return: { sortingArrow },
+        } = testCustomHook(useSortingUtils, {
+          sorting: { columns: [{ id: 'other', direction: 'desc' }] },
+          id: 'test',
+        });
+        expect(sortingArrow).toBeNull();
       });
     });
 
     describe('when multiple columns are being sorted', () => {
-      it('renders EuiScreenReaderOnly text with a full list of sorted columns', () => {
-        const component = mountWithContext(
-          { column: { id: 'A' } },
-          {
+      it('renders sorting screen reader text text with a full list of sorted columns', () => {
+        const {
+          return: { sortString },
+        } = testCustomHook(useSortingUtils, {
+          sorting: {
             columns: [
               { id: 'A', direction: 'asc' },
               { id: 'B', direction: 'desc' },
             ],
-          }
-        );
+          },
+          id: 'A',
+        });
 
-        expect(component.find('EuiScreenReaderOnly')).toHaveLength(1);
+        expect(sortString).toMatchInlineSnapshot(
+          '"Sorted by A asc then Sorted by B desc"'
+        );
       });
     });
   });
