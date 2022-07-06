@@ -305,7 +305,24 @@ export type CommonGridProps = CommonProps &
     /**
      * Allows customizing the underlying [react-window grid](https://react-window.vercel.app/#/api/VariableSizeGrid) props.
      */
-    virtualizationOptions?: Partial<VariableSizeGridProps>;
+    virtualizationOptions?: Partial<
+      Omit<
+        VariableSizeGridProps,
+        | 'children'
+        | 'itemData'
+        | 'height'
+        | 'width'
+        | 'rowCount'
+        | 'rowHeight'
+        | 'columnCount'
+        | 'columnWidth'
+        | 'ref'
+        | 'innerRef'
+        | 'outerRef'
+        | 'innerElementType'
+        | 'useIsScrolling'
+      >
+    >;
     /**
      * A #EuiDataGridRowHeightsOptions object that provides row heights options.
      * Allows configuring both default and specific heights of grid rows.
@@ -386,7 +403,7 @@ export interface EuiDataGridBodyProps {
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
   onColumnResize?: EuiDataGridOnColumnResizeHandler;
-  virtualizationOptions?: Partial<VariableSizeGridProps>;
+  virtualizationOptions?: EuiDataGridProps['virtualizationOptions'];
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   isFullScreen: boolean;
   gridStyles: EuiDataGridStyle;
