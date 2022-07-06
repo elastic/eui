@@ -1136,7 +1136,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="0"
+              aria-rowindex="1"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
@@ -1168,7 +1168,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="0"
+              aria-rowindex="1"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
@@ -1200,7 +1200,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="1"
+              aria-rowindex="2"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
@@ -1232,7 +1232,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="1"
+              aria-rowindex="2"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
@@ -1264,7 +1264,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="2"
+              aria-rowindex="3"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
@@ -1296,7 +1296,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="2"
+              aria-rowindex="3"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
@@ -1601,7 +1601,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="0"
+              aria-rowindex="1"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="leading"
               data-gridcell-column-index="0"
@@ -1652,7 +1652,7 @@ Array [
               />
             </div>
             <div
-              aria-rowindex="0"
+              aria-rowindex="1"
               class="euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="1"
@@ -1684,7 +1684,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="0"
+              aria-rowindex="1"
               class="euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="2"
@@ -1716,7 +1716,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="0"
+              aria-rowindex="1"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="trailing"
               data-gridcell-column-index="3"
@@ -1767,7 +1767,7 @@ Array [
               />
             </div>
             <div
-              aria-rowindex="1"
+              aria-rowindex="2"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="leading"
               data-gridcell-column-index="0"
@@ -1818,7 +1818,7 @@ Array [
               />
             </div>
             <div
-              aria-rowindex="1"
+              aria-rowindex="2"
               class="euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="1"
@@ -1850,7 +1850,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="1"
+              aria-rowindex="2"
               class="euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="2"
@@ -1882,7 +1882,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="1"
+              aria-rowindex="2"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="trailing"
               data-gridcell-column-index="3"
@@ -1933,7 +1933,7 @@ Array [
               />
             </div>
             <div
-              aria-rowindex="2"
+              aria-rowindex="3"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="leading"
               data-gridcell-column-index="0"
@@ -1984,7 +1984,7 @@ Array [
               />
             </div>
             <div
-              aria-rowindex="2"
+              aria-rowindex="3"
               class="euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="1"
@@ -2016,7 +2016,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="2"
+              aria-rowindex="3"
               class="euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="2"
@@ -2048,7 +2048,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="2"
+              aria-rowindex="3"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="trailing"
               data-gridcell-column-index="3"
@@ -2333,7 +2333,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="0"
+              aria-rowindex="1"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
@@ -2365,7 +2365,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="0"
+              aria-rowindex="1"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
@@ -2397,7 +2397,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="1"
+              aria-rowindex="2"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
@@ -2429,7 +2429,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="1"
+              aria-rowindex="2"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
@@ -2461,7 +2461,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="2"
+              aria-rowindex="3"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
@@ -2493,7 +2493,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="2"
+              aria-rowindex="3"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
@@ -2757,7 +2757,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="0"
+              aria-rowindex="1"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
@@ -2789,7 +2789,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="0"
+              aria-rowindex="1"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
@@ -2821,7 +2821,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="1"
+              aria-rowindex="2"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
@@ -2853,7 +2853,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="1"
+              aria-rowindex="2"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
@@ -2885,7 +2885,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="2"
+              aria-rowindex="3"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
@@ -2917,7 +2917,7 @@ Array [
               </div>
             </div>
             <div
-              aria-rowindex="2"
+              aria-rowindex="3"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"

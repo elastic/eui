@@ -518,6 +518,7 @@ export class EuiDataGridCell extends Component<
       rowHeightUtils,
       rowHeightsOptions,
       rowManager,
+      pagination,
       ...rest
     } = this.props;
     const { rowIndex, visibleRowIndex, colIndex } = rest;
@@ -538,6 +539,10 @@ export class EuiDataGridCell extends Component<
       },
       className
     );
+
+    const ariaRowIndex = pagination
+      ? visibleRowIndex + 1 + pagination.pageSize * pagination.pageIndex
+      : visibleRowIndex + 1;
 
     const {
       isExpandable: _, // Not a valid DOM property, so needs to be destructured out
@@ -686,7 +691,7 @@ export class EuiDataGridCell extends Component<
     const content = (
       <div
         role="gridcell"
-        aria-rowindex={this.props.rowIndex}
+        aria-rowindex={ariaRowIndex}
         tabIndex={
           this.state.isFocused && !this.state.disableCellTabIndex ? 0 : -1
         }

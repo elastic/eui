@@ -542,7 +542,7 @@ describe('EuiDataGrid', () => {
       ).toMatchInlineSnapshot(`
         Array [
           Object {
-            "aria-rowindex": 0,
+            "aria-rowindex": 1,
             "className": "euiDataGridRowCell euiDataGridRowCell--firstColumn customClass",
             "data-gridcell-column-id": "A",
             "data-gridcell-column-index": 0,
@@ -568,7 +568,7 @@ describe('EuiDataGrid', () => {
             "tabIndex": -1,
           },
           Object {
-            "aria-rowindex": 0,
+            "aria-rowindex": 1,
             "className": "euiDataGridRowCell euiDataGridRowCell--lastColumn customClass",
             "data-gridcell-column-id": "B",
             "data-gridcell-column-index": 1,
@@ -594,7 +594,7 @@ describe('EuiDataGrid', () => {
             "tabIndex": -1,
           },
           Object {
-            "aria-rowindex": 1,
+            "aria-rowindex": 2,
             "className": "euiDataGridRowCell euiDataGridRowCell--firstColumn customClass",
             "data-gridcell-column-id": "A",
             "data-gridcell-column-index": 0,
@@ -620,7 +620,7 @@ describe('EuiDataGrid', () => {
             "tabIndex": -1,
           },
           Object {
-            "aria-rowindex": 1,
+            "aria-rowindex": 2,
             "className": "euiDataGridRowCell euiDataGridRowCell--lastColumn customClass",
             "data-gridcell-column-id": "B",
             "data-gridcell-column-index": 1,
