@@ -128,7 +128,13 @@ export const DataGridAdvancedExample = {
             This example shows a grid that performs incremental loading when
             either end is reached. It also attempts to minimize the visible
             layout shift when newly rendered items are measured and sized for
-            the first time.
+            the first time using the <EuiCode>scrollAnchorRow</EuiCode> row
+            height option.
+          </p>
+          <p>
+            Observe the layout shift compensation effect when scrolling up to
+            previously unviewed rows with and without the &quot;Use scroll
+            anchor&quot; toggle enabled.
           </p>
         </>
       ),
