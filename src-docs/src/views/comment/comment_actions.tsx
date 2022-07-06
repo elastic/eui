@@ -129,7 +129,7 @@ export default () => {
         </EuiComment>
         <EuiComment
           username="system"
-          avatarIcon="dot"
+          timelineIcon="dot"
           event={
             <>
               pushed a new incident <EuiLink>malware detection</EuiLink>

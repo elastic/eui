@@ -11,12 +11,12 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiComment } from './comment';
-// import { shouldRenderCustomStyles } from '../../test/internal';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 describe('EuiComment', () => {
-  // shouldRenderCustomStyles(
-  //   <EuiComment username="someuser" {...requiredProps} />
-  // );
+  shouldRenderCustomStyles(
+    <EuiComment username="someuser" {...requiredProps} />
+  );
 
   test('is rendered', () => {
     const component = render(
@@ -27,25 +27,6 @@ describe('EuiComment', () => {
   });
 
   describe('props', () => {
-    describe('avatarName', () => {
-      it('is rendered', () => {
-        const component = render(
-          <EuiComment username="someuser" avatarName="avatar name" />
-        );
-
-        expect(component).toMatchSnapshot();
-      });
-    });
-    describe('avatarIcon', () => {
-      it('is rendered', () => {
-        const component = render(
-          <EuiComment username="someuser" avatarIcon="dot" />
-        );
-
-        expect(component).toMatchSnapshot();
-      });
-    });
-
     describe('timestamp', () => {
       it('is rendered', () => {
         const component = render(
@@ -70,6 +51,16 @@ describe('EuiComment', () => {
   test('renders a body', () => {
     const component = render(
       <EuiComment username="someuser">
+        <p>This is the body.</p>
+      </EuiComment>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('renders a timeline icon', () => {
+    const component = render(
+      <EuiComment username="someuser" timelineIcon="dot">
         <p>This is the body.</p>
       </EuiComment>
     );

@@ -20,9 +20,9 @@ import {
 
 export interface EuiCommentEventProps extends CommonProps {
   /**
-   * Author of the comment. When no `avatarName` is defined, the avatar uses the `username` as the avatar name.
+   * Author of the comment.
    */
-  username?: string;
+  username: string;
   /**
    * Time of occurrence of the event. Its format is set on the consumer's side
    */
@@ -68,8 +68,8 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
 }) => {
   const classes = classNames('euiCommentEvent', className);
 
-  const hasEventElements =
-    eventIcon || username || timestamp || event || actions;
+  // the username is required so we only check if other elements are define
+  const hasEventElements = eventIcon || timestamp || event || actions;
 
   const isTypeRegular = children && hasEventElements;
   const isTypeUpdate = !children && hasEventElements;

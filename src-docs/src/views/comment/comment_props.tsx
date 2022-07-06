@@ -57,10 +57,7 @@ export default ({ snippet }: any) => {
       style={{ maxWidth: '540px' }}
     >
       <EuiCommentList>
-        <EuiComment
-          avatarName="Avatar"
-          avatarProps={{ color: euiTheme.colors.primaryText }}
-        >
+        <EuiComment username="Avatar">
           <div
             css={css`
               border-radius: ${euiTheme.border.radius.small};

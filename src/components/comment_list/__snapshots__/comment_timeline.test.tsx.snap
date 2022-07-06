@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCommentTimeline props avatarIcon is rendered 1`] = `
+exports[`EuiCommentTimeline props timelineIcon is rendered 1`] = `
 <div
   aria-label="someuser"
   class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
@@ -16,34 +16,18 @@ exports[`EuiCommentTimeline props avatarIcon is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiCommentTimeline props avatarName is rendered 1`] = `
-<div
-  aria-label="avatar name"
-  class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user"
-  role="img"
-  style="background-color:#79aad9;color:#000000"
-  title="avatar name"
->
-  <span
-    aria-hidden="true"
-  >
-    an
-  </span>
-</div>
-`;
-
-exports[`EuiCommentTimeline props timelineAvatarProps is rendered 1`] = `
+exports[`EuiCommentTimeline props username is rendered 1`] = `
 <div
   aria-label="someuser"
-  class="euiAvatar euiAvatar--s euiAvatar--user euiCommentAvatar emotion-euiAvatar-s-user"
+  class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
   role="img"
-  style="background-color:#ffff00;color:#000000"
   title="someuser"
 >
   <span
-    aria-hidden="true"
+    class="euiAvatar__icon"
+    data-euiicon-type="avatar dot"
   >
-    s
+    someuser
   </span>
 </div>
 `;

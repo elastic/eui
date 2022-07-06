@@ -8,7 +8,7 @@ exports[`EuiCommentList is rendered 1`] = `
   role="list"
 >
   <li
-    class="emotion-euiTimelineItem-center"
+    class="euiComment emotion-euiTimelineItem-center"
   >
     <div
       class="emotion-euiTimelineItemIcon-center"
@@ -35,30 +35,8 @@ exports[`EuiCommentList is rendered 1`] = `
       class="emotion-euiTimelineItemEvent-center"
     >
       <div
-        class="euiCommentEvent emotion-euiCommentEvent-update"
-      >
-        <div
-          class="emotion-euiCommentEvent__header"
-        >
-          <div
-            class="euiPanel euiPanel--transparent emotion-euiPanel-grow-m-transparent-euiCommentEvent__headerPanel"
-          >
-            <div
-              class="emotion-euiCommentEvent__headerMain"
-            >
-              <div
-                class="emotion-euiCommentEvent__headerData"
-              >
-                <div
-                  class="emotion-euiCommentEvent__headerUsername"
-                >
-                  janed
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        class="euiCommentEvent emotion-euiCommentEvent-custom"
+      />
     </div>
   </li>
 </ol>

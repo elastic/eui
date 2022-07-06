@@ -59,7 +59,7 @@ const initialComments: EuiCommentProps[] = [
   },
   {
     username: 'system',
-    avatarIcon: 'dot',
+    timelineIcon: 'dot',
     event: 'pushed a new incident',
     timestamp: 'on 4th March 2022',
     eventColor: 'danger',
@@ -120,7 +120,6 @@ export default () => {
         ...comments,
         {
           username: 'emma',
-          avatarName: 'emma',
           event: 'added a comment',
           timestamp: `on ${date}`,
           actions: actionButton,
@@ -144,7 +143,7 @@ export default () => {
     <>
       <EuiCommentList aria-label="Comment system example">
         {commentsList}
-        <EuiComment avatarName="juana">
+        <EuiComment username="juana">
           <EuiMarkdownEditor
             aria-label="Markdown editor"
             aria-describedby={errorElementId.current}

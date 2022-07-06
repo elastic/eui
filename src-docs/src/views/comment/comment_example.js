@@ -29,15 +29,17 @@ const commentListSnippet = `<EuiCommentList
 
 import CommentFlexible from './comment_flexible';
 const commentFlexibleSource = require('!!raw-loader!./comment_flexible');
-const commentFlexibleSnippet = `<EuiComment
-  eventIcon="pencil"
-  username="janed"
-  event={event}
-  timestamp={timestamp}
-  actions={customActions}
->
-  {children}
-</EuiComment>
+const commentFlexibleSnippet = `<EuiCommentList aria-label="Comment example">
+  <EuiComment
+    eventIcon="pencil"
+    username="janed"
+    event={event}
+    timestamp={timestamp}
+    actions={customActions}
+  >
+    {children}
+  </EuiComment>
+</EuiCommentList>
 `;
 
 import CommentAvatar from './comment_avatar';
@@ -143,12 +145,12 @@ export const CommentListExample = {
           <EuiText>
             <ul style={{ listStyleType: 'upper-alpha' }}>
               <li>
-                <EuiCode>avatar</EuiCode>: Shows an avatar that should indicate
-                who is the author of the comment. By default, the avatar show
-                initials that are generated from the <EuiCode>username</EuiCode>{' '}
-                prop. When no <EuiCode>username</EuiCode> is passed, you can
-                define an avatar by using the <EuiCode>avatarName</EuiCode> and{' '}
-                <EuiCode>avatarIcon</EuiCode> props.
+                <EuiCode>timelineIcon</EuiCode>: Shows an icon that should
+                indicate who is the author of the comment. To customize, pass a{' '}
+                <EuiCode>string</EuiCode> as an{' '}
+                <EuiCode>EuiIcon[&apos;type&apos;]</EuiCode> or any{' '}
+                <EuiCode>ReactNode</EuiCode>. If no icon is provided, it will
+                default to the <EuiCode>username</EuiCode>&apos;s initials.
               </li>
               <li>
                 <EuiCode>eventIcon</EuiCode>: Icon that shows before the
@@ -202,7 +204,7 @@ export const CommentListExample = {
       playground: commentConfig,
     },
     {
-      title: 'Comment avatar',
+      title: 'Timeline icon',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -212,8 +214,8 @@ export const CommentListExample = {
       text: (
         <>
           <p>
-            The avatar is a very important part of the comment and you should
-            always show one:
+            The timeline icon is a very important part of the comment and you
+            should always show one:
           </p>
           <ol>
             <li>
@@ -226,13 +228,11 @@ export const CommentListExample = {
               If your <strong>EuiComment</strong> doesn&apos;t have a{' '}
               <EuiCode>username</EuiCode>, or if you don&apos;t want to use it
               for generating the title attribute and initials you can use the{' '}
-              <EuiCode>avatarName</EuiCode> prop instead. (e.g you want to
-              display the full name of the user instead of the{' '}
-              <EuiCode>username</EuiCode>).
+              <EuiCode>timelineIcon</EuiCode> prop instead.
             </li>
             <li>
               You can also show an icon by passing to the{' '}
-              <EuiCode>avatarIcon</EuiCode> any of the icon types that{' '}
+              <EuiCode>timelineIcon</EuiCode> any of the icon types that{' '}
               <Link to="/display/icons">
                 <strong>EuiIcon</strong>
               </Link>{' '}
@@ -240,12 +240,12 @@ export const CommentListExample = {
               avatar. Consider this option when showing a system update.
             </li>
             <li>
-              You can further customize the timeline avatar by passing to the{' '}
-              <EuiCode>EuiComment.avatarProps</EuiCode> any{' '}
+              You can further customize the timeline icon by passing to the{' '}
+              <EuiCode>EuiComment.timelineIcon</EuiCode> a{' '}
               <Link to="/display/avatar">
                 <strong>EuiAvatar</strong>
-              </Link>{' '}
-              prop.
+              </Link>
+              .
             </li>
           </ol>
         </>

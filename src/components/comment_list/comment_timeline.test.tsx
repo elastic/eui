@@ -10,43 +10,22 @@ import React from 'react';
 import { render } from 'enzyme';
 import { EuiCommentTimeline } from './comment_timeline';
 
-// import { requiredProps } from '../../test/required_props';
-// import { shouldRenderCustomStyles } from '../../test/internal';
-
 describe('EuiCommentTimeline', () => {
-  // gives error
-  // shouldRenderCustomStyles(
-  //   <EuiCommentTimeline username="someuser" {...requiredProps} />
-  // );
-
   describe('props', () => {
-    describe('avatarName', () => {
+    describe('username', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiCommentTimeline username="someuser" avatarName="avatar name" />
+          <EuiCommentTimeline username="someuser" timelineIcon="avatar dot" />
         );
 
         expect(component).toMatchSnapshot();
       });
     });
 
-    describe('avatarIcon', () => {
+    describe('timelineIcon', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiCommentTimeline username="someuser" avatarIcon="dot" />
-        );
-
-        expect(component).toMatchSnapshot();
-      });
-    });
-
-    describe('timelineAvatarProps', () => {
-      it('is rendered', () => {
-        const component = render(
-          <EuiCommentTimeline
-            username="someuser"
-            avatarProps={{ size: 's', color: '#ffff00' }}
-          />
+          <EuiCommentTimeline username="someuser" timelineIcon="dot" />
         );
 
         expect(component).toMatchSnapshot();

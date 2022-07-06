@@ -66,14 +66,14 @@ const commentsData: any[] = [
   {
     id: 'updateDanger',
     username: 'system',
-    avatarIcon: 'dot',
+    timelineIcon: 'dot',
     event: 'pushed a new incident',
     timestamp: '20 hours ago',
     eventColor: 'danger',
   },
   {
     id: 'custom',
-    avatarName: 'pancho1',
+    username: 'pancho1',
     children: (
       <EuiTextArea
         fullWidth

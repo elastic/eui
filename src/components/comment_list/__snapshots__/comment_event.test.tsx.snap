@@ -2,30 +2,8 @@
 
 exports[`EuiCommentEvent is rendered 1`] = `
 <div
-  class="euiCommentEvent testClass1 testClass2 emotion-euiCommentEvent-update"
->
-  <div
-    class="emotion-euiCommentEvent__header"
-  >
-    <div
-      class="euiPanel euiPanel--transparent emotion-euiPanel-grow-m-transparent-euiCommentEvent__headerPanel"
-    >
-      <div
-        class="emotion-euiCommentEvent__headerMain"
-      >
-        <div
-          class="emotion-euiCommentEvent__headerData"
-        >
-          <div
-            class="emotion-euiCommentEvent__headerUsername"
-          >
-            someuser
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  class="euiCommentEvent testClass1 testClass2 emotion-euiCommentEvent-custom"
+/>
 `;
 
 exports[`EuiCommentEvent props event is rendered 1`] = `
@@ -63,30 +41,8 @@ exports[`EuiCommentEvent props event is rendered 1`] = `
 
 exports[`EuiCommentEvent props eventColor is rendered 1`] = `
 <div
-  class="euiCommentEvent emotion-euiCommentEvent-update"
->
-  <div
-    class="emotion-euiCommentEvent__header-haseventColor"
-  >
-    <div
-      class="euiPanel euiPanel--danger euiPanel--paddingSmall emotion-euiPanel-grow-m-s-danger-euiCommentEvent__headerPanel"
-    >
-      <div
-        class="emotion-euiCommentEvent__headerMain"
-      >
-        <div
-          class="emotion-euiCommentEvent__headerData"
-        >
-          <div
-            class="emotion-euiCommentEvent__headerUsername"
-          >
-            someuser
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  class="euiCommentEvent emotion-euiCommentEvent-custom"
+/>
 `;
 
 exports[`EuiCommentEvent props eventIcon and eventIconAriaLabel are rendered 1`] = `

@@ -3,7 +3,7 @@
 exports[`EuiComment is rendered 1`] = `
 <li
   aria-label="aria-label"
-  class="emotion-euiTimelineItem-center"
+  class="euiComment testClass1 testClass2 emotion-euiTimelineItem-center"
   data-test-subj="test subject string"
 >
   <div
@@ -31,151 +31,15 @@ exports[`EuiComment is rendered 1`] = `
     class="emotion-euiTimelineItemEvent-center"
   >
     <div
-      class="euiCommentEvent emotion-euiCommentEvent-update"
-    >
-      <div
-        class="emotion-euiCommentEvent__header"
-      >
-        <div
-          class="euiPanel euiPanel--transparent emotion-euiPanel-grow-m-transparent-euiCommentEvent__headerPanel"
-        >
-          <div
-            class="emotion-euiCommentEvent__headerMain"
-          >
-            <div
-              class="emotion-euiCommentEvent__headerData"
-            >
-              <div
-                class="emotion-euiCommentEvent__headerUsername"
-              >
-                someuser
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</li>
-`;
-
-exports[`EuiComment props avatarIcon is rendered 1`] = `
-<li
-  class="emotion-euiTimelineItem-center"
->
-  <div
-    class="emotion-euiTimelineItemIcon-center"
-  >
-    <div
-      class="emotion-euiTimelineItemIcon__content"
-    >
-      <div
-        aria-label="someuser"
-        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
-        role="img"
-        title="someuser"
-      >
-        <span
-          class="euiAvatar__icon"
-          data-euiicon-type="dot"
-        >
-          someuser
-        </span>
-      </div>
-    </div>
-  </div>
-  <div
-    class="emotion-euiTimelineItemEvent-center"
-  >
-    <div
-      class="euiCommentEvent emotion-euiCommentEvent-update"
-    >
-      <div
-        class="emotion-euiCommentEvent__header"
-      >
-        <div
-          class="euiPanel euiPanel--transparent emotion-euiPanel-grow-m-transparent-euiCommentEvent__headerPanel"
-        >
-          <div
-            class="emotion-euiCommentEvent__headerMain"
-          >
-            <div
-              class="emotion-euiCommentEvent__headerData"
-            >
-              <div
-                class="emotion-euiCommentEvent__headerUsername"
-              >
-                someuser
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</li>
-`;
-
-exports[`EuiComment props avatarName is rendered 1`] = `
-<li
-  class="emotion-euiTimelineItem-center"
->
-  <div
-    class="emotion-euiTimelineItemIcon-center"
-  >
-    <div
-      class="emotion-euiTimelineItemIcon__content"
-    >
-      <div
-        aria-label="avatar name"
-        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user"
-        role="img"
-        style="background-color:#79aad9;color:#000000"
-        title="avatar name"
-      >
-        <span
-          aria-hidden="true"
-        >
-          an
-        </span>
-      </div>
-    </div>
-  </div>
-  <div
-    class="emotion-euiTimelineItemEvent-center"
-  >
-    <div
-      class="euiCommentEvent emotion-euiCommentEvent-update"
-    >
-      <div
-        class="emotion-euiCommentEvent__header"
-      >
-        <div
-          class="euiPanel euiPanel--transparent emotion-euiPanel-grow-m-transparent-euiCommentEvent__headerPanel"
-        >
-          <div
-            class="emotion-euiCommentEvent__headerMain"
-          >
-            <div
-              class="emotion-euiCommentEvent__headerData"
-            >
-              <div
-                class="emotion-euiCommentEvent__headerUsername"
-              >
-                someuser
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      class="euiCommentEvent emotion-euiCommentEvent-custom"
+    />
   </div>
 </li>
 `;
 
 exports[`EuiComment props event is rendered 1`] = `
 <li
-  class="emotion-euiTimelineItem-center"
+  class="euiComment emotion-euiTimelineItem-center"
 >
   <div
     class="emotion-euiTimelineItemIcon-center"
@@ -237,7 +101,7 @@ exports[`EuiComment props event is rendered 1`] = `
 
 exports[`EuiComment props timestamp is rendered 1`] = `
 <li
-  class="emotion-euiTimelineItem-center"
+  class="euiComment emotion-euiTimelineItem-center"
 >
   <div
     class="emotion-euiTimelineItemIcon-center"
@@ -301,7 +165,7 @@ exports[`EuiComment props timestamp is rendered 1`] = `
 
 exports[`EuiComment renders a body 1`] = `
 <li
-  class="emotion-euiTimelineItem-top"
+  class="euiComment emotion-euiTimelineItem-top"
 >
   <div
     class="emotion-euiTimelineItemIcon-top"
@@ -327,30 +191,9 @@ exports[`EuiComment renders a body 1`] = `
   <div
     class="emotion-euiTimelineItemEvent-top"
   >
-    <figure
-      class="euiCommentEvent emotion-euiCommentEvent-regular"
+    <div
+      class="euiCommentEvent emotion-euiCommentEvent-custom"
     >
-      <figcaption
-        class="emotion-euiCommentEvent__header"
-      >
-        <div
-          class="euiPanel euiPanel--transparent emotion-euiPanel-grow-m-transparent-euiCommentEvent__headerPanel"
-        >
-          <div
-            class="emotion-euiCommentEvent__headerMain"
-          >
-            <div
-              class="emotion-euiCommentEvent__headerData"
-            >
-              <div
-                class="emotion-euiCommentEvent__headerUsername"
-              >
-                someuser
-              </div>
-            </div>
-          </div>
-        </div>
-      </figcaption>
       <div
         class="emotion-euiCommentEvent__body"
       >
@@ -358,7 +201,50 @@ exports[`EuiComment renders a body 1`] = `
           This is the body.
         </p>
       </div>
-    </figure>
+    </div>
+  </div>
+</li>
+`;
+
+exports[`EuiComment renders a timeline icon 1`] = `
+<li
+  class="euiComment emotion-euiTimelineItem-top"
+>
+  <div
+    class="emotion-euiTimelineItemIcon-top"
+  >
+    <div
+      class="emotion-euiTimelineItemIcon__content"
+    >
+      <div
+        aria-label="someuser"
+        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+        role="img"
+        title="someuser"
+      >
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="dot"
+        >
+          someuser
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    class="emotion-euiTimelineItemEvent-top"
+  >
+    <div
+      class="euiCommentEvent emotion-euiCommentEvent-custom"
+    >
+      <div
+        class="emotion-euiCommentEvent__body"
+      >
+        <p>
+          This is the body.
+        </p>
+      </div>
+    </div>
   </div>
 </li>
 `;

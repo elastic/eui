@@ -4,6 +4,7 @@ import {
   EuiComment,
   EuiCode,
   EuiText,
+  EuiAvatar,
 } from '../../../../src/components';
 
 export default () => (
@@ -16,38 +17,32 @@ export default () => (
         </p>
       </EuiText>
     </EuiComment>
+
     <EuiComment
-      username="andred"
-      avatarName="Andre Dias"
-      event="is using a custom avatar name"
-    >
-      <EuiText size="s">
-        <p>
-          The avatar initials is generated from the{' '}
-          <EuiCode>avatarName</EuiCode> prop.
-        </p>
-      </EuiText>
-    </EuiComment>
-    <EuiComment
-      avatarIcon="dot"
       username="system"
+      timelineIcon="dot"
       event={
         <>
-          is using a <EuiCode>dot</EuiCode> icon.
+          The <EuiCode>timelineIcon</EuiCode> is using a <EuiCode>dot</EuiCode>{' '}
+          icon.
         </>
       }
     />
+
     <EuiComment
       username="cat"
       event="is using a custom avatar"
-      avatarProps={{
-        imageUrl: 'https://source.unsplash.com/64x64/?cat',
-      }}
+      timelineIcon={
+        <EuiAvatar
+          name="cat"
+          imageUrl="https://source.unsplash.com/64x64/?cat"
+        />
+      }
     >
       <EuiText size="s">
         <p>
-          The avatar is using an image that is being passed into to{' '}
-          <EuiCode>avatarProps.imageUrl</EuiCode> prop.
+          The <EuiCode>timelineIcon</EuiCode> is using a custom{' '}
+          <strong>EuiAvatar</strong>.
         </p>
       </EuiText>
     </EuiComment>
