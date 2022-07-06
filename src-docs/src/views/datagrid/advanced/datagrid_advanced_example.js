@@ -25,6 +25,8 @@ dataGridRef.current.openCellPopover({ rowIndex, colIndex });
 dataGridRef.current.closeCellPopover();
 `;
 
+import DataGridScrollAnchoring from './scroll_anchoring';
+
 export const DataGridAdvancedExample = {
   title: 'Data grid advanced',
   sections: [
@@ -118,5 +120,20 @@ export const DataGridAdvancedExample = {
       props: { EuiDataGridRefProps },
     },
     ...DataGridMemoryExample.sections,
+    {
+      title: 'Scrolling and incremental loading',
+      text: (
+        <>
+          <p>
+            This example shows a grid that performs incremental loading when
+            either end is reached. It also attempts to minimize the visible
+            layout shift when newly rendered items are measured and sized for
+            the first time.
+          </p>
+        </>
+      ),
+      components: { DataGridScrollAnchoring },
+      demo: <DataGridScrollAnchoring />,
+    },
   ],
 };
