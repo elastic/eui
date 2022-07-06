@@ -6,27 +6,23 @@
  * Side Public License, v 1.
  */
 
-export const EUI_BREAKPOINT_KEYS = {
-  xs: 0,
-  s: 575,
-  m: 768,
-  l: 992,
-  xl: 1200,
-} as const;
-export type EuiBreakpointKeys = keyof typeof EUI_BREAKPOINT_KEYS;
+import { EuiBreakpointSize } from '../../services';
+import { useEuiTheme, UseEuiTheme } from '../../services/theme/hooks';
 
-export const euiBreakpoint = (sizes: EuiBreakpointKeys[]) => {
+export const euiBreakpoint = (
+  sizes: EuiBreakpointSize[],
+  { euiTheme }: UseEuiTheme
+) => {
   // Check to see if both min-width and max-width should be set
-
   // If sizes only contains one element and it is the smallest size (xs), don't set a min-width
   if (sizes.length === 1 && sizes[0] === 'xs') {
     return `@media only screen and (max-width: ${
-      EUI_BREAKPOINT_KEYS[sizes[0]]
+      euiTheme.breakpoint[sizes[0]]
     }px)`;
   } // If sizes only contains one elements and it is the largest size (xl), don't set a max-width
   else if (sizes.length === 1 && sizes[0] === 'xl') {
     return `@media only screen and (min-width: ${
-      EUI_BREAKPOINT_KEYS[sizes[0]]
+      euiTheme.breakpoint[sizes[0]]
     }px)`;
   } // Else, set a min-width and max-width
   else {
@@ -36,7 +32,12 @@ export const euiBreakpoint = (sizes: EuiBreakpointKeys[]) => {
 
     // -1px to prevent the overlap breakpoints
     return `@media only screen and (min-width: ${
-      EUI_BREAKPOINT_KEYS[minSize]
-    }px) and (max-width: ${EUI_BREAKPOINT_KEYS[maxSize] - 1}px)`;
+      euiTheme.breakpoint[minSize]
+    }px) and (max-width: ${euiTheme.breakpoint[maxSize] - 1}px)`;
   }
+};
+
+export const useEuiBreakpoint = (sizes: EuiBreakpointSize[]) => {
+  const euiTheme = useEuiTheme();
+  euiBreakpoint(sizes, euiTheme);
 };
