@@ -81,6 +81,27 @@ export const DataGridAdvancedExample = {
                 open cell popover.
               </p>
             </li>
+            <li>
+              <p>
+                <EuiCode>
+                  scrollTo({'{ scrollLeft: number, scrollTop: number }'})
+                </EuiCode>{' '}
+                - scrolls the grid to the specified horizontal and vertical
+                pixel offsets.
+              </p>
+            </li>
+            <li>
+              <p>
+                <EuiCode>
+                  scrollToItem(
+                  {
+                    '{align: string = "auto", columnIndex?: number, rowIndex?: number }'
+                  }
+                  )
+                </EuiCode>{' '}
+                - scrolls the grid to the specified row and columns indices
+              </p>
+            </li>
           </ul>
 
           <EuiSpacer size="s" />
