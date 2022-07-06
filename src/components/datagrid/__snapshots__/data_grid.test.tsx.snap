@@ -1162,7 +1162,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 1; Column: 1
+                    - Row 1, Column 1 (A)
                   </p>
                 </div>
               </div>
@@ -1194,7 +1194,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 1; Column: 2
+                    - Row 1, Column 2 (B)
                   </p>
                 </div>
               </div>
@@ -1226,7 +1226,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 2; Column: 1
+                    - Row 2, Column 1 (A)
                   </p>
                 </div>
               </div>
@@ -1258,7 +1258,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 2; Column: 2
+                    - Row 2, Column 2 (B)
                   </p>
                 </div>
               </div>
@@ -1290,7 +1290,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 3; Column: 1
+                    - Row 3, Column 1 (A)
                   </p>
                 </div>
               </div>
@@ -1322,7 +1322,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 3; Column: 2
+                    - Row 3, Column 2 (B)
                   </p>
                 </div>
               </div>
@@ -1640,7 +1640,7 @@ Array [
                     <p
                       class="emotion-euiScreenReaderOnly"
                     >
-                      Row: 1; Column: 1
+                      - Row 1, Column 1 (leading)
                     </p>
                   </div>
                 </div>
@@ -1678,7 +1678,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 1; Column: 2
+                    - Row 1, Column 2 (A)
                   </p>
                 </div>
               </div>
@@ -1710,7 +1710,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 1; Column: 3
+                    - Row 1, Column 3 (B)
                   </p>
                 </div>
               </div>
@@ -1755,7 +1755,7 @@ Array [
                     <p
                       class="emotion-euiScreenReaderOnly"
                     >
-                      Row: 1; Column: 4
+                      - Row 1, Column 4 (trailing)
                     </p>
                   </div>
                 </div>
@@ -1806,7 +1806,7 @@ Array [
                     <p
                       class="emotion-euiScreenReaderOnly"
                     >
-                      Row: 2; Column: 1
+                      - Row 2, Column 1 (leading)
                     </p>
                   </div>
                 </div>
@@ -1844,7 +1844,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 2; Column: 2
+                    - Row 2, Column 2 (A)
                   </p>
                 </div>
               </div>
@@ -1876,7 +1876,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 2; Column: 3
+                    - Row 2, Column 3 (B)
                   </p>
                 </div>
               </div>
@@ -1921,7 +1921,7 @@ Array [
                     <p
                       class="emotion-euiScreenReaderOnly"
                     >
-                      Row: 2; Column: 4
+                      - Row 2, Column 4 (trailing)
                     </p>
                   </div>
                 </div>
@@ -1972,7 +1972,7 @@ Array [
                     <p
                       class="emotion-euiScreenReaderOnly"
                     >
-                      Row: 3; Column: 1
+                      - Row 3, Column 1 (leading)
                     </p>
                   </div>
                 </div>
@@ -2010,7 +2010,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 3; Column: 2
+                    - Row 3, Column 2 (A)
                   </p>
                 </div>
               </div>
@@ -2042,7 +2042,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 3; Column: 3
+                    - Row 3, Column 3 (B)
                   </p>
                 </div>
               </div>
@@ -2087,7 +2087,7 @@ Array [
                     <p
                       class="emotion-euiScreenReaderOnly"
                     >
-                      Row: 3; Column: 4
+                      - Row 3, Column 4 (trailing)
                     </p>
                   </div>
                 </div>
@@ -2359,7 +2359,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 1; Column: 1
+                    - Row 1, Column 1 (A)
                   </p>
                 </div>
               </div>
@@ -2391,7 +2391,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 1; Column: 2
+                    - Row 1, Column 2 (B)
                   </p>
                 </div>
               </div>
@@ -2423,7 +2423,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 2; Column: 1
+                    - Row 2, Column 1 (A)
                   </p>
                 </div>
               </div>
@@ -2455,7 +2455,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 2; Column: 2
+                    - Row 2, Column 2 (B)
                   </p>
                 </div>
               </div>
@@ -2487,7 +2487,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 3; Column: 1
+                    - Row 3, Column 1 (A)
                   </p>
                 </div>
               </div>
@@ -2519,7 +2519,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 3; Column: 2
+                    - Row 3, Column 2 (B)
                   </p>
                 </div>
               </div>
@@ -2783,7 +2783,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 1; Column: 1
+                    - Row 1, Column 1 (A)
                   </p>
                 </div>
               </div>
@@ -2815,7 +2815,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 1; Column: 2
+                    - Row 1, Column 2 (B)
                   </p>
                 </div>
               </div>
@@ -2847,7 +2847,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 2; Column: 1
+                    - Row 2, Column 1 (A)
                   </p>
                 </div>
               </div>
@@ -2879,7 +2879,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 2; Column: 2
+                    - Row 2, Column 2 (B)
                   </p>
                 </div>
               </div>
@@ -2911,7 +2911,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 3; Column: 1
+                    - Row 3, Column 1 (A)
                   </p>
                 </div>
               </div>
@@ -2943,7 +2943,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 3; Column: 2
+                    - Row 3, Column 2 (B)
                   </p>
                 </div>
               </div>
