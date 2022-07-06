@@ -182,6 +182,19 @@ export class EuiAccordionClass extends Component<
 
   generatedId = htmlIdGenerator()();
 
+  // we must pass a static function (`observerRef`) to the div,
+  // to avoid element -> null -> element chaining caused by redefining the `ref` fn,
+  // in the resize observer render callback, but that ref function needs to
+  // access and call the resize observer's callback function
+  // so we set resizeRef in the render callback so observerRef can see it
+  //
+  // this clean-up is a performance optimization and also resolves https://github.com/elastic/eui/issues/5903
+  resizeRef: (e: HTMLElement | null) => void = () => {};
+  observerRef = (ref: HTMLDivElement) => {
+    this.setChildContentRef(ref);
+    this.resizeRef(ref);
+  };
+
   render() {
     const {
       children,
@@ -384,18 +397,16 @@ export class EuiAccordionClass extends Component<
           id={id}
         >
           <EuiResizeObserver onResize={this.setChildContentHeight}>
-            {(resizeRef) => (
-              <div
-                ref={(ref) => {
-                  this.setChildContentRef(ref);
-                  resizeRef(ref);
-                }}
-              >
-                <div className={childrenClasses} css={cssChildrenStyles}>
-                  {childrenContent}
+            {(resizeRef) => {
+              this.resizeRef = resizeRef;
+              return (
+                <div ref={this.observerRef}>
+                  <div className={childrenClasses} css={cssChildrenStyles}>
+                    {childrenContent}
+                  </div>
                 </div>
-              </div>
-            )}
+              );
+            }}
           </EuiResizeObserver>
         </div>
       </Element>
