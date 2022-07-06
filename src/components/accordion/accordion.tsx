@@ -182,6 +182,14 @@ export class EuiAccordionClass extends Component<
 
   generatedId = htmlIdGenerator()();
 
+  // Storing resize/observer refs as an instance variable is a performance optimization
+  // and also resolves https://github.com/elastic/eui/issues/5903
+  resizeRef: (e: HTMLElement | null) => void = () => {};
+  observerRef = (ref: HTMLDivElement) => {
+    this.setChildContentRef(ref);
+    this.resizeRef(ref);
+  };
+
   render() {
     const {
       children,
@@ -384,18 +392,16 @@ export class EuiAccordionClass extends Component<
           id={id}
         >
           <EuiResizeObserver onResize={this.setChildContentHeight}>
-            {(resizeRef) => (
-              <div
-                ref={(ref) => {
-                  this.setChildContentRef(ref);
-                  resizeRef(ref);
-                }}
-              >
-                <div className={childrenClasses} css={cssChildrenStyles}>
-                  {childrenContent}
+            {(resizeRef) => {
+              this.resizeRef = resizeRef;
+              return (
+                <div ref={this.observerRef}>
+                  <div className={childrenClasses} css={cssChildrenStyles}>
+                    {childrenContent}
+                  </div>
                 </div>
-              </div>
-            )}
+              );
+            }}
           </EuiResizeObserver>
         </div>
       </Element>
