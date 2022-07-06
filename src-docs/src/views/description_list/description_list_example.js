@@ -22,7 +22,12 @@ const descriptionListSnippet = [
     },
   ]}
 />`,
-  `<EuiDescriptionList>
+];
+
+import DescriptionListSeparate from './description_list_separate';
+const descriptionListSeparateSource = require('!!raw-loader!./description_list_separate');
+const descriptionListSeparateSnippet = [
+  `<EuiDescriptionList align="center">
   <EuiDescriptionListTitle>Dota 2</EuiDescriptionListTitle>
   <EuiDescriptionListDescription>
     A videogame that I have spent way too much time on over the years.
@@ -96,10 +101,7 @@ export const DescriptionListExample = {
         <p>
           <strong>EuiDescriptionList</strong> is a component for listing pairs
           of information together. You can use the component on its own, passing
-          in an object for the list, or use the{' '}
-          <strong>EuiDescriptionListTitle</strong> and{' '}
-          <strong>EuiDescriptionListDescription</strong> components separately
-          to build a list manually.
+          in an object for the list.
         </p>
       ),
       props: {
@@ -109,6 +111,29 @@ export const DescriptionListExample = {
       },
       snippet: descriptionListSnippet,
       demo: <DescriptionList />,
+      playground: descriptionListConfig,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: descriptionListSeparateSource,
+        },
+      ],
+      text: (
+        <p>
+          You can also use the <strong>EuiDescriptionListTitle</strong> and{' '}
+          <strong>EuiDescriptionListDescription</strong> components separately
+          to build a list manually.
+        </p>
+      ),
+      props: {
+        EuiDescriptionList,
+        EuiDescriptionListTitle,
+        EuiDescriptionListDescription,
+      },
+      snippet: descriptionListSeparateSnippet,
+      demo: <DescriptionListSeparate />,
       playground: descriptionListConfig,
     },
     {
