@@ -9,13 +9,20 @@
 import React, { useEffect } from 'react';
 import { mount, render, ReactWrapper } from 'enzyme';
 import { keys } from '../../../services';
-import { mockRowHeightUtils } from '../utils/__mocks__/row_heights';
+import { RowHeightUtils } from '../utils/__mocks__/row_heights';
 import { mockFocusContext } from '../utils/__mocks__/focus_context';
 import { DataGridFocusContext } from '../utils/focus';
 
 import { EuiDataGridCell } from './data_grid_cell';
 
 describe('EuiDataGridCell', () => {
+  const mockRowHeightUtils = new RowHeightUtils(
+    { current: null },
+    { current: null },
+    { current: null },
+    { current: null }
+  );
+
   const mockPopoverContext = {
     popoverIsOpen: false,
     cellLocation: { rowIndex: 0, colIndex: 0 },
