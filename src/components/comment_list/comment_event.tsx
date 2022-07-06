@@ -16,6 +16,7 @@ import { EuiAvatar } from '../avatar';
 import {
   euiCommentEventStyles,
   euiCommentEventHeaderStyles,
+  euiCommentEventBodyStyles,
 } from './comment_event.styles';
 
 export interface EuiCommentEventProps extends CommonProps {
@@ -90,14 +91,15 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
 
   const styles = euiCommentEventStyles(euiTheme);
   const cssStyles = [styles.euiCommentEvent, styles[type]];
-  const cssBodyStyles = styles.euiCommentEvent__body;
 
-  const headerStyles = euiCommentEventHeaderStyles(euiTheme);
+  const headerStyles = euiCommentEventHeaderStyles(euiTheme, type);
   const cssHeaderStyles = [
     headerStyles.euiCommentEvent__header,
-    eventColor && headerStyles.haseventColor,
+    eventColor && headerStyles.hasEventColor,
   ];
   const cssHeaderPanelStyles = headerStyles.euiCommentEvent__headerPanel;
+  const cssHeaderEventIconStyles =
+    headerStyles.euiCommentEvent__headerEventIcon;
   const cssHeaderUsernameStyles = headerStyles.euiCommentEvent__headerUsername;
   const cssHeaderEventStyles = headerStyles.euiCommentEvent__headerEvent;
   const cssHeaderTimestampStyles =
@@ -105,6 +107,10 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   const cssHeaderMainStyles = headerStyles.euiCommentEvent__headerMain;
   const cssHeaderDataStyles = headerStyles.euiCommentEvent__headerData;
   const cssHeaderActionsStyles = headerStyles.euiCommentEvent__headerActions;
+
+  const bodyStyles = euiCommentEventBodyStyles(euiTheme, type);
+
+  const cssBodyStyles = [bodyStyles.euiCommentEvent__body];
 
   const isFigure = isTypeRegular;
 
@@ -122,6 +128,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
           <div css={cssHeaderDataStyles}>
             {eventIcon && (
               <EuiAvatar
+                css={cssHeaderEventIconStyles}
                 size="s"
                 iconType={eventIcon}
                 name={eventIconAriaLabel ? eventIconAriaLabel : ''}

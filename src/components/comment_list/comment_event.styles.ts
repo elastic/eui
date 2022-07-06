@@ -14,32 +14,27 @@ export const euiCommentEventStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiCommentEvent: css`
     overflow: hidden;
   `,
-  euiCommentEvent__body: css``,
   // types
   regular: css`
-    border-radius: ${euiTheme.border.radius.medium};
     border: ${euiTheme.border.thin};
-
-    > [class*='euiCommentEvent__header'] {
-      background: ${euiTheme.colors.lightestShade};
-      border-bottom: ${euiTheme.border.thin};
-    }
-
-    > [class*='euiCommentEvent__header'],
-    > [class*='euiCommentEvent__body'] {
-      padding: ${euiTheme.size.s};
-    }
+    border-radius: ${euiTheme.border.radius.medium};
   `,
-  update: css`
-    > [class*='euiCommentEvent__body'] {
-      ${logicalCSS('padding-top', euiTheme.size.xs)}
-    }
-  `,
+  update: css``,
   custom: css``,
 });
 
-export const euiCommentEventHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiCommentEvent__header: css``,
+export const euiCommentEventHeaderStyles = (
+  { euiTheme }: UseEuiTheme,
+  type: string
+) => ({
+  euiCommentEvent__header: css`
+    ${type === 'regular' &&
+    `
+      background: ${euiTheme.colors.lightestShade};
+      border-bottom: ${euiTheme.border.thin};
+      padding: ${euiTheme.size.s};
+    `}
+  `,
   euiCommentEvent__headerPanel: css``,
   euiCommentEvent__headerMain: css`
     display: flex;
@@ -52,6 +47,9 @@ export const euiCommentEventHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
     align-items: center;
     flex-wrap: wrap;
     gap: ${euiTheme.size.xs};
+  `,
+  euiCommentEvent__headerEventIcon: css`
+    ${logicalCSS('margin-right', euiTheme.size.xs)}
   `,
   euiCommentEvent__headerUsername: css`
     font-weight: ${euiTheme.font.weight.semiBold};
@@ -70,7 +68,24 @@ export const euiCommentEventHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
     gap: ${euiTheme.size.xs};
   `,
   // variants
-  haseventColor: css`
+  hasEventColor: css`
     padding: 0;
+  `,
+});
+
+export const euiCommentEventBodyStyles = (
+  { euiTheme }: UseEuiTheme,
+  type: string
+) => ({
+  euiCommentEvent__body: css`
+    ${type === 'regular' &&
+    `
+      padding: ${euiTheme.size.s};
+    `}
+
+    ${type === 'update' &&
+    `
+      ${logicalCSS('padding-top', euiTheme.size.xs)}
+    `}
   `,
 });
