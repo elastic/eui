@@ -20,7 +20,7 @@ import { tabbable, FocusableElement } from 'tabbable';
 import { keys } from '../../../../services';
 import { useGeneratedHtmlId } from '../../../../services/accessibility';
 import { EuiScreenReaderOnly } from '../../../accessibility';
-import { useEuiI18n, EuiI18n } from '../../../i18n';
+import { EuiI18n } from '../../../i18n';
 import { EuiIcon } from '../../../icon';
 import { EuiListGroup } from '../../../list_group';
 import { EuiPopover } from '../../../popover';
@@ -53,15 +53,15 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     [`euiDataGridHeaderCell--${columnType}`]: columnType,
   });
 
-  const actionButtonAriaLabel = useEuiI18n(
-    'euiDataGridHeaderCell.headerActions',
-    'Header actions'
-  );
   const ariaProps: {
     'aria-sort'?: AriaAttributes['aria-sort'];
     'aria-describedby'?: AriaAttributes['aria-describedby'];
   } = {};
   const screenReaderId = useGeneratedHtmlId();
+  const actionsAriaId = useGeneratedHtmlId({
+    prefix: 'euiDataGridCellHeader',
+    suffix: 'actions',
+  });
 
   const { setFocusedCell, focusFirstVisibleInteractiveCell } = useContext(
     DataGridFocusContext
@@ -153,46 +153,55 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           </div>
         </>
       ) : (
-        <EuiPopover
-          className="eui-fullWidth"
-          anchorClassName="eui-fullWidth"
-          panelPaddingSize="none"
-          offset={7}
-          button={
-            <button
-              className="euiDataGridHeaderCell__button"
-              onClick={() => {
-                setFocusedCell([index, -1]);
-                setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
-              }}
-            >
-              {sortingArrow}
-              <div
-                className="euiDataGridHeaderCell__content"
-                title={displayAsText || id}
+        <>
+          <EuiPopover
+            className="eui-fullWidth"
+            anchorClassName="eui-fullWidth"
+            panelPaddingSize="none"
+            offset={7}
+            button={
+              <button
+                className="euiDataGridHeaderCell__button"
+                onClick={() => {
+                  setFocusedCell([index, -1]);
+                  setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
+                }}
+                aria-describedby={`euiDataGridCellHeaderActions-${id}`}
               >
-                {display || displayAsText || id}
-              </div>
-              <EuiIcon
-                className="euiDataGridHeaderCell__icon"
-                type="arrowDown"
-                size="s"
-                color="text"
-                aria-label={actionButtonAriaLabel}
-                data-test-subj={`dataGridHeaderCellActionButton-${id}`}
-              />
-            </button>
-          }
-          isOpen={isPopoverOpen}
-          closePopover={() => setIsPopoverOpen(false)}
-          {...popoverArrowNavigationProps}
-        >
-          <EuiListGroup
-            listItems={columnActions}
-            gutterSize="none"
-            data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
-          />
-        </EuiPopover>
+                {sortingArrow}
+                <div
+                  className="euiDataGridHeaderCell__content"
+                  title={displayAsText || id}
+                >
+                  {display || displayAsText || id}
+                </div>
+                <EuiIcon
+                  className="euiDataGridHeaderCell__icon"
+                  type="arrowDown"
+                  size="s"
+                  color="text"
+                  data-test-subj={`dataGridHeaderCellActionButton-${id}`}
+                />
+              </button>
+            }
+            isOpen={isPopoverOpen}
+            closePopover={() => setIsPopoverOpen(false)}
+            {...popoverArrowNavigationProps}
+          >
+            <EuiListGroup
+              listItems={columnActions}
+              gutterSize="none"
+              data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
+            />
+          </EuiPopover>
+
+          <p id={actionsAriaId} hidden>
+            <EuiI18n
+              token="euiDataGridHeaderCell.headerActions"
+              default="Click to view column header actions"
+            />
+          </p>
+        </>
       )}
     </EuiDataGridHeaderCellWrapper>
   );
