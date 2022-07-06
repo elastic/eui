@@ -12,6 +12,7 @@ import { requiredProps } from '../../test/required_props';
 
 import { EuiCommentList } from './comment_list';
 import { shouldRenderCustomStyles } from '../../test/internal';
+import { GUTTER_SIZES } from '../timeline/timeline';
 
 const comments = [
   {
@@ -30,5 +31,19 @@ describe('EuiCommentList', () => {
     );
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('props', () => {
+    describe('gutterSize', () => {
+      GUTTER_SIZES.forEach((gutterSize) => {
+        test(`${gutterSize} is rendered`, () => {
+          const component = render(
+            <EuiCommentList comments={comments} gutterSize={gutterSize} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
   });
 });
