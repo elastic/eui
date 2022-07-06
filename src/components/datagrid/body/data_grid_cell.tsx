@@ -686,6 +686,7 @@ export class EuiDataGridCell extends Component<
     const content = (
       <div
         role="gridcell"
+        aria-rowindex={this.props.rowIndex}
         tabIndex={
           this.state.isFocused && !this.state.disableCellTabIndex ? 0 : -1
         }
