@@ -39,6 +39,7 @@ export interface EuiDataGridToolbarProps {
   toolbarVisibility: boolean | EuiDataGridToolBarVisibilityOptions;
   isFullScreen: boolean;
   fullScreenSelector: ReactNode;
+  keyboardShortcuts: ReactNode;
   displaySelector: ReactNode;
   columnSelector: ReactNode;
   columnSorting: ReactNode;
@@ -779,6 +780,11 @@ export interface EuiDataGridToolBarVisibilityOptions {
    * Allows the ability for the user to sort rows based upon column values
    */
   showSortSelector?: boolean;
+  /**
+   * Displays a popover listing all keyboard controls and shortcuts for the data grid.
+   * If set to `false`, the toggle will be visually hidden, but still focusable by keyboard and screen reader users.
+   */
+  showKeyboardShortcuts?: boolean;
   /**
    * Allows user to be able to fullscreen the data grid. If set to `false` make sure your grid fits within a large enough panel to still show the other controls.
    */
