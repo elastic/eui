@@ -645,64 +645,6 @@ describe('EuiDataGrid', () => {
       `);
     });
 
-    it('renders correct aria attributes on column headers', () => {
-      const component = mount(
-        <EuiDataGrid
-          {...requiredProps}
-          columns={[{ id: 'A' }, { id: 'B' }]}
-          columnVisibility={{
-            visibleColumns: ['A', 'B'],
-            setVisibleColumns: () => {},
-          }}
-          rowCount={1}
-          renderCellValue={() => 'value'}
-        />
-      );
-
-      // no columns are sorted, expect no aria-sort or aria-describedby attributes
-      expect(component.find('[role="columnheader"][aria-sort]').length).toBe(0);
-      expect(
-        component.find('[role="columnheader"][aria-describedby]').length
-      ).toBe(0);
-
-      // sort on one column
-      component.setProps({
-        sorting: { columns: [{ id: 'A', direction: 'asc' }], onSort: () => {} },
-      });
-
-      // expect A column to have aria-sort, expect no aria-describedby
-      expect(component.find('[role="columnheader"][aria-sort]').length).toBe(1);
-      expect(
-        component.find(
-          '[role="columnheader"][aria-sort="ascending"][data-test-subj="dataGridHeaderCell-A"]'
-        ).length
-      ).toBe(1);
-      expect(
-        component.find('[role="columnheader"][aria-describedby]').length
-      ).toBe(0);
-
-      // sort on both columns
-      component.setProps({
-        sorting: {
-          columns: [
-            { id: 'A', direction: 'asc' },
-            { id: 'B', direction: 'desc' },
-          ],
-          onSort: () => {},
-        },
-      });
-
-      // expect no aria-sort, both columns have aria-describedby
-      expect(component.find('[role="columnheader"][aria-sort]').length).toBe(0);
-      expect(
-        component.find('[role="columnheader"][aria-describedby]').length
-      ).toBe(2);
-      expect(
-        component.find('[role="columnheader"][aria-describedby="generated-id"]')
-          .length
-      ).toBe(2);
-    });
-
     it('renders additional toolbar controls', () => {
       const component = render(
         <EuiDataGrid

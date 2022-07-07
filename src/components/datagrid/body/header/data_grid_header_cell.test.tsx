@@ -42,14 +42,25 @@ describe('EuiDataGridHeaderCell', () => {
   });
 
   describe('sorting', () => {
+    const columnId = 'test';
+    const mockSortingArgs = {
+      sorting: undefined,
+      id: columnId,
+      showColumnActions: true,
+    };
+
+    const getRenderedText = (text: React.ReactElement) =>
+      render(<p>{text}</p>).text();
+
     describe('if the current column is being sorted', () => {
       it('renders an ascending sort arrow', () => {
         const {
           return: { sortingArrow },
         } = testCustomHook(useSortingUtils, {
-          sorting: { columns: [{ id: 'test', direction: 'asc' }] },
-          id: 'test',
+          ...mockSortingArgs,
+          sorting: { columns: [{ id: columnId, direction: 'asc' }] },
         });
+
         expect(shallow(sortingArrow).prop('data-euiicon-type')).toEqual(
           'sortUp'
         );
@@ -59,12 +70,47 @@ describe('EuiDataGridHeaderCell', () => {
         const {
           return: { sortingArrow },
         } = testCustomHook(useSortingUtils, {
-          sorting: { columns: [{ id: 'test', direction: 'desc' }] },
-          id: 'test',
+          ...mockSortingArgs,
+          sorting: { columns: [{ id: columnId, direction: 'desc' }] },
         });
+
         expect(shallow(sortingArrow).prop('data-euiicon-type')).toEqual(
           'sortDown'
         );
+      });
+
+      describe('when only the current column is being sorted', () => {
+        describe('when the header cell has no actions', () => {
+          it('renders aria-sort but not sortingScreenReaderText', () => {
+            const {
+              return: { ariaSort, sortingScreenReaderText },
+            } = testCustomHook(useSortingUtils, {
+              ...mockSortingArgs,
+              sorting: { columns: [{ id: columnId, direction: 'asc' }] },
+              showColumnActions: false,
+            });
+
+            expect(ariaSort).toEqual('ascending');
+            expect(getRenderedText(sortingScreenReaderText)).toEqual('');
+          });
+        });
+
+        describe('when the header cell has actions', () => {
+          it('renders aria-sort and sortingScreenReaderText', () => {
+            const {
+              return: { ariaSort, sortingScreenReaderText },
+            } = testCustomHook(useSortingUtils, {
+              ...mockSortingArgs,
+              sorting: { columns: [{ id: columnId, direction: 'desc' }] },
+              showColumnActions: true,
+            });
+
+            expect(ariaSort).toEqual('descending');
+            expect(getRenderedText(sortingScreenReaderText)).toEqual(
+              'Sorted descending.'
+            );
+          });
+        });
       });
     });
 
@@ -73,31 +119,58 @@ describe('EuiDataGridHeaderCell', () => {
         const {
           return: { sortingArrow },
         } = testCustomHook(useSortingUtils, {
+          ...mockSortingArgs,
           sorting: { columns: [{ id: 'other', direction: 'desc' }] },
-          id: 'test',
         });
+
         expect(sortingArrow).toBeNull();
+      });
+
+      it('does not render aria-sort or screen reader sorting text', () => {
+        const {
+          return: { ariaSort, sortingScreenReaderText },
+        } = testCustomHook(useSortingUtils, mockSortingArgs);
+
+        expect(ariaSort).toEqual(undefined);
+        expect(getRenderedText(sortingScreenReaderText)).toEqual('');
       });
     });
 
     describe('when multiple columns are being sorted', () => {
-      it('renders sorting screen reader text text with a full list of sorted columns', () => {
+      it('does not render aria-sort, but renders sorting screen reader text text with a full list of sorted columns', () => {
         const {
-          return: { sortingScreenReaderText },
+          return: { ariaSort, sortingScreenReaderText },
+          getUpdatedState,
+          updateHookArgs,
         } = testCustomHook(useSortingUtils, {
+          id: 'A',
           sorting: {
             columns: [
               { id: 'A', direction: 'asc' },
               { id: 'B', direction: 'desc' },
             ],
           },
-          id: 'A',
         });
 
-        expect(
-          render(<p>{sortingScreenReaderText}</p>).text()
-        ).toMatchInlineSnapshot(
+        expect(ariaSort).toEqual(undefined);
+        expect(getRenderedText(sortingScreenReaderText)).toMatchInlineSnapshot(
           '"Sorted by A, ascending, then sorted by B, descending."'
+        );
+
+        // Branch coverage
+        updateHookArgs({
+          sorting: {
+            columns: [
+              { id: 'B', direction: 'desc' },
+              { id: 'C', direction: 'asc' },
+              { id: 'A', direction: 'asc' },
+            ],
+          },
+        });
+        expect(
+          getRenderedText(getUpdatedState().sortingScreenReaderText)
+        ).toMatchInlineSnapshot(
+          '"Sorted by B, descending, then sorted by C, ascending, then sorted by A, ascending."'
         );
       });
     });
