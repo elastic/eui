@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount, shallow, render } from 'enzyme';
 import { testCustomHook } from '../../../../test/internal';
 
 import { DataGridFocusContext } from '../../utils/focus';
@@ -83,7 +83,7 @@ describe('EuiDataGridHeaderCell', () => {
     describe('when multiple columns are being sorted', () => {
       it('renders sorting screen reader text text with a full list of sorted columns', () => {
         const {
-          return: { sortString },
+          return: { sortingScreenReaderText },
         } = testCustomHook(useSortingUtils, {
           sorting: {
             columns: [
@@ -94,8 +94,10 @@ describe('EuiDataGridHeaderCell', () => {
           id: 'A',
         });
 
-        expect(sortString).toMatchInlineSnapshot(
-          '"Sorted by A asc then Sorted by B desc"'
+        expect(
+          render(<p>{sortingScreenReaderText}</p>).text()
+        ).toMatchInlineSnapshot(
+          '"Sorted by A, ascending, then sorted by B, descending."'
         );
       });
     });
