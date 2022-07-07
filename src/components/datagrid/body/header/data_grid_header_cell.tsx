@@ -10,7 +10,6 @@ import classnames from 'classnames';
 import React, {
   AriaAttributes,
   FunctionComponent,
-  HTMLAttributes,
   useContext,
   useState,
   useRef,
@@ -80,7 +79,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
 
   const showColumnActions = columnActions && columnActions.length > 0;
 
-  const { sortingArrow, ariaProps, sortString } = useSortingUtils({
+  const { sortingArrow, ariaSort, sortString } = useSortingUtils({
     sorting,
     id,
   });
@@ -100,7 +99,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       width={width}
       headerIsInteractive={headerIsInteractive}
       className={classes}
-      {...ariaProps}
+      aria-sort={ariaSort}
     >
       {column.isResizable !== false && width != null ? (
         <EuiDataGridColumnResizer
@@ -197,11 +196,13 @@ export const useSortingUtils = ({
     () => sorting?.columns.find((col) => col.id === id),
     [sorting, id]
   );
+  const isColumnSorted = !!sortedColumn;
+  const hasOnlyOneSort = sorting?.columns?.length === 1;
 
   /**
    * Arrow icon
    */
-  const sortingArrow = sortedColumn ? (
+  const sortingArrow = isColumnSorted ? (
     <EuiIcon
       type={sortedColumn.direction === 'asc' ? 'sortUp' : 'sortDown'}
       color="text"
@@ -211,28 +212,27 @@ export const useSortingUtils = ({
   ) : null;
 
   /**
-   * ariaProps and sorting
+   * aria-sort attribute - should only be used when a single column is being sorted
+   * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-sort
+   * @see https://www.w3.org/WAI/ARIA/apg/example-index/table/sortable-table.html
+   * @see https://github.com/w3c/aria/issues/283 for potential future multi-column usage
    */
+  const ariaSort: AriaAttributes['aria-sort'] =
+    // eslint-disable-next-line no-nested-ternary
+    isColumnSorted && hasOnlyOneSort
+      ? sorting.columns[0].direction === 'asc'
+        ? 'ascending'
+        : 'descending'
+      : undefined;
 
-  const ariaProps: {
-    'aria-sort'?: AriaAttributes['aria-sort'];
-  } = {};
-
+  /**
+   * Sorting status - screen reader text
+   */
   let sortString;
   if (sorting) {
-    if (sortedColumn) {
+    if (isColumnSorted) {
       if (sorting.columns.length === 1) {
-        const sortDirection = sorting.columns[0].direction;
-
-        let sortValue: HTMLAttributes<HTMLDivElement>['aria-sort'] = 'other';
-        if (sortDirection === 'asc') {
-          sortValue = 'ascending';
-        }
-        if (sortDirection === 'desc') {
-          sortValue = 'descending';
-        }
-
-        ariaProps['aria-sort'] = sortValue;
+        // TODO - aria-sort on header cells with actions is not being announced
       } else {
         sortString = sorting.columns
           .map((col) => `Sorted by ${col.id} ${col.direction}`)
@@ -241,7 +241,7 @@ export const useSortingUtils = ({
     }
   }
 
-  return { sortingArrow, ariaProps, sortString };
+  return { sortingArrow, ariaSort, sortString };
 };
 
 /**
