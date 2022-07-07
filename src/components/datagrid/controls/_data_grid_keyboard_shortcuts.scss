@@ -1,0 +1,17 @@
+.euiDataGrid__keyboardShortcutsPopoverPanel {
+  width: $euiSizeXXL * 12;
+
+  .euiDescriptionList.euiDescriptionList--column { // Specificity override
+    .euiDescriptionList__title {
+      width: 25%;
+    }
+
+    .euiDescriptionList__description {
+      width: 75%;
+    }
+
+    & > *:not(:first-of-type) {
+      margin-top: $euiSizeS;
+    }
+  }
+}
