@@ -36,7 +36,7 @@ exports[`EuiDataGridBody renders 1`] = `
             class="euiPopover__anchor eui-fullWidth"
           >
             <button
-              aria-describedby="euiDataGridCellHeaderActions-columnA"
+              aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
               class="euiDataGridHeaderCell__button"
             >
               <div
@@ -54,6 +54,10 @@ exports[`EuiDataGridBody renders 1`] = `
             </button>
           </div>
         </div>
+        <p
+          hidden=""
+          id="euiDataGridCellHeader_generated-id_sorting"
+        />
         <p
           hidden=""
           id="euiDataGridCellHeader_generated-id_actions"
@@ -84,7 +88,7 @@ exports[`EuiDataGridBody renders 1`] = `
             class="euiPopover__anchor eui-fullWidth"
           >
             <button
-              aria-describedby="euiDataGridCellHeaderActions-columnB"
+              aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
               class="euiDataGridHeaderCell__button"
             >
               <div
@@ -102,6 +106,10 @@ exports[`EuiDataGridBody renders 1`] = `
             </button>
           </div>
         </div>
+        <p
+          hidden=""
+          id="euiDataGridCellHeader_generated-id_sorting"
+        />
         <p
           hidden=""
           id="euiDataGridCellHeader_generated-id_actions"

@@ -80,13 +80,14 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
 
   const showColumnActions = columnActions && columnActions.length > 0;
 
-  const {
-    sortingArrow,
-    ariaProps,
-    sortString,
-    screenReaderId,
-  } = useSortingUtils({ sorting, id });
-
+  const { sortingArrow, ariaProps, sortString } = useSortingUtils({
+    sorting,
+    id,
+  });
+  const sortingAriaId = useGeneratedHtmlId({
+    prefix: 'euiDataGridCellHeader',
+    suffix: 'sorting',
+  });
   const actionsAriaId = useGeneratedHtmlId({
     prefix: 'euiDataGridCellHeader',
     suffix: 'actions',
@@ -109,11 +110,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         />
       ) : null}
 
-      {sortString && (
-        <EuiScreenReaderOnly>
-          <div id={screenReaderId}>{sortString}</div>
-        </EuiScreenReaderOnly>
-      )}
       {!showColumnActions ? (
         <>
           {sortingArrow}
@@ -123,6 +119,11 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           >
             {display || displayAsText || id}
           </div>
+          {sortString && (
+            <EuiScreenReaderOnly>
+              <p>{sortString}</p>
+            </EuiScreenReaderOnly>
+          )}
         </>
       ) : (
         <>
@@ -138,7 +139,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                   setFocusedCell([index, -1]);
                   setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
                 }}
-                aria-describedby={`euiDataGridCellHeaderActions-${id}`}
+                aria-describedby={`${sortingAriaId} ${actionsAriaId}`}
               >
                 {sortingArrow}
                 <div
@@ -167,6 +168,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
             />
           </EuiPopover>
 
+          <p id={sortingAriaId} hidden>
+            {sortString}
+          </p>
           <p id={actionsAriaId} hidden>
             <EuiI18n
               token="euiDataGridHeaderCell.headerActions"
@@ -209,11 +213,9 @@ export const useSortingUtils = ({
   /**
    * ariaProps and sorting
    */
-  const screenReaderId = useGeneratedHtmlId();
 
   const ariaProps: {
     'aria-sort'?: AriaAttributes['aria-sort'];
-    'aria-describedby'?: AriaAttributes['aria-describedby'];
   } = {};
 
   let sortString;
@@ -235,12 +237,11 @@ export const useSortingUtils = ({
         sortString = sorting.columns
           .map((col) => `Sorted by ${col.id} ${col.direction}`)
           .join(' then ');
-        ariaProps['aria-describedby'] = screenReaderId;
       }
     }
   }
 
-  return { sortingArrow, ariaProps, sortString, screenReaderId };
+  return { sortingArrow, ariaProps, sortString };
 };
 
 /**

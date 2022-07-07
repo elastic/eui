@@ -1070,7 +1070,7 @@ Array [
                     class="euiPopover__anchor eui-fullWidth"
                   >
                     <button
-                      aria-describedby="euiDataGridCellHeaderActions-A"
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
@@ -1088,6 +1088,10 @@ Array [
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
                 <p
                   hidden=""
                   id="euiDataGridCellHeader_generated-id_actions"
@@ -1118,7 +1122,7 @@ Array [
                     class="euiPopover__anchor eui-fullWidth"
                   >
                     <button
-                      aria-describedby="euiDataGridCellHeaderActions-B"
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
@@ -1136,6 +1140,10 @@ Array [
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
                 <p
                   hidden=""
                   id="euiDataGridCellHeader_generated-id_actions"
@@ -1519,7 +1527,7 @@ Array [
                     class="euiPopover__anchor eui-fullWidth"
                   >
                     <button
-                      aria-describedby="euiDataGridCellHeaderActions-A"
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
@@ -1537,6 +1545,10 @@ Array [
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
                 <p
                   hidden=""
                   id="euiDataGridCellHeader_generated-id_actions"
@@ -1567,7 +1579,7 @@ Array [
                     class="euiPopover__anchor eui-fullWidth"
                   >
                     <button
-                      aria-describedby="euiDataGridCellHeaderActions-B"
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
@@ -1585,6 +1597,10 @@ Array [
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
                 <p
                   hidden=""
                   id="euiDataGridCellHeader_generated-id_actions"
@@ -2265,7 +2281,7 @@ Array [
                     class="euiPopover__anchor eui-fullWidth"
                   >
                     <button
-                      aria-describedby="euiDataGridCellHeaderActions-A"
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
@@ -2283,6 +2299,10 @@ Array [
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
                 <p
                   hidden=""
                   id="euiDataGridCellHeader_generated-id_actions"
@@ -2313,7 +2333,7 @@ Array [
                     class="euiPopover__anchor eui-fullWidth"
                   >
                     <button
-                      aria-describedby="euiDataGridCellHeaderActions-B"
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
@@ -2333,6 +2353,10 @@ Array [
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
                 <p
                   hidden=""
                   id="euiDataGridCellHeader_generated-id_actions"
@@ -2694,7 +2718,7 @@ Array [
                     class="euiPopover__anchor eui-fullWidth"
                   >
                     <button
-                      aria-describedby="euiDataGridCellHeaderActions-A"
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
@@ -2712,6 +2736,10 @@ Array [
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
                 <p
                   hidden=""
                   id="euiDataGridCellHeader_generated-id_actions"
@@ -2742,7 +2770,7 @@ Array [
                     class="euiPopover__anchor eui-fullWidth"
                   >
                     <button
-                      aria-describedby="euiDataGridCellHeaderActions-B"
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
@@ -2760,6 +2788,10 @@ Array [
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
                 <p
                   hidden=""
                   id="euiDataGridCellHeader_generated-id_actions"

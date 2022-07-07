@@ -18,7 +18,7 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
     anchorPosition="downCenter"
     button={
       <button
-        aria-describedby="euiDataGridCellHeaderActions-someColumn"
+        aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
         className="euiDataGridHeaderCell__button"
         onClick={[Function]}
       >
@@ -99,6 +99,10 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
       }
     />
   </EuiPopover>
+  <p
+    hidden={true}
+    id="euiDataGridCellHeader_generated-id_sorting"
+  />
   <p
     hidden={true}
     id="euiDataGridCellHeader_generated-id_actions"
