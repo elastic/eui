@@ -96,11 +96,11 @@ const EuiDataGridCellContent: FunctionComponent<
             {'- '}
             <EuiI18n
               token="euiDataGridCell.position"
-              default="Row {row}, Column {col} ({columnId})"
+              default="{columnId}, column {col}, row {row}"
               values={{
-                row: ariaRowIndex,
-                col: colIndex + 1,
                 columnId: column?.displayAsText || rest.columnId,
+                col: colIndex + 1,
+                row: ariaRowIndex,
               }}
             />
           </p>
