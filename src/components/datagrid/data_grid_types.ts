@@ -513,6 +513,7 @@ export interface EuiDataGridCellProps {
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   rowHeightUtils?: RowHeightUtils;
   rowManager?: EuiDataGridRowManager;
+  pagination?: EuiDataGridPaginationProps;
 }
 
 export interface EuiDataGridCellState {
