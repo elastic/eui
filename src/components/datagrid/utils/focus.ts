@@ -35,7 +35,7 @@ export const DataGridFocusContext = createContext<DataGridFocusContextShape>({
   focusFirstVisibleInteractiveCell: () => {},
 });
 
-type FocusProps = Pick<HTMLAttributes<HTMLDivElement>, 'tabIndex' | 'onFocus'>;
+type FocusProps = Pick<HTMLAttributes<HTMLDivElement>, 'tabIndex' | 'onKeyUp'>;
 
 /**
  * Main focus context and overarching focus state management
@@ -126,13 +126,16 @@ export const useFocus = ({
           }
         : {
             tabIndex: 0,
-            onFocus: (e) => {
-              // if e.target (the source element of the `focus event`
-              // matches e.currentTarget (always the div with this onFocus listener)
-              // then the user has focused directly on the data grid wrapper (almost definitely by tabbing)
-              // so shift focus to the first visible and interactive cell within the grid
-              if (e.target === e.currentTarget) {
-                focusFirstVisibleInteractiveCell();
+            onKeyUp: (e: KeyboardEvent) => {
+              // Ensure we only manually focus into the grid via keyboard tab -
+              // mouse users can accidentally trigger focus by clicking on scrollbars
+              if (e.key === keys.TAB) {
+                // if e.target (the source element of the `focus event`) matches
+                // e.currentTarget (always the div with this onKeyUp listener)
+                // then the user has focused directly on the data grid wrapper
+                if (e.target === e.currentTarget) {
+                  focusFirstVisibleInteractiveCell();
+                }
               }
             },
           },

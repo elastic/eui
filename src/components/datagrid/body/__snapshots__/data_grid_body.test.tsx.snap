@@ -31,7 +31,6 @@ exports[`EuiDataGridBody renders 1`] = `
         />
         <div
           class="euiPopover euiPopover--anchorDownCenter eui-fullWidth"
-          offset="7"
         >
           <div
             class="euiPopover__anchor eui-fullWidth"
@@ -75,7 +74,6 @@ exports[`EuiDataGridBody renders 1`] = `
         />
         <div
           class="euiPopover euiPopover--anchorDownCenter eui-fullWidth"
-          offset="7"
         >
           <div
             class="euiPopover__anchor eui-fullWidth"
@@ -103,6 +101,7 @@ exports[`EuiDataGridBody renders 1`] = `
       </div>
     </div>
     <div
+      aria-rowindex="1"
       class="euiDataGridRowCell euiDataGridRowCell--boolean euiDataGridRowCell--firstColumn"
       data-gridcell-column-id="columnA"
       data-gridcell-column-index="0"
@@ -130,12 +129,13 @@ exports[`EuiDataGridBody renders 1`] = `
           <p
             class="emotion-euiScreenReaderOnly"
           >
-            Row: 1; Column: 1
+            - columnA, column 1, row 1
           </p>
         </div>
       </div>
     </div>
     <div
+      aria-rowindex="1"
       class="euiDataGridRowCell euiDataGridRowCell--string euiDataGridRowCell--lastColumn"
       data-gridcell-column-id="columnB"
       data-gridcell-column-index="1"
@@ -163,7 +163,7 @@ exports[`EuiDataGridBody renders 1`] = `
           <p
             class="emotion-euiScreenReaderOnly"
           >
-            Row: 1; Column: 2
+            - columnB, column 2, row 1
           </p>
         </div>
       </div>

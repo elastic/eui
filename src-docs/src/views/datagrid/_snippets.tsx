@@ -106,4 +106,21 @@ ref={dataGridRef}`,
     </Link>
   ),
   onColumnResize: 'onColumnResize={({columnId, width}) => {}}',
+  virtualizationOptions: `// Optional. For advanced control of the underlying react-window virtualization grid.
+virtualizationOptions={{
+  className: 'virtualizedGridClass',
+  style: {},
+  direction: 'ltr',
+  estimatedRowHeight: 50,
+  overscanColumnCount: 1,
+  overscanRowCount: 1,
+  initialScrollLeft: 0,
+  initialScrollTop: 0,
+  onScroll: () => {},
+  onItemsRendered: () => {},
+  itemKey: () => {},
+  outerElementType: 'div',
+}}
+// Properties not listed above are used by EuiDataGrid internals and cannot be overridden.
+`,
 };
