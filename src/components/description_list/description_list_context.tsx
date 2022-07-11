@@ -28,7 +28,7 @@ interface ContextProviderProps extends Required<DescriptionListContextProps> {
   /**
    * ReactNode to render as this component's content
    */
-  children: any;
+  children: React.ReactNode;
 }
 
 export function EuiDescriptionListContextProvider({
