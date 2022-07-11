@@ -65,7 +65,7 @@ docker push docker.elastic.co/eui/ci:x.x
 
 > :warning: There is a ~3 minute JWT timeout for docker image uploads (set by Elastic for security reasons and cannot be changed). If you receive a `unauthorized: authentication required` error after `docker push`, this means that your upload has timed out. Since docker uploads images in concurrent layers, it should still have uploaded a portion of the image.
 > 
-> Simply repeat your `docker push` command until the image has fully uploaded (which may take 2-3+ attempts), or consider uploading via wired ethernet for faster upload speeds. On Docker Desktop, you can also go to Preferences > Docker Engine and add `"max-concurrent-uploads": 1` to the daemon configuration JSON to upload 1 layer at a time.
+> Simply repeat your `docker push` command until the image has fully uploaded (which may take 2-3+ attempts), or consider uploading via wired ethernet for faster upload speeds. On Docker Desktop, you can also go to Preferences > Docker Engine and add `"max-concurrent-uploads": 1` to the daemon configuration JSON to upload 1 layer at a time to dedicate upload bandwidth to one layer at a time.
 
 ### Use a published image
 
