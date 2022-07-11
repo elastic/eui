@@ -17,7 +17,7 @@ export const euiDescriptionListDescriptionStyles = (
   const { euiTheme } = euiThemeContext;
 
   return {
-    euiDescriptionList__description: undefined,
+    euiDescriptionList__description: css``,
 
     // This nested block handles just the font styling based on compressed and reverse
     fontStyles: {
