@@ -15,9 +15,9 @@ import { TYPES } from './description_list_types';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { EuiDescriptionListContext } from './description_list_context';
 
-shouldRenderCustomStyles(<EuiDescriptionListDescription />);
-
 describe('EuiDescriptionListDescription', () => {
+  shouldRenderCustomStyles(<EuiDescriptionListDescription />);
+
   test('is rendered', () => {
     const component = render(
       <EuiDescriptionListDescription {...requiredProps}>

@@ -17,12 +17,7 @@ import { CommonProps } from '../common';
 import { useIsWithinBreakpoints } from '../../services';
 import { euiDescriptionListStyles } from './description_list.styles';
 
-import {
-  EuiDescriptionListProps,
-  typesToClassNameMap,
-  alignmentsToClassNameMap,
-  textStylesToClassNameMap,
-} from './description_list_types';
+import { EuiDescriptionListProps } from './description_list_types';
 
 import { EuiDescriptionListContextProvider } from './description_list_context';
 
@@ -52,9 +47,9 @@ export const EuiDescriptionList: FunctionComponent<
 
   const classes = classNames(
     'euiDescriptionList',
-    type ? typesToClassNameMap[type] : undefined,
-    align ? alignmentsToClassNameMap[align] : undefined,
-    textStyle ? textStylesToClassNameMap[textStyle] : undefined,
+    { [`euiDescriptionList--${type}`]: type },
+    { [`euiDescriptionList--${align}`]: align },
+    { [`euiDescriptionList--${textStyle}`]: textStyle },
     {
       'euiDescriptionList--compressed': compressed,
     },
@@ -65,13 +60,18 @@ export const EuiDescriptionList: FunctionComponent<
   if (listItems) {
     childrenOrListItems = listItems.map((item, index) => {
       return [
-        <EuiDescriptionListTitle key={`title-${index}`} {...titleProps}>
+        <EuiDescriptionListTitle
+          key={`title-${index}`}
+          {...titleProps}
+          data-type={type}
+        >
           {item.title}
         </EuiDescriptionListTitle>,
 
         <EuiDescriptionListDescription
           key={`description-${index}`}
           {...descriptionProps}
+          data-type={type}
         >
           {item.description}
         </EuiDescriptionListDescription>,

@@ -7,7 +7,7 @@
  */
 
 import { HTMLAttributes, ReactNode } from 'react';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 
 export interface EuiDescriptionListProps {
   listItems?: Array<{
@@ -26,7 +26,7 @@ export interface EuiDescriptionListProps {
    * How should the content be styled, by default
    * this will emphasize the title
    */
-  textStyle?: EuiDescriptionListTextStyle;
+  textStyle?: 'normal' | 'reverse';
   /**
    * How each item should be laid out
    */
@@ -41,29 +41,11 @@ export interface EuiDescriptionListProps {
   descriptionProps?: HTMLAttributes<HTMLElement> & CommonProps;
 }
 
-export type EuiDescriptionListType = keyof typeof typesToClassNameMap;
-export type EuiDescriptionListAlignment = keyof typeof alignmentsToClassNameMap;
-export type EuiDescriptionListTextStyle = keyof typeof textStylesToClassNameMap;
+export const TYPES = ['row', 'inline', 'column', 'responsiveColumn'] as const;
+export type EuiDescriptionListType = typeof TYPES[number];
 
-export const typesToClassNameMap = {
-  row: 'euiDescriptionList--row',
-  inline: 'euiDescriptionList--inline',
-  column: 'euiDescriptionList--column',
-  responsiveColumn: 'euiDescriptionList--responsiveColumn',
-};
+export const ALIGNMENTS = ['center', 'left'] as const;
+export type EuiDescriptionListAlignment = typeof ALIGNMENTS[number];
 
-export const TYPES = keysOf(typesToClassNameMap);
-
-export const alignmentsToClassNameMap = {
-  center: 'euiDescriptionList--center',
-  left: '',
-};
-
-export const ALIGNMENTS = keysOf(alignmentsToClassNameMap);
-
-export const textStylesToClassNameMap = {
-  normal: '',
-  reverse: 'euiDescriptionList--reverse',
-};
-
-export const TEXT_STYLES = keysOf(textStylesToClassNameMap);
+export const TEXT_STYLES = ['normal', 'reverse'] as const;
+export type EuiDescriptionListTextStyle = typeof TEXT_STYLES[number];
