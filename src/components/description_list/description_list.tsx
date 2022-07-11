@@ -35,14 +35,13 @@ export const EuiDescriptionList: FunctionComponent<
   type = 'row',
   ...rest
 }) => {
-  const styles = euiDescriptionListStyles();
-  const isMobile = useIsWithinBreakpoints(['xs', 's']);
+  const euiTheme = useEuiTheme();
+  const styles = euiDescriptionListStyles(euiTheme);
 
   const cssStyles = [
     styles.euiDescriptionList,
+    styles[type],
     styles[align],
-    (type === 'column' || (type === 'responsiveColumn' && !isMobile)) &&
-      styles.column,
   ];
 
   const classes = classNames(
