@@ -19,13 +19,12 @@ export const euiImageFullscreenWrapperStyles = (
     // Base
     euiImageFullscreenWrapper: css`
       display: inline-block;
-      max-width: 100%;
       position: relative;
       line-height: 0; // Fixes cropping when image is resized by forcing its height to be determined by the image not line-height
       flex-shrink: 0; // Don't ever let this shrink in height if direct descendent of flex
       position: relative;
-      max-height: 80vh;
-      max-width: 80vw;
+      ${logicalCSS('max-height', '80vh')};
+      ${logicalCSS('max-width', '80vh')};
 
       ${euiCanAnimate} {
         animation: ${euiImageFullScreen(euiTheme.size.xxxxl)}
