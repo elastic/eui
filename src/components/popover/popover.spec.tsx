@@ -53,14 +53,6 @@ describe('EuiPopover', () => {
     });
 
     describe('initialFocus', () => {
-      it('does not focus anything if `initialFocus` is false', () => {
-        cy.mount(
-          <PopoverComponent initialFocus={false}>Test</PopoverComponent>
-        );
-        cy.get('[data-test-subj="togglePopover"]').click();
-        cy.focused().should('have.attr', 'data-test-subj', 'togglePopover');
-      });
-
       it('focuses selector strings', () => {
         cy.mount(
           <PopoverComponent initialFocus="#test">

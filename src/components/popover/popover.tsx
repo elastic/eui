@@ -111,11 +111,11 @@ export interface EuiPopoverProps {
    * Specifies what element should initially have focus; Can be a DOM
    * node, or a selector string (which will be passed to
    * document.querySelector() to find the DOM node), or a function that
-   * returns a DOM node
-   * Set to `false` to prevent initial auto-focus. Use only
-   * when your app handles setting initial focus state.
+   * returns a DOM node.
+   *
+   * If not passed, initial focus defaults to the popover panel.
    */
-  initialFocus?: FocusTarget | false;
+  initialFocus?: FocusTarget;
   /**
    * Passed directly to EuiPortal for DOM positioning. Both properties are
    * required if prop is specified
