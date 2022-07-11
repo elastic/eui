@@ -147,10 +147,15 @@ export const CommentListExample = {
               <li>
                 <EuiCode>timelineIcon</EuiCode>: Shows an icon that should
                 indicate who is the author of the comment. To customize, pass a{' '}
-                <EuiCode>string</EuiCode> as an{' '}
-                <EuiCode>EuiIcon[&apos;type&apos;]</EuiCode> or any{' '}
-                <EuiCode>ReactNode</EuiCode>. If no icon is provided, it will
-                default to the <EuiCode>username</EuiCode>&apos;s initials.
+                <EuiCode>string</EuiCode> as a{' '}
+                <EuiCode>EuiIcon[&apos;type&apos;]</EuiCode> or a{' '}
+                <EuiCode>ReactNode</EuiCode>, preferably a{' '}
+                <Link to="/display/avatar">
+                  <strong>EuiAvatar</strong>
+                </Link>
+                . If no icon is provided, it will default to the{' '}
+                <EuiCode>username</EuiCode>
+                &apos;s initials.
               </li>
               <li>
                 <EuiCode>eventIcon</EuiCode>: Icon that shows before the
@@ -162,10 +167,7 @@ export const CommentListExample = {
                 <EuiCode>username</EuiCode>: Author of the comment.
               </li>
               <li>
-                <EuiCode>event</EuiCode>: Shows inside a badge denoting what
-                type of event it is. Use in conjunction with{' '}
-                <EuiCode>severity</EuiCode> and <EuiCode>badgeColor</EuiCode> to
-                indicate the level of urgency.
+                <EuiCode>event</EuiCode>: Describes the event that took place.
               </li>
               <li>
                 <EuiCode>timestamp</EuiCode>: Time of occurrence of the event.
@@ -183,8 +185,8 @@ export const CommentListExample = {
                 </Link>
               </li>
               <li>
-                <EuiCode>children</EuiCode>: Use this prop to pass a user
-                message or any custom component.
+                <EuiCode>children</EuiCode>: A user message or any custom
+                component.
               </li>
             </ul>
           </EuiText>
@@ -241,7 +243,7 @@ export const CommentListExample = {
             </li>
             <li>
               You can further customize the timeline icon by passing to the{' '}
-              <EuiCode>EuiComment.timelineIcon</EuiCode> a{' '}
+              <EuiCode>timelineIcon</EuiCode> a{' '}
               <Link to="/display/avatar">
                 <strong>EuiAvatar</strong>
               </Link>
