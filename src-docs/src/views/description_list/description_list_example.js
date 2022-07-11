@@ -204,7 +204,7 @@ export const DescriptionListExample = {
           <p>
             To return to the typical row format on smaller screens set{' '}
             <EuiCode>type</EuiCode> to <EuiCode>responsiveColumn</EuiCode>. The
-            following list will is only column format on larger screens.
+            following list will only show the column format on larger screens.
           </p>
         </Fragment>
       ),
