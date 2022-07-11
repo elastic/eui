@@ -9,15 +9,27 @@
 import { css } from '@emotion/react';
 import { logicalTextAlignCSS } from '../../global_styling';
 
-export const euiDescriptionListStyles = () => {
+export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
+  // Flex display for column and responsive column
+  const columnDisplay = `
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;  
+  `;
+
   return {
     euiDescriptionList: css``,
 
-    // Flex display for column and responsive column
+    // Types
+    row: css``,
+    inline: css``,
     column: css`
-      display: flex;
-      align-items: baseline;
-      flex-wrap: wrap;
+      ${columnDisplay}
+    `,
+    responsiveColumn: css`
+      ${euiBreakpoint(['xs', 's'], euiThemeContext)} {
+        ${columnDisplay}
+      }
     `,
 
     // Alignment
