@@ -6,15 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, { createContext } from 'react';
+import { createContext } from 'react';
 import { EuiDescriptionListProps } from './description_list_types';
-
-interface DescriptionListContextProps {
-  align?: EuiDescriptionListProps['align'];
-  compressed?: EuiDescriptionListProps['compressed'];
-  textStyle?: EuiDescriptionListProps['textStyle'];
-  type?: EuiDescriptionListProps['type'];
-}
 
 export const EuiDescriptionListContext = createContext<EuiDescriptionListProps>(
   {
@@ -23,26 +16,3 @@ export const EuiDescriptionListContext = createContext<EuiDescriptionListProps>(
     align: 'left',
   }
 );
-
-interface ContextProviderProps extends Required<DescriptionListContextProps> {
-  /**
-   * ReactNode to render as this component's content
-   */
-  children: React.ReactNode;
-}
-
-export function EuiDescriptionListContextProvider({
-  children,
-  type,
-  textStyle,
-  align,
-  compressed,
-}: ContextProviderProps) {
-  return (
-    <EuiDescriptionListContext.Provider
-      value={{ type, textStyle, align, compressed }}
-    >
-      {children}
-    </EuiDescriptionListContext.Provider>
-  );
-}

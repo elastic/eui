@@ -19,7 +19,7 @@ import { euiDescriptionListStyles } from './description_list.styles';
 
 import { EuiDescriptionListProps } from './description_list_types';
 
-import { EuiDescriptionListContextProvider } from './description_list_context';
+import { EuiDescriptionListContext } from './description_list_context';
 
 export const EuiDescriptionList: FunctionComponent<
   CommonProps & HTMLAttributes<HTMLDListElement> & EuiDescriptionListProps
@@ -82,15 +82,12 @@ export const EuiDescriptionList: FunctionComponent<
   }
 
   return (
-    <EuiDescriptionListContextProvider
-      type={type}
-      compressed={compressed}
-      textStyle={textStyle}
-      align={align}
+    <EuiDescriptionListContext.Provider
+      value={{ type, compressed, textStyle, align }}
     >
       <dl className={classes} css={cssStyles} {...rest}>
         {childrenOrListItems}
       </dl>
-    </EuiDescriptionListContextProvider>
+    </EuiDescriptionListContext.Provider>
   );
 };
