@@ -450,13 +450,9 @@ describe('EuiPopover', () => {
       expect(rafSpy).toHaveBeenCalledTimes(1);
       expect(activeAnimationFrames.size).toEqual(1);
 
-      jest.advanceTimersByTime(10);
-      expect(rafSpy).toHaveBeenCalledTimes(2);
-      expect(activeAnimationFrames.size).toEqual(2);
-
       component.unmount();
-      expect(window.clearTimeout).toHaveBeenCalledTimes(10);
-      expect(cafSpy).toHaveBeenCalledTimes(2);
+      expect(window.clearTimeout).toHaveBeenCalledTimes(9);
+      expect(cafSpy).toHaveBeenCalledTimes(1);
       expect(activeAnimationFrames.size).toEqual(0);
 
       // EUI's jest configuration throws an error if there are any console.error calls, like
