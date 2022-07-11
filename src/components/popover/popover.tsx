@@ -712,7 +712,6 @@ export class EuiPopover extends Component<Props, State> {
       arrowChildren,
       repositionOnScroll,
       zIndex,
-      initialFocus,
       attachToAnchor,
       display,
       offset,
@@ -722,6 +721,7 @@ export class EuiPopover extends Component<Props, State> {
       'aria-labelledby': ariaLabelledBy,
       container,
       focusTrapProps,
+      initialFocus: initialFocusProp,
       tabIndex: tabIndexProp,
       ...rest
     } = this.props;
@@ -752,7 +752,7 @@ export class EuiPopover extends Component<Props, State> {
 
     if (!this.state.suppressingPopover && (isOpen || this.state.isClosing)) {
       let tabIndex = tabIndexProp;
-      let initialFocus;
+      let initialFocus = initialFocusProp;
       let ariaDescribedby;
       let ariaLive: HTMLAttributes<any>['aria-live'];
 
@@ -766,8 +766,9 @@ export class EuiPopover extends Component<Props, State> {
       if (ownFocus || panelAriaModal !== 'true') {
         tabIndex = tabIndexProp ?? 0;
         ariaLive = 'off';
-
-        initialFocus = () => this.panel!;
+        if (!initialFocus) {
+          initialFocus = () => this.panel!;
+        }
       } else {
         ariaLive = 'assertive';
       }
