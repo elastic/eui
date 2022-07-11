@@ -37,7 +37,7 @@ export const euiDescriptionListDescriptionStyles = (
     },
 
     // Row type is the default DOM layout
-    row: undefined,
+    row: css``,
 
     column: css`
       width: 50%; // Flex-basis doesn't work in IE with padding
