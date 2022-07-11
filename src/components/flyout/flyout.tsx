@@ -12,7 +12,6 @@ import React, {
   useState,
   forwardRef,
   ComponentPropsWithRef,
-  CSSProperties,
   ElementType,
   Fragment,
   FunctionComponent,
@@ -21,160 +20,38 @@ import React, {
 } from 'react';
 import classnames from 'classnames';
 
+import { EuiButtonIcon } from '../button';
+import { EuiFocusTrap } from '../focus_trap';
+import { EuiOverlayMask } from '../overlay_mask';
+
 import {
   keys,
   EuiWindowEvent,
   useCombinedRefs,
-  EuiBreakpointSize,
   isWithinMinBreakpoint,
   throttle,
   useEuiTheme,
 } from '../../services';
 
-import { CommonProps, keysOf, PropsOfElement } from '../common';
-import { EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
-import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
-import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
+import {
+  EuiFlyoutProps,
+  defaultElement,
+  typeToClassNameMap,
+  sideToClassNameMap,
+  paddingSizeToClassNameMap,
+  sizeToClassNameMap,
+  isEuiFlyoutSizeNamed,
+  _EuiFlyoutSide,
+  _EuiFlyoutType,
+  EuiFlyoutPaddingSize,
+} from './flyout_types';
+
+import { EuiFlyoutContextProvider } from './flyout_context';
+
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
 import { euiFlyoutStyles } from './flyout.styles';
-
-const typeToClassNameMap = {
-  push: 'euiFlyout--push',
-  overlay: null,
-};
-
-export const TYPES = keysOf(typeToClassNameMap);
-type _EuiFlyoutType = typeof TYPES[number];
-
-const sideToClassNameMap = {
-  left: 'euiFlyout--left',
-  right: null,
-};
-
-export const SIDES = keysOf(sideToClassNameMap);
-type _EuiFlyoutSide = typeof SIDES[number];
-
-const sizeToClassNameMap = {
-  s: 'euiFlyout--small',
-  m: 'euiFlyout--medium',
-  l: 'euiFlyout--large',
-};
-
-export const SIZES = keysOf(sizeToClassNameMap);
-export type EuiFlyoutSize = typeof SIZES[number];
-
-/**
- * Custom type checker for named flyout sizes since the prop
- * `size` can also be CSSProperties['width'] (string | number)
- */
-function isEuiFlyoutSizeNamed(value: any): value is EuiFlyoutSize {
-  return SIZES.includes(value as any);
-}
-
-const paddingSizeToClassNameMap = {
-  none: 'euiFlyout--paddingNone',
-  s: 'euiFlyout--paddingSmall',
-  m: 'euiFlyout--paddingMedium',
-  l: 'euiFlyout--paddingLarge',
-};
-
-export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
-type _EuiFlyoutPaddingSize = typeof PADDING_SIZES[number];
-
-interface _EuiFlyoutProps {
-  onClose: (event: MouseEvent | TouchEvent | KeyboardEvent) => void;
-  /**
-   * Defines the width of the panel.
-   * Pass a predefined size of `s | m | l`, or pass any number/string compatible with the CSS `width` attribute
-   */
-  size?: EuiFlyoutSize | CSSProperties['width'];
-  /**
-   * Sets the max-width of the panel,
-   * set to `true` to use the default size,
-   * set to `false` to not restrict the width,
-   * set to a number for a custom width in px,
-   * set to a string for a custom width in custom measurement.
-   */
-  maxWidth?: boolean | number | string;
-  /**
-   * Customize the padding around the content of the flyout header, body and footer
-   */
-  paddingSize?: _EuiFlyoutPaddingSize;
-  /**
-   * Adds an EuiOverlayMask and wraps in an EuiPortal
-   */
-  ownFocus?: boolean;
-  /**
-   * Hides the default close button. You must provide another close button somewhere within the flyout.
-   */
-  hideCloseButton?: boolean;
-  /**
-   * Specify an aria-label for the close button of the flyout.
-   * Default is `'Close this dialog'`.
-   */
-  closeButtonAriaLabel?: string;
-  /**
-   * Extends EuiButtonIconProps onto the close button
-   */
-  closeButtonProps?: Partial<EuiButtonIconPropsForButton>;
-  /**
-   * Position of close button.
-   * `inside`: Floating to just inside the flyout, always top right;
-   * `outside`: Floating just outside the flyout near the top (side dependent on `side`). Helpful when the close button may cover other interactable content.
-   */
-  closeButtonPosition?: 'inside' | 'outside';
-  /**
-   * Adjustments to the EuiOverlayMask that is added when `ownFocus = true`
-   */
-  maskProps?: EuiOverlayMaskProps;
-  /**
-   * How to display the the flyout in relation to the body content;
-   * `push` keeps it visible, pushing the `<body>` content via padding
-   */
-  type?: _EuiFlyoutType;
-  /**
-   * Forces this interaction on the mask overlay or body content.
-   * Defaults depend on `ownFocus` and `type` values
-   */
-  outsideClickCloses?: boolean;
-  /**
-   * Which side of the window to attach to.
-   * The `left` option should only be used for navigation.
-   */
-  side?: _EuiFlyoutSide;
-  /**
-   * Defaults to `dialog` which is best for most cases of the flyout.
-   * Otherwise pass in your own, aria-role, or `null` to remove it and use the semantic `as` element instead
-   */
-  role?: null | string;
-  /**
-   * Named breakpoint or pixel value for customizing the minimum window width to enable the `push` type
-   */
-  pushMinBreakpoint?: EuiBreakpointSize | number;
-  style?: CSSProperties;
-  /**
-   * Object of props passed to EuiFocusTrap.
-   * `shards` specifies an array of elements that will be considered part of the flyout, preventing the flyout from being closed when clicked.
-   * `closeOnMouseup` will delay the close callback, allowing time for external toggle buttons to handle close behavior.
-   */
-  focusTrapProps?: Pick<EuiFocusTrapProps, 'closeOnMouseup' | 'shards'>;
-}
-
-const defaultElement = 'div';
-
-type Props<T extends ElementType> = CommonProps & {
-  /**
-   * Sets the HTML element for `EuiFlyout`
-   */
-  as?: T;
-} & _EuiFlyoutProps &
-  Omit<PropsOfElement<T>, keyof _EuiFlyoutProps>;
-
-export type EuiFlyoutProps<
-  T extends ElementType = typeof defaultElement
-> = Props<T> & Omit<ComponentPropsWithRef<T>, keyof Props<T>>;
 
 export const EuiFlyout = forwardRef(
   <T extends ElementType = typeof defaultElement>(
@@ -314,10 +191,14 @@ export const EuiFlyout = forwardRef(
     const euiTheme = useEuiTheme();
     const styles = euiFlyoutStyles(euiTheme);
 
+    console.log(euiTheme.euiTheme.size.m);
+
     const cssStyles = [
       styles.euiFlyout,
       styles.euiFlyout__closeButton,
       styles[closeButtonPosition],
+      isEuiFlyoutSizeNamed(size) && styles[`flyoutSize--${size}`],
+      styles[`flyoutPadding--${paddingSize}`],
     ];
 
     const classes = classnames(
@@ -325,7 +206,7 @@ export const EuiFlyout = forwardRef(
       typeToClassNameMap[type as _EuiFlyoutType],
       sideToClassNameMap[side as _EuiFlyoutSide],
       sizeClassName,
-      paddingSizeToClassNameMap[paddingSize as _EuiFlyoutPaddingSize],
+      paddingSizeToClassNameMap[paddingSize as EuiFlyoutPaddingSize],
       widthClassName,
       className
     );
@@ -386,25 +267,27 @@ export const EuiFlyout = forwardRef(
      * (both mousedown and mouseup) the overlay mask.
      */
     let flyout = (
-      <EuiFocusTrap
-        disabled={isPushed}
-        clickOutsideDisables={!ownFocus}
-        onClickOutside={onClickOutside}
-        {...focusTrapProps}
-      >
-        <Element
-          {...(rest as ComponentPropsWithRef<T>)}
-          role={role}
-          className={classes}
-          tabIndex={-1}
-          style={newStyle || style}
-          ref={setRef}
-          css={cssStyles}
+      <EuiFlyoutContextProvider paddingSize={paddingSize}>
+        <EuiFocusTrap
+          disabled={isPushed}
+          clickOutsideDisables={!ownFocus}
+          onClickOutside={onClickOutside}
+          {...focusTrapProps}
         >
-          {closeButton}
-          {children}
-        </Element>
-      </EuiFocusTrap>
+          <Element
+            {...(rest as ComponentPropsWithRef<T>)}
+            role={role}
+            className={classes}
+            tabIndex={-1}
+            style={newStyle || style}
+            ref={setRef}
+            css={cssStyles}
+          >
+            {closeButton}
+            {children}
+          </Element>
+        </EuiFocusTrap>
+      </EuiFlyoutContextProvider>
     );
 
     // If ownFocus is set, wrap with an overlay and allow the user to click it to close it.

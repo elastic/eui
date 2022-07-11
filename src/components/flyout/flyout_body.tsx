@@ -6,12 +6,19 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  ReactNode,
+  useContext,
+} from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
 import { useEuiTheme } from '../../services';
 import { euiFlyoutBodyStyles } from './flyout.styles';
+
+import { EuiFlyoutContext } from './flyout_context';
 
 export type EuiFlyoutBodyProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> &
@@ -29,8 +36,10 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
   banner,
   ...rest
 }) => {
+  const { paddingSize } = useContext(EuiFlyoutContext);
+
   const euiTheme = useEuiTheme();
-  const styles = euiFlyoutBodyStyles(euiTheme);
+  const styles = euiFlyoutBodyStyles(paddingSize ? paddingSize : 'l', euiTheme);
 
   const cssStyles = [
     styles.euiFlyoutBody,

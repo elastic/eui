@@ -6,12 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes, useContext } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
 
 import { useEuiTheme } from '../../services';
 import { euiFlyoutFooterStyles } from './flyout.styles';
+
+import { EuiFlyoutContext } from './flyout_context';
 
 export type EuiFlyoutFooterProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> & CommonProps
@@ -22,10 +24,15 @@ export const EuiFlyoutFooter: EuiFlyoutFooterProps = ({
   className,
   ...rest
 }) => {
+  const { paddingSize } = useContext(EuiFlyoutContext);
+
   const euiTheme = useEuiTheme();
   const styles = euiFlyoutFooterStyles(euiTheme);
 
-  const cssStyles = [styles.euiFlyoutFooter];
+  const cssStyles = [
+    styles.euiFlyoutFooter,
+    paddingSize && styles[paddingSize],
+  ];
   const classes = classNames('euiFlyoutFooter', className);
 
   return (

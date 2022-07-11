@@ -15,6 +15,7 @@ import {
 import { UseEuiTheme } from '../../services';
 import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
 import { transparentize } from '../../services/color';
+import { EuiFlyoutPaddingSize } from './flyout_types';
 
 const euiFlyout = keyframes`
   0% {
@@ -28,9 +29,52 @@ const euiFlyout = keyframes`
   }
 `;
 
+const getFlyoutPadding = (
+  paddingSize: EuiFlyoutPaddingSize,
+  { euiTheme }: UseEuiTheme
+) => {
+  const paddingModifiers = {
+    none: 0,
+    s: euiTheme.size.s,
+    m: euiTheme.size.base,
+    l: euiTheme.size.l,
+  };
+
+  return paddingModifiers[paddingSize];
+};
+
 export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
-  //const colorMode = euiThemeContext.colorMode;
+
+  // Removing the 'px' from the end of euiTheme.size.m to perform calculation
+  //euiTheme.form.maxWidth is a CSS Property based on maxWidth and has the potential to be a
+  // string or a number.
+  const euiFormMaxWidth =
+    typeof euiTheme.form.maxWidth === 'string'
+      ? parseInt(euiTheme.form.maxWidth.replace('px', ''), 10)
+      : euiTheme.form.maxWidth;
+
+  const euiSizeMedium: number = parseInt(euiTheme.size.m.replace('px', ''), 10);
+
+  const flyoutSizes = {
+    s: {
+      min: Math.round(euiTheme.breakpoint.m * 0.5),
+      width: '25vw',
+      max: Math.round(euiTheme.breakpoint.s * 0.7),
+    },
+
+    m: {
+      min: euiFormMaxWidth && euiFormMaxWidth + euiSizeMedium * 2,
+      width: '50vw',
+      max: euiTheme.breakpoint.m,
+    },
+
+    l: {
+      min: Math.round(euiTheme.breakpoint.m * 0.9),
+      width: '75vw',
+      max: Math.round(euiTheme.breakpoint.l),
+    },
+  };
 
   return {
     euiFlyout: css`
@@ -82,35 +126,73 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     euiFlyoutBody__banner: css`
       overflow-x: hidden;
     `,
-    'euiFlyout--small': css`
-        min-width: ${Math.round(euiTheme.breakpoint.m * 0.5)}
-        width: 25vw,
-        &.euiFlyout--maxWidth-default {
-            max-width: ${Math.round(euiTheme.breakpoint.s * 0.7)}
-        }
+
+    // Flyout Sizes
+    // Note: Dashes are used because s, m, l are size values for multiple props
+    'flyoutSize--s': css`
+      min-width: ${flyoutSizes.s.min}px;
+      width: ${flyoutSizes.s.width};
+      &.euiFlyout--maxWidth-default {
+        max-width: ${flyoutSizes.s.max}px;
+      }
     `,
-    // 'euiFlyout--medium': css`
-    //     min-width: ${euiTheme.form.maxWidth + euiTheme.size.m * 2}
-    //     width: 25vw,
-    //     &.euiFlyout--maxWidth-default {
-    //         max-width: ${Math.round(euiTheme.breakpoint.s * 0.7)}
-    //     }
-    // `,
+    'flyoutSize--m': css`
+      min-width: ${flyoutSizes.m.min}px;
+      width: ${flyoutSizes.m.width};
+      &.euiFlyout--maxWidth-default {
+        max-width: ${flyoutSizes.m.max}px;
+      }
+    `,
+    'flyoutSize--l': css`
+      min-width: ${flyoutSizes.l.min}px;
+      width: ${flyoutSizes.l.width};
+      &.euiFlyout--maxWidth-default {
+        max-width: ${flyoutSizes.l.max}px;
+      }
+    `,
+
+    // Padding Modifiers
+    'flyoutPadding--none': css`
+      padding: ${getFlyoutPadding('none', euiThemeContext)};
+    `,
+    'flyoutPadding--s': css`
+      padding: ${getFlyoutPadding('s', euiThemeContext)};
+    `,
+    'flyoutPadding--m': css`
+      padding: ${getFlyoutPadding('m', euiThemeContext)};
+    `,
+    'flyoutPadding--l': css`
+      padding: ${getFlyoutPadding('l', euiThemeContext)};
+    `,
   };
 };
 
-export const euiFlyoutHeaderStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiFlyoutHeaderStyles = (
+  paddingSize: EuiFlyoutPaddingSize,
+  euiThemeContext: UseEuiTheme
+) => {
+  const euiTheme = euiThemeContext.euiTheme;
   return {
     euiFlyoutHeader: css`
       flex-grow: 0;
     `,
     border: css`
       border-bottom: ${euiTheme.border.thin};
+      padding-bottom: ${getFlyoutPadding(paddingSize, euiThemeContext)};
+    `,
+
+    // Padding Modifiers
+    padding: css`
+      padding: ${getFlyoutPadding(paddingSize, euiThemeContext)}
+        ${getFlyoutPadding(paddingSize, euiThemeContext)} 0;
     `,
   };
 };
 
-export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiFlyoutBodyStyles = (
+  paddingSize: EuiFlyoutPaddingSize,
+  euiThemeContext: UseEuiTheme
+) => {
   return {
     euiFlyoutBody: css`
       flex-grow: 1;
@@ -119,6 +201,7 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     overflow: css`
       ${euiYScrollWithShadows(euiThemeContext)};
+      padding: ${getFlyoutPadding(paddingSize, euiThemeContext)};
     `,
     'overflow--hasBanner': css`
       ${euiOverflowShadowStyles(euiThemeContext, {
@@ -130,15 +213,22 @@ export const euiFlyoutBodyStyles = (euiThemeContext: UseEuiTheme) => {
       .euiCallOut {
         border: none; // Remove border from callout when it is a flyout banner
         border-radius: 0; // Ensures no border-radius in all themes
+        padding-left: ${getFlyoutPadding(paddingSize, euiThemeContext)};
+        padding-right: ${getFlyoutPadding(paddingSize, euiThemeContext)};
       }
     `,
   };
 };
 
-export const euiFlyoutFooterStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiFlyoutFooterStyles = (euiThemeContext: UseEuiTheme) => {
+  const euiTheme = euiThemeContext.euiTheme;
   return {
     euiFlyoutFooter: css`
       background: ${euiTheme.colors.lightestShade};
     `,
+    none: css``,
+    s: css``,
+    m: css``,
+    l: css``,
   };
 };
