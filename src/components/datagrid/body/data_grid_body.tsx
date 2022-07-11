@@ -68,6 +68,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     rowHeightsOptions,
     rowHeightUtils,
     rowManager,
+    pagination,
   } = data;
   const popoverContext = useContext(DataGridCellPopoverContext);
   const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
@@ -118,6 +119,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     setRowHeight: isFirstColumn ? setRowHeight : undefined,
     rowManager,
     popoverContext,
+    pagination,
   };
 
   if (isLeadingControlColumn) {
@@ -487,6 +489,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
           rowHeightsOptions,
           rowHeightUtils,
           rowManager,
+          pagination,
         }}
         rowCount={
           IS_JEST_ENVIRONMENT || headerRowHeight > 0 ? visibleRowCount : 0
