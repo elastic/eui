@@ -19,7 +19,7 @@ export const euiDescriptionListStyles = () => {
       flex-wrap: wrap;
     `,
 
-    //Alignment modifiers
+    // Alignment
     center: css`
       text-align: center;
     `,
