@@ -13,7 +13,6 @@ import {
   EuiSpacer,
   EuiAccordion,
   EuiCodeBlock,
-  useEuiBackgroundColor,
 } from '../../../../src';
 
 export default ({ snippet }: any) => {
@@ -41,7 +40,6 @@ export default ({ snippet }: any) => {
   const HighlightedArea = ({ children }: { children: ReactNode }) => (
     <span
       css={css`
-        background: ${useEuiBackgroundColor('primary')};
         padding: ${euiTheme.size.xs};
         border-radius: ${euiTheme.border.radius.small};
       `}
@@ -81,6 +79,7 @@ export default ({ snippet }: any) => {
                   display: flex;
                   gap: ${euiTheme.size.xs};
                   align-items: center;
+                  flex-wrap: wrap;
                 `}
               >
                 <span
