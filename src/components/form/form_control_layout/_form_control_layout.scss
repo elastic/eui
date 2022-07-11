@@ -1,10 +1,8 @@
-@import '../../icon/variables';
-
 .euiFormControlLayout {
   // Let the height expand as needed
   @include euiFormControlSize($includeAlternates: true);
 
-  $iconSize: map-get($euiIconSizes, 'medium');
+  $iconSize: map-get($euiFormControlIconSizes, 'medium');
   $iconPadding: $euiFormControlPadding;
   $marginBetweenIcons: $euiFormControlPadding / 2;
 
@@ -16,7 +14,7 @@
       padding-right: $iconPadding + ($iconSize + $marginBetweenIcons) * $i;
 
       &[class*='compressed'] {
-        $iconSizeCompressed: map-get($euiIconSizes, 'small');
+        $iconSizeCompressed: map-get($euiFormControlIconSizes, 'small');
         $iconPaddingCompressed: $euiFormControlCompressedPadding;
 
         padding-right: $iconPaddingCompressed + ($iconSizeCompressed + $marginBetweenIcons) * $i;

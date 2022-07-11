@@ -542,6 +542,7 @@ describe('EuiDataGrid', () => {
       ).toMatchInlineSnapshot(`
         Array [
           Object {
+            "aria-rowindex": 1,
             "className": "euiDataGridRowCell euiDataGridRowCell--firstColumn customClass",
             "data-gridcell-column-id": "A",
             "data-gridcell-column-index": 0,
@@ -567,6 +568,7 @@ describe('EuiDataGrid', () => {
             "tabIndex": -1,
           },
           Object {
+            "aria-rowindex": 1,
             "className": "euiDataGridRowCell euiDataGridRowCell--lastColumn customClass",
             "data-gridcell-column-id": "B",
             "data-gridcell-column-index": 1,
@@ -592,6 +594,7 @@ describe('EuiDataGrid', () => {
             "tabIndex": -1,
           },
           Object {
+            "aria-rowindex": 2,
             "className": "euiDataGridRowCell euiDataGridRowCell--firstColumn customClass",
             "data-gridcell-column-id": "A",
             "data-gridcell-column-index": 0,
@@ -617,6 +620,7 @@ describe('EuiDataGrid', () => {
             "tabIndex": -1,
           },
           Object {
+            "aria-rowindex": 2,
             "className": "euiDataGridRowCell euiDataGridRowCell--lastColumn customClass",
             "data-gridcell-column-id": "B",
             "data-gridcell-column-index": 1,
@@ -2354,9 +2358,8 @@ describe('EuiDataGrid', () => {
 
       // enable the grid to accept focus
       act(() =>
-        component
-          .find('div [data-test-subj="euiDataGridBody"][onFocus]')
-          .props().onFocus!({} as React.FocusEvent)
+        component.find('div [data-test-subj="euiDataGridBody"]').props()
+          .onKeyUp!({ key: keys.TAB } as React.KeyboardEvent)
       );
       component.update();
 
@@ -2553,9 +2556,8 @@ describe('EuiDataGrid', () => {
 
       // enable the grid to accept focus
       act(() =>
-        component
-          .find('div [data-test-subj="euiDataGridBody"][onFocus]')
-          .props().onFocus!({} as React.FocusEvent)
+        component.find('div [data-test-subj="euiDataGridBody"]').props()
+          .onKeyUp!({ key: keys.TAB } as React.KeyboardEvent)
       );
       component.update();
 

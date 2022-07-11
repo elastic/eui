@@ -305,7 +305,24 @@ export type CommonGridProps = CommonProps &
     /**
      * Allows customizing the underlying [react-window grid](https://react-window.vercel.app/#/api/VariableSizeGrid) props.
      */
-    virtualizationOptions?: Partial<VariableSizeGridProps>;
+    virtualizationOptions?: Partial<
+      Omit<
+        VariableSizeGridProps,
+        | 'children'
+        | 'itemData'
+        | 'height'
+        | 'width'
+        | 'rowCount'
+        | 'rowHeight'
+        | 'columnCount'
+        | 'columnWidth'
+        | 'ref'
+        | 'innerRef'
+        | 'outerRef'
+        | 'innerElementType'
+        | 'useIsScrolling'
+      >
+    >;
     /**
      * A #EuiDataGridRowHeightsOptions object that provides row heights options.
      * Allows configuring both default and specific heights of grid rows.
@@ -386,7 +403,7 @@ export interface EuiDataGridBodyProps {
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
   onColumnResize?: EuiDataGridOnColumnResizeHandler;
-  virtualizationOptions?: Partial<VariableSizeGridProps>;
+  virtualizationOptions?: EuiDataGridProps['virtualizationOptions'];
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   isFullScreen: boolean;
   gridStyles: EuiDataGridStyle;
@@ -496,6 +513,7 @@ export interface EuiDataGridCellProps {
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   rowHeightUtils?: RowHeightUtils;
   rowManager?: EuiDataGridRowManager;
+  pagination?: EuiDataGridPaginationProps;
 }
 
 export interface EuiDataGridCellState {
@@ -539,11 +557,16 @@ export interface EuiDataGridColumn {
    */
   display?: ReactNode;
   /**
-   * A Schema to use for the column.
-   * Built-in values are [`boolean`, `currency`, `datetime`, `numeric`, `json`] but can be expanded by defining your own #EuiDataGrid `schemaDetectors` (for in-memory detection).
-   * In general, it is advised to pass in a value here when you are sure of the schema ahead of time, so that you don't need to rely on the automatic detection.
+   * Display name as text for the column.
+   * This can be used to display a readable column name in column hiding/sorting, where `display` won't be used.
+   * This will also be used as a `title` attribute that will display on mouseover (useful if the display text is being truncated by the column width).
+   * If not passed, `id` will be shown as the column name.
    */
-  schema?: string;
+  displayAsText?: string;
+  /**
+   * Initial width (in pixels) of the column
+   */
+  initialWidth?: number;
   /**
    * Defaults to true, always true if cellActions are defined. Defines whether or not the column's cells can be expanded with a popup onClick / keydown.
    */
@@ -553,10 +576,6 @@ export interface EuiDataGridColumn {
    */
   isResizable?: boolean;
   /**
-   * Initial width (in pixels) of the column
-   */
-  initialWidth?: number;
-  /**
    * Whether this column is sortable
    */
   isSortable?: boolean;
@@ -565,9 +584,11 @@ export interface EuiDataGridColumn {
    */
   defaultSortDirection?: 'asc' | 'desc';
   /**
-   * Display name as text for column. This can be used to display column name in column selector and column sorting where `display` won't be used. If not used `id` will be shown as column name in column selector and column sorting.
+   * A Schema to use for the column.
+   * Built-in values are [`boolean`, `currency`, `datetime`, `numeric`, `json`] but can be expanded by defining your own #EuiDataGrid `schemaDetectors` (for in-memory detection).
+   * In general, it is advised to pass in a value here when you are sure of the schema ahead of time, so that you don't need to rely on the automatic detection.
    */
-  displayAsText?: string;
+  schema?: string;
   /**
    * Configuration of column actions. Set to false to disable or use #EuiDataGridColumnActions to configure the actions displayed in the header cell of the column.
    */

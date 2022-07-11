@@ -60,15 +60,21 @@ describe('useFocus', () => {
   });
 
   describe('focusedCell / setFocusedCell', () => {
-    it('gets and sets the focusedCell state', () => {
-      const {
-        return: { focusedCell, setFocusedCell },
-        getUpdatedState,
-      } = testCustomHook(() => useFocus(mockArgs));
-      expect(focusedCell).toEqual(undefined);
+    const {
+      return: { focusedCell, setFocusedCell },
+      getUpdatedState,
+    } = testCustomHook(() => useFocus(mockArgs));
 
+    it('gets and sets the focusedCell state', () => {
+      expect(focusedCell).toEqual(undefined);
       act(() => setFocusedCell([2, 2]));
       expect(getUpdatedState().focusedCell).toEqual([2, 2]);
+    });
+
+    it('does not update if setFocusedCell is called with the same cell X/Y coordinates', () => {
+      const focusedCellInMemory = getUpdatedState().focusedCell;
+      act(() => getUpdatedState().setFocusedCell([2, 2]));
+      expect(getUpdatedState().focusedCell).toBe(focusedCellInMemory); // Would fail if the exact same array wasn't returned
     });
   });
 
@@ -127,18 +133,18 @@ describe('useFocus', () => {
 
   describe('setIsFocusedCellInView / focusProps', () => {
     describe('when no focused child cell is in view', () => {
-      it('renders the grid with tabindex 0 and an onFocus event', () => {
+      it('renders the grid with tabindex 0 and an onKeyUp event', () => {
         const {
           return: { focusProps },
         } = testCustomHook(() => useFocus(mockArgs));
 
         expect(focusProps).toEqual({
           tabIndex: 0,
-          onFocus: expect.any(Function),
+          onKeyUp: expect.any(Function),
         });
       });
 
-      describe('onFocus event', () => {
+      describe('onKeyUp event', () => {
         const mockGrid = document.createElement('div');
         const someChild = mockGrid.appendChild(
           document.createElement('button')
@@ -147,27 +153,44 @@ describe('useFocus', () => {
         it('focuses into the first visible cell of the grid when the grid is directly tabbed to', () => {
           const {
             return: {
-              focusProps: { onFocus },
+              focusProps: { onKeyUp },
             },
             getUpdatedState,
           } = testCustomHook<ReturnValues>(() => useFocus(mockArgs));
 
           act(() =>
-            onFocus!({ target: mockGrid, currentTarget: mockGrid } as any)
+            onKeyUp!({
+              key: keys.TAB,
+              target: mockGrid,
+              currentTarget: mockGrid,
+            } as any)
           );
           expect(getUpdatedState().focusedCell).toEqual([0, -1]);
         });
 
-        it('does nothing if the focus event was not on the grid itself', () => {
+        it('does nothing if not a tab keyup, or if the event was not on the grid itself', () => {
           const {
             return: {
-              focusProps: { onFocus },
+              focusProps: { onKeyUp },
             },
             getUpdatedState,
           } = testCustomHook<ReturnValues>(() => useFocus(mockArgs));
 
           act(() =>
-            onFocus!({ target: someChild, currentTarget: mockGrid } as any)
+            onKeyUp!({
+              key: keys.ARROW_DOWN,
+              target: mockGrid,
+              currentTarget: mockGrid,
+            } as any)
+          );
+          expect(getUpdatedState().focusedCell).toEqual(undefined);
+
+          act(() =>
+            onKeyUp!({
+              key: keys.TAB,
+              target: someChild,
+              currentTarget: mockGrid,
+            } as any)
           );
           expect(getUpdatedState().focusedCell).toEqual(undefined);
         });

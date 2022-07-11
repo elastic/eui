@@ -949,12 +949,28 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 52,
+        "line": 56,
         "column": 32
       },
       "end": {
-        "line": 55,
+        "line": 59,
         "column": 3
+      }
+    },
+    "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
+  },
+  {
+    "token": "euiDataGridHeaderCell.actionsPopoverScreenReaderText",
+    "defString": "To navigate through the list of column actions, press the Tab or Up and Down arrow keys.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 253,
+        "column": 6
+      },
+      "end": {
+        "line": 256,
+        "column": 8
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -4549,12 +4565,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 772,
-        "column": 14
+        "line": 782,
+        "column": 16
       },
       "end": {
-        "line": 775,
-        "column": 16
+        "line": 785,
+        "column": 18
       }
     },
     "filepath": "src/components/popover/popover.tsx"
@@ -4565,11 +4581,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 190,
+        "line": 137,
         "column": 6
       },
       "end": {
-        "line": 196,
+        "line": 143,
         "column": 8
       }
     },

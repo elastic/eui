@@ -4,7 +4,6 @@ exports[`EuiTourStep can be closed 1`] = `
 <div
   class="euiPopover emotion-euiPopover"
   data-test-subj="test subject string"
-  offset="10"
 >
   <div
     class="euiPopover__anchor css-16vtueo-render"
@@ -20,7 +19,6 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
 <div
   class="euiPopover euiPopover-isOpen emotion-euiPopover"
   data-test-subj="test subject string"
-  offset="10"
 >
   <div
     class="euiPopover__anchor css-16vtueo-render"
@@ -124,7 +122,6 @@ exports[`EuiTourStep can have subtitle 1`] = `
 <div
   class="euiPopover euiPopover-isOpen emotion-euiPopover"
   data-test-subj="test subject string"
-  offset="10"
 >
   <div
     class="euiPopover__anchor css-16vtueo-render"
@@ -233,7 +230,6 @@ exports[`EuiTourStep can override the footer action 1`] = `
 <div
   class="euiPopover euiPopover-isOpen emotion-euiPopover"
   data-test-subj="test subject string"
-  offset="10"
 >
   <div
     class="euiPopover__anchor css-16vtueo-render"
@@ -326,7 +322,6 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
 <div
   class="euiPopover euiPopover-isOpen emotion-euiPopover"
   data-test-subj="test subject string"
-  offset="0"
 >
   <div
     class="euiPopover__anchor css-16vtueo-render"
@@ -425,7 +420,6 @@ exports[`EuiTourStep is rendered 1`] = `
 <div
   class="euiPopover euiPopover-isOpen emotion-euiPopover"
   data-test-subj="test subject string"
-  offset="10"
 >
   <div
     class="euiPopover__anchor css-16vtueo-render"

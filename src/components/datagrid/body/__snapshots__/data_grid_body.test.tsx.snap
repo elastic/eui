@@ -30,17 +30,17 @@ exports[`EuiDataGridBody renders 1`] = `
           style="margin-right:0px"
         />
         <div
-          class="euiPopover emotion-euiPopover"
-          offset="7"
+          class="euiPopover eui-fullWidth emotion-euiPopover"
         >
           <div
-            class="euiPopover__anchor euiDataGridHeaderCell__anchor css-16vtueo-render"
+            class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
           >
             <button
               class="euiDataGridHeaderCell__button"
             >
               <div
                 class="euiDataGridHeaderCell__content"
+                title="columnA"
               >
                 columnA
               </div>
@@ -73,17 +73,17 @@ exports[`EuiDataGridBody renders 1`] = `
           style="margin-right:0px"
         />
         <div
-          class="euiPopover emotion-euiPopover"
-          offset="7"
+          class="euiPopover eui-fullWidth emotion-euiPopover"
         >
           <div
-            class="euiPopover__anchor euiDataGridHeaderCell__anchor css-16vtueo-render"
+            class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
           >
             <button
               class="euiDataGridHeaderCell__button"
             >
               <div
                 class="euiDataGridHeaderCell__content"
+                title="columnB"
               >
                 columnB
               </div>
@@ -101,6 +101,7 @@ exports[`EuiDataGridBody renders 1`] = `
       </div>
     </div>
     <div
+      aria-rowindex="1"
       class="euiDataGridRowCell euiDataGridRowCell--boolean euiDataGridRowCell--firstColumn"
       data-gridcell-column-id="columnA"
       data-gridcell-column-index="0"
@@ -128,12 +129,13 @@ exports[`EuiDataGridBody renders 1`] = `
           <p
             class="emotion-euiScreenReaderOnly"
           >
-            Row: 1; Column: 1
+            - columnA, column 1, row 1
           </p>
         </div>
       </div>
     </div>
     <div
+      aria-rowindex="1"
       class="euiDataGridRowCell euiDataGridRowCell--string euiDataGridRowCell--lastColumn"
       data-gridcell-column-id="columnB"
       data-gridcell-column-index="1"
@@ -161,7 +163,7 @@ exports[`EuiDataGridBody renders 1`] = `
           <p
             class="emotion-euiScreenReaderOnly"
           >
-            Row: 1; Column: 2
+            - columnB, column 2, row 1
           </p>
         </div>
       </div>
