@@ -32,7 +32,7 @@ export const euiDescriptionListDescriptionStyles = (
       `,
       // Align description text left when DecriptionList is centered
       left: css`
-        ${logicalTextAlignCSS('left')};
+        ${logicalTextAlignCSS('left')}
       `,
     },
 

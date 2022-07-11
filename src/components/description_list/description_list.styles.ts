@@ -7,6 +7,7 @@
  */
 
 import { css } from '@emotion/react';
+import { logicalTextAlignCSS } from '../../global_styling';
 
 export const euiDescriptionListStyles = () => {
   return {
@@ -21,8 +22,10 @@ export const euiDescriptionListStyles = () => {
 
     // Alignment
     center: css`
-      text-align: center;
+      ${logicalTextAlignCSS('center')}
     `,
-    left: css``,
+    left: css`
+      ${logicalTextAlignCSS('left')}
+    `,
   };
 };
