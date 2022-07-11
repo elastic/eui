@@ -7,14 +7,20 @@ import {
 } from '../../../../src/components';
 
 export default () => (
-  <EuiDescriptionList align="center">
-    <EuiDescriptionListTitle>Dota 2</EuiDescriptionListTitle>
+  <EuiDescriptionList>
+    <EuiDescriptionListTitle>
+      The Elder Scrolls: Morrowind
+    </EuiDescriptionListTitle>
     <EuiDescriptionListDescription>
-      A videogame that I have spent way too much time on over the years.
+      The opening music alone evokes such strong memories.
     </EuiDescriptionListDescription>
-    <EuiDescriptionListTitle>Kings Quest VI</EuiDescriptionListTitle>
+    <EuiDescriptionListTitle>TIE Fighter</EuiDescriptionListTitle>
     <EuiDescriptionListDescription>
-      The game that forced me to learn DOS.
+      The sequel to XWING, join the dark side and fly for the Emperor.
+    </EuiDescriptionListDescription>
+    <EuiDescriptionListTitle>Quake 2</EuiDescriptionListTitle>
+    <EuiDescriptionListDescription>
+      The game that made me drop out of college.
     </EuiDescriptionListDescription>
   </EuiDescriptionList>
 );

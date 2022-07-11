@@ -27,11 +27,21 @@ const descriptionListSnippet = [
 import DescriptionListSeparate from './description_list_separate';
 const descriptionListSeparateSource = require('!!raw-loader!./description_list_separate');
 const descriptionListSeparateSnippet = [
-  `<EuiDescriptionList align="center">
-  <EuiDescriptionListTitle>Dota 2</EuiDescriptionListTitle>
+  `<EuiDescriptionList>
+  <EuiDescriptionListTitle>
+    The Elder Scrolls: Morrowind
+  </EuiDescriptionListTitle>
   <EuiDescriptionListDescription>
-    A videogame that I have spent way too much time on over the years.
+    The opening music alone evokes such strong memories.
   </EuiDescriptionListDescription>
+  <EuiDescriptionListTitle>TIE Fighter</EuiDescriptionListTitle>
+  <EuiDescriptionListDescription>
+    The sequel to XWING, join the dark side and fly for the Emperor.
+  </EuiDescriptionListDescription>
+  <EuiDescriptionListTitle>Quake 2</EuiDescriptionListTitle>
+    <EuiDescriptionListDescription>
+      The game that made me drop out of college.
+    </EuiDescriptionListDescription>
 </EuiDescriptionList>`,
 ];
 
@@ -193,10 +203,8 @@ export const DescriptionListExample = {
         <Fragment>
           <p>
             To return to the typical row format on smaller screens set{' '}
-            <EuiCode>type</EuiCode> to <EuiCode>responsiveColumn</EuiCode>.{' '}
-            <em>
-              The following list will is only column format on larger screens.
-            </em>
+            <EuiCode>type</EuiCode> to <EuiCode>responsiveColumn</EuiCode>. The
+            following list will is only column format on larger screens.
           </p>
         </Fragment>
       ),
