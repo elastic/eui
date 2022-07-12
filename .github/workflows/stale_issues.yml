@@ -33,7 +33,7 @@ jobs:
           remove-stale-when-updated: true
           enable-statistics: true
           debug-only: false
-  answered: # automatically close issues labeled as 'answered' if there was no response in 7 days
+  answered: # automatically close issues labeled as 'answered' if there was no response in 3 days
     permissions:
       issues: write
     runs-on: ubuntu-latest
@@ -41,7 +41,7 @@ jobs:
       - uses: actions/stale@v3
         with:
           days-before-stale: -1 # the label should be manually applied
-          days-before-close: 7
+          days-before-close: 3
           only-issue-labels: 'answered'
           stale-issue-label: 'answered'
           remove-stale-when-updated: true
