@@ -1,8 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../../components';
-import { EuiCode, EuiSpacer, EuiCallOut } from '../../../../../src/components';
+import {
+  EuiCode,
+  EuiSpacer,
+  EuiCallOut,
+  EuiTitle,
+  EuiLink,
+} from '../../../../../src/components';
 
 import { EuiDataGridRefProps } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
@@ -31,6 +36,12 @@ export const DataGridAdvancedExample = {
   sections: [
     {
       title: 'Ref methods',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: dataGridRefSource,
+        },
+      ],
       text: (
         <>
           <p>
@@ -76,8 +87,6 @@ export const DataGridAdvancedExample = {
             </li>
           </ul>
 
-          <EuiSpacer size="s" />
-
           <EuiCallOut title="Handling cell location">
             When using <EuiCode>setFocusedCell</EuiCode> or{' '}
             <EuiCode>openCellPopover</EuiCode>, keep in mind:
@@ -98,26 +107,22 @@ export const DataGridAdvancedExample = {
               </li>
             </ul>
           </EuiCallOut>
-        </>
-      ),
-    },
-    {
-      title: 'react-window methods',
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: dataGridRefSource,
-        },
-      ],
-      text: (
-        <>
+
+          <EuiSpacer size="s" />
+
+          <EuiTitle>
+            <h3>react-window methods</h3>
+          </EuiTitle>
           <p>
             <EuiCode>EuiDataGrid</EuiCode> also exposes several underlying
             methods from{' '}
-            <Link to="https://react-window.vercel.app/#/api/VariableSizeGrid">
+            <EuiLink
+              href="https://react-window.vercel.app/#/api/VariableSizeGrid"
+              target="_blank"
+            >
               react-window&apos;s <EuiCode>VariableSizeGrid</EuiCode> imperative
               API
-            </Link>{' '}
+            </EuiLink>{' '}
             via its <EuiCode>ref</EuiCode>:
           </p>
           <ul>
@@ -143,14 +148,12 @@ export const DataGridAdvancedExample = {
               </p>
             </li>
           </ul>
-
-          <EuiSpacer size="s" />
-
-          <EuiCallOut title="Handling cell location">
+          <EuiCallOut title="react-window vs. EUI">
             <p>
-              Unlike in other EUI APIs, <EuiCode>rowIndex</EuiCode> refers to
-              the visible <EuiCode>rowIndex</EuiCode> when passed to a method of
-              the native <EuiCode>react-window</EuiCode> API.
+              Unlike EUI&apos;s ref APIs, <EuiCode>rowIndex</EuiCode> here
+              refers to the <strong>visible</strong> <EuiCode>rowIndex</EuiCode>{' '}
+              when passed to a method of a native{' '}
+              <EuiCode>react-window</EuiCode> API.
             </p>
             <p>
               For example:{' '}
@@ -158,7 +161,7 @@ export const DataGridAdvancedExample = {
                 {'scrollToItem({ rowIndex: 50, columnIndex: 0 })'}
               </EuiCode>{' '}
               will always scroll to 51st visible row on the currently visible
-              page, regardless of what content is in the cell. In contrast,{' '}
+              page, regardless of the content in the cell. In contrast,{' '}
               <EuiCode>
                 {'setFocusedCell({ rowIndex: 50, colIndex: 0 })'}
               </EuiCode>{' '}
