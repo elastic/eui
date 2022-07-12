@@ -22,17 +22,17 @@ export const euiBreakpoint = (
   // Check to see if both min-width and max-width should be set
   // If sizes only contains one element and it is the smallest size (xs), don't set a min-width
   if (sizes.length === 1 && sizes[0] === 'xs') {
-    return euiBreakpointMax(sizes[0], euiThemeContext);
+    return `@media only screen and (max-width: ${getMaxWidthFromBreakpoint(
+      sizes[0]
+    )}px)`;
   } // If sizes only contains one elements and it is the largest size (xl), don't set a max-width
   else if (sizes.length === 1 && sizes[0] === 'xl') {
     return euiBreakpointMin(sizes[0], euiThemeContext);
   } // Else, set a min-width and max-width
   else {
-    // minSize should equal the first element in the sizes array and the mazSize should equal the last element
     const minSize = sizes[0];
     const maxSize = sizes[sizes.length - 1];
 
-    // -1px to prevent the overlap breakpoints
     return `@media only screen and (min-width: ${
       euiTheme.breakpoint[minSize]
     }px) and (max-width: ${getMaxWidthFromBreakpoint(maxSize)}px)`;
@@ -41,7 +41,7 @@ export const euiBreakpoint = (
 
 export const useEuiBreakpoint = (sizes: EuiBreakpointSize[]) => {
   const euiTheme = useEuiTheme();
-  euiBreakpoint(sizes, euiTheme);
+  return euiBreakpoint(sizes, euiTheme);
 };
 
 export const euiBreakpointMin = (
@@ -51,6 +51,11 @@ export const euiBreakpointMin = (
   return `@media only screen and (min-width: ${euiTheme.breakpoint[size]}px)`;
 };
 
+export const useEuiBreakpointMin = (size: EuiBreakpointSize) => {
+  const euiTheme = useEuiTheme();
+  return euiBreakpointMin(size, euiTheme);
+};
+
 export const euiBreakpointMax = (
   size: EuiBreakpointSize,
   { euiTheme }: UseEuiTheme
@@ -58,8 +63,13 @@ export const euiBreakpointMax = (
   return `@media only screen and (max-width: ${euiTheme.breakpoint[size]}px)`;
 };
 
+export const useEuiBreakpointMax = (size: EuiBreakpointSize) => {
+  const euiTheme = useEuiTheme();
+  return euiBreakpointMax(size, euiTheme);
+};
+
 const getMaxWidthFromBreakpoint = (size: EuiBreakpointSize) => {
-  // Edge case to catch input of 'xl'
+  // Edge case: Catch max-width for the largest breakpoint in BREAKPOINT_KEYS
   if (size === BREAKPOINT_KEYS[0]) {
     return Number.MAX_SAFE_INTEGER;
   }
