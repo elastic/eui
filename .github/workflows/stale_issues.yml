@@ -46,7 +46,7 @@ jobs:
           stale-issue-label: 'answered'
           remove-stale-when-updated: true
           stale-issue-message: ''
-          close-issue-message: '👋 This issue hasn''t seen activity in 7 days, so we''re automatically closing this issue as answered. Please leave a comment if that''s not the case, or if you have any remaining questions or issues.'
+          close-issue-message: '👋 This issue hasn''t seen activity in 3 days, so we''re automatically closing this issue as answered. Please leave a comment if that''s not the case, or if you have any remaining questions or issues.'
           operations-per-run: 1000
           enable-statistics: true
           debug-only: false
