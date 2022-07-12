@@ -11,12 +11,18 @@ import {
   euiFontSize,
   euiTextBreakWord,
   logicalTextAlignCSS,
+  euiBreakpoint,
 } from '../../global_styling';
 import { tint, UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
 export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
+
+  const columnDisplay = `
+    width: 50%; // Flex-basis doesn't work in IE with padding
+    padding-right: ${euiTheme.size.s};
+  `;
   return {
     euiDescriptionList__title: css`
       ${euiTextBreakWord()};
@@ -24,6 +30,24 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
       &:not(:first-of-type) {
         margin-top: ${euiTheme.size.base};
       }
+    `,
+
+    // Types
+    row: css``,
+    column: css`
+      ${columnDisplay}
+    `,
+    responsiveColumn: css`
+      ${euiBreakpoint(['xs', 's'], euiThemeContext)} {
+        width: 100%;
+        padding: 0;
+      }
+      ${euiBreakpoint(['xl'], euiThemeContext)} {
+        ${columnDisplay}
+      }
+    `,
+    inline: css`
+      display: inline;
     `,
 
     // This nested block handles just the font styling based on compressed and reverse
@@ -37,19 +61,16 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
       compressed: css`
         ${euiTitle(euiThemeContext, 'xxs')}
       `,
-      right: css`
-        ${logicalTextAlignCSS('right')};
-      `,
     },
 
     // Row types is the default DOM layout
-    row: css``,
+    //row: css``,
 
     // Column types
-    column: css`
-      width: 50%; // Flex-basis doesn't work in IE with padding
-      padding-right: ${euiTheme.size.s};
-    `,
+    // column: css`
+    //   width: 50%; // Flex-basis doesn't work in IE with padding
+    //   padding-right: ${euiTheme.size.s};
+    // `,
 
     // Inline types
     inlineStyles: {
@@ -77,9 +98,12 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
       `,
     },
 
-    mobile: css`
-      width: 100%;
-      padding: 0;
+    right: css`
+      ${logicalTextAlignCSS('right')};
     `,
+    // mobile: css`
+    //   width: 100%;
+    //   padding: 0;
+    // `,
   };
 };

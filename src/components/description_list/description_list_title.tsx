@@ -9,7 +9,7 @@
 import React, { HTMLAttributes, FunctionComponent, useContext } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-import { useEuiTheme, useIsWithinBreakpoints } from '../../services';
+import { useEuiTheme } from '../../services';
 import { euiDescriptionListTitleStyles } from './description_list_title.styles';
 import { EuiDescriptionListContext } from './description_list_context';
 
@@ -31,9 +31,9 @@ export const EuiDescriptionListTitle: FunctionComponent<EuiDescriptionListTitleP
 
   const theme = useEuiTheme();
   const styles = euiDescriptionListTitleStyles(theme);
-  const isMobile = useIsWithinBreakpoints(['xs', 's']);
+  //const isMobile = useIsWithinBreakpoints(['xs', 's']);
 
-  let alignStyles;
+  /*let alignStyles;
 
   let fontStyles = [styles.fontStyles[textStyle]];
   if (compressed && textStyle === 'normal') {
@@ -59,14 +59,32 @@ export const EuiDescriptionListTitle: FunctionComponent<EuiDescriptionListTitleP
     if (align === 'center' && type === 'column') {
       alignStyles = [styles.fontStyles.right];
     }
+  }*/
+
+  let conditionalStyles =
+    compressed && textStyle === 'reverse'
+      ? [styles.fontStyles.compressed]
+      : [styles.fontStyles[textStyle]];
+
+  switch (type) {
+    case 'inline':
+      conditionalStyles = compressed
+        ? [styles.inlineStyles.compressed]
+        : [styles.inlineStyles.normal];
+      break;
+
+    case 'responsiveColumn':
+    case 'column':
+      if (align === 'center') {
+        conditionalStyles.push(styles.right);
+      }
+      break;
   }
 
   const cssStyles = [
     styles.euiDescriptionList__title,
-    isMobile && styles.mobile,
-    ...fontStyles,
-    ...typeStyles,
-    alignStyles,
+    styles[type],
+    ...conditionalStyles,
   ];
 
   const classes = classNames('euiDescriptionList__title', className);

@@ -14,7 +14,7 @@ import { EuiDescriptionListTitle } from './description_list_title';
 import { EuiDescriptionListDescription } from './description_list_description';
 import { CommonProps } from '../common';
 
-import { useIsWithinBreakpoints } from '../../services';
+import { useEuiTheme } from '../../services';
 import { euiDescriptionListStyles } from './description_list.styles';
 
 import { EuiDescriptionListProps } from './description_list_types';
@@ -38,11 +38,7 @@ export const EuiDescriptionList: FunctionComponent<
   const euiTheme = useEuiTheme();
   const styles = euiDescriptionListStyles(euiTheme);
 
-  const cssStyles = [
-    styles.euiDescriptionList,
-    styles[type],
-    styles[align],
-  ];
+  const cssStyles = [styles.euiDescriptionList, styles[type], styles[align]];
 
   const classes = classNames(
     'euiDescriptionList',

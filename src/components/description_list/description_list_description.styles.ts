@@ -7,7 +7,11 @@
  */
 
 import { css } from '@emotion/react';
-import { euiFontSize, logicalTextAlignCSS } from '../../global_styling';
+import {
+  euiFontSize,
+  euiBreakpoint,
+  logicalTextAlignCSS,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
@@ -16,8 +20,34 @@ export const euiDescriptionListDescriptionStyles = (
 ) => {
   const { euiTheme } = euiThemeContext;
 
+  const columnDisplay = `
+    width: 50%; // Flex-basis doesn't work in IE with padding
+    padding-left: ${euiTheme.size.s};
+    &:not(:first-of-type) {
+      margin-top: ${euiTheme.size.base};
+    }
+  `;
+
   return {
     euiDescriptionList__description: css``,
+
+    // Types
+    row: css``,
+    column: css`
+      ${columnDisplay}
+    `,
+    responsiveColumn: css`
+      ${euiBreakpoint(['xs', 's'], euiThemeContext)} {
+        width: 100%;
+        padding: 0;
+      }
+      ${euiBreakpoint(['xl'], euiThemeContext)} {
+        ${columnDisplay}
+      }
+    `,
+    inline: css`
+      display: inline;
+    `,
 
     // This nested block handles just the font styling based on compressed and reverse
     fontStyles: {
@@ -30,29 +60,10 @@ export const euiDescriptionListDescriptionStyles = (
       compressed: css`
         ${euiTitle(euiThemeContext, 'xxs')}
       `,
-      // Align description text left when DecriptionList is centered
-      left: css`
-        ${logicalTextAlignCSS('left')}
-      `,
     },
-
-    // Row type is the default DOM layout
-    row: css``,
-
-    column: css`
-      width: 50%; // Flex-basis doesn't work in IE with padding
-      padding-left: ${euiTheme.size.s};
-
-      &:not(:first-of-type) {
-        margin-top: ${euiTheme.size.base};
-      }
-    `,
 
     // Nested inline styles for type and font
     inlineStyles: {
-      inline: css`
-        display: inline;
-      `,
       compressed: css`
         ${euiFontSize(euiThemeContext, 'xs')};
       `,
@@ -61,9 +72,9 @@ export const euiDescriptionListDescriptionStyles = (
       `,
     },
 
-    mobile: css`
-      width: 100%;
-      padding: 0;
+    // Column types should align description text to the left when EuiDecriptionList is centered
+    left: css`
+      ${logicalTextAlignCSS('left')};
     `,
   };
 };

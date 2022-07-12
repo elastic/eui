@@ -7,7 +7,8 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalTextAlignCSS } from '../../global_styling';
+import { logicalTextAlignCSS, euiBreakpoint } from '../../global_styling';
+import { UseEuiTheme } from '../../services';
 
 export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
   // Flex display for column and responsive column
