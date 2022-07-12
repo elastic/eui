@@ -28,6 +28,7 @@ export const euiDescriptionListDescriptionStyles = (
     }
   `;
 
+  console.log(euiBreakpoint(['s', 'l'], euiThemeContext));
   return {
     euiDescriptionList__description: css``,
 
