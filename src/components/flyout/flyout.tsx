@@ -195,8 +195,7 @@ export const EuiFlyout = forwardRef(
 
     const cssStyles = [
       styles.euiFlyout,
-      styles.euiFlyout__closeButton,
-      styles[closeButtonPosition],
+      ,
       isEuiFlyoutSizeNamed(size) && styles[`flyoutSize--${size}`],
       styles[`flyoutPadding--${paddingSize}`],
     ];
@@ -219,10 +218,15 @@ export const EuiFlyout = forwardRef(
         closeButtonProps?.className
       );
 
+      const closeButtonStyles = [
+        styles.euiFlyout__closeButton,
+        styles[closeButtonPosition],
+      ];
       closeButton = (
         <EuiI18n token="euiFlyout.closeAriaLabel" default="Close this dialog">
           {(closeAriaLabel: string) => (
             <EuiButtonIcon
+              css={closeButtonStyles}
               display={closeButtonPosition === 'outside' ? 'fill' : 'empty'}
               iconType="cross"
               color="text"

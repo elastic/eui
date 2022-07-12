@@ -76,6 +76,8 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     },
   };
 
+  console.log(euiTheme.colors.emptyShade);
+
   return {
     euiFlyout: css`
       border-left: ${euiTheme.border.thin};
