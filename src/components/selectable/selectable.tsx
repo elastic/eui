@@ -358,6 +358,7 @@ export class EuiSelectable<T = {}> extends Component<
         event.preventDefault();
         event.stopPropagation();
         if (this.state.activeOptionIndex != null && optionsList) {
+          event.persist(); // NOTE: This is needed for React v16 backwards compatibility
           optionsList.onAddOrRemoveOption(
             this.state.visibleOptions[this.state.activeOptionIndex],
             event
