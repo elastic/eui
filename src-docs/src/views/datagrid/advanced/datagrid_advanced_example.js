@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../../components';
 import { EuiCode, EuiSpacer, EuiCallOut } from '../../../../../src/components';
@@ -30,12 +31,6 @@ export const DataGridAdvancedExample = {
   sections: [
     {
       title: 'Ref methods',
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: dataGridRefSource,
-        },
-      ],
       text: (
         <>
           <p>
@@ -79,27 +74,6 @@ export const DataGridAdvancedExample = {
                 open cell popover.
               </p>
             </li>
-            <li>
-              <p>
-                <EuiCode>
-                  scrollTo({'{ scrollLeft: number, scrollTop: number }'})
-                </EuiCode>{' '}
-                - scrolls the grid to the specified horizontal and vertical
-                pixel offsets.
-              </p>
-            </li>
-            <li>
-              <p>
-                <EuiCode>
-                  scrollToItem(
-                  {
-                    '{align: string = "auto", columnIndex?: number, rowIndex?: number }'
-                  }
-                  )
-                </EuiCode>{' '}
-                - scrolls the grid to the specified row and columns indices
-              </p>
-            </li>
           </ul>
 
           <EuiSpacer size="s" />
@@ -124,12 +98,81 @@ export const DataGridAdvancedExample = {
               </li>
             </ul>
           </EuiCallOut>
+        </>
+      ),
+    },
+    {
+      title: 'react-window methods',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: dataGridRefSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            <EuiCode>EuiDataGrid</EuiCode> also exposes several underlying
+            methods from{' '}
+            <Link to="https://react-window.vercel.app/#/api/VariableSizeGrid">
+              react-window&apos;s <EuiCode>VariableSizeGrid</EuiCode> imperative
+              API
+            </Link>{' '}
+            via its <EuiCode>ref</EuiCode>:
+          </p>
+          <ul>
+            <li>
+              <p>
+                <EuiCode>
+                  scrollTo({'{ scrollLeft: number, scrollTop: number }'})
+                </EuiCode>{' '}
+                - scrolls the grid to the specified horizontal and vertical
+                pixel offsets.
+              </p>
+            </li>
+            <li>
+              <p>
+                <EuiCode>
+                  scrollToItem(
+                  {
+                    '{ align: string = "auto", columnIndex?: number, rowIndex?: number }'
+                  }
+                  )
+                </EuiCode>{' '}
+                - scrolls the grid to the specified row and columns indices
+              </p>
+            </li>
+          </ul>
+
+          <EuiSpacer size="s" />
+
+          <EuiCallOut title="Handling cell location">
+            <p>
+              Unlike in other EUI APIs, <EuiCode>rowIndex</EuiCode> refers to
+              the visible <EuiCode>rowIndex</EuiCode> when passed to a method of
+              the native <EuiCode>react-window</EuiCode> API.
+            </p>
+            <p>
+              For example:{' '}
+              <EuiCode>
+                {'scrollToItem({ rowIndex: 50, columnIndex: 0 })'}
+              </EuiCode>{' '}
+              will always scroll to 51st visible row on the currently visible
+              page, regardless of what content is in the cell. In contrast,{' '}
+              <EuiCode>
+                {'setFocusedCell({ rowIndex: 50, colIndex: 0 })'}
+              </EuiCode>{' '}
+              will scroll to the 51st row in your data, which may not be the
+              51st visible row in the grid if it is paginated or sorted.
+            </p>
+          </EuiCallOut>
 
           <EuiSpacer />
 
           <p>
             The below example shows how to use the internal APIs for a data grid
-            that opens a modal via cell actions.
+            that opens a modal via cell actions, that scroll to specific cells,
+            and that can be put into full-screen mode.
           </p>
         </>
       ),
