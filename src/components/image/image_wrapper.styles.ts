@@ -14,28 +14,27 @@ const _imageMargins = ({
   size,
   hasFloatLeft,
   hasFloatRight,
-  isSmallScreen,
+  euiTheme,
 }: {
   size: string;
   hasFloatLeft: boolean | undefined;
   hasFloatRight: boolean | undefined;
-  isSmallScreen: boolean;
+  euiTheme: UseEuiTheme['euiTheme'];
 }) => {
   const hasFloat = hasFloatLeft || hasFloatRight;
 
-  let mainStyles;
+  const mainStyles = `
+  ${logicalCSS('margin-horizontal', size)};
+  ${logicalCSS('margin-vertical', size)};
 
-  if (hasFloat && isSmallScreen) {
-    mainStyles = `
+  ${
+    hasFloat &&
+    `@media only screen and (max-width: ${euiTheme.breakpoint.m}px) {
       ${logicalCSS('margin-horizontal', 'inherit')};
       ${logicalCSS('margin-vertical', 'inherit')};
-    `;
-  } else {
-    mainStyles = `
-      ${logicalCSS('margin-horizontal', size)};
-      ${logicalCSS('margin-vertical', size)};
-    `;
+    }`
   }
+`;
 
   const floatLeftStyles = `
     ${logicalCSS('margin-left', '0')};
@@ -57,8 +56,7 @@ const _imageMargins = ({
 export const euiImageWrapperStyles = (
   euiThemeContext: UseEuiTheme,
   hasFloatLeft: boolean | undefined,
-  hasFloatRight: boolean | undefined,
-  isSmallScreen: boolean
+  hasFloatRight: boolean | undefined
 ) => {
   const { euiTheme } = euiThemeContext;
 
@@ -82,7 +80,7 @@ export const euiImageWrapperStyles = (
         size: euiTheme.size.s,
         hasFloatLeft,
         hasFloatRight,
-        isSmallScreen,
+        euiTheme,
       })
     ),
     m: css(
@@ -90,7 +88,7 @@ export const euiImageWrapperStyles = (
         size: euiTheme.size.base,
         hasFloatLeft,
         hasFloatRight,
-        isSmallScreen,
+        euiTheme,
       })
     ),
     l: css(
@@ -98,7 +96,7 @@ export const euiImageWrapperStyles = (
         size: euiTheme.size.l,
         hasFloatLeft,
         hasFloatRight,
-        isSmallScreen,
+        euiTheme,
       })
     ),
     xl: css(
@@ -106,27 +104,23 @@ export const euiImageWrapperStyles = (
         size: euiTheme.size.xl,
         hasFloatLeft,
         hasFloatRight,
-        isSmallScreen,
+        euiTheme,
       })
     ),
     // Floats
     left: css`
-      ${isSmallScreen
-        ? `
-          float: none;
-        `
-        : `
-          float: left;
-        `}
+      float: left;
+
+      @media only screen and (max-width: ${euiTheme.breakpoint.m}px) {
+        float: none;
+      }
     `,
     right: css`
-      ${isSmallScreen
-        ? `
-          float: none;
-        `
-        : `
-          float: right;
-        `}
+      float: right;
+
+      @media only screen and (max-width: ${euiTheme.breakpoint.m}px) {
+        float: none;
+      }
     `,
     // Sizes
     fullWidth: css`

@@ -11,7 +11,7 @@ import classNames from 'classnames';
 
 import { useEuiI18n } from '../i18n';
 
-import { useEuiTheme, useIsWithinBreakpoints } from '../../services';
+import { useEuiTheme } from '../../services';
 import { useInnerText } from '../inner_text';
 
 import type { EuiImageWrapperProps } from './image_types';
@@ -34,7 +34,6 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
   fullScreenIconColor,
   isFullWidth,
 }) => {
-  const isSmallScreen = useIsWithinBreakpoints(['xs', 's', 'm']);
   const hasFloatLeft = float === 'left';
   const hasFloatRight = float === 'right';
 
@@ -49,12 +48,7 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
 
   const euiTheme = useEuiTheme();
 
-  const styles = euiImageWrapperStyles(
-    euiTheme,
-    hasFloatLeft,
-    hasFloatRight,
-    isSmallScreen
-  );
+  const styles = euiImageWrapperStyles(euiTheme, hasFloatLeft, hasFloatRight);
   const cssFigureStyles = [
     styles.euiImageWrapper,
     float && styles[float],
