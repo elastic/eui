@@ -1,3 +1,15 @@
+## [`60.3.0`](https://github.com/elastic/eui/tree/v60.3.0)
+
+- `EuiDataGrid`'s imperative API now exposes the `scrollTo` and `scrollToItem` APIs of `react-window`. ([#6042](https://github.com/elastic/eui/pull/6042))
+
+**Bug fixes**
+
+- Fixed drag and drop interactions on EuiAccordion elements ([#6031](https://github.com/elastic/eui/pull/6031))
+- Fixed `EuiDataGrid`'s row count/indices announced to screen readers when virtualized ([#6033](https://github.com/elastic/eui/pull/6033))
+- Fixed `EuiDataGrid`'s current cell row/column position announced to screen readers when sorted and paginated, and also improved column identification and announcement cadence ([#6033](https://github.com/elastic/eui/pull/6033))
+- Fixed `EuiContextMenuPanelDescriptor`'s `width` prop type to correctly reflect that it allows all CSS width values, not just numbers ([#6043](https://github.com/elastic/eui/pull/6043))
+- Fixed `EuiSelectable` onChange keyboard events not being correctly passed back on React v16 ([#6045](https://github.com/elastic/eui/pull/6045))
+
 ## [`60.2.0`](https://github.com/elastic/eui/tree/v60.2.0)
 
 - Added `cluster`,  `container`, `kubernetesNode`, `kubernetesPod` and `namespace` glyphs to `EuiIcon` ([#6001](https://github.com/elastic/eui/pull/6001))
