@@ -197,12 +197,18 @@ const euiGetTextOrnaments = (
   const { customScale } = options;
 
   return `
-  // when the size is 'm' the 'kbd' element get a line bellow the text
+    // when the size is 'm' the 'kbd' element gets a line between the text and the border-bottom
     ${
       customScale === 'm' &&
-      `kbd::after {
+      `kbd {
+        ${logicalCSS('padding-bottom', euiTheme.size.xs)};
+        // ensures when only one character the shape looks like a square
+        ${logicalCSS('min-width', euiTheme.size.l)}; 
+        text-align: center;
+      }
+      
+      kbd::after {
         content: '';
-        display: inline-block;
         border-bottom: 1px solid ${euiTheme.colors.text};
         position: absolute;
         bottom: ${euiTheme.size.xxs};
@@ -334,7 +340,10 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
 
       kbd {
         position: relative;
-        ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
+        display: inline-block;
+        ${logicalCSS('padding-vertical', euiTheme.size.xxs)};
+        ${logicalCSS('padding-horizontal', euiTheme.size.xs)};
+        line-height: 1;
         border: 1px solid ${euiTheme.colors.text};
         border-radius: calc(${euiTheme.border.radius.small} / 2);
       }
