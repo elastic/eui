@@ -69,7 +69,7 @@ export const SelectableExample = {
       title: 'The basics',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: selectableSource,
         },
       ],
@@ -116,7 +116,7 @@ export const SelectableExample = {
       title: 'Searchable',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: selectableSearchSource,
         },
       ],
@@ -169,7 +169,7 @@ export const SelectableExample = {
       title: 'Single selection',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: selectableSingleSource,
         },
       ],
@@ -242,7 +242,7 @@ export const SelectableExample = {
       title: 'Options can be excluded',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: selectableExclusionSource,
         },
       ],
