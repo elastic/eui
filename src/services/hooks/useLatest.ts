@@ -6,10 +6,10 @@
  * Side Public License, v 1.
  */
 
-export * from './useDependentState';
-export * from './useCombinedRefs';
-export * from './useForceRender';
-export * from './useIsWithinBreakpoints';
-export * from './useLatest';
-export * from './useMouseMove';
-export * from './useUpdateEffect';
+import { MutableRefObject, useRef } from 'react';
+
+export function useLatest<Value>(value: Value): MutableRefObject<Value | null> {
+  const latestValueRef = useRef(value);
+  latestValueRef.current = value;
+  return latestValueRef;
+}
