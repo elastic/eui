@@ -3,51 +3,55 @@
 exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
 <nav
   aria-label="aria-label"
-  class="euiBreadcrumbs euiHeaderBreadcrumbs testClass1 testClass2 euiBreadcrumbs--truncate"
+  class="euiBreadcrumbs euiHeaderBreadcrumbs testClass1 testClass2 emotion-euiHeaderBreadcrumbs euiBreadcrumbs--truncate"
   data-test-subj="test subject string"
 >
   <ol
     class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
   >
     <li
-      class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
+      class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated-isHeaderBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-subdued-euiBreadcrumb__content"
+        class="euiLink euiBreadcrumb__content customClass css-zqbxi-euiLink-subdued-euiBreadcrumb__content-isHeaderBreadcrumb"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
+        title="Animals"
       >
         Animals
       </a>
     </li>
     <li
-      class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
+      class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated-isHeaderBreadcrumb"
     >
       <button
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content"
+        class="euiLink euiBreadcrumb__content css-zqbxi-euiLink-subdued-euiBreadcrumb__content-isHeaderBreadcrumb"
+        title="Reptiles"
         type="button"
       >
         Reptiles
       </button>
     </li>
     <li
-      class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
+      class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated-isHeaderBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content"
+        class="euiLink euiBreadcrumb__content css-zqbxi-euiLink-subdued-euiBreadcrumb__content-isHeaderBreadcrumb"
         href="#"
         rel="noreferrer"
+        title="Boa constrictor"
       >
         Boa constrictor
       </a>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated"
+      class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated-isHeaderBreadcrumb"
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isHeaderBreadcrumb"
+        title="Edit"
       >
         Edit
       </span>

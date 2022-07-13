@@ -10,6 +10,8 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../../breadcrumbs';
+import { euiHeaderBreadcrumbsStyles } from './header_breadcrumbs.styles';
+import { useEuiTheme } from '../../../services';
 
 export const EuiHeaderBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   className,
@@ -18,12 +20,23 @@ export const EuiHeaderBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
 }) => {
   const classes = classNames('euiHeaderBreadcrumbs', className);
 
+  // Emotion styles
+  const euiTheme = useEuiTheme();
+
+  // Header breadcrumb base styles
+  const headerBreadcrumbsStyles = euiHeaderBreadcrumbsStyles(euiTheme);
+  const cssHeaderBreadcrumbStyles = [
+    headerBreadcrumbsStyles.euiHeaderBreadcrumbs,
+  ];
+
   return (
     <EuiBreadcrumbs
       max={4}
       truncate
       breadcrumbs={breadcrumbs}
       className={classes}
+      css={cssHeaderBreadcrumbStyles}
+      headerBreadcrumb
       {...rest}
     />
   );

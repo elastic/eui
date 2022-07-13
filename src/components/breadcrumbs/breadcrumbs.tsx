@@ -94,6 +94,11 @@ export type EuiBreadcrumbsProps = CommonProps & {
    * The array of individual #EuiBreadcrumb items
    */
   breadcrumbs: EuiBreadcrumb[];
+
+  /**
+   * Regular breadcrumb or header breadcrumb for styling
+   */
+  headerBreadcrumb?: boolean;
 };
 
 const responsiveDefault: EuiBreadcrumbResponsiveMaxCount = {
@@ -108,6 +113,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   responsive = responsiveDefault,
   truncate = true,
   max = 5,
+  headerBreadcrumb = false,
   ...rest
 }) => {
   const ariaLabel = useEuiI18n('euiBreadcrumbs.nav.ariaLabel', 'Breadcrumbs');
@@ -153,6 +159,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   const cssBreadcrumbStyles = [
     breadcrumbStyles.euiBreadcrumb,
     truncate && breadcrumbStyles.isTruncated,
+    headerBreadcrumb && breadcrumbStyles.isHeaderBreadcrumb,
   ];
 
   const limitBreadcrumbs = (
@@ -208,6 +215,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
       const cssBreadcrumbStylesCollapsed = [
         breadcrumbStyles.euiBreadcrumb,
         breadcrumbStyles.isCollapsed,
+        headerBreadcrumb && breadcrumbStyles.isHeaderBreadcrumb,
       ];
 
       const ellipsisButton = (
@@ -276,6 +284,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
     const cssBreadcrumbContentStyles = [
       breadcrumbContentStyles.euiBreadcrumb__content,
       truncate && breadcrumbContentStyles.isTruncated,
+      headerBreadcrumb && breadcrumbContentStyles.isHeaderBreadcrumb,
     ];
 
     const linkProps = {

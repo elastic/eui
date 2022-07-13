@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
@@ -41,10 +41,10 @@ describe('EuiHeaderBreadcrumbs', () => {
       },
     ];
 
-    const component = render(
+    const component = mount(
       <EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component.render()).toMatchSnapshot();
   });
 });
