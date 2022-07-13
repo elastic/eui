@@ -53,6 +53,23 @@ describe('EuiDataGridCell', () => {
     expect(component).toMatchSnapshot();
   });
 
+  it("renders the cell's `aria-rowindex` correctly when paginated on a different page", () => {
+    const component = mount(
+      <EuiDataGridCell
+        {...requiredProps}
+        pagination={{
+          pageIndex: 3,
+          pageSize: 20,
+          onChangePage: () => {},
+          onChangeItemsPerPage: () => {},
+        }}
+      />
+    );
+    expect(
+      component.find('[data-test-subj="dataGridRowCell"]').prop('aria-rowindex')
+    ).toEqual(61);
+  });
+
   it('renders cell actions', () => {
     const component = mount(
       <EuiDataGridCell
