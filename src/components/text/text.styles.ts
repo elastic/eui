@@ -188,7 +188,7 @@ const euiScaleText = (
   `;
 };
 
-// Internal utility for EuiText ornaments
+// Internal utility for getting EuiText ornaments based on options
 const euiGetTextOrnaments = (
   euiThemeContext: UseEuiTheme,
   options: _FontScaleOptions
