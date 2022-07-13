@@ -76,8 +76,6 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     },
   };
 
-  console.log(euiTheme.colors.emptyShade);
-
   return {
     euiFlyout: css`
       border-left: ${euiTheme.border.thin};
@@ -153,7 +151,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
 
-    // Padding Modifiers
+    // Padding
     'flyoutPadding--none': css`
       padding: ${getFlyoutPadding('none', euiThemeContext)};
     `,
@@ -222,15 +220,33 @@ export const euiFlyoutBodyStyles = (
   };
 };
 
-export const euiFlyoutFooterStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiFlyoutFooterStyles = (
+  paddingSize: EuiFlyoutPaddingSize,
+  euiThemeContext: UseEuiTheme
+) => {
   const euiTheme = euiThemeContext.euiTheme;
+
+  const paddingWithPixels = getFlyoutPadding(paddingSize, euiThemeContext);
+  const paddingAmount =
+    typeof paddingWithPixels === 'string'
+      ? parseInt(paddingWithPixels.replace('px', ''))
+      : paddingWithPixels;
+
   return {
     euiFlyoutFooter: css`
       background: ${euiTheme.colors.lightestShade};
     `,
-    none: css``,
-    s: css``,
-    m: css``,
-    l: css``,
+    none: css`
+      ${paddingWithPixels}
+    `,
+    s: css`
+      ${paddingWithPixels}
+    `,
+    m: css`
+      padding: ${paddingAmount * 0.75}px ${paddingWithPixels};
+    `,
+    l: css`
+      padding: ${paddingAmount / 1.5}px ${paddingWithPixels};
+    `,
   };
 };

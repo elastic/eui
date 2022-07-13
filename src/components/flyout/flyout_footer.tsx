@@ -27,7 +27,10 @@ export const EuiFlyoutFooter: EuiFlyoutFooterProps = ({
   const { paddingSize } = useContext(EuiFlyoutContext);
 
   const euiTheme = useEuiTheme();
-  const styles = euiFlyoutFooterStyles(euiTheme);
+  const styles = euiFlyoutFooterStyles(
+    paddingSize ? paddingSize : 'l',
+    euiTheme
+  );
 
   const cssStyles = [
     styles.euiFlyoutFooter,
