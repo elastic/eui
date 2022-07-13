@@ -315,7 +315,7 @@ export const SelectableExample = {
       title: 'Rendering the options',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: selectableCustomRenderSource,
         },
       ],
@@ -332,10 +332,10 @@ export const SelectableExample = {
           <h3>Selection icons</h3>
           <p>
             You can choose not to display the check and cross icons indicating
-            selection by passing{' '}
-            <EuiCode language="js">showIcons=false</EuiCode>. This is useful for
-            instances that navigate elsewhere on selection or hide their
-            selected options from the list.
+            selection by setting{' '}
+            <EuiCode language="js">listProps.showIcons</EuiCode> to false. This
+            is useful for instances that navigate elsewhere on selection or hide
+            their selected options from the list.
           </p>
           <h3>Group labels</h3>
           <p>
@@ -364,7 +364,7 @@ export const SelectableExample = {
           <p>
             While it is best to stick to the{' '}
             <EuiCode>option.label, option.append, option.prepend</EuiCode> and{' '}
-            <EuiCode>showIcons</EuiCode> props, you can pass a custom{' '}
+            <EuiCode>listProps.showIcons</EuiCode> props, you can pass a custom{' '}
             <EuiCode>renderOption</EuiCode> function which will pass back the
             single <EuiCode>option</EuiCode> object and the{' '}
             <EuiCode>searchValue</EuiCode> to use for highlighting.
