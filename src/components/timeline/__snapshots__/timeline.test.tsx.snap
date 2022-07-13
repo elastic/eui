@@ -2,21 +2,21 @@
 
 exports[`EuiTimeline is rendered with items 1`] = `
 <ol
-  class="euiTimeline"
+  class="euiTimeline emotion-euiTimeline-xl"
   role="list"
 >
   <li
-    class="css-1noe449-euiTimelineItem"
+    class="emotion-euiTimelineItem-center"
   >
     <div
-      class="css-1grznaw-euiTimelineItemIcon-center"
+      class="emotion-euiTimelineItemIcon-center"
     >
       <div
-        class="css-irfkcc-euiTimelineItemIcon__content"
+        class="emotion-euiTimelineItemIcon__content"
       >
         <div
           aria-label="email"
-          class="euiAvatar euiAvatar--m euiAvatar--user css-1jpsc91-euiAvatar-m-user-subdued"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
           role="img"
           title="email"
         >
@@ -30,7 +30,7 @@ exports[`EuiTimeline is rendered with items 1`] = `
       </div>
     </div>
     <div
-      class="css-1a9m88x-euiTimelineItemEvent-center"
+      class="emotion-euiTimelineItemEvent-center"
     >
       <p>
         <strong>
@@ -41,17 +41,17 @@ exports[`EuiTimeline is rendered with items 1`] = `
     </div>
   </li>
   <li
-    class="css-1noe449-euiTimelineItem"
+    class="emotion-euiTimelineItem-top"
   >
     <div
-      class="css-1t86e7q-euiTimelineItemIcon-top"
+      class="emotion-euiTimelineItemIcon-top"
     >
       <div
-        class="css-irfkcc-euiTimelineItemIcon__content"
+        class="emotion-euiTimelineItemIcon__content"
       >
         <div
           aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user css-1jpsc91-euiAvatar-m-user-subdued"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
           role="img"
           title=""
         >
@@ -63,7 +63,235 @@ exports[`EuiTimeline is rendered with items 1`] = `
       </div>
     </div>
     <div
-      class="css-1waxxmm-euiTimelineItemEvent-top"
+      class="emotion-euiTimelineItemEvent-top"
+    >
+      <p>
+        <strong>
+          janet@elastic.co
+        </strong>
+         was invited to the project
+      </p>
+    </div>
+  </li>
+</ol>
+`;
+
+exports[`EuiTimeline props gutterSize l is rendered 1`] = `
+<ol
+  class="euiTimeline emotion-euiTimeline-l"
+  role="list"
+>
+  <li
+    class="emotion-euiTimelineItem-center"
+  >
+    <div
+      class="emotion-euiTimelineItemIcon-center"
+    >
+      <div
+        class="emotion-euiTimelineItemIcon__content"
+      >
+        <div
+          aria-label="email"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+          role="img"
+          title="email"
+        >
+          <span
+            class="euiAvatar__icon"
+            data-euiicon-type="email"
+          >
+            email
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="emotion-euiTimelineItemEvent-center"
+    >
+      <p>
+        <strong>
+          janet@elastic.co
+        </strong>
+         was invited to the project
+      </p>
+    </div>
+  </li>
+  <li
+    class="emotion-euiTimelineItem-top"
+  >
+    <div
+      class="emotion-euiTimelineItemIcon-top"
+    >
+      <div
+        class="emotion-euiTimelineItemIcon__content"
+      >
+        <div
+          aria-label=""
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+          role="img"
+          title=""
+        >
+          <span
+            class="euiAvatar__icon"
+            data-euiicon-type="bolt"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="emotion-euiTimelineItemEvent-top"
+    >
+      <p>
+        <strong>
+          janet@elastic.co
+        </strong>
+         was invited to the project
+      </p>
+    </div>
+  </li>
+</ol>
+`;
+
+exports[`EuiTimeline props gutterSize m is rendered 1`] = `
+<ol
+  class="euiTimeline emotion-euiTimeline-m"
+  role="list"
+>
+  <li
+    class="emotion-euiTimelineItem-center"
+  >
+    <div
+      class="emotion-euiTimelineItemIcon-center"
+    >
+      <div
+        class="emotion-euiTimelineItemIcon__content"
+      >
+        <div
+          aria-label="email"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+          role="img"
+          title="email"
+        >
+          <span
+            class="euiAvatar__icon"
+            data-euiicon-type="email"
+          >
+            email
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="emotion-euiTimelineItemEvent-center"
+    >
+      <p>
+        <strong>
+          janet@elastic.co
+        </strong>
+         was invited to the project
+      </p>
+    </div>
+  </li>
+  <li
+    class="emotion-euiTimelineItem-top"
+  >
+    <div
+      class="emotion-euiTimelineItemIcon-top"
+    >
+      <div
+        class="emotion-euiTimelineItemIcon__content"
+      >
+        <div
+          aria-label=""
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+          role="img"
+          title=""
+        >
+          <span
+            class="euiAvatar__icon"
+            data-euiicon-type="bolt"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="emotion-euiTimelineItemEvent-top"
+    >
+      <p>
+        <strong>
+          janet@elastic.co
+        </strong>
+         was invited to the project
+      </p>
+    </div>
+  </li>
+</ol>
+`;
+
+exports[`EuiTimeline props gutterSize xl is rendered 1`] = `
+<ol
+  class="euiTimeline emotion-euiTimeline-xl"
+  role="list"
+>
+  <li
+    class="emotion-euiTimelineItem-center"
+  >
+    <div
+      class="emotion-euiTimelineItemIcon-center"
+    >
+      <div
+        class="emotion-euiTimelineItemIcon__content"
+      >
+        <div
+          aria-label="email"
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+          role="img"
+          title="email"
+        >
+          <span
+            class="euiAvatar__icon"
+            data-euiicon-type="email"
+          >
+            email
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="emotion-euiTimelineItemEvent-center"
+    >
+      <p>
+        <strong>
+          janet@elastic.co
+        </strong>
+         was invited to the project
+      </p>
+    </div>
+  </li>
+  <li
+    class="emotion-euiTimelineItem-top"
+  >
+    <div
+      class="emotion-euiTimelineItemIcon-top"
+    >
+      <div
+        class="emotion-euiTimelineItemIcon__content"
+      >
+        <div
+          aria-label=""
+          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+          role="img"
+          title=""
+        >
+          <span
+            class="euiAvatar__icon"
+            data-euiicon-type="bolt"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="emotion-euiTimelineItemEvent-top"
     >
       <p>
         <strong>

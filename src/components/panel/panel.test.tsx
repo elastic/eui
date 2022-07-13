@@ -11,7 +11,7 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
-import { EuiPanel, PANEL_SIZES, COLORS, BORDER_RADII } from './panel';
+import { EuiPanel, SIZES, COLORS, BORDER_RADII } from './panel';
 
 describe('EuiPanel', () => {
   shouldRenderCustomStyles(<EuiPanel />);
@@ -53,7 +53,7 @@ describe('EuiPanel', () => {
     });
 
     describe('paddingSize', () => {
-      PANEL_SIZES.forEach((size) => {
+      SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {
           const component = render(<EuiPanel paddingSize={size} />);
 
@@ -80,6 +80,14 @@ describe('EuiPanel', () => {
           expect(component).toMatchSnapshot();
         });
       });
+    });
+
+    describe('onClick', () => {
+      const component = render(
+        <EuiPanel {...requiredProps} onClick={jest.fn()} />
+      );
+
+      expect(component).toMatchSnapshot();
     });
   });
 });

@@ -31,7 +31,7 @@ for (let i = 1; i < 100; i++) {
 }
 
 export default () => {
-  const dataGridRef = useRef<EuiDataGridRefProps>(null);
+  const dataGridRef = useRef<EuiDataGridRefProps | null>(null);
 
   // Modal
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -159,6 +159,20 @@ export default () => {
             }
           >
             Set cell focus
+          </EuiButton>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton
+            size="s"
+            onClick={() =>
+              dataGridRef.current!.scrollToItem?.({
+                rowIndex: rowIndexAction,
+                columnIndex: colIndexAction,
+                align: 'center',
+              })
+            }
+          >
+            Scroll to cell
           </EuiButton>
         </EuiFlexItem>
         <EuiFlexItem grow={false}>

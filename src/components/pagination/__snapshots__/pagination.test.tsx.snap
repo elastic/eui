@@ -9,7 +9,7 @@ exports[`EuiPagination is rendered 1`] = `
   <span
     aria-atomic="true"
     aria-relevant="additions text"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
     role="status"
   >
     Page 1 of 1
@@ -79,7 +79,7 @@ exports[`EuiPagination props activePage can be -1 1`] = `
   <span
     aria-atomic="true"
     aria-relevant="additions text"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
     role="status"
   >
     Last Page of collection
@@ -150,7 +150,7 @@ exports[`EuiPagination props activePage is rendered 1`] = `
   <span
     aria-atomic="true"
     aria-relevant="additions text"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
     role="status"
   >
     Page 6 of 10
@@ -365,7 +365,7 @@ exports[`EuiPagination props aria-controls is rendered 1`] = `
   <span
     aria-atomic="true"
     aria-relevant="additions text"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
     role="status"
   >
     Page 1 of 1
@@ -435,7 +435,7 @@ exports[`EuiPagination props compressed is rendered 1`] = `
   <span
     aria-atomic="true"
     aria-relevant="additions text"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
     role="status"
   >
     Page 1 of 1
@@ -469,7 +469,7 @@ exports[`EuiPagination props compressed is rendered 1`] = `
     />
   </button>
   <div
-    class="euiText euiText--small euiPagination__compressedText"
+    class="euiText euiPagination__compressedText emotion-euiText-s"
   >
     <span>
       1
@@ -517,7 +517,7 @@ exports[`EuiPagination props pageCount can be 0 1`] = `
   <span
     aria-atomic="true"
     aria-relevant="additions text"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
     role="status"
   >
     Page 1 of collection
@@ -588,7 +588,7 @@ exports[`EuiPagination props pageCount is rendered 1`] = `
   <span
     aria-atomic="true"
     aria-relevant="additions text"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
     role="status"
   >
     Page 1 of 10
@@ -763,7 +763,7 @@ exports[`EuiPagination props responsive can be customized 1`] = `
   <span
     aria-atomic="true"
     aria-relevant="additions text"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
     role="status"
   >
     Page 1 of 1
@@ -832,7 +832,7 @@ exports[`EuiPagination props responsive can be false 1`] = `
   <span
     aria-atomic="true"
     aria-relevant="additions text"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
     role="status"
   >
     Page 1 of 1

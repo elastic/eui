@@ -1,101 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiControlBar is rendered 1`] = `
-<section
-  aria-label="aria-label"
-  class="euiControlBar testClass1 testClass2 euiControlBar--large euiControlBar--fixed"
-  data-test-subj="test subject string"
-  style="left: 0px; right: 0px;"
->
-  <h2
-    class="euiScreenReaderOnly"
-  >
-    Page level controls
-  </h2>
-  <div
-    class="euiControlBar__controls"
-  >
-    <nav
-      aria-label="Breadcrumbs"
-      class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
-    >
-      <ol
-        class="euiBreadcrumbs__list css-1ifj11g-euiBreadcrumbs__list-isTruncated"
-      >
-        <li
-          class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
-        >
-          <span
-            class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
-            title="src"
-          >
-            src
-          </span>
-        </li>
-        <li
-          class="euiBreadcrumb euiBreadcrumb--last css-1czveci-euiBreadcrumb-isTruncated"
-        >
-          <span
-            aria-current="page"
-            class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
-            title="components"
-          >
-            components
-          </span>
-        </li>
-      </ol>
-    </nav>
-    <button
-      class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
-      data-test-subj="dts"
-      type="button"
-    >
-      <span
-        class="euiButtonContent euiButton__content"
-      >
-        <span
-          class="euiButton__text"
-        >
-          Sound the Alarm
-        </span>
-      </span>
-    </button>
-    <div
-      class="euiControlBar__text"
-    >
-      Close the Hatch
-    </div>
-    <div
-      class="euiControlBar__divider"
-    />
-    <span
-      class="euiControlBar__icon"
-      color="danger"
-      data-euiicon-type="alert"
-    >
-      Sample Icon
-    </span>
-    <div
-      class="euiControlBar__spacer"
-    />
-    <button
-      class="euiControlBar__tab"
-    >
-      Flight 815
-    </button>
-  </div>
-</section>
-`;
-
-exports[`EuiControlBar props leftOffset is rendered 1`] = `
 Array [
   <section
-    aria-label="Page level controls"
-    class="euiControlBar euiControlBar--large euiControlBar--fixed"
-    style="left: 200px; right: 0px;"
+    aria-label="aria-label"
+    class="euiControlBar testClass1 testClass2 euiControlBar--large euiControlBar--fixed"
+    data-test-subj="test subject string"
+    style="left:0;right:0"
   >
     <h2
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Page level controls
     </h2>
@@ -107,24 +21,116 @@ Array [
         class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
       >
         <ol
-          class="euiBreadcrumbs__list css-1ifj11g-euiBreadcrumbs__list-isTruncated"
+          class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
           >
             <span
-              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
+            >
+              src
+            </span>
+          </li>
+          <li
+            class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated"
+          >
+            <span
+              aria-current="page"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
+            >
+              components
+            </span>
+          </li>
+        </ol>
+      </nav>
+      <button
+        class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
+        data-test-subj="dts"
+        type="button"
+      >
+        <span
+          class="euiButtonContent euiButton__content"
+        >
+          <span
+            class="euiButton__text"
+          >
+            Sound the Alarm
+          </span>
+        </span>
+      </button>
+      <div
+        class="euiControlBar__text"
+      >
+        Close the Hatch
+      </div>
+      <div
+        class="euiControlBar__divider"
+      />
+      <span
+        class="euiControlBar__icon"
+        color="danger"
+        data-euiicon-type="alert"
+      >
+        Sample Icon
+      </span>
+      <div
+        class="euiControlBar__spacer"
+      />
+      <button
+        class="euiControlBar__tab"
+      >
+        Flight 815
+      </button>
+    </div>
+  </section>,
+  <p
+    aria-live="assertive"
+    class="emotion-euiScreenReaderOnly"
+  >
+    There is a new region landmark with page level controls at the end of the document.
+  </p>,
+]
+`;
+
+exports[`EuiControlBar props leftOffset is rendered 1`] = `
+Array [
+  <section
+    aria-label="Page level controls"
+    class="euiControlBar euiControlBar--large euiControlBar--fixed"
+    style="left: 200px; right: 0px;"
+  >
+    <h2
+      class="emotion-euiScreenReaderOnly"
+    >
+      Page level controls
+    </h2>
+    <div
+      class="euiControlBar__controls"
+    >
+      <nav
+        aria-label="Breadcrumbs"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
+      >
+        <ol
+          class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
+        >
+          <li
+            class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
+          >
+            <span
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
               title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb euiBreadcrumb--last css-1czveci-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
               title="components"
             >
               components
@@ -174,7 +180,7 @@ Array [
   </section>,
   <p
     aria-live="assertive"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     There is a new region landmark with page level controls at the end of the document.
   </p>,
@@ -189,7 +195,7 @@ Array [
     style="left: 0px; right: 0px; max-height: 20rem;"
   >
     <h2
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Page level controls
     </h2>
@@ -201,24 +207,24 @@ Array [
         class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
       >
         <ol
-          class="euiBreadcrumbs__list css-1ifj11g-euiBreadcrumbs__list-isTruncated"
+          class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
           >
             <span
-              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
               title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb euiBreadcrumb--last css-1czveci-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
               title="components"
             >
               components
@@ -268,7 +274,7 @@ Array [
   </section>,
   <p
     aria-live="assertive"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     There is a new region landmark with page level controls at the end of the document.
   </p>,
@@ -283,7 +289,7 @@ Array [
     style="left: 0px; right: 0px;"
   >
     <h2
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Page level controls
     </h2>
@@ -295,24 +301,24 @@ Array [
         class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
       >
         <ol
-          class="euiBreadcrumbs__list css-1ifj11g-euiBreadcrumbs__list-isTruncated"
+          class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
           >
             <span
-              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
               title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb euiBreadcrumb--last css-1czveci-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
               title="components"
             >
               components
@@ -362,7 +368,7 @@ Array [
   </section>,
   <p
     aria-live="assertive"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     There is a new region landmark with page level controls at the end of the document.
   </p>,
@@ -376,7 +382,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
   style="left: 0px; right: 0px;"
 >
   <h2
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     Page level controls
   </h2>
@@ -388,24 +394,24 @@ exports[`EuiControlBar props position is rendered 1`] = `
       class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
     >
       <ol
-        class="euiBreadcrumbs__list css-1ifj11g-euiBreadcrumbs__list-isTruncated"
+        class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
       >
         <li
-          class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
+          class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
         >
           <span
-            class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+            class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
             title="src"
           >
             src
           </span>
         </li>
         <li
-          class="euiBreadcrumb euiBreadcrumb--last css-1czveci-euiBreadcrumb-isTruncated"
+          class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated"
         >
           <span
             aria-current="page"
-            class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+            class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
             title="components"
           >
             components
@@ -463,7 +469,7 @@ Array [
     style="left: 0px; right: 200px;"
   >
     <h2
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Page level controls
     </h2>
@@ -475,24 +481,24 @@ Array [
         class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
       >
         <ol
-          class="euiBreadcrumbs__list css-1ifj11g-euiBreadcrumbs__list-isTruncated"
+          class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
           >
             <span
-              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
               title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb euiBreadcrumb--last css-1czveci-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
               title="components"
             >
               components
@@ -542,7 +548,7 @@ Array [
   </section>,
   <p
     aria-live="assertive"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     There is a new region landmark with page level controls at the end of the document.
   </p>,
@@ -557,7 +563,7 @@ Array [
     style="left: 0px; right: 0px;"
   >
     <h2
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Page level controls
     </h2>
@@ -569,24 +575,24 @@ Array [
         class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
       >
         <ol
-          class="euiBreadcrumbs__list css-1ifj11g-euiBreadcrumbs__list-isTruncated"
+          class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
           >
             <span
-              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
               title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb euiBreadcrumb--last css-1czveci-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
               title="components"
             >
               components
@@ -641,7 +647,7 @@ Array [
   </section>,
   <p
     aria-live="assertive"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     There is a new region landmark with page level controls at the end of the document.
   </p>,
@@ -656,7 +662,7 @@ Array [
     style="left: 0px; right: 0px;"
   >
     <h2
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Page level controls
     </h2>
@@ -668,24 +674,24 @@ Array [
         class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
       >
         <ol
-          class="euiBreadcrumbs__list css-1ifj11g-euiBreadcrumbs__list-isTruncated"
+          class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
           >
             <span
-              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
               title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb euiBreadcrumb--last css-1czveci-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
               title="components"
             >
               components
@@ -735,7 +741,7 @@ Array [
   </section>,
   <p
     aria-live="assertive"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     There is a new region landmark with page level controls at the end of the document.
   </p>,

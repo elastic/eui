@@ -13,11 +13,16 @@ describe('Timer', () => {
     test('counts down until time elapses and calls callback', (done) => {
       const callbackSpy = jest.fn();
       new Timer(callbackSpy, 5);
-
       setTimeout(() => {
         expect(callbackSpy).toBeCalled();
         done();
       }, 8);
+    });
+    test('creates no timeout for Infinity value', (done) => {
+      const callbackSpy = jest.fn();
+      new Timer(callbackSpy, Infinity);
+      expect(callbackSpy).not.toBeCalled();
+      done();
     });
   });
 

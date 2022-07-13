@@ -3,110 +3,102 @@
 exports[`EuiCallOut is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPanel euiPanel--primary euiCallOut euiCallOut--primary testClass1 testClass2 css-hsxldi-euiPanel-grow-none-m-primary-euiCallOut"
+  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary testClass1 testClass2 emotion-euiPanel-none-m-primary-euiCallOut"
   data-test-subj="test subject string"
 >
   <div
-    class="euiText euiText--small css-1vr4wuv-euiCallOut__description"
+    class="euiText emotion-euiText-s-euiTextColor-default-euiCallOut__description"
   >
-    <div
-      class="euiTextColor euiTextColor--default"
-    >
-      Content
-    </div>
+    Content
   </div>
 </div>
 `;
 
 exports[`EuiCallOut props color danger is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--danger euiCallOut euiCallOut--danger css-1u13ow-euiPanel-grow-none-m-danger-euiCallOut"
+  class="euiPanel euiPanel--danger euiPanel--paddingMedium euiCallOut euiCallOut--danger emotion-euiPanel-none-m-danger-euiCallOut"
 />
 `;
 
 exports[`EuiCallOut props color primary is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--primary euiCallOut euiCallOut--primary css-hsxldi-euiPanel-grow-none-m-primary-euiCallOut"
+  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
 />
 `;
 
 exports[`EuiCallOut props color success is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--success euiCallOut euiCallOut--success css-1ga2k31-euiPanel-grow-none-m-success-euiCallOut"
+  class="euiPanel euiPanel--success euiPanel--paddingMedium euiCallOut euiCallOut--success emotion-euiPanel-none-m-success-euiCallOut"
 />
 `;
 
 exports[`EuiCallOut props color warning is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--warning euiCallOut euiCallOut--warning css-1fure2l-euiPanel-grow-none-m-warning-euiCallOut"
+  class="euiPanel euiPanel--warning euiPanel--paddingMedium euiCallOut euiCallOut--warning emotion-euiPanel-none-m-warning-euiCallOut"
 />
 `;
 
 exports[`EuiCallOut props heading h1 is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--primary euiCallOut euiCallOut--primary css-hsxldi-euiPanel-grow-none-m-primary-euiCallOut"
+  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
 />
 `;
 
 exports[`EuiCallOut props heading h2 is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--primary euiCallOut euiCallOut--primary css-hsxldi-euiPanel-grow-none-m-primary-euiCallOut"
+  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
 />
 `;
 
 exports[`EuiCallOut props heading h3 is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--primary euiCallOut euiCallOut--primary css-hsxldi-euiPanel-grow-none-m-primary-euiCallOut"
+  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
 />
 `;
 
 exports[`EuiCallOut props heading h4 is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--primary euiCallOut euiCallOut--primary css-hsxldi-euiPanel-grow-none-m-primary-euiCallOut"
+  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
 />
 `;
 
 exports[`EuiCallOut props heading h5 is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--primary euiCallOut euiCallOut--primary css-hsxldi-euiPanel-grow-none-m-primary-euiCallOut"
+  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
 />
 `;
 
 exports[`EuiCallOut props heading h6 is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--primary euiCallOut euiCallOut--primary css-hsxldi-euiPanel-grow-none-m-primary-euiCallOut"
+  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
 />
 `;
 
 exports[`EuiCallOut props heading p is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--primary euiCallOut euiCallOut--primary css-hsxldi-euiPanel-grow-none-m-primary-euiCallOut"
+  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
 />
 `;
 
 exports[`EuiCallOut props iconType is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--primary euiCallOut euiCallOut--primary css-hsxldi-euiPanel-grow-none-m-primary-euiCallOut"
+  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
 />
 `;
 
 exports[`EuiCallOut props title is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--primary euiCallOut euiCallOut--primary css-hsxldi-euiPanel-grow-none-m-primary-euiCallOut"
+  class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCallOut euiCallOut--primary emotion-euiPanel-none-m-primary-euiCallOut"
 >
   <p
-    class="euiTitle euiCallOutHeader__title css-1ps1ss5-euiTitle-xs-euiCallOutHeader-primary"
+    class="euiTitle euiCallOutHeader__title emotion-euiTitle-xs-euiCallOutHeader-primary"
   >
     Title
   </p>
   <div
-    class="euiText euiText--small css-1vr4wuv-euiCallOut__description"
+    class="euiText emotion-euiText-s-euiTextColor-default-euiCallOut__description"
   >
-    <div
-      class="euiTextColor euiTextColor--default"
-    >
-      Content
-    </div>
+    Content
   </div>
 </div>
 `;

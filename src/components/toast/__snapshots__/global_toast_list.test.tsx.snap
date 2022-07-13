@@ -22,7 +22,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
     id="a"
   >
     <p
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       A new notification appears
     </p>
@@ -54,7 +54,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
       />
     </button>
     <div
-      class="euiText euiText--small euiToastBody"
+      class="euiText euiToastBody emotion-euiText-s"
     >
       a
     </div>
@@ -65,7 +65,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
     id="b"
   >
     <p
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       A new notification appears
     </p>
@@ -97,7 +97,7 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
       />
     </button>
     <div
-      class="euiText euiText--small euiToastBody"
+      class="euiText euiToastBody emotion-euiText-s"
     >
       b
     </div>
@@ -117,7 +117,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     id="a"
   >
     <p
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       A new notification appears
     </p>
@@ -149,7 +149,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
       />
     </button>
     <div
-      class="euiText euiText--small euiToastBody"
+      class="euiText euiToastBody emotion-euiText-s"
     >
       a
     </div>
@@ -160,7 +160,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     id="b"
   >
     <p
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       A new notification appears
     </p>
@@ -192,7 +192,7 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
       />
     </button>
     <div
-      class="euiText euiText--small euiToastBody"
+      class="euiText euiToastBody emotion-euiText-s"
     >
       b
     </div>

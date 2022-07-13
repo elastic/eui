@@ -9,7 +9,6 @@
 import { CSSProperties } from 'react';
 import { useEuiTheme, UseEuiTheme } from '../../services/theme';
 import { transparentize } from '../../services/color';
-import { createStyleHookFromMixin } from '../utils';
 
 /**
  * Set scroll bar appearance on Chrome (and firefox).
@@ -33,7 +32,7 @@ export interface EuiScrollBarStyles {
   corner?: CSSProperties['borderWidth'];
 }
 export const euiScrollBarStyles = (
-  { colors, size }: UseEuiTheme['euiTheme'],
+  { euiTheme: { colors, size } }: UseEuiTheme,
   {
     thumbColor: _thumbColor,
     trackColor = 'transparent',
@@ -74,7 +73,10 @@ export const euiScrollBarStyles = (
     ${firefoxSupport}
   `;
 };
-export const useEuiScrollBar = createStyleHookFromMixin(euiScrollBarStyles);
+export const useEuiScrollBar = (options?: EuiScrollBarStyles) => {
+  const euiTheme = useEuiTheme();
+  return euiScrollBarStyles(euiTheme, options);
+};
 
 /**
  * *INTERNAL*
@@ -85,7 +87,7 @@ interface EuiOverflowShadowStyles {
   side?: 'both' | 'start' | 'end';
 }
 const euiOverflowShadowStyles = (
-  { size }: UseEuiTheme['euiTheme'],
+  { euiTheme: { size } }: UseEuiTheme,
   { direction: _direction, side: _side }: EuiOverflowShadowStyles = {}
 ) => {
   const direction = _direction || 'y';
@@ -124,7 +126,7 @@ const euiOverflowShadowStyles = (
  */
 
 // TODO: How do we use Emotion to output the CSS class utilities instead?
-export const euiYScroll = (euiTheme: UseEuiTheme['euiTheme']) => `
+export const euiYScroll = (euiTheme: UseEuiTheme) => `
   ${euiScrollBarStyles(euiTheme)}
   height: 100%;
   overflow-y: auto;
@@ -133,39 +135,47 @@ export const euiYScroll = (euiTheme: UseEuiTheme['euiTheme']) => `
     outline: none; /* 1 */
   }
 `;
-export const useEuiYScroll = createStyleHookFromMixin(euiYScroll);
+export const useEuiYScroll = () => {
+  const euiTheme = useEuiTheme();
+  return euiYScroll(euiTheme);
+};
 
-export const euiYScrollWithShadows = (euiTheme: UseEuiTheme['euiTheme']) => `
+export const euiYScrollWithShadows = (euiTheme: UseEuiTheme) => `
   ${euiYScroll(euiTheme)}
   ${euiOverflowShadowStyles(euiTheme, { direction: 'y' })}
 `;
-export const useEuiYScrollWithShadows = createStyleHookFromMixin(
-  euiYScrollWithShadows
-);
+export const useEuiYScrollWithShadows = () => {
+  const euiTheme = useEuiTheme();
+  return euiYScrollWithShadows(euiTheme);
+};
 
-export const euiXScroll = (euiTheme: UseEuiTheme['euiTheme']) => `
+export const euiXScroll = (euiTheme: UseEuiTheme) => `
   ${euiScrollBarStyles(euiTheme)}
   overflow-x: auto;
   &:focus {
     outline: none; /* 1 */
   }
 `;
-export const useEuiXScroll = createStyleHookFromMixin(euiXScroll);
+export const useEuiXScroll = () => {
+  const euiTheme = useEuiTheme();
+  return euiXScroll(euiTheme);
+};
 
-export const euiXScrollWithShadows = (euiTheme: UseEuiTheme['euiTheme']) => `
+export const euiXScrollWithShadows = (euiTheme: UseEuiTheme) => `
   ${euiXScroll(euiTheme)}
   ${euiOverflowShadowStyles(euiTheme, { direction: 'x' })}
 `;
-export const useEuiXScrollWithShadows = createStyleHookFromMixin(
-  euiXScrollWithShadows
-);
+export const useEuiXScrollWithShadows = () => {
+  const euiTheme = useEuiTheme();
+  return euiXScrollWithShadows(euiTheme);
+};
 
 interface EuiScrollOverflowStyles {
   direction?: 'y' | 'x';
   mask?: boolean;
 }
 export const euiOverflowScroll = (
-  euiTheme: UseEuiTheme['euiTheme'],
+  euiTheme: UseEuiTheme,
   { direction, mask = false }: EuiScrollOverflowStyles = {}
 ) => {
   switch (direction) {
@@ -185,6 +195,6 @@ export const useEuiOverflowScroll = (
   direction: EuiScrollOverflowStyles['direction'],
   mask: EuiScrollOverflowStyles['mask'] = false
 ) => {
-  const { euiTheme } = useEuiTheme();
+  const euiTheme = useEuiTheme();
   return euiOverflowScroll(euiTheme, { direction, mask });
 };

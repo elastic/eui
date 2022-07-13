@@ -101,6 +101,18 @@ export class GuidePageChrome extends Component {
     return subSectionsWithTitles.map(({ title, sections }) => {
       const id = slugify(title);
 
+      const subSectionHref = `${href}/${id}`;
+      const subSectionHashIdHref = `${href}#${id}`;
+
+      const sectionHref = sections ? subSectionHref : subSectionHashIdHref;
+      const subItems = sections
+        ? this.renderSubSections(sectionHref, sections, searchTerm)
+        : undefined;
+
+      const isCurrentlyOpenSubSection = window.location.hash.includes(
+        subSectionHref
+      );
+
       let name = title;
       if (searchTerm) {
         name = (
@@ -113,21 +125,15 @@ export class GuidePageChrome extends Component {
         );
       }
 
-      const subSectionHref = `${href}/${id}`;
-      const subSectionHashIdHref = `${href}#${id}`;
-
-      const sectionHref = sections ? subSectionHref : subSectionHashIdHref;
-      const subItems = sections
-        ? this.renderSubSections(sectionHref, sections, searchTerm)
-        : undefined;
-
       return {
         id: sectionHref,
-        name,
+        name: isCurrentlyOpenSubSection ? <strong>{name}</strong> : name,
         href: sectionHref,
+        className: isCurrentlyOpenSubSection
+          ? 'guideSideNav__item--openSubTitle'
+          : '',
         items: subItems,
-        isSelected: window.location.hash.includes(subSectionHref),
-        forceOpen: !!searchTerm,
+        forceOpen: !!searchTerm || isCurrentlyOpenSubSection,
       };
     });
   };

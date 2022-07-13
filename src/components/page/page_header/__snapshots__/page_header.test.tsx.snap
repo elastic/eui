@@ -24,7 +24,7 @@ exports[`EuiPageHeader props alignItems bottom is rendered 1`] = `
         class="euiFlexItem"
       >
         <h1
-          class="euiTitle css-1bexacr-euiTitle-l"
+          class="euiTitle emotion-euiTitle-l"
         >
           Page title
         </h1>
@@ -70,7 +70,7 @@ exports[`EuiPageHeader props alignItems center is rendered 1`] = `
         class="euiFlexItem"
       >
         <h1
-          class="euiTitle css-1bexacr-euiTitle-l"
+          class="euiTitle emotion-euiTitle-l"
         >
           Page title
         </h1>
@@ -116,7 +116,7 @@ exports[`EuiPageHeader props alignItems stretch is rendered 1`] = `
         class="euiFlexItem"
       >
         <h1
-          class="euiTitle css-1bexacr-euiTitle-l"
+          class="euiTitle emotion-euiTitle-l"
         >
           Page title
         </h1>
@@ -162,7 +162,7 @@ exports[`EuiPageHeader props alignItems top is rendered 1`] = `
         class="euiFlexItem"
       >
         <h1
-          class="euiTitle css-1bexacr-euiTitle-l"
+          class="euiTitle emotion-euiTitle-l"
         >
           Page title
         </h1>
@@ -207,13 +207,13 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       data-test-subj="test subject string"
     >
       <ol
-        class="euiBreadcrumbs__list css-1ifj11g-euiBreadcrumbs__list-isTruncated"
+        class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
       >
         <li
-          class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
+          class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
         >
           <a
-            class="euiLink euiBreadcrumb__content customClass css-tsivwr-euiLink-primary-euiBreadcrumb__content"
+            class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content"
             data-test-subj="breadcrumbsAnimals"
             href="#"
             rel="noreferrer"
@@ -222,11 +222,11 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           </a>
         </li>
         <li
-          class="euiBreadcrumb euiBreadcrumb--last css-1czveci-euiBreadcrumb-isTruncated"
+          class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated"
         >
           <span
             aria-current="page"
-            class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+            class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
           >
             Edit
           </span>
@@ -234,7 +234,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       </ol>
     </nav>
     <div
-      class="euiSpacer euiSpacer--s css-78drzl-euiSpacer-s"
+      class="euiSpacer euiSpacer--s emotion-euiSpacer-s"
     />
     <div
       class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
@@ -244,7 +244,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       >
         <h1
           aria-label="aria-label"
-          class="euiTitle testClass1 testClass2 css-1bexacr-euiTitle-l"
+          class="euiTitle testClass1 testClass2 emotion-euiTitle-l"
           data-test-subj="test subject string"
         >
           <span
@@ -257,10 +257,10 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           Page title
         </h1>
         <div
-          class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
+          class="euiSpacer euiSpacer--l emotion-euiSpacer-l"
         />
         <div
-          class="euiText euiText--medium euiText--constrainedWidth"
+          class="euiText emotion-euiText-constrainedWidth-m"
         >
           <p>
             Description
@@ -296,13 +296,13 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       class="euiPageHeaderContent__bottom"
     >
       <div
-        class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
+        class="euiSpacer euiSpacer--l emotion-euiSpacer-l"
       />
       <p>
         Anything
       </p>
       <div
-        class="euiSpacer euiSpacer--l css-p2o3x6-euiSpacer-l"
+        class="euiSpacer euiSpacer--l emotion-euiSpacer-l"
       />
       <div
         aria-label="aria-label"

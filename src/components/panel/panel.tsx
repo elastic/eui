@@ -17,29 +17,34 @@ import { useEuiTheme } from '../../services';
 import {
   useEuiBackgroundColorCSS,
   useEuiPaddingCSS,
-  EuiBackgroundColor,
+  _EuiBackgroundColor,
   EuiPaddingSize,
   BACKGROUND_COLORS,
   PADDING_SIZES,
 } from '../../global_styling';
-import { CommonProps, ExclusiveUnion } from '../common';
+import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import { euiPanelStyles } from './panel.style';
 
-export const PANEL_SIZES = PADDING_SIZES;
+export const SIZES = PADDING_SIZES;
 
 // Exported padding sizes and class names necessary for EuiPopover and EuiCard.
 // Which currently will only maintain support for the original values until conversion.
-const _SIZES = ['none', 's', 'm', 'l'] as const;
-/**
- * This export has been deprecated in favor of the global style `EuiPaddingSize`
- */
-export type PanelPaddingSize_Deprecated = typeof _SIZES[number];
+const paddingSizeToClassNameMap: {
+  [value in EuiPaddingSize]?: string | null;
+} = {
+  none: null,
+  s: 'paddingSmall',
+  m: 'paddingMedium',
+  l: 'paddingLarge',
+};
+const _SIZES = keysOf(paddingSizeToClassNameMap);
+export type PanelPaddingSize = typeof _SIZES[number];
 
 export const BORDER_RADII = ['none', 'm'] as const;
 export type PanelBorderRadius = typeof BORDER_RADII[number];
 
 export const COLORS = BACKGROUND_COLORS;
-export type PanelColor = EuiBackgroundColor;
+export type PanelColor = _EuiBackgroundColor;
 
 export interface _EuiPanelProps extends CommonProps {
   /**
@@ -119,13 +124,23 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     rest.onClick && styles.isClickable,
   ];
 
-  const classes = classNames('euiPanel', `euiPanel--${color}`, className);
+  const classes = classNames(
+    'euiPanel',
+    `euiPanel--${color}`,
+    {
+      [`euiPanel--${paddingSizeToClassNameMap[paddingSize]}`]: paddingSizeToClassNameMap[
+        paddingSize
+      ],
+    },
+    className
+  );
 
   if (rest.onClick && element !== 'div') {
     return (
       <button
         ref={panelRef as Ref<HTMLButtonElement>}
         className={classes}
+        css={cssStyles}
         {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
       >
         {children}

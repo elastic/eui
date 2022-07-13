@@ -8,6 +8,7 @@
 
 import React, { FunctionComponent, Ref } from 'react';
 import classNames from 'classnames';
+import { isTabbable } from 'tabbable';
 import { useEuiTheme } from '../../../services';
 import { EuiButton, EuiButtonProps } from '../../button/button';
 import { PropsForAnchor, PropsForButton, ExclusiveUnion } from '../../common';
@@ -28,6 +29,12 @@ interface EuiSkipLinkInterface extends EuiButtonProps {
    * will be prepended with a hash `#` and used as the link `href`
    */
   destinationId: string;
+  /**
+   * If default HTML anchor link behavior is not desired (e.g. for SPAs with hash routing),
+   * setting this flag to true will manually scroll to and focus the destination element
+   * without changing the browser URL's hash
+   */
+  overrideLinkBehavior?: boolean;
   /**
    * When position is fixed, this is forced to `0`
    */
@@ -52,6 +59,7 @@ export type EuiSkipLinkProps = ExclusiveUnion<propsForAnchor, propsForButton>;
 
 export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
   destinationId,
+  overrideLinkBehavior,
   tabIndex,
   position = 'static',
   children,
@@ -73,6 +81,39 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
   if (destinationId) {
     optionalProps = {
       href: `#${destinationId}`,
+    };
+  }
+  if (overrideLinkBehavior) {
+    optionalProps = {
+      ...optionalProps,
+      onClick: (e: React.MouseEvent) => {
+        e.preventDefault();
+
+        const destinationEl = document.getElementById(destinationId);
+        if (!destinationEl) return;
+
+        // Scroll to the top of the destination content only if it's ~mostly out of view
+        const destinationY = destinationEl.getBoundingClientRect().top;
+        const halfOfViewportHeight = window.innerHeight / 2;
+        if (
+          destinationY >= halfOfViewportHeight ||
+          window.scrollY >= destinationY + halfOfViewportHeight
+        ) {
+          destinationEl.scrollIntoView();
+        }
+
+        // Ensure the destination content is focusable
+        if (!isTabbable(destinationEl)) {
+          destinationEl.tabIndex = -1;
+          destinationEl.addEventListener(
+            'blur',
+            () => destinationEl.removeAttribute('tabindex'),
+            { once: true }
+          );
+        }
+
+        destinationEl.focus({ preventScroll: true }); // Scrolling is already handled above, and focus autoscroll behaves oddly on Chrome around fixed headers
+      },
     };
   }
 

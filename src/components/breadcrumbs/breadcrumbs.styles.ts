@@ -10,21 +10,24 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { euiFontSize, euiTextTruncate } from '../../global_styling/mixins';
 
-export const euiBreadcrumbsListStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiBreadcrumbs__list: css`
-    ${euiFontSize('s', euiTheme)};
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    line-height: ${euiTheme.size.l};
-    margin-bottom: -${euiTheme.size.xs};
-    min-width: 0; // Ensure it shrinks if the window is narrow
-  `,
-  isTruncated: css`
-    flex-wrap: nowrap;
-    white-space: nowrap;
-  `,
-});
+export const euiBreadcrumbsListStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  return {
+    euiBreadcrumbs__list: css`
+      ${euiFontSize(euiThemeContext, 's')};
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      line-height: ${euiTheme.size.l};
+      margin-bottom: -${euiTheme.size.xs};
+      min-width: 0; // Ensure it shrinks if the window is narrow
+    `,
+    isTruncated: css`
+      flex-wrap: nowrap;
+      white-space: nowrap;
+    `,
+  };
+};
 
 export const euiBreadcrumbStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiBreadcrumb: css`
@@ -33,7 +36,7 @@ export const euiBreadcrumbStyles = ({ euiTheme }: UseEuiTheme) => ({
     margin-bottom: ${euiTheme.size.xs}; /* 1 */
 
     &:not(:last-of-type) {
-      color: ${euiTheme.colors.subdued};
+      color: ${euiTheme.colors.subduedText};
 
       &:after {
         background: ${euiTheme.colors.lightShade};
@@ -103,7 +106,7 @@ export const euiBreadcrumbsInPopoverStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiBreadcrumbs__inPopover: css`
     & li:last-of-type > a,
     & li:last-of-type > span {
-      color: ${euiTheme.colors.subdued};
+      color: ${euiTheme.colors.subduedText};
     }
   `,
 });

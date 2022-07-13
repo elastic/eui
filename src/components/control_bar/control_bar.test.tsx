@@ -6,11 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { mount } from 'enzyme';
-import { requiredProps, takeMountedSnapshot } from '../../test';
+import React, { ReactNode } from 'react';
+import { mount, render } from 'enzyme';
+import { requiredProps } from '../../test';
 
 import { EuiControlBar, Control } from './control_bar';
+
+jest.mock('../portal', () => ({
+  EuiPortal: ({ children }: { children: ReactNode }) => children,
+}));
 
 const handleClick = () => {
   console.log('You clicked');
@@ -65,10 +69,9 @@ const controls: Control[] = [
 
 describe('EuiControlBar', () => {
   test('is rendered', () => {
-    const component = takeMountedSnapshot(
-      mount(<EuiControlBar controls={controls} {...requiredProps} />)
+    const component = render(
+      <EuiControlBar controls={controls} {...requiredProps} />
     );
-
     expect(component).toMatchSnapshot();
   });
 

@@ -21,7 +21,7 @@ import { CommonProps } from '../common';
 import { useEuiResizableContainerContext } from './context';
 import { useGeneratedHtmlId } from '../../services';
 import { EuiPanel } from '../panel';
-import { PanelPaddingSize_Deprecated, _EuiPanelProps } from '../panel/panel';
+import { PanelPaddingSize, _EuiPanelProps } from '../panel/panel';
 import { useEuiI18n } from '../i18n';
 import {
   EuiResizablePanelController,
@@ -145,7 +145,7 @@ export interface EuiResizablePanelProps
    * Padding to add directly to the wrapping `.euiResizablePanel` div
    * Gives space around the actual panel.
    */
-  wrapperPadding?: PanelPaddingSize_Deprecated;
+  wrapperPadding?: PanelPaddingSize;
 }
 
 const getPosition = (ref: HTMLDivElement) => {
@@ -242,6 +242,8 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
 
   const classes = classNames(
     'euiResizablePanel',
+    // @ts-expect-error EuiPanel increased its available sizes
+    // When we convert this component to Emotion, we should also increase sizes to match EuiPanel and remove this comment.
     paddingSizeToClassNameMap[wrapperPadding],
     {
       'euiResizablePanel--collapsible': isCollapsible,

@@ -26,6 +26,48 @@ describe('EuiDatePickerRange', () => {
     expect(component).toMatchSnapshot();
   });
 
+  describe('readOnly', () => {
+    it('is rendered', () => {
+      const component = render(
+        <EuiDatePickerRange
+          startDateControl={<EuiDatePicker />}
+          endDateControl={<EuiDatePicker />}
+          readOnly
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('disabled', () => {
+    it('is rendered', () => {
+      const component = render(
+        <EuiDatePickerRange
+          startDateControl={<EuiDatePicker />}
+          endDateControl={<EuiDatePicker />}
+          disabled
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('isInvalid', () => {
+    it('is rendered', () => {
+      const component = render(
+        <EuiDatePickerRange
+          startDateControl={<EuiDatePicker />}
+          endDateControl={<EuiDatePicker />}
+          isInvalid
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
+
   it('uses individual EuiDatePicker props', () => {
     const component = render(
       <EuiDatePickerRange

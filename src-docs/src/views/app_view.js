@@ -9,6 +9,8 @@ import {
   EuiErrorBoundary,
   EuiPage,
   EuiPageBody,
+  EuiSkipLink,
+  EuiScreenReaderLive,
 } from '../../../src/components';
 
 import { keys } from '../../../src/services';
@@ -68,6 +70,17 @@ export const AppView = ({ children, currentRoute }) => {
 
   return (
     <LinkWrapper>
+      <EuiScreenReaderLive focusRegionOnTextChange>
+        {`${currentRoute.name} - Elastic UI Framework`}
+      </EuiScreenReaderLive>
+      <EuiSkipLink
+        color="ghost"
+        destinationId="start-of-content"
+        position="fixed"
+        overrideLinkBehavior
+      >
+        Skip to content
+      </EuiSkipLink>
       <GuidePageHeader onToggleLocale={toggleLocale} selectedLocale={locale} />
       <EuiPage paddingSize="none">
         <EuiErrorBoundary>
@@ -79,7 +92,7 @@ export const AppView = ({ children, currentRoute }) => {
           />
         </EuiErrorBoundary>
 
-        <EuiPageBody paddingSize="none" panelled>
+        <EuiPageBody paddingSize="none" panelled id="start-of-content">
           {children({ theme })}
         </EuiPageBody>
       </EuiPage>

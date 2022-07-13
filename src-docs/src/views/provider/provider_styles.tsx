@@ -13,7 +13,8 @@ export default () => {
 <html lang="en">
   <head>
     <title>My App</title>
-    <meta name="emotion-style-insert">
+    <meta name="eui-style-insert">
+    <link name="compiled-css-here" />
   </head>
   <body>
     <div id="root"></div>
@@ -28,12 +29,15 @@ export default () => {
 import { EuiProvider } from '@elastic/eui'
 import createCache from '@emotion/cache';
 
-const cache = createCache({
-  key: 'myApp',
-  container: document.querySelector('meta[name="emotion-style-insert"]'),
+const euiCache = createCache({
+  key: 'eui',
+  container: document.querySelector('meta[name="eui-style-insert"]'),
 });
+cache.compat = true;
 
-<EuiProvider${colorMode === 'DARK' ? ' colorMode="dark"' : ''} cache={cache}'>
+<EuiProvider${
+          colorMode === 'DARK' ? ' colorMode="dark"' : ''
+        } cache={euiCache}'>
   {/* Content */}
 </EuiProvider>
   `}

@@ -91,12 +91,10 @@ export const CallOutExample = {
         },
       ],
       text: (
-        <div>
-          <p>
-            Use <strong>EuiCallOut</strong> to communicate general information
-            to the user.
-          </p>
-        </div>
+        <p>
+          Use <strong>EuiCallOut</strong> to communicate general information to
+          the user.
+        </p>
       ),
       props: { EuiCallOut },
       snippet: infoSnippet,

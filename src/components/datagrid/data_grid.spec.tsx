@@ -295,9 +295,10 @@ describe('EuiDataGrid', () => {
 
         getGridData();
 
-        cy.get('[data-test-subj=euiDataGridBody]').focus();
-
         // first cell is non-interactive and non-expandable = focus cell
+        cy.get(
+          '[data-gridcell-column-index="0"][data-gridcell-row-index="0"]'
+        ).click();
         cy.focused()
           .should('have.attr', 'data-gridcell-column-index', '0')
           .should('have.attr', 'data-gridcell-row-index', '0');
@@ -336,9 +337,10 @@ describe('EuiDataGrid', () => {
 
         getGridData();
 
-        cy.get('[data-test-subj=euiDataGridBody]').focus();
-
         // first cell is non-interactive and non-expandable, enter should have no effect
+        cy.get(
+          '[data-gridcell-column-index="0"][data-gridcell-row-index="0"]'
+        ).click();
         cy.focused().type('{enter}');
         cy.focused()
           .should('have.attr', 'data-gridcell-column-index', '0')

@@ -13,7 +13,7 @@ import React, {
   ReactNode,
   createElement,
 } from 'react';
-import { CommonProps, keysOf } from '../common';
+import { CommonProps } from '../common';
 import classNames from 'classnames';
 
 import { EuiText } from '../text';
@@ -21,30 +21,20 @@ import { EuiTitle, EuiTitleSize } from '../title/title';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 
-const colorToClassNameMap = {
-  default: null,
-  subdued: 'euiStat__title--subdued',
-  primary: 'euiStat__title--primary',
-  success: 'euiStat__title--success',
-  danger: 'euiStat__title--danger',
-  accent: 'euiStat__title--accent',
-};
+import { useEuiTheme } from '../../services';
+import { euiStatStyles, euiStatTitleStyles } from './stat.styles';
 
-export const COLORS = keysOf(colorToClassNameMap);
+export const COLORS = [
+  'default',
+  'subdued',
+  'primary',
+  'success',
+  'danger',
+  'accent',
+] as const;
+type TitleColor = typeof COLORS[number];
 
-const textAlignToClassNameMap = {
-  left: 'euiStat--leftAligned',
-  center: 'euiStat--centerAligned',
-  right: 'euiStat--rightAligned',
-};
-
-export const isColorClass = (
-  input: string
-): input is keyof typeof colorToClassNameMap => {
-  return colorToClassNameMap.hasOwnProperty(input);
-};
-
-export const ALIGNMENTS = keysOf(textAlignToClassNameMap);
+export const ALIGNMENTS = ['left', 'center', 'right'] as const;
 
 export interface EuiStatProps {
   /**
@@ -59,7 +49,7 @@ export interface EuiStatProps {
    * Flips the order of the description and title
    */
   reverse?: boolean;
-  textAlign?: keyof typeof textAlignToClassNameMap;
+  textAlign?: typeof ALIGNMENTS[number];
   /**
    * The (value) text
    */
@@ -67,7 +57,7 @@ export interface EuiStatProps {
   /**
    * The color of the title text
    */
-  titleColor?: keyof typeof colorToClassNameMap | string;
+  titleColor?: TitleColor | string;
   /**
    * Size of the title. See EuiTitle for options ('s', 'm', 'l'... etc)
    */
@@ -98,21 +88,12 @@ export const EuiStat: FunctionComponent<
   descriptionElement = 'p',
   ...rest
 }) => {
-  const classes = classNames(
-    'euiStat',
-    textAlignToClassNameMap[textAlign],
-    className
-  );
+  const euiTheme = useEuiTheme();
+  const styles = euiStatStyles();
+  const cssStyles = [styles.euiStat, styles[textAlign]];
+  const classes = classNames('euiStat', className);
 
-  const titleClasses = classNames(
-    'euiStat__title',
-    isColorClass(titleColor) ? colorToClassNameMap[titleColor] : null,
-    {
-      'euiStat__title-isLoading': isLoading,
-    }
-  );
-
-  const commonProps = {
+  const commonProps: HTMLAttributes<Element> = {
     'aria-hidden': true,
   };
 
@@ -122,22 +103,21 @@ export const EuiStat: FunctionComponent<
     </EuiText>
   );
 
-  const titlePropsWithColor = {
-    'aria-hidden': true,
-    style: {
-      color: `${titleColor}`,
-    },
-  };
-
+  const isNamedTitleColor = COLORS.includes(titleColor as TitleColor);
+  const titleStyles = euiStatTitleStyles(euiTheme);
+  const titleCssStyles = [
+    titleStyles.euiStat__title,
+    isNamedTitleColor && titleStyles[titleColor as TitleColor],
+    isLoading && titleStyles.isLoading,
+  ];
+  const titleProps = isNamedTitleColor
+    ? commonProps
+    : { ...commonProps, style: { color: titleColor } };
   const titleChildren = isLoading ? '--' : title;
 
-  const titleDisplay = isColorClass(titleColor) ? (
-    <EuiTitle size={titleSize} className={titleClasses}>
-      {createElement(titleElement, commonProps, titleChildren)}
-    </EuiTitle>
-  ) : (
-    <EuiTitle size={titleSize} className={titleClasses}>
-      {createElement(titleElement, titlePropsWithColor, titleChildren)}
+  const titleDisplay = (
+    <EuiTitle size={titleSize} className="euiStat__title" css={titleCssStyles}>
+      {createElement(titleElement, titleProps, titleChildren)}
     </EuiTitle>
   );
 
@@ -167,7 +147,7 @@ export const EuiStat: FunctionComponent<
   );
 
   return (
-    <div className={classes} {...rest}>
+    <div css={cssStyles} className={classes} {...rest}>
       {statDisplay}
       {children}
     </div>

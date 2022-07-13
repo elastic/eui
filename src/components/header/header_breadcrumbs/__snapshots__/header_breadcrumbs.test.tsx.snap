@@ -7,13 +7,13 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <ol
-    class="euiBreadcrumbs__list css-1ifj11g-euiBreadcrumbs__list-isTruncated"
+    class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
   >
     <li
-      class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
+      class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass css-5583ul-euiLink-subdued-euiBreadcrumb__content"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-subdued-euiBreadcrumb__content"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -22,20 +22,20 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
+      class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
     >
       <button
-        class="euiLink euiBreadcrumb__content css-5583ul-euiLink-subdued-euiBreadcrumb__content"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content"
         type="button"
       >
         Reptiles
       </button>
     </li>
     <li
-      class="euiBreadcrumb css-1czveci-euiBreadcrumb-isTruncated"
+      class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
     >
       <a
-        class="euiLink euiBreadcrumb__content css-5583ul-euiLink-subdued-euiBreadcrumb__content"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content"
         href="#"
         rel="noreferrer"
       >
@@ -43,11 +43,11 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--last css-1czveci-euiBreadcrumb-isTruncated"
+      class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated"
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content css-1qfgrzo-euiBreadcrumb__content"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
       >
         Edit
       </span>
