@@ -10,6 +10,7 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiSpacer,
+  EuiCommentListProps,
 } from '../../../../src/components/';
 
 const body = (
@@ -45,9 +46,8 @@ const eventWihtMultipleTags = (
   </EuiFlexGroup>
 );
 
-const commentsData: any[] = [
+const commentsData: EuiCommentListProps['comments'] = [
   {
-    id: 'regular',
     username: 'janed',
     event: 'added a comment',
     timestamp: 'on Jan 1, 2020',
@@ -55,7 +55,6 @@ const commentsData: any[] = [
     actions: copyAction,
   },
   {
-    id: 'update',
     username: 'luisg',
     event: eventWihtMultipleTags,
     timestamp: '22 hours ago',
@@ -64,7 +63,6 @@ const commentsData: any[] = [
     actions: copyAction,
   },
   {
-    id: 'updateDanger',
     username: 'system',
     timelineIcon: 'dot',
     event: 'pushed a new incident',
@@ -72,7 +70,6 @@ const commentsData: any[] = [
     eventColor: 'danger',
   },
   {
-    id: 'custom',
     username: 'pancho1',
     children: (
       <EuiTextArea
@@ -112,10 +109,10 @@ export default () => {
     setToggleIdSelected(optionId);
     const buttonId = optionId.replace('Button', '');
 
-    const selectedComment = commentsData.find(
-      (comment) => comment.id === buttonId
+    const selectedCommentIndex = toggleButtons.findIndex(
+      ({ id }) => id === buttonId
     );
-    setComment(selectedComment);
+    setComment(commentsData[selectedCommentIndex]);
   };
 
   return (
