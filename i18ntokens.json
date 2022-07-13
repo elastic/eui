@@ -5,11 +5,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 338,
+        "line": 346,
         "column": 16
       },
       "end": {
-        "line": 338,
+        "line": 346,
         "column": 76
       }
     },
@@ -849,16 +849,16 @@
   },
   {
     "token": "euiDataGridCell.position",
-    "defString": "Row: {row}; Column: {col}",
+    "defString": "{columnId}, column {col}, row {row}",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 67,
-        "column": 25
+        "line": 97,
+        "column": 12
       },
       "end": {
-        "line": 71,
-        "column": 5
+        "line": 105,
+        "column": 14
       }
     },
     "filepath": "src/components/datagrid/body/data_grid_cell.tsx"
@@ -1493,11 +1493,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 337,
+        "line": 338,
         "column": 22
       },
       "end": {
-        "line": 341,
+        "line": 342,
         "column": 5
       }
     },
@@ -1509,11 +1509,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 342,
+        "line": 343,
         "column": 27
       },
       "end": {
-        "line": 346,
+        "line": 347,
         "column": 5
       }
     },
@@ -1525,11 +1525,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 470,
+        "line": 472,
         "column": 18
       },
       "end": {
-        "line": 473,
+        "line": 475,
         "column": 20
       }
     },
@@ -4821,11 +4821,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 568,
+        "line": 569,
         "column": 16
       },
       "end": {
-        "line": 571,
+        "line": 572,
         "column": 18
       }
     },
@@ -4837,11 +4837,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 590,
+        "line": 591,
         "column": 14
       },
       "end": {
-        "line": 594,
+        "line": 595,
         "column": 16
       }
     },
@@ -4853,11 +4853,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 609,
+        "line": 610,
         "column": 14
       },
       "end": {
-        "line": 612,
+        "line": 613,
         "column": 16
       }
     },
@@ -4869,11 +4869,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 674,
+        "line": 675,
         "column": 6
       },
       "end": {
-        "line": 674,
+        "line": 675,
         "column": 78
       }
     },
@@ -4885,11 +4885,11 @@
     "highlighting": "code",
     "loc": {
       "start": {
-        "line": 701,
+        "line": 702,
         "column": 6
       },
       "end": {
-        "line": 707,
+        "line": 708,
         "column": 8
       }
     },
@@ -4901,11 +4901,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 719,
+        "line": 720,
         "column": 6
       },
       "end": {
-        "line": 728,
+        "line": 729,
         "column": 7
       }
     },
@@ -4917,11 +4917,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 719,
+        "line": 720,
         "column": 6
       },
       "end": {
-        "line": 728,
+        "line": 729,
         "column": 7
       }
     },

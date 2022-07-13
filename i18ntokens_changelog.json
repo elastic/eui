@@ -1,5 +1,15 @@
 [
   {
+    "version": "60.3.0",
+    "changes": [
+      {
+        "token": "euiDataGridCell.position",
+        "changeType": "modified",
+        "value": "{columnId}, column {col}, row {row}"
+      }
+    ]
+  },
+  {
     "version": "60.2.0",
     "changes": [
       {
