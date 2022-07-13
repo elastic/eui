@@ -18,9 +18,6 @@ import {
 import Selectable from './selectable';
 const selectableSource = require('!!raw-loader!./selectable');
 
-import SelectablePopover from './selectable_popover';
-const selectablePopoverSource = require('!!raw-loader!./selectable_popover');
-
 import SelectableSearch from './selectable_search';
 const selectableSearchSource = require('!!raw-loader!./selectable_search');
 
@@ -32,6 +29,9 @@ const selectableExclusionSource = require('!!raw-loader!./selectable_exclusion')
 
 import SelectableMessages from './selectable_messages';
 const selectableMessagesSource = require('!!raw-loader!./selectable_messages');
+
+import SelectableSizing from './selectable_sizing';
+const selectableSizingSource = require('!!raw-loader!./selectable_sizing');
 
 import SelectableCustomRender from './selectable_custom_render';
 const selectableCustomRenderSource = require('!!raw-loader!./selectable_custom_render');
@@ -198,47 +198,6 @@ export const SelectableExample = {
 </EuiSelectable>`,
     },
     {
-      title: 'Sizing and containers',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: selectablePopoverSource,
-        },
-      ],
-      text: (
-        <Fragment>
-          <p>
-            The component&apos;s children, <EuiCode>list, search</EuiCode>, are
-            returned via the <EuiCode>children</EuiCode> function, which means
-            you can wrap the indivial elements in anything you want.
-          </p>
-          <h3>Width and height</h3>
-          <p>
-            The width has been made to always be 100% of its container,
-            including stretching the search input. When used inside of{' '}
-            <Link to="layout/popover">
-              <strong>EuiPopover</strong>
-            </Link>
-            , we recommend setting a width (or min/max values) via CSS on the
-            element containing the list to avoid expansion and contraction. By
-            default, the height is capped at showing up to 7.5 items. It shows
-            half of the last one to help indicate that there are more options to
-            scroll to. To stretch the box to fill its container, pass
-            &apos;full&apos; to the <EuiCode>height</EuiCode> prop.
-          </p>
-          <h3>Flexbox</h3>
-          <p>
-            Be aware that <EuiCode language="sass">display: flex</EuiCode> with
-            column layout is applied to the wrapping container. This is so that
-            you can opt in to allow the height of the list stretch to fill its
-            container. See the flyout example.
-          </p>
-        </Fragment>
-      ),
-      props: { EuiSelectable },
-      demo: <SelectablePopover />,
-    },
-    {
       title: 'Options can be excluded',
       source: [
         {
@@ -310,6 +269,47 @@ export const SelectableExample = {
   {list => isLoading ? <EuiSelectableMessage bordered={true}>You have no spice</EuiSelectableMessage> : list}
 </EuiSelectable>`,
       ],
+    },
+    {
+      title: 'Sizing and containers',
+      text: (
+        <Fragment>
+          <p>
+            The component&apos;s children, <EuiCode>list, search</EuiCode>, are
+            returned via the <EuiCode>children</EuiCode> function, which means
+            you can wrap the indivial elements in anything you want.
+          </p>
+          <h3>Width and height</h3>
+          <p>
+            The width has been made to always be 100% of its container,
+            including stretching the search input. When used inside of{' '}
+            <Link to="layout/popover">
+              <strong>EuiPopover</strong>
+            </Link>
+            , we recommend setting a width (or min/max values) via CSS on the
+            element containing the list to avoid expansion and contraction. By
+            default, the height is capped at showing up to 7.5 items. It shows
+            half of the last one to help indicate that there are more options to
+            scroll to. To stretch the box to fill its container, pass
+            &apos;full&apos; to the <EuiCode>height</EuiCode> prop.
+          </p>
+          <h3>Flexbox</h3>
+          <p>
+            Be aware that <EuiCode language="sass">display: flex</EuiCode> with
+            column layout is applied to the wrapping container. This is so that
+            you can opt in to allow the height of the list stretch to fill its
+            container. See the flyout example.
+          </p>
+        </Fragment>
+      ),
+      demo: <SelectableSizing />,
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: selectableSizingSource,
+        },
+      ],
+      props: { EuiSelectable },
     },
     {
       title: 'Rendering the options',
