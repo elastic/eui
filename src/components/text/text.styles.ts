@@ -182,6 +182,34 @@ const euiScaleText = (
     code:not(.euiCode):not(.euiCodeBlock__code)  {
       font-size: .9em; // 90% of parent font size
     }
+
+    
+    
+  `;
+};
+
+// Internal utility for EuiText ornaments
+const euiGetTextOrnaments = (
+  euiThemeContext: UseEuiTheme,
+  options: _FontScaleOptions
+) => {
+  const { euiTheme } = euiThemeContext;
+  const { customScale } = options;
+
+  return `
+  // when the size is 'm' the 'kbd' element get a line bellow the text
+    ${
+      customScale === 'm' &&
+      `kbd::after {
+        content: '';
+        display: inline-block;
+        border-bottom: 1px solid ${euiTheme.colors.text};
+        position: absolute;
+        bottom: ${euiTheme.size.xxs};
+        left: 0;
+        width: 100%;
+      }`
+    }
   `;
 };
 
@@ -303,6 +331,13 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
       > :last-child {
         margin-bottom: 0 !important;
       }
+
+      kbd {
+        position: relative;
+        ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
+        border: 1px solid ${euiTheme.colors.text};
+        border-radius: calc(${euiTheme.border.radius.small} / 2);
+      }
     `,
     constrainedWidth: css`
       max-width: ${euiTextConstrainedMaxWidth};
@@ -311,6 +346,10 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
     m: css`
       ${euiScaleText(euiThemeContext, {
         measurement: 'rem',
+        customScale: 'm',
+      })}
+
+      ${euiGetTextOrnaments(euiThemeContext, {
         customScale: 'm',
       })}
     `,
