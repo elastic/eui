@@ -17,13 +17,13 @@ export const EuiImageCaption = forwardRef<HTMLDivElement, EuiImageCaptionProps>(
   ({ caption, isOnOverlayMask = false }, ref: Ref<HTMLDivElement>) => {
     const euiTheme = useEuiTheme();
     const styles = euiImageCaptionStyles(euiTheme);
-    const cssstyles = [
+    const cssStyles = [
       styles.euiImageCaption,
       isOnOverlayMask && styles.isOnOverlayMask,
     ];
 
     return (
-      <figcaption ref={ref} css={cssstyles}>
+      <figcaption ref={ref} css={cssStyles}>
         {caption}
       </figcaption>
     );

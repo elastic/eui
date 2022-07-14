@@ -11,6 +11,7 @@ export default () => (
       caption="Custom size (50)"
       alt="Accessible image alt goes here"
       src="https://source.unsplash.com/1000x1000/?Nature"
+      wrapperProps={{ className: 'eui-textLeft' }}
     />
     <EuiSpacer />
     <EuiImage

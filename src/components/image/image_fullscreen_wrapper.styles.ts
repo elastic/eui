@@ -7,7 +7,11 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import { logicalCSS, euiCanAnimate } from '../../global_styling';
+import {
+  logicalCSS,
+  logicalTextAlignCSS,
+  euiCanAnimate,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiImageFullscreenWrapperStyles = (
@@ -25,6 +29,7 @@ export const euiImageFullscreenWrapperStyles = (
       position: relative;
       ${logicalCSS('max-height', '80vh')};
       ${logicalCSS('max-width', '80vh')};
+      ${logicalTextAlignCSS('center')}; // Aligns both caption and image
 
       ${euiCanAnimate} {
         animation: ${euiImageFullScreen(euiTheme.size.xxxxl)}

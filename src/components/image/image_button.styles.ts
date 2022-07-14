@@ -19,6 +19,7 @@ export const euiImageButtonStyles = (euiThemeContext: UseEuiTheme) => {
     euiImageButton: css`
       position: relative;
       cursor: pointer;
+      text-align: match-parent;
       line-height: 0;
 
       // Shadow on hover - use a pseudo element & opacity for maximum animation performance

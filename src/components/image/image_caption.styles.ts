@@ -7,11 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import {
-  euiFontSize,
-  logicalCSS,
-  logicalTextAlignCSS,
-} from '../../global_styling';
+import { euiFontSize, logicalCSS } from '../../global_styling';
 import { UseEuiTheme, transparentize } from '../../services';
 
 export const euiImageCaptionStyles = (euiThemeContext: UseEuiTheme) => {
@@ -22,7 +18,6 @@ export const euiImageCaptionStyles = (euiThemeContext: UseEuiTheme) => {
     euiImageCaption: css`
       ${euiFontSize(euiThemeContext, 's')};
       ${logicalCSS('margin-top', euiTheme.size.xs)};
-      ${logicalTextAlignCSS('center')};
     `,
     isOnOverlayMask: css`
       color: ${euiTheme.colors.ghost};

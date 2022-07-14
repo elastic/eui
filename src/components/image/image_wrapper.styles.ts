@@ -7,7 +7,11 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalCSS, logicalSide } from '../../global_styling';
+import {
+  logicalCSS,
+  logicalTextAlignCSS,
+  logicalSide,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiImageWrapperStyles = (euiThemeContext: UseEuiTheme) => {
@@ -18,6 +22,7 @@ export const euiImageWrapperStyles = (euiThemeContext: UseEuiTheme) => {
     euiImageWrapper: css`
       display: inline-block;
       ${logicalCSS('max-width', '100%')}
+      ${logicalTextAlignCSS('center')}; // Aligns both caption and image
       position: relative;
       line-height: 0; // Fixes cropping when image is resized by forcing its height to be determined by the image not line-height
       flex-shrink: 0; // Don't ever let this shrink in height if direct descendent of flex
