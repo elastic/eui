@@ -117,8 +117,12 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   const Element = isFigure ? 'figure' : 'div';
   const HeaderElement = isFigure ? 'figcaption' : 'div';
 
-  const panelProps = eventColor
-    ? { color: eventColor, paddingSize: 's' }
+  // The 'plain' color creates a shadow and adds a border radius that we don't want.
+  // So for these cases we use the transparent color instead.
+  const finalEventColor = eventColor === 'plain' ? 'transparent' : eventColor;
+
+  const panelProps = finalEventColor
+    ? { color: finalEventColor, paddingSize: 's' }
     : { color: 'transparent', paddingSize: 'none' };
 
   const eventHeader = (

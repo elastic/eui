@@ -15,7 +15,7 @@ import {
   EuiCodeBlock,
 } from '../../../../src';
 
-export default ({ snippet }: any) => {
+export default ({ snippet }: { snippet: ReactNode }) => {
   const { euiTheme } = useEuiTheme();
 
   const CircleIndicator = ({ name, ...rest }: any) => (

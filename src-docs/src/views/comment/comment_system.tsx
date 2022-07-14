@@ -99,8 +99,6 @@ export default () => {
   const [isLoading, setIsLoading] = useState(false);
   const [editorError, setEditorError] = useState(true);
 
-  const date = formatDate(Date.now(), 'dobLong');
-
   useEffect(() => {
     if (editorValue === '') {
       setEditorError(true);
@@ -111,6 +109,8 @@ export default () => {
 
   const onAddComment = () => {
     setIsLoading(true);
+
+    const date = formatDate(Date.now(), 'dobLong');
 
     setTimeout(() => {
       setIsLoading(false);

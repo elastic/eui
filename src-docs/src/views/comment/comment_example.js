@@ -84,8 +84,8 @@ export const CommentListExample = {
         <Link to="/display/timeline">
           <strong>EuiTimeline</strong>
         </Link>
-        . It allows you to display comments or logging actions that either a
-        user or a system has performed.
+        . It allows you to display comments or logged actions that either a user
+        or a system has performed.
       </p>
 
       <EuiCallOut
@@ -94,8 +94,8 @@ export const CommentListExample = {
         title={
           <>
             For accessibility, it is highly recommended to provide a descriptive{' '}
-            <EuiCode>aria-label</EuiCode>, or a text node ID of an external
-            label to the <EuiCode>aria-labelledby</EuiCode> prop of the{' '}
+            <EuiCode>aria-label</EuiCode> or the ID of an external label to the{' '}
+            <EuiCode>aria-labelledby</EuiCode> prop of the{' '}
             <strong>EuiCommentList</strong>.
           </>
         }
@@ -143,7 +143,7 @@ export const CommentListExample = {
           <CommentProps snippet={commentFlexibleSnippet} />
           <EuiSpacer />
           <EuiText>
-            <ul style={{ listStyleType: 'upper-alpha' }}>
+            <ol style={{ listStyleType: 'upper-alpha' }}>
               <li>
                 <EuiCode>timelineIcon</EuiCode>: Shows an icon that should
                 indicate who is the author of the comment. To customize, pass a{' '}
@@ -183,12 +183,13 @@ export const CommentListExample = {
                 <Link to="/navigation/context-menu">
                   <strong>EuiContextMenu</strong>
                 </Link>
+                .
               </li>
               <li>
                 <EuiCode>children</EuiCode>: A user message or any custom
                 component.
               </li>
-            </ul>
+            </ol>
           </EuiText>
           <EuiSpacer />
           <EuiText>
@@ -215,11 +216,8 @@ export const CommentListExample = {
       ],
       text: (
         <>
-          <p>
-            The timeline icon is a very important part of the comment and you
-            should always show one:
-          </p>
-          <ol>
+          <p>The timeline icon is a very important part of the comment:</p>
+          <ul>
             <li>
               By default, each <strong>EuiComment</strong> shows an avatar with
               the initial letter of the <EuiCode>username</EuiCode>. It also
@@ -249,7 +247,7 @@ export const CommentListExample = {
               </Link>
               .
             </li>
-          </ol>
+          </ul>
         </>
       ),
       props: { EuiComment },
@@ -332,7 +330,7 @@ export const CommentListExample = {
             </li>
           </ul>
           <p>
-            When dealing with asynchronous events like when adding a message we
+            When dealing with asynchronous events like posting a message we
             recommend setting the <strong>EuiMarkdownEditor</strong> to a{' '}
             <EuiCode>readOnly</EuiCode> state and the &quot;Add comment&quot;{' '}
             <strong>EuiButton</strong> to a <EuiCode>isLoading</EuiCode> state.

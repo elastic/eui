@@ -31,7 +31,7 @@ const copyAction = (
   />
 );
 
-const eventWihtMultipleTags = (
+const eventWithMultipleTags = (
   <EuiFlexGroup responsive={false} alignItems="center" gutterSize="xs" wrap>
     <EuiFlexItem grow={false}>added tags</EuiFlexItem>
     <EuiFlexItem grow={false}>
@@ -56,7 +56,7 @@ const commentsData: EuiCommentListProps['comments'] = [
   },
   {
     username: 'luisg',
-    event: eventWihtMultipleTags,
+    event: eventWithMultipleTags,
     timestamp: '22 hours ago',
     eventIcon: 'tag',
     eventIconAriaLabel: 'tag',
