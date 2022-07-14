@@ -56,7 +56,6 @@ exports[`EuiImage is rendered with a float 1`] = `
   <img
     alt="alt"
     class="euiImage emotion-euiImage-original"
-    float="left"
     src="/cat.jpg"
   />
   <figcaption
@@ -72,7 +71,6 @@ exports[`EuiImage is rendered with a margin 1`] = `
   <img
     alt="alt"
     class="euiImage emotion-euiImage-original"
-    margin="l"
     src="/cat.jpg"
   />
   <figcaption
@@ -87,7 +85,6 @@ exports[`EuiImage is rendered with a node as the caption 1`] = `
 >
   <img
     alt="alt"
-    caption="[object Object]"
     class="euiImage emotion-euiImage-original"
     src="/cat.jpg"
   />
@@ -124,7 +121,6 @@ exports[`EuiImage is rendered with src 1`] = `
   <img
     alt="alt"
     class="euiImage emotion-euiImage-original"
-    float="left"
     src="/cat.jpg"
   />
   <figcaption
@@ -142,7 +138,6 @@ exports[`EuiImage is rendered with wrapperProps 1`] = `
 >
   <img
     alt="alt"
-    caption="[object Object]"
     class="euiImage emotion-euiImage-original"
     src="/cat.jpg"
   />

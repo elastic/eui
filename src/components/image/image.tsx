@@ -14,13 +14,7 @@ import { useEuiTheme } from '../../services';
 import { EuiImageWrapper } from './image_wrapper';
 import { euiImageStyles } from './image.styles';
 import { EuiImageFullScreenWrapper } from './image_fullscreen_wrapper';
-import type {
-  EuiImageProps,
-  ImageProps,
-  EuiImageWrapperProps,
-  EuiImageFullScreenWrapperProps,
-  EuiImageSize,
-} from './image_types';
+import type { EuiImageProps, ImageProps, EuiImageSize } from './image_types';
 
 import { SIZES } from './image_types';
 
@@ -35,6 +29,9 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
   wrapperProps,
   fullScreenIconColor,
   allowFullScreen,
+  caption,
+  float,
+  margin,
   ...rest
 }) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -72,14 +69,17 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
   const isFullWidth = size === 'fullWidth';
 
   const commonWrapperProps = {
-    alt: alt,
-    hasShadow: hasShadow,
-    wrapperProps: wrapperProps,
-    isFullScreen: isFullScreen,
-    setIsFullScreen: setIsFullScreen,
-    fullScreenIconColor: fullScreenIconColor,
-    isFullWidth: isFullWidth,
-    allowFullScreen: allowFullScreen,
+    alt,
+    hasShadow,
+    wrapperProps,
+    isFullScreen,
+    setIsFullScreen,
+    fullScreenIconColor,
+    isFullWidth,
+    allowFullScreen,
+    caption,
+    float,
+    margin,
   };
 
   const commonImgProps = {
@@ -91,18 +91,12 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
 
   return (
     <>
-      <EuiImageWrapper
-        {...(rest as EuiImageWrapperProps)}
-        {...commonWrapperProps}
-      >
+      <EuiImageWrapper {...commonWrapperProps}>
         <img alt={alt} css={cssStyles} {...commonImgProps} />
       </EuiImageWrapper>
 
       {allowFullScreen && isFullScreen && (
-        <EuiImageFullScreenWrapper
-          {...(rest as EuiImageFullScreenWrapperProps)}
-          {...commonWrapperProps}
-        >
+        <EuiImageFullScreenWrapper {...commonWrapperProps}>
           <img alt={alt} css={cssIsFullScreenStyles} {...commonImgProps} />
         </EuiImageFullScreenWrapper>
       )}
