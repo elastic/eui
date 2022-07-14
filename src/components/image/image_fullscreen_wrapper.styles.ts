@@ -37,7 +37,7 @@ export const euiImageFullscreenWrapperStyles = (
     `,
     // Sizes
     fullWidth: css`
-      width: 100%;
+      ${logicalCSS('width', '100%')}
     `,
   };
 };

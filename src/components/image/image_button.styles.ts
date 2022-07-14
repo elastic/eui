@@ -46,7 +46,7 @@ export const euiImageButtonStyles = (
       }
     `,
     fullWidth: css`
-      width: 100%;
+      ${logicalCSS('width', '100%')}
     `,
   };
 };

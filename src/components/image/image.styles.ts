@@ -35,27 +35,26 @@ export const euiImageStyles = (euiThemeContext: UseEuiTheme) => ({
   // These sizes are mostly suggestions. Don't look too hard for meaning in their values.
   // Size is applied to the image, rather than the wrapper figure to work better with floats
   s: css`
-    width: 100px;
+    ${logicalCSS('width', '100px')}
   `,
   m: css`
-    width: 200px;
+    ${logicalCSS('width', '200px')}
   `,
   l: css`
-    width: 360px;
+    ${logicalCSS('width', '360px')}
   `,
   xl: css`
-    width: 600px;
+    ${logicalCSS('width', '600px')}
   `,
   original: css`
-    width: auto;
+    ${logicalCSS('width', 'auto')}
   `,
-
   fullWidth: css`
-    width: 100%;
+    ${logicalCSS('width', '100%')}
   `,
   customSize: css`
     // A custom max-width and max-height is set in the style tag
     // We set the width back to auto to ensure aspect ratio is kept
-    width: auto;
+    ${logicalCSS('width', 'auto')}
   `,
 });

@@ -229,7 +229,7 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
 
       img {
         display: block;
-        max-width: 100%;
+        ${logicalCSS('max-width', '100%')}
       }
 
       ul {

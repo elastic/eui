@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalCSS } from '../../global_styling';
+import { logicalCSS, logicalSide } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 const _imageMargins = ({
@@ -64,7 +64,7 @@ export const euiImageWrapperStyles = (
     // Base
     euiImageWrapper: css`
       display: inline-block;
-      max-width: 100%;
+      ${logicalCSS('max-width', '100%')}
       position: relative;
       line-height: 0; // Fixes cropping when image is resized by forcing its height to be determined by the image not line-height
       flex-shrink: 0; // Don't ever let this shrink in height if direct descendent of flex
@@ -109,14 +109,14 @@ export const euiImageWrapperStyles = (
     ),
     // Floats
     left: css`
-      float: left;
+      float: ${logicalSide.left};
 
       @media only screen and (max-width: ${euiTheme.breakpoint.m}px) {
         float: none;
       }
     `,
     right: css`
-      float: right;
+      float: ${logicalSide.right};
 
       @media only screen and (max-width: ${euiTheme.breakpoint.m}px) {
         float: none;
@@ -124,7 +124,7 @@ export const euiImageWrapperStyles = (
     `,
     // Sizes
     fullWidth: css`
-      width: 100%;
+      ${logicalCSS('width', '100%')}
     `,
   };
 };
