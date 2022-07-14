@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-import { EuiText } from '../../../../src/components/text';
-import { EuiBadge } from '../../../../src/components/badge';
-import { EuiSelectableTemplateSitewide } from '../../../../src/components/selectable';
-import { EuiSelectableTemplateSitewideOption } from '../../../../src/components/selectable/selectable_templates/selectable_template_sitewide_option';
-import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
-import { EuiLink } from '../../../../src/components/link';
-import { EuiButton } from '../../../../src/components/button';
+import {
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiText,
+  EuiLink,
+  EuiBadge,
+  EuiButton,
+  EuiSelectableTemplateSitewide,
+  EuiSelectableTemplateSitewideOption,
+} from '../../../../../src/components';
 
 export default () => {
   const [searchValue, setSearchValue] = useState('');
@@ -47,25 +50,26 @@ export default () => {
    * Hook up the keyboard shortcut for command+k to initiate focus into search input
    */
   useEffect(() => {
+    const onWindowKeyUp = () => {
+      searchRef?.focus();
+      setLoading(true);
+      window.removeEventListener('keyup', onWindowKeyUp);
+    };
+
+    const onWindowKeyDown = (e: any) => {
+      if (e.metaKey && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        window.addEventListener('keyup', onWindowKeyUp);
+      }
+    };
+
     window.addEventListener('keydown', onWindowKeyDown);
 
-    return function cleanup() {
-      window.removeEventListener('resize', onWindowKeyDown);
+    return () => {
+      window.removeEventListener('keydown', onWindowKeyDown);
+      window.removeEventListener('keyup', onWindowKeyUp);
     };
-  });
-
-  const onWindowKeyDown = (e: any) => {
-    if (e.metaKey && e.key.toLowerCase() === 'k') {
-      e.preventDefault();
-      window.addEventListener('keyup', onWindowKeyUp);
-    }
-  };
-
-  const onWindowKeyUp = () => {
-    searchRef && searchRef.focus();
-    setLoading(true);
-    window.removeEventListener('keyup', onWindowKeyUp);
-  };
+  }, [searchRef]);
 
   const onKeyUpCapture = (e: any) => {
     setSearchValue(e.currentTarget.value);

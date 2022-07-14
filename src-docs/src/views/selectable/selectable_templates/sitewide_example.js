@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import { GuideSectionTypes } from '../../components';
+import { GuideSectionTypes } from '../../../components';
 
 import {
   EuiCode,
@@ -10,13 +10,13 @@ import {
   EuiCodeBlock,
   EuiAccordion,
   EuiCallOut,
-} from '../../../../src/components';
+} from '../../../../../src/components';
 
-import { Options, MetaData } from './props';
+import { Options, MetaData } from '../props';
 
-import SearchOption from './sitewide_option';
-import Search from './search';
-const searchSource = require('!!raw-loader!./search');
+import SitewideOption from './sitewide_option';
+import SitewideSearch from './sitewide_search';
+const sitewideSearchSource = require('!!raw-loader!./sitewide_search');
 
 export const SitewideSearchExample = {
   title: 'Sitewide search',
@@ -38,7 +38,7 @@ export const SitewideSearchExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: searchSource,
+          code: sitewideSearchSource,
         },
       ],
       text: (
@@ -94,7 +94,7 @@ export const SitewideSearchExample = {
         </Fragment>
       ),
       props: { EuiSelectableTemplateSitewide, Options, MetaData },
-      demo: <Search />,
+      demo: <SitewideSearch />,
     },
     {
       title: 'Options',
@@ -107,7 +107,7 @@ export const SitewideSearchExample = {
             parts are optional with the exception of the label (A).
           </p>
 
-          <SearchOption />
+          <SitewideOption />
           <EuiSpacer size="xs" />
           <EuiAccordion
             id="optionSnippet"
