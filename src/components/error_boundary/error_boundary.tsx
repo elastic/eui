@@ -13,6 +13,9 @@ import classNames from 'classnames';
 import { EuiTitle } from '../title';
 import { EuiCodeBlock } from '../code';
 import { EuiI18n } from '../i18n';
+import { withEuiTheme, WithEuiThemeProps } from '../../services';
+
+import { euiErrorBoundaryStyles } from './error_boundary.styles';
 
 interface EuiErrorBoundaryState {
   hasError: boolean;
@@ -27,11 +30,13 @@ export type EuiErrorBoundaryProps = CommonProps &
     children: ReactNode;
   };
 
-export class EuiErrorBoundary extends Component<
-  EuiErrorBoundaryProps,
+type EuiErrorBoundaryExtendedProps = EuiErrorBoundaryProps & WithEuiThemeProps;
+
+export class _EuiErrorBoundary extends Component<
+  EuiErrorBoundaryExtendedProps,
   EuiErrorBoundaryState
 > {
-  constructor(props: EuiErrorBoundaryProps) {
+  constructor(props: EuiErrorBoundaryExtendedProps) {
     super(props);
 
     const errorState: EuiErrorBoundaryState = {
@@ -57,13 +62,20 @@ ${stackStr}`;
   }
 
   render() {
-    const { children, 'data-test-subj': _dataTestSubj, ...rest } = this.props;
+    const {
+      children,
+      'data-test-subj': _dataTestSubj,
+      theme,
+      ...rest
+    } = this.props;
     const dataTestSubj = classNames('euiErrorBoundary', _dataTestSubj);
+    const styles = euiErrorBoundaryStyles(theme);
 
     if (this.state.hasError) {
       // You can render any custom fallback UI
       return (
         <div
+          css={styles.euiErrorBoundary}
           className="euiErrorBoundary"
           data-test-subj={dataTestSubj}
           {...rest}
@@ -83,3 +95,7 @@ ${stackStr}`;
     return children;
   }
 }
+
+export const EuiErrorBoundary = withEuiTheme<EuiErrorBoundaryProps>(
+  _EuiErrorBoundary
+);
