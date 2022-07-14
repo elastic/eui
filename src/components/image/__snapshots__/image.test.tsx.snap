@@ -132,7 +132,9 @@ exports[`EuiImage is rendered with src 1`] = `
 
 exports[`EuiImage is rendered with wrapperProps 1`] = `
 <figure
-  class="euiImageWrapper wrapperProps-className emotion-euiImageWrapper"
+  aria-label="aria-label"
+  class="euiImageWrapper testClass1 testClass2 emotion-euiImageWrapper"
+  data-test-subj="test subject string"
   style="border:2px solid red"
 >
   <img

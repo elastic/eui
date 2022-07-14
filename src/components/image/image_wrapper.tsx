@@ -67,10 +67,10 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
 
   return (
     <figure
+      aria-label={optionalCaptionText}
       {...wrapperProps}
       className={classes}
       css={cssFigureStyles}
-      aria-label={optionalCaptionText}
     >
       {allowFullScreen ? (
         <EuiImageButton

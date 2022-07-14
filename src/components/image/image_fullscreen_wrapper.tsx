@@ -84,10 +84,10 @@ export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageFullScreenWrap
       <EuiFocusTrap clickOutsideDisables={true}>
         <>
           <figure
+            aria-label={optionalCaptionText}
             {...wrapperProps}
             className={classes}
             css={cssStyles}
-            aria-label={optionalCaptionText}
           >
             <EuiImageButton
               hasShadow={hasShadow}

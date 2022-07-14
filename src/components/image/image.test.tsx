@@ -83,7 +83,7 @@ describe('EuiImage', () => {
         caption={<span>caption</span>}
         url="/cat.jpg"
         wrapperProps={{
-          className: 'wrapperProps-className',
+          ...requiredProps,
           style: { border: '2px solid red' },
         }}
       />
