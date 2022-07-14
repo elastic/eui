@@ -34,9 +34,6 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
   fullScreenIconColor,
   isFullWidth,
 }) => {
-  const hasFloatLeft = float === 'left';
-  const hasFloatRight = float === 'right';
-
   const openFullScreen = () => {
     setIsFullScreen(true);
   };
@@ -48,7 +45,7 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
 
   const euiTheme = useEuiTheme();
 
-  const styles = euiImageWrapperStyles(euiTheme, hasFloatLeft, hasFloatRight);
+  const styles = euiImageWrapperStyles(euiTheme);
   const cssFigureStyles = [
     styles.euiImageWrapper,
     float && styles[float],
