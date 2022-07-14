@@ -430,7 +430,6 @@ describe('useRowHeightUtils', () => {
     current: {
       resetAfterIndices: jest.fn(),
       resetAfterColumnIndex: jest.fn(),
-
       resetAfterRowIndex: jest.fn(),
       scrollTo: jest.fn(),
       scrollToItem: jest.fn(),
