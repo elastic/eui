@@ -22,14 +22,10 @@ export const euiImageFullscreenWrapperStyles = (
   return {
     // Base
     euiImageFullscreenWrapper: css`
-      display: inline-block;
-      position: relative;
-      line-height: 0; // Fixes cropping when image is resized by forcing its height to be determined by the image not line-height
-      flex-shrink: 0; // Don't ever let this shrink in height if direct descendent of flex
-      position: relative;
       ${logicalCSS('max-height', '80vh')};
       ${logicalCSS('max-width', '80vh')};
       ${logicalTextAlignCSS('center')}; // Aligns both caption and image
+      line-height: 0; // Fixes cropping when image is resized by forcing its height to be determined by the image not line-height
 
       ${euiCanAnimate} {
         animation: ${euiImageFullScreen(euiTheme.size.xxxxl)}
