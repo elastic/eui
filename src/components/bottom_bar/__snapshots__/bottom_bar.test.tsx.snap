@@ -1,49 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiBottomBar is rendered 1`] = `
-Array [
-  <section
-    aria-label="aria-label"
-    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium testClass1 testClass2 emotion-euiBottomBar-fixed-m"
-    data-test-subj="test subject string"
-    style="left:0;right:0;bottom:0"
-  >
-    <h2
-      class="emotion-euiScreenReaderOnly"
-    >
-      Page level controls
-    </h2>
-    Content
-  </section>,
-  <p
-    aria-live="assertive"
+<section
+  aria-label="aria-label"
+  class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium testClass1 testClass2 emotion-euiBottomBar-fixed-m"
+  data-test-subj="test subject string"
+  style="left: 0px; right: 0px; bottom: 0px;"
+>
+  <h2
     class="emotion-euiScreenReaderOnly"
   >
-    There is a new region landmark with page level controls at the end of the document.
-  </p>,
-]
+    Page level controls
+  </h2>
+  Content
+</section>
 `;
 
 exports[`EuiBottomBar props affordForDisplacement can be false 1`] = `
-Array [
-  <section
-    aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
-    style="left:0;right:0;bottom:0"
-  >
-    <h2
-      class="emotion-euiScreenReaderOnly"
-    >
-      Page level controls
-    </h2>
-  </section>,
-  <p
-    aria-live="assertive"
+<section
+  aria-label="Page level controls"
+  class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
+  style="left: 0px; right: 0px; bottom: 0px;"
+>
+  <h2
     class="emotion-euiScreenReaderOnly"
   >
-    There is a new region landmark with page level controls at the end of the document.
-  </p>,
-]
+    Page level controls
+  </h2>
+</section>
 `;
 
 exports[`EuiBottomBar props bodyClassName is rendered 1`] = `
@@ -61,243 +45,155 @@ exports[`EuiBottomBar props bodyClassName is rendered 1`] = `
 `;
 
 exports[`EuiBottomBar props landmarkHeading 1`] = `
-Array [
-  <section
-    aria-label="This should have been label"
-    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
-    style="left:0;right:0;bottom:0"
-  >
-    <h2
-      class="emotion-euiScreenReaderOnly"
-    >
-      This should have been label
-    </h2>
-  </section>,
-  <p
-    aria-live="assertive"
+<section
+  aria-label="This should have been label"
+  class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
+  style="left: 0px; right: 0px; bottom: 0px;"
+>
+  <h2
     class="emotion-euiScreenReaderOnly"
   >
-    There is a new region landmark called This should have been label with page level controls at the end of the document.
-  </p>,
-]
+    This should have been label
+  </h2>
+</section>
 `;
 
 exports[`EuiBottomBar props paddingSize l is rendered 1`] = `
-Array [
-  <section
-    aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingLarge emotion-euiBottomBar-fixed-l"
-    style="left:0;right:0;bottom:0"
-  >
-    <h2
-      class="emotion-euiScreenReaderOnly"
-    >
-      Page level controls
-    </h2>
-  </section>,
-  <p
-    aria-live="assertive"
+<section
+  aria-label="Page level controls"
+  class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingLarge emotion-euiBottomBar-fixed-l"
+  style="left: 0px; right: 0px; bottom: 0px;"
+>
+  <h2
     class="emotion-euiScreenReaderOnly"
   >
-    There is a new region landmark with page level controls at the end of the document.
-  </p>,
-]
+    Page level controls
+  </h2>
+</section>
 `;
 
 exports[`EuiBottomBar props paddingSize m is rendered 1`] = `
-Array [
-  <section
-    aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
-    style="left:0;right:0;bottom:0"
-  >
-    <h2
-      class="emotion-euiScreenReaderOnly"
-    >
-      Page level controls
-    </h2>
-  </section>,
-  <p
-    aria-live="assertive"
+<section
+  aria-label="Page level controls"
+  class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
+  style="left: 0px; right: 0px; bottom: 0px;"
+>
+  <h2
     class="emotion-euiScreenReaderOnly"
   >
-    There is a new region landmark with page level controls at the end of the document.
-  </p>,
-]
+    Page level controls
+  </h2>
+</section>
 `;
 
 exports[`EuiBottomBar props paddingSize none is rendered 1`] = `
-Array [
-  <section
-    aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--fixed emotion-euiBottomBar-fixed"
-    style="left:0;right:0;bottom:0"
-  >
-    <h2
-      class="emotion-euiScreenReaderOnly"
-    >
-      Page level controls
-    </h2>
-  </section>,
-  <p
-    aria-live="assertive"
+<section
+  aria-label="Page level controls"
+  class="euiBottomBar euiBottomBar--fixed emotion-euiBottomBar-fixed"
+  style="left: 0px; right: 0px; bottom: 0px;"
+>
+  <h2
     class="emotion-euiScreenReaderOnly"
   >
-    There is a new region landmark with page level controls at the end of the document.
-  </p>,
-]
+    Page level controls
+  </h2>
+</section>
 `;
 
 exports[`EuiBottomBar props paddingSize s is rendered 1`] = `
-Array [
-  <section
-    aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingSmall emotion-euiBottomBar-fixed-s"
-    style="left:0;right:0;bottom:0"
-  >
-    <h2
-      class="emotion-euiScreenReaderOnly"
-    >
-      Page level controls
-    </h2>
-  </section>,
-  <p
-    aria-live="assertive"
+<section
+  aria-label="Page level controls"
+  class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingSmall emotion-euiBottomBar-fixed-s"
+  style="left: 0px; right: 0px; bottom: 0px;"
+>
+  <h2
     class="emotion-euiScreenReaderOnly"
   >
-    There is a new region landmark with page level controls at the end of the document.
-  </p>,
-]
+    Page level controls
+  </h2>
+</section>
 `;
 
 exports[`EuiBottomBar props position fixed is rendered 1`] = `
-Array [
-  <section
-    aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
-    style="left:0;right:0;bottom:0"
-  >
-    <h2
-      class="emotion-euiScreenReaderOnly"
-    >
-      Page level controls
-    </h2>
-  </section>,
-  <p
-    aria-live="assertive"
+<section
+  aria-label="Page level controls"
+  class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
+  style="left: 0px; right: 0px; bottom: 0px;"
+>
+  <h2
     class="emotion-euiScreenReaderOnly"
   >
-    There is a new region landmark with page level controls at the end of the document.
-  </p>,
-]
+    Page level controls
+  </h2>
+</section>
 `;
 
 exports[`EuiBottomBar props position props are altered 1`] = `
-Array [
-  <section
-    aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
-    style="left:30px;right:30px;bottom:30px;top:30px"
-  >
-    <h2
-      class="emotion-euiScreenReaderOnly"
-    >
-      Page level controls
-    </h2>
-  </section>,
-  <p
-    aria-live="assertive"
+<section
+  aria-label="Page level controls"
+  class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
+  style="left: 30px; right: 30px; bottom: 30px; top: 30px;"
+>
+  <h2
     class="emotion-euiScreenReaderOnly"
   >
-    There is a new region landmark with page level controls at the end of the document.
-  </p>,
-]
+    Page level controls
+  </h2>
+</section>
 `;
 
 exports[`EuiBottomBar props position static is rendered 1`] = `
-Array [
-  <section
-    aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--static euiBottomBar--paddingMedium emotion-euiBottomBar-static-m"
-    style="left:0;right:0;bottom:0"
-  >
-    <h2
-      class="emotion-euiScreenReaderOnly"
-    >
-      Page level controls
-    </h2>
-  </section>,
-  <p
-    aria-live="assertive"
+<section
+  aria-label="Page level controls"
+  class="euiBottomBar euiBottomBar--static euiBottomBar--paddingMedium emotion-euiBottomBar-static-m"
+  style="left: 0px; right: 0px; bottom: 0px;"
+>
+  <h2
     class="emotion-euiScreenReaderOnly"
   >
-    There is a new region landmark with page level controls at the end of the document.
-  </p>,
-]
+    Page level controls
+  </h2>
+</section>
 `;
 
 exports[`EuiBottomBar props position sticky is rendered 1`] = `
-Array [
-  <section
-    aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--sticky euiBottomBar--paddingMedium emotion-euiBottomBar-sticky-m"
-    style="left:0;right:0;bottom:0"
-  >
-    <h2
-      class="emotion-euiScreenReaderOnly"
-    >
-      Page level controls
-    </h2>
-  </section>,
-  <p
-    aria-live="assertive"
+<section
+  aria-label="Page level controls"
+  class="euiBottomBar euiBottomBar--sticky euiBottomBar--paddingMedium emotion-euiBottomBar-sticky-m"
+  style="left: 0px; right: 0px; bottom: 0px;"
+>
+  <h2
     class="emotion-euiScreenReaderOnly"
   >
-    There is a new region landmark with page level controls at the end of the document.
-  </p>,
-]
+    Page level controls
+  </h2>
+</section>
 `;
 
 exports[`EuiBottomBar props style is customized 1`] = `
-Array [
-  <section
-    aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
-    style="left:12px;right:0;bottom:0"
-  >
-    <h2
-      class="emotion-euiScreenReaderOnly"
-    >
-      Page level controls
-    </h2>
-  </section>,
-  <p
-    aria-live="assertive"
+<section
+  aria-label="Page level controls"
+  class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
+  style="left: 12px; right: 0px; bottom: 0px;"
+>
+  <h2
     class="emotion-euiScreenReaderOnly"
   >
-    There is a new region landmark with page level controls at the end of the document.
-  </p>,
-]
+    Page level controls
+  </h2>
+</section>
 `;
 
 exports[`EuiBottomBar props usePortal can be false 1`] = `
-Array [
-  <section
-    aria-label="Page level controls"
-    class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
-    style="left:0;right:0;bottom:0"
-  >
-    <h2
-      class="emotion-euiScreenReaderOnly"
-    >
-      Page level controls
-    </h2>
-  </section>,
-  <p
-    aria-live="assertive"
+<section
+  aria-label="Page level controls"
+  class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
+  style="left: 0px; right: 0px; bottom: 0px;"
+>
+  <h2
     class="emotion-euiScreenReaderOnly"
   >
-    There is a new region landmark with page level controls at the end of the document.
-  </p>,
-]
+    Page level controls
+  </h2>
+</section>
 `;

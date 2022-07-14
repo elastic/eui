@@ -11,7 +11,7 @@
  * into portals.
  */
 
-import { Component, ReactNode } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { keysOf } from '../common';
 
@@ -40,43 +40,37 @@ export interface EuiPortalProps {
   portalRef?: (ref: HTMLDivElement | null) => void;
 }
 
-export class EuiPortal extends Component<EuiPortalProps> {
-  portalNode: HTMLDivElement;
-  constructor(props: EuiPortalProps) {
-    super(props);
+export const EuiPortal: React.FC<EuiPortalProps> = ({
+  insert,
+  portalRef,
+  children,
+}) => {
+  const [portalNode, setPortalNode] = useState<HTMLDivElement>();
 
-    const { insert } = this.props;
-
-    this.portalNode = document.createElement('div');
+  // mount
+  useEffect(() => {
+    const portalNode = document.createElement('div');
+    setPortalNode(portalNode);
 
     if (insert == null) {
       // no insertion defined, append to body
-      document.body.appendChild(this.portalNode);
+      document.body.appendChild(portalNode);
     } else {
       // inserting before or after an element
       const { sibling, position } = insert;
-      sibling.insertAdjacentElement(insertPositions[position], this.portalNode);
+      sibling.insertAdjacentElement(insertPositions[position], portalNode);
     }
-  }
 
-  componentDidMount() {
-    this.updatePortalRef(this.portalNode);
-  }
+    portalRef?.(portalNode);
 
-  componentWillUnmount() {
-    if (this.portalNode.parentNode) {
-      this.portalNode.parentNode.removeChild(this.portalNode);
-    }
-    this.updatePortalRef(null);
-  }
+    // unmount
+    return () => {
+      if (portalNode && portalNode.parentNode) {
+        portalNode.parentNode.removeChild(portalNode);
+      }
+      portalRef?.(null);
+    };
+  }, [insert, portalRef]);
 
-  updatePortalRef(ref: HTMLDivElement | null) {
-    if (this.props.portalRef) {
-      this.props.portalRef(ref);
-    }
-  }
-
-  render() {
-    return createPortal(this.props.children, this.portalNode);
-  }
-}
+  return portalNode == null ? null : createPortal(children, portalNode);
+};
