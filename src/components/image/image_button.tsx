@@ -39,10 +39,11 @@ export const EuiImageButton: FunctionComponent<EuiImageButtonProps> = ({
 }) => {
   const euiTheme = useEuiTheme();
 
-  const buttonStyles = euiImageButtonStyles(euiTheme, hasShadow);
+  const buttonStyles = euiImageButtonStyles(euiTheme);
 
   const cssButtonStyles = [
     buttonStyles.euiImageButton,
+    hasShadow ? buttonStyles.hasShadowHover : buttonStyles.shadowHover,
     !isFullScreen && isFullWidth && buttonStyles.fullWidth,
   ];
 
@@ -62,7 +63,9 @@ export const EuiImageButton: FunctionComponent<EuiImageButtonProps> = ({
     >
       {children}
       {allowFullScreen && !isFullScreen && (
-        <EuiIcon css={cssIconStyles} type="fullScreen" color={iconColor} />
+        <div css={cssIconStyles}>
+          <EuiIcon type="fullScreen" color={iconColor} />
+        </div>
       )}
     </button>
   );

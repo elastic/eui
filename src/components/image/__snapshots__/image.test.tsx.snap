@@ -23,7 +23,7 @@ exports[`EuiImage is rendered and allows fullscreen 1`] = `
 >
   <button
     aria-label="Open fullscreen alt image"
-    class="emotion-euiImageButton"
+    class="emotion-euiImageButton-shadowHover"
     data-test-subj="activateFullScreenButton"
     type="button"
   >
@@ -34,11 +34,14 @@ exports[`EuiImage is rendered and allows fullscreen 1`] = `
       data-test-subj="test subject string"
       src="/cat.jpg"
     />
-    <span
+    <div
       class="emotion-euiImageButton__icon"
-      color="ghost"
-      data-euiicon-type="fullScreen"
-    />
+    >
+      <span
+        color="ghost"
+        data-euiicon-type="fullScreen"
+      />
+    </div>
   </button>
   <figcaption
     class="emotion-euiImageCaption"

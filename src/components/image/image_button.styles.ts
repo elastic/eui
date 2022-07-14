@@ -11,10 +11,7 @@ import { euiFocusRing, logicalCSS, euiCanAnimate } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
 
-export const euiImageButtonStyles = (
-  euiThemeContext: UseEuiTheme,
-  hasShadow: boolean | undefined
-) => {
+export const euiImageButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   return {
@@ -24,29 +21,50 @@ export const euiImageButtonStyles = (
       cursor: pointer;
       line-height: 0;
 
-      &:hover,
-      &:focus {
-        ${hasShadow
-          ? `${euiShadow(euiThemeContext, 'm')};`
-          : `${euiShadow(euiThemeContext, 's')};`}
+      // Shadow on hover - use a pseudo element & opacity for maximum animation performance
+      &::before {
+        opacity: 0;
+        content: '';
+        pointer-events: none; // Prevent interacting with this element, it's for visual effect only
+        position: absolute; // Skip logical properties here - should all be the same
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        ${euiCanAnimate} {
+          transition: opacity ${euiTheme.animation.fast}
+            ${euiTheme.animation.resistance};
+        }
       }
 
-      ${euiCanAnimate} {
-        transition: box-shadow ${euiTheme.animation.fast}
-          ${euiTheme.animation.resistance};
+      &:hover,
+      &:focus {
+        &::before {
+          opacity: 1;
+        }
+
+        [class*='euiImageButton__icon'] {
+          opacity: 1;
+        }
       }
 
       &:focus {
         ${euiFocusRing(euiTheme, 'outset')}
       }
-
-      &:hover [class*='euiImageButton__icon'] {
-        visibility: visible;
-        fill-opacity: 1;
-      }
     `,
     fullWidth: css`
       ${logicalCSS('width', '100%')}
+    `,
+    shadowHover: css`
+      &::before {
+        ${euiShadow(euiThemeContext, 's')}
+      }
+    `,
+    hasShadowHover: css`
+      &::before {
+        ${euiShadow(euiThemeContext, 'm')}
+      }
     `,
   };
 };
@@ -54,15 +72,14 @@ export const euiImageButtonStyles = (
 export const euiImageButtonIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiImageButton__icon: css`
-    visibility: hidden;
-    fill-opacity: 0;
+    opacity: 0;
     position: absolute;
     ${logicalCSS('top', euiTheme.size.base)};
     ${logicalCSS('right', euiTheme.size.base)};
     cursor: pointer;
 
     ${euiCanAnimate} {
-      transition: fill-opacity ${euiTheme.animation.slow}
+      transition: opacity ${euiTheme.animation.slow}
         ${euiTheme.animation.resistance};
     }
   `,
