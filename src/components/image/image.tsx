@@ -14,7 +14,7 @@ import { useEuiTheme } from '../../services';
 import { EuiImageWrapper } from './image_wrapper';
 import { euiImageStyles } from './image.styles';
 import { EuiImageFullScreenWrapper } from './image_fullscreen_wrapper';
-import type { EuiImageProps, ImageProps, EuiImageSize } from './image_types';
+import type { EuiImageProps, EuiImageSize } from './image_types';
 
 import { SIZES } from './image_types';
 
@@ -87,7 +87,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     style: imageStyle,
     src: src || url,
     ...rest,
-  } as ImageProps;
+  };
 
   return (
     <>

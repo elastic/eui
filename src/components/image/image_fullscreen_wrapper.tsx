@@ -21,12 +21,12 @@ import {
   euiImageFullscreenWrapperFullScreenCloseIconStyles,
 } from './image_fullscreen_wrapper.styles';
 
-import type { EuiImageFullScreenWrapperProps } from './image_types';
+import type { EuiImageWrapperProps } from './image_types';
 
 import { EuiImageButton } from './image_button';
 import { EuiImageCaption } from './image_caption';
 
-export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageFullScreenWrapperProps> = ({
+export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageWrapperProps> = ({
   hasShadow,
   caption,
   alt,

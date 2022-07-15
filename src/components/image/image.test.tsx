@@ -48,6 +48,11 @@ describe('EuiImage', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('should throw a typescript error when both src and url are passed', () => {
+    // @ts-expect-error - 'types of property url are incompatible'
+    render(<EuiImage alt="" url="/cat.jpg" src="" />);
+  });
+
   test('is rendered with a float', () => {
     const component = render(
       <EuiImage alt="alt" float="left" url="/cat.jpg" />
