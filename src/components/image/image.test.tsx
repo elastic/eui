@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { render, mount, ReactWrapper } from 'enzyme';
-import { requiredProps, findTestSubject } from '../../test';
+import { requiredProps as commonProps, findTestSubject } from '../../test';
 import { act } from 'react-dom/test-utils';
 import { keys } from '../../services';
 import { shouldRenderCustomStyles } from '../../test/internal';
@@ -16,103 +16,115 @@ import { shouldRenderCustomStyles } from '../../test/internal';
 import { EuiImage } from './image';
 
 describe('EuiImage', () => {
-  shouldRenderCustomStyles(<EuiImage alt="alt" url="/cat.jpg" />);
+  const requiredProps = {
+    ...commonProps,
+    alt: '',
+    src: '/cat.jpg',
+  };
+
+  shouldRenderCustomStyles(<EuiImage {...requiredProps} />);
 
   test('is rendered', () => {
-    const component = render(
-      <EuiImage alt="alt" size="l" url="/cat.jpg" {...requiredProps} />
-    );
-
+    const component = render(<EuiImage {...requiredProps} />);
     expect(component).toMatchSnapshot();
   });
 
-  test('is rendered and allows fullscreen', () => {
-    const component = render(
-      <EuiImage
-        alt="alt"
-        size="l"
-        url="/cat.jpg"
-        allowFullScreen
-        {...requiredProps}
-      />
-    );
+  describe('props', () => {
+    describe('src vs url', () => {
+      test('src', () => {
+        const component = render(<EuiImage alt="" src="/dog.jpg" />);
+        expect(component).toMatchSnapshot();
+      });
 
-    expect(component).toMatchSnapshot();
+      test('url', () => {
+        const component = render(<EuiImage alt="" url="/dog.jpg" />);
+        expect(component).toMatchSnapshot();
+      });
+
+      it('picks src over url when both are present (and throws a typescript error)', () => {
+        const component = render(
+          // @ts-expect-error - 'types of property url are incompatible'
+          <EuiImage alt="" url="/cat.jpg" src="/dog.jpg" />
+        );
+        expect(component.find('img').attr('src')).toEqual('/dog.jpg');
+      });
+    });
+
+    test('float', () => {
+      const component = render(<EuiImage {...requiredProps} float="left" />);
+      expect(component).toMatchSnapshot();
+    });
+
+    test('margin', () => {
+      const component = render(<EuiImage {...requiredProps} margin="l" />);
+      expect(component).toMatchSnapshot();
+    });
+
+    test('size', () => {
+      const component = render(<EuiImage {...requiredProps} size={50} />);
+      expect(component).toMatchSnapshot();
+    });
+
+    test('caption', () => {
+      const component = render(
+        <EuiImage {...requiredProps} caption={<span>caption</span>} />
+      );
+      expect(component).toMatchSnapshot();
+    });
+
+    test('allowFullScreen', () => {
+      const component = render(<EuiImage {...requiredProps} allowFullScreen />);
+      expect(component).toMatchSnapshot();
+    });
+
+    test('fullScreenIconColor', () => {
+      const component = render(
+        <EuiImage
+          {...requiredProps}
+          allowFullScreen
+          fullScreenIconColor="dark"
+        />
+      );
+      expect(component).toMatchSnapshot();
+    });
+
+    test('hasShadow', () => {
+      const component = render(
+        <EuiImage
+          {...requiredProps}
+          size="fullWidth"
+          allowFullScreen
+          hasShadow
+        />
+      );
+      expect(component).toMatchSnapshot();
+    });
+
+    test('wrapperProps', () => {
+      const component = render(
+        <EuiImage
+          alt="alt"
+          caption={<span>caption</span>}
+          url="/cat.jpg"
+          wrapperProps={{
+            ...requiredProps,
+            style: { border: '2px solid red' },
+          }}
+        />
+      );
+      expect(component).toMatchSnapshot();
+    });
   });
 
-  test('is rendered with src', () => {
-    const component = render(
-      <EuiImage alt="alt" float="left" src="/cat.jpg" />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('should throw a typescript error when both src and url are passed', () => {
-    // @ts-expect-error - 'types of property url are incompatible'
-    render(<EuiImage alt="" url="/cat.jpg" src="" />);
-  });
-
-  test('is rendered with a float', () => {
-    const component = render(
-      <EuiImage alt="alt" float="left" url="/cat.jpg" />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('is rendered with a margin', () => {
-    const component = render(<EuiImage alt="alt" margin="l" url="/cat.jpg" />);
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('is rendered with custom size', () => {
-    const component = render(<EuiImage alt="alt" size={50} url="/cat.jpg" />);
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('is rendered with a node as the caption', () => {
-    const component = render(
-      <EuiImage alt="alt" caption={<span>caption</span>} url="/cat.jpg" />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('is rendered with wrapperProps', () => {
-    const component = render(
-      <EuiImage
-        alt="alt"
-        caption={<span>caption</span>}
-        url="/cat.jpg"
-        wrapperProps={{
-          ...requiredProps,
-          style: { border: '2px solid red' },
-        }}
-      />
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  describe('Fullscreen behaviour', () => {
+  describe('fullscreen behaviour', () => {
     let component: ReactWrapper;
 
     beforeAll(() => {
-      const testProps = {
-        ...requiredProps,
-        'data-test-subj': 'euiImage',
-      };
-
       component = mount(
         <EuiImage
-          alt="alt"
-          size="l"
-          url="/cat.jpg"
+          {...requiredProps}
+          wrapperProps={requiredProps}
           allowFullScreen
-          {...testProps}
         />
       );
     });
@@ -127,9 +139,7 @@ describe('EuiImage', () => {
       );
       expect(overlayMask.length).toBe(1);
 
-      const fullScreenImage = overlayMask[0].querySelectorAll(
-        '[data-test-subj=euiImage]'
-      );
+      const fullScreenImage = overlayMask[0].querySelectorAll('figure img');
       expect(fullScreenImage.length).toBe(1);
     });
 
@@ -150,25 +160,34 @@ describe('EuiImage', () => {
     });
 
     test('close using ESCAPE key', () => {
-      const deactivateFullScreenBtn = document.querySelectorAll(
+      const deactivateFullScreenBtn = document.querySelector<HTMLElement>(
         '[data-test-subj=deactivateFullScreenButton]'
       );
-      expect(deactivateFullScreenBtn.length).toBe(1);
+      expect(deactivateFullScreenBtn).toBeTruthy();
 
+      // Ignores non-escape keys
+      act(() => {
+        const escapeKeydownEvent = new KeyboardEvent('keydown', {
+          key: keys.TAB,
+          bubbles: true,
+        });
+        deactivateFullScreenBtn!.dispatchEvent(escapeKeydownEvent);
+      });
+      expect(deactivateFullScreenBtn).toBeTruthy();
+
+      // Removes full screen overlay on escape key
       act(() => {
         const escapeKeydownEvent = new KeyboardEvent('keydown', {
           key: keys.ESCAPE,
           bubbles: true,
         });
-        (deactivateFullScreenBtn[0] as HTMLElement).dispatchEvent(
-          escapeKeydownEvent
-        );
+        deactivateFullScreenBtn!.dispatchEvent(escapeKeydownEvent);
       });
 
-      const overlayMask = document.querySelectorAll(
+      const overlayMask = document.querySelector(
         '[data-test-subj=fullScreenOverlayMask]'
       );
-      expect(overlayMask.length).toBe(0);
+      expect(overlayMask).toBeFalsy();
     });
 
     test('close using overlay mask', () => {

@@ -5,9 +5,9 @@ exports[`EuiImage is rendered 1`] = `
   class="euiImageWrapper emotion-euiImageWrapper"
 >
   <img
-    alt="alt"
+    alt=""
     aria-label="aria-label"
-    class="euiImage testClass1 testClass2 emotion-euiImage-l"
+    class="euiImage testClass1 testClass2 emotion-euiImage-original"
     data-test-subj="test subject string"
     src="/cat.jpg"
   />
@@ -17,20 +17,20 @@ exports[`EuiImage is rendered 1`] = `
 </figure>
 `;
 
-exports[`EuiImage is rendered and allows fullscreen 1`] = `
+exports[`EuiImage props allowFullScreen 1`] = `
 <figure
   class="euiImageWrapper emotion-euiImageWrapper-allowFullScreen"
 >
   <button
-    aria-label="Open fullscreen alt image"
+    aria-label="Open fullscreen  image"
     class="emotion-euiImageButton-shadowHover"
     data-test-subj="activateFullScreenButton"
     type="button"
   >
     <img
-      alt="alt"
+      alt=""
       aria-label="aria-label"
-      class="euiImage testClass1 testClass2 emotion-euiImage-l"
+      class="euiImage testClass1 testClass2 emotion-euiImage-original"
       data-test-subj="test subject string"
       src="/cat.jpg"
     />
@@ -49,43 +49,15 @@ exports[`EuiImage is rendered and allows fullscreen 1`] = `
 </figure>
 `;
 
-exports[`EuiImage is rendered with a float 1`] = `
-<figure
-  class="euiImageWrapper emotion-euiImageWrapper-left"
->
-  <img
-    alt="alt"
-    class="euiImage emotion-euiImage-original"
-    src="/cat.jpg"
-  />
-  <figcaption
-    class="emotion-euiImageCaption"
-  />
-</figure>
-`;
-
-exports[`EuiImage is rendered with a margin 1`] = `
-<figure
-  class="euiImageWrapper emotion-euiImageWrapper-l"
->
-  <img
-    alt="alt"
-    class="euiImage emotion-euiImage-original"
-    src="/cat.jpg"
-  />
-  <figcaption
-    class="emotion-euiImageCaption"
-  />
-</figure>
-`;
-
-exports[`EuiImage is rendered with a node as the caption 1`] = `
+exports[`EuiImage props caption 1`] = `
 <figure
   class="euiImageWrapper emotion-euiImageWrapper"
 >
   <img
-    alt="alt"
-    class="euiImage emotion-euiImage-original"
+    alt=""
+    aria-label="aria-label"
+    class="euiImage testClass1 testClass2 emotion-euiImage-original"
+    data-test-subj="test subject string"
     src="/cat.jpg"
   />
   <figcaption
@@ -98,13 +70,113 @@ exports[`EuiImage is rendered with a node as the caption 1`] = `
 </figure>
 `;
 
-exports[`EuiImage is rendered with custom size 1`] = `
+exports[`EuiImage props float 1`] = `
+<figure
+  class="euiImageWrapper emotion-euiImageWrapper-left"
+>
+  <img
+    alt=""
+    aria-label="aria-label"
+    class="euiImage testClass1 testClass2 emotion-euiImage-original"
+    data-test-subj="test subject string"
+    src="/cat.jpg"
+  />
+  <figcaption
+    class="emotion-euiImageCaption"
+  />
+</figure>
+`;
+
+exports[`EuiImage props fullScreenIconColor 1`] = `
+<figure
+  class="euiImageWrapper emotion-euiImageWrapper-allowFullScreen"
+>
+  <button
+    aria-label="Open fullscreen  image"
+    class="emotion-euiImageButton-shadowHover"
+    data-test-subj="activateFullScreenButton"
+    type="button"
+  >
+    <img
+      alt=""
+      aria-label="aria-label"
+      class="euiImage testClass1 testClass2 emotion-euiImage-original"
+      data-test-subj="test subject string"
+      src="/cat.jpg"
+    />
+    <div
+      class="emotion-euiImageButton__icon"
+    >
+      <span
+        color="default"
+        data-euiicon-type="fullScreen"
+      />
+    </div>
+  </button>
+  <figcaption
+    class="emotion-euiImageCaption"
+  />
+</figure>
+`;
+
+exports[`EuiImage props hasShadow 1`] = `
+<figure
+  class="euiImageWrapper emotion-euiImageWrapper-allowFullScreen-fullWidth"
+>
+  <button
+    aria-label="Open fullscreen  image"
+    class="emotion-euiImageButton-hasShadowHover-fullWidth"
+    data-test-subj="activateFullScreenButton"
+    type="button"
+  >
+    <img
+      alt=""
+      aria-label="aria-label"
+      class="euiImage testClass1 testClass2 emotion-euiImage-fullWidth-hasShadow"
+      data-test-subj="test subject string"
+      src="/cat.jpg"
+    />
+    <div
+      class="emotion-euiImageButton__icon"
+    >
+      <span
+        color="ghost"
+        data-euiicon-type="fullScreen"
+      />
+    </div>
+  </button>
+  <figcaption
+    class="emotion-euiImageCaption"
+  />
+</figure>
+`;
+
+exports[`EuiImage props margin 1`] = `
+<figure
+  class="euiImageWrapper emotion-euiImageWrapper-l"
+>
+  <img
+    alt=""
+    aria-label="aria-label"
+    class="euiImage testClass1 testClass2 emotion-euiImage-original"
+    data-test-subj="test subject string"
+    src="/cat.jpg"
+  />
+  <figcaption
+    class="emotion-euiImageCaption"
+  />
+</figure>
+`;
+
+exports[`EuiImage props size 1`] = `
 <figure
   class="euiImageWrapper emotion-euiImageWrapper"
 >
   <img
-    alt="alt"
-    class="euiImage emotion-euiImage-customSize"
+    alt=""
+    aria-label="aria-label"
+    class="euiImage testClass1 testClass2 emotion-euiImage-customSize"
+    data-test-subj="test subject string"
     src="/cat.jpg"
     style="max-width:50px;max-height:50px"
   />
@@ -114,14 +186,14 @@ exports[`EuiImage is rendered with custom size 1`] = `
 </figure>
 `;
 
-exports[`EuiImage is rendered with src 1`] = `
+exports[`EuiImage props src vs url src 1`] = `
 <figure
-  class="euiImageWrapper emotion-euiImageWrapper-left"
+  class="euiImageWrapper emotion-euiImageWrapper"
 >
   <img
-    alt="alt"
+    alt=""
     class="euiImage emotion-euiImage-original"
-    src="/cat.jpg"
+    src="/dog.jpg"
   />
   <figcaption
     class="emotion-euiImageCaption"
@@ -129,11 +201,28 @@ exports[`EuiImage is rendered with src 1`] = `
 </figure>
 `;
 
-exports[`EuiImage is rendered with wrapperProps 1`] = `
+exports[`EuiImage props src vs url url 1`] = `
 <figure
+  class="euiImageWrapper emotion-euiImageWrapper"
+>
+  <img
+    alt=""
+    class="euiImage emotion-euiImage-original"
+    src="/dog.jpg"
+  />
+  <figcaption
+    class="emotion-euiImageCaption"
+  />
+</figure>
+`;
+
+exports[`EuiImage props wrapperProps 1`] = `
+<figure
+  alt=""
   aria-label="aria-label"
   class="euiImageWrapper testClass1 testClass2 emotion-euiImageWrapper"
   data-test-subj="test subject string"
+  src="/cat.jpg"
   style="border:2px solid red"
 >
   <img
