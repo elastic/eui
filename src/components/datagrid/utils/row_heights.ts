@@ -263,24 +263,26 @@ export const useRowHeightUtils = ({
   columns: EuiDataGridColumn[];
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
 }) => {
-  const forceRender = useForceRender();
-  const forceRenderRef = useLatest(forceRender);
-  const rowHeightUtils = useMemo(
-    () => new RowHeightUtils(gridRef, forceRenderRef),
-    [forceRenderRef, gridRef]
+  const forceRenderRef = useLatest(useForceRender());
+  const [rowHeightUtils] = useState(
+    () => new RowHeightUtils(gridRef, forceRenderRef)
   );
 
   // Forces a rerender whenever the row heights change, as this can cause the
   // grid to change height/have scrollbars. Without this, grid rerendering is stale
   useEffect(() => {
-    requestAnimationFrame(forceRender);
+    if (forceRenderRef.current == null) {
+      return;
+    }
+
+    requestAnimationFrame(forceRenderRef.current);
   }, [
     // Effects that should cause rerendering
     rowHeightsOptions?.defaultHeight,
     rowHeightsOptions?.rowHeights,
     // Dependencies
     rowHeightUtils,
-    forceRender,
+    forceRenderRef,
   ]);
 
   // Re-cache styles whenever grid density changes
