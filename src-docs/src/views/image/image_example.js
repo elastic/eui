@@ -71,12 +71,14 @@ export const ImageExample = {
             <p>
               This page has several examples of alt text written to aid screen
               reader users, as well as several examples of when <em>not</em> to
-              include alt text. When no meaningful description exists, or if the
-              image is adequately described by the surrounding text, it is
-              better to pass an empty <EuiCode>{'""'}</EuiCode> string instead.
+              include alt text. When an image is decorative, or if the image is
+              adequately described by surrounding text, it is better to pass an
+              empty <EuiCode>{'""'}</EuiCode> string instead.
             </p>
             <p>
-              See{' '}
+              When an image is not already sufficiently described, the alt text
+              passed should help non-visual users understand the purpose of the
+              image within the context of the overall page. See{' '}
               <EuiLink
                 href="https://webaim.org/techniques/alttext/"
                 target="_blank"
