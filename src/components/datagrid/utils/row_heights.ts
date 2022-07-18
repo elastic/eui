@@ -14,9 +14,7 @@ import {
   useContext,
   CSSProperties,
   MutableRefObject,
-  Component,
 } from 'react';
-import type { VariableSizeGrid as Grid } from 'react-window';
 import { isObject, isNumber } from '../../../services/predicate';
 import { useForceRender, useLatest } from '../../../services';
 import {
@@ -25,6 +23,7 @@ import {
   EuiDataGridRowHeightOption,
   EuiDataGridRowHeightsOptions,
   EuiDataGridColumn,
+  ImperativeGridApi,
 } from '../data_grid_types';
 import { DataGridSortingContext } from './sorting';
 
@@ -38,11 +37,9 @@ export const cellPaddingsMap: Record<EuiDataGridStyleCellPaddings, number> = {
 export const AUTO_HEIGHT = 'auto';
 export const DEFAULT_ROW_HEIGHT = 34;
 
-type IGrid = Omit<Grid, keyof Component>;
-
 export class RowHeightUtils {
   constructor(
-    private gridRef: MutableRefObject<IGrid | null>,
+    private gridRef: MutableRefObject<ImperativeGridApi | null>,
     private rerenderGridBodyRef: MutableRefObject<(() => void) | null>
   ) {}
 
@@ -258,7 +255,7 @@ export const useRowHeightUtils = ({
   columns,
   rowHeightsOptions,
 }: {
-  gridRef: MutableRefObject<IGrid | null>;
+  gridRef: MutableRefObject<ImperativeGridApi | null>;
   gridStyles: EuiDataGridStyle;
   columns: EuiDataGridColumn[];
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
