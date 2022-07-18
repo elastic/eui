@@ -54,7 +54,7 @@ export const SitewideSearchExample = {
           </p>
           <EuiCallOut
             size="s"
-            iconType="keyboardShortcut"
+            iconType="keyboard"
             title="The demo showcases the possibility to allow a keyboard shortcut (command + K) to trigger the search input focus, but the template does not come with this ability."
           />
           <h3>Popover</h3>

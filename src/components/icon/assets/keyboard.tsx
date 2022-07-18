@@ -20,7 +20,6 @@ const EuiIconKeyboard = ({
   ...props
 }: React.SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
-    fill="none"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 16 16"
     aria-labelledby={titleId}
@@ -30,7 +29,7 @@ const EuiIconKeyboard = ({
     <path
       fillRule="evenodd"
       clipRule="evenodd"
-      d="M0 2h16v11H0V2zm15 10V3H1v9h14zM2 4h2v1H2V4zm2 7v-1H2v1h2zm10-1v1h-2v-1h2zm-3 1v-1H5v1h6zM5 4h1v1H5V4zM3 6H2v1h1V6zm3 0h1v1H6V6zM3 8H2v1h1V8zm3 0h1v1H6V8zm2-4H7v1h1V4zM4 6h1v1H4V6zm5 0H8v1h1V6zm1 0h1v1h-1V6zM5 8H4v1h1V8zm3 0h1v1H8V8zm3 0h-1v1h1V8zM9 4h1v1H9V4zm3 0h-1v1h1V4zm1 0h1v1h-1V4zm1 2h-2v3h2V6z"
+      d="M0 3h16v11H0V3zm15 10V4H1v9h14zM2 5h2v1H2V5zm2 7v-1H2v1h2zm10-1v1h-2v-1h2zm-3 1v-1H5v1h6zM5 5h1v1H5V5zM3 7H2v1h1V7zm3 0h1v1H6V7zM3 9H2v1h1V9zm3 0h1v1H6V9zm2-4H7v1h1V5zM4 7h1v1H4V7zm5 0H8v1h1V7zm1 0h1v1h-1V7zM5 9H4v1h1V9zm3 0h1v1H8V9zm3 0h-1v1h1V9zM9 5h1v1H9V5zm3 0h-1v1h1V5zm1 0h1v1h-1V5zm1 2h-2v3h2V7z"
     />
   </svg>
 );
