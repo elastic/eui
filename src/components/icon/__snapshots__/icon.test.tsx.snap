@@ -4037,21 +4037,21 @@ exports[`EuiIcon props type ip is rendered 1`] = `
 </svg>
 `;
 
-exports[`EuiIcon props type keyboardShortcut is rendered 1`] = `
+exports[`EuiIcon props type keyboard is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon emotion-euiIcon-m-isLoaded"
-  data-icon-type="keyboardShortcut"
+  data-icon-type="keyboard"
   data-is-loaded="true"
   focusable="false"
-  height="16"
   role="img"
   viewBox="0 0 16 16"
-  width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M15 9a1 1 0 01.993.883L16 10v5a1 1 0 01-.883.993L15 16H7a1 1 0 01-.993-.883L6 15v-5a1 1 0 01.883-.993L7 9h8zM2.5 10a.5.5 0 01.492.41L3 10.5V12h1.5a.5.5 0 01.09.992L4.5 13H3v1.5a.5.5 0 01-.992.09L2 14.5V13H.5a.5.5 0 01-.09-.992L.5 12H2v-1.5a.5.5 0 01.5-.5zM15 10H7v5h8v-5zm-1 3v1H8v-1h6zm1-13a1 1 0 011 1v5a1 1 0 01-1 1H1a1 1 0 01-1-1V1a1 1 0 011-1h14zm0 1H1v5h14V1zM8 4v1H2V4h6z"
+    clip-rule="evenodd"
+    d="M0 3h16v11H0V3zm15 10V4H1v9h14zM2 5h2v1H2V5zm2 7v-1H2v1h2zm10-1v1h-2v-1h2zm-3 1v-1H5v1h6zM5 5h1v1H5V5zM3 7H2v1h1V7zm3 0h1v1H6V7zM3 9H2v1h1V9zm3 0h1v1H6V9zm2-4H7v1h1V5zM4 7h1v1H4V7zm5 0H8v1h1V7zm1 0h1v1h-1V7zM5 9H4v1h1V9zm3 0h1v1H8V9zm3 0h-1v1h1V9zM9 5h1v1H9V5zm3 0h-1v1h1V5zm1 0h1v1h-1V5zm1 2h-2v3h2V7z"
+    fill-rule="evenodd"
   />
 </svg>
 `;
