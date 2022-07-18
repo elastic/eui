@@ -16,7 +16,7 @@ import { useEuiTheme, UseEuiTheme } from '../../services/theme/hooks';
 /**
  * euiBreakpoint should accept standard euiBreakpointSize's, 0, and inifinity, undefined
  */
-type _validBreakpointSizes =
+export type _validBreakpointSizes =
   | 'xs'
   | 's'
   | 'm'
@@ -34,7 +34,7 @@ export const euiBreakpoint = (
     console.warn(
       'euiBreakpoint: One or more elements within sizes[] are invlid'
     );
-    return;
+    return '@media only screen';
   }
 
   // 1. Check for single element arrays
@@ -55,7 +55,7 @@ export const euiBreakpoint = (
         console.warn(
           `euiBreakpoint cannot create media query for ${sizes[0]}}`
         );
-        return;
+        return '@media only screen';
     }
   } // We should create a max-width query if sizes[0] is undefined OR if sizes[0] is 0
   else if (sizes[0] === '0' || sizes[0] === undefined) {
@@ -78,11 +78,10 @@ export const euiBreakpoint = (
         console.warn(
           `euiBreakpoint cannot create media query for ${sizes[0]} and  ${sizes[1]}`
         );
-        return;
+        return '@media only screen';
     }
   } // We should create a min-width query if sizes[1] is undefined OR is sizes[1] is infinity
   else if (sizes[1] === 'infinity' || sizes[1] === undefined) {
-    // TO DO: Stuff
     switch (sizes[0]) {
       case 'xs':
       case 's':
@@ -97,7 +96,7 @@ export const euiBreakpoint = (
         console.warn(
           `euiBreakpoint cannot create media query for ${sizes[0]} and  ${sizes[1]}`
         );
-        return;
+        return '@media only screen';
     }
   } else {
     const minSize = sizes[0] as EuiBreakpointSize;
@@ -109,7 +108,7 @@ export const euiBreakpoint = (
   }
 };
 
-export const useEuiBreakpoint = (sizes: EuiBreakpointSize[]) => {
+export const useEuiBreakpoint = (sizes: _validBreakpointSizes[]) => {
   const euiTheme = useEuiTheme();
   return euiBreakpoint(sizes, euiTheme);
 };
@@ -118,12 +117,14 @@ export const useEuiBreakpoint = (sizes: EuiBreakpointSize[]) => {
  * Check array for validity
  * Invalid arrays:
  * - [0, infinity]
- * - [undefined, undefined]
+ * - [undefined, undefined || 0 || infinity]
  * - Any array where the first element is larger than the second (i.e. ['xl', 's'] or ['infinity', 'm'])
  * - Single element arrays of undefined, 0, or infinity
  * - The two elements in the array are the same
+ *
+ * This function is only exported for testing
  */
-const _isValidBreakpointArray = (sizes: _validBreakpointSizes[]) => {
+export const _isValidBreakpointArray = (sizes: _validBreakpointSizes[]) => {
   // Create an array ranking the breakpointSizes in order to compare indexes and determine which sizes are larger than others
   const sizeRanking = [undefined, '0', 'xs', 's', 'm', 'l', 'xl', 'infinity'];
   const sizeOfFirstElement = sizeRanking.indexOf(sizes[0]);
@@ -136,17 +137,20 @@ const _isValidBreakpointArray = (sizes: _validBreakpointSizes[]) => {
     console.warn(`euiBreakpoint cannot create media query for ${sizes[0]}`);
     return false;
   } else if (sizes[0] === sizes[1]) {
-    console.error(
+    console.warn(
       'euiBreakpoint cannot create media query. The first and second element of sizes[] cannot be equal'
     );
     return false;
   } else if (sizes[0] === '0' && sizes[1] === 'infinity') {
-    console.error(
+    console.warn(
       'euiBreakpoint cannot create media query for sizes 0px to infinity'
     );
     return false;
-  } else if (sizes[0] === undefined && sizes[1] === undefined) {
-    console.error(
+  } else if (
+    sizes[0] === undefined &&
+    (sizes[1] === undefined || sizes[1] === '0' || sizes[1] === 'infinity')
+  ) {
+    console.warn(
       'euiBreakpoint cannot create media query for sizes undefined to undefined'
     );
     return false;
@@ -155,7 +159,7 @@ const _isValidBreakpointArray = (sizes: _validBreakpointSizes[]) => {
     sizes[0] !== undefined &&
     sizes[1] !== undefined
   ) {
-    console.error(
+    console.warn(
       'euiBreakpoint cannot create a media query. The first element of sizes[] must be smaller than the second.'
     );
     return false;
