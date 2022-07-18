@@ -8,6 +8,10 @@
 
 import { MutableRefObject, useRef } from 'react';
 
+/**
+ * Wraps the given `value` into a `MutableRefObject` and keeps the `current`
+ * value up-to-date on very render cycle.
+ */
 export function useLatest<Value>(value: Value): MutableRefObject<Value | null> {
   const latestValueRef = useRef(value);
   latestValueRef.current = value;
