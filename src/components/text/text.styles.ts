@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import {
   logicalCSS,
+  logicalTextAlignCSS,
   euiFontSize,
   euiBackgroundColor,
   _FontScaleOptions,
@@ -190,7 +191,7 @@ const euiScaleText = (
       ${logicalCSS('padding-bottom', euiTheme.size.xs)}
       // ensures when only one character the shape looks like a square
       ${logicalCSS('min-width', euiTheme.size.l)}
-      text-align: center;
+      ${logicalTextAlignCSS('center')}
     }
     
     kbd::after {
@@ -243,7 +244,7 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
 
       blockquote:not(.euiMarkdownFormat__blockquote) {
         position: relative;
-        text-align: center;
+        ${logicalTextAlignCSS('center')}
         ${logicalCSS('margin-horizontal', 'auto')}
         font-family: ${euiTheme.font.familySerif};
         font-style: italic;
