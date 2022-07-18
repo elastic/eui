@@ -83,6 +83,7 @@ export type EuiImageProps = CommonProps &
 
 export type EuiImageWrapperProps = Pick<
   EuiImageProps,
+  | 'alt'
   | 'caption'
   | 'float'
   | 'margin'
@@ -98,8 +99,9 @@ export type EuiImageWrapperProps = Pick<
 
 export type EuiImageButtonProps = Pick<
   EuiImageProps,
-  'hasShadow' | 'allowFullScreen' | 'fullScreenIconColor'
+  'hasShadow' | 'fullScreenIconColor'
 > & {
+  hasAlt: boolean;
   onClick: () => void;
   onKeyDown?: (e: React.KeyboardEvent) => void;
   isFullWidth: boolean;

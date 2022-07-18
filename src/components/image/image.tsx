@@ -76,6 +76,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     fullScreenIconColor,
     isFullWidth,
     allowFullScreen,
+    alt,
     caption,
     float,
     margin,

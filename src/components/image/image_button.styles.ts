@@ -73,15 +73,21 @@ export const euiImageButtonStyles = (euiThemeContext: UseEuiTheme) => {
 export const euiImageButtonIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiImageButton__icon: css`
-    opacity: 0;
     position: absolute;
     ${logicalCSS('top', euiTheme.size.base)};
     ${logicalCSS('right', euiTheme.size.base)};
+  `,
+  openFullScreen: css`
+    opacity: 0;
     cursor: pointer;
 
     ${euiCanAnimate} {
       transition: opacity ${euiTheme.animation.slow}
         ${euiTheme.animation.resistance};
     }
+  `,
+  closeFullScreen: css`
+    // Fullscreen close event handled by EuiOverlayMask
+    pointer-events: none;
   `,
 });

@@ -7,13 +7,16 @@
  */
 
 import React, { FunctionComponent } from 'react';
+
 import { useEuiTheme } from '../../services';
+import { useEuiI18n } from '../i18n';
+import { EuiIcon } from '../icon';
+import { EuiScreenReaderOnly } from '../accessibility';
 
 import {
   euiImageButtonStyles,
   euiImageButtonIconStyles,
 } from './image_button.styles';
-import { EuiIcon } from '../icon';
 import type {
   EuiImageButtonProps,
   EuiImageButtonIconColor,
@@ -27,13 +30,13 @@ const fullScreenIconColorMap: {
 };
 
 export const EuiImageButton: FunctionComponent<EuiImageButtonProps> = ({
+  hasAlt,
   hasShadow,
   children,
   onClick,
   onKeyDown,
   isFullScreen,
   isFullWidth,
-  allowFullScreen,
   fullScreenIconColor = 'light',
   ...rest
 }) => {
@@ -48,25 +51,58 @@ export const EuiImageButton: FunctionComponent<EuiImageButtonProps> = ({
   ];
 
   const iconStyles = euiImageButtonIconStyles(euiTheme);
-  const cssIconStyles = [iconStyles.euiImageButton__icon];
+  const cssIconStyles = [
+    iconStyles.euiImageButton__icon,
+    !isFullScreen && iconStyles.openFullScreen,
+    isFullScreen && iconStyles.closeFullScreen,
+  ];
+
+  const openFullScreenInstructions = useEuiI18n(
+    'euiImageButton.openFullScreen',
+    'Click to open this image in fullscreen mode'
+  );
+  const closeFullScreenInstructions = useEuiI18n(
+    'euiImageButton.closeFullScreen',
+    'Press Escape or click to close image fullscreen mode'
+  );
 
   const iconColor =
     fullScreenIconColorMap[fullScreenIconColor as EuiImageButtonIconColor];
 
   return (
-    <button
-      type="button"
-      css={cssButtonStyles}
-      onClick={onClick}
-      onKeyDown={onKeyDown}
-      {...rest}
-    >
-      {children}
-      {allowFullScreen && !isFullScreen && (
-        <div css={cssIconStyles}>
-          <EuiIcon type="fullScreen" color={iconColor} />
-        </div>
-      )}
-    </button>
+    <>
+      <button
+        type="button"
+        css={cssButtonStyles}
+        onClick={onClick}
+        onKeyDown={onKeyDown}
+        {...rest}
+      >
+        {isFullScreen && (
+          // In fullscreen mode, instructions should come first to allow screen reader
+          // users to quickly exit vs. potentially reading out long/unskippable alt text
+          <EuiScreenReaderOnly>
+            <p>
+              {closeFullScreenInstructions}
+              {hasAlt && ' — '}
+            </p>
+          </EuiScreenReaderOnly>
+        )}
+
+        {children}
+
+        {!isFullScreen && (
+          <div css={cssIconStyles}>
+            <EuiScreenReaderOnly>
+              <p>
+                {hasAlt && ' — '}
+                {openFullScreenInstructions}
+              </p>
+            </EuiScreenReaderOnly>
+            <EuiIcon type="fullScreen" color={iconColor} />
+          </div>
+        )}
+      </button>
+    </>
   );
 };

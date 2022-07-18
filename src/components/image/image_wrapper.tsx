@@ -9,8 +9,7 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { EuiI18n } from '../i18n';
-import { useEuiTheme, useGeneratedHtmlId } from '../../services';
+import { useEuiTheme } from '../../services';
 import { useInnerText } from '../inner_text';
 
 import type { EuiImageWrapperProps } from './image_types';
@@ -20,6 +19,7 @@ import { EuiImageButton } from './image_button';
 import { EuiImageCaption } from './image_caption';
 
 export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
+  alt,
   caption,
   hasShadow,
   allowFullScreen,
@@ -53,7 +53,6 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
   ];
 
   const [optionalCaptionRef, optionalCaptionText] = useInnerText();
-  const describedById = useGeneratedHtmlId();
 
   return (
     <figure
@@ -65,23 +64,16 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
       {allowFullScreen ? (
         <>
           <EuiImageButton
+            hasAlt={!!alt}
             hasShadow={hasShadow}
             onClick={openFullScreen}
-            aria-describedby={describedById}
             data-test-subj="activateFullScreenButton"
             isFullScreen={isFullScreen}
             isFullWidth={isFullWidth}
-            allowFullScreen={allowFullScreen}
             fullScreenIconColor={fullScreenIconColor}
           >
             {children}
           </EuiImageButton>
-          <p id={describedById} hidden>
-            <EuiI18n
-              token="euiImageWrapper.openImage"
-              default="Click to open this image in fullscreen mode"
-            />
-          </p>
         </>
       ) : (
         children

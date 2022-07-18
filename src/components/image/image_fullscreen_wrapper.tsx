@@ -9,31 +9,28 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { EuiIcon } from '../icon';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask } from '../overlay_mask';
-import { EuiI18n } from '../i18n';
-import { useEuiTheme, useGeneratedHtmlId, keys } from '../../services';
+import { EuiIcon } from '../icon';
+import { useEuiTheme, keys } from '../../services';
 import { useInnerText } from '../inner_text';
 
-import {
-  euiImageFullscreenWrapperStyles,
-  euiImageFullscreenWrapperFullScreenCloseIconStyles,
-} from './image_fullscreen_wrapper.styles';
-
+import { euiImageFullscreenWrapperStyles } from './image_fullscreen_wrapper.styles';
 import type { EuiImageWrapperProps } from './image_types';
 
 import { EuiImageButton } from './image_button';
+import { euiImageButtonIconStyles } from './image_button.styles';
+
 import { EuiImageCaption } from './image_caption';
 
 export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageWrapperProps> = ({
+  alt,
   hasShadow,
   caption,
   children,
   isFullScreen,
   setIsFullScreen,
   wrapperProps,
-  allowFullScreen,
   isFullWidth,
   fullScreenIconColor,
 }) => {
@@ -42,13 +39,6 @@ export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageWrapperProps> 
   const styles = euiImageFullscreenWrapperStyles(euiTheme);
 
   const cssStyles = [styles.euiImageFullscreenWrapper];
-
-  const fullScreenCloseIconStyles = euiImageFullscreenWrapperFullScreenCloseIconStyles(
-    euiTheme
-  );
-  const cssFullScreenCloseIconStyles = [
-    fullScreenCloseIconStyles.euiImageFullscreenWrapper__fullScreenCloseIcon,
-  ];
 
   const classes = classNames(
     'euiImageFullScreenWrapper',
@@ -68,7 +58,12 @@ export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageWrapperProps> 
   };
 
   const [optionalCaptionRef, optionalCaptionText] = useInnerText();
-  const describedById = useGeneratedHtmlId();
+
+  const iconStyles = euiImageButtonIconStyles(euiTheme);
+  const cssIconStyles = [
+    iconStyles.euiImageButton__icon,
+    iconStyles.closeFullScreen,
+  ];
 
   return (
     <EuiOverlayMask
@@ -84,35 +79,25 @@ export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageWrapperProps> 
             css={cssStyles}
           >
             <EuiImageButton
+              hasAlt={!!alt}
               hasShadow={hasShadow}
               onClick={closeFullScreen}
               onKeyDown={onKeyDown}
-              aria-describedby={describedById}
               data-test-subj="deactivateFullScreenButton"
               isFullScreen={isFullScreen}
               isFullWidth={isFullWidth}
-              allowFullScreen={allowFullScreen}
               fullScreenIconColor={fullScreenIconColor}
             >
               {children}
             </EuiImageButton>
-            <p id={describedById} hidden>
-              <EuiI18n
-                token="euiImageFullscreenWrapper.closeImage"
-                default="Click to close fullscreen mode"
-              />
-            </p>
             <EuiImageCaption
               caption={caption}
               ref={optionalCaptionRef}
               isOnOverlayMask={isFullScreen}
             />
           </figure>
-          <EuiIcon
-            type="fullScreenExit"
-            color="default"
-            css={cssFullScreenCloseIconStyles}
-          />
+          {/* Must be outside the `figure` element in order to escape the translateY transition. see https://www.w3.org/TR/css-transforms-1/#transform-rendering */}
+          <EuiIcon type="fullScreenExit" color="ghost" css={cssIconStyles} />
         </>
       </EuiFocusTrap>
     </EuiOverlayMask>

@@ -124,6 +124,7 @@ describe('EuiImage', () => {
         <EuiImage
           {...requiredProps}
           wrapperProps={requiredProps}
+          alt="example alt text"
           allowFullScreen
         />
       );

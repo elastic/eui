@@ -43,19 +43,6 @@ export const euiImageFullscreenWrapperStyles = (
   };
 };
 
-export const euiImageFullscreenWrapperFullScreenCloseIconStyles = ({
-  euiTheme,
-}: UseEuiTheme) => ({
-  // Base
-  euiImageFullscreenWrapper__fullScreenCloseIcon: css`
-    position: absolute;
-    ${logicalCSS('top', euiTheme.size.base)};
-    ${logicalCSS('right', euiTheme.size.base)};
-    pointer-events: none;
-    fill: ${euiTheme.colors.ghost} !important;
-  `,
-});
-
 const euiImageFullScreen = (size: string) => keyframes`
   0% {
     opacity: 0;
