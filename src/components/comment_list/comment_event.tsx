@@ -37,7 +37,7 @@ export interface EuiCommentEventProps extends CommonProps {
    */
   actions?: ReactNode | ReactNode[];
   /**
-   * Accepts any ReactNode.
+   * Accepts any ReactNode. Renders in a panel within the comment event.
    */
   children?: ReactNode;
 
