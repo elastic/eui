@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import {
   logicalCSS,
+  logicalTextAlignCSS,
   euiFontSize,
   euiBackgroundColor,
   _FontScaleOptions,
@@ -190,18 +191,19 @@ const euiScaleText = (
       ${logicalCSS('padding-bottom', euiTheme.size.xs)}
       // ensures when only one character the shape looks like a square
       ${logicalCSS('min-width', euiTheme.size.l)}
-      text-align: center;
+      ${logicalTextAlignCSS('center')}
     }
     
     kbd::after {
       content: '';
-      border-bottom: ${euiTheme.border.width.thin} solid ${
-            euiTheme.colors.text
-          };
+      ${logicalCSS(
+        'border-bottom',
+        `${euiTheme.border.width.thin} solid ${euiTheme.colors.text}`
+      )}
       position: absolute;
-      bottom: ${euiTheme.size.xxs};
-      left: 0;
-      width: 100%;
+      ${logicalCSS('bottom', euiTheme.size.xxs)}
+      ${logicalCSS('left', 0)}
+      ${logicalCSS('width', '100%')}
     }`
         : ''
     }
@@ -242,33 +244,33 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
 
       blockquote:not(.euiMarkdownFormat__blockquote) {
         position: relative;
-        text-align: center;
+        ${logicalTextAlignCSS('center')}
         ${logicalCSS('margin-horizontal', 'auto')}
         font-family: ${euiTheme.font.familySerif};
         font-style: italic;
         letter-spacing: normal;
 
         p:last-child {
-          margin-bottom: 0;
+          ${logicalCSS('margin-bottom', '0')}
         }
 
         &:before,
         &:after {
           position: absolute;
           content: '';
-          height: ${euiTheme.border.width.thick};
-          width: 50%;
-          right: 0;
-          transform: translateX(-50%);
+          ${logicalCSS('height', euiTheme.border.width.thick)}
+          ${logicalCSS('width', '50%')}
+          ${logicalCSS('left', '25%')}
+          ${logicalCSS('right', '25%')}
           background: ${euiTheme.colors.darkShade};
         }
 
         &:before {
-          top: 0;
+          ${logicalCSS('top', '0')}
         }
 
         &:after {
-          bottom: 0;
+          ${logicalCSS('bottom', '0')}
         }
       }
 
@@ -324,7 +326,7 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       > :last-child {
-        margin-bottom: 0 !important;
+        ${logicalCSS('margin-bottom', '0 !important')}
       }
 
       kbd {
@@ -338,7 +340,7 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     constrainedWidth: css`
-      max-width: ${euiTextConstrainedMaxWidth};
+      ${logicalCSS('max-width', euiTextConstrainedMaxWidth)}
     `,
     // Sizes
     m: css`

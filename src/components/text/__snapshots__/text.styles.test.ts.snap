@@ -134,11 +134,11 @@ exports[`euiTextStyles sizes m 1`] = `
     
     kbd::after {
       content: '';
-      border-bottom: 1px solid #343741;
+      border-block-end: 1px solid #343741;
       position: absolute;
-      bottom: 2px;
-      left: 0;
-      width: 100%;
+      inset-block-end: 2px;
+      inset-inline-start: 0;
+      inline-size: 100%;
     }
   ;;label:m;"
 `;
