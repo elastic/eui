@@ -195,13 +195,14 @@ const euiScaleText = (
     
     kbd::after {
       content: '';
-      border-bottom: ${euiTheme.border.width.thin} solid ${
-            euiTheme.colors.text
-          };
+      ${logicalCSS(
+        'border-bottom',
+        `${euiTheme.border.width.thin} solid ${euiTheme.colors.text}`
+      )}
       position: absolute;
-      bottom: ${euiTheme.size.xxs};
-      left: 0;
-      width: 100%;
+      ${logicalCSS('bottom', euiTheme.size.xxs)}
+      ${logicalCSS('left', 0)}
+      ${logicalCSS('width', '100%')}
     }`
         : ''
     }
@@ -249,26 +250,26 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
         letter-spacing: normal;
 
         p:last-child {
-          margin-bottom: 0;
+          ${logicalCSS('margin-bottom', '0')}
         }
 
         &:before,
         &:after {
           position: absolute;
           content: '';
-          height: ${euiTheme.border.width.thick};
-          width: 50%;
-          right: 0;
-          transform: translateX(-50%);
+          ${logicalCSS('height', euiTheme.border.width.thick)}
+          ${logicalCSS('width', '50%')}
+          ${logicalCSS('left', '25%')}
+          ${logicalCSS('right', '25%')}
           background: ${euiTheme.colors.darkShade};
         }
 
         &:before {
-          top: 0;
+          ${logicalCSS('top', '0')}
         }
 
         &:after {
-          bottom: 0;
+          ${logicalCSS('bottom', '0')}
         }
       }
 
@@ -324,7 +325,7 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       > :last-child {
-        margin-bottom: 0 !important;
+        ${logicalCSS('margin-bottom', '0 !important')}
       }
 
       kbd {
@@ -338,7 +339,7 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     constrainedWidth: css`
-      max-width: ${euiTextConstrainedMaxWidth};
+      ${logicalCSS('max-width', euiTextConstrainedMaxWidth)}
     `,
     // Sizes
     m: css`
