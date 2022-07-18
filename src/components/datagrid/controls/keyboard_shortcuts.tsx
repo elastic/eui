@@ -11,7 +11,7 @@ import { EuiButtonIcon } from '../../button';
 import { EuiToolTip } from '../../tool_tip';
 import { EuiPopover } from '../../popover';
 import { EuiDescriptionList } from '../../description_list';
-import { EuiBadge } from '../../badge';
+import { EuiText } from '../../text';
 import { useEuiI18n } from '../../i18n';
 
 export const useDataGridKeyboardShortcuts = (): {
@@ -36,7 +36,7 @@ export const useDataGridKeyboardShortcuts = (): {
           <EuiToolTip content={buttonLabel} delay="long">
             <EuiButtonIcon
               size="xs"
-              iconType="iInCircle" // TODO
+              iconType="keyboard"
               color="text"
               data-test-subj="dataGridKeyboardShortcutsButton"
               onClick={() => setIsOpen(!isOpen)}
@@ -45,72 +45,73 @@ export const useDataGridKeyboardShortcuts = (): {
           </EuiToolTip>
         }
       >
-        <EuiDescriptionList
-          type="column"
-          align="center"
-          compressed
-          listItems={[
-            {
-              title: <EuiBadge>Up arrow</EuiBadge>,
-              description: 'Moves focus one cell down.',
-            },
-            {
-              title: <EuiBadge>Down arrow</EuiBadge>,
-              description: 'Moves focus one cell up.',
-            },
-            {
-              title: <EuiBadge>Right arrow</EuiBadge>,
-              description: 'Moves focus one cell to the right.',
-            },
-            {
-              title: <EuiBadge>Left arrow</EuiBadge>,
-              description: 'Moves focus one cell to the left.',
-            },
-            {
-              title: <EuiBadge>Home</EuiBadge>,
-              description: 'Moves focus to the first cell in the current row.',
-            },
-            {
-              title: <EuiBadge>End</EuiBadge>,
-              description: 'Moves focus to the last cell in the current row.',
-            },
-            {
-              title: (
-                <>
-                  <EuiBadge>Ctrl</EuiBadge>
-                  <EuiBadge>Home</EuiBadge>
-                </>
-              ),
-              description: 'Moves focus to the first cell in the first row.',
-            },
-            {
-              title: (
-                <>
-                  <EuiBadge>Ctrl</EuiBadge>
-                  <EuiBadge>End</EuiBadge>
-                </>
-              ),
-              description: 'Moves focus to the last cell in the last row.',
-            },
-            {
-              title: <EuiBadge>Page Up</EuiBadge>,
-              description: 'Paginates to the last row of the previous page.',
-            },
-            {
-              title: <EuiBadge>Page Down</EuiBadge>,
-              description: 'Paginates to the first row of the next page.',
-            },
-            {
-              title: <EuiBadge>Enter</EuiBadge>,
-              description:
-                'Opens cell expansion popover for interactive cells.',
-            },
-            {
-              title: <EuiBadge>Escape</EuiBadge>,
-              description: 'Closes any open popovers.',
-            },
-          ]}
-        />
+        <EuiText size="xs">
+          <EuiDescriptionList
+            type="column"
+            align="center"
+            compressed
+            listItems={[
+              {
+                title: <kbd>Up arrow</kbd>,
+                description: 'Moves focus one cell down.',
+              },
+              {
+                title: <kbd>Down arrow</kbd>,
+                description: 'Moves focus one cell up.',
+              },
+              {
+                title: <kbd>Right arrow</kbd>,
+                description: 'Moves focus one cell to the right.',
+              },
+              {
+                title: <kbd>Left arrow</kbd>,
+                description: 'Moves focus one cell to the left.',
+              },
+              {
+                title: <kbd>Home</kbd>,
+                description:
+                  'Moves focus to the first cell in the current row.',
+              },
+              {
+                title: <kbd>End</kbd>,
+                description: 'Moves focus to the last cell in the current row.',
+              },
+              {
+                title: (
+                  <>
+                    <kbd>Ctrl</kbd> <kbd>Home</kbd>
+                  </>
+                ),
+                description: 'Moves focus to the first cell in the first row.',
+              },
+              {
+                title: (
+                  <>
+                    <kbd>Ctrl</kbd> <kbd>End</kbd>
+                  </>
+                ),
+                description: 'Moves focus to the last cell in the last row.',
+              },
+              {
+                title: <kbd>Page Up</kbd>,
+                description: 'Paginates to the last row of the previous page.',
+              },
+              {
+                title: <kbd>Page Down</kbd>,
+                description: 'Paginates to the first row of the next page.',
+              },
+              {
+                title: <kbd>Enter</kbd>,
+                description:
+                  'Opens cell expansion popover for interactive cells.',
+              },
+              {
+                title: <kbd>Escape</kbd>,
+                description: 'Closes any open popovers.',
+              },
+            ]}
+          />
+        </EuiText>
       </EuiPopover>
     ),
     [isOpen, buttonLabel]
