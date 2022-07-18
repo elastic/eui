@@ -10,9 +10,9 @@ export default () => (
       float="right"
       margin="l"
       hasShadow
-      caption="Random nature image"
+      caption="A randomized image"
       allowFullScreen
-      alt="Random nature image"
+      alt="" // Because the image is randomized, there is no meaningful alt text we can generate here.
       src="https://picsum.photos/800/500"
     />
     <p>{fake('{{lorem.paragraphs}}')}</p>
@@ -24,8 +24,8 @@ export default () => (
       margin="l"
       hasShadow
       allowFullScreen
-      caption="Another random image"
-      alt="Random nature image"
+      caption="Another randomized image"
+      alt="" // Because the image is randomized, there is no meaningful alt text we can generate here.
       src="https://picsum.photos/300/300"
     />
     <p>{fake('{{lorem.paragraphs}}')}</p>

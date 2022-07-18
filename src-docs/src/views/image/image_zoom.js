@@ -13,9 +13,9 @@ export default () => (
         size="m"
         hasShadow
         allowFullScreen
-        caption="Click me"
-        alt="Accessible image alt goes here"
-        src="https://source.unsplash.com/2000x1000/?Nature"
+        caption="Albert Einstein, theoretical physicist"
+        alt="" // Because this image is sufficiently described by its caption, there is no need to repeat it via alt text
+        src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Albert_Einstein_Head.jpg"
       />
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
@@ -23,10 +23,10 @@ export default () => (
         size="m"
         hasShadow
         allowFullScreen
-        caption="Click me"
-        alt="Accessible image alt goes here"
+        caption="Marie Curie, physicist and chemist"
+        alt="" // Because this image is sufficiently described by its caption, there is no need to repeat it via alt text
         fullScreenIconColor="dark"
-        src="https://source.unsplash.com/1000x2000/?Nature"
+        src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Marie_Sklodowska%2C_%C3%A9tudiante%2C_en_1895.jpg"
       />
     </EuiFlexItem>
   </EuiFlexGroup>

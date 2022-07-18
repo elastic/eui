@@ -9,9 +9,8 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { useEuiI18n } from '../i18n';
-
-import { useEuiTheme } from '../../services';
+import { EuiI18n } from '../i18n';
+import { useEuiTheme, useGeneratedHtmlId } from '../../services';
 import { useInnerText } from '../inner_text';
 
 import type { EuiImageWrapperProps } from './image_types';
@@ -24,7 +23,6 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
   caption,
   hasShadow,
   allowFullScreen,
-  alt,
   float,
   margin,
   children,
@@ -55,12 +53,7 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
   ];
 
   const [optionalCaptionRef, optionalCaptionText] = useInnerText();
-
-  const openImageLabel = useEuiI18n(
-    'euiImageWrapper.openImage',
-    'Open fullscreen {alt} image',
-    { alt }
-  );
+  const describedById = useGeneratedHtmlId();
 
   return (
     <figure
@@ -70,18 +63,26 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
       css={cssFigureStyles}
     >
       {allowFullScreen ? (
-        <EuiImageButton
-          hasShadow={hasShadow}
-          onClick={openFullScreen}
-          aria-label={openImageLabel}
-          data-test-subj="activateFullScreenButton"
-          isFullScreen={isFullScreen}
-          isFullWidth={isFullWidth}
-          allowFullScreen={allowFullScreen}
-          fullScreenIconColor={fullScreenIconColor}
-        >
-          {children}
-        </EuiImageButton>
+        <>
+          <EuiImageButton
+            hasShadow={hasShadow}
+            onClick={openFullScreen}
+            aria-describedby={describedById}
+            data-test-subj="activateFullScreenButton"
+            isFullScreen={isFullScreen}
+            isFullWidth={isFullWidth}
+            allowFullScreen={allowFullScreen}
+            fullScreenIconColor={fullScreenIconColor}
+          >
+            {children}
+          </EuiImageButton>
+          <p id={describedById} hidden>
+            <EuiI18n
+              token="euiImageWrapper.openImage"
+              default="Click to open this image in fullscreen mode"
+            />
+          </p>
+        </>
       ) : (
         children
       )}

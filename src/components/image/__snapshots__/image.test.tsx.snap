@@ -22,7 +22,7 @@ exports[`EuiImage props allowFullScreen 1`] = `
   class="euiImageWrapper emotion-euiImageWrapper-allowFullScreen"
 >
   <button
-    aria-label="Open fullscreen  image"
+    aria-describedby="generated-id"
     class="emotion-euiImageButton-shadowHover"
     data-test-subj="activateFullScreenButton"
     type="button"
@@ -43,6 +43,12 @@ exports[`EuiImage props allowFullScreen 1`] = `
       />
     </div>
   </button>
+  <p
+    hidden=""
+    id="generated-id"
+  >
+    Click to open this image in fullscreen mode
+  </p>
   <figcaption
     class="emotion-euiImageCaption"
   />
@@ -92,7 +98,7 @@ exports[`EuiImage props fullScreenIconColor 1`] = `
   class="euiImageWrapper emotion-euiImageWrapper-allowFullScreen"
 >
   <button
-    aria-label="Open fullscreen  image"
+    aria-describedby="generated-id"
     class="emotion-euiImageButton-shadowHover"
     data-test-subj="activateFullScreenButton"
     type="button"
@@ -113,6 +119,12 @@ exports[`EuiImage props fullScreenIconColor 1`] = `
       />
     </div>
   </button>
+  <p
+    hidden=""
+    id="generated-id"
+  >
+    Click to open this image in fullscreen mode
+  </p>
   <figcaption
     class="emotion-euiImageCaption"
   />
@@ -124,7 +136,7 @@ exports[`EuiImage props hasShadow 1`] = `
   class="euiImageWrapper emotion-euiImageWrapper-allowFullScreen-fullWidth"
 >
   <button
-    aria-label="Open fullscreen  image"
+    aria-describedby="generated-id"
     class="emotion-euiImageButton-hasShadowHover-fullWidth"
     data-test-subj="activateFullScreenButton"
     type="button"
@@ -145,6 +157,12 @@ exports[`EuiImage props hasShadow 1`] = `
       />
     </div>
   </button>
+  <p
+    hidden=""
+    id="generated-id"
+  >
+    Click to open this image in fullscreen mode
+  </p>
   <figcaption
     class="emotion-euiImageCaption"
   />

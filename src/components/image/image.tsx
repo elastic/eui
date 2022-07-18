@@ -69,7 +69,6 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
   const isFullWidth = size === 'fullWidth';
 
   const commonWrapperProps = {
-    alt,
     hasShadow,
     wrapperProps,
     isFullScreen,

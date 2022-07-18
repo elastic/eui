@@ -36,8 +36,12 @@ export type EuiImageProps = CommonProps &
   Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt'> &
   _EuiImageSrcOrUrl & {
     /**
-     * Separate from the caption is a title on the alt tag itself.
-     * This one is required for accessibility.
+     * Alt text should describe the image to aid screen reader users. See
+     * https://webaim.org/techniques/alttext/ for a guide on writing
+     * effective alt text.
+     *
+     * If no meaningful description exists, or if the image is adequately
+     * described by the surrounding text, pass an empty string.
      */
     alt: string;
     /**
@@ -79,7 +83,6 @@ export type EuiImageProps = CommonProps &
 
 export type EuiImageWrapperProps = Pick<
   EuiImageProps,
-  | 'alt'
   | 'caption'
   | 'float'
   | 'margin'

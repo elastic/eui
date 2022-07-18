@@ -12,8 +12,8 @@ import classNames from 'classnames';
 import { EuiIcon } from '../icon';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask } from '../overlay_mask';
-import { useEuiI18n } from '../i18n';
-import { useEuiTheme, keys } from '../../services';
+import { EuiI18n } from '../i18n';
+import { useEuiTheme, useGeneratedHtmlId, keys } from '../../services';
 import { useInnerText } from '../inner_text';
 
 import {
@@ -29,7 +29,6 @@ import { EuiImageCaption } from './image_caption';
 export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageWrapperProps> = ({
   hasShadow,
   caption,
-  alt,
   children,
   isFullScreen,
   setIsFullScreen,
@@ -68,13 +67,8 @@ export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageWrapperProps> 
     setIsFullScreen(false);
   };
 
-  const closeImageLabel = useEuiI18n(
-    'euiImageFullscreenWrapper.closeImage',
-    'Close fullscreen {alt} image',
-    { alt }
-  );
-
   const [optionalCaptionRef, optionalCaptionText] = useInnerText();
+  const describedById = useGeneratedHtmlId();
 
   return (
     <EuiOverlayMask
@@ -93,7 +87,7 @@ export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageWrapperProps> 
               hasShadow={hasShadow}
               onClick={closeFullScreen}
               onKeyDown={onKeyDown}
-              aria-label={closeImageLabel}
+              aria-describedby={describedById}
               data-test-subj="deactivateFullScreenButton"
               isFullScreen={isFullScreen}
               isFullWidth={isFullWidth}
@@ -102,6 +96,12 @@ export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageWrapperProps> 
             >
               {children}
             </EuiImageButton>
+            <p id={describedById} hidden>
+              <EuiI18n
+                token="euiImageFullscreenWrapper.closeImage"
+                default="Click to close fullscreen mode"
+              />
+            </p>
             <EuiImageCaption
               caption={caption}
               ref={optionalCaptionRef}
