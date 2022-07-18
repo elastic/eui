@@ -9,7 +9,7 @@
 import React, { useState, useMemo, ReactNode } from 'react';
 import { EuiButtonIcon } from '../../button';
 import { EuiToolTip } from '../../tool_tip';
-import { EuiPopover } from '../../popover';
+import { EuiPopover, EuiPopoverTitle } from '../../popover';
 import { EuiDescriptionList } from '../../description_list';
 import { EuiText } from '../../text';
 import { useEuiI18n } from '../../i18n';
@@ -19,10 +19,7 @@ export const useDataGridKeyboardShortcuts = (): {
 } => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const buttonLabel = useEuiI18n(
-    'euiKeyboardShortcuts.label',
-    'Keyboard shortcuts'
-  );
+  const title = useEuiI18n('euiKeyboardShortcuts.title', 'Keyboard shortcuts');
 
   const keyboardShortcuts = useMemo(
     () => (
@@ -33,18 +30,19 @@ export const useDataGridKeyboardShortcuts = (): {
         anchorPosition="downRight"
         panelClassName="euiDataGrid__keyboardShortcutsPopoverPanel"
         button={
-          <EuiToolTip content={buttonLabel} delay="long">
+          <EuiToolTip content={title} delay="long">
             <EuiButtonIcon
               size="xs"
               iconType="keyboard"
               color="text"
               data-test-subj="dataGridKeyboardShortcutsButton"
               onClick={() => setIsOpen(!isOpen)}
-              aria-label={buttonLabel}
+              aria-label={title}
             />
           </EuiToolTip>
         }
       >
+        <EuiPopoverTitle paddingSize="s">{title}</EuiPopoverTitle>
         <EuiText size="xs">
           <EuiDescriptionList
             type="column"
@@ -114,7 +112,7 @@ export const useDataGridKeyboardShortcuts = (): {
         </EuiText>
       </EuiPopover>
     ),
-    [isOpen, buttonLabel]
+    [isOpen, title]
   );
 
   return { keyboardShortcuts };

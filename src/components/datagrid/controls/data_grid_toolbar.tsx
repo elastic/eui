@@ -60,12 +60,6 @@ export const EuiDataGridToolbar = ({
         {renderAdditionalControls(toolbarVisibility, 'right')}
         {checkOrDefaultToolBarDisplayOptions(
           toolbarVisibility,
-          'showDisplaySelector'
-        )
-          ? displaySelector
-          : null}
-        {checkOrDefaultToolBarDisplayOptions(
-          toolbarVisibility,
           'showKeyboardShortcuts'
         ) ? (
           keyboardShortcuts
@@ -74,6 +68,12 @@ export const EuiDataGridToolbar = ({
             <span>{keyboardShortcuts}</span>
           </EuiScreenReaderOnly>
         )}
+        {checkOrDefaultToolBarDisplayOptions(
+          toolbarVisibility,
+          'showDisplaySelector'
+        )
+          ? displaySelector
+          : null}
         {checkOrDefaultToolBarDisplayOptions(
           toolbarVisibility,
           'showFullScreenSelector'
