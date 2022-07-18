@@ -52,10 +52,6 @@ describe('_isValidBreakpointArray determines if the euiBreakpoint parameter arra
   it('should return false if the array contains two elements and the first element is larger than the second', () => {
     expect(_isValidBreakpointArray(['xl', 's'])).toBeFalsy();
   });
-
-  // it('should return false if the array contains two elements and the first element is larger than the second', () => {
-  //   expect(_isValidBreakpointArray([un, 's'])).toBeFalsy();
-  // });
 });
 
 describe('test each possible two breakpoint combination', () => {
