@@ -52,9 +52,7 @@ export const euiBreakpoint = (
           euiTheme.breakpoint[sizes[0]]
         }px)`;
       default:
-        console.warn(
-          `euiBreakpoint cannot create media query for ${sizes[0]}}`
-        );
+        console.warn(`euiBreakpoint cannot create media query for ${sizes[0]}`);
         return '@media only screen';
     }
   } // We should create a max-width query if sizes[0] is undefined OR if sizes[0] is 0
