@@ -7,8 +7,8 @@
  */
 
 import React, { Component, HTMLAttributes, ReactNode } from 'react';
-import { CommonProps } from '../common';
 import classNames from 'classnames';
+import { CommonProps } from '../common';
 
 import { EuiTitle } from '../title';
 import { EuiCodeBlock } from '../code';
@@ -63,6 +63,7 @@ ${stackStr}`;
 
   render() {
     const {
+      className,
       children,
       'data-test-subj': _dataTestSubj,
       theme,
@@ -76,7 +77,7 @@ ${stackStr}`;
       return (
         <div
           css={styles.euiErrorBoundary}
-          className="euiErrorBoundary"
+          className={classNames('euiErrorBoundary', className)}
           data-test-subj={dataTestSubj}
           {...rest}
         >
