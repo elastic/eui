@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { EuiImage, EuiText } from '../../../../src/components';
+// @ts-ignore faker has no Typescript defs
 import { fake } from 'faker';
 
 export default () => (
