@@ -457,4 +457,6 @@ export const typeToPathMap = {
   tokenTokenCount: 'tokenTokenCount',
   tokenSearchType: 'tokenSearchType',
   tokenHistogram: 'tokenHistogram',
+  tokenMetricCounter: 'tokenMetricCounter',
+  tokenMetricGauge: 'tokenMetricGauge',
 };

@@ -62,6 +62,8 @@ const tokens = [
   'tokenTokenCount',
   'tokenSearchType',
   'tokenHistogram',
+  'tokenMetricCounter',
+  'tokenMetricGauge',
 ];
 
 export default () => (

@@ -59,7 +59,9 @@ export type EuiTokenMapType =
   | 'tokenText'
   | 'tokenTokenCount'
   | 'tokenSearchType'
-  | 'tokenHistogram';
+  | 'tokenHistogram'
+  | 'tokenMetricCounter'
+  | 'tokenMetricGauge';
 
 /**
  * Most of the style combinations for tokens are semi-arbitrary. However, there was an effort
@@ -276,5 +278,13 @@ export const TOKEN_MAP: {
   tokenHistogram: {
     shape: 'square',
     color: 'euiColorVis6',
+  },
+  tokenMetricCounter: {
+    shape: 'square',
+    color: 'euiColorVis0',
+  },
+  tokenMetricGauge: {
+    shape: 'square',
+    color: 'euiColorVis0',
   },
 };
