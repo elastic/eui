@@ -91,7 +91,7 @@ describe('useEuiBreakpoint', () => {
 
     describe('invalid array sizes', () => {
       afterEach(() => {
-        // expect(consoleStub).toHaveBeenCalledTimes(1);
+        expect(consoleStub).toHaveBeenCalledTimes(1);
         expect(consoleStub).toHaveBeenLastCalledWith(
           'Pass more than one breakpoint size'
         );
