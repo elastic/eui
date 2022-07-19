@@ -26,7 +26,6 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
   float,
   margin,
   children,
-  isFullScreen,
   setIsFullScreen,
   wrapperProps,
   fullScreenIconColor,
@@ -68,7 +67,6 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
             hasShadow={hasShadow}
             onClick={openFullScreen}
             data-test-subj="activateFullScreenButton"
-            isFullScreen={isFullScreen}
             isFullWidth={isFullWidth}
             fullScreenIconColor={fullScreenIconColor}
           >

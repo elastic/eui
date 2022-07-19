@@ -28,7 +28,6 @@ export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageWrapperProps> 
   hasShadow,
   caption,
   children,
-  isFullScreen,
   setIsFullScreen,
   wrapperProps,
   isFullWidth,
@@ -84,7 +83,7 @@ export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageWrapperProps> 
               onClick={closeFullScreen}
               onKeyDown={onKeyDown}
               data-test-subj="deactivateFullScreenButton"
-              isFullScreen={isFullScreen}
+              isFullScreen={true}
               isFullWidth={isFullWidth}
               fullScreenIconColor={fullScreenIconColor}
             >
@@ -93,7 +92,7 @@ export const EuiImageFullScreenWrapper: FunctionComponent<EuiImageWrapperProps> 
             <EuiImageCaption
               caption={caption}
               ref={optionalCaptionRef}
-              isOnOverlayMask={isFullScreen}
+              isOnOverlayMask={true}
             />
           </figure>
           {/* Must be outside the `figure` element in order to escape the translateY transition. see https://www.w3.org/TR/css-transforms-1/#transform-rendering */}

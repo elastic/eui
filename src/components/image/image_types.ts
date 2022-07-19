@@ -93,7 +93,6 @@ export type EuiImageWrapperProps = Pick<
   | 'allowFullScreen'
 > & {
   isFullWidth: boolean;
-  isFullScreen: boolean;
   setIsFullScreen: (isFullScreen: boolean) => void;
 };
 
@@ -105,7 +104,7 @@ export type EuiImageButtonProps = Pick<
   onClick: () => void;
   onKeyDown?: (e: React.KeyboardEvent) => void;
   isFullWidth: boolean;
-  isFullScreen: boolean;
+  isFullScreen?: boolean;
 };
 
 export type EuiImageCaptionProps = Pick<EuiImageProps, 'caption'> & {
