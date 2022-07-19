@@ -13,9 +13,11 @@ import { requiredProps } from '../../test/required_props';
 import { EuiCommentEvent } from './comment_event';
 
 describe('EuiCommentEvent', () => {
-  test('is rendered', () => {
+  test('is rendered with custom content', () => {
     const component = render(
-      <EuiCommentEvent username="someuser" {...requiredProps} />
+      <EuiCommentEvent username="someuser" {...requiredProps}>
+        <p>Some custom content</p>
+      </EuiCommentEvent>
     );
 
     expect(component).toMatchSnapshot();

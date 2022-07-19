@@ -1,9 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCommentEvent is rendered 1`] = `
+exports[`EuiCommentEvent is rendered with custom content 1`] = `
 <div
   class="euiCommentEvent testClass1 testClass2 emotion-euiCommentEvent-custom"
-/>
+>
+  <div
+    class="emotion-euiCommentEvent__body-custom"
+  >
+    <p>
+      Some custom content
+    </p>
+  </div>
+</div>
 `;
 
 exports[`EuiCommentEvent props event is rendered 1`] = `
