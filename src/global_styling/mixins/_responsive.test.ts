@@ -7,91 +7,186 @@
  */
 
 import { testCustomHook } from '../../test/internal';
-import {
-  useEuiBreakpoint,
-  _isValidBreakpointArray,
-  _validBreakpointSizes,
-} from './_responsive';
+import { EuiThemeBreakpoints, _EuiThemeBreakpoint } from '../variables';
+import { useEuiBreakpoint } from './_responsive';
 
-const validBreakpointKeys = [
-  undefined,
-  '0',
-  'xs',
-  's',
-  'm',
-  'l',
-  'xl',
-  'infinity',
-];
-
-describe('_isValidBreakpointArray determines if the euiBreakpoint parameter array is invalid', () => {
-  it('should return false if the array contains two elements and they are 0 and infinity', () => {
-    expect(_isValidBreakpointArray(['0', 'infinity'])).toBeFalsy();
-  });
-
-  it('should return false if the array contains two elements and they both undefined', () => {
-    expect(_isValidBreakpointArray([undefined, undefined])).toBeFalsy();
-  });
-
-  it('should return false if the array contains one element and it is 0', () => {
-    expect(_isValidBreakpointArray(['0'])).toBeFalsy();
-  });
-
-  it('should return false if the array contains one element and it is undefined', () => {
-    expect(_isValidBreakpointArray([undefined])).toBeFalsy();
-  });
-
-  it('should return false if the array contains one element and it is infinity', () => {
-    expect(_isValidBreakpointArray(['infinity'])).toBeFalsy();
-  });
-
-  it('should return false if the array contains two elements and they are equal', () => {
-    expect(_isValidBreakpointArray(['m', 'm'])).toBeFalsy();
-  });
-
-  it('should return false if the array contains two elements and the first element is larger than the second', () => {
-    expect(_isValidBreakpointArray(['xl', 's'])).toBeFalsy();
-  });
-});
-
-describe('test each possible two breakpoint combination', () => {
-  const possibleTwoElementBreakpointCombinations = [];
-  for (let i = 0; i < validBreakpointKeys.length; i++) {
-    for (let inner = 1; inner < validBreakpointKeys.length; inner++) {
-      // If the breakpoint is undefined, don't add quotes to make it a string
-      possibleTwoElementBreakpointCombinations.push([
-        validBreakpointKeys[i] === undefined
-          ? undefined
-          : `${validBreakpointKeys[i]}`,
-        validBreakpointKeys[inner] === undefined
-          ? undefined
-          : `${validBreakpointKeys[inner]}`,
-      ]);
+describe('useEuiBreakpoint', () => {
+  describe('common breakpoint size arrays', () => {
+    const possibleTwoElementBreakpointCombinations = [];
+    for (let i = 0; i < EuiThemeBreakpoints.length; i++) {
+      for (let j = 1; j < EuiThemeBreakpoints.length; j++) {
+        if (j > i) {
+          possibleTwoElementBreakpointCombinations.push([
+            `${EuiThemeBreakpoints[i]}`,
+            `${EuiThemeBreakpoints[j]}`,
+          ]);
+        }
+      }
     }
-  }
 
-  test.each(possibleTwoElementBreakpointCombinations)(
-    'useEuiBreapoint returns a media query for two element breakpoint combinations (%s and %s)',
-    (sizeA, sizeB) => {
-      expect(
-        testCustomHook(() =>
-          useEuiBreakpoint([
-            sizeA as _validBreakpointSizes,
-            sizeB as _validBreakpointSizes,
-          ])
-        ).return
-      ).toMatchSnapshot();
-    }
-  );
-});
+    test.each(possibleTwoElementBreakpointCombinations)(
+      'useEuiBreakpoint returns a media query for two element breakpoint combinations (%s and %s)',
+      (minSize, maxSize) => {
+        expect(
+          testCustomHook(() =>
+            useEuiBreakpoint([
+              minSize as _EuiThemeBreakpoint,
+              maxSize as _EuiThemeBreakpoint,
+            ])
+          ).return
+        ).toMatchSnapshot();
+      }
+    );
+  });
 
-describe('test each possible single breakpoint combination', () => {
-  validBreakpointKeys.forEach((size) => {
-    it(`${size}`, () => {
+  describe('0 as a first argument should not render a min-width query', () => {
+    EuiThemeBreakpoints.forEach((size) => {
+      test(`(0 and ${size})`, () => {
+        expect(
+          testCustomHook(() => useEuiBreakpoint([0, size])).return
+        ).toMatchSnapshot();
+      });
+    });
+  });
+
+  describe('Infinity as a last argument should not render a max-width query', () => {
+    EuiThemeBreakpoints.forEach((size) => {
+      test(`(${size} and Infinity)`, () => {
+        expect(
+          testCustomHook(() => useEuiBreakpoint([size, Infinity])).return
+        ).toMatchSnapshot();
+      });
+    });
+  });
+
+  describe('breakpoint size arrays with more than 2 sizes', () => {
+    it('should use the first and last items in the array', () => {
       expect(
-        testCustomHook(() => useEuiBreakpoint([size as _validBreakpointSizes]))
-          .return
+        testCustomHook(() => useEuiBreakpoint(['s', 'm', 'l'])).return
       ).toMatchSnapshot();
+    });
+  });
+
+  describe('single breakpoint sizes should infer the next breakpoint size as max-width', () => {
+    EuiThemeBreakpoints.forEach((size) => {
+      test(`${size}`, () => {
+        expect(
+          testCustomHook(() => useEuiBreakpoint([size])).return
+        ).toMatchSnapshot();
+      });
+    });
+  });
+
+  describe('invalid arguments', () => {
+    const fallbackOutput = '@media only screen';
+
+    const oldConsoleError = console.warn;
+    let consoleStub: jest.Mock;
+    beforeEach(() => {
+      console.warn = consoleStub = jest.fn();
+    });
+    afterEach(() => {
+      console.warn = oldConsoleError;
+    });
+
+    describe('invalid array sizes', () => {
+      afterEach(() => {
+        // expect(consoleStub).toHaveBeenCalledTimes(1);
+        expect(consoleStub).toHaveBeenLastCalledWith(
+          'Pass more than one breakpoint size'
+        );
+      });
+
+      it('empty array', () => {
+        expect(testCustomHook(() => useEuiBreakpoint([])).return).toEqual(
+          fallbackOutput
+        );
+      });
+
+      it('invalid single non-breakpoint size', () => {
+        expect(testCustomHook(() => useEuiBreakpoint([0])).return).toEqual(
+          fallbackOutput
+        );
+      });
+
+      it('invalid single non-breakpoint size', () => {
+        expect(
+          testCustomHook(() => useEuiBreakpoint([Infinity])).return
+        ).toEqual(fallbackOutput);
+      });
+    });
+
+    describe('invalid breakpoint keys', () => {
+      afterEach(() => {
+        expect(consoleStub).toHaveBeenCalledTimes(2);
+        expect(consoleStub).toHaveBeenCalledWith(
+          'Invalid min-width breakpoint size passed'
+        );
+        expect(consoleStub).toHaveBeenCalledWith(
+          'Invalid max-width breakpoint size passed'
+        );
+      });
+
+      it('warns when invalid size key strings are passed', () => {
+        expect(
+          // @ts-expect-error deliberate incorrect type
+          testCustomHook(() => useEuiBreakpoint(['teeny-tiny', 'SUPERMASSIVE']))
+            .return
+        ).toEqual(fallbackOutput);
+      });
+
+      it('warns when invalid size numbers are passed', () => {
+        expect(
+          testCustomHook(() => useEuiBreakpoint([100, 400])).return // we might support this someday, but today is not that day
+        ).toEqual(fallbackOutput);
+      });
+
+      it('warns when 0 and Infinity are used in the wrong position', () => {
+        expect(
+          testCustomHook(() => useEuiBreakpoint([Infinity, 0])).return
+        ).toEqual(fallbackOutput);
+      });
+    });
+
+    describe('invalid breakpoint size order', () => {
+      afterEach(() => {
+        expect(consoleStub).toHaveBeenCalledTimes(1);
+        expect(consoleStub).toHaveBeenLastCalledWith(
+          'Invalid breakpoint sizes passed. The first size should be smaller than the last size'
+        );
+      });
+
+      it('warns if min breakpoint is not smaller than the max breakpoint', () => {
+        expect(
+          testCustomHook(() => useEuiBreakpoint(['xl', 'xs'])).return
+        ).toEqual(fallbackOutput);
+      });
+
+      it('warns if the min/max breakpoints are equal', () => {
+        expect(
+          testCustomHook(() => useEuiBreakpoint(['s', 's'])).return
+        ).toEqual(fallbackOutput);
+      });
+    });
+
+    describe('valid but funky breakpoint combos', () => {
+      afterEach(() => {
+        expect(consoleStub).not.toHaveBeenCalled();
+      });
+
+      test('0 and xs', () => {
+        // Since xs is (currently) already 0, this should output nothing
+        expect(
+          testCustomHook(() => useEuiBreakpoint([0, 'xs'])).return
+        ).toEqual(fallbackOutput);
+      });
+
+      test('xs and infinity', () => {
+        // Since xs is (currently) 0, there should be no min or max width
+        expect(
+          testCustomHook(() => useEuiBreakpoint(['xs', Infinity])).return
+        ).toEqual(fallbackOutput);
+      });
     });
   });
 });
