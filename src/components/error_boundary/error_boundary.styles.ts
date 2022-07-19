@@ -16,7 +16,7 @@ export const euiErrorBoundaryStyles = ({ euiTheme }: UseEuiTheme) => {
 
   return {
     euiErrorBoundary: css`
-      background: repeating-linear-gradient(
+      background-image: repeating-linear-gradient(
         45deg,
         ${color1},
         ${color1} 1px,
