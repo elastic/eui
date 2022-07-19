@@ -1,129 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test each possible single breakpoint combination 0 1`] = `"@media only screen"`;
+exports[`useEuiBreakpoint 0 as a first argument should not render a min-width query (0 and l) 1`] = `"@media only screen and (max-width: 991px)"`;
 
-exports[`test each possible single breakpoint combination infinity 1`] = `"@media only screen"`;
+exports[`useEuiBreakpoint 0 as a first argument should not render a min-width query (0 and m) 1`] = `"@media only screen and (max-width: 767px)"`;
 
-exports[`test each possible single breakpoint combination l 1`] = `"@media only screen"`;
+exports[`useEuiBreakpoint 0 as a first argument should not render a min-width query (0 and s) 1`] = `"@media only screen and (max-width: 574px)"`;
 
-exports[`test each possible single breakpoint combination m 1`] = `"@media only screen"`;
+exports[`useEuiBreakpoint 0 as a first argument should not render a min-width query (0 and xl) 1`] = `"@media only screen and (max-width: 1199px)"`;
 
-exports[`test each possible single breakpoint combination s 1`] = `"@media only screen"`;
+exports[`useEuiBreakpoint 0 as a first argument should not render a min-width query (0 and xs) 1`] = `"@media only screen"`;
 
-exports[`test each possible single breakpoint combination undefined 1`] = `"@media only screen"`;
+exports[`useEuiBreakpoint Infinity as a last argument should not render a max-width query (l and Infinity) 1`] = `"@media only screen and (min-width: 992px)"`;
 
-exports[`test each possible single breakpoint combination xl 1`] = `"@media only screen and (min-width: 1200px)"`;
+exports[`useEuiBreakpoint Infinity as a last argument should not render a max-width query (m and Infinity) 1`] = `"@media only screen and (min-width: 768px)"`;
 
-exports[`test each possible single breakpoint combination xs 1`] = `"@media only screen and (max-width: 574px)"`;
+exports[`useEuiBreakpoint Infinity as a last argument should not render a max-width query (s and Infinity) 1`] = `"@media only screen and (min-width: 575px)"`;
 
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (0 and 0) 1`] = `"@media only screen"`;
+exports[`useEuiBreakpoint Infinity as a last argument should not render a max-width query (xl and Infinity) 1`] = `"@media only screen and (min-width: 1200px)"`;
 
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (0 and infinity) 1`] = `"@media only screen"`;
+exports[`useEuiBreakpoint Infinity as a last argument should not render a max-width query (xs and Infinity) 1`] = `"@media only screen"`;
 
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (0 and l) 1`] = `"@media only screen and (max-width: 992px)"`;
+exports[`useEuiBreakpoint breakpoint size arrays with more than 2 sizes should use the first and last items in the array 1`] = `"@media only screen and (min-width: 575px) and (max-width: 991px)"`;
 
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (0 and m) 1`] = `"@media only screen and (max-width: 768px)"`;
+exports[`useEuiBreakpoint common breakpoint size arrays useEuiBreakpoint returns a media query for two element breakpoint combinations (l and xl) 1`] = `"@media only screen and (min-width: 992px) and (max-width: 1199px)"`;
 
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (0 and s) 1`] = `"@media only screen and (max-width: 575px)"`;
+exports[`useEuiBreakpoint common breakpoint size arrays useEuiBreakpoint returns a media query for two element breakpoint combinations (m and l) 1`] = `"@media only screen and (min-width: 768px) and (max-width: 991px)"`;
 
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (0 and xl) 1`] = `"@media only screen and (max-width: 1200px)"`;
+exports[`useEuiBreakpoint common breakpoint size arrays useEuiBreakpoint returns a media query for two element breakpoint combinations (m and xl) 1`] = `"@media only screen and (min-width: 768px) and (max-width: 1199px)"`;
 
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (0 and xs) 1`] = `"@media only screen and (max-width: 574px)"`;
+exports[`useEuiBreakpoint common breakpoint size arrays useEuiBreakpoint returns a media query for two element breakpoint combinations (s and l) 1`] = `"@media only screen and (min-width: 575px) and (max-width: 991px)"`;
 
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (infinity and 0) 1`] = `"@media only screen"`;
+exports[`useEuiBreakpoint common breakpoint size arrays useEuiBreakpoint returns a media query for two element breakpoint combinations (s and m) 1`] = `"@media only screen and (min-width: 575px) and (max-width: 767px)"`;
 
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (infinity and infinity) 1`] = `"@media only screen"`;
+exports[`useEuiBreakpoint common breakpoint size arrays useEuiBreakpoint returns a media query for two element breakpoint combinations (s and xl) 1`] = `"@media only screen and (min-width: 575px) and (max-width: 1199px)"`;
 
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (infinity and l) 1`] = `"@media only screen"`;
+exports[`useEuiBreakpoint common breakpoint size arrays useEuiBreakpoint returns a media query for two element breakpoint combinations (xs and l) 1`] = `"@media only screen and (max-width: 991px)"`;
 
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (infinity and m) 1`] = `"@media only screen"`;
+exports[`useEuiBreakpoint common breakpoint size arrays useEuiBreakpoint returns a media query for two element breakpoint combinations (xs and m) 1`] = `"@media only screen and (max-width: 767px)"`;
 
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (infinity and s) 1`] = `"@media only screen"`;
+exports[`useEuiBreakpoint common breakpoint size arrays useEuiBreakpoint returns a media query for two element breakpoint combinations (xs and s) 1`] = `"@media only screen and (max-width: 574px)"`;
 
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (infinity and xl) 1`] = `"@media only screen"`;
+exports[`useEuiBreakpoint common breakpoint size arrays useEuiBreakpoint returns a media query for two element breakpoint combinations (xs and xl) 1`] = `"@media only screen and (max-width: 1199px)"`;
 
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (infinity and xs) 1`] = `"@media only screen"`;
+exports[`useEuiBreakpoint single breakpoint sizes should infer the next breakpoint size as max-width l 1`] = `"@media only screen and (min-width: 992px) and (max-width: 1199px)"`;
 
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (l and 0) 1`] = `"@media only screen"`;
+exports[`useEuiBreakpoint single breakpoint sizes should infer the next breakpoint size as max-width m 1`] = `"@media only screen and (min-width: 768px) and (max-width: 991px)"`;
 
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (l and infinity) 1`] = `"@media only screen and (min-width: 992px)"`;
+exports[`useEuiBreakpoint single breakpoint sizes should infer the next breakpoint size as max-width s 1`] = `"@media only screen and (min-width: 575px) and (max-width: 767px)"`;
 
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (l and l) 1`] = `"@media only screen"`;
+exports[`useEuiBreakpoint single breakpoint sizes should infer the next breakpoint size as max-width xl 1`] = `"@media only screen and (min-width: 1200px)"`;
 
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (l and m) 1`] = `"@media only screen"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (l and s) 1`] = `"@media only screen"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (l and xl) 1`] = `"@media only screen and (min-width: 992px) and (max-width: 9007199254740991px)"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (l and xs) 1`] = `"@media only screen"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (m and 0) 1`] = `"@media only screen"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (m and infinity) 1`] = `"@media only screen and (min-width: 768px)"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (m and l) 1`] = `"@media only screen and (min-width: 768px) and (max-width: 1199px)"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (m and m) 1`] = `"@media only screen"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (m and s) 1`] = `"@media only screen"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (m and xl) 1`] = `"@media only screen and (min-width: 768px) and (max-width: 9007199254740991px)"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (m and xs) 1`] = `"@media only screen"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (s and 0) 1`] = `"@media only screen"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (s and infinity) 1`] = `"@media only screen and (min-width: 575px)"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (s and l) 1`] = `"@media only screen and (min-width: 575px) and (max-width: 1199px)"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (s and m) 1`] = `"@media only screen and (min-width: 575px) and (max-width: 991px)"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (s and s) 1`] = `"@media only screen"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (s and xl) 1`] = `"@media only screen and (min-width: 575px) and (max-width: 9007199254740991px)"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (s and xs) 1`] = `"@media only screen"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (undefined and 0) 1`] = `"@media only screen"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (undefined and infinity) 1`] = `"@media only screen"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (undefined and l) 1`] = `"@media only screen and (max-width: 992px)"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (undefined and m) 1`] = `"@media only screen and (max-width: 768px)"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (undefined and s) 1`] = `"@media only screen and (max-width: 575px)"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (undefined and xl) 1`] = `"@media only screen and (max-width: 1200px)"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (undefined and xs) 1`] = `"@media only screen and (max-width: 574px)"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (xl and 0) 1`] = `"@media only screen"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (xl and infinity) 1`] = `"@media only screen and (min-width: 1200px)"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (xl and l) 1`] = `"@media only screen"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (xl and m) 1`] = `"@media only screen"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (xl and s) 1`] = `"@media only screen"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (xl and xl) 1`] = `"@media only screen"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (xl and xs) 1`] = `"@media only screen"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (xs and 0) 1`] = `"@media only screen"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (xs and infinity) 1`] = `"@media only screen and (min-width: 0px)"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (xs and l) 1`] = `"@media only screen and (min-width: 0px) and (max-width: 1199px)"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (xs and m) 1`] = `"@media only screen and (min-width: 0px) and (max-width: 991px)"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (xs and s) 1`] = `"@media only screen and (min-width: 0px) and (max-width: 767px)"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (xs and xl) 1`] = `"@media only screen and (min-width: 0px) and (max-width: 9007199254740991px)"`;
-
-exports[`test each possible two breakpoint combination useEuiBreapoint returns a media query for two element breakpoint combinations (xs and xs) 1`] = `"@media only screen"`;
+exports[`useEuiBreakpoint single breakpoint sizes should infer the next breakpoint size as max-width xs 1`] = `"@media only screen and (max-width: 574px)"`;
