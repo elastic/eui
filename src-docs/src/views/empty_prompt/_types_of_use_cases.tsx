@@ -13,8 +13,11 @@ import {
   IconType,
 } from '../../../../src/components';
 
-import pageNotFoundLight from '../../images/empty-prompt/404_rainy_cloud_light.png';
-import pageNotFoundDark from '../../images/empty-prompt/404_rainy_cloud_dark.png';
+import pageNotFoundDark from '../../images/empty-prompt/pageNotFound--dark.png';
+import pageNotFoundLight from '../../images/empty-prompt/pageNotFound--light.png';
+import pageNotFoundDark2x from '../../images/empty-prompt/pageNotFound--dark@2x.png';
+import pageNotFoundLight2x from '../../images/empty-prompt/pageNotFound--light@2x.png';
+
 import noResultsLight from '../../images/empty-prompt/no-results--light.svg';
 import noResultsDark from '../../images/empty-prompt/no-results--dark.svg';
 
@@ -31,6 +34,8 @@ export const typesOfUseCases: {
       iconLoading?: ReactNode;
       iconLight?: string;
       iconDark?: string;
+      iconLight2x?: string;
+      iconDark2x?: string;
       iconType?: IconType;
       title: ReactNode;
       body?: ReactNode;
@@ -218,6 +223,8 @@ export const typesOfUseCases: {
     example: {
       iconLight: pageNotFoundLight,
       iconDark: pageNotFoundDark,
+      iconLight2x: pageNotFoundLight2x,
+      iconDark2x: pageNotFoundDark2x,
       title: <h2>Page not found</h2>,
       body: (
         <p>

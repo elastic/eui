@@ -150,9 +150,16 @@ export default () => {
     const iconImg: string = isDarkTheme
       ? currentUseCaseExample.iconDark!
       : currentUseCaseExample.iconLight!;
+    const iconImg2x: string = isDarkTheme
+      ? currentUseCaseExample.iconDark2x!
+      : currentUseCaseExample.iconLight2x!;
+
+    const hasRetinaImage = iconImg2x !== '';
+
+    const srcSet = hasRetinaImage ? `${iconImg} 1x, ${iconImg2x} 2x` : '';
 
     icon = {
-      icon: <EuiImage size="fullWidth" src={iconImg} alt="" />,
+      icon: <EuiImage size="fullWidth" alt="" srcSet={srcSet} src={iconImg} />,
     };
   }
 
