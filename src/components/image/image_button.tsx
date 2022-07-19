@@ -53,8 +53,7 @@ export const EuiImageButton: FunctionComponent<EuiImageButtonProps> = ({
   const iconStyles = euiImageButtonIconStyles(euiTheme);
   const cssIconStyles = [
     iconStyles.euiImageButton__icon,
-    !isFullScreen && iconStyles.openFullScreen,
-    isFullScreen && iconStyles.closeFullScreen,
+    iconStyles.openFullScreen,
   ];
 
   const openFullScreenInstructions = useEuiI18n(
