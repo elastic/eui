@@ -6,23 +6,30 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent } from 'react';
-import { CommonProps } from '../common';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { EuiComment, EuiCommentProps } from './comment';
+import { EuiTimeline, EuiTimelineProps } from '../timeline';
 
-export type EuiCommentListProps = HTMLAttributes<HTMLDivElement> &
-  CommonProps & {
-    /**
-     * List of comments to render. See #EuiComment
-     */
-    comments?: EuiCommentProps[];
-  };
+export type EuiCommentListProps = Omit<
+  EuiTimelineProps,
+  'items' | 'gutterSize'
+> & {
+  /**
+   * List of comments to render. See #EuiComment
+   */
+  comments?: EuiCommentProps[];
+  /**
+   * Sets the size of the vertical space between each comment
+   */
+  gutterSize?: EuiTimelineProps['gutterSize'];
+};
 
 export const EuiCommentList: FunctionComponent<EuiCommentListProps> = ({
   children,
   className,
   comments,
+  gutterSize = 'l',
   ...rest
 }) => {
   const classes = classNames('euiCommentList', className);
@@ -36,9 +43,9 @@ export const EuiCommentList: FunctionComponent<EuiCommentListProps> = ({
   }
 
   return (
-    <div className={classes} {...rest}>
+    <EuiTimeline className={classes} gutterSize={gutterSize} {...rest}>
       {commentElements}
       {children}
-    </div>
+    </EuiTimeline>
   );
 };
