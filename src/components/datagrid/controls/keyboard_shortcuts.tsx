@@ -7,6 +7,8 @@
  */
 
 import React, { useState, useMemo, ReactNode } from 'react';
+
+import { useGeneratedHtmlId } from '../../../services';
 import { EuiButtonIcon } from '../../button';
 import { EuiToolTip } from '../../tool_tip';
 import { EuiPopover, EuiPopoverTitle } from '../../popover';
@@ -20,6 +22,7 @@ export const useDataGridKeyboardShortcuts = (): {
   const [isOpen, setIsOpen] = useState(false);
 
   const title = useEuiI18n('euiKeyboardShortcuts.title', 'Keyboard shortcuts');
+  const titleId = useGeneratedHtmlId();
 
   const keyboardShortcuts = useMemo(
     () => (
@@ -42,9 +45,12 @@ export const useDataGridKeyboardShortcuts = (): {
           </EuiToolTip>
         }
       >
-        <EuiPopoverTitle paddingSize="s">{title}</EuiPopoverTitle>
+        <EuiPopoverTitle paddingSize="s">
+          <h2 id={titleId}>{title}</h2>
+        </EuiPopoverTitle>
         <EuiText size="xs">
           <EuiDescriptionList
+            aria-labelledby={titleId}
             type="column"
             align="center"
             compressed
@@ -112,7 +118,7 @@ export const useDataGridKeyboardShortcuts = (): {
         </EuiText>
       </EuiPopover>
     ),
-    [isOpen, title]
+    [isOpen, title, titleId]
   );
 
   return { keyboardShortcuts };
