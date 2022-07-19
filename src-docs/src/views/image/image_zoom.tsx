@@ -4,10 +4,11 @@ import {
   EuiImage,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiLink,
 } from '../../../../src/components';
 
 export default () => (
-  <EuiFlexGroup>
+  <EuiFlexGroup justifyContent="spaceEvenly">
     <EuiFlexItem grow={false}>
       <EuiImage
         size="m"
@@ -20,13 +21,23 @@ export default () => (
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
       <EuiImage
-        size="m"
-        hasShadow
         allowFullScreen
-        caption="Marie Curie, physicist and chemist"
-        alt="" // Because this image is sufficiently described by its caption, there is no need to repeat it via alt text
+        caption={
+          <>
+            Browser usage on{' '}
+            <EuiLink
+              href="https://commons.wikimedia.org/wiki/File:Wikimedia_browser_share_pie_chart.png"
+              target="_blank"
+            >
+              Wikimedia (CC BY 3.0)
+            </EuiLink>
+          </>
+        }
+        alt="Pie chart describing browser usage on Wikimedia on October 2011. Internet Explorer occupies 34 percent, Firefox occupies 23 percent, Chrome occupies 20 percent, Safari occupies 11 percent, Opera occupies 5%, Android occupies 1.9 percent, and other browsers occupy 3.5 percent."
+        src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Wikimedia_browser_share_pie_chart.png"
         fullScreenIconColor="dark"
-        src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Marie_Sklodowska%2C_%C3%A9tudiante%2C_en_1895.jpg"
+        size={300}
+        style={{ padding: '20px 30px', background: 'white' }}
       />
     </EuiFlexItem>
   </EuiFlexGroup>
