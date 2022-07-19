@@ -27,7 +27,7 @@ export default () => {
           size="fullWidth"
           srcSet={`${pageNotFound} 1x, ${pageNotFound2x} 2x`}
           src={pageNotFound}
-          alt=""
+          alt="Astronaut flying in a planet"
         />
       }
       title={<h2>Page not found</h2>}

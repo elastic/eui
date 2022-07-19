@@ -155,11 +155,13 @@ export default () => {
       : currentUseCaseExample.iconLight2x!;
 
     const hasRetinaImage = iconImg2x !== '';
-
     const srcSet = hasRetinaImage ? `${iconImg} 1x, ${iconImg2x} 2x` : '';
+    const alt = currentUseCaseExample.alt || '';
 
     icon = {
-      icon: <EuiImage size="fullWidth" alt="" srcSet={srcSet} src={iconImg} />,
+      icon: (
+        <EuiImage size="fullWidth" alt={alt} srcSet={srcSet} src={iconImg} />
+      ),
     };
   }
 

@@ -37,6 +37,7 @@ export const typesOfUseCases: {
       iconLight2x?: string;
       iconDark2x?: string;
       iconType?: IconType;
+      alt?: string;
       title: ReactNode;
       body?: ReactNode;
       actions?: ReactNode[];
@@ -226,6 +227,7 @@ export const typesOfUseCases: {
       iconLight2x: pageNotFoundLight2x,
       iconDark2x: pageNotFoundDark2x,
       title: <h2>Page not found</h2>,
+      alt: 'Astronaut flying in a planet',
       body: (
         <p>
           Sorry, we can&apos;t find the page you&apos;re looking for. It might
