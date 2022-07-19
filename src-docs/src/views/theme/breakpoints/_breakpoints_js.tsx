@@ -132,6 +132,38 @@ export default () => {
         snippet="useIsWithinBreakpoints(['l', 'xl'])"
         snippetLanguage="js"
       />
+
+      <ThemeExample
+        title={<code>useEuiBreakpoint(sizes[])</code>}
+        type="hook"
+        description={
+          <>
+            <p>
+              Given an array of breakpoint keys, this hook generates a CSS media
+              query string based on the minimum width and maximum width
+              provided.
+            </p>
+            <p>
+              You can also create media queries with a{' '}
+              <EuiCode>(min-width)</EuiCode> only or{' '}
+              <EuiCode>(max-width)</EuiCode> only by utilizing the{' '}
+              <EuiCode>0</EuiCode> and <EuiCode>Infinity</EuiCode> arguments.
+            </p>
+          </>
+        }
+        example={
+          <p>
+            Targeting large devices only:{' '}
+            {isLargeBreakpoint ? (
+              <EuiIcon type="checkInCircleFilled" color="success" />
+            ) : (
+              <EuiIcon type="cross" color="danger" />
+            )}
+          </p>
+        }
+        snippet="useEuiBreakpoint(['s', 'l'])"
+        snippetLanguage="js"
+      />
     </>
   );
 };
