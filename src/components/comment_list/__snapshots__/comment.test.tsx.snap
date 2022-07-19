@@ -195,7 +195,7 @@ exports[`EuiComment renders a body 1`] = `
       class="euiCommentEvent emotion-euiCommentEvent-custom"
     >
       <div
-        class="emotion-euiCommentEvent__body"
+        class="emotion-euiCommentEvent__body-custom"
       >
         <p>
           This is the body.
@@ -238,7 +238,7 @@ exports[`EuiComment renders a timeline icon 1`] = `
       class="euiCommentEvent emotion-euiCommentEvent-custom"
     >
       <div
-        class="emotion-euiCommentEvent__body"
+        class="emotion-euiCommentEvent__body-custom"
       >
         <p>
           This is the body.

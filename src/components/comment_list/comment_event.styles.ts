@@ -23,18 +23,8 @@ export const euiCommentEventStyles = ({ euiTheme }: UseEuiTheme) => ({
   custom: css``,
 });
 
-export const euiCommentEventHeaderStyles = (
-  { euiTheme }: UseEuiTheme,
-  type: string
-) => ({
-  euiCommentEvent__header: css`
-    ${type === 'regular' &&
-    `
-      background: ${euiTheme.colors.lightestShade};
-      border-bottom: ${euiTheme.border.thin};
-      padding: ${euiTheme.size.s};
-    `}
-  `,
+export const euiCommentEventHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiCommentEvent__header: css``,
   euiCommentEvent__headerPanel: css``,
   euiCommentEvent__headerMain: css`
     display: flex;
@@ -67,25 +57,26 @@ export const euiCommentEventHeaderStyles = (
     flex-wrap: wrap;
     gap: ${euiTheme.size.xs};
   `,
+  // types
+  regular: css`
+    background: ${euiTheme.colors.lightestShade};
+    border-bottom: ${euiTheme.border.thin};
+    padding: ${euiTheme.size.s};
+  `,
   // variants
   hasEventColor: css`
     padding: 0;
   `,
 });
 
-export const euiCommentEventBodyStyles = (
-  { euiTheme }: UseEuiTheme,
-  type: string
-) => ({
-  euiCommentEvent__body: css`
-    ${type === 'regular' &&
-    `
-      padding: ${euiTheme.size.s};
-    `}
-
-    ${type === 'update' &&
-    `
-      ${logicalCSS('padding-top', euiTheme.size.xs)}
-    `}
+export const euiCommentEventBodyStyles = ({ euiTheme }: UseEuiTheme) => ({
+  euiCommentEvent__body: css``,
+  // types
+  regular: css`
+    padding: ${euiTheme.size.s};
   `,
+  update: css`
+    ${logicalCSS('padding-top', euiTheme.size.xs)}
+  `,
+  custom: css``,
 });

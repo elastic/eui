@@ -92,10 +92,11 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   const styles = euiCommentEventStyles(euiTheme);
   const cssStyles = [styles.euiCommentEvent, styles[type]];
 
-  const headerStyles = euiCommentEventHeaderStyles(euiTheme, type);
+  const headerStyles = euiCommentEventHeaderStyles(euiTheme);
   const cssHeaderStyles = [
     headerStyles.euiCommentEvent__header,
     eventColor && headerStyles.hasEventColor,
+    isTypeRegular && headerStyles.regular,
   ];
   const cssHeaderPanelStyles = headerStyles.euiCommentEvent__headerPanel;
   const cssHeaderEventIconStyles =
@@ -108,9 +109,9 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   const cssHeaderDataStyles = headerStyles.euiCommentEvent__headerData;
   const cssHeaderActionsStyles = headerStyles.euiCommentEvent__headerActions;
 
-  const bodyStyles = euiCommentEventBodyStyles(euiTheme, type);
+  const bodyStyles = euiCommentEventBodyStyles(euiTheme);
 
-  const cssBodyStyles = [bodyStyles.euiCommentEvent__body];
+  const cssBodyStyles = [bodyStyles.euiCommentEvent__body, bodyStyles[type]];
 
   const isFigure = isTypeRegular;
 
