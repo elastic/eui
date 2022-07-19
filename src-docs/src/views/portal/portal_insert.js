@@ -5,7 +5,7 @@ import { EuiSpacer } from '../../../../src/components/spacer/spacer';
 
 let buttonRef = null;
 
-export const PortalInsert = () => {
+export default () => {
   const [isPortalVisible, setIsPortalVisible] = useState(false);
 
   const setButtonRef = (node) => (buttonRef = node);
