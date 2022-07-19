@@ -26,7 +26,7 @@ export const euiImageStyles = (euiThemeContext: UseEuiTheme) => ({
   isFullScreen: css`
     position: relative;
     ${logicalCSS('max-height', '80vh')};
-    ${logicalCSS('max-width', '80vh')};
+    ${logicalCSS('max-width', '80vw')};
   `,
   hasShadow: css`
     ${euiShadow(euiThemeContext, 's')};
