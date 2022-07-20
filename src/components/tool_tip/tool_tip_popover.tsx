@@ -38,10 +38,12 @@ export class EuiToolTipPopover extends Component<Props> {
   };
 
   componentDidMount() {
+    document.body.classList.add('euiBody-hasPortalContent');
     window.addEventListener('resize', this.updateDimensions);
   }
 
   componentWillUnmount() {
+    document.body.classList.remove('euiBody-hasPortalContent');
     window.removeEventListener('resize', this.updateDimensions);
   }
 

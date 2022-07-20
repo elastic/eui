@@ -11,7 +11,7 @@
  * into portals.
  */
 
-import { useState, useEffect, ReactNode } from 'react';
+import { Component, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { keysOf } from '../common';
 
@@ -40,37 +40,43 @@ export interface EuiPortalProps {
   portalRef?: (ref: HTMLDivElement | null) => void;
 }
 
-export const EuiPortal: React.FC<EuiPortalProps> = ({
-  insert,
-  portalRef,
-  children,
-}) => {
-  const [portalNode, setPortalNode] = useState<HTMLDivElement>();
+export class EuiPortal extends Component<EuiPortalProps> {
+  portalNode: HTMLDivElement;
+  constructor(props: EuiPortalProps) {
+    super(props);
 
-  // mount
-  useEffect(() => {
-    const portalNode = document.createElement('div');
-    setPortalNode(portalNode);
+    const { insert } = this.props;
+
+    this.portalNode = document.createElement('div');
 
     if (insert == null) {
       // no insertion defined, append to body
-      document.body.appendChild(portalNode);
+      document.body.appendChild(this.portalNode);
     } else {
       // inserting before or after an element
       const { sibling, position } = insert;
-      sibling.insertAdjacentElement(insertPositions[position], portalNode);
+      sibling.insertAdjacentElement(insertPositions[position], this.portalNode);
     }
+  }
 
-    portalRef?.(portalNode);
+  componentDidMount() {
+    this.updatePortalRef(this.portalNode);
+  }
 
-    // unmount
-    return () => {
-      if (portalNode && portalNode.parentNode) {
-        portalNode.parentNode.removeChild(portalNode);
-      }
-      portalRef?.(null);
-    };
-  }, [insert, portalRef]);
+  componentWillUnmount() {
+    if (this.portalNode.parentNode) {
+      this.portalNode.parentNode.removeChild(this.portalNode);
+    }
+    this.updatePortalRef(null);
+  }
 
-  return portalNode == null ? null : createPortal(children, portalNode);
-};
+  updatePortalRef(ref: HTMLDivElement | null) {
+    if (this.props.portalRef) {
+      this.props.portalRef(ref);
+    }
+  }
+
+  render() {
+    return createPortal(this.props.children, this.portalNode);
+  }
+}
