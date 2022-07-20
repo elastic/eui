@@ -12,7 +12,10 @@ import {
   EuiBreakpointSize,
   EuiCode,
   EuiThemeBreakpoints,
+  useEuiBreakpoint,
 } from '../../../../../src';
+
+import { css } from '@emotion/react';
 
 import { EuiThemeBreakpoints as _EuiThemeBreakpoints } from '../_props';
 import { getPropsFromComponent } from '../../../services/props/get_props';
