@@ -1071,6 +1071,7 @@ Array [
                     class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
                   >
                     <button
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
@@ -1084,12 +1085,20 @@ Array [
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-A"
-                      >
-                        Header actions
-                      </span>
+                      />
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_actions"
+                >
+                  Click to view column header actions
+                </p>
               </div>
               <div
                 class="euiDataGridHeaderCell"
@@ -1114,6 +1123,7 @@ Array [
                     class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
                   >
                     <button
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
@@ -1127,12 +1137,20 @@ Array [
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-B"
-                      >
-                        Header actions
-                      </span>
+                      />
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_actions"
+                >
+                  Click to view column header actions
+                </p>
               </div>
             </div>
             <div
@@ -1517,6 +1535,7 @@ Array [
                     class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
                   >
                     <button
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
@@ -1530,12 +1549,20 @@ Array [
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-A"
-                      >
-                        Header actions
-                      </span>
+                      />
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_actions"
+                >
+                  Click to view column header actions
+                </p>
               </div>
               <div
                 class="euiDataGridHeaderCell"
@@ -1560,6 +1587,7 @@ Array [
                     class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
                   >
                     <button
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
@@ -1573,12 +1601,20 @@ Array [
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-B"
-                      >
-                        Header actions
-                      </span>
+                      />
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_actions"
+                >
+                  Click to view column header actions
+                </p>
               </div>
               <div
                 class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn"
@@ -2266,6 +2302,7 @@ Array [
                     class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
                   >
                     <button
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
@@ -2279,12 +2316,20 @@ Array [
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-A"
-                      >
-                        Header actions
-                      </span>
+                      />
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_actions"
+                >
+                  Click to view column header actions
+                </p>
               </div>
               <div
                 class="euiDataGridHeaderCell"
@@ -2309,6 +2354,7 @@ Array [
                     class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
                   >
                     <button
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
@@ -2324,12 +2370,20 @@ Array [
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-B"
-                      >
-                        Header actions
-                      </span>
+                      />
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_actions"
+                >
+                  Click to view column header actions
+                </p>
               </div>
             </div>
             <div
@@ -2692,6 +2746,7 @@ Array [
                     class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
                   >
                     <button
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
@@ -2705,12 +2760,20 @@ Array [
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-A"
-                      >
-                        Header actions
-                      </span>
+                      />
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_actions"
+                >
+                  Click to view column header actions
+                </p>
               </div>
               <div
                 class="euiDataGridHeaderCell"
@@ -2735,6 +2798,7 @@ Array [
                     class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
                   >
                     <button
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
@@ -2748,12 +2812,20 @@ Array [
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-B"
-                      >
-                        Header actions
-                      </span>
+                      />
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_actions"
+                >
+                  Click to view column header actions
+                </p>
               </div>
             </div>
             <div

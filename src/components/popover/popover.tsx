@@ -114,11 +114,11 @@ export interface EuiPopoverProps extends CommonProps {
    * Specifies what element should initially have focus; Can be a DOM
    * node, or a selector string (which will be passed to
    * document.querySelector() to find the DOM node), or a function that
-   * returns a DOM node
-   * Set to `false` to prevent initial auto-focus. Use only
-   * when your app handles setting initial focus state.
+   * returns a DOM node.
+   *
+   * If not passed, initial focus defaults to the popover panel.
    */
-  initialFocus?: FocusTarget | false;
+  initialFocus?: FocusTarget;
   /**
    * Passed directly to EuiPortal for DOM positioning. Both properties are
    * required if prop is specified
@@ -250,22 +250,6 @@ const DEFAULT_POPOVER_STYLES = {
   left: 50,
 };
 
-function getElementFromInitialFocus(
-  initialFocus?: FocusTarget
-): HTMLElement | null {
-  const initialFocusType = typeof initialFocus;
-
-  if (initialFocusType === 'string') {
-    return document.querySelector(initialFocus as string);
-  }
-
-  if (initialFocusType === 'function') {
-    return (initialFocus as () => HTMLElement | null)();
-  }
-
-  return initialFocus as HTMLElement | null;
-}
-
 const returnFocusConfig = { preventScroll: true };
 const closingTransitionTime = 250; // TODO: DRY out var when converting to CSS-in-JS
 
@@ -332,10 +316,8 @@ export class EuiPopover extends Component<Props, State> {
   private strandedFocusTimeout: number | undefined;
   private closingTransitionTimeout: number | undefined;
   private closingTransitionAnimationFrame: number | undefined;
-  private updateFocusAnimationFrame: number | undefined;
   private button: HTMLElement | null = null;
   private panel: HTMLElement | null = null;
-  private hasSetInitialFocus: boolean = false;
   private descriptionId: string = htmlIdGenerator()();
 
   constructor(props: Props) {
@@ -401,63 +383,6 @@ export class EuiPopover extends Component<Props, State> {
     }
   };
 
-  updateFocus() {
-    // Wait for the DOM to update.
-    this.updateFocusAnimationFrame = window.requestAnimationFrame(() => {
-      if (
-        !this.props.ownFocus ||
-        !this.panel ||
-        this.props.initialFocus === false
-      ) {
-        return;
-      }
-
-      // If we've already focused on something inside the panel, everything's fine.
-      if (
-        this.hasSetInitialFocus &&
-        this.panel.contains(document.activeElement)
-      ) {
-        return;
-      }
-
-      // Otherwise focus either `initialFocus` or the panel
-      let focusTarget;
-
-      if (this.props.initialFocus != null) {
-        focusTarget = getElementFromInitialFocus(this.props.initialFocus);
-      }
-
-      // there's a race condition between the popover content becoming visible and this function call
-      // if the element isn't visible yet (due to css styling) then it can't accept focus
-      // so wait for another render and try again
-      if (focusTarget == null) {
-        // there isn't a focus target, one of two reasons:
-        // #1 is the whole panel hidden? If so, schedule another check
-        // #2 panel is visible and no `initialFocus` was set, move focus to the panel
-        const panelVisibility = window.getComputedStyle(this.panel).opacity;
-        if (panelVisibility === '0') {
-          // #1
-          this.updateFocus();
-        } else {
-          // #2
-          focusTarget = this.panel;
-        }
-      } else {
-        // found an element to focus, but is it visible?
-        const visibility = window.getComputedStyle(focusTarget).visibility;
-        if (visibility === 'hidden') {
-          // not visible, check again next render frame
-          this.updateFocus();
-        }
-      }
-
-      if (focusTarget != null) {
-        this.hasSetInitialFocus = true;
-        focusTarget.focus();
-      }
-    });
-  }
-
   onOpenPopover = () => {
     clearTimeout(this.strandedFocusTimeout);
     clearTimeout(this.closingTransitionTimeout);
@@ -494,7 +419,6 @@ export class EuiPopover extends Component<Props, State> {
     this.respositionTimeout = window.setTimeout(() => {
       this.setState({ isOpenStable: true }, () => {
         this.positionPopoverFixed();
-        this.updateFocus();
       });
     }, durationMatch + delayMatch);
   };
@@ -534,7 +458,6 @@ export class EuiPopover extends Component<Props, State> {
       // If the user has just closed the popover, queue up the removal of the content after the
       // transition is complete.
       this.closingTransitionTimeout = window.setTimeout(() => {
-        this.hasSetInitialFocus = false;
         this.setState({
           isClosing: false,
         });
@@ -548,7 +471,6 @@ export class EuiPopover extends Component<Props, State> {
     clearTimeout(this.strandedFocusTimeout);
     clearTimeout(this.closingTransitionTimeout);
     cancelAnimationFrame(this.closingTransitionAnimationFrame!);
-    cancelAnimationFrame(this.updateFocusAnimationFrame!);
   }
 
   onMutation = (records: MutationRecord[]) => {
@@ -687,7 +609,6 @@ export class EuiPopover extends Component<Props, State> {
       arrowChildren,
       repositionOnScroll,
       zIndex,
-      initialFocus,
       attachToAnchor,
       display,
       offset,
@@ -697,6 +618,7 @@ export class EuiPopover extends Component<Props, State> {
       'aria-labelledby': ariaLabelledBy,
       container,
       focusTrapProps,
+      initialFocus: initialFocusProp,
       tabIndex: tabIndexProp,
       ...rest
     } = this.props;
@@ -718,7 +640,7 @@ export class EuiPopover extends Component<Props, State> {
 
     if (!this.state.suppressingPopover && (isOpen || this.state.isClosing)) {
       let tabIndex = tabIndexProp;
-      let initialFocus;
+      let initialFocus = initialFocusProp;
       let ariaDescribedby;
       let ariaLive: HTMLAttributes<any>['aria-live'];
 
@@ -732,8 +654,9 @@ export class EuiPopover extends Component<Props, State> {
       if (ownFocus || panelAriaModal !== 'true') {
         tabIndex = tabIndexProp ?? 0;
         ariaLive = 'off';
-
-        initialFocus = () => this.panel!;
+        if (!initialFocus) {
+          initialFocus = () => this.panel!;
+        }
       } else {
         ariaLive = 'assertive';
       }
@@ -822,7 +745,7 @@ export class EuiPopover extends Component<Props, State> {
       );
     }
 
-    // react-focus-on and relataed do not register outside click detection
+    // react-focus-on and related do not register outside click detection
     // when disabled, so we still need to conditionally check for that ourselves
     if (ownFocus) {
       return (

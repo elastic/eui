@@ -36,6 +36,7 @@ exports[`EuiDataGridBody renders 1`] = `
             class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
           >
             <button
+              aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
               class="euiDataGridHeaderCell__button"
             >
               <div
@@ -49,12 +50,20 @@ exports[`EuiDataGridBody renders 1`] = `
                 color="text"
                 data-euiicon-type="arrowDown"
                 data-test-subj="dataGridHeaderCellActionButton-columnA"
-              >
-                Header actions
-              </span>
+              />
             </button>
           </div>
         </div>
+        <p
+          hidden=""
+          id="euiDataGridCellHeader_generated-id_sorting"
+        />
+        <p
+          hidden=""
+          id="euiDataGridCellHeader_generated-id_actions"
+        >
+          Click to view column header actions
+        </p>
       </div>
       <div
         class="euiDataGridHeaderCell euiDataGridHeaderCell--string"
@@ -79,6 +88,7 @@ exports[`EuiDataGridBody renders 1`] = `
             class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
           >
             <button
+              aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
               class="euiDataGridHeaderCell__button"
             >
               <div
@@ -92,12 +102,20 @@ exports[`EuiDataGridBody renders 1`] = `
                 color="text"
                 data-euiicon-type="arrowDown"
                 data-test-subj="dataGridHeaderCellActionButton-columnB"
-              >
-                Header actions
-              </span>
+              />
             </button>
           </div>
         </div>
+        <p
+          hidden=""
+          id="euiDataGridCellHeader_generated-id_sorting"
+        />
+        <p
+          hidden=""
+          id="euiDataGridCellHeader_generated-id_actions"
+        >
+          Click to view column header actions
+        </p>
       </div>
     </div>
     <div

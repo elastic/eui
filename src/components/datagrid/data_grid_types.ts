@@ -15,6 +15,7 @@ import {
   ReactElement,
   AriaAttributes,
   MutableRefObject,
+  Component,
 } from 'react';
 import {
   VariableSizeGridProps,
@@ -27,6 +28,10 @@ import { ExclusiveUnion, CommonProps, OneOf } from '../common';
 import { RowHeightUtils } from './utils/row_heights';
 import { IconType } from '../icon';
 import { EuiTokenProps } from '../token';
+
+// since react-window doesn't export a type with the imperative api only we can
+// use this to omit the react-specific class component methods
+export type ImperativeGridApi = Omit<Grid, keyof Component>;
 
 export interface EuiDataGridToolbarProps {
   gridWidth: number;
@@ -358,6 +363,14 @@ export interface EuiDataGridRefProps {
    * Closes any currently open popovers in the data grid.
    */
   closeCellPopover: () => void;
+  /**
+   * Scrolls to a specified top and left offset.
+   */
+  scrollTo?: ImperativeGridApi['scrollTo'];
+  /**
+   * Scrolls to a specified rowIndex.
+   */
+  scrollToItem?: ImperativeGridApi['scrollToItem'];
 }
 
 export interface EuiDataGridColumnResizerProps {

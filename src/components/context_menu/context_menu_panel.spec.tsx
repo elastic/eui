@@ -187,7 +187,7 @@ describe('EuiContextMenuPanel', () => {
       const mountAndOpenPopover = (component = <ContextMenuInPopover />) => {
         cy.realMount(component);
         cy.get('[data-test-subj="popoverToggle"]').click();
-        cy.wait(350); // EuiPopover's updateFocus() takes ~350ms to run
+        cy.wait(350); // EuiPopover's initial/autoFocus takes ~350ms to run
       };
 
       it('reclaims focus from the parent popover panel', () => {

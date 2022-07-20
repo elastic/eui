@@ -9,6 +9,7 @@
 import React, {
   Component,
   HTMLAttributes,
+  CSSProperties,
   ReactElement,
   ReactNode,
 } from 'react';
@@ -53,7 +54,7 @@ export interface EuiContextMenuPanelDescriptor {
   title?: ReactNode;
   items?: EuiContextMenuPanelItemDescriptor[];
   content?: ReactNode;
-  width?: number;
+  width?: CSSProperties['width'];
   initialFocusedItemIndex?: number;
   /**
    * Alters the size of the items and the title
