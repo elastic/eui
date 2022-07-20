@@ -20,14 +20,9 @@ export const EuiHeaderBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
 }) => {
   const classes = classNames('euiHeaderBreadcrumbs', className);
 
-  // Emotion styles
   const euiTheme = useEuiTheme();
-
-  // Header breadcrumb base styles
-  const headerBreadcrumbsStyles = euiHeaderBreadcrumbsStyles(euiTheme);
-  const cssHeaderBreadcrumbStyles = [
-    headerBreadcrumbsStyles.euiHeaderBreadcrumbs,
-  ];
+  const styles = euiHeaderBreadcrumbsStyles(euiTheme);
+  const cssHeaderBreadcrumbStyles = [styles.euiHeaderBreadcrumbs];
 
   return (
     <EuiBreadcrumbs
@@ -36,7 +31,7 @@ export const EuiHeaderBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
       breadcrumbs={breadcrumbs}
       className={classes}
       css={cssHeaderBreadcrumbStyles}
-      headerBreadcrumb
+      isHeaderBreadcrumb
       {...rest}
     />
   );
