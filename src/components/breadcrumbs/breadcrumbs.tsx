@@ -7,10 +7,7 @@
  */
 
 import React, {
-  AriaAttributes,
   FunctionComponent,
-  HTMLAttributes,
-  MouseEventHandler,
   ReactNode,
   useEffect,
   useState,
@@ -19,18 +16,17 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { useEuiI18n } from '../i18n';
-import { EuiInnerText } from '../inner_text';
-import { EuiLink, EuiLinkColor } from '../link';
+import { EuiLink } from '../link';
 import { EuiPopover } from '../popover';
 import { EuiIcon } from '../icon';
 import { throttle, useEuiTheme } from '../../services';
 import { EuiBreakpointSize, getBreakpoint } from '../../services/breakpoint';
 
+import { EuiBreadcrumb, EuiBreadcrumbProps } from './breadcrumb';
+
 import {
   euiBreadcrumbsListStyles,
   euiBreadcrumbsInPopoverStyles,
-  euiBreadcrumbStyles,
-  euiBreadcrumbContentStyles,
 } from './breadcrumbs.styles';
 
 const CONTENT_CLASSNAME = 'euiBreadcrumb__content';
@@ -42,28 +38,6 @@ export type EuiBreadcrumbResponsiveMaxCount = {
    */
   [key in EuiBreakpointSize]?: number;
 };
-
-export type EuiBreadcrumb = HTMLAttributes<HTMLElement> &
-  CommonProps & {
-    href?: string;
-    onClick?: MouseEventHandler<HTMLAnchorElement>;
-    /**
-     * Visible label of the breadcrumb
-     */
-    text: ReactNode;
-    /**
-     * Force a max-width on the breadcrumb text
-     */
-    truncate?: boolean;
-    /**
-     * Accepts any EuiLink `color` when rendered as one (has `href` or `onClick`)
-     */
-    color?: EuiLinkColor;
-    /**
-     * Override the existing `aria-current` which defaults to `page` for the last breadcrumb
-     */
-    'aria-current'?: AriaAttributes['aria-current'];
-  };
 
 export type EuiBreadcrumbsProps = CommonProps & {
   /**
@@ -93,7 +67,7 @@ export type EuiBreadcrumbsProps = CommonProps & {
   /**
    * The array of individual #EuiBreadcrumb items
    */
-  breadcrumbs: EuiBreadcrumb[];
+  breadcrumbs: EuiBreadcrumbProps[];
 
   /**
    * Determines regular or EuiHeader breadcrumb styling
@@ -154,18 +128,10 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
     breadcrumbsInPopoverStyles.euiBreadcrumbs__inPopover,
   ];
 
-  // Breadcrumb list item styles
-  const breadcrumbStyles = euiBreadcrumbStyles(euiTheme);
-  const cssBreadcrumbStyles = [
-    breadcrumbStyles.euiBreadcrumb,
-    truncate && breadcrumbStyles.isTruncated,
-    isHeaderBreadcrumb && breadcrumbStyles.isHeaderBreadcrumb,
-  ];
-
   const limitBreadcrumbs = (
     breadcrumbs: ReactNode[],
     max: number,
-    allBreadcrumbs: EuiBreadcrumb[]
+    allBreadcrumbs: EuiBreadcrumbProps[]
   ) => {
     const breadcrumbsAtStart = [];
     const breadcrumbsAtEnd = [];
@@ -213,9 +179,10 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
       // Declared here because the collapsed breadcrumb is determined
       // conditionally by number of breadcrumbs instead of a prop.
       const cssBreadcrumbStylesCollapsed = [
-        breadcrumbStyles.euiBreadcrumb,
-        breadcrumbStyles.isCollapsed,
-        isHeaderBreadcrumb && breadcrumbStyles.isHeaderBreadcrumb,
+        // TODO: Fix/DRY out in future commit
+        // breadcrumbStyles.euiBreadcrumb,
+        // breadcrumbStyles.isCollapsed,
+        // isHeaderBreadcrumb && breadcrumbStyles.isHeaderBreadcrumb,
       ];
 
       const ellipsisButton = (
@@ -260,75 +227,15 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
     return [...breadcrumbsAtStart, ...breadcrumbsAtEnd];
   };
 
-  const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => {
-    const {
-      text,
-      href,
-      onClick,
-      truncate,
-      className: breadcrumbClassName,
-      ...breadcrumbRest
-    } = breadcrumb;
-    const isLastBreadcrumb = index === breadcrumbs.length - 1;
-
-    const className = classNames('euiBreadcrumb', {
-      'euiBreadcrumb--last': isLastBreadcrumb,
-      'euiBreadcrumb--truncate': truncate,
-    });
-
-    // Emotion styles for breadcrumb links, spans, and buttons.
-    // Individual object overrides to the `truncate` prop will
-    // not be available if styles are declared outside this
-    // const `breadcrumbElements` scope.
-    const breadcrumbContentStyles = euiBreadcrumbContentStyles(euiTheme);
-    const cssBreadcrumbContentStyles = [
-      breadcrumbContentStyles.euiBreadcrumb__content,
-      truncate && breadcrumbContentStyles.isTruncated,
-      isHeaderBreadcrumb && breadcrumbContentStyles.isHeaderBreadcrumb,
-    ];
-
-    const linkProps = {
-      className: classNames(CONTENT_CLASSNAME, breadcrumbClassName),
-      'aria-current': isLastBreadcrumb ? 'page' : undefined,
-      css: cssBreadcrumbContentStyles,
-    } as { className: string; 'aria-current': AriaAttributes['aria-current'] };
-
-    const link = (
-      <EuiInnerText>
-        {(ref, innerText) => {
-          const title = innerText === '' ? undefined : innerText;
-
-          if (!href && !onClick) {
-            return (
-              <span ref={ref} title={title} {...linkProps} {...breadcrumbRest}>
-                {text}
-              </span>
-            );
-          }
-
-          return (
-            <EuiLink
-              ref={ref}
-              color={isLastBreadcrumb ? 'text' : 'subdued'}
-              onClick={onClick}
-              href={href}
-              title={title}
-              {...linkProps}
-              {...breadcrumbRest}
-            >
-              {text}
-            </EuiLink>
-          );
-        }}
-      </EuiInnerText>
-    );
-
-    return (
-      <li className={className} key={index} css={cssBreadcrumbStyles}>
-        {link}
-      </li>
-    );
-  });
+  const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => (
+    <EuiBreadcrumb
+      key={index}
+      truncate={truncate}
+      isHeaderBreadcrumb={isHeaderBreadcrumb}
+      isLastBreadcrumb={index === breadcrumbs.length - 1}
+      {...breadcrumb}
+    />
+  ));
 
   // Use the default object if they simply passed `true` for responsive
   const responsiveObject =

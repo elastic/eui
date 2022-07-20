@@ -13,7 +13,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated-isHeaderBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass css-zqbxi-euiLink-subdued-euiBreadcrumb__content-isHeaderBreadcrumb"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-subdued-euiBreadcrumb__content-isTruncated-isHeaderBreadcrumb"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -26,7 +26,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated-isHeaderBreadcrumb"
     >
       <button
-        class="euiLink euiBreadcrumb__content css-zqbxi-euiLink-subdued-euiBreadcrumb__content-isHeaderBreadcrumb"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-isTruncated-isHeaderBreadcrumb"
         title="Reptiles"
         type="button"
       >
@@ -37,7 +37,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated-isHeaderBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content css-zqbxi-euiLink-subdued-euiBreadcrumb__content-isHeaderBreadcrumb"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-isTruncated-isHeaderBreadcrumb"
         href="#"
         rel="noreferrer"
         title="Boa constrictor"
@@ -46,11 +46,11 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated-isHeaderBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated-isHeaderBreadcrumb"
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isHeaderBreadcrumb"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isTruncated-isHeaderBreadcrumb"
         title="Edit"
       >
         Edit
