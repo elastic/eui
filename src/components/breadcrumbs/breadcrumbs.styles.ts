@@ -13,7 +13,8 @@ import {
   euiFontSize,
   euiTextTruncate,
   euiFocusRing,
-} from '../../global_styling/mixins';
+  logicalCSS,
+} from '../../global_styling';
 
 export const euiBreadcrumbsListStyles = (euiThemeContext: UseEuiTheme) => {
   // Styles cast to the <nav> element
@@ -25,8 +26,8 @@ export const euiBreadcrumbsListStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       flex-wrap: wrap;
       line-height: ${euiTheme.size.l};
-      margin-bottom: -${euiTheme.size.xs};
-      min-width: 0; // Ensure it shrinks if the window is narrow
+      ${logicalCSS('margin-bottom', `-${euiTheme.size.xs}`)} // Add vertical space between breadcrumbs, but make sure the whole breadcrumb set doesn't add space below itself
+      ${logicalCSS('min-width', 0)} // Ensure it shrinks if the window is narrow
     `,
     isTruncated: css`
       flex-wrap: nowrap;
@@ -42,7 +43,7 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
     euiBreadcrumb: css`
       align-items: center;
       display: flex;
-      margin-bottom: ${euiTheme.size.xs}; /* 1 */
+      ${logicalCSS('margin-bottom', euiTheme.size.xs)} // See .euiBreadcrumbs__list's negative margin-bottom
 
       &:not(:last-of-type) {
         color: ${euiTheme.colors.subduedText};
@@ -51,10 +52,12 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
           background: ${euiTheme.colors.lightShade};
           content: '';
           flex-shrink: 0;
-          height: ${euiTheme.size.base};
-          margin: ${euiTheme.size.xs} ${euiTheme.size.s} 0;
+          ${logicalCSS('margin-top', euiTheme.size.xs)}
+          ${logicalCSS('margin-bottom', 0)}
+          ${logicalCSS('margin-horizontal', euiTheme.size.s)}
+          ${logicalCSS('height', euiTheme.size.base)}
+          ${logicalCSS('width', '1px')}
           transform: translateY(-1px) rotate(15deg);
-          width: 1px;
         }
       }
 
@@ -78,7 +81,7 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
       &:not([class*='euiBreadcrumb-isCollapsed']) {
         & > a,
         & > span {
-          max-width: calc(${euiTheme.size.base} * 10);
+          ${logicalCSS('max-width', `${parseFloat(euiTheme.size.base) * 10}px`)}
           overflow: hidden;
           text-overflow: ellipsis;
         }
@@ -87,7 +90,7 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
       &:last-of-type {
         & > a,
         & > span {
-          max-width: none;
+          ${logicalCSS('max-width', 'none')}
         }
       }
     `,
@@ -208,7 +211,8 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.darkestShade};
       font-weight: ${euiTheme.font.weight.medium};
       line-height: ${euiTheme.size.base};
-      padding: ${euiTheme.size.xs} ${euiTheme.size.base};
+      ${logicalCSS('padding-vertical', euiTheme.size.xs)}
+      ${logicalCSS('padding-horizontal', euiTheme.size.base)}
 
       &:is(a) {
         background-color: ${transparentize(euiTheme.colors.primary, 0.2)};

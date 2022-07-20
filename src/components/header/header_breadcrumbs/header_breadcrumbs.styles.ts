@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
-import { euiTextTruncate } from '../../../global_styling/mixins';
+import { euiTextTruncate, logicalCSS } from '../../../global_styling';
 
 export const euiHeaderBreadcrumbsStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
@@ -17,8 +17,7 @@ export const euiHeaderBreadcrumbsStyles = ({ euiTheme }: UseEuiTheme) => {
       align-items: center;
       display: flex;
       flex-grow: 1;
-      margin-left: ${euiTheme.size.s};
-      margin-right: ${euiTheme.size.s};
+      ${logicalCSS('margin-horizontal', euiTheme.size.s)}
     `,
   };
 };
