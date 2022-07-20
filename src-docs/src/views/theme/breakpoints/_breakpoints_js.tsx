@@ -134,40 +134,14 @@ export default () => {
       />
 
       <ThemeExample
-        title={<code>euiBreakpoint(sizes[], euiTheme)</code>}
-        type="function"
+        title={<code>useEuiBreakpoint(sizes[])</code>}
+        type="hook"
         description={
           <>
             <p>
               Given an array of breakpoint keys, this hook generates a CSS media
               query string based on the minimum width and maximum width
               provided.
-            </p>
-          </>
-        }
-        example={
-          <p>
-            Targeting large devices only:{' '}
-            {isLargeBreakpoint ? (
-              <EuiIcon type="checkInCircleFilled" color="success" />
-            ) : (
-              <EuiIcon type="cross" color="danger" />
-            )}
-          </p>
-        }
-        snippet="useEuiBreakpoint(['s', 'l'], euiTheme)"
-        snippetLanguage="js"
-      />
-
-      <ThemeExample
-        title={<code>useEuiBreakpoint(sizes[])</code>}
-        type="hook"
-        description={
-          <>
-            <p>
-              Generates CSS media queries like the{' '}
-              <EuiCode>euiBreakpoint</EuiCode> function and accepts the same
-              arguments for the <EuiCode>sizes []</EuiCode> array.
             </p>
             <p>
               You can also create media queries with a{' '}
@@ -178,17 +152,27 @@ export default () => {
           </>
         }
         example={
-          <p>
-            Targeting large devices only:{' '}
-            {isLargeBreakpoint ? (
-              <EuiIcon type="checkInCircleFilled" color="success" />
-            ) : (
-              <EuiIcon type="cross" color="danger" />
-            )}
+          <p
+            css={css`
+              ${useEuiBreakpoint(['m', 'xl'])} {
+                color: ${euiTheme.colors.dangerText};
+              }
+              ${useEuiBreakpoint(['xl', Infinity])} {
+                color: ${euiTheme.colors.successText};
+              }
+            `}
+          >
+            This text is red between `m` to `xl` breakpoints, and green on
+            screens wider than `xl`.
           </p>
         }
-        snippet="useEuiBreakpoint([0, 'm'])"
-        snippetLanguage="js"
+        snippet={`\${useEuiBreakpoint(['m', 'xl'])} {
+    color: red;
+  }
+  \${useEuiBreakpoint(['xl', Infinity])} {
+    color: green;
+  }`}
+        snippetLanguage="emotion"
       />
     </>
   );
