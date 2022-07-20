@@ -157,16 +157,19 @@ export default () => {
         example={
           <p
             css={css`
-              ${useEuiBreakpoint(['m', 'xl'])} {
+              ${useEuiBreakpoint([0, 'm'])} {
                 color: ${euiTheme.colors.dangerText};
+              }
+              ${useEuiBreakpoint(['m', 'xl'])} {
+                color: ${euiTheme.colors.warningText};
               }
               ${useEuiBreakpoint(['xl', Infinity])} {
                 color: ${euiTheme.colors.successText};
               }
             `}
           >
-            This text is red between `m` to `xl` breakpoints, and green on
-            screens wider than `xl`.
+            This text is red on screens narrower than `m`, yellow between `m` to
+            `xl` breakpoints, and green on screens wider than `xl`.
           </p>
         }
         snippet={`\${useEuiBreakpoint(['m', 'xl'])} {
