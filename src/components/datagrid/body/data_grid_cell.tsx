@@ -22,7 +22,7 @@ import { tabbable } from 'tabbable';
 import { keys } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiFocusTrap } from '../../focus_trap';
-import { useEuiI18n } from '../../i18n';
+import { EuiI18n } from '../../i18n';
 import { hasResizeObserver } from '../../observer/resize_observer/resize_observer';
 import { DataGridFocusContext } from '../utils/focus';
 import {
@@ -46,6 +46,7 @@ const EuiDataGridCellContent: FunctionComponent<
     setCellContentsRef: EuiDataGridCell['setCellContentsRef'];
     isExpanded: boolean;
     isDefinedHeight: boolean;
+    ariaRowIndex: number;
   }
 > = memo(
   ({
@@ -55,6 +56,7 @@ const EuiDataGridCellContent: FunctionComponent<
     rowHeightsOptions,
     rowIndex,
     colIndex,
+    ariaRowIndex,
     rowHeightUtils,
     isDefinedHeight,
     ...rest
@@ -63,12 +65,6 @@ const EuiDataGridCellContent: FunctionComponent<
     const CellElement = renderCellValue as JSXElementConstructor<
       EuiDataGridCellValueElementProps
     >;
-
-    const positionText = useEuiI18n(
-      'euiDataGridCell.position',
-      'Row: {row}; Column: {col}',
-      { row: rowIndex + 1, col: colIndex + 1 }
-    );
 
     return (
       <>
@@ -96,7 +92,18 @@ const EuiDataGridCellContent: FunctionComponent<
           />
         </div>
         <EuiScreenReaderOnly>
-          <p>{positionText}</p>
+          <p>
+            {'- '}
+            <EuiI18n
+              token="euiDataGridCell.position"
+              default="{columnId}, column {col}, row {row}"
+              values={{
+                columnId: column?.displayAsText || rest.columnId,
+                col: colIndex + 1,
+                row: ariaRowIndex,
+              }}
+            />
+          </p>
         </EuiScreenReaderOnly>
       </>
     );
@@ -518,6 +525,7 @@ export class EuiDataGridCell extends Component<
       rowHeightUtils,
       rowHeightsOptions,
       rowManager,
+      pagination,
       ...rest
     } = this.props;
     const { rowIndex, visibleRowIndex, colIndex } = rest;
@@ -538,6 +546,10 @@ export class EuiDataGridCell extends Component<
       },
       className
     );
+
+    const ariaRowIndex = pagination
+      ? visibleRowIndex + 1 + pagination.pageSize * pagination.pageIndex
+      : visibleRowIndex + 1;
 
     const {
       isExpandable: _, // Not a valid DOM property, so needs to be destructured out
@@ -635,6 +647,7 @@ export class EuiDataGridCell extends Component<
       rowHeightsOptions,
       rowHeightUtils,
       isDefinedHeight,
+      ariaRowIndex,
     };
 
     const anchorClass = 'euiDataGridRowCell__expandFlex';
@@ -686,6 +699,7 @@ export class EuiDataGridCell extends Component<
     const content = (
       <div
         role="gridcell"
+        aria-rowindex={ariaRowIndex}
         tabIndex={
           this.state.isFocused && !this.state.disableCellTabIndex ? 0 : -1
         }

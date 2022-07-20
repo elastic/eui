@@ -25,6 +25,8 @@ describe('EuiText', () => {
   });
 
   shouldRenderCustomStyles(<EuiText size="s" color="#fff" />);
+  shouldRenderCustomStyles(<EuiText size="xs" textAlign="left" />);
+  shouldRenderCustomStyles(<EuiText textAlign="center" color="success" />);
 
   describe('props', () => {
     describe('grow', () => {

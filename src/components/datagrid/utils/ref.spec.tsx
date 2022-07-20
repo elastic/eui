@@ -10,18 +10,19 @@
 
 import React, { useState, createRef, forwardRef } from 'react';
 import { EuiDataGrid } from '../';
-import { EuiDataGridRefProps } from '../data_grid_types';
+import type {
+  EuiDataGridRefProps,
+  EuiDataGridSorting,
+} from '../data_grid_types';
 
 // We need to set up a test component here for sorting/pagination state to work
 // The underlying imperative ref should still be forwarded and work as normal
 const GridTest = forwardRef<EuiDataGridRefProps, any>((_, ref) => {
   // Pagination
-  const [pageIndex, setPageIndex] = useState(0);
-  const onChangePage = (pageIndex) => setPageIndex(pageIndex);
+  const [pageIndex, onChangePage] = useState(0);
 
   // Sorting
-  const [sortingColumns, setSortingColumns] = useState([]);
-  const onSort = (sortingColumns) => setSortingColumns(sortingColumns);
+  const [sortingColumns, onSort] = useState<EuiDataGridSorting['columns']>([]);
 
   return (
     <EuiDataGrid
@@ -99,7 +100,7 @@ describe('useImperativeGridRef', () => {
 
     it('should paginate to cells that are not on the current page', () => {
       ref.current.setFocusedCell({ rowIndex: 50, colIndex: 0 });
-      cy.get('.euiPagination .euiScreenReaderOnly').should(
+      cy.get('.euiPagination [class*="euiScreenReaderOnly"]').should(
         'have.text',
         'Page 3 of 4'
       );
@@ -148,7 +149,7 @@ describe('useImperativeGridRef', () => {
 
     it('should paginate to cells that are not on the current page', () => {
       ref.current.openCellPopover({ rowIndex: 99, colIndex: 5 });
-      cy.get('.euiPagination .euiScreenReaderOnly').should(
+      cy.get('.euiPagination [class*="euiScreenReaderOnly"]').should(
         'have.text',
         'Page 4 of 4'
       );
@@ -195,6 +196,26 @@ describe('useImperativeGridRef', () => {
           0
         );
       });
+    });
+  });
+
+  describe('scrollTo', () => {
+    it('scrolls the grid to a specified position', () => {
+      cy.get('.euiDataGrid__virtualized').should('have.prop', 'scrollTop', 0);
+      cy.then(() => {
+        ref.current.scrollTo({ scrollTop: 500, scrollLeft: 0 });
+      });
+      cy.get('.euiDataGrid__virtualized').should('have.prop', 'scrollTop', 500);
+    });
+  });
+
+  describe('scrollToItem', () => {
+    it('scrolls to a specific cell position, rendering the cell', () => {
+      cy.get('[data-gridcell-row-index="15"]').should('not.exist');
+      cy.then(() => {
+        ref.current.scrollToItem({ rowIndex: 15, columnIndex: 5 });
+      });
+      cy.get('[data-gridcell-row-index="15"]').should('exist');
     });
   });
 });

@@ -68,6 +68,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     rowHeightsOptions,
     rowHeightUtils,
     rowManager,
+    pagination,
   } = data;
   const popoverContext = useContext(DataGridCellPopoverContext);
   const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
@@ -118,6 +119,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     setRowHeight: isFirstColumn ? setRowHeight : undefined,
     rowManager,
     popoverContext,
+    pagination,
   };
 
   if (isLeadingControlColumn) {
@@ -386,7 +388,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
    * Heights
    */
   const rowHeightUtils = useRowHeightUtils({
-    gridRef: gridRef.current,
+    gridRef,
     gridStyles,
     columns,
     rowHeightsOptions,
@@ -455,13 +457,17 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       <Grid
         {...(virtualizationOptions ? virtualizationOptions : {})}
         ref={gridRef}
+        className={classNames(
+          'euiDataGrid__virtualized',
+          virtualizationOptions?.className
+        )}
         onItemsRendered={(itemsRendered) => {
           gridItemsRendered.current = itemsRendered;
+          virtualizationOptions?.onItemsRendered?.(itemsRendered);
         }}
         innerElementType={InnerElement}
         outerRef={outerGridRef}
         innerRef={innerGridRef}
-        className="euiDataGrid__virtualized"
         columnCount={visibleColCount}
         width={finalWidth}
         columnWidth={getColumnWidth}
@@ -483,6 +489,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
           rowHeightsOptions,
           rowHeightUtils,
           rowManager,
+          pagination,
         }}
         rowCount={
           IS_JEST_ENVIRONMENT || headerRowHeight > 0 ? visibleRowCount : 0

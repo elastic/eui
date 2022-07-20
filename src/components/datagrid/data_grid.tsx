@@ -287,6 +287,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
      */
     useImperativeGridRef({
       ref,
+      gridRef,
       setIsFullScreen,
       focusContext,
       cellPopoverContext,
@@ -420,6 +421,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                   data-test-subj="euiDataGridBody"
                   className="euiDataGrid__content"
                   role="grid"
+                  aria-rowcount={rowCount}
                   id={gridId}
                   {...wrappingDivFocusProps} // re: above jsx-a11y - tabIndex is handled by these props, but the linter isn't smart enough to know that
                   {...gridAriaProps}

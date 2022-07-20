@@ -433,6 +433,26 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenMethod is rendered 1`] 
 </span>
 `;
 
+exports[`EuiToken props iconType as EuiTokenMapType tokenMetricCounter is rendered 1`] = `
+<span
+  class="euiToken emotion-euiToken-euiColorVis0-square-light-m"
+>
+  <span
+    data-euiicon-type="tokenMetricCounter"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenMetricGauge is rendered 1`] = `
+<span
+  class="euiToken emotion-euiToken-euiColorVis0-square-light-m"
+>
+  <span
+    data-euiicon-type="tokenMetricGauge"
+  />
+</span>
+`;
+
 exports[`EuiToken props iconType as EuiTokenMapType tokenModule is rendered 1`] = `
 <span
   class="euiToken emotion-euiToken-euiColorVis4-square-light-m"
