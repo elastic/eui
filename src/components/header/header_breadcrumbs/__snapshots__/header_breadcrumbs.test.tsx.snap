@@ -13,7 +13,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       class="euiBreadcrumb emotion-euiBreadcrumb-isHeaderBreadcrumb"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-subdued-euiBreadcrumb__content-isTruncated-isHeaderBreadcrumb"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-subdued-euiBreadcrumb__content-isTruncated-isHeaderBreadcrumb-firstChild"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -50,10 +50,34 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isHeaderBreadcrumb"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isHeaderBreadcrumb-lastChild"
         title="Edit"
       >
         Edit
+      </span>
+    </li>
+  </ol>
+</nav>
+`;
+
+exports[`EuiHeaderBreadcrumbs renders only one breadcrumb with all rounded corners 1`] = `
+<nav
+  aria-label="aria-label"
+  class="euiBreadcrumbs euiHeaderBreadcrumbs testClass1 testClass2 emotion-euiHeaderBreadcrumbs euiBreadcrumbs--truncate"
+  data-test-subj="test subject string"
+>
+  <ol
+    class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
+  >
+    <li
+      class="euiBreadcrumb emotion-euiBreadcrumb-isHeaderBreadcrumb"
+    >
+      <span
+        aria-current="page"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isHeaderBreadcrumb-onlyChild"
+        title="Home"
+      >
+        Home
       </span>
     </li>
   </ol>

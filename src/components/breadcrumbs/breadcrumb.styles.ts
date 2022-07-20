@@ -17,7 +17,7 @@ import {
 } from '../../global_styling';
 
 export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
-  // Styles cast to <li> and descendant elements
+  // Styles cast to <li> element
   const { euiTheme } = euiThemeContext;
   return {
     euiBreadcrumb: css`
@@ -47,108 +47,31 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     isCollapsed: css`
       flex-shrink: 0;
-
-      & a,
-      & button {
-        :focus {
-          outline-offset: -1px;
-        }
-      }
     `,
     isHeaderBreadcrumb: css`
-      &:first-child {
-        & > a,
-        & > [class*='euiPopover'] button,
-        & > span {
-          border-radius: ${euiTheme.border.radius.medium} 0 0
-            ${euiTheme.border.radius.medium};
-          clip-path: polygon(
-            0 0,
-            calc(100% - ${euiTheme.size.s}) 0,
-            100% 50%,
-            calc(100% - ${euiTheme.size.s}) 100%,
-            0 100%
-          );
-          padding-left: ${euiTheme.size.m};
-        }
-      }
-
-      &:only-child {
-        & > a,
-        & > span {
-          border-radius: ${euiTheme.border.radius.medium};
-          clip-path: none;
-          padding-left: ${euiTheme.size.m};
-          padding-right: ${euiTheme.size.m};
-        }
-      }
-
-      &:last-child {
-        & > a,
-        & > span {
-          border-radius: 0 ${euiTheme.border.radius.medium}
-            ${euiTheme.border.radius.medium} 0;
-          clip-path: polygon(
-            0 0,
-            100% 0,
-            100% 100%,
-            0 100%,
-            ${euiTheme.size.s} 50%
-          );
-          padding-right: ${euiTheme.size.m};
-        }
-      }
-
       &:not(:last-of-type) {
-        margin-right: -${euiTheme.size.xs};
+        ${logicalCSS('margin-right', `-${euiTheme.size.xs}`)}
       }
 
       &::after {
         display: none;
-      }
-
-      > [class*='euiPopover'] button {
-        ${euiFontSize(euiThemeContext, 'xs')};
-        background-color: ${transparentize(euiTheme.colors.primary, 0.2)};
-        color: ${euiTheme.colors.link};
-        clip-path: polygon(
-          0 0,
-          calc(100% - ${euiTheme.size.s}) 0,
-          100% 50%,
-          calc(100% - ${euiTheme.size.s}) 100%,
-          0 100%,
-          ${euiTheme.size.s} 50%
-        );
-        line-height: ${euiTheme.size.base};
-        padding: ${euiTheme.size.xs} ${euiTheme.size.base};
-
-        :focus {
-          ${euiFocusRing(euiTheme, 'inset', {
-            color: `${euiTheme.colors.link}`,
-          })};
-          color: ${euiTheme.colors.link};
-
-          :focus-visible {
-            border-radius: ${euiTheme.border.radius.medium};
-            clip-path: none;
-          }
-        }
       }
     `,
   };
 };
 
 export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
-  // Styles cast to <a> or <span> elements
+  // Styles cast to <a>, <span>, or collapsed <button> elements
   const { euiTheme } = euiThemeContext;
   return {
     euiBreadcrumb__content: css`
       font-weight: ${euiTheme.font.weight.medium};
 
-      &:is(a) {
-        :focus {
-          ${euiFocusRing(euiTheme, 'inset')};
-        }
+      &:is(a):focus {
+        ${euiFocusRing(euiTheme, 'inset')};
+      }
+      &:is(button):focus {
+        ${euiFocusRing(euiTheme, 'center')};
       }
     `,
     isTruncated: css`
@@ -172,7 +95,8 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('padding-vertical', euiTheme.size.xs)}
       ${logicalCSS('padding-horizontal', euiTheme.size.base)}
 
-      &:is(a) {
+      &:is(a),
+      &:is(button) {
         background-color: ${transparentize(euiTheme.colors.primary, 0.2)};
         color: ${euiTheme.colors.link};
 
@@ -186,5 +110,36 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
     `,
+    headerBreadcrumb: {
+      onlyChild: css`
+        border-radius: ${euiTheme.border.radius.medium};
+        clip-path: none;
+        ${logicalCSS('padding-horizontal', euiTheme.size.m)},
+      `,
+      firstChild: css`
+        border-radius: ${euiTheme.border.radius.medium} 0 0
+          ${euiTheme.border.radius.medium};
+        clip-path: polygon(
+          0 0,
+          calc(100% - ${euiTheme.size.s}) 0,
+          100% 50%,
+          calc(100% - ${euiTheme.size.s}) 100%,
+          0 100%
+        );
+        ${logicalCSS('padding-left', euiTheme.size.m)},
+      `,
+      lastChild: css`
+        border-radius: 0 ${euiTheme.border.radius.medium}
+          ${euiTheme.border.radius.medium} 0;
+        clip-path: polygon(
+          0 0,
+          100% 0,
+          100% 100%,
+          0 100%,
+          ${euiTheme.size.s} 50%
+        );
+        ${logicalCSS('padding-right', euiTheme.size.m)},
+      `,
+    },
   };
 };

@@ -13,7 +13,7 @@ import { requiredProps } from '../../../test/required_props';
 import { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
 
 describe('EuiHeaderBreadcrumbs', () => {
-  test('is rendered', () => {
+  it('is rendered', () => {
     const breadcrumbs = [
       {
         text: 'Animals',
@@ -40,6 +40,16 @@ describe('EuiHeaderBreadcrumbs', () => {
         text: 'Edit',
       },
     ];
+
+    const component = mount(
+      <EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} {...requiredProps} />
+    );
+
+    expect(component.render()).toMatchSnapshot();
+  });
+
+  it('renders only one breadcrumb with all rounded corners', () => {
+    const breadcrumbs = [{ text: 'Home' }];
 
     const component = mount(
       <EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} {...requiredProps} />

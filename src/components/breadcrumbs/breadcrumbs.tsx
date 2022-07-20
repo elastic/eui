@@ -232,7 +232,9 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
       key={index}
       truncate={truncate}
       isHeaderBreadcrumb={isHeaderBreadcrumb}
+      isFirstBreadcrumb={index === 0}
       isLastBreadcrumb={index === breadcrumbs.length - 1}
+      isOnlyBreadcrumb={breadcrumbs.length === 1}
       {...breadcrumb}
     />
   ));

@@ -53,7 +53,9 @@ export type EuiBreadcrumbProps = Omit<
 
 // Used internally only by the parent EuiBreadcrumbs
 interface _EuiBreadcrumbProps {
+  isFirstBreadcrumb?: boolean;
   isLastBreadcrumb?: boolean;
+  isOnlyBreadcrumb?: boolean;
   isHeaderBreadcrumb?: boolean;
 }
 
@@ -85,7 +87,9 @@ export const EuiBreadcrumbContent: FunctionComponent<
   rel, // required by our local href-with-rel eslint rule
   onClick,
   className,
+  isFirstBreadcrumb,
   isLastBreadcrumb,
+  isOnlyBreadcrumb,
   isHeaderBreadcrumb,
   ...rest
 }) => {
@@ -96,8 +100,17 @@ export const EuiBreadcrumbContent: FunctionComponent<
   const cssStyles = [
     styles.euiBreadcrumb__content,
     truncate && !isLastBreadcrumb && styles.isTruncated,
-    isHeaderBreadcrumb && styles.isHeaderBreadcrumb,
   ];
+  if (isHeaderBreadcrumb) {
+    cssStyles.push(styles.isHeaderBreadcrumb);
+    if (isOnlyBreadcrumb) {
+      cssStyles.push(styles.headerBreadcrumb.onlyChild);
+    } else if (isFirstBreadcrumb) {
+      cssStyles.push(styles.headerBreadcrumb.firstChild);
+    } else if (isLastBreadcrumb) {
+      cssStyles.push(styles.headerBreadcrumb.lastChild);
+    }
+  }
 
   const ariaCurrent = isLastBreadcrumb ? 'page' : undefined;
 
