@@ -44,10 +44,6 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
           transform: translateY(-1px) rotate(15deg);
         }
       }
-
-      &:last-of-type {
-        font-weight: ${euiTheme.font.weight.medium};
-      }
     `,
     isCollapsed: css`
       flex-shrink: 0;
@@ -123,7 +119,6 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
           0 100%,
           ${euiTheme.size.s} 50%
         );
-        font-weight: ${euiTheme.font.weight.medium};
         line-height: ${euiTheme.size.base};
         padding: ${euiTheme.size.xs} ${euiTheme.size.base};
 
@@ -173,7 +168,6 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiTheme.size.s} 50%
       );
       color: ${euiTheme.colors.darkestShade};
-      font-weight: ${euiTheme.font.weight.medium};
       line-height: ${euiTheme.size.base};
       ${logicalCSS('padding-vertical', euiTheme.size.xs)}
       ${logicalCSS('padding-horizontal', euiTheme.size.base)}
