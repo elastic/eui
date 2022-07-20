@@ -26,7 +26,11 @@ export const euiBreadcrumbsListStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       flex-wrap: wrap;
       line-height: ${euiTheme.size.l};
-      ${logicalCSS('margin-bottom', `-${euiTheme.size.xs}`)} // Add vertical space between breadcrumbs, but make sure the whole breadcrumb set doesn't add space below itself
+      ${logicalCSS(
+        // Add vertical space between breadcrumbs, but make sure the whole breadcrumb set doesn't add space below itself
+        'margin-bottom',
+        `-${euiTheme.size.xs}`
+      )}
       ${logicalCSS('min-width', 0)} // Ensure it shrinks if the window is narrow
     `,
     isTruncated: css`
@@ -43,7 +47,11 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
     euiBreadcrumb: css`
       align-items: center;
       display: flex;
-      ${logicalCSS('margin-bottom', euiTheme.size.xs)} // See .euiBreadcrumbs__list's negative margin-bottom
+      ${logicalCSS(
+        // See .euiBreadcrumbs__list's negative margin-bottom
+        'margin-bottom',
+        euiTheme.size.xs
+      )}
 
       &:not(:last-of-type) {
         color: ${euiTheme.colors.subduedText};
