@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from 'enzyme';
 
 import { useEuiTextDiff } from './text_diff';
 const beforeText =
@@ -25,7 +25,7 @@ describe('useEuiTextDiff', () => {
       })[0];
       return <>{renderedComponent}</>;
     };
-    const component = shallow(<Element />);
+    const component = render(<Element />);
 
     expect(component).toMatchSnapshot();
   });
@@ -44,7 +44,7 @@ describe('useEuiTextDiff', () => {
           })[0];
           return <>{renderedComponent}</>;
         };
-        const component = shallow(<Element />);
+        const component = render(<Element />);
 
         expect(component).toMatchSnapshot();
       });
