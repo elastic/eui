@@ -45,8 +45,11 @@ export const euiImageWrapperStyles = (euiThemeContext: UseEuiTheme) => {
       margin: ${euiTheme.size.xl};
     `,
     // Floats
+    // 1: Logical properties/values in `float` is currently not yet supported by all browsers w/o flags
+    // @see https://caniuse.com/mdn-css_properties_float_flow_relative_values for when we can remove left/right fallbacks
     left: css`
       @media only screen and (min-width: ${euiTheme.breakpoint.m}px) {
+        float: left; /* 1 */
         float: ${logicalSide.left};
         ${logicalCSS('margin-left', '0')};
         ${logicalCSS('margin-top', '0')};
@@ -54,6 +57,7 @@ export const euiImageWrapperStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     right: css`
       @media only screen and (min-width: ${euiTheme.breakpoint.m}px) {
+        float: right; /* 1 */
         float: ${logicalSide.right};
         ${logicalCSS('margin-right', '0')};
         ${logicalCSS('margin-top', '0')};
