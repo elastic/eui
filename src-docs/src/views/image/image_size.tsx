@@ -2,6 +2,11 @@ import React from 'react';
 
 import { EuiImage, EuiSpacer } from '../../../../src/components';
 
+const src =
+  'https://images.unsplash.com/photo-1477747219299-60f95c811fef?w=1000&h=1000&fit=crop&q=60';
+const alt =
+  'A cozy breakfast scene. In the background is a plate of waffles and blueberries. In the middle ground is a glass of orange juice and a small cup of cream. In the foreground is a plate of Eggs Benedict with a side of salad and cherry tomatoes.';
+
 export default () => (
   <div>
     <EuiImage
@@ -9,8 +14,9 @@ export default () => (
       allowFullScreen
       size={50}
       caption="Custom size (50)"
-      alt="Accessible image alt goes here"
-      src="https://source.unsplash.com/1000x1000/?Nature"
+      alt={alt}
+      src={src}
+      wrapperProps={{ className: 'eui-textLeft' }}
     />
     <EuiSpacer />
     <EuiImage
@@ -18,8 +24,8 @@ export default () => (
       hasShadow
       allowFullScreen
       caption="Small"
-      alt="Accessible image alt goes here"
-      src="https://source.unsplash.com/1000x1000/?Nature"
+      alt={alt}
+      src={src}
     />
     <EuiSpacer />
     <EuiImage
@@ -27,8 +33,8 @@ export default () => (
       hasShadow
       allowFullScreen
       caption="Medium"
-      alt="Accessible image alt goes here"
-      src="https://source.unsplash.com/1000x1000/?Nature"
+      alt={alt}
+      src={src}
     />
     <EuiSpacer />
     <EuiImage
@@ -36,8 +42,8 @@ export default () => (
       hasShadow
       allowFullScreen
       caption="Large"
-      alt="Accessible image alt goes here"
-      src="https://source.unsplash.com/1000x1000/?Nature"
+      alt={alt}
+      src={src}
     />
     <EuiSpacer />
     <EuiImage
@@ -45,16 +51,16 @@ export default () => (
       hasShadow
       allowFullScreen
       caption="Extra large"
-      alt="Accessible image alt goes here"
-      src="https://source.unsplash.com/1000x1000/?Nature"
+      alt={alt}
+      src={src}
     />
     <EuiSpacer />
     <EuiImage
       hasShadow
       allowFullScreen
       caption="Original"
-      alt="Accessible image alt goes here"
-      src="https://source.unsplash.com/1000x1000/?Nature"
+      alt={alt}
+      src={src}
     />
     <EuiSpacer />
     <EuiImage
@@ -62,8 +68,8 @@ export default () => (
       allowFullScreen
       size="fullWidth"
       caption="Full width"
-      alt="Accessible image alt goes here"
-      src="https://source.unsplash.com/1000x1000/?Nature"
+      alt={alt}
+      src={src}
     />
   </div>
 );
