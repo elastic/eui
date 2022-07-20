@@ -11,7 +11,7 @@ import { mount } from 'enzyme';
 import { EuiPortal } from './portal';
 
 describe('EuiPortal', () => {
-  test('is rendered', () => {
+  it('is rendered', () => {
     const component = mount(
       <div>
         <EuiPortal>Content</EuiPortal>
@@ -19,5 +19,23 @@ describe('EuiPortal', () => {
     );
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('behavior', () => {
+    it('portalRef', () => {
+      const portalRef = jest.fn();
+
+      const component = mount(
+        <EuiPortal portalRef={portalRef}>Content</EuiPortal>
+      );
+
+      expect(portalRef).toHaveBeenCalledTimes(1);
+      expect(portalRef.mock.calls[0][0]).toBeInstanceOf(HTMLDivElement);
+
+      component.unmount();
+
+      expect(portalRef).toHaveBeenCalledTimes(2);
+      expect(portalRef.mock.calls[1][0]).toBeNull();
+    });
   });
 });
