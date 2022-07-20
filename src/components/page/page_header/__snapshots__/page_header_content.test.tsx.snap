@@ -197,10 +197,10 @@ exports[`EuiPageHeaderContent props breadcrumbs is rendered 1`] = `
       class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
     >
       <li
-        class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
+        class="euiBreadcrumb emotion-euiBreadcrumb"
       >
         <a
-          class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content"
+          class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-isTruncated"
           data-test-subj="breadcrumbsAnimals"
           href="#"
           rel="noreferrer"
@@ -209,7 +209,7 @@ exports[`EuiPageHeaderContent props breadcrumbs is rendered 1`] = `
         </a>
       </li>
       <li
-        class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated"
+        class="euiBreadcrumb emotion-euiBreadcrumb"
       >
         <span
           aria-current="page"

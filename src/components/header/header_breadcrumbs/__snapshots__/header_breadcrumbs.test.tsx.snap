@@ -10,7 +10,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
     class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
   >
     <li
-      class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated-isHeaderBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-isHeaderBreadcrumb"
     >
       <a
         class="euiLink euiBreadcrumb__content customClass emotion-euiLink-subdued-euiBreadcrumb__content-isTruncated-isHeaderBreadcrumb"
@@ -23,7 +23,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated-isHeaderBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-isHeaderBreadcrumb"
     >
       <button
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-isTruncated-isHeaderBreadcrumb"
@@ -34,7 +34,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       </button>
     </li>
     <li
-      class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated-isHeaderBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-isHeaderBreadcrumb"
     >
       <a
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-isTruncated-isHeaderBreadcrumb"
@@ -46,11 +46,11 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated-isHeaderBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-isHeaderBreadcrumb"
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isTruncated-isHeaderBreadcrumb"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isHeaderBreadcrumb"
         title="Edit"
       >
         Edit

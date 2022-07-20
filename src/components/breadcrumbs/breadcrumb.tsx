@@ -60,13 +60,12 @@ interface _EuiBreadcrumbProps {
 export const EuiBreadcrumb: FunctionComponent<
   EuiBreadcrumbProps & _EuiBreadcrumbProps
 > = (props) => {
-  const { truncate, isHeaderBreadcrumb } = props;
+  const { isHeaderBreadcrumb } = props;
 
   const euiTheme = useEuiTheme();
   const styles = euiBreadcrumbStyles(euiTheme);
   const cssStyles = [
     styles.euiBreadcrumb,
-    truncate && styles.isTruncated,
     isHeaderBreadcrumb && styles.isHeaderBreadcrumb,
   ];
 
@@ -81,13 +80,13 @@ export const EuiBreadcrumbContent: FunctionComponent<
   EuiBreadcrumbProps & _EuiBreadcrumbProps
 > = ({
   text,
+  truncate,
   href,
   rel, // required by our local href-with-rel eslint rule
   onClick,
   className,
   isLastBreadcrumb,
   isHeaderBreadcrumb,
-  truncate,
   ...rest
 }) => {
   const classes = classNames('euiBreadcrumb__content', className);
@@ -96,7 +95,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
   const styles = euiBreadcrumbContentStyles(euiTheme);
   const cssStyles = [
     styles.euiBreadcrumb__content,
-    truncate && styles.isTruncated,
+    truncate && !isLastBreadcrumb && styles.isTruncated,
     isHeaderBreadcrumb && styles.isHeaderBreadcrumb,
   ];
 

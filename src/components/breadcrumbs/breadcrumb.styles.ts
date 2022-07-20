@@ -59,25 +59,6 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
     `,
-    isTruncated: css`
-      overflow: hidden;
-
-      &:not([class*='euiBreadcrumb-isCollapsed']) {
-        & > a,
-        & > span {
-          ${logicalCSS('max-width', `${parseFloat(euiTheme.size.base) * 10}px`)}
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-      }
-
-      &:last-of-type {
-        & > a,
-        & > span {
-          ${logicalCSS('max-width', 'none')}
-        }
-      }
-    `,
     isHeaderBreadcrumb: css`
       &:first-child {
         & > a,
@@ -176,8 +157,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     isTruncated: css`
-      ${euiTextTruncate()};
-      max-width: calc(${euiTheme.size.base} * 10);
+      ${euiTextTruncate(`${parseFloat(euiTheme.size.base) * 10}px`)};
       text-align: center;
       vertical-align: baseline;
     `,
