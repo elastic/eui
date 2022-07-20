@@ -2,11 +2,11 @@
 
 exports[`EuiTourStep can be closed 1`] = `
 <div
-  class="euiPopover euiPopover--anchorLeftUp"
+  class="euiPopover emotion-euiPopover"
   data-test-subj="test subject string"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <span>
       Test
@@ -17,11 +17,11 @@ exports[`EuiTourStep can be closed 1`] = `
 
 exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
 <div
-  class="euiPopover euiPopover--anchorLeftUp euiPopover-isOpen"
+  class="euiPopover euiPopover-isOpen emotion-euiPopover"
   data-test-subj="test subject string"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <span>
       Test
@@ -45,13 +45,15 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--left euiPopover__panel-isOpen euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left"
+      data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
       style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
     >
       <div
-        class="euiPopover__panelArrow euiPopover__panelArrow--left"
+        class="emotion-euiPopoverArrow-left"
+        data-popover-arrow="left"
         style="left: 0px; top: 10px;"
       >
         <div
@@ -64,7 +66,7 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
           style="min-width: 240px; max-width: 420px;"
         >
           <div
-            class="euiPopoverTitle euiTourHeader"
+            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m"
             id="generated-id"
           >
             <h2
@@ -79,7 +81,7 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter"
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m"
           >
             <div
               class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
@@ -118,11 +120,11 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
 
 exports[`EuiTourStep can have subtitle 1`] = `
 <div
-  class="euiPopover euiPopover--anchorLeftUp euiPopover-isOpen"
+  class="euiPopover euiPopover-isOpen emotion-euiPopover"
   data-test-subj="test subject string"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <span>
       Test
@@ -146,13 +148,15 @@ exports[`EuiTourStep can have subtitle 1`] = `
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--left euiPopover__panel-isOpen euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left"
+      data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
       style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
     >
       <div
-        class="euiPopover__panelArrow euiPopover__panelArrow--left"
+        class="emotion-euiPopoverArrow-left"
+        data-popover-arrow="left"
         style="left: 0px; top: 10px;"
       >
         <div
@@ -165,7 +169,7 @@ exports[`EuiTourStep can have subtitle 1`] = `
           style="min-width: 300px; max-width: 600px;"
         >
           <div
-            class="euiPopoverTitle euiTourHeader"
+            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m"
             id="generated-id"
           >
             <h2
@@ -185,7 +189,7 @@ exports[`EuiTourStep can have subtitle 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter"
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m"
           >
             <div
               class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
@@ -224,11 +228,11 @@ exports[`EuiTourStep can have subtitle 1`] = `
 
 exports[`EuiTourStep can override the footer action 1`] = `
 <div
-  class="euiPopover euiPopover--anchorLeftUp euiPopover-isOpen"
+  class="euiPopover euiPopover-isOpen emotion-euiPopover"
   data-test-subj="test subject string"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <span>
       Test
@@ -252,13 +256,15 @@ exports[`EuiTourStep can override the footer action 1`] = `
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--left euiPopover__panel-isOpen euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left"
+      data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
       style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
     >
       <div
-        class="euiPopover__panelArrow euiPopover__panelArrow--left"
+        class="emotion-euiPopoverArrow-left"
+        data-popover-arrow="left"
         style="left: 0px; top: 10px;"
       >
         <div
@@ -271,7 +277,7 @@ exports[`EuiTourStep can override the footer action 1`] = `
           style="min-width: 300px; max-width: 600px;"
         >
           <div
-            class="euiPopoverTitle euiTourHeader"
+            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m"
             id="generated-id"
           >
             <h2
@@ -286,7 +292,7 @@ exports[`EuiTourStep can override the footer action 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter"
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m"
           >
             <div
               class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
@@ -314,11 +320,11 @@ exports[`EuiTourStep can override the footer action 1`] = `
 
 exports[`EuiTourStep can turn off the beacon 1`] = `
 <div
-  class="euiPopover euiPopover--anchorLeftUp euiPopover-isOpen"
+  class="euiPopover euiPopover-isOpen emotion-euiPopover"
   data-test-subj="test subject string"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <span>
       Test
@@ -342,13 +348,15 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--left euiPopover__panel-isOpen euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left"
+      data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
       style="top: -22px; left: -16px; will-change: transform, opacity; z-index: 2000;"
     >
       <div
-        class="euiPopover__panelArrow euiPopover__panelArrow--left"
+        class="emotion-euiPopoverArrow-left"
+        data-popover-arrow="left"
         style="left: 0px; top: 10px;"
       />
       <div>
@@ -356,7 +364,7 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
           style="min-width: 300px; max-width: 600px;"
         >
           <div
-            class="euiPopoverTitle euiTourHeader"
+            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m"
             id="generated-id"
           >
             <h2
@@ -371,7 +379,7 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter"
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m"
           >
             <div
               class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
@@ -410,11 +418,11 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
 
 exports[`EuiTourStep is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorLeftUp euiPopover-isOpen"
+  class="euiPopover euiPopover-isOpen emotion-euiPopover"
   data-test-subj="test subject string"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <span>
       Test
@@ -438,13 +446,15 @@ exports[`EuiTourStep is rendered 1`] = `
       aria-labelledby="generated-id"
       aria-live="assertive"
       aria-modal="true"
-      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiPopover__panel--left euiPopover__panel-isOpen euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain"
+      class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel euiTour testClass1 testClass2 emotion-euiPanel-grow-m-m-plain-euiPopover__panel-isOpen-left"
+      data-popover-open="true"
       data-popover-panel="true"
       role="dialog"
       style="top: -22px; left: -26px; will-change: transform, opacity; z-index: 2000;"
     >
       <div
-        class="euiPopover__panelArrow euiPopover__panelArrow--left"
+        class="emotion-euiPopoverArrow-left"
+        data-popover-arrow="left"
         style="left: 0px; top: 10px;"
       >
         <div
@@ -457,7 +467,7 @@ exports[`EuiTourStep is rendered 1`] = `
           style="min-width: 300px; max-width: 600px;"
         >
           <div
-            class="euiPopoverTitle euiTourHeader"
+            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m"
             id="generated-id"
           >
             <h2
@@ -472,7 +482,7 @@ exports[`EuiTourStep is rendered 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter euiTourFooter"
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m"
           >
             <div
               class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"

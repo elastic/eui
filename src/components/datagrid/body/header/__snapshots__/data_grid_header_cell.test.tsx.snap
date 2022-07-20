@@ -39,7 +39,7 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
     }
     className="eui-fullWidth"
     closePopover={[Function]}
-    display="inlineBlock"
+    display="inline-block"
     hasArrow={true}
     isOpen={false}
     offset={7}

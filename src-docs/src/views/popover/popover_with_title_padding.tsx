@@ -9,7 +9,7 @@ import {
   EuiFlexItem,
   EuiText,
   EuiCode,
-} from '../../../../src/components';
+} from '../../../../src';
 
 export default () => {
   const [isPopoverOpen1, setIsPopoverOpen1] = useState(false);

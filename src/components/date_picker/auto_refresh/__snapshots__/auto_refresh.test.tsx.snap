@@ -2,10 +2,10 @@
 
 exports[`EuiAutoRefresh is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiAutoRefresh testClass1 testClass2"
+  class="euiPopover euiInputPopover euiAutoRefresh testClass1 testClass2 emotion-euiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div>
       <div
@@ -54,10 +54,10 @@ exports[`EuiAutoRefresh is rendered 1`] = `
 
 exports[`EuiAutoRefresh isPaused is false 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiAutoRefresh"
+  class="euiPopover euiInputPopover euiAutoRefresh emotion-euiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div>
       <div
@@ -105,10 +105,10 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
 
 exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiAutoRefresh"
+  class="euiPopover euiInputPopover euiAutoRefresh emotion-euiPopover-EuiInputPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div>
       <div
@@ -156,10 +156,10 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
 
 exports[`EuiAutoRefreshButton is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownCenter"
+  class="euiPopover emotion-euiPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <button
       aria-label="aria-label"
@@ -189,10 +189,10 @@ exports[`EuiAutoRefreshButton is rendered 1`] = `
 
 exports[`EuiAutoRefreshButton isPaused is false 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownCenter"
+  class="euiPopover emotion-euiPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <button
       class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiAutoRefreshButton"
@@ -220,10 +220,10 @@ exports[`EuiAutoRefreshButton isPaused is false 1`] = `
 
 exports[`EuiAutoRefreshButton refreshInterval is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownCenter"
+  class="euiPopover emotion-euiPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <button
       class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiAutoRefreshButton"
