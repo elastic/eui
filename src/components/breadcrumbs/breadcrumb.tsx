@@ -61,6 +61,7 @@ interface _EuiBreadcrumbProps {
   isLastBreadcrumb?: boolean;
   isOnlyBreadcrumb?: boolean;
   isHeaderBreadcrumb?: boolean;
+  isNestedBreadcrumb?: boolean;
 }
 
 export const EuiBreadcrumb: FunctionComponent<
@@ -95,6 +96,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
   isLastBreadcrumb,
   isOnlyBreadcrumb,
   isHeaderBreadcrumb,
+  isNestedBreadcrumb,
   ...rest
 }) => {
   const classes = classNames('euiBreadcrumb__content', className);
@@ -116,7 +118,8 @@ export const EuiBreadcrumbContent: FunctionComponent<
     }
   }
 
-  const ariaCurrent = isLastBreadcrumb ? 'page' : undefined;
+  const ariaCurrent =
+    isLastBreadcrumb && !isNestedBreadcrumb ? 'page' : undefined;
 
   return (
     <EuiInnerText>
@@ -141,7 +144,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
             aria-current={ariaCurrent}
             className={classes}
             css={cssStyles}
-            color={isLastBreadcrumb ? 'text' : 'subdued'}
+            color={!isNestedBreadcrumb && isLastBreadcrumb ? 'text' : 'subdued'}
             onClick={onClick}
             href={href}
             rel={rel}

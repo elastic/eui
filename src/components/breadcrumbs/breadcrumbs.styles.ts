@@ -33,13 +33,3 @@ export const euiBreadcrumbsListStyles = (euiThemeContext: UseEuiTheme) => {
     `,
   };
 };
-
-export const euiBreadcrumbsInPopoverStyles = ({ euiTheme }: UseEuiTheme) => ({
-  // Styles cast to breadcrumbs in EUI Popover
-  euiBreadcrumbs__inPopover: css`
-    & li:last-of-type > a,
-    & li:last-of-type > span {
-      color: ${euiTheme.colors.subduedText};
-    }
-  `,
-});

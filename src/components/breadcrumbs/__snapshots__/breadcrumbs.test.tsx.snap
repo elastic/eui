@@ -230,7 +230,6 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
       class="euiBreadcrumb emotion-euiBreadcrumb"
     >
       <span
-        aria-current="false"
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isTruncated"
       >
         Tetrapods
@@ -240,7 +239,6 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
       class="euiBreadcrumb emotion-euiBreadcrumb"
     >
       <button
-        aria-current="false"
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-isTruncated"
         type="button"
       >
@@ -251,7 +249,6 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
       class="euiBreadcrumb emotion-euiBreadcrumb"
     >
       <a
-        aria-current="false"
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-isTruncated"
         href="#"
         rel="noreferrer"
@@ -370,7 +367,6 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
       class="euiBreadcrumb emotion-euiBreadcrumb"
     >
       <span
-        aria-current="false"
         class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isTruncated"
       >
         Tetrapods
@@ -380,7 +376,6 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
       class="euiBreadcrumb emotion-euiBreadcrumb"
     >
       <button
-        aria-current="false"
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-isTruncated"
         type="button"
       >
@@ -391,7 +386,6 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
       class="euiBreadcrumb emotion-euiBreadcrumb"
     >
       <a
-        aria-current="false"
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-isTruncated"
         href="#"
         rel="noreferrer"
@@ -470,7 +464,6 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
       class="euiBreadcrumb emotion-euiBreadcrumb"
     >
       <button
-        aria-current="false"
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-isTruncated"
         type="button"
       >
@@ -559,7 +552,6 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
       class="euiBreadcrumb emotion-euiBreadcrumb"
     >
       <button
-        aria-current="false"
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-isTruncated"
         type="button"
       >
@@ -693,7 +685,6 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
       class="euiBreadcrumb emotion-euiBreadcrumb"
     >
       <button
-        aria-current="false"
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content"
         type="button"
       >
@@ -704,7 +695,6 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
       class="euiBreadcrumb emotion-euiBreadcrumb"
     >
       <a
-        aria-current="false"
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-isTruncated"
         href="#"
         rel="noreferrer"

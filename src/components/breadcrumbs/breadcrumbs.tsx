@@ -26,10 +26,7 @@ import {
   EuiBreadcrumbProps,
 } from './breadcrumb';
 
-import {
-  euiBreadcrumbsListStyles,
-  euiBreadcrumbsInPopoverStyles,
-} from './breadcrumbs.styles';
+import { euiBreadcrumbsListStyles } from './breadcrumbs.styles';
 
 export type EuiBreadcrumbResponsiveMaxCount = {
   /**
@@ -73,6 +70,13 @@ export type EuiBreadcrumbsProps = CommonProps & {
    * Determines regular or EuiHeader breadcrumb styling
    */
   isHeaderBreadcrumb?: boolean;
+
+  /**
+   * Whether this is a (contextually) nested set of breadcrumbs
+   * (e.g. the collapsed/overflow breadcrumbs popover).
+   * Determines if the last breadcrumb should be highlighted as the 'current' page.
+   */
+  isNested?: boolean;
 };
 
 const responsiveDefault: EuiBreadcrumbResponsiveMaxCount = {
@@ -88,6 +92,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   truncate = true,
   max = 5,
   isHeaderBreadcrumb = false,
+  isNested = false,
   ...rest
 }) => {
   const ariaLabel = useEuiI18n('euiBreadcrumbs.nav.ariaLabel', 'Breadcrumbs');
@@ -122,12 +127,6 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
     truncate && breadcrumbsListStyles.isTruncated,
   ];
 
-  // Breadcrumb link styles in EuiPopover
-  const breadcrumbsInPopoverStyles = euiBreadcrumbsInPopoverStyles(euiTheme);
-  const cssBreadcrumbsInPopoverStyles = [
-    breadcrumbsInPopoverStyles.euiBreadcrumbs__inPopover,
-  ];
-
   const limitBreadcrumbs = (
     breadcrumbs: ReactNode[],
     max: number,
@@ -141,11 +140,6 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
       start,
       start + breadcrumbs.length - limit
     );
-
-    if (overflowBreadcrumbs.length) {
-      overflowBreadcrumbs[overflowBreadcrumbs.length - 1]['aria-current'] =
-        'false';
-    }
 
     for (let i = 0; i < limit; i++) {
       // We'll alternate with displaying breadcrumbs at the end and at the start, but be biased
@@ -176,7 +170,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
           isFirstBreadcrumb={breadcrumbsAtStart.length === 0}
         >
           <EuiBreadcrumbs
-            css={cssBreadcrumbsInPopoverStyles}
+            isNested
             breadcrumbs={overflowBreadcrumbs}
             responsive={false}
             truncate={false}
@@ -197,6 +191,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
         isFirstBreadcrumb={index === 0}
         isLastBreadcrumb={index === breadcrumbs.length - 1}
         isOnlyBreadcrumb={breadcrumbs.length === 1}
+        isNestedBreadcrumb={isNested}
         {...breadcrumb}
       />
     </EuiBreadcrumb>
