@@ -59,7 +59,7 @@ export default () => (
           iconType="tokenStruct"
           size="m"
           shape="circle"
-          color="#FF0000"
+          color="#b9f6c8"
         />
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner paddingSize="none" color="subdued">
@@ -70,7 +70,7 @@ export default () => (
           paddingSize="m"
         >
           {
-            '<EuiToken iconType="tokenStruct" size="m" shape="circle" color="#FF0000" />'
+            '<EuiToken iconType="tokenStruct" size="m" shape="circle" color="#b9f6c8" />'
           }
         </EuiCodeBlock>
       </EuiSplitPanel.Inner>

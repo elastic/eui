@@ -8,10 +8,11 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
+import defaults from 'lodash/defaults';
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
+import { useEuiTheme, isColorDark, hexToRgb } from '../../services';
 
-import { IconType, EuiIcon, IconSize } from '../icon';
+import { IconType, EuiIcon } from '../icon';
 import { EuiTokenMapType, TOKEN_MAP } from './token_map';
 import { euiTokenStyles } from './token.styles';
 
@@ -46,7 +47,7 @@ export interface TokenProps {
   iconType: IconType;
   /**
    * For best results use one of the vis color names (or 'gray').
-   * Or supply your own color (can be used with dark or no fill only).
+   * Or supply your own HEX color (can be used with dark or no fill only).
    * Default: `gray`
    */
   color?: TokenColor | string;
@@ -91,19 +92,7 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   'aria-describedby': ariaDescribedby,
   ...rest
 }) => {
-  // Set the icon size to the same as the passed size
-  // unless they passed `xs` which IconSize doesn't support
-  let finalSize: IconSize = size === 'xs' ? 's' : size;
-
-  // When displaying at the small size, the token specific icons
-  // should actually be displayed at medium size
-  if (
-    typeof iconType === 'string' &&
-    iconType.indexOf('token') === 0 &&
-    size === 's'
-  ) {
-    finalSize = 'm';
-  }
+  const classes = classNames('euiToken', className);
 
   const currentDisplay = {
     color,
@@ -117,72 +106,51 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   // grab its properties
   if (typeof iconType === 'string' && iconType in TOKEN_MAP) {
     const tokenDisplay = TOKEN_MAP[iconType as EuiTokenMapType];
-    finalDisplay = { ...currentDisplay, ...tokenDisplay };
+    finalDisplay = defaults(currentDisplay, tokenDisplay);
   } else {
     finalDisplay = currentDisplay;
   }
 
   const finalColor = finalDisplay.color || 'gray';
   const finalShape = finalDisplay.shape || 'circle';
-  const finalFill = finalDisplay.fill || 'light';
+  let finalFill = finalDisplay.fill || 'light';
 
   const euiTheme = useEuiTheme();
   const styles = euiTokenStyles(euiTheme, finalColor);
 
-  let cssStyles;
+  const isTokenColor = COLORS.includes(finalColor as TokenColor);
 
-  if (COLORS.includes(finalColor as TokenColor)) {
-    cssStyles = [
-      styles.euiToken,
-      styles[finalColor as TokenColor],
-      styles[finalShape],
-      styles[finalFill],
-      styles[finalSize],
-    ];
+  let cssStyles = [
+    styles.euiToken,
+    styles[finalShape],
+    styles[finalFill],
+    styles[size],
+  ];
+
+  let finalStyle;
+
+  if (isTokenColor) {
+    cssStyles = [styles[finalColor as TokenColor], ...cssStyles];
+  } else if (finalFill === 'none') {
+    // when custom color is used, we passed it in the style prop
+    cssStyles = [styles.customColor, ...cssStyles];
+    finalStyle = { color: finalColor, ...style };
+  } else {
+    const isFinalColorDark = isColorDark(...hexToRgb(finalColor));
+    const lightOrDarkColor = isFinalColorDark ? '#FFFFFF' : '#000000';
+
+    finalFill = 'dark';
+    finalStyle = {
+      color: lightOrDarkColor,
+      backgroundColor: finalColor,
+      ...style,
+    };
   }
-
-  if (!COLORS.includes(finalColor as TokenColor)) {
-    // Or it can be a string which adds inline styles for the
-    // text color if fill='none' or
-    if (finalFill === 'none') {
-      cssStyles = [
-        styles.euiToken,
-        styles.customColor,
-        styles[finalShape],
-        styles[finalFill],
-        styles[finalSize],
-      ];
-    } else {
-      // full background color if fill='dark' and overrides fill='light' with dark
-
-      // finalFill = 'dark';
-      // style.backgroundColor = finalColor;
-      // acording to the background
-      // style.color = isColorDark(...hexToRgb(finalColor))
-      //   ? '#FFFFFF'
-      //   : '#000000';
-
-      console.log({ finalDisplay });
-
-      cssStyles = [
-        styles.euiToken,
-        styles.customColor,
-        styles[finalShape],
-        // fill
-        styles.dark,
-        styles.customBackground,
-        styles[finalSize],
-      ];
-    }
-  }
-
-  const classes = classNames('euiToken', className);
 
   return (
-    <span className={classes} css={cssStyles} style={style} {...rest}>
+    <span className={classes} css={cssStyles} style={finalStyle} {...rest}>
       <EuiIcon
         type={iconType}
-        size={finalSize}
         title={title}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledby}

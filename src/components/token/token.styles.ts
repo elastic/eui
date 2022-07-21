@@ -22,14 +22,14 @@ import {
 const visColors = euiPaletteColorBlind();
 const visColorsBehindText = euiPaletteColorBlindBehindText();
 
-const _iconSize = (size: string) => {
+const iconSize = (size: string) => {
   return `
     ${logicalCSS('width', size)};
     ${logicalCSS('height', size)};
   `;
 };
 
-const _getTokenColor = (
+const getTokenColor = (
   euiTheme: UseEuiTheme['euiTheme'],
   colorMode: UseEuiTheme['colorMode'],
   color: number | string
@@ -38,15 +38,6 @@ const _getTokenColor = (
     typeof color === 'number' ? visColors[color] : euiTheme.colors.darkShade;
 
   const isDarkMode = colorMode === 'DARK';
-
-  // $euiTokenGrayColor: lightOrDarkTheme(
-  //   $euiColorDarkShade,
-  //   $euiColorMediumShade
-  // );
-
-  // $color: map-get(map-get($euiTokenTypes, $type), 'graphic');
-  // $backgroundColor: tintOrShade($color, 90%, 70%);
-  // $fillColor: makeHighContrastColor($color, $backgroundColor);
 
   const iconColorBehindText =
     typeof color === 'number'
@@ -84,7 +75,7 @@ const _getTokenColor = (
   `;
 };
 
-const _getBackgroundColor = (color: number | string) => {
+const getBackgroundColor = (color: number | string) => {
   const iconColor = typeof color === 'number' ? visColors[color] : 'gray';
 
   return `
@@ -116,30 +107,56 @@ export const euiTokenStyles = (
     // is just slightly too large.
     border-radius: ${euiTheme.border.radius.small};
   `,
-  // Sizes
-  xs: css(_iconSize(euiTheme.size.s)),
-  s: css(_iconSize(euiTheme.size.base)),
-  m: css(_iconSize(euiTheme.size.l)),
-  l: css(_iconSize(euiTheme.size.xl)),
-  // colors
-  euiColorVis0: css(_getTokenColor(euiTheme, colorMode, 0)),
-  euiColorVis1: css(_getTokenColor(euiTheme, colorMode, 1)),
-  euiColorVis2: css(_getTokenColor(euiTheme, colorMode, 2)),
-  euiColorVis3: css(_getTokenColor(euiTheme, colorMode, 3)),
-  euiColorVis4: css(_getTokenColor(euiTheme, colorMode, 4)),
-  euiColorVis5: css(_getTokenColor(euiTheme, colorMode, 5)),
-  euiColorVis6: css(_getTokenColor(euiTheme, colorMode, 6)),
-  euiColorVis7: css(_getTokenColor(euiTheme, colorMode, 7)),
-  euiColorVis8: css(_getTokenColor(euiTheme, colorMode, 8)),
-  euiColorVis9: css(_getTokenColor(euiTheme, colorMode, 9)),
-  gray: css(_getTokenColor(euiTheme, colorMode, 'gray')),
-  customColor: css`
-    color: ${color};
+  rectangle: css`
+    box-sizing: content-box;
+    border-radius: ${euiTheme.border.radius.small};
   `,
+  // Sizes
+  xs: css`
+    ${iconSize(euiTheme.size.m)};
+
+    &[class*='-rectangle'] {
+      ${logicalCSS('padding-horizontal', euiTheme.size.xs)};
+    }
+  `,
+  s: css`
+    ${iconSize(euiTheme.size.base)}
+
+    &[class*='-rectangle'] {
+      ${logicalCSS('padding-horizontal', euiTheme.size.xs)};
+    }
+  `,
+  m: css`
+    ${iconSize(euiTheme.size.l)}
+
+    &[class*='-rectangle'] {
+      ${logicalCSS('padding-horizontal', euiTheme.size.s)};
+    }
+  `,
+  l: css`
+    ${iconSize(euiTheme.size.xl)}
+
+    &[class*='-rectangle'] {
+      ${logicalCSS('padding-horizontal', euiTheme.size.s)};
+    }
+  `,
+  // colors
+  euiColorVis0: css(getTokenColor(euiTheme, colorMode, 0)),
+  euiColorVis1: css(getTokenColor(euiTheme, colorMode, 1)),
+  euiColorVis2: css(getTokenColor(euiTheme, colorMode, 2)),
+  euiColorVis3: css(getTokenColor(euiTheme, colorMode, 3)),
+  euiColorVis4: css(getTokenColor(euiTheme, colorMode, 4)),
+  euiColorVis5: css(getTokenColor(euiTheme, colorMode, 5)),
+  euiColorVis6: css(getTokenColor(euiTheme, colorMode, 6)),
+  euiColorVis7: css(getTokenColor(euiTheme, colorMode, 7)),
+  euiColorVis8: css(getTokenColor(euiTheme, colorMode, 8)),
+  euiColorVis9: css(getTokenColor(euiTheme, colorMode, 9)),
+  gray: css(getTokenColor(euiTheme, colorMode, 'gray')),
+  customColor: css``,
   emptyShade: css`
     color: ${euiTheme.colors.emptyShade};
   `,
-  customBackground: css(_getBackgroundColor(color)),
+  customBackground: css(getBackgroundColor(color)),
   // Fills
   light: css``,
   dark: css``,
