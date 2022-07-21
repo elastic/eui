@@ -18,22 +18,22 @@ Array [
     >
       <nav
         aria-label="Breadcrumbs"
-        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs"
       >
         <ol
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb emotion-euiBreadcrumb"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isTruncated"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb emotion-euiBreadcrumb"
           >
             <span
               aria-current="page"
@@ -110,23 +110,23 @@ Array [
     >
       <nav
         aria-label="Breadcrumbs"
-        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs"
       >
         <ol
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb emotion-euiBreadcrumb"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isTruncated"
               title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb emotion-euiBreadcrumb"
           >
             <span
               aria-current="page"
@@ -204,23 +204,23 @@ Array [
     >
       <nav
         aria-label="Breadcrumbs"
-        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs"
       >
         <ol
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb emotion-euiBreadcrumb"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isTruncated"
               title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb emotion-euiBreadcrumb"
           >
             <span
               aria-current="page"
@@ -298,23 +298,23 @@ Array [
     >
       <nav
         aria-label="Breadcrumbs"
-        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs"
       >
         <ol
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb emotion-euiBreadcrumb"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isTruncated"
               title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb emotion-euiBreadcrumb"
           >
             <span
               aria-current="page"
@@ -391,23 +391,23 @@ exports[`EuiControlBar props position is rendered 1`] = `
   >
     <nav
       aria-label="Breadcrumbs"
-      class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
+      class="euiBreadcrumbs euiControlBar__breadcrumbs"
     >
       <ol
         class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
       >
         <li
-          class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
+          class="euiBreadcrumb emotion-euiBreadcrumb"
         >
           <span
-            class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
+            class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isTruncated"
             title="src"
           >
             src
           </span>
         </li>
         <li
-          class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated"
+          class="euiBreadcrumb emotion-euiBreadcrumb"
         >
           <span
             aria-current="page"
@@ -478,23 +478,23 @@ Array [
     >
       <nav
         aria-label="Breadcrumbs"
-        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs"
       >
         <ol
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb emotion-euiBreadcrumb"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isTruncated"
               title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb emotion-euiBreadcrumb"
           >
             <span
               aria-current="page"
@@ -572,23 +572,23 @@ Array [
     >
       <nav
         aria-label="Breadcrumbs"
-        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs"
       >
         <ol
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb emotion-euiBreadcrumb"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isTruncated"
               title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb emotion-euiBreadcrumb"
           >
             <span
               aria-current="page"
@@ -671,23 +671,23 @@ Array [
     >
       <nav
         aria-label="Breadcrumbs"
-        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs"
       >
         <ol
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb emotion-euiBreadcrumb"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isTruncated"
               title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb euiBreadcrumb--last emotion-euiBreadcrumb-isTruncated"
+            class="euiBreadcrumb emotion-euiBreadcrumb"
           >
             <span
               aria-current="page"

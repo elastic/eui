@@ -105,7 +105,7 @@
 
 .euiControlBar__breadcrumbs {
   .euiBreadcrumb {
-    &:not(.euiBreadcrumb--last) .euiBreadcrumb__content {
+    &:not(:last-of-type) .euiBreadcrumb__content {
       color: makeHighContrastColor($euiTextSubduedColor, $euiControlBarBackground);
     }
 
