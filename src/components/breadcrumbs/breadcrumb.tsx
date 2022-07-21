@@ -12,6 +12,7 @@ import React, {
   AriaAttributes,
   MouseEventHandler,
   ReactNode,
+  useState,
 } from 'react';
 import classNames from 'classnames';
 
@@ -19,6 +20,9 @@ import { useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
 import { EuiInnerText } from '../inner_text';
 import { EuiLink, EuiLinkColor } from '../link';
+import { EuiPopover } from '../popover';
+import { EuiIcon } from '../icon';
+import { useEuiI18n } from '../i18n';
 
 import {
   euiBreadcrumbStyles,
@@ -60,9 +64,9 @@ interface _EuiBreadcrumbProps {
 }
 
 export const EuiBreadcrumb: FunctionComponent<
-  EuiBreadcrumbProps & _EuiBreadcrumbProps
-> = (props) => {
-  const { isHeaderBreadcrumb } = props;
+  HTMLAttributes<HTMLLIElement> & _EuiBreadcrumbProps
+> = ({ children, className, isHeaderBreadcrumb, ...rest }) => {
+  const classes = classNames('euiBreadcrumb', className);
 
   const euiTheme = useEuiTheme();
   const styles = euiBreadcrumbStyles(euiTheme);
@@ -72,8 +76,8 @@ export const EuiBreadcrumb: FunctionComponent<
   ];
 
   return (
-    <li className="euiBreadcrumb" css={cssStyles}>
-      <EuiBreadcrumbContent {...props} />
+    <li className={classes} css={cssStyles} {...rest}>
+      {children}
     </li>
   );
 };
@@ -148,5 +152,50 @@ export const EuiBreadcrumbContent: FunctionComponent<
         );
       }}
     </EuiInnerText>
+  );
+};
+
+export const EuiBreadcrumbCollapsed: FunctionComponent<_EuiBreadcrumbProps> = ({
+  children,
+  isFirstBreadcrumb,
+  isHeaderBreadcrumb,
+}) => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+  const euiTheme = useEuiTheme();
+  const styles = euiBreadcrumbStyles(euiTheme);
+  const cssStyles = [styles.isCollapsed];
+
+  const ariaLabel = useEuiI18n(
+    'euiBreadcrumb.collapsedBadge.ariaLabel',
+    'See collapsed breadcrumbs'
+  );
+
+  const ellipsisButton = (
+    <EuiBreadcrumbContent
+      aria-label={ariaLabel}
+      title={ariaLabel}
+      onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+      truncate={false}
+      text={
+        <>
+          &hellip; <EuiIcon type="arrowDown" size="s" />
+        </>
+      }
+      isFirstBreadcrumb={isFirstBreadcrumb}
+      isHeaderBreadcrumb={isHeaderBreadcrumb}
+    />
+  );
+
+  return (
+    <EuiBreadcrumb css={cssStyles} isHeaderBreadcrumb={isHeaderBreadcrumb}>
+      <EuiPopover
+        button={ellipsisButton}
+        isOpen={isPopoverOpen}
+        closePopover={() => setIsPopoverOpen(false)}
+      >
+        {children}
+      </EuiPopover>
+    </EuiBreadcrumb>
   );
 };

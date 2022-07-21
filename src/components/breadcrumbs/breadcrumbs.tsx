@@ -16,20 +16,20 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { useEuiI18n } from '../i18n';
-import { EuiLink } from '../link';
-import { EuiPopover } from '../popover';
-import { EuiIcon } from '../icon';
 import { throttle, useEuiTheme } from '../../services';
 import { EuiBreakpointSize, getBreakpoint } from '../../services/breakpoint';
 
-import { EuiBreadcrumb, EuiBreadcrumbProps } from './breadcrumb';
+import {
+  EuiBreadcrumb,
+  EuiBreadcrumbContent,
+  EuiBreadcrumbCollapsed,
+  EuiBreadcrumbProps,
+} from './breadcrumb';
 
 import {
   euiBreadcrumbsListStyles,
   euiBreadcrumbsInPopoverStyles,
 } from './breadcrumbs.styles';
-
-const CONTENT_CLASSNAME = 'euiBreadcrumb__content';
 
 export type EuiBreadcrumbResponsiveMaxCount = {
   /**
@@ -168,75 +168,38 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
       }
     }
 
-    const EuiBreadcrumbCollapsed = () => {
-      const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-      const ariaLabel = useEuiI18n(
-        'euiBreadcrumbs.collapsedBadge.ariaLabel',
-        'See collapsed breadcrumbs'
-      );
-
-      // Emotion styles for collapsed breadcrumb list items.
-      // Declared here because the collapsed breadcrumb is determined
-      // conditionally by number of breadcrumbs instead of a prop.
-      const cssBreadcrumbStylesCollapsed = [
-        // TODO: Fix/DRY out in future commit
-        // breadcrumbStyles.euiBreadcrumb,
-        // breadcrumbStyles.isCollapsed,
-        // isHeaderBreadcrumb && breadcrumbStyles.isHeaderBreadcrumb,
-      ];
-
-      const ellipsisButton = (
-        <EuiLink
-          className={CONTENT_CLASSNAME}
-          color="subdued"
-          aria-label={ariaLabel}
-          title={ariaLabel}
-          onClick={() => setIsPopoverOpen(!isPopoverOpen)}
-        >
-          &hellip; <EuiIcon type="arrowDown" size="s" />
-        </EuiLink>
-      );
-
-      return (
-        <li
-          className="euiBreadcrumb euiBreadcrumb--collapsed"
-          css={cssBreadcrumbStylesCollapsed}
-        >
-          <EuiPopover
-            button={ellipsisButton}
-            isOpen={isPopoverOpen}
-            closePopover={() => setIsPopoverOpen(false)}
-          >
-            <EuiBreadcrumbs
-              className="euiBreadcrumbs__inPopover"
-              css={cssBreadcrumbsInPopoverStyles}
-              breadcrumbs={overflowBreadcrumbs}
-              responsive={false}
-              truncate={false}
-              max={0}
-            />
-          </EuiPopover>
-        </li>
-      );
-    };
-
     if (max < breadcrumbs.length) {
-      breadcrumbsAtStart.push(<EuiBreadcrumbCollapsed key="collapsed" />);
+      breadcrumbsAtStart.push(
+        <EuiBreadcrumbCollapsed
+          key="collapsed"
+          isHeaderBreadcrumb={isHeaderBreadcrumb}
+          isFirstBreadcrumb={breadcrumbsAtStart.length === 0}
+        >
+          <EuiBreadcrumbs
+            css={cssBreadcrumbsInPopoverStyles}
+            breadcrumbs={overflowBreadcrumbs}
+            responsive={false}
+            truncate={false}
+            max={0}
+          />
+        </EuiBreadcrumbCollapsed>
+      );
     }
 
     return [...breadcrumbsAtStart, ...breadcrumbsAtEnd];
   };
 
   const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => (
-    <EuiBreadcrumb
-      key={index}
-      truncate={truncate}
-      isHeaderBreadcrumb={isHeaderBreadcrumb}
-      isFirstBreadcrumb={index === 0}
-      isLastBreadcrumb={index === breadcrumbs.length - 1}
-      isOnlyBreadcrumb={breadcrumbs.length === 1}
-      {...breadcrumb}
-    />
+    <EuiBreadcrumb key={index} isHeaderBreadcrumb={isHeaderBreadcrumb}>
+      <EuiBreadcrumbContent
+        truncate={truncate}
+        isHeaderBreadcrumb={isHeaderBreadcrumb}
+        isFirstBreadcrumb={index === 0}
+        isLastBreadcrumb={index === breadcrumbs.length - 1}
+        isOnlyBreadcrumb={breadcrumbs.length === 1}
+        {...breadcrumb}
+      />
+    </EuiBreadcrumb>
   ));
 
   // Use the default object if they simply passed `true` for responsive

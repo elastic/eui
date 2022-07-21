@@ -118,7 +118,7 @@ export const BreadcrumbsExample = {
         <>
           <p>
             Use the <EuiCode>max</EuiCode> prop to collapse breadcrumbs beyond a
-            certain number. The center breadcrumbs will collpase into a single
+            certain number. The center breadcrumbs will collapse into a single
             item allowing the user to navigate these items from within a
             popover.
           </p>
