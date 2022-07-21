@@ -1,5 +1,25 @@
 [
   {
+    "version": "60.3.0",
+    "changes": [
+      {
+        "token": "euiDataGridCell.position",
+        "changeType": "modified",
+        "value": "{columnId}, column {col}, row {row}"
+      }
+    ]
+  },
+  {
+    "version": "60.2.0",
+    "changes": [
+      {
+        "token": "euiDataGridHeaderCell.actionsPopoverScreenReaderText",
+        "changeType": "added",
+        "value": "To navigate through the list of column actions, press the Tab or Up and Down arrow keys."
+      }
+    ]
+  },
+  {
     "version": "58.1.0",
     "changes": [
       {

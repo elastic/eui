@@ -6,21 +6,21 @@
  * Side Public License, v 1.
  */
 
-export const colorToClassMap = {
-  default: null,
-  primary: 'euiIcon--primary',
-  success: 'euiIcon--success',
-  accent: 'euiIcon--accent',
-  warning: 'euiIcon--warning',
-  danger: 'euiIcon--danger',
-  text: 'euiIcon--text',
-  subdued: 'euiIcon--subdued',
-  ghost: 'euiIcon--ghost',
-  inherit: 'euiIcon--inherit',
-};
+export const COLORS = [
+  'default',
+  'primary',
+  'success',
+  'accent',
+  'warning',
+  'danger',
+  'text',
+  'subdued',
+  'ghost',
+  'inherit',
+] as const;
 
-export type NamedColor = keyof typeof colorToClassMap;
+export type NamedColor = typeof COLORS[number];
 
-export function isNamedColor(name: string): name is NamedColor {
-  return colorToClassMap.hasOwnProperty(name);
+export function isNamedColor(name: string): boolean {
+  return COLORS.includes(name as NamedColor);
 }

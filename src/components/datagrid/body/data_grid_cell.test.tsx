@@ -9,13 +9,18 @@
 import React, { useEffect } from 'react';
 import { mount, render, ReactWrapper } from 'enzyme';
 import { keys } from '../../../services';
-import { mockRowHeightUtils } from '../utils/__mocks__/row_heights';
+import { RowHeightUtils } from '../utils/__mocks__/row_heights';
 import { mockFocusContext } from '../utils/__mocks__/focus_context';
 import { DataGridFocusContext } from '../utils/focus';
 
 import { EuiDataGridCell } from './data_grid_cell';
 
 describe('EuiDataGridCell', () => {
+  const mockRowHeightUtils = new RowHeightUtils(
+    { current: null },
+    { current: null }
+  );
+
   const mockPopoverContext = {
     popoverIsOpen: false,
     cellLocation: { rowIndex: 0, colIndex: 0 },
@@ -44,8 +49,25 @@ describe('EuiDataGridCell', () => {
   beforeEach(() => jest.clearAllMocks());
 
   it('renders', () => {
-    const component = mount(<EuiDataGridCell {...requiredProps} />);
+    const component = render(<EuiDataGridCell {...requiredProps} />);
     expect(component).toMatchSnapshot();
+  });
+
+  it("renders the cell's `aria-rowindex` correctly when paginated on a different page", () => {
+    const component = mount(
+      <EuiDataGridCell
+        {...requiredProps}
+        pagination={{
+          pageIndex: 3,
+          pageSize: 20,
+          onChangePage: () => {},
+          onChangeItemsPerPage: () => {},
+        }}
+      />
+    );
+    expect(
+      component.find('[data-test-subj="dataGridRowCell"]').prop('aria-rowindex')
+    ).toEqual(61);
   });
 
   it('renders cell actions', () => {

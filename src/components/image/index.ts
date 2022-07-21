@@ -6,5 +6,5 @@
  * Side Public License, v 1.
  */
 
-export type { EuiImageProps } from './image';
+export type { EuiImageProps } from './image_types';
 export { EuiImage } from './image';

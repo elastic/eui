@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiProvider adds CacheProvider from Emotion when configured with a cache 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "insert": [Function],
+      "inserted": Object {},
+      "key": "testing",
+      "nonce": undefined,
+      "registered": Object {},
+      "sheet": StyleSheet {
+        "_insertTag": [Function],
+        "before": null,
+        "container": <head />,
+        "ctr": 0,
+        "insertionPoint": undefined,
+        "isSpeedy": false,
+        "key": "testing",
+        "nonce": undefined,
+        "prepend": undefined,
+        "tags": Array [],
+      },
+    }
+  }
+>
+  <div />
+</ContextProvider>
+`;
+
+exports[`EuiProvider does not add CacheProvider from Emotion when configured without a cache 1`] = `
+<Fragment>
+  <div />
+</Fragment>
+`;
+
+exports[`EuiProvider renders a Fragment when no children are provided 1`] = `<Fragment />`;

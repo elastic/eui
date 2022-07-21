@@ -18,6 +18,9 @@ import {
   PADDING_SIZES,
   LOGICAL_SIDES,
   EuiPanel,
+  EuiSpacer,
+  logicalSizeCSS,
+  logicalSizeStyle,
 } from '../../../../../src';
 
 import { ThemeExample } from '../_components/_theme_example';
@@ -258,6 +261,56 @@ export const UtilsJS = () => {
           </EuiText>
         </EuiAccordion>
       </EuiPanel>
+
+      <EuiSpacer size="xl" />
+
+      <ThemeExample
+        title={<code>{'logicalSizeCSS(width, height)'}</code>}
+        type="function"
+        description={
+          <p>
+            Returns the <strong>string version</strong> of the logical CSS size
+            properties given <EuiCode language="css">width</EuiCode> and{' '}
+            <EuiCode language="css">height</EuiCode>. Best used when providing
+            styles via Emotion&apos;s <EuiCode>{'css``'}</EuiCode> method.
+          </p>
+        }
+        example={
+          <p
+            css={[
+              useEuiBackgroundColorCSS().warning,
+              logicalSizeCSS('200px', '100px'),
+            ]}
+          >
+            <code>{logicalSizeCSS('200px', '100px')}</code>
+          </p>
+        }
+        snippetLanguage="emotion"
+        snippet={"${logicalSizeCSS('200px', '100px')};"}
+      />
+
+      <ThemeExample
+        title={<code>{'logicalStyle(property, value)'}</code>}
+        type="function"
+        description={
+          <p>
+            Returns the <strong>object version</strong> of the logical CSS size
+            properties given <EuiCode language="css">width</EuiCode> and{' '}
+            <EuiCode language="css">height</EuiCode>. Best used when providing
+            styles via React&apos;s <EuiCode>style</EuiCode> property.
+          </p>
+        }
+        example={
+          <p
+            css={css(useEuiBackgroundColorCSS().warning)}
+            style={logicalSizeStyle('200px', '100px')}
+          >
+            <code>{JSON.stringify(logicalSizeStyle('200px', '100px'))}</code>
+          </p>
+        }
+        snippetLanguage="tsx"
+        snippet={"<p style={logicalSizeStyle('200px', '100px')} />"}
+      />
     </>
   );
 };
