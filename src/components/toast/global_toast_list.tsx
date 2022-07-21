@@ -17,9 +17,11 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
+import { useEuiTheme } from '../../services';
 import { Timer } from '../../services/time';
 import { EuiGlobalToastListItem } from './global_toast_list_item';
 import { EuiToast, EuiToastProps } from './toast';
+import { euiGlobalToastListStyles } from './global_toast_list.styles';
 
 type ToastSide = 'right' | 'left';
 
@@ -76,6 +78,10 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
   const startScrollingAnimationFrame = useRef(0);
 
   const listElement = useRef<HTMLDivElement | null>(null);
+
+  const euiTheme = useEuiTheme();
+  const styles = euiGlobalToastListStyles(euiTheme);
+  const cssStyles = [styles.euiGlobalToastList, styles[side]];
 
   const startScrollingToBottom = () => {
     isScrollingToBottom.current = true;
@@ -279,17 +285,14 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
     );
   });
 
-  const classes = classNames(
-    'euiGlobalToastList',
-    side ? sideToClassNameMap[side] : null,
-    className
-  );
+  const classes = classNames('euiGlobalToastList', className);
 
   return (
     <div
       aria-live="polite"
       role="region"
       ref={listElement}
+      css={cssStyles}
       className={classes}
       {...rest}
     >
