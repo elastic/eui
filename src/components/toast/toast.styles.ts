@@ -41,7 +41,10 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
       position: absolute;
       ${logicalCSS('top', euiTheme.size.base)};
       ${logicalCSS('right', euiTheme.size.base)};
-      line-height: 0; /* 1 */
+
+      // Fit button to icon.
+      line-height: 0;
+
       appearance: none;
       opacity: 0;
       transition: opacity ${euiTheme.animation.fast}

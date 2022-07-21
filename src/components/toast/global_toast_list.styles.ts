@@ -106,12 +106,10 @@ export const euiGlobalToastListItemStyles = ({ euiTheme }: UseEuiTheme) => {
         ${euiTheme.animation.resistance};
       opacity: 1;
 
-      /**
-       * 1. justify-content: flex-end interferes with overflowing content, so we'll use this to push
-       *    items to the bottom instead.
-       */
       &:first-child {
-        ${logicalCSS('margin-top', 'auto')}; /* 1 */
+        // justify-content: flex-end interferes with overflowing content,
+        // so we'll use this to push items to the bottom instead.
+        ${logicalCSS('margin-top', 'auto')};
       }
 
       &:last-child {
