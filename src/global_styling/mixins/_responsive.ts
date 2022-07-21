@@ -9,89 +9,58 @@
 import { useEuiTheme, UseEuiTheme } from '../../services/theme/hooks';
 import { EuiThemeBreakpoints, _EuiThemeBreakpoint } from '../variables';
 
-export const BREAKPOINT_SIZES = [...EuiThemeBreakpoints, 0, Infinity] as const;
-export type EuiBreakpointSizes = typeof BREAKPOINT_SIZES[number];
-
 const mediaQuery = '@media only screen';
 const getMinWidthQuery = (breakpoint: number) => `(min-width: ${breakpoint}px)`;
 const getMaxWidthQuery = (breakpoint: number) =>
   `(max-width: ${breakpoint - 1}px)`;
 
 /**
- * Generates a CSS media query rule string based on the input sizes.
- * Example: euiBreakpoint(['s, 'l']) becomes `@media only screen and (min-width: 575px) and (max-width: 991px)`
+ * Generates a CSS media query rule string based on the input breakpoint ranges.
+ * Examples:
+ * euiBreakpoint(['s']) becomes `@media only screen and (min-width: 575px) and (max-width: 767px)`
+ * euiBreakpoint(['s', 'm']) becomes `@media only screen and (min-width: 575px) and (max-width: 991px)`
  *
- * Note: Unlike the Sass mixin, the JS mixin allows creating media queries
- * with just (min-width) and (max-width) via the 0 and Infinity args.
- * Example: euiBreakpoint(['m', Infinity]) becomes `@media only screen and (min-width: 768px)`
- * Example: euiBreakpoint([0, 'm']) becomes `@media only screen and (max-width: 767px)`
+ * Use the `xs` and `xl` sizes to generate media queries with only min/max-width.
+ * Examples:
+ * euiBreakpoint(['xs', 'm']) becomes `@media only screen and (max-width: 991px)`
+ * euiBreakpoint(['l', 'xl']) becomes `@media only screen and (min-width: 992px)`
  */
 export const euiBreakpoint = (
-  sizes: EuiBreakpointSizes[],
-  { euiTheme }: UseEuiTheme
+  { euiTheme }: UseEuiTheme,
+  sizes: [_EuiThemeBreakpoint, ..._EuiThemeBreakpoint[]]
 ) => {
-  let firstBreakpoint: EuiBreakpointSizes | undefined = sizes[0];
-  let lastBreakpoint: EuiBreakpointSizes | undefined = sizes[sizes.length - 1];
-  let minBreakpoint: number | undefined;
-  let maxBreakpoint: number | undefined;
+  // Ensure the array is in the correct ascending size order
+  const orderedSizes = sizes.sort(
+    (a, b) => EuiThemeBreakpoints.indexOf(a) - EuiThemeBreakpoints.indexOf(b)
+  );
 
-  if (sizes.length <= 1) {
-    if (typeof firstBreakpoint === 'string') {
-      const minIndex = EuiThemeBreakpoints.indexOf(firstBreakpoint);
-      const maxIndex = minIndex + 1;
-      if (firstBreakpoint !== 'xl') {
-        lastBreakpoint = EuiThemeBreakpoints[maxIndex] as _EuiThemeBreakpoint;
-      } else {
-        lastBreakpoint = undefined;
-      }
-    } else {
-      console.warn('Pass more than one breakpoint size');
-      firstBreakpoint = lastBreakpoint = undefined;
-    }
-  }
+  const firstBreakpoint: _EuiThemeBreakpoint = orderedSizes[0];
+  const minBreakpointSize = euiTheme.breakpoint[firstBreakpoint];
 
-  if (
-    firstBreakpoint != null &&
-    (BREAKPOINT_SIZES.includes(firstBreakpoint) === false ||
-      firstBreakpoint === Infinity)
-  ) {
-    console.warn('Invalid min-width breakpoint size passed');
-  } else if (typeof firstBreakpoint === 'string') {
-    minBreakpoint = euiTheme.breakpoint[firstBreakpoint as _EuiThemeBreakpoint];
-  }
+  const lastBreakpoint: _EuiThemeBreakpoint =
+    orderedSizes.length > 1 ? orderedSizes[sizes.length - 1] : firstBreakpoint;
+  let maxBreakpointSize: number | undefined;
 
-  if (
-    lastBreakpoint != null &&
-    (BREAKPOINT_SIZES.includes(lastBreakpoint) === false ||
-      lastBreakpoint === 0)
-  ) {
-    console.warn('Invalid max-width breakpoint size passed');
-  } else if (typeof lastBreakpoint === 'string') {
-    maxBreakpoint = euiTheme.breakpoint[lastBreakpoint as _EuiThemeBreakpoint];
-  }
-
-  if (
-    minBreakpoint != null &&
-    maxBreakpoint != null &&
-    (minBreakpoint > maxBreakpoint || minBreakpoint === maxBreakpoint)
-  ) {
-    console.warn(
-      'Invalid breakpoint sizes passed. The first size should be smaller than the last size'
-    );
-    // We can't accurately guess what they wanted, so unset the breakpoints
-    minBreakpoint = maxBreakpoint = undefined;
+  // To get the correct screen range, we set the max-width
+  // to the next breakpoint size in the sizes array
+  if (lastBreakpoint !== 'xl') {
+    const nextBreakpoint = EuiThemeBreakpoints.indexOf(lastBreakpoint) + 1;
+    maxBreakpointSize =
+      euiTheme.breakpoint[EuiThemeBreakpoints[nextBreakpoint]];
   }
 
   return [
     mediaQuery,
-    minBreakpoint ? getMinWidthQuery(minBreakpoint) : false,
-    maxBreakpoint ? getMaxWidthQuery(maxBreakpoint) : false,
+    minBreakpointSize ? getMinWidthQuery(minBreakpointSize) : false,
+    maxBreakpointSize ? getMaxWidthQuery(maxBreakpointSize) : false,
   ]
     .filter(Boolean)
     .join(' and ');
 };
 
-export const useEuiBreakpoint = (sizes: EuiBreakpointSizes[]) => {
+export const useEuiBreakpoint = (
+  sizes: [_EuiThemeBreakpoint, ..._EuiThemeBreakpoint[]]
+) => {
   const euiTheme = useEuiTheme();
-  return euiBreakpoint(sizes, euiTheme);
+  return euiBreakpoint(euiTheme, sizes);
 };
