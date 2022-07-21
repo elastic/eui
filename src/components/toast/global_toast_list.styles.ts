@@ -7,7 +7,12 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import { euiBreakpoint, euiScrollBarStyles, logicalCSS, logicalSizeCSS } from '../../global_styling';
+import {
+  euiBreakpoint,
+  euiScrollBarStyles,
+  logicalCSS,
+  logicalSizeCSS,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
@@ -27,10 +32,7 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
       position: fixed;
       z-index: ${euiTheme.levels.toast};
       ${logicalCSS('bottom', 0)};
-      ${logicalCSS(
-        'width',
-        `${euiToastWidth + (euiTheme.base * 5)}px`
-      )}; /* 2 */
+      ${logicalCSS('width', `${euiToastWidth + euiTheme.base * 5}px`)}; /* 2 */
       ${logicalCSS('max-height', '100vh')}; /* 1 */
       /* ${logicalCSS('overflow-y', 'auto')}; Not yet supported */
       overflow-y: auto;
@@ -95,12 +97,13 @@ export const euiGlobalToastListItemStyles = ({ euiTheme }: UseEuiTheme) => {
     transform: translateY(0) scale(1);
     opacity: 1;
   }
-`
+`;
   return {
     // Base
     euiGlobalToastListItem: css`
       ${logicalCSS('margin-bottom', euiTheme.size.base)};
-      animation: ${euiTheme.animation.normal} ${euiShowToast} ${euiTheme.animation.resistance};
+      animation: ${euiTheme.animation.normal} ${euiShowToast}
+        ${euiTheme.animation.resistance};
       opacity: 1;
 
       /**
@@ -120,5 +123,5 @@ export const euiGlobalToastListItemStyles = ({ euiTheme }: UseEuiTheme) => {
       transition: opacity ${euiTheme.animation.normal};
       opacity: 0;
     `,
-  }
+  };
 };
