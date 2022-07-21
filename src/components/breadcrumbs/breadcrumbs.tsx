@@ -6,15 +6,10 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  ReactNode,
-  useEffect,
-  useState,
-} from 'react';
+import React, { FunctionComponent, useEffect, useState, useMemo } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import { useEuiI18n } from '../i18n';
 import { throttle, useEuiTheme } from '../../services';
 import { EuiBreakpointSize, getBreakpoint } from '../../services/breakpoint';
@@ -106,79 +101,52 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
 
   const responsiveMax = useResponsiveMax(responsive, max);
 
-  const limitBreadcrumbs = (
-    breadcrumbs: ReactNode[],
-    max: number,
-    allBreadcrumbs: EuiBreadcrumbProps[]
-  ) => {
-    const breadcrumbsAtStart = [];
-    const breadcrumbsAtEnd = [];
-    const limit = Math.min(max, breadcrumbs.length);
-    const start = Math.floor(limit / 2);
-    const overflowBreadcrumbs = allBreadcrumbs.slice(
-      start,
-      start + breadcrumbs.length - limit
-    );
+  const visibleBreadcrumbs: _EuiBreadcrumbsObjs = useMemo(() => {
+    const shouldCollapseBreadcrumbs =
+      responsiveMax && breadcrumbs.length > responsiveMax;
 
-    for (let i = 0; i < limit; i++) {
-      // We'll alternate with displaying breadcrumbs at the end and at the start, but be biased
-      // towards breadcrumbs the end so that if max is an odd number, we'll have one more
-      // breadcrumb visible at the end than at the beginning.
-      const isEven = i % 2 === 0;
+    return shouldCollapseBreadcrumbs
+      ? limitBreadcrumbs(breadcrumbs, responsiveMax)
+      : breadcrumbs;
+  }, [breadcrumbs, responsiveMax]);
 
-      // We're picking breadcrumbs from the front AND the back, so we treat each iteration as a
-      // half-iteration.
-      const normalizedIndex = Math.floor(i * 0.5);
-      const indexOfBreadcrumb = isEven
-        ? breadcrumbs.length - 1 - normalizedIndex
-        : normalizedIndex;
-      const breadcrumb = breadcrumbs[indexOfBreadcrumb];
+  const breadcrumbChildren = useMemo(
+    () =>
+      visibleBreadcrumbs.map((breadcrumb, index) => {
+        const isFirstBreadcrumb = index === 0;
+        const isLastBreadcrumb = index === visibleBreadcrumbs.length - 1;
+        const isOnlyBreadcrumb = visibleBreadcrumbs.length === 1;
 
-      if (isEven) {
-        breadcrumbsAtEnd.unshift(breadcrumb);
-      } else {
-        breadcrumbsAtStart.push(breadcrumb);
-      }
-    }
-
-    if (max < breadcrumbs.length) {
-      breadcrumbsAtStart.push(
-        <EuiBreadcrumbCollapsed
-          key="collapsed"
-          isHeaderBreadcrumb={isHeaderBreadcrumb}
-          isFirstBreadcrumb={breadcrumbsAtStart.length === 0}
-        >
-          <EuiBreadcrumbs
-            isNested
-            breadcrumbs={overflowBreadcrumbs}
-            responsive={false}
-            truncate={false}
-            max={0}
-          />
-        </EuiBreadcrumbCollapsed>
-      );
-    }
-
-    return [...breadcrumbsAtStart, ...breadcrumbsAtEnd];
-  };
-
-  const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => (
-    <EuiBreadcrumb key={index} isHeaderBreadcrumb={isHeaderBreadcrumb}>
-      <EuiBreadcrumbContent
-        truncate={truncate}
-        isHeaderBreadcrumb={isHeaderBreadcrumb}
-        isFirstBreadcrumb={index === 0}
-        isLastBreadcrumb={index === breadcrumbs.length - 1}
-        isOnlyBreadcrumb={breadcrumbs.length === 1}
-        isNestedBreadcrumb={isNested}
-        {...breadcrumb}
-      />
-    </EuiBreadcrumb>
-  ));
-
-  const limitedBreadcrumbs = responsiveMax
-    ? limitBreadcrumbs(breadcrumbElements, responsiveMax, breadcrumbs)
-    : breadcrumbElements;
+        return breadcrumb.isCollapsedButton ? (
+          <EuiBreadcrumbCollapsed
+            key="collapsed"
+            isHeaderBreadcrumb={isHeaderBreadcrumb}
+            isFirstBreadcrumb={isFirstBreadcrumb}
+          >
+            <EuiBreadcrumbs
+              breadcrumbs={breadcrumb.overflowBreadcrumbs}
+              isNested
+              responsive={false}
+              truncate={false}
+              max={0}
+            />
+          </EuiBreadcrumbCollapsed>
+        ) : (
+          <EuiBreadcrumb key={index} isHeaderBreadcrumb={isHeaderBreadcrumb}>
+            <EuiBreadcrumbContent
+              truncate={truncate}
+              isHeaderBreadcrumb={isHeaderBreadcrumb}
+              isFirstBreadcrumb={isFirstBreadcrumb}
+              isLastBreadcrumb={isLastBreadcrumb}
+              isOnlyBreadcrumb={isOnlyBreadcrumb}
+              isNestedBreadcrumb={isNested}
+              {...breadcrumb}
+            />
+          </EuiBreadcrumb>
+        );
+      }),
+    [visibleBreadcrumbs, truncate, isHeaderBreadcrumb, isNested]
+  );
 
   return (
     <nav
@@ -187,7 +155,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
       {...rest}
     >
       <ol className="euiBreadcrumbs__list" css={cssBreadcrumbsListStyles}>
-        {limitedBreadcrumbs}
+        {breadcrumbChildren}
       </ol>
     </nav>
   );
@@ -234,4 +202,53 @@ export const useResponsiveMax = (
   }
 
   return responsiveMax;
+};
+
+type _EuiBreadcrumbCollapsedObj = {
+  isCollapsedButton: true;
+  overflowBreadcrumbs: EuiBreadcrumbProps[];
+};
+type _EuiBreadcrumbsObjs = Array<
+  ExclusiveUnion<EuiBreadcrumbProps, _EuiBreadcrumbCollapsedObj>
+>;
+
+export const limitBreadcrumbs = (
+  breadcrumbs: EuiBreadcrumbsProps['breadcrumbs'],
+  max: number
+): _EuiBreadcrumbsObjs => {
+  const breadcrumbsAtStart = [];
+  const breadcrumbsAtEnd = [];
+  const limit = Math.min(max, breadcrumbs.length);
+  const start = Math.floor(limit / 2);
+  const overflowBreadcrumbs = breadcrumbs.slice(
+    start,
+    start + breadcrumbs.length - limit
+  );
+
+  for (let i = 0; i < limit; i++) {
+    // We'll alternate with displaying breadcrumbs at the end and at the start, but be biased
+    // towards breadcrumbs the end so that if max is an odd number, we'll have one more
+    // breadcrumb visible at the end than at the beginning.
+    const isEven = i % 2 === 0;
+
+    // We're picking breadcrumbs from the front AND the back, so we treat each iteration as a
+    // half-iteration.
+    const normalizedIndex = Math.floor(i * 0.5);
+    const indexOfBreadcrumb = isEven
+      ? breadcrumbs.length - 1 - normalizedIndex
+      : normalizedIndex;
+    const breadcrumb = breadcrumbs[indexOfBreadcrumb];
+
+    if (isEven) {
+      breadcrumbsAtEnd.unshift(breadcrumb);
+    } else {
+      breadcrumbsAtStart.push(breadcrumb);
+    }
+  }
+
+  return [
+    ...breadcrumbsAtStart,
+    { isCollapsedButton: true, overflowBreadcrumbs },
+    ...breadcrumbsAtEnd,
+  ];
 };
