@@ -14,24 +14,23 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, keysOf } from '../common';
+import { useEuiTheme } from '../../services';
+import { CommonProps } from '../common';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 
 import { IconType, EuiIcon } from '../icon';
-
 import { EuiText } from '../text';
 
-type ToastColor = 'primary' | 'success' | 'warning' | 'danger';
+import {
+  euiToastStyles,
+  euiToastBodyStyles,
+  euiToastHeaderStyles,
+} from './toast.styles';
 
-const colorToClassNameMap: { [color in ToastColor]: string } = {
-  primary: 'euiToast--primary',
-  success: 'euiToast--success',
-  warning: 'euiToast--warning',
-  danger: 'euiToast--danger',
-};
+export const COLORS = ['primary', 'success', 'warning', 'danger'] as const;
 
-export const COLORS = keysOf(colorToClassNameMap);
+type ToastColor = typeof COLORS[number];
 
 export interface EuiToastProps
   extends CommonProps,
@@ -51,21 +50,24 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
   className,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiToast',
-    color ? colorToClassNameMap[color] : null,
-    className
-  );
-  const headerClasses = classNames('euiToastHeader', {
-    'euiToastHeader--withBody': children,
-  });
+  const euiTheme = useEuiTheme();
+  const baseStyles = euiToastStyles(euiTheme);
+  const baseCss = [baseStyles.euiToast, color && baseStyles[color]];
+  const bodyStyles = euiToastBodyStyles();
+  const headerStyles = euiToastHeaderStyles(euiTheme);
+  const headerCss = [
+    headerStyles.euiToastHeader,
+    children && headerStyles.withBody,
+  ];
+
+  const classes = classNames('euiToast', className);
 
   let headerIcon: ReactElement;
 
   if (iconType) {
     headerIcon = (
       <EuiIcon
-        className="euiToastHeader__icon"
+        css={headerStyles.euiToastHeader__icon}
         type={iconType}
         size="m"
         aria-hidden="true"
@@ -80,8 +82,8 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
       <EuiI18n token="euiToast.dismissToast" default="Dismiss toast">
         {(dismissToast: string) => (
           <button
+            css={baseStyles.euiToast__closeButton}
             type="button"
-            className="euiToast__closeButton"
             aria-label={dismissToast}
             onClick={onClose}
             data-test-subj="toastCloseButton"
@@ -97,14 +99,18 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
 
   if (children) {
     optionalBody = (
-      <EuiText size="s" className="euiToastBody">
+      <EuiText
+        css={bodyStyles.euiToastBody}
+        size="s"
+        data-test-subj="euiToastBody"
+      >
         {children}
       </EuiText>
     );
   }
 
   return (
-    <div className={classes} {...rest}>
+    <div css={baseCss} className={classes} {...rest}>
       <EuiScreenReaderOnly>
         <p>
           <EuiI18n
@@ -117,13 +123,18 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
       <EuiI18n token="euiToast.notification" default="Notification">
         {(notification: string) => (
           <div
-            className={headerClasses}
+            css={headerCss}
             aria-label={notification}
             data-test-subj="euiToastHeader"
           >
             {headerIcon}
 
-            <span className="euiToastHeader__title">{title}</span>
+            <span
+              css={headerStyles.euiToastHeader__title}
+              data-test-subj="euiToastHeader__title"
+            >
+              {title}
+            </span>
           </div>
         )}
       </EuiI18n>
