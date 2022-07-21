@@ -117,10 +117,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
     };
   }, [responsive, functionToCallOnWindowResize]);
 
-  // Emotion styles
   const euiTheme = useEuiTheme();
-
-  // Breadcrumb ordered list styles
   const breadcrumbsListStyles = euiBreadcrumbsListStyles(euiTheme);
   const cssBreadcrumbsListStyles = [
     breadcrumbsListStyles.euiBreadcrumbs__list,
@@ -218,12 +215,12 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
     ? limitBreadcrumbs(breadcrumbElements, calculatedMax, breadcrumbs)
     : breadcrumbElements;
 
-  const classes = classNames('euiBreadcrumbs', className, {
-    'euiBreadcrumbs--truncate': truncate,
-  });
-
   return (
-    <nav aria-label={ariaLabel} className={classes} {...rest}>
+    <nav
+      aria-label={ariaLabel}
+      className={classNames('euiBreadcrumbs', className)}
+      {...rest}
+    >
       <ol className="euiBreadcrumbs__list" css={cssBreadcrumbsListStyles}>
         {limitedBreadcrumbs}
       </ol>

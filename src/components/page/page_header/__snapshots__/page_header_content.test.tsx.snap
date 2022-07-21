@@ -190,7 +190,7 @@ exports[`EuiPageHeaderContent props breadcrumbs is rendered 1`] = `
 >
   <nav
     aria-label="aria-label"
-    class="euiBreadcrumbs testClass1 testClass2 euiBreadcrumbs--truncate"
+    class="euiBreadcrumbs testClass1 testClass2"
     data-test-subj="test subject string"
   >
     <ol

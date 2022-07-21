@@ -3,7 +3,7 @@
 exports[`EuiBreadcrumbs is rendered 1`] = `
 <nav
   aria-label="aria-label"
-  class="euiBreadcrumbs testClass1 testClass2 euiBreadcrumbs--truncate"
+  class="euiBreadcrumbs testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <ol
@@ -92,7 +92,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
 exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
 <nav
   aria-label="aria-label"
-  class="euiBreadcrumbs testClass1 testClass2 euiBreadcrumbs--truncate"
+  class="euiBreadcrumbs testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <ol
@@ -182,7 +182,7 @@ exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
 exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of breadcrumbs 1`] = `
 <nav
   aria-label="Breadcrumbs"
-  class="euiBreadcrumbs euiBreadcrumbs--truncate"
+  class="euiBreadcrumbs"
 >
   <ol
     class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
@@ -274,7 +274,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
 exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
 <nav
   aria-label="Breadcrumbs"
-  class="euiBreadcrumbs euiBreadcrumbs--truncate"
+  class="euiBreadcrumbs"
 >
   <ol
     class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
@@ -319,7 +319,7 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
 exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
 <nav
   aria-label="Breadcrumbs"
-  class="euiBreadcrumbs euiBreadcrumbs--truncate"
+  class="euiBreadcrumbs"
 >
   <ol
     class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
@@ -411,7 +411,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
 exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
 <nav
   aria-label="Breadcrumbs"
-  class="euiBreadcrumbs euiBreadcrumbs--truncate"
+  class="euiBreadcrumbs"
 >
   <ol
     class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
@@ -499,7 +499,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
 exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
 <nav
   aria-label="Breadcrumbs"
-  class="euiBreadcrumbs euiBreadcrumbs--truncate"
+  class="euiBreadcrumbs"
 >
   <ol
     class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
@@ -587,7 +587,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
 exports[`EuiBreadcrumbs props responsive is rendered with custom breakpoints 1`] = `
 <nav
   aria-label="Breadcrumbs"
-  class="euiBreadcrumbs euiBreadcrumbs--truncate"
+  class="euiBreadcrumbs"
 >
   <ol
     class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"

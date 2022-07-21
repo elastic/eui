@@ -11,7 +11,7 @@ import { UseEuiTheme } from '../../services';
 import { euiFontSize, logicalCSS } from '../../global_styling';
 
 export const euiBreadcrumbsListStyles = (euiThemeContext: UseEuiTheme) => {
-  // Styles cast to the <nav> element
+  // Styles cast to the <ol> element
   const { euiTheme } = euiThemeContext;
   return {
     euiBreadcrumbs__list: css`
