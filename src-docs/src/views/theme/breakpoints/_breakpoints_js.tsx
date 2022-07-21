@@ -157,25 +157,28 @@ export default () => {
         example={
           <p
             css={css`
-              ${useEuiBreakpoint([0, 'm'])} {
+              ${useEuiBreakpoint(['xs', 's'])} {
                 color: ${euiTheme.colors.dangerText};
               }
-              ${useEuiBreakpoint(['m', 'xl'])} {
+              ${useEuiBreakpoint(['m'])} {
                 color: ${euiTheme.colors.warningText};
               }
-              ${useEuiBreakpoint(['xl', Infinity])} {
+              ${useEuiBreakpoint(['l', 'xl'])} {
                 color: ${euiTheme.colors.successText};
               }
             `}
           >
-            This text is red on screens narrower than `m`, yellow between `m` to
-            `xl` breakpoints, and green on screens wider than `xl`.
+            This text is red on small screens, yellow on medium screens, and
+            green on large screens.
           </p>
         }
-        snippet={`\${useEuiBreakpoint(['m', 'xl'])} {
+        snippet={`\${useEuiBreakpoint(['xs', 's'])} {
     color: red;
   }
-  \${useEuiBreakpoint(['xl', Infinity])} {
+  \${useEuiBreakpoint(['m'])} {
+    color: yellow;
+  }
+  \${useEuiBreakpoint(['l', 'xl'])} {
     color: green;
   }`}
         snippetLanguage="emotion"
