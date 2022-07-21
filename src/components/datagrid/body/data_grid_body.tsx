@@ -388,7 +388,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
    * Heights
    */
   const rowHeightUtils = useRowHeightUtils({
-    gridRef: gridRef.current,
+    gridRef,
     gridStyles,
     columns,
     rowHeightsOptions,

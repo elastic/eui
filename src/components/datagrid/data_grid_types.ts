@@ -29,6 +29,8 @@ import { RowHeightUtils } from './utils/row_heights';
 import { IconType } from '../icon';
 import { EuiTokenProps } from '../token';
 
+// since react-window doesn't export a type with the imperative api only we can
+// use this to omit the react-specific class component methods
 export type ImperativeGridApi = Omit<Grid, keyof Component>;
 
 export interface EuiDataGridToolbarProps {

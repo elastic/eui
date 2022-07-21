@@ -289,7 +289,7 @@ exports[`EuiHealth props textSize inherit is rendered 1`] = `
 
 exports[`EuiHealth props textSize m is rendered 1`] = `
 <div
-  class="euiHealth css-28ntf-euiHealth-m"
+  class="euiHealth emotion-euiHealth-m"
 >
   <div
     class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"

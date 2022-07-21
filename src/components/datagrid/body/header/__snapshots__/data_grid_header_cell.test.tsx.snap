@@ -18,6 +18,7 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
     anchorPosition="downCenter"
     button={
       <button
+        aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
         className="euiDataGridHeaderCell__button"
         onClick={[Function]}
       >
@@ -28,7 +29,6 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
           someColumn
         </div>
         <EuiIcon
-          aria-label="Header actions"
           className="euiDataGridHeaderCell__icon"
           color="text"
           data-test-subj="dataGridHeaderCellActionButton-someColumn"
@@ -39,7 +39,7 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
     }
     className="eui-fullWidth"
     closePopover={[Function]}
-    display="inlineBlock"
+    display="inline-block"
     hasArrow={true}
     isOpen={false}
     offset={7}
@@ -99,5 +99,18 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
       }
     />
   </EuiPopover>
+  <p
+    hidden={true}
+    id="euiDataGridCellHeader_generated-id_sorting"
+  />
+  <p
+    hidden={true}
+    id="euiDataGridCellHeader_generated-id_actions"
+  >
+    <EuiI18n
+      default="Click to view column header actions"
+      token="euiDataGridHeaderCell.headerActions"
+    />
+  </p>
 </EuiDataGridHeaderCellWrapper>
 `;

@@ -19,7 +19,7 @@ Array [
     </div>
   </div>,
   <div
-    class="euiPopoverFooter"
+    class="euiPopoverFooter emotion-euiPopoverFooter-l"
   >
     <div
       class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--directionRow euiFlexGroup--wrap"

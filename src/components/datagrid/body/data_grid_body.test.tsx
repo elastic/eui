@@ -9,12 +9,22 @@
 import React from 'react';
 import { mount, render, shallow } from 'enzyme';
 
-import { mockRowHeightUtils } from '../utils/__mocks__/row_heights';
+import { RowHeightUtils } from '../utils/__mocks__/row_heights';
 import { schemaDetectors } from '../utils/data_grid_schema';
 
 import { EuiDataGridBody, Cell } from './data_grid_body';
 
 describe('EuiDataGridBody', () => {
+  const gridRef = {
+    current: {
+      resetAfterColumnIndex: jest.fn(),
+      resetAfterRowIndex: jest.fn(),
+    } as any,
+  };
+  const gridItemsRendered = { current: null };
+  const rerenderGridBodyRef = { current: null };
+  const rowHeightUtils = new RowHeightUtils(gridRef, rerenderGridBodyRef);
+
   const requiredProps = {
     headerIsInteractive: true,
     rowCount: 1,
@@ -39,17 +49,12 @@ describe('EuiDataGridBody', () => {
     setVisibleColumns: jest.fn(),
     switchColumnPos: jest.fn(),
     schemaDetectors,
-    rowHeightUtils: mockRowHeightUtils,
+    rowHeightUtils,
     isFullScreen: false,
     gridStyles: {},
     gridWidth: 300,
-    gridRef: {
-      current: {
-        resetAfterColumnIndex: jest.fn(),
-        resetAfterRowIndex: jest.fn(),
-      } as any,
-    },
-    gridItemsRendered: {} as any,
+    gridRef,
+    gridItemsRendered,
     wrapperRef: { current: document.createElement('div') },
   };
 

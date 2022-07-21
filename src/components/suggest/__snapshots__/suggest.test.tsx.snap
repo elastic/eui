@@ -6,10 +6,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+      class="euiPopover euiInputPopover emotion-euiPopover-EuiInputPopover"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover__anchor css-zih94u-render"
       >
         <div>
           <div
@@ -63,10 +63,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+      class="euiPopover euiInputPopover emotion-euiPopover-EuiInputPopover"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover__anchor css-zih94u-render"
       >
         <div>
           <div
@@ -125,10 +125,10 @@ Array [
     class="euiSelectable"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+      class="euiPopover euiInputPopover emotion-euiPopover-EuiInputPopover"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover__anchor css-zih94u-render"
       >
         <div>
           <div
@@ -182,10 +182,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+      class="euiPopover euiInputPopover emotion-euiPopover-EuiInputPopover"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover__anchor css-zih94u-render"
       >
         <div>
           <div
@@ -239,10 +239,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+      class="euiPopover euiInputPopover emotion-euiPopover-EuiInputPopover"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover__anchor css-zih94u-render"
       >
         <div>
           <div
@@ -296,10 +296,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+      class="euiPopover euiInputPopover emotion-euiPopover-EuiInputPopover"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover__anchor css-zih94u-render"
       >
         <div>
           <div
@@ -353,10 +353,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover"
+      class="euiPopover euiInputPopover emotion-euiPopover-EuiInputPopover"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover__anchor css-zih94u-render"
       >
         <div>
           <div
@@ -432,10 +432,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+      class="euiPopover euiInputPopover emotion-euiPopover-EuiInputPopover"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover__anchor css-zih94u-render"
       >
         <div>
           <div
@@ -498,10 +498,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+      class="euiPopover euiInputPopover emotion-euiPopover-EuiInputPopover"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover__anchor css-zih94u-render"
       >
         <div>
           <div
@@ -564,10 +564,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+      class="euiPopover euiInputPopover emotion-euiPopover-EuiInputPopover"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover__anchor css-zih94u-render"
       >
         <div>
           <div
@@ -621,10 +621,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+      class="euiPopover euiInputPopover emotion-euiPopover-EuiInputPopover"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover__anchor css-zih94u-render"
       >
         <div>
           <div
@@ -687,10 +687,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+      class="euiPopover euiInputPopover emotion-euiPopover-EuiInputPopover"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover__anchor css-zih94u-render"
       >
         <div>
           <div
@@ -753,10 +753,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+      class="euiPopover euiInputPopover emotion-euiPopover-EuiInputPopover"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover__anchor css-zih94u-render"
       >
         <div>
           <div
@@ -819,10 +819,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+      class="euiPopover euiInputPopover emotion-euiPopover-EuiInputPopover"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover__anchor css-zih94u-render"
       >
         <div>
           <div
@@ -876,10 +876,10 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+      class="euiPopover euiInputPopover emotion-euiPopover-EuiInputPopover"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover__anchor css-zih94u-render"
       >
         <div>
           <div
