@@ -52,6 +52,7 @@ export const EuiDescriptionList: FunctionComponent<
   );
 
   let childrenOrListItems = null;
+
   if (listItems) {
     childrenOrListItems = listItems.map((item, index) => {
       return [
