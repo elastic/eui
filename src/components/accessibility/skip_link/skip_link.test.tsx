@@ -24,24 +24,39 @@ describe('EuiSkipLink', () => {
   });
 
   describe('props', () => {
-    test('overrideLinkBehavior prevents default link behavior and manually scrolls and focuses the destination', () => {
-      const scrollSpy = jest.fn();
-      const focusSpy = jest.fn();
-      jest.spyOn(document, 'getElementById').mockReturnValue({
-        scrollIntoView: scrollSpy,
-        focus: focusSpy,
-      } as any);
+    describe('overrideLinkBehavior', () => {
+      const mockElement = document.createElement('main');
+      jest.spyOn(document, 'getElementById').mockReturnValue(mockElement);
 
-      const component = mount(
-        <EuiSkipLink destinationId="somewhere" overrideLinkBehavior />
-      );
+      it('prevents default link behavior and manually focuses the destination', () => {
+        const focusSpy = jest.fn();
+        mockElement.focus = focusSpy;
 
-      const preventDefault = jest.fn();
-      component.find('EuiButton').simulate('click', { preventDefault });
+        const component = mount(
+          <EuiSkipLink destinationId="somewhere" overrideLinkBehavior />
+        );
 
-      expect(preventDefault).toHaveBeenCalled();
-      expect(scrollSpy).toHaveBeenCalled();
-      expect(focusSpy).toHaveBeenCalled();
+        const preventDefault = jest.fn();
+        component.find('EuiButton').simulate('click', { preventDefault });
+
+        expect(preventDefault).toHaveBeenCalled();
+        expect(focusSpy).toHaveBeenCalled();
+      });
+
+      it('only scrolls to the destination if out of view', () => {
+        const scrollSpy = jest.fn();
+        mockElement.scrollIntoView = scrollSpy;
+
+        const component = mount(
+          <EuiSkipLink destinationId="somewhere" overrideLinkBehavior />
+        );
+        component.find('EuiButton').simulate('click');
+        expect(scrollSpy).not.toHaveBeenCalled();
+
+        mockElement.getBoundingClientRect = () => ({ top: 1000 } as any);
+        component.find('EuiButton').simulate('click');
+        expect(scrollSpy).toHaveBeenCalled();
+      });
     });
 
     test('tabIndex is rendered', () => {

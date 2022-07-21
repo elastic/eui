@@ -381,6 +381,23 @@ describe('EuiPopover', () => {
 
       expect(component.render()).toMatchSnapshot();
     });
+
+    test('popoverScreenReaderText', () => {
+      const component = mount(
+        <div>
+          <EuiPopover
+            id={getId()}
+            button={<button />}
+            closePopover={() => {}}
+            isOpen
+            ownFocus={false}
+            popoverScreenReaderText="Press the up/down arrow keys to navigate"
+          />
+        </div>
+      );
+
+      expect(component.render()).toMatchSnapshot();
+    });
   });
 
   describe('listener cleanup', () => {

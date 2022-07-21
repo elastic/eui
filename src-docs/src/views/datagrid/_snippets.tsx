@@ -8,15 +8,20 @@ inMemory={{ level: 'sorting' }}`,
   columns: `columns={[
   {
     id: 'A', // required
+    display: <>Column A <EuiIcon type="dot" /></>, // optional column header rendering
+    displayAsText: 'Column A', // column header as plain text
     initialWidth: 150, // starting width of 150px
     isResizable: false, // prevents the user from resizing width
-    actions: false, // no column header actions are displayed
     isExpandable: false, // doesn't allow clicking in to see the content in a popup
-    actions: { showMoveLeft: false, showMoveRight: false }, // doesn't show move actions in column header
+    isSortable: false, // prevents the user from sorting the data grid by this column
+    defaultSortDirection: 'asc', // sets the default sort direction
     schema: 'franchise', // custom schema later defined under schemaDetectors
+    actions: false, // no column header actions are displayed
+    actions: { showMoveLeft: false, showMoveRight: false }, // doesn't show move actions in column header
     cellActions: [ // provides one additional cell action that triggers an alert once clicked
       ({ Component }) => <Component iconType="heart" onClick={() => alert('test')}>Custom action</Component>,
     ],
+    visibleCellActions: 2, // configures the number of cell action buttons immediately visible on a cell
   },
 ]}`,
   columnVisibility: `columnVisibility={{
@@ -101,4 +106,21 @@ ref={dataGridRef}`,
     </Link>
   ),
   onColumnResize: 'onColumnResize={({columnId, width}) => {}}',
+  virtualizationOptions: `// Optional. For advanced control of the underlying react-window virtualization grid.
+virtualizationOptions={{
+  className: 'virtualizedGridClass',
+  style: {},
+  direction: 'ltr',
+  estimatedRowHeight: 50,
+  overscanColumnCount: 1,
+  overscanRowCount: 1,
+  initialScrollLeft: 0,
+  initialScrollTop: 0,
+  onScroll: () => {},
+  onItemsRendered: () => {},
+  itemKey: () => {},
+  outerElementType: 'div',
+}}
+// Properties not listed above are used by EuiDataGrid internals and cannot be overridden.
+`,
 };

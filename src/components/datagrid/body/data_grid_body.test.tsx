@@ -98,6 +98,22 @@ describe('EuiDataGridBody', () => {
     expect(component.find('[data-test-subj="footer"]')).toHaveLength(2);
   });
 
+  it('passes some virtualization options to the underlying react-window grid', () => {
+    const onItemsRendered = jest.fn();
+    const component = mount(
+      <EuiDataGridBody
+        {...requiredProps}
+        virtualizationOptions={{
+          initialScrollTop: 50,
+          className: 'test',
+          onItemsRendered,
+        }}
+      />
+    );
+    expect(component.find('.test').exists()).toBe(true);
+    expect(onItemsRendered).toHaveBeenCalled();
+  });
+
   // TODO: Test final height/weights in Cypress
 
   // TODO: Test tabbing in Cypress

@@ -13,10 +13,14 @@ import React, {
   HTMLAttributes,
   useContext,
   useState,
+  useRef,
+  useCallback,
 } from 'react';
+import { tabbable, FocusableElement } from 'tabbable';
+import { keys } from '../../../../services';
 import { useGeneratedHtmlId } from '../../../../services/accessibility';
 import { EuiScreenReaderOnly } from '../../../accessibility';
-import { useEuiI18n } from '../../../i18n';
+import { useEuiI18n, EuiI18n } from '../../../i18n';
 import { EuiIcon } from '../../../icon';
 import { EuiListGroup } from '../../../list_group';
 import { EuiPopover } from '../../../popover';
@@ -90,6 +94,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
   }
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const popoverArrowNavigationProps = usePopoverArrowNavigation();
 
   const columnActions = getColumnActions({
     column,
@@ -140,13 +145,17 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       {!showColumnActions ? (
         <>
           {sortingArrow}
-          <div className="euiDataGridHeaderCell__content">
+          <div
+            className="euiDataGridHeaderCell__content"
+            title={displayAsText || id}
+          >
             {display || displayAsText || id}
           </div>
         </>
       ) : (
         <EuiPopover
-          anchorClassName="euiDataGridHeaderCell__anchor"
+          className="eui-fullWidth"
+          anchorClassName="eui-fullWidth"
           panelPaddingSize="none"
           offset={7}
           button={
@@ -158,7 +167,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               }}
             >
               {sortingArrow}
-              <div className="euiDataGridHeaderCell__content">
+              <div
+                className="euiDataGridHeaderCell__content"
+                title={displayAsText || id}
+              >
                 {display || displayAsText || id}
               </div>
               <EuiIcon
@@ -173,16 +185,75 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           }
           isOpen={isPopoverOpen}
           closePopover={() => setIsPopoverOpen(false)}
+          {...popoverArrowNavigationProps}
         >
-          <div>
-            <EuiListGroup
-              listItems={columnActions}
-              gutterSize="none"
-              data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
-            />
-          </div>
+          <EuiListGroup
+            listItems={columnActions}
+            gutterSize="none"
+            data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
+          />
         </EuiPopover>
       )}
     </EuiDataGridHeaderCellWrapper>
   );
+};
+
+/**
+ * Add keyboard arrow navigation to the cell actions popover
+ * to match the UX of the rest of EuiDataGrid
+ */
+export const usePopoverArrowNavigation = () => {
+  const popoverPanelRef = useRef<HTMLElement | null>(null);
+  const actionsRef = useRef<FocusableElement[] | undefined>(undefined);
+  const panelRef = useCallback((ref) => {
+    popoverPanelRef.current = ref;
+    actionsRef.current = ref ? tabbable(ref) : undefined;
+  }, []);
+
+  const onKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key !== keys.ARROW_DOWN && e.key !== keys.ARROW_UP) return;
+    if (!actionsRef.current?.length) return;
+
+    e.preventDefault();
+
+    const initialState = document.activeElement === popoverPanelRef.current;
+    const currentIndex = !initialState
+      ? actionsRef.current.findIndex((el) => document.activeElement === el)
+      : -1;
+    const lastIndex = actionsRef.current.length - 1;
+
+    let indexToFocus: number;
+    if (initialState) {
+      if (e.key === keys.ARROW_DOWN) {
+        indexToFocus = 0;
+      } else if (e.key === keys.ARROW_UP) {
+        indexToFocus = lastIndex;
+      }
+    } else {
+      if (e.key === keys.ARROW_DOWN) {
+        indexToFocus = currentIndex + 1;
+        if (indexToFocus > lastIndex) {
+          indexToFocus = 0;
+        }
+      } else if (e.key === keys.ARROW_UP) {
+        indexToFocus = currentIndex - 1;
+        if (indexToFocus < 0) {
+          indexToFocus = lastIndex;
+        }
+      }
+    }
+
+    actionsRef.current[indexToFocus!].focus();
+  }, []);
+
+  return {
+    panelRef,
+    panelProps: { onKeyDown },
+    popoverScreenReaderText: (
+      <EuiI18n
+        token="euiDataGridHeaderCell.actionsPopoverScreenReaderText"
+        default="To navigate through the list of column actions, press the Tab or Up and Down arrow keys."
+      />
+    ),
+  };
 };

@@ -25,6 +25,12 @@ export default () => {
     type: PropTypes.String,
   };
 
+  propsToUse.color = {
+    ...propsToUse.color,
+    value: 'success',
+    type: PropTypes.String,
+  };
+
   return {
     config: {
       componentName: 'EuiProgress',

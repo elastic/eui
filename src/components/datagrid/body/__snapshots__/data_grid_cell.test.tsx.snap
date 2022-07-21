@@ -37,169 +37,47 @@ Array [
 `;
 
 exports[`EuiDataGridCell renders 1`] = `
-<EuiDataGridCell
-  colIndex={0}
-  columnId="someColumn"
-  interactiveCellId="someId"
-  isExpandable={true}
-  popoverContext={
-    Object {
-      "cellLocation": Object {
-        "colIndex": 0,
-        "rowIndex": 0,
-      },
-      "closeCellPopover": [MockFunction],
-      "openCellPopover": [MockFunction],
-      "popoverIsOpen": false,
-      "setPopoverAnchor": [MockFunction],
-      "setPopoverContent": [MockFunction],
-    }
-  }
-  renderCellValue={[Function]}
-  rowHeightUtils={
-    Object {
-      "cacheStyles": [MockFunction],
-      "calculateHeightForLineCount": [MockFunction],
-      "getCalculatedHeight": [MockFunction],
-      "getLineCount": [MockFunction],
-      "getRowHeight": [MockFunction],
-      "getRowHeightOption": [MockFunction] {
-        "calls": Array [
-          Array [
-            0,
-            undefined,
-          ],
-        ],
-        "results": Array [
-          Object {
-            "type": "return",
-            "value": undefined,
-          },
-        ],
-      },
-      "getStylesForCell": [MockFunction],
-      "isAutoHeight": [MockFunction],
-      "isRowHeightOverride": [MockFunction],
-      "pruneHiddenColumnHeights": [MockFunction],
-      "setGrid": [MockFunction],
-      "setRerenderGridBody": [MockFunction],
-      "setRowHeight": [MockFunction],
-    }
-  }
-  rowIndex={0}
-  visibleRowIndex={0}
+<div
+  aria-rowindex="1"
+  class="euiDataGridRowCell"
+  data-gridcell-column-id="someColumn"
+  data-gridcell-column-index="0"
+  data-gridcell-row-index="0"
+  data-gridcell-visible-row-index="0"
+  data-test-subj="dataGridRowCell"
+  role="gridcell"
+  style="top:0"
+  tabindex="-1"
 >
   <div
-    className="euiDataGridRowCell"
-    data-gridcell-column-id="someColumn"
-    data-gridcell-column-index={0}
-    data-gridcell-row-index={0}
-    data-gridcell-visible-row-index={0}
-    data-test-subj="dataGridRowCell"
-    onBlur={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    role="gridcell"
-    style={
-      Object {
-        "lineHeight": undefined,
-        "top": 0,
-        "width": undefined,
-      }
-    }
-    tabIndex={-1}
+    class="euiDataGridRowCell__expandFlex"
   >
     <div
-      className="euiDataGridRowCell__expandFlex"
+      class="euiDataGridRowCell__expandContent"
     >
       <div
-        className="euiDataGridRowCell__expandContent"
+        class="euiDataGridRowCell__truncate"
+        data-datagrid-cellcontent="true"
       >
-        <Memo()
-          colIndex={0}
-          columnId="someColumn"
-          isDefinedHeight={false}
-          isDetails={false}
-          isExpandable={true}
-          isExpanded={false}
-          renderCellValue={[Function]}
-          rowHeightUtils={
-            Object {
-              "cacheStyles": [MockFunction],
-              "calculateHeightForLineCount": [MockFunction],
-              "getCalculatedHeight": [MockFunction],
-              "getLineCount": [MockFunction],
-              "getRowHeight": [MockFunction],
-              "getRowHeightOption": [MockFunction] {
-                "calls": Array [
-                  Array [
-                    0,
-                    undefined,
-                  ],
-                ],
-                "results": Array [
-                  Object {
-                    "type": "return",
-                    "value": undefined,
-                  },
-                ],
-              },
-              "getStylesForCell": [MockFunction],
-              "isAutoHeight": [MockFunction],
-              "isRowHeightOverride": [MockFunction],
-              "pruneHiddenColumnHeights": [MockFunction],
-              "setGrid": [MockFunction],
-              "setRerenderGridBody": [MockFunction],
-              "setRowHeight": [MockFunction],
-            }
-          }
-          rowIndex={0}
-          setCellContentsRef={[Function]}
-          setCellProps={[Function]}
-          visibleRowIndex={0}
-        >
-          <div
-            className="euiDataGridRowCell__truncate"
-            data-datagrid-cellcontent={true}
-            style={Object {}}
+        <div>
+          <button
+            data-datagrid-interactable="true"
           >
-            <renderCellValue
-              colIndex={0}
-              columnId="someColumn"
-              data-test-subj="cell-content"
-              isDetails={false}
-              isExpandable={true}
-              isExpanded={false}
-              rowIndex={0}
-              setCellProps={[Function]}
-              visibleRowIndex={0}
-            >
-              <div>
-                <button
-                  data-datagrid-interactable="true"
-                >
-                  hello
-                </button>
-                <button
-                  data-datagrid-interactable="true"
-                >
-                  world
-                </button>
-              </div>
-            </renderCellValue>
-          </div>
-          <EuiScreenReaderOnly>
-            <p
-              className="euiScreenReaderOnly"
-            >
-              Row: 1; Column: 1
-            </p>
-          </EuiScreenReaderOnly>
-        </Memo()>
+            hello
+          </button>
+          <button
+            data-datagrid-interactable="true"
+          >
+            world
+          </button>
+        </div>
       </div>
+      <p
+        class="emotion-euiScreenReaderOnly"
+      >
+        - someColumn, column 1, row 1
+      </p>
     </div>
   </div>
-</EuiDataGridCell>
+</div>
 `;

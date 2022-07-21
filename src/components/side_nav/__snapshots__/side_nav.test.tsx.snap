@@ -39,7 +39,7 @@ exports[`EuiSideNav props heading is hidden with screenReaderOnly 1`] = `
   class="euiSideNav"
 >
   <h2
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
     id="euiSideNav_generated-id_heading"
   >
     Side Nav Heading
