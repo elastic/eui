@@ -9,11 +9,6 @@
 import { useEuiTheme, UseEuiTheme } from '../../services/theme/hooks';
 import { EuiThemeBreakpoints, _EuiThemeBreakpoint } from '../variables';
 
-const mediaQuery = '@media only screen';
-const getMinWidthQuery = (breakpoint: number) => `(min-width: ${breakpoint}px)`;
-const getMaxWidthQuery = (breakpoint: number) =>
-  `(max-width: ${breakpoint - 1}px)`;
-
 /**
  * Generates a CSS media query rule string based on the input breakpoint ranges.
  * Examples:
@@ -50,9 +45,9 @@ export const euiBreakpoint = (
   }
 
   return [
-    mediaQuery,
-    minBreakpointSize ? getMinWidthQuery(minBreakpointSize) : false,
-    maxBreakpointSize ? getMaxWidthQuery(maxBreakpointSize) : false,
+    '@media only screen',
+    minBreakpointSize ? `(min-width: ${minBreakpointSize}px)` : false,
+    maxBreakpointSize ? `(max-width: ${maxBreakpointSize - 1}px)` : false,
   ]
     .filter(Boolean)
     .join(' and ');
