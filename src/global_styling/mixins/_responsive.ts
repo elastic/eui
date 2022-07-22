@@ -32,8 +32,7 @@ export const euiBreakpoint = (
   const firstBreakpoint: _EuiThemeBreakpoint = orderedSizes[0];
   const minBreakpointSize = euiTheme.breakpoint[firstBreakpoint];
 
-  const lastBreakpoint: _EuiThemeBreakpoint =
-    orderedSizes.length > 1 ? orderedSizes[sizes.length - 1] : firstBreakpoint;
+  const lastBreakpoint: _EuiThemeBreakpoint = orderedSizes[sizes.length - 1];
   let maxBreakpointSize: number | undefined;
 
   // To get the correct screen range, we set the max-width
