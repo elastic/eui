@@ -8,6 +8,7 @@ import {
   EuiSelectable,
   EuiSelectableMessage,
   EuiText,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import {
@@ -35,8 +36,6 @@ const selectableSizingSource = require('!!raw-loader!./selectable_sizing');
 
 import SelectableCustomRender from './selectable_custom_render';
 const selectableCustomRenderSource = require('!!raw-loader!./selectable_custom_render');
-
-import { EuiCallOut } from '../../../../src/components/call_out';
 
 const props = {
   EuiSelectable,
@@ -221,7 +220,6 @@ export const SelectableExample = {
           <p>
             Currently, adding <EuiCode>allowExclusions</EuiCode> simply allows
             cycling through the checked options (on {'-> off ->'} undefined).
-            Should this be allowed by holding down a modifier key instead?
           </p>
         </Fragment>
       ),
@@ -240,7 +238,7 @@ export const SelectableExample = {
       title: 'Messages and loading',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: selectableMessagesSource,
         },
       ],
@@ -298,7 +296,7 @@ export const SelectableExample = {
           <p>
             The width has been made to always be 100% of its container,
             including stretching the search input. When used inside of{' '}
-            <Link to="layout/popover">
+            <Link to="/layout/popover">
               <strong>EuiPopover</strong>
             </Link>
             , we recommend setting a width (or min/max values) via CSS on the
