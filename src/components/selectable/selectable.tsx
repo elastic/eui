@@ -278,10 +278,6 @@ export class EuiSelectable<T = {}> extends Component<
     }
   }
 
-  hasActiveOption = () => {
-    return this.state.activeOptionIndex != null;
-  };
-
   onMouseDown = () => {
     // Bypass onFocus when a click event originates from this.containerRef.
     // Prevents onFocus from scrolling away from a clicked option and negating the selection event.
