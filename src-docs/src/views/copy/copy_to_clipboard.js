@@ -34,8 +34,8 @@ export default () => {
   return (
     <EuiCommentList aria-label="Copy to clipboard example">
       <EuiComment
-        component="div"
         username="Gusteau"
+        timelineIconAriaLabel="Gusteau"
         event="added a comment"
         actions={
           <EuiToolTip
