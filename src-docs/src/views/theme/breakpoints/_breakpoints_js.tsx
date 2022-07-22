@@ -148,34 +148,44 @@ export default () => {
             </p>
             <p>
               You can also create media queries with a{' '}
-              <EuiCode>(min-width)</EuiCode> only or{' '}
-              <EuiCode>(max-width)</EuiCode> only by utilizing the{' '}
-              <EuiCode>0</EuiCode> and <EuiCode>Infinity</EuiCode> arguments.
+              <EuiCode>(max-width)</EuiCode> only or{' '}
+              <EuiCode>(min-width)</EuiCode> only by utilizing the{' '}
+              <EuiCode>xs</EuiCode> and <EuiCode>xl</EuiCode> arguments.
             </p>
           </>
         }
         example={
           <p
             css={css`
-              ${useEuiBreakpoint([0, 'm'])} {
+              ${useEuiBreakpoint(['s', 'l'])} {
+                font-weight: ${euiTheme.font.weight.bold};
+              }
+              ${useEuiBreakpoint(['xs', 's'])} {
                 color: ${euiTheme.colors.dangerText};
               }
-              ${useEuiBreakpoint(['m', 'xl'])} {
+              ${useEuiBreakpoint(['m'])} {
                 color: ${euiTheme.colors.warningText};
               }
-              ${useEuiBreakpoint(['xl', Infinity])} {
+              ${useEuiBreakpoint(['l', 'xl'])} {
                 color: ${euiTheme.colors.successText};
               }
             `}
           >
-            This text is red on screens narrower than `m`, yellow between `m` to
-            `xl` breakpoints, and green on screens wider than `xl`.
+            This text is bold on small to large screens, red on small and below
+            screens, yellow on medium screens, and green on large and above
+            screens.
           </p>
         }
-        snippet={`\${useEuiBreakpoint(['m', 'xl'])} {
+        snippet={`\${useEuiBreakpoint(['s', 'l'])} {
+    font-weight: bold;
+  }
+  \${useEuiBreakpoint(['xs', 's'])} {
     color: red;
   }
-  \${useEuiBreakpoint(['xl', Infinity])} {
+  \${useEuiBreakpoint(['m'])} {
+    color: yellow;
+  }
+  \${useEuiBreakpoint(['l', 'xl'])} {
     color: green;
   }`}
         snippetLanguage="emotion"
