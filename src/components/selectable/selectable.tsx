@@ -295,7 +295,10 @@ export class EuiSelectable<T = {}> extends Component<
       return;
     }
 
-    if (!this.state.visibleOptions.length || this.state.activeOptionIndex) {
+    if (
+      !this.state.visibleOptions.length ||
+      this.state.activeOptionIndex != null
+    ) {
       return;
     }
 
