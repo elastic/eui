@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 
 import {
+  EuiSwitch,
+  EuiSpacer,
   EuiSelectable,
   EuiSelectableOption,
-} from '../../../../src/components/selectable';
+} from '../../../../src/components';
 
 export default () => {
   const [options, setOptions] = useState<EuiSelectableOption[]>([
     {
       label: 'Titan',
       'data-test-subj': 'titanOption',
+      checked: 'on',
     },
     {
       label: 'Enceladus is disabled',
@@ -42,15 +45,25 @@ export default () => {
     },
   ]);
 
+  const [always, setAlways] = useState(true);
+
   return (
-    <EuiSelectable
-      aria-label="Single selection example"
-      options={options}
-      onChange={(newOptions) => setOptions(newOptions)}
-      singleSelection={true}
-      listProps={{ bordered: true }}
-    >
-      {(list) => list}
-    </EuiSelectable>
+    <>
+      <EuiSwitch
+        label={always ? 'always' : 'true'}
+        checked={always}
+        onChange={(e) => setAlways(e.target.checked)}
+      />
+      <EuiSpacer />
+      <EuiSelectable
+        aria-label="Single selection example"
+        options={options}
+        onChange={(newOptions) => setOptions(newOptions)}
+        singleSelection={always ? 'always' : true}
+        listProps={{ bordered: true }}
+      >
+        {(list) => list}
+      </EuiSelectable>
+    </>
   );
 };
