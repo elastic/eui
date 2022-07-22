@@ -48,9 +48,9 @@ export const EuiPortal: React.FC<EuiPortalProps> = ({
 }) => {
   const [portalNode, setPortalNode] = useState<HTMLDivElement | null>(null);
 
-  // mount
   useEffect(() => {
     const portalNode = document.createElement('div');
+    portalNode.dataset.euiportal = 'true';
     setPortalNode(portalNode);
 
     if (insert == null) {
@@ -62,7 +62,6 @@ export const EuiPortal: React.FC<EuiPortalProps> = ({
       sibling.insertAdjacentElement(insertPositions[position], portalNode);
     }
 
-    // unmount
     return () => {
       if (portalNode && portalNode.parentNode) {
         portalNode.parentNode.removeChild(portalNode);
