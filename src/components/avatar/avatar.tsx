@@ -179,7 +179,6 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
         className="euiAvatar__icon"
         size={iconSize || size}
         type={iconType}
-        aria-label={name}
         color={iconCustomColor === null ? undefined : iconCustomColor}
       />
     );
