@@ -108,7 +108,8 @@ export const SelectableExample = {
   aria-label="Basic example"
   options={[{ label: '' }, { label: '' }]}
   onChange={newOptions => setOptions(newOptions)}
-  listProps={{ bordered: true }}>
+  listProps={{ bordered: true }}
+>
   {list => list}
 </EuiSelectable>`,
     },
@@ -151,12 +152,16 @@ export const SelectableExample = {
       demo: <SelectableSearch />,
       snippet: `<EuiSelectable
   aria-label="Searchable example"
+  options={[
+    { label: 'A', searchableLabel: 'Alpha' },
+    { label: 'B', searchableLabel: 'Beta' },
+  ]}
+  onChange={newOptions => setOptions(newOptions)}
   searchable
   searchProps={{
     'data-test-subj': dataTestSubj,
   }}
-  options={[]}
-  onChange={newOptions => setOptions(newOptions)}>
+>
   {(list, search) => (
     <Fragment>
       {search}
@@ -187,13 +192,21 @@ export const SelectableExample = {
       ),
       props: { EuiSelectable },
       demo: <SelectableSingle />,
-      snippet: `
-      <EuiSelectable
+      snippet: `<EuiSelectable
   aria-label="Single selection example"
-  options={options}
+  options={[]}
   onChange={newOptions => setOptions(newOptions)}
-  singleSelection={true}
-  listProps={{ bordered: true }}>
+  singleSelection
+>
+  {list => list}
+</EuiSelectable>
+
+<EuiSelectable
+  aria-label="Single selection always example"
+  options={[]}
+  onChange={newOptions => setOptions(newOptions)}
+  singleSelection="always"
+>
   {list => list}
 </EuiSelectable>`,
     },
@@ -218,9 +231,10 @@ export const SelectableExample = {
       demo: <SelectableExclusion />,
       snippet: `<EuiSelectable
   aria-label="Example supporting exclusions"
-  allowExclusions
   options={[]}
-  onChange={newOptions => setOptions(newOptions)}>
+  onChange={newOptions => setOptions(newOptions)}
+  allowExclusions
+>
   {list => list}
 </EuiSelectable>`,
     },
@@ -253,20 +267,23 @@ export const SelectableExample = {
         `<EuiSelectable
   aria-label="Messaging example"
   options={[]}
-  listProps={{ bordered: true }}
   isLoading={isLoading}
   loadingMessage={customLoadingMessage}
   emptyMessage={customEmptyMessage}
   errorMessage={hasError ? errorMessage : undefined}
-  noMatchesMessage={customNoMatchesMessage}>
+  noMatchesMessage={customNoMatchesMessage}
+>
   {list => list}
 </EuiSelectable>`,
         `<EuiSelectable
   aria-label="Messaging example"
   options={[]}
-  listProps={{ bordered: true }}
-  isLoading={isLoading}>
-  {list => isLoading ? <EuiSelectableMessage bordered={true}>You have no spice</EuiSelectableMessage> : list}
+  isLoading={isLoading}
+>
+  {list => isLoading
+    ? <EuiSelectableMessage bordered={true}>You have no spice</EuiSelectableMessage>
+    : list
+  }
 </EuiSelectable>`,
       ],
     },
@@ -310,6 +327,17 @@ export const SelectableExample = {
         },
       ],
       props: { EuiSelectable },
+      snippet: `<EuiSelectable
+  options={[]}
+  onChange={newOptions => setOptions(newOptions)}
+  height="full"
+  listProps={{
+    bordered: true,
+    paddingSize: 'none',
+  }}
+>
+  {list => list}
+</EuiSelectable>`,
     },
     {
       title: 'Rendering the options',
@@ -386,22 +414,15 @@ export const SelectableExample = {
       ),
       demo: <SelectableCustomRender />,
       snippet: `<EuiSelectable
-  searchable
   options={[]}
   onChange={newOptions => setOptions(newOptions)}
-  height={240}
   renderOption={renderCountryOption}
   listProps={{
     rowHeight: 50,
     showIcons: false,
   }}
 >
-  {(list, search) => (
-    <Fragment>
-      {search}
-      {list}
-    </Fragment>
-  )}
+  {list => list}
 </EuiSelectable>`,
     },
   ],
