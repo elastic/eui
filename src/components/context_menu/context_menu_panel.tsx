@@ -316,7 +316,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
     // If EuiContextMenu is used within an EuiPopover, we need to wait for EuiPopover to:
     // 1. Correctly set its `returnFocus` to the toggling button,
     //    so focus is correctly restored to the popover toggle on close
-    // 2. Finish its own `updateFocus()` call 350ms after transitioning in,
+    // 2. Finish its react-focus-on `autoFocus` behavior after transitioning in,
     //    so the panel can handle its own focus without focus fighting
     if (this.initialPopoverParent) {
       this.initialPopoverParent.addEventListener(

@@ -12,7 +12,10 @@ import {
   EuiBreakpointSize,
   EuiCode,
   EuiThemeBreakpoints,
+  useEuiBreakpoint,
 } from '../../../../../src';
+
+import { css } from '@emotion/react';
 
 import { EuiThemeBreakpoints as _EuiThemeBreakpoints } from '../_props';
 import { getPropsFromComponent } from '../../../services/props/get_props';
@@ -131,6 +134,51 @@ export default () => {
         }
         snippet="useIsWithinBreakpoints(['l', 'xl'])"
         snippetLanguage="js"
+      />
+
+      <ThemeExample
+        title={<code>useEuiBreakpoint(sizes[])</code>}
+        type="hook"
+        description={
+          <>
+            <p>
+              Given an array of breakpoint keys, this hook generates a CSS media
+              query string based on the minimum width and maximum width
+              provided.
+            </p>
+            <p>
+              You can also create media queries with a{' '}
+              <EuiCode>(min-width)</EuiCode> only or{' '}
+              <EuiCode>(max-width)</EuiCode> only by utilizing the{' '}
+              <EuiCode>0</EuiCode> and <EuiCode>Infinity</EuiCode> arguments.
+            </p>
+          </>
+        }
+        example={
+          <p
+            css={css`
+              ${useEuiBreakpoint([0, 'm'])} {
+                color: ${euiTheme.colors.dangerText};
+              }
+              ${useEuiBreakpoint(['m', 'xl'])} {
+                color: ${euiTheme.colors.warningText};
+              }
+              ${useEuiBreakpoint(['xl', Infinity])} {
+                color: ${euiTheme.colors.successText};
+              }
+            `}
+          >
+            This text is red on screens narrower than `m`, yellow between `m` to
+            `xl` breakpoints, and green on screens wider than `xl`.
+          </p>
+        }
+        snippet={`\${useEuiBreakpoint(['m', 'xl'])} {
+    color: red;
+  }
+  \${useEuiBreakpoint(['xl', Infinity])} {
+    color: green;
+  }`}
+        snippetLanguage="emotion"
       />
     </>
   );

@@ -30,10 +30,10 @@ exports[`EuiDataGridBody renders 1`] = `
           style="margin-right:0px"
         />
         <div
-          class="euiPopover euiPopover--anchorDownCenter eui-fullWidth"
+          class="euiPopover eui-fullWidth emotion-euiPopover"
         >
           <div
-            class="euiPopover__anchor eui-fullWidth"
+            class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
           >
             <button
               aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
@@ -82,10 +82,10 @@ exports[`EuiDataGridBody renders 1`] = `
           style="margin-right:0px"
         />
         <div
-          class="euiPopover euiPopover--anchorDownCenter eui-fullWidth"
+          class="euiPopover eui-fullWidth emotion-euiPopover"
         >
           <div
-            class="euiPopover__anchor eui-fullWidth"
+            class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
           >
             <button
               aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"

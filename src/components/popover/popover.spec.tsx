@@ -43,24 +43,22 @@ describe('EuiPopover', () => {
     it('focuses the panel wrapper by default', () => {
       cy.mount(<PopoverComponent>Test</PopoverComponent>);
       cy.get('[data-test-subj="togglePopover"]').click();
-      cy.focused().should('have.attr', 'data-test-subj', 'popoverPanel');
+      cy.focused()
+        .should('have.attr', 'data-test-subj', 'popoverPanel')
+        .should('have.attr', 'data-autofocus', 'true'); // set by react-focus-on on the initially focused node
     });
 
     it('does not focus anything if `ownFocus` is false', () => {
       cy.mount(<PopoverComponent ownFocus={false}>Test</PopoverComponent>);
       cy.get('[data-test-subj="togglePopover"]').click();
       cy.focused().should('have.attr', 'data-test-subj', 'togglePopover');
+      cy.get('[data-test-subj="popoverPanel"]').should(
+        'not.have.attr',
+        'data-autofocus'
+      );
     });
 
     describe('initialFocus', () => {
-      it('does not focus anything if `initialFocus` is false', () => {
-        cy.mount(
-          <PopoverComponent initialFocus={false}>Test</PopoverComponent>
-        );
-        cy.get('[data-test-subj="togglePopover"]').click();
-        cy.focused().should('have.attr', 'data-test-subj', 'togglePopover');
-      });
-
       it('focuses selector strings', () => {
         cy.mount(
           <PopoverComponent initialFocus="#test">
@@ -68,7 +66,13 @@ describe('EuiPopover', () => {
           </PopoverComponent>
         );
         cy.get('[data-test-subj="togglePopover"]').click();
-        cy.focused().should('have.attr', 'id', 'test');
+        cy.focused()
+          .should('have.attr', 'id', 'test')
+          .should('have.attr', 'data-autofocus', 'true');
+        cy.get('[data-test-subj="popoverPanel"]').should(
+          'not.have.attr',
+          'data-autofocus'
+        );
       });
 
       it('focuses functions returning DOM Nodes', () => {
@@ -80,7 +84,13 @@ describe('EuiPopover', () => {
           </PopoverComponent>
         );
         cy.get('[data-test-subj="togglePopover"]').click();
-        cy.focused().should('have.attr', 'id', 'test');
+        cy.focused()
+          .should('have.attr', 'id', 'test')
+          .should('have.attr', 'data-autofocus', 'true');
+        cy.get('[data-test-subj="popoverPanel"]').should(
+          'not.have.attr',
+          'data-autofocus'
+        );
       });
     });
   });
