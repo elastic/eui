@@ -18,6 +18,8 @@ import { EuiDataGridCell } from './data_grid_cell';
 describe('EuiDataGridCell', () => {
   const mockRowHeightUtils = new RowHeightUtils(
     { current: null },
+    { current: null },
+    { current: null },
     { current: null }
   );
 

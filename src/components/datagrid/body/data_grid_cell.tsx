@@ -299,6 +299,21 @@ export class EuiDataGridCell extends Component<
     }
 
     if (
+      this.props.colIndex === 0 && // once per row
+      this.props.columnId === prevProps.columnId && // if this is still the same column
+      this.props.rowIndex === prevProps.rowIndex && // if this is still the same row
+      this.props.style?.top !== prevProps.style?.top // if the top position has changed
+    ) {
+      const previousTop = parseFloat(prevProps.style?.top as string);
+      const currentTop = parseFloat(this.props.style?.top as string);
+      this.props.rowHeightUtils?.compensateForLayoutShift(
+        this.props.rowIndex,
+        currentTop - previousTop,
+        this.props.rowHeightsOptions?.scrollAnchorRow
+      );
+    }
+
+    if (
       this.props.popoverContext.popoverIsOpen !==
         prevProps.popoverContext.popoverIsOpen ||
       this.props.popoverContext.cellLocation !==

@@ -27,8 +27,15 @@ describe('RowHeightUtils', () => {
       scrollToItem: jest.fn(),
     },
   };
+  const outerGridElementRef = { current: null };
+  const gridItemsRenderedRef = { current: null };
   const rerenderGridBodyRef = { current: jest.fn() };
-  const rowHeightUtils = new RowHeightUtils(gridRef, rerenderGridBodyRef);
+  const rowHeightUtils = new RowHeightUtils(
+    gridRef,
+    outerGridElementRef,
+    gridItemsRenderedRef,
+    rerenderGridBodyRef
+  );
 
   beforeEach(() => {
     jest.useFakeTimers();
