@@ -48,11 +48,7 @@ const UserActionUsername = ({
   fullname: string;
 }) => {
   return (
-    <EuiToolTip
-      position="top"
-      content={<p>{fullname}</p>}
-      data-test-subj="user-action-username-tooltip"
-    >
+    <EuiToolTip position="top" content={<p>{fullname}</p>}>
       <strong>{username}</strong>
     </EuiToolTip>
   );
