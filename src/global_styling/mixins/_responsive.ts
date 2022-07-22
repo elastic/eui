@@ -13,7 +13,7 @@ import { EuiThemeBreakpoints, _EuiThemeBreakpoint } from '../variables';
  * Generates a CSS media query rule string based on the input breakpoint ranges.
  * Examples:
  * euiBreakpoint(['s']) becomes `@media only screen and (min-width: 575px) and (max-width: 767px)`
- * euiBreakpoint(['s', 'm']) becomes `@media only screen and (min-width: 575px) and (max-width: 991px)`
+ * euiBreakpoint(['s', 'l']) becomes `@media only screen and (min-width: 575px) and (max-width: 1199px)`
  *
  * Use the `xs` and `xl` sizes to generate media queries with only min/max-width.
  * Examples:
@@ -45,8 +45,8 @@ export const euiBreakpoint = (
 
   return [
     '@media only screen',
-    minBreakpointSize ? `(min-width: ${minBreakpointSize}px)` : false,
-    maxBreakpointSize ? `(max-width: ${maxBreakpointSize - 1}px)` : false,
+    minBreakpointSize ? `(min-width: ${minBreakpointSize}px)` : false, // If xs/0, don't render a min-width
+    maxBreakpointSize ? `(max-width: ${maxBreakpointSize - 1}px)` : false, // If xl/undefined, don't render a max-width
   ]
     .filter(Boolean)
     .join(' and ');

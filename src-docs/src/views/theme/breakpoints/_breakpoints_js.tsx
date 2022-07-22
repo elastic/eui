@@ -148,15 +148,18 @@ export default () => {
             </p>
             <p>
               You can also create media queries with a{' '}
-              <EuiCode>(min-width)</EuiCode> only or{' '}
-              <EuiCode>(max-width)</EuiCode> only by utilizing the{' '}
-              <EuiCode>0</EuiCode> and <EuiCode>Infinity</EuiCode> arguments.
+              <EuiCode>(max-width)</EuiCode> only or{' '}
+              <EuiCode>(min-width)</EuiCode> only by utilizing the{' '}
+              <EuiCode>xs</EuiCode> and <EuiCode>xl</EuiCode> arguments.
             </p>
           </>
         }
         example={
           <p
             css={css`
+              ${useEuiBreakpoint(['s', 'l'])} {
+                font-weight: ${euiTheme.font.weight.bold};
+              }
               ${useEuiBreakpoint(['xs', 's'])} {
                 color: ${euiTheme.colors.dangerText};
               }
@@ -168,11 +171,15 @@ export default () => {
               }
             `}
           >
-            This text is red on small screens, yellow on medium screens, and
-            green on large screens.
+            This text is bold on small to large screens, red on small and below
+            screens, yellow on medium screens, and green on large and above
+            screens.
           </p>
         }
-        snippet={`\${useEuiBreakpoint(['xs', 's'])} {
+        snippet={`\${useEuiBreakpoint(['s', 'l'])} {
+    font-weight: bold;
+  }
+  \${useEuiBreakpoint(['xs', 's'])} {
     color: red;
   }
   \${useEuiBreakpoint(['m'])} {
