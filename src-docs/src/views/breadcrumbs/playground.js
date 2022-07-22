@@ -1,4 +1,4 @@
-import { EuiBreadcrumbs } from '../../../../src/components/breadcrumbs';
+import { BreadcrumbsProps as EuiBreadcrumbs } from './props';
 import {
   propUtilityForPlayground,
   generateCustomProps,

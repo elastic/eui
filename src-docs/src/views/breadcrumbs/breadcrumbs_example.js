@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiBreadcrumbs, EuiText } from '../../../../src/components';
-import { BreadcrumbResponsiveMaxCount, BreadcrumbProps } from './props';
+import { EuiCode, EuiText } from '../../../../src/components';
+import {
+  BreadcrumbsProps,
+  BreadcrumbProps,
+  BreadcrumbResponsiveMaxCount,
+} from './props';
 
 import { breadcrumbsConfig } from './playground';
 
@@ -28,8 +32,8 @@ const maxSource = require('!!raw-loader!./max');
 import Color from './color';
 const colorSource = require('!!raw-loader!./color');
 
-const breadcrumpProps = {
-  EuiBreadcrumbs,
+const props = {
+  EuiBreadcrumbs: BreadcrumbsProps,
   EuiBreadcrumb: BreadcrumbProps,
   EuiBreadcrumbResponsiveMaxCount: BreadcrumbResponsiveMaxCount,
 };
@@ -84,7 +88,7 @@ export const BreadcrumbsExample = {
           />
         </>
       ),
-      props: breadcrumpProps,
+      props,
       playground: breadcrumbsConfig,
       snippet: `<EuiBreadcrumbs
   breadcrumbs={[
@@ -124,7 +128,7 @@ export const BreadcrumbsExample = {
           </p>
         </>
       ),
-      props: breadcrumpProps,
+      props,
       snippet: `<EuiBreadcrumbs
   max={4}
   breadcrumbs={breadcrumbs}
@@ -149,7 +153,7 @@ export const BreadcrumbsExample = {
           </p>
         </>
       ),
-      props: breadcrumpProps,
+      props,
       demo: <Truncate />,
       snippet: [
         `<EuiBreadcrumbs
@@ -174,7 +178,7 @@ export const BreadcrumbsExample = {
           </p>
         </>
       ),
-      props: breadcrumpProps,
+      props,
       demo: <TruncateSingle />,
       snippet: [
         `<EuiBreadcrumbs
@@ -206,7 +210,7 @@ export const BreadcrumbsExample = {
           </p>
         </>
       ),
-      props: breadcrumpProps,
+      props,
       snippet: [
         `<EuiBreadcrumbs
   responsive={false}
@@ -231,7 +235,7 @@ export const BreadcrumbsExample = {
           </p>
         </>
       ),
-      props: breadcrumpProps,
+      props,
       snippet: [
         `<EuiBreadcrumbs
   responsive={{
@@ -260,7 +264,7 @@ export const BreadcrumbsExample = {
           </p>
         </>
       ),
-      props: breadcrumpProps,
+      props,
       demo: <Color />,
       source: [
         {

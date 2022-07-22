@@ -60,18 +60,12 @@ export type EuiBreadcrumbsProps = CommonProps & {
    * The array of individual #EuiBreadcrumb items
    */
   breadcrumbs: EuiBreadcrumbProps[];
+};
 
-  /**
-   * Determines regular or EuiHeader breadcrumb styling
-   */
-  isHeaderBreadcrumb?: boolean;
-
-  /**
-   * Whether this is a (contextually) nested set of breadcrumbs
-   * (e.g. the collapsed/overflow breadcrumbs popover).
-   * Determines if the last breadcrumb should be highlighted as the 'current' page.
-   */
-  isNested?: boolean;
+// Internal-only props
+type _EuiBreadcrumbsProps = {
+  isInEuiHeader?: boolean; // Applies EuiHeader-specific breadcrumb styling
+  isInCollapsedPopover?: boolean; // Affects display and aria tags of last breadcrumb
 };
 
 const responsiveDefault: EuiBreadcrumbResponsiveMaxCount = {
@@ -80,14 +74,16 @@ const responsiveDefault: EuiBreadcrumbResponsiveMaxCount = {
   m: 4,
 };
 
-export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
+export const EuiBreadcrumbs: FunctionComponent<
+  EuiBreadcrumbsProps & _EuiBreadcrumbsProps
+> = ({
   breadcrumbs,
   className,
   responsive = responsiveDefault,
   truncate = true,
   max = 5,
-  isHeaderBreadcrumb = false,
-  isNested = false,
+  isInEuiHeader = false,
+  isInCollapsedPopover = false,
   ...rest
 }) => {
   const ariaLabel = useEuiI18n('euiBreadcrumbs.nav.ariaLabel', 'Breadcrumbs');
@@ -120,32 +116,32 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
         return breadcrumb.isCollapsedButton ? (
           <EuiBreadcrumbCollapsed
             key="collapsed"
-            isHeaderBreadcrumb={isHeaderBreadcrumb}
+            isInEuiHeader={isInEuiHeader}
             isFirstBreadcrumb={isFirstBreadcrumb}
           >
             <EuiBreadcrumbs
               breadcrumbs={breadcrumb.overflowBreadcrumbs}
-              isNested
+              isInCollapsedPopover
               responsive={false}
               truncate={false}
               max={0}
             />
           </EuiBreadcrumbCollapsed>
         ) : (
-          <EuiBreadcrumb key={index} isHeaderBreadcrumb={isHeaderBreadcrumb}>
+          <EuiBreadcrumb key={index} isInEuiHeader={isInEuiHeader}>
             <EuiBreadcrumbContent
               truncate={truncate}
-              isHeaderBreadcrumb={isHeaderBreadcrumb}
+              isInEuiHeader={isInEuiHeader}
+              isInCollapsedPopover={isInCollapsedPopover}
               isFirstBreadcrumb={isFirstBreadcrumb}
               isLastBreadcrumb={isLastBreadcrumb}
               isOnlyBreadcrumb={isOnlyBreadcrumb}
-              isNestedBreadcrumb={isNested}
               {...breadcrumb}
             />
           </EuiBreadcrumb>
         );
       }),
-    [visibleBreadcrumbs, truncate, isHeaderBreadcrumb, isNested]
+    [visibleBreadcrumbs, truncate, isInEuiHeader, isInCollapsedPopover]
   );
 
   return (

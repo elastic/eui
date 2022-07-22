@@ -60,20 +60,20 @@ interface _EuiBreadcrumbProps {
   isFirstBreadcrumb?: boolean;
   isLastBreadcrumb?: boolean;
   isOnlyBreadcrumb?: boolean;
-  isHeaderBreadcrumb?: boolean;
-  isNestedBreadcrumb?: boolean;
+  isInEuiHeader?: boolean;
+  isInCollapsedPopover?: boolean;
 }
 
 export const EuiBreadcrumb: FunctionComponent<
   HTMLAttributes<HTMLLIElement> & _EuiBreadcrumbProps
-> = ({ children, className, isHeaderBreadcrumb, ...rest }) => {
+> = ({ children, className, isInEuiHeader, ...rest }) => {
   const classes = classNames('euiBreadcrumb', className);
 
   const euiTheme = useEuiTheme();
   const styles = euiBreadcrumbStyles(euiTheme);
   const cssStyles = [
     styles.euiBreadcrumb,
-    isHeaderBreadcrumb && styles.isHeaderBreadcrumb,
+    isInEuiHeader && styles.isHeaderBreadcrumb,
   ];
 
   return (
@@ -95,8 +95,8 @@ export const EuiBreadcrumbContent: FunctionComponent<
   isFirstBreadcrumb,
   isLastBreadcrumb,
   isOnlyBreadcrumb,
-  isHeaderBreadcrumb,
-  isNestedBreadcrumb,
+  isInEuiHeader,
+  isInCollapsedPopover,
   ...rest
 }) => {
   const classes = classNames('euiBreadcrumb__content', className);
@@ -107,7 +107,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
     styles.euiBreadcrumb__content,
     truncate && !isLastBreadcrumb && styles.isTruncated,
   ];
-  if (isHeaderBreadcrumb) {
+  if (isInEuiHeader) {
     cssStyles.push(styles.isHeaderBreadcrumb);
     if (isOnlyBreadcrumb) {
       cssStyles.push(styles.headerBreadcrumb.onlyChild);
@@ -119,7 +119,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
   }
 
   const ariaCurrent =
-    isLastBreadcrumb && !isNestedBreadcrumb ? 'page' : undefined;
+    isLastBreadcrumb && !isInCollapsedPopover ? 'page' : undefined;
 
   return (
     <EuiInnerText>
@@ -144,7 +144,9 @@ export const EuiBreadcrumbContent: FunctionComponent<
             aria-current={ariaCurrent}
             className={classes}
             css={cssStyles}
-            color={!isNestedBreadcrumb && isLastBreadcrumb ? 'text' : 'subdued'}
+            color={
+              isLastBreadcrumb && !isInCollapsedPopover ? 'text' : 'subdued'
+            }
             onClick={onClick}
             href={href}
             rel={rel}
@@ -161,7 +163,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
 export const EuiBreadcrumbCollapsed: FunctionComponent<_EuiBreadcrumbProps> = ({
   children,
   isFirstBreadcrumb,
-  isHeaderBreadcrumb,
+  isInEuiHeader,
 }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
@@ -186,12 +188,12 @@ export const EuiBreadcrumbCollapsed: FunctionComponent<_EuiBreadcrumbProps> = ({
         </>
       }
       isFirstBreadcrumb={isFirstBreadcrumb}
-      isHeaderBreadcrumb={isHeaderBreadcrumb}
+      isInEuiHeader={isInEuiHeader}
     />
   );
 
   return (
-    <EuiBreadcrumb css={cssStyles} isHeaderBreadcrumb={isHeaderBreadcrumb}>
+    <EuiBreadcrumb css={cssStyles} isInEuiHeader={isInEuiHeader}>
       <EuiPopover
         button={ellipsisButton}
         isOpen={isPopoverOpen}

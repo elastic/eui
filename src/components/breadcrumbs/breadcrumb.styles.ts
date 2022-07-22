@@ -48,6 +48,7 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
     isCollapsed: css`
       flex-shrink: 0;
     `,
+    // EuiHeader-specific breadcrumb styling
     isHeaderBreadcrumb: css`
       &:not(:last-of-type) {
         ${logicalCSS('margin-right', `-${euiTheme.size.xs}`)}
@@ -79,6 +80,10 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       text-align: center;
       vertical-align: baseline;
     `,
+
+    /**
+     * EuiHeader-specific breadcrumb styling
+     */
     isHeaderBreadcrumb: css`
       ${euiFontSize(euiThemeContext, 'xs')};
       background-color: ${transparentize(euiTheme.colors.darkestShade, 0.2)};
