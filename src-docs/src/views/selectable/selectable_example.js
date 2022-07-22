@@ -38,6 +38,13 @@ const selectableCustomRenderSource = require('!!raw-loader!./selectable_custom_r
 
 import { EuiCallOut } from '../../../../src/components/call_out';
 
+const props = {
+  EuiSelectable,
+  EuiSelectableOptionProps,
+  EuiSelectableOptionsList,
+  EuiSelectableSearchProps,
+};
+
 export const SelectableExample = {
   title: 'Selectable',
   intro: (
@@ -98,11 +105,7 @@ export const SelectableExample = {
           </EuiCallOut>
         </Fragment>
       ),
-      props: {
-        EuiSelectable,
-        EuiSelectableOptionProps,
-        EuiSelectableOptionsList,
-      },
+      props,
       demo: <Selectable />,
       snippet: `<EuiSelectable
   aria-label="Basic example"
@@ -143,12 +146,7 @@ export const SelectableExample = {
           />
         </Fragment>
       ),
-      props: {
-        EuiSelectable,
-        EuiSelectableOptionProps,
-        EuiSelectableOptionsList,
-        EuiSelectableSearchProps,
-      },
+      props,
       demo: <SelectableSearch />,
       snippet: `<EuiSelectable
   aria-label="Searchable example"
@@ -190,7 +188,7 @@ export const SelectableExample = {
           </p>
         </Fragment>
       ),
-      props: { EuiSelectable },
+      props,
       demo: <SelectableSingle />,
       snippet: `<EuiSelectable
   aria-label="Single selection example"
@@ -227,7 +225,7 @@ export const SelectableExample = {
           </p>
         </Fragment>
       ),
-      props: { EuiSelectable },
+      props,
       demo: <SelectableExclusion />,
       snippet: `<EuiSelectable
   aria-label="Example supporting exclusions"
@@ -261,7 +259,7 @@ export const SelectableExample = {
           </p>
         </Fragment>
       ),
-      props: { EuiSelectable, EuiSelectableMessage },
+      props: { EuiSelectableMessage, ...props },
       demo: <SelectableMessages />,
       snippet: [
         `<EuiSelectable
@@ -326,7 +324,7 @@ export const SelectableExample = {
           code: selectableSizingSource,
         },
       ],
-      props: { EuiSelectable },
+      props,
       snippet: `<EuiSelectable
   options={[]}
   onChange={newOptions => setOptions(newOptions)}
@@ -424,6 +422,7 @@ export const SelectableExample = {
 >
   {list => list}
 </EuiSelectable>`,
+      props,
     },
   ],
 };
