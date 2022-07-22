@@ -36,9 +36,8 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
 
   const isTypeUpdate = !children;
   const verticalAlign = isTypeUpdate ? 'center' : 'top';
-  const mainIcon = (
-    <EuiCommentTimeline username={username} timelineIcon={timelineIcon} />
-  );
+
+  const mainIcon = <EuiCommentTimeline timelineIcon={timelineIcon} />;
 
   return (
     <EuiTimelineItem
