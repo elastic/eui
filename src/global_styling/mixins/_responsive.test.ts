@@ -89,7 +89,7 @@ describe('useEuiBreakpoint', () => {
       );
     });
 
-    test('if at least one input is not passed', () => {
+    test('if an invalid breakpoint size is passed', () => {
       // @ts-expect-error Type "asdf" is not assignable to type "..."
       expect(testCustomHook(() => useEuiBreakpoint(['asdf'])).return).toEqual(
         fallbackOutput
