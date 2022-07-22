@@ -47,7 +47,7 @@ export interface TokenProps {
   iconType: IconType;
   /**
    * For best results use one of the vis color names (or 'gray').
-   * Or supply your own HEX color (can be used with dark or no fill only).
+   * Or supply your own HEX color (can be used with fill 'dark' or fill 'none' only).
    * Default: `gray`
    */
   color?: TokenColor | string;
@@ -116,7 +116,7 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   let finalFill = finalDisplay.fill || 'light';
 
   const euiTheme = useEuiTheme();
-  const styles = euiTokenStyles(euiTheme, finalColor);
+  const styles = euiTokenStyles(euiTheme);
 
   const isTokenColor = COLORS.includes(finalColor as TokenColor);
 

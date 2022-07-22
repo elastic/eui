@@ -2,7 +2,7 @@
 
 exports[`EuiToken is rendered 1`] = `
 <span
-  class="euiToken testClass1 testClass2 css-17xk4sv-gray-euiToken-circle-light-s"
+  class="euiToken testClass1 testClass2 css-1m3zcrw-gray-euiToken-circle-light-s"
   data-test-subj="test subject string"
 >
   <span
@@ -126,7 +126,7 @@ exports[`EuiToken props color euiColorVis9 is rendered 1`] = `
 
 exports[`EuiToken props color gray is rendered 1`] = `
 <span
-  class="euiToken css-17xk4sv-gray-euiToken-circle-light-s"
+  class="euiToken css-1m3zcrw-gray-euiToken-circle-light-s"
 >
   <span
     data-euiicon-type="dot"
@@ -136,7 +136,7 @@ exports[`EuiToken props color gray is rendered 1`] = `
 
 exports[`EuiToken props fill dark is rendered 1`] = `
 <span
-  class="euiToken css-rfrrib-gray-euiToken-circle-dark-s"
+  class="euiToken css-10cbr15-gray-euiToken-circle-dark-s"
 >
   <span
     data-euiicon-type="dot"
@@ -146,7 +146,7 @@ exports[`EuiToken props fill dark is rendered 1`] = `
 
 exports[`EuiToken props fill light is rendered 1`] = `
 <span
-  class="euiToken css-17xk4sv-gray-euiToken-circle-light-s"
+  class="euiToken css-1m3zcrw-gray-euiToken-circle-light-s"
 >
   <span
     data-euiicon-type="dot"
@@ -156,7 +156,7 @@ exports[`EuiToken props fill light is rendered 1`] = `
 
 exports[`EuiToken props fill none is rendered 1`] = `
 <span
-  class="euiToken css-1o03vse-gray-euiToken-circle-none-s"
+  class="euiToken css-ej79ko-gray-euiToken-circle-none-s"
 >
   <span
     data-euiicon-type="dot"
@@ -696,7 +696,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenVariable is rendered 1`
 
 exports[`EuiToken props shape circle is rendered 1`] = `
 <span
-  class="euiToken css-17xk4sv-gray-euiToken-circle-light-s"
+  class="euiToken css-1m3zcrw-gray-euiToken-circle-light-s"
 >
   <span
     data-euiicon-type="dot"
@@ -706,7 +706,7 @@ exports[`EuiToken props shape circle is rendered 1`] = `
 
 exports[`EuiToken props shape square is rendered 1`] = `
 <span
-  class="euiToken css-1piuj4m-gray-euiToken-square-light-s"
+  class="euiToken css-u0e41j-gray-euiToken-square-light-s"
 >
   <span
     data-euiicon-type="dot"
@@ -716,7 +716,7 @@ exports[`EuiToken props shape square is rendered 1`] = `
 
 exports[`EuiToken props size l is rendered 1`] = `
 <span
-  class="euiToken css-1fswv6t-gray-euiToken-circle-light-l"
+  class="euiToken css-111pz1k-gray-euiToken-circle-light-l"
 >
   <span
     data-euiicon-type="dot"
@@ -726,7 +726,7 @@ exports[`EuiToken props size l is rendered 1`] = `
 
 exports[`EuiToken props size m is rendered 1`] = `
 <span
-  class="euiToken css-1xg0m6y-gray-euiToken-circle-light-m"
+  class="euiToken css-1alsib2-gray-euiToken-circle-light-m"
 >
   <span
     data-euiicon-type="dot"
@@ -736,7 +736,7 @@ exports[`EuiToken props size m is rendered 1`] = `
 
 exports[`EuiToken props size s is rendered 1`] = `
 <span
-  class="euiToken css-17xk4sv-gray-euiToken-circle-light-s"
+  class="euiToken css-1m3zcrw-gray-euiToken-circle-light-s"
 >
   <span
     data-euiicon-type="dot"
@@ -746,7 +746,7 @@ exports[`EuiToken props size s is rendered 1`] = `
 
 exports[`EuiToken props size xs is rendered 1`] = `
 <span
-  class="euiToken css-1xy6n2m-gray-euiToken-circle-light-xs"
+  class="euiToken css-1vzk1kl-gray-euiToken-circle-light-xs"
 >
   <span
     data-euiicon-type="dot"

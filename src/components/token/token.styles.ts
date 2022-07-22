@@ -34,25 +34,27 @@ const getTokenColor = (
   colorMode: UseEuiTheme['colorMode'],
   color: number | string
 ) => {
-  const iconColor =
-    typeof color === 'number' ? visColors[color] : euiTheme.colors.darkShade;
+  const isVizColor = typeof color === 'number';
+
+  const iconColor = isVizColor ? visColors[color] : euiTheme.colors.darkShade;
 
   const isDarkMode = colorMode === 'DARK';
 
-  const iconColorBehindText =
-    typeof color === 'number'
-      ? visColorsBehindText[color]
-      : euiTheme.colors.darkShade;
+  const backgroundDarkColor = isVizColor
+    ? visColorsBehindText[color]
+    : euiTheme.colors.darkShade;
 
-  const backgroundColor = isDarkMode
+  const backgroundLightColor = isDarkMode
     ? shade(iconColor, 0.7)
     : tint(iconColor, 0.9);
+
+  const lightColor = makeHighContrastColor(iconColor)(backgroundLightColor);
 
   const boxShadowColor = isDarkMode
     ? shade(iconColor, 0.6)
     : tint(iconColor, 0.7);
 
-  const textColor = isColorDark(...chroma(iconColorBehindText).rgb())
+  const darkColor = isColorDark(...chroma(backgroundDarkColor).rgb())
     ? euiTheme.colors.ghost
     : euiTheme.colors.ink;
 
@@ -62,31 +64,19 @@ const getTokenColor = (
   
 
     &[class*='-light'] {
-      color: ${makeHighContrastColor(iconColor)(backgroundColor)};
-      background-color: ${backgroundColor};
+      color: ${lightColor};
+      background-color: ${backgroundLightColor};
       box-shadow: inset 0 0 0 1px ${boxShadowColor};
     }
 
     &[class*='-dark'] {
-      background-color: ${iconColorBehindText};
-      color: ${textColor};
+      color: ${darkColor};
+      background-color: ${backgroundDarkColor};
     }
-
   `;
 };
 
-const getBackgroundColor = (color: number | string) => {
-  const iconColor = typeof color === 'number' ? visColors[color] : 'gray';
-
-  return `
-    background: ${iconColor};
-  `;
-};
-
-export const euiTokenStyles = (
-  { euiTheme, colorMode }: UseEuiTheme,
-  color: string
-) => ({
+export const euiTokenStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
   // Base
   euiToken: css`
     display: inline-flex;
@@ -156,7 +146,6 @@ export const euiTokenStyles = (
   emptyShade: css`
     color: ${euiTheme.colors.emptyShade};
   `,
-  customBackground: css(getBackgroundColor(color)),
   // Fills
   light: css``,
   dark: css``,
