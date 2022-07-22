@@ -12,25 +12,33 @@ import { EuiAvatar, EuiAvatarProps } from '../avatar';
 
 export interface EuiCommentTimelineProps extends CommonProps {
   /**
-   * Main icon that accompanies the comment. Should indicate who is the author of the comment. To customize, pass a `string` as an `EuiIcon['type']` or any `ReactNode`. If no icon is provided, it  will default to a avatar with a `userAvatar` icon.
+   * Main avatar that accompanies the comment. Should indicate who is the author of the comment.
+   * Any `ReactNode`, but preferably `EuiAvatar`, or a `string` as an `EuiIcon['type']`.
+   * If no `timelineIcon` is passed, the `userAvatar` icon will be used as the avatar.
    */
   timelineIcon?: ReactNode | EuiAvatarProps['iconType'];
+
+  /**
+   * Specify an `aria-label` for the `timelineIcon` when passed as an `IconType` or when nothing is passed.
+   * If no `aria-label` is passed we assume the icon is purely decorative.
+   */
+  timelineIconAriaLabel?: string;
 }
 
 export const EuiCommentTimeline: FunctionComponent<EuiCommentTimelineProps> = ({
   timelineIcon,
+  timelineIconAriaLabel,
 }) => {
   let iconRender;
 
   const avatarClassName = 'euiCommentAvatar';
-
   const iconIsString = typeof timelineIcon === 'string';
 
   if (iconIsString) {
     iconRender = (
       <EuiAvatar
         className={avatarClassName}
-        name=""
+        name={timelineIconAriaLabel ? timelineIconAriaLabel : ''}
         iconType={timelineIcon}
         color="subdued"
       />
@@ -41,7 +49,7 @@ export const EuiCommentTimeline: FunctionComponent<EuiCommentTimelineProps> = ({
     iconRender = (
       <EuiAvatar
         className={avatarClassName}
-        name=""
+        name={timelineIconAriaLabel ? timelineIconAriaLabel : ''}
         iconType="userAvatar"
         color="subdued"
       />

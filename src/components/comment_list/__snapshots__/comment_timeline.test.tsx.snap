@@ -43,3 +43,19 @@ exports[`EuiCommentTimeline props timelineIcon is rendered with a string 1`] = `
   />
 </div>
 `;
+
+exports[`EuiCommentTimeline props timelineIcon is rendered with timelineIconAriaLabel 1`] = `
+<div
+  aria-label="timelineIconAriaLabel"
+  class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+  role="img"
+  title="timelineIconAriaLabel"
+>
+  <span
+    class="euiAvatar__icon"
+    data-euiicon-type="dot"
+  >
+    timelineIconAriaLabel
+  </span>
+</div>
+`;

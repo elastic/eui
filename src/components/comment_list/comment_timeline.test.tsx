@@ -28,7 +28,26 @@ describe('EuiCommentTimeline', () => {
 
       it('is rendered with a ReactNode', () => {
         const component = render(
-          <EuiAvatar name="username" iconType="userAvatar" color="subdued" />
+          <EuiCommentTimeline
+            timelineIcon={
+              <EuiAvatar
+                name="username"
+                iconType="userAvatar"
+                color="subdued"
+              />
+            }
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('is rendered with timelineIconAriaLabel', () => {
+        const component = render(
+          <EuiCommentTimeline
+            timelineIcon="dot"
+            timelineIconAriaLabel="timelineIconAriaLabel"
+          />
         );
 
         expect(component).toMatchSnapshot();
