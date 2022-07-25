@@ -103,12 +103,16 @@ export const euiTokenStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
   xs: css`
     ${iconSize(euiTheme.size.m)};
 
+    &[class*='-square'] {
+      border-radius: calc(${euiTheme.border.radius.small} / 2);
+    }
+
     &[class*='-rectangle'] {
       ${logicalCSS('padding-horizontal', euiTheme.size.xs)};
     }
   `,
   s: css`
-    ${iconSize(euiTheme.size.base)}
+    ${iconSize(euiTheme.size.base)};
 
     &[class*='-rectangle'] {
       ${logicalCSS('padding-horizontal', euiTheme.size.xs)};
