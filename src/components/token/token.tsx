@@ -48,7 +48,7 @@ export interface TokenProps {
   /**
    * For best results use one of the vis color names (or 'gray').
    * Or supply your own HEX color (can be used with fill 'dark' or fill 'none' only).
-   * Default: `gray` (glyphs) or one of the vis colors (token)
+   * Default: `gray` for glyphs or one of the vis colors for prefab token types
    */
   color?: TokenColor | string;
   /**
