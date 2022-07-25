@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
@@ -80,7 +80,7 @@ export const SelectableExample = {
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             At its simplest, <strong>EuiSelectable</strong> requires an array of{' '}
             <EuiCode>options</EuiCode> and an <EuiCode>onChange</EuiCode>{' '}
@@ -102,7 +102,7 @@ export const SelectableExample = {
               when <EuiCode>allowExclusions = false</EuiCode>.
             </p>
           </EuiCallOut>
-        </Fragment>
+        </>
       ),
       props,
       demo: <Selectable />,
@@ -124,7 +124,7 @@ export const SelectableExample = {
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             To add a search component to the list, simply add the{' '}
             <EuiCode>searchable</EuiCode> prop. You can optionally pass in a{' '}
@@ -143,7 +143,7 @@ export const SelectableExample = {
               </>
             }
           />
-        </Fragment>
+        </>
       ),
       props,
       demo: <SelectableSearch />,
@@ -160,10 +160,10 @@ export const SelectableExample = {
   }}
 >
   {(list, search) => (
-    <Fragment>
+    <>
       {search}
       {list}
-    </Fragment>
+    </>
   )}
 </EuiSelectable>`,
     },
@@ -176,7 +176,7 @@ export const SelectableExample = {
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             Selection can be restricted to a single option at a time with the{' '}
             <EuiCode>singleSelection</EuiCode> prop. Passing{' '}
@@ -185,7 +185,7 @@ export const SelectableExample = {
             option to be selected at all times. The default value is{' '}
             <EuiCode>false</EuiCode>.
           </p>
-        </Fragment>
+        </>
       ),
       props,
       demo: <SelectableSingle />,
@@ -216,12 +216,12 @@ export const SelectableExample = {
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             Currently, adding <EuiCode>allowExclusions</EuiCode> simply allows
             cycling through the checked options (on {'-> off ->'} undefined).
           </p>
-        </Fragment>
+        </>
       ),
       props,
       demo: <SelectableExclusion />,
@@ -243,7 +243,7 @@ export const SelectableExample = {
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             The component comes with pre-composed messages for loading, empty,
             and no search result states. To display your own messages, pass{' '}
@@ -255,7 +255,7 @@ export const SelectableExample = {
             custom message in an <strong>EuiSelectableMessage</strong>{' '}
             component.
           </p>
-        </Fragment>
+        </>
       ),
       props: { EuiSelectableMessage, ...props },
       demo: <SelectableMessages />,
@@ -286,7 +286,7 @@ export const SelectableExample = {
     {
       title: 'Sizing and containers',
       text: (
-        <Fragment>
+        <>
           <p>
             The component&apos;s children, <EuiCode>list, search</EuiCode>, are
             returned via the <EuiCode>children</EuiCode> function, which means
@@ -313,7 +313,7 @@ export const SelectableExample = {
             you can opt in to allow the height of the list stretch to fill its
             container. See the flyout example.
           </p>
-        </Fragment>
+        </>
       ),
       demo: <SelectableSizing />,
       source: [
@@ -344,7 +344,7 @@ export const SelectableExample = {
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             There are two object properties you can add to enhance the content
             of your options, <EuiCode>option.prepend</EuiCode> and{' '}
@@ -406,7 +406,7 @@ export const SelectableExample = {
             <EuiCode>listProps.rowHeight</EuiCode> of <EuiCode>32px</EuiCode>{' '}
             tall, you will need to pass in a custom value to this prop.
           </p>
-        </Fragment>
+        </>
       ),
       demo: <SelectableCustomRender />,
       snippet: `<EuiSelectable

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../../components';
@@ -42,7 +42,7 @@ export const SitewideSearchExample = {
         },
       ],
       text: (
-        <Fragment>
+        <>
           <h3>Search input</h3>
           <p>
             The search ability of{' '}
@@ -91,7 +91,7 @@ export const SitewideSearchExample = {
             the <EuiCode>popoverButton</EuiCode> if the window size matches
             named breakpoint(s).
           </p>
-        </Fragment>
+        </>
       ),
       props: { EuiSelectableTemplateSitewide, Options, MetaData },
       demo: <SitewideSearch />,
