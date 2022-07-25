@@ -60,11 +60,16 @@ export type EuiBreadcrumbsProps = CommonProps & {
    * The array of individual #EuiBreadcrumb items
    */
   breadcrumbs: EuiBreadcrumbProps[];
+
+  /**
+   * Determines breadcrumbs appearance, with `page` being the default styling.
+   * Application breadcrumbs should only be once per page, in (e.g.) EuiHeader
+   */
+  type?: 'page' | 'application';
 };
 
 // Internal-only props
 type _EuiBreadcrumbsProps = {
-  isInEuiHeader?: boolean; // Applies EuiHeader-specific breadcrumb styling
   isInCollapsedPopover?: boolean; // Affects display and aria tags of last breadcrumb
 };
 
@@ -82,7 +87,7 @@ export const EuiBreadcrumbs: FunctionComponent<
   responsive = responsiveDefault,
   truncate = true,
   max = 5,
-  isInEuiHeader = false,
+  type = 'page',
   isInCollapsedPopover = false,
   ...rest
 }) => {
@@ -116,7 +121,7 @@ export const EuiBreadcrumbs: FunctionComponent<
         return breadcrumb.isCollapsedButton ? (
           <EuiBreadcrumbCollapsed
             key="collapsed"
-            isInEuiHeader={isInEuiHeader}
+            type={type}
             isFirstBreadcrumb={isFirstBreadcrumb}
           >
             <EuiBreadcrumbs
@@ -128,10 +133,10 @@ export const EuiBreadcrumbs: FunctionComponent<
             />
           </EuiBreadcrumbCollapsed>
         ) : (
-          <EuiBreadcrumb key={index} isInEuiHeader={isInEuiHeader}>
+          <EuiBreadcrumb key={index} type={type}>
             <EuiBreadcrumbContent
+              type={type}
               truncate={truncate}
-              isInEuiHeader={isInEuiHeader}
               isInCollapsedPopover={isInCollapsedPopover}
               isFirstBreadcrumb={isFirstBreadcrumb}
               isLastBreadcrumb={isLastBreadcrumb}
@@ -141,7 +146,7 @@ export const EuiBreadcrumbs: FunctionComponent<
           </EuiBreadcrumb>
         );
       }),
-    [visibleBreadcrumbs, truncate, isInEuiHeader, isInCollapsedPopover]
+    [visibleBreadcrumbs, truncate, type, isInCollapsedPopover]
   );
 
   return (

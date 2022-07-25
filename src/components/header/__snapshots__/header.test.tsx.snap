@@ -46,11 +46,11 @@ exports[`EuiHeader sections render breadcrumbs and props 1`] = `
       class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
     >
       <li
-        class="euiBreadcrumb emotion-euiBreadcrumb-isHeaderBreadcrumb"
+        class="euiBreadcrumb emotion-euiBreadcrumb-application"
       >
         <span
           aria-current="page"
-          class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isHeaderBreadcrumb-onlyChild"
+          class="euiBreadcrumb__content emotion-euiBreadcrumb__content-application-onlyChild"
         >
           Breadcrumb
         </span>

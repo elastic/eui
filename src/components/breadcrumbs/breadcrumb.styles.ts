@@ -28,7 +28,13 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
         'margin-bottom',
         euiTheme.size.xs
       )}
+    `,
+    isCollapsed: css`
+      flex-shrink: 0;
+    `,
 
+    // Types
+    page: css`
       &:not(:last-of-type) {
         color: ${euiTheme.colors.subduedText};
 
@@ -45,17 +51,9 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
     `,
-    isCollapsed: css`
-      flex-shrink: 0;
-    `,
-    // EuiHeader-specific breadcrumb styling
-    isHeaderBreadcrumb: css`
+    application: css`
       &:not(:last-of-type) {
         ${logicalCSS('margin-right', `-${euiTheme.size.xs}`)}
-      }
-
-      &::after {
-        display: none;
       }
     `,
   };
@@ -67,13 +65,6 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiBreadcrumb__content: css`
       font-weight: ${euiTheme.font.weight.medium};
-
-      &:is(a):focus {
-        ${euiFocusRing(euiTheme, 'inset')};
-      }
-      &:is(button):focus {
-        ${euiFocusRing(euiTheme, 'center')};
-      }
     `,
     isTruncated: css`
       ${euiTextTruncate(`${parseFloat(euiTheme.size.base) * 10}px`)};
@@ -81,10 +72,16 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       vertical-align: baseline;
     `,
 
-    /**
-     * EuiHeader-specific breadcrumb styling
-     */
-    isHeaderBreadcrumb: css`
+    // Types
+    page: css`
+      &:is(a):focus {
+        ${euiFocusRing(euiTheme, 'inset')};
+      }
+      &:is(button):focus {
+        ${euiFocusRing(euiTheme, 'center')};
+      }
+    `,
+    application: css`
       ${euiFontSize(euiThemeContext, 'xs')};
       background-color: ${transparentize(euiTheme.colors.darkestShade, 0.2)};
       clip-path: polygon(
@@ -115,7 +112,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
     `,
-    headerBreadcrumb: {
+    applicationStyles: {
       onlyChild: css`
         border-radius: ${euiTheme.border.radius.medium};
         clip-path: none;

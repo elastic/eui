@@ -24,20 +24,20 @@ Array [
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isTruncated"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
             >
               components
             </span>
@@ -116,21 +116,21 @@ Array [
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isTruncated"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
               title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
               title="components"
             >
               components
@@ -210,21 +210,21 @@ Array [
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isTruncated"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
               title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
               title="components"
             >
               components
@@ -304,21 +304,21 @@ Array [
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isTruncated"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
               title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
               title="components"
             >
               components
@@ -397,21 +397,21 @@ exports[`EuiControlBar props position is rendered 1`] = `
         class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
       >
         <li
-          class="euiBreadcrumb emotion-euiBreadcrumb"
+          class="euiBreadcrumb emotion-euiBreadcrumb-page"
         >
           <span
-            class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isTruncated"
+            class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
             title="src"
           >
             src
           </span>
         </li>
         <li
-          class="euiBreadcrumb emotion-euiBreadcrumb"
+          class="euiBreadcrumb emotion-euiBreadcrumb-page"
         >
           <span
             aria-current="page"
-            class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
+            class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
             title="components"
           >
             components
@@ -484,21 +484,21 @@ Array [
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isTruncated"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
               title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
               title="components"
             >
               components
@@ -578,21 +578,21 @@ Array [
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isTruncated"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
               title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
               title="components"
             >
               components
@@ -677,21 +677,21 @@ Array [
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isTruncated"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
               title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
               title="components"
             >
               components

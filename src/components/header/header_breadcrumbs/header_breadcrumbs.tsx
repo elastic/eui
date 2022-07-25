@@ -31,7 +31,7 @@ export const EuiHeaderBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
       breadcrumbs={breadcrumbs}
       className={classes}
       css={cssHeaderBreadcrumbStyles}
-      isInEuiHeader
+      type="application"
       {...rest}
     />
   );

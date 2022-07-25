@@ -10,10 +10,10 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
     class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
   >
     <li
-      class="euiBreadcrumb emotion-euiBreadcrumb-isHeaderBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-application"
     >
       <a
-        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-subdued-euiBreadcrumb__content-isTruncated-isHeaderBreadcrumb-firstChild"
+        class="euiLink euiBreadcrumb__content customClass emotion-euiLink-subdued-euiBreadcrumb__content-application-isTruncated-firstChild"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -23,10 +23,10 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb emotion-euiBreadcrumb-isHeaderBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-application"
     >
       <button
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-isTruncated-isHeaderBreadcrumb"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-application-isTruncated"
         title="Reptiles"
         type="button"
       >
@@ -34,10 +34,10 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       </button>
     </li>
     <li
-      class="euiBreadcrumb emotion-euiBreadcrumb-isHeaderBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-application"
     >
       <a
-        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-isTruncated-isHeaderBreadcrumb"
+        class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-application-isTruncated"
         href="#"
         rel="noreferrer"
         title="Boa constrictor"
@@ -46,11 +46,11 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb emotion-euiBreadcrumb-isHeaderBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-application"
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isHeaderBreadcrumb-lastChild"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-application-lastChild"
         title="Edit"
       >
         Edit
@@ -70,11 +70,11 @@ exports[`EuiHeaderBreadcrumbs renders only one breadcrumb with all rounded corne
     class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
   >
     <li
-      class="euiBreadcrumb emotion-euiBreadcrumb-isHeaderBreadcrumb"
+      class="euiBreadcrumb emotion-euiBreadcrumb-application"
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-isHeaderBreadcrumb-onlyChild"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-application-onlyChild"
         title="Home"
       >
         Home

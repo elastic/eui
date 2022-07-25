@@ -3,12 +3,8 @@ import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiText } from '../../../../src/components';
-import {
-  BreadcrumbsProps,
-  BreadcrumbProps,
-  BreadcrumbResponsiveMaxCount,
-} from './props';
+import { EuiBreadcrumbs, EuiCode, EuiText } from '../../../../src/components';
+import { BreadcrumbProps, BreadcrumbResponsiveMaxCount } from './props';
 
 import { breadcrumbsConfig } from './playground';
 
@@ -33,7 +29,7 @@ import Color from './color';
 const colorSource = require('!!raw-loader!./color');
 
 const props = {
-  EuiBreadcrumbs: BreadcrumbsProps,
+  EuiBreadcrumbs,
   EuiBreadcrumb: BreadcrumbProps,
   EuiBreadcrumbResponsiveMaxCount: BreadcrumbResponsiveMaxCount,
 };
