@@ -139,7 +139,7 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
     styles[size],
   ];
 
-  let finalStyle;
+  let finalStyle = style;
 
   if (isTokenColor) {
     cssStyles = [...cssStyles, styles[finalColor as TokenColor]];
