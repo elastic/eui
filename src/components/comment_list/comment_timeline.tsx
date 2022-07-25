@@ -19,7 +19,7 @@ export interface EuiCommentTimelineProps extends CommonProps {
   timelineIcon?: ReactNode | EuiAvatarProps['iconType'];
 
   /**
-   * Specify an `aria-label` for the `timelineIcon` when passed as an `IconType` or when nothing is passed.
+   * Specify an `aria-label` and `title` for the `timelineIcon` when passed as an `IconType` or when nothing is passed.
    * If no `aria-label` is passed we assume the icon is purely decorative.
    */
   timelineIconAriaLabel?: string;
