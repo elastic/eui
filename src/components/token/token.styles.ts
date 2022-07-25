@@ -93,8 +93,6 @@ export const euiTokenStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
     border-radius: 50%;
   `,
   square: css`
-    // These are pretty small elements, the standard size
-    // is just slightly too large.
     border-radius: ${euiTheme.border.radius.small};
   `,
   rectangle: css`
