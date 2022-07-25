@@ -95,7 +95,7 @@ exports[`EuiLoadingChart size xl is rendered 1`] = `
     class="emotion-euiLoadingChart__bar-xl"
   />
   <span
-    class="css-3rl1i-euiLoadingChart__bar-xl"
+    class="emotion-euiLoadingChart__bar-xl"
   />
   <span
     class="emotion-euiLoadingChart__bar-xl"

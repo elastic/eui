@@ -214,6 +214,7 @@ export class EuiSelectable<T = {}> extends Component<
       initialSearchValue,
       isPreFiltered
     );
+    searchProps?.onChange?.(initialSearchValue, visibleOptions);
 
     // ensure that the currently selected single option is active if it is in the visibleOptions
     const selectedOptions = options.filter((option) => option.checked);
@@ -277,10 +278,6 @@ export class EuiSelectable<T = {}> extends Component<
     }
   }
 
-  hasActiveOption = () => {
-    return this.state.activeOptionIndex != null;
-  };
-
   onMouseDown = () => {
     // Bypass onFocus when a click event originates from this.containerRef.
     // Prevents onFocus from scrolling away from a clicked option and negating the selection event.
@@ -294,7 +291,10 @@ export class EuiSelectable<T = {}> extends Component<
       return;
     }
 
-    if (!this.state.visibleOptions.length || this.state.activeOptionIndex) {
+    if (
+      !this.state.visibleOptions.length ||
+      this.state.activeOptionIndex != null
+    ) {
       return;
     }
 
@@ -436,9 +436,7 @@ export class EuiSelectable<T = {}> extends Component<
         }
       }
     );
-    if (this.props.searchProps && this.props.searchProps.onChange) {
-      this.props.searchProps.onChange(searchValue, visibleOptions);
-    }
+    this.props.searchProps?.onChange?.(searchValue, visibleOptions);
   };
 
   onContainerBlur = (e: React.FocusEvent) => {

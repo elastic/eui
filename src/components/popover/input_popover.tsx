@@ -20,7 +20,14 @@ import { CommonProps } from '../common';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiPopover, EuiPopoverProps } from './popover';
 import { EuiResizeObserver } from '../observer/resize_observer';
-import { cascadingMenuKeys, useCombinedRefs } from '../../services';
+import {
+  cascadingMenuKeys,
+  useCombinedRefs,
+  useEuiTheme,
+} from '../../services';
+import { euiFormMaxWidth } from '../form/form.styles';
+import { css } from '@emotion/react';
+import { logicalCSS } from '../../global_styling';
 
 export interface _EuiInputPopoverProps
   extends Omit<EuiPopoverProps, 'button' | 'buttonRef'> {
@@ -46,6 +53,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   panelRef: _panelRef,
   ...props
 }) => {
+  const euiThemeContext = useEuiTheme();
   const [inputEl, setInputEl] = useState<HTMLElement | null>(null);
   const [inputElWidth, setInputElWidth] = useState<number>();
   const [panelEl, setPanelEl] = useState<HTMLElement | null>(null);
@@ -98,16 +106,15 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
     }
   };
 
-  const classes = classnames(
-    'euiInputPopover',
-    {
-      'euiInputPopover--fullWidth': fullWidth,
-    },
-    className
-  );
+  const classes = classnames('euiInputPopover', className);
 
   return (
     <EuiPopover
+      css={css(
+        fullWidth
+          ? undefined
+          : logicalCSS('max-width', euiFormMaxWidth(euiThemeContext))
+      )}
       ownFocus={false}
       button={
         <EuiResizeObserver onResize={onResize}>

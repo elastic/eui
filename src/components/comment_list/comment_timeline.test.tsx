@@ -8,22 +8,15 @@
 
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
-
 import { EuiCommentTimeline } from './comment_timeline';
-import { EuiAvatar } from '../avatar';
 
 describe('EuiCommentTimeline', () => {
-  test('is rendered', () => {
-    const component = render(<EuiCommentTimeline {...requiredProps} />);
-
-    expect(component).toMatchSnapshot();
-  });
-
   describe('props', () => {
-    describe('type', () => {
+    describe('username', () => {
       it('is rendered', () => {
-        const component = render(<EuiCommentTimeline type="update" />);
+        const component = render(
+          <EuiCommentTimeline username="someuser" timelineIcon="avatar dot" />
+        );
 
         expect(component).toMatchSnapshot();
       });
@@ -32,9 +25,7 @@ describe('EuiCommentTimeline', () => {
     describe('timelineIcon', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiCommentTimeline
-            timelineIcon={<EuiAvatar size="l" name="Mario" />}
-          />
+          <EuiCommentTimeline username="someuser" timelineIcon="dot" />
         );
 
         expect(component).toMatchSnapshot();

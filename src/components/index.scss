@@ -10,7 +10,6 @@
 @import 'collapsible_nav/index';
 @import 'color_picker/index';
 @import 'combo_box/index';
-@import 'comment_list/index';
 @import 'context_menu/index';
 @import 'control_bar/index';
 @import 'date_picker/index';
@@ -18,13 +17,11 @@
 @import 'description_list/index';
 @import 'drag_and_drop/index';
 @import 'empty_prompt/index';
-@import 'error_boundary/index';
 @import 'filter_group/index';
 @import 'flex/index';
 @import 'flyout/index';
 @import 'form/index';
 @import 'header/index';
-@import 'image/index';
 @import 'key_pad_menu/index';
 @import 'list_group/index';
 @import 'markdown_editor/index';
@@ -34,7 +31,6 @@
 @import 'pagination/index';
 @import 'panel/index';
 @import 'page/index'; // Page needs to come after Panel for cascade specificity
-@import 'popover/index';
 @import 'portal/index';
 @import 'tree_view/index';
 @import 'resizable_container/index';
@@ -45,7 +41,6 @@
 @import 'suggest/index';
 @import 'table/index';
 @import 'tabs/index';
-@import 'text_diff/index';
 @import 'toast/index';
 @import 'token/index';
 @import 'tool_tip/index';
