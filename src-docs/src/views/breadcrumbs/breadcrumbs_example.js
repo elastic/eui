@@ -258,6 +258,10 @@ export const BreadcrumbsExample = {
             emphasis or indicate state like <EuiCode>{"'danger'"}</EuiCode> for
             an error. However, use caution not to use color alone.
           </p>
+          <p>
+            Please also note that link colors cannot be overriden for{' '}
+            <EuiCode>type={'"application"'}</EuiCode> breadcrumbs.
+          </p>
         </>
       ),
       props,

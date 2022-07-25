@@ -27,7 +27,7 @@ Array [
             class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
             >
               src
             </span>
@@ -37,7 +37,7 @@ Array [
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-default"
             >
               components
             </span>
@@ -119,7 +119,7 @@ Array [
             class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
               title="src"
             >
               src
@@ -130,7 +130,7 @@ Array [
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-default"
               title="components"
             >
               components
@@ -213,7 +213,7 @@ Array [
             class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
               title="src"
             >
               src
@@ -224,7 +224,7 @@ Array [
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-default"
               title="components"
             >
               components
@@ -307,7 +307,7 @@ Array [
             class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
               title="src"
             >
               src
@@ -318,7 +318,7 @@ Array [
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-default"
               title="components"
             >
               components
@@ -400,7 +400,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
           class="euiBreadcrumb emotion-euiBreadcrumb-page"
         >
           <span
-            class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
+            class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
             title="src"
           >
             src
@@ -411,7 +411,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
         >
           <span
             aria-current="page"
-            class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
+            class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-default"
             title="components"
           >
             components
@@ -487,7 +487,7 @@ Array [
             class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
               title="src"
             >
               src
@@ -498,7 +498,7 @@ Array [
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-default"
               title="components"
             >
               components
@@ -581,7 +581,7 @@ Array [
             class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
               title="src"
             >
               src
@@ -592,7 +592,7 @@ Array [
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-default"
               title="components"
             >
               components
@@ -680,7 +680,7 @@ Array [
             class="euiBreadcrumb emotion-euiBreadcrumb-page"
           >
             <span
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
               title="src"
             >
               src
@@ -691,7 +691,7 @@ Array [
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-default"
               title="components"
             >
               components

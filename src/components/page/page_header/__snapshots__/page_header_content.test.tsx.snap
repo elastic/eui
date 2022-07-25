@@ -213,7 +213,7 @@ exports[`EuiPageHeaderContent props breadcrumbs is rendered 1`] = `
       >
         <span
           aria-current="page"
-          class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page"
+          class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-default"
         >
           Edit
         </span>

@@ -19,6 +19,7 @@ import classNames from 'classnames';
 import { useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
 import { EuiInnerText } from '../inner_text';
+import { EuiTextColor } from '../text';
 import { EuiLink, EuiLinkColor } from '../link';
 import { EuiPopover } from '../popover';
 import { EuiIcon } from '../icon';
@@ -61,8 +62,7 @@ interface _EuiBreadcrumbProps {
   isFirstBreadcrumb?: boolean;
   isLastBreadcrumb?: boolean;
   isOnlyBreadcrumb?: boolean;
-  isInEuiHeader?: boolean;
-  isInCollapsedPopover?: boolean;
+  highlightLastBreadcrumb?: boolean;
 }
 
 export const EuiBreadcrumb: FunctionComponent<
@@ -94,10 +94,11 @@ export const EuiBreadcrumbContent: FunctionComponent<
   rel, // required by our local href-with-rel eslint rule
   onClick,
   className,
+  color,
   isFirstBreadcrumb,
   isLastBreadcrumb,
   isOnlyBreadcrumb,
-  isInCollapsedPopover,
+  highlightLastBreadcrumb,
   ...rest
 }) => {
   const classes = classNames('euiBreadcrumb__content', className);
@@ -119,8 +120,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
     }
   }
 
-  const ariaCurrent =
-    isLastBreadcrumb && !isInCollapsedPopover ? 'page' : undefined;
+  const ariaCurrent = highlightLastBreadcrumb ? 'page' : undefined;
 
   return (
     <EuiInnerText>
@@ -128,16 +128,21 @@ export const EuiBreadcrumbContent: FunctionComponent<
         const title = innerText === '' ? undefined : innerText;
 
         return !href && !onClick ? (
-          <span
-            ref={ref}
-            title={title}
-            aria-current={ariaCurrent}
-            className={classes}
-            css={cssStyles}
-            {...rest}
+          <EuiTextColor
+            color={highlightLastBreadcrumb ? 'default' : 'subdued'}
+            cloneElement
           >
-            {text}
-          </span>
+            <span
+              ref={ref}
+              title={title}
+              aria-current={ariaCurrent}
+              className={classes}
+              css={cssStyles}
+              {...rest}
+            >
+              {text}
+            </span>
+          </EuiTextColor>
         ) : (
           <EuiLink
             ref={ref}
@@ -145,9 +150,7 @@ export const EuiBreadcrumbContent: FunctionComponent<
             aria-current={ariaCurrent}
             className={classes}
             css={cssStyles}
-            color={
-              isLastBreadcrumb && !isInCollapsedPopover ? 'text' : 'subdued'
-            }
+            color={color || (highlightLastBreadcrumb ? 'text' : 'subdued')}
             onClick={onClick}
             href={href}
             rel={rel}

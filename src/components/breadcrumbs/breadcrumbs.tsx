@@ -66,11 +66,12 @@ export type EuiBreadcrumbsProps = CommonProps & {
    * Application breadcrumbs should only be once per page, in (e.g.) EuiHeader
    */
   type?: 'page' | 'application';
-};
 
-// Internal-only props
-type _EuiBreadcrumbsProps = {
-  isInCollapsedPopover?: boolean; // Affects display and aria tags of last breadcrumb
+  /**
+   * Whether the last breadcrumb should visually (and accessibly, to screen readers)
+   * be highlighted as the current page. Defaults to true.
+   */
+  lastBreadcrumbIsCurrentPage?: boolean;
 };
 
 const responsiveDefault: EuiBreadcrumbResponsiveMaxCount = {
@@ -79,16 +80,14 @@ const responsiveDefault: EuiBreadcrumbResponsiveMaxCount = {
   m: 4,
 };
 
-export const EuiBreadcrumbs: FunctionComponent<
-  EuiBreadcrumbsProps & _EuiBreadcrumbsProps
-> = ({
+export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   breadcrumbs,
   className,
   responsive = responsiveDefault,
   truncate = true,
   max = 5,
   type = 'page',
-  isInCollapsedPopover = false,
+  lastBreadcrumbIsCurrentPage = true,
   ...rest
 }) => {
   const ariaLabel = useEuiI18n('euiBreadcrumbs.nav.ariaLabel', 'Breadcrumbs');
@@ -126,7 +125,7 @@ export const EuiBreadcrumbs: FunctionComponent<
           >
             <EuiBreadcrumbs
               breadcrumbs={breadcrumb.overflowBreadcrumbs}
-              isInCollapsedPopover
+              lastBreadcrumbIsCurrentPage={false}
               responsive={false}
               truncate={false}
               max={0}
@@ -137,16 +136,18 @@ export const EuiBreadcrumbs: FunctionComponent<
             <EuiBreadcrumbContent
               type={type}
               truncate={truncate}
-              isInCollapsedPopover={isInCollapsedPopover}
               isFirstBreadcrumb={isFirstBreadcrumb}
               isLastBreadcrumb={isLastBreadcrumb}
               isOnlyBreadcrumb={isOnlyBreadcrumb}
+              highlightLastBreadcrumb={
+                isLastBreadcrumb && lastBreadcrumbIsCurrentPage
+              }
               {...breadcrumb}
             />
           </EuiBreadcrumb>
         );
       }),
-    [visibleBreadcrumbs, truncate, type, isInCollapsedPopover]
+    [visibleBreadcrumbs, truncate, type, lastBreadcrumbIsCurrentPage]
   );
 
   return (

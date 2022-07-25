@@ -50,7 +50,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-application-lastChild"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-application-lastChild-euiTextColor-default"
         title="Edit"
       >
         Edit
@@ -74,7 +74,7 @@ exports[`EuiHeaderBreadcrumbs renders only one breadcrumb with all rounded corne
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-application-onlyChild"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-application-onlyChild-euiTextColor-default"
         title="Home"
       >
         Home

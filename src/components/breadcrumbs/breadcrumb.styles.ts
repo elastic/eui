@@ -36,8 +36,6 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
     // Types
     page: css`
       &:not(:last-of-type) {
-        color: ${euiTheme.colors.subduedText};
-
         &:after {
           background: ${euiTheme.colors.lightShade};
           content: '';
