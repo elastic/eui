@@ -144,9 +144,15 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   if (isTokenColor) {
     cssStyles = [...cssStyles, styles[finalColor as TokenColor]];
   } else if (finalFill === 'none') {
+    // When a custom HEX color is passed and the token doesn't have any fill (no background),
+    // the icon gets that passed color
     cssStyles = [...cssStyles, styles.customColor];
     finalStyle = { color: finalColor, ...style };
   } else {
+    // When a custom HEX color is passed and the token has a fill (light or dark),
+    // the background gets the custom color and the icon gets white or black based on the passed color
+    // The fill='light' (transparent background) will always be overridden by fill='dark' (opaque background)
+    // to better handle custom colors
     const isFinalColorDark = isColorDark(...hexToRgb(finalColor));
     const lightOrDarkColor = isFinalColorDark ? '#FFFFFF' : '#000000';
 
