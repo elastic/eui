@@ -150,7 +150,7 @@ export const SelectableExample = {
       snippet: `<EuiSelectable
   aria-label="Searchable example"
   options={[
-    { label: 'A', searchableLabel: 'Alpha' },
+    { label: 'Alpha' },
     { label: 'B', searchableLabel: 'Beta' },
   ]}
   onChange={newOptions => setOptions(newOptions)}
@@ -189,16 +189,16 @@ export const SelectableExample = {
       ),
       props,
       demo: <SelectableSingle />,
-      snippet: `<EuiSelectable
+      snippet: [
+        `<EuiSelectable
   aria-label="Single selection example"
   options={[]}
   onChange={newOptions => setOptions(newOptions)}
   singleSelection
 >
   {list => list}
-</EuiSelectable>
-
-<EuiSelectable
+</EuiSelectable>`,
+        `<EuiSelectable
   aria-label="Single selection always example"
   options={[]}
   onChange={newOptions => setOptions(newOptions)}
@@ -206,6 +206,7 @@ export const SelectableExample = {
 >
   {list => list}
 </EuiSelectable>`,
+      ],
     },
     {
       title: 'Options can be excluded',
@@ -263,6 +264,7 @@ export const SelectableExample = {
         `<EuiSelectable
   aria-label="Messaging example"
   options={[]}
+  listProps={{ bordered: true }}
   isLoading={isLoading}
   loadingMessage={customLoadingMessage}
   emptyMessage={customEmptyMessage}
