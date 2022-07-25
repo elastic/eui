@@ -150,9 +150,6 @@ export const euiTokenStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
   euiColorVis9: css(getTokenColor(euiTheme, colorMode, 9)),
   gray: css(getTokenColor(euiTheme, colorMode, 'gray')),
   customColor: css``,
-  emptyShade: css`
-    color: ${euiTheme.colors.emptyShade};
-  `,
   // Fills
   light: css``,
   dark: css``,
