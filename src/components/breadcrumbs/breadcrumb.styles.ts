@@ -29,6 +29,9 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
         euiTheme.size.xs
       )}
     `,
+    isTruncated: css`
+      overflow: hidden;
+    `,
     isCollapsed: css`
       flex-shrink: 0;
     `,
@@ -63,11 +66,16 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiBreadcrumb__content: css`
       font-weight: ${euiTheme.font.weight.medium};
-    `,
-    isTruncated: css`
-      ${euiTextTruncate(`${parseFloat(euiTheme.size.base) * 10}px`)};
       text-align: center;
       vertical-align: baseline;
+    `,
+    isTruncated: css`
+      ${euiTextTruncate(`${parseFloat(euiTheme.size.base) * 10}px`)}
+    `,
+    isTruncatedLast: css`
+      // This removes the default breadcrumb max-width while ensuring that the last breadcrumb
+      // still cuts off with a '...' if it's overflowing outside the parent breadcrumbs container
+      ${euiTextTruncate('none')}
     `,
 
     // Types

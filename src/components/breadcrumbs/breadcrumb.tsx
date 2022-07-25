@@ -57,17 +57,17 @@ export type EuiBreadcrumbProps = Omit<
   };
 
 // Used internally only by the parent EuiBreadcrumbs
-interface _EuiBreadcrumbProps {
+type _EuiBreadcrumbProps = {
   type: 'page' | 'application';
   isFirstBreadcrumb?: boolean;
   isLastBreadcrumb?: boolean;
   isOnlyBreadcrumb?: boolean;
   highlightLastBreadcrumb?: boolean;
-}
+} & Pick<EuiBreadcrumbProps, 'truncate'>;
 
 export const EuiBreadcrumb: FunctionComponent<
   HTMLAttributes<HTMLLIElement> & _EuiBreadcrumbProps
-> = ({ children, className, type, ...rest }) => {
+> = ({ children, className, type, truncate, ...rest }) => {
   const classes = classNames('euiBreadcrumb', className);
 
   const euiTheme = useEuiTheme();
@@ -75,6 +75,7 @@ export const EuiBreadcrumb: FunctionComponent<
   const cssStyles = [
     styles.euiBreadcrumb,
     styles[type],
+    truncate && styles.isTruncated,
   ];
 
   return (
@@ -108,7 +109,8 @@ export const EuiBreadcrumbContent: FunctionComponent<
   const cssStyles = [
     styles.euiBreadcrumb__content,
     styles[type],
-    truncate && !isLastBreadcrumb && styles.isTruncated,
+    truncate &&
+      (isLastBreadcrumb ? styles.isTruncatedLast : styles.isTruncated),
   ];
   if (type === 'application') {
     if (isOnlyBreadcrumb) {

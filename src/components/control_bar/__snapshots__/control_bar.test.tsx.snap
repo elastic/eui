@@ -24,7 +24,7 @@ Array [
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-page"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -33,11 +33,11 @@ Array [
             </span>
           </li>
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-page"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-default"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
             >
               components
             </span>
@@ -116,7 +116,7 @@ Array [
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-page"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -126,11 +126,11 @@ Array [
             </span>
           </li>
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-page"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-default"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
               title="components"
             >
               components
@@ -210,7 +210,7 @@ Array [
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-page"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -220,11 +220,11 @@ Array [
             </span>
           </li>
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-page"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-default"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
               title="components"
             >
               components
@@ -304,7 +304,7 @@ Array [
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-page"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -314,11 +314,11 @@ Array [
             </span>
           </li>
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-page"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-default"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
               title="components"
             >
               components
@@ -397,7 +397,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
         class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
       >
         <li
-          class="euiBreadcrumb emotion-euiBreadcrumb-page"
+          class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
         >
           <span
             class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -407,11 +407,11 @@ exports[`EuiControlBar props position is rendered 1`] = `
           </span>
         </li>
         <li
-          class="euiBreadcrumb emotion-euiBreadcrumb-page"
+          class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
         >
           <span
             aria-current="page"
-            class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-default"
+            class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
             title="components"
           >
             components
@@ -484,7 +484,7 @@ Array [
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-page"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -494,11 +494,11 @@ Array [
             </span>
           </li>
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-page"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-default"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
               title="components"
             >
               components
@@ -578,7 +578,7 @@ Array [
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-page"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -588,11 +588,11 @@ Array [
             </span>
           </li>
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-page"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-default"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
               title="components"
             >
               components
@@ -677,7 +677,7 @@ Array [
           class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-page"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
@@ -687,11 +687,11 @@ Array [
             </span>
           </li>
           <li
-            class="euiBreadcrumb emotion-euiBreadcrumb-page"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-default"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
               title="components"
             >
               components

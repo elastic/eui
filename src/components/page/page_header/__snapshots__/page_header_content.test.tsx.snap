@@ -197,7 +197,7 @@ exports[`EuiPageHeaderContent props breadcrumbs is rendered 1`] = `
       class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
     >
       <li
-        class="euiBreadcrumb emotion-euiBreadcrumb-page"
+        class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
       >
         <a
           class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated"
@@ -209,11 +209,11 @@ exports[`EuiPageHeaderContent props breadcrumbs is rendered 1`] = `
         </a>
       </li>
       <li
-        class="euiBreadcrumb emotion-euiBreadcrumb-page"
+        class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
       >
         <span
           aria-current="page"
-          class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-euiTextColor-default"
+          class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
         >
           Edit
         </span>

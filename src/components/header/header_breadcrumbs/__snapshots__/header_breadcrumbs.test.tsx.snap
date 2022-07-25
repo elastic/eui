@@ -10,7 +10,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
     class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
   >
     <li
-      class="euiBreadcrumb emotion-euiBreadcrumb-application"
+      class="euiBreadcrumb emotion-euiBreadcrumb-application-isTruncated"
     >
       <a
         class="euiLink euiBreadcrumb__content customClass emotion-euiLink-subdued-euiBreadcrumb__content-application-isTruncated-firstChild"
@@ -23,7 +23,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb emotion-euiBreadcrumb-application"
+      class="euiBreadcrumb emotion-euiBreadcrumb-application-isTruncated"
     >
       <button
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-application-isTruncated"
@@ -34,7 +34,7 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       </button>
     </li>
     <li
-      class="euiBreadcrumb emotion-euiBreadcrumb-application"
+      class="euiBreadcrumb emotion-euiBreadcrumb-application-isTruncated"
     >
       <a
         class="euiLink euiBreadcrumb__content emotion-euiLink-subdued-euiBreadcrumb__content-application-isTruncated"
@@ -46,11 +46,11 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
       </a>
     </li>
     <li
-      class="euiBreadcrumb emotion-euiBreadcrumb-application"
+      class="euiBreadcrumb emotion-euiBreadcrumb-application-isTruncated"
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-application-lastChild-euiTextColor-default"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-application-isTruncatedLast-lastChild-euiTextColor-default"
         title="Edit"
       >
         Edit
@@ -70,11 +70,11 @@ exports[`EuiHeaderBreadcrumbs renders only one breadcrumb with all rounded corne
     class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
   >
     <li
-      class="euiBreadcrumb emotion-euiBreadcrumb-application"
+      class="euiBreadcrumb emotion-euiBreadcrumb-application-isTruncated"
     >
       <span
         aria-current="page"
-        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-application-onlyChild-euiTextColor-default"
+        class="euiBreadcrumb__content emotion-euiBreadcrumb__content-application-isTruncatedLast-onlyChild-euiTextColor-default"
         title="Home"
       >
         Home
