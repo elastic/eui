@@ -144,12 +144,13 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   if (isTokenColor) {
     cssStyles = [styles[finalColor as TokenColor], ...cssStyles];
   } else if (finalFill === 'none') {
-    // when custom color is used, we passed it in the style prop
     cssStyles = [styles.customColor, ...cssStyles];
     finalStyle = { color: finalColor, ...style };
   } else {
     const isFinalColorDark = isColorDark(...hexToRgb(finalColor));
     const lightOrDarkColor = isFinalColorDark ? '#FFFFFF' : '#000000';
+
+    cssStyles = [styles.customColor, ...cssStyles];
 
     finalFill = 'dark';
     finalStyle = {

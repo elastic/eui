@@ -15,7 +15,7 @@ exports[`EuiToken is rendered 1`] = `
 
 exports[`EuiToken props color can be a custom hex 1`] = `
 <span
-  class="euiToken emotion-euiToken-circle-light-s"
+  class="euiToken css-12d11bg-customColor-euiToken-circle-light-s"
   style="color:#000000;background-color:#FF0000"
 >
   <span
