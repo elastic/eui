@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 
-import {
-  EuiSelectable,
-  EuiSelectableOption,
-} from '../../../../src/components/selectable';
+import { EuiSelectable, EuiSelectableOption } from '../../../../src';
 
 export default () => {
   const [options, setOptions] = useState<EuiSelectableOption[]>([

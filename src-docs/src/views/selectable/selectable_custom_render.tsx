@@ -8,7 +8,7 @@ import {
   EuiSwitch,
   EuiSelectable,
   EuiSelectableOption,
-} from '../../../../src/components';
+} from '../../../../src';
 
 const countryData = [
   { code: 'NL', name: 'Netherlands', flag: '🇳🇱' },

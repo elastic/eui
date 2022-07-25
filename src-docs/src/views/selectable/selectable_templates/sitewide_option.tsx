@@ -1,10 +1,6 @@
 import React from 'react';
 
-import {
-  EuiPanel,
-  EuiAvatar,
-  EuiSelectableListItem,
-} from '../../../../../src/components';
+import { EuiPanel, EuiAvatar, EuiSelectableListItem } from '../../../../../src';
 
 export default () => {
   const props = {

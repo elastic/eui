@@ -5,7 +5,7 @@ import {
   EuiSpacer,
   EuiSelectable,
   EuiSelectableOption,
-} from '../../../../src/components';
+} from '../../../../src';
 
 export default () => {
   const [options, setOptions] = useState<EuiSelectableOption[]>([

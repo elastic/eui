@@ -12,7 +12,7 @@ import {
   EuiSelectableOption,
   EuiSpacer,
   EuiTitle,
-} from '../../../../src/components';
+} from '../../../../src';
 
 export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);

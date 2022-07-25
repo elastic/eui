@@ -1,8 +1,6 @@
 import React, { useState, Fragment } from 'react';
 
-import { EuiSelectable } from '../../../../src/components/selectable';
-import { EuiSwitch } from '../../../../src/components/form/switch';
-import { EuiSpacer } from '../../../../src/components/spacer';
+import { EuiSelectable, EuiSwitch, EuiSpacer } from '../../../../src';
 
 export default () => {
   const [useCustomMessage, setUseCustomMessage] = useState(false);

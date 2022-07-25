@@ -9,7 +9,7 @@ import {
   EuiButton,
   EuiSelectableTemplateSitewide,
   EuiSelectableTemplateSitewideOption,
-} from '../../../../../src/components';
+} from '../../../../../src';
 
 export default () => {
   const [searchValue, setSearchValue] = useState('');

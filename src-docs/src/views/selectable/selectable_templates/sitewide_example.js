@@ -10,7 +10,7 @@ import {
   EuiCodeBlock,
   EuiAccordion,
   EuiCallOut,
-} from '../../../../../src/components';
+} from '../../../../../src';
 
 import { Options, MetaData } from '../props';
 

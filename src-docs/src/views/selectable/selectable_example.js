@@ -9,7 +9,7 @@ import {
   EuiSelectableMessage,
   EuiText,
   EuiCallOut,
-} from '../../../../src/components';
+} from '../../../../src';
 
 import {
   EuiSelectableOptionProps,
