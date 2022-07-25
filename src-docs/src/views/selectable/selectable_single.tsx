@@ -50,7 +50,7 @@ export default () => {
   return (
     <>
       <EuiSwitch
-        label={always ? 'always' : 'true'}
+        label="Show as 'always'"
         checked={always}
         onChange={(e) => setAlways(e.target.checked)}
       />
