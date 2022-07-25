@@ -128,7 +128,7 @@ export const euiTokenStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
       ${logicalCSS('padding-horizontal', euiTheme.size.s)};
     }
   `,
-  // colors
+  // Colors
   euiColorVis0: css(getTokenColor(euiTheme, colorMode, 0)),
   euiColorVis1: css(getTokenColor(euiTheme, colorMode, 1)),
   euiColorVis2: css(getTokenColor(euiTheme, colorMode, 2)),

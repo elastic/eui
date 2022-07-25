@@ -111,7 +111,7 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                 class="euiFlexItem euiFlexItem--flexGrowZero"
               >
                 <span
-                  class="euiToken emotion-euiColorVis0-euiToken-square-light-s"
+                  class="euiToken emotion-euiToken-square-light-s-euiColorVis0"
                 >
                   <span
                     data-euiicon-type="tokenNumber"
