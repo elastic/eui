@@ -621,14 +621,17 @@ function getGridData() {
   const rows = cy.get('[role=row]');
   return rows.then((rows) => {
     const headers: string[] = [];
-    const data = [];
+    const data: Array<{ [key: string]: string }> = [];
 
     // process header
     const headerRow = rows[0];
     const headerCells = headerRow.querySelectorAll('[role=columnheader]');
     for (let i = 0; i < headerCells.length; i++) {
       const headerCell = headerCells[i];
-      headers.push(headerCell.textContent ?? '');
+      const headerContent = headerCell.querySelector(
+        '.euiDataGridHeaderCell__content'
+      )?.textContent;
+      headers.push(headerContent ?? '');
     }
 
     // process data rows

@@ -122,7 +122,7 @@ export const iconTypes = [
   'inspect',
   'invert',
   'ip',
-  'keyboardShortcut',
+  'keyboard',
   'kqlField',
   'kqlFunction',
   'kqlOperand',

@@ -1,3 +1,30 @@
+## [`61.0.0`](https://github.com/elastic/eui/tree/v61.0.0)
+
+- Added `eventIcon`, `eventIconAriaLabel`, and `eventColor` props to `EuiComment` ([#6030](https://github.com/elastic/eui/pull/6030))
+- Updated `EuiComment.actions` type to accept `ReactNode[]` ([#6030](https://github.com/elastic/eui/pull/6030))
+- Updated `.euiMarkdownEditor` display to `flex` to prevent display issues when the markdown editor is inside a `EuiComment` ([#6030](https://github.com/elastic/eui/pull/6030))
+- Added styles for `kbd`'s within `EuiText` ([#6049](https://github.com/elastic/eui/pull/6049))
+- Added `keyboard` glyph to `EuiIcon` ([#6058](https://github.com/elastic/eui/pull/6058))
+
+**Bug fixes**
+
+- Fixed bug in `EuiTimelineItem` where `className`s were not being applied ([#6030](https://github.com/elastic/eui/pull/6030))
+- Fixed multiple missing CSS logical properties within `EuiText` children ([#6059](https://github.com/elastic/eui/pull/6059))
+
+**Deprecations**
+
+- Deprecated `EuiIcon`'s `keyboardShortcut` in favor of `keyboard` ([#6058](https://github.com/elastic/eui/pull/6058))
+
+**Breaking changes**
+
+- Changed `EuiCommentEvent.username` type from `ReactNode` to `string` ([#6030](https://github.com/elastic/eui/pull/6030))
+- Updated `EuiCommentList` and `EuiComment` to use `EuiTimeline` and `EuiTimelineItem` respectively. This change makes the `EuiCommentList` to be always required ([#6030](https://github.com/elastic/eui/pull/6030))
+- Removed `EuiComment.type` ([#6030](https://github.com/elastic/eui/pull/6030))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiComment` to Emotion ([#6030](https://github.com/elastic/eui/pull/6030))
+
 ## [`60.3.0`](https://github.com/elastic/eui/tree/v60.3.0)
 
 - `EuiDataGrid`'s imperative API now exposes the `scrollTo` and `scrollToItem` APIs of `react-window`. ([#6042](https://github.com/elastic/eui/pull/6042))

@@ -7,16 +7,15 @@
  */
 
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount, shallow, render } from 'enzyme';
 import { testCustomHook } from '../../../../test/internal';
 
-import { EuiDataGridSorting } from '../../data_grid_types';
-import { DataGridSortingContext } from '../../utils/sorting';
 import { DataGridFocusContext } from '../../utils/focus';
 import { mockFocusContext } from '../../utils/__mocks__/focus_context';
 
 import {
   EuiDataGridHeaderCell,
+  useSortingUtils,
   usePopoverArrowNavigation,
 } from './data_grid_header_cell';
 
@@ -43,70 +42,136 @@ describe('EuiDataGridHeaderCell', () => {
   });
 
   describe('sorting', () => {
-    const sortingContext = {
-      onSort: jest.fn(),
-      columns: [],
-    } as EuiDataGridSorting;
-
-    const mountWithContext = (props = {}, sorting = {}) => {
-      return mount(
-        <DataGridSortingContext.Provider
-          value={{
-            sorting: { ...sortingContext, ...sorting },
-            sortedRowMap: [],
-            getCorrectRowIndex: jest.fn(),
-          }}
-        >
-          <EuiDataGridHeaderCell {...requiredProps} {...props} />
-        </DataGridSortingContext.Provider>
-      );
+    const columnId = 'test';
+    const mockSortingArgs = {
+      sorting: undefined,
+      id: columnId,
+      showColumnActions: true,
     };
 
+    const getRenderedText = (text: React.ReactElement) =>
+      render(<p>{text}</p>).text();
+
     describe('if the current column is being sorted', () => {
-      it('renders a ascending sort arrow', () => {
-        const component = mountWithContext(
-          { column: { id: 'test' } },
-          { columns: [{ id: 'test', direction: 'asc' }] }
+      it('renders an ascending sort arrow', () => {
+        const {
+          return: { sortingArrow },
+        } = testCustomHook(useSortingUtils, {
+          ...mockSortingArgs,
+          sorting: { columns: [{ id: columnId, direction: 'asc' }] },
+        });
+
+        expect(shallow(sortingArrow).prop('data-euiicon-type')).toEqual(
+          'sortUp'
         );
-        const arrowIcon = component.find('EuiIcon').first();
-        expect(arrowIcon.prop('type')).toEqual('sortUp');
       });
 
       it('renders a descending sort arrow', () => {
-        const component = mountWithContext(
-          { column: { id: 'test' } },
-          { columns: [{ id: 'test', direction: 'desc' }] }
+        const {
+          return: { sortingArrow },
+        } = testCustomHook(useSortingUtils, {
+          ...mockSortingArgs,
+          sorting: { columns: [{ id: columnId, direction: 'desc' }] },
+        });
+
+        expect(shallow(sortingArrow).prop('data-euiicon-type')).toEqual(
+          'sortDown'
         );
-        const arrowIcon = component.find('EuiIcon').first();
-        expect(arrowIcon.prop('type')).toEqual('sortDown');
+      });
+
+      describe('when only the current column is being sorted', () => {
+        describe('when the header cell has no actions', () => {
+          it('renders aria-sort but not sortingScreenReaderText', () => {
+            const {
+              return: { ariaSort, sortingScreenReaderText },
+            } = testCustomHook(useSortingUtils, {
+              ...mockSortingArgs,
+              sorting: { columns: [{ id: columnId, direction: 'asc' }] },
+              showColumnActions: false,
+            });
+
+            expect(ariaSort).toEqual('ascending');
+            expect(getRenderedText(sortingScreenReaderText)).toEqual('');
+          });
+        });
+
+        describe('when the header cell has actions', () => {
+          it('renders aria-sort and sortingScreenReaderText', () => {
+            const {
+              return: { ariaSort, sortingScreenReaderText },
+            } = testCustomHook(useSortingUtils, {
+              ...mockSortingArgs,
+              sorting: { columns: [{ id: columnId, direction: 'desc' }] },
+              showColumnActions: true,
+            });
+
+            expect(ariaSort).toEqual('descending');
+            expect(getRenderedText(sortingScreenReaderText)).toEqual(
+              'Sorted descending.'
+            );
+          });
+        });
       });
     });
 
     describe('if the current column is not being sorted', () => {
       it('does not render an arrow even if other columns are sorted', () => {
-        const component = mountWithContext(
-          { column: { id: 'test' } },
-          { columns: [{ id: 'other', direction: 'asc' }] }
-        );
-        expect(
-          component.find('.euiDataGridHeaderCell__sortingArrow')
-        ).toHaveLength(0);
+        const {
+          return: { sortingArrow },
+        } = testCustomHook(useSortingUtils, {
+          ...mockSortingArgs,
+          sorting: { columns: [{ id: 'other', direction: 'desc' }] },
+        });
+
+        expect(sortingArrow).toBeNull();
+      });
+
+      it('does not render aria-sort or screen reader sorting text', () => {
+        const {
+          return: { ariaSort, sortingScreenReaderText },
+        } = testCustomHook(useSortingUtils, mockSortingArgs);
+
+        expect(ariaSort).toEqual(undefined);
+        expect(getRenderedText(sortingScreenReaderText)).toEqual('');
       });
     });
 
     describe('when multiple columns are being sorted', () => {
-      it('renders EuiScreenReaderOnly text with a full list of sorted columns', () => {
-        const component = mountWithContext(
-          { column: { id: 'A' } },
-          {
+      it('does not render aria-sort, but renders sorting screen reader text text with a full list of sorted columns', () => {
+        const {
+          return: { ariaSort, sortingScreenReaderText },
+          getUpdatedState,
+          updateHookArgs,
+        } = testCustomHook(useSortingUtils, {
+          id: 'A',
+          sorting: {
             columns: [
               { id: 'A', direction: 'asc' },
               { id: 'B', direction: 'desc' },
             ],
-          }
+          },
+        });
+
+        expect(ariaSort).toEqual(undefined);
+        expect(getRenderedText(sortingScreenReaderText)).toMatchInlineSnapshot(
+          '"Sorted by A, ascending, then sorted by B, descending."'
         );
 
-        expect(component.find('EuiScreenReaderOnly')).toHaveLength(1);
+        // Branch coverage
+        updateHookArgs({
+          sorting: {
+            columns: [
+              { id: 'B', direction: 'desc' },
+              { id: 'C', direction: 'asc' },
+              { id: 'A', direction: 'asc' },
+            ],
+          },
+        });
+        expect(
+          getRenderedText(getUpdatedState().sortingScreenReaderText)
+        ).toMatchInlineSnapshot(
+          '"Sorted by B, descending, then sorted by C, ascending, then sorted by A, ascending."'
+        );
       });
     });
   });

@@ -21,6 +21,6 @@ export const getShadowColor = (
   colorMode: EuiThemeColorModeStandard
 ) => {
   const themeOpacity =
-    colorMode === COLOR_MODES_STANDARD.dark ? opacity * 2.5 : opacity * 1;
+    colorMode === COLOR_MODES_STANDARD.dark ? opacity * 3.5 : opacity * 1;
   return chroma(color).alpha(themeOpacity).css();
 };

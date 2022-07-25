@@ -9,7 +9,9 @@
 import React, { HTMLAttributes, useMemo, ElementType } from 'react';
 import Diff from 'text-diff';
 import classNames from 'classnames';
+import { useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
+import { euiTextDiffStyles } from './text_diff.styles';
 
 interface Props {
   /**
@@ -61,6 +63,9 @@ export const useEuiTextDiff = ({
     return diff.main(beforeText, afterText);
   }, [beforeText, afterText, timeout]); // produces diff array
 
+  const euiTheme = useEuiTheme();
+  const styles = euiTextDiffStyles(euiTheme);
+
   const classes = classNames('euiTextDiff', className);
 
   const rendereredHtml = useMemo(() => {
@@ -80,7 +85,7 @@ export const useEuiTextDiff = ({
   }, [textDiff, deleteComponent, insertComponent, sameComponent]); // produces diff array
 
   return [
-    <span className={classes} {...rest}>
+    <span css={styles.euiTextDiff} className={classes} {...rest}>
       {rendereredHtml}
     </span>,
     textDiff,
