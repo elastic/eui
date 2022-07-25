@@ -37,7 +37,7 @@ export const SitewideSearchExample = {
       title: 'Basic setup',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: sitewideSearchSource,
         },
       ],
