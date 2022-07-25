@@ -15,26 +15,6 @@ export default () => (
         grow={false}
         style={{ minWidth: 96 }}
       >
-        <EuiToken iconType="tokenStruct" />
-      </EuiSplitPanel.Inner>
-      <EuiSplitPanel.Inner paddingSize="none" color="subdued">
-        <EuiCodeBlock
-          language="html"
-          isCopyable
-          transparentBackground
-          paddingSize="m"
-        >
-          {'<EuiToken iconType="tokenStruct"  />'}
-        </EuiCodeBlock>
-      </EuiSplitPanel.Inner>
-    </EuiSplitPanel.Outer>
-    <EuiSpacer />
-    <EuiSplitPanel.Outer hasShadow={false} hasBorder={true} direction="row">
-      <EuiSplitPanel.Inner
-        className="eui-textCenter"
-        grow={false}
-        style={{ minWidth: 96 }}
-      >
         <EuiToken iconType="tokenStruct" size="xs" color="gray" />
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner paddingSize="none" color="subdued">
@@ -92,6 +72,26 @@ export default () => (
           {
             '<EuiToken iconType="tokenStruct" size="m" shape="circle" color="#b9f6c8" />'
           }
+        </EuiCodeBlock>
+      </EuiSplitPanel.Inner>
+    </EuiSplitPanel.Outer>
+    <EuiSpacer />
+    <EuiSplitPanel.Outer hasShadow={false} hasBorder={true} direction="row">
+      <EuiSplitPanel.Inner
+        className="eui-textCenter"
+        grow={false}
+        style={{ minWidth: 96 }}
+      >
+        <EuiToken iconType="faceHappy" />
+      </EuiSplitPanel.Inner>
+      <EuiSplitPanel.Inner paddingSize="none" color="subdued">
+        <EuiCodeBlock
+          language="html"
+          isCopyable
+          transparentBackground
+          paddingSize="m"
+        >
+          {'<EuiToken iconType="faceHappy"  />'}
         </EuiCodeBlock>
       </EuiSplitPanel.Inner>
     </EuiSplitPanel.Outer>

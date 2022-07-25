@@ -12,7 +12,7 @@ import defaults from 'lodash/defaults';
 import { CommonProps } from '../common';
 import { useEuiTheme, isColorDark, hexToRgb } from '../../services';
 
-import { IconType, EuiIcon } from '../icon';
+import { IconType, EuiIcon, IconSize } from '../icon';
 import { EuiTokenMapType, TOKEN_MAP } from './token_map';
 import { euiTokenStyles } from './token.styles';
 
@@ -92,7 +92,19 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   'aria-describedby': ariaDescribedby,
   ...rest
 }) => {
-  const classes = classNames('euiToken', className);
+  // Set the icon size to the same as the passed size
+  // unless they passed `xs` which IconSize doesn't support
+  let finalSize: IconSize = size === 'xs' ? 's' : size;
+
+  // When displaying at the small size, the token specific icons
+  // should actually be displayed at medium size
+  if (
+    typeof iconType === 'string' &&
+    iconType.indexOf('token') === 0 &&
+    size === 's'
+  ) {
+    finalSize = 'm';
+  }
 
   const currentDisplay = {
     color,
@@ -147,10 +159,13 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
     };
   }
 
+  const classes = classNames('euiToken', className);
+
   return (
     <span className={classes} css={cssStyles} style={finalStyle} {...rest}>
       <EuiIcon
         type={iconType}
+        size={finalSize}
         title={title}
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledby}
