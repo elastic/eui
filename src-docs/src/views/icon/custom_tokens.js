@@ -103,7 +103,7 @@ export default () => (
         style={{ minWidth: 96 }}
       >
         <EuiToken
-          iconType="faceNeutral"
+          iconType="faceHappy"
           size="l"
           color="euiColorVis7"
           shape="rectangle"
@@ -118,7 +118,7 @@ export default () => (
           paddingSize="m"
         >
           {
-            '<EuiToken iconType="faceNeutral" size="l" color="euiColorVis7" shape="rectangle" fill="dark" />'
+            '<EuiToken iconType="faceHappy" size="l" color="euiColorVis7" shape="rectangle" fill="dark" />'
           }
         </EuiCodeBlock>
       </EuiSplitPanel.Inner>
