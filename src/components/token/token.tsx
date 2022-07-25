@@ -8,7 +8,6 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import defaults from 'lodash/defaults';
 import { CommonProps } from '../common';
 import { useEuiTheme, isColorDark, hexToRgb } from '../../services';
 
@@ -106,26 +105,16 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
     finalSize = 'm';
   }
 
-  const currentDisplay = {
-    color,
-    fill,
-    shape,
-  };
-
-  let finalDisplay;
-
   // If the iconType passed is one of the prefab token types,
   // grab its properties
-  if (typeof iconType === 'string' && iconType in TOKEN_MAP) {
-    const tokenDisplay = TOKEN_MAP[iconType as EuiTokenMapType];
-    finalDisplay = defaults(currentDisplay, tokenDisplay);
-  } else {
-    finalDisplay = currentDisplay;
-  }
+  const tokenDefaults =
+    typeof iconType === 'string' && iconType in TOKEN_MAP
+      ? TOKEN_MAP[iconType as EuiTokenMapType]
+      : {};
 
-  const finalColor = finalDisplay.color || 'gray';
-  const finalShape = finalDisplay.shape || 'circle';
-  let finalFill = finalDisplay.fill || 'light';
+  const finalColor = color || tokenDefaults.color || 'gray';
+  const finalShape = shape || tokenDefaults.shape || 'circle';
+  let finalFill = fill || 'light';
 
   const euiTheme = useEuiTheme();
   const styles = euiTokenStyles(euiTheme);
