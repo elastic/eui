@@ -108,7 +108,12 @@ export const euiTokenStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
     }
 
     &[class*='-rectangle'] {
+      ${logicalCSS(
+        'padding-vertical',
+        '1px'
+      )}; // adds a small padding so that the icon is not touching the border
       ${logicalCSS('padding-horizontal', euiTheme.size.xs)};
+      border-radius: calc(${euiTheme.border.radius.small} / 2);
     }
   `,
   s: css`
