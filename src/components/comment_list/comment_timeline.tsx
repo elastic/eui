@@ -38,7 +38,7 @@ export const EuiCommentTimeline: FunctionComponent<EuiCommentTimelineProps> = ({
     iconRender = (
       <EuiAvatar
         className={avatarClassName}
-        name={timelineIconAriaLabel ? timelineIconAriaLabel : ''}
+        name={timelineIconAriaLabel || ''}
         iconType={timelineIcon}
         color="subdued"
       />
