@@ -77,7 +77,8 @@ const initialComments: EuiCommentProps[] = [
   },
   {
     username: 'system',
-    timelineIcon: <EuiAvatar name="system" iconType="dot" />,
+    timelineIcon: 'dot',
+    timelineIconAriaLabel: 'System',
     event: 'pushed a new incident',
     timestamp: 'on 4th March 2022',
     eventColor: 'danger',

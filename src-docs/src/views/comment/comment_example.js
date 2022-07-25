@@ -96,7 +96,10 @@ export const CommentListExample = {
             For accessibility, it is highly recommended to provide a descriptive{' '}
             <EuiCode>aria-label</EuiCode> or the ID of an external label to the{' '}
             <EuiCode>aria-labelledby</EuiCode> prop of the{' '}
-            <strong>EuiCommentList</strong>.
+            <strong>EuiCommentList</strong>. Every <strong>EuiComment</strong>{' '}
+            should have a <EuiCode>timelineIconAriaLabel</EuiCode> when a{' '}
+            <EuiCode>timelineIcon</EuiCode> is passed as an{' '}
+            <EuiCode>IconType</EuiCode>.
           </>
         }
       />
