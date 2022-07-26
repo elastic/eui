@@ -351,30 +351,33 @@ const useCopy = ({
 
   const showCopyButton = isCopyable && textToCopy;
 
-  const CopyButton = () => {
-    if (!showCopyButton) return null;
+  const _CopyButton = useMemo(() => {
+    const CopyButton: FunctionComponent = () => {
+      if (!showCopyButton) return null;
 
-    return (
-      <div className="euiCodeBlock__copyButton">
-        <EuiI18n token="euiCodeBlock.copyButton" default="Copy">
-          {(copyButton: string) => (
-            <EuiCopy textToCopy={textToCopy}>
-              {(copy) => (
-                <EuiButtonIcon
-                  onClick={copy}
-                  iconType="copyClipboard"
-                  color="text"
-                  aria-label={copyButton}
-                />
-              )}
-            </EuiCopy>
-          )}
-        </EuiI18n>
-      </div>
-    );
-  };
+      return (
+        <div className="euiCodeBlock__copyButton">
+          <EuiI18n token="euiCodeBlock.copyButton" default="Copy">
+            {(copyButton: string) => (
+              <EuiCopy textToCopy={textToCopy}>
+                {(copy) => (
+                  <EuiButtonIcon
+                    onClick={copy}
+                    iconType="copyClipboard"
+                    color="text"
+                    aria-label={copyButton}
+                  />
+                )}
+              </EuiCopy>
+            )}
+          </EuiI18n>
+        </div>
+      );
+    };
+    return CopyButton;
+  }, [showCopyButton, textToCopy]);
 
-  return { innerTextRef, showCopyButton, CopyButton };
+  return { innerTextRef, showCopyButton, CopyButton: _CopyButton };
 };
 
 /**
@@ -388,9 +391,9 @@ const useFullScreen = ({
 }) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
 
-  const toggleFullScreen = () => {
+  const toggleFullScreen = useCallback(() => {
     setIsFullScreen(!isFullScreen);
-  };
+  }, [isFullScreen]);
 
   const onKeyDown = useCallback((event: KeyboardEvent<HTMLElement>) => {
     if (event.key === keys.ESCAPE) {
@@ -402,57 +405,62 @@ const useFullScreen = ({
 
   const showFullScreenButton = !!overflowHeight;
 
-  const FullScreenButton: React.FC = () => {
-    if (!showFullScreenButton) return null;
-    return (
-      <EuiI18n
-        tokens={[
-          'euiCodeBlock.fullscreenCollapse',
-          'euiCodeBlock.fullscreenExpand',
-        ]}
-        defaults={['Collapse', 'Expand']}
-      >
-        {([fullscreenCollapse, fullscreenExpand]: string[]) => (
-          <EuiButtonIcon
-            className="euiCodeBlock__fullScreenButton"
-            onClick={toggleFullScreen}
-            iconType={isFullScreen ? 'fullScreenExit' : 'fullScreen'}
-            color="text"
-            aria-label={isFullScreen ? fullscreenCollapse : fullscreenExpand}
-          />
-        )}
-      </EuiI18n>
-    );
-  };
+  const _FullScreenButton = useMemo(() => {
+    const FullScreenButton: FunctionComponent = () => {
+      if (!showFullScreenButton) return null;
+      return (
+        <EuiI18n
+          tokens={[
+            'euiCodeBlock.fullscreenCollapse',
+            'euiCodeBlock.fullscreenExpand',
+          ]}
+          defaults={['Collapse', 'Expand']}
+        >
+          {([fullscreenCollapse, fullscreenExpand]: string[]) => (
+            <EuiButtonIcon
+              className="euiCodeBlock__fullScreenButton"
+              onClick={toggleFullScreen}
+              iconType={isFullScreen ? 'fullScreenExit' : 'fullScreen'}
+              color="text"
+              aria-label={isFullScreen ? fullscreenCollapse : fullscreenExpand}
+            />
+          )}
+        </EuiI18n>
+      );
+    };
+    return FullScreenButton;
+  }, [isFullScreen, showFullScreenButton, toggleFullScreen]);
 
-  const FullScreenDisplay: React.FC<{ className: string }> = ({
-    children,
-    className,
-  }) => {
-    if (!isFullScreen) return null;
+  const _FullScreenDisplay = useMemo(() => {
+    const FullScreenDisplay: FunctionComponent<{
+      className: string;
+    }> = ({ children, className }) => {
+      if (!isFullScreen) return null;
 
-    // Force fullscreen to use large font and padding.
-    const fullScreenClasses = classNames(
-      className,
-      'euiCodeBlock--fontLarge',
-      'euiCodeBlock--paddingLarge',
-      'euiCodeBlock-isFullScreen'
-    );
+      // Force fullscreen to use large font and padding.
+      const fullScreenClasses = classNames(
+        className,
+        'euiCodeBlock--fontLarge',
+        'euiCodeBlock--paddingLarge',
+        'euiCodeBlock-isFullScreen'
+      );
 
-    // Attaches to the body because of EuiOverlayMask's React portal usage.
-    return (
-      <EuiOverlayMask>
-        <EuiFocusTrap clickOutsideDisables={true}>
-          <div className={fullScreenClasses}>{children}</div>
-        </EuiFocusTrap>
-      </EuiOverlayMask>
-    );
-  };
+      // Attaches to the body because of EuiOverlayMask's React portal usage.
+      return (
+        <EuiOverlayMask>
+          <EuiFocusTrap clickOutsideDisables={true}>
+            <div className={fullScreenClasses}>{children}</div>
+          </EuiFocusTrap>
+        </EuiOverlayMask>
+      );
+    };
+    return FullScreenDisplay;
+  }, [isFullScreen]);
 
   return {
     showFullScreenButton,
-    FullScreenButton,
-    FullScreenDisplay,
+    FullScreenButton: _FullScreenButton,
+    FullScreenDisplay: _FullScreenDisplay,
     onKeyDown,
   };
 };
