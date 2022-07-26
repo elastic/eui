@@ -17,8 +17,8 @@ import classNames from 'classnames';
 import { useEuiTheme } from '../../services';
 import { CommonProps } from '../common';
 import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiButtonIcon } from '../button';
 import { EuiI18n } from '../i18n';
-
 import { IconType, EuiIcon } from '../icon';
 import { EuiText } from '../text';
 
@@ -81,15 +81,15 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
     closeButton = (
       <EuiI18n token="euiToast.dismissToast" default="Dismiss toast">
         {(dismissToast: string) => (
-          <button
+          <EuiButtonIcon
             css={baseStyles.euiToast__closeButton}
-            type="button"
+            iconType="cross"
+            color="text"
+            size="xs"
             aria-label={dismissToast}
             onClick={onClose}
             data-test-subj="toastCloseButton"
-          >
-            <EuiIcon type="cross" size="m" aria-hidden="true" />
-          </button>
+          />
         )}
       </EuiI18n>
     );

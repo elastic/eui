@@ -45,12 +45,14 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
     </div>
     <button
       aria-label="Dismiss toast"
-      class="emotion-euiToast__closeButton"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall emotion-euiToast__closeButton"
       data-test-subj="toastCloseButton"
       type="button"
     >
       <span
         aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
         data-euiicon-type="cross"
       />
     </button>
@@ -90,12 +92,14 @@ exports[`EuiGlobalToastList props side can be changed to left 1`] = `
     </div>
     <button
       aria-label="Dismiss toast"
-      class="emotion-euiToast__closeButton"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall emotion-euiToast__closeButton"
       data-test-subj="toastCloseButton"
       type="button"
     >
       <span
         aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
         data-euiicon-type="cross"
       />
     </button>
@@ -144,12 +148,14 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     </div>
     <button
       aria-label="Dismiss toast"
-      class="emotion-euiToast__closeButton"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall emotion-euiToast__closeButton"
       data-test-subj="toastCloseButton"
       type="button"
     >
       <span
         aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
         data-euiicon-type="cross"
       />
     </button>
@@ -189,12 +195,14 @@ exports[`EuiGlobalToastList props toasts is rendered 1`] = `
     </div>
     <button
       aria-label="Dismiss toast"
-      class="emotion-euiToast__closeButton"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall emotion-euiToast__closeButton"
       data-test-subj="toastCloseButton"
       type="button"
     >
       <span
         aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
         data-euiicon-type="cross"
       />
     </button>

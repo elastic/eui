@@ -8,14 +8,12 @@
 
 import { css } from '@emotion/react';
 import { logicalCSS } from '../../global_styling';
-import { UseEuiTheme, shade, tint, transparentize } from '../../services';
+import { UseEuiTheme } from '../../services';
 import { euiShadowLarge } from '../../themes/amsterdam';
 import { euiTitle } from '../title/title.styles';
 
 export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
-  // TODO: Was $euiFocusBackgroundColor
-  const transparency = { LIGHT: 0.1, DARK: 0.3 };
+  const { euiTheme } = euiThemeContext;
 
   return {
     // Base
@@ -41,38 +39,6 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
       position: absolute;
       ${logicalCSS('top', euiTheme.size.base)};
       ${logicalCSS('right', euiTheme.size.base)};
-
-      // Fit button to icon.
-      line-height: 0;
-
-      appearance: none;
-      opacity: 0;
-      transition: opacity ${euiTheme.animation.fast}
-        ${euiTheme.animation.resistance};
-
-      svg {
-        fill: ${colorMode === 'DARK'
-          ? shade(euiTheme.colors.title, 0.7)
-          : tint(euiTheme.colors.title, 0.5)};
-      }
-
-      &:hover {
-        svg {
-          fill: ${euiTheme.colors.title};
-        }
-      }
-
-      &:focus {
-        background-color: ${transparentize(
-          euiTheme.colors.primary,
-          transparency[colorMode]
-        )};
-        opacity: 1;
-
-        svg {
-          fill: ${euiTheme.colors.primary};
-        }
-      }
     `,
     // Variants
     primary: css`
