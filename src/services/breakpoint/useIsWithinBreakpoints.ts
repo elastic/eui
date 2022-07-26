@@ -6,42 +6,26 @@
  * Side Public License, v 1.
  */
 
-import { useState, useEffect } from 'react';
-
-import { isWithinBreakpoints, EuiBreakpointSize } from '../breakpoint';
+import { _EuiThemeBreakpoint } from '../../global_styling/variables/breakpoint';
+import { useCurrentEuiBreakpoint } from './currentEuiBreakpoint';
 
 /**
  * Given the current window.innerWidth and an array of breakpoint keys,
  * this hook stores state and returns true or false if the window.innerWidth
  * falls within any of the named breakpoints.
  *
- * @param {EuiBreakpointSize[]} sizes An array of named breakpoints
- * @param {boolean} isActive Manages whether the resize handler should be active
+ * @param {_EuiThemeBreakpoint[]} sizes An array of named EUI breakpoints
+ * @param {boolean} isResponsive Some components have the option to turn off responsive behavior.
+ *   Since hooks can't be called conditionally, it's easier to pass the condition into the hook
  * @returns {boolean} Returns `true` if current breakpoint name is included in `sizes`
  */
-export function useIsWithinBreakpoints(
-  sizes: EuiBreakpointSize[],
-  isActive: boolean = true
-) {
-  const [isWithinBreakpointsValue, setIsWithinBreakpointsValue] = useState<
-    boolean
-  >(false);
+export const useIsWithinBreakpoints = (
+  sizes: _EuiThemeBreakpoint[],
+  isResponsive = true
+) => {
+  const currentBreakpoint = useCurrentEuiBreakpoint();
 
-  useEffect(() => {
-    function handleResize() {
-      setIsWithinBreakpointsValue(
-        isWithinBreakpoints(window.innerWidth, sizes)
-      );
-    }
-
-    if (isActive) {
-      window.removeEventListener('resize', handleResize);
-      window.addEventListener('resize', handleResize);
-      handleResize();
-    }
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, [sizes, isActive]);
-
-  return isWithinBreakpointsValue;
-}
+  return currentBreakpoint && isResponsive
+    ? sizes.includes(currentBreakpoint)
+    : false;
+};
