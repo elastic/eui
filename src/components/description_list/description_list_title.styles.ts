@@ -20,15 +20,15 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
 
   const columnDisplay = `
-    width: 50%; // Flex-basis doesn't work in IE with padding
-    padding-right: ${euiTheme.size.s};
+    ${logicalCSS('width', '50%')} // Flex-basis doesn't work in IE with padding
+    ${logicalCSS('padding-right', euiTheme.size.s)}
   `;
   return {
     euiDescriptionList__title: css`
       ${euiTextBreakWord()};
       // Add margin only to the non-first <dt>.
       &:not(:first-of-type) {
-        margin-top: ${euiTheme.size.base};
+        ${logicalCSS('margin-top', euiTheme.size.base)}
       }
     `,
 
@@ -39,7 +39,7 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     responsiveColumn: css`
       ${euiBreakpoint(['xs', 's'], euiThemeContext)} {
-        width: 100%;
+        ${logicalCSS('width', '100%')}
         padding: 0;
       }
       ${euiBreakpoint(['xl'], euiThemeContext)} {
@@ -53,11 +53,12 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
       background-color: ${colorMode === 'DARK'
         ? tint(euiTheme.colors.lightestShade, 0.5)
         : euiTheme.colors.lightestShade};
-      margin: 0 ${euiTheme.size.xs};
+      ${logicalCSS('margin-vertical', '0')}
+      ${logicalCSS('margin-horizontal', euiTheme.size.xs)}
 
       // Make sure the first <dt> doesn't get a margin.
       &:first-of-type {
-        margin-left: 0;
+        ${logicalCSS('margin-left', '0')}
       }
     `,
 
@@ -78,11 +79,13 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
     inlineStyles: {
       normal: css`
         ${euiFontSize(euiThemeContext, 's')};
-        padding: 1px ${euiTheme.size.xs};
+        ${logicalCSS('padding-vertical', '1px')}
+        ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
       `,
       compressed: css`
         ${euiFontSize(euiThemeContext, 'xs')};
-        padding: 0 ${euiTheme.size.xs};
+        ${logicalCSS('padding-vertical', '0')}
+        ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
       `,
     },
 
