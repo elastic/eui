@@ -83,7 +83,8 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       compressed: css`
         ${euiFontSize(euiThemeContext, 'xs')};
-        padding: 0 ${euiTheme.size.xs};
+        ${logicalCSS('padding-vertical', '0')}
+        ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
       `,
     },
 
