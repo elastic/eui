@@ -39,7 +39,7 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     responsiveColumn: css`
       ${euiBreakpoint(['xs', 's'], euiThemeContext)} {
-        width: 100%;
+        ${logicalCSS('width', '100%')}
         padding: 0;
       }
       ${euiBreakpoint(['xl'], euiThemeContext)} {
