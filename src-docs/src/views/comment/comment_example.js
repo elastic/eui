@@ -1,66 +1,22 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
-
 import {
   EuiCode,
   EuiComment,
   EuiCommentList,
+  EuiCallOut,
+  EuiText,
+  EuiSpacer,
 } from '../../../../src/components';
 import commentConfig from './playground';
-
-import Comment from './comment';
-const commentSource = require('!!raw-loader!./comment');
-
-import CommentTypes from './comment_types';
-const commentTypesSource = require('!!raw-loader!./comment_types');
-
-import CommentTimelineIcons from './comment_timelineIcons';
-const commentTimelineIconsSource = require('!!raw-loader!./comment_timelineIcons');
-
-import CommentActions from './comment_actions';
-const commentActionsSource = require('!!raw-loader!./comment_actions');
+import CommentProps from './comment_props';
 
 import CommentList from './comment_list';
 const commentListSource = require('!!raw-loader!./comment_list');
-
-const commentSnippet = `<EuiComment username="janed">
-  {body}
-</EuiComment>`;
-
-const commentTypesSnippet = [
-  `<EuiComment username="janed">
-  {body}
-</EuiComment>
-`,
-  `<EuiComment type="update" username="janed" />
-`,
-  `<EuiComment type="update" username="janed">
-  {body}
-</EuiComment>
-`,
-];
-
-const commentTimelineIconsSnippet = [
-  `<EuiComment username="janed">
-  {body}
-</EuiComment>
-`,
-  `<EuiComment timelineIcon="tag" username="janed" />
-`,
-  `<EuiComment timelineIcon={avatar} username="janed">
-  {body}
-</EuiComment>
-`,
-];
-
-const commentActionsSnippet = `<EuiComment username="janed" actions={customActions}>
-  {body}
-</EuiComment>`;
-
 const commentListSnippet = `<EuiCommentList
+  aria-label="Comment list example"
   comments={[
     {
       username: username,
@@ -71,10 +27,87 @@ const commentListSnippet = `<EuiCommentList
 ]}
 />`;
 
+import CommentFlexible from './comment_flexible';
+const commentFlexibleSource = require('!!raw-loader!./comment_flexible');
+const commentFlexibleSnippet = `<EuiCommentList aria-label="Comment example">
+  <EuiComment
+    eventIcon="pencil"
+    username="janed"
+    event={event}
+    timestamp={timestamp}
+    actions={customActions}
+  >
+    {children}
+  </EuiComment>
+</EuiCommentList>
+`;
+
+import CommentAvatar from './comment_avatar';
+const commentAvatarSource = require('!!raw-loader!./comment_avatar');
+const commentAvatarSnippet = [
+  `<EuiCommentList aria-label="Timeline icon example">
+  <EuiComment username="janed">
+    {body}
+  </EuiComment>
+</EuiCommentList>
+`,
+  `<EuiCommentList aria-label="Timeline icon example">
+  <EuiComment timelineAvatar="tag" username="janed" />
+</EuiCommentList>
+`,
+  `<EuiCommentList aria-label="Timeline icon example">
+  <EuiComment timelineAvatar={avatar} username="janed">
+    {body}
+  </EuiComment>
+</EuiCommentList>
+`,
+];
+
+import CommentActions from './comment_actions';
+const commentActionsSource = require('!!raw-loader!./comment_actions');
+const commentActionsSnippet = `<EuiCommentList aria-label="Comment actions example">
+  <EuiComment username="janed" actions={customActions}>
+    {body}
+  </EuiComment>
+</EuiCommentList>`;
+
+import CommentSystem from './comment_system';
+const commentSystemSource = require('!!raw-loader!./comment_system');
+
 export const CommentListExample = {
   title: 'Comment list',
+  intro: (
+    <EuiText>
+      <p>
+        The <strong>EuiCommentList</strong> is a timeline component built on top
+        of{' '}
+        <Link to="/display/timeline">
+          <strong>EuiTimeline</strong>
+        </Link>
+        . It allows you to display comments or logged actions that either a user
+        or a system has performed.
+      </p>
+
+      <EuiCallOut
+        color="warning"
+        iconType="accessibility"
+        title={
+          <>
+            For accessibility, it is highly recommended to provide a descriptive{' '}
+            <EuiCode>aria-label</EuiCode> or the ID of an external label to the{' '}
+            <EuiCode>aria-labelledby</EuiCode> prop of the{' '}
+            <strong>EuiCommentList</strong>. A{' '}
+            <EuiCode>timelineAvatarAriaLabel</EuiCode> should be provided for
+            every <strong>EuiComment</strong> with or without a{' '}
+            <EuiCode>timelineAvatar</EuiCode> as <EuiCode>IconType</EuiCode>.
+          </>
+        }
+      />
+    </EuiText>
+  ),
   sections: [
     {
+      title: 'Basic comment list',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -94,100 +127,134 @@ export const CommentListExample = {
       demo: <CommentList />,
     },
     {
-      title: 'Comment',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: commentSource,
+          code: commentFlexibleSource,
         },
       ],
+      title: 'Comment',
       text: (
-        <div>
-          <p>
-            Use <strong>EuiComment</strong> to display comments. Each{' '}
-            <strong>EuiComment</strong> has two parts: a{' '}
-            <EuiCode>timelineIcon</EuiCode> on the left and content on the
-            right. The <EuiCode>timelineIcon</EuiCode> provides a visual
-            indication of the <EuiCode>type</EuiCode> of comment it is. For
-            example, it can be an icon that represents what action was performed
-            or it can be a user avatar. The content has a header with all the
-            relevant metadata and a body.
-          </p>
-        </div>
+        <>
+          <EuiText>
+            <p>
+              The <strong>EuiComment</strong> is flexible and adapts the design
+              according to the props passed.
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <CommentProps snippet={commentFlexibleSnippet} />
+          <EuiSpacer />
+          <EuiText>
+            <ol style={{ listStyleType: 'upper-alpha' }}>
+              <li>
+                <EuiCode>timelineAvatar</EuiCode>: Shows an avatar that should
+                indicate who is the author of the comment. To customize, pass a{' '}
+                <EuiCode>string</EuiCode> as a{' '}
+                <EuiCode>EuiIcon[&apos;type&apos;]</EuiCode> or a a{' '}
+                <Link to="/display/avatar">
+                  <strong>EuiAvatar</strong>
+                </Link>
+                . Use in conjunction with{' '}
+                <EuiCode>timelineAvatarAriaLabel</EuiCode> to pass an aria label
+                to the avatar. If no avatar is provided, it will default to an
+                avatar with a <EuiCode>userAvatar</EuiCode> icon.
+              </li>
+              <li>
+                <EuiCode>eventIcon</EuiCode>: Icon that shows before the
+                username. Use in conjunction with{' '}
+                <EuiCode>eventIconAriaLabel</EuiCode> to pass an aria label to
+                the event icon.
+              </li>
+              <li>
+                <EuiCode>username</EuiCode>: Author of the comment.
+              </li>
+              <li>
+                <EuiCode>event</EuiCode>: Describes the event that took place.
+              </li>
+              <li>
+                <EuiCode>timestamp</EuiCode>: Time of occurrence of the event.
+              </li>
+              <li>
+                <EuiCode>actions</EuiCode>: Custom actions that the user can
+                perform from the comment&apos;s header. When having multiple
+                actions, consider grouping them in a nested menu system using a{' '}
+                <Link to="/layout/popover">
+                  <strong>EuiPopover</strong>
+                </Link>{' '}
+                with a{' '}
+                <Link to="/navigation/context-menu">
+                  <strong>EuiContextMenu</strong>
+                </Link>
+                .
+              </li>
+              <li>
+                <EuiCode>children</EuiCode>: A user message or any custom
+                component.
+              </li>
+            </ol>
+          </EuiText>
+          <EuiSpacer />
+          <EuiText>
+            <p>
+              The following demo shows how you can combine different props to
+              create different types of comments events like a regular, update,
+              update with a danger background and a custom one.
+            </p>
+          </EuiText>
+        </>
       ),
-      props: { EuiComment },
-      snippet: commentSnippet,
-      demo: <Comment />,
+      props: { EuiCommentList, EuiComment },
+      snippet: commentFlexibleSnippet,
+      demo: <CommentFlexible />,
       playground: commentConfig,
     },
     {
-      title: 'Comment types',
+      title: 'Timeline avatar',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: commentTypesSource,
+          code: commentAvatarSource,
         },
       ],
       text: (
-        <div>
-          <p>
-            The default <EuiCode>type</EuiCode> of comment is
-            <EuiCode>regular</EuiCode> and displays a comment that a user has
-            written.
-          </p>
-          <p>
-            Change the type to <EuiCode>update</EuiCode> to display comments
-            that generally do not have a body and are logging actions that
-            either the user or the system has performed (e.g. &ldquo;jsmith
-            edited a case&rdquo; or &ldquo;kibanamachine added the review
-            label&rdquo;).
-          </p>
-        </div>
-      ),
-      props: { EuiComment },
-      snippet: commentTypesSnippet,
-      demo: <CommentTypes />,
-    },
-    {
-      title: 'Custom timeline icon',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: commentTimelineIconsSource,
-        },
-      ],
-      text: (
-        <div>
-          <p>
-            There are three ways to use <EuiCode>timelineIcon</EuiCode>:
-          </p>
-          <ol>
+        <>
+          <p>The timeline icon is a very important part of the comment:</p>
+          <ul>
             <li>
-              Use the defaults; a user icon inside a large container for
-              <EuiCode>regular</EuiCode> comments; or a dot icon inside a small
-              container for <EuiCode>update</EuiCode> comments.
+              By default, each <strong>EuiComment</strong> shows an avatar with
+              the <EuiCode>userAvatar</EuiCode> icon. A{' '}
+              <EuiCode>timelineAvatarAriaLabel</EuiCode>
+              should be provided when using this default option.
             </li>
             <li>
-              Pass a string with any of the icon types that{' '}
-              <strong>EuiIcon</strong> supports and it will receive the default
-              styling.
+              You can customize your avatar by passing to the{' '}
+              <EuiCode>timelineAvatar</EuiCode> any of the icon types that{' '}
+              <Link to="/display/icons">
+                <strong>EuiIcon</strong>
+              </Link>{' '}
+              supports. The icon will show inside a <EuiCode>subdued</EuiCode>{' '}
+              avatar. Consider this option when showing a system update.
+              Providing a <EuiCode>timelineAvatarAriaLabel</EuiCode> is
+              recommended.
             </li>
             <li>
-              Pass any other element (e.g.{' '}
+              You can further customize the timeline icon by passing to the{' '}
+              <EuiCode>timelineAvatar</EuiCode> a{' '}
               <Link to="/display/avatar">
                 <strong>EuiAvatar</strong>
               </Link>
-              ). It is recommended not to use an element larger than 40x40.
+              .
             </li>
-          </ol>
-        </div>
+          </ul>
+        </>
       ),
       props: { EuiComment },
-      snippet: commentTimelineIconsSnippet,
-      demo: <CommentTimelineIcons />,
+      snippet: commentAvatarSnippet,
+      demo: <CommentAvatar />,
     },
     {
-      title: 'Actions',
+      title: 'Comment event actions',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -195,7 +262,7 @@ export const CommentListExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             There are scenarios where you might want to allow the user to
             perform <EuiCode>actions</EuiCode> related to each comment. Some
@@ -203,27 +270,76 @@ export const CommentListExample = {
             sharing and copying. To add custom <EuiCode>actions</EuiCode> to a
             comment, use the <EuiCode>actions</EuiCode>
             prop. These will be placed to the right of the metadata in the
-            comment&apos;s header. You can use any element to display{' '}
-            <EuiCode>actions</EuiCode>. For example, for something simple you
-            can use{' '}
+            comment&apos;s header. We recommend using a{' '}
             <Link to="/navigation/button">
               <strong>EuiButtonIcon</strong>
             </Link>{' '}
-            and for something more complex you can combine that with{' '}
+            to trigger an action. When having multiple actions, consider
+            grouping them in a nested menu system using a{' '}
             <Link to="/layout/popover">
               <strong>EuiPopover</strong>
             </Link>{' '}
-            and{' '}
+            with a{' '}
             <Link to="/navigation/context-menu">
               <strong>EuiContextMenu</strong>
             </Link>
             .
           </p>
-        </div>
+        </>
       ),
       props: { EuiComment },
       snippet: commentActionsSnippet,
       demo: <CommentActions />,
+    },
+    {
+      title: 'A comment system',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: commentSystemSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            The below example uses a list of <strong>EuiComments</strong>, a{' '}
+            <Link to="/editors-syntax/markdown-editor">
+              <strong>EuiMarkdownEditor</strong>
+            </Link>
+            , and a{' '}
+            <Link to="/editors-syntax/markdown-format">
+              <strong>EuiMarkdownFormat</strong>
+            </Link>{' '}
+            to create a simple comment system.
+          </p>
+          <ul>
+            <li>
+              Each comment renders in a <strong>EuiComment</strong>.
+            </li>
+            <li>
+              We use the <strong>EuiMarkdownEditor</strong> to post the{' '}
+              <EuiCode>EuiComment.children</EuiCode>. This means the content
+              uses Markdown.
+            </li>
+            <li>
+              When the new <strong>EuiComment</strong> is posted, we use the{' '}
+              <strong>EuiMarkdownFormat</strong> to wrap the{' '}
+              <EuiCode>EuiComment.children</EuiCode> and render the Markdown
+              correctly.
+            </li>
+          </ul>
+          <p>
+            When dealing with asynchronous events like posting a message we
+            recommend setting the <strong>EuiMarkdownEditor</strong> to a{' '}
+            <EuiCode>readOnly</EuiCode> state and the &quot;Add comment&quot;{' '}
+            <strong>EuiButton</strong> to a <EuiCode>isLoading</EuiCode> state.
+            This will ensure users understand that the content cannot be changed
+            while the comment is being submitted.
+          </p>
+        </>
+      ),
+      props: { EuiCommentList, EuiComment },
+      demo: <CommentSystem />,
     },
   ],
 };

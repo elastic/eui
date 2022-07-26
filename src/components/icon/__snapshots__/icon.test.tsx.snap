@@ -1422,6 +1422,28 @@ exports[`EuiIcon props type cloudSunny is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type cluster is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="cluster"
+  data-is-loaded="true"
+  fill="none"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M4.5 7a2.5 2.5 0 100-5 2.5 2.5 0 000 5zm0-6a3.5 3.5 0 013.465 3h3.12a1.5 1.5 0 110 1h-3.12a3.482 3.482 0 01-.662 1.596l2.1 2.1A3.5 3.5 0 118.036 12h-3.12a1.5 1.5 0 110-.999h3.12a3.482 3.482 0 01.662-1.596l-2.1-2.1A3.5 3.5 0 114.5 1zM12 4.5a.5.5 0 101 0 .5.5 0 00-1 0zm-.5 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5zM4 11.5a.5.5 0 11-1 0 .5.5 0 011 0z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type codeApp is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -1531,6 +1553,26 @@ exports[`EuiIcon props type consoleApp is rendered 1`] = `
   />
   <path
     d="M7.29 17.71l3.3 3.29-3.3 3.29 1.42 1.42 4.7-4.71-4.7-4.71zM15 24h9v2h-9z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type container is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="container"
+  data-is-loaded="true"
+  fill="none"
+  focusable="false"
+  role="img"
+  viewBox="0 0 16 16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M0 2.5A.5.5 0 01.5 2h15a.5.5 0 010 1H15v10h.5a.5.5 0 010 1H.5a.5.5 0 010-1H1V3H.5a.5.5 0 01-.5-.5zM2 3h12v10H2V3zm3 2a.5.5 0 00-.5.5v5a.5.5 0 001 0v-5A.5.5 0 005 5zm5.5.5a.5.5 0 011 0v5a.5.5 0 01-1 0v-5zM8 5a.5.5 0 00-.5.5v5a.5.5 0 001 0v-5A.5.5 0 008 5z"
+    fill-rule="evenodd"
   />
 </svg>
 `;
@@ -3995,21 +4037,21 @@ exports[`EuiIcon props type ip is rendered 1`] = `
 </svg>
 `;
 
-exports[`EuiIcon props type keyboardShortcut is rendered 1`] = `
+exports[`EuiIcon props type keyboard is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon emotion-euiIcon-m-isLoaded"
-  data-icon-type="keyboardShortcut"
+  data-icon-type="keyboard"
   data-is-loaded="true"
   focusable="false"
-  height="16"
   role="img"
   viewBox="0 0 16 16"
-  width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M15 9a1 1 0 01.993.883L16 10v5a1 1 0 01-.883.993L15 16H7a1 1 0 01-.993-.883L6 15v-5a1 1 0 01.883-.993L7 9h8zM2.5 10a.5.5 0 01.492.41L3 10.5V12h1.5a.5.5 0 01.09.992L4.5 13H3v1.5a.5.5 0 01-.992.09L2 14.5V13H.5a.5.5 0 01-.09-.992L.5 12H2v-1.5a.5.5 0 01.5-.5zM15 10H7v5h8v-5zm-1 3v1H8v-1h6zm1-13a1 1 0 011 1v5a1 1 0 01-1 1H1a1 1 0 01-1-1V1a1 1 0 011-1h14zm0 1H1v5h14V1zM8 4v1H2V4h6z"
+    clip-rule="evenodd"
+    d="M0 3h16v11H0V3zm15 10V4H1v9h14zM2 5h2v1H2V5zm2 7v-1H2v1h2zm10-1v1h-2v-1h2zm-3 1v-1H5v1h6zM5 5h1v1H5V5zM3 7H2v1h1V7zm3 0h1v1H6V7zM3 9H2v1h1V9zm3 0h1v1H6V9zm2-4H7v1h1V5zM4 7h1v1H4V7zm5 0H8v1h1V7zm1 0h1v1h-1V7zM5 9H4v1h1V9zm3 0h1v1H8V9zm3 0h-1v1h1V9zM9 5h1v1H9V5zm3 0h-1v1h1V5zm1 0h1v1h-1V5zm1 2h-2v3h2V7z"
+    fill-rule="evenodd"
   />
 </svg>
 `;
@@ -4105,6 +4147,50 @@ exports[`EuiIcon props type kqlValue is rendered 1`] = `
 >
   <path
     d="M8 4a5 5 0 110 8 5 5 0 110-8zm-.75.692a4 4 0 100 6.615A4.981 4.981 0 016 8c0-1.268.472-2.426 1.25-3.308zM11.348 11l2.078-5.637h-.739l-1.656 4.727h-.062L9.313 5.363h-.739L10.652 11h.696z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type kubernetesNode is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="kubernetesNode"
+  data-is-loaded="true"
+  fill="none"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M14 11.42V4.58L8 1.152 2 4.58v6.84l6 3.428 6-3.428zM8 16l7-4V4L8 0 1 4v8l7 4zM8 4.607l3 1.714V9.68l-3 1.714-3-1.714V6.32l3-1.714zm4 1.134v4.518l-4 2.286-4-2.286V5.741l4-2.286 4 2.286z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type kubernetesPod is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="kubernetesPod"
+  data-is-loaded="true"
+  fill="none"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M14 5.151v6.269l-5.5 3.142V8.29L14 5.151zm-.508-.861L8 1.152 2.508 4.29 8 7.424l5.492-3.134zM2 5.151l5.5 3.14v6.272L2 11.42V5.15zM15 12l-7 4-7-4V4l7-4 7 4v8z"
+    fill-rule="evenodd"
   />
 </svg>
 `;
@@ -7499,6 +7585,28 @@ exports[`EuiIcon props type moon is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type namespace is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="namespace"
+  data-is-loaded="true"
+  fill="none"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M1 1h14v14H1V1zm13 12v1H2V2h12v11zM6 6h4v4H6V6zm-1 5V5h6v6H5z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type nested is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -9823,6 +9931,44 @@ exports[`EuiIcon props type tokenMethod is rendered 1`] = `
   <path
     d="M3.333 11.027V5.05h2.059v1.136h.063c.25-.747.891-1.214 1.728-1.214.848 0 1.524.483 1.65 1.214h.063c.204-.731.927-1.214 1.822-1.214 1.155 0 1.949.798 1.949 2.023v4.03h-2.169V7.542c0-.521-.29-.84-.738-.84s-.723.319-.723.84v3.486H6.963V7.54c0-.521-.29-.84-.739-.84-.447 0-.722.319-.722.84v3.486H3.333z"
     fill-rule="evenodd"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type tokenMetricCounter is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="tokenMetricCounter"
+  data-is-loaded="true"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M11 3a1 1 0 00-1 1v1H9a1 1 0 000 2h1v1a1 1 0 102 0V7h1a1 1 0 100-2h-1V4a1 1 0 00-1-1zM5 7a1 1 0 00-1 1v1H3a1 1 0 000 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2H6V8a1 1 0 00-1-1z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type tokenMetricGauge is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="tokenMetricGauge"
+  data-is-loaded="true"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M5 4h-.5a.5.5 0 010-1h1a.5.5 0 01.5.5v9a.5.5 0 01-.5.5h-1a.5.5 0 010-1H5v-2h-.5a.5.5 0 010-1H5V7h-.5a.5.5 0 010-1H5V4zm3 1a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1V6a1 1 0 00-1-1H8z"
   />
 </svg>
 `;

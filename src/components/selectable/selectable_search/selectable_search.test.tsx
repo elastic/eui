@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render, mount, shallow } from 'enzyme';
+import { render, shallow } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiSelectableSearch } from './selectable_search';
@@ -48,11 +48,6 @@ describe('EuiSelectableSearch', () => {
       />
     );
     expect(component).toMatchSnapshot();
-  });
-
-  it('calls the onChange callback on mount', () => {
-    mount(<EuiSelectableSearch {...baseProps} value="w" />);
-    expect(onChange).toHaveBeenCalledWith('w', [{ label: 'world' }]);
   });
 
   it("calls the onChange callback when the EuiFieldSearch's change event fires", () => {

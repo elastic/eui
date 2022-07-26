@@ -4,10 +4,10 @@ import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiPortal } from '../../../../src/components';
 
-import { Portal } from './portal';
+import Portal from './portal';
 const portalSource = require('!!raw-loader!./portal');
 
-import { PortalInsert } from './portal_insert';
+import PortalInsert from './portal_insert';
 const portalInsertSource = require('!!raw-loader!./portal_insert');
 
 export const PortalExample = {

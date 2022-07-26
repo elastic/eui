@@ -8,10 +8,10 @@ exports[`EuiDataGrid pagination renders 1`] = `
     class="euiFlexItem euiFlexItem--flexGrowZero"
   >
     <div
-      class="euiPopover euiPopover--anchorUpRight"
+      class="euiPopover emotion-euiPopover"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover__anchor css-16vtueo-render"
       >
         <button
           class="euiButtonEmpty euiButtonEmpty--xSmall css-wvaqcf-empty-text"
@@ -947,11 +947,11 @@ Array [
           class="euiDataGrid__leftControls"
         >
           <div
-            class="euiPopover euiPopover--anchorDownLeft"
+            class="euiPopover emotion-euiPopover"
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <div
-              class="euiPopover__anchor"
+              class="euiPopover__anchor css-16vtueo-render"
             >
               <button
                 class="euiButtonEmpty euiButtonEmpty--xSmall euiDataGrid__controlBtn css-wvaqcf-empty-text"
@@ -983,11 +983,11 @@ Array [
           class="euiDataGrid__rightControls"
         >
           <div
-            class="euiPopover euiPopover--anchorDownRight"
+            class="euiPopover emotion-euiPopover"
             data-test-subj="dataGridDisplaySelectorPopover"
           >
             <div
-              class="euiPopover__anchor"
+              class="euiPopover__anchor css-16vtueo-render"
             >
               <span
                 class="euiToolTipAnchor"
@@ -1029,6 +1029,7 @@ Array [
       </div>
       <div
         aria-label="aria-label"
+        aria-rowcount="3"
         class="euiDataGrid__content"
         data-test-subj="euiDataGridBody"
         id="generated-id"
@@ -1064,17 +1065,18 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover euiPopover--anchorDownCenter"
-                  offset="7"
+                  class="euiPopover eui-fullWidth emotion-euiPopover"
                 >
                   <div
-                    class="euiPopover__anchor euiDataGridHeaderCell__anchor"
+                    class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
                   >
                     <button
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
                         class="euiDataGridHeaderCell__content"
+                        title="A"
                       >
                         A
                       </div>
@@ -1083,12 +1085,20 @@ Array [
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-A"
-                      >
-                        Header actions
-                      </span>
+                      />
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_actions"
+                >
+                  Click to view column header actions
+                </p>
               </div>
               <div
                 class="euiDataGridHeaderCell"
@@ -1107,17 +1117,18 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover euiPopover--anchorDownCenter"
-                  offset="7"
+                  class="euiPopover eui-fullWidth emotion-euiPopover"
                 >
                   <div
-                    class="euiPopover__anchor euiDataGridHeaderCell__anchor"
+                    class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
                   >
                     <button
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
                         class="euiDataGridHeaderCell__content"
+                        title="B"
                       >
                         B
                       </div>
@@ -1126,15 +1137,24 @@ Array [
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-B"
-                      >
-                        Header actions
-                      </span>
+                      />
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_actions"
+                >
+                  Click to view column header actions
+                </p>
               </div>
             </div>
             <div
+              aria-rowindex="1"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
@@ -1160,12 +1180,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 1; Column: 1
+                    - A, column 1, row 1
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="1"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
@@ -1191,12 +1212,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 1; Column: 2
+                    - B, column 2, row 1
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="2"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
@@ -1222,12 +1244,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 2; Column: 1
+                    - A, column 1, row 2
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="2"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
@@ -1253,12 +1276,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 2; Column: 2
+                    - B, column 2, row 2
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="3"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
@@ -1284,12 +1308,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 3; Column: 1
+                    - A, column 1, row 3
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="3"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
@@ -1315,7 +1340,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 3; Column: 2
+                    - B, column 2, row 3
                   </p>
                 </div>
               </div>
@@ -1367,11 +1392,11 @@ Array [
           class="euiDataGrid__leftControls"
         >
           <div
-            class="euiPopover euiPopover--anchorDownLeft"
+            class="euiPopover emotion-euiPopover"
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <div
-              class="euiPopover__anchor"
+              class="euiPopover__anchor css-16vtueo-render"
             >
               <button
                 class="euiButtonEmpty euiButtonEmpty--xSmall euiDataGrid__controlBtn css-wvaqcf-empty-text"
@@ -1403,11 +1428,11 @@ Array [
           class="euiDataGrid__rightControls"
         >
           <div
-            class="euiPopover euiPopover--anchorDownRight"
+            class="euiPopover emotion-euiPopover"
             data-test-subj="dataGridDisplaySelectorPopover"
           >
             <div
-              class="euiPopover__anchor"
+              class="euiPopover__anchor css-16vtueo-render"
             >
               <span
                 class="euiToolTipAnchor"
@@ -1449,6 +1474,7 @@ Array [
       </div>
       <div
         aria-label="aria-label"
+        aria-rowcount="3"
         class="euiDataGrid__content"
         data-test-subj="euiDataGridBody"
         id="generated-id"
@@ -1503,17 +1529,18 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover euiPopover--anchorDownCenter"
-                  offset="7"
+                  class="euiPopover eui-fullWidth emotion-euiPopover"
                 >
                   <div
-                    class="euiPopover__anchor euiDataGridHeaderCell__anchor"
+                    class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
                   >
                     <button
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
                         class="euiDataGridHeaderCell__content"
+                        title="A"
                       >
                         A
                       </div>
@@ -1522,12 +1549,20 @@ Array [
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-A"
-                      >
-                        Header actions
-                      </span>
+                      />
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_actions"
+                >
+                  Click to view column header actions
+                </p>
               </div>
               <div
                 class="euiDataGridHeaderCell"
@@ -1546,17 +1581,18 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover euiPopover--anchorDownCenter"
-                  offset="7"
+                  class="euiPopover eui-fullWidth emotion-euiPopover"
                 >
                   <div
-                    class="euiPopover__anchor euiDataGridHeaderCell__anchor"
+                    class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
                   >
                     <button
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
                         class="euiDataGridHeaderCell__content"
+                        title="B"
                       >
                         B
                       </div>
@@ -1565,12 +1601,20 @@ Array [
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-B"
-                      >
-                        Header actions
-                      </span>
+                      />
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_actions"
+                >
+                  Click to view column header actions
+                </p>
               </div>
               <div
                 class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn"
@@ -1593,6 +1637,7 @@ Array [
               </div>
             </div>
             <div
+              aria-rowindex="1"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="leading"
               data-gridcell-column-index="0"
@@ -1631,7 +1676,7 @@ Array [
                     <p
                       class="emotion-euiScreenReaderOnly"
                     >
-                      Row: 1; Column: 1
+                      - leading, column 1, row 1
                     </p>
                   </div>
                 </div>
@@ -1643,6 +1688,7 @@ Array [
               />
             </div>
             <div
+              aria-rowindex="1"
               class="euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="1"
@@ -1668,12 +1714,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 1; Column: 2
+                    - A, column 2, row 1
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="1"
               class="euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="2"
@@ -1699,12 +1746,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 1; Column: 3
+                    - B, column 3, row 1
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="1"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="trailing"
               data-gridcell-column-index="3"
@@ -1743,7 +1791,7 @@ Array [
                     <p
                       class="emotion-euiScreenReaderOnly"
                     >
-                      Row: 1; Column: 4
+                      - trailing, column 4, row 1
                     </p>
                   </div>
                 </div>
@@ -1755,6 +1803,7 @@ Array [
               />
             </div>
             <div
+              aria-rowindex="2"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="leading"
               data-gridcell-column-index="0"
@@ -1793,7 +1842,7 @@ Array [
                     <p
                       class="emotion-euiScreenReaderOnly"
                     >
-                      Row: 2; Column: 1
+                      - leading, column 1, row 2
                     </p>
                   </div>
                 </div>
@@ -1805,6 +1854,7 @@ Array [
               />
             </div>
             <div
+              aria-rowindex="2"
               class="euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="1"
@@ -1830,12 +1880,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 2; Column: 2
+                    - A, column 2, row 2
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="2"
               class="euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="2"
@@ -1861,12 +1912,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 2; Column: 3
+                    - B, column 3, row 2
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="2"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="trailing"
               data-gridcell-column-index="3"
@@ -1905,7 +1957,7 @@ Array [
                     <p
                       class="emotion-euiScreenReaderOnly"
                     >
-                      Row: 2; Column: 4
+                      - trailing, column 4, row 2
                     </p>
                   </div>
                 </div>
@@ -1917,6 +1969,7 @@ Array [
               />
             </div>
             <div
+              aria-rowindex="3"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="leading"
               data-gridcell-column-index="0"
@@ -1955,7 +2008,7 @@ Array [
                     <p
                       class="emotion-euiScreenReaderOnly"
                     >
-                      Row: 3; Column: 1
+                      - leading, column 1, row 3
                     </p>
                   </div>
                 </div>
@@ -1967,6 +2020,7 @@ Array [
               />
             </div>
             <div
+              aria-rowindex="3"
               class="euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="1"
@@ -1992,12 +2046,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 3; Column: 2
+                    - A, column 2, row 3
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="3"
               class="euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="2"
@@ -2023,12 +2078,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 3; Column: 3
+                    - B, column 3, row 3
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="3"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="trailing"
               data-gridcell-column-index="3"
@@ -2067,7 +2123,7 @@ Array [
                     <p
                       class="emotion-euiScreenReaderOnly"
                     >
-                      Row: 3; Column: 4
+                      - trailing, column 4, row 3
                     </p>
                   </div>
                 </div>
@@ -2125,11 +2181,11 @@ Array [
           class="euiDataGrid__leftControls"
         >
           <div
-            class="euiPopover euiPopover--anchorDownLeft"
+            class="euiPopover emotion-euiPopover"
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <div
-              class="euiPopover__anchor"
+              class="euiPopover__anchor css-16vtueo-render"
             >
               <button
                 class="euiButtonEmpty euiButtonEmpty--xSmall euiDataGrid__controlBtn css-wvaqcf-empty-text"
@@ -2158,11 +2214,11 @@ Array [
           class="euiDataGrid__rightControls"
         >
           <div
-            class="euiPopover euiPopover--anchorDownRight"
+            class="euiPopover emotion-euiPopover"
             data-test-subj="dataGridDisplaySelectorPopover"
           >
             <div
-              class="euiPopover__anchor"
+              class="euiPopover__anchor css-16vtueo-render"
             >
               <span
                 class="euiToolTipAnchor"
@@ -2204,6 +2260,7 @@ Array [
       </div>
       <div
         aria-label="aria-label"
+        aria-rowcount="3"
         class="euiDataGrid__content"
         data-test-subj="euiDataGridBody"
         id="generated-id"
@@ -2239,17 +2296,18 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover euiPopover--anchorDownCenter"
-                  offset="7"
+                  class="euiPopover eui-fullWidth emotion-euiPopover"
                 >
                   <div
-                    class="euiPopover__anchor euiDataGridHeaderCell__anchor"
+                    class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
                   >
                     <button
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
                         class="euiDataGridHeaderCell__content"
+                        title="A"
                       >
                         Column A
                       </div>
@@ -2258,12 +2316,20 @@ Array [
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-A"
-                      >
-                        Header actions
-                      </span>
+                      />
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_actions"
+                >
+                  Click to view column header actions
+                </p>
               </div>
               <div
                 class="euiDataGridHeaderCell"
@@ -2282,17 +2348,18 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover euiPopover--anchorDownCenter"
-                  offset="7"
+                  class="euiPopover eui-fullWidth emotion-euiPopover"
                 >
                   <div
-                    class="euiPopover__anchor euiDataGridHeaderCell__anchor"
+                    class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
                   >
                     <button
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
                         class="euiDataGridHeaderCell__content"
+                        title="B"
                       >
                         <div>
                           More Elements
@@ -2303,15 +2370,24 @@ Array [
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-B"
-                      >
-                        Header actions
-                      </span>
+                      />
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_actions"
+                >
+                  Click to view column header actions
+                </p>
               </div>
             </div>
             <div
+              aria-rowindex="1"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
@@ -2337,12 +2413,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 1; Column: 1
+                    - A, column 1, row 1
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="1"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
@@ -2368,12 +2445,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 1; Column: 2
+                    - B, column 2, row 1
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="2"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
@@ -2399,12 +2477,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 2; Column: 1
+                    - A, column 1, row 2
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="2"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
@@ -2430,12 +2509,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 2; Column: 2
+                    - B, column 2, row 2
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="3"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
@@ -2461,12 +2541,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 3; Column: 1
+                    - A, column 1, row 3
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="3"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
@@ -2492,7 +2573,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 3; Column: 2
+                    - B, column 2, row 3
                   </p>
                 </div>
               </div>
@@ -2544,11 +2625,11 @@ Array [
           class="euiDataGrid__leftControls"
         >
           <div
-            class="euiPopover euiPopover--anchorDownLeft"
+            class="euiPopover emotion-euiPopover"
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <div
-              class="euiPopover__anchor"
+              class="euiPopover__anchor css-16vtueo-render"
             >
               <button
                 class="euiButtonEmpty euiButtonEmpty--xSmall euiDataGrid__controlBtn css-wvaqcf-empty-text"
@@ -2577,11 +2658,11 @@ Array [
           class="euiDataGrid__rightControls"
         >
           <div
-            class="euiPopover euiPopover--anchorDownRight"
+            class="euiPopover emotion-euiPopover"
             data-test-subj="dataGridDisplaySelectorPopover"
           >
             <div
-              class="euiPopover__anchor"
+              class="euiPopover__anchor css-16vtueo-render"
             >
               <span
                 class="euiToolTipAnchor"
@@ -2623,6 +2704,7 @@ Array [
       </div>
       <div
         aria-label="aria-label"
+        aria-rowcount="3"
         class="euiDataGrid__content"
         data-test-subj="euiDataGridBody"
         id="generated-id"
@@ -2658,17 +2740,18 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover euiPopover--anchorDownCenter"
-                  offset="7"
+                  class="euiPopover eui-fullWidth emotion-euiPopover"
                 >
                   <div
-                    class="euiPopover__anchor euiDataGridHeaderCell__anchor"
+                    class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
                   >
                     <button
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
                         class="euiDataGridHeaderCell__content"
+                        title="A"
                       >
                         A
                       </div>
@@ -2677,12 +2760,20 @@ Array [
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-A"
-                      >
-                        Header actions
-                      </span>
+                      />
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_actions"
+                >
+                  Click to view column header actions
+                </p>
               </div>
               <div
                 class="euiDataGridHeaderCell"
@@ -2701,17 +2792,18 @@ Array [
                   style="margin-right:0px"
                 />
                 <div
-                  class="euiPopover euiPopover--anchorDownCenter"
-                  offset="7"
+                  class="euiPopover eui-fullWidth emotion-euiPopover"
                 >
                   <div
-                    class="euiPopover__anchor euiDataGridHeaderCell__anchor"
+                    class="euiPopover__anchor eui-fullWidth css-16vtueo-render"
                   >
                     <button
+                      aria-describedby="euiDataGridCellHeader_generated-id_sorting euiDataGridCellHeader_generated-id_actions"
                       class="euiDataGridHeaderCell__button"
                     >
                       <div
                         class="euiDataGridHeaderCell__content"
+                        title="B"
                       >
                         B
                       </div>
@@ -2720,15 +2812,24 @@ Array [
                         color="text"
                         data-euiicon-type="arrowDown"
                         data-test-subj="dataGridHeaderCellActionButton-B"
-                      >
-                        Header actions
-                      </span>
+                      />
                     </button>
                   </div>
                 </div>
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_sorting"
+                />
+                <p
+                  hidden=""
+                  id="euiDataGridCellHeader_generated-id_actions"
+                >
+                  Click to view column header actions
+                </p>
               </div>
             </div>
             <div
+              aria-rowindex="1"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
@@ -2754,12 +2855,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 1; Column: 1
+                    - A, column 1, row 1
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="1"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
@@ -2785,12 +2887,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 1; Column: 2
+                    - B, column 2, row 1
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="2"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
@@ -2816,12 +2919,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 2; Column: 1
+                    - A, column 1, row 2
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="2"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
@@ -2847,12 +2951,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 2; Column: 2
+                    - B, column 2, row 2
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="3"
               class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
@@ -2878,12 +2983,13 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 3; Column: 1
+                    - A, column 1, row 3
                   </p>
                 </div>
               </div>
             </div>
             <div
+              aria-rowindex="3"
               class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
@@ -2909,7 +3015,7 @@ Array [
                   <p
                     class="emotion-euiScreenReaderOnly"
                   >
-                    Row: 3; Column: 2
+                    - B, column 2, row 3
                   </p>
                 </div>
               </div>

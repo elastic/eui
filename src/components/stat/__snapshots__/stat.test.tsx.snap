@@ -44,7 +44,7 @@ exports[`EuiStat props accent is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiStat__title css-v0lnn-euiTitle-l-euiStat__title-accent"
+    class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-accent"
   >
     title
   </p>

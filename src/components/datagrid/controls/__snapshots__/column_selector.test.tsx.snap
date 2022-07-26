@@ -2,11 +2,11 @@
 
 exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popover allowing users to set column visibility and order 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft"
+  class="euiPopover emotion-euiPopover"
   data-test-subj="dataGridColumnSelectorPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-16vtueo-render"
   >
     <button
       class="euiButtonEmpty euiButtonEmpty--xSmall euiDataGrid__controlBtn css-wvaqcf-empty-text"
@@ -37,7 +37,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
   aria-describedby="generated-id"
   aria-live="off"
   aria-modal="true"
-  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop emotion-euiPanel-grow-m-s-plain"
+  class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel euiDataGrid__controlPopoverWithDragDrop emotion-euiPanel-grow-m-s-plain-euiPopover__panel"
   data-autofocus="true"
   data-popover-panel="true"
   role="dialog"
@@ -45,7 +45,8 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
   tabindex="0"
 >
   <div
-    class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+    class="emotion-euiPopoverArrow-bottom"
+    data-popover-arrow="bottom"
     style="left: 10px; top: 0px;"
   />
   <p
@@ -57,7 +58,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
   <div>
     <div>
       <div
-        class="euiPopoverTitle"
+        class="euiPopoverTitle emotion-euiPopoverTitle-s"
       >
         <div
           class="euiFormControlLayout euiFormControlLayout--compressed"
@@ -222,7 +223,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
       </div>
     </div>
     <div
-      class="euiPopoverFooter"
+      class="euiPopoverFooter emotion-euiPopoverFooter-s"
     >
       <div
         class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
