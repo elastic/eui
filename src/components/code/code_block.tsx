@@ -232,28 +232,35 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     [preClasses, onKeyDown]
   );
 
-  const optionalStyles: CSSProperties = {};
+  const optionalStyles: CSSProperties = useMemo(() => {
+    if (overflowHeight) {
+      const property =
+        typeof overflowHeight === 'string' ? 'height' : 'maxHeight';
+      return {
+        [property]: overflowHeight,
+      };
+    }
+    return {};
+  }, [overflowHeight]);
 
-  if (overflowHeight) {
-    const property =
-      typeof overflowHeight === 'string' ? 'height' : 'maxHeight';
-    optionalStyles[property] = overflowHeight;
-  }
+  const wrapperProps = useMemo(
+    () => ({
+      className: classes,
+      style: optionalStyles,
+    }),
+    [classes, optionalStyles]
+  );
 
-  const wrapperProps = {
-    className: classes,
-    style: optionalStyles,
-  };
-
-  let codeBlockControls;
-  if (showCopyButton || showFullScreenButton) {
-    codeBlockControls = (
-      <div className="euiCodeBlock__controls">
-        <FullScreenButton />
-        <CopyButton />
-      </div>
-    );
-  }
+  const codeBlockControls = useMemo(() => {
+    if (showCopyButton || showFullScreenButton) {
+      return (
+        <div className="euiCodeBlock__controls">
+          <FullScreenButton />
+          <CopyButton />
+        </div>
+      );
+    }
+  }, [CopyButton, FullScreenButton, showCopyButton, showFullScreenButton]);
 
   return (
     <div {...wrapperProps}>
