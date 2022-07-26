@@ -58,7 +58,7 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
 
       // Make sure the first <dt> doesn't get a margin.
       &:first-of-type {
-        margin-left: 0;
+        ${logicalCSS('margin-left', '0')}
       }
     `,
 
