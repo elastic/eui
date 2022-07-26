@@ -20,8 +20,8 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
 
   const columnDisplay = `
-    width: 50%; // Flex-basis doesn't work in IE with padding
-    padding-right: ${euiTheme.size.s};
+    ${logicalCSS('width', '50%')} // Flex-basis doesn't work in IE with padding
+    ${logicalCSS('padding-right', euiTheme.size.s)}
   `;
   return {
     euiDescriptionList__title: css`
