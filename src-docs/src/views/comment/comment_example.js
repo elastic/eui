@@ -148,17 +148,15 @@ export const CommentListExample = {
           <EuiText>
             <ol style={{ listStyleType: 'upper-alpha' }}>
               <li>
-                <EuiCode>timelineAvatar</EuiCode>: Shows an icon that should
+                <EuiCode>timelineAvatar</EuiCode>: Shows an avatar that should
                 indicate who is the author of the comment. To customize, pass a{' '}
                 <EuiCode>string</EuiCode> as a{' '}
-                <EuiCode>EuiIcon[&apos;type&apos;]</EuiCode> or a{' '}
-                <EuiCode>ReactNode</EuiCode>, preferably a{' '}
+                <EuiCode>EuiIcon[&apos;type&apos;]</EuiCode> or a a{' '}
                 <Link to="/display/avatar">
                   <strong>EuiAvatar</strong>
                 </Link>
-                . If no icon is provided, it will default to the{' '}
-                <EuiCode>username</EuiCode>
-                &apos;s initials.
+                . If no avatar is provided, it will default to an avatar with a{' '}
+                <EuiCode>userAvatar</EuiCode> icon.
               </li>
               <li>
                 <EuiCode>eventIcon</EuiCode>: Icon that shows before the
