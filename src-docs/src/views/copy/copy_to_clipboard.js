@@ -35,7 +35,7 @@ export default () => {
     <EuiCommentList aria-label="Copy to clipboard example">
       <EuiComment
         username="Gusteau"
-        timelineIconAriaLabel="Gusteau"
+        timelineAvatarAriaLabel="Gusteau"
         event="added a comment"
         actions={
           <EuiToolTip

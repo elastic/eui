@@ -26,8 +26,8 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
   event,
   actions,
   timestamp,
-  timelineIcon,
-  timelineIconAriaLabel,
+  timelineAvatar,
+  timelineAvatarAriaLabel,
   eventColor,
   eventIcon,
   eventIconAriaLabel,
@@ -40,8 +40,8 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
 
   const mainIcon = (
     <EuiCommentTimeline
-      timelineIcon={timelineIcon}
-      timelineIconAriaLabel={timelineIconAriaLabel}
+      timelineAvatar={timelineAvatar}
+      timelineAvatarAriaLabel={timelineAvatarAriaLabel}
     />
   );
 

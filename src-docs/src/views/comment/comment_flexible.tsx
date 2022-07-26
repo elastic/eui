@@ -49,7 +49,7 @@ const eventWithMultipleTags = (
 const commentsData: EuiCommentListProps['comments'] = [
   {
     username: 'janed',
-    timelineIconAriaLabel: 'Jane Doe',
+    timelineAvatarAriaLabel: 'Jane Doe',
     event: 'added a comment',
     timestamp: 'on Jan 1, 2020',
     children: body,
@@ -57,7 +57,7 @@ const commentsData: EuiCommentListProps['comments'] = [
   },
   {
     username: 'luisg',
-    timelineIconAriaLabel: 'Luis G',
+    timelineAvatarAriaLabel: 'Luis G',
     event: eventWithMultipleTags,
     timestamp: '22 hours ago',
     eventIcon: 'tag',
@@ -66,15 +66,15 @@ const commentsData: EuiCommentListProps['comments'] = [
   },
   {
     username: 'system',
-    timelineIconAriaLabel: 'System',
-    timelineIcon: 'dot',
+    timelineAvatarAriaLabel: 'System',
+    timelineAvatar: 'dot',
     event: 'pushed a new incident',
     timestamp: '20 hours ago',
     eventColor: 'danger',
   },
   {
     username: 'pancho1',
-    timelineIconAriaLabel: 'Pancho Pérez',
+    timelineAvatarAriaLabel: 'Pancho Pérez',
     children: (
       <EuiTextArea
         fullWidth

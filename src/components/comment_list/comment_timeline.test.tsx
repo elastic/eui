@@ -13,15 +13,15 @@ import { EuiAvatar } from '../avatar';
 
 describe('EuiCommentTimeline', () => {
   describe('props', () => {
-    describe('timelineIcon', () => {
-      it('defaults to a avatar with a `userAvatar` icon', () => {
+    describe('timelineAvatar', () => {
+      it('defaults to an avatar with a `userAvatar` icon', () => {
         const component = render(<EuiCommentTimeline />);
 
         expect(component).toMatchSnapshot();
       });
 
       it('is rendered with a string', () => {
-        const component = render(<EuiCommentTimeline timelineIcon="dot" />);
+        const component = render(<EuiCommentTimeline timelineAvatar="dot" />);
 
         expect(component).toMatchSnapshot();
       });
@@ -29,7 +29,7 @@ describe('EuiCommentTimeline', () => {
       it('is rendered with a ReactNode', () => {
         const component = render(
           <EuiCommentTimeline
-            timelineIcon={
+            timelineAvatar={
               <EuiAvatar
                 name="username"
                 iconType="userAvatar"
@@ -42,11 +42,11 @@ describe('EuiCommentTimeline', () => {
         expect(component).toMatchSnapshot();
       });
 
-      it('is rendered with timelineIconAriaLabel', () => {
+      it('is rendered with timelineAvatarAriaLabel', () => {
         const component = render(
           <EuiCommentTimeline
-            timelineIcon="dot"
-            timelineIconAriaLabel="timelineIconAriaLabel"
+            timelineAvatar="dot"
+            timelineAvatarAriaLabel="timelineAvatarAriaLabel"
           />
         );
 

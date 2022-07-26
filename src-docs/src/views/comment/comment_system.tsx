@@ -57,7 +57,7 @@ const UserActionUsername = ({
 const initialComments: EuiCommentProps[] = [
   {
     username: <UserActionUsername username="emma" fullname="Emma Watson" />,
-    timelineIcon: <EuiAvatar name="emma" />,
+    timelineAvatar: <EuiAvatar name="emma" />,
     event: 'added a comment',
     timestamp: 'on 3rd March 2022',
     children: (
@@ -69,7 +69,7 @@ const initialComments: EuiCommentProps[] = [
   },
   {
     username: <UserActionUsername username="emma" fullname="Emma Watson" />,
-    timelineIcon: <EuiAvatar name="emma" />,
+    timelineAvatar: <EuiAvatar name="emma" />,
     event: complexEvent,
     timestamp: 'on 3rd March 2022',
     eventIcon: 'tag',
@@ -77,15 +77,15 @@ const initialComments: EuiCommentProps[] = [
   },
   {
     username: 'system',
-    timelineIcon: 'dot',
-    timelineIconAriaLabel: 'System',
+    timelineAvatar: 'dot',
+    timelineAvatarAriaLabel: 'System',
     event: 'pushed a new incident',
     timestamp: 'on 4th March 2022',
     eventColor: 'danger',
   },
   {
     username: <UserActionUsername username="tiago" fullname="Tiago Pontes" />,
-    timelineIcon: <EuiAvatar name="tiago" />,
+    timelineAvatar: <EuiAvatar name="tiago" />,
     event: 'added a comment',
     timestamp: 'on 4th March 2022',
     actions: actionButton,
@@ -98,7 +98,7 @@ const initialComments: EuiCommentProps[] = [
   },
   {
     username: <UserActionUsername username="emma" fullname="Emma Watson" />,
-    timelineIcon: <EuiAvatar name="emma" />,
+    timelineAvatar: <EuiAvatar name="emma" />,
     event: (
       <>
         marked case as <EuiBadge color="warning">In progress</EuiBadge>
@@ -143,7 +143,7 @@ export default () => {
           username: (
             <UserActionUsername username="emma" fullname="Emma Watson" />
           ),
-          timelineIcon: <EuiAvatar name="emma" />,
+          timelineAvatar: <EuiAvatar name="emma" />,
           event: 'added a comment',
           timestamp: `on ${date}`,
           actions: actionButton,
@@ -167,7 +167,10 @@ export default () => {
     <>
       <EuiCommentList aria-label="Comment system example">
         {commentsList}
-        <EuiComment username="juana" timelineIcon={<EuiAvatar name="juana" />}>
+        <EuiComment
+          username="juana"
+          timelineAvatar={<EuiAvatar name="juana" />}
+        >
           <EuiMarkdownEditor
             aria-label="Markdown editor"
             aria-describedby={errorElementId.current}
