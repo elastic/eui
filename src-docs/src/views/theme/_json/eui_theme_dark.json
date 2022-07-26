@@ -181,8 +181,6 @@
     "large": "22px"
   },
   "euiMarkdownEditorMinHeight": "150px",
-  "euiPopoverArrowSize": "12px",
-  "euiPopoverTranslateDistance": "8px",
   "euiResizableButtonTransitionSpeed": "150ms",
   "euiResizableButtonSize": "16px",
   "euiSelectableListItemBorder": "1px solid #202128",
@@ -301,6 +299,7 @@
     }
   },
   "euiTokenTypeKeys": "'euiColorVis0', 'euiColorVis1', 'euiColorVis2', 'euiColorVis3', 'euiColorVis4', 'euiColorVis5', 'euiColorVis6', 'euiColorVis7', 'euiColorVis8', 'euiColorVis9', 'gray'",
+  "euiPopoverArrowSize": "12px",
   "euiContrastRatioText": 4.5,
   "euiContrastRatioGraphic": 3,
   "euiContrastRatioDisabled": 2,

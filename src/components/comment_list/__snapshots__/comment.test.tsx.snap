@@ -13,17 +13,15 @@ exports[`EuiComment is rendered 1`] = `
       class="emotion-euiTimelineItemIcon__content"
     >
       <div
-        aria-label="someuser"
-        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user"
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
         role="img"
-        style="background-color:#c47c6c;color:#000000"
-        title="someuser"
+        title=""
       >
         <span
-          aria-hidden="true"
-        >
-          s
-        </span>
+          class="euiAvatar__icon"
+          data-euiicon-type="userAvatar"
+        />
       </div>
     </div>
   </div>
@@ -48,17 +46,15 @@ exports[`EuiComment props event is rendered 1`] = `
       class="emotion-euiTimelineItemIcon__content"
     >
       <div
-        aria-label="someuser"
-        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user"
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
         role="img"
-        style="background-color:#c47c6c;color:#000000"
-        title="someuser"
+        title=""
       >
         <span
-          aria-hidden="true"
-        >
-          s
-        </span>
+          class="euiAvatar__icon"
+          data-euiicon-type="userAvatar"
+        />
       </div>
     </div>
   </div>
@@ -110,17 +106,15 @@ exports[`EuiComment props timestamp is rendered 1`] = `
       class="emotion-euiTimelineItemIcon__content"
     >
       <div
-        aria-label="someuser"
-        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user"
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
         role="img"
-        style="background-color:#c47c6c;color:#000000"
-        title="someuser"
+        title=""
       >
         <span
-          aria-hidden="true"
-        >
-          s
-        </span>
+          class="euiAvatar__icon"
+          data-euiicon-type="userAvatar"
+        />
       </div>
     </div>
   </div>
@@ -174,17 +168,15 @@ exports[`EuiComment renders a body 1`] = `
       class="emotion-euiTimelineItemIcon__content"
     >
       <div
-        aria-label="someuser"
-        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user"
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
         role="img"
-        style="background-color:#c47c6c;color:#000000"
-        title="someuser"
+        title=""
       >
         <span
-          aria-hidden="true"
-        >
-          s
-        </span>
+          class="euiAvatar__icon"
+          data-euiicon-type="userAvatar"
+        />
       </div>
     </div>
   </div>
@@ -217,17 +209,15 @@ exports[`EuiComment renders a timeline icon 1`] = `
       class="emotion-euiTimelineItemIcon__content"
     >
       <div
-        aria-label="someuser"
+        aria-label=""
         class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
         role="img"
-        title="someuser"
+        title=""
       >
         <span
           class="euiAvatar__icon"
           data-euiicon-type="dot"
-        >
-          someuser
-        </span>
+        />
       </div>
     </div>
   </div>
