@@ -34,8 +34,8 @@ export const euiGlobalToastListStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('bottom', 0)};
       ${logicalCSS('width', `${euiToastWidth + euiTheme.base * 5}px`)}; /* 2 */
       ${logicalCSS('max-height', '100vh')}; /* 1 */
-      /* ${logicalCSS('overflow-y', 'auto')}; Not yet supported */
-      overflow-y: auto;
+      overflow-y: auto; // Fallback for the 'overflow-inline' logical property, which is not yet supported
+      ${logicalCSS('overflow-y', 'auto')};
 
       // Hide the scrollbar entirely
       scrollbar-width: none;
