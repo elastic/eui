@@ -28,7 +28,7 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiTextBreakWord()};
       // Add margin only to the non-first <dt>.
       &:not(:first-of-type) {
-        margin-top: ${euiTheme.size.base};
+        ${logicalCSS('margin-top', euiTheme.size.base)}
       }
     `,
 
