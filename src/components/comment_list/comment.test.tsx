@@ -11,9 +11,13 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiComment } from './comment';
-import { EuiAvatar } from '../avatar';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 describe('EuiComment', () => {
+  shouldRenderCustomStyles(
+    <EuiComment username="someuser" {...requiredProps} />
+  );
+
   test('is rendered', () => {
     const component = render(
       <EuiComment username="someuser" {...requiredProps} />
@@ -23,29 +27,6 @@ describe('EuiComment', () => {
   });
 
   describe('props', () => {
-    describe('type', () => {
-      it('is rendered', () => {
-        const component = render(
-          <EuiComment username="someuser" type="update" />
-        );
-
-        expect(component).toMatchSnapshot();
-      });
-    });
-
-    describe('timelineIcon', () => {
-      it('is rendered', () => {
-        const component = render(
-          <EuiComment
-            username="someuser"
-            timelineIcon={<EuiAvatar size="l" name="Mario" />}
-          />
-        );
-
-        expect(component).toMatchSnapshot();
-      });
-    });
-
     describe('timestamp', () => {
       it('is rendered', () => {
         const component = render(
@@ -59,7 +40,7 @@ describe('EuiComment', () => {
     describe('event', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiComment event="commented" username="someuser" />
+          <EuiComment username="someuser" event="commented" />
         );
 
         expect(component).toMatchSnapshot();
@@ -70,6 +51,16 @@ describe('EuiComment', () => {
   test('renders a body', () => {
     const component = render(
       <EuiComment username="someuser">
+        <p>This is the body.</p>
+      </EuiComment>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('renders a timeline icon', () => {
+    const component = render(
+      <EuiComment username="someuser" timelineAvatar="dot">
         <p>This is the body.</p>
       </EuiComment>
     );

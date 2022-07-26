@@ -16,7 +16,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
         class="euiStepNumber euiStep__circle"
       >
         <span
-          class="euiScreenReaderOnly"
+          class="emotion-euiScreenReaderOnly"
         >
           Step 1
         </span>
@@ -51,7 +51,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
         class="euiStepNumber euiStep__circle"
       >
         <span
-          class="euiScreenReaderOnly"
+          class="emotion-euiScreenReaderOnly"
         >
           Step 2
         </span>
@@ -86,7 +86,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
         class="euiStepNumber euiStepNumber--incomplete euiStep__circle"
       >
         <span
-          class="euiScreenReaderOnly"
+          class="emotion-euiScreenReaderOnly"
         >
           Step 3 is incomplete
         </span>
@@ -130,7 +130,7 @@ exports[`EuiSteps renders steps 1`] = `
         class="euiStepNumber euiStep__circle"
       >
         <span
-          class="euiScreenReaderOnly"
+          class="emotion-euiScreenReaderOnly"
         >
           Step 1
         </span>
@@ -165,7 +165,7 @@ exports[`EuiSteps renders steps 1`] = `
         class="euiStepNumber euiStep__circle"
       >
         <span
-          class="euiScreenReaderOnly"
+          class="emotion-euiScreenReaderOnly"
         >
           Step 2
         </span>
@@ -200,7 +200,7 @@ exports[`EuiSteps renders steps 1`] = `
         class="euiStepNumber euiStepNumber--incomplete euiStep__circle"
       >
         <span
-          class="euiScreenReaderOnly"
+          class="emotion-euiScreenReaderOnly"
         >
           Step 3 is incomplete
         </span>
@@ -244,7 +244,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
         class="euiStepNumber euiStep__circle"
       >
         <span
-          class="euiScreenReaderOnly"
+          class="emotion-euiScreenReaderOnly"
         >
           Step 10
         </span>
@@ -279,7 +279,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
         class="euiStepNumber euiStep__circle"
       >
         <span
-          class="euiScreenReaderOnly"
+          class="emotion-euiScreenReaderOnly"
         >
           Step 11
         </span>
@@ -314,7 +314,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
         class="euiStepNumber euiStepNumber--incomplete euiStep__circle"
       >
         <span
-          class="euiScreenReaderOnly"
+          class="emotion-euiScreenReaderOnly"
         >
           Step 12 is incomplete
         </span>
@@ -358,7 +358,7 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
         class="euiStepNumber euiStep__circle euiStepNumber--small"
       >
         <span
-          class="euiScreenReaderOnly"
+          class="emotion-euiScreenReaderOnly"
         >
           Step 1
         </span>
@@ -393,7 +393,7 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
         class="euiStepNumber euiStep__circle euiStepNumber--small"
       >
         <span
-          class="euiScreenReaderOnly"
+          class="emotion-euiScreenReaderOnly"
         >
           Step 2
         </span>
@@ -428,7 +428,7 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
         class="euiStepNumber euiStepNumber--incomplete euiStep__circle euiStepNumber--small"
       >
         <span
-          class="euiScreenReaderOnly"
+          class="emotion-euiScreenReaderOnly"
         >
           Step 3 is incomplete
         </span>

@@ -7,61 +7,54 @@
  */
 
 import React, { FunctionComponent, ReactNode } from 'react';
-import { CommonProps, keysOf } from '../common';
-import classNames from 'classnames';
-import { EuiIcon, IconType } from '../icon';
+import { CommonProps } from '../common';
+import { EuiAvatar, EuiAvatarProps } from '../avatar';
 
 export interface EuiCommentTimelineProps extends CommonProps {
   /**
-   * Main icon that accompanies the comment. The default is `user` for regular comments and `dot` for update comments. To customize, pass a `string` as an `EuiIcon['type']` or any `ReactNode`.
+   * Main avatar that accompanies the comment. Should indicate who is the author of the comment.
+   * Any `ReactNode`, but preferably `EuiAvatar`, or a `string` as an `EuiAvatarProps['iconType']`.
+   * If no `timelineAvatar` is passed, the `userAvatar` icon will be used as the avatar.
    */
-  timelineIcon?: ReactNode | IconType;
-  type?: EuiCommentType;
+  timelineAvatar?: ReactNode | EuiAvatarProps['iconType'];
+
+  /**
+   * Specify an `aria-label` and `title` for the `timelineAvatar` when passed as an `IconType` or when nothing is passed.
+   * If no `timelineAvatarAriaLabel` is passed we assume the avatar is purely decorative.
+   */
+  timelineAvatarAriaLabel?: string;
 }
 
-const typeToClassNameMap = {
-  regular: 'euiCommentTimeline__icon--regular',
-  update: 'euiCommentTimeline__icon--update',
-};
-
-export const TYPES = keysOf(typeToClassNameMap);
-export type EuiCommentType = keyof typeof typeToClassNameMap;
-
 export const EuiCommentTimeline: FunctionComponent<EuiCommentTimelineProps> = ({
-  className,
-  timelineIcon,
-  type = 'regular',
+  timelineAvatar,
+  timelineAvatarAriaLabel,
 }) => {
-  const classes = classNames('euiCommentTimeline', className);
-  const iconClasses = classNames(
-    {
-      'euiCommentTimeline__icon--default':
-        !timelineIcon || typeof timelineIcon === 'string',
-    },
-    typeToClassNameMap[type]
-  );
-
   let iconRender;
-  if (typeof timelineIcon === 'string') {
+
+  const avatarClassName = 'euiCommentAvatar';
+  const iconIsString = typeof timelineAvatar === 'string';
+
+  if (iconIsString) {
     iconRender = (
-      <EuiIcon size={type === 'update' ? 'm' : 'l'} type={timelineIcon} />
+      <EuiAvatar
+        className={avatarClassName}
+        name={timelineAvatarAriaLabel || ''}
+        iconType={timelineAvatar}
+        color="subdued"
+      />
     );
-  } else if (timelineIcon) {
-    iconRender = timelineIcon;
+  } else if (timelineAvatar) {
+    iconRender = timelineAvatar;
   } else {
     iconRender = (
-      <EuiIcon
-        type={type === 'update' ? 'dot' : 'user'}
-        size={type === 'update' ? 's' : 'l'}
+      <EuiAvatar
+        className={avatarClassName}
+        name={timelineAvatarAriaLabel || ''}
+        iconType="userAvatar"
+        color="subdued"
       />
     );
   }
 
-  return (
-    <div className={classes}>
-      <div className="euiCommentTimeline__content">
-        <div className={iconClasses}>{iconRender}</div>
-      </div>
-    </div>
-  );
+  return <>{iconRender}</>;
 };

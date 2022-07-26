@@ -11,6 +11,8 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiCommentList } from './comment_list';
+import { shouldRenderCustomStyles } from '../../test/internal';
+import { GUTTER_SIZES } from '../timeline/timeline';
 
 const comments = [
   {
@@ -19,11 +21,29 @@ const comments = [
 ];
 
 describe('EuiCommentList', () => {
+  shouldRenderCustomStyles(
+    <EuiCommentList comments={comments} {...requiredProps} />
+  );
+
   test('is rendered', () => {
     const component = render(
       <EuiCommentList comments={comments} {...requiredProps} />
     );
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('props', () => {
+    describe('gutterSize', () => {
+      GUTTER_SIZES.forEach((gutterSize) => {
+        test(`${gutterSize} is rendered`, () => {
+          const component = render(
+            <EuiCommentList comments={comments} gutterSize={gutterSize} />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
   });
 });

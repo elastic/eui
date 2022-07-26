@@ -9,6 +9,7 @@ import {
   EuiContextMenuItem,
   EuiContextMenuPanel,
 } from '../../../../src/components';
+import { EuiContextMenuPanelDescriptor } from '!!prop-loader!../../../../src/components/context_menu/context_menu';
 
 import ContextMenu from './context_menu';
 const contextMenuSource = require('!!raw-loader!./context_menu');
@@ -81,7 +82,12 @@ export const ContextMenuExample = {
           this example).
         </p>
       ),
-      props: { EuiContextMenu, EuiContextMenuPanel, EuiContextMenuItem },
+      props: {
+        EuiContextMenu,
+        EuiContextMenuPanelDescriptor,
+        EuiContextMenuPanel,
+        EuiContextMenuItem,
+      },
       snippet: contextMenuSnippet,
       demo: <ContextMenu />,
     },

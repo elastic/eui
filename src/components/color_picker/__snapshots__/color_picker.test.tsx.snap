@@ -2,10 +2,10 @@
 
 exports[`renders EuiColorPicker 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
+  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div
       class="euiFormControlLayout"
@@ -56,10 +56,10 @@ exports[`renders EuiColorPicker 1`] = `
 
 exports[`renders EuiColorPicker with a clearable input 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
+  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div
       class="euiFormControlLayout"
@@ -120,10 +120,10 @@ exports[`renders EuiColorPicker with a clearable input 1`] = `
 
 exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
+  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div
       class="euiFormControlLayout"
@@ -174,10 +174,10 @@ exports[`renders EuiColorPicker with a color swatch when color is defined 1`] = 
 
 exports[`renders EuiColorPicker with a custom placeholder 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
+  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div
       class="euiFormControlLayout"
@@ -229,10 +229,10 @@ exports[`renders EuiColorPicker with a custom placeholder 1`] = `
 
 exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
+  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div
       class="euiFormControlLayout"
@@ -284,10 +284,10 @@ exports[`renders EuiColorPicker with an empty swatch when color is "" 1`] = `
 
 exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
+  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div
       class="euiFormControlLayout"
@@ -339,10 +339,10 @@ exports[`renders EuiColorPicker with an empty swatch when color is null 1`] = `
 
 exports[`renders a EuiColorPicker with a prepend and append 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
+  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div
       class="euiFormControlLayout euiFormControlLayout--group"
@@ -403,10 +403,10 @@ exports[`renders a EuiColorPicker with a prepend and append 1`] = `
 
 exports[`renders a EuiColorPicker with an alpha range selector 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
+  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div
       class="euiFormControlLayout"
@@ -457,10 +457,10 @@ exports[`renders a EuiColorPicker with an alpha range selector 1`] = `
 
 exports[`renders compressed EuiColorPicker 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
+  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div
       class="euiFormControlLayout euiFormControlLayout--compressed"
@@ -511,10 +511,10 @@ exports[`renders compressed EuiColorPicker 1`] = `
 
 exports[`renders disabled EuiColorPicker 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
+  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div
       class="euiFormControlLayout euiFormControlLayout-isDisabled"
@@ -553,10 +553,10 @@ exports[`renders disabled EuiColorPicker 1`] = `
 
 exports[`renders fullWidth EuiColorPicker 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
+  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div
       class="euiFormControlLayout euiFormControlLayout--fullWidth"
@@ -645,14 +645,14 @@ exports[`renders inline EuiColorPicker 1`] = `
       </span>
     </div>
     <label
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
       for="undefined-hue"
     >
       Select the HSV color mode 'hue' value
     </label>
     <p
       aria-live="polite"
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       #ffeedd
     </p>
@@ -779,10 +779,10 @@ exports[`renders inline EuiColorPicker 1`] = `
 
 exports[`renders readOnly EuiColorPicker 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiColorPicker__popoverAnchor"
+  class="euiPopover euiColorPicker__popoverAnchor emotion-euiPopover"
 >
   <div
-    class="euiPopover__anchor"
+    class="euiPopover__anchor css-zih94u-render"
   >
     <div
       class="euiFormControlLayout euiFormControlLayout--readOnly"

@@ -5,7 +5,11 @@ import { toggleLocale as _toggleLocale } from '../actions';
 import { GuidePageChrome, ThemeContext, GuidePageHeader } from '../components';
 import { getLocale, getRoutes } from '../store';
 
-import { EuiPageTemplate, EuiSkipLink } from '../../../src/components';
+import {
+  EuiPageTemplate,
+  EuiSkipLink,
+  EuiScreenReaderLive,
+} from '../../../src/components';
 
 import { keys } from '../../../src/services';
 
@@ -64,7 +68,11 @@ export const AppView = ({ children, currentRoute }) => {
 
   return (
     <LinkWrapper>
+      <EuiScreenReaderLive focusRegionOnTextChange>
+        {`${currentRoute.name} - Elastic UI Framework`}
+      </EuiScreenReaderLive>
       <EuiSkipLink
+        color="ghost"
         destinationId="start-of-content"
         position="fixed"
         overrideLinkBehavior
