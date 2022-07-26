@@ -23,7 +23,7 @@ export interface EuiCommentEventProps extends CommonProps {
   /**
    * Author of the comment.
    */
-  username: string;
+  username: ReactNode;
   /**
    * Time of occurrence of the event. Its format is set on the consumer's side
    */
