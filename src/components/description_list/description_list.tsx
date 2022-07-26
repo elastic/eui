@@ -40,16 +40,7 @@ export const EuiDescriptionList: FunctionComponent<
 
   const cssStyles = [styles.euiDescriptionList, styles[type], styles[align]];
 
-  const classes = classNames(
-    'euiDescriptionList',
-    { [`euiDescriptionList--${type}`]: type },
-    { [`euiDescriptionList--${align}`]: align },
-    { [`euiDescriptionList--${textStyle}`]: textStyle },
-    {
-      'euiDescriptionList--compressed': compressed,
-    },
-    className
-  );
+  const classes = classNames('euiDescriptionList', className);
 
   let childrenOrListItems = null;
 
