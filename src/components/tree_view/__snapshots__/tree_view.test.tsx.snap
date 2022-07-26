@@ -5,7 +5,7 @@ exports[`EuiTreeView is rendered 1`] = `
   class="euiText euiTreeView__wrapper emotion-euiText-m"
 >
   <p
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
     id="euiTreeView_generated-id--instruction"
   >
     You can quickly navigate this list using arrow keys.

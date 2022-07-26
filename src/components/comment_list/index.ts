@@ -9,7 +9,7 @@
 export type { EuiCommentProps } from './comment';
 export { EuiComment } from './comment';
 
-export type { EuiCommentType } from './comment_event';
+export type { EuiCommentEventProps } from './comment_event';
 export { EuiCommentEvent } from './comment_event';
 
 export { EuiCommentTimeline } from './comment_timeline';

@@ -3,7 +3,6 @@ import {
   EuiCommentList,
   EuiCommentProps,
 } from '../../../../src/components/comment_list';
-import { EuiAvatar } from '../../../../src/components/avatar';
 import { EuiButtonIcon } from '../../../../src/components/button';
 import { EuiText } from '../../../../src/components/text';
 import { EuiBadge } from '../../../../src/components/badge';
@@ -28,23 +27,17 @@ const copyAction = (
 );
 
 const complexEvent = (
-  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s">
+  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="xs" wrap>
     <EuiFlexItem grow={false}>added tags</EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiBadge color="primary">sample</EuiBadge>
+      <EuiBadge>case</EuiBadge>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiBadge color="success">review</EuiBadge>
+      <EuiBadge>phising</EuiBadge>
     </EuiFlexItem>
-  </EuiFlexGroup>
-);
-
-const complexUsername = (
-  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="s">
     <EuiFlexItem grow={false}>
-      <EuiAvatar size="s" type="space" name="Pedro" />
+      <EuiBadge>security</EuiBadge>
     </EuiFlexItem>
-    <EuiFlexItem grow={false}>pedror</EuiFlexItem>
   </EuiFlexGroup>
 );
 
@@ -61,17 +54,10 @@ const longBody = (
   </EuiText>
 );
 
-const avatar = (
-  <EuiAvatar
-    imageUrl="https://source.unsplash.com/64x64/?woman"
-    size="l"
-    name="Juana"
-  />
-);
-
 const comments: EuiCommentProps[] = [
   {
     username: 'janed',
+    timelineAvatarAriaLabel: 'Jane Doe',
     event: 'added a comment',
     timestamp: 'on Jan 1, 2020',
     children: body,
@@ -79,34 +65,38 @@ const comments: EuiCommentProps[] = [
   },
   {
     username: 'juanab',
-    type: 'update',
+    timelineAvatarAriaLabel: 'Juana Barros',
     actions: copyAction,
     event: 'pushed incident X0Z235',
     timestamp: 'on Jan 3, 2020',
-    timelineIcon: avatar,
   },
   {
     username: 'pancho1',
-    type: 'update',
+    timelineAvatarAriaLabel: 'Pancho Pérez',
     event: 'edited case',
     timestamp: 'on Jan 9, 2020',
+    eventIcon: 'pencil',
+    eventIconAriaLabel: 'edit',
   },
   {
-    username: complexUsername,
-    type: 'update',
+    username: 'pedror',
+    timelineAvatarAriaLabel: 'Pedro Rodriguez',
     actions: copyAction,
     event: complexEvent,
     timestamp: 'on Jan 11, 2020',
-    timelineIcon: 'tag',
+    eventIcon: 'tag',
+    eventIconAriaLabel: 'tag',
   },
   {
     username: 'elohar',
+    timelineAvatarAriaLabel: 'Elohar Jackson',
     event: 'added a comment',
     timestamp: 'on Jan 14, 2020',
-    timelineIcon: <EuiAvatar size="l" name="Eloha" />,
     children: longBody,
     actions: copyAction,
   },
 ];
 
-export default () => <EuiCommentList comments={comments} />;
+export default () => (
+  <EuiCommentList comments={comments} aria-label="Comment list example" />
+);

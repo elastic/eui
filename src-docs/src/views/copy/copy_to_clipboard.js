@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react';
 import { copyToClipboard, formatDate } from '../../../../src/services';
 import {
   EuiComment,
+  EuiCommentList,
   EuiText,
   EuiButtonIcon,
   EuiToolTip,
@@ -31,28 +32,31 @@ export default () => {
   const date = formatDate(Date.now(), 'dobLong');
 
   return (
-    <EuiComment
-      username="Gusteau"
-      event="added a comment"
-      actions={
-        <EuiToolTip
-          content={isTextCopied ? 'Text copied to clipboard' : 'Copy text'}
-        >
-          <EuiButtonIcon
-            buttonRef={buttonRef}
-            aria-label="Copy text to clipboard"
-            color="text"
-            iconType="copy"
-            onClick={onClick}
-            onBlur={onBlur}
-          />
-        </EuiToolTip>
-      }
-      timestamp={`on ${date}`}
-    >
-      <EuiText size="s">
-        <p>{text}</p>
-      </EuiText>
-    </EuiComment>
+    <EuiCommentList aria-label="Copy to clipboard example">
+      <EuiComment
+        username="Gusteau"
+        timelineAvatarAriaLabel="Gusteau"
+        event="added a comment"
+        actions={
+          <EuiToolTip
+            content={isTextCopied ? 'Text copied to clipboard' : 'Copy text'}
+          >
+            <EuiButtonIcon
+              buttonRef={buttonRef}
+              aria-label="Copy text to clipboard"
+              color="text"
+              iconType="copy"
+              onClick={onClick}
+              onBlur={onBlur}
+            />
+          </EuiToolTip>
+        }
+        timestamp={`on ${date}`}
+      >
+        <EuiText size="s">
+          <p>{text}</p>
+        </EuiText>
+      </EuiComment>
+    </EuiCommentList>
   );
 };

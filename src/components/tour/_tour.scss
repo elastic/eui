@@ -1,3 +1,5 @@
+$euiPopoverArrowSize: $euiSizeM;
+
 .euiTourHeader {
   border-bottom: none;
   // Overriding default `EuiPopoverTitle` styles
@@ -26,37 +28,39 @@
     transition: opacity 0s $euiAnimSpeedSlow; // delay time equals EuiPopover animation time
   }
 
-  .euiPopover__panelArrow.euiPopover__panelArrow--right {
+  &[data-popover-open='true'] {
     .euiTour__beacon {
       opacity: 1;
+    }
+  }
+
+  [data-popover-arrow='right'] {
+    .euiTour__beacon {
       top: $euiPopoverArrowSize / 2;
       left: -$euiPopoverArrowSize * 2;
     }
   }
 
-  .euiPopover__panelArrow.euiPopover__panelArrow--left {
+  [data-popover-arrow='left'] {
     .euiTour__beacon {
-      opacity: 1;
       top: $euiPopoverArrowSize / 2;
       left: $euiPopoverArrowSize;
     }
   }
 
-  .euiPopover__panelArrow.euiPopover__panelArrow--top {
-    &:after {
-      border-top-color: $euiColorLightestShade;
+  [data-popover-arrow='top'] {
+    &:before {
+      border-top-color: $euiPageBackgroundColor;
     }
 
     .euiTour__beacon {
-      opacity: 1;
       top: $euiPopoverArrowSize;
       left: $euiPopoverArrowSize / 2;
     }
   }
 
-  .euiPopover__panelArrow.euiPopover__panelArrow--bottom {
+  [data-popover-arrow='bottom'] {
     .euiTour__beacon {
-      opacity: 1;
       top: -$euiPopoverArrowSize * 2;
       left: $euiPopoverArrowSize / 2;
     }

@@ -12,7 +12,10 @@ import {
   EuiBreakpointSize,
   EuiCode,
   EuiThemeBreakpoints,
+  useEuiBreakpoint,
 } from '../../../../../src';
+
+import { css } from '@emotion/react';
 
 import { EuiThemeBreakpoints as _EuiThemeBreakpoints } from '../_props';
 import { getPropsFromComponent } from '../../../services/props/get_props';
@@ -131,6 +134,61 @@ export default () => {
         }
         snippet="useIsWithinBreakpoints(['l', 'xl'])"
         snippetLanguage="js"
+      />
+
+      <ThemeExample
+        title={<code>useEuiBreakpoint(sizes[])</code>}
+        type="hook"
+        description={
+          <>
+            <p>
+              Given an array of breakpoint keys, this hook generates a CSS media
+              query string based on the minimum width and maximum width
+              provided.
+            </p>
+            <p>
+              You can also create media queries with a{' '}
+              <EuiCode>(max-width)</EuiCode> only or{' '}
+              <EuiCode>(min-width)</EuiCode> only by utilizing the{' '}
+              <EuiCode>xs</EuiCode> and <EuiCode>xl</EuiCode> arguments.
+            </p>
+          </>
+        }
+        example={
+          <p
+            css={css`
+              ${useEuiBreakpoint(['s', 'l'])} {
+                font-weight: ${euiTheme.font.weight.bold};
+              }
+              ${useEuiBreakpoint(['xs', 's'])} {
+                color: ${euiTheme.colors.dangerText};
+              }
+              ${useEuiBreakpoint(['m'])} {
+                color: ${euiTheme.colors.warningText};
+              }
+              ${useEuiBreakpoint(['l', 'xl'])} {
+                color: ${euiTheme.colors.successText};
+              }
+            `}
+          >
+            This text is bold on small to large screens, red on small and below
+            screens, yellow on medium screens, and green on large and above
+            screens.
+          </p>
+        }
+        snippet={`\${useEuiBreakpoint(['s', 'l'])} {
+    font-weight: bold;
+  }
+  \${useEuiBreakpoint(['xs', 's'])} {
+    color: red;
+  }
+  \${useEuiBreakpoint(['m'])} {
+    color: yellow;
+  }
+  \${useEuiBreakpoint(['l', 'xl'])} {
+    color: green;
+  }`}
+        snippetLanguage="emotion"
       />
     </>
   );

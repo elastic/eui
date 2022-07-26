@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+import { css } from '@emotion/react';
+
 /*
  * Mixin that hides elements offscreen to only be read by screen reader
  * See https://github.com/elastic/eui/pull/5130 and https://github.com/elastic/eui/pull/5152 for more info
@@ -28,3 +30,17 @@ export const euiScreenReaderOnly = () => `
   // Chrome requires the negative margin to not cause overflows of parent containers
   margin: -1px;
 `;
+
+/*
+ * Styles
+ */
+export const euiScreenReaderOnlyStyles = (showOnFocus?: boolean) => ({
+  euiScreenReaderOnly: showOnFocus
+    ? css`
+        // The :active selector is necessary for Safari which removes :focus when a button is pressed
+        &:not(:focus):not(:active) {
+          ${euiScreenReaderOnly()}
+        }
+      `
+    : css(euiScreenReaderOnly()),
+});

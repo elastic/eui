@@ -8,26 +8,38 @@
 
 import { RowHeightUtils as ActualRowHeightUtils } from '../row_heights';
 
-const actual = new ActualRowHeightUtils();
+type RowHeightUtilsPublicAPI = Pick<
+  ActualRowHeightUtils,
+  keyof ActualRowHeightUtils
+>;
 
-export const mockRowHeightUtils = ({
-  cacheStyles: jest.fn(),
-  setGrid: jest.fn(),
-  getStylesForCell: jest.fn(() => ({
-    wordWrap: 'break-word',
-    wordBreak: 'break-word',
-    flexGrow: 1,
-  })),
-  isAutoHeight: jest.fn(() => false),
-  setRowHeight: jest.fn(),
-  pruneHiddenColumnHeights: jest.fn(),
-  getRowHeight: jest.fn(() => 32),
-  getRowHeightOption: jest.fn(actual.getRowHeightOption),
-  getCalculatedHeight: jest.fn(actual.getCalculatedHeight),
-  getLineCount: jest.fn(actual.getLineCount),
-  calculateHeightForLineCount: jest.fn(() => 50),
-  isRowHeightOverride: jest.fn(actual.isRowHeightOverride),
-  setRerenderGridBody: jest.fn(),
-} as unknown) as ActualRowHeightUtils;
+export const RowHeightUtils = jest
+  .fn<
+    ActualRowHeightUtils,
+    ConstructorParameters<typeof ActualRowHeightUtils>
+  >()
+  .mockImplementation((...args) => {
+    const rowHeightUtils = new ActualRowHeightUtils(...args);
 
-export const RowHeightUtils = jest.fn(() => mockRowHeightUtils);
+    const rowHeightUtilsMock: RowHeightUtilsPublicAPI = {
+      cacheStyles: jest.fn(),
+      getStylesForCell: jest.fn(() => ({
+        wordWrap: 'break-word',
+        wordBreak: 'break-word',
+        flexGrow: 1,
+      })),
+      isAutoHeight: jest.fn(() => false),
+      setRowHeight: jest.fn(),
+      pruneHiddenColumnHeights: jest.fn(),
+      getRowHeight: jest.fn(() => 32),
+      getRowHeightOption: jest.fn(rowHeightUtils.getRowHeightOption),
+      getCalculatedHeight: jest.fn(rowHeightUtils.getCalculatedHeight),
+      getLineCount: jest.fn(rowHeightUtils.getLineCount),
+      calculateHeightForLineCount: jest.fn(() => 50),
+      isRowHeightOverride: jest.fn(rowHeightUtils.isRowHeightOverride),
+      resetRow: jest.fn(),
+      resetGrid: jest.fn(),
+    };
+
+    return (rowHeightUtilsMock as any) as ActualRowHeightUtils;
+  });
