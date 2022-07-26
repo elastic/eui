@@ -8,23 +8,15 @@
 
 import { keysOf } from '../../components/common';
 
-export type EuiBreakpointSize = 'xs' | 's' | 'm' | 'l' | 'xl';
+import {
+  _EuiThemeBreakpoint,
+  _EuiThemeBreakpoints,
+} from '../../global_styling/variables/breakpoint';
+import { breakpoint } from '../../themes/amsterdam/global_styling/variables/_breakpoint';
 
-export type EuiBreakpoints = {
-  /**
-   * Set the minimum window width at which to start to the breakpoint
-   */
-  [key in EuiBreakpointSize]: number;
-};
-
-export const BREAKPOINTS: EuiBreakpoints = {
-  xl: 1200,
-  l: 992,
-  m: 768,
-  s: 575,
-  xs: 0,
-};
-
+export type EuiBreakpointSize = _EuiThemeBreakpoint;
+export type EuiBreakpoints = _EuiThemeBreakpoints;
+export const BREAKPOINTS = breakpoint;
 export const BREAKPOINT_KEYS = keysOf(BREAKPOINTS);
 
 /**
@@ -41,7 +33,7 @@ export function getBreakpoint(
   breakpoints: EuiBreakpoints = BREAKPOINTS
 ): EuiBreakpointSize | undefined {
   // Find the breakpoint (key) whose value is <= windowWidth starting with largest first
-  return keysOf(BREAKPOINTS).find((key) => breakpoints[key] <= width);
+  return BREAKPOINT_KEYS.find((key) => breakpoints[key] <= width);
 }
 
 /**
