@@ -106,9 +106,7 @@ exports[`EuiAvatar props iconType and iconColor as null is rendered 1`] = `
   <span
     class="euiAvatar__icon"
     data-euiicon-type="bolt"
-  >
-    name
-  </span>
+  />
 </div>
 `;
 
@@ -124,9 +122,7 @@ exports[`EuiAvatar props iconType and iconColor is rendered 1`] = `
     class="euiAvatar__icon"
     color="primary"
     data-euiicon-type="bolt"
-  >
-    name
-  </span>
+  />
 </div>
 `;
 
@@ -142,9 +138,7 @@ exports[`EuiAvatar props iconType and iconSize is rendered 1`] = `
     class="euiAvatar__icon"
     color="#000000"
     data-euiicon-type="bolt"
-  >
-    name
-  </span>
+  />
 </div>
 `;
 
@@ -160,9 +154,7 @@ exports[`EuiAvatar props iconType is rendered 1`] = `
     class="euiAvatar__icon"
     color="#000000"
     data-euiicon-type="bolt"
-  >
-    name
-  </span>
+  />
 </div>
 `;
 

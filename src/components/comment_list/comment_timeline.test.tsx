@@ -9,23 +9,45 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { EuiCommentTimeline } from './comment_timeline';
+import { EuiAvatar } from '../avatar';
 
 describe('EuiCommentTimeline', () => {
   describe('props', () => {
-    describe('username', () => {
-      it('is rendered', () => {
+    describe('timelineAvatar', () => {
+      it('defaults to an avatar with a `userAvatar` icon', () => {
+        const component = render(<EuiCommentTimeline />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('is rendered with a string', () => {
+        const component = render(<EuiCommentTimeline timelineAvatar="dot" />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('is rendered with a ReactNode', () => {
         const component = render(
-          <EuiCommentTimeline username="someuser" timelineIcon="avatar dot" />
+          <EuiCommentTimeline
+            timelineAvatar={
+              <EuiAvatar
+                name="username"
+                iconType="userAvatar"
+                color="subdued"
+              />
+            }
+          />
         );
 
         expect(component).toMatchSnapshot();
       });
-    });
 
-    describe('timelineIcon', () => {
-      it('is rendered', () => {
+      it('is rendered with timelineAvatarAriaLabel', () => {
         const component = render(
-          <EuiCommentTimeline username="someuser" timelineIcon="dot" />
+          <EuiCommentTimeline
+            timelineAvatar="dot"
+            timelineAvatarAriaLabel="timelineAvatarAriaLabel"
+          />
         );
 
         expect(component).toMatchSnapshot();

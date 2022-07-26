@@ -9,7 +9,11 @@ import {
 
 export default () => (
   <EuiCommentList aria-label="An example with different timeline icons">
-    <EuiComment username="andred" event="is using a default avatar">
+    <EuiComment
+      username="andred"
+      timelineAvatarAriaLabel="Andre Diaz"
+      event="is using a default avatar"
+    >
       <EuiText size="s">
         <p>
           The avatar initials is generated from the <EuiCode>username</EuiCode>{' '}
@@ -20,19 +24,21 @@ export default () => (
 
     <EuiComment
       username="system"
-      timelineIcon="dot"
+      timelineAvatarAriaLabel="System"
+      timelineAvatar="dot"
       event={
         <>
-          The <EuiCode>timelineIcon</EuiCode> is using a <EuiCode>dot</EuiCode>{' '}
-          icon.
+          The <EuiCode>timelineAvatar</EuiCode> is using a{' '}
+          <EuiCode>dot</EuiCode> icon.
         </>
       }
     />
 
     <EuiComment
       username="cat"
+      timelineAvatarAriaLabel="Beatiful cat"
       event="is using a custom avatar"
-      timelineIcon={
+      timelineAvatar={
         <EuiAvatar
           name="cat"
           imageUrl="https://source.unsplash.com/64x64/?cat"
@@ -41,7 +47,7 @@ export default () => (
     >
       <EuiText size="s">
         <p>
-          The <EuiCode>timelineIcon</EuiCode> is using a custom{' '}
+          The <EuiCode>timelineAvatar</EuiCode> is using a custom{' '}
           <strong>EuiAvatar</strong>.
         </p>
       </EuiText>
