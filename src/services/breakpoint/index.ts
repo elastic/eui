@@ -7,3 +7,4 @@
  */
 
 export * from './breakpoint';
+export * from './useIsWithinBreakpoints';

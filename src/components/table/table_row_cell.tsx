@@ -22,11 +22,10 @@ import {
   LEFT_ALIGNMENT,
   RIGHT_ALIGNMENT,
   CENTER_ALIGNMENT,
+  useIsWithinBreakpoints,
 } from '../../services';
 
 import { resolveWidthAsStyle } from './utils';
-
-import { useIsWithinBreakpoints } from '../../services/hooks/useIsWithinBreakpoints';
 
 interface EuiTableRowCellSharedPropsShape {
   /**

@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  isWithinBreakpoints,
-  useEuiTheme,
-  useIsWithinBreakpoints,
-} from '../../../../../src/services';
-
+import { css } from '@emotion/react';
 import {
   EuiIcon,
   getBreakpoint,
@@ -13,9 +8,10 @@ import {
   EuiCode,
   EuiThemeBreakpoints,
   useEuiBreakpoint,
+  useIsWithinBreakpoints,
+  isWithinBreakpoints,
+  useEuiTheme,
 } from '../../../../../src';
-
-import { css } from '@emotion/react';
 
 import { EuiThemeBreakpoints as _EuiThemeBreakpoints } from '../_props';
 import { getPropsFromComponent } from '../../../services/props/get_props';

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { keysOf } from '../components/common';
+import { keysOf } from '../../components/common';
 
 export type EuiBreakpointSize = 'xs' | 's' | 'm' | 'l' | 'xl';
 
