@@ -12,6 +12,8 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiButton,
+  EuiToolTip,
+  EuiAvatar,
 } from '../../../../src/components';
 
 const actionButton = (
@@ -38,9 +40,24 @@ const complexEvent = (
   </EuiFlexGroup>
 );
 
+const UserActionUsername = ({
+  username,
+  fullname,
+}: {
+  username: string;
+  fullname: string;
+}) => {
+  return (
+    <EuiToolTip position="top" content={<p>{fullname}</p>}>
+      <strong>{username}</strong>
+    </EuiToolTip>
+  );
+};
+
 const initialComments: EuiCommentProps[] = [
   {
-    username: 'emma',
+    username: <UserActionUsername username="emma" fullname="Emma Watson" />,
+    timelineAvatar: <EuiAvatar name="emma" />,
     event: 'added a comment',
     timestamp: 'on 3rd March 2022',
     children: (
@@ -51,7 +68,8 @@ const initialComments: EuiCommentProps[] = [
     actions: actionButton,
   },
   {
-    username: 'emma',
+    username: <UserActionUsername username="emma" fullname="Emma Watson" />,
+    timelineAvatar: <EuiAvatar name="emma" />,
     event: complexEvent,
     timestamp: 'on 3rd March 2022',
     eventIcon: 'tag',
@@ -59,13 +77,15 @@ const initialComments: EuiCommentProps[] = [
   },
   {
     username: 'system',
-    timelineIcon: 'dot',
+    timelineAvatar: 'dot',
+    timelineAvatarAriaLabel: 'System',
     event: 'pushed a new incident',
     timestamp: 'on 4th March 2022',
     eventColor: 'danger',
   },
   {
-    username: 'tiago',
+    username: <UserActionUsername username="tiago" fullname="Tiago Pontes" />,
+    timelineAvatar: <EuiAvatar name="tiago" />,
     event: 'added a comment',
     timestamp: 'on 4th March 2022',
     actions: actionButton,
@@ -77,7 +97,8 @@ const initialComments: EuiCommentProps[] = [
     ),
   },
   {
-    username: 'emma',
+    username: <UserActionUsername username="emma" fullname="Emma Watson" />,
+    timelineAvatar: <EuiAvatar name="emma" />,
     event: (
       <>
         marked case as <EuiBadge color="warning">In progress</EuiBadge>
@@ -119,7 +140,10 @@ export default () => {
       setComments([
         ...comments,
         {
-          username: 'emma',
+          username: (
+            <UserActionUsername username="emma" fullname="Emma Watson" />
+          ),
+          timelineAvatar: <EuiAvatar name="emma" />,
           event: 'added a comment',
           timestamp: `on ${date}`,
           actions: actionButton,
@@ -143,7 +167,10 @@ export default () => {
     <>
       <EuiCommentList aria-label="Comment system example">
         {commentsList}
-        <EuiComment username="juana">
+        <EuiComment
+          username="juana"
+          timelineAvatar={<EuiAvatar name="juana" />}
+        >
           <EuiMarkdownEditor
             aria-label="Markdown editor"
             aria-describedby={errorElementId.current}

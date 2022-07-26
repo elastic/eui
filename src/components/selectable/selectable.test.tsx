@@ -191,6 +191,20 @@ describe('EuiSelectable', () => {
       ).toEqual('second value');
     });
 
+    it('calls the searchProps.onChange callback on mount', () => {
+      const onChange = jest.fn();
+      mount(
+        <EuiSelectable
+          options={options}
+          searchable
+          searchProps={{ value: 'pandora', onChange }}
+        >
+          {(_, search) => <>{search}</>}
+        </EuiSelectable>
+      );
+      expect(onChange).toHaveBeenCalledWith('pandora', [options[2]]);
+    });
+
     it('defaults to an empty string if no value or defaultValue is passed from searchProps', () => {
       const component = render(
         <EuiSelectable

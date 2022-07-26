@@ -52,9 +52,7 @@ exports[`EuiTimelineItem props EuiAvatar is passed as an icon 1`] = `
         <span
           class="euiAvatar__icon"
           data-euiicon-type="dot"
-        >
-          dot
-        </span>
+        />
       </div>
     </div>
   </div>
@@ -87,9 +85,7 @@ exports[`EuiTimelineItem props iconAriaLabel is rendered 1`] = `
         <span
           class="euiAvatar__icon"
           data-euiicon-type="dot"
-        >
-          icon aria label
-        </span>
+        />
       </div>
     </div>
   </div>

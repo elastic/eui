@@ -57,6 +57,7 @@ const longBody = (
 const comments: EuiCommentProps[] = [
   {
     username: 'janed',
+    timelineAvatarAriaLabel: 'Jane Doe',
     event: 'added a comment',
     timestamp: 'on Jan 1, 2020',
     children: body,
@@ -64,12 +65,14 @@ const comments: EuiCommentProps[] = [
   },
   {
     username: 'juanab',
+    timelineAvatarAriaLabel: 'Juana Barros',
     actions: copyAction,
     event: 'pushed incident X0Z235',
     timestamp: 'on Jan 3, 2020',
   },
   {
     username: 'pancho1',
+    timelineAvatarAriaLabel: 'Pancho Pérez',
     event: 'edited case',
     timestamp: 'on Jan 9, 2020',
     eventIcon: 'pencil',
@@ -77,6 +80,7 @@ const comments: EuiCommentProps[] = [
   },
   {
     username: 'pedror',
+    timelineAvatarAriaLabel: 'Pedro Rodriguez',
     actions: copyAction,
     event: complexEvent,
     timestamp: 'on Jan 11, 2020',
@@ -85,7 +89,7 @@ const comments: EuiCommentProps[] = [
   },
   {
     username: 'elohar',
-
+    timelineAvatarAriaLabel: 'Elohar Jackson',
     event: 'added a comment',
     timestamp: 'on Jan 14, 2020',
     children: longBody,
