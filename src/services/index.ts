@@ -30,6 +30,9 @@ export {
   useIsWithinBreakpoints,
   isWithinMaxBreakpoint,
   isWithinMinBreakpoint,
+  CurrentEuiBreakpointContext,
+  CurrentEuiBreakpointProvider,
+  useCurrentEuiBreakpoint,
 } from './breakpoint';
 
 export type { HSV } from './color';
