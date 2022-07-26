@@ -48,17 +48,18 @@ export const EuiPortal: React.FC<EuiPortalProps> = ({
 }) => {
   const [portalNode, setPortalNode] = useState<HTMLDivElement | null>(null);
 
+  // pull `sibling` and `position` out of insert in case their wrapping object is recreated every render
+  const { sibling, position } = insert || {};
   useEffect(() => {
     const portalNode = document.createElement('div');
     portalNode.dataset.euiportal = 'true';
     setPortalNode(portalNode);
 
-    if (insert == null) {
+    if (sibling == null || position == null) {
       // no insertion defined, append to body
       document.body.appendChild(portalNode);
     } else {
       // inserting before or after an element
-      const { sibling, position } = insert;
       sibling.insertAdjacentElement(insertPositions[position], portalNode);
     }
 
@@ -67,7 +68,7 @@ export const EuiPortal: React.FC<EuiPortalProps> = ({
         portalNode.parentNode.removeChild(portalNode);
       }
     };
-  }, [insert]);
+  }, [sibling, position]);
 
   useUpdateEffect(() => {
     portalRef?.(portalNode);
