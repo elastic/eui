@@ -29,7 +29,7 @@ export const euiDescriptionListStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Responsive columns behave as a row on breakpoints xs-s
     responsiveColumn: css`
-      ${euiBreakpoint(['m', 'xl'], euiThemeContext)} {
+      ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
         ${columnDisplay}
       }
     `,

@@ -11,6 +11,7 @@ import {
   euiFontSize,
   euiBreakpoint,
   logicalTextAlignCSS,
+  logicalCSS,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
@@ -37,11 +38,11 @@ export const euiDescriptionListDescriptionStyles = (
       ${columnDisplay}
     `,
     responsiveColumn: css`
-      ${euiBreakpoint(['xs', 's'], euiThemeContext)} {
+      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
         ${logicalCSS('width', '100%')}
         padding: 0;
       }
-      ${euiBreakpoint(['xl'], euiThemeContext)} {
+      ${euiBreakpoint(euiThemeContext, ['xl'])} {
         ${columnDisplay}
       }
     `,
