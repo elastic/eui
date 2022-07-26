@@ -53,7 +53,8 @@ export const euiDescriptionListTitleStyles = (euiThemeContext: UseEuiTheme) => {
       background-color: ${colorMode === 'DARK'
         ? tint(euiTheme.colors.lightestShade, 0.5)
         : euiTheme.colors.lightestShade};
-      margin: 0 ${euiTheme.size.xs};
+      ${logicalCSS('margin-vertical', '0')}
+      ${logicalCSS('margin-horizontal', euiTheme.size.xs)}
 
       // Make sure the first <dt> doesn't get a margin.
       &:first-of-type {
