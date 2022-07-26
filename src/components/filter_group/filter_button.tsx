@@ -104,6 +104,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
       className="euiFilterButton__notification"
       aria-label={hasActiveFilters ? activeBadgeLabel : availableBadgeLabel}
       color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}
+      role="marquee" // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/marquee_role
     >
       {badgeCount}
     </EuiNotificationBadge>
