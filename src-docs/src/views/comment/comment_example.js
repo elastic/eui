@@ -155,8 +155,10 @@ export const CommentListExample = {
                 <Link to="/display/avatar">
                   <strong>EuiAvatar</strong>
                 </Link>
-                . If no avatar is provided, it will default to an avatar with a{' '}
-                <EuiCode>userAvatar</EuiCode> icon.
+                . Use in conjunction with{' '}
+                <EuiCode>timelineAvatarAriaLabel</EuiCode> to pass an aria label
+                to the avatar. If no avatar is provided, it will default to an
+                avatar with a <EuiCode>userAvatar</EuiCode> icon.
               </li>
               <li>
                 <EuiCode>eventIcon</EuiCode>: Icon that shows before the
