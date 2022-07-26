@@ -56,18 +56,13 @@ export const EuiDescriptionList: FunctionComponent<
   if (listItems) {
     childrenOrListItems = listItems.map((item, index) => {
       return [
-        <EuiDescriptionListTitle
-          key={`title-${index}`}
-          {...titleProps}
-          data-type={type}
-        >
+        <EuiDescriptionListTitle key={`title-${index}`} {...titleProps}>
           {item.title}
         </EuiDescriptionListTitle>,
 
         <EuiDescriptionListDescription
           key={`description-${index}`}
           {...descriptionProps}
-          data-type={type}
         >
           {item.description}
         </EuiDescriptionListDescription>,
@@ -81,7 +76,7 @@ export const EuiDescriptionList: FunctionComponent<
     <EuiDescriptionListContext.Provider
       value={{ type, compressed, textStyle, align }}
     >
-      <dl className={classes} css={cssStyles} {...rest}>
+      <dl className={classes} css={cssStyles} {...rest} data-type={type}>
         {childrenOrListItems}
       </dl>
     </EuiDescriptionListContext.Provider>
