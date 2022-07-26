@@ -7,7 +7,6 @@ import {
   useEuiBreakpoint,
   useCurrentEuiBreakpoint,
   useIsWithinBreakpoints,
-  isWithinBreakpoints,
   useEuiTheme,
 } from '../../../../../src';
 
@@ -23,68 +22,44 @@ export default () => {
   return (
     <>
       <ThemeExample
-        title={<code>getBreakpoint(width, breakpoints)</code>}
-        type="function"
+        title={<code>useCurrentEuiBreakpoint()</code>}
+        type="hook"
         description={
-          <p>
-            Given the current <EuiCode>width</EuiCode>, this function returns
-            the string that is the name of the breakpoint key that is less than
-            or equal to the width.
-          </p>
+          <>
+            <p>
+              This hook returns the named breakpoint size of the current browser
+              window width, responsively updating whenever the window is
+              resized.
+            </p>
+            <p>
+              The hook automatically inherits breakpoint sizes from the current
+              EUI theme and any theme overrides.
+            </p>
+          </>
         }
         example={
           <p>
             Current breakpoint: <strong>{currentBreakpoint}</strong>
           </p>
         }
-        snippet="getBreakpoint(window.innerWidth, euiTheme.breakpoint)"
+        snippet="const currentBreakpoint = useCurrentEuiBreakpoint()"
         snippetLanguage="js"
       />
 
       <ThemeExample
-        title={<code>isWithinBreakpoints(width, sizes[])</code>}
-        type="function"
-        description={
-          <>
-            <p>
-              Given the current <EuiCode>width</EuiCode> and an array of
-              breakpoint keys, this function returns true or false if the{' '}
-              <EuiCode>width</EuiCode> falls <strong>within any</strong> of the
-              named breakpoints.
-            </p>
-            <p>
-              You can also use{' '}
-              <EuiCode>isWithinMinBreakpoint(width, key)</EuiCode> or{' '}
-              <EuiCode>isWithinMaxBreakpoint(width, key)</EuiCode> for checking
-              for a specific minimum or maximum width.
-            </p>
-          </>
-        }
-        example={
-          <p>
-            Targeting mobile devices only:{' '}
-            {isWithinBreakpoints(currentBreakpoint || 0, ['xs', 's']) ? (
-              <EuiIcon type="checkInCircleFilled" color="success" />
-            ) : (
-              <EuiIcon type="cross" color="danger" />
-            )}
-          </p>
-        }
-        snippet="isWithinBreakpoints(window.innerWidth, ['xs', 's'])"
-        snippetLanguage="js"
-      />
-
-      <ThemeExample
-        title={<code>useIsWithinBreakpoints(sizes[], isActive?)</code>}
+        title={<code>useIsWithinBreakpoints(sizes[], isResponsive?)</code>}
         type="hook"
         description={
           <>
             <p>
-              This hook automatically sets up with resize listeners and
-              calculates the current breakpoint based on the{' '}
-              <strong>whole window width</strong>. The{' '}
-              <EuiCode>isActive</EuiCode> parameter allows it to easily be
-              turned on/off from within your component.
+              This hook returns true or false if the current browser window
+              width is within the passed breakpoint <EuiCode>sizes</EuiCode>.{' '}
+              The <EuiCode>isResponsive</EuiCode> parameter allows it to easily
+              be turned on/off from within your component.
+            </p>
+            <p>
+              The hook automatically inherits breakpoint sizes from the current
+              EUI theme and any theme overrides.
             </p>
           </>
         }
