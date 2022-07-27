@@ -64,6 +64,7 @@ if (args.dry_run) {
     execSync(`npm run update-token-changelog -- ${versionTarget}`, execOptions);
 
     // similarly, the build may have generated new theme json tokens
+    // TODO: this can be removed when the Emotion conversion is complete and the theme JSON files no longer exist
     await commitThemeTokens();
 
     // Update CHANGELOG.md
