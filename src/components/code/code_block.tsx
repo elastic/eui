@@ -232,7 +232,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     [preClasses, onKeyDown]
   );
 
-  const optionalStyles: CSSProperties = useMemo(() => {
+  const overflowHeightStyles: CSSProperties = useMemo(() => {
     if (overflowHeight) {
       const property =
         typeof overflowHeight === 'string' ? 'height' : 'maxHeight';
@@ -246,9 +246,9 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   const wrapperProps = useMemo(
     () => ({
       className: classes,
-      style: optionalStyles,
+      style: overflowHeightStyles,
     }),
-    [classes, optionalStyles]
+    [classes, overflowHeightStyles]
   );
 
   const codeBlockControls = useMemo(() => {
