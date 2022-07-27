@@ -1,3 +1,38 @@
+## [`62.0.0`](https://github.com/elastic/eui/tree/v62.0.0)
+
+- Updated `EuiText.img` styles to prevent images from growing full width ([#5969](https://github.com/elastic/eui/pull/5969))
+- Improved `EuiImage`'s `allowFullScreen` screen reader experience ([#5969](https://github.com/elastic/eui/pull/5969))
+- Updated `EuiImage`'s full screen mode to use the `fullScreenExit` icon ([#5969](https://github.com/elastic/eui/pull/5969))
+- Updated `EuiPopover`'s `display` prop to accept any CSS `display` value ([#5977](https://github.com/elastic/eui/pull/5977))
+- Added `data-popover-open` attribute to `EuiPopover`'s panel ([#5977](https://github.com/elastic/eui/pull/5977))
+- Changed `EuiPopover`'s `box-shadow` to `filter` ([#5977](https://github.com/elastic/eui/pull/5977))
+- Added `logicalSizeCSS` and `logicalSizeStyle` for quickly producing `width` and `height` styles ([#5977](https://github.com/elastic/eui/pull/5977))
+- Increased the opacity of the shadow color in dark mode ([#5977](https://github.com/elastic/eui/pull/5977))
+- Improved screen reader accessibility for `EuiDataGrid` column headers ([#6034](https://github.com/elastic/eui/pull/6034))
+- Added `tokenMetricCounter` and `tokenMetricGauge` to `EuiToken` ([#6064](https://github.com/elastic/eui/pull/6064))
+- Removed the nested `aria-label` on the `EuiAvatar` icon to simplify a11y ([#6071](https://github.com/elastic/eui/pull/6071))
+- Added `timelineAvatarAriaLabel` to `EuiComment` ([#6071](https://github.com/elastic/eui/pull/6071))
+
+**Bug fixes**
+
+- Reverted the change `EuiCommentEvent.username` type from `ReactNode` to `string` ([#6071](https://github.com/elastic/eui/pull/6071))
+- Fixed searchable single selection `EuiSelectable`s not correctly highlighting the checked option on initial render ([#6072](https://github.com/elastic/eui/pull/6072))
+
+**Breaking changes**
+
+- Updated `EuiImage.className` to be applied to the `img` instead of the parent wrapper `figure` and added `wrapperProps` prop so that consumers can apply props to the `figure` element ([#5969](https://github.com/elastic/eui/pull/5969))
+- Renamed `EuiPopover`'s `display` prop value `inlineBlock` to `inline-block` ([#5977](https://github.com/elastic/eui/pull/5977))
+- `EuiPopover`: Removed `false` as an option from `initialFocus` ([#6044](https://github.com/elastic/eui/pull/6044))
+- Renamed `timelineIcon` on `EuiComment` to `timelineAvatar` ([#6071](https://github.com/elastic/eui/pull/6071))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiErrorBoundary` to Emotion ([#6053](https://github.com/elastic/eui/pull/6053))
+- Converted `EuiTextDiff` to Emotion ([#6056](https://github.com/elastic/eui/pull/6056))
+- Converted `euiBreakpoint` mixin to Emotion. ([#6057](https://github.com/elastic/eui/pull/6057))
+- Converted `EuiImage` to Emotion ([#5969](https://github.com/elastic/eui/pull/5969))
+- Converted `EuiPopover`, `EuiPopoverTitle`, `EuiPopoverFooter`, `EuiInputPopover` ([#5977](https://github.com/elastic/eui/pull/5977))
+
 ## [`61.0.0`](https://github.com/elastic/eui/tree/v61.0.0)
 
 - Added `eventIcon`, `eventIconAriaLabel`, and `eventColor` props to `EuiComment` ([#6030](https://github.com/elastic/eui/pull/6030))

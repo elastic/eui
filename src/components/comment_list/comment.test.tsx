@@ -60,7 +60,7 @@ describe('EuiComment', () => {
 
   test('renders a timeline icon', () => {
     const component = render(
-      <EuiComment username="someuser" timelineIcon="dot">
+      <EuiComment username="someuser" timelineAvatar="dot">
         <p>This is the body.</p>
       </EuiComment>
     );
