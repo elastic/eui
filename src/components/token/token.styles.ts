@@ -77,7 +77,7 @@ export const euiTokenStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
     justify-content: center;
 
     svg {
-      height: 100%;
+      ${logicalCSS('height', '100%')}
       margin: auto;
     }
   `,
