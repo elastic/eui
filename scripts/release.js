@@ -84,7 +84,7 @@ if (args.dry_run) {
 
   if (args.steps.indexOf('publish') > -1) {
     // prompt user for npm 2FA
-    const otp = await getOneTimePassword();
+    const otp = await getOneTimePassword(versionTarget);
 
     // publish new version to npm
     execSync(`npm publish --otp=${otp}`, execOptions);
@@ -226,9 +226,8 @@ async function promptUserForVersionType() {
   });
 }
 
-async function getOneTimePassword() {
-  const version = require('../package.json').version
-  console.log(chalk.magenta(`Preparing to publish @elastic/eui@${version} to npm registry`));
+async function getOneTimePassword(versionTarget) {
+  console.log(chalk.magenta(`Preparing to publish @elastic/eui@${versionTarget} to npm registry`));
   console.log('');
   console.log(chalk.magenta('The @elastic organization requires membership and 2FA to publish'));
 
