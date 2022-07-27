@@ -9,10 +9,14 @@
 import { createContext } from 'react';
 import { EuiDescriptionListProps } from './description_list_types';
 
-export const EuiDescriptionListContext = createContext<EuiDescriptionListProps>(
-  {
-    type: 'row',
-    textStyle: 'normal',
-    align: 'left',
-  }
-);
+type EuiDescriptionListContextValues = Required<
+  Pick<EuiDescriptionListProps, 'type' | 'textStyle' | 'align'>
+> & { compressed?: EuiDescriptionListProps['compressed'] };
+
+export const EuiDescriptionListContext = createContext<
+  EuiDescriptionListContextValues
+>({
+  type: 'row',
+  textStyle: 'normal',
+  align: 'left',
+});

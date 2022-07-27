@@ -42,7 +42,7 @@ export const euiDescriptionListDescriptionStyles = (
         ${logicalCSS('width', '100%')}
         padding: 0;
       }
-      ${euiBreakpoint(euiThemeContext, ['xl'])} {
+      ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
         ${columnDisplay}
       }
     `,

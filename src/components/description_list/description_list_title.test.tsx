@@ -33,7 +33,9 @@ describe('EuiDescriptionListTitle', () => {
       TYPES.forEach((type) => {
         test(`${type} is rendered`, () => {
           const component = render(
-            <EuiDescriptionListContext.Provider value={{ type }}>
+            <EuiDescriptionListContext.Provider
+              value={{ type, textStyle: 'normal', align: 'left' }}
+            >
               <EuiDescriptionListTitle />
             </EuiDescriptionListContext.Provider>
           );
@@ -46,7 +48,9 @@ describe('EuiDescriptionListTitle', () => {
     describe('align', () => {
       test('center alignment is rendered', () => {
         const component = render(
-          <EuiDescriptionListContext.Provider value={{ align: 'center' }}>
+          <EuiDescriptionListContext.Provider
+            value={{ align: 'center', type: 'row', textStyle: 'normal' }}
+          >
             <EuiDescriptionListTitle />
           </EuiDescriptionListContext.Provider>
         );
@@ -58,7 +62,9 @@ describe('EuiDescriptionListTitle', () => {
     describe('text styles', () => {
       test('reversed text is rendered', () => {
         const component = render(
-          <EuiDescriptionListContext.Provider value={{ textStyle: 'reverse' }}>
+          <EuiDescriptionListContext.Provider
+            value={{ textStyle: 'reverse', align: 'left', type: 'row' }}
+          >
             <EuiDescriptionListTitle />
           </EuiDescriptionListContext.Provider>
         );
@@ -70,7 +76,14 @@ describe('EuiDescriptionListTitle', () => {
     describe('compressed', () => {
       test('is rendered', () => {
         const component = render(
-          <EuiDescriptionListContext.Provider value={{ compressed: true }}>
+          <EuiDescriptionListContext.Provider
+            value={{
+              compressed: true,
+              textStyle: 'normal',
+              align: 'left',
+              type: 'row',
+            }}
+          >
             <EuiDescriptionListTitle />
           </EuiDescriptionListContext.Provider>
         );

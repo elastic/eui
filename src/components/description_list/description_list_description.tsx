@@ -22,12 +22,9 @@ export const EuiDescriptionListDescription: FunctionComponent<EuiDescriptionList
   className,
   ...rest
 }) => {
-  const {
-    type = 'row',
-    textStyle = 'normal',
-    compressed,
-    align = 'left',
-  } = useContext(EuiDescriptionListContext);
+  const { type, textStyle, compressed, align } = useContext(
+    EuiDescriptionListContext
+  );
 
   const theme = useEuiTheme();
   const styles = euiDescriptionListDescriptionStyles(theme);
