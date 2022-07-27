@@ -121,7 +121,7 @@ exports[`_EuiPageEmptyPrompt paddingSize l is rendered 1`] = `
 
 exports[`_EuiPageEmptyPrompt paddingSize m is rendered 1`] = `
 <div
-  class="css-kgjxd-euiPageSection-grow-m-center-transparent"
+  class="emotion-euiPageSection-grow-m-center-transparent"
 >
   <div
     class="emotion-euiPageSection__content-m"

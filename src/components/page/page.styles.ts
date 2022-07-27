@@ -10,29 +10,33 @@ import { css } from '@emotion/react';
 import { euiBreakpoint } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
-export const euiPageStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiPage: css`
-    display: flex;
-    background-color: ${euiTheme.colors.body};
-    flex-shrink: 0; // Ensures Safari doesn't shrink height beyond contents
-    max-width: 100%; // Ensures Firefox doesn't expand width beyond bounds
-  `,
+export const euiPageStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
 
-  // Grow
-  grow: css`
-    flex-grow: 1;
-  `,
+  return {
+    euiPage: css`
+      display: flex;
+      background-color: ${euiTheme.colors.body};
+      flex-shrink: 0; // Ensures Safari doesn't shrink height beyond contents
+      max-width: 100%; // Ensures Firefox doesn't expand width beyond bounds
+    `,
 
-  // Direction
-  column: css`
-    flex-direction: column;
-  `,
+    // Grow
+    grow: css`
+      flex-grow: 1;
+    `,
 
-  row: css`
-    flex-direction: column;
+    // Direction
+    column: css`
+      flex-direction: column;
+    `,
 
-    ${euiBreakpoint('m', euiTheme)} {
-      flex-direction: row;
-    }
-  `,
-});
+    row: css`
+      flex-direction: column;
+
+      ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
+        flex-direction: row;
+      }
+    `,
+  };
+};

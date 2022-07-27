@@ -10,6 +10,7 @@ import React, {
   createContext,
   CSSProperties,
   FunctionComponent,
+  HTMLAttributes,
   useContext,
   useEffect,
   useState,
@@ -37,6 +38,7 @@ import { _EuiPageRestrictWidth } from '../page/_restrict_width';
 import { _EuiPageBottomBorder } from '../page/_bottom_border';
 import { useEuiTheme, useGeneratedHtmlId } from '../../services';
 import { logicalStyle } from '../../global_styling';
+import { CommonProps } from '../common';
 
 export const TemplateContext = createContext({
   section: {},
@@ -65,6 +67,10 @@ export type EuiPageTemplateProps = _EuiPageOuterProps &
      * Otherwise they will be calculated based on the data attributes on the body element.
      */
     offset?: number;
+    /**
+     * Passes through some common HTML attributes to the `main` content wrapper
+     */
+    mainProps?: CommonProps & HTMLAttributes<HTMLElement>;
   };
 
 /**
@@ -82,6 +88,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   panelled,
   // Inner props
   contentBorder,
+  mainProps,
   // Outer props
   className,
   minHeight = '460px',
@@ -94,7 +101,10 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   const templateContext = useContext(TemplateContext);
 
   // Used as a target to insert the bottom bar component
-  const pageInnerId = useGeneratedHtmlId({ prefix: 'EuiPageTemplateInner' });
+  const pageInnerId = useGeneratedHtmlId({
+    prefix: 'EuiPageTemplateInner',
+    conditionalId: mainProps?.id,
+  });
 
   useEffect(() => {
     if (_offset === undefined) {
@@ -192,6 +202,7 @@ export const _EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
         {sidebar}
 
         <EuiPageInner
+          {...mainProps}
           id={pageInnerId}
           border={innerBordered()}
           panelled={innerPanelled()}

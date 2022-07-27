@@ -7,8 +7,8 @@ exports[`_EuiPageSidebar _EuiPageInnerProps is rendered 1`] = `
   style="min-block-size:max(460px, 100vh)"
 >
   <main
-    class="emotion-euiPageInner-left"
-    id="EuiPageTemplateInner_generated-id"
+    class="customClassName emotion-euiPageInner-left"
+    id="customID"
   />
 </div>
 `;

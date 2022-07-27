@@ -9,7 +9,7 @@ Array [
     style="left:0;right:0;bottom:0"
   >
     <h2
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Page level controls
     </h2>
@@ -23,7 +23,7 @@ Array [
   </section>,
   <p
     aria-live="assertive"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     There is a new region landmark with page level controls at the end of the document.
   </p>,
@@ -38,7 +38,7 @@ Array [
     style="left:0;right:0;bottom:0"
   >
     <h2
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Page level controls
     </h2>
@@ -52,7 +52,7 @@ Array [
   </section>,
   <p
     aria-live="assertive"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     There is a new region landmark with page level controls at the end of the document.
   </p>,
@@ -67,7 +67,7 @@ Array [
     style="left:0;right:0;bottom:0"
   >
     <h2
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Page level controls
     </h2>
@@ -81,7 +81,7 @@ Array [
   </section>,
   <p
     aria-live="assertive"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     There is a new region landmark with page level controls at the end of the document.
   </p>,
@@ -96,7 +96,7 @@ Array [
     style="left:0;right:0;bottom:0"
   >
     <h2
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Page level controls
     </h2>
@@ -110,7 +110,7 @@ Array [
   </section>,
   <p
     aria-live="assertive"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     There is a new region landmark with page level controls at the end of the document.
   </p>,
@@ -125,7 +125,7 @@ Array [
     style="left:0;right:0;bottom:0"
   >
     <h2
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Page level controls
     </h2>
@@ -139,7 +139,7 @@ Array [
   </section>,
   <p
     aria-live="assertive"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     There is a new region landmark with page level controls at the end of the document.
   </p>,
@@ -154,7 +154,7 @@ Array [
     style="left:0;right:0;bottom:0"
   >
     <h2
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Page level controls
     </h2>
@@ -168,7 +168,7 @@ Array [
   </section>,
   <p
     aria-live="assertive"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     There is a new region landmark with page level controls at the end of the document.
   </p>,
@@ -183,7 +183,7 @@ Array [
     style="left:0;right:0;bottom:0"
   >
     <h2
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Page level controls
     </h2>
@@ -197,7 +197,7 @@ Array [
   </section>,
   <p
     aria-live="assertive"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     There is a new region landmark with page level controls at the end of the document.
   </p>,
@@ -212,7 +212,7 @@ Array [
     style="left:0;right:0;bottom:0"
   >
     <h2
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Page level controls
     </h2>
@@ -227,7 +227,7 @@ Array [
   </section>,
   <p
     aria-live="assertive"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     There is a new region landmark with page level controls at the end of the document.
   </p>,
@@ -242,7 +242,7 @@ Array [
     style="left:0;right:0;bottom:0"
   >
     <h2
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Page level controls
     </h2>
@@ -257,7 +257,7 @@ Array [
   </section>,
   <p
     aria-live="assertive"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     There is a new region landmark with page level controls at the end of the document.
   </p>,
@@ -272,7 +272,7 @@ Array [
     style="left:0;right:0;bottom:0"
   >
     <h2
-      class="euiScreenReaderOnly"
+      class="emotion-euiScreenReaderOnly"
     >
       Page level controls
     </h2>
@@ -287,7 +287,7 @@ Array [
   </section>,
   <p
     aria-live="assertive"
-    class="euiScreenReaderOnly"
+    class="emotion-euiScreenReaderOnly"
   >
     There is a new region landmark with page level controls at the end of the document.
   </p>,
