@@ -13,10 +13,12 @@ type EuiDescriptionListContextValues = Required<
   Pick<EuiDescriptionListProps, 'type' | 'textStyle' | 'align'>
 > & { compressed?: EuiDescriptionListProps['compressed'] };
 
-export const EuiDescriptionListContext = createContext<
-  EuiDescriptionListContextValues
->({
+export const contextDefaults: EuiDescriptionListContextValues = {
   type: 'row',
   textStyle: 'normal',
   align: 'left',
-});
+};
+
+export const EuiDescriptionListContext = createContext<
+  EuiDescriptionListContextValues
+>(contextDefaults);

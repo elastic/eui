@@ -13,7 +13,10 @@ import { requiredProps } from '../../test/required_props';
 import { EuiDescriptionListDescription } from './description_list_description';
 import { TYPES } from './description_list_types';
 import { shouldRenderCustomStyles } from '../../test/internal';
-import { EuiDescriptionListContext } from './description_list_context';
+import {
+  EuiDescriptionListContext,
+  contextDefaults,
+} from './description_list_context';
 
 describe('EuiDescriptionListDescription', () => {
   shouldRenderCustomStyles(<EuiDescriptionListDescription />);
@@ -34,7 +37,7 @@ describe('EuiDescriptionListDescription', () => {
         test(`${type} is rendered`, () => {
           const component = render(
             <EuiDescriptionListContext.Provider
-              value={{ type, textStyle: 'normal', align: 'left' }}
+              value={{ ...contextDefaults, type }}
             >
               <EuiDescriptionListDescription />
             </EuiDescriptionListContext.Provider>
@@ -49,7 +52,7 @@ describe('EuiDescriptionListDescription', () => {
       test('center alignment is rendered', () => {
         const component = render(
           <EuiDescriptionListContext.Provider
-            value={{ align: 'center', type: 'row', textStyle: 'normal' }}
+            value={{ ...contextDefaults, align: 'center' }}
           >
             <EuiDescriptionListDescription />
           </EuiDescriptionListContext.Provider>
@@ -63,7 +66,7 @@ describe('EuiDescriptionListDescription', () => {
       test('reversed text is rendered', () => {
         const component = render(
           <EuiDescriptionListContext.Provider
-            value={{ textStyle: 'reverse', align: 'left', type: 'row' }}
+            value={{ ...contextDefaults, textStyle: 'reverse' }}
           >
             <EuiDescriptionListDescription />
           </EuiDescriptionListContext.Provider>
@@ -77,12 +80,7 @@ describe('EuiDescriptionListDescription', () => {
       test('is rendered', () => {
         const component = render(
           <EuiDescriptionListContext.Provider
-            value={{
-              compressed: true,
-              textStyle: 'normal',
-              align: 'left',
-              type: 'row',
-            }}
+            value={{ ...contextDefaults, compressed: true }}
           >
             <EuiDescriptionListDescription />
           </EuiDescriptionListContext.Provider>
