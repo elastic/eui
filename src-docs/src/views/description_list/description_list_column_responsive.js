@@ -19,7 +19,7 @@ const favoriteVideoGames = [
 ];
 export default () => (
   <EuiDescriptionList
-    type="column"
+    type="responsiveColumn"
     listItems={favoriteVideoGames}
     style={{ maxWidth: '400px' }}
   />
