@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 import chroma from 'chroma-js';
-import { logicalCSS } from '../../global_styling';
+import { logicalCSS, logicalSizeCSS } from '../../global_styling';
 import {
   UseEuiTheme,
   euiPaletteColorBlind,
@@ -21,13 +21,6 @@ import {
 
 const visColors = euiPaletteColorBlind();
 const visColorsBehindText = euiPaletteColorBlindBehindText();
-
-const iconSize = (size: string) => {
-  return `
-    ${logicalCSS('width', size)};
-    ${logicalCSS('height', size)};
-  `;
-};
 
 const getTokenColor = (
   euiTheme: UseEuiTheme['euiTheme'],
@@ -101,7 +94,7 @@ export const euiTokenStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
   `,
   // Sizes
   xs: css`
-    ${iconSize(euiTheme.size.m)};
+    ${logicalSizeCSS(euiTheme.size.s, euiTheme.size.s)};
 
     &[class*='-square'] {
       border-radius: calc(${euiTheme.border.radius.small} / 2);
@@ -117,21 +110,21 @@ export const euiTokenStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
     }
   `,
   s: css`
-    ${iconSize(euiTheme.size.base)};
+    ${logicalSizeCSS(euiTheme.size.base, euiTheme.size.base)};
 
     &[class*='-rectangle'] {
       ${logicalCSS('padding-horizontal', euiTheme.size.xs)};
     }
   `,
   m: css`
-    ${iconSize(euiTheme.size.l)}
+    ${logicalSizeCSS(euiTheme.size.l, euiTheme.size.l)};
 
     &[class*='-rectangle'] {
       ${logicalCSS('padding-horizontal', euiTheme.size.s)};
     }
   `,
   l: css`
-    ${iconSize(euiTheme.size.xl)}
+    ${logicalSizeCSS(euiTheme.size.xl, euiTheme.size.xl)};
 
     &[class*='-rectangle'] {
       ${logicalCSS('padding-horizontal', euiTheme.size.s)};
