@@ -1,8 +1,6 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
-import { EuiSelectable } from '../../../../src/components/selectable';
-import { EuiSwitch } from '../../../../src/components/form/switch';
-import { EuiSpacer } from '../../../../src/components/spacer';
+import { EuiSelectable, EuiSwitch, EuiSpacer } from '../../../../src';
 
 export default () => {
   const [useCustomMessage, setUseCustomMessage] = useState(false);
@@ -14,7 +12,7 @@ export default () => {
   const errorMessage = 'Error!';
 
   return (
-    <Fragment>
+    <>
       <EuiSwitch
         label="Custom message"
         onChange={(e) => setUseCustomMessage(e.target.checked)}
@@ -45,6 +43,6 @@ export default () => {
       >
         {(list) => list}
       </EuiSelectable>
-    </Fragment>
+    </>
   );
 };
