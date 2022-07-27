@@ -8,7 +8,7 @@
   width: calc(100% - #{$euiRangeThumbWidth});
   margin-left: $euiRangeThumbWidth / 2;
   pointer-events: none;
-  z-index: 2; // higher than .euiRangeSlider that is 1
+  z-index: 3; // higher than thumbs that are 2
 }
 
 .euiRangeTooltip__value {
@@ -17,11 +17,11 @@
   @include euiFontSizeS;
   border: 1px solid $euiTooltipBackgroundColor;
   position: absolute;
-  border-radius: $euiBorderRadius;
   padding: ($euiSizeXS / 2) $euiSizeS;
   background-color: $euiTooltipBackgroundColor;
   color: $euiColorGhost;
   max-width: 256px;
+  border-radius: $euiBorderRadiusSmall;
   top: 50%;
   transition:
     box-shadow $euiAnimSpeedNormal $euiAnimSlightResistance,
