@@ -23,9 +23,7 @@ exports[`EuiTimeline is rendered with items 1`] = `
           <span
             class="euiAvatar__icon"
             data-euiicon-type="email"
-          >
-            email
-          </span>
+          />
         </div>
       </div>
     </div>
@@ -99,9 +97,7 @@ exports[`EuiTimeline props gutterSize l is rendered 1`] = `
           <span
             class="euiAvatar__icon"
             data-euiicon-type="email"
-          >
-            email
-          </span>
+          />
         </div>
       </div>
     </div>
@@ -175,9 +171,7 @@ exports[`EuiTimeline props gutterSize m is rendered 1`] = `
           <span
             class="euiAvatar__icon"
             data-euiicon-type="email"
-          >
-            email
-          </span>
+          />
         </div>
       </div>
     </div>
@@ -251,9 +245,7 @@ exports[`EuiTimeline props gutterSize xl is rendered 1`] = `
           <span
             class="euiAvatar__icon"
             data-euiicon-type="email"
-          >
-            email
-          </span>
+          />
         </div>
       </div>
     </div>

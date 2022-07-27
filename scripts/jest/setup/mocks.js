@@ -16,3 +16,13 @@ jest.mock('./../../../src/services/accessibility', () => {
   } = require('./../../../src/services/accessibility/html_id_generator.testenv');
   return { ...a11y, htmlIdGenerator, useGeneratedHtmlId };
 });
+
+jest.mock('./../../../src/services/breakpoint', () => {
+  const breakpointServices = jest.requireActual(
+    './../../../src/services/breakpoint'
+  );
+  const {
+    useCurrentEuiBreakpoint,
+  } = require('./../../../src/services/breakpoint/currentEuiBreakpoint.testenv');
+  return { ...breakpointServices, useCurrentEuiBreakpoint };
+});

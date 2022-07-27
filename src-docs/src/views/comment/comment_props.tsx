@@ -55,7 +55,7 @@ export default ({ snippet }: { snippet: ReactNode }) => {
       style={{ maxWidth: '540px' }}
     >
       <EuiCommentList>
-        <EuiComment username="Avatar">
+        <EuiComment username="avatar" timelineAvatarAriaLabel="Avatar">
           <div
             css={css`
               border-radius: ${euiTheme.border.radius.small};

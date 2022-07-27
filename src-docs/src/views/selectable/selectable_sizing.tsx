@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import {
   EuiButton,
   EuiCode,
@@ -9,75 +9,76 @@ import {
   EuiPopoverFooter,
   EuiPopoverTitle,
   EuiSelectable,
+  EuiSelectableOption,
   EuiSpacer,
   EuiTitle,
-} from '../../../../src/components';
-import { Comparators } from '../../../../src/services/sort';
-
-import { Options } from './data';
-import { createDataStore } from '../tables/data_store';
-import { useGeneratedHtmlId } from '../../../../src/services';
+} from '../../../../src';
 
 export default () => {
-  const countriesStore = createDataStore().countries.map((country) => {
-    return {
-      id: country.code,
-      label: `${country.name}`,
-      append: country.flag,
-    };
-  });
-
-  const [options, setOptions] = useState(Options);
-  const [countries, setCountries] = useState(countriesStore);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
 
-  const flexboxSelectablePopoverId = useGeneratedHtmlId({
-    prefix: 'flexboxSelectablePopover',
-  });
-  const flexboxSelectableFlyoutTitleId = useGeneratedHtmlId({
-    prefix: 'flexboxSelectableFlyoutTitle',
-  });
-
-  const onButtonClick = () => {
-    setOptions(options.slice().sort(Comparators.property('checked')));
-    setIsPopoverOpen(!isPopoverOpen);
-  };
-
-  const closePopover = () => {
-    setIsPopoverOpen(false);
-  };
-
-  const onChange = (options) => {
+  const [options, setOptions] = useState<EuiSelectableOption[]>([
+    { label: 'Titan' },
+    { label: 'Enceladus' },
+    { label: 'Mimas', checked: 'on' },
+    { label: 'Dione' },
+    { label: 'Iapetus', checked: 'on' },
+    { label: 'Phoebe' },
+    { label: 'Rhea' },
+    { label: 'Pandora' },
+    { label: 'Tethys' },
+    { label: 'Hyperion' },
+    { label: 'Pan' },
+    { label: 'Atlas' },
+    { label: 'Prometheus' },
+    { label: 'Janus' },
+    { label: 'Epimetheus' },
+    { label: 'Amalthea' },
+    { label: 'Thebe' },
+    { label: 'Io' },
+    { label: 'Europa' },
+    { label: 'Ganymede' },
+    { label: 'Callisto' },
+    { label: 'Himalia' },
+    { label: 'Phobos' },
+    { label: 'Deimos' },
+    { label: 'Puck' },
+    { label: 'Miranda' },
+    { label: 'Ariel' },
+    { label: 'Umbriel' },
+    { label: 'Titania' },
+    { label: 'Oberon' },
+    { label: 'Despina' },
+    { label: 'Galatea' },
+    { label: 'Larissa' },
+    { label: 'Triton' },
+    { label: 'Nereid' },
+    { label: 'Charon' },
+    { label: 'Styx' },
+    { label: 'Nix' },
+    { label: 'Kerberos' },
+    { label: 'Hydra' },
+  ]);
+  const onChange = (options: EuiSelectableOption[]) => {
     setOptions(options);
   };
 
-  const onFlyoutChange = (options) => {
-    setCountries(options);
-  };
-
-  const closeFlyout = () => {
-    setIsFlyoutVisible(false);
-  };
-
-  const showFlyout = () => {
-    setIsFlyoutVisible(true);
-  };
-
-  const button = (
-    <EuiButton iconType="arrowDown" iconSide="right" onClick={onButtonClick}>
-      Show popover
-    </EuiButton>
-  );
-
   return (
-    <Fragment>
+    <>
       <EuiPopover
-        id={flexboxSelectablePopoverId}
         panelPaddingSize="none"
-        button={button}
+        button={
+          <EuiButton
+            iconType="arrowDown"
+            iconSide="right"
+            onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+          >
+            Show popover
+          </EuiButton>
+        }
         isOpen={isPopoverOpen}
-        closePopover={closePopover}
+        closePopover={() => setIsPopoverOpen(false)}
       >
         <EuiSelectable
           searchable
@@ -104,35 +105,35 @@ export default () => {
 
       <EuiSpacer />
 
-      <EuiButton onClick={showFlyout}>Show flyout</EuiButton>
+      <EuiButton onClick={() => setIsFlyoutVisible(true)}>
+        Show flyout
+      </EuiButton>
 
       {isFlyoutVisible && (
         <EuiFlyout
           ownFocus
-          onClose={closeFlyout}
-          aria-labelledby={flexboxSelectableFlyoutTitleId}
+          onClose={() => setIsFlyoutVisible(false)}
+          aria-labelledby="selectableFlyout"
         >
           <EuiSelectable
             aria-label="Popover example"
             searchable
-            options={countries}
-            onChange={onFlyoutChange}
+            options={options}
+            onChange={onChange}
             height="full"
           >
             {(list, search) => (
-              <Fragment>
+              <>
                 <EuiFlyoutHeader hasBorder>
                   <EuiTitle size="m">
-                    <h2 id={flexboxSelectableFlyoutTitleId}>
-                      Be mindful of the flexbox
-                    </h2>
+                    <h2 id="selectableFlyout">Be mindful of the flexbox</h2>
                   </EuiTitle>
                   <EuiSpacer />
                   {search}
                 </EuiFlyoutHeader>
                 <EuiSpacer size="xs" />
                 {list}
-              </Fragment>
+              </>
             )}
           </EuiSelectable>
           <EuiSpacer size="xs" />
@@ -158,12 +159,12 @@ export default () => {
       <EuiSelectable
         aria-label="Bordered selectable example"
         options={options}
-        onChange={() => {}}
+        onChange={onChange}
         style={{ width: 300 }}
         listProps={{ bordered: true, paddingSize: 'none' }}
       >
         {(list) => list}
       </EuiSelectable>
-    </Fragment>
+    </>
   );
 };

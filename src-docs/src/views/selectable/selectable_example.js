@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
@@ -8,7 +8,8 @@ import {
   EuiSelectable,
   EuiSelectableMessage,
   EuiText,
-} from '../../../../src/components';
+  EuiCallOut,
+} from '../../../../src';
 
 import {
   EuiSelectableOptionProps,
@@ -17,9 +18,6 @@ import {
 } from './props';
 import Selectable from './selectable';
 const selectableSource = require('!!raw-loader!./selectable');
-
-import SelectablePopover from './selectable_popover';
-const selectablePopoverSource = require('!!raw-loader!./selectable_popover');
 
 import SelectableSearch from './selectable_search';
 const selectableSearchSource = require('!!raw-loader!./selectable_search');
@@ -33,10 +31,18 @@ const selectableExclusionSource = require('!!raw-loader!./selectable_exclusion')
 import SelectableMessages from './selectable_messages';
 const selectableMessagesSource = require('!!raw-loader!./selectable_messages');
 
+import SelectableSizing from './selectable_sizing';
+const selectableSizingSource = require('!!raw-loader!./selectable_sizing');
+
 import SelectableCustomRender from './selectable_custom_render';
 const selectableCustomRenderSource = require('!!raw-loader!./selectable_custom_render');
 
-import { EuiCallOut } from '../../../../src/components/call_out';
+const props = {
+  EuiSelectable,
+  EuiSelectableOptionProps,
+  EuiSelectableOptionsList,
+  EuiSelectableSearchProps,
+};
 
 export const SelectableExample = {
   title: 'Selectable',
@@ -69,12 +75,12 @@ export const SelectableExample = {
       title: 'The basics',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: selectableSource,
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             At its simplest, <strong>EuiSelectable</strong> requires an array of{' '}
             <EuiCode>options</EuiCode> and an <EuiCode>onChange</EuiCode>{' '}
@@ -96,19 +102,16 @@ export const SelectableExample = {
               when <EuiCode>allowExclusions = false</EuiCode>.
             </p>
           </EuiCallOut>
-        </Fragment>
+        </>
       ),
-      props: {
-        EuiSelectable,
-        EuiSelectableOptionProps,
-        EuiSelectableOptionsList,
-      },
+      props,
       demo: <Selectable />,
       snippet: `<EuiSelectable
   aria-label="Basic example"
   options={[{ label: '' }, { label: '' }]}
   onChange={newOptions => setOptions(newOptions)}
-  listProps={{ bordered: true }}>
+  listProps={{ bordered: true }}
+>
   {list => list}
 </EuiSelectable>`,
     },
@@ -116,12 +119,12 @@ export const SelectableExample = {
       title: 'Searchable',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: selectableSearchSource,
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             To add a search component to the list, simply add the{' '}
             <EuiCode>searchable</EuiCode> prop. You can optionally pass in a{' '}
@@ -140,28 +143,27 @@ export const SelectableExample = {
               </>
             }
           />
-        </Fragment>
+        </>
       ),
-      props: {
-        EuiSelectable,
-        EuiSelectableOptionProps,
-        EuiSelectableOptionsList,
-        EuiSelectableSearchProps,
-      },
+      props,
       demo: <SelectableSearch />,
       snippet: `<EuiSelectable
   aria-label="Searchable example"
+  options={[
+    { label: 'Alpha' },
+    { label: 'B', searchableLabel: 'Beta' },
+  ]}
+  onChange={newOptions => setOptions(newOptions)}
   searchable
   searchProps={{
     'data-test-subj': dataTestSubj,
   }}
-  options={[]}
-  onChange={newOptions => setOptions(newOptions)}>
+>
   {(list, search) => (
-    <Fragment>
+    <>
       {search}
       {list}
-    </Fragment>
+    </>
   )}
 </EuiSelectable>`,
     },
@@ -169,12 +171,12 @@ export const SelectableExample = {
       title: 'Single selection',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: selectableSingleSource,
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             Selection can be restricted to a single option at a time with the{' '}
             <EuiCode>singleSelection</EuiCode> prop. Passing{' '}
@@ -183,30 +185,110 @@ export const SelectableExample = {
             option to be selected at all times. The default value is{' '}
             <EuiCode>false</EuiCode>.
           </p>
-        </Fragment>
+        </>
       ),
-      props: { EuiSelectable },
+      props,
       demo: <SelectableSingle />,
-      snippet: `
-      <EuiSelectable
+      snippet: [
+        `<EuiSelectable
   aria-label="Single selection example"
-  options={options}
+  options={[]}
   onChange={newOptions => setOptions(newOptions)}
-  singleSelection={true}
-  listProps={{ bordered: true }}>
+  singleSelection
+>
+  {list => list}
+</EuiSelectable>`,
+        `<EuiSelectable
+  aria-label="Single selection always example"
+  options={[]}
+  onChange={newOptions => setOptions(newOptions)}
+  singleSelection="always"
+>
+  {list => list}
+</EuiSelectable>`,
+      ],
+    },
+    {
+      title: 'Options can be excluded',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: selectableExclusionSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Currently, adding <EuiCode>allowExclusions</EuiCode> simply allows
+            cycling through the checked options (on {'-> off ->'} undefined).
+          </p>
+        </>
+      ),
+      props,
+      demo: <SelectableExclusion />,
+      snippet: `<EuiSelectable
+  aria-label="Example supporting exclusions"
+  options={[]}
+  onChange={newOptions => setOptions(newOptions)}
+  allowExclusions
+>
   {list => list}
 </EuiSelectable>`,
     },
     {
-      title: 'Sizing and containers',
+      title: 'Messages and loading',
       source: [
         {
-          type: GuideSectionTypes.JS,
-          code: selectablePopoverSource,
+          type: GuideSectionTypes.TSX,
+          code: selectableMessagesSource,
         },
       ],
       text: (
-        <Fragment>
+        <>
+          <p>
+            The component comes with pre-composed messages for loading, empty,
+            and no search result states. To display your own messages, pass{' '}
+            <EuiCode>loadingMessage</EuiCode>, <EuiCode>emptyMessage</EuiCode>,{' '}
+            <EuiCode>errorMessage</EuiCode>, or{' '}
+            <EuiCode>noMatchesMessage</EuiCode> respectively. Alternatively, you
+            can replace the entire <EuiCode>list</EuiCode> display with your own
+            message for any state. In which case, we recommend wrapping your
+            custom message in an <strong>EuiSelectableMessage</strong>{' '}
+            component.
+          </p>
+        </>
+      ),
+      props: { EuiSelectableMessage, ...props },
+      demo: <SelectableMessages />,
+      snippet: [
+        `<EuiSelectable
+  aria-label="Messaging example"
+  options={[]}
+  listProps={{ bordered: true }}
+  isLoading={isLoading}
+  loadingMessage={customLoadingMessage}
+  emptyMessage={customEmptyMessage}
+  errorMessage={hasError ? errorMessage : undefined}
+  noMatchesMessage={customNoMatchesMessage}
+>
+  {list => list}
+</EuiSelectable>`,
+        `<EuiSelectable
+  aria-label="Messaging example"
+  options={[]}
+  isLoading={isLoading}
+>
+  {list => isLoading
+    ? <EuiSelectableMessage bordered={true}>You have no spice</EuiSelectableMessage>
+    : list
+  }
+</EuiSelectable>`,
+      ],
+    },
+    {
+      title: 'Sizing and containers',
+      text: (
+        <>
           <p>
             The component&apos;s children, <EuiCode>list, search</EuiCode>, are
             returned via the <EuiCode>children</EuiCode> function, which means
@@ -216,7 +298,7 @@ export const SelectableExample = {
           <p>
             The width has been made to always be 100% of its container,
             including stretching the search input. When used inside of{' '}
-            <Link to="layout/popover">
+            <Link to="/layout/popover">
               <strong>EuiPopover</strong>
             </Link>
             , we recommend setting a width (or min/max values) via CSS on the
@@ -233,94 +315,38 @@ export const SelectableExample = {
             you can opt in to allow the height of the list stretch to fill its
             container. See the flyout example.
           </p>
-        </Fragment>
+        </>
       ),
-      props: { EuiSelectable },
-      demo: <SelectablePopover />,
-    },
-    {
-      title: 'Options can be excluded',
+      demo: <SelectableSizing />,
       source: [
         {
-          type: GuideSectionTypes.JS,
-          code: selectableExclusionSource,
+          type: GuideSectionTypes.TSX,
+          code: selectableSizingSource,
         },
       ],
-      text: (
-        <Fragment>
-          <p>
-            Currently, adding <EuiCode>allowExclusions</EuiCode> simply allows
-            cycling through the checked options (on {'-> off ->'} undefined).
-            Should this be allowed by holding down a modifier key instead?
-          </p>
-        </Fragment>
-      ),
-      props: { EuiSelectable },
-      demo: <SelectableExclusion />,
+      props,
       snippet: `<EuiSelectable
-  aria-label="Example supporting exclusions"
-  allowExclusions
   options={[]}
-  onChange={newOptions => setOptions(newOptions)}>
+  onChange={newOptions => setOptions(newOptions)}
+  height="full"
+  listProps={{
+    bordered: true,
+    paddingSize: 'none',
+  }}
+>
   {list => list}
 </EuiSelectable>`,
-    },
-    {
-      title: 'Messages and loading',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: selectableMessagesSource,
-        },
-      ],
-      text: (
-        <Fragment>
-          <p>
-            The component comes with pre-composed messages for loading, empty,
-            and no search result states. To display your own messages, pass{' '}
-            <EuiCode>loadingMessage</EuiCode>, <EuiCode>emptyMessage</EuiCode>,{' '}
-            <EuiCode>errorMessage</EuiCode>, or{' '}
-            <EuiCode>noMatchesMessage</EuiCode> respectively. Alternatively, you
-            can replace the entire <EuiCode>list</EuiCode> display with your own
-            message for any state. In which case, we recommend wrapping your
-            custom message in an <strong>EuiSelectableMessage</strong>{' '}
-            component.
-          </p>
-        </Fragment>
-      ),
-      props: { EuiSelectable, EuiSelectableMessage },
-      demo: <SelectableMessages />,
-      snippet: [
-        `<EuiSelectable
-  aria-label="Messaging example"
-  options={[]}
-  listProps={{ bordered: true }}
-  isLoading={isLoading}
-  loadingMessage={customLoadingMessage}
-  emptyMessage={customEmptyMessage}
-  errorMessage={hasError ? errorMessage : undefined}
-  noMatchesMessage={customNoMatchesMessage}>
-  {list => list}
-</EuiSelectable>`,
-        `<EuiSelectable
-  aria-label="Messaging example"
-  options={[]}
-  listProps={{ bordered: true }}
-  isLoading={isLoading}>
-  {list => isLoading ? <EuiSelectableMessage bordered={true}>You have no spice</EuiSelectableMessage> : list}
-</EuiSelectable>`,
-      ],
     },
     {
       title: 'Rendering the options',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: selectableCustomRenderSource,
         },
       ],
       text: (
-        <Fragment>
+        <>
           <p>
             There are two object properties you can add to enhance the content
             of your options, <EuiCode>option.prepend</EuiCode> and{' '}
@@ -332,10 +358,10 @@ export const SelectableExample = {
           <h3>Selection icons</h3>
           <p>
             You can choose not to display the check and cross icons indicating
-            selection by passing{' '}
-            <EuiCode language="js">showIcons=false</EuiCode>. This is useful for
-            instances that navigate elsewhere on selection or hide their
-            selected options from the list.
+            selection by setting{' '}
+            <EuiCode language="js">listProps.showIcons</EuiCode> to false. This
+            is useful for instances that navigate elsewhere on selection or hide
+            their selected options from the list.
           </p>
           <h3>Group labels</h3>
           <p>
@@ -364,7 +390,7 @@ export const SelectableExample = {
           <p>
             While it is best to stick to the{' '}
             <EuiCode>option.label, option.append, option.prepend</EuiCode> and{' '}
-            <EuiCode>showIcons</EuiCode> props, you can pass a custom{' '}
+            <EuiCode>listProps.showIcons</EuiCode> props, you can pass a custom{' '}
             <EuiCode>renderOption</EuiCode> function which will pass back the
             single <EuiCode>option</EuiCode> object and the{' '}
             <EuiCode>searchValue</EuiCode> to use for highlighting.
@@ -382,27 +408,21 @@ export const SelectableExample = {
             <EuiCode>listProps.rowHeight</EuiCode> of <EuiCode>32px</EuiCode>{' '}
             tall, you will need to pass in a custom value to this prop.
           </p>
-        </Fragment>
+        </>
       ),
       demo: <SelectableCustomRender />,
       snippet: `<EuiSelectable
-  searchable
   options={[]}
   onChange={newOptions => setOptions(newOptions)}
-  height={240}
   renderOption={renderCountryOption}
   listProps={{
     rowHeight: 50,
     showIcons: false,
   }}
 >
-  {(list, search) => (
-    <Fragment>
-      {search}
-      {list}
-    </Fragment>
-  )}
+  {list => list}
 </EuiSelectable>`,
+      props,
     },
   ],
 };
