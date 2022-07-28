@@ -191,7 +191,11 @@ describe('EuiImage', () => {
       expect(overlayMask).toBeFalsy();
     });
 
-    test('close using overlay mask', () => {
+    // Clicking the mask to close is now handled by EuiFocusTrap
+    // and we can't use Enzyme to test this behavior.
+    // A Cypress test exists in the EuiFocusTrap suite that
+    // sufficiently covers this behavior
+    test.skip('close using overlay mask', () => {
       let overlayMask = document.querySelectorAll(
         '[data-test-subj=fullScreenOverlayMask]'
       );
