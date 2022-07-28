@@ -78,12 +78,12 @@ type LabelAsNode = ExclusiveUnion<
   label: ReactNode;
 };
 
-interface LabelAsString {
+type LabelAsString = {
   /**
    * One word label like "Beta" or "Lab"
    */
   label: string;
-}
+};
 
 type BadgeProps = {
   /**
