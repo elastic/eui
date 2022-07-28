@@ -12,6 +12,7 @@ import { logicalCSS } from '../../global_styling';
 import { popoverArrowSize } from '../popover/popover_arrow/_popover_arrow.styles';
 
 export const euiTourStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
+  // Targets EuiPopoverPanel
   euiTour: css`
     &[data-popover-open='true'] {
       [class*='euiTourBeacon'] {
