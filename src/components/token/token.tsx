@@ -46,7 +46,7 @@ export interface TokenProps {
   iconType: IconType;
   /**
    * For best results use one of the vis color names (or 'gray').
-   * Or supply your own HEX color (can be used with fill 'dark' or fill 'none' only).
+   * Or supply your own HEX color. The `fill='light'` (lightened background) will always be overridden by `fill='dark'` (solid background).
    * Default: `gray` for glyphs or one of the vis colors for prefab token types
    */
   color?: TokenColor | string;
@@ -76,6 +76,9 @@ export interface TokenProps {
 export type EuiTokenProps = CommonProps &
   TokenProps &
   Omit<HTMLAttributes<HTMLSpanElement>, 'title'>;
+
+const isTokenColor = (color: string): color is TokenColor =>
+  COLORS.includes(color as TokenColor);
 
 export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   iconType,
@@ -119,8 +122,6 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   const euiTheme = useEuiTheme();
   const styles = euiTokenStyles(euiTheme);
 
-  const isTokenColor = COLORS.includes(finalColor as TokenColor);
-
   let cssStyles = [
     styles.euiToken,
     styles[finalShape],
@@ -130,7 +131,7 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
 
   let finalStyle = style;
 
-  if (isTokenColor) {
+  if (isTokenColor(finalColor)) {
     cssStyles = [...cssStyles, styles[finalColor as TokenColor]];
   } else if (finalFill === 'none') {
     // When a custom HEX color is passed and the token doesn't have any fill (no background),
@@ -140,7 +141,7 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   } else {
     // When a custom HEX color is passed and the token has a fill (light or dark),
     // the background gets the custom color and the icon gets white or black based on the passed color
-    // The fill='light' (transparent background) will always be overridden by fill='dark' (opaque background)
+    // The fill='light' (lightened background) will always be overridden by fill='dark' (opaque background)
     // to better handle custom colors
     const isFinalColorDark = isColorDark(...hexToRgb(finalColor));
     const lightOrDarkColor = isFinalColorDark ? '#FFFFFF' : '#000000';
