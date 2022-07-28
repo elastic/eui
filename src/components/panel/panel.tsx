@@ -12,7 +12,6 @@ import React, {
   HTMLAttributes,
   Ref,
 } from 'react';
-import { SerializedStyles } from '@emotion/react';
 import classNames from 'classnames';
 import { useEuiTheme } from '../../services';
 import {
@@ -76,7 +75,6 @@ export interface _EuiPanelProps extends CommonProps {
    * Usually a lightened form of the brand colors
    */
   color?: PanelColor;
-  css?: SerializedStyles;
 }
 
 export interface _EuiPanelDivlike
