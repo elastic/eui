@@ -74,6 +74,22 @@ describe('renderJsSourceCode', () => {
           export default () => 'Hello world!';`)
       );
     });
+
+    it('handles aliased imports', () => {
+      expect(
+        renderJsSourceCode({
+          default: dedent(`
+            import { EuiPageTemplate_Deprecated as EuiPageTemplate } from '@elastic/eui';
+  
+            export default () => 'Hello world!';`),
+        })
+      ).toEqual(
+        dedent(`
+          import { EuiPageTemplate_Deprecated as EuiPageTemplate } from '@elastic/eui';
+  
+          export default () => 'Hello world!';`)
+      );
+    });
   });
 
   describe('React import', () => {
