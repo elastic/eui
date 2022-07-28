@@ -6,13 +6,16 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useEffect, useState, useMemo } from 'react';
+import React, { FunctionComponent, useMemo } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps, ExclusiveUnion } from '../common';
 import { useEuiI18n } from '../i18n';
-import { throttle, useEuiTheme } from '../../services';
-import { EuiBreakpointSize, getBreakpoint } from '../../services/breakpoint';
+import {
+  useEuiTheme,
+  EuiBreakpointSize,
+  useCurrentEuiBreakpoint,
+} from '../../services';
 
 import {
   EuiBreadcrumb,
@@ -168,26 +171,10 @@ export const useResponsiveMax = (
   responsive: EuiBreadcrumbsProps['responsive'],
   max: EuiBreadcrumbsProps['max']
 ) => {
+  const currentBreakpoint = useCurrentEuiBreakpoint();
   // Use the default object if they simply passed `true` for responsive
   const responsiveObject =
     typeof responsive === 'object' ? responsive : responsiveDefault;
-
-  const [currentBreakpoint, setCurrentBreakpoint] = useState(
-    getBreakpoint(typeof window === 'undefined' ? -Infinity : window.innerWidth)
-  );
-
-  useEffect(() => {
-    const onWindowResize = throttle(() => {
-      const newBreakpoint = getBreakpoint(window.innerWidth);
-      setCurrentBreakpoint(newBreakpoint);
-      // reacts every 50ms to resize changes and always gets the final update
-    }, 50);
-
-    window.addEventListener('resize', onWindowResize);
-    return () => {
-      window.removeEventListener('resize', onWindowResize);
-    };
-  }, [responsive]);
 
   // The max property collapses any breadcrumbs past the max quantity.
   // This is the same behavior we want for responsiveness.
@@ -195,8 +182,8 @@ export const useResponsiveMax = (
   let responsiveMax: EuiBreadcrumbsProps['max'] = max;
 
   // Set the calculated max to the number associated with the currentBreakpoint key if it exists
-  if (responsive && responsiveObject[currentBreakpoint as EuiBreakpointSize]) {
-    responsiveMax = responsiveObject[currentBreakpoint as EuiBreakpointSize]!;
+  if (responsive && currentBreakpoint && responsiveObject[currentBreakpoint]) {
+    responsiveMax = responsiveObject[currentBreakpoint];
   }
 
   // Final check is to make sure max is used over a larger breakpoint value
