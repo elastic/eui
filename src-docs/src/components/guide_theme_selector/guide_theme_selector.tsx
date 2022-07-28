@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-globals */
 import React, { useState } from 'react';
 
-import { useIsWithinBreakpoints } from '../../../../src/services/hooks/useIsWithinBreakpoints';
+import { useIsWithinBreakpoints } from '../../../../src/services';
 import { EUI_THEME, EUI_THEMES } from '../../../../src/themes';
 
 import { ThemeContext } from '../with_theme';

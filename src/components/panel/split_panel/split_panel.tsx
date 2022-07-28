@@ -9,8 +9,10 @@
 import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { EuiPanel, _EuiPanelProps } from '../panel';
-import { EuiBreakpointSize } from '../../../services/breakpoint';
-import { useIsWithinBreakpoints } from '../../../services/hooks';
+import {
+  EuiBreakpointSize,
+  useIsWithinBreakpoints,
+} from '../../../services/breakpoint';
 
 export type _EuiSplitPanelInnerProps = HTMLAttributes<HTMLDivElement> &
   Omit<_EuiPanelProps, 'hasShadow' | 'hasBorder' | 'borderRadius'>;

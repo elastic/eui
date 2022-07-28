@@ -20,7 +20,7 @@ export const euiImageWrapperStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiImageWrapper: css`
-      display: table; // inline-block causes margins not to correctly collapse
+      display: inline-block;
       ${logicalCSS('max-width', '100%')}
       ${logicalTextAlignCSS('center')}; // Aligns both caption and image
       line-height: 0; // Fixes cropping when image is resized by forcing its height to be determined by the image not line-height

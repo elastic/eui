@@ -12,7 +12,6 @@ import React, {
   HTMLAttributes,
   MouseEventHandler,
   ReactNode,
-  useEffect,
   useState,
 } from 'react';
 import classNames from 'classnames';
@@ -23,8 +22,7 @@ import { EuiInnerText } from '../inner_text';
 import { EuiLink, EuiLinkColor } from '../link';
 import { EuiPopover } from '../popover';
 import { EuiIcon } from '../icon';
-import { throttle } from '../../services';
-import { EuiBreakpointSize, getBreakpoint } from '../../services/breakpoint';
+import { useCurrentEuiBreakpoint, EuiBreakpointSize } from '../../services';
 
 const CONTENT_CLASSNAME = 'euiBreadcrumb__content';
 
@@ -189,26 +187,6 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   ...rest
 }) => {
   const ariaLabel = useEuiI18n('euiBreadcrumbs.nav.ariaLabel', 'Breadcrumbs');
-  const [currentBreakpoint, setCurrentBreakpoint] = useState(
-    getBreakpoint(typeof window === 'undefined' ? -Infinity : window.innerWidth)
-  );
-
-  const functionToCallOnWindowResize = throttle(() => {
-    const newBreakpoint = getBreakpoint(window.innerWidth);
-    if (newBreakpoint !== currentBreakpoint) {
-      setCurrentBreakpoint(newBreakpoint);
-    }
-    // reacts every 50ms to resize changes and always gets the final update
-  }, 50);
-
-  // Add window resize handlers
-  useEffect(() => {
-    window.addEventListener('resize', functionToCallOnWindowResize);
-
-    return () => {
-      window.removeEventListener('resize', functionToCallOnWindowResize);
-    };
-  }, [responsive, functionToCallOnWindowResize]);
 
   const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => {
     const {
@@ -275,8 +253,9 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   // So calculate the max value based on the combination of `max` and `responsive`
   let calculatedMax: EuiBreadcrumbsProps['max'] = max;
   // Set the calculated max to the number associated with the currentBreakpoint key if it exists
-  if (responsive && responsiveObject[currentBreakpoint as EuiBreakpointSize]) {
-    calculatedMax = responsiveObject[currentBreakpoint as EuiBreakpointSize];
+  const currentBreakpoint = useCurrentEuiBreakpoint();
+  if (responsive && currentBreakpoint && responsiveObject[currentBreakpoint]) {
+    calculatedMax = responsiveObject[currentBreakpoint];
   }
   // Final check is to make sure max is used over a larger breakpoint value
   if (max && calculatedMax) {
