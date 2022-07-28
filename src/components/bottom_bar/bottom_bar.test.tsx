@@ -8,7 +8,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { keysOf } from '../common';
 import { requiredProps, takeMountedSnapshot } from '../../test';
 
@@ -28,20 +28,20 @@ ReactDOM.createPortal = (children) => {
 
 describe('EuiBottomBar', () => {
   test('is rendered', () => {
-    const component = render(
+    const component = mount(
       <EuiBottomBar {...requiredProps}>Content</EuiBottomBar>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component.render()).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('paddingSize', () => {
       keysOf(paddingSizeToClassNameMap).forEach((paddingSize) => {
         test(`${paddingSize} is rendered`, () => {
-          const component = render(<EuiBottomBar paddingSize={paddingSize} />);
+          const component = mount(<EuiBottomBar paddingSize={paddingSize} />);
 
-          expect(component).toMatchSnapshot();
+          expect(component.render()).toMatchSnapshot();
         });
       });
     });
@@ -49,31 +49,31 @@ describe('EuiBottomBar', () => {
     describe('position', () => {
       POSITIONS.forEach((position) => {
         test(`${position} is rendered`, () => {
-          const component = render(<EuiBottomBar position={position} />);
+          const component = mount(<EuiBottomBar position={position} />);
 
-          expect(component).toMatchSnapshot();
+          expect(component.render()).toMatchSnapshot();
         });
       });
     });
 
     test('landmarkHeading', () => {
-      const component = render(
+      const component = mount(
         <EuiBottomBar landmarkHeading="This should have been label" />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('affordForDisplacement can be false', () => {
-      const component = render(<EuiBottomBar affordForDisplacement={false} />);
+      const component = mount(<EuiBottomBar affordForDisplacement={false} />);
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('usePortal can be false', () => {
-      const component = render(<EuiBottomBar usePortal={false} />);
+      const component = mount(<EuiBottomBar usePortal={false} />);
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('bodyClassName is rendered', () => {
@@ -84,17 +84,17 @@ describe('EuiBottomBar', () => {
     });
 
     test('style is customized', () => {
-      const component = render(<EuiBottomBar style={{ left: 12 }} />);
+      const component = mount(<EuiBottomBar style={{ left: 12 }} />);
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('position props are altered', () => {
-      const component = render(
+      const component = mount(
         <EuiBottomBar top={30} right={30} bottom={30} left={30} />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
   });
 });

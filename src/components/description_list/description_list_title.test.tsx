@@ -11,8 +11,16 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiDescriptionListTitle } from './description_list_title';
+import { shouldRenderCustomStyles } from '../../test/internal';
+import { TYPES } from './description_list_types';
+import {
+  EuiDescriptionListContext,
+  contextDefaults,
+} from './description_list_context';
 
 describe('EuiDescriptionListTitle', () => {
+  shouldRenderCustomStyles(<EuiDescriptionListTitle />);
+
   test('is rendered', () => {
     const component = render(
       <EuiDescriptionListTitle {...requiredProps}>
@@ -21,5 +29,65 @@ describe('EuiDescriptionListTitle', () => {
     );
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('EuiDescriptionListTitle prop variations', () => {
+    describe('type', () => {
+      TYPES.forEach((type) => {
+        test(`${type} is rendered`, () => {
+          const component = render(
+            <EuiDescriptionListContext.Provider
+              value={{ ...contextDefaults, type }}
+            >
+              <EuiDescriptionListTitle />
+            </EuiDescriptionListContext.Provider>
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('align', () => {
+      test('center alignment is rendered', () => {
+        const component = render(
+          <EuiDescriptionListContext.Provider
+            value={{ ...contextDefaults, align: 'center' }}
+          >
+            <EuiDescriptionListTitle />
+          </EuiDescriptionListContext.Provider>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('text styles', () => {
+      test('reversed text is rendered', () => {
+        const component = render(
+          <EuiDescriptionListContext.Provider
+            value={{ ...contextDefaults, textStyle: 'reverse' }}
+          >
+            <EuiDescriptionListTitle />
+          </EuiDescriptionListContext.Provider>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('compressed', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiDescriptionListContext.Provider
+            value={{ ...contextDefaults, compressed: true }}
+          >
+            <EuiDescriptionListTitle />
+          </EuiDescriptionListContext.Provider>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });

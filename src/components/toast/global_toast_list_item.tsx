@@ -6,9 +6,12 @@
  * Side Public License, v 1.
  */
 
-import { cloneElement, FunctionComponent, ReactElement } from 'react';
+import { FunctionComponent, ReactElement } from 'react';
 import classNames from 'classnames';
+import { useEuiTheme } from '../../services';
+import { cloneElementWithCss } from '../../services/theme/clone_element';
 import { CommonProps } from '../common';
+import { euiGlobalToastListItemStyles } from './global_toast_list.styles';
 
 export interface EuiGlobalToastListItemProps {
   isDismissed?: boolean;
@@ -20,20 +23,24 @@ export interface EuiGlobalToastListItemProps {
 
 export const EuiGlobalToastListItem: FunctionComponent<
   CommonProps & EuiGlobalToastListItemProps
-> = ({ children, isDismissed }) => {
+> = ({ children, className, isDismissed }) => {
+  const euiTheme = useEuiTheme();
   if (!children) {
     return null;
   }
+  const styles = euiGlobalToastListItemStyles(euiTheme);
+  const cssStyles = [
+    styles.euiGlobalToastListItem,
+    isDismissed && styles.dismissed,
+  ];
   const classes = classNames(
     'euiGlobalToastListItem',
     children.props.className,
-    {
-      'euiGlobalToastListItem-isDismissed': isDismissed,
-    }
+    className
   );
 
-  return cloneElement(children, {
+  return cloneElementWithCss(children, {
     ...children.props,
-    ...{ className: classes },
+    ...{ className: classes, css: cssStyles },
   });
 };

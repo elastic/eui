@@ -1,3 +1,12 @@
+## [`62.0.1`](https://github.com/elastic/eui/tree/v62.0.1)
+
+**Bug fixes**
+
+- Fixed a bug preventing `EuiPortal` from working in server-side rendering ([#6055](https://github.com/elastic/eui/pull/6055))
+- Fixed an `EuiFilterButton` accessibility error ([#6076](https://github.com/elastic/eui/pull/6076))
+- Fixed `EuiImage` rendering empty captions  ([#6081](https://github.com/elastic/eui/pull/6081))
+- Fixed `EuiImage` not respecting `text-align` on parents ([#6081](https://github.com/elastic/eui/pull/6081))
+
 ## [`62.0.0`](https://github.com/elastic/eui/tree/v62.0.0)
 
 - Updated `EuiText.img` styles to prevent images from growing full width ([#5969](https://github.com/elastic/eui/pull/5969))
