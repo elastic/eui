@@ -11,9 +11,6 @@ exports[`EuiImage is rendered 1`] = `
     data-test-subj="test subject string"
     src="/cat.jpg"
   />
-  <figcaption
-    class="emotion-euiImageCaption"
-  />
 </figure>
 `;
 
@@ -47,9 +44,6 @@ exports[`EuiImage props allowFullScreen 1`] = `
       />
     </div>
   </button>
-  <figcaption
-    class="emotion-euiImageCaption"
-  />
 </figure>
 `;
 
@@ -85,9 +79,6 @@ exports[`EuiImage props float 1`] = `
     data-test-subj="test subject string"
     src="/cat.jpg"
   />
-  <figcaption
-    class="emotion-euiImageCaption"
-  />
 </figure>
 `;
 
@@ -121,9 +112,6 @@ exports[`EuiImage props fullScreenIconColor 1`] = `
       />
     </div>
   </button>
-  <figcaption
-    class="emotion-euiImageCaption"
-  />
 </figure>
 `;
 
@@ -157,9 +145,6 @@ exports[`EuiImage props hasShadow 1`] = `
       />
     </div>
   </button>
-  <figcaption
-    class="emotion-euiImageCaption"
-  />
 </figure>
 `;
 
@@ -173,9 +158,6 @@ exports[`EuiImage props margin 1`] = `
     class="euiImage testClass1 testClass2 emotion-euiImage-original"
     data-test-subj="test subject string"
     src="/cat.jpg"
-  />
-  <figcaption
-    class="emotion-euiImageCaption"
   />
 </figure>
 `;
@@ -192,9 +174,6 @@ exports[`EuiImage props size 1`] = `
     src="/cat.jpg"
     style="max-width:50px;max-height:50px"
   />
-  <figcaption
-    class="emotion-euiImageCaption"
-  />
 </figure>
 `;
 
@@ -207,9 +186,6 @@ exports[`EuiImage props src vs url src 1`] = `
     class="euiImage emotion-euiImage-original"
     src="/dog.jpg"
   />
-  <figcaption
-    class="emotion-euiImageCaption"
-  />
 </figure>
 `;
 
@@ -221,9 +197,6 @@ exports[`EuiImage props src vs url url 1`] = `
     alt=""
     class="euiImage emotion-euiImage-original"
     src="/dog.jpg"
-  />
-  <figcaption
-    class="emotion-euiImageCaption"
   />
 </figure>
 `;

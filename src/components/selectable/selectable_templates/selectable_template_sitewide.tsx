@@ -10,12 +10,12 @@ import React, {
   FunctionComponent,
   ReactNode,
   useState,
+  useMemo,
   CSSProperties,
   ReactElement,
-  useEffect,
 } from 'react';
 import classNames from 'classnames';
-import { useCombinedRefs, throttle } from '../../../services';
+import { useCombinedRefs, useCurrentEuiBreakpoint } from '../../../services';
 import { EuiSelectable, EuiSelectableProps } from '../selectable';
 import { EuiPopoverTitle, EuiPopoverFooter } from '../../popover';
 import { EuiPopover, Props as PopoverProps } from '../../popover/popover';
@@ -27,10 +27,7 @@ import {
   euiSelectableTemplateSitewideFormatOptions,
   euiSelectableTemplateSitewideRenderOptions,
 } from './selectable_template_sitewide_option';
-import {
-  EuiBreakpointSize,
-  isWithinBreakpoints,
-} from '../../../services/breakpoint';
+import { EuiBreakpointSize } from '../../../services/breakpoint';
 import { EuiSpacer } from '../../spacer';
 import { ENTER } from '../../../services/keys';
 
@@ -80,35 +77,6 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
   popoverButtonBreakpoints,
   ...rest
 }) => {
-  /**
-   * Breakpoint management
-   */
-  const [canShowPopoverButton, setCanShowPopoverButton] = useState(
-    typeof window !== 'undefined' && popoverButtonBreakpoints
-      ? isWithinBreakpoints(window.innerWidth, popoverButtonBreakpoints)
-      : true
-  );
-
-  const functionToCallOnWindowResize = throttle(() => {
-    const newWidthIsWithinBreakpoint = popoverButtonBreakpoints
-      ? isWithinBreakpoints(window.innerWidth, popoverButtonBreakpoints)
-      : true;
-
-    if (newWidthIsWithinBreakpoint !== canShowPopoverButton) {
-      setCanShowPopoverButton(newWidthIsWithinBreakpoint);
-    }
-    // reacts every 50ms to resize changes and always gets the final update
-  }, 50);
-
-  // Add window resize handlers
-  useEffect(() => {
-    window.addEventListener('resize', functionToCallOnWindowResize);
-
-    return () => {
-      window.removeEventListener('resize', functionToCallOnWindowResize);
-    };
-  }, [functionToCallOnWindowResize]);
-
   /**
    * i18n text
    */
@@ -213,6 +181,13 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
    * This will move the search input into the popover
    * and use the passed `popoverButton` as the popover trigger.
    */
+  const currentBreakpoint = useCurrentEuiBreakpoint();
+  const canShowPopoverButton = useMemo(() => {
+    if (!popoverButtonBreakpoints) return true;
+    if (!currentBreakpoint) return false;
+    return popoverButtonBreakpoints.includes(currentBreakpoint);
+  }, [currentBreakpoint, popoverButtonBreakpoints]);
+
   let popoverTrigger: ReactElement;
   if (popoverButton && canShowPopoverButton) {
     popoverTrigger = React.cloneElement(popoverButton, {
