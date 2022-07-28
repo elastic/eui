@@ -188,14 +188,10 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
   );
 
   return (
-    <Element className={classes} css={cssStyles}>
+    <Element className={classes} css={cssStyles} data-type={type}>
       {hasEventElements && eventHeader}
 
-      {children && (
-        <div className="euiCommentEvent__body" css={cssBodyStyles}>
-          {children}
-        </div>
-      )}
+      {children && <div css={cssBodyStyles}>{children}</div>}
     </Element>
   );
 };
