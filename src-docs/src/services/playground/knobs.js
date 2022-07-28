@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { assertUnreachable, PropTypes } from 'react-view';
-import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
 import {
+  useIsWithinBreakpoints,
   EuiTitle,
   EuiCodeBlock,
   EuiSpacer,
@@ -24,7 +24,7 @@ import {
   EuiText,
   EuiPanel,
   EuiMarkdownFormat,
-} from '../../../../src/components/';
+} from '../../../../src';
 import {
   parsingPluginList,
   processingPluginListWithLinkedProps,

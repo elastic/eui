@@ -9,41 +9,51 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import { CommonProps } from '../common';
 import { EuiAvatar, EuiAvatarProps } from '../avatar';
-import { EuiCommentEventProps } from './comment_event';
 
 export interface EuiCommentTimelineProps extends CommonProps {
   /**
-   * Main icon that accompanies the comment. Should indicate who is the author of the comment. To customize, pass a `string` as an `EuiIcon['type']` or any `ReactNode`. If no icon is provided, it  will default to the `username`'s initials.
+   * Main avatar that accompanies the comment. Should indicate who is the author of the comment.
+   * Any `ReactNode`, but preferably `EuiAvatar`, or a `string` as an `EuiAvatarProps['iconType']`.
+   * If no `timelineAvatar` is passed, the `userAvatar` icon will be used as the avatar.
    */
-  timelineIcon?: ReactNode | EuiAvatarProps['iconType'];
+  timelineAvatar?: ReactNode | EuiAvatarProps['iconType'];
 
-  username: EuiCommentEventProps['username'];
+  /**
+   * Specify an `aria-label` and `title` for the `timelineAvatar` when passed as an `IconType` or when nothing is passed.
+   * If no `timelineAvatarAriaLabel` is passed we assume the avatar is purely decorative.
+   */
+  timelineAvatarAriaLabel?: string;
 }
 
 export const EuiCommentTimeline: FunctionComponent<EuiCommentTimelineProps> = ({
-  timelineIcon,
-  username,
+  timelineAvatar,
+  timelineAvatarAriaLabel,
 }) => {
   let iconRender;
 
   const avatarClassName = 'euiCommentAvatar';
-
-  const iconIsString = typeof timelineIcon === 'string';
-  const iconIsNode = typeof timelineIcon === 'object';
+  const iconIsString = typeof timelineAvatar === 'string';
 
   if (iconIsString) {
     iconRender = (
       <EuiAvatar
         className={avatarClassName}
-        name={username}
-        iconType={timelineIcon}
+        name={timelineAvatarAriaLabel || ''}
+        iconType={timelineAvatar}
         color="subdued"
       />
     );
-  } else if (iconIsNode) {
-    iconRender = timelineIcon;
+  } else if (timelineAvatar) {
+    iconRender = timelineAvatar;
   } else {
-    iconRender = <EuiAvatar className={avatarClassName} name={username} />;
+    iconRender = (
+      <EuiAvatar
+        className={avatarClassName}
+        name={timelineAvatarAriaLabel || ''}
+        iconType="userAvatar"
+        color="subdued"
+      />
+    );
   }
 
   return <>{iconRender}</>;

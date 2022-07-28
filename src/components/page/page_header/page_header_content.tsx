@@ -16,7 +16,7 @@ import { EuiFlexGroup, EuiFlexItem, EuiFlexGroupProps } from '../../flex';
 import { EuiSpacer } from '../../spacer';
 import { EuiTitle, EuiTitleProps } from '../../title';
 import { EuiText } from '../../text';
-import { useIsWithinBreakpoints } from '../../../services/hooks';
+import { useIsWithinBreakpoints } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../../breadcrumbs';
 

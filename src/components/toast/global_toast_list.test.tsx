@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { render, mount } from 'enzyme';
 import { requiredProps, findTestSubject } from '../../test';
 
@@ -118,9 +119,13 @@ describe('EuiGlobalToastList', () => {
         const closeButton = findTestSubject(toastB, 'toastCloseButton');
         closeButton.simulate('click');
 
-        jest.advanceTimersByTime(TOAST_FADE_OUT_MS - 1);
+        act(() => {
+          jest.advanceTimersByTime(TOAST_FADE_OUT_MS - 1);
+        });
         expect(dismissToastSpy).not.toBeCalled();
-        jest.advanceTimersByTime(1);
+        act(() => {
+          jest.advanceTimersByTime(1);
+        });
         expect(dismissToastSpy).toBeCalled();
       });
 
@@ -140,9 +145,13 @@ describe('EuiGlobalToastList', () => {
           />
         );
 
-        jest.advanceTimersByTime(TOAST_LIFE_TIME_MS + TOAST_FADE_OUT_MS - 1);
+        act(() => {
+          jest.advanceTimersByTime(TOAST_LIFE_TIME_MS + TOAST_FADE_OUT_MS - 1);
+        });
         expect(dismissToastSpy).not.toBeCalled();
-        jest.advanceTimersByTime(1);
+        act(() => {
+          jest.advanceTimersByTime(1);
+        });
         expect(dismissToastSpy).toBeCalled();
       });
 
@@ -166,9 +175,13 @@ describe('EuiGlobalToastList', () => {
 
         const notYetTime = TOAST_LIFE_TIME_MS + TOAST_FADE_OUT_MS;
         const nowItsTime = TOAST_LIFE_TIME_MS_OVERRIDE + TOAST_FADE_OUT_MS;
-        jest.advanceTimersByTime(notYetTime);
+        act(() => {
+          jest.advanceTimersByTime(notYetTime);
+        });
         expect(dismissToastSpy).not.toBeCalled();
-        jest.advanceTimersByTime(nowItsTime - notYetTime);
+        act(() => {
+          jest.advanceTimersByTime(nowItsTime - notYetTime);
+        });
         expect(dismissToastSpy).toBeCalled();
       });
     });

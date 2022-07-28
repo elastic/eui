@@ -331,6 +331,7 @@ exports[`EuiProvider applying modifications propagates \`modify\` 1`] = `
     <EuiCacheProvider>
       <EuiUtilityClasses />
     </EuiCacheProvider>
+    <CurrentEuiBreakpointProvider />
   </EuiThemeProvider>
 </EuiCacheProvider>
 `;
@@ -655,6 +656,7 @@ exports[`EuiProvider changing color modes propagates \`colorMode\` 1`] = `
     <EuiCacheProvider>
       <EuiUtilityClasses />
     </EuiCacheProvider>
+    <CurrentEuiBreakpointProvider />
   </EuiThemeProvider>
 </EuiCacheProvider>
 `;
@@ -978,6 +980,7 @@ exports[`EuiProvider is rendered 1`] = `
     <EuiCacheProvider>
       <EuiUtilityClasses />
     </EuiCacheProvider>
+    <CurrentEuiBreakpointProvider />
   </EuiThemeProvider>
 </EuiCacheProvider>
 `;
@@ -1323,6 +1326,7 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to all
     <EuiCacheProvider>
       <EuiUtilityClasses />
     </EuiCacheProvider>
+    <CurrentEuiBreakpointProvider />
   </EuiThemeProvider>
 </EuiCacheProvider>
 `;
@@ -1712,6 +1716,7 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to eac
     >
       <EuiUtilityClasses />
     </EuiCacheProvider>
+    <CurrentEuiBreakpointProvider />
   </EuiThemeProvider>
 </EuiCacheProvider>
 `;
@@ -2057,6 +2062,7 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to glo
     <EuiCacheProvider>
       <EuiUtilityClasses />
     </EuiCacheProvider>
+    <CurrentEuiBreakpointProvider />
   </EuiThemeProvider>
 </EuiCacheProvider>
 `;
@@ -2402,12 +2408,15 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to uti
     >
       <EuiUtilityClasses />
     </EuiCacheProvider>
+    <CurrentEuiBreakpointProvider />
   </EuiThemeProvider>
 </EuiCacheProvider>
 `;
 
 exports[`EuiProvider using \`null\` theme option does not add global styles 1`] = `
 <EuiCacheProvider>
-  <EuiThemeProvider />
+  <EuiThemeProvider>
+    <CurrentEuiBreakpointProvider />
+  </EuiThemeProvider>
 </EuiCacheProvider>
 `;

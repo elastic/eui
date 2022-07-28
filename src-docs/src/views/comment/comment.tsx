@@ -28,6 +28,7 @@ export default () => (
   <EuiCommentList>
     <EuiComment
       username="janed"
+      timelineAvatarAriaLabel="Jane Doe"
       event="added a comment"
       actions={copyAction}
       timestamp="on Jan 1, 2020"
