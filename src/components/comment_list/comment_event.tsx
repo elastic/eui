@@ -115,68 +115,73 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
     ? { color: finalEventColor, paddingSize: 's' }
     : { color: 'transparent', paddingSize: 'none' };
 
-  const eventHeader = (
-    <HeaderElement className="euiCommentEvent__header" css={cssHeaderStyles}>
-      <EuiPanel {...(panelProps as EuiPanelProps)}>
-        <div
-          className="euiCommentEvent__headerMain"
-          css={headerStyles.euiCommentEvent__headerMain}
-        >
-          <div
-            className="euiCommentEvent__headerData"
-            css={headerStyles.euiCommentEvent__headerData}
-          >
-            {eventIcon && (
-              <EuiAvatar
-                className="euiCommentEvent__headerEventIcon"
-                css={headerStyles.euiCommentEvent__headerEventIcon}
-                size="s"
-                iconType={eventIcon}
-                name={eventIconAriaLabel ? eventIconAriaLabel : ''}
-                color="subdued"
-                aria-hidden={!eventIconAriaLabel}
-              />
-            )}
-            {username && (
-              <div
-                className="euiCommentEvent__headerUsername"
-                css={headerStyles.euiCommentEvent__headerUsername}
-              >
-                {username}
-              </div>
-            )}
-            {event && (
-              <div
-                className="euiCommentEvent__headerEvent"
-                css={headerStyles.euiCommentEvent__headerEvent}
-              >
-                {event}
-              </div>
-            )}
-            {timestamp && (
-              <div className="euiCommentEvent__headerTimestamp">
-                <time>{timestamp}</time>
-              </div>
-            )}
-          </div>
-          {actions && (
-            <div
-              className="euiCommentEvent__headerActions"
-              css={headerStyles.euiCommentEvent__headerActions}
-            >
-              {actions}
-            </div>
-          )}
-        </div>
-      </EuiPanel>
-    </HeaderElement>
-  );
-
   return (
     <Element className={classes} css={cssStyles} data-type={type}>
-      {hasEventElements && eventHeader}
+      {hasEventElements && (
+        <HeaderElement
+          className="euiCommentEvent__header"
+          css={cssHeaderStyles}
+        >
+          <EuiPanel {...(panelProps as EuiPanelProps)}>
+            <div
+              className="euiCommentEvent__headerMain"
+              css={headerStyles.euiCommentEvent__headerMain}
+            >
+              <div
+                className="euiCommentEvent__headerData"
+                css={headerStyles.euiCommentEvent__headerData}
+              >
+                {eventIcon && (
+                  <EuiAvatar
+                    className="euiCommentEvent__headerEventIcon"
+                    css={headerStyles.euiCommentEvent__headerEventIcon}
+                    size="s"
+                    iconType={eventIcon}
+                    name={eventIconAriaLabel ? eventIconAriaLabel : ''}
+                    color="subdued"
+                    aria-hidden={!eventIconAriaLabel}
+                  />
+                )}
+                {username && (
+                  <div
+                    className="euiCommentEvent__headerUsername"
+                    css={headerStyles.euiCommentEvent__headerUsername}
+                  >
+                    {username}
+                  </div>
+                )}
+                {event && (
+                  <div
+                    className="euiCommentEvent__headerEvent"
+                    css={headerStyles.euiCommentEvent__headerEvent}
+                  >
+                    {event}
+                  </div>
+                )}
+                {timestamp && (
+                  <div className="euiCommentEvent__headerTimestamp">
+                    <time>{timestamp}</time>
+                  </div>
+                )}
+              </div>
+              {actions && (
+                <div
+                  className="euiCommentEvent__headerActions"
+                  css={headerStyles.euiCommentEvent__headerActions}
+                >
+                  {actions}
+                </div>
+              )}
+            </div>
+          </EuiPanel>
+        </HeaderElement>
+      )}
 
-      {children && <div css={cssBodyStyles}>{children}</div>}
+      {children && (
+        <div className="euiCommentEvent__body" css={cssBodyStyles}>
+          {children}
+        </div>
+      )}
     </Element>
   );
 };
