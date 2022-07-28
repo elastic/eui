@@ -83,7 +83,7 @@ export const AppView = ({ children, currentRoute }) => {
       <EuiPageTemplate
         paddingSize="none"
         restrictWidth={false}
-        innerProps={{ id: 'start-of-content' }}
+        mainProps={{ id: 'start-of-content' }}
       >
         <EuiPageTemplate.Sidebar className="guideSideNav" sticky>
           <GuidePageChrome
