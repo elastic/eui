@@ -89,6 +89,9 @@ const accordionIsLoadingSnippet = [
 import AccordionButtonElement from './accordion_buttonElement';
 const accordionButtonElementSource = require('!!raw-loader!./accordion_buttonElement');
 
+import AccordionDisabled from './accordion_disabled';
+const accordionDisabledSource = require('!!raw-loader!./accordion_disabled');
+
 export const AccordionExample = {
   title: 'Accordion',
   intro: (
@@ -419,6 +422,41 @@ export const AccordionExample = {
   paddingSize="l">
   <!-- Content to show when expanded -->
 </EuiAccordion>`,
+    },
+    {
+      title: 'Disabled',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: accordionDisabledSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            In some cases you might want to prevent the user from closing the
+            <strong>EuiAccordion</strong>. For example, if a form field is
+            displaying an error, opening the accordion and preventing its
+            closure until the error has been addressed will help the user
+            find and fix the error.
+          </p>
+          <p>
+            The <EuiCode>arrowProps</EuiCode>, <EuiCode>buttonProps</EuiCode>,
+            and <EuiCode>initialIsOpen</EuiCode> props can be used together
+            to achieve this state.
+          </p>
+        </>
+      ),
+      demo: <AccordionDisabled />,
+      playground: accordionConfig,
+      props: { EuiAccordion },
+      snippet: `<EuiAccordion
+  id={accordionId1}
+  buttonContent="Clickable title"
+  >
+    <!-- Content to show when expanded -->
+</EuiAccordion>
+`,
     },
   ],
 };
