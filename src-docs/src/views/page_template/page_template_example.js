@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { GuideSectionTypes } from '../../components';
 import { PageDemo } from './_page_demo';
 
 import {
@@ -26,6 +27,8 @@ import Empty from './page_template_empty';
 const EmptySource = require('!!raw-loader!./page_template_empty');
 
 import Deprecated from './deprecated';
+const DeprecatedSource = require('!!raw-loader!./deprecated');
+
 import { pageTemplateConfig } from './playground';
 
 export const PageTemplateExample = {
@@ -40,7 +43,7 @@ export const PageTemplateExample = {
         title={
           <>
             The previous version of <strong>EuiPageTemplate</strong> has been
-            deprecated to <strong>EuiPageTemplate__Deprecated</strong>.{' '}
+            deprecated to <strong>EuiPageTemplate_Deprecated</strong>.{' '}
             <Link to="#deprecated">More info below.</Link>
           </>
         }
@@ -401,7 +404,7 @@ export const PageTemplateExample = {
           <p>
             The previous version of <strong>EuiPageTemplate</strong> has been
             deprecated and renamed to{' '}
-            <strong>EuiPageTemplate__Deprecated</strong>.
+            <strong>EuiPageTemplate_Deprecated</strong>.
           </p>
           <p>
             To continue using the previous version, you can update your import
@@ -415,7 +418,17 @@ export const PageTemplateExample = {
           </p>
         </>
       ),
-      demo: <Deprecated />,
+      demo: (
+        <div className="guideDemo__highlightLayout guideDemo__highlightLayout--border">
+          <Deprecated />
+        </div>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: DeprecatedSource,
+        },
+      ],
       demoPanelProps: { paddingSize: 'none' },
       props: { EuiPageTemplate_Deprecated },
       playground: pageTemplateConfig,

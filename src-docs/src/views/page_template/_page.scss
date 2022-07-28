@@ -11,3 +11,7 @@
 .guideDemo__highlightLayout--playground {
   border: 1px solid $guideDemoHighlightColor;
 }
+
+.guideDemo__highlightLayout--border {
+  border-bottom: $euiBorderThin;
+}
