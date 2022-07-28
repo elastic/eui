@@ -18,6 +18,7 @@ import {
   tint,
   shade,
 } from '../../services';
+import type { TokenFill } from './token_types';
 
 const visColors = euiPaletteColorBlind();
 const visColorsBehindText = euiPaletteColorBlindBehindText();
@@ -25,6 +26,7 @@ const visColorsBehindText = euiPaletteColorBlindBehindText();
 const getTokenColor = (
   euiTheme: UseEuiTheme['euiTheme'],
   colorMode: UseEuiTheme['colorMode'],
+  fill: TokenFill,
   color: number | string
 ) => {
   const isVizColor = typeof color === 'number';
@@ -51,25 +53,30 @@ const getTokenColor = (
     ? euiTheme.colors.ghost
     : euiTheme.colors.ink;
 
-  return `
-    // Without a background, the fill color should be the graphic color
-    color: ${iconColor};
-  
-
-    &[class*='-light'] {
-      color: ${lightColor};
-      background-color: ${backgroundLightColor};
-      box-shadow: inset 0 0 0 1px ${boxShadowColor};
-    }
-
-    &[class*='-dark'] {
-      color: ${darkColor};
-      background-color: ${backgroundDarkColor};
-    }
-  `;
+  switch (fill) {
+    case 'none':
+      return `
+        // Without a background, the fill color should be the graphic color
+        color: ${iconColor};
+      `;
+    case 'light':
+      return `
+        color: ${lightColor};
+        background-color: ${backgroundLightColor};
+        box-shadow: inset 0 0 0 1px ${boxShadowColor};
+      `;
+    case 'dark':
+      return `
+        color: ${darkColor};
+        background-color: ${backgroundDarkColor};
+      `;
+  }
 };
 
-export const euiTokenStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
+export const euiTokenStyles = (
+  { euiTheme, colorMode }: UseEuiTheme,
+  fill: TokenFill
+) => ({
   // Base
   euiToken: css`
     display: inline-flex;
@@ -131,17 +138,17 @@ export const euiTokenStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
     }
   `,
   // Colors
-  euiColorVis0: css(getTokenColor(euiTheme, colorMode, 0)),
-  euiColorVis1: css(getTokenColor(euiTheme, colorMode, 1)),
-  euiColorVis2: css(getTokenColor(euiTheme, colorMode, 2)),
-  euiColorVis3: css(getTokenColor(euiTheme, colorMode, 3)),
-  euiColorVis4: css(getTokenColor(euiTheme, colorMode, 4)),
-  euiColorVis5: css(getTokenColor(euiTheme, colorMode, 5)),
-  euiColorVis6: css(getTokenColor(euiTheme, colorMode, 6)),
-  euiColorVis7: css(getTokenColor(euiTheme, colorMode, 7)),
-  euiColorVis8: css(getTokenColor(euiTheme, colorMode, 8)),
-  euiColorVis9: css(getTokenColor(euiTheme, colorMode, 9)),
-  gray: css(getTokenColor(euiTheme, colorMode, 'gray')),
+  euiColorVis0: css(getTokenColor(euiTheme, colorMode, fill, 0)),
+  euiColorVis1: css(getTokenColor(euiTheme, colorMode, fill, 1)),
+  euiColorVis2: css(getTokenColor(euiTheme, colorMode, fill, 2)),
+  euiColorVis3: css(getTokenColor(euiTheme, colorMode, fill, 3)),
+  euiColorVis4: css(getTokenColor(euiTheme, colorMode, fill, 4)),
+  euiColorVis5: css(getTokenColor(euiTheme, colorMode, fill, 5)),
+  euiColorVis6: css(getTokenColor(euiTheme, colorMode, fill, 6)),
+  euiColorVis7: css(getTokenColor(euiTheme, colorMode, fill, 7)),
+  euiColorVis8: css(getTokenColor(euiTheme, colorMode, fill, 8)),
+  euiColorVis9: css(getTokenColor(euiTheme, colorMode, fill, 9)),
+  gray: css(getTokenColor(euiTheme, colorMode, fill, 'gray')),
   customColor: css``,
   // Fills
   light: css``,

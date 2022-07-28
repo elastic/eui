@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { TokenProps } from './token';
+import type { TokenProps } from './token_types';
 
 export type EuiTokenMapType =
   | 'tokenAlias'
