@@ -127,12 +127,16 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
     : { color: 'transparent', paddingSize: 'none' };
 
   const eventHeader = (
-    <HeaderElement css={cssHeaderStyles}>
+    <HeaderElement className="euiCommentEvent__header" css={cssHeaderStyles}>
       <EuiPanel {...(panelProps as EuiPanelProps)} css={cssHeaderPanelStyles}>
-        <div css={cssHeaderMainStyles}>
-          <div css={cssHeaderDataStyles}>
+        <div className="euiCommentEvent__headerMain" css={cssHeaderMainStyles}>
+          <div
+            className="euiCommentEvent__headerData"
+            css={cssHeaderDataStyles}
+          >
             {eventIcon && (
               <EuiAvatar
+                className="euiCommentEvent__headerEventIcon"
                 css={cssHeaderEventIconStyles}
                 size="s"
                 iconType={eventIcon}
@@ -142,18 +146,42 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
               />
             )}
 
-            {username && <div css={cssHeaderUsernameStyles}>{username}</div>}
+            {username && (
+              <div
+                className="euiCommentEvent__headerUsername"
+                css={cssHeaderUsernameStyles}
+              >
+                {username}
+              </div>
+            )}
 
-            {event && <div css={cssHeaderEventStyles}>{event}</div>}
+            {event && (
+              <div
+                className="euiCommentEvent__headerEvent"
+                css={cssHeaderEventStyles}
+              >
+                {event}
+              </div>
+            )}
 
             {timestamp && (
-              <div css={cssHeaderTimestampStyles}>
+              <div
+                className="euiCommentEvent__headerTimestamp"
+                css={cssHeaderTimestampStyles}
+              >
                 <time>{timestamp}</time>
               </div>
             )}
           </div>
 
-          {actions && <div css={cssHeaderActionsStyles}>{actions}</div>}
+          {actions && (
+            <div
+              className="euiCommentEvent__headerActions"
+              css={cssHeaderActionsStyles}
+            >
+              {actions}
+            </div>
+          )}
         </div>
       </EuiPanel>
     </HeaderElement>
@@ -163,7 +191,11 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
     <Element className={classes} css={cssStyles}>
       {hasEventElements && eventHeader}
 
-      {children && <div css={cssBodyStyles}>{children}</div>}
+      {children && (
+        <div className="euiCommentEvent__body" css={cssBodyStyles}>
+          {children}
+        </div>
+      )}
     </Element>
   );
 };
