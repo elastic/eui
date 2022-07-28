@@ -171,7 +171,6 @@ export const useResponsiveMax = (
   responsive: EuiBreadcrumbsProps['responsive'],
   max: EuiBreadcrumbsProps['max']
 ) => {
-  const currentBreakpoint = useCurrentEuiBreakpoint();
   // Use the default object if they simply passed `true` for responsive
   const responsiveObject =
     typeof responsive === 'object' ? responsive : responsiveDefault;
@@ -182,6 +181,7 @@ export const useResponsiveMax = (
   let responsiveMax: EuiBreadcrumbsProps['max'] = max;
 
   // Set the calculated max to the number associated with the currentBreakpoint key if it exists
+  const currentBreakpoint = useCurrentEuiBreakpoint();
   if (responsive && currentBreakpoint && responsiveObject[currentBreakpoint]) {
     responsiveMax = responsiveObject[currentBreakpoint];
   }
