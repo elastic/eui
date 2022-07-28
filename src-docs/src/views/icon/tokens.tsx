@@ -10,7 +10,9 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-const tokens = [
+import type { EuiTokenMapType } from '../../../../src/components/token/token_map';
+
+const tokens: EuiTokenMapType[] = [
   'tokenAlias',
   'tokenAnnotation',
   'tokenArray',
