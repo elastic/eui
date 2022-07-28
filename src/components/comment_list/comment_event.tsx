@@ -98,13 +98,10 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
     eventColor && headerStyles.hasEventColor,
     isTypeRegular && headerStyles.regular,
   ];
-  const cssHeaderPanelStyles = headerStyles.euiCommentEvent__headerPanel;
   const cssHeaderEventIconStyles =
     headerStyles.euiCommentEvent__headerEventIcon;
   const cssHeaderUsernameStyles = headerStyles.euiCommentEvent__headerUsername;
   const cssHeaderEventStyles = headerStyles.euiCommentEvent__headerEvent;
-  const cssHeaderTimestampStyles =
-    headerStyles.euiCommentEvent__headerTimestamp;
   const cssHeaderMainStyles = headerStyles.euiCommentEvent__headerMain;
   const cssHeaderDataStyles = headerStyles.euiCommentEvent__headerData;
   const cssHeaderActionsStyles = headerStyles.euiCommentEvent__headerActions;
@@ -128,7 +125,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
 
   const eventHeader = (
     <HeaderElement className="euiCommentEvent__header" css={cssHeaderStyles}>
-      <EuiPanel {...(panelProps as EuiPanelProps)} css={cssHeaderPanelStyles}>
+      <EuiPanel {...(panelProps as EuiPanelProps)}>
         <div className="euiCommentEvent__headerMain" css={cssHeaderMainStyles}>
           <div
             className="euiCommentEvent__headerData"
@@ -165,10 +162,7 @@ export const EuiCommentEvent: FunctionComponent<EuiCommentEventProps> = ({
             )}
 
             {timestamp && (
-              <div
-                className="euiCommentEvent__headerTimestamp"
-                css={cssHeaderTimestampStyles}
-              >
+              <div className="euiCommentEvent__headerTimestamp">
                 <time>{timestamp}</time>
               </div>
             )}
