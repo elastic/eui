@@ -3,8 +3,6 @@
     "gutterExtraSmall": "4px",
     "gutterSmall": "8px"
   },
-  "euiBreadcrumbSpacing": "8px",
-  "euiBreadcrumbTruncateWidth": "160px",
   "euiButtonEmptyTypes": {
     "primary": "#36a2ef",
     "danger": "#f86b63",
