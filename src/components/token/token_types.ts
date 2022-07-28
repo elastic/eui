@@ -12,7 +12,7 @@ import { IconType } from '../icon';
 export const SIZES = ['xs', 's', 'm', 'l'] as const;
 export type TokenSize = typeof SIZES[number];
 
-export const SHAPES = ['circle', 'square'] as const;
+export const SHAPES = ['circle', 'square', 'rectangle'] as const;
 export type TokenShape = typeof SHAPES[number];
 
 export const FILLS = ['light', 'dark', 'none'] as const;

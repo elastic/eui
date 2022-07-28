@@ -704,6 +704,16 @@ exports[`EuiToken props shape circle is rendered 1`] = `
 </span>
 `;
 
+exports[`EuiToken props shape rectangle is rendered 1`] = `
+<span
+  class="euiToken emotion-euiToken-rectangle-light-s-gray"
+>
+  <span
+    data-euiicon-type="dot"
+  />
+</span>
+`;
+
 exports[`EuiToken props shape square is rendered 1`] = `
 <span
   class="euiToken emotion-euiToken-square-light-s-gray"
