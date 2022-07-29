@@ -7,9 +7,8 @@
  */
 
 import React, { useState } from 'react';
-import { render, fireEvent, waitFor, screen } from '@testing-library/react';
-
-import { requiredProps } from '../../test/required_props';
+import { fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, requiredProps } from '../../test';
 
 import { EuiPopover } from './';
 
@@ -55,9 +54,9 @@ describe('EuiPopover', () => {
         button={<button onClick={togglePopover}>Open popover</button>}
         closePopover={closePopover}
         isOpen={isOpen}
-        data-testid="popover"
+        data-test-subj="popover"
       >
-        Popover content
+        <span data-test-subj="fff">Popover content</span>
         <button onClick={mockPopoverInteraction}>Button inside popover</button>
       </EuiPopover>
     );
@@ -95,7 +94,9 @@ describe('EuiPopover', () => {
         expect(screen.queryByText('Popover content')).toBeTruthy();
       });
 
-      fireEvent.keyDown(screen.queryByTestId('popover')!, { key: 'Escape' });
+      fireEvent.keyDown(screen.queryByTestSubject('popover')!, {
+        key: 'Escape',
+      });
 
       await waitFor(() => {
         expect(screen.queryByText('Popover content')).toBeFalsy();
