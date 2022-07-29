@@ -249,54 +249,6 @@
     "warning": "#fec514",
     "danger": "#bd271e"
   },
-  "euiTokenGrayColor": "#69707d",
-  "euiTokenTypes": {
-    "euiColorVis0": {
-      "graphic": "#54b399",
-      "behindText": "#6dccb1"
-    },
-    "euiColorVis1": {
-      "graphic": "#6092c0",
-      "behindText": "#79aad9"
-    },
-    "euiColorVis2": {
-      "graphic": "#d36086",
-      "behindText": "#ee789d"
-    },
-    "euiColorVis3": {
-      "graphic": "#9170b8",
-      "behindText": "#a987d1"
-    },
-    "euiColorVis4": {
-      "graphic": "#ca8eae",
-      "behindText": "#e4a6c7"
-    },
-    "euiColorVis5": {
-      "graphic": "#d6bf57",
-      "behindText": "#f1d86f"
-    },
-    "euiColorVis6": {
-      "graphic": "#b9a888",
-      "behindText": "#d2c0a0"
-    },
-    "euiColorVis7": {
-      "graphic": "#da8b45",
-      "behindText": "#f5a35c"
-    },
-    "euiColorVis8": {
-      "graphic": "#aa6556",
-      "behindText": "#c47c6c"
-    },
-    "euiColorVis9": {
-      "graphic": "#e7664c",
-      "behindText": "#ff7e62"
-    },
-    "gray": {
-      "graphic": "#69707d",
-      "behindText": "#69707d"
-    }
-  },
-  "euiTokenTypeKeys": "'euiColorVis0', 'euiColorVis1', 'euiColorVis2', 'euiColorVis3', 'euiColorVis4', 'euiColorVis5', 'euiColorVis6', 'euiColorVis7', 'euiColorVis8', 'euiColorVis9', 'gray'",
   "euiPopoverArrowSize": "12px",
   "euiContrastRatioText": 4.5,
   "euiContrastRatioGraphic": 3,
