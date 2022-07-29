@@ -19,7 +19,9 @@
   width: 100%; // ensures the slider expands to fill flex display
   position: relative;
   cursor: pointer; // Keep cursor to full range bounds
-  z-index: 1; // higher than .euiRangeHighlight that is 0
+  // z-index higher than .euiRangeHighlight that is 1
+  // the track is transparent we just want the thumb to be on top of the .euiRangeHighlight
+  z-index: 2;
 
   &:disabled {
     cursor: not-allowed;
@@ -28,14 +30,14 @@
     @include euiRangeThumbPerBrowser {
       cursor: not-allowed;
       border-color: $euiRangeThumbBorderColor;
-      background-color: $euiRangeThumbBorderColor;
+      background-color: $euiRangeThumbBackgroundColor;
       box-shadow: none;
     }
 
     ~ .euiRangeThumb {
       cursor: not-allowed;
       border-color: $euiRangeThumbBorderColor;
-      background-color: $euiRangeThumbBorderColor;
+      background-color: $euiRangeThumbBackgroundColor;
       box-shadow: none;
     }
   }
@@ -50,10 +52,6 @@
     background: $euiRangeTrackColor;
     border: $euiRangeTrackBorderWidth solid $euiRangeTrackBorderColor;
     border-radius: $euiRangeTrackRadius;
-  }
-
-  &:focus {
-    outline: none;
   }
 
   &:focus-visible,
@@ -112,7 +110,7 @@
 
   // States
   &--hasTicks {
-    height: $euiFormControlHeight / 2; // Adjust vertical alignment based on extras
+    height: $euiRangeThumbHeight;
   }
 
   &--compressed {
@@ -122,12 +120,41 @@
       height: $euiFormControlCompressedHeight / 2;
     }
   }
+
+  &:focus {
+    @include euiRangeThumbPerBrowser {
+      @include euiRangeThumbFocus;
+    }
+
+    @include euiRangeTrackPerBrowser {
+      background-color: transparent;
+    }
+
+    outline: none;
+
+    ~ .euiRangeHighlight .euiRangeHighlight__progress {
+      background-color: $euiColorPrimary;
+    }
+  }
+
+
+  // in Chrome/FF/Edge we don't want to focus on click
+  &:focus:not(:focus-visible) {
+    @include euiRangeThumbPerBrowser {
+      @include euiRangeThumbBoxShadow;
+      background-color: $euiRangeThumbBackgroundColor;
+    }
+
+    ~ .euiRangeHighlight .euiRangeHighlight__progress {
+      background-color: $euiRangeHighlightColor;
+    }
+  }
 }
 
 // Lighten the track when showing the range
 .euiRangeSlider--hasRange {
   @include euiRangeTrackPerBrowser {
-    background-color: transparentize($euiRangeTrackColor, .6);
+    background-color: transparent;
     border-color: transparentize($euiRangeTrackBorderColor, .6);
   }
 }

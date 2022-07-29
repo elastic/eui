@@ -7,13 +7,19 @@
   top: 50%;
   margin-top: -($euiRangeThumbHeight / 2);
   pointer-events: none;
-  z-index: 1; // higher than .euiRangeHighlight that is 0
+  z-index: 2; // higher than .euiRangeHighlight that is 1
 
   &:focus {
-    @include euiCustomControlFocused;
+    @include euiRangeThumbFocus;
+    outline: none;
+  }
+
+  &:focus:focus-visible {
+    outline: none;
   }
 
   &--hasTicks {
-    top: 25%;
+    top: 0;
+    margin-top: 0;
   }
 }

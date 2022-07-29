@@ -56,19 +56,25 @@ $euiFormControlLayoutGroupInputCompressedHeight: $euiFormControlCompressedHeight
 $euiFormControlLayoutGroupInputCompressedBorderRadius: $euiFormControlCompressedBorderRadius / 2 !default;
 
 // Range
-$euiRangeTrackColor: $euiColorDarkShade !default;
+$euiRangeTrackColor: $euiColorLightShade !default;
+$euiRangeHighlightColor: $euiColorDarkShade !default;
 
-$euiRangeThumbRadius: 50% !default;
 $euiRangeThumbHeight: $euiSize !default;
 $euiRangeThumbWidth: $euiSize !default;
-$euiRangeThumbBorderColor: $euiRangeTrackColor !default;
+$euiRangeThumbBorderColor: $euiColorEmptyShade !default;
+$euiRangeThumbBackgroundColor: $euiRangeHighlightColor;
 
 $euiRangeTrackWidth: 100% !default;
-$euiRangeTrackHeight: 2px !default;
+$euiRangeTrackHeight: $euiSizeM / 2 !default;
+$euiRangeTrackCompressedHeight: $euiSizeXS;
 $euiRangeTrackBorderWidth: 0 !default;
 $euiRangeTrackBorderColor: $euiRangeTrackColor !default;
 $euiRangeTrackRadius: $euiBorderRadius !default;
 
 $euiRangeDisabledOpacity: .25 !default;
 
-$euiRangeHighlightHeight: $euiSizeXS !default;
+$euiRangeHighlightHeight: $euiRangeTrackHeight !default;
+$euiRangeHighlightCompressedHeight: $euiRangeTrackCompressedHeight !default;
+
+$euiRangeHeight: $euiFormControlHeight !default;
+$euiRangeCompressedHeight: $euiFormControlCompressedHeight !default;
