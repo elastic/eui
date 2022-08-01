@@ -10,7 +10,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test';
 
-import { EuiBreadcrumbs, EuiBreadcrumb } from './breadcrumbs';
+import { EuiBreadcrumbs, EuiBreadcrumb } from './';
 
 const breadcrumbs: EuiBreadcrumb[] = [
   {

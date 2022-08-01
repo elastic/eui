@@ -162,11 +162,11 @@ export const IconExample = {
       demo: <Tokens />,
     },
     {
+      title: 'Custom tokens',
       wrapText: false,
       text: (
         <>
           <EuiText>
-            <h3>Custom tokens</h3>
             <p>
               By default, an <EuiCode>iconType</EuiCode> with the token prefix
               (i.e. those listed above) will have predefined styles. However,
