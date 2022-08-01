@@ -52,11 +52,11 @@ const commentAvatarSnippet = [
 </EuiCommentList>
 `,
   `<EuiCommentList aria-label="Timeline icon example">
-  <EuiComment timelineIcon="tag" username="janed" />
+  <EuiComment timelineAvatar="tag" username="janed" />
 </EuiCommentList>
 `,
   `<EuiCommentList aria-label="Timeline icon example">
-  <EuiComment timelineIcon={avatar} username="janed">
+  <EuiComment timelineAvatar={avatar} username="janed">
     {body}
   </EuiComment>
 </EuiCommentList>
@@ -96,7 +96,10 @@ export const CommentListExample = {
             For accessibility, it is highly recommended to provide a descriptive{' '}
             <EuiCode>aria-label</EuiCode> or the ID of an external label to the{' '}
             <EuiCode>aria-labelledby</EuiCode> prop of the{' '}
-            <strong>EuiCommentList</strong>.
+            <strong>EuiCommentList</strong>. A{' '}
+            <EuiCode>timelineAvatarAriaLabel</EuiCode> should be provided for
+            every <strong>EuiComment</strong> with or without a{' '}
+            <EuiCode>timelineAvatar</EuiCode> as <EuiCode>IconType</EuiCode>.
           </>
         }
       />
@@ -145,17 +148,17 @@ export const CommentListExample = {
           <EuiText>
             <ol style={{ listStyleType: 'upper-alpha' }}>
               <li>
-                <EuiCode>timelineIcon</EuiCode>: Shows an icon that should
+                <EuiCode>timelineAvatar</EuiCode>: Shows an avatar that should
                 indicate who is the author of the comment. To customize, pass a{' '}
                 <EuiCode>string</EuiCode> as a{' '}
-                <EuiCode>EuiIcon[&apos;type&apos;]</EuiCode> or a{' '}
-                <EuiCode>ReactNode</EuiCode>, preferably a{' '}
+                <EuiCode>EuiIcon[&apos;type&apos;]</EuiCode> or a a{' '}
                 <Link to="/display/avatar">
                   <strong>EuiAvatar</strong>
                 </Link>
-                . If no icon is provided, it will default to the{' '}
-                <EuiCode>username</EuiCode>
-                &apos;s initials.
+                . Use in conjunction with{' '}
+                <EuiCode>timelineAvatarAriaLabel</EuiCode> to pass an aria label
+                to the avatar. If no avatar is provided, it will default to an
+                avatar with a <EuiCode>userAvatar</EuiCode> icon.
               </li>
               <li>
                 <EuiCode>eventIcon</EuiCode>: Icon that shows before the
@@ -207,7 +210,7 @@ export const CommentListExample = {
       playground: commentConfig,
     },
     {
-      title: 'Timeline icon',
+      title: 'Timeline avatar',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -220,28 +223,24 @@ export const CommentListExample = {
           <ul>
             <li>
               By default, each <strong>EuiComment</strong> shows an avatar with
-              the initial letter of the <EuiCode>username</EuiCode>. It also
-              uses the <EuiCode>username</EuiCode> for the avatar title
-              attribute.
+              the <EuiCode>userAvatar</EuiCode> icon. A{' '}
+              <EuiCode>timelineAvatarAriaLabel</EuiCode>
+              should be provided when using this default option.
             </li>
             <li>
-              If your <strong>EuiComment</strong> doesn&apos;t have a{' '}
-              <EuiCode>username</EuiCode>, or if you don&apos;t want to use it
-              for generating the title attribute and initials you can use the{' '}
-              <EuiCode>timelineIcon</EuiCode> prop instead.
-            </li>
-            <li>
-              You can also show an icon by passing to the{' '}
-              <EuiCode>timelineIcon</EuiCode> any of the icon types that{' '}
+              You can customize your avatar by passing to the{' '}
+              <EuiCode>timelineAvatar</EuiCode> any of the icon types that{' '}
               <Link to="/display/icons">
                 <strong>EuiIcon</strong>
               </Link>{' '}
               supports. The icon will show inside a <EuiCode>subdued</EuiCode>{' '}
               avatar. Consider this option when showing a system update.
+              Providing a <EuiCode>timelineAvatarAriaLabel</EuiCode> is
+              recommended.
             </li>
             <li>
               You can further customize the timeline icon by passing to the{' '}
-              <EuiCode>timelineIcon</EuiCode> a{' '}
+              <EuiCode>timelineAvatar</EuiCode> a{' '}
               <Link to="/display/avatar">
                 <strong>EuiAvatar</strong>
               </Link>
