@@ -13,8 +13,8 @@ import {
   screen,
   waitForEuiPopoverOpen,
   waitForEuiPopoverClose,
-  requiredProps,
-} from '../../test';
+} from '../../test/rtl';
+import { requiredProps } from '../../test';
 
 import { EuiPopover } from './';
 

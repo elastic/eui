@@ -16,9 +16,9 @@ import {
   within,
 } from '@testing-library/react';
 
-import { EuiProvider } from '../components';
+import { EuiProvider } from '../../components';
 
-import * as dataTestSubjQueries from './rtl_data_test_subj_queries';
+import * as dataTestSubjQueries from './data_test_subj_queries';
 
 /**
  * Custom render() fn with EuiProvider and query helpers
