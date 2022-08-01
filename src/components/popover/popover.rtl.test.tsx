@@ -7,8 +7,14 @@
  */
 
 import React, { useState } from 'react';
-import { fireEvent, waitFor } from '@testing-library/react';
-import { render, screen, requiredProps } from '../../test';
+import { fireEvent } from '@testing-library/react';
+import {
+  render,
+  screen,
+  waitForEuiPopoverOpen,
+  waitForEuiPopoverClose,
+  requiredProps,
+} from '../../test';
 
 import { EuiPopover } from './';
 
@@ -77,9 +83,7 @@ describe('EuiPopover', () => {
       render(<MockPopoverComponent />);
 
       fireEvent.click(screen.getByText('Open popover'));
-      await waitFor(() => {
-        expect(screen.queryByText('Popover content')).toBeTruthy();
-      });
+      await waitForEuiPopoverOpen();
 
       fireEvent.click(screen.getByText('Button inside popover'));
       expect(mockPopoverInteraction).toHaveBeenCalledTimes(1);
@@ -89,18 +93,13 @@ describe('EuiPopover', () => {
       render(<MockPopoverComponent />);
 
       fireEvent.click(screen.getByText('Open popover'));
-
-      await waitFor(() => {
-        expect(screen.queryByText('Popover content')).toBeTruthy();
-      });
+      await waitForEuiPopoverOpen();
 
       fireEvent.keyDown(screen.queryByTestSubject('popover')!, {
         key: 'Escape',
       });
 
-      await waitFor(() => {
-        expect(screen.queryByText('Popover content')).toBeFalsy();
-      });
+      await waitForEuiPopoverClose();
     });
   });
 });

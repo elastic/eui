@@ -17,3 +17,4 @@ export { sleep } from './sleep';
 export * from './emotion-prefix';
 export * from './rtl_data_test_subj_queries';
 export { render, screen } from './rtl_custom_render';
+export * from './rtl_component_helpers';
