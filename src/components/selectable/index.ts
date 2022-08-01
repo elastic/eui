@@ -8,6 +8,7 @@
 
 export type {
   EuiSelectableProps,
+  EuiSelectableSearchableProps,
   EuiSelectableSearchableSearchProps,
 } from './selectable';
 export { EuiSelectable } from './selectable';
