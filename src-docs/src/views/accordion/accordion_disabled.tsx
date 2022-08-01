@@ -1,31 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { EuiAccordion, EuiFieldText, EuiFormRow, EuiSpacer } from '../../../../src/components';
-import { useGeneratedHtmlId } from '../../../../src/services';
+import {
+  EuiAccordion,
+  EuiFieldPassword,
+  EuiFormRow,
+  EuiPanel,
+  EuiToolTip,
+  useGeneratedHtmlId,
+} from '../../../../src';
 
 export default () => {
-  const disabledAccordionId = useGeneratedHtmlId({ prefix: 'disabledAccordion' });
+  const [passwordValue, setPasswordValue] = useState('');
+  const disabledAccordionId = useGeneratedHtmlId({
+    prefix: 'disabledAccordion',
+  });
+
+  const isInvalid = passwordValue === '';
+
+  const buttonContent = (
+    <EuiToolTip
+      content={
+        isInvalid ? 'There are errors in the expanded content.' : undefined
+      }
+    >
+      <span>Security settings</span>
+    </EuiToolTip>
+  );
 
   return (
-    <div>
-<EuiAccordion
-  id={disabledAccordionId}
-  buttonContent="Security settings"
-  arrowProps={{ disabled: true }}
-  buttonProps={{ disabled: true }}
-  initialIsOpen={true}
->
-        <EuiSpacer size="s" />
+    <EuiAccordion
+      id={disabledAccordionId}
+      buttonContent={buttonContent}
+      isDisabled={isInvalid}
+      initialIsOpen={true}
+    >
+      <EuiPanel color="subdued">
         <EuiFormRow
           label="Password"
-          isInvalid={true}
-          error={[
-            "You must enter your password to save these changes.",
-          ]}
+          isInvalid={isInvalid}
+          error={['You must enter your password to save these changes.']}
         >
-          <EuiFieldText name="text" isInvalid={true} />
+          <EuiFieldPassword
+            isInvalid={isInvalid}
+            defaultValue={passwordValue}
+            onChange={(v) => setPasswordValue(v.currentTarget.value)}
+          />
         </EuiFormRow>
-      </EuiAccordion>
-    </div>
+      </EuiPanel>
+    </EuiAccordion>
   );
 };

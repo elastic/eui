@@ -318,6 +318,53 @@ export const AccordionExample = {
       demo: <AccordionIsLoading />,
     },
     {
+      title: 'Disabled state',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: accordionDisabledSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            In some cases you might want to prevent the user from closing the{' '}
+            <strong>EuiAccordion</strong>. For example, if a form field is
+            displaying an error, opening the accordion and preventing its
+            closure until the error has been addressed will help the user find
+            and fix the error.
+          </p>
+          <p>
+            The <EuiCode>isDisabled</EuiCode> prop will disable interaction on
+            the button and the arrow. Use it in conjunction with{' '}
+            <EuiCode>initialIsOpen</EuiCode> to achieve the desired effect.
+          </p>
+          <EuiCallOut
+            color="warning"
+            iconType="accessibility"
+            title={
+              <>
+                When disabling the interaction of accordions based on user
+                input, it&apos;s advisable to give further explanation through
+                the use of a tooltip or screen-reader only text.
+              </>
+            }
+          />
+        </>
+      ),
+      demo: <AccordionDisabled />,
+      props: { EuiAccordion },
+      snippet: `<EuiAccordion
+  id={accordionId5}
+  buttonContent="Clickable title"
+  isDisabled={true}
+  initialIsOpen={true}
+  >
+    <!-- Content to show when expanded -->
+</EuiAccordion>
+`,
+    },
+    {
       title: 'When content changes dynamically',
       source: [
         {
@@ -422,41 +469,6 @@ export const AccordionExample = {
   paddingSize="l">
   <!-- Content to show when expanded -->
 </EuiAccordion>`,
-    },
-    {
-      title: 'Disabled',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: accordionDisabledSource,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            In some cases you might want to prevent the user from closing the
-            <strong>EuiAccordion</strong>. For example, if a form field is
-            displaying an error, opening the accordion and preventing its
-            closure until the error has been addressed will help the user
-            find and fix the error.
-          </p>
-          <p>
-            The <EuiCode>arrowProps</EuiCode>, <EuiCode>buttonProps</EuiCode>,
-            and <EuiCode>initialIsOpen</EuiCode> props can be used together
-            to achieve this state.
-          </p>
-        </>
-      ),
-      demo: <AccordionDisabled />,
-      playground: accordionConfig,
-      props: { EuiAccordion },
-      snippet: `<EuiAccordion
-  id={accordionId1}
-  buttonContent="Clickable title"
-  >
-    <!-- Content to show when expanded -->
-</EuiAccordion>
-`,
     },
   ],
 };
