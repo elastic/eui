@@ -7,16 +7,27 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme, shade, tint, COLOR_MODES_STANDARD } from '../../services';
+import {
+  UseEuiTheme,
+  shade,
+  tint,
+  COLOR_MODES_STANDARD,
+  EuiThemeColorModeStandard,
+} from '../../services';
 import { logicalCSS } from '../../global_styling';
 import { popoverArrowSize } from '../popover/popover_arrow/_popover_arrow.styles';
+
+const backgroundColor = (color: string, colorMode: EuiThemeColorModeStandard) =>
+  colorMode === COLOR_MODES_STANDARD.dark
+    ? shade(color, 0.45)
+    : tint(color, 0.5);
 
 export const euiTourStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
   // Targets EuiPopoverPanel
   euiTour: css`
     &[data-popover-open='true'] {
       [class*='euiTourBeacon'] {
-        opacity: 1;
+        opacity: 1; // Must alter here otherwise the transition does not occur
       }
     }
 
@@ -24,9 +35,7 @@ export const euiTourStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
       &:before {
         ${logicalCSS(
           'border-top-color',
-          colorMode === COLOR_MODES_STANDARD.dark
-            ? shade(euiTheme.colors.lightestShade, 0.45)
-            : tint(euiTheme.colors.lightestShade, 0.5)
+          backgroundColor(euiTheme.colors.lightestShade, colorMode)
         )};
       }
     }
@@ -87,9 +96,10 @@ export const euiTourHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
 export const euiTourFooterStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
   // Base
   euiTourFooter: css`
-    background-color: ${colorMode === COLOR_MODES_STANDARD.dark
-      ? shade(euiTheme.colors.lightestShade, 0.45)
-      : tint(euiTheme.colors.lightestShade, 0.5)};
+    background-color: ${backgroundColor(
+      euiTheme.colors.lightestShade,
+      colorMode
+    )};
     ${logicalCSS('border-bottom-left-radius', euiTheme.border.radius.medium)};
     ${logicalCSS('border-bottom-right-radius', euiTheme.border.radius.medium)};
   `,
