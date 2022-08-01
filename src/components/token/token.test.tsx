@@ -9,8 +9,10 @@
 import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
-import { EuiToken, COLORS, SHAPES, SIZES, FILLS } from './token';
+import { EuiToken } from './token';
+import { COLORS, SHAPES, SIZES, FILLS } from './token_types';
 import { TOKEN_MAP } from './token_map';
 import { keysOf } from '../common';
 
@@ -18,6 +20,8 @@ const tokenTypes = keysOf(TOKEN_MAP);
 const tokenColors = COLORS;
 
 describe('EuiToken', () => {
+  shouldRenderCustomStyles(<EuiToken iconType="dot" />);
+
   test('is rendered', () => {
     const component = render(<EuiToken iconType="dot" {...requiredProps} />);
 

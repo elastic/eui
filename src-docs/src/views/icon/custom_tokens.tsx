@@ -59,7 +59,7 @@ export default () => (
           iconType="tokenStruct"
           size="m"
           shape="circle"
-          color="#FF0000"
+          color="#b9f6c8"
         />
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner paddingSize="none" color="subdued">
@@ -70,7 +70,7 @@ export default () => (
           paddingSize="m"
         >
           {
-            '<EuiToken iconType="tokenStruct" size="m" shape="circle" color="#FF0000" />'
+            '<EuiToken iconType="tokenStruct" size="m" shape="circle" color="#b9f6c8" />'
           }
         </EuiCodeBlock>
       </EuiSplitPanel.Inner>
@@ -82,8 +82,28 @@ export default () => (
         grow={false}
         style={{ minWidth: 96 }}
       >
+        <EuiToken iconType="faceHappy" />
+      </EuiSplitPanel.Inner>
+      <EuiSplitPanel.Inner paddingSize="none" color="subdued">
+        <EuiCodeBlock
+          language="html"
+          isCopyable
+          transparentBackground
+          paddingSize="m"
+        >
+          {'<EuiToken iconType="faceHappy"  />'}
+        </EuiCodeBlock>
+      </EuiSplitPanel.Inner>
+    </EuiSplitPanel.Outer>
+    <EuiSpacer />
+    <EuiSplitPanel.Outer hasShadow={false} hasBorder={true} direction="row">
+      <EuiSplitPanel.Inner
+        className="eui-textCenter"
+        grow={false}
+        style={{ minWidth: 96 }}
+      >
         <EuiToken
-          iconType="faceNeutral"
+          iconType="faceHappy"
           size="l"
           color="euiColorVis7"
           shape="rectangle"
@@ -98,7 +118,7 @@ export default () => (
           paddingSize="m"
         >
           {
-            '<EuiToken iconType="faceNeutral" size="l" color="euiColorVis7" shape="rectangle" fill="dark" />'
+            '<EuiToken iconType="faceHappy" size="l" color="euiColorVis7" shape="rectangle" fill="dark" />'
           }
         </EuiCodeBlock>
       </EuiSplitPanel.Inner>

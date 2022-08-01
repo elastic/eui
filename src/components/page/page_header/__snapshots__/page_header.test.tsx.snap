@@ -203,17 +203,17 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
   >
     <nav
       aria-label="aria-label"
-      class="euiBreadcrumbs testClass1 testClass2 euiBreadcrumbs--truncate"
+      class="euiBreadcrumbs testClass1 testClass2"
       data-test-subj="test subject string"
     >
       <ol
-        class="euiBreadcrumbs__list"
+        class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
       >
         <li
-          class="euiBreadcrumb"
+          class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
         >
           <a
-            class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary"
+            class="euiLink euiBreadcrumb__content customClass emotion-euiLink-primary-euiBreadcrumb__content-page-isTruncated"
             data-test-subj="breadcrumbsAnimals"
             href="#"
             rel="noreferrer"
@@ -222,11 +222,11 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           </a>
         </li>
         <li
-          class="euiBreadcrumb euiBreadcrumb--last"
+          class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
         >
           <span
             aria-current="page"
-            class="euiBreadcrumb__content"
+            class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
           >
             Edit
           </span>

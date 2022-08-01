@@ -18,26 +18,26 @@ Array [
     >
       <nav
         aria-label="Breadcrumbs"
-        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs"
       >
         <ol
-          class="euiBreadcrumbs__list"
+          class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
-              class="euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb euiBreadcrumb--last"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
             >
               components
             </span>
@@ -98,7 +98,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiControlBar euiControlBar--large euiControlBar--fixed"
-    style="left:200px;right:0"
+    style="left: 200px; right: 0px;"
   >
     <h2
       class="emotion-euiScreenReaderOnly"
@@ -110,26 +110,28 @@ Array [
     >
       <nav
         aria-label="Breadcrumbs"
-        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs"
       >
         <ol
-          class="euiBreadcrumbs__list"
+          class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
-              class="euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+              title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb euiBreadcrumb--last"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
+              title="components"
             >
               components
             </span>
@@ -190,7 +192,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiControlBar euiControlBar--large euiControlBar--fixed"
-    style="left:0;right:0;max-height:20rem"
+    style="left: 0px; right: 0px; max-height: 20rem;"
   >
     <h2
       class="emotion-euiScreenReaderOnly"
@@ -202,26 +204,28 @@ Array [
     >
       <nav
         aria-label="Breadcrumbs"
-        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs"
       >
         <ol
-          class="euiBreadcrumbs__list"
+          class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
-              class="euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+              title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb euiBreadcrumb--last"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
+              title="components"
             >
               components
             </span>
@@ -282,7 +286,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiControlBar euiControlBar--large euiControlBar--fixed euiControlBar--showOnMobile"
-    style="left:0;right:0"
+    style="left: 0px; right: 0px;"
   >
     <h2
       class="emotion-euiScreenReaderOnly"
@@ -294,26 +298,28 @@ Array [
     >
       <nav
         aria-label="Breadcrumbs"
-        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs"
       >
         <ol
-          class="euiBreadcrumbs__list"
+          class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
-              class="euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+              title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb euiBreadcrumb--last"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
+              title="components"
             >
               components
             </span>
@@ -373,7 +379,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
 <section
   aria-label="Page level controls"
   class="euiControlBar euiControlBar--large euiControlBar--absolute"
-  style="left:0;right:0"
+  style="left: 0px; right: 0px;"
 >
   <h2
     class="emotion-euiScreenReaderOnly"
@@ -385,26 +391,28 @@ exports[`EuiControlBar props position is rendered 1`] = `
   >
     <nav
       aria-label="Breadcrumbs"
-      class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
+      class="euiBreadcrumbs euiControlBar__breadcrumbs"
     >
       <ol
-        class="euiBreadcrumbs__list"
+        class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
       >
         <li
-          class="euiBreadcrumb"
+          class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
         >
           <span
-            class="euiBreadcrumb__content"
+            class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+            title="src"
           >
             src
           </span>
         </li>
         <li
-          class="euiBreadcrumb euiBreadcrumb--last"
+          class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
         >
           <span
             aria-current="page"
-            class="euiBreadcrumb__content"
+            class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
+            title="components"
           >
             components
           </span>
@@ -458,7 +466,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiControlBar euiControlBar--large euiControlBar--fixed"
-    style="left:0;right:200px"
+    style="left: 0px; right: 200px;"
   >
     <h2
       class="emotion-euiScreenReaderOnly"
@@ -470,26 +478,28 @@ Array [
     >
       <nav
         aria-label="Breadcrumbs"
-        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs"
       >
         <ol
-          class="euiBreadcrumbs__list"
+          class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
-              class="euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+              title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb euiBreadcrumb--last"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
+              title="components"
             >
               components
             </span>
@@ -550,7 +560,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiControlBar euiControlBar-isOpen euiControlBar--large euiControlBar--fixed"
-    style="left:0;right:0"
+    style="left: 0px; right: 0px;"
   >
     <h2
       class="emotion-euiScreenReaderOnly"
@@ -562,26 +572,28 @@ Array [
     >
       <nav
         aria-label="Breadcrumbs"
-        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs"
       >
         <ol
-          class="euiBreadcrumbs__list"
+          class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
-              class="euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+              title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb euiBreadcrumb--last"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
+              title="components"
             >
               components
             </span>
@@ -647,7 +659,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiControlBar euiControlBar--small euiControlBar--fixed"
-    style="left:0;right:0"
+    style="left: 0px; right: 0px;"
   >
     <h2
       class="emotion-euiScreenReaderOnly"
@@ -659,26 +671,28 @@ Array [
     >
       <nav
         aria-label="Breadcrumbs"
-        class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
+        class="euiBreadcrumbs euiControlBar__breadcrumbs"
       >
         <ol
-          class="euiBreadcrumbs__list"
+          class="euiBreadcrumbs__list emotion-euiBreadcrumbs__list-isTruncated"
         >
           <li
-            class="euiBreadcrumb"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
-              class="euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncated-euiTextColor-subdued"
+              title="src"
             >
               src
             </span>
           </li>
           <li
-            class="euiBreadcrumb euiBreadcrumb--last"
+            class="euiBreadcrumb emotion-euiBreadcrumb-page-isTruncated"
           >
             <span
               aria-current="page"
-              class="euiBreadcrumb__content"
+              class="euiBreadcrumb__content emotion-euiBreadcrumb__content-page-isTruncatedLast-euiTextColor-default"
+              title="components"
             >
               components
             </span>
