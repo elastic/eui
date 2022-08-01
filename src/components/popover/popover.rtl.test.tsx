@@ -95,7 +95,7 @@ describe('EuiPopover', () => {
       fireEvent.click(screen.getByText('Open popover'));
       await waitForEuiPopoverOpen();
 
-      fireEvent.keyDown(screen.queryByTestSubject('popover')!, {
+      fireEvent.keyDown(screen.getByTestSubject('popover'), {
         key: 'Escape',
       });
 
