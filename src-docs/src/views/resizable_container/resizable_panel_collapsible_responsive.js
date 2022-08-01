@@ -8,8 +8,8 @@ import {
   EuiTitle,
   EuiSpacer,
   EuiPage,
-} from '../../../../src/components';
-import { useIsWithinBreakpoints } from '../../../../src/services';
+  useIsWithinBreakpoints,
+} from '../../../../src';
 import { fake } from 'faker';
 
 const texts = [];

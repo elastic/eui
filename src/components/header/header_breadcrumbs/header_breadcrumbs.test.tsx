@@ -7,13 +7,13 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { mount } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiHeaderBreadcrumbs } from './header_breadcrumbs';
 
 describe('EuiHeaderBreadcrumbs', () => {
-  test('is rendered', () => {
+  it('is rendered', () => {
     const breadcrumbs = [
       {
         text: 'Animals',
@@ -41,10 +41,20 @@ describe('EuiHeaderBreadcrumbs', () => {
       },
     ];
 
-    const component = render(
+    const component = mount(
       <EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} {...requiredProps} />
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component.render()).toMatchSnapshot();
+  });
+
+  it('renders only one breadcrumb with all rounded corners', () => {
+    const breadcrumbs = [{ text: 'Home' }];
+
+    const component = mount(
+      <EuiHeaderBreadcrumbs breadcrumbs={breadcrumbs} {...requiredProps} />
+    );
+
+    expect(component.render()).toMatchSnapshot();
   });
 });

@@ -24,7 +24,9 @@ If the upgrade includes a large number of commits or has known breaking changes,
 
 It is likely that resulting errors are truly caused by a change in EUI and not coincidence. Therefore, before reaching out to plugin owners for help, timebox an investigation period to resolve the issues.
 
-### Type errors during `kbn bootstrap`
+### Type errors
+
+Type errors can be checked by running `node scripts/type_check.js` from the kibana root folder.
 
 Type errors, luckily, are easy to track to specific commit and usually result from updated prop configurations. Manually update components in Kibana to match the new prop shape. Reach out to a plugin codeowner if questions arise.
 

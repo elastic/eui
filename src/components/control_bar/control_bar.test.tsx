@@ -7,7 +7,7 @@
  */
 
 import React, { ReactNode } from 'react';
-import { render } from 'enzyme';
+import { mount, render } from 'enzyme';
 import { requiredProps } from '../../test';
 
 import { EuiControlBar, Control } from './control_bar';
@@ -77,71 +77,71 @@ describe('EuiControlBar', () => {
 
   describe('props', () => {
     test('mobile is rendered', () => {
-      const component = render(
+      const component = mount(
         <EuiControlBar controls={controls} showOnMobile />
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('showContent is rendered', () => {
-      const component = render(
+      const component = mount(
         <EuiControlBar controls={controls} showContent>
           Content
         </EuiControlBar>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('size is rendered', () => {
-      const component = render(
+      const component = mount(
         <EuiControlBar controls={controls} size="s">
           Content
         </EuiControlBar>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('maxHeight is rendered', () => {
-      const component = render(
+      const component = mount(
         <EuiControlBar controls={controls} maxHeight="20rem">
           Content
         </EuiControlBar>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('leftOffset is rendered', () => {
-      const component = render(
+      const component = mount(
         <EuiControlBar controls={controls} leftOffset={200}>
           Content
         </EuiControlBar>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('rightOffset is rendered', () => {
-      const component = render(
+      const component = mount(
         <EuiControlBar controls={controls} rightOffset={200}>
           Content
         </EuiControlBar>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
 
     test('position is rendered', () => {
-      const component = render(
+      const component = mount(
         <EuiControlBar controls={controls} position="absolute">
           Content
         </EuiControlBar>
       );
 
-      expect(component).toMatchSnapshot();
+      expect(component.render()).toMatchSnapshot();
     });
   });
 });
