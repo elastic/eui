@@ -9,19 +9,19 @@
 import {
   queryHelpers,
   buildQueries,
-  AllByAttribute,
-  GetErrorFunction,
   Matcher,
+  MatcherOptions,
+  GetErrorFunction,
 } from '@testing-library/react';
 
-type QueryAllByAttribute = Parameters<AllByAttribute>;
-const queryAllByTestSubject = (
-  ...args: [
-    QueryAllByAttribute[1],
-    QueryAllByAttribute[2],
-    QueryAllByAttribute[3]?
-  ]
-) => queryHelpers.queryAllByAttribute('data-test-subj', ...args);
+type ByTestSubjectArguments = [
+  // Note: We could use Parameters<AllByAttribute>, but the generated TS defs is less specific
+  container: HTMLElement,
+  id: Matcher,
+  options?: MatcherOptions
+];
+const queryAllByTestSubject = (...args: ByTestSubjectArguments) =>
+  queryHelpers.queryAllByAttribute('data-test-subj', ...args);
 
 const getMultipleError: GetErrorFunction<[Matcher]> = (_, TestSubjectValue) =>
   `Found multiple elements with the data-test-subj attribute of: ${TestSubjectValue}`;
