@@ -46,7 +46,7 @@ import {
   EuiFlyoutPaddingSize,
 } from './flyout_types';
 
-import { EuiFlyoutContextProvider } from './flyout_context';
+import { EuiFlyoutContext } from './flyout_context';
 
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
@@ -191,13 +191,13 @@ export const EuiFlyout = forwardRef(
     const euiTheme = useEuiTheme();
     const styles = euiFlyoutStyles(euiTheme);
 
-    console.log(euiTheme.euiTheme.size.m);
-
     const cssStyles = [
       styles.euiFlyout,
-      ,
+
+      side === 'left' && type === 'push' && styles.pushLeft,
       isEuiFlyoutSizeNamed(size) && styles[`flyoutSize--${size}`],
-      styles[`flyoutPadding--${paddingSize}`],
+      styles[type],
+      styles[side],
     ];
 
     const classes = classnames(
@@ -271,7 +271,7 @@ export const EuiFlyout = forwardRef(
      * (both mousedown and mouseup) the overlay mask.
      */
     let flyout = (
-      <EuiFlyoutContextProvider paddingSize={paddingSize}>
+      <EuiFlyoutContext.Provider value={{ paddingSize }}>
         <EuiFocusTrap
           disabled={isPushed}
           clickOutsideDisables={!ownFocus}
@@ -291,7 +291,7 @@ export const EuiFlyout = forwardRef(
             {children}
           </Element>
         </EuiFocusTrap>
-      </EuiFlyoutContextProvider>
+      </EuiFlyoutContext.Provider>
     );
 
     // If ownFocus is set, wrap with an overlay and allow the user to click it to close it.

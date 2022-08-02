@@ -11,6 +11,8 @@ import {
   euiCanAnimate,
   euiYScrollWithShadows,
   euiOverflowShadowStyles,
+  euiBreakpoint,
+  //logicalCSS,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
@@ -27,6 +29,18 @@ const euiFlyout = keyframes`
     opacity: 1;
     transform: translateX(0%);
   }
+`;
+
+const euiFlyoutLeft = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  75% {
+    opacity: 1;
+    transform: translateX(0%);
+}
 `;
 
 const getFlyoutPadding = (
@@ -98,6 +112,10 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       &:focus {
         outline: none;
       }
+
+      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+        max-width: 90vw !important;
+      }
     `,
     euiFlyout__closeButton: css`
       background-color: ${transparentize(euiTheme.colors.emptyShade, 0.1)};
@@ -130,39 +148,71 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     // Flyout Sizes
     // Note: Dashes are used because s, m, l are size values for multiple props
     'flyoutSize--s': css`
-      min-width: ${flyoutSizes.s.min}px;
-      width: ${flyoutSizes.s.width};
       &.euiFlyout--maxWidth-default {
         max-width: ${flyoutSizes.s.max}px;
       }
+      ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
+        min-width: ${flyoutSizes.s.min}px;
+        width: ${flyoutSizes.s.width};
+      }
+      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+        min-width: 0;
+        width: ${flyoutSizes.s.min}px;
+      }
     `,
     'flyoutSize--m': css`
-      min-width: ${flyoutSizes.m.min}px;
-      width: ${flyoutSizes.m.width};
       &.euiFlyout--maxWidth-default {
         max-width: ${flyoutSizes.m.max}px;
       }
+      ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
+        min-width: ${flyoutSizes.m.min}px;
+        width: ${flyoutSizes.m.width};
+      }
+      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+        min-width: 0;
+        width: ${flyoutSizes.m.min}px;
+      }
     `,
     'flyoutSize--l': css`
-      min-width: ${flyoutSizes.l.min}px;
-      width: ${flyoutSizes.l.width};
       &.euiFlyout--maxWidth-default {
         max-width: ${flyoutSizes.l.max}px;
       }
+      ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
+        min-width: ${flyoutSizes.l.min}px;
+        width: ${flyoutSizes.l.width};
+      }
+      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+        min-width: 0;
+        width: ${flyoutSizes.l.min}px;
+      }
     `,
 
-    // Padding
-    'flyoutPadding--none': css`
-      padding: ${getFlyoutPadding('none', euiThemeContext)};
+    // Side
+    right: css``,
+    left: css`
+      border-right: ${euiTheme.border.thin};
+      border-left: none;
+      right: auto;
+      left: 0;
+      clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
+      ${euiCanAnimate} {
+        animation: ${euiFlyoutLeft};
+      }
     `,
-    'flyoutPadding--s': css`
-      padding: ${getFlyoutPadding('s', euiThemeContext)};
+
+    // Type
+    overlay: css``,
+    push: css`
+      box-shadow: none;
+      clip-path: none;
+      animation-duration: 0s; // Don't animate on loading a docked nav
+      border-left: ${euiTheme.border.thick};
+      // Make sure the header shadows are above
+      z-index: ${Number(euiTheme.levels.header) - 1};
     `,
-    'flyoutPadding--m': css`
-      padding: ${getFlyoutPadding('m', euiThemeContext)};
-    `,
-    'flyoutPadding--l': css`
-      padding: ${getFlyoutPadding('l', euiThemeContext)};
+    pushLeft: css`
+      border-left: none;
+      border-right: ${euiTheme.border.thick};
     `,
   };
 };
@@ -250,3 +300,17 @@ export const euiFlyoutFooterStyles = (
     `,
   };
 };
+
+// Padding
+// 'flyoutPadding--none': css`
+//   padding: ${getFlyoutPadding('none', euiThemeContext)};
+// `,
+// 'flyoutPadding--s': css`
+//   padding: ${getFlyoutPadding('s', euiThemeContext)};
+// `,
+// 'flyoutPadding--m': css`
+//   padding: ${getFlyoutPadding('m', euiThemeContext)};
+// `,
+// 'flyoutPadding--l': css`
+//   padding: ${getFlyoutPadding('l', euiThemeContext)};
+// `,

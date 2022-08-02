@@ -6,31 +6,19 @@
  * Side Public License, v 1.
  */
 
-import React, { createContext } from 'react';
+import { createContext } from 'react';
 import { EuiFlyoutProps } from './flyout_types';
 
-interface FlyoutContextProps {
-  paddingSize: EuiFlyoutProps['paddingSize'];
-}
+// interface FlyoutContextProps {
+//   paddingSize: EuiFlyoutProps['paddingSize'];
+// }
 
-export const EuiFlyoutContext = createContext<FlyoutContextProps>({
+type EuiFlyoutContextValues = Required<Pick<EuiFlyoutProps, 'paddingSize'>>;
+
+export const contextDefaults: EuiFlyoutContextValues = {
   paddingSize: 'l',
-});
+};
 
-interface ContextProviderProps extends Required<FlyoutContextProps> {
-  /**
-   * ReactNode to render as this component's content
-   */
-  children: any;
-}
-
-export function EuiFlyoutContextProvider({
-  children,
-  paddingSize,
-}: ContextProviderProps) {
-  return (
-    <EuiFlyoutContext.Provider value={{ paddingSize }}>
-      {children}
-    </EuiFlyoutContext.Provider>
-  );
-}
+export const EuiFlyoutContext = createContext<EuiFlyoutContextValues>(
+  contextDefaults
+);

@@ -31,15 +31,12 @@ export const EuiFlyoutHeader: EuiFlyoutHeaderProps = ({
   const { paddingSize } = useContext(EuiFlyoutContext);
 
   const euiTheme = useEuiTheme();
-  const styles = euiFlyoutHeaderStyles(
-    paddingSize ? paddingSize : 'l',
-    euiTheme
-  );
+  const styles = euiFlyoutHeaderStyles(paddingSize, euiTheme);
 
   const cssStyles = [
     styles.euiFlyoutHeader,
+    styles.padding,
     hasBorder && styles.border,
-    //paddingSize && styles[paddingSize],
   ];
 
   const classes = classNames(
