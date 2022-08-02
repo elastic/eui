@@ -1,3 +1,13 @@
+## [`62.0.2`](https://github.com/elastic/eui/tree/v62.0.2)
+
+- Added new React Testing Library `ByDataTestSubj` utilities for targeting EUI's `data-test-subj` attributes. These can be accessed by importing custom RTL `render` and `screen` utils from `@elastic/eui/lib/test/rtl`. ([#6091](https://github.com/elastic/eui/pull/6091))
+ ([#6091](https://github.com/elastic/eui/pull/6091))
+- Added new React Testing Library EuiPopover helpers, `waitForEuiPopoverOpen` and `waitForEuiPopoverClose` ([#6091](https://github.com/elastic/eui/pull/6091))
+
+**Bug fixes**
+
+- Restored non-Emotion classNames to `EuiCommentEvent`'s children ([#6089](https://github.com/elastic/eui/pull/6089))
+
 ## [`62.0.1`](https://github.com/elastic/eui/tree/v62.0.1)
 
 **Bug fixes**
