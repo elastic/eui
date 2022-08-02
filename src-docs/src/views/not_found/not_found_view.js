@@ -8,8 +8,8 @@ import {
   EuiButton,
   EuiImage,
 } from '../../../../src';
-import pageNotFoundLight from '../../images/empty-prompt/404_rainy_cloud_light.png';
-import pageNotFoundDark from '../../images/empty-prompt/404_rainy_cloud_dark.png';
+import pageNotFoundLight from '../../images/empty-prompt/pageNotFound--light.png';
+import pageNotFoundDark from '../../images/empty-prompt/pageNotFound--dark.png';
 
 export const NotFoundView = () => {
   const { colorMode } = useEuiTheme();
@@ -20,7 +20,7 @@ export const NotFoundView = () => {
     <EuiPageSection grow alignment="center">
       <EuiEmptyPrompt
         color="subdued"
-        icon={<EuiImage size="fullWidth" src={iconImg} alt="" />}
+        icon={<EuiImage size="original" src={iconImg} alt="" />}
         title={<h2>Page not found</h2>}
         layout="vertical"
         body={

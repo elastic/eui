@@ -80,7 +80,11 @@ export const AppView = ({ children, currentRoute }) => {
         Skip to content
       </EuiSkipLink>
       <GuidePageHeader onToggleLocale={toggleLocale} selectedLocale={locale} />
-      <EuiPageTemplate paddingSize="none" restrictWidth={false}>
+      <EuiPageTemplate
+        paddingSize="none"
+        restrictWidth={false}
+        mainProps={{ id: 'start-of-content' }}
+      >
         <EuiPageTemplate.Sidebar className="guideSideNav" sticky>
           <GuidePageChrome
             currentRoute={currentRoute}
@@ -90,7 +94,7 @@ export const AppView = ({ children, currentRoute }) => {
           />
         </EuiPageTemplate.Sidebar>
 
-        <div id="start-of-content">{children({ theme })}</div>
+        {children({ theme })}
       </EuiPageTemplate>
     </LinkWrapper>
   );

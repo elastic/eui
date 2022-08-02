@@ -144,10 +144,12 @@ export const GuideSection: FunctionComponent<GuideSectionProps> = ({
       });
     }
 
-    return tabs.length ? (
+    const playgroundToggle = renderPlaygroundToggle();
+
+    return tabs.length || playgroundToggle ? (
       <GuideSectionExampleTabs
         tabs={tabs}
-        rightSideControl={renderPlaygroundToggle()}
+        rightSideControl={playgroundToggle}
       />
     ) : undefined;
   };

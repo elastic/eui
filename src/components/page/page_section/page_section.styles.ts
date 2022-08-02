@@ -7,15 +7,16 @@
  */
 
 import { css } from '@emotion/react';
+import { logicalCSS } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
-import { PAGE_MAX_WIDTH, _EuiPageRestrictWidth } from '../_restrict_width';
 
 export const ALIGNMENTS = ['top', 'center', 'horizontalCenter'] as const;
 export const euiPageSectionStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiPageSection: css`
-      width: 100%;
-      min-width: 0; // Make sure that inner flex layouts don't get larger than this container
+      ${logicalCSS('width', '100%')};
+      // Make sure that inner flex layouts don't get larger than this container
+      ${logicalCSS('min-width', '0')};
       display: flex;
       flex-direction: column;
     `,
@@ -23,39 +24,23 @@ export const euiPageSectionStyles = ({ euiTheme }: UseEuiTheme) => {
       flex-grow: 1;
     `,
     border: css`
-      border-bottom: ${euiTheme.border.thin};
+      ${logicalCSS('border-bottom', euiTheme.border.thin)};
     `,
     // Alignments
     top: css``,
     center: css`
+      ${logicalCSS('width', 'auto')};
       align-items: center;
       justify-content: center;
     `,
     horizontalCenter: css`
+      ${logicalCSS('width', 'auto')};
       align-items: center;
     `,
+
+    euiPageSection__content: css`
+      ${logicalCSS('width', '100%')};
+      ${logicalCSS('margin-horizontal', 'auto')};
+    `,
   };
-};
-
-export const euiPageSection__width = (
-  restrictWidth: _EuiPageRestrictWidth,
-  alignment: typeof ALIGNMENTS[number]
-) => {
-  const width = alignment?.toLowerCase().includes('center') ? 'auto' : '100%';
-
-  if (restrictWidth === true) {
-    return css`
-      margin-left: auto;
-      margin-right: auto;
-      width: ${width};
-      max-width: ${PAGE_MAX_WIDTH};
-    `;
-  } else if (restrictWidth !== undefined) {
-    return css`
-      margin-left: auto;
-      margin-right: auto;
-      width: ${width};
-      max-width: ${restrictWidth};
-    `;
-  }
 };

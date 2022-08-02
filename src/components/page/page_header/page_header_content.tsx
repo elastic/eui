@@ -7,7 +7,6 @@
  */
 
 import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
-import { css } from '@emotion/react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { EuiIcon, EuiIconProps, IconType } from '../../icon';
@@ -22,7 +21,6 @@ import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../../breadcrumbs';
 import {
   PADDING_SIZES,
-  euiBreakpoint,
   useEuiPaddingCSS,
   LogicalSides,
 } from '../../../global_styling';
@@ -362,11 +360,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
         <EuiFlexGroup
           wrap
           responsive={false}
-          css={css`
-            ${euiBreakpoint('m', useTheme.euiTheme)} {
-              flex-direction: row-reverse;
-            }
-          `}
+          direction={isResponsiveBreakpoint ? undefined : 'rowReverse'}
           {...rightSideGroupProps}
         >
           {wrapWithFlex()}

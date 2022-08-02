@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { GuideSectionTypes } from '../../components';
 import { PageDemo } from './_page_demo';
 
 import {
@@ -11,6 +12,7 @@ import {
   EuiSpacer,
   EuiPageSection,
   EuiPageSidebar,
+  EuiPageTemplate_Deprecated,
 } from '../../../../src';
 
 import { _EuiPageTemplate } from '../../../../src/components/page_template/page_template';
@@ -24,12 +26,29 @@ const BottomBarSource = require('!!raw-loader!./page_template_bottom_bar');
 import Empty from './page_template_empty';
 const EmptySource = require('!!raw-loader!./page_template_empty');
 
+import Deprecated from './deprecated';
+const DeprecatedSource = require('!!raw-loader!./deprecated');
+
+import { pageTemplateConfig } from './playground';
+
 export const PageTemplateExample = {
   title: 'Page template',
   isBeta: true,
   isNew: true,
   intro: (
     <>
+      <EuiCallOut
+        iconType="alert"
+        color="warning"
+        title={
+          <>
+            The previous version of <strong>EuiPageTemplate</strong> has been
+            deprecated to <strong>EuiPageTemplate_Deprecated</strong>.{' '}
+            <Link to="#deprecated">More info below.</Link>
+          </>
+        }
+      />
+      <EuiSpacer />
       <EuiText>
         <p>
           The new <strong>EuiPageTemplate</strong> is a namespaced component for
@@ -38,23 +57,6 @@ export const PageTemplateExample = {
           customize most of the inner components directly on their instance.
         </p>
       </EuiText>
-      <EuiSpacer />
-      <EuiCallOut
-        iconType="alert"
-        color="warning"
-        title="The previous version of EuiPageTemplate has been deprecated to EuiPageTemplate__Deprecated"
-      >
-        <p>
-          To continue using the previous version, you can update your import
-          statement to{' '}
-          <EuiCode language="ts">
-            {
-              "import { EuiPageTemplate_Deprecated as EuiPageTemplate } from '@elastic/eui'"
-            }
-          </EuiCode>
-          .
-        </p>
-      </EuiCallOut>
     </>
   ),
   sections: [
@@ -394,6 +396,42 @@ export const PageTemplateExample = {
           />
         ),
       },
+    },
+    {
+      title: 'Deprecated',
+      text: (
+        <>
+          <p>
+            The previous version of <strong>EuiPageTemplate</strong> has been
+            deprecated and renamed to{' '}
+            <strong>EuiPageTemplate_Deprecated</strong>.
+          </p>
+          <p>
+            To continue using the previous version, you can update your import
+            statement to{' '}
+            <EuiCode language="ts">
+              {
+                "import { EuiPageTemplate_Deprecated as EuiPageTemplate } from '@elastic/eui'"
+              }
+            </EuiCode>
+            .
+          </p>
+        </>
+      ),
+      demo: (
+        <div className="guideDemo__highlightLayout guideDemo__highlightLayout--border">
+          <Deprecated />
+        </div>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: DeprecatedSource,
+        },
+      ],
+      demoPanelProps: { paddingSize: 'none' },
+      props: { EuiPageTemplate_Deprecated },
+      playground: pageTemplateConfig,
     },
   ],
 };

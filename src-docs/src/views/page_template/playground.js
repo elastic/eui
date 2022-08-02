@@ -1,6 +1,6 @@
 import { PropTypes } from 'react-view';
 import {
-  EuiPageTemplate,
+  EuiPageTemplate_Deprecated as EuiPageTemplate,
   EuiPageHeader,
   EuiButton,
 } from '../../../../src/components/';
