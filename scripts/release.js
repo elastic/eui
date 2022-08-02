@@ -51,13 +51,12 @@ if (args.dry_run) {
     execSync('npm run build', execOptions);
   }
 
-  let versionTarget;
 
   if (args.steps.indexOf('version') > -1) {
     const { changelogMap, changelog } = collateChangelogFiles();
 
     // prompt user for what type of version bump to make (major|minor|patch)
-    versionTarget = await getVersionTypeFromChangelog(changelogMap);
+    const versionTarget = await getVersionTypeFromChangelog(changelogMap);
 
     // build may have generated a new i18ntokens.json file, dirtying the git workspace
     // it's important to track those changes with this release, so determine the changes and write them
