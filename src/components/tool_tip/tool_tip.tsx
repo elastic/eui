@@ -7,9 +7,11 @@
  */
 
 import React, {
-  Component,
+  useEffect,
+  useState,
+  useRef,
+  FunctionComponent,
   cloneElement,
-  Fragment,
   ReactElement,
   ReactNode,
   MouseEvent as ReactMouseEvent,
@@ -48,6 +50,11 @@ interface ToolTipStyles {
   right?: number | 'auto';
   opacity?: number;
   visibility?: 'hidden';
+}
+
+interface ArrowStyles {
+  left: number;
+  top: number;
 }
 
 const displayToClassNameMap = {
@@ -92,7 +99,7 @@ export interface EuiToolTipProps {
   /**
    * Delay before showing tooltip. Good for repeatable items.
    */
-  delay: ToolTipDelay;
+  delay?: ToolTipDelay;
   /**
    * An optional title for your tooltip.
    */
@@ -104,7 +111,7 @@ export interface EuiToolTipProps {
   /**
    * Suggested position. If there is not enough room for it this will be changed.
    */
-  position: ToolTipPositions;
+  position?: ToolTipPositions;
 
   /**
    * If supplied, called when mouse movement causes the tool tip to be
@@ -113,103 +120,102 @@ export interface EuiToolTipProps {
   onMouseOut?: (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => void;
 }
 
-interface State {
-  visible: boolean;
-  hasFocus: boolean;
-  calculatedPosition: ToolTipPositions;
-  toolTipStyles: ToolTipStyles;
-  arrowStyles: undefined | { left: number; top: number };
-  id: string;
-}
+export const EuiToolTip: FunctionComponent<EuiToolTipProps> = ({
+  position = 'top',
+  delay = 'regular',
+  display = 'inlineBlock',
+  id: propsId,
+  children,
+  className,
+  anchorClassName,
+  content,
+  title,
+  ...rest
+}) => {
+  const isMounted = useRef(false);
+  const anchor = useRef<null | HTMLElement>(null);
+  const popover = useRef<null | HTMLElement>(null);
+  const timeoutId = useRef<ReturnType<typeof setTimeout>>();
 
-export class EuiToolTip extends Component<EuiToolTipProps, State> {
-  _isMounted = false;
-  anchor: null | HTMLElement = null;
-  popover: null | HTMLElement = null;
-  private timeoutId?: ReturnType<typeof setTimeout>;
+  const [visible, _setVisible] = useState(false);
+  const [hasFocus, setHasFocus] = useState(false);
+  const [calculatedPosition, setCalculatedPosition] = useState<
+    ToolTipPositions
+  >(position);
+  const [toolTipStyles, setToolTipStyles] = useState<ToolTipStyles>(
+    DEFAULT_TOOLTIP_STYLES
+  );
+  const [arrowStyles, setArrowStyles] = useState<ArrowStyles>();
+  const id = useRef(propsId || htmlIdGenerator()());
 
-  state: State = {
-    visible: false,
-    hasFocus: false,
-    calculatedPosition: this.props.position,
-    toolTipStyles: DEFAULT_TOOLTIP_STYLES,
-    arrowStyles: undefined,
-    id: this.props.id || htmlIdGenerator()(),
-  };
-
-  static defaultProps: Partial<EuiToolTipProps> = {
-    position: 'top',
-    delay: 'regular',
-    display: 'inlineBlock',
-  };
-
-  clearAnimationTimeout = () => {
-    if (this.timeoutId) {
-      this.timeoutId = clearTimeout(this.timeoutId) as undefined;
+  const clearAnimationTimeout = () => {
+    if (timeoutId.current) {
+      timeoutId.current = clearTimeout(timeoutId.current) as undefined;
     }
   };
 
-  componentDidMount() {
-    this._isMounted = true;
-  }
+  useEffect(() => {
+    isMounted.current = true;
 
-  componentWillUnmount() {
-    this.clearAnimationTimeout();
-    this._isMounted = false;
-  }
+    return () => {
+      clearAnimationTimeout();
+      isMounted.current = false;
+    };
+  }, []);
 
-  componentDidUpdate(prevProps: EuiToolTipProps, prevState: State) {
-    if (prevState.visible === false && this.state.visible === true) {
-      requestAnimationFrame(this.testAnchor);
-    }
-  }
+  const setVisible = (isVisible: boolean) => {
+    _setVisible((prevState) => {
+      if (prevState === false && isVisible === true) {
+        requestAnimationFrame(testAnchor);
+      }
+      return isVisible;
+    });
+  };
 
-  testAnchor = () => {
+  const testAnchor = () => {
     // when the tooltip is visible, this checks if the anchor is still part of document
     // this fixes when the react root is removed from the dom without unmounting
     // https://github.com/elastic/eui/issues/1105
-    if (document.body.contains(this.anchor) === false) {
+    if (document.body.contains(anchor.current) === false) {
       // the anchor is no longer part of `document`
-      this.hideToolTip();
+      hideToolTip();
     } else {
-      if (this.state.visible) {
+      if (visible) {
         // if still visible, keep checking
-        requestAnimationFrame(this.testAnchor);
+        requestAnimationFrame(testAnchor);
       }
     }
   };
 
-  setPopoverRef = (ref: HTMLElement) => {
-    this.popover = ref;
+  const setPopoverRef = (ref: HTMLElement) => {
+    popover.current = ref;
 
     // if the popover has been unmounted, clear
     // any previous knowledge about its size
     if (ref == null) {
-      this.setState({
-        toolTipStyles: DEFAULT_TOOLTIP_STYLES,
-        arrowStyles: undefined,
-      });
+      setToolTipStyles(DEFAULT_TOOLTIP_STYLES);
+      setArrowStyles(undefined);
     }
   };
 
-  showToolTip = () => {
-    if (!this.timeoutId) {
-      this.timeoutId = setTimeout(() => {
-        enqueueStateChange(() => this.setState({ visible: true }));
-      }, delayToMsMap[this.props.delay]);
+  const showToolTip = () => {
+    if (!timeoutId.current) {
+      timeoutId.current = setTimeout(() => {
+        enqueueStateChange(() => setVisible(true));
+      }, delayToMsMap[delay]);
     }
   };
 
-  positionToolTip = () => {
-    const requestedPosition = this.props.position;
+  const positionToolTip = () => {
+    const requestedPosition = position;
 
-    if (!this.anchor || !this.popover) {
+    if (!anchor.current || !popover.current) {
       return;
     }
 
-    const { position, left, top, arrow } = findPopoverPosition({
-      anchor: this.anchor,
-      popover: this.popover,
+    const { position: newPosition, left, top, arrow } = findPopoverPosition({
+      anchor: anchor.current,
+      popover: popover.current,
       position: requestedPosition,
       offset: 16, // offset popover 16px from the anchor
       arrowConfig: {
@@ -232,115 +238,72 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
       top,
       left: useRightValue ? 'auto' : left,
       right: useRightValue
-        ? windowWidth - left - this.popover.offsetWidth
+        ? windowWidth - left - popover.current.offsetWidth
         : 'auto',
     };
 
-    this.setState({
-      visible: true,
-      calculatedPosition: position,
-      toolTipStyles,
-      arrowStyles: arrow,
-    });
+    setVisible(true);
+    setCalculatedPosition(newPosition);
+    setToolTipStyles(toolTipStyles);
+    setArrowStyles(arrow);
   };
 
-  hideToolTip = () => {
-    this.clearAnimationTimeout();
+  const hideToolTip = () => {
+    clearAnimationTimeout();
     enqueueStateChange(() => {
-      if (this._isMounted) {
-        this.setState({ visible: false });
+      if (isMounted.current) {
+        setVisible(false);
       }
     });
   };
 
-  onFocus = () => {
-    this.setState({
-      hasFocus: true,
-    });
-    this.showToolTip();
+  const onFocus = () => {
+    setHasFocus(true);
+    showToolTip();
   };
 
-  onBlur = () => {
-    this.setState({
-      hasFocus: false,
-    });
-    this.hideToolTip();
+  const onBlur = () => {
+    setHasFocus(false);
+    hideToolTip();
   };
 
-  onMouseOut = (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
+  const onMouseOut = (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
     // Prevent mousing over children from hiding the tooltip by testing for whether the mouse has
     // left the anchor for a non-child.
     if (
-      this.anchor === event.relatedTarget ||
-      (this.anchor != null &&
-        !this.anchor.contains(event.relatedTarget as Node))
+      anchor.current === event.relatedTarget ||
+      (anchor.current != null &&
+        !anchor.current.contains(event.relatedTarget as Node))
     ) {
-      if (!this.state.hasFocus) {
-        this.hideToolTip();
+      if (!hasFocus) {
+        hideToolTip();
       }
     }
 
-    if (this.props.onMouseOut) {
-      this.props.onMouseOut(event);
+    if (rest.onMouseOut) {
+      rest.onMouseOut(event);
     }
   };
 
-  render() {
-    const {
-      children,
-      className,
-      anchorClassName,
-      content,
-      title,
-      delay,
-      display,
-      ...rest
-    } = this.props;
+  const classes = classNames(
+    'euiToolTip',
+    positionsToClassNameMap[calculatedPosition],
+    className
+  );
 
-    const { arrowStyles, id, toolTipStyles, visible } = this.state;
+  const anchorClasses = classNames(
+    'euiToolTipAnchor',
+    display ? displayToClassNameMap[display] : null,
+    anchorClassName
+  );
 
-    const classes = classNames(
-      'euiToolTip',
-      positionsToClassNameMap[this.state.calculatedPosition],
-      className
-    );
-
-    const anchorClasses = classNames(
-      'euiToolTipAnchor',
-      display ? displayToClassNameMap[display] : null,
-      anchorClassName
-    );
-
-    let tooltip;
-    if (visible && (content || title)) {
-      tooltip = (
-        <EuiPortal>
-          <EuiToolTipPopover
-            className={classes}
-            style={toolTipStyles}
-            positionToolTip={this.positionToolTip}
-            popoverRef={this.setPopoverRef}
-            title={title}
-            id={id}
-            role="tooltip"
-            {...rest}
-          >
-            <div style={arrowStyles} className="euiToolTip__arrow" />
-            <EuiResizeObserver onResize={this.positionToolTip}>
-              {(resizeRef) => <div ref={resizeRef}>{content}</div>}
-            </EuiResizeObserver>
-          </EuiToolTipPopover>
-        </EuiPortal>
-      );
-    }
-
-    const anchor = (
-      // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
-      <span
-        ref={(anchor) => (this.anchor = anchor)}
+  return (
+    <>
+      <span // eslint-disable-line jsx-a11y/mouse-events-have-key-events
+        ref={anchor}
         className={anchorClasses}
-        onMouseOver={this.showToolTip}
-        onMouseOut={this.onMouseOut}
+        onMouseOver={showToolTip}
+        onMouseOut={onMouseOut}
       >
         {/**
          * Re: jsx-a11y/mouse-events-have-key-events
@@ -352,23 +315,35 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
          */}
         {cloneElement(children, {
           onFocus: (e: React.FocusEvent) => {
-            this.onFocus();
+            onFocus();
             children.props.onFocus && children.props.onFocus(e);
           },
           onBlur: (e: React.FocusEvent) => {
-            this.onBlur();
+            onBlur();
             children.props.onBlur && children.props.onBlur(e);
           },
-          ...(visible && { 'aria-describedby': this.state.id }),
+          ...(visible && { 'aria-describedby': id }),
         })}
       </span>
-    );
-
-    return (
-      <Fragment>
-        {anchor}
-        {tooltip}
-      </Fragment>
-    );
-  }
-}
+      {visible && (content || title) && (
+        <EuiPortal>
+          <EuiToolTipPopover
+            className={classes}
+            style={toolTipStyles}
+            positionToolTip={positionToolTip}
+            popoverRef={setPopoverRef}
+            title={title}
+            id={id.current}
+            role="tooltip"
+            {...rest}
+          >
+            <div style={arrowStyles} className="euiToolTip__arrow" />
+            <EuiResizeObserver onResize={positionToolTip}>
+              {(resizeRef) => <div ref={resizeRef}>{content}</div>}
+            </EuiResizeObserver>
+          </EuiToolTipPopover>
+        </EuiPortal>
+      )}
+    </>
+  );
+};
