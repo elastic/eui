@@ -45,7 +45,8 @@ import {
 Test utilities are published from the `lib/test` directory.
 
 ```js
-import { findTestSubject } from '@elastic/eui/lib/test';
+import { findTestSubject } from '@elastic/eui/lib/test'; // Enzyme
+import { findByTestSubject, render, screen } from '@elastic/eui/lib/test/rtl'; // React Testing Library
 ```
 
 ### Theming
