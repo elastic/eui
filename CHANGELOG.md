@@ -1,3 +1,12 @@
+## [`62.0.1`](https://github.com/elastic/eui/tree/v62.0.1)
+
+**Bug fixes**
+
+- Fixed a bug preventing `EuiPortal` from working in server-side rendering ([#6055](https://github.com/elastic/eui/pull/6055))
+- Fixed an `EuiFilterButton` accessibility error ([#6076](https://github.com/elastic/eui/pull/6076))
+- Fixed `EuiImage` rendering empty captions  ([#6081](https://github.com/elastic/eui/pull/6081))
+- Fixed `EuiImage` not respecting `text-align` on parents ([#6081](https://github.com/elastic/eui/pull/6081))
+
 ## [`62.0.0`](https://github.com/elastic/eui/tree/v62.0.0)
 
 - Updated `EuiText.img` styles to prevent images from growing full width ([#5969](https://github.com/elastic/eui/pull/5969))
@@ -25,16 +34,13 @@
 - `EuiPopover`: Removed `false` as an option from `initialFocus` ([#6044](https://github.com/elastic/eui/pull/6044))
 - Renamed `timelineIcon` on `EuiComment` to `timelineAvatar` ([#6071](https://github.com/elastic/eui/pull/6071))
 
-**CSS-in-JS**
-
-- Converted `EuiImage` to Emotion ([#5969](https://github.com/elastic/eui/pull/5969))
-- Converted `EuiPopover`, `EuiPopoverTitle`, `EuiPopoverFooter`, `EuiInputPopover` ([#5977](https://github.com/elastic/eui/pull/5977))
-
 **CSS-in-JS conversions**
 
 - Converted `EuiErrorBoundary` to Emotion ([#6053](https://github.com/elastic/eui/pull/6053))
 - Converted `EuiTextDiff` to Emotion ([#6056](https://github.com/elastic/eui/pull/6056))
 - Converted `euiBreakpoint` mixin to Emotion. ([#6057](https://github.com/elastic/eui/pull/6057))
+- Converted `EuiImage` to Emotion ([#5969](https://github.com/elastic/eui/pull/5969))
+- Converted `EuiPopover`, `EuiPopoverTitle`, `EuiPopoverFooter`, `EuiInputPopover` ([#5977](https://github.com/elastic/eui/pull/5977))
 
 ## [`61.0.0`](https://github.com/elastic/eui/tree/v61.0.0)
 

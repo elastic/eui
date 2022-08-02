@@ -19,12 +19,12 @@ import {
   EuiDescriptionListTitle,
   EuiDescriptionListDescription,
   EuiLoadingSpinner,
-} from '../../../../src/components';
+  useIsWithinBreakpoints,
+} from '../../../../src';
 import { ThemeContext } from '../../components/with_theme';
 import { typesOfPanelColors } from './_types_of_panel_colors';
 // @ts-ignore Importing from JS file
 import { typesOfUseCases } from './_types_of_use_cases';
-import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
 import { GuideSection } from '../../components/guide_section/guide_section';
 import { GuideSectionTypes } from '../../components/guide_section/guide_section_types';
 

@@ -30,7 +30,7 @@ import {
 
 import { PageTemplateExample } from './views/page_template/page_template_example';
 
-import { SitewideSearchExample } from './views/selectable/selectable_sitewide_template_example';
+import { SitewideSearchExample } from './views/selectable/selectable_templates/sitewide_example';
 
 // Services
 

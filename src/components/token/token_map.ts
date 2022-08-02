@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { TokenProps } from './token';
+import type { TokenProps } from './token_types';
 
 export type EuiTokenMapType =
   | 'tokenAlias'
@@ -137,9 +137,8 @@ export const TOKEN_MAP: {
     color: 'euiColorVis0',
   },
   tokenFile: {
-    shape: 'rectangle',
-    color: 'gray',
-    fill: 'dark',
+    shape: 'square',
+    color: 'euiColorVis2',
   },
   tokenFlattened: {
     shape: 'square',
@@ -246,9 +245,8 @@ export const TOKEN_MAP: {
     color: 'euiColorVis3',
   },
   tokenRepo: {
-    shape: 'rectangle',
+    shape: 'square',
     color: 'euiColorVis1',
-    fill: 'dark',
   },
   tokenSearchType: {
     shape: 'square',
@@ -267,9 +265,8 @@ export const TOKEN_MAP: {
     color: 'euiColorVis0',
   },
   tokenSymbol: {
-    shape: 'rectangle',
+    shape: 'square',
     color: 'euiColorVis0',
-    fill: 'dark',
   },
   tokenTag: {
     shape: 'square',

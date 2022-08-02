@@ -16,7 +16,7 @@ import { EuiFlexGroup, EuiFlexItem, EuiFlexGroupProps } from '../../flex';
 import { EuiSpacer } from '../../spacer';
 import { EuiTitle, EuiTitleProps } from '../../title';
 import { EuiText } from '../../text';
-import { useIsWithinBreakpoints } from '../../../services/hooks';
+import { useIsWithinBreakpoints, useEuiTheme } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../../breadcrumbs';
 import {
@@ -28,7 +28,6 @@ import {
   setStyleForRestrictedPageWidth,
   _EuiPageRestrictWidth,
 } from '../_restrict_width';
-import { useEuiTheme } from '../../../services';
 
 import { euiPageHeaderStyles } from './page_header.styles';
 import { euiPageHeaderContentStyles } from './page_header_content.styles';

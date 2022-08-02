@@ -16,7 +16,7 @@ import {
   EuiButtonEmpty,
 } from '../../../../src';
 import { EuiPageTemplateProps } from '../../../../src/components/page_template';
-import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
+import { useIsWithinBreakpoints } from '../../../../src/services';
 import { useExitPath } from '../../services/routing/routing';
 import {
   GuideSectionProps,
