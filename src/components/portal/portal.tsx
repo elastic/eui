@@ -48,6 +48,7 @@ export class EuiPortal extends Component<EuiPortalProps> {
     const { insert } = this.props;
 
     this.portalNode = document.createElement('div');
+    this.portalNode.dataset.euiportal = 'true';
 
     if (insert == null) {
       // no insertion defined, append to body
