@@ -11,6 +11,7 @@ import { UseEuiTheme } from '../../services';
 import {
   euiYScrollWithShadows,
   euiOverflowShadowStyles,
+  logicalCSS,
 } from '../../global_styling';
 import { EuiFlyoutPaddingSize } from './flyout_types';
 import { getFlyoutPadding } from './flyout_helpers';
@@ -42,8 +43,10 @@ export const euiFlyoutBodyStyles = (
       .euiCallOut {
         border: none; // Remove border from callout when it is a flyout banner
         border-radius: 0; // Ensures no border-radius in all themes
-        padding-left: ${getFlyoutPadding(paddingSize, euiThemeContext)};
-        padding-right: ${getFlyoutPadding(paddingSize, euiThemeContext)};
+        ${logicalCSS(
+          'padding-horizontal',
+          getFlyoutPadding(paddingSize, euiThemeContext)
+        )}
       }
     `,
   };

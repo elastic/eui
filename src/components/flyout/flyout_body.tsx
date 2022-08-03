@@ -47,6 +47,7 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
     banner && styles['overflow--hasBanner'],
   ];
 
+  // Overflow padding for body contents excluding the banner
   const overflowBodyCSSStyles = [styles['overflow-bodyPadding']];
 
   const classes = classNames('euiFlyoutBody', className);

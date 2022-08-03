@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { EuiFlyoutPaddingSize } from './flyout_types';
 import { getFlyoutPadding } from './flyout_helpers';
+import { logicalCSS } from '../../global_styling';
 
 export const euiFlyoutHeaderStyles = (
   paddingSize: EuiFlyoutPaddingSize,
@@ -22,13 +23,22 @@ export const euiFlyoutHeaderStyles = (
     `,
 
     border: css`
-      border-bottom: ${euiTheme.border.thin};
-      padding-bottom: ${getFlyoutPadding(paddingSize, euiThemeContext)};
+      ${logicalCSS('border-bottom', euiTheme.border.thin)}
+      ${logicalCSS(
+        'padding-bottom',
+        getFlyoutPadding(paddingSize, euiThemeContext)
+      )}
     `,
 
     padding: css`
-      padding: ${getFlyoutPadding(paddingSize, euiThemeContext)}
-        ${getFlyoutPadding(paddingSize, euiThemeContext)} 0;
+      ${logicalCSS(
+        'padding-horizontal',
+        getFlyoutPadding(paddingSize, euiThemeContext)
+      )}
+      ${logicalCSS(
+        'padding-top',
+        getFlyoutPadding(paddingSize, euiThemeContext)
+      )}
     `,
   };
 };

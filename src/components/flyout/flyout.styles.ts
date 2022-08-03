@@ -7,11 +7,7 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import {
-  euiCanAnimate,
-  euiBreakpoint,
-  //logicalCSS,
-} from '../../global_styling';
+import { euiCanAnimate, euiBreakpoint } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
 import { transparentize } from '../../services/color';
