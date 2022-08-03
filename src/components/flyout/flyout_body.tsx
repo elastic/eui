@@ -16,7 +16,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 
 import { useEuiTheme } from '../../services';
-import { euiFlyoutBodyStyles } from './flyout.styles';
+import { euiFlyoutBodyStyles } from './flyout_body.styles';
 
 import { EuiFlyoutContext } from './flyout_context';
 
