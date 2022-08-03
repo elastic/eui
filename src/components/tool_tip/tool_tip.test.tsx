@@ -7,22 +7,49 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
+import {
+  render,
+  waitForEuiToolTipVisible,
+  waitForEuiToolTipHidden,
+} from '../../test/rtl';
 import { requiredProps, findTestSubject } from '../../test';
+
 import { EuiToolTip } from './tool_tip';
 
 describe('EuiToolTip', () => {
-  test('is rendered', () => {
-    const component = render(
+  it('is rendered', () => {
+    const { baseElement } = render(
       <EuiToolTip title="title" id="id" content="content" {...requiredProps}>
         <button>Trigger</button>
       </EuiToolTip>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(baseElement).toMatchSnapshot();
   });
 
-  test('shows tooltip on focus', () => {
+  it('shows tooltip on mouseover and focus', async () => {
+    const { baseElement, getByTestSubject } = render(
+      <EuiToolTip title="title" id="id" content="content" {...requiredProps}>
+        <button data-test-subj="trigger">Trigger</button>
+      </EuiToolTip>
+    );
+
+    fireEvent.mouseOver(getByTestSubject('trigger'));
+    await waitForEuiToolTipVisible();
+
+    expect(baseElement).toMatchSnapshot();
+
+    fireEvent.mouseOut(getByTestSubject('trigger'));
+    await waitForEuiToolTipHidden();
+
+    fireEvent.focus(getByTestSubject('trigger'));
+    await waitForEuiToolTipVisible();
+  });
+
+  // This is a legacy unit test to ensure tooltips/portal updates still play well with Enzyme
+  it('[enzyme] shows tooltip on focus', () => {
     jest.useFakeTimers();
     const component = mount(
       <EuiToolTip
@@ -41,13 +68,12 @@ describe('EuiToolTip', () => {
     jest.runAllTimers(); // wait for showToolTip setTimeout
 
     expect(document.querySelector('[data-test-subj="tooltip"]')).not.toBeNull();
-    expect(document.body.innerHTML.toString()).toMatchSnapshot();
 
     jest.useRealTimers();
   });
 
   test('display prop renders block', () => {
-    const component = render(
+    const { container } = render(
       <EuiToolTip
         title="title"
         id="id"
@@ -59,6 +85,6 @@ describe('EuiToolTip', () => {
       </EuiToolTip>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

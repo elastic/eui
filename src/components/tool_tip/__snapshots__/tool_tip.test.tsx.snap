@@ -1,23 +1,71 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiToolTip display prop renders block 1`] = `
-<span
-  class="euiToolTipAnchor euiToolTipAnchor--displayBlock"
->
-  <button>
-    Trigger
-  </button>
-</span>
+<div>
+  <span
+    class="euiToolTipAnchor euiToolTipAnchor--displayBlock"
+  >
+    <button>
+      Trigger
+    </button>
+  </span>
+</div>
 `;
 
 exports[`EuiToolTip is rendered 1`] = `
-<span
-  class="euiToolTipAnchor"
->
-  <button>
-    Trigger
-  </button>
-</span>
+<body>
+  <div>
+    <span
+      class="euiToolTipAnchor"
+    >
+      <button>
+        Trigger
+      </button>
+    </span>
+  </div>
+</body>
 `;
 
-exports[`EuiToolTip shows tooltip on focus 1`] = `"<div data-euiportal=\\"true\\"><div class=\\"euiToolTipPopover euiToolTip euiToolTip--top testClass1 testClass2\\" style=\\"top: 50px; left: 50px; opacity: 0; visibility: hidden;\\" id=\\"id\\" role=\\"tooltip\\" aria-label=\\"aria-label\\" data-test-subj=\\"tooltip\\" position=\\"top\\"><div class=\\"euiToolTip__title\\">title</div><div class=\\"euiToolTip__arrow\\"></div><div>content</div></div></div>"`;
+exports[`EuiToolTip shows tooltip on mouseover and focus 1`] = `
+<body
+  class="euiBody-hasPortalContent"
+>
+  <div>
+    <span
+      class="euiToolTipAnchor"
+    >
+      <button
+        aria-describedby="id"
+        data-test-subj="trigger"
+      >
+        Trigger
+      </button>
+    </span>
+  </div>
+  <div
+    data-euiportal="true"
+  >
+    <div
+      aria-label="aria-label"
+      class="euiToolTipPopover euiToolTip euiToolTip--top testClass1 testClass2"
+      data-test-subj="test subject string"
+      id="id"
+      position="top"
+      role="tooltip"
+      style="top: 50px; left: 50px; opacity: 0; visibility: hidden;"
+    >
+      <div
+        class="euiToolTip__title"
+      >
+        title
+      </div>
+      <div
+        class="euiToolTip__arrow"
+      />
+      <div>
+        content
+      </div>
+    </div>
+  </div>
+</body>
+`;
