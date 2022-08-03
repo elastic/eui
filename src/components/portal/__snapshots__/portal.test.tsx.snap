@@ -5,9 +5,7 @@ exports[`EuiPortal is rendered 1`] = `
   <EuiPortal>
     <Portal
       containerInfo={
-        <div
-          data-euiportal="true"
-        >
+        <div>
           Content
         </div>
       }
