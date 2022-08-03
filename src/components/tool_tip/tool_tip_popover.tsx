@@ -16,6 +16,8 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
+import { useEuiTheme } from '../../services';
+import { euiToolTipPopoverStyles } from './tool_tip.styles';
 
 type Props = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
@@ -34,6 +36,10 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
   ...rest
 }) => {
   const popover = useRef<HTMLDivElement>();
+
+  const euiTheme = useEuiTheme();
+  const popoverStyles = euiToolTipPopoverStyles(euiTheme);
+  const titleCss = [popoverStyles.euiToolTip__title];
 
   const updateDimensions = useCallback(() => {
     requestAnimationFrame(() => {
@@ -64,7 +70,11 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
 
   return (
     <div className={classes} ref={setPopoverRef} {...rest}>
-      {title && <div className="euiToolTip__title">{title}</div>}
+      {title && (
+        <div css={titleCss} className="euiToolTip__title">
+          {title}
+        </div>
+      )}
       {children}
     </div>
   );
