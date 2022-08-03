@@ -5,11 +5,9 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
   <EuiPopover
     anchorPosition="downRight"
     button={
-      <EuiToolTip
+      <ForwardRef(EuiToolTip)
         content="Display options"
         delay="long"
-        display="inlineBlock"
-        position="top"
       >
         <EuiButtonIcon
           aria-label="Display options"
@@ -20,7 +18,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
           onClick={[Function]}
           size="xs"
         />
-      </EuiToolTip>
+      </ForwardRef(EuiToolTip)>
     }
     closePopover={[Function]}
     data-test-subj="dataGridDisplaySelectorPopover"

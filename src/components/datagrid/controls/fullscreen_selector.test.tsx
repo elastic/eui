@@ -41,8 +41,6 @@ describe('useDataGridFullScreenSelector', () => {
           <EuiToolTip
             content="Enter fullscreen"
             delay="long"
-            display="inlineBlock"
-            position="top"
           >
             <EuiButtonIcon
               aria-label="Enter fullscreen"
@@ -82,8 +80,6 @@ describe('useDataGridFullScreenSelector', () => {
               </React.Fragment>
             }
             delay="long"
-            display="inlineBlock"
-            position="top"
           >
             <EuiButtonIcon
               aria-label="Exit fullscreen"

@@ -412,49 +412,118 @@ console.log(some);"
 console.log(some);"
           >
             <EuiToolTip
-              delay="regular"
-              display="inlineBlock"
               onMouseOut={[Function]}
-              position="top"
             >
               <span
-                className="euiToolTipAnchor"
+                css="unknown styles"
                 onMouseOut={[Function]}
                 onMouseOver={[Function]}
               >
-                <EuiButtonIcon
-                  aria-label="Copy"
-                  color="text"
-                  iconType="copyClipboard"
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
+                <Insertion
+                  cache={
+                    Object {
+                      "insert": [Function],
+                      "inserted": Object {
+                        "1q8pvf9-euiToolTipAnchor-inlineBlock-EuiToolTip": true,
+                      },
+                      "key": "css",
+                      "nonce": undefined,
+                      "registered": Object {},
+                      "sheet": StyleSheet {
+                        "_alreadyInsertedOrderInsensitiveRule": true,
+                        "_insertTag": [Function],
+                        "before": null,
+                        "container": <head>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .emotion-euiToolTipAnchor-inlineBlock-EuiToolTip{display:inline-block;}
+                          </style>
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .emotion-euiToolTipAnchor-inlineBlock-EuiToolTip *[disabled]{pointer-events:none;}
+                          </style>
+                        </head>,
+                        "ctr": 2,
+                        "insertionPoint": undefined,
+                        "isSpeedy": false,
+                        "key": "css",
+                        "nonce": undefined,
+                        "prepend": undefined,
+                        "tags": Array [
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .emotion-euiToolTipAnchor-inlineBlock-EuiToolTip{display:inline-block;}
+                          </style>,
+                          <style
+                            data-emotion="css"
+                            data-s=""
+                          >
+                            
+                            .emotion-euiToolTipAnchor-inlineBlock-EuiToolTip *[disabled]{pointer-events:none;}
+                          </style>,
+                        ],
+                      },
+                    }
+                  }
+                  isStringTag={true}
+                  serialized={
+                    Object {
+                      "map": undefined,
+                      "name": "1q8pvf9-euiToolTipAnchor-inlineBlock-EuiToolTip",
+                      "next": undefined,
+                      "styles": "*[disabled]{pointer-events:none;};label:euiToolTipAnchor;;;display:inline-block;label:inlineBlock;;;;label:EuiToolTip;;",
+                      "toString": [Function],
+                    }
+                  }
+                />
+                <span
+                  className="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock-EuiToolTip"
+                  onMouseOut={[Function]}
+                  onMouseOver={[Function]}
                 >
-                  <button
+                  <EuiButtonIcon
                     aria-label="Copy"
-                    className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                    color="text"
+                    iconType="copyClipboard"
                     onBlur={[Function]}
                     onClick={[Function]}
                     onFocus={[Function]}
-                    type="button"
                   >
-                    <EuiIcon
-                      aria-hidden="true"
-                      className="euiButtonIcon__icon"
-                      color="inherit"
-                      size="m"
-                      type="copyClipboard"
+                    <button
+                      aria-label="Copy"
+                      className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      type="button"
                     >
-                      <span
+                      <EuiIcon
                         aria-hidden="true"
                         className="euiButtonIcon__icon"
                         color="inherit"
-                        data-euiicon-type="copyClipboard"
                         size="m"
-                      />
-                    </EuiIcon>
-                  </button>
-                </EuiButtonIcon>
+                        type="copyClipboard"
+                      >
+                        <span
+                          aria-hidden="true"
+                          className="euiButtonIcon__icon"
+                          color="inherit"
+                          data-euiicon-type="copyClipboard"
+                          size="m"
+                        />
+                      </EuiIcon>
+                    </button>
+                  </EuiButtonIcon>
+                </span>
               </span>
             </EuiToolTip>
           </EuiCopy>
