@@ -52,7 +52,7 @@ exports[`EuiToolTip shows tooltip on mouseover and focus 1`] = `
       id="id"
       position="top"
       role="tooltip"
-      style="top: 50px; left: 50px; opacity: 0; visibility: hidden;"
+      style="top: -16px; left: -10px;"
     >
       <div
         class="euiToolTip__title"
@@ -61,6 +61,7 @@ exports[`EuiToolTip shows tooltip on mouseover and focus 1`] = `
       </div>
       <div
         class="euiToolTip__arrow"
+        style="left: 4px; top: 0px;"
       />
       <div>
         content

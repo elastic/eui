@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import '@testing-library/jest-dom';
 import { waitFor } from '@testing-library/react';
 
 /**
@@ -31,11 +32,11 @@ export const waitForEuiPopoverClose = async () =>
 export const waitForEuiToolTipVisible = async () =>
   await waitFor(() => {
     const tooltip = document.querySelector('.euiToolTipPopover');
-    expect(tooltip).toBeTruthy();
+    expect(tooltip).toBeVisible();
   });
 
 export const waitForEuiToolTipHidden = async () =>
   await waitFor(() => {
     const tooltip = document.querySelector('.euiToolTipPopover');
-    expect(tooltip).toBeFalsy();
+    expect(tooltip).toBeNull();
   });
