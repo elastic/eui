@@ -200,7 +200,7 @@ export const dataGridRowHeightOptionsExample = {
                     <EuiCode>auto</EuiCode> sized rows. Since these rows are
                     measured as they appear in the overscan, they can cause
                     surprising shifts of the vertical position of all following
-                    rows when their measure height is different from the
+                    rows when their measured height is different from the
                     estimated height.
                   </li>
                 </ul>
