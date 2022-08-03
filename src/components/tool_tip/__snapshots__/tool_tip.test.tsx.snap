@@ -20,15 +20,4 @@ exports[`EuiToolTip is rendered 1`] = `
 </span>
 `;
 
-exports[`EuiToolTip shows tooltip on focus 1`] = `
-<span
-  class="euiToolTipAnchor"
->
-  <button
-    aria-describedby="id"
-    data-test-subj="trigger"
-  >
-    Trigger
-  </button>
-</span>
-`;
+exports[`EuiToolTip shows tooltip on focus 1`] = `"<div data-euiportal=\\"true\\"><div class=\\"euiToolTipPopover euiToolTip euiToolTip--top testClass1 testClass2\\" style=\\"top: 50px; left: 50px; opacity: 0; visibility: hidden;\\" id=\\"id\\" role=\\"tooltip\\" aria-label=\\"aria-label\\" data-test-subj=\\"tooltip\\" position=\\"top\\"><div class=\\"euiToolTip__title\\">title</div><div class=\\"euiToolTip__arrow\\"></div><div>content</div></div></div>"`;

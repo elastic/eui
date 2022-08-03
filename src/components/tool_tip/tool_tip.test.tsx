@@ -8,11 +8,7 @@
 
 import React from 'react';
 import { render, mount } from 'enzyme';
-import {
-  requiredProps,
-  findTestSubject,
-  takeMountedSnapshot,
-} from '../../test';
+import { requiredProps, findTestSubject } from '../../test';
 import { EuiToolTip } from './tool_tip';
 
 describe('EuiToolTip', () => {
@@ -29,15 +25,25 @@ describe('EuiToolTip', () => {
   test('shows tooltip on focus', () => {
     jest.useFakeTimers();
     const component = mount(
-      <EuiToolTip title="title" id="id" content="content" {...requiredProps}>
+      <EuiToolTip
+        title="title"
+        id="id"
+        content="content"
+        {...requiredProps}
+        data-test-subj="tooltip"
+      >
         <button data-test-subj="trigger">Trigger</button>
       </EuiToolTip>
     );
 
     const trigger = findTestSubject(component, 'trigger');
     trigger.simulate('focus');
-    jest.advanceTimersByTime(260); // wait for showToolTip setTimeout
-    expect(takeMountedSnapshot(component)).toMatchSnapshot();
+    jest.runAllTimers(); // wait for showToolTip setTimeout
+
+    expect(document.querySelector('[data-test-subj="tooltip"]')).not.toBeNull();
+    expect(document.body.innerHTML.toString()).toMatchSnapshot();
+
+    jest.useRealTimers();
   });
 
   test('display prop renders block', () => {
