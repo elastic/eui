@@ -24,9 +24,15 @@ import { keysOf } from '../common';
 import { EuiPortal } from '../portal';
 import { EuiToolTipPopover } from './tool_tip_popover';
 import { enqueueStateChange } from '../../services/react';
-import { findPopoverPosition, htmlIdGenerator } from '../../services';
+import {
+  findPopoverPosition,
+  htmlIdGenerator,
+  useEuiTheme,
+} from '../../services';
 
 import { EuiResizeObserver } from '../observer/resize_observer';
+
+import { euiToolTipStyles, euiToolTipAnchorStyles } from './tool_tip.styles';
 
 export type ToolTipPositions = 'top' | 'right' | 'bottom' | 'left';
 
@@ -159,6 +165,10 @@ export const EuiToolTip = forwardRef<ToolTipHandle, EuiToolTipProps>(
     const [arrowStyles, setArrowStyles] = useState<ArrowStyles>();
     const id = useRef(propsId || htmlIdGenerator()());
 
+    const euiTheme = useEuiTheme();
+    const toolTipCss = euiToolTipStyles(euiTheme);
+    const anchorCss = euiToolTipAnchorStyles();
+
     const clearAnimationTimeout = () => {
       if (timeoutId.current) {
         timeoutId.current = clearTimeout(timeoutId.current) as undefined;
@@ -220,13 +230,6 @@ export const EuiToolTip = forwardRef<ToolTipHandle, EuiToolTipProps>(
 
     const setPopoverRef = (ref: HTMLElement) => {
       popover.current = ref;
-
-      // if the popover has been unmounted, clear
-      // any previous knowledge about its size
-      if (ref == null) {
-        setToolTipStyles(DEFAULT_TOOLTIP_STYLES);
-        setArrowStyles(undefined);
-      }
     };
 
     const positionToolTip = () => {
@@ -310,22 +313,15 @@ export const EuiToolTip = forwardRef<ToolTipHandle, EuiToolTipProps>(
       [showToolTip, hideToolTip]
     );
 
-    const classes = classNames(
-      'euiToolTip',
-      positionsToClassNameMap[calculatedPosition],
-      className
-    );
+    const classes = classNames('euiToolTip', className);
 
-    const anchorClasses = classNames(
-      'euiToolTipAnchor',
-      display ? displayToClassNameMap[display] : null,
-      anchorClassName
-    );
+    const anchorClasses = classNames('euiToolTipAnchor', anchorClassName);
 
     return (
       <>
         <span // eslint-disable-line jsx-a11y/mouse-events-have-key-events
           ref={anchor}
+          css={[anchorCss.euiToolTipAnchor, anchorCss[display]]}
           className={anchorClasses}
           onMouseOver={showToolTip}
           onMouseOut={onMouseOut}
@@ -353,6 +349,7 @@ export const EuiToolTip = forwardRef<ToolTipHandle, EuiToolTipProps>(
         {visible && (content || title) && (
           <EuiPortal>
             <EuiToolTipPopover
+              css={[toolTipCss.euiToolTip, toolTipCss[calculatedPosition]]}
               className={classes}
               style={toolTipStyles}
               positionToolTip={positionToolTip}
@@ -362,7 +359,11 @@ export const EuiToolTip = forwardRef<ToolTipHandle, EuiToolTipProps>(
               role="tooltip"
               {...rest}
             >
-              <div style={arrowStyles} className="euiToolTip__arrow" />
+              <div
+                css={[toolTipCss.euiToolTip__arrow]}
+                style={arrowStyles}
+                className="euiToolTip__arrow"
+              />
               <EuiResizeObserver onResize={positionToolTip}>
                 {(resizeRef) => <div ref={resizeRef}>{content}</div>}
               </EuiResizeObserver>
