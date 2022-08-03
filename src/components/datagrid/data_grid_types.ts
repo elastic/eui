@@ -919,8 +919,9 @@ export interface EuiDataGridRowHeightsOptions {
    */
   onChange?: (rowHeightsOptions: EuiDataGridRowHeightsOptions) => void;
   /**
-   * When set to 'start' or 'center' the topmost or middle visible row will try
-   * to compensate for changes in their top offsets by adjust the grid's scroll
+   * Optional indicator of the row that should be used as an anchor for vertical layout shift compensation.
+   * When set to 'start' or 'center', the topmost or middle visible row will try
+   * to compensate for changes in their top offsets by adjusting the grid's scroll
    * position.
    */
   scrollAnchorRow?: EuiDataGridScrollAnchorRow;
