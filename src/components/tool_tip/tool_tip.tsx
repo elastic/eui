@@ -347,7 +347,7 @@ export const EuiToolTip = forwardRef<ToolTipHandle, EuiToolTipProps>(
               onBlur();
               children.props.onBlur && children.props.onBlur(e);
             },
-            ...(visible && { 'aria-describedby': id }),
+            ...(visible && { 'aria-describedby': id.current }),
           })}
         </span>
         {visible && (content || title) && (
