@@ -299,6 +299,7 @@ export class EuiDataGridCell extends Component<
     }
 
     if (
+      this.props.rowHeightsOptions?.scrollAnchorRow &&
       this.props.colIndex === 0 && // once per row
       this.props.columnId === prevProps.columnId && // if this is still the same column
       this.props.rowIndex === prevProps.rowIndex && // if this is still the same row

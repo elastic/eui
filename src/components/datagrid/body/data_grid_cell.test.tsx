@@ -237,6 +237,58 @@ describe('EuiDataGridCell', () => {
       );
       expect(popoverContent).toMatchSnapshot();
     });
+
+    describe('rowHeightsOptions.scrollAnchorRow', () => {
+      let component: ReactWrapper;
+
+      beforeEach(() => {
+        component = mount(
+          <EuiDataGridCell
+            {...requiredProps}
+            rowHeightsOptions={{
+              defaultHeight: 'auto',
+              scrollAnchorRow: 'start',
+            }}
+            style={{ top: '30px' }}
+          />
+        );
+      });
+
+      it('compensates for layout shifts', () => {
+        component.setProps({ style: { top: '60px' } });
+        expect(
+          mockRowHeightUtils.compensateForLayoutShift
+        ).toHaveBeenCalledWith(0, 30, 'start');
+      });
+
+      describe('does not compensate for layout shifts when', () => {
+        afterEach(() => {
+          expect(
+            mockRowHeightUtils.compensateForLayoutShift
+          ).not.toHaveBeenCalled();
+        });
+
+        test('the rowIndex is changing', () => {
+          component.setProps({ style: '60px', rowIndex: 3 });
+        });
+
+        test('the columnId is changing', () => {
+          component.setProps({ style: '60px', columnId: 'someOtherColumn' });
+        });
+
+        test('scrollAnchorRow is undefined', () => {
+          component.setProps({ rowHeightsOptions: { defaultHeight: 20 } });
+        });
+
+        test('the cell is not the first cell in the row', () => {
+          component.setProps({ colIndex: 1 });
+        });
+
+        test('the cell top position is not changing', () => {
+          component.setProps({ style: { top: '30px' } });
+        });
+      });
+    });
   });
 
   describe('componentDidMount', () => {
