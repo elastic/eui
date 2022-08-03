@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, MouseEventHandler, Ref } from 'react';
+import React, { Component, MouseEventHandler, ElementRef } from 'react';
 import classNames from 'classnames';
 
 import { EuiButton, EuiButtonProps } from '../../button';
@@ -14,6 +14,8 @@ import { EuiI18n } from '../../i18n';
 import { EuiToolTip, EuiToolTipProps } from '../../tool_tip';
 import { EuiBreakpointSize } from '../../../services/breakpoint';
 import { EuiHideFor, EuiShowFor } from '../../responsive';
+
+type ToolTipRef = ElementRef<typeof EuiToolTip> | null;
 
 type EuiSuperUpdateButtonInternalProps = {
   isDisabled?: boolean;
@@ -58,7 +60,7 @@ export class EuiSuperUpdateButton extends Component<
   };
   _isMounted = false;
   tooltipTimeout: number | undefined;
-  tooltip: EuiToolTip | null = null;
+  tooltip: ToolTipRef = null;
 
   componentWillUnmount() {
     this._isMounted = false;
@@ -82,7 +84,8 @@ export class EuiSuperUpdateButton extends Component<
     }
   }
 
-  setTootipRef: Ref<EuiToolTip> = (node) => {
+  setTootipRef = (node: ToolTipRef) => {
+    console.log(node);
     this.tooltip = node;
   };
 
