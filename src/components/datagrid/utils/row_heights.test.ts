@@ -27,8 +27,15 @@ describe('RowHeightUtils', () => {
       scrollToItem: jest.fn(),
     },
   };
+  const outerGridElementRef = { current: null };
+  const gridItemsRenderedRef = { current: null };
   const rerenderGridBodyRef = { current: jest.fn() };
-  const rowHeightUtils = new RowHeightUtils(gridRef, rerenderGridBodyRef);
+  const rowHeightUtils = new RowHeightUtils(
+    gridRef,
+    outerGridElementRef,
+    gridItemsRenderedRef,
+    rerenderGridBodyRef
+  );
 
   beforeEach(() => {
     jest.useFakeTimers();
@@ -420,6 +427,118 @@ describe('RowHeightUtils', () => {
           expect(gridRef.current?.resetAfterRowIndex).toHaveBeenCalledTimes(1);
           expect(gridRef.current?.resetAfterRowIndex).toHaveBeenCalledWith(97);
         });
+      });
+    });
+
+    describe('layout shift compensation', () => {
+      it('can compensate vertical shifts of the start anchor row', () => {
+        const rowHeightUtils = new RowHeightUtils(
+          gridRef,
+          {
+            current: {
+              scrollTop: 100,
+            } as any,
+          },
+          {
+            current: {
+              overscanRowStartIndex: 1,
+              overscanRowStopIndex: 12,
+              overscanColumnStartIndex: 0,
+              overscanColumnStopIndex: 1,
+              visibleRowStartIndex: 2,
+              visibleRowStopIndex: 11,
+              visibleColumnStartIndex: 0,
+              visibleColumnStopIndex: 1,
+            },
+          },
+          rerenderGridBodyRef
+        );
+
+        // the center row shifted by 10 pixels
+        rowHeightUtils.compensateForLayoutShift(4, 10, 'start');
+
+        // no scrolling should have taken place
+        expect(gridRef.current?.scrollTo).toHaveBeenCalledTimes(0);
+
+        // the anchor row shifted by 23 pixels
+        rowHeightUtils.compensateForLayoutShift(2, 23, 'start');
+
+        // the grid should have scrolled accordingly
+        expect(gridRef.current?.scrollTo).toHaveBeenCalledWith(
+          expect.objectContaining({
+            scrollTop: 123,
+          })
+        );
+      });
+
+      it('can compensate vertical shifts of the center anchor row', () => {
+        const rowHeightUtils = new RowHeightUtils(
+          gridRef,
+          {
+            current: {
+              scrollTop: 100,
+            } as any,
+          },
+          {
+            current: {
+              overscanRowStartIndex: 1,
+              overscanRowStopIndex: 12,
+              overscanColumnStartIndex: 0,
+              overscanColumnStopIndex: 1,
+              visibleRowStartIndex: 2,
+              visibleRowStopIndex: 11,
+              visibleColumnStartIndex: 0,
+              visibleColumnStopIndex: 1,
+            },
+          },
+          rerenderGridBodyRef
+        );
+
+        // the topmost visible row shifted by 10 pixels
+        rowHeightUtils.compensateForLayoutShift(2, 10, 'center');
+
+        // no scrolling should have taken place
+        expect(gridRef.current?.scrollTo).toHaveBeenCalledTimes(0);
+
+        // the anchor row shifted by 23 pixels
+        rowHeightUtils.compensateForLayoutShift(4, 23, 'center');
+
+        // the grid should have scrolled accordingly
+        expect(gridRef.current?.scrollTo).toHaveBeenCalledWith(
+          expect.objectContaining({
+            scrollTop: 123,
+          })
+        );
+      });
+
+      it("doesn't compensate vertical shifts when no anchor row is specified", () => {
+        const rowHeightUtils = new RowHeightUtils(
+          gridRef,
+          {
+            current: {
+              scrollTop: 100,
+            } as any,
+          },
+          {
+            current: {
+              overscanRowStartIndex: 1,
+              overscanRowStopIndex: 12,
+              overscanColumnStartIndex: 0,
+              overscanColumnStopIndex: 1,
+              visibleRowStartIndex: 2,
+              visibleRowStopIndex: 11,
+              visibleColumnStartIndex: 0,
+              visibleColumnStopIndex: 1,
+            },
+          },
+          rerenderGridBodyRef
+        );
+
+        // the topmost visible row shifted by 23 pixels, but no anchor has been specified
+        rowHeightUtils.compensateForLayoutShift(2, 23, undefined);
+
+        // no scrolling should have taken place
+        expect(gridRef.current?.scrollTo).toHaveBeenCalledTimes(0);
       });
     });
   });
