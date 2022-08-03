@@ -41,9 +41,11 @@ export interface EuiPortalProps {
 }
 
 export class EuiPortal extends Component<EuiPortalProps> {
-  portalNode: HTMLDivElement;
+  portalNode: HTMLDivElement | null = null;
+
   constructor(props: EuiPortalProps) {
     super(props);
+    if (typeof window === 'undefined') return; // Prevent SSR errors
 
     const { insert } = this.props;
 
@@ -65,7 +67,7 @@ export class EuiPortal extends Component<EuiPortalProps> {
   }
 
   componentWillUnmount() {
-    if (this.portalNode.parentNode) {
+    if (this.portalNode?.parentNode) {
       this.portalNode.parentNode.removeChild(this.portalNode);
     }
     this.updatePortalRef(null);
@@ -78,6 +80,8 @@ export class EuiPortal extends Component<EuiPortalProps> {
   }
 
   render() {
-    return createPortal(this.props.children, this.portalNode);
+    return this.portalNode
+      ? createPortal(this.props.children, this.portalNode)
+      : null;
   }
 }
