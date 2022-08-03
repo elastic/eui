@@ -194,7 +194,7 @@ export const EuiFlyout = forwardRef(
     const cssStyles = [
       styles.euiFlyout,
 
-      side === 'left' && type === 'push' && styles.pushLeft,
+      side === 'left' && type === 'push' && styles['push--left'],
       isEuiFlyoutSizeNamed(size) && styles[`flyoutSize--${size}`],
       styles[type],
       styles[side],
@@ -219,8 +219,9 @@ export const EuiFlyout = forwardRef(
       );
 
       const closeButtonStyles = [
-        styles.euiFlyout__closeButton,
-        styles[closeButtonPosition],
+        styles.closeButton,
+        styles[`closeButton--${closeButtonPosition}`],
+        side === 'left' && styles['closeButton--outside-left'],
       ];
       closeButton = (
         <EuiI18n token="euiFlyout.closeAriaLabel" default="Close this dialog">

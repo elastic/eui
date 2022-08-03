@@ -12,7 +12,7 @@ import {
   euiYScrollWithShadows,
   euiOverflowShadowStyles,
   euiBreakpoint,
-  //logicalCSS,
+  logicalCSS,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
@@ -61,7 +61,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
 
   // Removing the 'px' from the end of euiTheme.size.m to perform calculation
-  //euiTheme.form.maxWidth is a CSS Property based on maxWidth and has the potential to be a
+  // euiTheme.form.maxWidth is a CSS Property based on maxWidth and has the potential to be a
   // string or a number.
   const euiFormMaxWidth =
     typeof euiTheme.form.maxWidth === 'string'
@@ -117,32 +117,42 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         max-width: 90vw !important;
       }
     `,
-    euiFlyout__closeButton: css`
+
+    // Close Button
+    closeButton: css`
       background-color: ${transparentize(euiTheme.colors.emptyShade, 0.1)};
       position: absolute;
       right: ${euiTheme.size.s};
       top: ${euiTheme.size.s};
       z-index: 3;
     `,
-    outside: css`
+    'closeButton--outside': css`
       // match dropshadow
       ${euiShadowXLarge(euiThemeContext)};
       right: auto;
       left: 0;
       // Override the hover and focus transitions of buttons
       // sass-lint:disable-block no-important
-      transform: translateX(calc(-100% - #{${euiTheme.size.l}})) !important;
       animation: none !important;
 
-      .euiFlyout--left & {
-        left: auto;
-        right: 0;
-        transform: translateX(calc(100% + #{${euiTheme.size.l}})) !important;
+      ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
+        transform: translateX(calc(-100% - #{${euiTheme.size.l}}));
+      }
+      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+        transform: translateX(calc(-100% - #{${euiTheme.size.xs}}));
       }
     `,
-    inside: css``,
-    euiFlyoutBody__banner: css`
-      overflow-x: hidden;
+    'closeButton--inside': css``,
+    'closeButton--outside-left': css`
+      left: auto;
+      right: 0;
+
+      ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
+        transform: translateX(calc(100% + #{${euiTheme.size.l}})) !important;
+      }
+      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+        transform: translateX(calc(100% + #{${euiTheme.size.xs}})) !important;
+      }
     `,
 
     // Flyout Sizes
@@ -205,12 +215,12 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     push: css`
       box-shadow: none;
       clip-path: none;
-      animation-duration: 0s; // Don't animate on loading a docked nav
+      animation-duration: 0s !important; // Don't animate on loading a docked nav
       border-left: ${euiTheme.border.thick};
       // Make sure the header shadows are above
       z-index: ${Number(euiTheme.levels.header) - 1};
     `,
-    pushLeft: css`
+    'push--left': css`
       border-left: none;
       border-right: ${euiTheme.border.thick};
     `,
@@ -228,7 +238,10 @@ export const euiFlyoutHeaderStyles = (
     `,
     border: css`
       border-bottom: ${euiTheme.border.thin};
-      padding-bottom: ${getFlyoutPadding(paddingSize, euiThemeContext)};
+      ${logicalCSS(
+        'padding-bottom',
+        getFlyoutPadding(paddingSize, euiThemeContext)
+      )}
     `,
 
     // Padding Modifiers
@@ -251,7 +264,16 @@ export const euiFlyoutBodyStyles = (
     `,
     overflow: css`
       ${euiYScrollWithShadows(euiThemeContext)};
-      padding: ${getFlyoutPadding(paddingSize, euiThemeContext)};
+    `,
+    'overflow-bodyPadding': css`
+      ${logicalCSS(
+        'padding-vertical',
+        getFlyoutPadding(paddingSize, euiThemeContext)
+      )}
+      ${logicalCSS(
+        'padding-horizontal',
+        getFlyoutPadding(paddingSize, euiThemeContext)
+      )}
     `,
     'overflow--hasBanner': css`
       ${euiOverflowShadowStyles(euiThemeContext, {
@@ -260,6 +282,7 @@ export const euiFlyoutBodyStyles = (
       })};
     `,
     banner: css`
+      overflow-x: hidden;
       .euiCallOut {
         border: none; // Remove border from callout when it is a flyout banner
         border-radius: 0; // Ensures no border-radius in all themes
@@ -277,6 +300,10 @@ export const euiFlyoutFooterStyles = (
   const euiTheme = euiThemeContext.euiTheme;
 
   const paddingWithPixels = getFlyoutPadding(paddingSize, euiThemeContext);
+
+  // Removing the 'px' from the end of euiTheme.size.m to perform calculation
+  // euiTheme.form.maxWidth is a CSS Property based on maxWidth and has the potential to be a
+  // string or a number.
   const paddingAmount =
     typeof paddingWithPixels === 'string'
       ? parseInt(paddingWithPixels.replace('px', ''))
@@ -287,10 +314,10 @@ export const euiFlyoutFooterStyles = (
       background: ${euiTheme.colors.lightestShade};
     `,
     none: css`
-      ${paddingWithPixels}
+      padding: ${paddingWithPixels};
     `,
     s: css`
-      ${paddingWithPixels}
+      padding: ${paddingWithPixels};
     `,
     m: css`
       padding: ${paddingAmount * 0.75}px ${paddingWithPixels};
@@ -300,17 +327,3 @@ export const euiFlyoutFooterStyles = (
     `,
   };
 };
-
-// Padding
-// 'flyoutPadding--none': css`
-//   padding: ${getFlyoutPadding('none', euiThemeContext)};
-// `,
-// 'flyoutPadding--s': css`
-//   padding: ${getFlyoutPadding('s', euiThemeContext)};
-// `,
-// 'flyoutPadding--m': css`
-//   padding: ${getFlyoutPadding('m', euiThemeContext)};
-// `,
-// 'flyoutPadding--l': css`
-//   padding: ${getFlyoutPadding('l', euiThemeContext)};
-// `,
