@@ -72,11 +72,13 @@ describe('useCurrentEuiBreakpoint', () => {
         <EuiProvider
           modify={{
             breakpoint: {
-              xs: 0,
+              xxs: 0,
+              xs: 250,
               s: 500,
               m: 1000,
               l: 1500,
               xl: 2000,
+              xxl: 2500,
             },
           }}
         >
@@ -87,8 +89,13 @@ describe('useCurrentEuiBreakpoint', () => {
     });
 
     describe('returns the correct custom breakpoint based on window width', () => {
-      it('xs', () => {
+      it('custom xxs breakpoint', () => {
         cy.viewport(100, 600);
+        cy.get('[data-test-subj]').should('have.text', 'xxs');
+      });
+
+      it('xs', () => {
+        cy.viewport(300, 600);
         cy.get('[data-test-subj]').should('have.text', 'xs');
       });
 
@@ -110,6 +117,11 @@ describe('useCurrentEuiBreakpoint', () => {
       it('xl', () => {
         cy.viewport(2000, 600);
         cy.get('[data-test-subj]').should('have.text', 'xl');
+      });
+
+      it('custom xxl breakpoint', () => {
+        cy.viewport(2500, 600);
+        cy.get('[data-test-subj]').should('have.text', 'xxl');
       });
     });
   });
