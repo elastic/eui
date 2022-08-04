@@ -12,7 +12,11 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 import { isWithinRange } from '../../../services/number';
 import { EuiInputPopover } from '../../popover';
-import { htmlIdGenerator } from '../../../services/accessibility';
+import {
+  htmlIdGenerator,
+  withEuiTheme,
+  WithEuiThemeProps,
+} from '../../../services/';
 
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput, EuiRangeInputProps } from './range_input';
@@ -23,6 +27,8 @@ import { EuiRangeTick } from './range_ticks';
 import { EuiRangeTooltip } from './range_tooltip';
 import { EuiRangeTrack } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
+
+import { euiRangeStyles } from './range.styles';
 
 export interface EuiRangeProps
   extends CommonProps,
@@ -86,7 +92,9 @@ export interface EuiRangeProps
   ) => void;
 }
 
-export class EuiRange extends Component<EuiRangeProps> {
+export class EuiRangeClass extends Component<
+  EuiRangeProps & WithEuiThemeProps
+> {
   static defaultProps = {
     min: 0,
     max: 100,
@@ -192,6 +200,7 @@ export class EuiRange extends Component<EuiRangeProps> {
       style,
       tabIndex,
       isInvalid,
+      theme,
       ...rest
     } = this.props;
 
@@ -232,9 +241,13 @@ export class EuiRange extends Component<EuiRangeProps> {
       className
     );
 
+    const styles = euiRangeStyles(theme);
+    const cssStyles = [styles.euiRange];
+
     const theRange = (
       <EuiRangeWrapper
         className={classes}
+        css={cssStyles}
         fullWidth={fullWidth}
         compressed={compressed}
       >
@@ -342,3 +355,5 @@ export class EuiRange extends Component<EuiRangeProps> {
     return thePopover ? thePopover : theRange;
   }
 }
+
+export const EuiRange = withEuiTheme<EuiRangeProps>(EuiRangeClass);

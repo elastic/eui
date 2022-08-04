@@ -9,6 +9,9 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 
+import { useEuiTheme } from '../../../services';
+import { euiRangeTooltipStyles } from './range_tooltip.styles';
+
 export interface EuiRangeTooltipProps {
   value?: number | string;
   valueAppend?: ReactNode;
@@ -65,8 +68,12 @@ export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
     }
   );
 
+  const euiTheme = useEuiTheme();
+  const styles = euiRangeTooltipStyles(euiTheme);
+  const cssStyles = [styles.euiRangeTooltip];
+
   return (
-    <div className={classes}>
+    <div className={classes} css={cssStyles}>
       <output
         className={valueClasses}
         htmlFor={name}

@@ -9,7 +9,8 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
-import { useMouseMove } from '../../../services';
+import { useMouseMove, useEuiTheme } from '../../../services';
+import { euiRangeDraggableStyles } from './range_draggable.styles';
 
 export interface EuiRangeDraggableProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
@@ -62,8 +63,13 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
 
   const [handleMouseDown, handleInteraction] = useMouseMove(handleChange);
 
+  const euiTheme = useEuiTheme();
+  const styles = euiRangeDraggableStyles(euiTheme);
+  const cssStyles = [styles.euiRangeDraggable];
+
   const commonProps = {
     className: classes,
+    css: cssStyles,
     role: 'slider',
     'aria-valuemin': min,
     'aria-valuemax': max,

@@ -14,6 +14,8 @@ import { EuiRange } from './range';
 
 const props = {
   value: '8',
+  min: 0,
+  max: 100,
 };
 
 describe('EuiRange', () => {
@@ -162,6 +164,8 @@ describe('EuiRange', () => {
             },
           ]}
           value={20}
+          min={0}
+          max={100}
         />
       );
 

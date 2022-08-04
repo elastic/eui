@@ -15,6 +15,9 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
 
+import { useEuiTheme } from '../../../services';
+import { euiRangeSliderStyles } from './range_slider.styles';
+
 export type EuiRangeSliderProps = InputHTMLAttributes<HTMLInputElement> &
   CommonProps & {
     id?: string;
@@ -64,6 +67,11 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
       },
       className
     );
+
+    const euiTheme = useEuiTheme();
+    const styles = euiRangeSliderStyles(euiTheme);
+    const cssStyles = [styles.euiRangeSlider];
+
     return (
       <input
         ref={ref}
@@ -71,6 +79,7 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
         id={id}
         name={name}
         className={classes}
+        css={cssStyles}
         min={min}
         max={max}
         step={step}

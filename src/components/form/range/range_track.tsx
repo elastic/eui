@@ -9,13 +9,20 @@
 import React, { Component, MouseEventHandler, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
+import {
+  withEuiTheme,
+  WithEuiThemeProps,
+  isEvenlyDivisibleBy,
+} from '../../../services/';
+
 import range from 'lodash/range';
 
-import { isEvenlyDivisibleBy } from '../../../services';
 import { EuiRangeLevels, EuiRangeLevel, LEVEL_COLORS } from './range_levels';
 import { EuiRangeTicks, EuiRangeTick } from './range_ticks';
 
 export { LEVEL_COLORS };
+
+import { euiRangeTrackStyles } from './range_track.styles';
 
 export interface EuiRangeTrackProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
@@ -32,7 +39,9 @@ export interface EuiRangeTrackProps
   levels?: EuiRangeLevel[];
 }
 
-export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
+export class EuiRangeTrackClass extends Component<
+  EuiRangeTrackProps & WithEuiThemeProps
+> {
   validateValueIsInStep = (value: number) => {
     if (value < this.props.min) {
       throw new Error(
@@ -123,6 +132,7 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
       onChange,
       value,
       compressed,
+      theme,
       ...rest
     } = this.props;
 
@@ -140,8 +150,11 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
       'euiRangeTrack--compressed': compressed,
     });
 
+    const styles = euiRangeTrackStyles(theme);
+    const cssStyles = [styles.euiRangeTrack];
+
     return (
-      <div className={trackClasses} {...rest}>
+      <div className={trackClasses} css={cssStyles} {...rest}>
         {levels && !!levels.length && (
           <EuiRangeLevels
             compressed={compressed}
@@ -169,3 +182,7 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
     );
   }
 }
+
+export const EuiRangeTrack = withEuiTheme<EuiRangeTrackProps>(
+  EuiRangeTrackClass
+);

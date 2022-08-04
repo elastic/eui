@@ -9,6 +9,9 @@
 import React, { HTMLAttributes, forwardRef } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
+import { useEuiTheme } from '../../../services';
+
+import { euiRangeWrapperStyles } from './range_wrapper.styles';
 
 export interface EuiRangeWrapperProps
   extends CommonProps,
@@ -28,8 +31,12 @@ export const EuiRangeWrapper = forwardRef<HTMLDivElement, EuiRangeWrapperProps>(
       className
     );
 
+    const euiTheme = useEuiTheme();
+    const styles = euiRangeWrapperStyles(euiTheme);
+    const cssStyles = [styles.euiRangeWrapper];
+
     return (
-      <div className={classes} ref={ref} {...rest}>
+      <div className={classes} css={cssStyles} ref={ref} {...rest}>
         {children}
       </div>
     );

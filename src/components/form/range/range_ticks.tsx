@@ -20,6 +20,9 @@ import { calculateThumbPosition, EUI_THUMB_SIZE } from './utils';
 
 import { useInnerText } from '../../inner_text';
 
+import { useEuiTheme } from '../../../services';
+import { euiRangeTicksStyles } from './range_ticks.styles';
+
 export interface EuiRangeTick {
   value: number;
   label: ReactNode;
@@ -102,12 +105,17 @@ const EuiTickValue: FunctionComponent<
     'euiRangeTick--hasTickMark': pseudoTick,
   });
 
+  const euiTheme = useEuiTheme();
+  const styles = euiRangeTicksStyles(euiTheme);
+  const cssStyles = [styles.euiRangeTick];
+
   const [ref, innerText] = useInnerText();
 
   return (
     <button
       type="button"
       className={tickClasses}
+      css={cssStyles}
       value={tickValue}
       disabled={disabled}
       onClick={onChange}
@@ -139,8 +147,12 @@ export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = (props) => {
     'euiRangeTicks--isCustom': ticks,
   });
 
+  const euiTheme = useEuiTheme();
+  const styles = euiRangeTicksStyles(euiTheme);
+  const cssStyles = [styles.euiRangeTicks];
+
   return (
-    <div className={classes} ref={ticksRef}>
+    <div className={classes} css={cssStyles} ref={ticksRef}>
       {tickSequence.map((tickValue) => (
         <EuiTickValue
           key={tickValue}

@@ -10,6 +10,9 @@ import React, { FunctionComponent } from 'react';
 
 import { EuiFieldNumber, EuiFieldNumberProps } from '../field_number';
 
+import { useEuiTheme } from '../../../services';
+import { euiRangeInputStyles } from './range_input.styles';
+
 export interface EuiRangeInputProps
   extends Omit<EuiFieldNumberProps, 'max' | 'min' | 'value'> {
   autoSize?: boolean;
@@ -42,10 +45,15 @@ export const EuiRangeInput: FunctionComponent<EuiRangeInputProps> = ({
     ? { width: `${digitTolerance / 1.25 + 2}em` }
     : undefined;
 
+  const euiTheme = useEuiTheme();
+  const styles = euiRangeInputStyles(euiTheme);
+  const cssStyles = [styles.euiRangeInput];
+
   return (
     <EuiFieldNumber
       name={name}
       className={`euiRangeInput euiRangeInput--${side}`}
+      css={cssStyles}
       min={Number(min)}
       max={Number(max)}
       step={step}

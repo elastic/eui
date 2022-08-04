@@ -9,6 +9,9 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
+import { useEuiTheme } from '../../../services';
+import { euiRangeHighlightStyles } from './range_highlight.styles';
+
 export interface EuiRangeHighlightProps {
   className?: string;
   background?: string;
@@ -58,9 +61,19 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
     'euiRangeHighlight__progress--hasFocus': hasFocus,
   });
 
+  const euiTheme = useEuiTheme();
+  const styles = euiRangeHighlightStyles(euiTheme);
+  const cssStyles = [styles.euiRangeHighlight];
+
+  const cssProgressStyles = [styles.euiRangeHighlight__progress];
+
   return (
-    <div className={classes} onClick={onClick}>
-      <div className={progressClasses} style={rangeWidthStyle} />
+    <div className={classes} css={cssStyles} onClick={onClick}>
+      <div
+        className={progressClasses}
+        css={cssProgressStyles}
+        style={rangeWidthStyle}
+      />
     </div>
   );
 };

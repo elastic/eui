@@ -9,6 +9,9 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
+import { useEuiTheme } from '../../../services';
+import { euiRangeLabelStyles } from './range_label.styles';
+
 export interface EuiRangeLabelProps {
   /**
    * ReactNode to render as this component's content
@@ -26,5 +29,14 @@ export const EuiRangeLabel: FunctionComponent<EuiRangeLabelProps> = ({
   const classes = classNames('euiRangeLabel', `euiRangeLabel--${side}`, {
     'euiRangeLabel--isDisabled': disabled,
   });
-  return <label className={classes}>{children}</label>;
+
+  const euiTheme = useEuiTheme();
+  const styles = euiRangeLabelStyles(euiTheme);
+  const cssStyles = [styles.euiRangeLabel];
+
+  return (
+    <label className={classes} css={cssStyles}>
+      {children}
+    </label>
+  );
 };
