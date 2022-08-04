@@ -8,7 +8,7 @@
 
 import { testCustomHook } from '../../test/internal';
 import { EuiThemeBreakpoints, _EuiThemeBreakpoint } from '../variables';
-import { useEuiBreakpoint } from './_responsive';
+import { useEuiBreakpoint, euiBreakpoint } from './_responsive';
 
 describe('useEuiBreakpoint', () => {
   describe('common breakpoint size arrays', () => {
@@ -94,5 +94,36 @@ describe('useEuiBreakpoint', () => {
         fallbackOutput
       );
     });
+  });
+});
+
+describe('euiBreakpoint & custom theme breakpoints', () => {
+  const CUSTOM_BREAKPOINTS = {
+    xxl: 700,
+    xl: 600,
+    l: 500,
+    m: 400,
+    s: 300,
+    xs: 200,
+    xxs: 100,
+  };
+  const mockEuiTheme: any = { euiTheme: { breakpoint: CUSTOM_BREAKPOINTS } };
+
+  it('correctly inherits the breakpoint size override', () => {
+    expect(euiBreakpoint(mockEuiTheme, ['s', 'l'])).toMatchInlineSnapshot(
+      '"@media only screen and (min-width: 300px) and (max-width: 599px)"'
+    );
+  });
+
+  it('correctly infers the largest breakpoint and does not render a max-width if passed', () => {
+    expect(euiBreakpoint(mockEuiTheme, ['xl', 'xxl'])).toMatchInlineSnapshot(
+      '"@media only screen and (min-width: 600px)"'
+    );
+  });
+
+  it('correctly uses the smallest breakpoint for a min-width if it is not set to 0', () => {
+    expect(euiBreakpoint(mockEuiTheme, ['xxs', 'xs'])).toMatchInlineSnapshot(
+      '"@media only screen and (min-width: 100px) and (max-width: 299px)"'
+    );
   });
 });
