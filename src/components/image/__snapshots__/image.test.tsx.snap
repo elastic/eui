@@ -2,79 +2,64 @@
 
 exports[`EuiImage is rendered 1`] = `
 <figure
-  class="euiImage testClass1 testClass2 euiImage--large"
+  class="euiImageWrapper emotion-euiImageWrapper"
 >
   <img
-    alt="alt"
+    alt=""
     aria-label="aria-label"
-    class="euiImage__img"
+    class="euiImage testClass1 testClass2 emotion-euiImage-original"
     data-test-subj="test subject string"
     src="/cat.jpg"
   />
 </figure>
 `;
 
-exports[`EuiImage is rendered and allows fullscreen 1`] = `
+exports[`EuiImage props allowFullScreen 1`] = `
 <figure
-  class="euiImage euiImage--allowFullScreen testClass1 testClass2 euiImage--large"
+  class="euiImageWrapper emotion-euiImageWrapper-allowFullScreen"
 >
   <button
-    aria-label="Open fullscreen alt image"
-    class="euiImage__button euiImage__button--fullWidth"
+    class="emotion-euiImageButton-shadowHover"
     data-test-subj="activateFullScreenButton"
     type="button"
   >
     <img
-      alt="alt"
+      alt=""
       aria-label="aria-label"
-      class="euiImage__img"
+      class="euiImage testClass1 testClass2 emotion-euiImage-original"
       data-test-subj="test subject string"
       src="/cat.jpg"
     />
-    <span
-      class="euiImage__icon"
-      color="ghost"
-      data-euiicon-type="fullScreen"
-    />
+    <div
+      class="emotion-euiImageButton__icon-openFullScreen"
+    >
+      <p
+        class="emotion-euiScreenReaderOnly"
+      >
+        Click to open this image in fullscreen mode
+      </p>
+      <span
+        color="ghost"
+        data-euiicon-type="fullScreen"
+      />
+    </div>
   </button>
 </figure>
 `;
 
-exports[`EuiImage is rendered with a float 1`] = `
+exports[`EuiImage props caption 1`] = `
 <figure
-  class="euiImage euiImage--floatLeft euiImage--original"
+  class="euiImageWrapper emotion-euiImageWrapper"
 >
   <img
-    alt="alt"
-    class="euiImage__img"
-    src="/cat.jpg"
-  />
-</figure>
-`;
-
-exports[`EuiImage is rendered with a margin 1`] = `
-<figure
-  class="euiImage euiImage--marginLarge euiImage--original"
->
-  <img
-    alt="alt"
-    class="euiImage__img"
-    src="/cat.jpg"
-  />
-</figure>
-`;
-
-exports[`EuiImage is rendered with a node as the caption 1`] = `
-<figure
-  class="euiImage euiImage--original"
->
-  <img
-    alt="alt"
-    class="euiImage__img"
+    alt=""
+    aria-label="aria-label"
+    class="euiImage testClass1 testClass2 emotion-euiImage-original"
+    data-test-subj="test subject string"
     src="/cat.jpg"
   />
   <figcaption
-    class="euiImage__caption"
+    class="emotion-euiImageCaption"
   >
     <span>
       caption
@@ -83,27 +68,159 @@ exports[`EuiImage is rendered with a node as the caption 1`] = `
 </figure>
 `;
 
-exports[`EuiImage is rendered with custom size 1`] = `
+exports[`EuiImage props float 1`] = `
 <figure
-  class="euiImage"
+  class="euiImageWrapper emotion-euiImageWrapper-left"
 >
   <img
-    alt="alt"
-    class="euiImage__img"
+    alt=""
+    aria-label="aria-label"
+    class="euiImage testClass1 testClass2 emotion-euiImage-original"
+    data-test-subj="test subject string"
     src="/cat.jpg"
-    style="max-width:50px;max-height:50px;width:auto"
   />
 </figure>
 `;
 
-exports[`EuiImage is rendered with src 1`] = `
+exports[`EuiImage props fullScreenIconColor 1`] = `
 <figure
-  class="euiImage euiImage--floatLeft euiImage--original"
+  class="euiImageWrapper emotion-euiImageWrapper-allowFullScreen"
+>
+  <button
+    class="emotion-euiImageButton-shadowHover"
+    data-test-subj="activateFullScreenButton"
+    type="button"
+  >
+    <img
+      alt=""
+      aria-label="aria-label"
+      class="euiImage testClass1 testClass2 emotion-euiImage-original"
+      data-test-subj="test subject string"
+      src="/cat.jpg"
+    />
+    <div
+      class="emotion-euiImageButton__icon-openFullScreen"
+    >
+      <p
+        class="emotion-euiScreenReaderOnly"
+      >
+        Click to open this image in fullscreen mode
+      </p>
+      <span
+        color="default"
+        data-euiicon-type="fullScreen"
+      />
+    </div>
+  </button>
+</figure>
+`;
+
+exports[`EuiImage props hasShadow 1`] = `
+<figure
+  class="euiImageWrapper emotion-euiImageWrapper-allowFullScreen-fullWidth"
+>
+  <button
+    class="emotion-euiImageButton-hasShadowHover-fullWidth"
+    data-test-subj="activateFullScreenButton"
+    type="button"
+  >
+    <img
+      alt=""
+      aria-label="aria-label"
+      class="euiImage testClass1 testClass2 emotion-euiImage-fullWidth-hasShadow"
+      data-test-subj="test subject string"
+      src="/cat.jpg"
+    />
+    <div
+      class="emotion-euiImageButton__icon-openFullScreen"
+    >
+      <p
+        class="emotion-euiScreenReaderOnly"
+      >
+        Click to open this image in fullscreen mode
+      </p>
+      <span
+        color="ghost"
+        data-euiicon-type="fullScreen"
+      />
+    </div>
+  </button>
+</figure>
+`;
+
+exports[`EuiImage props margin 1`] = `
+<figure
+  class="euiImageWrapper emotion-euiImageWrapper-l"
+>
+  <img
+    alt=""
+    aria-label="aria-label"
+    class="euiImage testClass1 testClass2 emotion-euiImage-original"
+    data-test-subj="test subject string"
+    src="/cat.jpg"
+  />
+</figure>
+`;
+
+exports[`EuiImage props size 1`] = `
+<figure
+  class="euiImageWrapper emotion-euiImageWrapper"
+>
+  <img
+    alt=""
+    aria-label="aria-label"
+    class="euiImage testClass1 testClass2 emotion-euiImage-customSize"
+    data-test-subj="test subject string"
+    src="/cat.jpg"
+    style="max-width:50px;max-height:50px"
+  />
+</figure>
+`;
+
+exports[`EuiImage props src vs url src 1`] = `
+<figure
+  class="euiImageWrapper emotion-euiImageWrapper"
+>
+  <img
+    alt=""
+    class="euiImage emotion-euiImage-original"
+    src="/dog.jpg"
+  />
+</figure>
+`;
+
+exports[`EuiImage props src vs url url 1`] = `
+<figure
+  class="euiImageWrapper emotion-euiImageWrapper"
+>
+  <img
+    alt=""
+    class="euiImage emotion-euiImage-original"
+    src="/dog.jpg"
+  />
+</figure>
+`;
+
+exports[`EuiImage props wrapperProps 1`] = `
+<figure
+  alt=""
+  aria-label="aria-label"
+  class="euiImageWrapper testClass1 testClass2 emotion-euiImageWrapper"
+  data-test-subj="test subject string"
+  src="/cat.jpg"
+  style="border:2px solid red"
 >
   <img
     alt="alt"
-    class="euiImage__img"
+    class="euiImage emotion-euiImage-original"
     src="/cat.jpg"
   />
+  <figcaption
+    class="emotion-euiImageCaption"
+  >
+    <span>
+      caption
+    </span>
+  </figcaption>
 </figure>
 `;

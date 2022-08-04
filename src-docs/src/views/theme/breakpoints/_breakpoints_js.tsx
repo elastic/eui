@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import {
-  isWithinBreakpoints,
-  useEuiTheme,
-  useIsWithinBreakpoints,
-} from '../../../../../src/services';
-
+import React from 'react';
+import { css } from '@emotion/react';
 import {
   EuiIcon,
-  getBreakpoint,
-  throttle,
-  EuiBreakpointSize,
   EuiCode,
   EuiThemeBreakpoints,
+  useEuiBreakpoint,
+  useCurrentEuiBreakpoint,
+  useIsWithinBreakpoints,
+  useEuiTheme,
 } from '../../../../../src';
 
 import { EuiThemeBreakpoints as _EuiThemeBreakpoints } from '../_props';
@@ -20,109 +16,57 @@ import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 
 export default () => {
+  const currentBreakpoint = useCurrentEuiBreakpoint();
   const { euiTheme } = useEuiTheme();
-  const isLargeBreakpoint = useIsWithinBreakpoints(['l', 'xl']);
-
-  const [currentBreakpoint, setCurrentBreakpoint] = useState(
-    getBreakpoint(
-      typeof window === 'undefined' ? 0 : window.innerWidth,
-      euiTheme.breakpoint
-    )
-  );
-
-  const [withinBreakpoints, setWithinBreakpoints] = useState(
-    isWithinBreakpoints(typeof window === 'undefined' ? 0 : window.innerWidth, [
-      'xs',
-      's',
-    ])
-  );
-
-  const functionToCallOnWindowResize = throttle(() => {
-    setCurrentBreakpoint(getBreakpoint(window.innerWidth, euiTheme.breakpoint));
-    setWithinBreakpoints(isWithinBreakpoints(window.innerWidth, ['xs', 's']));
-    // reacts every 50ms to resize changes and always gets the final update
-  }, 50);
-
-  useEffect(() => {
-    window.addEventListener('resize', functionToCallOnWindowResize);
-
-    return () => {
-      window.removeEventListener('resize', functionToCallOnWindowResize);
-    };
-  }, [functionToCallOnWindowResize]);
 
   return (
     <>
       <ThemeExample
-        title={<code>getBreakpoint(width, breakpoints)</code>}
-        type="function"
+        title={<code>useCurrentEuiBreakpoint()</code>}
+        type="hook"
         description={
-          <p>
-            Given the current <EuiCode>width</EuiCode>, this function returns
-            the string that is the name of the breakpoint key that is less than
-            or equal to the width.
-          </p>
+          <>
+            <p>
+              This hook returns the named breakpoint size of the current browser
+              window width, responsively updating whenever the window is
+              resized.
+            </p>
+            <p>
+              The hook automatically inherits breakpoint sizes from the current
+              EUI theme and any theme overrides.
+            </p>
+          </>
         }
         example={
           <p>
             Current breakpoint: <strong>{currentBreakpoint}</strong>
           </p>
         }
-        snippet="getBreakpoint(window.innerWidth, euiTheme.breakpoint)"
+        snippet="const currentBreakpoint = useCurrentEuiBreakpoint()"
         snippetLanguage="js"
       />
 
       <ThemeExample
-        title={<code>isWithinBreakpoints(width, sizes[])</code>}
-        type="function"
-        description={
-          <>
-            <p>
-              Given the current <EuiCode>width</EuiCode> and an array of
-              breakpoint keys, this function returns true or false if the{' '}
-              <EuiCode>width</EuiCode> falls <strong>within any</strong> of the
-              named breakpoints.
-            </p>
-            <p>
-              You can also use{' '}
-              <EuiCode>isWithinMinBreakpoint(width, key)</EuiCode> or{' '}
-              <EuiCode>isWithinMaxBreakpoint(width, key)</EuiCode> for checking
-              for a specific minimum or maximum width.
-            </p>
-          </>
-        }
-        example={
-          <p>
-            Targeting mobile devices only:{' '}
-            {withinBreakpoints ? (
-              <EuiIcon type="checkInCircleFilled" color="success" />
-            ) : (
-              <EuiIcon type="cross" color="danger" />
-            )}
-          </p>
-        }
-        snippet="isWithinBreakpoints(window.innerWidth, ['xs', 's'])"
-        snippetLanguage="js"
-      />
-
-      <ThemeExample
-        title={<code>useIsWithinBreakpoints(sizes[], isActive?)</code>}
+        title={<code>useIsWithinBreakpoints(sizes[], isResponsive?)</code>}
         type="hook"
         description={
           <>
             <p>
-              This hook automatically sets up with resize listeners and
-              calculates the current breakpoint based on the{' '}
-              <strong>whole window width</strong>. The{' '}
-              <EuiCode>isActive</EuiCode> parameter allows it to easily be
-              turned on/off from within your component.
+              This hook returns true or false if the current browser window
+              width is within the passed breakpoint <EuiCode>sizes</EuiCode>.{' '}
+              The <EuiCode>isResponsive</EuiCode> parameter allows it to easily
+              be turned on/off from within your component.
+            </p>
+            <p>
+              The hook automatically inherits breakpoint sizes from the current
+              EUI theme and any theme overrides.
             </p>
           </>
         }
         example={
           <p>
             Targeting large devices only:{' '}
-            {isLargeBreakpoint ? (
+            {useIsWithinBreakpoints(['l', 'xl']) ? (
               <EuiIcon type="checkInCircleFilled" color="success" />
             ) : (
               <EuiIcon type="cross" color="danger" />
@@ -132,34 +76,71 @@ export default () => {
         snippet="useIsWithinBreakpoints(['l', 'xl'])"
         snippetLanguage="js"
       />
+
+      <ThemeExample
+        title={<code>useEuiBreakpoint(sizes[])</code>}
+        type="hook"
+        description={
+          <>
+            <p>
+              Given an array of breakpoint keys, this hook generates a CSS media
+              query string based on the minimum width and maximum width
+              provided.
+            </p>
+            <p>
+              You can also create media queries with a{' '}
+              <EuiCode>(max-width)</EuiCode> only or{' '}
+              <EuiCode>(min-width)</EuiCode> only by utilizing the{' '}
+              <EuiCode>xs</EuiCode> and <EuiCode>xl</EuiCode> arguments.
+            </p>
+          </>
+        }
+        example={
+          <p
+            css={css`
+              ${useEuiBreakpoint(['s', 'l'])} {
+                font-weight: ${euiTheme.font.weight.bold};
+              }
+              ${useEuiBreakpoint(['xs', 's'])} {
+                color: ${euiTheme.colors.dangerText};
+              }
+              ${useEuiBreakpoint(['m'])} {
+                color: ${euiTheme.colors.warningText};
+              }
+              ${useEuiBreakpoint(['l', 'xl'])} {
+                color: ${euiTheme.colors.successText};
+              }
+            `}
+          >
+            This text is bold on small to large screens, red on small and below
+            screens, yellow on medium screens, and green on large and above
+            screens.
+          </p>
+        }
+        snippet={`\${useEuiBreakpoint(['s', 'l'])} {
+    font-weight: bold;
+  }
+  \${useEuiBreakpoint(['xs', 's'])} {
+    color: red;
+  }
+  \${useEuiBreakpoint(['m'])} {
+    color: yellow;
+  }
+  \${useEuiBreakpoint(['l', 'xl'])} {
+    color: green;
+  }`}
+        snippetLanguage="emotion"
+      />
     </>
   );
 };
 
 export const BreakpointValuesJS = () => {
-  const { euiTheme } = useEuiTheme();
-  const breakpoint = euiTheme.breakpoint;
+  const {
+    euiTheme: { breakpoint },
+  } = useEuiTheme();
   const breakpointTypes = getPropsFromComponent(_EuiThemeBreakpoints);
-
-  const [currentBreakpoint, setCurrentBreakpoint] = useState(
-    getBreakpoint(
-      typeof window === 'undefined' ? 0 : window.innerWidth,
-      euiTheme.breakpoint
-    )
-  );
-
-  const functionToCallOnWindowResize = throttle(() => {
-    setCurrentBreakpoint(getBreakpoint(window.innerWidth, euiTheme.breakpoint));
-    // reacts every 50ms to resize changes and always gets the final update
-  }, 50);
-
-  useEffect(() => {
-    window.addEventListener('resize', functionToCallOnWindowResize);
-
-    return () => {
-      window.removeEventListener('resize', functionToCallOnWindowResize);
-    };
-  }, [functionToCallOnWindowResize]);
+  const currentBreakpoint = useCurrentEuiBreakpoint();
 
   return (
     <>
@@ -169,7 +150,7 @@ export const BreakpointValuesJS = () => {
             id: size,
             token: `breakpoint.${size}`,
             type: breakpointTypes[size],
-            value: breakpoint[size as EuiBreakpointSize],
+            value: breakpoint[size],
           };
         })}
         valueColumnProps={{

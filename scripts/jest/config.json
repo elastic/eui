@@ -8,11 +8,11 @@
     "<rootDir>/packages/eslint-plugin"
   ],
   "collectCoverageFrom": [
-    "src/{components,services}/**/*.{ts,tsx,js,jsx}",
-    "!src/{components,services}/**/*.spec.{ts,tsx,js,jsx}",
-    "!src/{components,services}/**/*.testenv.{ts,tsx,js,jsx}",
-    "!src/{components,services}/index.ts",
-    "!src/{components,services}/**/*/index.ts",
+    "src/{components,services,global_styling}/**/*.{ts,tsx,js,jsx}",
+    "!src/{components,services,global_styling}/**/*.spec.{ts,tsx,js,jsx}",
+    "!src/{components,services,global_styling}/**/*.testenv.{ts,tsx,js,jsx}",
+    "!src/{components,services,global_styling}/index.ts",
+    "!src/{components,services,global_styling}/**/*/index.ts",
     "!src/components/date_picker/react-datepicker/**/*.{js,jsx}"
   ],
   "moduleNameMapper": {
@@ -21,10 +21,10 @@
   },
   "setupFiles": [
     "<rootDir>/scripts/jest/setup/enzyme.js",
-    "<rootDir>/scripts/jest/setup/throw_on_console_error.js"
+    "<rootDir>/scripts/jest/setup/throw_on_console_error.js",
+    "<rootDir>/scripts/jest/setup/mocks.js"
   ],
   "setupFilesAfterEnv": [
-    "<rootDir>/scripts/jest/setup/mocks.js",
     "<rootDir>/scripts/jest/setup/polyfills.js",
     "<rootDir>/scripts/jest/setup/unmount_enzyme.js"
   ],

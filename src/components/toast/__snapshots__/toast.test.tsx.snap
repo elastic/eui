@@ -2,7 +2,7 @@
 
 exports[`EuiToast Props color danger is rendered 1`] = `
 <div
-  class="euiToast euiToast--danger"
+  class="euiToast emotion-euiToast-danger"
 >
   <p
     class="emotion-euiScreenReaderOnly"
@@ -11,11 +11,12 @@ exports[`EuiToast Props color danger is rendered 1`] = `
   </p>
   <div
     aria-label="Notification"
-    class="euiToastHeader"
+    class="emotion-euiToastHeader"
     data-test-subj="euiToastHeader"
   >
     <span
-      class="euiToastHeader__title"
+      class="emotion-euiToastHeader__title"
+      data-test-subj="euiToastHeader__title"
     >
       test title
     </span>
@@ -25,7 +26,7 @@ exports[`EuiToast Props color danger is rendered 1`] = `
 
 exports[`EuiToast Props color primary is rendered 1`] = `
 <div
-  class="euiToast euiToast--primary"
+  class="euiToast emotion-euiToast-primary"
 >
   <p
     class="emotion-euiScreenReaderOnly"
@@ -34,11 +35,12 @@ exports[`EuiToast Props color primary is rendered 1`] = `
   </p>
   <div
     aria-label="Notification"
-    class="euiToastHeader"
+    class="emotion-euiToastHeader"
     data-test-subj="euiToastHeader"
   >
     <span
-      class="euiToastHeader__title"
+      class="emotion-euiToastHeader__title"
+      data-test-subj="euiToastHeader__title"
     >
       test title
     </span>
@@ -48,7 +50,7 @@ exports[`EuiToast Props color primary is rendered 1`] = `
 
 exports[`EuiToast Props color success is rendered 1`] = `
 <div
-  class="euiToast euiToast--success"
+  class="euiToast emotion-euiToast-success"
 >
   <p
     class="emotion-euiScreenReaderOnly"
@@ -57,11 +59,12 @@ exports[`EuiToast Props color success is rendered 1`] = `
   </p>
   <div
     aria-label="Notification"
-    class="euiToastHeader"
+    class="emotion-euiToastHeader"
     data-test-subj="euiToastHeader"
   >
     <span
-      class="euiToastHeader__title"
+      class="emotion-euiToastHeader__title"
+      data-test-subj="euiToastHeader__title"
     >
       test title
     </span>
@@ -71,7 +74,7 @@ exports[`EuiToast Props color success is rendered 1`] = `
 
 exports[`EuiToast Props color warning is rendered 1`] = `
 <div
-  class="euiToast euiToast--warning"
+  class="euiToast emotion-euiToast-warning"
 >
   <p
     class="emotion-euiScreenReaderOnly"
@@ -80,11 +83,12 @@ exports[`EuiToast Props color warning is rendered 1`] = `
   </p>
   <div
     aria-label="Notification"
-    class="euiToastHeader"
+    class="emotion-euiToastHeader"
     data-test-subj="euiToastHeader"
   >
     <span
-      class="euiToastHeader__title"
+      class="emotion-euiToastHeader__title"
+      data-test-subj="euiToastHeader__title"
     >
       test title
     </span>
@@ -94,7 +98,7 @@ exports[`EuiToast Props color warning is rendered 1`] = `
 
 exports[`EuiToast Props iconType is rendered 1`] = `
 <div
-  class="euiToast"
+  class="euiToast emotion-euiToast"
 >
   <p
     class="emotion-euiScreenReaderOnly"
@@ -103,16 +107,17 @@ exports[`EuiToast Props iconType is rendered 1`] = `
   </p>
   <div
     aria-label="Notification"
-    class="euiToastHeader"
+    class="emotion-euiToastHeader"
     data-test-subj="euiToastHeader"
   >
     <span
       aria-hidden="true"
-      class="euiToastHeader__icon"
+      class="emotion-euiToastHeader__icon"
       data-euiicon-type="user"
     />
     <span
-      class="euiToastHeader__title"
+      class="emotion-euiToastHeader__title"
+      data-test-subj="euiToastHeader__title"
     >
       test title
     </span>
@@ -122,7 +127,7 @@ exports[`EuiToast Props iconType is rendered 1`] = `
 
 exports[`EuiToast Props title is rendered 1`] = `
 <div
-  class="euiToast"
+  class="euiToast emotion-euiToast"
 >
   <p
     class="emotion-euiScreenReaderOnly"
@@ -131,11 +136,12 @@ exports[`EuiToast Props title is rendered 1`] = `
   </p>
   <div
     aria-label="Notification"
-    class="euiToastHeader"
+    class="emotion-euiToastHeader"
     data-test-subj="euiToastHeader"
   >
     <span
-      class="euiToastHeader__title"
+      class="emotion-euiToastHeader__title"
+      data-test-subj="euiToastHeader__title"
     >
       toast title
     </span>
@@ -146,7 +152,7 @@ exports[`EuiToast Props title is rendered 1`] = `
 exports[`EuiToast is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiToast testClass1 testClass2"
+  class="euiToast testClass1 testClass2 emotion-euiToast"
   data-test-subj="test subject string"
 >
   <p
@@ -156,17 +162,19 @@ exports[`EuiToast is rendered 1`] = `
   </p>
   <div
     aria-label="Notification"
-    class="euiToastHeader euiToastHeader--withBody"
+    class="emotion-euiToastHeader-withBody"
     data-test-subj="euiToastHeader"
   >
     <span
-      class="euiToastHeader__title"
+      class="emotion-euiToastHeader__title"
+      data-test-subj="euiToastHeader__title"
     >
       test title
     </span>
   </div>
   <div
-    class="euiText euiToastBody emotion-euiText-s"
+    class="euiText emotion-euiText-s-euiToastBody"
+    data-test-subj="euiToastBody"
   >
     <p>
       Hi

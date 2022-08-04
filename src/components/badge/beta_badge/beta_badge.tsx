@@ -78,12 +78,14 @@ type LabelAsNode = ExclusiveUnion<
   label: ReactNode;
 };
 
-interface LabelAsString {
+// Must be `type` instead of `interface`
+// https://github.com/elastic/eui/issues/6085
+type LabelAsString = {
   /**
    * One word label like "Beta" or "Lab"
    */
   label: string;
-}
+};
 
 type BadgeProps = {
   /**

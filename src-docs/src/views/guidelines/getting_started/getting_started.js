@@ -234,7 +234,12 @@ import { Timer } from '@elastic/eui/lib/services/time';`}
           </EuiText>
           <EuiSpacer />
           <EuiCodeBlock language="jsx" isCopyable fontSize="m">
-            {"import { findTestSubject } from '@elastic/eui/lib/test';"}
+            {
+              "import { findTestSubject } from '@elastic/eui/lib/test'; // Enzyme"
+            }
+            {
+              "import { findByTestSubject, render, screen } from '@elastic/eui/lib/test/rtl'; // React Testing Library"
+            }
           </EuiCodeBlock>
         </>
       ),

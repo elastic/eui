@@ -5,12 +5,14 @@ import React, {
   FunctionComponent,
 } from 'react';
 import { useRouteMatch } from 'react-router';
-import { EuiImage } from '../../../../src/components/image';
-import { EuiButton } from '../../../../src/components/button';
-import { EuiSpacer } from '../../../../src/components/spacer';
-import { EuiSwitch } from '../../../../src/components/form';
-import { EuiTextAlign } from '../../../../src/components/text';
-import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
+import {
+  EuiImage,
+  EuiButton,
+  EuiSpacer,
+  EuiSwitch,
+  EuiTextAlign,
+  useIsWithinBreakpoints,
+} from '../../../../src';
 import { useExitPath } from '../../services/routing/routing';
 
 import contentSvg from '../../images/content.svg';

@@ -9,7 +9,8 @@ export default () => {
   const docgenInfo = Array.isArray(EuiIcon.__docgenInfo)
     ? EuiIcon.__docgenInfo[0]
     : EuiIcon.__docgenInfo;
-  const propsToUse = propUtilityForPlayground(docgenInfo.props);
+
+  const propsToUse = propUtilityForPlayground(docgenInfo.props, true);
 
   propsToUse.type = iconValidator({ ...propsToUse.type }, 'grid');
 

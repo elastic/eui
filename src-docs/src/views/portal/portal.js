@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { EuiPortal, EuiButton, EuiBottomBar } from '../../../../src/components';
 
-export const Portal = () => {
+export default () => {
   const [isPortalVisible, setIsPortalVisible] = useState(false);
 
   const togglePortal = () => {

@@ -295,9 +295,10 @@ describe('EuiDataGrid', () => {
 
         getGridData();
 
-        cy.get('[data-test-subj=euiDataGridBody]').focus();
-
         // first cell is non-interactive and non-expandable = focus cell
+        cy.get(
+          '[data-gridcell-column-index="0"][data-gridcell-row-index="0"]'
+        ).click();
         cy.focused()
           .should('have.attr', 'data-gridcell-column-index', '0')
           .should('have.attr', 'data-gridcell-row-index', '0');
@@ -336,9 +337,10 @@ describe('EuiDataGrid', () => {
 
         getGridData();
 
-        cy.get('[data-test-subj=euiDataGridBody]').focus();
-
         // first cell is non-interactive and non-expandable, enter should have no effect
+        cy.get(
+          '[data-gridcell-column-index="0"][data-gridcell-row-index="0"]'
+        ).click();
         cy.focused().type('{enter}');
         cy.focused()
           .should('have.attr', 'data-gridcell-column-index', '0')
@@ -619,14 +621,17 @@ function getGridData() {
   const rows = cy.get('[role=row]');
   return rows.then((rows) => {
     const headers: string[] = [];
-    const data = [];
+    const data: Array<{ [key: string]: string }> = [];
 
     // process header
     const headerRow = rows[0];
     const headerCells = headerRow.querySelectorAll('[role=columnheader]');
     for (let i = 0; i < headerCells.length; i++) {
       const headerCell = headerCells[i];
-      headers.push(headerCell.textContent ?? '');
+      const headerContent = headerCell.querySelector(
+        '.euiDataGridHeaderCell__content'
+      )?.textContent;
+      headers.push(headerContent ?? '');
     }
 
     // process data rows

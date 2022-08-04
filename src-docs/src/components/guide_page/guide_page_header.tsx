@@ -9,7 +9,7 @@ import { EuiBadge } from '../../../../src/components/badge';
 import { EuiIcon } from '../../../../src/components/icon';
 import { EuiToolTip } from '../../../../src/components/tool_tip';
 import { EuiPopover } from '../../../../src/components/popover';
-import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
+import { useIsWithinBreakpoints } from '../../../../src/services';
 import { EuiButtonEmpty } from '../../../../src/components/button';
 
 // @ts-ignore Not TS

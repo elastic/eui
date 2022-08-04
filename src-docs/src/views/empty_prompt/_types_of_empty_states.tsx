@@ -19,12 +19,12 @@ import {
   EuiDescriptionListTitle,
   EuiDescriptionListDescription,
   EuiLoadingSpinner,
-} from '../../../../src/components';
+  useIsWithinBreakpoints,
+} from '../../../../src';
 import { ThemeContext } from '../../components/with_theme';
 import { typesOfPanelColors } from './_types_of_panel_colors';
 // @ts-ignore Importing from JS file
 import { typesOfUseCases } from './_types_of_use_cases';
-import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
 import { GuideSection } from '../../components/guide_section/guide_section';
 import { GuideSectionTypes } from '../../components/guide_section/guide_section_types';
 
@@ -150,9 +150,18 @@ export default () => {
     const iconImg: string = isDarkTheme
       ? currentUseCaseExample.iconDark!
       : currentUseCaseExample.iconLight!;
+    const iconImg2x: string = isDarkTheme
+      ? currentUseCaseExample.iconDark2x!
+      : currentUseCaseExample.iconLight2x!;
+
+    const hasRetinaImage = iconImg2x !== '';
+    const srcSet = hasRetinaImage ? `${iconImg} 1x, ${iconImg2x} 2x` : '';
+    const alt = currentUseCaseExample.alt || '';
 
     icon = {
-      icon: <EuiImage size="fullWidth" src={iconImg} alt="" />,
+      icon: (
+        <EuiImage size="fullWidth" alt={alt} srcSet={srcSet} src={iconImg} />
+      ),
     };
   }
 

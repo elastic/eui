@@ -1,65 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiCommentTimeline is rendered 1`] = `
+exports[`EuiCommentTimeline props timelineAvatar defaults to an avatar with a \`userAvatar\` icon 1`] = `
 <div
-  class="euiCommentTimeline testClass1 testClass2"
+  aria-label=""
+  class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+  role="img"
+  title=""
 >
-  <div
-    class="euiCommentTimeline__content"
-  >
-    <div
-      class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
-    >
-      <span
-        data-euiicon-type="user"
-      />
-    </div>
-  </div>
+  <span
+    class="euiAvatar__icon"
+    data-euiicon-type="userAvatar"
+  />
 </div>
 `;
 
-exports[`EuiCommentTimeline props timelineIcon is rendered 1`] = `
+exports[`EuiCommentTimeline props timelineAvatar is rendered with a ReactNode 1`] = `
 <div
-  class="euiCommentTimeline"
+  aria-label="username"
+  class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-m-user-subdued"
+  role="img"
+  title="username"
 >
-  <div
-    class="euiCommentTimeline__content"
-  >
-    <div
-      class="euiCommentTimeline__icon--regular"
-    >
-      <div
-        aria-label="Mario"
-        class="euiAvatar euiAvatar--l euiAvatar--user emotion-euiAvatar-l-user"
-        role="img"
-        style="background-color:#f1d86f;color:#000000"
-        title="Mario"
-      >
-        <span
-          aria-hidden="true"
-        >
-          M
-        </span>
-      </div>
-    </div>
-  </div>
+  <span
+    class="euiAvatar__icon"
+    data-euiicon-type="userAvatar"
+  />
 </div>
 `;
 
-exports[`EuiCommentTimeline props type is rendered 1`] = `
+exports[`EuiCommentTimeline props timelineAvatar is rendered with a string 1`] = `
 <div
-  class="euiCommentTimeline"
+  aria-label=""
+  class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+  role="img"
+  title=""
 >
-  <div
-    class="euiCommentTimeline__content"
-  >
-    <div
-      class="euiCommentTimeline__icon--default euiCommentTimeline__icon--update"
-    >
-      <span
-        data-euiicon-type="dot"
-      />
-    </div>
-  </div>
+  <span
+    class="euiAvatar__icon"
+    data-euiicon-type="dot"
+  />
+</div>
+`;
+
+exports[`EuiCommentTimeline props timelineAvatar is rendered with timelineAvatarAriaLabel 1`] = `
+<div
+  aria-label="timelineAvatarAriaLabel"
+  class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+  role="img"
+  title="timelineAvatarAriaLabel"
+>
+  <span
+    class="euiAvatar__icon"
+    data-euiicon-type="dot"
+  />
 </div>
 `;

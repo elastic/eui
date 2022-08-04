@@ -105,6 +105,12 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
         text-decoration: none;
       }
     }
+
+    // A few EUI components (e.g. tooltip, combobox) use a portal to render content outside of the DOM hierarchy.
+    // The portal content is absolutely positioned relative to the body.
+    .euiBody-hasPortalContent {
+      position: relative;
+    }
   `;
 
   return <Global styles={styles} />;

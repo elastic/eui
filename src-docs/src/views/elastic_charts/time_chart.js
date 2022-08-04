@@ -4,6 +4,7 @@ import {
   Chart,
   BarSeries,
   Settings,
+  Tooltip,
   Axis,
   timeFormatter,
   niceTimeFormatByDay,
@@ -77,12 +78,8 @@ export const TimeChart = () => {
       <EuiSpacer size="s" />
 
       <Chart size={{ height: 200 }}>
-        <Settings
-          theme={theme}
-          showLegend={multi}
-          legendPosition="right"
-          tooltip="cross"
-        />
+        <Settings theme={theme} showLegend={multi} legendPosition="right" />
+        <Tooltip type="cross" />
         <ChartType
           id="financial"
           name="Financial"

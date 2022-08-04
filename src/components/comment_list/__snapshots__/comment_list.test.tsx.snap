@@ -1,49 +1,159 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiCommentList is rendered 1`] = `
-<div
+<ol
   aria-label="aria-label"
-  class="euiCommentList testClass1 testClass2"
+  class="euiTimeline euiCommentList testClass1 testClass2 emotion-euiTimeline-l"
   data-test-subj="test subject string"
+  role="list"
 >
-  <div
-    class="euiComment"
+  <li
+    class="euiComment emotion-euiTimelineItem-center"
   >
     <div
-      class="euiCommentTimeline"
+      class="emotion-euiTimelineItemIcon-center"
     >
       <div
-        class="euiCommentTimeline__content"
+        class="emotion-euiTimelineItemIcon__content"
       >
         <div
-          class="euiCommentTimeline__icon--default euiCommentTimeline__icon--regular"
+          aria-label=""
+          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+          role="img"
+          title=""
         >
           <span
-            data-euiicon-type="user"
+            class="euiAvatar__icon"
+            data-euiicon-type="userAvatar"
           />
         </div>
       </div>
     </div>
-    <figure
-      class="euiCommentEvent euiCommentEvent--regular"
+    <div
+      class="emotion-euiTimelineItemEvent-center"
     >
-      <figcaption
-        class="euiCommentEvent__header"
+      <div
+        class="euiCommentEvent emotion-euiCommentEvent-custom"
+        data-type="custom"
+      />
+    </div>
+  </li>
+</ol>
+`;
+
+exports[`EuiCommentList props gutterSize l is rendered 1`] = `
+<ol
+  class="euiTimeline euiCommentList emotion-euiTimeline-l"
+  role="list"
+>
+  <li
+    class="euiComment emotion-euiTimelineItem-center"
+  >
+    <div
+      class="emotion-euiTimelineItemIcon-center"
+    >
+      <div
+        class="emotion-euiTimelineItemIcon__content"
       >
         <div
-          class="euiCommentEvent__headerData"
+          aria-label=""
+          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+          role="img"
+          title=""
         >
-          <div
-            class="euiCommentEvent__headerUsername"
-          >
-            janed
-          </div>
-          <div
-            class="euiCommentEvent__headerEvent"
+          <span
+            class="euiAvatar__icon"
+            data-euiicon-type="userAvatar"
           />
         </div>
-      </figcaption>
-    </figure>
-  </div>
-</div>
+      </div>
+    </div>
+    <div
+      class="emotion-euiTimelineItemEvent-center"
+    >
+      <div
+        class="euiCommentEvent emotion-euiCommentEvent-custom"
+        data-type="custom"
+      />
+    </div>
+  </li>
+</ol>
+`;
+
+exports[`EuiCommentList props gutterSize m is rendered 1`] = `
+<ol
+  class="euiTimeline euiCommentList emotion-euiTimeline-m"
+  role="list"
+>
+  <li
+    class="euiComment emotion-euiTimelineItem-center"
+  >
+    <div
+      class="emotion-euiTimelineItemIcon-center"
+    >
+      <div
+        class="emotion-euiTimelineItemIcon__content"
+      >
+        <div
+          aria-label=""
+          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+          role="img"
+          title=""
+        >
+          <span
+            class="euiAvatar__icon"
+            data-euiicon-type="userAvatar"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="emotion-euiTimelineItemEvent-center"
+    >
+      <div
+        class="euiCommentEvent emotion-euiCommentEvent-custom"
+        data-type="custom"
+      />
+    </div>
+  </li>
+</ol>
+`;
+
+exports[`EuiCommentList props gutterSize xl is rendered 1`] = `
+<ol
+  class="euiTimeline euiCommentList emotion-euiTimeline-xl"
+  role="list"
+>
+  <li
+    class="euiComment emotion-euiTimelineItem-center"
+  >
+    <div
+      class="emotion-euiTimelineItemIcon-center"
+    >
+      <div
+        class="emotion-euiTimelineItemIcon__content"
+      >
+        <div
+          aria-label=""
+          class="euiAvatar euiAvatar--m euiAvatar--user euiCommentAvatar emotion-euiAvatar-m-user-subdued"
+          role="img"
+          title=""
+        >
+          <span
+            class="euiAvatar__icon"
+            data-euiicon-type="userAvatar"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="emotion-euiTimelineItemEvent-center"
+    >
+      <div
+        class="euiCommentEvent emotion-euiCommentEvent-custom"
+        data-type="custom"
+      />
+    </div>
+  </li>
+</ol>
 `;
