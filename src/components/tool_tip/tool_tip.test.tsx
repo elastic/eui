@@ -26,6 +26,25 @@ describe('EuiToolTip', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('anchor props are rendered', () => {
+    const component = render(
+      <EuiToolTip
+        title="title"
+        id="id"
+        content="content"
+        anchorProps={{
+          className: 'customAnchorClass1',
+          'data-test-subj': 'DTS',
+        }}
+        className="customAnchorClass2"
+      >
+        <button>Trigger</button>
+      </EuiToolTip>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('shows tooltip on focus', () => {
     jest.useFakeTimers();
     const component = mount(

@@ -314,7 +314,8 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     const anchorClasses = classNames(
       'euiToolTipAnchor',
       display ? displayToClassNameMap[display] : null,
-      anchorClassName
+      anchorClassName,
+      anchorProps?.className
     );
 
     let tooltip;
@@ -344,8 +345,8 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <span
         ref={(anchor) => (this.anchor = anchor)}
-        className={anchorClasses}
         {...anchorProps}
+        className={anchorClasses}
         onMouseOver={this.showToolTip}
         onMouseOut={this.onMouseOut}
       >

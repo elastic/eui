@@ -1,5 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiToolTip anchor props are rendered 1`] = `
+<span
+  class="euiToolTipAnchor customAnchorClass1"
+  data-test-subj="DTS"
+>
+  <button>
+    Trigger
+  </button>
+</span>
+`;
+
 exports[`EuiToolTip display prop renders block 1`] = `
 <span
   class="euiToolTipAnchor euiToolTipAnchor--displayBlock"
