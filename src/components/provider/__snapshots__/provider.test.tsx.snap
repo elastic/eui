@@ -269,6 +269,9 @@ exports[`EuiProvider applying modifications propagates \`modify\` 1`] = `
             "semiBold": 600,
           },
         },
+        "form": Object {
+          "maxWidth": "400px",
+        },
         "levels": Object {
           "content": 0,
           "flyout": 1000,
@@ -594,6 +597,9 @@ exports[`EuiProvider changing color modes propagates \`colorMode\` 1`] = `
             "semiBold": 600,
           },
         },
+        "form": Object {
+          "maxWidth": "400px",
+        },
         "levels": Object {
           "content": 0,
           "flyout": 1000,
@@ -917,6 +923,9 @@ exports[`EuiProvider is rendered 1`] = `
             "regular": 400,
             "semiBold": 600,
           },
+        },
+        "form": Object {
+          "maxWidth": "400px",
         },
         "levels": Object {
           "content": 0,
@@ -1264,6 +1273,9 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to all
             "semiBold": 600,
           },
         },
+        "form": Object {
+          "maxWidth": "400px",
+        },
         "levels": Object {
           "content": 0,
           "flyout": 1000,
@@ -1609,6 +1621,9 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to eac
             "regular": 400,
             "semiBold": 600,
           },
+        },
+        "form": Object {
+          "maxWidth": "400px",
         },
         "levels": Object {
           "content": 0,
@@ -1978,6 +1993,9 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to glo
             "semiBold": 600,
           },
         },
+        "form": Object {
+          "maxWidth": "400px",
+        },
         "levels": Object {
           "content": 0,
           "flyout": 1000,
@@ -2323,6 +2341,9 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to uti
             "regular": 400,
             "semiBold": 600,
           },
+        },
+        "form": Object {
+          "maxWidth": "400px",
         },
         "levels": Object {
           "content": 0,
