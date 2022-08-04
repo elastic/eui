@@ -1,6 +1,18 @@
 jest.mock('./../../../src/components/auto_sizer', () => {
-  const { EuiAutoSizer } = require('./../../../src/components/auto_sizer/auto_sizer.testenv');
+  const {
+    EuiAutoSizer,
+  } = require('./../../../src/components/auto_sizer/auto_sizer.testenv');
   return { EuiAutoSizer };
+});
+
+jest.mock('./../../../src/components/observer/resize_observer', () => {
+  const rest = jest.requireActual(
+    './../../../src/components/observer/resize_observer'
+  );
+  const {
+    EuiResizeObserver,
+  } = require('./../../../src/components/observer/resize_observer/resize_observer.testenv');
+  return { ...rest, EuiResizeObserver };
 });
 
 jest.mock('./../../../src/components/icon', () => {
