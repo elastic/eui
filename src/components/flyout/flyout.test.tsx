@@ -10,7 +10,8 @@ import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps, takeMountedSnapshot } from '../../test';
 
-import { EuiFlyout, SIZES, PADDING_SIZES, SIDES } from './flyout';
+import { EuiFlyout } from './flyout';
+import { SIZES, PADDING_SIZES, SIDES } from './flyout_types';
 
 jest.mock('../overlay_mask', () => ({
   EuiOverlayMask: ({ headerZindexLocation, maskRef, ...props }: any) => (

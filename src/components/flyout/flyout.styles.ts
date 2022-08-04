@@ -93,7 +93,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        max-width: 90vw !important;
+        max-width: 90vw;
       }
     `,
 
@@ -111,7 +111,6 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       right: auto;
       left: 0;
       // Override the hover and focus transitions of buttons
-      // sass-lint:disable-block no-important
       animation: none !important;
 
       ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
@@ -127,10 +126,10 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       right: 0;
 
       ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
-        transform: translateX(calc(100% + #{${euiTheme.size.l}})) !important;
+        transform: translateX(calc(100% + #{${euiTheme.size.l}}));
       }
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        transform: translateX(calc(100% + #{${euiTheme.size.xs}})) !important;
+        transform: translateX(calc(100% + #{${euiTheme.size.xs}}));
       }
     `,
 

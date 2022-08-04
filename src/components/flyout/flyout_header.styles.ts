@@ -17,26 +17,24 @@ export const euiFlyoutHeaderStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
   const euiTheme = euiThemeContext.euiTheme;
+
   return {
     euiFlyoutHeader: css`
       flex-grow: 0;
-    `,
-
-    border: css`
-      ${logicalCSS('border-bottom', euiTheme.border.thin)}
-      ${logicalCSS(
-        'padding-bottom',
-        getFlyoutPadding(paddingSize, euiThemeContext)
-      )}
-    `,
-
-    padding: css`
       ${logicalCSS(
         'padding-horizontal',
         getFlyoutPadding(paddingSize, euiThemeContext)
       )}
       ${logicalCSS(
         'padding-top',
+        getFlyoutPadding(paddingSize, euiThemeContext)
+      )}
+    `,
+
+    border: css`
+      ${logicalCSS('border-bottom', euiTheme.border.thin)}
+      ${logicalCSS(
+        'padding-bottom',
         getFlyoutPadding(paddingSize, euiThemeContext)
       )}
     `,

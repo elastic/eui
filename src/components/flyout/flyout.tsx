@@ -36,14 +36,8 @@ import {
 import {
   EuiFlyoutProps,
   defaultElement,
-  typeToClassNameMap,
-  sideToClassNameMap,
-  paddingSizeToClassNameMap,
   sizeToClassNameMap,
   isEuiFlyoutSizeNamed,
-  _EuiFlyoutSide,
-  _EuiFlyoutType,
-  EuiFlyoutPaddingSize,
 } from './flyout_types';
 
 import { EuiFlyoutContext } from './flyout_context';
@@ -181,7 +175,7 @@ export const EuiFlyout = forwardRef(
 
     // Setting size
     if (isEuiFlyoutSizeNamed(size)) {
-      sizeClassName = sizeToClassNameMap[size];
+      sizeClassName = `euiFlyout--${sizeToClassNameMap[size]}`;
     } else if (newStyle) {
       newStyle.width = size;
     } else {
@@ -193,7 +187,6 @@ export const EuiFlyout = forwardRef(
 
     const cssStyles = [
       styles.euiFlyout,
-
       side === 'left' && type === 'push' && styles['push--left'],
       isEuiFlyoutSizeNamed(size) && styles[`flyoutSize--${size}`],
       styles[type],
@@ -202,10 +195,12 @@ export const EuiFlyout = forwardRef(
 
     const classes = classnames(
       'euiFlyout',
-      typeToClassNameMap[type as _EuiFlyoutType],
-      sideToClassNameMap[side as _EuiFlyoutSide],
+      {
+        [`euiFlyout--${type}`]: type,
+        [`euiFlyout--${side}`]: side,
+        [`euiFlyout--padding-${paddingSize}`]: paddingSize,
+      },
       sizeClassName,
-      paddingSizeToClassNameMap[paddingSize as EuiFlyoutPaddingSize],
       widthClassName,
       className
     );
