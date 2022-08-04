@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-export const euiCheckableCardStyles = () => {
+export const euiCardSelectStyles = () => {
   return {
     euiCardSelect: css`
       transform: none !important;

@@ -853,7 +853,7 @@ exports[`EuiCard props paddingSize xl is rendered 1`] = `
 
 exports[`EuiCard props paddingSize xs is rendered 1`] = `
 <div
-  class="euiPanel euiPanel--plain euiCard euiCard--centerAligned css-fqiy6-euiPanel-grow-m-xs-plain-hasShadow-euiCard-center-vertical"
+  class="euiPanel euiPanel--plain euiCard euiCard--centerAligned emotion-euiPanel-grow-m-xs-plain-hasShadow-euiCard-center-vertical"
 >
   <div
     class="euiCard__content emotion-euiCard__content-vertical"

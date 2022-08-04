@@ -10,7 +10,7 @@ import React, { FunctionComponent, ReactNode } from 'react';
 
 import { EuiI18n } from '../../i18n';
 import { EuiButton, Props } from '../../button/button';
-import { euiCheckableCardStyles } from './card_select.styles';
+import { euiCardSelectStyles } from './card_select.styles';
 
 export type EuiCardSelectProps = Props;
 
@@ -22,7 +22,7 @@ export const EuiCardSelect: FunctionComponent<EuiCardSelectProps> = ({
   children,
   ...rest
 }) => {
-  const styles = euiCheckableCardStyles();
+  const styles = euiCardSelectStyles();
   const baseCSS = [styles.euiCardSelect];
 
   const child = euiCardSelectableText(
