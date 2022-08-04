@@ -17,6 +17,12 @@
 - Converted `EuiToast`, `EuiGlobalToastList`, and `EuiGlobalToastListItem` to Emotion ([#6068](https://github.com/elastic/eui/pull/6068))
 - Moved `.euiBody-hasPortalContent` styles that used to live in `_portal.scss` to Emotion `EuiGlobalStyles` ([#6075](https://github.com/elastic/eui/pull/6075))
 
+## [`62.0.3`](https://github.com/elastic/eui/tree/v62.0.3)
+
+**Bug fixes**
+
+- Fixed EuiPortal changes causing rerender issues in test environments ([#6105](https://github.com/elastic/eui/pull/6105))
+
 ## [`62.0.2`](https://github.com/elastic/eui/tree/v62.0.2)
 
 - Added new React Testing Library `ByDataTestSubj` utilities for targeting EUI's `data-test-subj` attributes. These can be accessed by importing custom RTL `render` and `screen` utils from `@elastic/eui/lib/test/rtl`. ([#6091](https://github.com/elastic/eui/pull/6091))
