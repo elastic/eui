@@ -890,6 +890,8 @@ export type EuiDataGridOnColumnResizeHandler = (
   data: EuiDataGridOnColumnResizeData
 ) => void;
 
+export type EuiDataGridScrollAnchorRow = 'start' | 'center' | undefined;
+
 export type EuiDataGridRowHeightOption =
   | number
   | 'auto'
@@ -916,6 +918,13 @@ export interface EuiDataGridRowHeightsOptions {
    * Can be used for, e.g. storing user `rowHeightsOptions` in a local storage object.
    */
   onChange?: (rowHeightsOptions: EuiDataGridRowHeightsOptions) => void;
+  /**
+   * Optional indicator of the row that should be used as an anchor for vertical layout shift compensation.
+   * When set to 'start' or 'center', the topmost or middle visible row will try
+   * to compensate for changes in their top offsets by adjusting the grid's scroll
+   * position.
+   */
+  scrollAnchorRow?: EuiDataGridScrollAnchorRow;
 }
 
 export interface EuiDataGridRowManager {

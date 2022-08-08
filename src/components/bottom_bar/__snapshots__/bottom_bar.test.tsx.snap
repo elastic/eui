@@ -6,7 +6,7 @@ Array [
     aria-label="aria-label"
     class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium testClass1 testClass2 emotion-euiBottomBar-fixed-m"
     data-test-subj="test subject string"
-    style="left: 0px; right: 0px; bottom: 0px;"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="emotion-euiScreenReaderOnly"
@@ -29,7 +29,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
-    style="left: 0px; right: 0px; bottom: 0px;"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="emotion-euiScreenReaderOnly"
@@ -65,7 +65,7 @@ Array [
   <section
     aria-label="This should have been label"
     class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
-    style="left: 0px; right: 0px; bottom: 0px;"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="emotion-euiScreenReaderOnly"
@@ -87,7 +87,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingLarge emotion-euiBottomBar-fixed-l"
-    style="left: 0px; right: 0px; bottom: 0px;"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="emotion-euiScreenReaderOnly"
@@ -109,7 +109,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
-    style="left: 0px; right: 0px; bottom: 0px;"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="emotion-euiScreenReaderOnly"
@@ -131,7 +131,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--fixed emotion-euiBottomBar-fixed"
-    style="left: 0px; right: 0px; bottom: 0px;"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="emotion-euiScreenReaderOnly"
@@ -153,7 +153,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingSmall emotion-euiBottomBar-fixed-s"
-    style="left: 0px; right: 0px; bottom: 0px;"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="emotion-euiScreenReaderOnly"
@@ -175,7 +175,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
-    style="left: 0px; right: 0px; bottom: 0px;"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="emotion-euiScreenReaderOnly"
@@ -197,7 +197,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
-    style="left: 30px; right: 30px; bottom: 30px; top: 30px;"
+    style="left:30px;right:30px;bottom:30px;top:30px"
   >
     <h2
       class="emotion-euiScreenReaderOnly"
@@ -219,7 +219,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--static euiBottomBar--paddingMedium emotion-euiBottomBar-static-m"
-    style="left: 0px; right: 0px; bottom: 0px;"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="emotion-euiScreenReaderOnly"
@@ -241,7 +241,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--sticky euiBottomBar--paddingMedium emotion-euiBottomBar-sticky-m"
-    style="left: 0px; right: 0px; bottom: 0px;"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="emotion-euiScreenReaderOnly"
@@ -263,7 +263,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
-    style="left: 12px; right: 0px; bottom: 0px;"
+    style="left:12px;right:0;bottom:0"
   >
     <h2
       class="emotion-euiScreenReaderOnly"
@@ -285,7 +285,7 @@ Array [
   <section
     aria-label="Page level controls"
     class="euiBottomBar euiBottomBar--fixed euiBottomBar--paddingMedium emotion-euiBottomBar-fixed-m"
-    style="left: 0px; right: 0px; bottom: 0px;"
+    style="left:0;right:0;bottom:0"
   >
     <h2
       class="emotion-euiScreenReaderOnly"

@@ -1,3 +1,38 @@
+## [`62.1.0`](https://github.com/elastic/eui/tree/v62.1.0)
+
+- Updated `tokenFile`, `tokenSymbol` and `tokenRepo` default shapes to `square` instead of `rectangle` ([#6067](https://github.com/elastic/eui/pull/6067))
+- Updated `EuiGlobalToastList` to be a function component ([#6068](https://github.com/elastic/eui/pull/6068))
+- Added new `useCurrentEuiBreakpoint` hook, which returns the current browser window width as a named EUI breakpoint size (e.g. `xl`) ([#6079](https://github.com/elastic/eui/pull/6079))
+
+**Bug fixes**
+
+- Fixed unintentional subcomponent remounting in `EuiCodeBlock` during rerenders ([#6077](https://github.com/elastic/eui/pull/6077))
+- Fixed `useIsWithinBreakpoints` hook not correctly respecting consumer theme breakpoint overrides ([#6079](https://github.com/elastic/eui/pull/6079))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiBreadcrumbs` and `EuiHeaderBreadcrumbs` to Emotion; removed `$euiBreadcrumbSpacing` and `$euiBreadcrumbTruncateWidth` ([#5934](https://github.com/elastic/eui/pull/5934))
+- Converted `EuiDescriptionList` to Emotion ([#5971](https://github.com/elastic/eui/pull/5971))
+- Converted `EuiToken` to Emotion ([#6067](https://github.com/elastic/eui/pull/6067))
+- Converted `EuiToast`, `EuiGlobalToastList`, and `EuiGlobalToastListItem` to Emotion ([#6068](https://github.com/elastic/eui/pull/6068))
+- Moved `.euiBody-hasPortalContent` styles that used to live in `_portal.scss` to Emotion `EuiGlobalStyles` ([#6075](https://github.com/elastic/eui/pull/6075))
+
+## [`62.0.3`](https://github.com/elastic/eui/tree/v62.0.3)
+
+**Bug fixes**
+
+- Fixed EuiPortal changes causing rerender issues in test environments ([#6105](https://github.com/elastic/eui/pull/6105))
+
+## [`62.0.2`](https://github.com/elastic/eui/tree/v62.0.2)
+
+- Added new React Testing Library `ByDataTestSubj` utilities for targeting EUI's `data-test-subj` attributes. These can be accessed by importing custom RTL `render` and `screen` utils from `@elastic/eui/lib/test/rtl`. ([#6091](https://github.com/elastic/eui/pull/6091))
+ ([#6091](https://github.com/elastic/eui/pull/6091))
+- Added new React Testing Library EuiPopover helpers, `waitForEuiPopoverOpen` and `waitForEuiPopoverClose` ([#6091](https://github.com/elastic/eui/pull/6091))
+
+**Bug fixes**
+
+- Restored non-Emotion classNames to `EuiCommentEvent`'s children ([#6089](https://github.com/elastic/eui/pull/6089))
+
 ## [`62.0.1`](https://github.com/elastic/eui/tree/v62.0.1)
 
 **Bug fixes**

@@ -1,5 +1,19 @@
 [
   {
+    "version": "62.1.0",
+    "changes": [
+      {
+        "token": "euiBreadcrumbs.collapsedBadge.ariaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiBreadcrumb.collapsedBadge.ariaLabel",
+        "changeType": "added",
+        "value": "See collapsed breadcrumbs"
+      }
+    ]
+  },
+  {
     "version": "62.0.0",
     "changes": [
       {
