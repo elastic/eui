@@ -65,7 +65,12 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
 
   const euiTheme = useEuiTheme();
   const styles = euiRangeDraggableStyles(euiTheme);
-  const cssStyles = [styles.euiRangeDraggable];
+  const cssStyles = [
+    styles.euiRangeDraggable,
+    showTicks && styles.hasTicks,
+    compressed && styles.compressed,
+    disabled && styles.disabled,
+  ];
 
   const commonProps = {
     className: classes,
@@ -83,6 +88,7 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
     <div style={outerStyle} {...commonProps} {...rest}>
       <div
         className="euiRangeDraggle__inner"
+        css={styles.euiRangeDraggle__inner}
         onMouseDown={handleMouseDown}
         onTouchStart={handleInteraction}
         onTouchMove={handleInteraction}
