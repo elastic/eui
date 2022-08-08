@@ -9,10 +9,15 @@
 import { useEffect, useState } from 'react';
 import { EuiResizeObserverProps } from './resize_observer';
 
+// Re-export `hasResizeObserver` as-is
+export const hasResizeObserver =
+  typeof window !== 'undefined' && typeof window.ResizeObserver !== 'undefined';
+
 /**
  * jsdom currently does not support ResizeObservers (@see https://github.com/jsdom/jsdom/issues/3368)
- * To mimic RO init behavior (should call onResize on mount), we're providing the below testenv mock.
+ * To mimic RO init behavior (should call onResize on mount), we're providing the below testenv mocks.
  */
+
 export const EuiResizeObserver = ({
   onResize,
   children,
@@ -27,4 +32,20 @@ export const EuiResizeObserver = ({
   }, [observedElement, onResize]);
 
   return children(setObservedElement);
+};
+
+export const useResizeObserver = (
+  container: Element | null,
+  dimension?: 'width' | 'height'
+) => {
+  const [size, setSize] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    if (container != null) {
+      const { width, height } = container.getBoundingClientRect();
+      setSize({ width, height });
+    }
+  }, [container, dimension]);
+
+  return size;
 };
