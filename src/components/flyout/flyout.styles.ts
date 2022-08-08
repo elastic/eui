@@ -114,10 +114,10 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       animation: none !important;
 
       ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
-        transform: translateX(calc(-100% - #{${euiTheme.size.l}}));
+        transform: translateX(calc(-100% - ${euiTheme.size.l}));
       }
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        transform: translateX(calc(-100% - #{${euiTheme.size.xs}}));
+        transform: translateX(calc(-100% - ${euiTheme.size.xs}));
       }
     `,
     'closeButton--inside': css``,
@@ -126,10 +126,10 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       right: 0;
 
       ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
-        transform: translateX(calc(100% + #{${euiTheme.size.l}}));
+        transform: translateX(calc(100% + ${euiTheme.size.l}));
       }
       ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        transform: translateX(calc(100% + #{${euiTheme.size.xs}}));
+        transform: translateX(calc(100% + ${euiTheme.size.xs}));
       }
     `,
 

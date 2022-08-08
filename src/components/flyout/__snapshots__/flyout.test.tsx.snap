@@ -116,7 +116,7 @@ Array [
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--fill euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside css-1a5tar9-closeButton-closeButton--outside"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--fill euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside css-11t2sls-closeButton-closeButton--outside"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
@@ -776,7 +776,7 @@ Array [
       >
         <button
           aria-label="Close this dialog"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-15uahhe-closeButton-closeButton--inside-closeButton--outside-left"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--inside css-u3kcjb-closeButton-closeButton--inside-closeButton--outside-left"
           data-test-subj="euiFlyoutCloseButton"
           type="button"
         >
