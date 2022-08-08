@@ -7,13 +7,13 @@
  */
 
 import { css } from '@emotion/react';
+import { logicalCSS } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 
 export const euiPageHeaderContentStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiPageHeaderContent: css`
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    ${logicalCSS('width', '100%')};
+    ${logicalCSS('margin-horizontal', 'auto')};
   `,
 
   // alignItems
@@ -50,8 +50,8 @@ export const euiPageHeaderContentStyles = ({ euiTheme }: UseEuiTheme) => ({
 
   // Content
   euiPageHeaderContent__titleIcon: css`
-    inset-block-start: -${euiTheme.size.xs};
     position: relative;
-    margin-inline-end: ${euiTheme.size.base};
+    ${logicalCSS('top', `-${euiTheme.size.xs}`)};
+    ${logicalCSS('margin-right', euiTheme.size.base)};
   `,
 });

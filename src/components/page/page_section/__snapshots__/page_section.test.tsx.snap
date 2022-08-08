@@ -17,7 +17,7 @@ exports[`EuiPageSection props alignment center is rendered 1`] = `
   class="emotion-euiPageSection-l-center-transparent"
 >
   <div
-    class="emotion-euiPageSection__content-l"
+    class="emotion-euiPageSection__content-l-center"
   />
 </div>
 `;
@@ -27,7 +27,7 @@ exports[`EuiPageSection props alignment horizontalCenter is rendered 1`] = `
   class="emotion-euiPageSection-l-horizontalCenter-transparent"
 >
   <div
-    class="emotion-euiPageSection__content-l"
+    class="emotion-euiPageSection__content-l-center"
   />
 </div>
 `;
@@ -219,7 +219,7 @@ exports[`EuiPageSection props restrictWidth can be custom 1`] = `
   class="emotion-euiPageSection-l-top-transparent"
 >
   <div
-    class="emotion-euiPageSection__content-l"
+    class="emotion-euiPageSection__content-l-restrictWidth"
     style="max-width:1000px"
   />
 </div>
@@ -230,7 +230,7 @@ exports[`EuiPageSection props restrictWidth can be true 1`] = `
   class="emotion-euiPageSection-l-top-transparent"
 >
   <div
-    class="emotion-euiPageSection__content-l"
+    class="emotion-euiPageSection__content-l-restrictWidth"
     style="max-width:1200px"
   />
 </div>

@@ -37,9 +37,23 @@ export const euiPageSectionStyles = ({ euiTheme }: UseEuiTheme) => {
       ${logicalCSS('width', 'auto')};
       align-items: center;
     `,
+  };
+};
 
+export const euiPageSectionContentStyles = () => {
+  return {
     euiPageSection__content: css`
       ${logicalCSS('width', '100%')};
+    `,
+
+    // Alignments
+    center: css`
+      ${logicalCSS('width', 'auto')};
+      ${logicalCSS('margin-horizontal', 'auto')};
+    `,
+
+    // Max widths
+    restrictWidth: css`
       ${logicalCSS('margin-horizontal', 'auto')};
     `,
   };

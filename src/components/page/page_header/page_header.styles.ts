@@ -7,19 +7,21 @@
  */
 
 import { css } from '@emotion/react';
+import { logicalCSS } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 
 export const euiPageHeaderStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiPageHeader: css`
-      width: 100%;
-      min-width: 0; // Make sure that inner flex layouts don't get larger than this container
+      ${logicalCSS('width', '100%')};
+      // Make sure that inner flex layouts don't get larger than this container
+      ${logicalCSS('min-width', '0')};
       display: flex;
       flex-direction: column;
       flex-shrink: 0; // Ensures Safari doesn't shrink beyond contents
     `,
     border: css`
-      border-block-end: ${euiTheme.border.thin};
+      ${logicalCSS('border-bottom', euiTheme.border.thin)};
     `,
   };
 };

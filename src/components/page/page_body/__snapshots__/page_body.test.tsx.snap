@@ -8,6 +8,42 @@ exports[`EuiPageBody is rendered 1`] = `
 />
 `;
 
+exports[`EuiPageBody paddingSize l is rendered 1`] = `
+<div
+  class="euiPageBody emotion-euiPageBody-l"
+/>
+`;
+
+exports[`EuiPageBody paddingSize m is rendered 1`] = `
+<div
+  class="euiPageBody emotion-euiPageBody-m"
+/>
+`;
+
+exports[`EuiPageBody paddingSize none is rendered 1`] = `
+<div
+  class="euiPageBody emotion-euiPageBody"
+/>
+`;
+
+exports[`EuiPageBody paddingSize s is rendered 1`] = `
+<div
+  class="euiPageBody emotion-euiPageBody-s"
+/>
+`;
+
+exports[`EuiPageBody paddingSize xl is rendered 1`] = `
+<div
+  class="euiPageBody emotion-euiPageBody-xl"
+/>
+`;
+
+exports[`EuiPageBody paddingSize xs is rendered 1`] = `
+<div
+  class="euiPageBody emotion-euiPageBody-xs"
+/>
+`;
+
 exports[`EuiPageBody panelled also accepts panelProps 1`] = `
 <div
   class="euiPanel euiPanel--subdued euiPageBody emotion-euiPanel-grow-none-subdued-euiPageBody"

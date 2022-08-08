@@ -16,7 +16,11 @@ import {
 import { _EuiPageBottomBorder } from '../_bottom_border';
 
 import { useEuiTheme } from '../../../services';
-import { ALIGNMENTS, euiPageSectionStyles } from './page_section.styles';
+import {
+  ALIGNMENTS,
+  euiPageSectionContentStyles,
+  euiPageSectionStyles,
+} from './page_section.styles';
 
 import {
   useEuiPaddingCSS,
@@ -83,10 +87,14 @@ export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
     colors[color],
   ];
 
+  const contentStyles = euiPageSectionContentStyles();
+
   const cssContentStyles = [
-    styles.euiPageSection__content,
+    contentStyles.euiPageSection__content,
     blockPadding[paddingSize],
     bottomBorder === true && styles.border,
+    alignment.toLowerCase().includes('center') && contentStyles.center,
+    restrictWidth && contentStyles.restrictWidth,
   ];
 
   return (
