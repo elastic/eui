@@ -66,7 +66,7 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
           style="min-width: 240px; max-width: 420px;"
         >
           <div
-            class="euiPopoverTitle emotion-euiPopoverTitle-m-euiTourHeader"
+            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m-euiTourHeader"
             id="generated-id"
           >
             <h2
@@ -81,7 +81,7 @@ exports[`EuiTourStep can change the minWidth and maxWidth 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter emotion-euiPopoverFooter-m-euiTourFooter"
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
           >
             <div
               class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
@@ -169,7 +169,7 @@ exports[`EuiTourStep can have subtitle 1`] = `
           style="min-width: 300px; max-width: 600px;"
         >
           <div
-            class="euiPopoverTitle emotion-euiPopoverTitle-m-euiTourHeader"
+            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m-euiTourHeader"
             id="generated-id"
           >
             <h2
@@ -189,7 +189,7 @@ exports[`EuiTourStep can have subtitle 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter emotion-euiPopoverFooter-m-euiTourFooter"
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
           >
             <div
               class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
@@ -277,7 +277,7 @@ exports[`EuiTourStep can override the footer action 1`] = `
           style="min-width: 300px; max-width: 600px;"
         >
           <div
-            class="euiPopoverTitle emotion-euiPopoverTitle-m-euiTourHeader"
+            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m-euiTourHeader"
             id="generated-id"
           >
             <h2
@@ -292,7 +292,7 @@ exports[`EuiTourStep can override the footer action 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter emotion-euiPopoverFooter-m-euiTourFooter"
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
           >
             <div
               class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
@@ -364,7 +364,7 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
           style="min-width: 300px; max-width: 600px;"
         >
           <div
-            class="euiPopoverTitle emotion-euiPopoverTitle-m-euiTourHeader"
+            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m-euiTourHeader"
             id="generated-id"
           >
             <h2
@@ -379,7 +379,7 @@ exports[`EuiTourStep can turn off the beacon 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter emotion-euiPopoverFooter-m-euiTourFooter"
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
           >
             <div
               class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"
@@ -467,7 +467,7 @@ exports[`EuiTourStep is rendered 1`] = `
           style="min-width: 300px; max-width: 600px;"
         >
           <div
-            class="euiPopoverTitle emotion-euiPopoverTitle-m-euiTourHeader"
+            class="euiPopoverTitle euiTourHeader emotion-euiPopoverTitle-m-euiTourHeader"
             id="generated-id"
           >
             <h2
@@ -482,7 +482,7 @@ exports[`EuiTourStep is rendered 1`] = `
             You are here
           </div>
           <div
-            class="euiPopoverFooter emotion-euiPopoverFooter-m-euiTourFooter"
+            class="euiPopoverFooter euiTourFooter emotion-euiPopoverFooter-m-euiTourFooter"
           >
             <div
               class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--justifyContentFlexEnd euiFlexGroup--directionRow"

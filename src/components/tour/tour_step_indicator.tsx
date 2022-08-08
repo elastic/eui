@@ -31,9 +31,6 @@ export const EuiTourStepIndicator: FunctionComponent<EuiTourStepIndicatorProps> 
   ...rest
 }) => {
   const classes = classNames('euiTourStepIndicator', className);
-  const styles = css`
-    display: inline-block;
-  `;
 
   let indicatorIcon: ReactNode;
   if (status === 'active') {
@@ -85,7 +82,16 @@ export const EuiTourStepIndicator: FunctionComponent<EuiTourStepIndicatorProps> 
       values={{ status, number }}
     >
       {(ariaLabel: string) => (
-        <li css={[styles]} className={classes} aria-label={ariaLabel} {...rest}>
+        <li
+          css={[
+            css`
+              display: inline-block;
+            `,
+          ]}
+          className={classes}
+          aria-label={ariaLabel}
+          {...rest}
+        >
           {indicatorIcon}
         </li>
       )}

@@ -274,7 +274,11 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
 
   const layout = (
     <div style={{ minWidth, maxWidth }}>
-      <EuiPopoverTitle css={headerStyles.euiTourHeader} id={titleId}>
+      <EuiPopoverTitle
+        css={headerStyles.euiTourHeader}
+        className="euiTourHeader"
+        id={titleId}
+      >
         {subtitle && (
           <EuiTitle css={headerStyles.euiTourHeader__subtitle} size="xxxs">
             <h2>{subtitle}</h2>
@@ -285,7 +289,10 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
         </EuiTitle>
       </EuiPopoverTitle>
       <div className="euiTour__content">{content}</div>
-      <EuiPopoverFooter css={footerStyles.euiTourFooter}>
+      <EuiPopoverFooter
+        css={footerStyles.euiTourFooter}
+        className="euiTourFooter"
+      >
         {footer}
       </EuiPopoverFooter>
     </div>

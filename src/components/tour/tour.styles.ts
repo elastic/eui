@@ -15,6 +15,7 @@ import {
   EuiThemeColorModeStandard,
 } from '../../services';
 import { logicalCSS } from '../../global_styling';
+import { openAnimationTiming } from '../popover/popover_panel/_popover_panel.styles';
 import { popoverArrowSize } from '../popover/popover_arrow/_popover_arrow.styles';
 
 const backgroundColor = (color: string, colorMode: EuiThemeColorModeStandard) =>
@@ -52,7 +53,7 @@ export const euiTourBeaconStyles = ({ euiTheme }: UseEuiTheme) => {
       pointer-events: none;
       position: absolute;
       opacity: 0;
-      transition: opacity 0s ${euiTheme.animation.slow}; // delay time equals EuiPopover animation time
+      transition: opacity 0s ${euiTheme.animation[openAnimationTiming]};
     `,
 
     // Positions
@@ -85,7 +86,7 @@ export const euiTourHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
 
   // Elements
   euiTourHeader__title: css`
-    // Removes extra margin applied to siblint EuiTitle's
+    // Removes extra margin applied to sibling EuiTitle's
     ${logicalCSS('margin-top', 0)};
   `,
   euiTourHeader__subtitle: css`
