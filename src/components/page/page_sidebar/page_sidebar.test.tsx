@@ -14,7 +14,7 @@ import { PADDING_SIZES } from '../../../global_styling';
 
 import { EuiPageSidebar } from './page_sidebar';
 
-describe('_EuiPageSidebar', () => {
+describe('EuiPageSidebar', () => {
   shouldRenderCustomStyles(<EuiPageSidebar />);
 
   test('is rendered', () => {
