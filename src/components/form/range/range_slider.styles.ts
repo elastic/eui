@@ -12,6 +12,6 @@ import { UseEuiTheme } from '../../../services';
 export const euiRangeSliderStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiRangeSlider: css`
-    background: ${euiTheme.colors.ink};
+    /* background: ${euiTheme.colors.ink}; */
   `,
 });

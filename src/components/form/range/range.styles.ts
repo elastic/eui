@@ -8,6 +8,44 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
+import {
+  euiFormControlHeight,
+  euiFormControlCompressedHeight,
+} from '../form.styles';
+
+export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
+  const euiTheme = euiThemeContext.euiTheme;
+  const trackHeight = '6px';
+  const trackCompressedHeight = euiTheme.size.xs;
+
+  return {
+    trackColor: euiTheme.colors.lightShade,
+    highlightColor: euiTheme.colors.darkShade,
+
+    thumbHeight: euiTheme.size.base,
+    thumbWidth: euiTheme.size.base,
+    thumbBorderColor: euiTheme.colors.emptyShade,
+    thumbBackgroundColor: euiTheme.colors.darkShade, // same as highlightColor
+
+    trackWidth: '100%',
+    trackHeight: trackHeight,
+    trackCompressedHeight: trackCompressedHeight,
+    trackBorderWidth: 0,
+    trackBorderColor: euiTheme.colors.lightShade, // same as trackColor
+    trackRadius: euiTheme.border.radius.medium,
+
+    tickHeight: trackHeight,
+    tickWidth: euiTheme.size.xs,
+
+    disabledOpacity: 0.5,
+
+    highlightHeight: trackHeight,
+    highlightCompressedHeight: trackCompressedHeight,
+
+    height: euiFormControlHeight(euiThemeContext),
+    compressedHeight: euiFormControlCompressedHeight(euiThemeContext),
+  };
+};
 
 export const euiRangeStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base

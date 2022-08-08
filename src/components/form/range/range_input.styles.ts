@@ -12,6 +12,6 @@ import { UseEuiTheme } from '../../../services';
 export const euiRangeInputStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiRangeInput: css`
-    background: ${euiTheme.colors.primary};
+    /* background: ${euiTheme.colors.primary}; */
   `,
 });

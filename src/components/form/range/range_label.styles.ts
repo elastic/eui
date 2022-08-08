@@ -12,6 +12,6 @@ import { UseEuiTheme } from '../../../services';
 export const euiRangeLabelStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiRangeLabel: css`
-    background: ${euiTheme.colors.highlight};
+    /* background: ${euiTheme.colors.highlight}; */
   `,
 });

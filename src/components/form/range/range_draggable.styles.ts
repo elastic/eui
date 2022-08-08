@@ -12,6 +12,6 @@ import { UseEuiTheme } from '../../../services';
 export const euiRangeDraggableStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiRangeDraggable: css`
-    background: ${euiTheme.colors.warning};
+    /* background: ${euiTheme.colors.warning}; */
   `,
 });

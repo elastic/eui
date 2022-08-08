@@ -40,7 +40,7 @@ export const euiFormControlSize = ({
   }
 
   return `
-    max-width: ${euiFormMaxWidth};
+    max-width: ${euiFormMaxWidth(euiTheme)};
     width: 100%;
     height: ${euiFormControlHeight(euiTheme) || height};
 

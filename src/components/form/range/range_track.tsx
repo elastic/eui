@@ -151,7 +151,14 @@ export class EuiRangeTrackClass extends Component<
     });
 
     const styles = euiRangeTrackStyles(theme);
-    const cssStyles = [styles.euiRangeTrack];
+    const cssStyles = [
+      styles.euiRangeTrack,
+      disabled && styles.disabled,
+      levels && !!levels.length && styles.hasLevels,
+      (tickSequence || ticks) && styles.hasTicks,
+      compressed && styles.compressed,
+      !compressed && styles.regular,
+    ];
 
     return (
       <div className={trackClasses} css={cssStyles} {...rest}>

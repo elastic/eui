@@ -9,15 +9,18 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 
-import { keys } from '../../../services';
+import {
+  keys,
+  htmlIdGenerator,
+  withEuiTheme,
+  WithEuiThemeProps,
+} from '../../../services';
 import { isWithinRange } from '../../../services/number';
 import { EuiInputPopover } from '../../popover';
 import {
   EuiFormControlLayoutDelimited,
   EuiFormControlLayoutProps,
 } from '../form_control_layout';
-
-import { htmlIdGenerator } from '../../../services/accessibility';
 
 import { EuiRangeProps } from './range';
 import { EuiRangeDraggable } from './range_draggable';
@@ -31,6 +34,8 @@ import { EuiRangeTick } from './range_ticks';
 import { EuiRangeTrack } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
 import { calculateThumbPosition } from './utils';
+
+import { euiRangeStyles } from './range.styles';
 
 type ValueMember = number | string;
 
@@ -107,7 +112,9 @@ export interface EuiDualRangeProps
   isLoading?: boolean;
 }
 
-export class EuiDualRange extends Component<EuiDualRangeProps> {
+export class EuiDualRangeClass extends Component<
+  EuiDualRangeProps & WithEuiThemeProps
+> {
   static defaultProps = {
     min: 0,
     max: 100,
@@ -529,6 +536,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
       minInputProps,
       maxInputProps,
       isDraggable,
+      theme,
       ...rest
     } = this.props;
 
@@ -537,6 +545,8 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     const digitTolerance = Math.max(String(min).length, String(max).length);
     const showInputOnly = showInput === 'inputWithPopover';
     const canShowDropdown = showInputOnly && !readOnly && !disabled;
+
+    const styles = euiRangeStyles(theme);
 
     const minInput = !!showInput ? (
       <EuiRangeInput
@@ -627,6 +637,11 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
                 showTicks || ticks
                   ? 'euiRange__slimHorizontalSpacer'
                   : 'euiRange__horizontalSpacer'
+              }
+              css={
+                showTicks || ticks
+                  ? styles.euiRange__slimHorizontalSpacer
+                  : styles.euiRange__horizontalSpacer
               }
             />
           </>
@@ -746,6 +761,11 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
                   ? 'euiRange__slimHorizontalSpacer'
                   : 'euiRange__horizontalSpacer'
               }
+              css={
+                showTicks || ticks
+                  ? styles.euiRange__slimHorizontalSpacer
+                  : styles.euiRange__horizontalSpacer
+              }
             />
             {maxInput}
           </>
@@ -782,3 +802,5 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     return thePopover || theRange;
   }
 }
+
+export const EuiDualRange = withEuiTheme<EuiDualRangeProps>(EuiDualRangeClass);

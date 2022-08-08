@@ -21,7 +21,7 @@ import { calculateThumbPosition, EUI_THUMB_SIZE } from './utils';
 import { useInnerText } from '../../inner_text';
 
 import { useEuiTheme } from '../../../services';
-import { euiRangeTicksStyles } from './range_ticks.styles';
+import { euiRangeTicksStyles, euiRangeTickStyles } from './range_ticks.styles';
 
 export interface EuiRangeTick {
   value: number;
@@ -48,6 +48,7 @@ const EuiTickValue: FunctionComponent<
     ticksRef: MutableRefObject<HTMLDivElement | null>;
     tickValue: any;
     percentageWidth: number;
+    compressed: boolean;
   }
 > = ({
   disabled,
@@ -59,6 +60,7 @@ const EuiTickValue: FunctionComponent<
   percentageWidth,
   tickValue,
   ticksRef,
+  compressed,
 }) => {
   const tickStyle: CSSProperties = {};
   const tickObject = customTicks
@@ -106,8 +108,18 @@ const EuiTickValue: FunctionComponent<
   });
 
   const euiTheme = useEuiTheme();
-  const styles = euiRangeTicksStyles(euiTheme);
-  const cssStyles = [styles.euiRangeTick];
+
+  const styles = euiRangeTickStyles(euiTheme);
+  const cssTickStyles = [
+    styles.euiRangeTick,
+    value === tickValue && styles.selected,
+    customTicks && styles.isCustom,
+    labelShiftVal && isMinTick && styles.isMin,
+    labelShiftVal && isMaxTick && styles.isMax,
+    pseudoTick && styles.hasTickMark,
+    compressed && styles.compressed,
+    !compressed && styles.regular,
+  ];
 
   const [ref, innerText] = useInnerText();
 
@@ -115,7 +127,7 @@ const EuiTickValue: FunctionComponent<
     <button
       type="button"
       className={tickClasses}
-      css={cssStyles}
+      css={cssTickStyles}
       value={tickValue}
       disabled={disabled}
       onClick={onChange}
@@ -127,6 +139,7 @@ const EuiTickValue: FunctionComponent<
       {pseudoTick && (
         <span
           className="euiRangeTick__pseudo"
+          css={styles.euiRangeTick__pseudo}
           aria-hidden
           style={pseudoShift}
         />
@@ -149,7 +162,12 @@ export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = (props) => {
 
   const euiTheme = useEuiTheme();
   const styles = euiRangeTicksStyles(euiTheme);
-  const cssStyles = [styles.euiRangeTicks];
+  const cssStyles = [
+    styles.euiRangeTicks,
+    compressed && styles.compressed,
+    !compressed && styles.regular,
+    ticks && styles.isCustom,
+  ];
 
   return (
     <div className={classes} css={cssStyles} ref={ticksRef}>
@@ -160,6 +178,7 @@ export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = (props) => {
           percentageWidth={percentageWidth}
           tickValue={tickValue}
           ticksRef={ticksRef}
+          compressed={compressed}
         />
       ))}
     </div>

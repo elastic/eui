@@ -12,19 +12,19 @@ export const euiFormMaxWidth = ({ euiTheme }: UseEuiTheme) =>
   `${euiTheme.base * 25}px`;
 
 export const euiFormControlHeight = ({ euiTheme }: UseEuiTheme) =>
-  `${euiTheme.size.xxl}px`;
+  euiTheme.size.xxl;
 
 export const euiFormControlCompressedHeight = ({ euiTheme }: UseEuiTheme) =>
-  `${euiTheme.size.xl}px`;
+  `${euiTheme.size.xl}`;
 
 export const euiFormControlPadding = ({ euiTheme }: UseEuiTheme) =>
-  `${euiTheme.size.m}px`;
+  `${euiTheme.size.m}`;
 
 export const euiFormControlCompressedPadding = ({ euiTheme }: UseEuiTheme) =>
-  `${euiTheme.size.s}px`;
+  `${euiTheme.size.s}`;
 
 export const euiFormControlBorderRadius = () => '0';
 
 export const euiFormControlCompressedBorderRadius = ({
   euiTheme,
-}: UseEuiTheme) => `${euiTheme.border.radius.small}px`;
+}: UseEuiTheme) => `${euiTheme.border.radius.small}`;

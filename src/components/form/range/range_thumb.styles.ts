@@ -12,6 +12,6 @@ import { UseEuiTheme } from '../../../services';
 export const euiRangeThumbStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiRangeThumb: css`
-    background: ${euiTheme.colors.primary};
+    /* background: ${euiTheme.colors.primary}; */
   `,
 });

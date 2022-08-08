@@ -242,12 +242,11 @@ export class EuiRangeClass extends Component<
     );
 
     const styles = euiRangeStyles(theme);
-    const cssStyles = [styles.euiRange];
 
     const theRange = (
       <EuiRangeWrapper
         className={classes}
-        css={cssStyles}
+        css={styles.euiRange}
         fullWidth={fullWidth}
         compressed={compressed}
       >
@@ -331,6 +330,11 @@ export class EuiRangeClass extends Component<
                 showTicks || ticks
                   ? 'euiRange__slimHorizontalSpacer'
                   : 'euiRange__horizontalSpacer'
+              }
+              css={
+                showTicks || ticks
+                  ? styles.euiRange__slimHorizontalSpacer
+                  : styles.euiRange__horizontalSpacer
               }
             />
             {theInput}

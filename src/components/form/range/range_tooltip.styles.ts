@@ -12,6 +12,6 @@ import { UseEuiTheme } from '../../../services';
 export const euiRangeTooltipStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiRangeTooltip: css`
-    background: ${euiTheme.colors.darkShade};
+    /* background: ${euiTheme.colors.darkShade}; */
   `,
 });

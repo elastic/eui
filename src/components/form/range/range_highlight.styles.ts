@@ -12,7 +12,7 @@ import { UseEuiTheme } from '../../../services';
 export const euiRangeHighlightStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiRangeHighlight: css`
-    background: ${euiTheme.colors.danger};
+    /* background: ${euiTheme.colors.danger}; */
   `,
   euiRangeHighlight__progress: css``,
 });
