@@ -8,10 +8,26 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
+import { euiFontSize, logicalCSS } from '../../../global_styling';
+import { euiRangeVariables } from './range.styles';
 
-export const euiRangeLabelStyles = ({ euiTheme }: UseEuiTheme) => ({
-  // Base
-  euiRangeLabel: css`
-    /* background: ${euiTheme.colors.highlight}; */
-  `,
-});
+export const euiRangeLabelStyles = (euiThemeContext: UseEuiTheme) => {
+  const euiTheme = euiThemeContext.euiTheme;
+  const range = euiRangeVariables(euiThemeContext);
+
+  return {
+    // Base
+    euiRangeLabel: css``,
+    min: css`
+      font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
+      ${logicalCSS('padding-right', euiTheme.size.s)}
+    `,
+    max: css`
+      font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
+      ${logicalCSS('padding-left', euiTheme.size.s)}
+    `,
+    isDisabled: css`
+      opacity: ${range.disabledOpacity};
+    `,
+  };
+};

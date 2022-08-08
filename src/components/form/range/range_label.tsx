@@ -32,7 +32,11 @@ export const EuiRangeLabel: FunctionComponent<EuiRangeLabelProps> = ({
 
   const euiTheme = useEuiTheme();
   const styles = euiRangeLabelStyles(euiTheme);
-  const cssStyles = [styles.euiRangeLabel];
+  const cssStyles = [
+    styles.euiRangeLabel,
+    styles[side],
+    disabled && styles.isDisabled,
+  ];
 
   return (
     <label className={classes} css={cssStyles}>
