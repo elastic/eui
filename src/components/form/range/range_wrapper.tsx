@@ -33,7 +33,11 @@ export const EuiRangeWrapper = forwardRef<HTMLDivElement, EuiRangeWrapperProps>(
 
     const euiTheme = useEuiTheme();
     const styles = euiRangeWrapperStyles(euiTheme);
-    const cssStyles = [styles.euiRangeWrapper];
+    const cssStyles = [
+      styles.euiRangeWrapper,
+      !compressed && styles.regular,
+      compressed && styles.compressed,
+    ];
 
     return (
       <div className={classes} css={cssStyles} ref={ref} {...rest}>

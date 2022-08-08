@@ -64,10 +64,6 @@ export const euiRangeDraggableStyles = (euiThemeContext: UseEuiTheme) => {
     hasTicks: css`
       top: 0;
     `,
-    compressed: css`
-      height: calc(${range.compressedHeight} / 2);
-      top: calc(${range.compressedHeight} / 4);
-    `,
     disabled: css``,
     euiRangeDraggle__inner: css`
       position: absolute;

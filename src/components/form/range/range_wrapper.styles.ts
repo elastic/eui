@@ -13,10 +13,6 @@ import { UseEuiTheme } from '../../../services';
 export const euiRangeWrapperStyles = (euiTheme: UseEuiTheme) => ({
   // Base
   euiRangeWrapper: css`
-    ${euiFormControlSize({
-      euiTheme,
-      includeAlternates: true,
-    })}
     display: flex;
     align-items: center;
 
@@ -28,5 +24,16 @@ export const euiRangeWrapperStyles = (euiTheme: UseEuiTheme) => ({
         flex-shrink: 0; /* 2 */
       }
     }
+  `,
+  regular: css`
+    ${euiFormControlSize({
+      euiTheme,
+    })}
+  `,
+  compressed: css`
+    ${euiFormControlSize({
+      euiTheme,
+      includeAlternates: 'compressed',
+    })}
   `,
 });

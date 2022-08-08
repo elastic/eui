@@ -19,24 +19,26 @@ export const euiFormControlSize = ({
 }: {
   euiTheme: UseEuiTheme;
   height?: string;
-  includeAlternates?: boolean;
+  includeAlternates?: 'fullWidth' | 'compressed' | 'inGroup';
 }) => {
-  let alternatesStyles;
+  let alternateStyles = '';
 
-  if (includeAlternates) {
-    alternatesStyles = `
-      &--fullWidth {
+  switch (includeAlternates) {
+    case 'fullWidth':
+      alternateStyles = `
         max-width: 100%;
-      }
-
-      &--compressed {
-        height: ${euiFormControlCompressedHeight};
-      }
-
-      &--inGroup {
+      `;
+      break;
+    case 'compressed':
+      alternateStyles = `
+        height: ${euiFormControlCompressedHeight(euiTheme)};
+      `;
+      break;
+    case 'inGroup':
+      alternateStyles = `
         height: 100%;
-      }
-    `;
+      `;
+      break;
   }
 
   return `
@@ -44,6 +46,6 @@ export const euiFormControlSize = ({
     width: 100%;
     height: ${euiFormControlHeight(euiTheme) || height};
 
-    ${alternatesStyles}
+    ${alternateStyles}
   `;
 };

@@ -16,20 +16,20 @@ import {
 export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
   const trackHeight = '6px';
-  const trackCompressedHeight = euiTheme.size.xs;
+  const thumbHeight = euiTheme.size.base;
+  const thumbWidth = euiTheme.size.base;
 
   return {
     trackColor: euiTheme.colors.lightShade,
     highlightColor: euiTheme.colors.darkShade,
 
-    thumbHeight: euiTheme.size.base,
-    thumbWidth: euiTheme.size.base,
+    thumbHeight: thumbHeight,
+    thumbWidth: thumbWidth,
     thumbBorderColor: euiTheme.colors.emptyShade,
     thumbBackgroundColor: euiTheme.colors.darkShade, // same as highlightColor
 
     trackWidth: '100%',
     trackHeight: trackHeight,
-    trackCompressedHeight: trackCompressedHeight,
     trackBorderWidth: 0,
     trackBorderColor: euiTheme.colors.lightShade, // same as trackColor
     trackRadius: euiTheme.border.radius.medium,
@@ -40,31 +40,22 @@ export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
     disabledOpacity: 0.5,
 
     highlightHeight: trackHeight,
-    highlightCompressedHeight: trackCompressedHeight,
 
     height: euiFormControlHeight(euiThemeContext),
     compressedHeight: euiFormControlCompressedHeight(euiThemeContext),
+
+    // position of the track and hihglight relative to the parent container
+    trackTopPositionWithTicks: `calc((${thumbHeight} - ${trackHeight}) / 2)`,
+    trackBottomPositionWithTicks: `calc(${thumbHeight} - ((${thumbHeight} - ${trackHeight}) / 2))`,
+    trackTopPositionWithoutTicks: `calc(50% - (${trackHeight} / 2))`,
   };
 };
 
-export const euiRangeTrackSize = ({
-  euiThemeContext,
-  compressed = false,
-}: {
-  euiThemeContext: UseEuiTheme;
-  compressed: boolean;
-}) => {
-  if (compressed) {
-    return `
-    width: ${euiRangeVariables(euiThemeContext).trackWidth};
-    height: ${euiRangeVariables(euiThemeContext).trackCompressedHeight};
-    `;
-  } else {
-    return `
+export const euiRangeTrackSize = (euiThemeContext: UseEuiTheme) => {
+  return `
     width: ${euiRangeVariables(euiThemeContext).trackWidth};
     height: ${euiRangeVariables(euiThemeContext).trackHeight};
     `;
-  }
 };
 
 export const euiRangeTrackPerBrowser = (content: string) => {

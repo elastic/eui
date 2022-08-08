@@ -45,6 +45,18 @@ export default () => {
 
       <EuiSpacer size="xl" />
 
+      <EuiRange
+        id={rangeBasicTicksId}
+        step={10}
+        value={value}
+        onChange={onChange}
+        showTicks
+        aria-label="An example of EuiRange with ticks"
+        compressed
+      />
+
+      <EuiSpacer size="xl" />
+
       <EuiTitle size="xxs">
         <h3>Custom tick interval</h3>
       </EuiTitle>
@@ -53,6 +65,26 @@ export default () => {
 
       <EuiRange
         id={rangeCustomTickIntervalId}
+        value={value}
+        onChange={onChange}
+        showInput
+        showRange
+        showTicks
+        tickInterval={20}
+        aria-label="An example of EuiRange with custom tickInterval"
+      />
+
+      <EuiSpacer size="xl" />
+
+      <EuiTitle size="xxs">
+        <h3>Custom tick interval compressed</h3>
+      </EuiTitle>
+
+      <EuiSpacer size="l" />
+
+      <EuiRange
+        id={rangeCustomTickIntervalId}
+        compressed
         value={value}
         onChange={onChange}
         showInput

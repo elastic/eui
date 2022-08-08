@@ -38,7 +38,6 @@ export const euiRangeTicksStyles = (euiThemeContext: UseEuiTheme) => {
       position: absolute;
       left: 0;
       right: 0;
-      top: ${euiTheme.size.s};
       display: flex;
     `,
     isCustom: css`
@@ -46,10 +45,19 @@ export const euiRangeTicksStyles = (euiThemeContext: UseEuiTheme) => {
       right: (${range.thumbWidth} / 8);
     `,
     // compressed and non-compressed styles
-    compressed: css`
-      top: calc(${euiTheme.size.s} - 2px);
+    regular: css`
+      height: calc(${range.height} - ${range.thumbHeight});
+      top: ${range.thumbHeight};
     `,
-    regular: css``,
+    compressed: css`
+      height: calc(
+        ${range.compressedHeight} - ${range.trackBottomPositionWithTicks}
+      );
+      top: calc(
+        ${range.thumbHeight} -
+          ((${range.thumbHeight} - ${range.trackHeight}) / 2)
+      );
+    `,
   };
 };
 
@@ -66,7 +74,6 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
       font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
       position: absolute;
       transform: translateX(-50%);
-      ${logicalCSS('padding-top', euiTheme.size.base)};
 
       &::before {
         background-color: ${euiTheme.colors.lightShade};
@@ -91,6 +98,17 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
       .euiRangeTick__pseudo {
         ${tickStyles(euiThemeContext, range)};
       }
+    `,
+    // compressed and non-compressed styles
+    compressed: css`
+      ${logicalCSS('padding-top', euiTheme.size.s)};
+
+      &::before {
+        ${logicalCSS('margin-top', euiTheme.size.xxs)};
+      }
+    `,
+    regular: css`
+      ${logicalCSS('padding-top', euiTheme.size.m)};
     `,
     euiRangeTick__pseudo: css`
       ${tickStyles(euiThemeContext, range)};
@@ -117,12 +135,5 @@ export const euiRangeTickStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     hasTickMark: css``,
-    // compressed and non-compressed styles
-    compressed: css`
-      top: calc(${euiTheme.size.s} - 2px);
-    `,
-    regular: css`
-      padding-top: 0;
-    `,
   };
 };

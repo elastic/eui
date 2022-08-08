@@ -10,22 +10,12 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 import { euiRangeVariables } from './range.styles';
 
-export const euiRangeTrackSize = (
-  euiThemeContext: UseEuiTheme,
-  compressed?: boolean
-) => {
+export const euiRangeTrackSize = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
 
   return `
     height: ${range.trackHeight};
     width: ${range.trackWidth};
-
-    ${
-      compressed &&
-      `
-        height: ${range.trackCompressedHeight};
-      `
-    }
   `;
 };
 
@@ -51,13 +41,8 @@ export const euiRangeTrackStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiRangeTrackSize(euiThemeContext)}
       }
 
-      .euiRangeTick {
-        // removing 1px to prevent label getting cut in Safari
-        padding-top: calc((${range.trackHeight} * 2) - 1px);
-      }
-
       &:not(.euiRangeTrack--hasTicks)::after {
-        top: calc(50% - (${range.trackHeight} / 2));
+        top: ${range.trackTopPositionWithoutTicks};
       }
     `,
     hasTicks: css`
@@ -69,44 +54,12 @@ export const euiRangeTrackStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &::after {
-        top: calc(${range.thumbHeight} - (${range.trackHeight} * 2));
+        top: ${range.trackTopPositionWithTicks};
       }
     `,
     disabled: css`
       opacity: ${range.disabledOpacity};
     `,
     hasLevels: css``,
-    regular: css`
-      .euiRangeTicks {
-        height: calc(${range.height} - ${range.thumbHeight});
-        top: ${range.thumbHeight};
-      }
-    `,
-    compressed: css`
-      &::after {
-        ${euiRangeTrackSize(euiThemeContext, true)}
-      }
-
-      .euiRangeTicks {
-        height: calc(${range.compressedHeight} + ${range.thumbHeight});
-        top: ${range.trackHeight};
-      }
-
-      .euiRangeTick {
-        padding-top: ${range.trackHeight}px;
-      }
-
-      &.euiRangeTrack--hasTicks::after {
-        top: calc(${range.thumbHeight} - (${range.trackCompressedHeight} / 2));
-      }
-
-      &:not(.euiRangeTrack--hasTicks)::after {
-        top: calc(50% - (${range.trackCompressedHeight} / 2));
-      }
-
-      .euiRangeThumb--hasTicks {
-        top: 0;
-      }
-    `,
   };
 };

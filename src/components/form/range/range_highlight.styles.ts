@@ -8,11 +8,44 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
+import { euiRangeVariables } from './range.styles';
 
-export const euiRangeHighlightStyles = ({ euiTheme }: UseEuiTheme) => ({
-  // Base
-  euiRangeHighlight: css`
-    /* background: ${euiTheme.colors.danger}; */
-  `,
-  euiRangeHighlight__progress: css``,
-});
+export const euiRangeHighlightStyles = (euiThemeContext: UseEuiTheme) => {
+  const range = euiRangeVariables(euiThemeContext);
+
+  return {
+    // Base
+    euiRangeHighlight: css`
+      position: absolute;
+      height: ${range.highlightHeight};
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+      top: ${range.trackTopPositionWithoutTicks};
+    `,
+    hasTicks: css`
+      top: ${range.trackTopPositionWithTicks};
+    `,
+  };
+};
+
+export const euiRangeHighlightProgressStyles = (
+  euiThemeContext: UseEuiTheme
+) => {
+  const range = euiRangeVariables(euiThemeContext);
+  const euiTheme = euiThemeContext.euiTheme;
+
+  return {
+    euiRangeHighlight__progress: css`
+      height: ${range.highlightHeight};
+      border-radius: ${range.trackRadius};
+      background-color: ${range.highlightColor};
+      border-color: ${range.highlightColor};
+    `,
+    hasFocus: css`
+      background-color: ${euiTheme.colors.primary};
+    `,
+  };
+};

@@ -37,7 +37,7 @@ export type EuiRangeTicksProps = Omit<
   value?: number | string | Array<string | number>;
   min: number;
   max: number;
-  compressed?: boolean;
+  compressed: boolean;
   interval?: number;
   disabled?: boolean;
   onChange?: MouseEventHandler<HTMLButtonElement>;
