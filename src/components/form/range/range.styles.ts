@@ -47,6 +47,95 @@ export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
+const euiRangeTrackSize = ({
+  euiThemeContext,
+  compressed = false,
+}: {
+  euiThemeContext: UseEuiTheme;
+  compressed: boolean;
+}) => {
+  if (compressed) {
+    return `
+    width: ${euiRangeVariables(euiThemeContext).trackWidth};
+    height: ${euiRangeVariables(euiThemeContext).trackCompressedHeight};
+    `;
+  } else {
+    return `
+    width: ${euiRangeVariables(euiThemeContext).trackWidth};
+    height: ${euiRangeVariables(euiThemeContext).trackHeight};
+    `;
+  }
+};
+
+const euiRangeTrackPerBrowser = (content: string) => {
+  return `
+    &::-webkit-slider-runnable-track { ${content}; }
+    &::-moz-range-track { ${content}; }
+    &::-ms-fill-lower {${content}; }
+    &::-ms-fill-upper { ${content}; }
+  `;
+};
+
+const euiRangeThumbBorder = (euiThemeContext: UseEuiTheme) => {
+  return `
+    border: 2px solid ${euiRangeVariables(euiThemeContext).thumbBorderColor};
+  `;
+};
+
+const euiRangeThumbBoxShadow = (euiThemeContext: UseEuiTheme) => {
+  const euiTheme = euiThemeContext.euiTheme;
+
+  return `
+    border: 2px solid ${euiRangeVariables(euiThemeContext).trackHeight};
+    box-shadow: 0 0 0 1px ${
+      euiRangeVariables(euiThemeContext).thumbBorderColor
+    },
+    0 2px 2px -1px rgba(${euiTheme.colors.shadow}, .2),
+    0 1px 5px -2px rgba(${euiTheme.colors.shadow}, .2);
+  `;
+};
+
+const euiRangeThumbFocusBoxShadow = (euiThemeContext: UseEuiTheme) => {
+  const euiTheme = euiThemeContext.euiTheme;
+
+  return `
+    box-shadow: 0 0 0 2px ${euiTheme.focus.color};
+  `;
+};
+
+const euiRangeThumbStyle = (euiThemeContext: UseEuiTheme) => {
+  return `
+    ${euiRangeThumbBoxShadow(euiThemeContext)};
+    ${euiRangeThumbBorder(euiThemeContext)};
+    cursor: pointer;
+    background-color: ${
+      euiRangeVariables(euiThemeContext).thumbBackgroundColor
+    };
+    padding: 0;
+    height: ${euiRangeVariables(euiThemeContext).thumbHeight};
+    width: ${euiRangeVariables(euiThemeContext).thumbWidth};
+    box-sizing: border-box;  // required for firefox or the border makes the width and height to increase
+  `;
+};
+
+const euiRangeThumbPerBrowser = (content: string) => {
+  return `
+    &::-webkit-slider-thumb { ${content}; }
+    &::-moz-range-thumb  { ${content}; }
+    &::-ms-thumb {${content}; }
+  `;
+};
+
+const euiRangeThumbFocus = (euiThemeContext: UseEuiTheme) => {
+  const euiTheme = euiThemeContext.euiTheme;
+
+  return `
+   ${euiRangeThumbBorder(euiThemeContext)};
+   ${euiRangeThumbFocusBoxShadow(euiThemeContext)};
+   background-color: ${euiTheme.colors.primary};
+  `;
+};
+
 export const euiRangeStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiRange: css``,
