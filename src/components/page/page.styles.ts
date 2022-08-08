@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { euiBreakpoint } from '../../global_styling';
+import { euiBreakpoint, logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiPageStyles = (euiThemeContext: UseEuiTheme) => {
@@ -37,6 +37,11 @@ export const euiPageStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiBreakpoint(euiThemeContext, ['m', 'xl'])} {
         flex-direction: row;
       }
+    `,
+
+    // Max widths
+    restrictWidth: css`
+      ${logicalCSS('margin-horizontal', 'auto')};
     `,
   };
 };

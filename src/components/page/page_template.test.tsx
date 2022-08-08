@@ -15,7 +15,7 @@ import {
   TEMPLATES,
 } from './page_template';
 
-describe('EuiPageTemplate', () => {
+describe('EuiPageTemplate_Deprecated', () => {
   test('is rendered', () => {
     const component = render(<EuiPageTemplate {...requiredProps} />);
 

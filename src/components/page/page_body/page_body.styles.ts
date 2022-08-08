@@ -19,4 +19,9 @@ export const euiPageBodyStyles = () => ({
     ${logicalCSS('max-width', '100%')}
     ${logicalCSS('min-width', '0')}
   `,
+
+  // Max widths
+  restrictWidth: css`
+    ${logicalCSS('margin-horizontal', 'auto')};
+  `,
 });

@@ -30,6 +30,7 @@ export type _EuiPageRestrictWidth = {
 };
 
 /**
+ * **DEPRECATED**
  * This function calculates the correct class name and combined styles
  * based on the `restrictWidth` value passed in
  *

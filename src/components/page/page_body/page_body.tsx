@@ -9,8 +9,10 @@
 import React, { PropsWithChildren, ComponentType, ComponentProps } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
-import { _EuiPageRestrictWidth } from '../_restrict_width';
-import { euiPageRestrictWidthStyles } from '../_restrict_width.styles';
+import {
+  setStyleForRestrictedPageWidth,
+  _EuiPageRestrictWidth,
+} from '../_restrict_width';
 import { EuiPanel, EuiPanelProps } from '../../panel';
 import { useEuiPaddingCSS, EuiPaddingSize } from '../../../global_styling';
 import { euiPageBodyStyles } from './page_body.styles';
@@ -49,16 +51,19 @@ export const EuiPageBody = <T extends ComponentTypes>({
   borderRadius = 'none',
   ...rest
 }: PropsWithChildren<EuiPageBodyProps<T>>) => {
+  // Set max-width as a style prop
+  const widthStyles = setStyleForRestrictedPageWidth(
+    restrictWidth,
+    rest?.style
+  );
+
   const styles = euiPageBodyStyles();
   const padding = useEuiPaddingCSS()[paddingSize as EuiPaddingSize];
-  const width = euiPageRestrictWidthStyles(
-    restrictWidth as _EuiPageRestrictWidth
-  );
 
   const classes = classNames('euiPageBody', className);
 
-  const panelCSS = [styles.euiPageBody, width];
-  const componentCSS = [styles.euiPageBody, padding, width];
+  const panelCSS = [styles.euiPageBody, restrictWidth && styles.restrictWidth];
+  const componentCSS = [...panelCSS, padding];
 
   return panelled ? (
     <EuiPanel
@@ -72,7 +77,12 @@ export const EuiPageBody = <T extends ComponentTypes>({
       {children}
     </EuiPanel>
   ) : (
-    <Component className={classes} css={componentCSS} {...rest}>
+    <Component
+      className={classes}
+      css={componentCSS}
+      {...rest}
+      style={widthStyles}
+    >
       {children}
     </Component>
   );

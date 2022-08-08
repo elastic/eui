@@ -9,10 +9,12 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-import { _EuiPageRestrictWidth } from './_restrict_width';
+import {
+  setStyleForRestrictedPageWidth,
+  _EuiPageRestrictWidth,
+} from './_restrict_width';
 import { useEuiPaddingCSS, EuiPaddingSize } from '../../global_styling';
 import { euiPageStyles } from './page.styles';
-import { euiPageRestrictWidthStyles } from './_restrict_width.styles';
 import { useEuiTheme } from '../../services';
 
 export interface EuiPageProps
@@ -45,25 +47,28 @@ export const EuiPage: FunctionComponent<EuiPageProps> = ({
   direction = 'row',
   ...rest
 }) => {
+  // Set max-width as a style prop
+  const widthStyles = setStyleForRestrictedPageWidth(
+    restrictWidth,
+    rest?.style
+  );
+
   const euiTheme = useEuiTheme();
   const styles = euiPageStyles(euiTheme);
   const padding = useEuiPaddingCSS()[paddingSize as EuiPaddingSize];
-  const width = euiPageRestrictWidthStyles(
-    restrictWidth as _EuiPageRestrictWidth
-  );
 
   const stylesCSS = [
     styles.euiPage,
     styles[direction],
     grow && styles.grow,
     padding,
-    width,
+    restrictWidth && styles.restrictWidth,
   ];
 
   const classes = classNames('euiPage', className);
 
   return (
-    <div css={stylesCSS} className={classes} {...rest}>
+    <div css={stylesCSS} className={classes} {...rest} style={widthStyles}>
       {children}
     </div>
   );
