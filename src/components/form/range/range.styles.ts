@@ -47,7 +47,7 @@ export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-const euiRangeTrackSize = ({
+export const euiRangeTrackSize = ({
   euiThemeContext,
   compressed = false,
 }: {
@@ -67,7 +67,7 @@ const euiRangeTrackSize = ({
   }
 };
 
-const euiRangeTrackPerBrowser = (content: string) => {
+export const euiRangeTrackPerBrowser = (content: string) => {
   return `
     &::-webkit-slider-runnable-track { ${content}; }
     &::-moz-range-track { ${content}; }
@@ -76,13 +76,13 @@ const euiRangeTrackPerBrowser = (content: string) => {
   `;
 };
 
-const euiRangeThumbBorder = (euiThemeContext: UseEuiTheme) => {
+export const euiRangeThumbBorder = (euiThemeContext: UseEuiTheme) => {
   return `
     border: 2px solid ${euiRangeVariables(euiThemeContext).thumbBorderColor};
   `;
 };
 
-const euiRangeThumbBoxShadow = (euiThemeContext: UseEuiTheme) => {
+export const euiRangeThumbBoxShadow = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
 
   return `
@@ -95,7 +95,7 @@ const euiRangeThumbBoxShadow = (euiThemeContext: UseEuiTheme) => {
   `;
 };
 
-const euiRangeThumbFocusBoxShadow = (euiThemeContext: UseEuiTheme) => {
+export const euiRangeThumbFocusBoxShadow = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
 
   return `
@@ -103,7 +103,7 @@ const euiRangeThumbFocusBoxShadow = (euiThemeContext: UseEuiTheme) => {
   `;
 };
 
-const euiRangeThumbStyle = (euiThemeContext: UseEuiTheme) => {
+export const euiRangeThumbStyle = (euiThemeContext: UseEuiTheme) => {
   return `
     ${euiRangeThumbBoxShadow(euiThemeContext)};
     ${euiRangeThumbBorder(euiThemeContext)};
@@ -118,7 +118,7 @@ const euiRangeThumbStyle = (euiThemeContext: UseEuiTheme) => {
   `;
 };
 
-const euiRangeThumbPerBrowser = (content: string) => {
+export const euiRangeThumbPerBrowser = (content: string) => {
   return `
     &::-webkit-slider-thumb { ${content}; }
     &::-moz-range-thumb  { ${content}; }
@@ -126,7 +126,7 @@ const euiRangeThumbPerBrowser = (content: string) => {
   `;
 };
 
-const euiRangeThumbFocus = (euiThemeContext: UseEuiTheme) => {
+export const euiRangeThumbFocus = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
 
   return `

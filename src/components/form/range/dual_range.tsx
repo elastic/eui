@@ -36,6 +36,7 @@ import { EuiRangeWrapper } from './range_wrapper';
 import { calculateThumbPosition } from './utils';
 
 import { euiRangeStyles } from './range.styles';
+import { euiDualRangeStyles } from './dual_range.styles';
 
 type ValueMember = number | string;
 
@@ -546,7 +547,7 @@ export class EuiDualRangeClass extends Component<
     const showInputOnly = showInput === 'inputWithPopover';
     const canShowDropdown = showInputOnly && !readOnly && !disabled;
 
-    const styles = euiRangeStyles(theme);
+    const rangeStyles = euiRangeStyles(theme);
 
     const minInput = !!showInput ? (
       <EuiRangeInput
@@ -611,6 +612,8 @@ export class EuiDualRangeClass extends Component<
     ) : undefined;
 
     const classes = classNames('euiDualRange', className);
+    const dualRangeStyles = euiDualRangeStyles();
+
     const leftThumbPosition = this.state.rangeSliderRefAvailable
       ? this.calculateThumbPositionStyle(
           Number(this.lowerValue) || min,
@@ -626,6 +629,7 @@ export class EuiDualRangeClass extends Component<
     const theRange = (
       <EuiRangeWrapper
         className={classes}
+        css={dualRangeStyles.euiDualRange}
         fullWidth={fullWidth}
         compressed={compressed}
       >
@@ -640,8 +644,8 @@ export class EuiDualRangeClass extends Component<
               }
               css={
                 showTicks || ticks
-                  ? styles.euiRange__slimHorizontalSpacer
-                  : styles.euiRange__horizontalSpacer
+                  ? rangeStyles.euiRange__slimHorizontalSpacer
+                  : rangeStyles.euiRange__horizontalSpacer
               }
             />
           </>
@@ -667,6 +671,7 @@ export class EuiDualRangeClass extends Component<
         >
           <EuiRangeSlider
             className="euiDualRange__slider"
+            css={dualRangeStyles.euiDualRange__slider}
             ref={this.handleRangeSliderRefUpdate}
             id={id}
             name={name}
@@ -763,8 +768,8 @@ export class EuiDualRangeClass extends Component<
               }
               css={
                 showTicks || ticks
-                  ? styles.euiRange__slimHorizontalSpacer
-                  : styles.euiRange__horizontalSpacer
+                  ? rangeStyles.euiRange__slimHorizontalSpacer
+                  : rangeStyles.euiRange__horizontalSpacer
               }
             />
             {maxInput}
