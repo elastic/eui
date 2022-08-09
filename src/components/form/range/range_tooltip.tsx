@@ -10,7 +10,10 @@ import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { useEuiTheme } from '../../../services';
-import { euiRangeTooltipStyles } from './range_tooltip.styles';
+import {
+  euiRangeTooltipStyles,
+  euiRangeTooltipValueStyles,
+} from './range_tooltip.styles';
 
 export interface EuiRangeTooltipProps {
   value?: number | string;
@@ -49,7 +52,7 @@ export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
   let valuePosition = decimal <= 1 ? decimal : 1;
   valuePosition = valuePosition >= 0 ? valuePosition : 0;
 
-  let valuePositionSide;
+  let valuePositionSide: 'left' | 'right';
   let valuePositionStyle;
   if (valuePosition > 0.5) {
     valuePositionSide = 'left';
@@ -72,10 +75,18 @@ export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
   const styles = euiRangeTooltipStyles(euiTheme);
   const cssStyles = [styles.euiRangeTooltip];
 
+  const valueStyles = euiRangeTooltipValueStyles(euiTheme);
+  const cssValueStyles = [
+    valueStyles.euiRangeTooltip__value,
+    valueStyles[valuePositionSide],
+    showTicks && valueStyles.hasTicks,
+  ];
+
   return (
     <div className={classes} css={cssStyles}>
       <output
         className={valueClasses}
+        css={cssValueStyles}
         htmlFor={name}
         style={valuePositionStyle}
       >

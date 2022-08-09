@@ -29,7 +29,6 @@ const tickStyles = ({ euiTheme }: UseEuiTheme, range: any) => {
 };
 
 export const euiRangeTicksStyles = (euiThemeContext: UseEuiTheme) => {
-  const euiTheme = euiThemeContext.euiTheme;
   const range = euiRangeVariables(euiThemeContext);
 
   return {
