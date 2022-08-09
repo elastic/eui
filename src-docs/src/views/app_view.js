@@ -6,9 +6,7 @@ import { GuidePageChrome, ThemeContext, GuidePageHeader } from '../components';
 import { getLocale, getRoutes } from '../store';
 
 import {
-  EuiErrorBoundary,
-  EuiPage,
-  EuiPageBody,
+  EuiPageTemplate,
   EuiSkipLink,
   EuiScreenReaderLive,
 } from '../../../src/components';
@@ -82,20 +80,22 @@ export const AppView = ({ children, currentRoute }) => {
         Skip to content
       </EuiSkipLink>
       <GuidePageHeader onToggleLocale={toggleLocale} selectedLocale={locale} />
-      <EuiPage paddingSize="none">
-        <EuiErrorBoundary>
+      <EuiPageTemplate
+        paddingSize="none"
+        restrictWidth={false}
+        mainProps={{ id: 'start-of-content' }}
+      >
+        <EuiPageTemplate.Sidebar className="guideSideNav" sticky>
           <GuidePageChrome
             currentRoute={currentRoute}
             navigation={routes.navigation}
             onToggleLocale={toggleLocale}
             selectedLocale={locale}
           />
-        </EuiErrorBoundary>
+        </EuiPageTemplate.Sidebar>
 
-        <EuiPageBody paddingSize="none" panelled id="start-of-content">
-          {children({ theme })}
-        </EuiPageBody>
-      </EuiPage>
+        {children({ theme })}
+      </EuiPageTemplate>
     </LinkWrapper>
   );
 };

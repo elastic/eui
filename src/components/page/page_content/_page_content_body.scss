@@ -1,5 +1,14 @@
 .euiPageContentBody {
-  @include euiPageRestrictWidth;
+  &--restrictWidth-default,
+  &--restrictWidth-custom {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  &--restrictWidth-default {
+    max-width: $euiPageDefaultMaxWidth;
+  }
 }
 
 // Uses the same values as EuiPanel

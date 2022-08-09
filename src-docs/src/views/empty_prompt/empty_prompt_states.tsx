@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import {
-  EuiEmptyPrompt,
   EuiPageTemplate,
   EuiLoadingLogo,
   EuiButton,
@@ -43,7 +42,6 @@ export default () => {
     case 'empty':
       emptyPromptProps = {
         color: 'plain',
-        hasBorder: true,
         iconType: 'dashboardApp',
         iconColor: 'default',
         title: <h2>Dashboards</h2>,
@@ -66,14 +64,8 @@ export default () => {
   }
 
   return (
-    <EuiPageTemplate
-      template="centeredContent"
-      pageContentProps={{
-        paddingSize: 'none',
-        role: null, // For passing a11y tests in EUI docs only
-      }}
-    >
-      <EuiEmptyPrompt {...emptyPromptProps} />
+    <EuiPageTemplate minHeight="0">
+      <EuiPageTemplate.EmptyPrompt {...emptyPromptProps} />
     </EuiPageTemplate>
   );
 };

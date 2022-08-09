@@ -10,7 +10,10 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiPageSideBar, PADDING_SIZES } from './page_side_bar';
+import {
+  EuiPageSideBar_Deprecated as EuiPageSideBar,
+  PADDING_SIZES,
+} from './page_side_bar';
 
 describe('EuiPageSideBar', () => {
   test('is rendered', () => {
