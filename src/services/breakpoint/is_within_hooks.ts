@@ -10,11 +10,11 @@ import { _EuiThemeBreakpoint } from '../../global_styling/variables/breakpoint';
 import { useCurrentEuiBreakpoint } from './current_breakpoint_hook';
 
 /**
- * Given the current window.innerWidth and an array of breakpoint keys,
- * this hook stores state and returns true or false if the window.innerWidth
- * falls within any of the named breakpoints.
+ * Given an array of breakpoint keys, this hook returns true or false
+ * if the breakpoint size of the current window width falls within
+ * any of the named breakpoints.
  *
- * @param {_EuiThemeBreakpoint[]} sizes An array of named EUI breakpoints
+ * @param {EuiThemeBreakpoint[]} sizes An array of named EUI breakpoints
  * @param {boolean} isResponsive Some components have the option to turn off responsive behavior.
  *   Since hooks can't be called conditionally, it's easier to pass the condition into the hook
  * @returns {boolean} Returns `true` if current breakpoint name is included in `sizes`

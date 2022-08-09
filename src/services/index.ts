@@ -24,7 +24,6 @@ export { LEFT_ALIGNMENT, RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from './alignment';
 export type { EuiBreakpointSize } from './breakpoint';
 export {
   getBreakpoint,
-  isWithinBreakpoints,
   useIsWithinBreakpoints,
   isWithinMaxBreakpoint,
   isWithinMinBreakpoint,

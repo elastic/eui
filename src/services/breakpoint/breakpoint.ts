@@ -87,22 +87,3 @@ export function isWithinMinBreakpoint(
       : false;
   }
 }
-
-/**
- * Given the current `width` and an array of breakpoint keys,
- * this function returns true or false if the `width` falls within
- * any of the named breakpoints
- *
- * @param {number} width Can either be the full window width or any width
- * @param {EuiThemeBreakpoint[]} sizes An array of named breakpoints
- * @param {EuiThemeBreakpoints} breakpoints An object with keys for sizing and values for minimum width
- * @returns {boolean} Returns `true` if current breakpoint name is included in `sizes`
- */
-export function isWithinBreakpoints(
-  width: number,
-  sizes: _EuiThemeBreakpoint[],
-  breakpoints: _EuiThemeBreakpoints = breakpoint
-): boolean {
-  const currentBreakpoint = getBreakpoint(width, breakpoints);
-  return currentBreakpoint ? sizes.includes(currentBreakpoint) : false;
-}

@@ -10,4 +10,4 @@ export type { _EuiThemeBreakpoint as EuiBreakpointSize } from '../../global_styl
 export * from './breakpoint';
 export * from './current_breakpoint';
 export * from './current_breakpoint_hook';
-export * from './useIsWithinBreakpoints';
+export * from './is_within_hooks';

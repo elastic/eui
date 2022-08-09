@@ -6,11 +6,7 @@
  * Side Public License, v 1.
  */
 
-import {
-  getBreakpoint,
-  isWithinMaxBreakpoint,
-  isWithinBreakpoints,
-} from './breakpoint';
+import { getBreakpoint, isWithinMaxBreakpoint } from './breakpoint';
 
 const CUSTOM_BREAKPOINTS = {
   xl: 1400,
@@ -106,55 +102,3 @@ describe('isWithinMaxBreakpoint', () => {
       expect(isWithinMaxBreakpoint(320, 480)).toBe(true);
     });
   });
-
-  describe('isWithinBreakpoints', () => {
-    describe('with default BREAKPOINTS', () => {
-      it("should return 'true' for 'xs' and 320", () => {
-        expect(isWithinBreakpoints(320, ['xs'])).toBe(true);
-      });
-      it("should return 'true' for 's' and 667", () => {
-        expect(isWithinBreakpoints(667, ['s'])).toBe(true);
-      });
-      it("should return 'true' for 'm' and 812", () => {
-        expect(isWithinBreakpoints(812, ['m'])).toBe(true);
-      });
-      it("should return 'true' for 'l' and 1078", () => {
-        expect(isWithinBreakpoints(1078, ['l'])).toBe(true);
-      });
-      it("should return 'true' for 'xl' and 1400", () => {
-        expect(isWithinBreakpoints(1400, ['xl'])).toBe(true);
-      });
-    });
-
-    describe('with custom breakpoints', () => {
-      it("should return 'false' for 'xs' and 240", () => {
-        expect(isWithinBreakpoints(240, ['xs'], CUSTOM_BREAKPOINTS)).toBe(
-          false
-        );
-      });
-      it("should return 'true' for 'xs' and 575", () => {
-        expect(isWithinBreakpoints(575, ['xs'], CUSTOM_BREAKPOINTS)).toBe(true);
-      });
-      it("should return 'true' for 's' and 768", () => {
-        expect(isWithinBreakpoints(768, ['s'], CUSTOM_BREAKPOINTS)).toBe(true);
-      });
-      it("should return 'true' for 'm' and 992", () => {
-        expect(isWithinBreakpoints(992, ['m'], CUSTOM_BREAKPOINTS)).toBe(true);
-      });
-      it("should return 'true' for 'l' and 1200", () => {
-        expect(isWithinBreakpoints(1200, ['l'], CUSTOM_BREAKPOINTS)).toBe(true);
-      });
-      it("should return 'true' for 'xl' and 1400", () => {
-        expect(isWithinBreakpoints(1400, ['xl'], CUSTOM_BREAKPOINTS)).toBe(
-          true
-        );
-      });
-    });
-
-    describe('with multiple sizes', () => {
-      it("should return 'true' for a 667 width and ['xs', 's']", () => {
-        expect(isWithinBreakpoints(667, ['xs', 's'])).toBe(true);
-      });
-    });
-  });
-});
