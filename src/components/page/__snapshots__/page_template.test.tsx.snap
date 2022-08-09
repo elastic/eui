@@ -2,19 +2,27 @@
 
 exports[`EuiPageTemplate_Deprecated fullHeight is rendered with noscroll 1`] = `
 <div
-  class="euiPage euiPageTemplate emotion-euiPage-row-grow"
+  class="euiPage euiPageTemplate eui-fullHeight emotion-euiPage-row-grow"
   style="min-height:460px"
 >
   <div
-    class="euiPageBody emotion-euiPageBody"
+    class="euiPageBody eui-fullHeight emotion-euiPageBody"
   >
     <div
-      class="euiPanel euiPanel--plain euiPageContent euiPageContent--borderRadiusNone emotion-euiPanel-grow-none-plain"
+      class="euiPanel euiPanel--plain euiPageContent euiPageContent--borderRadiusNone eui-yScroll emotion-euiPanel-grow-none-plain"
       role="main"
     >
       <div
-        class="euiPageContentBody euiPageContentBody--paddingLarge euiPageContentBody--restrictWidth-default"
-      />
+        class="euiPageContentBody euiPageContentBody--paddingLarge euiPageContentBody--restrictWidth-default eui-fullHeight"
+      >
+        <div
+          class="euiFlexGroup euiFlexGroup--directionColumn eui-fullHeight"
+        >
+          <div
+            class="euiFlexItem eui-fullHeight"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -22,19 +30,27 @@ exports[`EuiPageTemplate_Deprecated fullHeight is rendered with noscroll 1`] = `
 
 exports[`EuiPageTemplate_Deprecated fullHeight is rendered with true 1`] = `
 <div
-  class="euiPage euiPageTemplate emotion-euiPage-row-grow"
+  class="euiPage euiPageTemplate eui-fullHeight emotion-euiPage-row-grow"
   style="min-height:460px"
 >
   <div
-    class="euiPageBody emotion-euiPageBody"
+    class="euiPageBody eui-fullHeight emotion-euiPageBody"
   >
     <div
-      class="euiPanel euiPanel--plain euiPageContent euiPageContent--borderRadiusNone emotion-euiPanel-grow-none-plain"
+      class="euiPanel euiPanel--plain euiPageContent euiPageContent--borderRadiusNone eui-yScroll emotion-euiPanel-grow-none-plain"
       role="main"
     >
       <div
-        class="euiPageContentBody euiPageContentBody--paddingLarge euiPageContentBody--restrictWidth-default"
-      />
+        class="euiPageContentBody euiPageContentBody--paddingLarge euiPageContentBody--restrictWidth-default eui-fullHeight"
+      >
+        <div
+          class="euiFlexGroup euiFlexGroup--directionColumn eui-fullHeight"
+        >
+          <div
+            class="euiFlexItem eui-yScroll"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </div>
