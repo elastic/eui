@@ -58,6 +58,7 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   onClick,
   headerZindexLocation = 'above',
   maskRef,
+  css,
   ...rest
 }) => {
   const overlayMaskNode = useRef<HTMLDivElement>();
