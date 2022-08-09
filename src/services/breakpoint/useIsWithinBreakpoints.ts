@@ -7,7 +7,7 @@
  */
 
 import { _EuiThemeBreakpoint } from '../../global_styling/variables/breakpoint';
-import { useCurrentEuiBreakpoint } from './';
+import { useCurrentEuiBreakpoint } from './current_breakpoint_hook';
 
 /**
  * Given the current window.innerWidth and an array of breakpoint keys,
