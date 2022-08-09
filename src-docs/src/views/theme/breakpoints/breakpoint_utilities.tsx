@@ -79,8 +79,8 @@ export default () => {
           <h2>Screen sizes</h2>
 
           <p>
-            The sizing options correlate with the keys in the{' '}
-            <EuiCode language="ts">EuiBreakpoints</EuiCode> type. The named
+            The sizing options correlate with the keys in{' '}
+            <EuiCode language="ts">euiTheme.breakpoint</EuiCode>. The named
             breakpoint starts at the pixel value provided and ends before the
             next one.
           </p>
