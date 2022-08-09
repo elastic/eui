@@ -1,3 +1,43 @@
+## [`63.0.0`](https://github.com/elastic/eui/tree/v63.0.0)
+
+- Added new `EuiPageTemplate` namespaced component that uses context to pass through props ([#5768](https://github.com/elastic/eui/pull/5768))
+- Added `EuiPageSection` component for easier section stacking ([#5768](https://github.com/elastic/eui/pull/5768))
+- Added `EuiPageSidebar` component that is an upgrade to `EuiPageSideBar` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Extended `bottomBorder` prop to add `'extended'` on `EuiPageHeader` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Added `paddingSize` and `restrictWidth` directly on `EuiPageHeaderContent` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Added `data-fixed-headers` attribute to `<body>` with the count of fixed `EuiHeader` components ([#5768](https://github.com/elastic/eui/pull/5768))
+- Extended `usePortal` prop on `EuiBottomBar` to accept `EuiPortalProps` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Increased `paddingSize` support by `EuiPage` for `xl` and `xs` sizes ([#5768](https://github.com/elastic/eui/pull/5768))
+- Moved `restrictWidth` default `true` style to `style` attribute on `EuiPage` and `EuiPageBody` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Added optional `height` parameter to `euiYScroll()`, `useEuiYScroll`, `euiYScrollWithShadows()`, and `useEuiYScrollWithShadows` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Added `repositionOnScroll` directly to `EuiPopover` rendered by mobile version of `EuiHeaderLinks` ([#5768](https://github.com/elastic/eui/pull/5768))
+
+**Bug fixes**
+
+- Fixed missing render of `breadcrumbs` on `EuiPageHeader` when `alignItems = 'top'` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Fixed `logicalStyle()` to return the same value type as was passed in (instead of converting to string) ([#5768](https://github.com/elastic/eui/pull/5768))
+
+**Deprecations**
+
+- Deprecated the old `EuiPageTemplate` component and renamed to `EuiPageTemplate_Deprecated` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Deprecated `EuiPageContent` and `EuiPageContentBody` in favor of new `EuiPageSection` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Deprecated `EuiPageContent` and renamed to `EuiPageContent_Deprecated` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Deprecated `EuiPageContentBody` and renamed to `EuiPageContentBody_Deprecated` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Deprecated `EuiPageContentHeader` and renamed to `EuiPageContentHeader_Deprecated` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Deprecated `EuiPageContentHeaderSection` and renamed to `EuiPageContentHeaderSection_Deprecated` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Deprecated `EuiPageSideBar` and renamed to `EuiPageSideBar_Deprecated` ([#5768](https://github.com/elastic/eui/pull/5768))
+
+**Breaking changes**
+
+- Removed nested `EuiPageHeader` styles when a child of `EuiPageBody` ([#5768](https://github.com/elastic/eui/pull/5768))
+- Changed default `paddingSize` of `EuiPage` from `m` to `none` ([#5768](https://github.com/elastic/eui/pull/5768))
+
+**CSS-in-JS conversion**
+
+- Converted `EuiPage` and `EuiPageBody` to Emotion ([#5768](https://github.com/elastic/eui/pull/5768))
+- Converted `EuiPageHeader` and `EuiPageHeaderContent` to Emotion ([#5768](https://github.com/elastic/eui/pull/5768))
+- Removed `euiPageRestrictWidth()` Sass mixin ([#5768](https://github.com/elastic/eui/pull/5768))
+
 ## [`62.2.0`](https://github.com/elastic/eui/tree/v62.2.0)
 
 - The `EuiDataGrid`'s `rowHeightOptions` now contain an optional `scrollAnchorRow` property, which enables vertical layout shift compensation when rendering `auto`-sized rows. ([#6070](https://github.com/elastic/eui/pull/6070))
