@@ -13,7 +13,7 @@ import {
   EuiPageHeaderProps,
   EuiHeaderLinks,
   EuiHeaderSectionItem,
-  EuiButtonEmpty,
+  EuiText,
 } from '../../../../src';
 import { EuiPageTemplateProps } from '../../../../src/components/page_template';
 import { useIsWithinBreakpoints } from '../../../../src/services';
@@ -140,9 +140,9 @@ export const PageDemo: FunctionComponent<
       responsive={false}
     >
       <EuiFlexItem grow={false}>
-        <EuiButtonEmpty size="s" color="ghost">
-          10 selected
-        </EuiButtonEmpty>
+        <EuiText size="s">
+          <p>10 selected</p>
+        </EuiText>
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         <EuiButton color="ghost">Share</EuiButton>

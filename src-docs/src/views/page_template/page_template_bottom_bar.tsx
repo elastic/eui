@@ -41,7 +41,9 @@ export default ({
       )}
       <EuiPageTemplate.Section grow>{content}</EuiPageTemplate.Section>
       {bottomBar && (
-        <EuiPageTemplate.BottomBar>{bottomBar}</EuiPageTemplate.BottomBar>
+        <EuiPageTemplate.BottomBar paddingSize="s">
+          {bottomBar}
+        </EuiPageTemplate.BottomBar>
       )}
     </EuiPageTemplate>
   );
