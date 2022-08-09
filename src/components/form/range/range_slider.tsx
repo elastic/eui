@@ -52,7 +52,6 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
       showTicks,
       showRange,
       hasFocus,
-      compressed,
       ...rest
     },
     ref
@@ -63,14 +62,18 @@ export const EuiRangeSlider = forwardRef<HTMLInputElement, EuiRangeSliderProps>(
         'euiRangeSlider--hasTicks': showTicks,
         'euiRangeSlider--hasFocus': hasFocus,
         'euiRangeSlider--hasRange': showRange,
-        'euiRangeSlider--compressed': compressed,
       },
       className
     );
 
     const euiTheme = useEuiTheme();
     const styles = euiRangeSliderStyles(euiTheme);
-    const cssStyles = [styles.euiRangeSlider];
+    const cssStyles = [
+      styles.euiRangeSlider,
+      showTicks && styles.hasTicks,
+      hasFocus && styles.hasFocus,
+      showRange && styles.hasRange,
+    ];
 
     return (
       <input

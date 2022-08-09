@@ -277,7 +277,6 @@ export class EuiRangeClass extends Component<
             step={step}
             value={value}
             disabled={disabled}
-            compressed={compressed}
             onChange={this.handleOnChange}
             style={style}
             showTicks={showTicks}

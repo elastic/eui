@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../../services';
+import { UseEuiTheme, transparentize } from '../../../services';
 import {
   euiRangeThumbStyle,
   euiRangeThumbPerBrowser,
@@ -63,9 +63,9 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiRangeThumbStyle(euiThemeContext)};
       `)}
 
-      ${euiRangeThumbPerBrowser(`
+      ${euiRangeTrackPerBrowser(`
         ${euiRangeTrackSize(euiThemeContext)};
-        background: $${range.trackColor};
+        background: ${range.trackColor};
         border: ${range.trackBorderWidth} solid ${range.trackBorderColor};
         border-radius: ${range.trackBorderRadius};
       `)}
@@ -73,18 +73,13 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
   
       &:focus-visible,
       &.euiRangeSlider--hasFocus {
-        ${euiRangeThumbPerBrowser(`
+        /* ${euiRangeThumbPerBrowser(`
           box-shadow: 0 0 0 $euiFocusRingSize $euiFocusRingColor;
-        `)}
+        `)} */
 
         ~ .euiRangeThumb {
           border-color: ${range.thumbBorderColor};
         }
-
-        ${euiRangeThumbPerBrowser(`
-          background-color: ${euiTheme.colors.primary};
-          border-color: ${euiTheme.colors.primary};
-        `)}
 
         ${euiRangeTrackPerBrowser(`
           background-color: ${euiTheme.colors.primary};
@@ -96,7 +91,7 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
         }
 
         ~ .euiRangeTooltip .euiRangeTooltip__value {
-          ${euiShadow(euiThemeContext, 's')}
+          ${euiShadow(euiThemeContext, 'm')};
 
           &.euiRangeTooltip__value--right,
           &.euiRangeTooltip__value--left {
@@ -111,15 +106,10 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
       // sass-lint:disable-block no-vendor-prefixes
       &::-webkit-slider-thumb {
         -webkit-appearance: none;
-        margin-top: 
-           ${
-             -(
-               parseInt(range.trackBorderWidth) * 2 +
-               parseInt(range.trackHeight)
-             ) /
-               2 -
-             parseInt(range.thumbHeight) / 2
-           }px;} 
+        margin-top: ${(-parseInt(range.trackBorderWidth) * 2 +
+          parseInt(range.trackHeight)) /
+          2 -
+        parseInt(range.thumbHeight) / 2}px;
       }
 
       &::-ms-thumb {
@@ -148,7 +138,7 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none;
 
         ~ .euiRangeHighlight .euiRangeHighlight__progress {
-          background-color: ${euiTheme.colors.primary};;
+          background-color: ${euiTheme.colors.primary};
         }
       }
 
@@ -156,7 +146,7 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
       &:focus:not(:focus-visible) {
         ${euiRangeThumbPerBrowser(`
           ${euiRangeThumbBoxShadow(euiThemeContext)}
-          background-color: $euiRangeThumbBackgroundColor;  
+          background-color: ${range.thumbBackgroundColor};  
         `)}
 
         ~ .euiRangeHighlight .euiRangeHighlight__progress {
@@ -165,10 +155,14 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     hasTicks: css`
-      height: ${range.thumbHeight};
+      height: ${range.thumbHeight}; // the track has the same height as the thumb
     `,
-    compressed: css`
-      height: ${range.compressedHeight};
+    hasFocus: css``,
+    hasRange: css`
+      ${euiRangeTrackPerBrowser(`
+        background-color: transparent;
+        border-color: ${transparentize(range.trackBorderColor, 0.6)};
+      `)}
     `,
   };
 };

@@ -679,7 +679,6 @@ export class EuiDualRangeClass extends Component<
             max={max}
             step={step}
             disabled={disabled}
-            compressed={compressed}
             onChange={this.handleSliderChange}
             style={style}
             showTicks={showTicks}
