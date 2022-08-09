@@ -9,7 +9,7 @@
 import { useContext } from 'react';
 
 import { getBreakpoint } from './breakpoint';
-import { CurrentEuiBreakpointContext } from './currentEuiBreakpoint';
+import { CurrentEuiBreakpointContext } from './current_breakpoint';
 
 /**
  * Jest tests *likely* will not have a wrapping EuiProvider. If they don't,
