@@ -39,7 +39,7 @@ export const CurrentEuiBreakpointProvider: FunctionComponent = ({
   const [currentBreakpoint, setCurrentBreakpoint] = useState<
     CurrentEuiBreakpoint
   >(
-    typeof window !== undefined
+    typeof window !== 'undefined'
       ? getBreakpoint(window.innerWidth, breakpoints)
       : undefined
   );

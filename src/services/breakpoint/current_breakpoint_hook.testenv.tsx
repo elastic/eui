@@ -19,7 +19,7 @@ export const useCurrentEuiBreakpoint = () => {
   const context = useContext(CurrentEuiBreakpointContext);
   if (context !== undefined) return context; // Component has been wrapped, everything is fine.
 
-  return typeof window !== undefined
+  return typeof window !== 'undefined'
     ? getBreakpoint(window.innerWidth)
     : undefined;
 };
