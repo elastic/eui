@@ -8,4 +8,5 @@
 
 export * from './breakpoint';
 export * from './current_breakpoint';
+export * from './current_breakpoint_hook';
 export * from './useIsWithinBreakpoints';
