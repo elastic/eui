@@ -1,3 +1,12 @@
+## [`62.2.0`](https://github.com/elastic/eui/tree/v62.2.0)
+
+- The `EuiDataGrid`'s `rowHeightOptions` now contain an optional `scrollAnchorRow` property, which enables vertical layout shift compensation when rendering `auto`-sized rows. ([#6070](https://github.com/elastic/eui/pull/6070))
+- Added new React Testing Library EuiToolTip helpers, `waitForEuiToolTipVisible` and `waitForEuiToolTipClose` ([#6106](https://github.com/elastic/eui/pull/6106))
+
+**Bug fixes**
+
+- Fixed EuiPortal changes causing rerender issues in test environments ([#6105](https://github.com/elastic/eui/pull/6105))
+
 ## [`62.1.0`](https://github.com/elastic/eui/tree/v62.1.0)
 
 - Updated `tokenFile`, `tokenSymbol` and `tokenRepo` default shapes to `square` instead of `rectangle` ([#6067](https://github.com/elastic/eui/pull/6067))
