@@ -29,3 +29,24 @@ export const useIsWithinBreakpoints = (
     ? sizes.includes(currentBreakpoint)
     : false;
 };
+
+/**
+ * Given a max breakpoint key, this hook returns true if the breakpoint size
+ * of the current window width falls within the max breakpoint or any below,
+ * and false otherwise
+ *
+ * @param {EuiThemeBreakpoint} max The named max breakpoint to check against
+ * @returns {boolean} Will return `false` if it can't find a value for the `max` breakpoint
+ */
+export function useIsWithinMaxBreakpoint(max: _EuiThemeBreakpoint): boolean {
+  const {
+    euiTheme: { breakpoint: breakpoints },
+  } = useEuiTheme();
+  const currentBreakpoint = useCurrentEuiBreakpoint();
+
+  if (currentBreakpoint == null || breakpoints[max] == null) {
+    return false;
+  }
+
+  return breakpoints[currentBreakpoint] <= breakpoints[max];
+}

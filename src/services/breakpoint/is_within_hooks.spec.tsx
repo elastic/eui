@@ -12,7 +12,10 @@ import React, { FunctionComponent } from 'react';
 
 import { EuiProvider } from '../../components/provider';
 import { _EuiThemeBreakpoint } from '../../global_styling/variables/breakpoint';
-import { useIsWithinBreakpoints } from './is_within_hooks';
+import {
+  useIsWithinBreakpoints,
+  useIsWithinMaxBreakpoint,
+} from './is_within_hooks';
 
 describe('useIsWithinBreakpoints', () => {
   const MockComponent: FunctionComponent<{
@@ -68,6 +71,53 @@ describe('useIsWithinBreakpoints', () => {
         }}
       >
         <MockComponent sizes={['l']} />
+      </EuiProvider>
+    );
+    cy.get('[data-test-subj]').should('exist');
+  });
+});
+
+describe('useIsWithinMaxBreakpoint', () => {
+  const MockComponent: FunctionComponent<{
+    size: _EuiThemeBreakpoint;
+  }> = ({ size }) => {
+    const isWithinMaxBreakpoint = useIsWithinMaxBreakpoint(size);
+    return isWithinMaxBreakpoint ? <strong data-test-subj>true</strong> : null;
+  };
+
+  it('returns true if the current breakpoint size is smaller than the passed max size', () => {
+    cy.viewport(300, 600);
+    cy.mount(
+      <EuiProvider>
+        <MockComponent size="m" />
+      </EuiProvider>
+    );
+    cy.get('[data-test-subj]').should('exist');
+  });
+
+  it('returns false if the current breakpoint size is larger than the passed max size', () => {
+    cy.viewport(1400, 600);
+    cy.mount(
+      <EuiProvider>
+        <MockComponent size="m" />
+      </EuiProvider>
+    );
+    cy.get('[data-test-subj]').should('not.exist');
+  });
+
+  it('correctly handles custom breakpoint sizes', () => {
+    cy.viewport(1400, 600);
+    cy.mount(
+      <EuiProvider
+        modify={{
+          breakpoint: {
+            m: 1500,
+            l: 1800,
+            xl: 2000,
+          },
+        }}
+      >
+        <MockComponent size="m" />
       </EuiProvider>
     );
     cy.get('[data-test-subj]').should('exist');

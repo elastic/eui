@@ -25,7 +25,7 @@ export type { EuiBreakpointSize } from './breakpoint';
 export {
   getBreakpoint,
   useIsWithinBreakpoints,
-  isWithinMaxBreakpoint,
+  useIsWithinMaxBreakpoint,
   isWithinMinBreakpoint,
   CurrentEuiBreakpointContext,
   CurrentEuiBreakpointProvider,
