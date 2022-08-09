@@ -16,8 +16,6 @@ import { breakpoint } from '../../themes/amsterdam/global_styling/variables/_bre
 
 export type EuiBreakpointSize = _EuiThemeBreakpoint;
 export type EuiBreakpoints = _EuiThemeBreakpoints;
-export const BREAKPOINTS = breakpoint;
-export const BREAKPOINT_KEYS = keysOf(BREAKPOINTS);
 
 import { sortMapByLargeToSmallValues } from './_sorting';
 
@@ -32,7 +30,7 @@ import { sortMapByLargeToSmallValues } from './_sorting';
  */
 export function getBreakpoint(
   width: number,
-  breakpoints: EuiBreakpoints = BREAKPOINTS
+  breakpoints: EuiBreakpoints = breakpoint
 ): EuiBreakpointSize | undefined {
   // Ensure the breakpoints map is sorted from largest value to smallest
   const sortedBreakpoints: EuiBreakpoints = sortMapByLargeToSmallValues(
@@ -56,7 +54,7 @@ export function getBreakpoint(
 export function isWithinMaxBreakpoint(
   width: number,
   max: EuiBreakpointSize | number,
-  breakpoints: EuiBreakpoints = BREAKPOINTS
+  breakpoints: EuiBreakpoints = breakpoint
 ): boolean {
   if (typeof max === 'number') {
     return width <= max;
@@ -81,7 +79,7 @@ export function isWithinMaxBreakpoint(
 export function isWithinMinBreakpoint(
   width: number,
   min: EuiBreakpointSize | number,
-  breakpoints: EuiBreakpoints = BREAKPOINTS
+  breakpoints: EuiBreakpoints = breakpoint
 ): boolean {
   if (typeof min === 'number') {
     return width >= min;
@@ -106,7 +104,7 @@ export function isWithinMinBreakpoint(
 export function isWithinBreakpoints(
   width: number,
   sizes: EuiBreakpointSize[],
-  breakpoints: EuiBreakpoints = BREAKPOINTS
+  breakpoints: EuiBreakpoints = breakpoint
 ): boolean {
   const currentBreakpoint = getBreakpoint(width, breakpoints);
   return currentBreakpoint ? sizes.includes(currentBreakpoint) : false;
