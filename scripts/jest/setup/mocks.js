@@ -30,6 +30,6 @@ jest.mock('./../../../src/services/breakpoint', () => {
   );
   const {
     useCurrentEuiBreakpoint,
-  } = require('./../../../src/services/breakpoint/currentEuiBreakpoint.testenv');
+  } = require('./../../../src/services/breakpoint/current_breakpoint_hook.testenv');
   return { ...breakpointServices, useCurrentEuiBreakpoint };
 });
