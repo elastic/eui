@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../../services';
+import { UseEuiTheme, hexToRgb } from '../../../services';
 import {
   euiFormControlHeight,
   euiFormControlCompressedHeight,
@@ -77,12 +77,11 @@ export const euiRangeThumbBoxShadow = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
 
   return `
-    border: 2px solid ${euiRangeVariables(euiThemeContext).trackHeight};
     box-shadow: 0 0 0 1px ${
       euiRangeVariables(euiThemeContext).thumbBorderColor
     },
-    0 2px 2px -1px rgba(${euiTheme.colors.shadow}, .2),
-    0 1px 5px -2px rgba(${euiTheme.colors.shadow}, .2);
+    0 2px 2px -1px rgba(${hexToRgb(euiTheme.colors.shadow)}, .2),
+    0 1px 5px -2px rgba(${hexToRgb(euiTheme.colors.shadow)}, .2);
   `;
 };
 

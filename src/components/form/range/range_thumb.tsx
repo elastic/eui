@@ -53,7 +53,7 @@ export const EuiRangeThumb: FunctionComponent<EuiRangeThumbProps> = ({
 
   const euiTheme = useEuiTheme();
   const styles = euiRangeThumbStyles(euiTheme);
-  const cssStyles = [styles.euiRangeThumb];
+  const cssStyles = [styles.euiRangeThumb, showTicks && styles.hasTicks];
 
   const commonAttrs = {
     className: classes,
