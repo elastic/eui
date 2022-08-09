@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { euiFormControlSize } from '../../../global_styling/mixins/_form';
+import { euiFormControlSize } from '../form.styles';
 import { UseEuiTheme } from '../../../services';
 
 export const euiRangeWrapperStyles = (euiTheme: UseEuiTheme) => ({

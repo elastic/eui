@@ -44,6 +44,44 @@ export const euiFormCustomControlBorderColor = ({
   }
 `;
 
+export const euiFormControlSize = ({
+  euiTheme,
+  height,
+  includeAlternates,
+}: {
+  euiTheme: UseEuiTheme;
+  height?: string;
+  includeAlternates?: 'fullWidth' | 'compressed' | 'inGroup';
+}) => {
+  let alternateStyles = '';
+
+  switch (includeAlternates) {
+    case 'fullWidth':
+      alternateStyles = `
+        max-width: 100%;
+      `;
+      break;
+    case 'compressed':
+      alternateStyles = `
+        height: ${euiFormControlCompressedHeight(euiTheme)};
+      `;
+      break;
+    case 'inGroup':
+      alternateStyles = `
+        height: 100%;
+      `;
+      break;
+  }
+
+  return `
+    max-width: ${euiFormMaxWidth(euiTheme)};
+    width: 100%;
+    height: ${euiFormControlHeight(euiTheme) || height};
+
+    ${alternateStyles}
+  `;
+};
+
 export const euiCustomControl = ({
   euiThemeContext,
   type,
