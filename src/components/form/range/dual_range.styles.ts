@@ -14,7 +14,7 @@ export const euiDualRangeStyles = () => ({
   euiDualRange: css``,
   euiDualRange__slider: css`
     ${euiRangeThumbPerBrowser(`
-    visibility: hidden;
+      visibility: hidden;
     `)}
   `,
 });

@@ -8,30 +8,20 @@
 
 import { UseEuiTheme, shade, tint } from '../../services';
 
-export const euiFormMaxWidth = ({ euiTheme }: UseEuiTheme) =>
-  `${euiTheme.base * 25}px`;
+export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
 
-export const euiFormControlHeight = ({ euiTheme }: UseEuiTheme) =>
-  euiTheme.size.xxl;
-
-export const euiFormControlCompressedHeight = ({ euiTheme }: UseEuiTheme) =>
-  `${euiTheme.size.xl}`;
-
-export const euiFormControlPadding = ({ euiTheme }: UseEuiTheme) =>
-  `${euiTheme.size.m}`;
-
-export const euiFormControlCompressedPadding = ({ euiTheme }: UseEuiTheme) =>
-  `${euiTheme.size.s}`;
-
-export const euiFormControlBorderRadius = ({ euiTheme }: UseEuiTheme) =>
-  `${euiTheme.border.radius.medium}`;
-
-export const euiFormControlCompressedBorderRadius = ({
-  euiTheme,
-}: UseEuiTheme) => `${euiTheme.border.radius.small}`;
-
-export const euiCheckboxBorderRadius = ({ euiTheme }: UseEuiTheme) =>
-  `${euiTheme.border.radius.small}`;
+  return {
+    maxWidth: `${euiTheme.base * 25}px`,
+    controlHeight: euiTheme.size.xxl,
+    controlCompressedHeight: euiTheme.size.xl,
+    controlPadding: euiTheme.size.m,
+    controlCompressedPadding: euiTheme.size.s,
+    controlBorderRadius: euiTheme.border.radius.medium,
+    controlCompressedBorderRadius: euiTheme.border.radius.small,
+    checkboxBorderRadius: euiTheme.border.radius.small,
+  };
+};
 
 export const euiFormCustomControlBorderColor = ({
   euiTheme,
@@ -45,15 +35,17 @@ export const euiFormCustomControlBorderColor = ({
 `;
 
 export const euiFormControlSize = ({
-  euiTheme,
+  euiThemeContext,
   height,
   includeAlternates,
 }: {
-  euiTheme: UseEuiTheme;
+  euiThemeContext: UseEuiTheme;
   height?: string;
   includeAlternates?: 'fullWidth' | 'compressed' | 'inGroup';
 }) => {
   let alternateStyles = '';
+
+  const form = euiFormVariables(euiThemeContext);
 
   switch (includeAlternates) {
     case 'fullWidth':
@@ -63,7 +55,7 @@ export const euiFormControlSize = ({
       break;
     case 'compressed':
       alternateStyles = `
-        height: ${euiFormControlCompressedHeight(euiTheme)};
+        height: ${form.controlCompressedHeight};
       `;
       break;
     case 'inGroup':
@@ -74,9 +66,9 @@ export const euiFormControlSize = ({
   }
 
   return `
-    max-width: ${euiFormMaxWidth(euiTheme)};
+    max-width: ${form.maxWidth};
     width: 100%;
-    height: ${euiFormControlHeight(euiTheme) || height};
+    height: ${form.controlHeight || height};
 
     ${alternateStyles}
   `;
@@ -92,6 +84,7 @@ export const euiCustomControl = ({
   size?: string;
 }) => {
   const euiTheme = euiThemeContext.euiTheme;
+  const form = euiFormVariables(euiThemeContext);
 
   let padddingStyle;
   let borderRadiusStyle;
@@ -103,9 +96,7 @@ export const euiCustomControl = ({
   if (type === 'round') {
     borderRadiusStyle = `border-radius: ${size || euiTheme.size.base};`;
   } else if (type === 'square') {
-    borderRadiusStyle = `border-radius: ${euiCheckboxBorderRadius(
-      euiThemeContext
-    )};`;
+    borderRadiusStyle = `border-radius: ${form.checkboxBorderRadius};`;
   }
 
   return `

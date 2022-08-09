@@ -10,30 +10,32 @@ import { css } from '@emotion/react';
 import { euiFormControlSize } from '../form.styles';
 import { UseEuiTheme } from '../../../services';
 
-export const euiRangeWrapperStyles = (euiTheme: UseEuiTheme) => ({
-  // Base
-  euiRangeWrapper: css`
-    display: flex;
-    align-items: center;
+export const euiRangeWrapperStyles = (euiThemeContext: UseEuiTheme) => {
+  return {
+    // Base
+    euiRangeWrapper: css`
+      display: flex;
+      align-items: center;
 
-    > .euiFormControlLayout {
-      /* 1 */
-      width: auto;
+      > .euiFormControlLayout {
+        /* 1 */
+        width: auto;
 
-      &.euiFormControlLayout--group {
-        flex-shrink: 0; /* 2 */
+        &.euiFormControlLayout--group {
+          flex-shrink: 0; /* 2 */
+        }
       }
-    }
-  `,
-  regular: css`
-    ${euiFormControlSize({
-      euiTheme,
-    })}
-  `,
-  compressed: css`
-    ${euiFormControlSize({
-      euiTheme,
-      includeAlternates: 'compressed',
-    })}
-  `,
-});
+    `,
+    regular: css`
+      ${euiFormControlSize({
+        euiThemeContext,
+      })}
+    `,
+    compressed: css`
+      ${euiFormControlSize({
+        euiThemeContext,
+        includeAlternates: 'compressed',
+      })}
+    `,
+  };
+};

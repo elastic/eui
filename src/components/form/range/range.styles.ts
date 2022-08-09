@@ -8,16 +8,14 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme, hexToRgb } from '../../../services';
-import {
-  euiFormControlHeight,
-  euiFormControlCompressedHeight,
-} from '../form.styles';
+import { euiFormVariables } from '../form.styles';
 
 export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
   const trackHeight = '6px';
   const thumbHeight = euiTheme.size.base;
   const thumbWidth = euiTheme.size.base;
+  const form = euiFormVariables(euiThemeContext);
 
   return {
     trackColor: euiTheme.colors.lightShade,
@@ -30,9 +28,9 @@ export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
 
     trackWidth: '100%',
     trackHeight: trackHeight,
-    trackBorderWidth: 0,
+    trackBorderWidth: '0px',
     trackBorderColor: euiTheme.colors.lightShade, // same as trackColor
-    trackRadius: euiTheme.border.radius.medium,
+    trackBorderRadius: euiTheme.border.radius.medium,
 
     tickHeight: trackHeight,
     tickWidth: euiTheme.size.xs,
@@ -41,8 +39,8 @@ export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
 
     highlightHeight: trackHeight,
 
-    height: euiFormControlHeight(euiThemeContext),
-    compressedHeight: euiFormControlCompressedHeight(euiThemeContext),
+    height: form.controlHeight,
+    compressedHeight: form.controlCompressedHeight,
 
     // position of the track and hihglight relative to the parent container
     trackTopPositionWithTicks: `calc((${thumbHeight} - ${trackHeight}) / 2)`,

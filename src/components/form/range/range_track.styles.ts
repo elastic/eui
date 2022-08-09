@@ -35,10 +35,10 @@ export const euiRangeTrackStyles = (euiThemeContext: UseEuiTheme) => {
         content: '';
         display: block;
         background: ${range.trackColor};
-        border-radius: ${range.trackRadius};
+        border-radius: ${range.trackBorderRadius};
         position: absolute;
         left: 0;
-        ${euiRangeTrackSize(euiThemeContext)}
+        ${euiRangeTrackSize(euiThemeContext)};
       }
 
       &:not(.euiRangeTrack--hasTicks)::after {

@@ -40,7 +40,7 @@ export const euiRangeHighlightProgressStyles = (
   return {
     euiRangeHighlight__progress: css`
       height: ${range.highlightHeight};
-      border-radius: ${range.trackRadius};
+      border-radius: ${range.trackBorderRadius};
       background-color: ${range.highlightColor};
       border-color: ${range.highlightColor};
     `,
