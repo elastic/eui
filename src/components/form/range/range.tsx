@@ -307,7 +307,6 @@ export class EuiRangeClass extends Component<
 
           {showValue && !!String(value).length && (
             <EuiRangeTooltip
-              compressed={compressed}
               value={value}
               max={max}
               min={min}
