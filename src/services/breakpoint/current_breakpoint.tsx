@@ -8,7 +8,6 @@
 
 import React, {
   createContext,
-  useContext,
   useState,
   useEffect,
   FunctionComponent,
@@ -40,7 +39,7 @@ export const CurrentEuiBreakpointProvider: FunctionComponent = ({
   const [currentBreakpoint, setCurrentBreakpoint] = useState<
     CurrentEuiBreakpoint
   >(
-    typeof window !== undefined
+    typeof window !== 'undefined'
       ? getBreakpoint(window.innerWidth, breakpoints)
       : undefined
   );
@@ -60,12 +59,4 @@ export const CurrentEuiBreakpointProvider: FunctionComponent = ({
       {children}
     </CurrentEuiBreakpointContext.Provider>
   );
-};
-
-/**
- * Hook util / syntactical sugar
- */
-export const useCurrentEuiBreakpoint = () => {
-  const currentBreakpoint = useContext(CurrentEuiBreakpointContext);
-  return currentBreakpoint;
 };
