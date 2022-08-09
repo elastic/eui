@@ -14,8 +14,6 @@ import {
 } from '../../global_styling/variables/breakpoint';
 import { breakpoint } from '../../themes/amsterdam/global_styling/variables/_breakpoint';
 
-export type EuiBreakpointSize = _EuiThemeBreakpoint;
-
 import { sortMapByLargeToSmallValues } from './_sorting';
 
 /**
@@ -30,7 +28,7 @@ import { sortMapByLargeToSmallValues } from './_sorting';
 export function getBreakpoint(
   width: number,
   breakpoints: _EuiThemeBreakpoints = breakpoint
-): EuiBreakpointSize | undefined {
+): _EuiThemeBreakpoint | undefined {
   // Ensure the breakpoints map is sorted from largest value to smallest
   const sortedBreakpoints: _EuiThemeBreakpoints = sortMapByLargeToSmallValues(
     breakpoints
@@ -46,13 +44,13 @@ export function getBreakpoint(
  * breakpoint or any breakpoints below
  *
  * @param {number} width Can either be the full window width or any width
- * @param {EuiBreakpointSize | number} max The named breakpoint or custom number to check against
+ * @param {EuiThemeBreakpoint | number} max The named breakpoint or custom number to check against
  * @param {EuiThemeBreakpoints} breakpoints An object with keys for sizing and values for minimum width
  * @returns {boolean} Will return `false` if it can't find a value for the `max` breakpoint
  */
 export function isWithinMaxBreakpoint(
   width: number,
-  max: EuiBreakpointSize | number,
+  max: _EuiThemeBreakpoint | number,
   breakpoints: _EuiThemeBreakpoints = breakpoint
 ): boolean {
   if (typeof max === 'number') {
@@ -71,13 +69,13 @@ export function isWithinMaxBreakpoint(
  * breakpoint or any breakpoints above
  *
  * @param {number} width Can either be the full window width or any width
- * @param {EuiBreakpointSize | number} min The named breakpoint or custom number to check against
+ * @param {EuiThemeBreakpoint | number} min The named breakpoint or custom number to check against
  * @param {EuiThemeBreakpoints} breakpoints An object with keys for sizing and values for minimum width
  * @returns {boolean} Will return `false` if it can't find a value for the `min` breakpoint
  */
 export function isWithinMinBreakpoint(
   width: number,
-  min: EuiBreakpointSize | number,
+  min: _EuiThemeBreakpoint | number,
   breakpoints: _EuiThemeBreakpoints = breakpoint
 ): boolean {
   if (typeof min === 'number') {
@@ -96,13 +94,13 @@ export function isWithinMinBreakpoint(
  * any of the named breakpoints
  *
  * @param {number} width Can either be the full window width or any width
- * @param {EuiBreakpointSize[]} sizes An array of named breakpoints
+ * @param {EuiThemeBreakpoint[]} sizes An array of named breakpoints
  * @param {EuiThemeBreakpoints} breakpoints An object with keys for sizing and values for minimum width
  * @returns {boolean} Returns `true` if current breakpoint name is included in `sizes`
  */
 export function isWithinBreakpoints(
   width: number,
-  sizes: EuiBreakpointSize[],
+  sizes: _EuiThemeBreakpoint[],
   breakpoints: _EuiThemeBreakpoints = breakpoint
 ): boolean {
   const currentBreakpoint = getBreakpoint(width, breakpoints);
