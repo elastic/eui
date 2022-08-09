@@ -15,6 +15,7 @@ import { _EuiThemeBreakpoint } from '../../global_styling/variables/breakpoint';
 import {
   useIsWithinBreakpoints,
   useIsWithinMaxBreakpoint,
+  useIsWithinMinBreakpoint,
 } from './is_within_hooks';
 
 describe('useIsWithinBreakpoints', () => {
@@ -114,6 +115,53 @@ describe('useIsWithinMaxBreakpoint', () => {
             m: 1500,
             l: 1800,
             xl: 2000,
+          },
+        }}
+      >
+        <MockComponent size="m" />
+      </EuiProvider>
+    );
+    cy.get('[data-test-subj]').should('exist');
+  });
+});
+
+describe('useIsWithinMinBreakpoint', () => {
+  const MockComponent: FunctionComponent<{
+    size: _EuiThemeBreakpoint;
+  }> = ({ size }) => {
+    const isWithinMinBreakpoint = useIsWithinMinBreakpoint(size);
+    return isWithinMinBreakpoint ? <strong data-test-subj>true</strong> : null;
+  };
+
+  it('returns true if the current breakpoint size is larger than the passed min size', () => {
+    cy.viewport(800, 600);
+    cy.mount(
+      <EuiProvider>
+        <MockComponent size="m" />
+      </EuiProvider>
+    );
+    cy.get('[data-test-subj]').should('exist');
+  });
+
+  it('returns false if the current breakpoint size is smaller than the passed min size', () => {
+    cy.viewport(600, 600);
+    cy.mount(
+      <EuiProvider>
+        <MockComponent size="m" />
+      </EuiProvider>
+    );
+    cy.get('[data-test-subj]').should('not.exist');
+  });
+
+  it('correctly handles custom breakpoint sizes', () => {
+    cy.viewport(600, 600);
+    cy.mount(
+      <EuiProvider
+        modify={{
+          breakpoint: {
+            m: 600,
+            l: 800,
+            xl: 1000,
           },
         }}
       >

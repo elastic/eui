@@ -26,7 +26,7 @@ export {
   getBreakpoint,
   useIsWithinBreakpoints,
   useIsWithinMaxBreakpoint,
-  isWithinMinBreakpoint,
+  useIsWithinMinBreakpoint,
   CurrentEuiBreakpointContext,
   CurrentEuiBreakpointProvider,
   useCurrentEuiBreakpoint,

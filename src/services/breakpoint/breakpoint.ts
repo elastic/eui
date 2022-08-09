@@ -37,28 +37,3 @@ export function getBreakpoint(
   // Find the breakpoint (key) whose value is <= windowWidth starting with largest first
   return keysOf(sortedBreakpoints).find((key) => breakpoints[key] <= width);
 }
-
-/**
- * Given the current `width` and a min breakpoint key,
- * this function returns true or false if the `width` falls within the min
- * breakpoint or any breakpoints above
- *
- * @param {number} width Can either be the full window width or any width
- * @param {EuiThemeBreakpoint | number} min The named breakpoint or custom number to check against
- * @param {EuiThemeBreakpoints} breakpoints An object with keys for sizing and values for minimum width
- * @returns {boolean} Will return `false` if it can't find a value for the `min` breakpoint
- */
-export function isWithinMinBreakpoint(
-  width: number,
-  min: _EuiThemeBreakpoint | number,
-  breakpoints: _EuiThemeBreakpoints = breakpoint
-): boolean {
-  if (typeof min === 'number') {
-    return width >= min;
-  } else {
-    const currentBreakpoint = getBreakpoint(width, breakpoints);
-    return currentBreakpoint
-      ? breakpoints[currentBreakpoint] >= breakpoints[min]
-      : false;
-  }
-}

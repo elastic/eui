@@ -7,6 +7,7 @@
  */
 
 import { _EuiThemeBreakpoint } from '../../global_styling/variables/breakpoint';
+import { useEuiTheme } from '../theme';
 import { useCurrentEuiBreakpoint } from './current_breakpoint_hook';
 
 /**
@@ -49,4 +50,25 @@ export function useIsWithinMaxBreakpoint(max: _EuiThemeBreakpoint): boolean {
   }
 
   return breakpoints[currentBreakpoint] <= breakpoints[max];
+}
+
+/**
+ * Given a min breakpoint key, this hook returns true if the breakpoint size
+ * of the current window width falls within the min breakpoint or any above,
+ * and false otherwise
+ *
+ * @param {EuiThemeBreakpoint} min The named min breakpoint to check against
+ * @returns {boolean} Will return `false` if it can't find a value for the `min` breakpoint
+ */
+export function useIsWithinMinBreakpoint(min: _EuiThemeBreakpoint): boolean {
+  const {
+    euiTheme: { breakpoint: breakpoints },
+  } = useEuiTheme();
+  const currentBreakpoint = useCurrentEuiBreakpoint();
+
+  if (currentBreakpoint == null || breakpoints[min] == null) {
+    return false;
+  }
+
+  return breakpoints[currentBreakpoint] >= breakpoints[min];
 }
