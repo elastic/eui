@@ -2,38 +2,6 @@
 // sass-lint:disable no-important
 
 /**
- *  Responsive
- *
- *  1. Be sure to hide the element initially
- */
-
-[class*='eui-showFor'] {
-  display: none !important; /* 1 */
-}
-
-@each $size in $euiBreakpointKeys {
-  .eui-hideFor--#{$size} {
-    @include euiBreakpoint($size) { display: none !important; }
-  }
-
-  .eui-showFor--#{$size} {
-    @include  euiBreakpoint($size) { display: inline !important; }
-  }
-
-  .eui-showFor--#{$size}--block {
-    @include  euiBreakpoint($size) { display: block !important; }
-  }
-
-  .eui-showFor--#{$size}--inlineBlock {
-    @include  euiBreakpoint($size) { display: inline-block !important; }
-  }
-
-  .eui-showFor--#{$size}--flex {
-    @include  euiBreakpoint($size) { display: flex !important; }
-  }
-}
-
-/**
   * IE doesn't properly wrap groups if it is within a flex-item of a flex-group.
   * Adding the following styles to the flex-item that contains the wrapping group, will fix IE.
   * https://github.com/philipwalton/flexbugs/issues/104

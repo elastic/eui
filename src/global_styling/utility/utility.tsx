@@ -22,6 +22,7 @@ import {
   euiXScroll,
   euiYScrollWithShadows,
   euiXScrollWithShadows,
+  euiBreakpoint,
 } from '../mixins';
 import { logicalCSS } from '../functions';
 
@@ -120,6 +121,39 @@ const globalStyles = (euiThemeContext: UseEuiTheme) => {
     .eui-xScrollWithShadows {
       ${euiXScrollWithShadows(euiThemeContext)}
     }
+
+    // Responsive
+    [class*='eui-showFor'] {
+      display: none !important; // Be sure to hide the element initially
+    }
+    ${Object.keys(euiThemeContext.euiTheme.breakpoint).map(
+      (size) => `
+      .eui-hideFor--${size} {
+        ${euiBreakpoint(euiThemeContext, [size])} {
+          display: none !important;
+        }
+      }
+      .eui-showFor--${size} {
+        ${euiBreakpoint(euiThemeContext, [size])} {
+          display: inline !important;
+        }
+      }
+      .eui-showFor--${size}--block {
+        ${euiBreakpoint(euiThemeContext, [size])} {
+          display: block !important;
+        }
+      }
+      .eui-showFor--${size}--inlineBlock {
+        ${euiBreakpoint(euiThemeContext, [size])} {
+          display: inline-block !important;
+        }
+      }
+      .eui-showFor--${size}--flex {
+        ${euiBreakpoint(euiThemeContext, [size])} {
+          display: flex !important;
+        }
+      }`
+    )}
   `;
 };
 export const EuiUtilityClasses = () => {
