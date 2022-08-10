@@ -16,6 +16,11 @@ import {
   euiTextBreakWord,
   euiTextTruncate,
   euiNumberFormat,
+  euiScrollBarStyles,
+  euiYScroll,
+  euiXScroll,
+  euiYScrollWithShadows,
+  euiXScrollWithShadows,
 } from '../mixins';
 import { logicalCSS } from '../functions';
 
@@ -92,6 +97,23 @@ const globalStyles = (euiThemeContext: UseEuiTheme) => {
     }
     .eui-textNumber {
       ${euiNumberFormat(euiThemeContext)}
+    }
+
+    // Scroll
+    .eui-scrollBar {
+      ${euiScrollBarStyles(euiThemeContext)}
+    }
+    .eui-yScroll {
+      ${euiYScroll(euiThemeContext)}
+    }
+    .eui-xScroll {
+      ${euiXScroll(euiThemeContext)}
+    }
+    .eui-yScrollWithShadows {
+      ${euiYScrollWithShadows(euiThemeContext)}
+    }
+    .eui-xScrollWithShadows {
+      ${euiXScrollWithShadows(euiThemeContext)}
     }
   `;
 };

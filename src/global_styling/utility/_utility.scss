@@ -47,35 +47,6 @@
 }
 
 /**
- * Scroll bar only
- */
-.eui-scrollBar {
-  @include euiScrollBar;
-}
-
-/**
-  * Overflow scrolling
-  */
-.eui-yScroll {
-  @include euiYScroll;
-}
-
-.eui-xScroll {
-  @include euiXScroll;
-}
-
-/**
-  * Overflow scrolling with shadows
-  */
-.eui-yScrollWithShadows {
-  @include euiYScrollWithShadows;
-}
-
-.eui-xScrollWithShadows {
-  @include euiXScrollWithShadows;
-}
-
-/**
   * Forcing focus ring on non-EUI elements
   */
 .eui-isFocusable:focus {

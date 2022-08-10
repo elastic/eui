@@ -65,8 +65,8 @@ const logicalSize = {
 };
 
 const logicalOverflow = {
-  'overflow-x': 'overflow-block',
-  'overflow-y': 'overflow-inline',
+  'overflow-x': 'overflow-inline',
+  'overflow-y': 'overflow-block',
 };
 
 const logicalBorders = {
@@ -121,6 +121,24 @@ export type LogicalProperties = typeof LOGICAL_PROPERTIES[number];
 export const logicalCSS = (property: LogicalProperties, value?: any) => {
   return `${logicals[property]}: ${value};`;
 };
+
+/**
+ * Some logical properties are not yet fully supported by all browsers.
+ * For those cases, we should use the old property as a fallback for
+ * browsers missing support, while allowing supporting browsers to use
+ * the logical properties.
+ *
+ * Examples:
+ * https://caniuse.com/?search=overflow-block
+ * https://caniuse.com/mdn-css_properties_float_flow_relative_values
+ */
+export const logicalCSSWithFallback = (
+  property: LogicalProperties,
+  value?: any
+) => `
+  ${property}: ${value};
+  ${logicalCSS(property, value)}
+`;
 
 /**
  *
