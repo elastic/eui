@@ -345,8 +345,8 @@ export const AccordionExample = {
             title={
               <>
                 When disabling the interaction of accordions based on user
-                input, it&apos;s advisable to give further explanation through
-                the use of a tooltip or screen-reader only text.
+                input, it&apos;s advisable to ensure there is further
+                explanation through the use of help or error text.
               </>
             }
           />

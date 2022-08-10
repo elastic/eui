@@ -5,7 +5,6 @@ import {
   EuiFieldPassword,
   EuiFormRow,
   EuiPanel,
-  EuiToolTip,
   useGeneratedHtmlId,
 } from '../../../../src';
 
@@ -17,20 +16,10 @@ export default () => {
 
   const isInvalid = passwordValue === '';
 
-  const buttonContent = (
-    <EuiToolTip
-      content={
-        isInvalid ? 'There are errors in the expanded content.' : undefined
-      }
-    >
-      <span>Security settings</span>
-    </EuiToolTip>
-  );
-
   return (
     <EuiAccordion
       id={disabledAccordionId}
-      buttonContent={buttonContent}
+      buttonContent="Security settings"
       isDisabled={isInvalid}
       initialIsOpen={true}
     >
