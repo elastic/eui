@@ -124,29 +124,37 @@ const euiOverflowShadowStyles = (
  *    Browser's supporting `:focus-visible` will still show outline on keyboard focus only.
  *    Others like Safari, won't show anything at all.
  */
-
+interface _EuiYScroll {
+  height?: CSSProperties['height'];
+}
 // TODO: How do we use Emotion to output the CSS class utilities instead?
-export const euiYScroll = (euiTheme: UseEuiTheme) => `
+export const euiYScroll = (
+  euiTheme: UseEuiTheme,
+  { height }: _EuiYScroll = {}
+) => `
   ${euiScrollBarStyles(euiTheme)}
-  height: 100%;
+  height: ${height || '100%'};
   overflow-y: auto;
   overflow-x: hidden;
   &:focus {
     outline: none; /* 1 */
   }
 `;
-export const useEuiYScroll = () => {
+export const useEuiYScroll = ({ height }: _EuiYScroll = {}) => {
   const euiTheme = useEuiTheme();
-  return euiYScroll(euiTheme);
+  return euiYScroll(euiTheme, { height });
 };
 
-export const euiYScrollWithShadows = (euiTheme: UseEuiTheme) => `
-  ${euiYScroll(euiTheme)}
+export const euiYScrollWithShadows = (
+  euiTheme: UseEuiTheme,
+  { height }: _EuiYScroll = {}
+) => `
+  ${euiYScroll(euiTheme, { height })}
   ${euiOverflowShadowStyles(euiTheme, { direction: 'y' })}
 `;
-export const useEuiYScrollWithShadows = () => {
+export const useEuiYScrollWithShadows = ({ height }: _EuiYScroll = {}) => {
   const euiTheme = useEuiTheme();
-  return euiYScrollWithShadows(euiTheme);
+  return euiYScrollWithShadows(euiTheme, { height });
 };
 
 export const euiXScroll = (euiTheme: UseEuiTheme) => `

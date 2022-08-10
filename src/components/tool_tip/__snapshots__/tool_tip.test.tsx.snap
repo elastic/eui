@@ -1,34 +1,72 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiToolTip display prop renders block 1`] = `
-<span
-  class="euiToolTipAnchor euiToolTipAnchor--displayBlock"
->
-  <button>
-    Trigger
-  </button>
-</span>
+<div>
+  <span
+    class="euiToolTipAnchor euiToolTipAnchor--displayBlock"
+  >
+    <button>
+      Trigger
+    </button>
+  </span>
+</div>
 `;
 
 exports[`EuiToolTip is rendered 1`] = `
-<span
-  class="euiToolTipAnchor"
->
-  <button>
-    Trigger
-  </button>
-</span>
+<body>
+  <div>
+    <span
+      class="euiToolTipAnchor"
+    >
+      <button>
+        Trigger
+      </button>
+    </span>
+  </div>
+</body>
 `;
 
-exports[`EuiToolTip shows tooltip on focus 1`] = `
-<span
-  class="euiToolTipAnchor"
+exports[`EuiToolTip shows tooltip on mouseover and focus 1`] = `
+<body
+  class="euiBody-hasPortalContent"
 >
-  <button
-    aria-describedby="id"
-    data-test-subj="trigger"
+  <div>
+    <span
+      class="euiToolTipAnchor"
+    >
+      <button
+        aria-describedby="id"
+        data-test-subj="trigger"
+      >
+        Trigger
+      </button>
+    </span>
+  </div>
+  <div
+    data-euiportal="true"
   >
-    Trigger
-  </button>
-</span>
+    <div
+      aria-label="aria-label"
+      class="euiToolTipPopover euiToolTip euiToolTip--top testClass1 testClass2"
+      data-test-subj="test subject string"
+      id="id"
+      position="top"
+      role="tooltip"
+      style="top: -16px; left: -10px;"
+    >
+      <div
+        class="euiToolTip__title"
+      >
+        title
+      </div>
+      <div
+        class="euiToolTip__arrow"
+        style="left: 4px; top: 0px;"
+      />
+      <div>
+        content
+      </div>
+    </div>
+  </div>
+</body>
 `;

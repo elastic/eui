@@ -137,6 +137,7 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
               anchorPosition="downRight"
               closePopover={closeMenu}
               panelPaddingSize="none"
+              repositionOnScroll
               {...popoverProps}
             >
               <div

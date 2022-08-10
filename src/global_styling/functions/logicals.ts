@@ -133,7 +133,7 @@ export const logicalStyle = (property: LogicalProperties, value?: any) => {
   const camelCasedProperty = logicals[property].replace(/-\w/g, (str) =>
     str.charAt(1).toUpperCase()
   );
-  return { [camelCasedProperty]: `${value}` };
+  return { [camelCasedProperty]: value };
 };
 
 /**

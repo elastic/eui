@@ -41,7 +41,11 @@ export type EuiPageContentProps = CommonProps &
     role?: HTMLAttributes['role'] | null;
   };
 
-export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
+/**
+ * **DEPRECATED**
+ * Use EuiPageSection instead
+ */
+export const EuiPageContent_Deprecated: FunctionComponent<EuiPageContentProps> = ({
   verticalPosition,
   horizontalPosition,
   paddingSize = 'l',
