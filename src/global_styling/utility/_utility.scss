@@ -1,22 +1,6 @@
 // This file utilizes !importants on purpose
 // sass-lint:disable no-important
 
-// Vertical alignment
-.eui-alignBaseline { vertical-align: baseline !important; }
-.eui-alignBottom { vertical-align: bottom !important; }
-.eui-alignMiddle { vertical-align: middle !important; }
-.eui-alignTop { vertical-align: top !important; }
-
-// Display
-.eui-displayBlock {display: block !important;}
-.eui-displayInline {display: inline !important;}
-.eui-displayInlineBlock {display: inline-block !important;}
-
-.eui-fullWidth {
-  display: block !important;
-  width: 100% !important;
-}
-
 /**
  *  Responsive
  *
@@ -96,17 +80,4 @@
   */
 .eui-isFocusable:focus {
   @include euiFocusRing('large');
-}
-
-/**
- * For quickly applying a full-height element whether using flex or not
- */
-@mixin euiFullHeight {
-  height: 100%;
-  flex: 1 1 auto;
-  overflow: hidden;
-}
-
-.eui-fullHeight {
-  @include euiFullHeight;
 }

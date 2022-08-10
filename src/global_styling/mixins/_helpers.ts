@@ -9,6 +9,7 @@
 import { CSSProperties } from 'react';
 import { useEuiTheme, UseEuiTheme } from '../../services/theme';
 import { transparentize } from '../../services/color';
+import { logicalCSS } from '../functions';
 
 /**
  * Set scroll bar appearance on Chrome (and firefox).
@@ -206,3 +207,12 @@ export const useEuiOverflowScroll = (
   const euiTheme = useEuiTheme();
   return euiOverflowScroll(euiTheme, { direction, mask });
 };
+
+/**
+ * For quickly applying a full-height element whether using flex or not
+ */
+export const euiFullHeight = () => `
+  ${logicalCSS('height', '100%')}
+  flex: 1 1 auto;
+  overflow: hidden;
+`;
