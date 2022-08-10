@@ -2,7 +2,7 @@
 
 exports[`renders EuiColorStops 1`] = `
 <div
-  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper"
+  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper-regular"
   data-test-subj="euiColorStops"
   tabindex="0"
 >
@@ -113,7 +113,7 @@ exports[`renders EuiColorStops 1`] = `
 
 exports[`renders compressed EuiColorStops 1`] = `
 <div
-  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper"
+  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper-regular"
   data-test-subj="euiColorStops"
   tabindex="0"
 >
@@ -224,7 +224,7 @@ exports[`renders compressed EuiColorStops 1`] = `
 
 exports[`renders disabled EuiColorStops 1`] = `
 <div
-  class="euiRangeWrapper euiColorStops euiColorStops-isDisabled testClass1 testClass2 emotion-euiRangeWrapper"
+  class="euiRangeWrapper euiColorStops euiColorStops-isDisabled testClass1 testClass2 emotion-euiRangeWrapper-regular"
   data-test-subj="euiColorStops"
   tabindex="-1"
 >
@@ -235,7 +235,7 @@ exports[`renders disabled EuiColorStops 1`] = `
     Test:  Disabled. Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack euiRangeTrack--disabled emotion-euiRangeTrack"
+    class="euiRangeTrack euiRangeTrack--disabled emotion-euiRangeTrack-disabled"
   >
     <div
       class="euiRangeHighlight euiColorStops__highlight emotion-euiRangeHighlight"
@@ -338,7 +338,7 @@ exports[`renders disabled EuiColorStops 1`] = `
 
 exports[`renders empty EuiColorStops 1`] = `
 <div
-  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper"
+  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper-regular"
   data-test-subj="euiColorStops"
   tabindex="0"
 >
@@ -374,7 +374,7 @@ exports[`renders empty EuiColorStops 1`] = `
 
 exports[`renders fixed stop EuiColorStops 1`] = `
 <div
-  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper"
+  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper-regular"
   data-test-subj="euiColorStops"
   tabindex="0"
 >
@@ -485,7 +485,7 @@ exports[`renders fixed stop EuiColorStops 1`] = `
 
 exports[`renders free-range EuiColorStops 1`] = `
 <div
-  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper"
+  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper-regular"
   data-test-subj="euiColorStops"
   tabindex="0"
 >
@@ -521,7 +521,7 @@ exports[`renders free-range EuiColorStops 1`] = `
 
 exports[`renders fullWidth EuiColorStops 1`] = `
 <div
-  class="euiRangeWrapper euiRangeWrapper--fullWidth euiColorStops testClass1 testClass2 emotion-euiRangeWrapper"
+  class="euiRangeWrapper euiRangeWrapper--fullWidth euiColorStops testClass1 testClass2 emotion-euiRangeWrapper-regular"
   data-test-subj="euiColorStops"
   tabindex="0"
 >
@@ -632,7 +632,7 @@ exports[`renders fullWidth EuiColorStops 1`] = `
 
 exports[`renders max-only EuiColorStops 1`] = `
 <div
-  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper"
+  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper-regular"
   data-test-subj="euiColorStops"
   tabindex="0"
 >
@@ -668,7 +668,7 @@ exports[`renders max-only EuiColorStops 1`] = `
 
 exports[`renders min-only EuiColorStops 1`] = `
 <div
-  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper"
+  class="euiRangeWrapper euiColorStops testClass1 testClass2 emotion-euiRangeWrapper-regular"
   data-test-subj="euiColorStops"
   tabindex="0"
 >
@@ -704,7 +704,7 @@ exports[`renders min-only EuiColorStops 1`] = `
 
 exports[`renders readOnly EuiColorStops 1`] = `
 <div
-  class="euiRangeWrapper euiColorStops euiColorStops-isReadOnly testClass1 testClass2 emotion-euiRangeWrapper"
+  class="euiRangeWrapper euiColorStops euiColorStops-isReadOnly testClass1 testClass2 emotion-euiRangeWrapper-regular"
   data-test-subj="euiColorStops"
   tabindex="0"
 >

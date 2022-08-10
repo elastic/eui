@@ -2,15 +2,15 @@
 
 exports[`EuiRangeLevels is rendered 1`] = `
 <div
-  class="euiRangeLevels euiRangeLevels--hasTicks"
+  class="euiRangeLevels euiRangeLevels--hasTicks emotion-euiRangeLevels-hasTicks"
 >
   <span
-    class="euiRangeLevel euiRangeLevel--danger customClass"
+    class="euiRangeLevel euiRangeLevel--danger customClass emotion-euiRangeLevel-danger"
     data-test-subj="firstLevel"
     style="left:calc(0% + 0px);right:calc(100% - 0px)"
   />
   <span
-    class="euiRangeLevel euiRangeLevel--success"
+    class="euiRangeLevel euiRangeLevel--success emotion-euiRangeLevel-success"
     style="left:calc(0% + 0px);right:calc(100% - 0px)"
   />
 </div>
@@ -18,14 +18,14 @@ exports[`EuiRangeLevels is rendered 1`] = `
 
 exports[`EuiRangeLevels is rendered with named and custom color 1`] = `
 <div
-  class="euiRangeLevels euiRangeLevels--hasTicks"
+  class="euiRangeLevels euiRangeLevels--hasTicks emotion-euiRangeLevels-hasTicks"
 >
   <span
-    class="euiRangeLevel euiRangeLevel--danger"
+    class="euiRangeLevel euiRangeLevel--danger emotion-euiRangeLevel-danger"
     style="left:calc(0% + 0px);right:calc(100% - 0px)"
   />
   <span
-    class="euiRangeLevel euiRangeLevel--customColor"
+    class="euiRangeLevel euiRangeLevel--customColor emotion-euiRangeLevel-customColor"
     style="left:calc(0% + 0px);right:calc(100% - 0px);background-color:#ff0000"
   />
 </div>
